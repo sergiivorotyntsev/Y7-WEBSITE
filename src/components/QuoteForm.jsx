@@ -299,7 +299,7 @@ export default function QuoteForm({ compact = false }) {
       </div>
 
       {/* Route Estimator (appears when both ZIPs filled) */}
-      <RouteEstimator pickupZip={form.pickup_zip} deliveryZip={form.delivery_zip} transportType={form.transport_type} />
+      <RouteEstimator pickupZip={form.pickup_zip} deliveryZip={form.delivery_zip} />
 
       {/* ── STEP 2: Contact (animated reveal) ── */}
       <div style={{
