@@ -85,6 +85,15 @@ export default function QuoteForm({ compact = false }) {
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
 
+  // Listen for transport type selection from TransportComparison buttons
+  useEffect(() => {
+    const handler = (e) => {
+      if (e.detail) set('transport_type', e.detail);
+    };
+    window.addEventListener('selectTransportType', handler);
+    return () => window.removeEventListener('selectTransportType', handler);
+  }, []);
+
   // Step 2: both ZIPs must be >= 5 chars
   const showStep2 = form.pickup_zip.trim().length >= 5 && form.delivery_zip.trim().length >= 5;
 

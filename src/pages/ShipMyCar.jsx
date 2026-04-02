@@ -127,7 +127,7 @@ export default function ShipMyCar() {
       </section>
 
       {/* Quote form */}
-      <section style={{ padding: '48px 24px', background: colors.bgMuted }}>
+      <section id="quote-section" style={{ padding: '48px 24px', background: colors.bgMuted }}>
         <h2 style={{
           fontFamily: fonts.serif,
           fontSize: '24px',
