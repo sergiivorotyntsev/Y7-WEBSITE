@@ -222,7 +222,7 @@ export default function Dealers() {
         }}>
           {t('ctaSubtitle')}
         </p>
-        <button onClick={() => navigate('/quote')} style={btnStyles.accent}>
+        <button onClick={() => navigate('/dealer-quote')} style={btnStyles.accent}>
           {t('ctaButton')}
         </button>
       </div>

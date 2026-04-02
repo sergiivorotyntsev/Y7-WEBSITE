@@ -14,6 +14,7 @@ import Agreement from './pages/Agreement';
 import Track from './pages/Track';
 import Contact from './pages/Contact';
 import QuoteAction from './pages/QuoteAction';
+import DealerQuote from './pages/DealerQuote';
 import Login from './pages/portal/Login';
 import Register from './pages/portal/Register';
 import Dashboard from './pages/portal/Dashboard';
@@ -39,6 +40,8 @@ export default function App() {
             <Route path="/track" element={<Track />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/agreement/:orderId" element={<Agreement />} />
+            <Route path="/dealer-quote" element={<DealerQuote />} />
+            <Route path="/:lang/dealer-quote" element={<DealerQuote />} />
             <Route path="/:lang/quote/:action/:orderId" element={<QuoteAction />} />
             <Route path="/:lang/agreement/:orderId" element={<Agreement />} />
             {/* Portal auth (public) */}
