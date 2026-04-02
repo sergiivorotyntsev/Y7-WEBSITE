@@ -5,6 +5,7 @@ import { apiPost } from '../hooks/useApi';
 import SmsConsent from './SmsConsent';
 import RouteEstimator from './RouteEstimator';
 import VehicleSilhouette from './VehicleSilhouette';
+import PostQuoteFlow from './PostQuoteFlow';
 import { colors, fonts, button as btnStyles } from '../theme';
 
 const inputStyle = {
@@ -141,44 +142,7 @@ export default function QuoteForm({ compact = false }) {
   }
 
   if (success) {
-    return (
-      <div style={{
-        textAlign: 'center',
-        padding: '40px 20px',
-        background: colors.successBg,
-        borderRadius: '16px',
-        maxWidth: '680px',
-        margin: '0 auto',
-      }}>
-        <div style={{ fontSize: '48px', marginBottom: '16px' }}>&#10003;</div>
-        <h3 style={{
-          fontFamily: fonts.serif,
-          fontSize: '24px',
-          color: colors.success,
-          marginBottom: '8px',
-        }}>
-          {t('success.title')}
-        </h3>
-        <p style={{
-          fontFamily: fonts.sans,
-          fontSize: '14px',
-          color: colors.textMuted,
-          marginBottom: '16px',
-        }}>
-          {t('success.message')}
-        </p>
-        {success.reference && (
-          <p style={{
-            fontFamily: fonts.mono,
-            fontSize: '16px',
-            color: colors.text,
-            fontWeight: 600,
-          }}>
-            {t('success.reference')} {success.reference}
-          </p>
-        )}
-      </div>
-    );
+    return <PostQuoteFlow quoteResult={success} formData={form} />;
   }
 
   return (
