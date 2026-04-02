@@ -1,19 +1,61 @@
 {
-  "title": "Door-to-Port Transport for Exporters",
-  "subtitle": "Buying vehicles in the US for export? We deliver from any auction, dealer, or private location to every major export port in the country.",
-  "ports": [
-    { "name": "Newark, NJ", "desc": "Primary East Coast export hub. Direct access to Port Newark-Elizabeth Marine Terminal." },
-    { "name": "Houston, TX", "desc": "Largest US vehicle export port. RoRo and container service to Africa, Middle East, South America." },
-    { "name": "Savannah, GA", "desc": "Fast-growing Southeast port with competitive rates for European and African routes." },
-    { "name": "Baltimore, MD", "desc": "Dundalk Marine Terminal — major RoRo facility for European-bound vehicles." },
-    { "name": "Los Angeles, CA", "desc": "Pacific gateway for Asia, Australia, and Oceania exports." },
-    { "name": "Jacksonville, FL", "desc": "Southeast port with Caribbean and South American connections." }
-  ],
+  "title": "Dispatch & Logistics for Vehicle Exporters",
+  "subtitle": "Transparent pricing. You pay the carrier rate + our service fee. No markups, no hidden costs.",
+  "value": {
+    "title": "Why Exporters Choose Y7",
+    "points": [
+      "Carrier rate passed through at cost — zero markup on transport",
+      "Our fee covers: CD listing, carrier vetting, dispatch, BOL/gate pass, monitoring",
+      "Optional carrier payment handling — we pay, you reimburse",
+      "Dedicated account manager for 10+ vehicles/month",
+      "All major US export ports: Newark, Houston, Savannah, Baltimore, LA, Jacksonville"
+    ]
+  },
+  "fees": {
+    "title": "Service Fee Structure",
+    "items": [
+      { "service": "Per-Vehicle Dispatch", "desc": "CD listing, carrier negotiation, dispatch coordination, documentation (BOL, gate pass), shipment monitoring", "note": "Flat fee per vehicle" },
+      { "service": "Payment Processing", "desc": "We pay the carrier on your behalf and handle all financial paperwork. You reimburse carrier cost + processing fee.", "note": "Optional add-on" },
+      { "service": "Volume Contracts", "desc": "Custom rate card for exporters shipping 10+ vehicles/month. Dedicated dispatcher, priority listing, monthly invoicing.", "note": "Contact us" }
+    ]
+  },
   "howTitle": "How It Works",
   "steps": [
-    { "title": "Submit Your Vehicles", "desc": "Send us VINs, auction lot numbers, or pickup addresses." },
-    { "title": "We Quote & Dispatch", "desc": "Same-day quotes. We assign a vetted carrier for your route." },
-    { "title": "Port Delivery", "desc": "Vehicle delivered to your port with full documentation." }
+    { "title": "Tell Us Your Needs", "desc": "Monthly volume, preferred ports, vehicle types. We'll tailor a service plan." },
+    { "title": "Receive Our Service Rates", "desc": "Transparent fee schedule — our dispatch fee + carrier rate (at cost). No hidden markups." },
+    { "title": "Send Us Your Vehicles", "desc": "VINs + pickup locations. One vehicle or a hundred — we handle each one." },
+    { "title": "We Dispatch & Deliver", "desc": "Carrier assignment, real-time tracking, port delivery with full documentation." }
   ],
-  "ctaButton": "Get an Export Quote"
+  "ports": {
+    "title": "Port Coverage",
+    "list": [
+      { "name": "Newark, NJ", "desc": "Primary East Coast export hub. Port Newark-Elizabeth Marine Terminal." },
+      { "name": "Houston, TX", "desc": "Largest US vehicle export port. RoRo + container to Africa, Middle East, South America." },
+      { "name": "Savannah, GA", "desc": "Southeast port. Competitive rates for European and African routes." },
+      { "name": "Baltimore, MD", "desc": "Dundalk Marine Terminal. Major RoRo for European-bound vehicles." },
+      { "name": "Los Angeles, CA", "desc": "Pacific gateway for Asia, Australia, Oceania." },
+      { "name": "Jacksonville, FL", "desc": "Caribbean and South American connections." }
+    ]
+  },
+  "form": {
+    "title": "Request Our Service Rates",
+    "subtitle": "Tell us about your export operation and we'll send you our rate card within 24 hours.",
+    "companyName": "Company Name",
+    "contactName": "Contact Name",
+    "email": "Email",
+    "phone": "Phone",
+    "monthlyVolume": "Estimated Monthly Volume",
+    "volumes": ["1-5 vehicles", "6-15 vehicles", "16-30 vehicles", "30+ vehicles"],
+    "preferredPorts": "Preferred Ports",
+    "vins": "Vehicle VINs (one per line, optional)",
+    "vinsPlaceholder": "1HGBH41JXMN109186\n5YJSA1E11KF123456\n...",
+    "notes": "Additional Notes",
+    "notesPlaceholder": "Vehicle types, pickup regions, special requirements...",
+    "submit": "Request Service Rates",
+    "submitting": "Submitting..."
+  },
+  "formSuccess": {
+    "title": "Request Received!",
+    "message": "We'll send your service rate card within 24 hours. For urgent requests, call (857) 895-8555."
+  }
 }

@@ -12,7 +12,7 @@ const STEPS = [
     icon: '\uD83D\uDCB0',
     title: 'Get Your Pricing',
     desc: 'Receive a competitive price range within 1 hour. Confirm when you\'re ready — no pressure.',
-    stat: '$0.30-$0.45 per mile',
+    stat: 'Under 1 hour response',
   },
   {
     icon: '\uD83D\uDCDD',
