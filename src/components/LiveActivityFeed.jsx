@@ -1,0 +1,104 @@
+import { useState, useEffect, useRef } from 'react';
+import { API_URL } from '../config';
+import { colors, fonts } from '../theme';
+
+const ACTION_ICONS = {
+  'dispatched': '\uD83D\uDE9A',
+  'picked up': '\uD83D\uDCE6',
+  'delivered': '\u2705',
+  'carrier assigned': '\uD83D\uDD17',
+  'in transit': '\uD83D\uDEE3\uFE0F',
+};
+
+export default function LiveActivityFeed() {
+  const [events, setEvents] = useState([]);
+  const [visible, setVisible] = useState(0);
+  const timerRef = useRef(null);
+
+  useEffect(() => {
+    fetch(`${API_URL}/api/public/activity`)
+      .then(r => r.json())
+      .then(data => setEvents(data.events || []))
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    if (events.length === 0) return;
+    setVisible(0);
+    timerRef.current = setInterval(() => {
+      setVisible(prev => (prev + 1) % events.length);
+    }, 4000);
+    return () => clearInterval(timerRef.current);
+  }, [events]);
+
+  if (events.length === 0) return null;
+
+  return (
+    <div style={{
+      maxWidth: '600px',
+      margin: '0 auto',
+      padding: '20px 24px',
+      textAlign: 'center',
+    }}>
+      {/* LIVE indicator */}
+      <div style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '6px',
+        marginBottom: '14px',
+        fontFamily: fonts.sans,
+        fontSize: '11px',
+        fontWeight: 700,
+        color: colors.textMuted,
+        textTransform: 'uppercase',
+        letterSpacing: '1px',
+      }}>
+        <span style={{
+          width: '8px',
+          height: '8px',
+          borderRadius: '50%',
+          background: '#EF4444',
+          display: 'inline-block',
+          animation: 'pulse 2s ease-in-out infinite',
+        }} />
+        LIVE
+      </div>
+
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.3; }
+        }
+        @keyframes fadeSwitch {
+          0% { opacity: 0; transform: translateY(8px); }
+          10% { opacity: 1; transform: translateY(0); }
+          90% { opacity: 1; transform: translateY(0); }
+          100% { opacity: 0; transform: translateY(-8px); }
+        }
+      `}</style>
+
+      {/* Event display */}
+      <div style={{ minHeight: '24px', position: 'relative' }}>
+        {events.map((ev, i) => (
+          <div key={`${i}-${visible}`} style={{
+            display: i === visible ? 'block' : 'none',
+            animation: i === visible ? 'fadeSwitch 4s ease-in-out' : 'none',
+            fontFamily: fonts.sans,
+            fontSize: '13px',
+            color: colors.textMuted,
+          }}>
+            <span style={{ marginRight: '6px' }}>{ACTION_ICONS[ev.type] || '\u2B50'}</span>
+            <span style={{ color: colors.text, fontWeight: 500 }}>
+              {ev.vehicle}
+            </span>
+            {' '}
+            {ev.type} {ev.from_city} &rarr; {ev.to_city}
+            <span style={{ marginLeft: '8px', fontSize: '11px', color: colors.textHint }}>
+              {ev.time_ago}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}

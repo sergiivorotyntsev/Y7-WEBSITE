@@ -3,7 +3,10 @@ import TrustBar from '../components/TrustBar';
 import QuoteForm from '../components/QuoteForm';
 import AudienceCards from '../components/AudienceCards';
 import PortPills from '../components/PortPills';
-import { colors, fonts, button as btnStyles } from '../theme';
+import LiveActivityFeed from '../components/LiveActivityFeed';
+import HowItWorks from '../components/HowItWorks';
+import TestimonialCarousel from '../components/TestimonialCarousel';
+import { colors, fonts } from '../theme';
 
 export default function Home() {
   const { t } = useTranslation('home');
@@ -12,7 +15,7 @@ export default function Home() {
     <div>
       {/* Hero */}
       <section style={{
-        padding: '80px 24px 60px',
+        padding: '80px 24px 40px',
         textAlign: 'center',
         maxWidth: '800px',
         margin: '0 auto',
@@ -49,8 +52,11 @@ export default function Home() {
         </p>
       </section>
 
+      {/* Live Activity Feed */}
+      <LiveActivityFeed />
+
       {/* Trust Bar */}
-      <section style={{ padding: '0 24px 60px' }}>
+      <section style={{ padding: '20px 24px 60px' }}>
         <TrustBar />
       </section>
 
@@ -83,13 +89,33 @@ export default function Home() {
         <QuoteForm compact />
       </section>
 
-      {/* Audience Cards */}
+      {/* How It Works */}
       <section style={{ padding: '60px 24px' }}>
+        <h2 style={{
+          fontFamily: fonts.serif,
+          fontSize: '28px',
+          fontWeight: 700,
+          color: colors.text,
+          textAlign: 'center',
+          marginBottom: '32px',
+        }}>
+          How It Works
+        </h2>
+        <HowItWorks />
+      </section>
+
+      {/* Audience Cards */}
+      <section style={{ padding: '20px 24px 60px' }}>
         <AudienceCards />
       </section>
 
+      {/* Testimonials */}
+      <section style={{ padding: '40px 24px 60px', background: colors.bgMuted }}>
+        <TestimonialCarousel />
+      </section>
+
       {/* Port Pills */}
-      <section style={{ padding: '0 24px 80px' }}>
+      <section style={{ padding: '60px 24px 80px' }}>
         <PortPills />
       </section>
     </div>

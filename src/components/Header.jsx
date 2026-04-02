@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useAuth } from '../hooks/useAuth';
 import LanguageSwitcher from './LanguageSwitcher';
 import { colors, fonts, button } from '../theme';
 
 export default function Header() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = [
@@ -80,12 +82,39 @@ export default function Header() {
 
           <LanguageSwitcher />
 
-          <button
-            onClick={() => navigate('/quote')}
-            style={{ ...button.primary, padding: '8px 20px', fontSize: '11px' }}
-          >
-            {t('cta.getQuote')}
-          </button>
+          {user ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <Link to="/portal/dashboard" style={{
+                fontFamily: fonts.sans,
+                fontSize: '12px',
+                fontWeight: 600,
+                color: colors.accent,
+              }}>
+                My Account
+              </Link>
+              <button
+                onClick={async () => { await logout(); navigate('/'); }}
+                style={{ ...button.secondary, padding: '6px 14px', fontSize: '10px' }}
+              >
+                Log out
+              </button>
+            </div>
+          ) : (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <button
+                onClick={() => navigate('/portal/login')}
+                style={{ ...button.secondary, padding: '6px 14px', fontSize: '10px' }}
+              >
+                Log in
+              </button>
+              <button
+                onClick={() => navigate('/quote')}
+                style={{ ...button.primary, padding: '8px 20px', fontSize: '11px' }}
+              >
+                {t('cta.getQuote')}
+              </button>
+            </div>
+          )}
 
           {/* Mobile hamburger */}
           <button

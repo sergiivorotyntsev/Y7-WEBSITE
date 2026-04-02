@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { useVinDecode } from '../hooks/useVinDecode';
 import { apiPost } from '../hooks/useApi';
 import SmsConsent from './SmsConsent';
+import RouteEstimator from './RouteEstimator';
+import VehicleSilhouette from './VehicleSilhouette';
 import { colors, fonts, button as btnStyles } from '../theme';
 
 const inputStyle = {
@@ -225,9 +227,12 @@ export default function QuoteForm({ compact = false }) {
           </div>
         )}
         {vinResult && (
-          <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.success, marginTop: '4px' }}>
-            {vinResult.year} {vinResult.make} {vinResult.model}
-          </div>
+          <>
+            <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.success, marginTop: '4px' }}>
+              {vinResult.year} {vinResult.make} {vinResult.model}
+            </div>
+            <VehicleSilhouette make={vinResult.make} model={vinResult.model} year={vinResult.year} bodyClass={vinResult.bodyClass} />
+          </>
         )}
       </div>
 
@@ -328,6 +333,9 @@ export default function QuoteForm({ compact = false }) {
           ))}
         </div>
       </div>
+
+      {/* Route Estimator (appears when both ZIPs filled) */}
+      <RouteEstimator pickupZip={form.pickup_zip} deliveryZip={form.delivery_zip} transportType={form.transport_type} />
 
       {/* ── STEP 2: Contact (animated reveal) ── */}
       <div style={{
