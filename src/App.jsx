@@ -13,6 +13,7 @@ import Accessibility from './pages/Accessibility';
 import Agreement from './pages/Agreement';
 import Track from './pages/Track';
 import Contact from './pages/Contact';
+import QuoteAction from './pages/QuoteAction';
 import Login from './pages/portal/Login';
 import Register from './pages/portal/Register';
 import Dashboard from './pages/portal/Dashboard';
@@ -37,6 +38,7 @@ export default function App() {
             <Route path="/track" element={<Track />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/agreement/:orderId" element={<Agreement />} />
+            <Route path="/:lang/quote/:action/:orderId" element={<QuoteAction />} />
             <Route path="/:lang/agreement/:orderId" element={<Agreement />} />
             {/* Portal auth (public) */}
             <Route path="/portal/login" element={<Login />} />
