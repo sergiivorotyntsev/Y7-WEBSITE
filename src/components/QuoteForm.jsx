@@ -89,7 +89,7 @@ export default function QuoteForm({ compact = false }) {
   const showStep2 = form.pickup_zip.trim().length >= 5 && form.delivery_zip.trim().length >= 5;
 
   // Step 3: button active when name + (phone or email)
-  const canSubmit = !!(form.name.trim() && (form.phone.trim() || form.email.trim()));
+  const canSubmit = !!(form.name.trim() && form.email.trim() && form.email.includes('@'));
 
   // Measure step2 inner height for smooth animation
   useEffect(() => {
@@ -119,7 +119,7 @@ export default function QuoteForm({ compact = false }) {
     setError(null);
 
     if (!form.name.trim()) { setError(t('errors.nameRequired')); return; }
-    if (!form.phone.trim() && !form.email.trim()) { setError(t('errors.contactRequired')); return; }
+    if (!form.email.trim() || !form.email.includes('@')) { setError(t('errors.emailRequired')); return; }
     if (form.pickup_zip.trim().length < 5) { setError(t('errors.pickupRequired')); return; }
     if (form.delivery_zip.trim().length < 5) { setError(t('errors.deliveryRequired')); return; }
 
