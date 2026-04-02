@@ -1,0 +1,163 @@
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './LanguageSwitcher';
+import { colors, fonts, button } from '../theme';
+
+export default function Header() {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const navLinks = [
+    { key: 'services', to: '/services' },
+    { key: 'dealers', to: '/dealers' },
+    { key: 'exporters', to: '/exporters' },
+    { key: 'shipMyCar', to: '/ship-my-car' },
+    { key: 'track', to: '/track' },
+    { key: 'contact', to: '/contact' },
+  ];
+
+  return (
+    <header style={{
+      background: colors.bgCard,
+      borderBottom: `1px solid ${colors.border}`,
+      position: 'sticky',
+      top: 0,
+      zIndex: 100,
+    }}>
+      <div style={{
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: '0 24px',
+        height: '64px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      }}>
+        {/* Logo */}
+        <Link to="/" style={{
+          fontFamily: fonts.serif,
+          fontSize: '22px',
+          fontWeight: 700,
+          color: colors.text,
+          letterSpacing: '-0.5px',
+        }}>
+          Y7<span style={{ color: colors.accent }}>.</span>
+        </Link>
+
+        {/* Desktop Nav */}
+        <nav style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '28px',
+        }}>
+          <div style={{
+            display: 'flex',
+            gap: '24px',
+            alignItems: 'center',
+          }}
+            className="desktop-nav"
+          >
+            {navLinks.map(({ key, to }) => (
+              <Link
+                key={key}
+                to={to}
+                style={{
+                  fontFamily: fonts.sans,
+                  fontSize: '13px',
+                  color: colors.text,
+                  fontWeight: 500,
+                  transition: 'color 0.2s',
+                }}
+                onMouseEnter={e => e.target.style.color = colors.accent}
+                onMouseLeave={e => e.target.style.color = colors.text}
+              >
+                {t(`nav.${key}`)}
+              </Link>
+            ))}
+          </div>
+
+          <LanguageSwitcher />
+
+          <button
+            onClick={() => navigate('/quote')}
+            style={{ ...button.primary, padding: '8px 20px', fontSize: '11px' }}
+          >
+            {t('cta.getQuote')}
+          </button>
+
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            style={{
+              display: 'none',
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: '8px',
+              fontSize: '20px',
+              color: colors.text,
+            }}
+            className="mobile-menu-btn"
+            aria-label="Menu"
+          >
+            {menuOpen ? '\u2715' : '\u2630'}
+          </button>
+        </nav>
+      </div>
+
+      {/* Mobile menu overlay */}
+      {menuOpen && (
+        <div style={{
+          position: 'fixed',
+          top: '64px',
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: colors.bgCard,
+          zIndex: 99,
+          padding: '24px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '20px',
+        }}>
+          {navLinks.map(({ key, to }) => (
+            <Link
+              key={key}
+              to={to}
+              onClick={() => setMenuOpen(false)}
+              style={{
+                fontFamily: fonts.sans,
+                fontSize: '18px',
+                color: colors.text,
+                fontWeight: 500,
+                padding: '8px 0',
+                borderBottom: `1px solid ${colors.border}`,
+              }}
+            >
+              {t(`nav.${key}`)}
+            </Link>
+          ))}
+          <button
+            onClick={() => { navigate('/quote'); setMenuOpen(false); }}
+            style={{ ...button.accent, marginTop: '12px', fontSize: '14px' }}
+          >
+            {t('cta.getQuote')}
+          </button>
+        </div>
+      )}
+
+      {/* Responsive styles via inline <style> tag */}
+      <style>{`
+        @media (max-width: 768px) {
+          .desktop-nav { display: none !important; }
+          .mobile-menu-btn { display: block !important; }
+        }
+        @media (min-width: 769px) {
+          .mobile-menu-btn { display: none !important; }
+        }
+      `}</style>
+    </header>
+  );
+}

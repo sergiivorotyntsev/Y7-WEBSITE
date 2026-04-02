@@ -1,0 +1,30 @@
+{
+  "title": "Our Services",
+  "subtitle": "Full-service auto transport for every need",
+  "list": [
+    {
+      "title": "Auction Pickup & Delivery",
+      "desc": "We pick up from Copart, IAA, Manheim, and ADESA auctions nationwide. Gate pass coordination and same-day dispatch available."
+    },
+    {
+      "title": "Dealer-to-Dealer Trades",
+      "desc": "Fast, reliable transport between dealerships. Volume pricing for repeat routes. One point of contact for all your trades."
+    },
+    {
+      "title": "Port & Export Transport",
+      "desc": "Door-to-port delivery for international exports. We cover Newark, Houston, Savannah, Baltimore, LA, and Jacksonville."
+    },
+    {
+      "title": "Private Vehicle Relocation",
+      "desc": "Moving across the country? Open or enclosed transport with real-time tracking and delivery updates via text and email."
+    },
+    {
+      "title": "Enclosed Premium Transport",
+      "desc": "White-glove enclosed carriers for classic, luxury, and high-value vehicles. Full insurance coverage and careful handling."
+    },
+    {
+      "title": "Multi-Vehicle Shipments",
+      "desc": "Shipping multiple vehicles? We coordinate bulk transport with volume discounts and single-point dispatch management."
+    }
+  ]
+}

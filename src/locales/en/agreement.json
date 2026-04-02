@@ -1,0 +1,51 @@
+{
+  "title": "Transport Service Agreement",
+  "loading": "Loading order details...",
+  "sections": {
+    "service": {
+      "title": "Service Description",
+      "body": "Y7 Consulting Inc (DBA Y7 Logistics) acts as a licensed property broker, not a motor carrier. We arrange vehicle transportation with licensed, insured motor carriers on your behalf. We do not own or operate trucks, and transportation is performed solely by independent carrier companies. Our role is to secure reliable transport, coordinate dispatch, and facilitate communication between you and the assigned carrier."
+    },
+    "bol": {
+      "title": "Vehicle Inspection & Bill of Lading (BOL)",
+      "body": "Upon delivery, you or your authorized representative MUST inspect the vehicle together with the carrier driver and sign the Bill of Lading (BOL). The BOL documents vehicle condition at both pickup and delivery. By signing the BOL at delivery without noting damage, you acknowledge the vehicle was received in the condition described. Any damage claims filed after signing a clean BOL are the recipient's sole responsibility. You have the right to note any new damage on the BOL before signing. If the carrier refuses to allow inspection, do not sign and contact Y7 immediately."
+    },
+    "payment": {
+      "title": "Payment Terms",
+      "body": "Payment is due according to the method agreed upon at booking. Options include: (1) Prepayment — full transport fee paid to Y7 Consulting Inc before dispatch; (2) COD (Cash On Delivery) — payment made directly to the carrier driver at delivery via cash, cashier's check, or certified funds as specified on the Rate Confirmation. If COD is selected, failure to pay the carrier at delivery may result in the carrier retaining possession of the vehicle, daily storage fees, and/or a lien on the vehicle. Y7 Consulting Inc is not responsible for carrier-imposed fees resulting from non-payment at delivery."
+    },
+    "insurance": {
+      "title": "Insurance & Claims",
+      "body": "All carriers in our network maintain minimum $100,000 cargo insurance per FMCSA requirements, with most carrying $250,000 or more. We verify active insurance coverage before assigning any carrier to your load. In the event of damage, claims must be filed within 24 hours of delivery with photographs of the damage and a copy of the BOL noting the damage. Y7 Consulting Inc will assist you in filing the claim with the carrier's insurance, but as a broker, we bear no direct cargo liability. Claims are settled between you and the carrier's insurance provider."
+    },
+    "cancellation": {
+      "title": "Cancellation Policy",
+      "body": "Free cancellation is available at any time before a carrier has been assigned to your load. After carrier assignment: a cancellation fee of up to $200 may apply to cover carrier reservation and dispatch costs. No-show at pickup: if the vehicle is not available for pickup at the scheduled time and location, and no prior rescheduling was arranged, the full transport fee may apply. To cancel or reschedule, contact us at info@y7agency.com or (857) 895-8555 as early as possible."
+    },
+    "liability": {
+      "title": "Limitation of Liability",
+      "body": "Y7 Consulting Inc's total liability arising from or related to the brokerage services provided is limited to the brokerage fee paid for the specific shipment in question. We are not liable for carrier delays, vehicle damage during transport, mechanical issues, acts of God, weather events, road closures, or any other circumstances beyond our reasonable control. This limitation applies to the fullest extent permitted by the laws of the Commonwealth of Massachusetts."
+    }
+  },
+  "checkboxes": {
+    "bol": "I understand that I must inspect the vehicle and sign the Bill of Lading (BOL) upon delivery, and that signing without noting damage releases the carrier from liability.",
+    "payment": "I understand the payment terms and my obligation to pay the carrier at delivery if COD payment is selected.",
+    "broker": "I understand that Y7 Consulting Inc is a licensed broker, not a carrier, and that its liability is limited to the brokerage fee paid.",
+    "cancellation": "I have read and agree to the cancellation policy and all terms stated in this agreement."
+  },
+  "signature": {
+    "label": "Type your full legal name as digital signature",
+    "placeholder": "Your Full Legal Name",
+    "legal": "By typing your name above, you acknowledge that this constitutes a legally binding electronic signature under the E-SIGN Act (15 U.S.C. §7001).",
+    "button": "Sign Agreement",
+    "submitting": "Signing..."
+  },
+  "success": {
+    "title": "Agreement Signed Successfully",
+    "message": "Thank you. Your signed agreement has been recorded. You will be redirected to your shipment tracking page shortly."
+  },
+  "errors": {
+    "orderNotFound": "Order not found. Please check the link and try again.",
+    "submitFailed": "Failed to submit agreement. Please try again."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "title": "Door-to-Port Transport for Exporters",
+  "subtitle": "Buying vehicles in the US for export? We deliver from any auction, dealer, or private location to every major export port in the country.",
+  "ports": [
+    { "name": "Newark, NJ", "desc": "Primary East Coast export hub. Direct access to Port Newark-Elizabeth Marine Terminal." },
+    { "name": "Houston, TX", "desc": "Largest US vehicle export port. RoRo and container service to Africa, Middle East, South America." },
+    { "name": "Savannah, GA", "desc": "Fast-growing Southeast port with competitive rates for European and African routes." },
+    { "name": "Baltimore, MD", "desc": "Dundalk Marine Terminal — major RoRo facility for European-bound vehicles." },
+    { "name": "Los Angeles, CA", "desc": "Pacific gateway for Asia, Australia, and Oceania exports." },
+    { "name": "Jacksonville, FL", "desc": "Southeast port with Caribbean and South American connections." }
+  ],
+  "howTitle": "How It Works",
+  "steps": [
+    { "title": "Submit Your Vehicles", "desc": "Send us VINs, auction lot numbers, or pickup addresses." },
+    { "title": "We Quote & Dispatch", "desc": "Same-day quotes. We assign a vetted carrier for your route." },
+    { "title": "Port Delivery", "desc": "Vehicle delivered to your port with full documentation." }
+  ],
+  "ctaButton": "Get an Export Quote"
+}

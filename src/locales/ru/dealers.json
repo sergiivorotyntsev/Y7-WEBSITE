@@ -1,0 +1,35 @@
+{
+  "title": "Auto Transport for Dealers",
+  "subtitle": "We handle the logistics so you can focus on selling. From auction pickups to dealer trades, Y7 moves your inventory reliably and on time.",
+  "benefits": [
+    { "title": "Volume Pricing", "desc": "Competitive rates for high-volume dealer accounts. The more you ship, the more you save." },
+    { "title": "Auction Pickups", "desc": "Same-day dispatch from Copart, IAA, Manheim, and ADESA. Gate pass coordination included." },
+    { "title": "Dealer-to-Dealer Trades", "desc": "Fast transport between dealerships. One point of contact for all your trade moves." },
+    { "title": "Dedicated Dispatch", "desc": "Your own dispatch coordinator who knows your routes, your timeline, and your preferences." },
+    { "title": "Central Dispatch Integration", "desc": "90% of our loads go through Central Dispatch. Real-time status updates and carrier tracking." },
+    { "title": "Flexible Payment", "desc": "Net-15 terms, ACH, and invoice-based billing designed for dealer operations." }
+  ],
+  "pricing": {
+    "title": "Pricing Models",
+    "models": [
+      {
+        "title": "Broker-Paid Carrier",
+        "desc": "Y7 handles all carrier payments. Higher service fee but zero hassle — you never deal with carrier payment logistics, BOL disputes, or COD coordination."
+      },
+      {
+        "title": "Direct Carrier Payment (COD)",
+        "desc": "Dealer pays carrier at delivery. Lower service fee but you handle BOL inspection and payment at the door. Best for experienced dealers with dock staff."
+      }
+    ],
+    "volumeTitle": "Volume Discount Tiers",
+    "tiers": [
+      { "volume": "1-5", "label": "vehicles/month", "discount": "Standard pricing", "perk": "Full service, no minimum" },
+      { "volume": "6-15", "label": "vehicles/month", "discount": "10% service fee discount", "perk": "Priority dispatch queue" },
+      { "volume": "16-30", "label": "vehicles/month", "discount": "15% discount", "perk": "Dedicated dispatcher assigned" },
+      { "volume": "30+", "label": "vehicles/month", "discount": "Custom contract", "perk": "Contact us for pricing" }
+    ]
+  },
+  "ctaTitle": "Ready to streamline your transport?",
+  "ctaSubtitle": "Get a quote in minutes. We'll respond within 1 hour.",
+  "ctaButton": "Get a Dealer Quote"
+}

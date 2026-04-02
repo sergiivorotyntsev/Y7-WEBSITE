@@ -1,0 +1,37 @@
+{
+  "nav": {
+    "services": "Services",
+    "dealers": "Dealers",
+    "exporters": "Exporters",
+    "shipMyCar": "Ship My Car",
+    "track": "Track",
+    "contact": "Contact"
+  },
+  "cta": {
+    "getQuote": "Get a Quote",
+    "submit": "Submit",
+    "learnMore": "Learn More",
+    "trackShipment": "Track Shipment",
+    "getFreeQuote": "Get a Free Quote"
+  },
+  "footer": {
+    "company": "Y7 Consulting Inc",
+    "usdot": "USDOT #4427359",
+    "mc": "MC #1741537",
+    "tagline": "Nationwide auto transport, built for volume.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "accessibility": "Accessibility",
+    "smsTerms": "SMS Terms",
+    "copyright": "2026 Y7 Consulting Inc. All rights reserved.",
+    "navigation": "Navigation",
+    "legal": "Legal",
+    "contact": "Contact"
+  },
+  "lang": {
+    "en": "EN",
+    "ru": "RU",
+    "pl": "PL",
+    "uk": "UK"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "form": {
+    "title": "Request a Quote",
+    "vin": "VIN (optional)",
+    "vinPlaceholder": "Enter 17-character VIN",
+    "decode": "Decode",
+    "vehicleYear": "Year",
+    "vehicleMake": "Make",
+    "vehicleModel": "Model",
+    "pickupZip": "Pickup ZIP",
+    "pickupLocationType": "Pickup Location Type",
+    "deliveryZip": "Delivery ZIP",
+    "deliveryLocationType": "Delivery Location Type",
+    "transportType": "Transport Type",
+    "open": "Open",
+    "enclosed": "Enclosed",
+    "name": "Full Name",
+    "phone": "Phone",
+    "email": "Email",
+    "notes": "Notes (optional)",
+    "notesPlaceholder": "Special instructions, flexible dates, etc.",
+    "almostThere": "Almost there! Tell us how to reach you.",
+    "submit": "Get My Quote",
+    "submitting": "Submitting..."
+  },
+  "sms": {
+    "consent": "By checking this box, you consent to receive SMS notifications and updates related to your vehicle transport from Y7 Consulting Inc at the phone number provided. Message frequency varies. Message & data rates may apply. Reply STOP to opt out, HELP for help. This consent is not a condition of purchase.",
+    "terms": "See our Privacy Policy and SMS Terms & Conditions."
+  },
+  "success": {
+    "title": "Quote Request Received!",
+    "message": "We'll send your quote within 1 hour via email.",
+    "reference": "Your reference number:",
+    "track": "Track via Telegram"
+  },
+  "errors": {
+    "nameRequired": "Name is required",
+    "contactRequired": "Phone or email is required",
+    "pickupRequired": "Pickup ZIP is required (min 5 characters)",
+    "deliveryRequired": "Delivery ZIP is required (min 5 characters)"
+  }
+}
