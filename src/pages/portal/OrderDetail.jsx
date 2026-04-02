@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useSearchParams, Link } from 'react-router-dom';
 import { portalFetch } from '../../hooks/useAuth';
 import { colors, fonts } from '../../theme';
 
@@ -72,8 +72,10 @@ function InfoRow({ label, value, mono }) {
 
 export default function OrderDetail() {
   const { id } = useParams();
+  const [searchParams] = useSearchParams();
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
+  const dispatchSaved = searchParams.get('dispatch_saved') === '1';
 
   useEffect(() => {
     portalFetch(`/api/portal/data/orders/${id}`)
@@ -241,6 +243,57 @@ export default function OrderDetail() {
           <InfoRow label="Transport fee" value={price} mono />
           {order.payment_responsibility && <InfoRow label="Payment method" value={order.payment_responsibility === 'broker' ? 'Prepaid to Y7' : 'COD at delivery'} />}
         </InfoCard>
+      )}
+
+      {/* Dispatch Details Status */}
+      {['confirmed', 'dispatched'].includes(order.status) && (
+        <div style={{
+          background: order.dispatch_info_completed ? colors.successBg : '#FFF8E1',
+          border: `1px solid ${order.dispatch_info_completed ? colors.success : '#F9A825'}`,
+          borderRadius: '12px',
+          padding: '16px 20px',
+          marginBottom: '16px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}>
+          {order.dispatch_info_completed ? (
+            <>
+              <span style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.success, fontWeight: 500 }}>
+                {'\u2705'} Dispatch details provided
+              </span>
+              <Link to={`/portal/order/${id}/dispatch-details`} style={{
+                fontFamily: fonts.sans, fontSize: '12px', color: colors.accent, textDecoration: 'none',
+              }}>
+                Edit
+              </Link>
+            </>
+          ) : (
+            <>
+              <span style={{ fontFamily: fonts.sans, fontSize: '14px', color: '#E65100', fontWeight: 500 }}>
+                Dispatch details needed to proceed
+              </span>
+              <Link to={`/portal/order/${id}/dispatch-details`} style={{
+                fontFamily: fonts.sans, fontSize: '12px', fontWeight: 600,
+                color: '#fff', background: '#F57C00', padding: '6px 14px',
+                borderRadius: '16px', textDecoration: 'none',
+              }}>
+                Provide Details
+              </Link>
+            </>
+          )}
+        </div>
+      )}
+
+      {/* Success banner after saving dispatch details */}
+      {dispatchSaved && (
+        <div style={{
+          background: colors.successBg, border: `1px solid ${colors.success}`,
+          borderRadius: '12px', padding: '12px 20px', marginBottom: '16px',
+          fontFamily: fonts.sans, fontSize: '14px', color: colors.success, fontWeight: 500,
+        }}>
+          {'\u2705'} Dispatch details saved successfully
+        </div>
       )}
 
       {/* Actions */}

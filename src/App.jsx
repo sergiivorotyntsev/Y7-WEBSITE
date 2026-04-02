@@ -18,6 +18,7 @@ import Login from './pages/portal/Login';
 import Register from './pages/portal/Register';
 import Dashboard from './pages/portal/Dashboard';
 import OrderDetail from './pages/portal/OrderDetail';
+import DispatchDetails from './pages/portal/DispatchDetails';
 import Profile from './pages/portal/Profile';
 import { colors } from './theme';
 
@@ -46,6 +47,7 @@ export default function App() {
             {/* Portal protected routes — placeholder for PORTAL-02/03/04 */}
             <Route path="/portal/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
             <Route path="/portal/order/:id" element={<ProtectedRoute><OrderDetail /></ProtectedRoute>} />
+            <Route path="/portal/order/:id/dispatch-details" element={<ProtectedRoute><DispatchDetails /></ProtectedRoute>} />
             <Route path="/portal/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/:lang" element={<Home />} />
             <Route path="*" element={<Navigate to="/" replace />} />
