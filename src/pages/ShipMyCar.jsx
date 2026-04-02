@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import QuoteForm from '../components/QuoteForm';
+import TransportComparison from '../components/TransportComparison';
 import { colors, fonts } from '../theme';
 
 export default function ShipMyCar() {
@@ -86,6 +87,11 @@ export default function ShipMyCar() {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* Open vs Enclosed Comparison */}
+      <section style={{ maxWidth: '900px', margin: '0 auto', padding: '0 24px 48px' }}>
+        <TransportComparison />
       </section>
 
       {/* BOL Inspection Notice */}

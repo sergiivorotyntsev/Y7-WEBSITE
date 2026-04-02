@@ -11,6 +11,8 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import Terms from './pages/Terms';
 import Accessibility from './pages/Accessibility';
 import Agreement from './pages/Agreement';
+import Track from './pages/Track';
+import Contact from './pages/Contact';
 import Login from './pages/portal/Login';
 import Register from './pages/portal/Register';
 import Dashboard from './pages/portal/Dashboard';
@@ -32,6 +34,8 @@ export default function App() {
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/accessibility" element={<Accessibility />} />
+            <Route path="/track" element={<Track />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/agreement/:orderId" element={<Agreement />} />
             <Route path="/:lang/agreement/:orderId" element={<Agreement />} />
             {/* Portal auth (public) */}

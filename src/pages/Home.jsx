@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import ScrollReveal from '../components/ScrollReveal';
 import TrustBar from '../components/TrustBar';
 import QuoteForm from '../components/QuoteForm';
 import AudienceCards from '../components/AudienceCards';
@@ -6,6 +7,7 @@ import PortPills from '../components/PortPills';
 import LiveActivityFeed from '../components/LiveActivityFeed';
 import HowItWorks from '../components/HowItWorks';
 import TestimonialCarousel from '../components/TestimonialCarousel';
+import WhyY7 from '../components/WhyY7';
 import { colors, fonts } from '../theme';
 
 export default function Home() {
@@ -56,41 +58,33 @@ export default function Home() {
       <LiveActivityFeed />
 
       {/* Trust Bar */}
-      <section style={{ padding: '20px 24px 60px' }}>
+      <ScrollReveal style={{ padding: '20px 24px 60px' }}>
         <TrustBar />
-      </section>
+      </ScrollReveal>
 
       {/* Quote Form */}
-      <section style={{
-        padding: '60px 24px',
-        background: colors.bgMuted,
-      }}>
-        <div style={{
-          textAlign: 'center',
-          marginBottom: '32px',
-        }}>
-          <h2 style={{
-            fontFamily: fonts.serif,
-            fontSize: '28px',
-            fontWeight: 700,
-            color: colors.text,
-            marginBottom: '8px',
-          }}>
-            {t('quoteSection.title')}
-          </h2>
-          <p style={{
-            fontFamily: fonts.sans,
-            fontSize: '14px',
-            color: colors.textMuted,
-          }}>
-            {t('quoteSection.subtitle')}
-          </p>
-        </div>
+      <section id="quote-form" style={{ padding: '60px 24px', background: colors.bgMuted }}>
+        <ScrollReveal>
+          <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+            <h2 style={{
+              fontFamily: fonts.serif,
+              fontSize: '28px',
+              fontWeight: 700,
+              color: colors.text,
+              marginBottom: '8px',
+            }}>
+              {t('quoteSection.title')}
+            </h2>
+            <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted }}>
+              {t('quoteSection.subtitle')}
+            </p>
+          </div>
+        </ScrollReveal>
         <QuoteForm compact />
       </section>
 
       {/* How It Works */}
-      <section style={{ padding: '60px 24px' }}>
+      <ScrollReveal style={{ padding: '60px 24px' }}>
         <h2 style={{
           fontFamily: fonts.serif,
           fontSize: '28px',
@@ -102,22 +96,27 @@ export default function Home() {
           How It Works
         </h2>
         <HowItWorks />
-      </section>
+      </ScrollReveal>
 
       {/* Audience Cards */}
-      <section style={{ padding: '20px 24px 60px' }}>
+      <ScrollReveal style={{ padding: '20px 24px 60px' }}>
         <AudienceCards />
-      </section>
+      </ScrollReveal>
+
+      {/* Why Y7 */}
+      <ScrollReveal style={{ padding: '20px 24px 60px' }}>
+        <WhyY7 />
+      </ScrollReveal>
 
       {/* Testimonials */}
-      <section style={{ padding: '40px 24px 60px', background: colors.bgMuted }}>
+      <ScrollReveal style={{ padding: '40px 24px 60px', background: colors.bgMuted }}>
         <TestimonialCarousel />
-      </section>
+      </ScrollReveal>
 
       {/* Port Pills */}
-      <section style={{ padding: '60px 24px 80px' }}>
+      <ScrollReveal style={{ padding: '60px 24px 80px' }}>
         <PortPills />
-      </section>
+      </ScrollReveal>
     </div>
   );
 }
