@@ -13,6 +13,10 @@ const servicePages = [
   { to: '/manheim-transport', title: 'Manheim Transport', desc: 'Dealer auction vehicle shipping with volume pricing and recurring scheduling.' },
   { to: '/door-to-port-auto-transport', title: 'Door-to-Port Transport', desc: 'Deliver vehicles to any major US export port — Newark, Houston, Savannah, LA, Baltimore, Jacksonville.' },
   { to: '/dealer-auto-transport', title: 'Dealer Auto Transport', desc: 'B2B transport for dealerships. Volume pricing, auction pickup, dealer trades.' },
+  { to: '/open-car-shipping', title: 'Open Car Shipping', desc: 'Standard multi-car hauler transport — the most affordable way to ship your vehicle.' },
+  { to: '/salvage-car-shipping', title: 'Salvage & Non-Running', desc: 'Transport for salvage, inoperable, and non-running vehicles with specialized equipment.' },
+  { to: '/state-to-state-car-shipping', title: 'State-to-State Shipping', desc: 'Interstate auto transport between all 50 US states. FMCSA-licensed broker.' },
+  { to: '/auction-to-port-transport', title: 'Auction to Port', desc: 'Direct pipeline from US auction yards to export ports. Gate pass to port delivery.' },
 ];
 
 export default function Services() {

@@ -69,6 +69,8 @@ export default function AuctionCarShipping() {
         { label: 'Copart Shipping', to: '/copart-shipping' },
         { label: 'IAA Transport', to: '/iaai-transport' },
         { label: 'Manheim Transport', to: '/manheim-transport' },
+        { label: 'Auction to Port', to: '/auction-to-port-transport' },
+        { label: 'Salvage Car Shipping', to: '/salvage-car-shipping' },
         { label: 'Port Delivery', to: '/door-to-port-auto-transport' },
         { label: 'Get a Quote', to: '/quote' },
       ]}

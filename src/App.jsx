@@ -31,6 +31,20 @@ const IaaiTransport = lazy(() => import('./pages/seo/IaaiTransport'));
 const ManheimTransport = lazy(() => import('./pages/seo/ManheimTransport'));
 const DoorToPort = lazy(() => import('./pages/seo/DoorToPort'));
 const DealerAutoTransport = lazy(() => import('./pages/seo/DealerAutoTransport'));
+const SalvageCarShipping = lazy(() => import('./pages/seo/SalvageCarShipping'));
+const OpenCarShipping = lazy(() => import('./pages/seo/OpenCarShipping'));
+const StateToState = lazy(() => import('./pages/seo/StateToState'));
+const MassachusettsCarShipping = lazy(() => import('./pages/seo/locations/MassachusettsCarShipping'));
+const BostonCarShipping = lazy(() => import('./pages/seo/locations/BostonCarShipping'));
+const NewtonAutoTransport = lazy(() => import('./pages/seo/locations/NewtonAutoTransport'));
+const FloridaCarShipping = lazy(() => import('./pages/seo/locations/FloridaCarShipping'));
+const NewJerseyAutoTransport = lazy(() => import('./pages/seo/locations/NewJerseyAutoTransport'));
+const TexasAutoTransport = lazy(() => import('./pages/seo/locations/TexasAutoTransport'));
+const MassachusettsToFlorida = lazy(() => import('./pages/seo/routes/MassachusettsToFlorida'));
+const NewJerseyToFlorida = lazy(() => import('./pages/seo/routes/NewJerseyToFlorida'));
+const TexasToNewark = lazy(() => import('./pages/seo/routes/TexasToNewark'));
+const ChicagoToNewark = lazy(() => import('./pages/seo/routes/ChicagoToNewark'));
+const AuctionToPort = lazy(() => import('./pages/seo/routes/AuctionToPort'));
 const Login = lazy(() => import('./pages/portal/Login'));
 const Dashboard = lazy(() => import('./pages/portal/Dashboard'));
 const OrderDetail = lazy(() => import('./pages/portal/OrderDetail'));
@@ -79,6 +93,22 @@ export default function App() {
             <Route path="/manheim-transport" element={<ManheimTransport />} />
             <Route path="/door-to-port-auto-transport" element={<DoorToPort />} />
             <Route path="/dealer-auto-transport" element={<DealerAutoTransport />} />
+            <Route path="/salvage-car-shipping" element={<SalvageCarShipping />} />
+            <Route path="/open-car-shipping" element={<OpenCarShipping />} />
+            <Route path="/state-to-state-car-shipping" element={<StateToState />} />
+            {/* Location pages */}
+            <Route path="/massachusetts-car-shipping" element={<MassachusettsCarShipping />} />
+            <Route path="/boston-car-shipping" element={<BostonCarShipping />} />
+            <Route path="/newton-auto-transport" element={<NewtonAutoTransport />} />
+            <Route path="/florida-car-shipping" element={<FloridaCarShipping />} />
+            <Route path="/new-jersey-auto-transport" element={<NewJerseyAutoTransport />} />
+            <Route path="/texas-auto-transport" element={<TexasAutoTransport />} />
+            {/* Route pages */}
+            <Route path="/massachusetts-to-florida-car-shipping" element={<MassachusettsToFlorida />} />
+            <Route path="/new-jersey-to-florida-car-shipping" element={<NewJerseyToFlorida />} />
+            <Route path="/texas-to-newark-port-auto-transport" element={<TexasToNewark />} />
+            <Route path="/chicago-to-port-newark-car-shipping" element={<ChicagoToNewark />} />
+            <Route path="/auction-to-port-transport" element={<AuctionToPort />} />
             <Route path="/quote" element={<Quote />} />
             <Route path="/:lang/quote" element={<Quote />} />
             <Route path="/:lang/quote/:action/:orderId" element={<QuoteAction />} />

@@ -186,6 +186,79 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Additional service pages -->
+  <url>
+    <loc>https://www.y7agency.com/salvage-car-shipping</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/open-car-shipping</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/state-to-state-car-shipping</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Location pages -->
+  <url>
+    <loc>https://www.y7agency.com/massachusetts-car-shipping</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/boston-car-shipping</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/newton-auto-transport</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/florida-car-shipping</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/new-jersey-auto-transport</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/texas-auto-transport</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Route pages -->
+  <url>
+    <loc>https://www.y7agency.com/massachusetts-to-florida-car-shipping</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/new-jersey-to-florida-car-shipping</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/texas-to-newark-port-auto-transport</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/chicago-to-port-newark-car-shipping</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/auction-to-port-transport</loc>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Legal (no lang prefix routes) -->
   <url>
     <loc>https://www.y7agency.com/privacy</loc>

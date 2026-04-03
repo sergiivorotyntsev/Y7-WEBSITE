@@ -127,6 +127,28 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Popular Routes */}
+        <div>
+          <div style={{
+            fontFamily: fonts.sans,
+            fontSize: '12px',
+            fontWeight: 600,
+            color: colors.text,
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+            marginBottom: '16px',
+          }}>
+            Popular Routes
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <Link to="/massachusetts-to-florida-car-shipping" style={linkStyle}>MA to FL</Link>
+            <Link to="/new-jersey-to-florida-car-shipping" style={linkStyle}>NJ to FL</Link>
+            <Link to="/texas-to-newark-port-auto-transport" style={linkStyle}>TX to Port Newark</Link>
+            <Link to="/chicago-to-port-newark-car-shipping" style={linkStyle}>Chicago to Port Newark</Link>
+            <Link to="/auction-to-port-transport" style={linkStyle}>Auction to Port</Link>
+          </div>
+        </div>
+
         {/* Legal column */}
         <div>
           <div style={{
