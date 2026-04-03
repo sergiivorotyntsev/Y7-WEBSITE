@@ -2,8 +2,29 @@ import { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
+import { API_URL } from '../../config';
 import SmsConsent from '../../components/SmsConsent';
 import { colors, fonts, button as btnStyles } from '../../theme';
+
+function TelegramLoginWidget({ onAuth }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    if (!ref.current) return;
+    ref.current.innerHTML = '';
+    window.__tg_auth_callback = (user) => onAuth(user);
+    const s = document.createElement('script');
+    s.src = 'https://telegram.org/js/telegram-widget.js?22';
+    s.setAttribute('data-telegram-login', 'y7dispatch_bot');
+    s.setAttribute('data-size', 'large');
+    s.setAttribute('data-radius', '20');
+    s.setAttribute('data-request-access', 'write');
+    s.setAttribute('data-onauth', '__tg_auth_callback(user)');
+    s.async = true;
+    ref.current.appendChild(s);
+    return () => { delete window.__tg_auth_callback; };
+  }, []);
+  return <div ref={ref} style={{ display: 'flex', justifyContent: 'center', margin: '16px 0' }} />;
+}
 
 const inputStyle = {
   fontFamily: fonts.sans,
@@ -175,6 +196,30 @@ export default function Login() {
     }
   }
 
+  async function handleTelegramAuth(tgUser) {
+    setError(null);
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_URL}/api/portal/auth/telegram-login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify(tgUser),
+      });
+      const data = await res.json();
+      if (data.ok && data.session_token) {
+        login(data.session_token, data.user);
+        navigate('/portal/dashboard', { replace: true });
+      } else {
+        setError(data.error || 'Telegram login failed');
+      }
+    } catch (err) {
+      setError(err.message || 'Telegram login failed');
+    } finally {
+      setLoading(false);
+    }
+  }
+
   // --- HEADINGS per step ---
   const headings = {
     email: { title: 'Welcome to Y7 Logistics', sub: 'Enter your email to get started \u2014 log in or create an account.' },
@@ -339,16 +384,20 @@ export default function Login() {
         </form>
       )}
 
-      <div style={{
-        marginTop: '32px', textAlign: 'center',
-        fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted,
-      }}>
-        Or connect via{' '}
-        <a href="https://t.me/y7dispatch_bot" target="_blank" rel="noopener noreferrer"
-          style={{ color: colors.accent, fontWeight: 600 }}>
-          Telegram Bot
-        </a>
-      </div>
+      {/* Divider + Telegram Login Widget */}
+      {step === 'email' && (
+        <>
+          <div style={{
+            display: 'flex', alignItems: 'center', gap: '16px',
+            margin: '28px 0 20px',
+          }}>
+            <div style={{ flex: 1, height: '1px', background: colors.border }} />
+            <span style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted }}>or</span>
+            <div style={{ flex: 1, height: '1px', background: colors.border }} />
+          </div>
+          <TelegramLoginWidget onAuth={handleTelegramAuth} />
+        </>
+      )}
     </div>
   );
 }

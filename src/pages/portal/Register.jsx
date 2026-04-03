@@ -1,8 +1,29 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
+import { API_URL } from '../../config';
 import SmsConsent from '../../components/SmsConsent';
 import { colors, fonts, button as btnStyles } from '../../theme';
+
+function TelegramLoginWidget({ onAuth }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    if (!ref.current) return;
+    ref.current.innerHTML = '';
+    window.__tg_auth_callback = (user) => onAuth(user);
+    const s = document.createElement('script');
+    s.src = 'https://telegram.org/js/telegram-widget.js?22';
+    s.setAttribute('data-telegram-login', 'y7dispatch_bot');
+    s.setAttribute('data-size', 'large');
+    s.setAttribute('data-radius', '20');
+    s.setAttribute('data-request-access', 'write');
+    s.setAttribute('data-onauth', '__tg_auth_callback(user)');
+    s.async = true;
+    ref.current.appendChild(s);
+    return () => { delete window.__tg_auth_callback; };
+  }, []);
+  return <div ref={ref} style={{ display: 'flex', justifyContent: 'center', margin: '16px 0' }} />;
+}
 
 const inputStyle = {
   fontFamily: fonts.sans,
@@ -41,6 +62,30 @@ export default function Register() {
   useEffect(() => {
     if (user) navigate('/portal/dashboard', { replace: true });
   }, [user, navigate]);
+
+  async function handleTelegramAuth(tgUser) {
+    setError(null);
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_URL}/api/portal/auth/telegram-login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify(tgUser),
+      });
+      const data = await res.json();
+      if (data.ok && data.session_token) {
+        login(data.session_token, data.user);
+        navigate('/portal/dashboard', { replace: true });
+      } else {
+        setError(data.error || 'Telegram sign up failed');
+      }
+    } catch (err) {
+      setError(err.message || 'Telegram sign up failed');
+    } finally {
+      setLoading(false);
+    }
+  }
 
   function set(field, value) {
     setForm(prev => ({ ...prev, [field]: value }));
@@ -109,6 +154,17 @@ export default function Register() {
           {error}
         </div>
       )}
+
+      <TelegramLoginWidget onAuth={handleTelegramAuth} />
+
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: '16px',
+        margin: '8px 0 24px',
+      }}>
+        <div style={{ flex: 1, height: '1px', background: colors.border }} />
+        <span style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted }}>or fill in manually</span>
+        <div style={{ flex: 1, height: '1px', background: colors.border }} />
+      </div>
 
       <form onSubmit={handleSubmit} style={{
         background: colors.bgCard,
