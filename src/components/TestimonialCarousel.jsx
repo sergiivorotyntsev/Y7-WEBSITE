@@ -44,6 +44,7 @@ function Stars({ count }) {
 
 export default function TestimonialCarousel() {
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
   const reducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const next = useCallback(() => {
@@ -51,15 +52,19 @@ export default function TestimonialCarousel() {
   }, []);
 
   useEffect(() => {
-    if (reducedMotion) return;
+    if (reducedMotion || paused) return;
     const timer = setInterval(next, 6000);
     return () => clearInterval(timer);
-  }, [next]);
+  }, [next, paused, reducedMotion]);
 
   const t = TESTIMONIALS[active];
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}>
+    <div
+      style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
       <h3 style={{
         fontFamily: fonts.serif,
         fontSize: '20px',

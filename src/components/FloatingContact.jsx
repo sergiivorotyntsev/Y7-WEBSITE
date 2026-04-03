@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { colors, fonts } from '../theme';
 
 const CHANNELS = [
@@ -11,11 +11,22 @@ const CHANNELS = [
 export default function FloatingContact() {
   const [open, setOpen] = useState(false);
   const [visible, setVisible] = useState(false);
+  const menuRef = useRef(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 3000);
     return () => clearTimeout(timer);
   }, []);
+
+  // Focus first link when menu opens, close on Escape
+  useEffect(() => {
+    if (!open) return;
+    const firstLink = menuRef.current?.querySelector('a');
+    if (firstLink) firstLink.focus();
+    const handleKey = (e) => { if (e.key === 'Escape') setOpen(false); };
+    document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, [open]);
 
   if (!visible) return null;
 
@@ -47,7 +58,7 @@ export default function FloatingContact() {
 
       {/* Channel menu */}
       {open && (
-        <div style={{
+        <div ref={menuRef} style={{
           position: 'fixed',
           bottom: '90px',
           right: '24px',

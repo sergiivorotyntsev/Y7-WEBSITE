@@ -52,7 +52,11 @@ export default function HowItWorks() {
   const step = STEPS[active];
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+    <div
+      style={{ maxWidth: '600px', margin: '0 auto' }}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
       {/* Dots */}
       <div style={{
         display: 'flex',
