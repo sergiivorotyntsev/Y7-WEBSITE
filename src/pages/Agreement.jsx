@@ -61,6 +61,7 @@ export default function Agreement() {
   const { t } = useTranslation('agreement');
   const scrollRef = useRef(null);
   const sectionRefs = useRef({});
+  const agreementIdRef = useRef(null);
 
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -135,7 +136,13 @@ export default function Agreement() {
       } else {
         payload.order_id = parseInt(orderId.match(/^\d+$/) ? orderId : orderId.replace('WEB-', ''), 10);
       }
-      await apiPost('/api/public/agreement', payload);
+      // Capture agreement text for storage
+      const docEl = scrollRef.current;
+      if (docEl) {
+        payload.agreement_html = docEl.innerHTML;
+      }
+      const result = await apiPost('/api/public/agreement', payload);
+      agreementIdRef.current = result.agreement_id;
       setSuccess(true);
       setTimeout(() => {
         if (isCustomerLevel) {
@@ -169,9 +176,23 @@ export default function Agreement() {
         <h2 style={{ fontFamily: fonts.serif, fontSize: '28px', color: colors.success, marginBottom: '12px' }}>
           {t('success.title')}
         </h2>
-        <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted }}>
+        <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, marginBottom: '20px' }}>
           {t('success.message')}
         </p>
+        {agreementIdRef.current && (
+          <a
+            href={`${import.meta.env.VITE_API_URL || 'https://dispatch.y7agency.com'}/api/public/agreement/${agreementIdRef.current}/pdf`}
+            target="_blank" rel="noopener noreferrer"
+            style={{
+              fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600,
+              color: colors.accent, textDecoration: 'none',
+              padding: '10px 20px', border: `1px solid ${colors.accent}`,
+              borderRadius: '20px', display: 'inline-block',
+            }}
+          >
+            Download Signed Agreement (PDF)
+          </a>
+        )}
       </div>
     );
   }
