@@ -24,15 +24,19 @@ export default function WhyY7() {
       }}>
         Why Shippers Choose Y7
       </h2>
-      <div style={{
+      <div className="why-y7-grid" style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+        gridTemplateColumns: 'repeat(3, 1fr)',
         gap: '16px',
         maxWidth: '900px',
         margin: '0 auto',
       }}>
+        <style>{`
+          @media (max-width: 860px) { .why-y7-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+          @media (max-width: 560px) { .why-y7-grid { grid-template-columns: 1fr !important; } }
+        `}</style>
         {ITEMS.map(({ icon, title, desc }, i) => (
-          <ScrollReveal key={title} delay={i * 80}>
+          <ScrollReveal key={title} delay={i * 80} style={{ display: 'flex' }}>
             <div style={{
               background: colors.bgCard,
               border: `1px solid ${colors.border}`,
@@ -41,6 +45,7 @@ export default function WhyY7() {
               display: 'flex',
               gap: '14px',
               alignItems: 'flex-start',
+              flex: 1,
               transition: 'transform 200ms ease, box-shadow 200ms ease',
               cursor: 'default',
             }}

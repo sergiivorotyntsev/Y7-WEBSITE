@@ -74,6 +74,17 @@ export default function About() {
         description="Licensed auto transport broker USDOT #4427359. Verified carriers, 24/7 dispatch, transparent pricing."
         path="/about"
       />
+      <style>{`
+        .about-why-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        @media (max-width: 768px) {
+          .about-why-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+          .about-why-grid { grid-template-columns: 1fr; }
+        }
+      `}</style>
 
       {/* Hero */}
       <div style={{ textAlign: 'center', marginBottom: '60px' }}>
@@ -187,10 +198,10 @@ export default function About() {
       {/* Why Y7 */}
       <div style={styles.section}>
         <h2 style={styles.sectionTitle}>Why Y7</h2>
-        <div style={{
+        <div className="about-why-grid" style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
           gap: '20px',
+          alignItems: 'stretch',
         }}>
           {whyPoints.map((point) => (
             <div key={point.title} style={{

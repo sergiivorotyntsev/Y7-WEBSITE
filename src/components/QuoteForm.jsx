@@ -301,55 +301,73 @@ export default function QuoteForm({ compact = false }) {
         </div>
       )}
 
-      {/* Pickup ZIP + Location Type */}
-      <div style={rowStyle}>
-        <div>
-          <label style={labelStyle}>{t('form.pickupZip')}</label>
-          <input
-            value={form.pickup_zip}
-            onChange={e => set('pickup_zip', e.target.value)}
-            placeholder="e.g. 07114"
-            maxLength={10}
-            style={inputStyle}
-          />
+      {/* Pickup section */}
+      <div>
+        <div style={{
+          fontFamily: fonts.sans, fontSize: '11px', fontWeight: 700,
+          color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '1px',
+          marginBottom: '8px',
+        }}>
+          Pickup
         </div>
-        <div>
-          <label style={labelStyle}>{t('form.pickupLocationType')}</label>
-          <select
-            value={form.pickup_location_type}
-            onChange={e => set('pickup_location_type', e.target.value)}
-            style={selectStyle}
-          >
-            {PICKUP_LOCATION_TYPES.map(o => (
-              <option key={o.value} value={o.value}>{o.label}</option>
-            ))}
-          </select>
+        <div style={rowStyle}>
+          <div>
+            <label style={labelStyle}>ZIP</label>
+            <input
+              value={form.pickup_zip}
+              onChange={e => set('pickup_zip', e.target.value)}
+              placeholder="e.g. 07114"
+              maxLength={10}
+              style={inputStyle}
+            />
+          </div>
+          <div>
+            <label style={labelStyle}>Location Type</label>
+            <select
+              value={form.pickup_location_type}
+              onChange={e => set('pickup_location_type', e.target.value)}
+              style={selectStyle}
+            >
+              {PICKUP_LOCATION_TYPES.map(o => (
+                <option key={o.value} value={o.value}>{o.label}</option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
 
-      {/* Delivery ZIP + Location Type */}
-      <div style={rowStyle}>
-        <div>
-          <label style={labelStyle}>{t('form.deliveryZip')}</label>
-          <input
-            value={form.delivery_zip}
-            onChange={e => set('delivery_zip', e.target.value)}
-            placeholder="e.g. 77029"
-            maxLength={10}
-            style={inputStyle}
-          />
+      {/* Delivery section */}
+      <div>
+        <div style={{
+          fontFamily: fonts.sans, fontSize: '11px', fontWeight: 700,
+          color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '1px',
+          marginBottom: '8px',
+        }}>
+          Delivery
         </div>
-        <div>
-          <label style={labelStyle}>{t('form.deliveryLocationType')}</label>
-          <select
-            value={form.delivery_location_type}
-            onChange={e => set('delivery_location_type', e.target.value)}
-            style={selectStyle}
-          >
-            {DELIVERY_LOCATION_TYPES.map(o => (
-              <option key={o.value} value={o.value}>{o.label}</option>
-            ))}
-          </select>
+        <div style={rowStyle}>
+          <div>
+            <label style={labelStyle}>ZIP</label>
+            <input
+              value={form.delivery_zip}
+              onChange={e => set('delivery_zip', e.target.value)}
+              placeholder="e.g. 77029"
+              maxLength={10}
+              style={inputStyle}
+            />
+          </div>
+          <div>
+            <label style={labelStyle}>Location Type</label>
+            <select
+              value={form.delivery_location_type}
+              onChange={e => set('delivery_location_type', e.target.value)}
+              style={selectStyle}
+            >
+              {DELIVERY_LOCATION_TYPES.map(o => (
+                <option key={o.value} value={o.value}>{o.label}</option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
 

@@ -70,14 +70,26 @@ export default function AudienceCards() {
   ];
 
   return (
-    <div style={{
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-      gap: '24px',
-      maxWidth: '1000px',
-      margin: '0 auto',
-    }}>
-      {cards.map(c => <Card key={c.to} {...c} />)}
-    </div>
+    <>
+      <style>{`
+        .audience-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+          max-width: 1000px;
+          margin: 0 auto;
+          align-items: stretch;
+        }
+        @media (max-width: 768px) {
+          .audience-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+          .audience-grid { grid-template-columns: 1fr; }
+        }
+      `}</style>
+      <div className="audience-grid">
+        {cards.map(c => <Card key={c.to} {...c} />)}
+      </div>
+    </>
   );
 }

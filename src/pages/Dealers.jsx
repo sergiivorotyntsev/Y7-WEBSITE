@@ -11,6 +11,26 @@ export default function Dealers() {
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '60px 24px 80px' }}>
       <PageMeta title="For Auto Dealers" description="Volume auto transport for dealerships. Fixed pricing, dedicated dispatcher, auction pickups." path="/dealers" />
+      <style>{`
+        .dealers-benefits-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .dealers-pricing-grid {
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        .dealers-tiers-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        @media (max-width: 768px) {
+          .dealers-benefits-grid { grid-template-columns: repeat(2, 1fr); }
+          .dealers-tiers-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+          .dealers-benefits-grid { grid-template-columns: 1fr; }
+          .dealers-pricing-grid { grid-template-columns: 1fr; }
+          .dealers-tiers-grid { grid-template-columns: 1fr; }
+        }
+      `}</style>
       <h1 style={{
         fontFamily: fonts.serif,
         fontSize: 'clamp(28px, 4vw, 42px)',
@@ -33,11 +53,11 @@ export default function Dealers() {
         {t('subtitle')}
       </p>
 
-      <div style={{
+      <div className="dealers-benefits-grid" style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
         gap: '20px',
         marginBottom: '48px',
+        alignItems: 'stretch',
       }}>
         {Array.isArray(benefits) && benefits.map((item, i) => (
           <div key={i} style={{
@@ -45,6 +65,8 @@ export default function Dealers() {
             border: `1px solid ${colors.border}`,
             borderRadius: '12px',
             padding: '24px 20px',
+            display: 'flex',
+            flexDirection: 'column',
           }}>
             <h3 style={{
               fontFamily: fonts.serif,
@@ -60,6 +82,7 @@ export default function Dealers() {
               fontSize: '14px',
               color: colors.textMuted,
               lineHeight: 1.6,
+              flex: 1,
             }}>
               {item.desc}
             </p>
@@ -79,11 +102,11 @@ export default function Dealers() {
         }}>
           {t('pricing.title')}
         </h2>
-        <div style={{
+        <div className="dealers-pricing-grid" style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           gap: '20px',
           marginBottom: '40px',
+          alignItems: 'stretch',
         }}>
           {Array.isArray(t('pricing.models', { returnObjects: true })) &&
             t('pricing.models', { returnObjects: true }).map((model, i) => (
@@ -93,6 +116,8 @@ export default function Dealers() {
               borderRadius: '16px',
               padding: '28px 24px',
               position: 'relative',
+              display: 'flex',
+              flexDirection: 'column',
             }}>
               {i === 0 && (
                 <div style={{
@@ -126,6 +151,7 @@ export default function Dealers() {
                 fontSize: '14px',
                 color: colors.textMuted,
                 lineHeight: 1.6,
+                flex: 1,
               }}>
                 {model.desc}
               </p>
@@ -144,10 +170,10 @@ export default function Dealers() {
         }}>
           {t('pricing.volumeTitle')}
         </h3>
-        <div style={{
+        <div className="dealers-tiers-grid" style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
           gap: '16px',
+          alignItems: 'stretch',
         }}>
           {Array.isArray(t('pricing.tiers', { returnObjects: true })) &&
             t('pricing.tiers', { returnObjects: true }).map((tier, i) => (
@@ -157,6 +183,8 @@ export default function Dealers() {
               borderRadius: '12px',
               padding: '20px 16px',
               textAlign: 'center',
+              display: 'flex',
+              flexDirection: 'column',
             }}>
               <div style={{
                 fontFamily: fonts.serif,

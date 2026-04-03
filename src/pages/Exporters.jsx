@@ -90,6 +90,17 @@ export default function Exporters() {
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '60px 24px 80px' }}>
       <PageMeta title="Vehicle Export & Port Delivery" description="Transparent dispatch services for vehicle exporters. Carrier rate at cost + service fee. All major US ports." path="/exporters" />
+      <style>{`
+        .exporters-ports-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        @media (max-width: 768px) {
+          .exporters-ports-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+          .exporters-ports-grid { grid-template-columns: 1fr; }
+        }
+      `}</style>
       {/* Hero */}
       <h1 style={{
         fontFamily: fonts.serif,
@@ -283,10 +294,10 @@ export default function Exporters() {
         }}>
           {t('ports.title')}
         </h2>
-        <div style={{
+        <div className="exporters-ports-grid" style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
           gap: '16px',
+          alignItems: 'stretch',
         }}>
           {Array.isArray(portList) && portList.map((port, i) => (
             <div key={i} style={{
@@ -294,6 +305,8 @@ export default function Exporters() {
               border: `1px solid ${colors.border}`,
               borderRadius: '10px',
               padding: '16px 20px',
+              display: 'flex',
+              flexDirection: 'column',
             }}>
               <div style={{
                 fontFamily: fonts.serif,

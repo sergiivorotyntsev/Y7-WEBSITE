@@ -11,6 +11,19 @@ export default function Services() {
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '60px 24px 80px' }}>
       <PageMeta title="Auto Transport Services" description="Auction pickup, dealer trades, port delivery, enclosed transport. Licensed broker with 100+ verified carriers." path="/services" />
+      <style>{`
+        .services-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+        }
+        @media (max-width: 768px) {
+          .services-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+          .services-grid { grid-template-columns: 1fr; }
+        }
+      `}</style>
       <h1 style={{
         fontFamily: fonts.serif,
         fontSize: 'clamp(28px, 4vw, 42px)',
@@ -31,11 +44,7 @@ export default function Services() {
         {t('subtitle')}
       </p>
 
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-        gap: '24px',
-      }}>
+      <div className="services-grid" style={{ alignItems: 'stretch' }}>
         {Array.isArray(list) && list.map((item, i) => (
           <div key={i} style={{
             background: colors.bgCard,
@@ -69,6 +78,7 @@ export default function Services() {
               fontSize: '14px',
               color: colors.textMuted,
               lineHeight: 1.6,
+              flex: 1,
             }}>
               {item.desc}
             </p>
