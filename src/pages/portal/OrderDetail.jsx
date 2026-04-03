@@ -319,7 +319,7 @@ export default function OrderDetail() {
       }}>
         {order.id && (
           <Link to={`/agreement/${order.id}`} style={{
-            ...fonts.sans,
+            fontFamily: fonts.sans,
             fontSize: '13px',
             fontWeight: 500,
             color: colors.accent,
@@ -330,6 +330,29 @@ export default function OrderDetail() {
           }}>
             View Agreement
           </Link>
+        )}
+        {['confirmed', 'dispatched', 'completed'].includes(order.status) && order.final_price && (
+          <button onClick={async () => {
+            try {
+              const r = await portalFetch(`/api/portal/data/orders/${id}/invoice`);
+              if (r.ok) {
+                const blob = await r.blob();
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `invoice_${order.load_id || id}.pdf`;
+                a.click();
+                URL.revokeObjectURL(url);
+              } else { alert('Invoice not available yet'); }
+            } catch { alert('Failed to download invoice'); }
+          }} style={{
+            fontFamily: fonts.sans, fontSize: '13px', fontWeight: 500,
+            color: colors.accent, padding: '10px 16px',
+            border: `1px solid ${colors.border}`, borderRadius: '8px',
+            background: 'transparent', cursor: 'pointer',
+          }}>
+            Download Invoice
+          </button>
         )}
         <a href="mailto:info@y7agency.com" style={{
           fontFamily: fonts.sans,
