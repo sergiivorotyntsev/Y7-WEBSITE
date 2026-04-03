@@ -83,6 +83,9 @@ export default function QuoteForm({ compact = false }) {
     pickup_location_type: '',
     delivery_zip: '', delivery_location_type: '',
     transport_type: 'open',
+    is_inoperable: false,
+    pickup_date_type: 'asap',
+    preferred_pickup_date: '',
     name: '', phone: '', email: '',
     sms_consent: false, notes: '',
   });
@@ -171,6 +174,8 @@ export default function QuoteForm({ compact = false }) {
       const payload = {
         ...form,
         vin: noVinMode ? 'TBD' : form.vin.trim().toUpperCase(),
+        is_inoperable: form.is_inoperable,
+        preferred_pickup_date: form.pickup_date_type === 'date' ? form.preferred_pickup_date : null,
         sms_consent_timestamp: form.sms_consent ? new Date().toISOString() : null,
         sms_consent_page_url: window.location.href,
         source: 'website',
@@ -398,6 +403,74 @@ export default function QuoteForm({ compact = false }) {
               {t(`form.${type}`)}
             </label>
           ))}
+        </div>
+      </div>
+
+      {/* Vehicle condition */}
+      <div>
+        <label style={labelStyle}>Vehicle Condition</label>
+        <div style={{ display: 'flex', gap: '12px' }}>
+          {[
+            { value: false, label: 'Runs and drives' },
+            { value: true, label: 'Non-running / Inoperable' },
+          ].map(opt => (
+            <label key={String(opt.value)} style={{
+              display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer',
+              fontFamily: fonts.sans, fontSize: '13px', color: colors.text,
+            }}>
+              <input
+                type="radio"
+                name="is_inoperable"
+                checked={form.is_inoperable === opt.value}
+                onChange={() => set('is_inoperable', opt.value)}
+                style={{ accentColor: colors.accent }}
+              />
+              {opt.label}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* Preferred pickup date */}
+      <div>
+        <label style={labelStyle}>When should we pick up?</label>
+        <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+          <label style={{
+            display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer',
+            fontFamily: fonts.sans, fontSize: '13px', color: colors.text,
+          }}>
+            <input
+              type="radio"
+              name="pickup_date_type"
+              checked={form.pickup_date_type === 'asap'}
+              onChange={() => { set('pickup_date_type', 'asap'); set('preferred_pickup_date', ''); }}
+              style={{ accentColor: colors.accent }}
+            />
+            As soon as possible
+          </label>
+          <label style={{
+            display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer',
+            fontFamily: fonts.sans, fontSize: '13px', color: colors.text,
+          }}>
+            <input
+              type="radio"
+              name="pickup_date_type"
+              checked={form.pickup_date_type === 'date'}
+              onChange={() => set('pickup_date_type', 'date')}
+              style={{ accentColor: colors.accent }}
+            />
+            Specific date:
+          </label>
+          {form.pickup_date_type === 'date' && (
+            <input
+              type="date"
+              value={form.preferred_pickup_date}
+              onChange={e => set('preferred_pickup_date', e.target.value)}
+              min={new Date().toISOString().split('T')[0]}
+              max={new Date(Date.now() + 90 * 86400000).toISOString().split('T')[0]}
+              style={{ ...inputStyle, width: 'auto' }}
+            />
+          )}
         </div>
       </div>
 
