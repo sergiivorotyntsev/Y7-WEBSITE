@@ -7,59 +7,80 @@ import LoadingSpinner from './components/LoadingSpinner';
 import Home from './pages/Home';
 import { colors } from './theme';
 
-const Services = lazy(() => import('./pages/Services'));
-const Dealers = lazy(() => import('./pages/Dealers'));
-const Exporters = lazy(() => import('./pages/Exporters'));
-const ShipMyCar = lazy(() => import('./pages/ShipMyCar'));
-const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
-const Terms = lazy(() => import('./pages/Terms'));
-const Accessibility = lazy(() => import('./pages/Accessibility'));
-const Agreement = lazy(() => import('./pages/Agreement'));
-const Track = lazy(() => import('./pages/Track'));
-const Contact = lazy(() => import('./pages/Contact'));
-const FAQ = lazy(() => import('./pages/FAQ'));
-const About = lazy(() => import('./pages/About'));
-const Quote = lazy(() => import('./pages/Quote'));
-const QuoteAction = lazy(() => import('./pages/QuoteAction'));
-const DealerQuote = lazy(() => import('./pages/DealerQuote'));
-const PortPage = lazy(() => import('./pages/ports/PortPage'));
-const CarShippingCost = lazy(() => import('./pages/seo/CarShippingCost'));
-const EnclosedCarShipping = lazy(() => import('./pages/seo/EnclosedCarShipping'));
-const AuctionCarShipping = lazy(() => import('./pages/seo/AuctionCarShipping'));
-const CopartShipping = lazy(() => import('./pages/seo/CopartShipping'));
-const IaaiTransport = lazy(() => import('./pages/seo/IaaiTransport'));
-const ManheimTransport = lazy(() => import('./pages/seo/ManheimTransport'));
-const DoorToPort = lazy(() => import('./pages/seo/DoorToPort'));
-const DealerAutoTransport = lazy(() => import('./pages/seo/DealerAutoTransport'));
-const SalvageCarShipping = lazy(() => import('./pages/seo/SalvageCarShipping'));
-const OpenCarShipping = lazy(() => import('./pages/seo/OpenCarShipping'));
-const StateToState = lazy(() => import('./pages/seo/StateToState'));
-const MassachusettsCarShipping = lazy(() => import('./pages/seo/locations/MassachusettsCarShipping'));
-const BostonCarShipping = lazy(() => import('./pages/seo/locations/BostonCarShipping'));
-const NewtonAutoTransport = lazy(() => import('./pages/seo/locations/NewtonAutoTransport'));
-const FloridaCarShipping = lazy(() => import('./pages/seo/locations/FloridaCarShipping'));
-const NewJerseyAutoTransport = lazy(() => import('./pages/seo/locations/NewJerseyAutoTransport'));
-const TexasAutoTransport = lazy(() => import('./pages/seo/locations/TexasAutoTransport'));
-const MassachusettsToFlorida = lazy(() => import('./pages/seo/routes/MassachusettsToFlorida'));
-const NewJerseyToFlorida = lazy(() => import('./pages/seo/routes/NewJerseyToFlorida'));
-const TexasToNewark = lazy(() => import('./pages/seo/routes/TexasToNewark'));
-const ChicagoToNewark = lazy(() => import('./pages/seo/routes/ChicagoToNewark'));
-const AuctionToPort = lazy(() => import('./pages/seo/routes/AuctionToPort'));
-const Login = lazy(() => import('./pages/portal/Login'));
-const Dashboard = lazy(() => import('./pages/portal/Dashboard'));
-const OrderDetail = lazy(() => import('./pages/portal/OrderDetail'));
-const DispatchDetails = lazy(() => import('./pages/portal/DispatchDetails'));
-const Profile = lazy(() => import('./pages/portal/Profile'));
+function lazyWithRetry(importFn) {
+  return lazy(() => importFn().catch(() => {
+    window.location.reload();
+    return importFn();
+  }));
+}
 
-const srOnly = {
-  position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px',
-  overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap', border: 0,
+const Services = lazyWithRetry(() => import('./pages/Services'));
+const Dealers = lazyWithRetry(() => import('./pages/Dealers'));
+const Exporters = lazyWithRetry(() => import('./pages/Exporters'));
+const ShipMyCar = lazyWithRetry(() => import('./pages/ShipMyCar'));
+const PrivacyPolicy = lazyWithRetry(() => import('./pages/PrivacyPolicy'));
+const Terms = lazyWithRetry(() => import('./pages/Terms'));
+const Accessibility = lazyWithRetry(() => import('./pages/Accessibility'));
+const Agreement = lazyWithRetry(() => import('./pages/Agreement'));
+const Track = lazyWithRetry(() => import('./pages/Track'));
+const Contact = lazyWithRetry(() => import('./pages/Contact'));
+const FAQ = lazyWithRetry(() => import('./pages/FAQ'));
+const About = lazyWithRetry(() => import('./pages/About'));
+const Quote = lazyWithRetry(() => import('./pages/Quote'));
+const QuoteAction = lazyWithRetry(() => import('./pages/QuoteAction'));
+const DealerQuote = lazyWithRetry(() => import('./pages/DealerQuote'));
+const PortPage = lazyWithRetry(() => import('./pages/ports/PortPage'));
+const CarShippingCost = lazyWithRetry(() => import('./pages/seo/CarShippingCost'));
+const EnclosedCarShipping = lazyWithRetry(() => import('./pages/seo/EnclosedCarShipping'));
+const AuctionCarShipping = lazyWithRetry(() => import('./pages/seo/AuctionCarShipping'));
+const CopartShipping = lazyWithRetry(() => import('./pages/seo/CopartShipping'));
+const IaaiTransport = lazyWithRetry(() => import('./pages/seo/IaaiTransport'));
+const ManheimTransport = lazyWithRetry(() => import('./pages/seo/ManheimTransport'));
+const DoorToPort = lazyWithRetry(() => import('./pages/seo/DoorToPort'));
+const DealerAutoTransport = lazyWithRetry(() => import('./pages/seo/DealerAutoTransport'));
+const SalvageCarShipping = lazyWithRetry(() => import('./pages/seo/SalvageCarShipping'));
+const OpenCarShipping = lazyWithRetry(() => import('./pages/seo/OpenCarShipping'));
+const StateToState = lazyWithRetry(() => import('./pages/seo/StateToState'));
+const MassachusettsCarShipping = lazyWithRetry(() => import('./pages/seo/locations/MassachusettsCarShipping'));
+const BostonCarShipping = lazyWithRetry(() => import('./pages/seo/locations/BostonCarShipping'));
+const NewtonAutoTransport = lazyWithRetry(() => import('./pages/seo/locations/NewtonAutoTransport'));
+const FloridaCarShipping = lazyWithRetry(() => import('./pages/seo/locations/FloridaCarShipping'));
+const NewJerseyAutoTransport = lazyWithRetry(() => import('./pages/seo/locations/NewJerseyAutoTransport'));
+const TexasAutoTransport = lazyWithRetry(() => import('./pages/seo/locations/TexasAutoTransport'));
+const MassachusettsToFlorida = lazyWithRetry(() => import('./pages/seo/routes/MassachusettsToFlorida'));
+const NewJerseyToFlorida = lazyWithRetry(() => import('./pages/seo/routes/NewJerseyToFlorida'));
+const TexasToNewark = lazyWithRetry(() => import('./pages/seo/routes/TexasToNewark'));
+const ChicagoToNewark = lazyWithRetry(() => import('./pages/seo/routes/ChicagoToNewark'));
+const AuctionToPort = lazyWithRetry(() => import('./pages/seo/routes/AuctionToPort'));
+const Login = lazyWithRetry(() => import('./pages/portal/Login'));
+const Dashboard = lazyWithRetry(() => import('./pages/portal/Dashboard'));
+const OrderDetail = lazyWithRetry(() => import('./pages/portal/OrderDetail'));
+const DispatchDetails = lazyWithRetry(() => import('./pages/portal/DispatchDetails'));
+const Profile = lazyWithRetry(() => import('./pages/portal/Profile'));
+
+const skipHidden = {
+  position: 'absolute', left: '-9999px', top: 'auto',
+  width: '1px', height: '1px', overflow: 'hidden',
+};
+const skipVisible = {
+  position: 'fixed', left: '16px', top: '16px', zIndex: 9999,
+  background: colors.bg, padding: '8px 16px',
+  border: `1px solid ${colors.accent}`, borderRadius: '4px',
+  fontSize: '14px', color: colors.text, textDecoration: 'none',
+  fontFamily: 'system-ui, sans-serif',
 };
 
 export default function App() {
   return (
     <AuthProvider>
-      <a href="#main" style={srOnly} onFocus={e => { e.target.style.position = 'static'; e.target.style.width = 'auto'; e.target.style.height = 'auto'; e.target.style.clip = 'auto'; e.target.style.overflow = 'visible'; }} onBlur={e => Object.assign(e.target.style, srOnly)}>Skip to content</a>
+      <a
+        href="#main"
+        style={skipHidden}
+        onFocus={e => Object.assign(e.target.style, skipVisible)}
+        onBlur={e => Object.assign(e.target.style, skipHidden)}
+      >
+        Skip to content
+      </a>
       <div style={{ background: colors.bg, minHeight: '100vh' }}>
         <Suspense fallback={<LoadingSpinner />}>
         <Routes>

@@ -30,6 +30,7 @@ export default function Header() {
   };
 
   const navLinks = [
+    { key: 'home', to: '/' },
     { key: 'services', to: '/services' },
     { key: 'dealers', to: '/dealers' },
     { key: 'exporters', to: '/exporters' },

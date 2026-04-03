@@ -18,9 +18,9 @@ export default function LiveActivityFeed() {
 
   useEffect(() => {
     fetch(`${API_URL}/api/public/activity`)
-      .then(r => r.json())
+      .then(r => { if (!r.ok) throw new Error(); return r.json(); })
       .then(data => setEvents(data.events || []))
-      .catch(() => {});
+      .catch(() => setEvents([]));
   }, []);
 
   useEffect(() => {
