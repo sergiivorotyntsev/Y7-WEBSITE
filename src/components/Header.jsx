@@ -56,7 +56,6 @@ export default function Header() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        gap: '16px',
       }}>
         {/* Logo */}
         <Link to="/" style={{
@@ -74,11 +73,11 @@ export default function Header() {
         <nav aria-label="Main navigation" style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '28px',
+          gap: '20px',
         }}>
           <div style={{
             display: 'flex',
-            gap: '24px',
+            gap: '16px',
             alignItems: 'center',
           }}
             className="desktop-nav"
@@ -211,11 +210,11 @@ export default function Header() {
 
       {/* Responsive styles via inline <style> tag */}
       <style>{`
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
           .desktop-nav { display: none !important; }
           .mobile-menu-btn { display: block !important; }
         }
-        @media (min-width: 769px) {
+        @media (min-width: 1025px) {
           .mobile-menu-btn { display: none !important; }
         }
       `}</style>

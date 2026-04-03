@@ -154,11 +154,11 @@ export default function LanguageSwitcher() {
       </div>
 
       <style>{`
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
           .lang-desktop { display: none !important; }
           .lang-mobile { display: block !important; }
         }
-        @media (min-width: 769px) {
+        @media (min-width: 1025px) {
           .lang-desktop { display: flex !important; }
           .lang-mobile { display: none !important; }
         }

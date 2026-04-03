@@ -1,11 +1,11 @@
 {
   "nav": {
-    "home": "Strona",
+    "home": "Start",
     "services": "Usługi",
-    "dealers": "Dla dealerów",
-    "exporters": "Eksporterzy",
-    "shipMyCar": "Wyślij auto",
-    "track": "Śledzenie",
+    "dealers": "Dealerzy",
+    "exporters": "Eksport",
+    "shipMyCar": "Auto",
+    "track": "Tracking",
     "faq": "FAQ",
     "about": "O nas",
     "contact": "Kontakt"

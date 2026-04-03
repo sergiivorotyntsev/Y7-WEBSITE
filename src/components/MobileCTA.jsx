@@ -46,7 +46,7 @@ export default function MobileCTA() {
   return (
     <>
       <style>{`
-        @media (min-width: 769px) { .mobile-cta-bar { display: none !important; } }
+        @media (min-width: 1025px) { .mobile-cta-bar { display: none !important; } }
       `}</style>
       <div
         className="mobile-cta-bar"

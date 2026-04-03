@@ -2,10 +2,10 @@
   "nav": {
     "home": "Головна",
     "services": "Послуги",
-    "dealers": "Для дилерів",
-    "exporters": "Експортерам",
-    "shipMyCar": "Доставка авто",
-    "track": "Відстеження",
+    "dealers": "Дилерам",
+    "exporters": "Експорт",
+    "shipMyCar": "Авто",
+    "track": "Трекінг",
     "faq": "FAQ",
     "about": "Про нас",
     "contact": "Контакти"
