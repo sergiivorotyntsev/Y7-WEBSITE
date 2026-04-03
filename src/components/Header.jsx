@@ -30,7 +30,7 @@ export default function Header() {
   ];
 
   return (
-    <header style={{
+    <header role="banner" style={{
       background: colors.bgCard,
       borderBottom: `1px solid ${colors.border}`,
       position: 'sticky',
@@ -58,7 +58,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav style={{
+        <nav aria-label="Main navigation" style={{
           display: 'flex',
           alignItems: 'center',
           gap: '28px',

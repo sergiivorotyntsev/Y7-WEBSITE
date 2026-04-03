@@ -12,7 +12,7 @@ export default function Layout() {
     <>
       <style>{keyframes}</style>
       <Header />
-      <main key={location.pathname} style={{ animation: 'fadeUp 300ms ease' }}>
+      <main id="main" key={location.pathname} style={{ animation: 'fadeUp 300ms ease' }}>
         <Outlet />
       </main>
       <Footer />

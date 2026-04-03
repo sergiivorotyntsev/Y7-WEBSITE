@@ -13,7 +13,7 @@ export default function Footer() {
   };
 
   return (
-    <footer style={{
+    <footer role="contentinfo" style={{
       background: colors.bgMuted,
       borderTop: `1px solid ${colors.border}`,
       padding: '48px 24px 32px',

@@ -23,11 +23,19 @@ import Dashboard from './pages/portal/Dashboard';
 import OrderDetail from './pages/portal/OrderDetail';
 import DispatchDetails from './pages/portal/DispatchDetails';
 import Profile from './pages/portal/Profile';
+import ErrorBoundary from './components/ErrorBoundary';
 import { colors } from './theme';
+
+const srOnly = {
+  position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px',
+  overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap', border: 0,
+};
 
 export default function App() {
   return (
     <AuthProvider>
+      <ErrorBoundary>
+      <a href="#main" style={srOnly} onFocus={e => { e.target.style.position = 'static'; e.target.style.width = 'auto'; e.target.style.height = 'auto'; e.target.style.clip = 'auto'; e.target.style.overflow = 'visible'; }} onBlur={e => Object.assign(e.target.style, srOnly)}>Skip to content</a>
       <div style={{ background: colors.bg, minHeight: '100vh' }}>
         <Routes>
           <Route element={<Layout />}>
@@ -63,6 +71,7 @@ export default function App() {
           </Route>
         </Routes>
       </div>
+      </ErrorBoundary>
     </AuthProvider>
   );
 }
