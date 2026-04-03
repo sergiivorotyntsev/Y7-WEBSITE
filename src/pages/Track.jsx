@@ -4,13 +4,7 @@ import PageMeta from '../components/PageMeta';
 import { SearchIcon, QuestionIcon } from '../components/icons';
 import { apiGet } from '../hooks/useApi';
 import { colors, fonts, button as btnStyles } from '../theme';
-
-const STATUS_ORDER = ['pending', 'quoted', 'confirmed', 'dispatched', 'DISPATCHED', 'PICKED_UP', 'IN_TRANSIT', 'DELIVERED'];
-const STATUS_LABELS = {
-  pending: 'Quote Requested', quoted: 'Quote Sent', confirmed: 'Confirmed',
-  dispatched: 'Carrier Assigned', DISPATCHED: 'Dispatched', PICKED_UP: 'Picked Up',
-  IN_TRANSIT: 'In Transit', DELIVERED: 'Delivered',
-};
+import { STATUS_PIPELINE, STATUS_LABELS } from '../utils/orderStatus';
 
 function fmtDate(d) {
   if (!d) return null;
@@ -39,7 +33,8 @@ export default function Track() {
     }
   }
 
-  const statusIdx = result ? STATUS_ORDER.indexOf(result.status) : -1;
+  const normalizedStatus = result ? (result.status || '').toLowerCase() : '';
+  const statusIdx = result ? STATUS_PIPELINE.indexOf(normalizedStatus) : -1;
 
   return (
     <div style={{ maxWidth: '640px', margin: '0 auto', padding: '60px 24px 80px' }}>
@@ -146,15 +141,15 @@ export default function Track() {
 
           {/* Status timeline */}
           <div style={{ marginBottom: '20px' }}>
-            {STATUS_ORDER.map((s, i) => {
+            {STATUS_PIPELINE.map((s, i) => {
               const done = i <= statusIdx;
-              const isCurrent = s === result.status;
+              const isCurrent = s === normalizedStatus;
               const label = STATUS_LABELS[s] || s;
               return (
                 <div key={s} style={{
                   display: 'flex',
                   gap: '12px',
-                  minHeight: i < STATUS_ORDER.length - 1 ? '40px' : 'auto',
+                  minHeight: i < STATUS_PIPELINE.length - 1 ? '40px' : 'auto',
                 }}>
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '16px' }}>
                     <div style={{
@@ -163,7 +158,7 @@ export default function Track() {
                       border: `2px solid ${done ? colors.success : (isCurrent ? colors.accent : colors.border)}`,
                       flexShrink: 0, marginTop: '2px',
                     }} />
-                    {i < STATUS_ORDER.length - 1 && (
+                    {i < STATUS_PIPELINE.length - 1 && (
                       <div style={{ width: '2px', flex: 1, background: done ? colors.success : colors.border, opacity: 0.3 }} />
                     )}
                   </div>

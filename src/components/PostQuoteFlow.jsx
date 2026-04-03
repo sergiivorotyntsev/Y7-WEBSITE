@@ -135,6 +135,89 @@ export default function PostQuoteFlow({ quoteResult, formData }) {
         )}
       </div>
 
+      {/* What happens next — timeline */}
+      <div style={{
+        background: colors.bgCard,
+        border: `1px solid ${colors.border}`,
+        borderRadius: '16px',
+        padding: '28px 24px',
+        marginBottom: '24px',
+      }}>
+        <h4 style={{
+          fontFamily: fonts.serif,
+          fontSize: '18px',
+          fontWeight: 700,
+          color: colors.text,
+          marginBottom: '20px',
+        }}>
+          What happens next
+        </h4>
+
+        {[
+          { label: 'Review', desc: 'Our dispatcher reviews your request (10\u201315 min)', filled: true },
+          { label: 'Quote sent', desc: "You'll receive pricing via email", filled: false },
+          { label: 'You confirm', desc: 'Accept the quote to proceed', filled: false },
+          { label: 'Carrier assigned', desc: 'We match a verified carrier', filled: false },
+          { label: 'Vehicle delivered', desc: 'Safe delivery with documentation', filled: false },
+        ].map((item, i, arr) => (
+          <div key={item.label} style={{ display: 'flex', gap: '14px', minHeight: i < arr.length - 1 ? '48px' : 'auto' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '16px', flexShrink: 0 }}>
+              <div style={{
+                width: '12px', height: '12px', borderRadius: '50%',
+                background: item.filled ? colors.accent : 'transparent',
+                border: `2px solid ${item.filled ? colors.accent : colors.border}`,
+                flexShrink: 0, marginTop: '3px',
+              }} />
+              {i < arr.length - 1 && (
+                <div style={{ width: '2px', flex: 1, background: colors.border }} />
+              )}
+            </div>
+            <div style={{ paddingBottom: '8px' }}>
+              <div style={{
+                fontFamily: fonts.sans, fontSize: '14px', fontWeight: 600,
+                color: item.filled ? colors.text : colors.textMuted,
+              }}>
+                {item.label}
+              </div>
+              <div style={{
+                fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginTop: '2px',
+              }}>
+                {item.desc}
+              </div>
+            </div>
+          </div>
+        ))}
+
+        {/* CTA buttons */}
+        <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
+          <Link to="/portal/login" style={{
+            ...btnStyles.accent,
+            padding: '10px 20px',
+            fontSize: '12px',
+            textDecoration: 'none',
+            flex: 1,
+            textAlign: 'center',
+          }}>
+            Create Account
+          </Link>
+          <a
+            href="https://t.me/y7dispatch_bot"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              ...btnStyles.secondary,
+              padding: '10px 20px',
+              fontSize: '12px',
+              textDecoration: 'none',
+              flex: 1,
+              textAlign: 'center',
+            }}
+          >
+            Connect Telegram
+          </a>
+        </div>
+      </div>
+
       {/* Registration section — only if not logged in */}
       {!user && step === 'success' && !dismissed && (
         <div style={{

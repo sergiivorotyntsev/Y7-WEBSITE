@@ -1,21 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
-import { HourglassIcon, DollarIcon, CheckIcon, TruckIcon, CrossIcon, CircleIcon, ClipboardIcon, MapPinIcon, ProfileIcon, TelegramIcon, EmailIcon } from '../../components/icons';
+import { ClipboardIcon, MapPinIcon, ProfileIcon, TelegramIcon, EmailIcon } from '../../components/icons';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles, keyframes } from '../../theme';
-
-const STATUS_COLORS = {
-  pending: '#6c757d', quoted: '#0d6efd', confirmed: '#28a745',
-  dispatched: '#6f42c1', cancelled: '#adb5bd', declined: '#dc3545',
-  completed: '#198754', delivered: '#198754',
-};
-
-const STATUS_ICONS = {
-  pending: <HourglassIcon size={14} />, quoted: <DollarIcon size={14} />, confirmed: <CheckIcon size={14} />,
-  dispatched: <TruckIcon size={14} />, cancelled: <CrossIcon size={14} />, completed: <CheckIcon size={14} />,
-  delivered: <CheckIcon size={14} />,
-};
+import { STATUS_COLORS, getStatusBadge } from '../../utils/orderStatus';
 
 function StatCard({ value, label, delay }) {
   return (
@@ -56,6 +45,7 @@ export default function Dashboard() {
   const [orders, setOrders] = useState([]);
   const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     portalFetch('/api/portal/data/orders?limit=10')
@@ -64,7 +54,7 @@ export default function Dashboard() {
         setOrders(data.items || []);
         setSummary(data.summary || {});
       })
-      .catch(() => {})
+      .catch(() => setError('Failed to load orders. Please try refreshing the page.'))
       .finally(() => setLoading(false));
   }, []);
 
@@ -96,6 +86,16 @@ export default function Dashboard() {
               backgroundSize: '800px 100%', animation: 'shimmer 1.5s ease-in-out infinite',
             }} />
           ))}
+        </div>
+      )}
+
+      {error && (
+        <div style={{
+          fontFamily: fonts.sans, fontSize: '13px', color: colors.accent,
+          padding: '10px 14px', background: '#FFF0EC', borderRadius: '8px',
+          marginBottom: '20px', textAlign: 'center',
+        }}>
+          {error}
         </div>
       )}
 
@@ -199,7 +199,7 @@ export default function Dashboard() {
                 onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flex: 1, minWidth: 0 }}>
-                  <span style={{ fontSize: '18px', display: 'flex', alignItems: 'center' }}>{STATUS_ICONS[order.status] || <CircleIcon size={14} />}</span>
+                  <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: STATUS_COLORS[order.status] || colors.textMuted, flexShrink: 0 }} />
                   <div style={{ minWidth: 0 }}>
                     <div style={{
                       fontFamily: fonts.sans,
@@ -223,16 +223,21 @@ export default function Dashboard() {
                   </div>
                 </div>
                 <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                  {(() => { const badge = getStatusBadge(order.status); return (
                   <span style={{
                     fontFamily: fonts.sans,
                     fontSize: '11px',
                     fontWeight: 600,
-                    color: STATUS_COLORS[order.status] || colors.textMuted,
+                    color: badge.color,
+                    background: badge.backgroundColor,
+                    padding: '2px 8px',
+                    borderRadius: '10px',
                     textTransform: 'uppercase',
                     letterSpacing: '0.5px',
                   }}>
-                    {order.status}
+                    {badge.label}
                   </span>
+                  ); })()}
                   {price && (
                     <div style={{
                       fontFamily: fonts.mono,

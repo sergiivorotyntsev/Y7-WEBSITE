@@ -38,7 +38,7 @@ export default function Profile() {
     portalFetch('/api/portal/data/profile')
       .then(r => r.json())
       .then(data => { setProfile(data); setLoading(false); })
-      .catch(() => setLoading(false));
+      .catch(() => { setMessage({ type: 'error', text: 'Failed to load profile. Please try refreshing the page.' }); setLoading(false); });
   }, []);
 
   function set(field, value) {

@@ -1,6 +1,6 @@
-import { Navigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { colors, fonts } from '../theme';
+import ActionRequired from './ActionRequired';
 
 export default function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
@@ -22,7 +22,7 @@ export default function ProtectedRoute({ children }) {
   }
 
   if (!user) {
-    return <Navigate to="/portal/login" replace />;
+    return <ActionRequired type="session_expired" />;
   }
 
   return children;

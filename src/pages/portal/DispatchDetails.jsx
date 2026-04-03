@@ -58,7 +58,7 @@ export default function DispatchDetails() {
           special_instructions: data.special_instructions || '',
         }));
       })
-      .catch(() => {})
+      .catch(() => setError('Failed to load order details. Please try again.'))
       .finally(() => setLoading(false));
   }, [id]);
 

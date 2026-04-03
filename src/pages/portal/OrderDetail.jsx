@@ -3,19 +3,20 @@ import { useParams, useSearchParams, Link, useNavigate } from 'react-router-dom'
 import { CheckIcon } from '../../components/icons';
 import { portalFetch } from '../../hooks/useAuth';
 import { colors, fonts } from '../../theme';
+import { STATUS_LABELS, STATUS_PIPELINE } from '../../utils/orderStatus';
 
 const TIMELINE_STEPS = [
-  { key: 'pending', label: 'Quote Requested', field: 'created_at' },
-  { key: 'quoted', label: 'Quote Sent', field: 'quoted_at' },
-  { key: 'confirmed', label: 'Quote Confirmed', field: 'confirmed_at' },
+  { key: 'pending', label: STATUS_LABELS.pending, field: 'created_at' },
+  { key: 'quoted', label: STATUS_LABELS.quoted, field: 'quoted_at' },
+  { key: 'confirmed', label: STATUS_LABELS.confirmed, field: 'confirmed_at' },
   { key: 'agreement', label: 'Agreement Signed', field: 'agreement_signed_at' },
-  { key: 'dispatched', label: 'Carrier Assigned', field: null },
-  { key: 'picked_up', label: 'Picked Up', field: null },
-  { key: 'in_transit', label: 'In Transit', field: null },
-  { key: 'delivered', label: 'Delivered', field: null },
+  { key: 'dispatched', label: STATUS_LABELS.dispatched, field: null },
+  { key: 'picked_up', label: STATUS_LABELS.picked_up, field: null },
+  { key: 'in_transit', label: STATUS_LABELS.in_transit, field: null },
+  { key: 'delivered', label: STATUS_LABELS.delivered, field: null },
 ];
 
-const STATUS_ORDER = ['pending', 'quoted', 'confirmed', 'dispatched', 'picked_up', 'in_transit', 'delivered', 'completed'];
+const STATUS_ORDER = STATUS_PIPELINE;
 
 function fmtDate(d) {
   if (!d) return null;
@@ -77,26 +78,31 @@ export default function OrderDetail() {
   const [searchParams] = useSearchParams();
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [confirmCancel, setConfirmCancel] = useState(false);
   const dispatchSaved = searchParams.get('dispatch_saved') === '1';
 
   const fetchOrder = () => {
     setLoading(true);
+    setError(null);
     portalFetch(`/api/portal/data/orders/${id}`)
       .then(r => r.json())
       .then(setOrder)
-      .catch(() => {})
+      .catch(() => setError('Failed to load order details. Please try again.'))
       .finally(() => setLoading(false));
   };
 
   useEffect(() => { fetchOrder(); }, [id]);
 
   const handleCancel = async () => {
-    if (!window.confirm('Are you sure you want to cancel this order?')) return;
+    if (!confirmCancel) { setConfirmCancel(true); return; }
+    setConfirmCancel(false);
     try {
       const r = await portalFetch(`/api/portal/data/orders/${id}/cancel`, { method: 'POST' });
       if (r.ok) fetchOrder();
-    } catch (e) {
-      console.error('Cancel failed:', e);
+      else setError('Failed to cancel order. Please try again.');
+    } catch {
+      setError('Failed to cancel order. Please check your connection and try again.');
     }
   };
 
@@ -111,6 +117,19 @@ export default function OrderDetail() {
             backgroundSize: '800px 100%', animation: 'shimmer 1.5s ease-in-out infinite',
           }} />
         ))}
+      </div>
+    );
+  }
+
+  if (!order && error) {
+    return (
+      <div style={{ maxWidth: '700px', margin: '0 auto', padding: '40px 24px 80px', textAlign: 'center' }}>
+        <div style={{
+          fontFamily: fonts.sans, fontSize: '13px', color: colors.accent,
+          padding: '10px 14px', background: '#FFF0EC', borderRadius: '8px',
+        }}>
+          {error}
+        </div>
       </div>
     );
   }
@@ -326,6 +345,17 @@ export default function OrderDetail() {
         </div>
       )}
 
+      {/* Error banner */}
+      {error && (
+        <div style={{
+          fontFamily: fonts.sans, fontSize: '13px', color: colors.accent,
+          padding: '10px 14px', background: '#FFF0EC', borderRadius: '8px',
+          marginBottom: '16px',
+        }}>
+          {error}
+        </div>
+      )}
+
       {/* Success banner after saving dispatch details */}
       {dispatchSaved && (
         <div style={{
@@ -370,8 +400,8 @@ export default function OrderDetail() {
                 a.download = `invoice_${order.load_id || id}.pdf`;
                 a.click();
                 URL.revokeObjectURL(url);
-              } else { alert('Invoice not available yet'); }
-            } catch { alert('Failed to download invoice'); }
+              } else { setError('Invoice not available yet.'); }
+            } catch { setError('Failed to download invoice.'); }
           }} style={{
             fontFamily: fonts.sans, fontSize: '13px', fontWeight: 500,
             color: colors.accent, padding: '10px 16px',
@@ -397,15 +427,26 @@ export default function OrderDetail() {
 
       {/* Cancel */}
       {(order.status === 'pending' || order.status === 'quoted') && (
-        <button onClick={handleCancel} style={{
-          fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600,
-          textTransform: 'uppercase', letterSpacing: '0.5px',
-          padding: '12px 24px', background: '#dc3545', color: '#fff',
-          border: 'none', borderRadius: '20px', cursor: 'pointer',
-          marginTop: '12px', width: '100%',
-        }}>
-          Cancel Order
-        </button>
+        <>
+          <button onClick={handleCancel} style={{
+            fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600,
+            textTransform: 'uppercase', letterSpacing: '0.5px',
+            padding: '12px 24px', background: confirmCancel ? '#b02a37' : '#dc3545', color: '#fff',
+            border: 'none', borderRadius: '20px', cursor: 'pointer',
+            marginTop: '12px', width: '100%',
+          }}>
+            {confirmCancel ? 'Confirm Cancellation' : 'Cancel Order'}
+          </button>
+          {confirmCancel && (
+            <button onClick={() => setConfirmCancel(false)} style={{
+              fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted,
+              background: 'none', border: 'none', cursor: 'pointer',
+              marginTop: '8px', width: '100%',
+            }}>
+              Never mind
+            </button>
+          )}
+        </>
       )}
 
       {/* Resubmit after decline */}
