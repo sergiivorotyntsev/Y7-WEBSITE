@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button } from '../../theme';
+import { API_URL } from '../../config';
 
 const US_STATES = [
   'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD',
@@ -17,6 +18,9 @@ export default function DispatchDetails() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const [gatePassFile, setGatePassFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [uploadDone, setUploadDone] = useState(false);
 
   const [form, setForm] = useState({
     pickup_full_address: '',
@@ -210,6 +214,53 @@ export default function DispatchDetails() {
           <div style={rowStyle}>
             <label style={labelStyle}>Gate Pass Number</label>
             <input style={inputStyle} value={form.gate_pass} onChange={set('gate_pass')} placeholder="If picking up from auction, enter gate pass #" />
+          </div>
+
+          <div style={rowStyle}>
+            <label style={labelStyle}>Gate Pass File (PDF or Photo)</label>
+            <input
+              type="file"
+              accept=".pdf,.jpg,.jpeg,.png"
+              onChange={(e) => { setGatePassFile(e.target.files[0]); setUploadDone(false); }}
+              style={{ ...inputStyle, padding: '8px 12px' }}
+            />
+            {gatePassFile && !uploadDone && (
+              <button
+                type="button"
+                onClick={async () => {
+                  setUploading(true);
+                  try {
+                    const fd = new FormData();
+                    fd.append('file', gatePassFile);
+                    // Raw fetch — portalFetch always sets Content-Type: application/json which breaks FormData
+                    const r = await fetch(`${API_URL}/api/portal/data/orders/${id}/gate-pass`, {
+                      method: 'POST',
+                      credentials: 'include',
+                      body: fd,
+                    });
+                    if (r.ok) { setUploadDone(true); setGatePassFile(null); }
+                    else { const e = await r.json().catch(() => ({})); setError(e.detail || 'Upload failed'); }
+                  } catch { setError('Upload failed'); }
+                  setUploading(false);
+                }}
+                disabled={uploading}
+                style={{
+                  marginTop: '8px', padding: '8px 18px',
+                  background: colors.accent, color: '#fff',
+                  border: 'none', borderRadius: '20px',
+                  fontSize: '12px', fontWeight: 600, cursor: uploading ? 'not-allowed' : 'pointer',
+                  fontFamily: fonts.sans, textTransform: 'uppercase', letterSpacing: '0.5px',
+                  opacity: uploading ? 0.7 : 1,
+                }}
+              >
+                {uploading ? 'Uploading...' : 'Upload Gate Pass'}
+              </button>
+            )}
+            {uploadDone && (
+              <div style={{ marginTop: '6px', fontSize: '13px', color: colors.success, fontFamily: fonts.sans }}>
+                {'\u2705'} Gate pass uploaded
+              </div>
+            )}
           </div>
         </div>
 
