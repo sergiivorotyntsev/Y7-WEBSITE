@@ -345,7 +345,7 @@ export default function OrderDetail() {
         marginTop: '8px',
       }}>
         {order.id && (
-          <Link to={`/agreement/${order.id}`} style={{
+          <Link to="/agreement" style={{
             fontFamily: fonts.sans,
             fontSize: '13px',
             fontWeight: 500,

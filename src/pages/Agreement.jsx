@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useAuth, portalFetch } from '../hooks/useAuth';
 import { apiPost, apiGet } from '../hooks/useApi';
 import { colors, fonts, button as btnStyles } from '../theme';
 
@@ -59,6 +60,7 @@ export default function Agreement() {
   const { orderId } = useParams();
   const navigate = useNavigate();
   const { t } = useTranslation('agreement');
+  const { user } = useAuth();
   const scrollRef = useRef(null);
   const sectionRefs = useRef({});
   const agreementIdRef = useRef(null);
@@ -72,15 +74,31 @@ export default function Agreement() {
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  // Customer-level agreement: /agreement/new?customer_id=123
+  // Customer-level agreement modes:
+  // 1. /agreement (logged-in user, customer_id from session)
+  // 2. /agreement/new?customer_id=123 (legacy deep link)
+  // 3. /agreement/:orderId (legacy order-linked, resolves to customer)
   const searchParams = new URLSearchParams(window.location.search);
   const customerIdParam = searchParams.get('customer_id');
-  const isCustomerLevel = orderId === 'new' && customerIdParam;
+  const isCustomerLevel = !orderId || (orderId === 'new' && customerIdParam);
+  const resolvedCustomerId = user?.id || (customerIdParam ? parseInt(customerIdParam, 10) : null);
 
-  // Fetch order info (skip for customer-level agreements)
+  // Check if already signed, fetch order for legacy mode
   useEffect(() => {
     if (isCustomerLevel) {
-      setLoading(false);
+      if (resolvedCustomerId) {
+        apiGet(`/api/public/agreement/status/${resolvedCustomerId}`)
+          .then(data => {
+            if (data.signed) {
+              agreementIdRef.current = data.agreement_id;
+              setSuccess(true);
+            }
+            setLoading(false);
+          })
+          .catch(() => setLoading(false));
+      } else {
+        setLoading(false);
+      }
       return;
     }
     if (!orderId) return;
@@ -88,7 +106,7 @@ export default function Agreement() {
     apiGet(`/api/public/track?code=${encodeURIComponent(ref)}`)
       .then(data => { setOrder(data); setLoading(false); })
       .catch(() => { setError(t('errors.orderNotFound')); setLoading(false); });
-  }, [orderId, t, isCustomerLevel]);
+  }, [orderId, t, isCustomerLevel, resolvedCustomerId]);
 
   // Scroll tracking
   const handleScroll = useCallback(() => {
@@ -131,9 +149,9 @@ export default function Agreement() {
         user_agent: navigator.userAgent,
         lang: 'en',
       };
-      if (isCustomerLevel) {
-        payload.customer_id = parseInt(customerIdParam, 10);
-      } else {
+      if (isCustomerLevel && resolvedCustomerId) {
+        payload.customer_id = resolvedCustomerId;
+      } else if (orderId) {
         payload.order_id = parseInt(orderId.match(/^\d+$/) ? orderId : orderId.replace('WEB-', ''), 10);
       }
       // Capture agreement text for storage

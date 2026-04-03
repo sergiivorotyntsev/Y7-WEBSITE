@@ -204,6 +204,31 @@ export default function Profile() {
               </span>
             )}
           </div>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            fontFamily: fonts.sans,
+            fontSize: '13px',
+            color: colors.textMuted,
+          }}>
+            {profile.agreement_signed ? (
+              <span>
+                Agreement: <strong style={{ color: colors.success }}>Signed <CheckIcon size={14} /></strong>
+                {profile.agreement_id && (
+                  <> &mdash; <a href={`https://dispatch.y7agency.com/api/public/agreement/${profile.agreement_id}/pdf`}
+                    target="_blank" rel="noopener noreferrer" style={{ color: colors.accent }}>
+                    Download PDF
+                  </a></>
+                )}
+              </span>
+            ) : (
+              <span>
+                Agreement: Not signed.{' '}
+                <a href="/agreement" style={{ color: colors.accent }}>Sign now &rarr;</a>
+              </span>
+            )}
+          </div>
         </div>
 
         <button type="submit" disabled={saving} style={{

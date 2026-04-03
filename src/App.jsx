@@ -51,6 +51,7 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/:lang/faq" element={<FAQ />} />
             <Route path="/:lang/about" element={<About />} />
+            <Route path="/agreement" element={<ProtectedRoute><Agreement /></ProtectedRoute>} />
             <Route path="/agreement/:orderId" element={<Agreement />} />
             <Route path="/dealer-quote" element={<DealerQuote />} />
             <Route path="/:lang/dealer-quote" element={<DealerQuote />} />
