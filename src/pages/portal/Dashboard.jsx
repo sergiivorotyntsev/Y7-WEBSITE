@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
-import { colors, fonts, button as btnStyles } from '../../theme';
+import { colors, fonts, button as btnStyles, keyframes } from '../../theme';
 
 const STATUS_COLORS = {
   pending: '#6c757d', quoted: '#0d6efd', confirmed: '#28a745',
@@ -73,10 +73,7 @@ export default function Dashboard() {
 
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '40px 24px 80px' }}>
-      <style>{`
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
-      `}</style>
+      <style>{keyframes}</style>
 
       {loading && (
         <div style={{ marginBottom: '40px' }}>

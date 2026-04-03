@@ -26,7 +26,7 @@ export default function LanguageSwitcher() {
               border: 'none',
               cursor: 'pointer',
               padding: '4px 6px',
-              fontSize: '11px',
+              fontSize: '13px',
               fontFamily: fonts.sans,
               fontWeight: current === code ? 700 : 400,
               color: current === code ? colors.accent : colors.textMuted,
@@ -37,7 +37,7 @@ export default function LanguageSwitcher() {
             {code}
           </button>
           {i < langs.length - 1 && (
-            <span style={{ color: colors.border, fontSize: '11px' }}>|</span>
+            <span style={{ color: colors.border, fontSize: '13px' }}>|</span>
           )}
         </span>
       ))}

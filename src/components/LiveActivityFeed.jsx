@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { API_URL } from '../config';
-import { colors, fonts } from '../theme';
+import { colors, fonts, keyframes } from '../theme';
 
 const ACTION_ICONS = {
   'dispatched': '\uD83D\uDE9A',
@@ -64,18 +64,7 @@ export default function LiveActivityFeed() {
         LIVE
       </div>
 
-      <style>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.3; }
-        }
-        @keyframes fadeSwitch {
-          0% { opacity: 0; transform: translateY(8px); }
-          10% { opacity: 1; transform: translateY(0); }
-          90% { opacity: 1; transform: translateY(0); }
-          100% { opacity: 0; transform: translateY(-8px); }
-        }
-      `}</style>
+      <style>{keyframes}</style>
 
       {/* Event display */}
       <div style={{ minHeight: '24px', position: 'relative' }} aria-live="polite" aria-atomic="true">

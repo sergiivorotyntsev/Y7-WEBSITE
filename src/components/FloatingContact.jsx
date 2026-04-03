@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { colors, fonts } from '../theme';
+import { colors, fonts, keyframes } from '../theme';
 
 const CHANNELS = [
   { icon: '\uD83D\uDCAC', label: 'Telegram', href: 'https://t.me/y7dispatch_bot' },
@@ -32,17 +32,7 @@ export default function FloatingContact() {
 
   return (
     <>
-      <style>{`
-        @keyframes bounceIn {
-          0% { transform: scale(0); }
-          60% { transform: scale(1.15); }
-          100% { transform: scale(1); }
-        }
-        @keyframes popUp {
-          from { opacity: 0; transform: translateY(10px) scale(0.9); }
-          to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-      `}</style>
+      <style>{keyframes}</style>
 
       {/* Backdrop */}
       {open && (
