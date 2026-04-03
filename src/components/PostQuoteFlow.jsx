@@ -75,6 +75,17 @@ export default function PostQuoteFlow({ quoteResult, formData }) {
     if (e.key === 'Backspace' && !code[i] && i > 0) codeRefs.current[i - 1]?.focus();
   }
 
+  function handleCodePaste(e) {
+    const paste = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '').slice(0, 6);
+    if (paste.length === 6) {
+      e.preventDefault();
+      const next = paste.split('');
+      setCode(next);
+      codeRefs.current[5]?.focus();
+      verifyCode(paste);
+    }
+  }
+
   async function verifyCode(fullCode) {
     setCodeLoading(true);
     setCodeError(null);
@@ -236,6 +247,7 @@ export default function PostQuoteFlow({ quoteResult, formData }) {
                 value={digit}
                 onChange={e => handleCodeChange(i, e.target.value)}
                 onKeyDown={e => handleCodeKeyDown(i, e)}
+                onPaste={handleCodePaste}
                 autoFocus={i === 0}
                 style={{
                   width: '44px', height: '52px', textAlign: 'center',

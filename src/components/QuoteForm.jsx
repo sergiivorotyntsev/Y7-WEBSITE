@@ -89,6 +89,22 @@ export default function QuoteForm({ compact = false }) {
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
+  const [touched, setTouched] = useState({});
+
+  function markTouched(field) {
+    setTouched(prev => ({ ...prev, [field]: true }));
+  }
+
+  const vinRegex = /^[A-HJ-NPR-Z0-9]{17}$/;
+  const fieldErrors = {
+    vin: !noVinMode && touched.vin && form.vin && !vinRegex.test(form.vin.trim().toUpperCase())
+      ? 'VIN must be 17 characters (A-H, J-N, P, R-Z, 0-9)' : null,
+    email: touched.email && form.email && !form.email.includes('@') ? 'Enter a valid email' : null,
+    pickup_zip: touched.pickup_zip && form.pickup_zip && form.pickup_zip.trim().length > 0 && form.pickup_zip.trim().length < 5
+      ? 'ZIP must be 5 digits' : null,
+    delivery_zip: touched.delivery_zip && form.delivery_zip && form.delivery_zip.trim().length > 0 && form.delivery_zip.trim().length < 5
+      ? 'ZIP must be 5 digits' : null,
+  };
 
   // Listen for transport type selection from TransportComparison buttons
   useEffect(() => {
@@ -195,9 +211,10 @@ export default function QuoteForm({ compact = false }) {
             <input
               value={form.vin}
               onChange={e => set('vin', e.target.value.toUpperCase())}
+              onBlur={() => markTouched('vin')}
               placeholder={t('form.vinPlaceholder')}
               maxLength={17}
-              style={{ ...inputStyle, fontFamily: fonts.mono, flex: 1, fontSize: '16px' }}
+              style={{ ...inputStyle, fontFamily: fonts.mono, flex: 1, fontSize: '16px', borderColor: fieldErrors.vin ? colors.accent : colors.borderInput }}
             />
             <button
               type="button"
@@ -217,6 +234,9 @@ export default function QuoteForm({ compact = false }) {
             <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.accent, marginTop: '4px' }}>
               {vinError}
             </div>
+          )}
+          {fieldErrors.vin && (
+            <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.accent, marginTop: '4px' }}>{fieldErrors.vin}</div>
           )}
           {vinResult && (
             <>
