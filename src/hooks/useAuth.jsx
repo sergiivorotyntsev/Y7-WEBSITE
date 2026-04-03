@@ -20,9 +20,9 @@ export async function portalFetch(path, options = {}) {
     ...options,
     headers: { ...authHeaders(), ...options.headers },
   });
+  // On 401, clear token but DON'T throw — let callers handle the response
   if (res.status === 401) {
     _sessionToken = null;
-    throw new Error('Not authenticated');
   }
   return res;
 }
@@ -42,10 +42,10 @@ export function AuthProvider({ children }) {
         }
       }
     } catch {
-      // Not authenticated
+      // Network error — not authenticated
     }
+    // 401 or other non-ok: silently set user to null
     setUser(null);
-    _sessionToken = null;
   }, []);
 
   useEffect(() => {

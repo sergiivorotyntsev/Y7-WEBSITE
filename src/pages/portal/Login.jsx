@@ -1,40 +1,10 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { API_URL } from '../../config';
 import SmsConsent from '../../components/SmsConsent';
 import { colors, fonts, button as btnStyles } from '../../theme';
-
-// Keep onAuth ref stable across renders so the global callback always works
-let _pendingTgAuth = null;
-
-function TelegramLoginWidget({ onAuth }) {
-  const ref = useRef(null);
-  _pendingTgAuth = onAuth;
-
-  useEffect(() => {
-    if (!ref.current) return;
-    ref.current.innerHTML = '';
-    window.__tg_auth_callback = (user) => {
-      console.log('[TG-LOGIN] callback fired, user:', JSON.stringify(user));
-      console.log('[TG-LOGIN] _pendingTgAuth exists:', !!_pendingTgAuth);
-      if (_pendingTgAuth) _pendingTgAuth(user);
-    };
-    console.log('[TG-LOGIN] widget mounted, callback registered:', typeof window.__tg_auth_callback);
-    const s = document.createElement('script');
-    s.src = 'https://telegram.org/js/telegram-widget.js?22';
-    s.setAttribute('data-telegram-login', 'y7dispatch_bot');
-    s.setAttribute('data-size', 'large');
-    s.setAttribute('data-radius', '20');
-    s.setAttribute('data-request-access', 'write');
-    s.setAttribute('data-onauth', '__tg_auth_callback(user)');
-    s.async = true;
-    ref.current.appendChild(s);
-    return () => { delete window.__tg_auth_callback; _pendingTgAuth = null; };
-  }, []);
-  return <div ref={ref} style={{ display: 'flex', justifyContent: 'center', margin: '16px 0' }} />;
-}
 
 const inputStyle = {
   fontFamily: fonts.sans,
@@ -63,20 +33,23 @@ const labelStyle = {
 export default function Login() {
   const navigate = useNavigate();
   const { user, login } = useAuth();
-  // Steps: 'email' → 'code' | 'register' (→ 'code')
   const [step, setStep] = useState('email');
   const [email, setEmail] = useState('');
   const [code, setCode] = useState(['', '', '', '', '', '']);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const codeRefs = useRef([]);
-
-  // Registration form fields (shown in 'register' step)
   const [reg, setReg] = useState({
     company_name: '', contact_name: '', phone: '',
     delivery_address: '', delivery_city: '', delivery_state: '', delivery_zip: '',
     sms_consent: false,
   });
+
+  // Keep login + navigate in refs so TG callback always has latest
+  const loginRef = useRef(login);
+  const navigateRef = useRef(navigate);
+  loginRef.current = login;
+  navigateRef.current = navigate;
 
   useEffect(() => {
     if (user) navigate('/portal/dashboard', { replace: true });
@@ -86,7 +59,29 @@ export default function Login() {
     setReg(prev => ({ ...prev, [field]: value }));
   }
 
-  // Step 1: Enter email → check if account exists
+  // Telegram auth — completely decoupled from component lifecycle.
+  // Uses refs for login/navigate so it works even if component re-renders.
+  const handleTelegramAuth = useCallback(async (tgUser) => {
+    const url = `${API_URL}/api/portal/auth/telegram-login`;
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(tgUser),
+      });
+      const data = await res.json();
+      if (data.ok && data.session_token) {
+        loginRef.current(data.session_token, data.user);
+        navigateRef.current('/portal/dashboard', { replace: true });
+      } else {
+        setError(data.error || data.detail || 'Telegram login failed. Try email login instead.');
+      }
+    } catch {
+      setError('Connection error. Please try email login instead.');
+    }
+  }, []);
+
+  // Step 1: Enter email
   async function handleEmailSubmit(e) {
     e.preventDefault();
     setError(null);
@@ -117,7 +112,7 @@ export default function Login() {
     }
   }
 
-  // Step register: submit registration → send code → go to code step
+  // Step register
   async function handleRegisterSubmit(e) {
     e.preventDefault();
     setError(null);
@@ -132,7 +127,6 @@ export default function Login() {
       const data = await res.json();
       if (res.ok && data.ok) {
         login(data.session_token, { id: data.customer.id, name: data.customer.name });
-        // Check profile completeness
         try {
           const profileRes = await portalFetch('/api/portal/data/profile');
           const profile = await profileRes.json();
@@ -184,7 +178,6 @@ export default function Login() {
       const data = await res.json();
       if (res.ok && data.status === 'ok') {
         login(data.session_token, { id: data.customer_id, name: data.customer_name });
-        // Check profile completeness
         try {
           const profileRes = await portalFetch('/api/portal/data/profile');
           const profile = await profileRes.json();
@@ -206,39 +199,6 @@ export default function Login() {
     }
   }
 
-  async function handleTelegramAuth(tgUser) {
-    console.log('[TG-LOGIN] handleTelegramAuth called with:', JSON.stringify(tgUser));
-    console.log('[TG-LOGIN] API_URL:', API_URL);
-    setError(null);
-    setLoading(true);
-    const url = `${API_URL}/api/portal/auth/telegram-login`;
-    console.log('[TG-LOGIN] fetching:', url);
-    try {
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(tgUser),
-      });
-      console.log('[TG-LOGIN] response status:', res.status);
-      const data = await res.json();
-      console.log('[TG-LOGIN] response data:', JSON.stringify(data));
-      if (data.ok && data.session_token) {
-        login(data.session_token, data.user);
-        navigate('/portal/dashboard', { replace: true });
-      } else if (res.status === 401) {
-        setError('Authentication failed. Please try again.');
-      } else {
-        setError(data.error || data.detail || 'Telegram login failed. Try email login instead.');
-      }
-    } catch (err) {
-      console.error('[TG-LOGIN] FETCH ERROR:', err.name, err.message, err);
-      setError('Connection error: ' + err.message);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  // --- HEADINGS per step ---
   const headings = {
     email: { title: 'Welcome to Y7 Logistics', sub: 'Enter your email to get started \u2014 log in or create an account.' },
     code: { title: 'Enter Verification Code', sub: `We sent a 6-digit code to ${email}. Check your inbox.` },
@@ -272,7 +232,7 @@ export default function Login() {
         </div>
       )}
 
-      {/* ── STEP: EMAIL ── */}
+      {/* -- STEP: EMAIL -- */}
       {step === 'email' && (
         <form onSubmit={handleEmailSubmit}>
           <div style={{ marginBottom: '20px' }}>
@@ -291,7 +251,7 @@ export default function Login() {
         </form>
       )}
 
-      {/* ── STEP: CODE ── */}
+      {/* -- STEP: CODE -- */}
       {step === 'code' && (
         <div>
           <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginBottom: '24px' }}>
@@ -328,7 +288,7 @@ export default function Login() {
         </div>
       )}
 
-      {/* ── STEP: REGISTER ── */}
+      {/* -- STEP: REGISTER -- */}
       {step === 'register' && (
         <form onSubmit={handleRegisterSubmit} style={{
           background: colors.bgCard, border: `1px solid ${colors.border}`,
@@ -361,7 +321,7 @@ export default function Login() {
             color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px',
             paddingTop: '8px', borderTop: `1px solid ${colors.border}`,
           }}>
-            Delivery Address (your lot \u2014 optional)
+            Delivery Address (your lot {'\u2014'} optional)
           </div>
           <div>
             <label style={labelStyle}>Street Address</label>
@@ -413,9 +373,37 @@ export default function Login() {
             <span style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted }}>or</span>
             <div style={{ flex: 1, height: '1px', background: colors.border }} />
           </div>
-          <TelegramLoginWidget onAuth={handleTelegramAuth} />
+          <TelegramWidget onAuth={handleTelegramAuth} />
         </>
       )}
     </div>
   );
+}
+
+// Telegram Login Widget — mounted ONCE, never unmounts during auth flow.
+// The onAuth callback is stored globally so it survives any parent re-renders.
+function TelegramWidget({ onAuth }) {
+  const ref = useRef(null);
+  const onAuthRef = useRef(onAuth);
+  onAuthRef.current = onAuth;
+
+  useEffect(() => {
+    if (!ref.current) return;
+    // Set up global callback ONCE — uses ref so it's always current
+    window.__y7_tg_login = (user) => {
+      if (onAuthRef.current) onAuthRef.current(user);
+    };
+    const s = document.createElement('script');
+    s.src = 'https://telegram.org/js/telegram-widget.js?22';
+    s.setAttribute('data-telegram-login', 'y7dispatch_bot');
+    s.setAttribute('data-size', 'large');
+    s.setAttribute('data-radius', '20');
+    s.setAttribute('data-request-access', 'write');
+    s.setAttribute('data-onauth', '__y7_tg_login(user)');
+    s.async = true;
+    ref.current.appendChild(s);
+    // Do NOT clean up the global — the popup may call it after component effects run
+  }, []);
+
+  return <div ref={ref} style={{ display: 'flex', justifyContent: 'center', margin: '16px 0' }} />;
 }
