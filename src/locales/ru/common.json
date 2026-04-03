@@ -1,32 +1,32 @@
 {
   "nav": {
-    "services": "Services",
-    "dealers": "Dealers",
-    "exporters": "Exporters",
-    "shipMyCar": "Ship My Car",
-    "track": "Track",
-    "contact": "Contact"
+    "services": "Услуги",
+    "dealers": "Дилерам",
+    "exporters": "Экспортёрам",
+    "shipMyCar": "Доставка авто",
+    "track": "Отслеживание",
+    "contact": "Контакты"
   },
   "cta": {
-    "getQuote": "Get a Quote",
-    "submit": "Submit",
-    "learnMore": "Learn More",
-    "trackShipment": "Track Shipment",
-    "getFreeQuote": "Get a Free Quote"
+    "getQuote": "Получить расчёт",
+    "submit": "Отправить",
+    "learnMore": "Подробнее",
+    "trackShipment": "Отследить груз",
+    "getFreeQuote": "Бесплатный расчёт"
   },
   "footer": {
     "company": "Y7 Consulting Inc",
     "usdot": "USDOT #4427359",
     "mc": "MC #1741537",
-    "tagline": "Nationwide auto transport, built for volume.",
-    "privacy": "Privacy Policy",
-    "terms": "Terms & Conditions",
-    "accessibility": "Accessibility",
-    "smsTerms": "SMS Terms",
-    "copyright": "2026 Y7 Consulting Inc. All rights reserved.",
-    "navigation": "Navigation",
-    "legal": "Legal",
-    "contact": "Contact"
+    "tagline": "Перевозка автомобилей по всей территории США.",
+    "privacy": "Политика конфиденциальности",
+    "terms": "Условия использования",
+    "accessibility": "Доступность",
+    "smsTerms": "Условия SMS",
+    "copyright": "2026 Y7 Consulting Inc. Все права защищены.",
+    "navigation": "Навигация",
+    "legal": "Юридическая информация",
+    "contact": "Контакты"
   },
   "lang": {
     "en": "EN",

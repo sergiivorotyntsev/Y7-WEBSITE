@@ -1,32 +1,32 @@
 {
   "nav": {
-    "services": "Services",
-    "dealers": "Dealers",
-    "exporters": "Exporters",
-    "shipMyCar": "Ship My Car",
-    "track": "Track",
-    "contact": "Contact"
+    "services": "Usługi",
+    "dealers": "Dla dealerów",
+    "exporters": "Eksporterzy",
+    "shipMyCar": "Wyślij auto",
+    "track": "Śledzenie",
+    "contact": "Kontakt"
   },
   "cta": {
-    "getQuote": "Get a Quote",
-    "submit": "Submit",
-    "learnMore": "Learn More",
-    "trackShipment": "Track Shipment",
-    "getFreeQuote": "Get a Free Quote"
+    "getQuote": "Zapytaj o wycenę",
+    "submit": "Wyślij",
+    "learnMore": "Dowiedz się więcej",
+    "trackShipment": "Śledź przesyłkę",
+    "getFreeQuote": "Darmowa wycena"
   },
   "footer": {
     "company": "Y7 Consulting Inc",
     "usdot": "USDOT #4427359",
     "mc": "MC #1741537",
-    "tagline": "Nationwide auto transport, built for volume.",
-    "privacy": "Privacy Policy",
-    "terms": "Terms & Conditions",
-    "accessibility": "Accessibility",
-    "smsTerms": "SMS Terms",
-    "copyright": "2026 Y7 Consulting Inc. All rights reserved.",
-    "navigation": "Navigation",
-    "legal": "Legal",
-    "contact": "Contact"
+    "tagline": "Transport samochodów na terenie całych Stanów Zjednoczonych.",
+    "privacy": "Polityka prywatności",
+    "terms": "Regulamin",
+    "accessibility": "Dostępność",
+    "smsTerms": "Warunki SMS",
+    "copyright": "2026 Y7 Consulting Inc. Wszelkie prawa zastrzeżone.",
+    "navigation": "Nawigacja",
+    "legal": "Informacje prawne",
+    "contact": "Kontakt"
   },
   "lang": {
     "en": "EN",

@@ -1,30 +1,30 @@
 {
-  "title": "Our Services",
-  "subtitle": "Full-service auto transport for every need",
+  "title": "Наші послуги",
+  "subtitle": "Повний спектр послуг з перевезення автомобілів",
   "list": [
     {
-      "title": "Auction Pickup & Delivery",
-      "desc": "We pick up from Copart, IAA, Manheim, and ADESA auctions nationwide. Gate pass coordination and same-day dispatch available."
+      "title": "Забір та доставка з аукціонів",
+      "desc": "Забираємо автомобілі з аукціонів Copart, IAA, Manheim та ADESA по всій країні. Координація gate pass та відправлення у той самий день."
     },
     {
-      "title": "Dealer-to-Dealer Trades",
-      "desc": "Fast, reliable transport between dealerships. Volume pricing for repeat routes. One point of contact for all your trades."
+      "title": "Обмін між дилерами",
+      "desc": "Швидке та надійне перевезення між автосалонами. Оптові ціни на регулярних маршрутах. Один контакт для всіх ваших обмінів."
     },
     {
-      "title": "Port & Export Transport",
-      "desc": "Door-to-port delivery for international exports. We cover Newark, Houston, Savannah, Baltimore, LA, and Jacksonville."
+      "title": "Доставка в порт та експорт",
+      "desc": "Доставка від дверей до порту для міжнародного експорту. Працюємо з портами Newark, Houston, Savannah, Baltimore, LA та Jacksonville."
     },
     {
-      "title": "Private Vehicle Relocation",
-      "desc": "Moving across the country? Open or enclosed transport with real-time tracking and delivery updates via text and email."
+      "title": "Приватне перевезення автомобілів",
+      "desc": "Переїжджаєте? Відкрите або закрите перевезення з відстеженням у реальному часі та повідомленнями через SMS та електронну пошту."
     },
     {
-      "title": "Enclosed Premium Transport",
-      "desc": "White-glove enclosed carriers for classic, luxury, and high-value vehicles. Full insurance coverage and careful handling."
+      "title": "Преміум-перевезення у закритому трейлері",
+      "desc": "Закриті перевізники преміум-класу для класичних, люксових та дорогих автомобілів. Повне страхове покриття та дбайливе поводження."
     },
     {
-      "title": "Multi-Vehicle Shipments",
-      "desc": "Shipping multiple vehicles? We coordinate bulk transport with volume discounts and single-point dispatch management."
+      "title": "Перевезення кількох автомобілів",
+      "desc": "Відправляєте кілька автомобілів? Ми організуємо групове перевезення зі знижками за обсяг та єдиним диспетчерським супроводом."
     }
   ]
 }

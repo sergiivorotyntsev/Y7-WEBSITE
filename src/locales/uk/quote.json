@@ -1,43 +1,43 @@
 {
   "form": {
-    "title": "Request a Quote",
-    "vin": "VIN (optional)",
-    "vinPlaceholder": "Enter 17-character VIN",
-    "decode": "Decode",
-    "vehicleYear": "Year",
-    "vehicleMake": "Make",
-    "vehicleModel": "Model",
-    "pickupZip": "Pickup ZIP",
-    "pickupLocationType": "Pickup Location Type",
-    "deliveryZip": "Delivery ZIP",
-    "deliveryLocationType": "Delivery Location Type",
-    "transportType": "Transport Type",
-    "open": "Open",
-    "enclosed": "Enclosed",
-    "name": "Full Name",
-    "phone": "Phone",
+    "title": "Запитати розрахунок",
+    "vin": "VIN (необов'язково)",
+    "vinPlaceholder": "Введіть 17-значний VIN",
+    "decode": "Розшифрувати",
+    "vehicleYear": "Рік",
+    "vehicleMake": "Марка",
+    "vehicleModel": "Модель",
+    "pickupZip": "ZIP-код відправлення",
+    "pickupLocationType": "Тип місця забору",
+    "deliveryZip": "ZIP-код доставки",
+    "deliveryLocationType": "Тип місця доставки",
+    "transportType": "Тип перевезення",
+    "open": "Відкритий",
+    "enclosed": "Закритий",
+    "name": "Повне ім'я",
+    "phone": "Телефон",
     "email": "Email",
-    "notes": "Notes (optional)",
-    "notesPlaceholder": "Special instructions, flexible dates, etc.",
-    "almostThere": "Almost there! Tell us how to reach you.",
-    "submit": "Get My Quote",
-    "submitting": "Submitting..."
+    "notes": "Примітки (необов'язково)",
+    "notesPlaceholder": "Спеціальні вказівки, гнучкі дати тощо.",
+    "almostThere": "Майже готово! Вкажіть, як з вами зв'язатися.",
+    "submit": "Отримати розрахунок",
+    "submitting": "Надсилання..."
   },
   "sms": {
-    "consent": "By checking this box, you consent to receive SMS notifications and updates related to your vehicle transport from Y7 Consulting Inc at the phone number provided. Message frequency varies. Message & data rates may apply. Reply STOP to opt out, HELP for help. This consent is not a condition of purchase.",
-    "terms": "See our Privacy Policy and SMS Terms & Conditions."
+    "consent": "Позначаючи це поле, ви даєте згоду на отримання SMS-повідомлень та оновлень щодо перевезення вашого автомобіля від Y7 Consulting Inc на вказаний номер телефону. Частота повідомлень може змінюватися. Можуть застосовуватися стандартні тарифи за повідомлення та передачу даних. Відповідайте STOP для відмови, HELP для допомоги. Ця згода не є умовою покупки.",
+    "terms": "Ознайомтеся з нашою Політикою конфіденційності та Умовами SMS."
   },
   "success": {
-    "title": "Quote Request Received!",
-    "message": "We'll send your quote within 1 hour via email.",
-    "reference": "Your reference number:",
-    "track": "Track via Telegram"
+    "title": "Запит отримано!",
+    "message": "Ми надішлемо вам розрахунок протягом 1 години на електронну пошту.",
+    "reference": "Ваш номер заявки:",
+    "track": "Відстежувати через Telegram"
   },
   "errors": {
-    "nameRequired": "Name is required",
-    "emailRequired": "Valid email address is required",
-    "contactRequired": "Phone or email is required",
-    "pickupRequired": "Pickup ZIP is required (min 5 characters)",
-    "deliveryRequired": "Delivery ZIP is required (min 5 characters)"
+    "nameRequired": "Вкажіть ім'я",
+    "emailRequired": "Вкажіть коректну адресу електронної пошти",
+    "contactRequired": "Вкажіть телефон або email",
+    "pickupRequired": "Вкажіть ZIP-код відправлення (мінімум 5 символів)",
+    "deliveryRequired": "Вкажіть ZIP-код доставки (мінімум 5 символів)"
   }
 }

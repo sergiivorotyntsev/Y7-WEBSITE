@@ -1,30 +1,30 @@
 {
-  "title": "Our Services",
-  "subtitle": "Full-service auto transport for every need",
+  "title": "Nasze usługi",
+  "subtitle": "Pełen zakres usług transportu samochodów",
   "list": [
     {
-      "title": "Auction Pickup & Delivery",
-      "desc": "We pick up from Copart, IAA, Manheim, and ADESA auctions nationwide. Gate pass coordination and same-day dispatch available."
+      "title": "Odbiór i dostawa z aukcji",
+      "desc": "Odbieramy pojazdy z aukcji Copart, IAA, Manheim i ADESA w całym kraju. Koordynacja gate pass i wysyłka tego samego dnia."
     },
     {
-      "title": "Dealer-to-Dealer Trades",
-      "desc": "Fast, reliable transport between dealerships. Volume pricing for repeat routes. One point of contact for all your trades."
+      "title": "Wymiana między dealerami",
+      "desc": "Szybki i niezawodny transport między salonami. Ceny hurtowe na stałych trasach. Jeden punkt kontaktowy dla wszystkich wymian."
     },
     {
-      "title": "Port & Export Transport",
-      "desc": "Door-to-port delivery for international exports. We cover Newark, Houston, Savannah, Baltimore, LA, and Jacksonville."
+      "title": "Transport portowy i eksportowy",
+      "desc": "Dostawa od drzwi do portu na potrzeby eksportu międzynarodowego. Obsługujemy Newark, Houston, Savannah, Baltimore, LA i Jacksonville."
     },
     {
-      "title": "Private Vehicle Relocation",
-      "desc": "Moving across the country? Open or enclosed transport with real-time tracking and delivery updates via text and email."
+      "title": "Prywatna relokacja pojazdu",
+      "desc": "Przeprowadzka? Transport otwarty lub zamknięty ze śledzeniem w czasie rzeczywistym i powiadomieniami SMS oraz email."
     },
     {
-      "title": "Enclosed Premium Transport",
-      "desc": "White-glove enclosed carriers for classic, luxury, and high-value vehicles. Full insurance coverage and careful handling."
+      "title": "Transport premium w zamkniętej naczepie",
+      "desc": "Zamknięte naczepy premium dla samochodów klasycznych, luksusowych i o wysokiej wartości. Pełne ubezpieczenie i staranna obsługa."
     },
     {
-      "title": "Multi-Vehicle Shipments",
-      "desc": "Shipping multiple vehicles? We coordinate bulk transport with volume discounts and single-point dispatch management."
+      "title": "Transport wielu pojazdów",
+      "desc": "Wysyłasz kilka samochodów? Koordynujemy transport grupowy ze zniżkami ilościowymi i jednym punktem dyspozytorskim."
     }
   ]
 }

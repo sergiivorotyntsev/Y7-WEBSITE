@@ -1,33 +1,33 @@
 {
   "hero": {
-    "title": "Nationwide Auto Transport",
-    "subtitle": "We move cars. You move forward.",
-    "description": "Licensed and insured broker connecting you with vetted carriers across all 50 states. Auction pickups, dealer trades, port deliveries, and private relocations."
+    "title": "Transport samochodów na terenie całych USA",
+    "subtitle": "My przewozimy samochody. Ty idziesz do przodu.",
+    "description": "Licencjonowany i ubezpieczony broker łączący Państwa ze sprawdzonymi przewoźnikami we wszystkich 50 stanach. Odbiory z aukcji, wymiana dealerska, dostawy do portów i przeprowadzki prywatne."
   },
   "trust": {
     "experience": "10+",
-    "experienceLabel": "Years Experience",
+    "experienceLabel": "Lat doświadczenia",
     "carriers": "100+",
-    "carriersLabel": "Vetted Carriers",
+    "carriersLabel": "Sprawdzonych przewoźników",
     "support": "24/7",
-    "supportLabel": "Dispatch Support",
+    "supportLabel": "Wsparcie dyspozytorskie",
     "cd": "90%",
     "cdLabel": "Central Dispatch"
   },
   "audience": {
-    "dealersTitle": "For Dealers",
-    "dealersDesc": "Volume pricing, auction pickups, and dealer-to-dealer trades. Same-day dispatch on most routes.",
-    "exportersTitle": "For Exporters",
-    "exportersDesc": "Door-to-port transport across the US. We handle Newark, Houston, Savannah, and all major export ports.",
-    "shipMyCarTitle": "Ship My Car",
-    "shipMyCarDesc": "Moving across the country? We'll get your car there safely with real-time tracking and updates."
+    "dealersTitle": "Dla dealerów",
+    "dealersDesc": "Ceny hurtowe, odbiory z aukcji i wymiana dealer-dealer. Wysyłka tego samego dnia na większości tras.",
+    "exportersTitle": "Dla eksporterów",
+    "exportersDesc": "Transport od drzwi do portu w całych USA. Obsługujemy Newark, Houston, Savannah i wszystkie główne porty eksportowe.",
+    "shipMyCarTitle": "Wyślij auto",
+    "shipMyCarDesc": "Przeprowadzka? Dostarczymy Państwa samochód bezpiecznie, ze śledzeniem w czasie rzeczywistym."
   },
   "ports": {
-    "title": "Major Port Coverage",
+    "title": "Zasięg głównych portów",
     "list": ["Newark, NJ", "Houston, TX", "Savannah, GA", "Baltimore, MD", "Los Angeles, CA", "Jacksonville, FL"]
   },
   "quoteSection": {
-    "title": "Get Your Free Quote",
-    "subtitle": "Tell us where your vehicle needs to go. We'll respond within 1 hour."
+    "title": "Otrzymaj darmową wycenę",
+    "subtitle": "Powiedz nam, dokąd ma trafić Twój pojazd. Odpowiemy w ciągu 1 godziny."
   }
 }

@@ -1,61 +1,61 @@
 {
-  "title": "Dispatch & Logistics for Vehicle Exporters",
-  "subtitle": "Transparent pricing. You pay the carrier rate + our service fee. No markups, no hidden costs.",
+  "title": "Dyspozycja i logistyka dla eksporterów pojazdów",
+  "subtitle": "Przejrzyste ceny. Płacisz stawkę przewoźnika + naszą opłatę serwisową. Bez marży, bez ukrytych kosztów.",
   "value": {
-    "title": "Why Exporters Choose Y7",
+    "title": "Dlaczego eksporterzy wybierają Y7",
     "points": [
-      "Carrier rate passed through at cost — zero markup on transport",
-      "Our fee covers: CD listing, carrier vetting, dispatch, BOL/gate pass, monitoring",
-      "Optional carrier payment handling — we pay, you reimburse",
-      "Dedicated account manager for 10+ vehicles/month",
-      "All major US export ports: Newark, Houston, Savannah, Baltimore, LA, Jacksonville"
+      "Stawka przewoźnika przekazywana po kosztach — zerowa marża na transport",
+      "Nasza opłata pokrywa: ogłoszenie na Central Dispatch, weryfikację przewoźników, dyspozycję, BOL/gate pass, monitoring",
+      "Opcjonalna obsługa płatności dla przewoźnika — my płacimy, Ty zwracasz koszty",
+      "Dedykowany opiekun konta dla 10+ pojazdów/miesiąc",
+      "Wszystkie główne porty eksportowe USA: Newark, Houston, Savannah, Baltimore, LA, Jacksonville"
     ]
   },
   "fees": {
-    "title": "Service Fee Structure",
+    "title": "Struktura opłat serwisowych",
     "items": [
-      { "service": "Per-Vehicle Dispatch", "desc": "CD listing, carrier negotiation, dispatch coordination, documentation (BOL, gate pass), shipment monitoring", "note": "Flat fee per vehicle" },
-      { "service": "Payment Processing", "desc": "We pay the carrier on your behalf and handle all financial paperwork. You reimburse carrier cost + processing fee.", "note": "Optional add-on" },
-      { "service": "Volume Contracts", "desc": "Custom rate card for exporters shipping 10+ vehicles/month. Dedicated dispatcher, priority listing, monthly invoicing.", "note": "Contact us" }
+      { "service": "Dyspozycja za pojazd", "desc": "Ogłoszenie na Central Dispatch, negocjacje z przewoźnikiem, koordynacja wysyłki, dokumentacja (BOL, gate pass), monitoring przesyłki", "note": "Stała opłata za pojazd" },
+      { "service": "Obsługa płatności", "desc": "Płacimy przewoźnikowi w Twoim imieniu i zajmujemy się całą dokumentacją finansową. Zwracasz koszt przewoźnika + opłatę za obsługę.", "note": "Opcjonalny dodatek" },
+      { "service": "Kontrakty ilościowe", "desc": "Indywidualny cennik dla eksporterów wysyłających 10+ pojazdów/miesiąc. Dedykowany dyspozytor, priorytetowe ogłoszenie, miesięczne fakturowanie.", "note": "Skontaktuj się z nami" }
     ]
   },
-  "howTitle": "How It Works",
+  "howTitle": "Jak to działa",
   "steps": [
-    { "title": "Tell Us Your Needs", "desc": "Monthly volume, preferred ports, vehicle types. We'll tailor a service plan." },
-    { "title": "Receive Our Service Rates", "desc": "Transparent fee schedule — our dispatch fee + carrier rate (at cost). No hidden markups." },
-    { "title": "Send Us Your Vehicles", "desc": "VINs + pickup locations. One vehicle or a hundred — we handle each one." },
-    { "title": "We Dispatch & Deliver", "desc": "Carrier assignment, real-time tracking, port delivery with full documentation." }
+    { "title": "Opowiedz o swoich potrzebach", "desc": "Miesięczny wolumen, preferowane porty, typy pojazdów. Przygotujemy indywidualny plan obsługi." },
+    { "title": "Otrzymaj nasze stawki", "desc": "Przejrzysta struktura opłat — nasza opłata dyspozytorska + stawka przewoźnika (po kosztach). Bez ukrytych marż." },
+    { "title": "Wyślij nam swoje pojazdy", "desc": "VIN-y + lokalizacje odbioru. Jeden pojazd lub sto — zajmiemy się każdym." },
+    { "title": "Organizujemy i dostarczamy", "desc": "Przydzielenie przewoźnika, śledzenie w czasie rzeczywistym, dostawa do portu z pełną dokumentacją." }
   ],
   "ports": {
-    "title": "Port Coverage",
+    "title": "Zasięg portów",
     "list": [
-      { "name": "Newark, NJ", "desc": "Primary East Coast export hub. Port Newark-Elizabeth Marine Terminal." },
-      { "name": "Houston, TX", "desc": "Largest US vehicle export port. RoRo + container to Africa, Middle East, South America." },
-      { "name": "Savannah, GA", "desc": "Southeast port. Competitive rates for European and African routes." },
-      { "name": "Baltimore, MD", "desc": "Dundalk Marine Terminal. Major RoRo for European-bound vehicles." },
-      { "name": "Los Angeles, CA", "desc": "Pacific gateway for Asia, Australia, Oceania." },
-      { "name": "Jacksonville, FL", "desc": "Caribbean and South American connections." }
+      { "name": "Newark, NJ", "desc": "Główny hub eksportowy Wschodniego Wybrzeża. Port Newark-Elizabeth Marine Terminal." },
+      { "name": "Houston, TX", "desc": "Największy port eksportu pojazdów w USA. RoRo + kontenery do Afryki, Bliskiego Wschodu, Ameryki Południowej." },
+      { "name": "Savannah, GA", "desc": "Port południowo-wschodni. Konkurencyjne stawki na trasy europejskie i afrykańskie." },
+      { "name": "Baltimore, MD", "desc": "Dundalk Marine Terminal. Główny terminal RoRo dla pojazdów kierowanych do Europy." },
+      { "name": "Los Angeles, CA", "desc": "Brama na Pacyfik — Azja, Australia, Oceania." },
+      { "name": "Jacksonville, FL", "desc": "Połączenia z Karaibami i Ameryką Południową." }
     ]
   },
   "form": {
-    "title": "Request Our Service Rates",
-    "subtitle": "Tell us about your export operation and we'll send you our rate card within 24 hours.",
-    "companyName": "Company Name",
-    "contactName": "Contact Name",
+    "title": "Zapytaj o nasze stawki",
+    "subtitle": "Opowiedz nam o swojej działalności eksportowej, a wyślemy Ci nasz cennik w ciągu 24 godzin.",
+    "companyName": "Nazwa firmy",
+    "contactName": "Osoba kontaktowa",
     "email": "Email",
-    "phone": "Phone",
-    "monthlyVolume": "Estimated Monthly Volume",
-    "volumes": ["1-5 vehicles", "6-15 vehicles", "16-30 vehicles", "30+ vehicles"],
-    "preferredPorts": "Preferred Ports",
-    "vins": "Vehicle VINs (one per line, optional)",
+    "phone": "Telefon",
+    "monthlyVolume": "Szacowany miesięczny wolumen",
+    "volumes": ["1-5 pojazdów", "6-15 pojazdów", "16-30 pojazdów", "30+ pojazdów"],
+    "preferredPorts": "Preferowane porty",
+    "vins": "VIN pojazdów (jeden na linię, opcjonalnie)",
     "vinsPlaceholder": "1HGBH41JXMN109186\n5YJSA1E11KF123456\n...",
-    "notes": "Additional Notes",
-    "notesPlaceholder": "Vehicle types, pickup regions, special requirements...",
-    "submit": "Request Service Rates",
-    "submitting": "Submitting..."
+    "notes": "Dodatkowe uwagi",
+    "notesPlaceholder": "Typy pojazdów, regiony odbioru, specjalne wymagania...",
+    "submit": "Zapytaj o stawki",
+    "submitting": "Wysyłanie..."
   },
   "formSuccess": {
-    "title": "Request Received!",
-    "message": "We'll send your service rate card within 24 hours. For urgent requests, email info@y7agency.com."
+    "title": "Zapytanie otrzymane!",
+    "message": "Wyślemy nasz cennik w ciągu 24 godzin. W pilnych sprawach prosimy o kontakt na info@y7agency.com."
   }
 }

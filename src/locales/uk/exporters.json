@@ -1,61 +1,61 @@
 {
-  "title": "Dispatch & Logistics for Vehicle Exporters",
-  "subtitle": "Transparent pricing. You pay the carrier rate + our service fee. No markups, no hidden costs.",
+  "title": "Диспетчеризація та логістика для експортерів автомобілів",
+  "subtitle": "Прозоре ціноутворення. Ви оплачуєте тариф перевізника + наш сервісний збір. Без націнок, без прихованих витрат.",
   "value": {
-    "title": "Why Exporters Choose Y7",
+    "title": "Чому експортери обирають Y7",
     "points": [
-      "Carrier rate passed through at cost — zero markup on transport",
-      "Our fee covers: CD listing, carrier vetting, dispatch, BOL/gate pass, monitoring",
-      "Optional carrier payment handling — we pay, you reimburse",
-      "Dedicated account manager for 10+ vehicles/month",
-      "All major US export ports: Newark, Houston, Savannah, Baltimore, LA, Jacksonville"
+      "Тариф перевізника передається за собівартістю — нульова націнка на транспортування",
+      "Наш збір покриває: розміщення на Central Dispatch, перевірку перевізників, диспетчеризацію, BOL/gate pass, моніторинг",
+      "Опціонально: оплата перевізнику через нас — ми платимо, ви відшкодовуєте",
+      "Персональний менеджер для клієнтів від 10 автомобілів на місяць",
+      "Усі великі експортні порти США: Newark, Houston, Savannah, Baltimore, LA, Jacksonville"
     ]
   },
   "fees": {
-    "title": "Service Fee Structure",
+    "title": "Структура сервісних зборів",
     "items": [
-      { "service": "Per-Vehicle Dispatch", "desc": "CD listing, carrier negotiation, dispatch coordination, documentation (BOL, gate pass), shipment monitoring", "note": "Flat fee per vehicle" },
-      { "service": "Payment Processing", "desc": "We pay the carrier on your behalf and handle all financial paperwork. You reimburse carrier cost + processing fee.", "note": "Optional add-on" },
-      { "service": "Volume Contracts", "desc": "Custom rate card for exporters shipping 10+ vehicles/month. Dedicated dispatcher, priority listing, monthly invoicing.", "note": "Contact us" }
+      { "service": "Диспетчеризація за автомобіль", "desc": "Розміщення на Central Dispatch, переговори з перевізником, координація відправлення, документація (BOL, gate pass), моніторинг перевезення", "note": "Фіксована плата за автомобіль" },
+      { "service": "Обробка платежів", "desc": "Ми оплачуємо перевізнику від вашого імені та ведемо всю фінансову документацію. Ви відшкодовуєте вартість перевезення + комісію за обробку.", "note": "Додаткова опція" },
+      { "service": "Контракти за обсяг", "desc": "Індивідуальний тарифний план для експортерів, які відправляють 10+ автомобілів на місяць. Персональний диспетчер, пріоритетне розміщення, щомісячне виставлення рахунків.", "note": "Зв'яжіться з нами" }
     ]
   },
-  "howTitle": "How It Works",
+  "howTitle": "Як це працює",
   "steps": [
-    { "title": "Tell Us Your Needs", "desc": "Monthly volume, preferred ports, vehicle types. We'll tailor a service plan." },
-    { "title": "Receive Our Service Rates", "desc": "Transparent fee schedule — our dispatch fee + carrier rate (at cost). No hidden markups." },
-    { "title": "Send Us Your Vehicles", "desc": "VINs + pickup locations. One vehicle or a hundred — we handle each one." },
-    { "title": "We Dispatch & Deliver", "desc": "Carrier assignment, real-time tracking, port delivery with full documentation." }
+    { "title": "Розкажіть про ваші потреби", "desc": "Щомісячний обсяг, бажані порти, типи автомобілів. Ми підготуємо індивідуальний план обслуговування." },
+    { "title": "Отримайте наші тарифи", "desc": "Прозора структура: наш диспетчерський збір + тариф перевізника (за собівартістю). Жодних прихованих націнок." },
+    { "title": "Надішліть нам автомобілі", "desc": "VIN-номери + місця забору. Один автомобіль чи сто — ми обробимо кожен." },
+    { "title": "Ми організуємо та доставимо", "desc": "Призначення перевізника, відстеження в реальному часі, доставка в порт із повним комплектом документів." }
   ],
   "ports": {
-    "title": "Port Coverage",
+    "title": "Покриття портів",
     "list": [
-      { "name": "Newark, NJ", "desc": "Primary East Coast export hub. Port Newark-Elizabeth Marine Terminal." },
-      { "name": "Houston, TX", "desc": "Largest US vehicle export port. RoRo + container to Africa, Middle East, South America." },
-      { "name": "Savannah, GA", "desc": "Southeast port. Competitive rates for European and African routes." },
-      { "name": "Baltimore, MD", "desc": "Dundalk Marine Terminal. Major RoRo for European-bound vehicles." },
-      { "name": "Los Angeles, CA", "desc": "Pacific gateway for Asia, Australia, Oceania." },
-      { "name": "Jacksonville, FL", "desc": "Caribbean and South American connections." }
+      { "name": "Newark, NJ", "desc": "Головний експортний хаб Східного узбережжя. Port Newark-Elizabeth Marine Terminal." },
+      { "name": "Houston, TX", "desc": "Найбільший у США порт для експорту автомобілів. RoRo + контейнери до Африки, Близького Сходу, Південної Америки." },
+      { "name": "Savannah, GA", "desc": "Порт Південного Сходу. Конкурентні тарифи на європейські та африканські напрямки." },
+      { "name": "Baltimore, MD", "desc": "Dundalk Marine Terminal. Великий термінал RoRo для автомобілів, що прямують до Європи." },
+      { "name": "Los Angeles, CA", "desc": "Тихоокеанські ворота до Азії, Австралії, Океанії." },
+      { "name": "Jacksonville, FL", "desc": "Напрямки до Карибського басейну та Південної Америки." }
     ]
   },
   "form": {
-    "title": "Request Our Service Rates",
-    "subtitle": "Tell us about your export operation and we'll send you our rate card within 24 hours.",
-    "companyName": "Company Name",
-    "contactName": "Contact Name",
+    "title": "Запитати наші тарифи",
+    "subtitle": "Розкажіть про вашу експортну діяльність, і ми надішлемо вам тарифний план протягом 24 годин.",
+    "companyName": "Назва компанії",
+    "contactName": "Контактна особа",
     "email": "Email",
-    "phone": "Phone",
-    "monthlyVolume": "Estimated Monthly Volume",
-    "volumes": ["1-5 vehicles", "6-15 vehicles", "16-30 vehicles", "30+ vehicles"],
-    "preferredPorts": "Preferred Ports",
-    "vins": "Vehicle VINs (one per line, optional)",
+    "phone": "Телефон",
+    "monthlyVolume": "Орієнтовний щомісячний обсяг",
+    "volumes": ["1-5 автомобілів", "6-15 автомобілів", "16-30 автомобілів", "30+ автомобілів"],
+    "preferredPorts": "Бажані порти",
+    "vins": "VIN автомобілів (по одному в рядку, необов'язково)",
     "vinsPlaceholder": "1HGBH41JXMN109186\n5YJSA1E11KF123456\n...",
-    "notes": "Additional Notes",
-    "notesPlaceholder": "Vehicle types, pickup regions, special requirements...",
-    "submit": "Request Service Rates",
-    "submitting": "Submitting..."
+    "notes": "Додаткові примітки",
+    "notesPlaceholder": "Типи автомобілів, регіони забору, особливі вимоги...",
+    "submit": "Запитати тарифи",
+    "submitting": "Надсилання..."
   },
   "formSuccess": {
-    "title": "Request Received!",
-    "message": "We'll send your service rate card within 24 hours. For urgent requests, email info@y7agency.com."
+    "title": "Запит отримано!",
+    "message": "Ми надішлемо вам тарифний план протягом 24 годин. З термінових питань пишіть на info@y7agency.com."
   }
 }

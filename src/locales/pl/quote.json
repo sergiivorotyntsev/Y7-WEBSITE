@@ -1,43 +1,43 @@
 {
   "form": {
-    "title": "Request a Quote",
-    "vin": "VIN (optional)",
-    "vinPlaceholder": "Enter 17-character VIN",
-    "decode": "Decode",
-    "vehicleYear": "Year",
-    "vehicleMake": "Make",
+    "title": "Zapytaj o wycenę",
+    "vin": "VIN (opcjonalnie)",
+    "vinPlaceholder": "Wprowadź 17-znakowy VIN",
+    "decode": "Dekoduj",
+    "vehicleYear": "Rok",
+    "vehicleMake": "Marka",
     "vehicleModel": "Model",
-    "pickupZip": "Pickup ZIP",
-    "pickupLocationType": "Pickup Location Type",
-    "deliveryZip": "Delivery ZIP",
-    "deliveryLocationType": "Delivery Location Type",
-    "transportType": "Transport Type",
-    "open": "Open",
-    "enclosed": "Enclosed",
-    "name": "Full Name",
-    "phone": "Phone",
+    "pickupZip": "Kod ZIP odbioru",
+    "pickupLocationType": "Typ miejsca odbioru",
+    "deliveryZip": "Kod ZIP dostawy",
+    "deliveryLocationType": "Typ miejsca dostawy",
+    "transportType": "Typ transportu",
+    "open": "Otwarty",
+    "enclosed": "Zamknięty",
+    "name": "Imię i nazwisko",
+    "phone": "Telefon",
     "email": "Email",
-    "notes": "Notes (optional)",
-    "notesPlaceholder": "Special instructions, flexible dates, etc.",
-    "almostThere": "Almost there! Tell us how to reach you.",
-    "submit": "Get My Quote",
-    "submitting": "Submitting..."
+    "notes": "Uwagi (opcjonalnie)",
+    "notesPlaceholder": "Specjalne instrukcje, elastyczne daty itp.",
+    "almostThere": "Prawie gotowe! Podaj dane kontaktowe.",
+    "submit": "Otrzymaj wycenę",
+    "submitting": "Wysyłanie..."
   },
   "sms": {
-    "consent": "By checking this box, you consent to receive SMS notifications and updates related to your vehicle transport from Y7 Consulting Inc at the phone number provided. Message frequency varies. Message & data rates may apply. Reply STOP to opt out, HELP for help. This consent is not a condition of purchase.",
-    "terms": "See our Privacy Policy and SMS Terms & Conditions."
+    "consent": "Zaznaczając to pole, wyrażasz zgodę na otrzymywanie powiadomień SMS i aktualizacji dotyczących transportu Twojego pojazdu od Y7 Consulting Inc na podany numer telefonu. Częstotliwość wiadomości może się różnić. Mogą obowiązywać standardowe stawki za wiadomości i transmisję danych. Odpowiedz STOP, aby zrezygnować, HELP, aby uzyskać pomoc. Ta zgoda nie jest warunkiem zakupu.",
+    "terms": "Zapoznaj się z naszą Polityką prywatności i Warunkami SMS."
   },
   "success": {
-    "title": "Quote Request Received!",
-    "message": "We'll send your quote within 1 hour via email.",
-    "reference": "Your reference number:",
-    "track": "Track via Telegram"
+    "title": "Zapytanie otrzymane!",
+    "message": "Wyślemy wycenę w ciągu 1 godziny na podany adres email.",
+    "reference": "Numer referencyjny:",
+    "track": "Śledź przez Telegram"
   },
   "errors": {
-    "nameRequired": "Name is required",
-    "emailRequired": "Valid email address is required",
-    "contactRequired": "Phone or email is required",
-    "pickupRequired": "Pickup ZIP is required (min 5 characters)",
-    "deliveryRequired": "Delivery ZIP is required (min 5 characters)"
+    "nameRequired": "Imię i nazwisko jest wymagane",
+    "emailRequired": "Wymagany jest prawidłowy adres email",
+    "contactRequired": "Wymagany jest telefon lub email",
+    "pickupRequired": "Kod ZIP odbioru jest wymagany (min. 5 znaków)",
+    "deliveryRequired": "Kod ZIP dostawy jest wymagany (min. 5 znaków)"
   }
 }

@@ -1,51 +1,59 @@
 {
-  "title": "Transport Service Agreement",
-  "loading": "Loading order details...",
+  "title": "Договор на транспортные услуги",
+  "loading": "Загрузка данных заказа...",
   "sections": {
     "service": {
-      "title": "Service Description",
-      "body": "Y7 Consulting Inc (DBA Y7 Logistics) acts as a licensed property broker, not a motor carrier. We arrange vehicle transportation with licensed, insured motor carriers on your behalf. We do not own or operate trucks, and transportation is performed solely by independent carrier companies. Our role is to secure reliable transport, coordinate dispatch, and facilitate communication between you and the assigned carrier."
+      "title": "Описание услуг и роль брокера",
+      "body": "Y7 Consulting Inc (DBA Y7 Logistics), USDOT #4427359, MC #1741537, действует как лицензированный брокер грузовых перевозок, а не как автоперевозчик. Мы организуем транспортировку автомобилей с привлечением лицензированных и застрахованных автоперевозчиков от вашего имени. Мы не владеем грузовиками и не управляем ими; перевозка осуществляется исключительно независимыми транспортными компаниями. Наша роль — обеспечить надёжную перевозку, координировать диспетчеризацию и содействовать коммуникации между вами и назначенным перевозчиком."
     },
     "bol": {
-      "title": "Vehicle Inspection & Bill of Lading (BOL)",
-      "body": "Upon delivery, you or your authorized representative MUST inspect the vehicle together with the carrier driver and sign the Bill of Lading (BOL). The BOL documents vehicle condition at both pickup and delivery. By signing the BOL at delivery without noting damage, you acknowledge the vehicle was received in the condition described. Any damage claims filed after signing a clean BOL are the recipient's sole responsibility. You have the right to note any new damage on the BOL before signing. If the carrier refuses to allow inspection, do not sign and contact Y7 immediately."
+      "title": "Осмотр автомобиля и Bill of Lading (BOL)",
+      "body": "При доставке вы или ваш уполномоченный представитель ОБЯЗАНЫ осмотреть автомобиль вместе с водителем перевозчика и подписать Bill of Lading (BOL). BOL фиксирует состояние автомобиля как при забаре, так и при доставке. Подписывая BOL при доставке без указания повреждений, вы подтверждаете, что автомобиль получен в описанном состоянии. Любые претензии по повреждениям, заявленные после подписания чистого BOL, являются исключительной ответственностью получателя. Вы вправе отметить любые новые повреждения в BOL перед подписанием. Если перевозчик отказывает вам в осмотре, не подписывайте документ и немедленно свяжитесь с Y7."
     },
     "payment": {
-      "title": "Payment Terms",
-      "body": "Payment is due according to the method agreed upon at booking. Options include: (1) Prepayment — full transport fee paid to Y7 Consulting Inc before dispatch; (2) COD (Cash On Delivery) — payment made directly to the carrier driver at delivery via cash, cashier's check, or certified funds as specified on the Rate Confirmation. If COD is selected, failure to pay the carrier at delivery may result in the carrier retaining possession of the vehicle, daily storage fees, and/or a lien on the vehicle. Y7 Consulting Inc is not responsible for carrier-imposed fees resulting from non-payment at delivery."
+      "title": "Условия оплаты",
+      "body": "Оплата производится в соответствии со способом, согласованным при бронировании. Варианты включают: (1) Предоплата — полная стоимость перевозки оплачивается Y7 Consulting Inc до отправки через Zelle (info@y7agency.com), банковский перевод или ACH; (2) COD (оплата при доставке) — оплата производится непосредственно водителю перевозчика при доставке наличными, банковским чеком или заверенными средствами, указанными в подтверждении тарифа. Если требуется задаток, он подлежит оплате при подтверждении бронирования до назначения перевозчика. При выборе COD неоплата перевозчику при доставке может повлечь удержание автомобиля перевозчиком, начисление ежедневной платы за хранение и/или залоговое удержание автомобиля. Y7 Consulting Inc не несёт ответственности за сборы перевозчика, возникшие вследствие неоплаты при доставке."
     },
     "insurance": {
-      "title": "Insurance & Claims",
-      "body": "All carriers in our network maintain minimum $100,000 cargo insurance per FMCSA requirements, with most carrying $250,000 or more. We verify active insurance coverage before assigning any carrier to your load. In the event of damage, claims must be filed within 24 hours of delivery with photographs of the damage and a copy of the BOL noting the damage. Y7 Consulting Inc will assist you in filing the claim with the carrier's insurance, but as a broker, we bear no direct cargo liability. Claims are settled between you and the carrier's insurance provider."
+      "title": "Страхование и претензии",
+      "body": "Все перевозчики в нашей сети имеют минимальное страхование грузов на сумму $100 000 в соответствии с требованиями FMCSA, большинство — на $250 000 и более. Мы проверяем наличие действующего страхового покрытия перед назначением любого перевозчика. В случае повреждения претензии должны быть поданы в течение 24 часов после доставки с фотографиями повреждений и копией BOL с отметками о повреждениях. Y7 Consulting Inc окажет вам содействие в подаче претензии в страховую компанию перевозчика, однако, будучи брокером, мы не несём прямой ответственности за груз. Претензии урегулируются между вами и страховой компанией перевозчика. Клиенты могут приобрести дополнительное покрытие у сторонних поставщиков транспортного страхования."
     },
     "cancellation": {
-      "title": "Cancellation Policy",
-      "body": "Free cancellation is available at any time before a carrier has been assigned to your load. After carrier assignment: a cancellation fee of up to $200 may apply to cover carrier reservation and dispatch costs. No-show at pickup: if the vehicle is not available for pickup at the scheduled time and location, and no prior rescheduling was arranged, the full transport fee may apply. To cancel or reschedule, contact us at info@y7agency.com as early as possible."
+      "title": "Условия отмены",
+      "body": "Бесплатная отмена доступна в любое время до назначения перевозчика. После назначения перевозчика: может взиматься штраф за отмену до $200 для покрытия расходов на бронирование и диспетчеризацию. Неявка при забаре: если автомобиль недоступен для забора в назначенные время и место, и предварительный перенос не был согласован, может быть взыскана полная стоимость перевозки. Для отмены или переноса свяжитесь с нами по адресу info@y7agency.com как можно раньше."
+    },
+    "customer": {
+      "title": "Обязанности клиента",
+      "body": "Вы соглашаетесь: (1) предоставить точную информацию об автомобиле, включая VIN, состояние и работоспособность; (2) обеспечить доступность автомобиля для забора в назначенные время и место; (3) осмотреть автомобиль при забаре и доставке и подписать Bill of Lading; (4) сообщить о любых модификациях, личных вещах в автомобиле или неходовом состоянии; (5) оплатить согласованную стоимость перевозки в соответствии с условиями оплаты. Неходовые автомобили (не заводятся, не рулятся, не тормозят) требуют специального оборудования и могут повлечь дополнительные сборы в размере $100-$300. Вы обязаны точно указать состояние автомобиля — невыполнение этого требования может привести к дополнительным расходам при забаре."
+    },
+    "delays": {
+      "title": "Ориентировочные сроки и задержки",
+      "body": "Все даты забора и доставки являются ориентировочными, а не гарантированными. Фактическое время транзита зависит от расстояния, доступности перевозчиков, погодных условий, дорожной обстановки и других факторов. Типичный транзит: 1-3 дня для маршрутов менее 500 миль, 3-7 дней для межконтинентальных перевозок. Ни Y7 Consulting Inc, ни назначенный перевозчик не несут ответственности за задержки, вызванные погодными явлениями, стихийными бедствиями, действиями государственных органов, перекрытием дорог, механическими поломками, пробками или иными обстоятельствами, находящимися за пределами разумного контроля (форс-мажор). Y7 оперативно сообщит вам о существенных задержках."
     },
     "liability": {
-      "title": "Limitation of Liability",
-      "body": "Y7 Consulting Inc's total liability arising from or related to the brokerage services provided is limited to the brokerage fee paid for the specific shipment in question. We are not liable for carrier delays, vehicle damage during transport, mechanical issues, acts of God, weather events, road closures, or any other circumstances beyond our reasonable control. This limitation applies to the fullest extent permitted by the laws of the Commonwealth of Massachusetts."
+      "title": "Ограничение ответственности и разрешение споров",
+      "body": "Совокупная ответственность Y7 Consulting Inc, возникающая из или связанная с предоставленными брокерскими услугами, ограничивается размером брокерского вознаграждения, уплаченного за конкретную перевозку. Мы не несём ответственности за задержки перевозчика, повреждения автомобиля при транспортировке, механические неисправности, стихийные бедствия, погодные явления, перекрытие дорог или любые иные обстоятельства, находящиеся за пределами нашего разумного контроля. Любой спор, вытекающий из настоящего договора, подлежит разрешению путём обязательного арбитража в соответствии с правилами Американской арбитражной ассоциации в округе Саффолк, штат Массачусетс. Настоящий договор регулируется и толкуется в соответствии с законодательством штата Массачусетс. Настоящее ограничение применяется в максимальной степени, допускаемой законом."
     }
   },
   "checkboxes": {
-    "bol": "I understand that I must inspect the vehicle and sign the Bill of Lading (BOL) upon delivery, and that signing without noting damage releases the carrier from liability.",
-    "payment": "I understand the payment terms and my obligation to pay the carrier at delivery if COD payment is selected.",
-    "broker": "I understand that Y7 Consulting Inc is a licensed broker, not a carrier, and that its liability is limited to the brokerage fee paid.",
-    "cancellation": "I have read and agree to the cancellation policy and all terms stated in this agreement."
+    "bol": "Я понимаю, что обязан(а) осмотреть автомобиль и подписать Bill of Lading (BOL) при доставке, и что подписание без указания повреждений освобождает перевозчика от ответственности.",
+    "payment": "Я понимаю условия оплаты, включая требования к задатку и обязательство оплатить перевозчику при доставке в случае выбора оплаты COD.",
+    "broker": "Я понимаю, что Y7 Consulting Inc является лицензированным брокером, а не перевозчиком, и что его ответственность ограничена размером уплаченного брокерского вознаграждения.",
+    "cancellation": "Я ознакомился(ась) и согласен(на) с условиями отмены, обязанностями клиента и всеми условиями, указанными в настоящем договоре."
   },
   "signature": {
-    "label": "Type your full legal name as digital signature",
-    "placeholder": "Your Full Legal Name",
-    "legal": "By typing your name above, you acknowledge that this constitutes a legally binding electronic signature under the E-SIGN Act (15 U.S.C. §7001).",
-    "button": "Sign Agreement",
-    "submitting": "Signing..."
+    "label": "Введите ваше полное имя в качестве электронной подписи",
+    "placeholder": "Ваше полное имя",
+    "legal": "Вводя своё имя выше, вы подтверждаете, что это является юридически обязывающей электронной подписью в соответствии с Законом об электронных подписях (E-SIGN Act, 15 U.S.C. §7001). Дата и IP-адрес подписания фиксируются.",
+    "button": "Подписать договор",
+    "submitting": "Подписание..."
   },
   "success": {
-    "title": "Agreement Signed Successfully",
-    "message": "Thank you. Your signed agreement has been recorded. You will be redirected to your shipment tracking page shortly."
+    "title": "Договор успешно подписан",
+    "message": "Спасибо. Ваш подписанный договор зарегистрирован. Теперь вы можете оформлять заказы на перевозку."
   },
   "errors": {
-    "orderNotFound": "Order not found. Please check the link and try again.",
-    "submitFailed": "Failed to submit agreement. Please try again."
+    "orderNotFound": "Заказ не найден. Пожалуйста, проверьте ссылку и попробуйте ещё раз.",
+    "submitFailed": "Не удалось отправить договор. Пожалуйста, попробуйте ещё раз."
   }
 }
