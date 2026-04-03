@@ -9,6 +9,7 @@ import LiveActivityFeed from '../components/LiveActivityFeed';
 import HowItWorks from '../components/HowItWorks';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 import WhyY7 from '../components/WhyY7';
+import TrustSection from '../components/TrustSection';
 import { colors, fonts } from '../theme';
 
 export default function Home() {
@@ -17,7 +18,7 @@ export default function Home() {
   return (
     <div>
       <PageMeta description="Licensed auto transport broker. Ship your vehicle door-to-door or to any US port. Instant quotes, verified carriers, real-time tracking." path="/" />
-      {/* Hero */}
+      {/* 1. Hero */}
       <section style={{
         padding: '80px 24px 40px',
         textAlign: 'center',
@@ -56,16 +57,46 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Live Activity Feed */}
+      {/* 2. Live Activity Feed */}
       <LiveActivityFeed />
 
-      {/* Trust Bar */}
+      {/* 3. Trust Bar */}
       <ScrollReveal style={{ padding: '20px 24px 60px' }}>
         <TrustBar />
       </ScrollReveal>
 
-      {/* Quote Form */}
-      <section id="quote-form" style={{ padding: '60px 24px', background: colors.bgMuted }}>
+      {/* 4. Audience Cards */}
+      <ScrollReveal style={{ padding: '20px 24px 60px' }}>
+        <AudienceCards />
+      </ScrollReveal>
+
+      {/* 5. How It Works */}
+      <ScrollReveal style={{ padding: '60px 24px' }}>
+        <h2 style={{
+          fontFamily: fonts.serif,
+          fontSize: '28px',
+          fontWeight: 700,
+          color: colors.text,
+          textAlign: 'center',
+          marginBottom: '32px',
+        }}>
+          How It Works
+        </h2>
+        <HowItWorks />
+      </ScrollReveal>
+
+      {/* 6. Why Y7 */}
+      <ScrollReveal style={{ padding: '20px 24px 60px' }}>
+        <WhyY7 />
+      </ScrollReveal>
+
+      {/* 7. Trust Section — "How we protect your shipment" */}
+      <ScrollReveal style={{ padding: '0 0 40px' }}>
+        <TrustSection />
+      </ScrollReveal>
+
+      {/* 8. Quote Form */}
+      <section id="quote-section" style={{ padding: '60px 24px', background: colors.bgMuted }}>
         <ScrollReveal>
           <div style={{ textAlign: 'center', marginBottom: '32px' }}>
             <h2 style={{
@@ -85,37 +116,12 @@ export default function Home() {
         <QuoteForm compact />
       </section>
 
-      {/* How It Works */}
-      <ScrollReveal style={{ padding: '60px 24px' }}>
-        <h2 style={{
-          fontFamily: fonts.serif,
-          fontSize: '28px',
-          fontWeight: 700,
-          color: colors.text,
-          textAlign: 'center',
-          marginBottom: '32px',
-        }}>
-          How It Works
-        </h2>
-        <HowItWorks />
-      </ScrollReveal>
-
-      {/* Audience Cards */}
-      <ScrollReveal style={{ padding: '20px 24px 60px' }}>
-        <AudienceCards />
-      </ScrollReveal>
-
-      {/* Why Y7 */}
-      <ScrollReveal style={{ padding: '20px 24px 60px' }}>
-        <WhyY7 />
-      </ScrollReveal>
-
-      {/* Testimonials */}
+      {/* 9. Testimonials */}
       <ScrollReveal style={{ padding: '40px 24px 60px', background: colors.bgMuted }}>
         <TestimonialCarousel />
       </ScrollReveal>
 
-      {/* Port Pills */}
+      {/* 10. Port Pills */}
       <ScrollReveal style={{ padding: '60px 24px 80px' }}>
         <PortPills />
       </ScrollReveal>
