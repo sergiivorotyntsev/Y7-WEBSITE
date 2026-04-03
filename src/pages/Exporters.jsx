@@ -5,7 +5,7 @@ import { colors, fonts, button as btnStyles } from '../theme';
 
 const inputStyle = {
   fontFamily: fonts.sans,
-  fontSize: '14px',
+  fontSize: '16px',
   padding: '10px 14px',
   borderRadius: '8px',
   border: `1px solid ${colors.borderInput}`,

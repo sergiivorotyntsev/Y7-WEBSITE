@@ -21,7 +21,7 @@ const SERVICES = [
 
 const inputStyle = {
   fontFamily: fonts.sans,
-  fontSize: '14px',
+  fontSize: '16px',
   padding: '10px 12px',
   borderRadius: '8px',
   border: `1px solid ${colors.borderInput}`,

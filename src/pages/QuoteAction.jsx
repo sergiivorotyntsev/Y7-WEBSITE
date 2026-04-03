@@ -103,7 +103,7 @@ export default function QuoteAction() {
             placeholder="Reason (optional)..."
             rows={4}
             style={{
-              width: '100%', fontFamily: fonts.sans, fontSize: '14px', padding: '12px',
+              width: '100%', fontFamily: fonts.sans, fontSize: '16px', padding: '12px',
               borderRadius: '8px', border: `1px solid ${colors.borderInput}`, outline: 'none',
               resize: 'vertical', marginBottom: '16px',
             }}

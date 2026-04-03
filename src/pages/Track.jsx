@@ -74,7 +74,7 @@ export default function Track() {
           style={{
             flex: 1,
             fontFamily: fonts.mono,
-            fontSize: '14px',
+            fontSize: '16px',
             padding: '12px 16px',
             borderRadius: '10px',
             border: `1px solid ${colors.borderInput}`,

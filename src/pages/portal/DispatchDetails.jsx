@@ -128,7 +128,7 @@ export default function DispatchDetails() {
     padding: '10px 12px',
     border: `1px solid ${colors.borderInput}`,
     borderRadius: '8px',
-    fontSize: '14px',
+    fontSize: '16px',
     fontFamily: fonts.sans,
     boxSizing: 'border-box',
     background: colors.bgInput,
