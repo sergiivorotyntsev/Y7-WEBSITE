@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
+import { CheckIcon } from '../components/icons';
 import { apiPost } from '../hooks/useApi';
 import SmsConsent from '../components/SmsConsent';
 import { colors, fonts, button as btnStyles } from '../theme';
@@ -121,7 +122,7 @@ export default function DealerQuote() {
     return (
       <div style={{ maxWidth: '600px', margin: '0 auto', padding: '80px 24px', textAlign: 'center' }}>
         <PageMeta title="Dealer Partnership" description="Apply for dealer partnership. Volume pricing, dedicated dispatcher, fixed contract rates." path="/dealer-quote" />
-        <div style={{ fontSize: '48px', marginBottom: '16px' }}>{'\u2705'}</div>
+        <div style={{ marginBottom: '16px' }}><CheckIcon size={40} /></div>
         <h2 style={{ fontFamily: fonts.serif, fontSize: '24px', color: colors.text, marginBottom: '8px' }}>
           Application Received
         </h2>

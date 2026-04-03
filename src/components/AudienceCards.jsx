@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { colors, fonts, button } from '../theme';
+import { DealerTradeIcon, GlobeRouteIcon, PersonalCarIcon } from './icons';
 
 function Card({ title, desc, to, icon }) {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ function Card({ title, desc, to, icon }) {
       }}
       onClick={() => navigate(to)}
     >
-      <div style={{ fontSize: '32px' }}>{icon}</div>
+      <div>{icon}</div>
       <h3 style={{
         fontFamily: fonts.serif,
         fontSize: '20px',
@@ -63,9 +64,9 @@ export default function AudienceCards() {
   const { t } = useTranslation('home');
 
   const cards = [
-    { title: t('audience.dealersTitle'), desc: t('audience.dealersDesc'), to: '/dealers', icon: '\uD83C\uDFEA' },
-    { title: t('audience.exportersTitle'), desc: t('audience.exportersDesc'), to: '/exporters', icon: '\uD83D\uDEA2' },
-    { title: t('audience.shipMyCarTitle'), desc: t('audience.shipMyCarDesc'), to: '/ship-my-car', icon: '\uD83D\uDE97' },
+    { title: t('audience.dealersTitle'), desc: t('audience.dealersDesc'), to: '/dealers', icon: <DealerTradeIcon size={40} /> },
+    { title: t('audience.exportersTitle'), desc: t('audience.exportersDesc'), to: '/exporters', icon: <GlobeRouteIcon size={40} /> },
+    { title: t('audience.shipMyCarTitle'), desc: t('audience.shipMyCarDesc'), to: '/ship-my-car', icon: <PersonalCarIcon size={40} /> },
   ];
 
   return (

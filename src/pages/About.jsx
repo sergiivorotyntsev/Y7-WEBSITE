@@ -1,4 +1,5 @@
 import PageMeta from '../components/PageMeta';
+import { ScalesIcon, VerifiedIcon, EyeIcon, MapPinIcon, GlobeIcon, BellIcon } from '../components/icons';
 import { colors, fonts } from '../theme';
 
 const styles = {
@@ -50,12 +51,12 @@ const steps = [
 ];
 
 const whyPoints = [
-  { icon: '\u2696\uFE0F', title: 'Licensed Broker', desc: 'FMCSA-registered auto transport broker with active MC and USDOT authority.' },
-  { icon: '\u2705', title: 'Verified Carriers', desc: 'Every carrier is vetted for insurance, safety record, and operating authority.' },
-  { icon: '\uD83D\uDCB2', title: 'Transparent Pricing', desc: 'Upfront quotes with no hidden fees. Price locked once you confirm.' },
-  { icon: '\uD83D\uDCCD', title: 'Real-Time Tracking', desc: 'Portal and Telegram updates so you always know where your vehicle is.' },
-  { icon: '\uD83C\uDF10', title: 'Multilingual Support', desc: 'We communicate in English, Russian, Polish, and Ukrainian.' },
-  { icon: '\uD83D\uDD14', title: 'Automated Updates', desc: 'Email and Telegram notifications at every stage of transport.' },
+  { icon: <ScalesIcon />, title: 'Licensed Broker', desc: 'FMCSA-registered auto transport broker with active MC and USDOT authority.' },
+  { icon: <VerifiedIcon />, title: 'Verified Carriers', desc: 'Every carrier is vetted for insurance, safety record, and operating authority.' },
+  { icon: <EyeIcon />, title: 'Transparent Pricing', desc: 'Upfront quotes with no hidden fees. Price locked once you confirm.' },
+  { icon: <MapPinIcon />, title: 'Real-Time Tracking', desc: 'Portal and Telegram updates so you always know where your vehicle is.' },
+  { icon: <GlobeIcon />, title: 'Multilingual Support', desc: 'We communicate in English, Russian, Polish, and Ukrainian.' },
+  { icon: <BellIcon />, title: 'Automated Updates', desc: 'Email and Telegram notifications at every stage of transport.' },
 ];
 
 const commitments = [
@@ -198,7 +199,7 @@ export default function About() {
               gap: '14px',
               alignItems: 'flex-start',
             }}>
-              <span style={{ fontSize: '24px', lineHeight: 1, flexShrink: 0 }}>{point.icon}</span>
+              <span style={{ lineHeight: 1, flexShrink: 0 }}>{point.icon}</span>
               <div>
                 <h4 style={{
                   fontFamily: fonts.sans,

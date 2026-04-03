@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import PageMeta from '../components/PageMeta';
+import { CheckIcon } from '../components/icons';
 import { apiPost } from '../hooks/useApi';
 import { colors, fonts, button as btnStyles } from '../theme';
 
@@ -324,7 +325,7 @@ export default function Exporters() {
       }}>
         {success ? (
           <div style={{ textAlign: 'center', padding: '20px 0' }}>
-            <div style={{ fontSize: '40px', marginBottom: '12px' }}>&#10003;</div>
+            <div style={{ marginBottom: '12px' }}><CheckIcon size={16} /></div>
             <h3 style={{ fontFamily: fonts.serif, fontSize: '22px', color: colors.success, marginBottom: '8px' }}>
               {t('formSuccess.title')}
             </h3>

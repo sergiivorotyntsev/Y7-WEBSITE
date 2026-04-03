@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth, portalFetch } from '../hooks/useAuth';
 import { colors, fonts, button as btnStyles } from '../theme';
+import { TelegramIcon, CheckIcon } from './icons';
 
 export default function PostQuoteFlow({ quoteResult, formData }) {
   const { t } = useTranslation('quote');
@@ -120,7 +121,7 @@ export default function PostQuoteFlow({ quoteResult, formData }) {
         borderRadius: '16px',
         marginBottom: '24px',
       }}>
-        <div style={{ fontSize: '40px', marginBottom: '12px' }}>&#10003;</div>
+        <div style={{ marginBottom: '12px' }}><CheckIcon size={40} /></div>
         <h3 style={{ fontFamily: fonts.serif, fontSize: '22px', color: colors.success, marginBottom: '8px' }}>
           {t('success.title')}
         </h3>
@@ -274,7 +275,7 @@ export default function PostQuoteFlow({ quoteResult, formData }) {
           marginBottom: '20px',
           textAlign: 'center',
         }}>
-          <div style={{ fontSize: '28px', marginBottom: '8px' }}>&#10003;</div>
+          <div style={{ marginBottom: '8px' }}><CheckIcon size={28} /></div>
           <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.success, fontWeight: 600, marginBottom: '16px' }}>
             Account created! You can now track your orders.
           </p>
@@ -300,7 +301,7 @@ export default function PostQuoteFlow({ quoteResult, formData }) {
           alignItems: 'center',
           gap: '16px',
         }}>
-          <span style={{ fontSize: '32px', flexShrink: 0 }}>{'\uD83D\uDCAC'}</span>
+          <span style={{ flexShrink: 0 }}><TelegramIcon size={32} /></span>
           <div style={{ flex: 1 }}>
             <div style={{ fontFamily: fonts.sans, fontSize: '14px', fontWeight: 600, color: colors.text, marginBottom: '4px' }}>
               Get instant updates via Telegram

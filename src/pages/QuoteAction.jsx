@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useSearchParams, Link } from 'react-router-dom';
+import { CheckIcon } from '../components/icons';
 import { apiGet } from '../hooks/useApi';
 import { colors, fonts, button as btnStyles } from '../theme';
 
@@ -38,8 +39,8 @@ export default function QuoteAction() {
   if (result) {
     return (
       <div style={{ maxWidth: '500px', margin: '0 auto', padding: '80px 24px', textAlign: 'center' }}>
-        <div style={{ fontSize: '48px', marginBottom: '16px' }}>
-          {isConfirm ? '\u2705' : '\u2714\uFE0F'}
+        <div style={{ marginBottom: '16px' }}>
+          <CheckIcon size={40} />
         </div>
         <h2 style={{ fontFamily: fonts.serif, fontSize: '24px', color: isConfirm ? colors.success : colors.text, marginBottom: '12px' }}>
           {result.message}

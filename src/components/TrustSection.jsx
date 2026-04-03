@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { colors, fonts } from '../theme';
+import { VerifiedIcon, InsuranceIcon, DocumentIcon, BellIcon, HeadphonesIcon, EscalationIcon, ShieldIcon } from './icons';
 
 const ITEMS = [
-  { icon: '\u2705', title: 'Carrier Vetting', desc: 'Every carrier verified through Central Dispatch. FMCSA authority, active insurance, safety rating checked before assignment.' },
-  { icon: '\uD83D\uDEE1\uFE0F', title: 'Insurance Verification', desc: 'COI confirmed before every dispatch. Minimum $100K cargo coverage required. Most carriers carry $250K+.' },
-  { icon: '\uD83D\uDCCB', title: 'Documentation', desc: 'BOL at pickup and delivery. Photo documentation. Digital records accessible in your customer portal.' },
-  { icon: '\uD83D\uDCE1', title: 'Real-Time Updates', desc: 'Email at every stage. Telegram bot for instant updates. Portal tracking 24/7.' },
-  { icon: '\uD83D\uDCC4', title: 'Claims Support', desc: '24-hour claim window with photo documentation. We coordinate with the carrier\'s insurance on your behalf.' },
-  { icon: '\uD83D\uDD04', title: 'Escalation Path', desc: 'Dispatcher \u2192 operations manager \u2192 resolution within 48 hours. Every issue gets tracked.' },
+  { icon: <VerifiedIcon size={20} />, title: 'Carrier Vetting', desc: 'Every carrier verified through Central Dispatch. FMCSA authority, active insurance, safety rating checked before assignment.' },
+  { icon: <InsuranceIcon size={20} />, title: 'Insurance Verification', desc: 'COI confirmed before every dispatch. Minimum $100K cargo coverage required. Most carriers carry $250K+.' },
+  { icon: <DocumentIcon size={20} />, title: 'Documentation', desc: 'BOL at pickup and delivery. Photo documentation. Digital records accessible in your customer portal.' },
+  { icon: <BellIcon size={20} />, title: 'Real-Time Updates', desc: 'Email at every stage. Telegram bot for instant updates. Portal tracking 24/7.' },
+  { icon: <HeadphonesIcon size={20} />, title: 'Claims Support', desc: '24-hour claim window with photo documentation. We coordinate with the carrier\'s insurance on your behalf.' },
+  { icon: <EscalationIcon size={20} />, title: 'Escalation Path', desc: 'Dispatcher \u2192 operations manager \u2192 resolution within 48 hours. Every issue gets tracked.' },
 ];
 
 export default function TrustSection() {
@@ -31,7 +32,7 @@ export default function TrustSection() {
           userSelect: 'none',
         }}
       >
-        <span style={{ fontSize: '22px' }}>{'\uD83D\uDEE1\uFE0F'}</span>
+        <ShieldIcon size={22} />
         <span style={{
           fontFamily: fonts.serif,
           fontSize: 'clamp(18px, 3vw, 22px)',
@@ -70,7 +71,7 @@ export default function TrustSection() {
               gap: '12px',
               alignItems: 'flex-start',
             }}>
-              <span style={{ fontSize: '20px', flexShrink: 0, marginTop: '2px' }}>{icon}</span>
+              <span style={{ flexShrink: 0, marginTop: '2px' }}>{icon}</span>
               <div>
                 <div style={{
                   fontFamily: fonts.sans,

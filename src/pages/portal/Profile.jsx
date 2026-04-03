@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { CheckIcon } from '../../components/icons';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles } from '../../theme';
 
@@ -193,7 +194,7 @@ export default function Profile() {
             color: colors.textMuted,
           }}>
             {profile.telegram_username ? (
-              <span>Telegram: <strong style={{ color: colors.success }}>@{profile.telegram_username} \u2705</strong></span>
+              <span>Telegram: <strong style={{ color: colors.success }}>@{profile.telegram_username} <CheckIcon size={14} /></strong></span>
             ) : (
               <span>
                 Telegram: Not connected.{' '}

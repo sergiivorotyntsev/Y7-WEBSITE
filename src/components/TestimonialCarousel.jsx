@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { colors, fonts } from '../theme';
+import { StarFilledIcon, StarEmptyIcon } from './icons';
 
 const TESTIMONIALS = [
   {
@@ -36,8 +37,9 @@ const TESTIMONIALS = [
 
 function Stars({ count }) {
   return (
-    <span style={{ color: '#F59E0B', fontSize: '14px', letterSpacing: '2px' }}>
-      {'\u2605'.repeat(count)}{'\u2606'.repeat(5 - count)}
+    <span style={{ display: 'inline-flex', gap: '2px' }}>
+      {Array.from({ length: count }, (_, i) => <StarFilledIcon key={`f${i}`} size={14} />)}
+      {Array.from({ length: 5 - count }, (_, i) => <StarEmptyIcon key={`e${i}`} size={14} />)}
     </span>
   );
 }

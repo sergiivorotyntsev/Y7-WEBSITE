@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { colors, fonts } from '../theme';
+import { WarningIcon } from './icons';
 
 export default class ErrorBoundary extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ export default class ErrorBoundary extends Component {
           padding: '40px 24px',
           textAlign: 'center',
         }}>
-          <div style={{ fontSize: '48px', marginBottom: '16px' }}>&#9888;</div>
+          <div style={{ marginBottom: '16px' }}><WarningIcon size={48} /></div>
           <h1 style={{
             fontFamily: fonts.serif,
             fontSize: '24px',

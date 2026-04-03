@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { fonts } from '../theme';
+import { TelegramIcon, EmailIcon, ClipboardIcon } from './icons';
 
 export default function MobileCTA() {
   const [visible, setVisible] = useState(false);
@@ -65,13 +66,13 @@ export default function MobileCTA() {
         }}
       >
         <a href="https://t.me/y7dispatch_bot" target="_blank" rel="noopener noreferrer" style={btnStyle}>
-          {'\uD83D\uDCAC'} Telegram
+          <TelegramIcon size={16} color="#fff" /> Telegram
         </a>
         <a href="mailto:info@y7agency.com" style={btnStyle}>
-          {'\u2709\uFE0F'} Email
+          <EmailIcon size={16} color="#fff" /> Email
         </a>
         <button onClick={handleQuote} style={btnStyle}>
-          {'\uD83D\uDCCB'} Quote
+          <ClipboardIcon size={16} color="#fff" /> Quote
         </button>
       </div>
     </>

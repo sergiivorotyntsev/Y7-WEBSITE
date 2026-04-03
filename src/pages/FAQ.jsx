@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import PageMeta from '../components/PageMeta';
+import { ChevronRightIcon } from '../components/icons';
 import { colors, fonts } from '../theme';
 
 /* ── helpers ─────────────────────────────────── */
@@ -61,14 +62,15 @@ function QAItem({ question, answer }) {
         <span
           style={{
             color: colors.accent,
-            fontSize: '18px',
             flexShrink: 0,
             transition: 'transform 250ms ease',
             transform: open ? 'rotate(90deg)' : 'rotate(0deg)',
+            display: 'flex',
+            alignItems: 'center',
           }}
           aria-hidden="true"
         >
-          &#9656;
+          <ChevronRightIcon size={16} />
         </span>
       </button>
       <div
@@ -147,15 +149,16 @@ function Category({ name, items, isOpen, onToggle }) {
         <span
           style={{
             color: colors.accent,
-            fontSize: '20px',
             flexShrink: 0,
             transition: 'transform 300ms ease',
             transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)',
             lineHeight: 1,
+            display: 'flex',
+            alignItems: 'center',
           }}
           aria-hidden="true"
         >
-          &#9656;
+          <ChevronRightIcon size={16} />
         </span>
       </button>
       <div

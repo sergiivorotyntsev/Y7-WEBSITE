@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useSearchParams, Link, useNavigate } from 'react-router-dom';
+import { CheckIcon } from '../../components/icons';
 import { portalFetch } from '../../hooks/useAuth';
 import { colors, fonts } from '../../theme';
 
@@ -226,7 +227,7 @@ export default function OrderDetail() {
                   color: done ? colors.text : colors.textMuted,
                 }}>
                   {step.label}
-                  {step.key === 'agreement' && done && ' \u2705'}
+                  {step.key === 'agreement' && done && <> <CheckIcon size={16} /></>}
                 </div>
                 {date && (
                   <div style={{
@@ -274,7 +275,7 @@ export default function OrderDetail() {
       <InfoCard title="Gate Pass">
         {order.gate_pass_file_name ? (
           <div style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.success }}>
-            {'\u2705'} {order.gate_pass_file_name}
+            <CheckIcon size={16} /> {order.gate_pass_file_name}
           </div>
         ) : order.gate_pass ? (
           <InfoRow label="Gate Pass #" value={order.gate_pass} />
@@ -300,7 +301,7 @@ export default function OrderDetail() {
           {order.dispatch_info_completed ? (
             <>
               <span style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.success, fontWeight: 500 }}>
-                {'\u2705'} Dispatch details provided
+                <CheckIcon size={16} /> Dispatch details provided
               </span>
               <Link to={`/portal/order/${id}/dispatch-details`} style={{
                 fontFamily: fonts.sans, fontSize: '12px', color: colors.accent, textDecoration: 'none',
@@ -332,7 +333,7 @@ export default function OrderDetail() {
           borderRadius: '12px', padding: '12px 20px', marginBottom: '16px',
           fontFamily: fonts.sans, fontSize: '14px', color: colors.success, fontWeight: 500,
         }}>
-          {'\u2705'} Dispatch details saved successfully
+          <CheckIcon size={16} /> Dispatch details saved successfully
         </div>
       )}
 

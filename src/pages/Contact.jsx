@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PageMeta from '../components/PageMeta';
+import { EmailIcon, TelegramIcon, PortalIcon, CheckIcon } from '../components/icons';
 import { apiPost } from '../hooks/useApi';
 import { colors, fonts, button as btnStyles } from '../theme';
 
@@ -66,9 +67,9 @@ export default function Contact() {
         display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '12px', marginBottom: '32px',
       }}>
         {[
-          { icon: '\u2709\uFE0F', label: 'info@y7agency.com', href: 'mailto:info@y7agency.com' },
-          { icon: '\uD83D\uDCAC', label: 'Telegram Bot', href: 'https://t.me/y7dispatch_bot' },
-          { icon: '\uD83D\uDD12', label: 'Customer Portal', href: '/portal/login' },
+          { icon: <EmailIcon size={18} />, label: 'info@y7agency.com', href: 'mailto:info@y7agency.com' },
+          { icon: <TelegramIcon size={18} />, label: 'Telegram Bot', href: 'https://t.me/y7dispatch_bot' },
+          { icon: <PortalIcon size={18} />, label: 'Customer Portal', href: '/portal/login' },
         ].map(c => (
           <a key={c.label} href={c.href} target={c.href.startsWith('http') ? '_blank' : undefined}
             rel={c.href.startsWith('http') ? 'noopener noreferrer' : undefined}
@@ -78,14 +79,14 @@ export default function Contact() {
               fontFamily: fonts.sans, fontSize: '13px', color: colors.text, textDecoration: 'none',
             }}
           >
-            <span style={{ fontSize: '18px' }}>{c.icon}</span>{c.label}
+            {c.icon}{c.label}
           </a>
         ))}
       </div>
 
       {success ? (
         <div style={{ textAlign: 'center', padding: '40px 20px', background: colors.successBg, borderRadius: '16px' }}>
-          <div style={{ fontSize: '40px', marginBottom: '12px' }}>&#10003;</div>
+          <div style={{ marginBottom: '12px' }}><CheckIcon size={40} /></div>
           <h3 style={{ fontFamily: fonts.serif, fontSize: '22px', color: colors.success, marginBottom: '8px' }}>Message Sent!</h3>
           <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted }}>We'll get back to you within 24 hours.</p>
         </div>

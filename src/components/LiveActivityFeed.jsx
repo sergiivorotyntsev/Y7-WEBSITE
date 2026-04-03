@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { API_URL } from '../config';
 import { colors, fonts, keyframes } from '../theme';
+import { TruckIcon, PackageIcon, CheckIcon, LinkIcon, RouteIcon, StarFilledIcon } from './icons';
 
 const ACTION_ICONS = {
-  'dispatched': '\uD83D\uDE9A',
-  'picked up': '\uD83D\uDCE6',
-  'delivered': '\u2705',
-  'carrier assigned': '\uD83D\uDD17',
-  'in transit': '\uD83D\uDEE3\uFE0F',
+  'dispatched': <TruckIcon size={16} />,
+  'picked up': <PackageIcon size={16} />,
+  'delivered': <CheckIcon size={16} />,
+  'carrier assigned': <LinkIcon size={16} />,
+  'in transit': <RouteIcon size={16} />,
 };
 
 export default function LiveActivityFeed() {
@@ -76,7 +77,7 @@ export default function LiveActivityFeed() {
             fontSize: '13px',
             color: colors.textMuted,
           }}>
-            <span style={{ marginRight: '6px' }}>{ACTION_ICONS[ev.type] || '\u2B50'}</span>
+            <span style={{ marginRight: '6px' }}>{ACTION_ICONS[ev.type] || <StarFilledIcon size={16} />}</span>
             <span style={{ color: colors.text, fontWeight: 500 }}>
               {ev.vehicle}
             </span>

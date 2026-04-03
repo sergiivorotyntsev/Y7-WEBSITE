@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import { CheckIcon } from '../../components/icons';
 import { portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button } from '../../theme';
 import { API_URL } from '../../config';
@@ -115,7 +116,7 @@ export default function DispatchDetails() {
   if (success) {
     return (
       <div style={{ maxWidth: '560px', margin: '0 auto', padding: '80px 24px', textAlign: 'center' }}>
-        <div style={{ fontSize: '48px', marginBottom: '16px' }}>{'\u2705'}</div>
+        <div style={{ marginBottom: '16px' }}><CheckIcon size={40} /></div>
         <h2 style={{ fontFamily: fonts.serif, fontSize: '22px', color: colors.text, marginBottom: '8px' }}>Dispatch Details Saved</h2>
         <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted }}>Your dispatcher will begin arranging transport shortly.</p>
       </div>
@@ -258,7 +259,7 @@ export default function DispatchDetails() {
             )}
             {uploadDone && (
               <div style={{ marginTop: '6px', fontSize: '13px', color: colors.success, fontFamily: fonts.sans }}>
-                {'\u2705'} Gate pass uploaded
+                <CheckIcon size={14} /> Gate pass uploaded
               </div>
             )}
           </div>

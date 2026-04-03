@@ -1,13 +1,14 @@
 import { colors, fonts } from '../theme';
 import ScrollReveal from './ScrollReveal';
+import { ShieldCheckIcon, VerifiedIcon, EyeIcon, MapPinIcon, GlobeIcon, ClockIcon } from './icons';
 
 const ITEMS = [
-  { icon: '\uD83D\uDEE1\uFE0F', title: 'Licensed & Insured', desc: 'USDOT #4427359, MC #1741537. Fully licensed property broker.' },
-  { icon: '\u2705', title: 'Central Dispatch Verified', desc: '90% of our orders go through CD. Verified broker with top ratings.' },
-  { icon: '\uD83D\uDCB0', title: 'Transparent Pricing', desc: 'No hidden fees. Carrier rate + service fee. What you see is what you pay.' },
-  { icon: '\uD83D\uDCCD', title: 'Real-Time Tracking', desc: 'Track your shipment anytime via portal, email, SMS, or Telegram.' },
-  { icon: '\uD83C\uDF10', title: 'Multilingual Support', desc: 'EN, RU, PL, UK — we speak your language. Global exporter network.' },
-  { icon: '\u23F0', title: '24/7 Dispatch', desc: 'Round-the-clock dispatch support. Quotes within 1 hour, any time.' },
+  { icon: <ShieldCheckIcon />, title: 'Licensed & Insured', desc: 'USDOT #4427359, MC #1741537. Fully licensed property broker.' },
+  { icon: <VerifiedIcon />, title: 'Central Dispatch Verified', desc: '90% of our orders go through CD. Verified broker with top ratings.' },
+  { icon: <EyeIcon />, title: 'Transparent Pricing', desc: 'No hidden fees. Carrier rate + service fee. What you see is what you pay.' },
+  { icon: <MapPinIcon />, title: 'Real-Time Tracking', desc: 'Track your shipment anytime via portal, email, SMS, or Telegram.' },
+  { icon: <GlobeIcon />, title: 'Multilingual Support', desc: 'EN, RU, PL, UK — we speak your language. Global exporter network.' },
+  { icon: <ClockIcon />, title: '24/7 Dispatch', desc: 'Round-the-clock dispatch support. Quotes within 1 hour, any time.' },
 ];
 
 export default function WhyY7() {
@@ -52,7 +53,7 @@ export default function WhyY7() {
                 e.currentTarget.style.boxShadow = 'none';
               }}
             >
-              <span style={{ fontSize: '24px', flexShrink: 0, marginTop: '2px' }}>{icon}</span>
+              <span style={{ flexShrink: 0, marginTop: '2px' }}>{icon}</span>
               <div>
                 <div style={{
                   fontFamily: fonts.sans,

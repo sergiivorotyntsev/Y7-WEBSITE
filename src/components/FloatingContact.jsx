@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { colors, fonts, keyframes } from '../theme';
+import { TelegramIcon, WhatsAppIcon, EmailIcon, CloseIcon } from './icons';
 
 const CHANNELS = [
-  { icon: '\uD83D\uDCAC', label: 'Telegram', href: 'https://t.me/y7dispatch_bot' },
-  { icon: '\uD83D\uDFE2', label: 'WhatsApp', href: 'https://wa.me/18578958555?text=Hi%20Y7%20Logistics' },
-  { icon: '\u2709\uFE0F', label: 'Email', href: 'mailto:info@y7agency.com' },
+  { icon: <TelegramIcon size={18} />, label: 'Telegram', href: 'https://t.me/y7dispatch_bot' },
+  { icon: <WhatsAppIcon size={18} />, label: 'WhatsApp', href: 'https://wa.me/18578958555?text=Hi%20Y7%20Logistics' },
+  { icon: <EmailIcon size={18} />, label: 'Email', href: 'mailto:info@y7agency.com' },
 ];
 
 export default function FloatingContact() {
@@ -82,7 +83,7 @@ export default function FloatingContact() {
                 animation: `popUp 200ms ease ${i * 50}ms both`,
               }}
             >
-              <span style={{ fontSize: '18px' }}>{icon}</span>
+              {icon}
               {label}
             </a>
           ))}
@@ -115,7 +116,7 @@ export default function FloatingContact() {
         }}
         aria-label="Contact us"
       >
-        {open ? '\u2715' : '\uD83D\uDCAC'}
+        {open ? <CloseIcon size={24} color="#fff" /> : <TelegramIcon size={24} color="#fff" />}
       </button>
     </>
   );

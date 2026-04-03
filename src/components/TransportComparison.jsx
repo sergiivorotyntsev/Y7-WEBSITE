@@ -1,4 +1,5 @@
 import { colors, fonts, button as btnStyles } from '../theme';
+import { CheckIcon } from './icons';
 
 const TYPES = [
   {
@@ -124,7 +125,7 @@ export default function TransportComparison() {
                   paddingLeft: '20px',
                   position: 'relative',
                 }}>
-                  <span style={{ position: 'absolute', left: 0, color: colors.success }}>&#10003;</span>
+                  <span style={{ position: 'absolute', left: 0, color: colors.success }}><CheckIcon size={16} /></span>
                   {f}
                 </li>
               ))}

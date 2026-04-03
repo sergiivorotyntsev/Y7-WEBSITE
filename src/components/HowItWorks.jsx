@@ -1,33 +1,34 @@
 import { useState, useEffect, useCallback } from 'react';
 import { colors, fonts } from '../theme';
+import { ClipboardIcon, DollarIcon, HandshakeIcon, TruckIcon, CheckIcon } from './icons';
 
 const STEPS = [
   {
-    icon: '\uD83D\uDCDD',
+    icon: <ClipboardIcon />,
     title: 'Submit Your Quote',
     desc: 'Enter your VIN and route details. We\'ll decode your vehicle instantly and show estimated pricing.',
     stat: '< 1 hour response',
   },
   {
-    icon: '\uD83D\uDCB0',
+    icon: <DollarIcon />,
     title: 'Get Your Pricing',
     desc: 'Receive a competitive price range within 1 hour. Confirm when you\'re ready — no pressure.',
     stat: 'Under 1 hour response',
   },
   {
-    icon: '\uD83D\uDCDD',
+    icon: <HandshakeIcon />,
     title: 'Sign Agreement',
     desc: 'Quick digital signature on our transport agreement. Review terms, check boxes, type your name. Done.',
     stat: '2 min to complete',
   },
   {
-    icon: '\uD83D\uDE9A',
+    icon: <TruckIcon />,
     title: 'Carrier Assigned',
     desc: 'We match your load with a vetted, insured carrier from our network. You get carrier name and phone.',
     stat: '100+ vetted carriers',
   },
   {
-    icon: '\u2705',
+    icon: <CheckIcon />,
     title: 'Vehicle Delivered',
     desc: 'Track your shipment in real time. Inspect on arrival, sign BOL, and you\'re done.',
     stat: '3-10 business days',
@@ -107,7 +108,7 @@ export default function HowItWorks() {
           }
         `}</style>
 
-        <div style={{ fontSize: '40px', marginBottom: '16px' }}>{step.icon}</div>
+        <div style={{ marginBottom: '16px' }}>{step.icon}</div>
         <div style={{
           fontFamily: fonts.sans,
           fontSize: '11px',

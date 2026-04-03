@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
+import { HourglassIcon, DollarIcon, CheckIcon, TruckIcon, CrossIcon, CircleIcon, ClipboardIcon, MapPinIcon, ProfileIcon, TelegramIcon, EmailIcon } from '../../components/icons';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles, keyframes } from '../../theme';
 
@@ -11,9 +12,9 @@ const STATUS_COLORS = {
 };
 
 const STATUS_ICONS = {
-  pending: '\u23F3', quoted: '\uD83D\uDCB0', confirmed: '\u2705',
-  dispatched: '\uD83D\uDE9A', cancelled: '\u274C', completed: '\u2705',
-  delivered: '\u2705',
+  pending: <HourglassIcon size={14} />, quoted: <DollarIcon size={14} />, confirmed: <CheckIcon size={14} />,
+  dispatched: <TruckIcon size={14} />, cancelled: <CrossIcon size={14} />, completed: <CheckIcon size={14} />,
+  delivered: <CheckIcon size={14} />,
 };
 
 function StatCard({ value, label, delay }) {
@@ -198,7 +199,7 @@ export default function Dashboard() {
                 onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flex: 1, minWidth: 0 }}>
-                  <span style={{ fontSize: '18px' }}>{STATUS_ICONS[order.status] || '\u2B55'}</span>
+                  <span style={{ fontSize: '18px', display: 'flex', alignItems: 'center' }}>{STATUS_ICONS[order.status] || <CircleIcon size={14} />}</span>
                   <div style={{ minWidth: 0 }}>
                     <div style={{
                       fontFamily: fonts.sans,
@@ -267,11 +268,11 @@ export default function Dashboard() {
           gap: '12px',
         }}>
           {[
-            { icon: '\uD83D\uDCCB', label: 'New Quote', to: '/ship-my-car' },
-            { icon: '\uD83D\uDCCD', label: 'Track Shipment', to: '/track' },
-            { icon: '\uD83D\uDC64', label: 'Profile', to: '/portal/profile' },
-            { icon: '\uD83D\uDCAC', label: 'Telegram Bot', href: 'https://t.me/y7dispatch_bot' },
-            { icon: '\uD83D\uDCDE', label: 'Contact Us', to: '/contact' },
+            { icon: <ClipboardIcon size={18} />, label: 'New Quote', to: '/ship-my-car' },
+            { icon: <MapPinIcon size={18} />, label: 'Track Shipment', to: '/track' },
+            { icon: <ProfileIcon size={18} />, label: 'Profile', to: '/portal/profile' },
+            { icon: <TelegramIcon size={18} />, label: 'Telegram Bot', href: 'https://t.me/y7dispatch_bot' },
+            { icon: <EmailIcon size={18} />, label: 'Contact Us', to: '/contact' },
           ].map(({ icon, label, to, href }) => (
             <a
               key={label}
@@ -298,7 +299,7 @@ export default function Dashboard() {
               onMouseEnter={e => { e.currentTarget.style.borderColor = colors.accent; }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = colors.border; }}
             >
-              <span style={{ fontSize: '18px' }}>{icon}</span>
+              {icon}
               {label}
             </a>
           ))}

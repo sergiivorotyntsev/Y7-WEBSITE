@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '../hooks/useAuth';
 import LanguageSwitcher from './LanguageSwitcher';
 import { colors, fonts, button } from '../theme';
+import { CloseIcon, MenuIcon } from './icons';
 
 export default function Header() {
   const { t } = useTranslation();
@@ -146,7 +147,7 @@ export default function Header() {
             className="mobile-menu-btn"
             aria-label="Menu"
           >
-            {menuOpen ? '\u2715' : '\u2630'}
+            {menuOpen ? <CloseIcon size={20} /> : <MenuIcon size={20} />}
           </button>
         </nav>
       </div>
