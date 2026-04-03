@@ -177,7 +177,7 @@ export default function DispatchDetails() {
             <input style={inputStyle} value={form.pickup_full_address} onChange={set('pickup_full_address')} placeholder="123 Main St" />
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 100px 100px', gap: '10px', ...rowStyle }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '10px', ...rowStyle }}>
             <div>
               <label style={labelStyle}>City *</label>
               <input style={inputStyle} value={form.pickup_city} onChange={set('pickup_city')} placeholder="Houston" />

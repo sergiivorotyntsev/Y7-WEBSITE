@@ -183,7 +183,7 @@ export default function DealerQuote() {
             <label style={labelStyle}>Street</label>
             <input style={inputStyle} value={form.address} onChange={e => set('address', e.target.value)} placeholder="123 Auto Drive" />
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 100px 100px', gap: '10px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '10px' }}>
             <div>
               <label style={labelStyle}>City</label>
               <input style={inputStyle} value={form.city} onChange={e => set('city', e.target.value)} placeholder="Houston" />
