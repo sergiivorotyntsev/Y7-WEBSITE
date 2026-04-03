@@ -85,6 +85,7 @@ export default function QuoteForm({ compact = false }) {
     name: '', phone: '', email: '',
     sms_consent: false, notes: '',
   });
+  const [noVinMode, setNoVinMode] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
@@ -131,6 +132,18 @@ export default function QuoteForm({ compact = false }) {
     e.preventDefault();
     setError(null);
 
+    // VIN validation (unless no-VIN mode)
+    const vinRegex = /^[A-HJ-NPR-Z0-9]{17}$/;
+    if (!noVinMode && form.vin && !vinRegex.test(form.vin.trim().toUpperCase())) {
+      setError('Invalid VIN. Must be 17 characters (letters A-H, J-N, P, R-Z and digits).');
+      return;
+    }
+    if (noVinMode) {
+      if (!form.vehicle_year) { setError('Vehicle year is required.'); return; }
+      if (!form.vehicle_make.trim()) { setError('Vehicle make is required.'); return; }
+      if (!form.vehicle_model.trim()) { setError('Vehicle model is required.'); return; }
+    }
+
     if (!form.name.trim()) { setError(t('errors.nameRequired')); return; }
     if (!form.email.trim() || !form.email.includes('@')) { setError(t('errors.emailRequired')); return; }
     if (form.pickup_zip.trim().length < 5) { setError(t('errors.pickupRequired')); return; }
@@ -140,6 +153,7 @@ export default function QuoteForm({ compact = false }) {
     try {
       const payload = {
         ...form,
+        vin: noVinMode ? 'TBD' : form.vin.trim().toUpperCase(),
         sms_consent_timestamp: form.sms_consent ? new Date().toISOString() : null,
         sms_consent_page_url: window.location.href,
         source: 'website',
@@ -173,48 +187,84 @@ export default function QuoteForm({ compact = false }) {
 
       {/* ── STEP 1: Vehicle + Route ── */}
 
-      {/* VIN row */}
-      <div>
-        <label style={labelStyle}>{t('form.vin')}</label>
-        <div style={{ display: 'flex', gap: '8px' }}>
-          <input
-            value={form.vin}
-            onChange={e => set('vin', e.target.value.toUpperCase())}
-            placeholder={t('form.vinPlaceholder')}
-            maxLength={17}
-            style={{ ...inputStyle, fontFamily: fonts.mono, flex: 1 }}
-          />
-          <button
-            type="button"
-            onClick={handleDecode}
-            disabled={vinLoading || form.vin.length !== 17}
-            style={{
-              ...btnStyles.secondary,
-              padding: '8px 16px',
-              fontSize: '11px',
-              opacity: (vinLoading || form.vin.length !== 17) ? 0.5 : 1,
-            }}
-          >
-            {vinLoading ? '...' : t('form.decode')}
-          </button>
-        </div>
-        {vinError && (
-          <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.accent, marginTop: '4px' }}>
-            {vinError}
+      {/* VIN or manual vehicle entry */}
+      {!noVinMode ? (
+        <div>
+          <label style={labelStyle}>{t('form.vin')}</label>
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <input
+              value={form.vin}
+              onChange={e => set('vin', e.target.value.toUpperCase())}
+              placeholder={t('form.vinPlaceholder')}
+              maxLength={17}
+              style={{ ...inputStyle, fontFamily: fonts.mono, flex: 1, fontSize: '16px' }}
+            />
+            <button
+              type="button"
+              onClick={handleDecode}
+              disabled={vinLoading || form.vin.length !== 17}
+              style={{
+                ...btnStyles.secondary,
+                padding: '8px 16px',
+                fontSize: '11px',
+                opacity: (vinLoading || form.vin.length !== 17) ? 0.5 : 1,
+              }}
+            >
+              {vinLoading ? '...' : t('form.decode')}
+            </button>
           </div>
-        )}
-        {vinResult && (
-          <>
-            <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.success, marginTop: '4px' }}>
-              {vinResult.year} {vinResult.make} {vinResult.model}
+          {vinError && (
+            <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.accent, marginTop: '4px' }}>
+              {vinError}
             </div>
-            <VehicleSilhouette make={vinResult.make} model={vinResult.model} year={vinResult.year} bodyClass={vinResult.bodyClass} />
-          </>
-        )}
-      </div>
+          )}
+          {vinResult && (
+            <>
+              <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.success, marginTop: '4px' }}>
+                {vinResult.year} {vinResult.make} {vinResult.model}
+              </div>
+              <VehicleSilhouette make={vinResult.make} model={vinResult.model} year={vinResult.year} bodyClass={vinResult.bodyClass} />
+            </>
+          )}
+          <div
+            onClick={() => setNoVinMode(true)}
+            style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.accent, cursor: 'pointer', marginTop: '8px' }}
+          >
+            I don&apos;t have a VIN
+          </div>
+        </div>
+      ) : (
+        <div>
+          <div
+            onClick={() => setNoVinMode(false)}
+            style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.accent, cursor: 'pointer', marginBottom: '12px' }}
+          >
+            &larr; I have a VIN
+          </div>
+          <div style={{ ...rowStyle, gridTemplateColumns: '100px 1fr 1fr' }}>
+            <div>
+              <label style={labelStyle}>Year *</label>
+              <select value={form.vehicle_year} onChange={e => set('vehicle_year', e.target.value)} style={{ ...selectStyle, fontSize: '16px' }}>
+                <option value="">Year</option>
+                {Array.from({ length: 28 }, (_, i) => 2027 - i).map(y => (
+                  <option key={y} value={y}>{y}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label style={labelStyle}>Make *</label>
+              <input value={form.vehicle_make} onChange={e => set('vehicle_make', e.target.value)} placeholder="Honda" style={{ ...inputStyle, fontSize: '16px' }} />
+            </div>
+            <div>
+              <label style={labelStyle}>Model *</label>
+              <input value={form.vehicle_model} onChange={e => set('vehicle_model', e.target.value)} placeholder="Civic" style={{ ...inputStyle, fontSize: '16px' }} />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Vehicle details (show if decoded) */}
-      {vinResult && (
+      {!noVinMode && vinResult && (
         <div style={{ ...rowStyle, gridTemplateColumns: '1fr 1fr 1fr' }}>
           <div>
             <label style={labelStyle}>{t('form.vehicleYear')}</label>
