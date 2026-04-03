@@ -37,16 +37,17 @@ const STEPS = [
 export default function HowItWorks() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  const reducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const next = useCallback(() => {
     setActive(prev => (prev + 1) % STEPS.length);
   }, []);
 
   useEffect(() => {
-    if (paused) return;
+    if (paused || reducedMotion) return;
     const timer = setInterval(next, 5000);
     return () => clearInterval(timer);
-  }, [paused, next]);
+  }, [paused, next, reducedMotion]);
 
   const step = STEPS[active];
 

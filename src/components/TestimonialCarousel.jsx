@@ -44,12 +44,14 @@ function Stars({ count }) {
 
 export default function TestimonialCarousel() {
   const [active, setActive] = useState(0);
+  const reducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const next = useCallback(() => {
     setActive(prev => (prev + 1) % TESTIMONIALS.length);
   }, []);
 
   useEffect(() => {
+    if (reducedMotion) return;
     const timer = setInterval(next, 6000);
     return () => clearInterval(timer);
   }, [next]);
