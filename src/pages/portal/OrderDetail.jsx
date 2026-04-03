@@ -259,6 +259,21 @@ export default function OrderDetail() {
         </InfoCard>
       )}
 
+      {/* Gate Pass Status */}
+      <InfoCard title="Gate Pass">
+        {order.gate_pass_file_name ? (
+          <div style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.success }}>
+            {'\u2705'} {order.gate_pass_file_name}
+          </div>
+        ) : order.gate_pass ? (
+          <InfoRow label="Gate Pass #" value={order.gate_pass} />
+        ) : (
+          <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textHint, fontStyle: 'italic' }}>
+            Not uploaded
+          </div>
+        )}
+      </InfoCard>
+
       {/* Dispatch Details Status */}
       {['confirmed', 'dispatched'].includes(order.status) && (
         <div style={{
