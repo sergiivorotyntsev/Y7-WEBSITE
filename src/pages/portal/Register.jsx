@@ -73,7 +73,7 @@ export default function Register() {
     setError(null);
     setLoading(true);
     try {
-      const res = await fetch(`${API_URL}/api/portal/auth/telegram-login`, {
+      const res = await fetch(`${API_URL}/api/public/telegram-login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

@@ -62,7 +62,7 @@ export default function Login() {
   // Telegram auth — completely decoupled from component lifecycle.
   // Uses refs for login/navigate so it works even if component re-renders.
   const handleTelegramAuth = useCallback(async (tgUser) => {
-    const url = `${API_URL}/api/portal/auth/telegram-login`;
+    const url = `${API_URL}/api/public/telegram-login`;
     try {
       const res = await fetch(url, {
         method: 'POST',
