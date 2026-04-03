@@ -93,7 +93,7 @@ export default function Header() {
             })}
           </div>
 
-          <LanguageSwitcher />
+          {/* LanguageSwitcher removed — all locales currently English-only */}
 
           {user ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
