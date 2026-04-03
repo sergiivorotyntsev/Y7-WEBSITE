@@ -1,7 +1,8 @@
 {
   "hero": {
     "title": "Nationwide Auto Transport",
-    "subtitle": "We move cars. You move forward.",
+    "tagline": "We move cars.",
+    "taglineAccent": "You move forward.",
     "description": "Licensed and insured broker connecting you with vetted carriers across all 50 states. Auction pickups, dealer trades, port deliveries, and private relocations."
   },
   "trust": {

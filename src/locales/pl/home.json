@@ -1,7 +1,8 @@
 {
   "hero": {
     "title": "Transport samochodów na terenie całych USA",
-    "subtitle": "My przewozimy samochody. Ty idziesz do przodu.",
+    "tagline": "My przewozimy samochody.",
+    "taglineAccent": "Ty idziesz do przodu.",
     "description": "Licencjonowany i ubezpieczony broker łączący Państwa ze sprawdzonymi przewoźnikami we wszystkich 50 stanach. Odbiory z aukcji, wymiana dealerska, dostawy do portów i przeprowadzki prywatne."
   },
   "trust": {

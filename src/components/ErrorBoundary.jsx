@@ -11,6 +11,13 @@ export default class ErrorBoundary extends Component {
     return { hasError: true };
   }
 
+  componentDidUpdate(prevProps) {
+    // Reset error state when location changes (navigation after crash)
+    if (this.state.hasError && prevProps.location !== this.props.location) {
+      this.setState({ hasError: false });
+    }
+  }
+
   componentDidCatch(error, info) {
     console.error('ErrorBoundary caught:', error, info);
   }
@@ -46,7 +53,7 @@ export default class ErrorBoundary extends Component {
             An unexpected error occurred. Please try reloading the page.
           </p>
           <button
-            onClick={() => window.location.reload()}
+            onClick={() => this.setState({ hasError: false })}
             style={{
               fontFamily: fonts.sans,
               fontSize: '14px',
@@ -59,7 +66,7 @@ export default class ErrorBoundary extends Component {
               cursor: 'pointer',
             }}
           >
-            Reload Page
+            Try Again
           </button>
         </div>
       );

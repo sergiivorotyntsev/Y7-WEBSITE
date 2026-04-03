@@ -25,26 +25,30 @@ export default function Home() {
         maxWidth: '800px',
         margin: '0 auto',
       }}>
-        <h1 style={{
-          fontFamily: fonts.serif,
-          fontSize: 'clamp(32px, 5vw, 52px)',
-          fontWeight: 700,
-          color: colors.text,
-          lineHeight: 1.15,
+        <p style={{
+          fontFamily: fonts.sans,
+          fontSize: '14px',
+          fontWeight: 600,
+          color: colors.textMuted,
+          textTransform: 'uppercase',
+          letterSpacing: '3px',
           marginBottom: '16px',
         }}>
           {t('hero.title')}
-        </h1>
-        <p style={{
+        </p>
+        <h1 style={{
           fontFamily: fonts.serif,
-          fontSize: 'clamp(18px, 2.5vw, 24px)',
-          color: colors.accent,
-          fontWeight: 400,
-          fontStyle: 'italic',
+          fontSize: 'clamp(36px, 5.5vw, 52px)',
+          fontWeight: 700,
+          color: colors.text,
+          lineHeight: 1.15,
           marginBottom: '20px',
         }}>
-          {t('hero.subtitle')}
-        </p>
+          {t('hero.tagline')}{' '}
+          <span style={{ color: colors.accent, fontStyle: 'italic' }}>
+            {t('hero.taglineAccent')}
+          </span>
+        </h1>
         <p style={{
           fontFamily: fonts.sans,
           fontSize: '15px',

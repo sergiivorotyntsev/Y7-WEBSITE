@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../hooks/useAuth';
+import LanguageSwitcher from './LanguageSwitcher';
 import { colors, fonts, button } from '../theme';
 
 export default function Header() {
@@ -94,7 +95,7 @@ export default function Header() {
             })}
           </div>
 
-          {/* LanguageSwitcher removed — all locales currently English-only */}
+          <LanguageSwitcher />
 
           {user ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>

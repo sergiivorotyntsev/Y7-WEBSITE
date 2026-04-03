@@ -23,7 +23,6 @@ import Dashboard from './pages/portal/Dashboard';
 import OrderDetail from './pages/portal/OrderDetail';
 import DispatchDetails from './pages/portal/DispatchDetails';
 import Profile from './pages/portal/Profile';
-import ErrorBoundary from './components/ErrorBoundary';
 import { colors } from './theme';
 
 const srOnly = {
@@ -34,7 +33,6 @@ const srOnly = {
 export default function App() {
   return (
     <AuthProvider>
-      <ErrorBoundary>
       <a href="#main" style={srOnly} onFocus={e => { e.target.style.position = 'static'; e.target.style.width = 'auto'; e.target.style.height = 'auto'; e.target.style.clip = 'auto'; e.target.style.overflow = 'visible'; }} onBlur={e => Object.assign(e.target.style, srOnly)}>Skip to content</a>
       <div style={{ background: colors.bg, minHeight: '100vh' }}>
         <Routes>
@@ -71,7 +69,6 @@ export default function App() {
           </Route>
         </Routes>
       </div>
-      </ErrorBoundary>
     </AuthProvider>
   );
 }
