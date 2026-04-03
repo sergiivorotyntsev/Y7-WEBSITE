@@ -44,7 +44,7 @@ export default function Home() {
           lineHeight: 1.15,
           marginBottom: '20px',
         }}>
-          {t('hero.tagline')}{' '}
+          {t('hero.tagline')}<br />
           <span style={{ color: colors.accent, fontStyle: 'italic' }}>
             {t('hero.taglineAccent')}
           </span>
