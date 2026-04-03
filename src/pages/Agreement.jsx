@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { apiPost, apiGet } from '../hooks/useApi';
 import { colors, fonts, button as btnStyles } from '../theme';
 
-const SECTION_IDS = ['service', 'bol', 'payment', 'insurance', 'cancellation', 'liability'];
+const SECTION_IDS = ['service', 'bol', 'payment', 'insurance', 'cancellation', 'customer', 'delays', 'liability'];
 
 const highlightedBox = {
   background: '#FFF8F5',
@@ -71,14 +71,23 @@ export default function Agreement() {
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  // Fetch order info
+  // Customer-level agreement: /agreement/new?customer_id=123
+  const searchParams = new URLSearchParams(window.location.search);
+  const customerIdParam = searchParams.get('customer_id');
+  const isCustomerLevel = orderId === 'new' && customerIdParam;
+
+  // Fetch order info (skip for customer-level agreements)
   useEffect(() => {
+    if (isCustomerLevel) {
+      setLoading(false);
+      return;
+    }
     if (!orderId) return;
     const ref = orderId.match(/^\d+$/) ? `WEB-${String(orderId).padStart(5, '0')}` : orderId;
     apiGet(`/api/public/track?code=${encodeURIComponent(ref)}`)
       .then(data => { setOrder(data); setLoading(false); })
       .catch(() => { setError(t('errors.orderNotFound')); setLoading(false); });
-  }, [orderId, t]);
+  }, [orderId, t, isCustomerLevel]);
 
   // Scroll tracking
   const handleScroll = useCallback(() => {
@@ -114,18 +123,27 @@ export default function Agreement() {
     setSubmitting(true);
     setError(null);
     try {
-      await apiPost('/api/public/agreement', {
-        order_id: parseInt(orderId.match(/^\d+$/) ? orderId : orderId.replace('WEB-', ''), 10),
+      const payload = {
         signer_name: signerName.trim(),
         checkboxes: checks,
         signed_at: new Date().toISOString(),
         user_agent: navigator.userAgent,
         lang: 'en',
-      });
+      };
+      if (isCustomerLevel) {
+        payload.customer_id = parseInt(customerIdParam, 10);
+      } else {
+        payload.order_id = parseInt(orderId.match(/^\d+$/) ? orderId : orderId.replace('WEB-', ''), 10);
+      }
+      await apiPost('/api/public/agreement', payload);
       setSuccess(true);
       setTimeout(() => {
-        const ref = orderId.match(/^\d+$/) ? `WEB-${String(orderId).padStart(5, '0')}` : orderId;
-        navigate(`/track?code=${encodeURIComponent(ref)}`);
+        if (isCustomerLevel) {
+          navigate('/portal/dashboard', { replace: true });
+        } else {
+          const ref = orderId.match(/^\d+$/) ? `WEB-${String(orderId).padStart(5, '0')}` : orderId;
+          navigate(`/track?code=${encodeURIComponent(ref)}`);
+        }
       }, 3000);
     } catch (err) {
       setError(err.message || t('errors.submitFailed'));
@@ -164,6 +182,8 @@ export default function Agreement() {
     { id: 'payment', title: t('sections.payment.title'), body: t('sections.payment.body'), highlight: true },
     { id: 'insurance', title: t('sections.insurance.title'), body: t('sections.insurance.body'), highlight: false },
     { id: 'cancellation', title: t('sections.cancellation.title'), body: t('sections.cancellation.body'), highlight: false },
+    { id: 'customer', title: t('sections.customer.title'), body: t('sections.customer.body'), highlight: true },
+    { id: 'delays', title: t('sections.delays.title'), body: t('sections.delays.body'), highlight: false },
     { id: 'liability', title: t('sections.liability.title'), body: t('sections.liability.body'), highlight: false },
   ];
 
