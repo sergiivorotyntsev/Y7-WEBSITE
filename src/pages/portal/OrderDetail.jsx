@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useSearchParams, Link } from 'react-router-dom';
+import { useParams, useSearchParams, Link, useNavigate } from 'react-router-dom';
 import { portalFetch } from '../../hooks/useAuth';
 import { colors, fonts } from '../../theme';
 
@@ -72,18 +72,32 @@ function InfoRow({ label, value, mono }) {
 
 export default function OrderDetail() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
   const dispatchSaved = searchParams.get('dispatch_saved') === '1';
 
-  useEffect(() => {
+  const fetchOrder = () => {
+    setLoading(true);
     portalFetch(`/api/portal/data/orders/${id}`)
       .then(r => r.json())
       .then(setOrder)
       .catch(() => {})
       .finally(() => setLoading(false));
-  }, [id]);
+  };
+
+  useEffect(() => { fetchOrder(); }, [id]);
+
+  const handleCancel = async () => {
+    if (!window.confirm('Are you sure you want to cancel this order?')) return;
+    try {
+      const r = await portalFetch(`/api/portal/data/orders/${id}/cancel`, { method: 'POST' });
+      if (r.ok) fetchOrder();
+    } catch (e) {
+      console.error('Cancel failed:', e);
+    }
+  };
 
   if (loading) {
     return <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: fonts.sans, color: colors.textMuted }}>Loading...</div>;
@@ -330,6 +344,32 @@ export default function OrderDetail() {
           Contact Dispatcher
         </a>
       </div>
+
+      {/* Cancel */}
+      {(order.status === 'pending' || order.status === 'quoted') && (
+        <button onClick={handleCancel} style={{
+          fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600,
+          textTransform: 'uppercase', letterSpacing: '0.5px',
+          padding: '12px 24px', background: '#dc3545', color: '#fff',
+          border: 'none', borderRadius: '20px', cursor: 'pointer',
+          marginTop: '12px', width: '100%',
+        }}>
+          Cancel Order
+        </button>
+      )}
+
+      {/* Resubmit after decline */}
+      {(order.status === 'declined' || order.status === 'cancelled') && (
+        <button onClick={() => navigate(`/?vin=${encodeURIComponent(order.vin || '')}&pickup_zip=${encodeURIComponent(order.pickup_zip || '')}`)} style={{
+          fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600,
+          textTransform: 'uppercase', letterSpacing: '0.5px',
+          padding: '12px 24px', background: colors.accent, color: '#fff',
+          border: 'none', borderRadius: '20px', cursor: 'pointer',
+          marginTop: '8px', width: '100%',
+        }}>
+          Request New Quote
+        </button>
+      )}
     </div>
   );
 }
