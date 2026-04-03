@@ -32,6 +32,10 @@ export default function DispatchDetails() {
     pickup_contact_phone: '',
     pickup_business_hours: '',
     gate_pass: '',
+    delivery_full_address: '',
+    delivery_city: '',
+    delivery_state: '',
+    delivery_zip: '',
     delivery_contact_name: '',
     delivery_contact_phone: '',
     special_instructions: '',
@@ -52,7 +56,11 @@ export default function DispatchDetails() {
           pickup_contact_phone: data.pickup_contact_phone || data.customer_contact_phone || '',
           pickup_business_hours: data.pickup_business_hours || '',
           gate_pass: data.gate_pass || '',
-          // Pre-fill delivery contacts from customer profile
+          // Pre-fill delivery from order (auto-filled from profile at creation)
+          delivery_full_address: data.delivery_address || '',
+          delivery_city: data.delivery_city || '',
+          delivery_state: data.delivery_state || '',
+          delivery_zip: data.delivery_zip || '',
           delivery_contact_name: data.delivery_contact_name || '',
           delivery_contact_phone: data.delivery_contact_phone || '',
           special_instructions: data.special_instructions || '',
@@ -88,6 +96,10 @@ export default function DispatchDetails() {
           pickup_contact_phone: form.pickup_contact_phone,
           pickup_business_hours: form.pickup_business_hours,
           gate_pass: form.gate_pass || null,
+          delivery_full_address: form.delivery_full_address || null,
+          delivery_city: form.delivery_city || null,
+          delivery_state: form.delivery_state || null,
+          delivery_zip: form.delivery_zip || null,
           delivery_contact_name: form.delivery_contact_name || null,
           delivery_contact_phone: form.delivery_contact_phone || null,
           special_instructions: form.special_instructions || null,
@@ -265,14 +277,38 @@ export default function DispatchDetails() {
           </div>
         </div>
 
-        {/* Delivery Contact Section */}
+        {/* Delivery Section */}
         <div style={{
           background: colors.bgCard, border: `1px solid ${colors.border}`, borderRadius: '12px',
           padding: '20px', marginBottom: '16px',
         }}>
           <div style={{ fontFamily: fonts.sans, fontSize: '11px', fontWeight: 600, color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '14px' }}>
-            Delivery Contact
+            Delivery Location
           </div>
+
+          <div style={rowStyle}>
+            <label style={labelStyle}>Street Address</label>
+            <input style={inputStyle} value={form.delivery_full_address} onChange={set('delivery_full_address')} placeholder="456 Oak Ave" />
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '10px', ...rowStyle }}>
+            <div>
+              <label style={labelStyle}>City</label>
+              <input style={inputStyle} value={form.delivery_city} onChange={set('delivery_city')} placeholder="Miami" />
+            </div>
+            <div>
+              <label style={labelStyle}>State</label>
+              <select style={{ ...inputStyle, background: colors.bgInput }} value={form.delivery_state} onChange={set('delivery_state')}>
+                <option value="">--</option>
+                {US_STATES.map(s => <option key={s} value={s}>{s}</option>)}
+              </select>
+            </div>
+            <div>
+              <label style={labelStyle}>ZIP</label>
+              <input style={inputStyle} value={form.delivery_zip} onChange={set('delivery_zip')} placeholder="33101" maxLength={5} />
+            </div>
+          </div>
+
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', ...rowStyle }}>
             <div>
               <label style={labelStyle}>Contact Name</label>
