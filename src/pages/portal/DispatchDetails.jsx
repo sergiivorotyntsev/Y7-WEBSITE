@@ -11,6 +11,17 @@ const US_STATES = [
   'SD','TN','TX','UT','VT','VA','WA','WV','WI','WY','DC',
 ];
 
+const LOCATION_TYPES = [
+  { value: '', label: 'Select...' },
+  { value: 'Business', label: 'Business' },
+  { value: 'Residence', label: 'Residential' },
+  { value: 'Auction', label: 'Auction' },
+  { value: 'Dealership', label: 'Dealer' },
+  { value: 'Port', label: 'Port' },
+  { value: 'Storage Facility', label: 'Storage Facility' },
+  { value: 'Other', label: 'Other' },
+];
+
 export default function DispatchDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -28,6 +39,7 @@ export default function DispatchDetails() {
     pickup_city: '',
     pickup_state: '',
     pickup_zip: '',
+    pickup_location_type: '',
     pickup_contact_name: '',
     pickup_contact_phone: '',
     pickup_business_hours: '',
@@ -36,6 +48,7 @@ export default function DispatchDetails() {
     delivery_city: '',
     delivery_state: '',
     delivery_zip: '',
+    delivery_location_type: '',
     delivery_contact_name: '',
     delivery_contact_phone: '',
     special_instructions: '',
@@ -52,6 +65,7 @@ export default function DispatchDetails() {
           pickup_city: data.pickup_city || '',
           pickup_state: data.pickup_state || '',
           pickup_zip: data.pickup_zip || '',
+          pickup_location_type: data.pickup_location_type || '',
           pickup_contact_name: data.pickup_contact_name || data.customer_contact_name || '',
           pickup_contact_phone: data.pickup_contact_phone || data.customer_contact_phone || '',
           pickup_business_hours: data.pickup_business_hours || '',
@@ -61,6 +75,7 @@ export default function DispatchDetails() {
           delivery_city: data.delivery_city || '',
           delivery_state: data.delivery_state || '',
           delivery_zip: data.delivery_zip || '',
+          delivery_location_type: data.delivery_location_type || '',
           delivery_contact_name: data.delivery_contact_name || '',
           delivery_contact_phone: data.delivery_contact_phone || '',
           special_instructions: data.special_instructions || '',
@@ -92,6 +107,7 @@ export default function DispatchDetails() {
           pickup_city: form.pickup_city || null,
           pickup_state: form.pickup_state || null,
           pickup_zip: form.pickup_zip || null,
+          pickup_location_type: form.pickup_location_type || null,
           pickup_contact_name: form.pickup_contact_name,
           pickup_contact_phone: form.pickup_contact_phone,
           pickup_business_hours: form.pickup_business_hours,
@@ -100,6 +116,7 @@ export default function DispatchDetails() {
           delivery_city: form.delivery_city || null,
           delivery_state: form.delivery_state || null,
           delivery_zip: form.delivery_zip || null,
+          delivery_location_type: form.delivery_location_type || null,
           delivery_contact_name: form.delivery_contact_name || null,
           delivery_contact_phone: form.delivery_contact_phone || null,
           special_instructions: form.special_instructions || null,
@@ -208,6 +225,13 @@ export default function DispatchDetails() {
             </div>
           </div>
 
+          <div style={rowStyle}>
+            <label style={labelStyle}>Location Type</label>
+            <select style={{ ...inputStyle, background: colors.bgInput }} value={form.pickup_location_type} onChange={set('pickup_location_type')}>
+              {LOCATION_TYPES.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+            </select>
+          </div>
+
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', ...rowStyle }}>
             <div>
               <label style={labelStyle}>Contact Name *</label>
@@ -307,6 +331,13 @@ export default function DispatchDetails() {
               <label style={labelStyle}>ZIP</label>
               <input style={inputStyle} value={form.delivery_zip} onChange={set('delivery_zip')} placeholder="33101" maxLength={5} />
             </div>
+          </div>
+
+          <div style={rowStyle}>
+            <label style={labelStyle}>Location Type</label>
+            <select style={{ ...inputStyle, background: colors.bgInput }} value={form.delivery_location_type} onChange={set('delivery_location_type')}>
+              {LOCATION_TYPES.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+            </select>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', ...rowStyle }}>
