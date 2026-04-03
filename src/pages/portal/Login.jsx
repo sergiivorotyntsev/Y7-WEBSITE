@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
+import SmsConsent from '../../components/SmsConsent';
 import { colors, fonts, button as btnStyles } from '../../theme';
 
 const inputStyle = {
   fontFamily: fonts.sans,
-  fontSize: '14px',
+  fontSize: '16px',
   padding: '12px 14px',
   borderRadius: '8px',
   border: `1px solid ${colors.borderInput}`,
@@ -13,24 +14,48 @@ const inputStyle = {
   color: colors.text,
   outline: 'none',
   width: '100%',
+  boxSizing: 'border-box',
+};
+
+const labelStyle = {
+  fontFamily: fonts.sans,
+  fontSize: '12px',
+  fontWeight: 600,
+  color: colors.text,
+  textTransform: 'uppercase',
+  letterSpacing: '0.5px',
+  display: 'block',
+  marginBottom: '4px',
 };
 
 export default function Login() {
   const navigate = useNavigate();
   const { user, login } = useAuth();
-  const [step, setStep] = useState('email'); // 'email' | 'code'
+  // Steps: 'email' → 'code' | 'register' (→ 'code')
+  const [step, setStep] = useState('email');
   const [email, setEmail] = useState('');
   const [code, setCode] = useState(['', '', '', '', '', '']);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const codeRefs = useRef([]);
 
-  // Redirect if already logged in
+  // Registration form fields (shown in 'register' step)
+  const [reg, setReg] = useState({
+    company_name: '', contact_name: '', phone: '',
+    delivery_address: '', delivery_city: '', delivery_state: '', delivery_zip: '',
+    sms_consent: false,
+  });
+
   useEffect(() => {
     if (user) navigate('/portal/dashboard', { replace: true });
   }, [user, navigate]);
 
-  async function handleRequestCode(e) {
+  function setRegField(field, value) {
+    setReg(prev => ({ ...prev, [field]: value }));
+  }
+
+  // Step 1: Enter email → check if account exists
+  async function handleEmailSubmit(e) {
     e.preventDefault();
     setError(null);
     if (!email.trim() || !email.includes('@')) {
@@ -39,15 +64,19 @@ export default function Login() {
     }
     setLoading(true);
     try {
-      const res = await portalFetch('/api/portal/auth/request-code', {
+      const res = await portalFetch('/api/portal/auth/start', {
         method: 'POST',
         body: JSON.stringify({ email: email.trim() }),
       });
       const data = await res.json();
-      if (res.ok) {
+      if (!res.ok) {
+        setError(data.detail || 'Something went wrong');
+        return;
+      }
+      if (data.action === 'code_sent') {
         setStep('code');
-      } else {
-        setError(data.detail || data.error || 'Failed to send code');
+      } else if (data.action === 'register') {
+        setStep('register');
       }
     } catch (err) {
       setError(err.message || 'Network error');
@@ -56,6 +85,42 @@ export default function Login() {
     }
   }
 
+  // Step register: submit registration → send code → go to code step
+  async function handleRegisterSubmit(e) {
+    e.preventDefault();
+    setError(null);
+    if (!reg.contact_name.trim()) { setError('Full name is required'); return; }
+
+    setLoading(true);
+    try {
+      const res = await portalFetch('/api/portal/auth/web-register', {
+        method: 'POST',
+        body: JSON.stringify({ ...reg, email: email.trim() }),
+      });
+      const data = await res.json();
+      if (res.ok && data.ok) {
+        login(data.session_token, { id: data.customer.id, name: data.customer.name });
+        // Check profile completeness
+        try {
+          const profileRes = await portalFetch('/api/portal/data/profile');
+          const profile = await profileRes.json();
+          if (!profile.delivery_city && !profile.delivery_address) {
+            navigate('/portal/profile', { replace: true, state: { incomplete: true } });
+            return;
+          }
+        } catch { /* proceed to dashboard */ }
+        navigate('/portal/dashboard', { replace: true });
+      } else {
+        setError(data.detail || data.error || 'Registration failed');
+      }
+    } catch (err) {
+      setError(err.message || 'Network error');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  // Code input handlers
   function handleCodeChange(i, val) {
     if (val.length > 1) val = val.slice(-1);
     if (val && !/^\d$/.test(val)) return;
@@ -65,7 +130,6 @@ export default function Login() {
     if (val && i < 5) {
       codeRefs.current[i + 1]?.focus();
     }
-    // Auto-submit when all 6 filled
     if (val && i === 5 && next.every(d => d)) {
       submitCode(next.join(''));
     }
@@ -88,6 +152,15 @@ export default function Login() {
       const data = await res.json();
       if (res.ok && data.status === 'ok') {
         login(data.session_token, { id: data.customer_id, name: data.customer_name });
+        // Check profile completeness
+        try {
+          const profileRes = await portalFetch('/api/portal/data/profile');
+          const profile = await profileRes.json();
+          if (!profile.delivery_city && !profile.delivery_address) {
+            navigate('/portal/profile', { replace: true, state: { incomplete: true } });
+            return;
+          }
+        } catch { /* proceed to dashboard */ }
         navigate('/portal/dashboard', { replace: true });
       } else {
         setError(data.detail || 'Invalid or expired code');
@@ -101,115 +174,77 @@ export default function Login() {
     }
   }
 
+  // --- HEADINGS per step ---
+  const headings = {
+    email: { title: 'Welcome to Y7 Logistics', sub: 'Enter your email to get started \u2014 log in or create an account.' },
+    code: { title: 'Enter Verification Code', sub: `We sent a 6-digit code to ${email}. Check your inbox.` },
+    register: { title: 'Create Your Account', sub: `No account found for ${email}. Fill in your details below.` },
+  };
+  const h = headings[step];
+
   return (
-    <div style={{ maxWidth: '440px', margin: '0 auto', padding: '60px 24px 80px' }}>
+    <div style={{ maxWidth: '480px', margin: '0 auto', padding: '60px 24px 80px' }}>
       <h1 style={{
-        fontFamily: fonts.serif,
-        fontSize: '28px',
-        fontWeight: 700,
-        color: colors.text,
-        textAlign: 'center',
-        marginBottom: '8px',
+        fontFamily: fonts.serif, fontSize: '26px', fontWeight: 700,
+        color: colors.text, textAlign: 'center', marginBottom: '8px',
       }}>
-        {step === 'email' ? 'Log In to Your Account' : 'Enter Verification Code'}
+        {h.title}
       </h1>
       <p style={{
-        fontFamily: fonts.sans,
-        fontSize: '14px',
-        color: colors.textMuted,
-        textAlign: 'center',
-        marginBottom: '32px',
+        fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted,
+        textAlign: 'center', marginBottom: '32px',
       }}>
-        {step === 'email'
-          ? 'Enter your email and we\'ll send you a 6-digit login code.'
-          : `We sent a code to ${email}. Check your inbox.`}
+        {h.sub}
       </p>
 
       {error && (
         <div style={{
-          fontFamily: fonts.sans,
-          fontSize: '13px',
-          color: colors.accent,
-          padding: '10px 14px',
-          background: '#FFF0EC',
-          borderRadius: '8px',
-          marginBottom: '20px',
-          textAlign: 'center',
+          fontFamily: fonts.sans, fontSize: '13px', color: colors.accent,
+          padding: '10px 14px', background: '#FFF0EC', borderRadius: '8px',
+          marginBottom: '20px', textAlign: 'center',
         }}>
           {error}
         </div>
       )}
 
-      {step === 'email' ? (
-        <form onSubmit={handleRequestCode}>
+      {/* ── STEP: EMAIL ── */}
+      {step === 'email' && (
+        <form onSubmit={handleEmailSubmit}>
           <div style={{ marginBottom: '20px' }}>
-            <label style={{
-              fontFamily: fonts.sans,
-              fontSize: '12px',
-              fontWeight: 600,
-              color: colors.text,
-              textTransform: 'uppercase',
-              letterSpacing: '0.5px',
-              display: 'block',
-              marginBottom: '6px',
-            }}>
-              Email Address
-            </label>
+            <label style={labelStyle}>Email Address</label>
             <input
-              type="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              placeholder="you@company.com"
-              style={inputStyle}
-              autoFocus
+              type="email" value={email} onChange={e => setEmail(e.target.value)}
+              placeholder="you@company.com" style={inputStyle} autoFocus
             />
           </div>
-          <button
-            type="submit"
-            disabled={loading}
-            style={{
-              ...btnStyles.accent,
-              width: '100%',
-              padding: '14px',
-              fontSize: '14px',
-              opacity: loading ? 0.6 : 1,
-            }}
-          >
-            {loading ? 'Sending...' : 'Send Login Code'}
+          <button type="submit" disabled={loading} style={{
+            ...btnStyles.accent, width: '100%', padding: '14px', fontSize: '14px',
+            opacity: loading ? 0.6 : 1,
+          }}>
+            {loading ? 'Checking...' : 'Continue'}
           </button>
         </form>
-      ) : (
+      )}
+
+      {/* ── STEP: CODE ── */}
+      {step === 'code' && (
         <div>
-          <div style={{
-            display: 'flex',
-            gap: '10px',
-            justifyContent: 'center',
-            marginBottom: '24px',
-          }}>
+          <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginBottom: '24px' }}>
             {code.map((digit, i) => (
               <input
                 key={i}
                 ref={el => { codeRefs.current[i] = el; }}
-                type="text"
-                inputMode="numeric"
-                maxLength={1}
+                type="text" inputMode="numeric" maxLength={1}
                 value={digit}
                 onChange={e => handleCodeChange(i, e.target.value)}
                 onKeyDown={e => handleCodeKeyDown(i, e)}
                 autoFocus={i === 0}
                 style={{
-                  width: '48px',
-                  height: '56px',
-                  textAlign: 'center',
-                  fontFamily: fonts.mono,
-                  fontSize: '24px',
-                  fontWeight: 700,
+                  width: '48px', height: '56px', textAlign: 'center',
+                  fontFamily: fonts.mono, fontSize: '24px', fontWeight: 700,
                   borderRadius: '10px',
                   border: `2px solid ${digit ? colors.accent : colors.borderInput}`,
-                  background: colors.bgCard,
-                  color: colors.text,
-                  outline: 'none',
-                  transition: 'border-color 200ms ease',
+                  background: colors.bgCard, color: colors.text, outline: 'none',
                 }}
               />
             ))}
@@ -219,39 +254,98 @@ export default function Login() {
               Verifying...
             </p>
           )}
-          <button
-            type="button"
+          <button type="button"
             onClick={() => { setStep('email'); setCode(['', '', '', '', '', '']); setError(null); }}
-            style={{
-              ...btnStyles.secondary,
-              width: '100%',
-              marginTop: '16px',
-              fontSize: '12px',
-            }}
+            style={{ ...btnStyles.secondary, width: '100%', marginTop: '16px', fontSize: '12px' }}
           >
             Use a different email
           </button>
         </div>
       )}
 
+      {/* ── STEP: REGISTER ── */}
+      {step === 'register' && (
+        <form onSubmit={handleRegisterSubmit} style={{
+          background: colors.bgCard, border: `1px solid ${colors.border}`,
+          borderRadius: '16px', padding: '24px',
+          display: 'flex', flexDirection: 'column', gap: '14px',
+        }}>
+          <div style={{
+            fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted,
+            background: colors.bgMuted, padding: '10px 14px', borderRadius: '8px',
+          }}>
+            Email: <strong>{email}</strong>
+          </div>
+
+          <div>
+            <label style={labelStyle}>Full Name *</label>
+            <input value={reg.contact_name} onChange={e => setRegField('contact_name', e.target.value)} style={inputStyle} autoFocus />
+          </div>
+          <div>
+            <label style={labelStyle}>Company Name (optional)</label>
+            <input value={reg.company_name} onChange={e => setRegField('company_name', e.target.value)}
+              placeholder="Leave empty for private customers" style={inputStyle} />
+          </div>
+          <div>
+            <label style={labelStyle}>Phone</label>
+            <input type="tel" value={reg.phone} onChange={e => setRegField('phone', e.target.value)} style={inputStyle} />
+          </div>
+
+          <div style={{
+            fontFamily: fonts.sans, fontSize: '11px', fontWeight: 600,
+            color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px',
+            paddingTop: '8px', borderTop: `1px solid ${colors.border}`,
+          }}>
+            Delivery Address (your lot \u2014 optional)
+          </div>
+          <div>
+            <label style={labelStyle}>Street Address</label>
+            <input value={reg.delivery_address} onChange={e => setRegField('delivery_address', e.target.value)} style={inputStyle} />
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '10px' }}>
+            <div>
+              <label style={labelStyle}>City</label>
+              <input value={reg.delivery_city} onChange={e => setRegField('delivery_city', e.target.value)} style={inputStyle} />
+            </div>
+            <div>
+              <label style={labelStyle}>State</label>
+              <input value={reg.delivery_state} onChange={e => setRegField('delivery_state', e.target.value)} maxLength={2}
+                style={{ ...inputStyle, textTransform: 'uppercase' }} />
+            </div>
+            <div>
+              <label style={labelStyle}>ZIP</label>
+              <input value={reg.delivery_zip} onChange={e => setRegField('delivery_zip', e.target.value)} maxLength={5}
+                inputMode="numeric" style={inputStyle} />
+            </div>
+          </div>
+
+          <SmsConsent checked={reg.sms_consent} onChange={v => setRegField('sms_consent', v)} />
+
+          <button type="submit" disabled={loading} style={{
+            ...btnStyles.accent, width: '100%', padding: '14px', fontSize: '14px',
+            opacity: loading ? 0.6 : 1,
+          }}>
+            {loading ? 'Creating account...' : 'Create Account & Continue'}
+          </button>
+
+          <button type="button"
+            onClick={() => { setStep('email'); setError(null); }}
+            style={{ ...btnStyles.secondary, width: '100%', fontSize: '12px' }}
+          >
+            Use a different email
+          </button>
+        </form>
+      )}
+
       <div style={{
-        marginTop: '32px',
-        textAlign: 'center',
-        fontFamily: fonts.sans,
-        fontSize: '13px',
-        color: colors.textMuted,
+        marginTop: '32px', textAlign: 'center',
+        fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted,
       }}>
-        <div style={{ marginBottom: '12px' }}>
-          Don't have an account?{' '}
-          <Link to="/portal/register" style={{ color: colors.accent, fontWeight: 600 }}>Register</Link>
-        </div>
-        <div>
-          Or connect via{' '}
-          <a href="https://t.me/y7dispatch_bot" target="_blank" rel="noopener noreferrer"
-            style={{ color: colors.accent, fontWeight: 600 }}>
-            Telegram Bot
-          </a>
-        </div>
+        Or connect via{' '}
+        <a href="https://t.me/y7dispatch_bot" target="_blank" rel="noopener noreferrer"
+          style={{ color: colors.accent, fontWeight: 600 }}>
+          Telegram Bot
+        </a>
       </div>
     </div>
   );

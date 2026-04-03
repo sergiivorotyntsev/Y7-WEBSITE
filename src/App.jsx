@@ -44,9 +44,9 @@ export default function App() {
             <Route path="/:lang/dealer-quote" element={<DealerQuote />} />
             <Route path="/:lang/quote/:action/:orderId" element={<QuoteAction />} />
             <Route path="/:lang/agreement/:orderId" element={<Agreement />} />
-            {/* Portal auth (public) */}
+            {/* Portal auth — unified login/register */}
             <Route path="/portal/login" element={<Login />} />
-            <Route path="/portal/register" element={<Register />} />
+            <Route path="/portal/register" element={<Navigate to="/portal/login" replace />} />
             {/* Portal protected routes — placeholder for PORTAL-02/03/04 */}
             <Route path="/portal/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
             <Route path="/portal/order/:id" element={<ProtectedRoute><OrderDetail /></ProtectedRoute>} />
