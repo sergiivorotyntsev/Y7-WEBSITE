@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../hooks/useAuth';
-import LanguageSwitcher from './LanguageSwitcher';
 import { colors, fonts, button } from '../theme';
 
 export default function Header() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
+  const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = [
@@ -61,23 +61,28 @@ export default function Header() {
           }}
             className="desktop-nav"
           >
-            {navLinks.map(({ key, to }) => (
-              <Link
-                key={key}
-                to={to}
-                style={{
-                  fontFamily: fonts.sans,
-                  fontSize: '13px',
-                  color: colors.text,
-                  fontWeight: 500,
-                  transition: 'color 0.2s',
-                }}
-                onMouseEnter={e => e.target.style.color = colors.accent}
-                onMouseLeave={e => e.target.style.color = colors.text}
-              >
-                {t(`nav.${key}`)}
-              </Link>
-            ))}
+            {navLinks.map(({ key, to }) => {
+              const isActive = location.pathname === to;
+              return (
+                <Link
+                  key={key}
+                  to={to}
+                  style={{
+                    fontFamily: fonts.sans,
+                    fontSize: '13px',
+                    color: isActive ? colors.accent : colors.text,
+                    fontWeight: isActive ? 700 : 500,
+                    transition: 'color 0.2s',
+                    borderBottom: isActive ? `2px solid ${colors.accent}` : '2px solid transparent',
+                    paddingBottom: '2px',
+                  }}
+                  onMouseEnter={e => { if (!isActive) e.target.style.color = colors.accent; }}
+                  onMouseLeave={e => { if (!isActive) e.target.style.color = colors.text; }}
+                >
+                  {t(`nav.${key}`)}
+                </Link>
+              );
+            })}
           </div>
 
           <LanguageSwitcher />
@@ -151,23 +156,28 @@ export default function Header() {
           flexDirection: 'column',
           gap: '20px',
         }}>
-          {navLinks.map(({ key, to }) => (
-            <Link
-              key={key}
-              to={to}
-              onClick={() => setMenuOpen(false)}
-              style={{
-                fontFamily: fonts.sans,
-                fontSize: '18px',
-                color: colors.text,
-                fontWeight: 500,
-                padding: '8px 0',
-                borderBottom: `1px solid ${colors.border}`,
-              }}
-            >
-              {t(`nav.${key}`)}
-            </Link>
-          ))}
+          {navLinks.map(({ key, to }) => {
+            const isActive = location.pathname === to;
+            return (
+              <Link
+                key={key}
+                to={to}
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  fontFamily: fonts.sans,
+                  fontSize: '18px',
+                  color: isActive ? colors.accent : colors.text,
+                  fontWeight: isActive ? 700 : 500,
+                  padding: '8px 0',
+                  borderBottom: `1px solid ${colors.border}`,
+                  borderLeft: isActive ? `3px solid ${colors.accent}` : '3px solid transparent',
+                  paddingLeft: '8px',
+                }}
+              >
+                {t(`nav.${key}`)}
+              </Link>
+            );
+          })}
           <button
             onClick={() => { navigate('/quote'); setMenuOpen(false); }}
             style={{ ...button.accent, marginTop: '12px', fontSize: '14px' }}
