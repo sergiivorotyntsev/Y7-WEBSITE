@@ -9,7 +9,6 @@ const TIMELINE_STEPS = [
   { key: 'pending', label: STATUS_LABELS.pending, field: 'created_at' },
   { key: 'quoted', label: STATUS_LABELS.quoted, field: 'quoted_at' },
   { key: 'confirmed', label: STATUS_LABELS.confirmed, field: 'confirmed_at' },
-  { key: 'agreement', label: 'Agreement Signed', field: 'agreement_signed_at' },
   { key: 'dispatched', label: STATUS_LABELS.dispatched, field: null },
   { key: 'picked_up', label: STATUS_LABELS.picked_up, field: null },
   { key: 'in_transit', label: STATUS_LABELS.in_transit, field: null },
@@ -80,6 +79,10 @@ export default function OrderDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [confirmCancel, setConfirmCancel] = useState(false);
+  const [showMessageForm, setShowMessageForm] = useState(false);
+  const [message, setMessage] = useState('');
+  const [messageSent, setMessageSent] = useState(false);
+  const [sendingMessage, setSendingMessage] = useState(false);
   const dispatchSaved = searchParams.get('dispatch_saved') === '1';
 
   const fetchOrder = () => {
@@ -142,9 +145,6 @@ export default function OrderDetail() {
   const currentStatusIdx = STATUS_ORDER.indexOf(order.status);
 
   function isStepDone(stepKey) {
-    const stepIdx = TIMELINE_STEPS.findIndex(s => s.key === stepKey);
-    if (stepKey === 'agreement') return !!order.agreement_signed_at;
-    // Steps before current status are done
     const statusSteps = ['pending', 'quoted', 'confirmed', 'dispatched', 'picked_up', 'in_transit', 'delivered'];
     const sIdx = statusSteps.indexOf(stepKey);
     return sIdx >= 0 && sIdx <= currentStatusIdx;
@@ -201,7 +201,7 @@ export default function OrderDetail() {
       }}>
         {TIMELINE_STEPS.map((step, i) => {
           const done = isStepDone(step.key);
-          const isCurrent = step.key === order.status || (step.key === 'agreement' && !done && currentStatusIdx >= 2);
+          const isCurrent = step.key === order.status;
           const date = getStepDate(step);
 
           return (
@@ -246,7 +246,6 @@ export default function OrderDetail() {
                   color: done ? colors.text : colors.textMuted,
                 }}>
                   {step.label}
-                  {step.key === 'agreement' && done && <> <CheckIcon size={16} /></>}
                 </div>
                 {date && (
                   <div style={{
@@ -374,20 +373,6 @@ export default function OrderDetail() {
         flexWrap: 'wrap',
         marginTop: '8px',
       }}>
-        {order.id && (
-          <Link to="/agreement" style={{
-            fontFamily: fonts.sans,
-            fontSize: '13px',
-            fontWeight: 500,
-            color: colors.accent,
-            padding: '10px 16px',
-            border: `1px solid ${colors.border}`,
-            borderRadius: '8px',
-            textDecoration: 'none',
-          }}>
-            View Agreement
-          </Link>
-        )}
         {['confirmed', 'dispatched', 'completed'].includes(order.status) && order.final_price && (
           <button onClick={async () => {
             try {
@@ -411,19 +396,68 @@ export default function OrderDetail() {
             Download Invoice
           </button>
         )}
-        <a href="mailto:info@y7agency.com" style={{
-          fontFamily: fonts.sans,
-          fontSize: '13px',
-          fontWeight: 500,
-          color: colors.accent,
-          padding: '10px 16px',
-          border: `1px solid ${colors.border}`,
-          borderRadius: '8px',
-          textDecoration: 'none',
+        <button onClick={() => { setShowMessageForm(f => !f); setMessageSent(false); }} style={{
+          fontFamily: fonts.sans, fontSize: '13px', fontWeight: 500,
+          color: colors.accent, padding: '10px 16px',
+          border: `1px solid ${colors.border}`, borderRadius: '8px',
+          background: 'transparent', cursor: 'pointer',
         }}>
           Contact Dispatcher
-        </a>
+        </button>
       </div>
+
+      {/* Message to dispatcher form */}
+      {showMessageForm && (
+        <div style={{
+          background: colors.bgCard, border: `1px solid ${colors.border}`,
+          borderRadius: '12px', padding: '16px 20px', marginTop: '12px',
+        }}>
+          {messageSent ? (
+            <div style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.success, fontWeight: 500 }}>
+              <CheckIcon size={16} /> Message sent! We'll respond shortly.
+            </div>
+          ) : (
+            <>
+              <textarea
+                value={message}
+                onChange={e => setMessage(e.target.value)}
+                placeholder="Message to dispatcher about this order..."
+                style={{
+                  width: '100%', minHeight: '80px', resize: 'vertical',
+                  padding: '10px 12px', border: `1px solid ${colors.borderInput}`,
+                  borderRadius: '8px', fontSize: '14px', fontFamily: fonts.sans,
+                  background: colors.bgInput, color: colors.text, boxSizing: 'border-box',
+                }}
+              />
+              <button
+                disabled={sendingMessage || !message.trim()}
+                onClick={async () => {
+                  setSendingMessage(true);
+                  try {
+                    const r = await portalFetch(`/api/portal/data/orders/${id}/message`, {
+                      method: 'POST',
+                      body: JSON.stringify({ message: message.trim() }),
+                    });
+                    if (r.ok) { setMessageSent(true); setMessage(''); }
+                    else { setError('Failed to send message. Please try again.'); }
+                  } catch { setError('Failed to send message. Please check your connection.'); }
+                  setSendingMessage(false);
+                }}
+                style={{
+                  marginTop: '8px', padding: '8px 20px',
+                  background: colors.accent, color: '#fff',
+                  border: 'none', borderRadius: '20px',
+                  fontSize: '12px', fontWeight: 600, cursor: sendingMessage ? 'not-allowed' : 'pointer',
+                  fontFamily: fonts.sans, textTransform: 'uppercase', letterSpacing: '0.5px',
+                  opacity: (sendingMessage || !message.trim()) ? 0.6 : 1,
+                }}
+              >
+                {sendingMessage ? 'Sending...' : 'Send Message'}
+              </button>
+            </>
+          )}
+        </div>
+      )}
 
       {/* Cancel */}
       {(order.status === 'pending' || order.status === 'quoted') && (
