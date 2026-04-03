@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+    <loc>https://www.y7agency.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk"/>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/services"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/services"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/services"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/services"/>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/dealers</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/dealers"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/dealers"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/dealers"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/dealers"/>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/exporters</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/exporters"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/exporters"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/exporters"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/exporters"/>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/ship-my-car</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/ship-my-car"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ship-my-car"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ship-my-car"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/ship-my-car"/>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/quote</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/quote"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/quote"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/quote"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/quote"/>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/track</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/track"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/track"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/track"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/track"/>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/contact"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/contact"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/contact"/>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/faq</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/faq"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/faq"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/faq"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/faq"/>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/about"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/about"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/about"/>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/dealer-quote</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/dealer-quote"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/dealer-quote"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/dealer-quote"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/dealer-quote"/>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/privacy"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/privacy"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/privacy"/>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/terms</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/terms"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/terms"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/terms"/>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/accessibility</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/accessibility"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/accessibility"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/accessibility"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/accessibility"/>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://y7agency.com/sitemap.xml
+Disallow: /portal/
+Sitemap: https://www.y7agency.com/sitemap.xml
