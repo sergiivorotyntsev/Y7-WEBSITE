@@ -29,6 +29,7 @@ export default function PortPage() {
         title={port.metaTitle}
         description={port.metaDesc}
         path={`/ports/${slug}`}
+        i18n
       />
       <style>{`
         .port-routes-grid {

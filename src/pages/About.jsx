@@ -73,6 +73,7 @@ export default function About() {
         title="About Y7 Logistics"
         description="Licensed auto transport broker USDOT #4427359. Verified carriers, 24/7 dispatch, transparent pricing."
         path="/about"
+        i18n
       />
       <style>{`
         .about-why-grid {

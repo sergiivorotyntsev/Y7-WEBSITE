@@ -194,6 +194,7 @@ export default function FAQ() {
         title="FAQ"
         description="Common questions about auto transport: pricing, timing, insurance, BOL, auction pickup, port delivery."
         path="/faq"
+        i18n
       />
 
       {validCategories.length > 0 && (
