@@ -75,6 +75,8 @@ export default function Footer() {
             <Link to="/exporters" style={linkStyle}>{t('nav.exporters')}</Link>
             <Link to="/ship-my-car" style={linkStyle}>{t('nav.shipMyCar')}</Link>
             <Link to="/track" style={linkStyle}>{t('nav.track')}</Link>
+            <Link to="/faq" style={linkStyle}>{t('nav.faq')}</Link>
+            <Link to="/about" style={linkStyle}>{t('nav.about')}</Link>
             <Link to="/contact" style={linkStyle}>{t('nav.contact')}</Link>
           </div>
         </div>

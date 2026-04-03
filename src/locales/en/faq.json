@@ -1,0 +1,107 @@
+{
+  "title": "Frequently Asked Questions",
+  "subtitle": "Everything you need to know about shipping your vehicle with Y7 Logistics.",
+  "categories": [
+    {
+      "name": "Getting Started",
+      "items": [
+        {
+          "q": "How does auto transport work?",
+          "a": "We match you with licensed, insured carriers through Central Dispatch. You request a quote, we find the best carrier, they pick up and deliver your vehicle door-to-door."
+        },
+        {
+          "q": "How long does shipping take?",
+          "a": "1\u20133 days for routes under 500 miles, 3\u20137 days coast-to-coast. Times are estimates \u2014 weather, traffic, and carrier availability can affect transit."
+        },
+        {
+          "q": "What information do I need to get a quote?",
+          "a": "Vehicle year/make/model or VIN, pickup and delivery cities, and your preferred dates. For auction vehicles, the lot number helps too."
+        },
+        {
+          "q": "Do I need to be present for pickup/delivery?",
+          "a": "Someone 18+ must be present to inspect the vehicle and sign the Bill of Lading (BOL) at both pickup and delivery."
+        }
+      ]
+    },
+    {
+      "name": "Pricing & Payment",
+      "items": [
+        {
+          "q": "How much does it cost to ship a car?",
+          "a": "Prices depend on distance, vehicle size, transport type (open vs enclosed), and market conditions. Request a quote for an accurate estimate."
+        },
+        {
+          "q": "Are there hidden fees?",
+          "a": "No. Your quote includes everything. Inoperable vehicles may have an additional $100\u2013300 fee disclosed upfront."
+        },
+        {
+          "q": "What payment methods do you accept?",
+          "a": "Zelle, bank transfer, ACH for prepayment. Cash or certified funds to the carrier for COD at delivery."
+        },
+        {
+          "q": "Do you require a deposit?",
+          "a": "Depends on the payment method. Prepaid orders are paid in full before dispatch. COD orders may require a booking deposit."
+        }
+      ]
+    },
+    {
+      "name": "During Transport",
+      "items": [
+        {
+          "q": "How do I track my vehicle?",
+          "a": "Through our customer portal, Telegram bot (@y7dispatch_bot), or email updates at every stage."
+        },
+        {
+          "q": "What insurance coverage is included?",
+          "a": "All carriers maintain minimum $100,000 cargo insurance per FMCSA requirements. Most carry $250,000+."
+        },
+        {
+          "q": "What if my car is damaged?",
+          "a": "Note any new damage on the BOL at delivery. File a claim within 24 hours with photos. We help coordinate with the carrier\u2019s insurance."
+        },
+        {
+          "q": "What is a Bill of Lading (BOL)?",
+          "a": "A legal document recording your vehicle\u2019s condition at pickup and delivery. Always inspect and sign it carefully."
+        }
+      ]
+    },
+    {
+      "name": "Auctions & Ports",
+      "items": [
+        {
+          "q": "Do you pick up from IAAI, Copart, Manheim?",
+          "a": "Yes. We handle gate passes, lot releases, and all auction paperwork."
+        },
+        {
+          "q": "What is a gate pass?",
+          "a": "A document from the auction authorizing vehicle release. You can upload it through our portal or Telegram bot."
+        },
+        {
+          "q": "Which US ports do you deliver to?",
+          "a": "Newark NJ, Houston TX, Savannah GA, Baltimore MD, Los Angeles CA, Jacksonville FL, and more."
+        },
+        {
+          "q": "What documents are needed for port delivery?",
+          "a": "Title or export documentation, gate pass (if from auction), and any port-specific release forms."
+        }
+      ]
+    },
+    {
+      "name": "For Dealers & Exporters",
+      "items": [
+        {
+          "q": "Do you offer volume discounts?",
+          "a": "Yes. Dealers and exporters shipping 10+ vehicles/month qualify for custom pricing with a dedicated dispatcher."
+        },
+        {
+          "q": "What is your transparent pricing model?",
+          "a": "For exporters: carrier rate at cost + our flat service fee. No markups on transport."
+        },
+        {
+          "q": "Can I get a dedicated dispatcher?",
+          "a": "Yes, for volume accounts (10+ vehicles/month). One point of contact for all your shipments."
+        }
+      ]
+    }
+  ]
+}

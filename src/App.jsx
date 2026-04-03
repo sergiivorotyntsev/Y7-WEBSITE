@@ -13,6 +13,8 @@ import Accessibility from './pages/Accessibility';
 import Agreement from './pages/Agreement';
 import Track from './pages/Track';
 import Contact from './pages/Contact';
+import FAQ from './pages/FAQ';
+import About from './pages/About';
 import QuoteAction from './pages/QuoteAction';
 import DealerQuote from './pages/DealerQuote';
 import Login from './pages/portal/Login';
@@ -39,6 +41,10 @@ export default function App() {
             <Route path="/accessibility" element={<Accessibility />} />
             <Route path="/track" element={<Track />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/:lang/faq" element={<FAQ />} />
+            <Route path="/:lang/about" element={<About />} />
             <Route path="/agreement/:orderId" element={<Agreement />} />
             <Route path="/dealer-quote" element={<DealerQuote />} />
             <Route path="/:lang/dealer-quote" element={<DealerQuote />} />

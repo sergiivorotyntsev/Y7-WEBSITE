@@ -10,6 +10,8 @@ import dealersEn from './locales/en/dealers.json';
 import exportersEn from './locales/en/exporters.json';
 import shipMycarEn from './locales/en/shipMycar.json';
 import agreementEn from './locales/en/agreement.json';
+import aboutEn from './locales/en/about.json';
+import faqEn from './locales/en/faq.json';
 
 // Russian
 import commonRu from './locales/ru/common.json';
@@ -20,6 +22,8 @@ import dealersRu from './locales/ru/dealers.json';
 import exportersRu from './locales/ru/exporters.json';
 import shipMycarRu from './locales/ru/shipMycar.json';
 import agreementRu from './locales/ru/agreement.json';
+import aboutRu from './locales/ru/about.json';
+import faqRu from './locales/ru/faq.json';
 
 // Polish
 import commonPl from './locales/pl/common.json';
@@ -30,6 +34,8 @@ import dealersPl from './locales/pl/dealers.json';
 import exportersPl from './locales/pl/exporters.json';
 import shipMycarPl from './locales/pl/shipMycar.json';
 import agreementPl from './locales/pl/agreement.json';
+import aboutPl from './locales/pl/about.json';
+import faqPl from './locales/pl/faq.json';
 
 // Ukrainian
 import commonUk from './locales/uk/common.json';
@@ -40,23 +46,25 @@ import dealersUk from './locales/uk/dealers.json';
 import exportersUk from './locales/uk/exporters.json';
 import shipMycarUk from './locales/uk/shipMycar.json';
 import agreementUk from './locales/uk/agreement.json';
+import aboutUk from './locales/uk/about.json';
+import faqUk from './locales/uk/faq.json';
 
 const resources = {
   en: {
     common: commonEn, home: homeEn, quote: quoteEn, services: servicesEn,
-    dealers: dealersEn, exporters: exportersEn, shipMycar: shipMycarEn, agreement: agreementEn,
+    dealers: dealersEn, exporters: exportersEn, shipMycar: shipMycarEn, agreement: agreementEn, about: aboutEn, faq: faqEn,
   },
   ru: {
     common: commonRu, home: homeRu, quote: quoteRu, services: servicesRu,
-    dealers: dealersRu, exporters: exportersRu, shipMycar: shipMycarRu, agreement: agreementRu,
+    dealers: dealersRu, exporters: exportersRu, shipMycar: shipMycarRu, agreement: agreementRu, about: aboutRu, faq: faqRu,
   },
   pl: {
     common: commonPl, home: homePl, quote: quotePl, services: servicesPl,
-    dealers: dealersPl, exporters: exportersPl, shipMycar: shipMycarPl, agreement: agreementPl,
+    dealers: dealersPl, exporters: exportersPl, shipMycar: shipMycarPl, agreement: agreementPl, about: aboutPl, faq: faqPl,
   },
   uk: {
     common: commonUk, home: homeUk, quote: quoteUk, services: servicesUk,
-    dealers: dealersUk, exporters: exportersUk, shipMycar: shipMycarUk, agreement: agreementUk,
+    dealers: dealersUk, exporters: exportersUk, shipMycar: shipMycarUk, agreement: agreementUk, about: aboutUk, faq: faqUk,
   },
 };
 
