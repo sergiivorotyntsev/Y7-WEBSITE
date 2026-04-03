@@ -74,6 +74,12 @@ export default function App() {
             <Route path="/portal/order/:id" element={<ProtectedRoute><OrderDetail /></ProtectedRoute>} />
             <Route path="/portal/order/:id/dispatch-details" element={<ProtectedRoute><DispatchDetails /></ProtectedRoute>} />
             <Route path="/portal/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+            {/* Legacy Wix URL redirects */}
+            <Route path="/blog" element={<Navigate to="/" replace />} />
+            <Route path="/global-sourcing" element={<Navigate to="/services" replace />} />
+            <Route path="/privacy-policy" element={<Navigate to="/privacy" replace />} />
+            <Route path="/terms-and-conditions" element={<Navigate to="/terms" replace />} />
+            <Route path="/accessibility-statement" element={<Navigate to="/accessibility" replace />} />
             <Route path="/:lang" element={<Home />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
