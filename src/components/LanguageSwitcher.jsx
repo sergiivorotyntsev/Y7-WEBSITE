@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { colors, fonts } from '../theme';
+import { trackEvent } from '../utils/analytics';
 
 const langs = ['en', 'ru', 'pl', 'uk'];
 
@@ -12,6 +13,7 @@ export default function LanguageSwitcher() {
 
   function switchLang(code) {
     i18n.changeLanguage(code);
+    trackEvent('language_switch', { language: code });
     navigate(code === 'en' ? '/' : `/${code}`);
   }
 

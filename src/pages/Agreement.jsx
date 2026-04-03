@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth, portalFetch } from '../hooks/useAuth';
 import { apiPost, apiGet } from '../hooks/useApi';
 import { colors, fonts, button as btnStyles } from '../theme';
+import { trackEvent } from '../utils/analytics';
 
 const SECTION_IDS = ['service', 'bol', 'payment', 'insurance', 'cancellation', 'customer', 'delays', 'liability'];
 
@@ -162,6 +163,7 @@ export default function Agreement() {
       const result = await apiPost('/api/public/agreement', payload);
       agreementIdRef.current = result.agreement_id;
       setSuccess(true);
+      trackEvent('agreement_sign');
       setTimeout(() => {
         if (isCustomerLevel) {
           navigate('/portal/dashboard', { replace: true });

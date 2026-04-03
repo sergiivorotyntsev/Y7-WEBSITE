@@ -5,6 +5,7 @@ import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { API_URL } from '../../config';
 import SmsConsent from '../../components/SmsConsent';
 import { colors, fonts, button as btnStyles } from '../../theme';
+import { trackEvent } from '../../utils/analytics';
 
 const inputStyle = {
   fontFamily: fonts.sans,
@@ -72,6 +73,7 @@ export default function Login() {
       const data = await res.json();
       if (data.ok && data.session_token) {
         loginRef.current(data.session_token, data.user);
+        trackEvent('portal_login', { method: 'telegram' });
         navigateRef.current('/portal/dashboard', { replace: true });
       } else {
         setError(data.error || data.detail || 'Telegram login failed. Try email login instead.');
@@ -178,6 +180,7 @@ export default function Login() {
       const data = await res.json();
       if (res.ok && data.status === 'ok') {
         login(data.session_token, { id: data.customer_id, name: data.customer_name });
+        trackEvent('portal_login', { method: 'email_code' });
         try {
           const profileRes = await portalFetch('/api/portal/data/profile');
           const profile = await profileRes.json();

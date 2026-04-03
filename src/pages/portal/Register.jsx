@@ -4,6 +4,7 @@ import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { API_URL } from '../../config';
 import SmsConsent from '../../components/SmsConsent';
 import { colors, fonts, button as btnStyles } from '../../theme';
+import { trackEvent } from '../../utils/analytics';
 
 let _pendingTgAuthReg = null;
 
@@ -82,6 +83,7 @@ export default function Register() {
       const data = await res.json();
       if (data.ok && data.session_token) {
         login(data.session_token, data.user);
+        trackEvent('portal_register', { method: 'telegram' });
         navigate('/portal/dashboard', { replace: true });
       } else {
         setError(data.error || 'Telegram sign up failed');
@@ -118,6 +120,7 @@ export default function Register() {
       const data = await res.json();
       if (res.ok && data.ok) {
         login(data.session_token, { id: data.customer.id, name: data.customer.name });
+        trackEvent('portal_register', { method: 'email' });
         navigate('/portal/dashboard', { replace: true });
       } else {
         setError(data.detail || data.error || 'Registration failed');

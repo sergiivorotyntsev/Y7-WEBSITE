@@ -7,6 +7,7 @@ import RouteEstimator from './RouteEstimator';
 import VehicleSilhouette from './VehicleSilhouette';
 import PostQuoteFlow from './PostQuoteFlow';
 import { colors, fonts, button as btnStyles } from '../theme';
+import { trackEvent } from '../utils/analytics';
 
 const inputStyle = {
   fontFamily: fonts.sans,
@@ -177,6 +178,7 @@ export default function QuoteForm({ compact = false }) {
       };
       const res = await apiPost('/api/public/quote', payload);
       setSuccess(res);
+      trackEvent('quote_form_submit', { transport_type: form.transport_type });
     } catch (err) {
       setError(err.message || 'Something went wrong');
     } finally {
