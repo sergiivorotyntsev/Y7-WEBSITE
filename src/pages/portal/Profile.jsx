@@ -215,6 +215,9 @@ export default function Profile() {
             {profile.agreement_signed ? (
               <span>
                 Agreement: <strong style={{ color: colors.success }}>Signed <CheckIcon size={14} /></strong>
+                {profile.agreement_signed_at && (
+                  <> on {new Date(profile.agreement_signed_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</>
+                )}
                 {profile.agreement_id && (
                   <> &mdash; <a href={`https://dispatch.y7agency.com/api/public/agreement/${profile.agreement_id}/pdf`}
                     target="_blank" rel="noopener noreferrer" style={{ color: colors.accent }}>
@@ -225,7 +228,7 @@ export default function Profile() {
             ) : (
               <span>
                 Agreement: Not signed.{' '}
-                <a href="/agreement" style={{ color: colors.accent }}>Sign now &rarr;</a>
+                <Link to="/agreement" style={{ color: colors.accent }}>Sign now &rarr;</Link>
               </span>
             )}
           </div>
