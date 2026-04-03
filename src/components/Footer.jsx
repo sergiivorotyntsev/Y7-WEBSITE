@@ -81,6 +81,29 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Popular Services */}
+        <div>
+          <div style={{
+            fontFamily: fonts.sans,
+            fontSize: '12px',
+            fontWeight: 600,
+            color: colors.text,
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+            marginBottom: '16px',
+          }}>
+            Popular Services
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <Link to="/car-shipping-cost" style={linkStyle}>Car Shipping Cost</Link>
+            <Link to="/enclosed-car-shipping" style={linkStyle}>Enclosed Car Shipping</Link>
+            <Link to="/auction-car-shipping" style={linkStyle}>Auction Car Shipping</Link>
+            <Link to="/copart-shipping" style={linkStyle}>Copart Shipping</Link>
+            <Link to="/door-to-port-auto-transport" style={linkStyle}>Door-to-Port Transport</Link>
+            <Link to="/dealer-auto-transport" style={linkStyle}>Dealer Auto Transport</Link>
+          </div>
+        </div>
+
         {/* Ports column */}
         <div>
           <div style={{

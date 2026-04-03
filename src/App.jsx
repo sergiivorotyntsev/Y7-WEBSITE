@@ -23,6 +23,14 @@ const Quote = lazy(() => import('./pages/Quote'));
 const QuoteAction = lazy(() => import('./pages/QuoteAction'));
 const DealerQuote = lazy(() => import('./pages/DealerQuote'));
 const PortPage = lazy(() => import('./pages/ports/PortPage'));
+const CarShippingCost = lazy(() => import('./pages/seo/CarShippingCost'));
+const EnclosedCarShipping = lazy(() => import('./pages/seo/EnclosedCarShipping'));
+const AuctionCarShipping = lazy(() => import('./pages/seo/AuctionCarShipping'));
+const CopartShipping = lazy(() => import('./pages/seo/CopartShipping'));
+const IaaiTransport = lazy(() => import('./pages/seo/IaaiTransport'));
+const ManheimTransport = lazy(() => import('./pages/seo/ManheimTransport'));
+const DoorToPort = lazy(() => import('./pages/seo/DoorToPort'));
+const DealerAutoTransport = lazy(() => import('./pages/seo/DealerAutoTransport'));
 const Login = lazy(() => import('./pages/portal/Login'));
 const Dashboard = lazy(() => import('./pages/portal/Dashboard'));
 const OrderDetail = lazy(() => import('./pages/portal/OrderDetail'));
@@ -62,6 +70,15 @@ export default function App() {
             <Route path="/:lang/ports/:slug" element={<PortPage />} />
             <Route path="/dealer-quote" element={<DealerQuote />} />
             <Route path="/:lang/dealer-quote" element={<DealerQuote />} />
+            {/* SEO landing pages */}
+            <Route path="/car-shipping-cost" element={<CarShippingCost />} />
+            <Route path="/enclosed-car-shipping" element={<EnclosedCarShipping />} />
+            <Route path="/auction-car-shipping" element={<AuctionCarShipping />} />
+            <Route path="/copart-shipping" element={<CopartShipping />} />
+            <Route path="/iaai-transport" element={<IaaiTransport />} />
+            <Route path="/manheim-transport" element={<ManheimTransport />} />
+            <Route path="/door-to-port-auto-transport" element={<DoorToPort />} />
+            <Route path="/dealer-auto-transport" element={<DealerAutoTransport />} />
             <Route path="/quote" element={<Quote />} />
             <Route path="/:lang/quote" element={<Quote />} />
             <Route path="/:lang/quote/:action/:orderId" element={<QuoteAction />} />
