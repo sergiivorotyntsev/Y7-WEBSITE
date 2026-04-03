@@ -12,6 +12,9 @@ export default function PageMeta({ title, description, path, lang = 'en' }) {
       <meta property="og:url" content={url} />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="Y7 Logistics" />
+      <meta property="og:image" content="https://www.y7agency.com/og-image.svg" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:image" content="https://www.y7agency.com/og-image.svg" />
       <link rel="canonical" href={url} />
       <link rel="alternate" hreflang="en" href={`https://www.y7agency.com/en${path || ''}`} />
       <link rel="alternate" hreflang="ru" href={`https://www.y7agency.com/ru${path || ''}`} />

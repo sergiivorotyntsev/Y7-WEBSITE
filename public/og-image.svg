@@ -1,0 +1,15 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#F7F5F0"/>
+  <!-- Subtle accent bar at top -->
+  <rect x="0" y="0" width="1200" height="6" fill="#993C1D"/>
+  <!-- Logo -->
+  <text x="100" y="290" font-family="Georgia, 'Times New Roman', serif" font-size="140" font-weight="bold" fill="#2C2C2A">Y7<tspan fill="#993C1D">.</tspan></text>
+  <text x="108" y="360" font-family="Georgia, 'Times New Roman', serif" font-size="52" font-weight="normal" fill="#2C2C2A">Logistics</text>
+  <!-- Tagline -->
+  <text x="108" y="440" font-family="system-ui, -apple-system, sans-serif" font-size="30" fill="#888780">Nationwide Auto Transport</text>
+  <!-- Credentials -->
+  <text x="108" y="490" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#888780">Licensed broker</text>
+  <text x="340" y="490" font-family="'JetBrains Mono', monospace" font-size="20" fill="#999">USDOT #4427359 · MC #1741537</text>
+  <!-- Accent line -->
+  <rect x="108" y="520" width="80" height="4" rx="2" fill="#993C1D"/>
+</svg>
