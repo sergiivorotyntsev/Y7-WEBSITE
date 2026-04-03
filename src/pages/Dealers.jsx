@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import PageMeta from '../components/PageMeta';
 import { colors, fonts, button as btnStyles } from '../theme';
 
 export default function Dealers() {
@@ -9,6 +10,7 @@ export default function Dealers() {
 
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '60px 24px 80px' }}>
+      <PageMeta title="For Auto Dealers" description="Volume auto transport for dealerships. Fixed pricing, dedicated dispatcher, auction pickups." path="/dealers" />
       <h1 style={{
         fontFamily: fonts.serif,
         fontSize: 'clamp(28px, 4vw, 42px)',

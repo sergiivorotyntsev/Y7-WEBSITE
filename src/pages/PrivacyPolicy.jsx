@@ -1,3 +1,4 @@
+import PageMeta from '../components/PageMeta';
 import { colors, fonts } from '../theme';
 
 const h2Style = {
@@ -35,6 +36,7 @@ const ulStyle = {
 export default function PrivacyPolicy() {
   return (
     <div style={{ maxWidth: '760px', margin: '0 auto', padding: '60px 24px 80px' }}>
+      <PageMeta title="Privacy Policy" description="Y7 Consulting Inc privacy policy. Data collection, SMS terms, your rights." path="/privacy" />
       <h1 style={{
         fontFamily: fonts.serif,
         fontSize: 'clamp(28px, 4vw, 38px)',

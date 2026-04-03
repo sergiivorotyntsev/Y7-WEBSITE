@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import PageMeta from '../../components/PageMeta';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import SmsConsent from '../../components/SmsConsent';
 import { colors, fonts, button as btnStyles } from '../../theme';
@@ -184,6 +185,7 @@ export default function Login() {
 
   return (
     <div style={{ maxWidth: '480px', margin: '0 auto', padding: '60px 24px 80px' }}>
+      <PageMeta title="Customer Login" description="Log in to track orders, view quotes, manage shipments." path="/portal/login" />
       <h1 style={{
         fontFamily: fonts.serif, fontSize: '26px', fontWeight: 700,
         color: colors.text, textAlign: 'center', marginBottom: '8px',

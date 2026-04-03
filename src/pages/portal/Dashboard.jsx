@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import PageMeta from '../../components/PageMeta';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles, keyframes } from '../../theme';
 
@@ -73,6 +74,7 @@ export default function Dashboard() {
 
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '40px 24px 80px' }}>
+      <PageMeta title="My Dashboard" description="Your active orders, shipment tracking, account management." path="/portal/dashboard" />
       <style>{keyframes}</style>
 
       {loading && (

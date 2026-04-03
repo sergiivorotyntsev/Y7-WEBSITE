@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PageMeta from '../components/PageMeta';
 import { apiPost } from '../hooks/useApi';
 import { colors, fonts, button as btnStyles } from '../theme';
 
@@ -52,6 +53,7 @@ export default function Contact() {
 
   return (
     <div style={{ maxWidth: '600px', margin: '0 auto', padding: '60px 24px 80px' }}>
+      <PageMeta title="Contact Us" description="Get in touch with Y7 Logistics. Email, Telegram, customer portal. Newton, MA." path="/contact" />
       <h1 style={{ fontFamily: fonts.serif, fontSize: 'clamp(28px, 4vw, 38px)', fontWeight: 700, color: colors.text, textAlign: 'center', marginBottom: '8px' }}>
         Contact Us
       </h1>

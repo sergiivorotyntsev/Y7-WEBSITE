@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PageMeta from '../components/PageMeta';
 import { colors, fonts } from '../theme';
 
 const h2Style = {
@@ -28,6 +29,7 @@ const ulStyle = {
 export default function Accessibility() {
   return (
     <div style={{ maxWidth: '760px', margin: '0 auto', padding: '60px 24px 80px' }}>
+      <PageMeta title="Accessibility" description="Y7 Logistics accessibility commitment and WCAG compliance." path="/accessibility" />
       <h1 style={{
         fontFamily: fonts.serif,
         fontSize: 'clamp(28px, 4vw, 38px)',
