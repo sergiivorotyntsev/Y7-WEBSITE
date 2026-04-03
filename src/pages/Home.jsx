@@ -19,8 +19,11 @@ export default function Home() {
     <div>
       <PageMeta description="Licensed auto transport broker. Ship your vehicle door-to-door or to any US port. Instant quotes, verified carriers, real-time tracking." path="/" i18n />
       {/* 1. Hero */}
-      <section style={{
-        padding: '80px 24px 40px',
+      <style>{`
+        .hero-section { padding: 80px 24px 40px; }
+        @media (max-width: 768px) { .hero-section { padding: 48px 24px 32px; } }
+      `}</style>
+      <section className="hero-section" style={{
         textAlign: 'center',
         maxWidth: '800px',
         margin: '0 auto',

@@ -47,6 +47,7 @@ export default function Header() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
+        gap: '16px',
       }}>
         {/* Logo */}
         <Link to="/" style={{
@@ -55,6 +56,7 @@ export default function Header() {
           fontWeight: 700,
           color: colors.text,
           letterSpacing: '-0.5px',
+          flexShrink: 0,
         }}>
           Y7<span style={{ color: colors.accent }}>.</span>
         </Link>
