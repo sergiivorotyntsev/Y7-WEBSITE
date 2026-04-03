@@ -16,7 +16,7 @@
     },
     "insurance": {
       "title": "Insurance & Claims",
-      "body": "All carriers in our network maintain minimum $100,000 cargo insurance per FMCSA requirements, with most carrying $250,000 or more. We verify active insurance coverage before assigning any carrier to your load. In the event of damage, claims must be filed within 24 hours of delivery with photographs of the damage and a copy of the BOL noting the damage. Y7 Consulting Inc will assist you in filing the claim with the carrier's insurance, but as a broker, we bear no direct cargo liability. Claims are settled between you and the carrier's insurance provider. Customers may purchase additional coverage through third-party transport insurance providers."
+      "body": "All carriers in our network maintain minimum $100,000 cargo insurance per FMCSA requirements, with most carrying $250,000 or more. We verify active insurance coverage before assigning any carrier to your load. In the event of damage, claims must be filed within 24 hours of delivery with photographs of the damage and a copy of the BOL noting the damage. Y7 Consulting Inc will assist you in filing the claim with the carrier's insurance, but as a broker, we bear no direct cargo liability. Claims are settled between you and the carrier's insurance provider. Customers may purchase additional coverage through third-party transport insurance providers. Theft, Fire & Total Loss: In the event of vehicle theft, fire, or total loss during transport, the carrier's cargo insurance applies up to the policy limit. Customer should immediately file a police report (in case of theft) and contact Y7 Logistics. Y7 will provide the carrier's insurance information and assist in filing the claim. Vehicle valuation for total loss is determined by the carrier's insurance provider based on actual cash value at the time of loss."
     },
     "cancellation": {
       "title": "Cancellation Policy",
@@ -24,7 +24,7 @@
     },
     "customer": {
       "title": "Customer Obligations",
-      "body": "You agree to: (1) provide accurate vehicle information including VIN, condition, and operability status; (2) ensure the vehicle is accessible for pickup at the scheduled time and location; (3) inspect the vehicle at both pickup and delivery and sign the Bill of Lading; (4) disclose any modifications, personal items in the vehicle, or non-running condition; (5) pay the agreed transport fee per the payment terms. Inoperable vehicles (non-running, non-steering, non-braking) require special equipment and may incur additional fees of $100-$300. You must accurately disclose vehicle condition — failure to do so may result in additional charges at pickup."
+      "body": "You agree to: (1) provide accurate vehicle information including VIN, condition, and operability status; (2) ensure the vehicle is accessible for pickup at the scheduled time and location; (3) inspect the vehicle at both pickup and delivery and sign the Bill of Lading; (4) disclose any modifications or non-running condition; (5) remove all personal belongings before pickup; (6) pay the agreed transport fee per the payment terms. Inoperable vehicles (non-running, non-steering, non-braking) require special equipment and may incur additional fees of $100-$300. You must accurately disclose vehicle condition — failure to do so may result in additional charges at pickup. Personal Items: Y7 Logistics and the assigned carrier are NOT liable for any personal items left in the vehicle during transport. Any personal items remaining in the vehicle are transported at the customer's own risk and are not covered by carrier cargo insurance."
     },
     "delays": {
       "title": "Estimated Dates & Delays",
@@ -38,7 +38,7 @@
   "checkboxes": {
     "bol": "I understand that I must inspect the vehicle and sign the Bill of Lading (BOL) upon delivery, and that signing without noting damage releases the carrier from liability.",
     "payment": "I understand the payment terms, including deposit requirements and my obligation to pay the carrier at delivery if COD payment is selected.",
-    "broker": "I understand that Y7 Consulting Inc is a licensed broker, not a carrier, and that its liability is limited to the brokerage fee paid.",
+    "broker": "I understand that Y7 Consulting Inc is a licensed broker, not a carrier. Y7's liability is limited to the brokerage fee. The carrier's cargo insurance covers the vehicle during transport. Y7 is not liable for vehicle damage, theft, fire, total loss, or personal items left in the vehicle.",
     "cancellation": "I have read and agree to the cancellation policy, customer obligations, and all terms stated in this agreement."
   },
   "signature": {
