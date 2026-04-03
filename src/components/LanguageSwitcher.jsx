@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { colors, fonts } from '../theme';
 import { trackEvent } from '../utils/analytics';
 
@@ -11,9 +11,14 @@ const langs = [
   { code: 'uk', label: 'UA' },
 ];
 
+// Routes that have /:lang/ prefix versions in App.jsx
+const I18N_PATHS = ['/faq', '/about', '/quote', '/dealer-quote'];
+const I18N_PREFIXES = ['/ports/'];
+
 export default function LanguageSwitcher() {
   const { i18n } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
   const { lang } = useParams();
   const current = lang || i18n.language || 'en';
   const [open, setOpen] = useState(false);
@@ -22,7 +27,27 @@ export default function LanguageSwitcher() {
   function switchLang(code) {
     i18n.changeLanguage(code);
     trackEvent('language_switch', { language: code });
-    navigate(code === 'en' ? '/' : `/${code}`);
+
+    // Determine the base path (strip current lang prefix if present)
+    let basePath = location.pathname;
+    const langCodes = langs.map(l => l.code);
+    const pathParts = basePath.split('/').filter(Boolean);
+    if (pathParts.length > 0 && langCodes.includes(pathParts[0])) {
+      basePath = '/' + pathParts.slice(1).join('/');
+    }
+    if (!basePath || basePath === '/') basePath = '';
+
+    // Check if this path has a /:lang/ version
+    const hasLangRoute = basePath === '' ||
+      I18N_PATHS.includes(basePath) ||
+      I18N_PREFIXES.some(p => basePath.startsWith(p));
+
+    if (hasLangRoute) {
+      navigate(code === 'en' ? (basePath || '/') : `/${code}${basePath}`);
+    } else {
+      // No lang route — stay on current path, just switch i18n
+      // (navigate to same path to trigger re-render if needed)
+    }
     setOpen(false);
   }
 
