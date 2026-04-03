@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import { CheckIcon } from '../components/icons';
 import { apiPost } from '../hooks/useApi';
@@ -299,34 +300,68 @@ export default function Exporters() {
           gap: '16px',
           alignItems: 'stretch',
         }}>
-          {Array.isArray(portList) && portList.map((port, i) => (
-            <div key={i} style={{
-              background: colors.bgCard,
-              border: `1px solid ${colors.border}`,
-              borderRadius: '10px',
-              padding: '16px 20px',
-              display: 'flex',
-              flexDirection: 'column',
-            }}>
+          {Array.isArray(portList) && portList.map((port, i) => {
+            const slugMap = { 'Port Newark': 'newark', 'Port of Houston': 'houston', 'Port of Savannah': 'savannah', 'Port of Los Angeles': 'los-angeles', 'Port of Baltimore': 'baltimore', 'JAXPORT': 'jacksonville' };
+            const portSlug = Object.entries(slugMap).find(([key]) => port.name?.includes(key))?.[1];
+            const card = (
               <div style={{
-                fontFamily: fonts.serif,
-                fontSize: '15px',
-                fontWeight: 700,
-                color: colors.accent,
-                marginBottom: '4px',
-              }}>
-                {port.name}
+                background: colors.bgCard,
+                border: `1px solid ${colors.border}`,
+                borderRadius: '10px',
+                padding: '16px 20px',
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
+                transition: 'transform 200ms ease, box-shadow 200ms ease',
+              }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.06)';
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                <div style={{
+                  fontFamily: fonts.serif,
+                  fontSize: '15px',
+                  fontWeight: 700,
+                  color: colors.accent,
+                  marginBottom: '4px',
+                }}>
+                  {port.name}
+                </div>
+                <div style={{
+                  fontFamily: fonts.sans,
+                  fontSize: '12px',
+                  color: colors.textMuted,
+                  lineHeight: 1.5,
+                  flex: 1,
+                }}>
+                  {port.desc}
+                </div>
+                {portSlug && (
+                  <div style={{
+                    fontFamily: fonts.sans,
+                    fontSize: '12px',
+                    fontWeight: 600,
+                    color: colors.accent,
+                    marginTop: '8px',
+                  }}>
+                    View port details &rarr;
+                  </div>
+                )}
               </div>
-              <div style={{
-                fontFamily: fonts.sans,
-                fontSize: '12px',
-                color: colors.textMuted,
-                lineHeight: 1.5,
-              }}>
-                {port.desc}
-              </div>
-            </div>
-          ))}
+            );
+            return portSlug ? (
+              <Link key={i} to={`/ports/${portSlug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                {card}
+              </Link>
+            ) : (
+              <div key={i}>{card}</div>
+            );
+          })}
         </div>
       </div>
 

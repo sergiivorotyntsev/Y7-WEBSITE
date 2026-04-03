@@ -81,6 +81,29 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Ports column */}
+        <div>
+          <div style={{
+            fontFamily: fonts.sans,
+            fontSize: '12px',
+            fontWeight: 600,
+            color: colors.text,
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+            marginBottom: '16px',
+          }}>
+            Port Delivery
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <Link to="/ports/newark" style={linkStyle}>Port Newark, NJ</Link>
+            <Link to="/ports/houston" style={linkStyle}>Port of Houston, TX</Link>
+            <Link to="/ports/savannah" style={linkStyle}>Port of Savannah, GA</Link>
+            <Link to="/ports/los-angeles" style={linkStyle}>Port of Los Angeles, CA</Link>
+            <Link to="/ports/baltimore" style={linkStyle}>Port of Baltimore, MD</Link>
+            <Link to="/ports/jacksonville" style={linkStyle}>JAXPORT, FL</Link>
+          </div>
+        </div>
+
         {/* Legal column */}
         <div>
           <div style={{

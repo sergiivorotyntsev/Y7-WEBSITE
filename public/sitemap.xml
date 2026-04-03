@@ -102,6 +102,60 @@
   </url>
 
   <url>
+    <loc>https://www.y7agency.com/ports/newark</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/ports/newark"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/newark"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/newark"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/ports/newark"/>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/ports/houston</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/ports/houston"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/houston"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/houston"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/ports/houston"/>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/ports/savannah</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/ports/savannah"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/savannah"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/savannah"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/ports/savannah"/>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/ports/los-angeles</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/ports/los-angeles"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/los-angeles"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/los-angeles"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/ports/los-angeles"/>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/ports/baltimore</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/ports/baltimore"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/baltimore"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/baltimore"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/ports/baltimore"/>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/ports/jacksonville</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/ports/jacksonville"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/jacksonville"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/jacksonville"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/ports/jacksonville"/>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://www.y7agency.com/privacy</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/privacy"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/privacy"/>

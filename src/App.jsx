@@ -17,6 +17,7 @@ import FAQ from './pages/FAQ';
 import About from './pages/About';
 import QuoteAction from './pages/QuoteAction';
 import DealerQuote from './pages/DealerQuote';
+import PortPage from './pages/ports/PortPage';
 import Login from './pages/portal/Login';
 import Register from './pages/portal/Register';
 import Dashboard from './pages/portal/Dashboard';
@@ -53,6 +54,8 @@ export default function App() {
             <Route path="/:lang/about" element={<About />} />
             <Route path="/agreement" element={<ProtectedRoute><Agreement /></ProtectedRoute>} />
             <Route path="/agreement/:orderId" element={<Agreement />} />
+            <Route path="/ports/:slug" element={<PortPage />} />
+            <Route path="/:lang/ports/:slug" element={<PortPage />} />
             <Route path="/dealer-quote" element={<DealerQuote />} />
             <Route path="/:lang/dealer-quote" element={<DealerQuote />} />
             <Route path="/:lang/quote/:action/:orderId" element={<QuoteAction />} />
