@@ -73,13 +73,31 @@ export default function Dashboard() {
 
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '40px 24px 80px' }}>
-      {/* Animation keyframes */}
       <style>{`
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(12px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
       `}</style>
+
+      {loading && (
+        <div style={{ marginBottom: '40px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '12px', marginBottom: '24px' }}>
+            {[0,1,2,3].map(i => (
+              <div key={i} style={{
+                height: 80, borderRadius: '12px',
+                background: `linear-gradient(90deg, ${colors.bgMuted} 25%, ${colors.bgCard} 50%, ${colors.bgMuted} 75%)`,
+                backgroundSize: '800px 100%', animation: 'shimmer 1.5s ease-in-out infinite',
+              }} />
+            ))}
+          </div>
+          {[0,1,2].map(i => (
+            <div key={i} style={{
+              height: 64, borderRadius: '8px', marginBottom: '8px',
+              background: `linear-gradient(90deg, ${colors.bgMuted} 25%, ${colors.bgCard} 50%, ${colors.bgMuted} 75%)`,
+              backgroundSize: '800px 100%', animation: 'shimmer 1.5s ease-in-out infinite',
+            }} />
+          ))}
+        </div>
+      )}
 
       {/* Header */}
       <div style={{

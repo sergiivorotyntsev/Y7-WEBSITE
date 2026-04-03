@@ -100,7 +100,18 @@ export default function OrderDetail() {
   };
 
   if (loading) {
-    return <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: fonts.sans, color: colors.textMuted }}>Loading...</div>;
+    return (
+      <div style={{ maxWidth: '700px', margin: '0 auto', padding: '40px 24px 80px' }}>
+        <style>{`@keyframes shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }`}</style>
+        {[120, 200, 160].map((h, i) => (
+          <div key={i} style={{
+            height: h, borderRadius: '12px', marginBottom: '16px',
+            background: `linear-gradient(90deg, ${colors.bgMuted} 25%, ${colors.bgCard} 50%, ${colors.bgMuted} 75%)`,
+            backgroundSize: '800px 100%', animation: 'shimmer 1.5s ease-in-out infinite',
+          }} />
+        ))}
+      </div>
+    );
   }
 
   if (!order) {

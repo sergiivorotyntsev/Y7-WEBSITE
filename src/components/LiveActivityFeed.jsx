@@ -78,7 +78,7 @@ export default function LiveActivityFeed() {
       `}</style>
 
       {/* Event display */}
-      <div style={{ minHeight: '24px', position: 'relative' }}>
+      <div style={{ minHeight: '24px', position: 'relative' }} aria-live="polite" aria-atomic="true">
         {events.map((ev, i) => (
           <div key={`${i}-${visible}`} style={{
             display: i === visible ? 'block' : 'none',
