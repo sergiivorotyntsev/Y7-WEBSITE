@@ -1,6 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
+// English
 import commonEn from './locales/en/common.json';
 import homeEn from './locales/en/home.json';
 import quoteEn from './locales/en/quote.json';
@@ -10,22 +11,53 @@ import exportersEn from './locales/en/exporters.json';
 import shipMycarEn from './locales/en/shipMycar.json';
 import agreementEn from './locales/en/agreement.json';
 
-const ns = {
-  common: commonEn,
-  home: homeEn,
-  quote: quoteEn,
-  services: servicesEn,
-  dealers: dealersEn,
-  exporters: exportersEn,
-  shipMycar: shipMycarEn,
-  agreement: agreementEn,
-};
+// Russian
+import commonRu from './locales/ru/common.json';
+import homeRu from './locales/ru/home.json';
+import quoteRu from './locales/ru/quote.json';
+import servicesRu from './locales/ru/services.json';
+import dealersRu from './locales/ru/dealers.json';
+import exportersRu from './locales/ru/exporters.json';
+import shipMycarRu from './locales/ru/shipMycar.json';
+import agreementRu from './locales/ru/agreement.json';
+
+// Polish
+import commonPl from './locales/pl/common.json';
+import homePl from './locales/pl/home.json';
+import quotePl from './locales/pl/quote.json';
+import servicesPl from './locales/pl/services.json';
+import dealersPl from './locales/pl/dealers.json';
+import exportersPl from './locales/pl/exporters.json';
+import shipMycarPl from './locales/pl/shipMycar.json';
+import agreementPl from './locales/pl/agreement.json';
+
+// Ukrainian
+import commonUk from './locales/uk/common.json';
+import homeUk from './locales/uk/home.json';
+import quoteUk from './locales/uk/quote.json';
+import servicesUk from './locales/uk/services.json';
+import dealersUk from './locales/uk/dealers.json';
+import exportersUk from './locales/uk/exporters.json';
+import shipMycarUk from './locales/uk/shipMycar.json';
+import agreementUk from './locales/uk/agreement.json';
 
 const resources = {
-  en: ns,
-  ru: ns,
-  pl: ns,
-  uk: ns,
+  en: {
+    common: commonEn, home: homeEn, quote: quoteEn, services: servicesEn,
+    dealers: dealersEn, exporters: exportersEn, shipMycar: shipMycarEn, agreement: agreementEn,
+  },
+  ru: {
+    common: commonRu, home: homeRu, quote: quoteRu, services: servicesRu,
+    dealers: dealersRu, exporters: exportersRu, shipMycar: shipMycarRu, agreement: agreementRu,
+  },
+  pl: {
+    common: commonPl, home: homePl, quote: quotePl, services: servicesPl,
+    dealers: dealersPl, exporters: exportersPl, shipMycar: shipMycarPl, agreement: agreementPl,
+  },
+  uk: {
+    common: commonUk, home: homeUk, quote: quoteUk, services: servicesUk,
+    dealers: dealersUk, exporters: exportersUk, shipMycar: shipMycarUk, agreement: agreementUk,
+  },
 };
 
 i18n.use(initReactI18next).init({
