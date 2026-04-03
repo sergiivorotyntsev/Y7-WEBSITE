@@ -11,15 +11,17 @@ let _pendingTgAuth = null;
 
 function TelegramLoginWidget({ onAuth }) {
   const ref = useRef(null);
-  // Update the ref so the global callback always calls the latest handler
   _pendingTgAuth = onAuth;
 
   useEffect(() => {
     if (!ref.current) return;
     ref.current.innerHTML = '';
     window.__tg_auth_callback = (user) => {
+      console.log('[TG-LOGIN] callback fired, user:', JSON.stringify(user));
+      console.log('[TG-LOGIN] _pendingTgAuth exists:', !!_pendingTgAuth);
       if (_pendingTgAuth) _pendingTgAuth(user);
     };
+    console.log('[TG-LOGIN] widget mounted, callback registered:', typeof window.__tg_auth_callback);
     const s = document.createElement('script');
     s.src = 'https://telegram.org/js/telegram-widget.js?22';
     s.setAttribute('data-telegram-login', 'y7dispatch_bot');
@@ -205,16 +207,21 @@ export default function Login() {
   }
 
   async function handleTelegramAuth(tgUser) {
+    console.log('[TG-LOGIN] handleTelegramAuth called with:', JSON.stringify(tgUser));
+    console.log('[TG-LOGIN] API_URL:', API_URL);
     setError(null);
     setLoading(true);
+    const url = `${API_URL}/api/portal/auth/telegram-login`;
+    console.log('[TG-LOGIN] fetching:', url);
     try {
-      const res = await fetch(`${API_URL}/api/portal/auth/telegram-login`, {
+      const res = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
         body: JSON.stringify(tgUser),
       });
+      console.log('[TG-LOGIN] response status:', res.status);
       const data = await res.json();
+      console.log('[TG-LOGIN] response data:', JSON.stringify(data));
       if (data.ok && data.session_token) {
         login(data.session_token, data.user);
         navigate('/portal/dashboard', { replace: true });
@@ -224,12 +231,8 @@ export default function Login() {
         setError(data.error || data.detail || 'Telegram login failed. Try email login instead.');
       }
     } catch (err) {
-      // "Failed to fetch" = network/CORS error
-      if (err.name === 'TypeError' && err.message.includes('fetch')) {
-        setError('Connection error. Please check your internet and try again.');
-      } else {
-        setError('Telegram login failed. Try email login instead.');
-      }
+      console.error('[TG-LOGIN] FETCH ERROR:', err.name, err.message, err);
+      setError('Connection error: ' + err.message);
     } finally {
       setLoading(false);
     }
