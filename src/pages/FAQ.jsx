@@ -26,19 +26,25 @@ function buildJsonLd(categories) {
 
 /* ── single Q/A row ──────────────────────────── */
 
-function QAItem({ question, answer }) {
+function QAItem({ question, answer, onToggle }) {
   const [open, setOpen] = useState(false);
   const bodyRef = useRef(null);
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
     if (bodyRef.current) setHeight(bodyRef.current.scrollHeight);
-  }, [answer]);
+  }, [answer, open]);
+
+  function handleClick() {
+    setOpen(o => !o);
+    // Notify parent so Category can remeasure
+    if (onToggle) setTimeout(onToggle, 50);
+  }
 
   return (
     <div style={{ borderBottom: `1px solid ${colors.border}` }}>
       <button
-        onClick={() => setOpen(o => !o)}
+        onClick={handleClick}
         aria-expanded={open}
         style={{
           width: '100%',
@@ -74,25 +80,26 @@ function QAItem({ question, answer }) {
         </span>
       </button>
       <div
-        ref={bodyRef}
         style={{
-          maxHeight: open ? height + 'px' : '0px',
+          maxHeight: open ? `${height}px` : '0px',
           overflow: 'hidden',
           transition: 'max-height 300ms ease',
         }}
       >
-        <p
-          style={{
-            fontFamily: fonts.sans,
-            fontSize: '14px',
-            color: colors.textMuted,
-            lineHeight: 1.7,
-            padding: '0 0 16px',
-            margin: 0,
-          }}
-        >
-          {answer}
-        </p>
+        <div ref={bodyRef}>
+          <p
+            style={{
+              fontFamily: fonts.sans,
+              fontSize: '14px',
+              color: colors.textMuted,
+              lineHeight: 1.7,
+              padding: '0 0 16px',
+              margin: 0,
+            }}
+          >
+            {answer}
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -108,7 +115,15 @@ function Category({ name, items, isOpen, onToggle }) {
     if (bodyRef.current) setHeight(bodyRef.current.scrollHeight);
   }, []);
 
+  // Remeasure when opened, when items change, or after inner QA toggles
   useEffect(() => { measure(); }, [items, isOpen, measure]);
+
+  // Allow inner QA items to trigger remeasure
+  const handleInnerToggle = useCallback(() => {
+    // Small delay to let the inner animation start
+    setTimeout(measure, 10);
+    setTimeout(measure, 320);
+  }, [measure]);
 
   return (
     <div
@@ -162,16 +177,15 @@ function Category({ name, items, isOpen, onToggle }) {
         </span>
       </button>
       <div
-        ref={bodyRef}
         style={{
-          maxHeight: isOpen ? height + 'px' : '0px',
+          maxHeight: isOpen ? `${height}px` : '0px',
           overflow: 'hidden',
           transition: 'max-height 350ms ease',
         }}
       >
-        <div style={{ padding: '0 24px 8px' }}>
+        <div ref={bodyRef} style={{ padding: '0 24px 8px' }}>
           {items.map((item, j) => (
-            <QAItem key={j} question={item.q} answer={item.a} />
+            <QAItem key={j} question={item.q} answer={item.a} onToggle={handleInnerToggle} />
           ))}
         </div>
       </div>

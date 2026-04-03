@@ -21,6 +21,14 @@ export default function Header() {
     return () => document.removeEventListener('keydown', handleKey);
   }, [menuOpen]);
 
+  const handleQuoteClick = () => {
+    if (location.pathname === '/' || location.pathname.match(/^\/[a-z]{2}$/)) {
+      const el = document.getElementById('quote-section');
+      if (el) { el.scrollIntoView({ behavior: 'smooth' }); return; }
+    }
+    navigate('/quote');
+  };
+
   const navLinks = [
     { key: 'services', to: '/services' },
     { key: 'dealers', to: '/dealers' },
@@ -126,7 +134,7 @@ export default function Header() {
                 Log in
               </button>
               <button
-                onClick={() => navigate('/quote')}
+                onClick={handleQuoteClick}
                 style={{ ...button.primary, padding: '8px 20px', fontSize: '11px' }}
               >
                 {t('cta.getQuote')}
@@ -192,7 +200,7 @@ export default function Header() {
             );
           })}
           <button
-            onClick={() => { navigate('/quote'); setMenuOpen(false); }}
+            onClick={() => { handleQuoteClick(); setMenuOpen(false); }}
             style={{ ...button.accent, marginTop: '12px', fontSize: '14px' }}
           >
             {t('cta.getQuote')}
