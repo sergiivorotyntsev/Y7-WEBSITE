@@ -64,9 +64,9 @@ export default function Contact() {
         display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '12px', marginBottom: '32px',
       }}>
         {[
-          { icon: '\uD83D\uDCDE', label: '(857) 895-8555', href: 'tel:+18578958555' },
           { icon: '\u2709\uFE0F', label: 'info@y7agency.com', href: 'mailto:info@y7agency.com' },
           { icon: '\uD83D\uDCAC', label: 'Telegram Bot', href: 'https://t.me/y7dispatch_bot' },
+          { icon: '\uD83D\uDD12', label: 'Customer Portal', href: '/portal/login' },
         ].map(c => (
           <a key={c.label} href={c.href} target={c.href.startsWith('http') ? '_blank' : undefined}
             rel={c.href.startsWith('http') ? 'noopener noreferrer' : undefined}

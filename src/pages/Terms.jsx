@@ -46,7 +46,7 @@ export default function Terms() {
 
       <h2 style={h2Style}>1. Agreement &amp; Acceptance</h2>
       <p style={pStyle}>
-        By accessing y7agency.com, requesting a quote, booking a load, or texting/calling our phone numbers,
+        By accessing y7agency.com, requesting a quote, booking a load, or texting our numbers,
         you (&ldquo;Customer,&rdquo; &ldquo;Carrier,&rdquo; or &ldquo;User&rdquo;) agree to these Terms &amp;
         Conditions and to our Privacy Policy and Accessibility Statement. If you do not accept, do not use
         our website or services.
@@ -99,7 +99,7 @@ export default function Terms() {
       <p style={pStyle}><strong>4 &mdash; Fees.</strong> Standard carrier message &amp; data rates may apply. Charges depend on your mobile plan and may differ for international delivery.</p>
       <p style={pStyle}><strong>5 &mdash; Opt-In Method.</strong> You opt in by checking the SMS-consent box on any Y7 web form or by texting any Y7 number first.</p>
       <p style={pStyle}><strong>6 &mdash; Opt-Out Method.</strong> Text STOP at any time to cease messages. One final confirmation text will be sent.</p>
-      <p style={pStyle}><strong>7 &mdash; Help.</strong> Text HELP for assistance, call (857) 895-8555, or email info@y7agency.com.</p>
+      <p style={pStyle}><strong>7 &mdash; Help.</strong> Text HELP for assistance or email info@y7agency.com.</p>
       <p style={pStyle}><strong>8 &mdash; Standard Disclosures.</strong> Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out; HELP for help.</p>
 
       <h2 style={h2Style}>7. Payment Terms (Carriers)</h2>
@@ -109,7 +109,7 @@ export default function Terms() {
       </p>
       <p style={pStyle}>
         Any change to banking or payment details must be submitted in writing (email from authorized company
-        domain) and is subject to verbal verification by Y7 Billing; changes requested by phone are rejected.
+        domain) and is subject to verification by Y7 Billing.
       </p>
 
       <h2 style={h2Style}>8. Liability &amp; Claims</h2>

@@ -115,7 +115,7 @@ export default function Footer() {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             <a href="mailto:info@y7agency.com" style={linkStyle}>info@y7agency.com</a>
-            <a href="tel:+18578958555" style={linkStyle}>(857) 895-8555</a>
+            <a href="https://t.me/y7dispatch_bot" target="_blank" rel="noopener noreferrer" style={linkStyle}>Telegram Bot</a>
             <span style={linkStyle}>1007 Chestnut St, Newton, MA 02464</span>
           </div>
         </div>

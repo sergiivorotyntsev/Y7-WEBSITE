@@ -78,7 +78,7 @@ export default function Accessibility() {
       </p>
       <ul style={ulStyle}>
         <li>Email: <a href="mailto:info@y7agency.com" style={{ color: colors.accent }}>info@y7agency.com</a></li>
-        <li>Phone / Text: <a href="tel:+18578958555" style={{ color: colors.accent }}>(857) 895-8555</a></li>
+        <li>Telegram: <a href="https://t.me/y7dispatch_bot" target="_blank" rel="noopener noreferrer" style={{ color: colors.accent }}>@y7dispatch_bot</a></li>
         <li>Mail: Accessibility Team, Y7 Consulting Inc, 1007 Chestnut St, Suite A, Newton, MA 02464, USA</li>
       </ul>
       <p style={pStyle}>

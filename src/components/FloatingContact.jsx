@@ -3,8 +3,7 @@ import { colors, fonts, keyframes } from '../theme';
 
 const CHANNELS = [
   { icon: '\uD83D\uDCAC', label: 'Telegram', href: 'https://t.me/y7dispatch_bot' },
-  { icon: '\uD83D\uDFE2', label: 'WhatsApp', href: 'https://wa.me/18578958555' },
-  { icon: '\uD83D\uDCDE', label: 'Call us', href: 'tel:+18578958555' },
+  { icon: '\uD83D\uDFE2', label: 'WhatsApp', href: 'https://wa.me/18578958555?text=Hi%20Y7%20Logistics' },
   { icon: '\u2709\uFE0F', label: 'Email', href: 'mailto:info@y7agency.com' },
 ];
 

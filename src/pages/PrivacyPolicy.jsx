@@ -61,9 +61,9 @@ export default function PrivacyPolicy() {
       <h3 style={h3Style}>Contact Information</h3>
       <p style={pStyle}>
         We collect your name, business name, mailing address, e-mail address, and telephone number when you
-        submit a rate-quote request, open an account, or speak with our dispatch team. We use this data to
+        submit a rate-quote request, open an account, or contact our dispatch team. We use this data to
         issue quotes and confirmations, create and maintain your account, and send operational updates by
-        phone, e-mail, or SMS.
+        e-mail, SMS, or Telegram.
       </p>
 
       <h3 style={h3Style}>Load &amp; Transport Details</h3>
@@ -177,7 +177,7 @@ export default function PrivacyPolicy() {
       </p>
       <p style={pStyle}>
         Data-Protection &amp; Privacy Team: dispatch@y7agency.com<br />
-        General inquiries: info@y7agency.com | +1 (857) 895-8555
+        General inquiries: info@y7agency.com
       </p>
 
       <div style={{
