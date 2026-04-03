@@ -6,12 +6,20 @@ import { API_URL } from '../../config';
 import SmsConsent from '../../components/SmsConsent';
 import { colors, fonts, button as btnStyles } from '../../theme';
 
+// Keep onAuth ref stable across renders so the global callback always works
+let _pendingTgAuth = null;
+
 function TelegramLoginWidget({ onAuth }) {
   const ref = useRef(null);
+  // Update the ref so the global callback always calls the latest handler
+  _pendingTgAuth = onAuth;
+
   useEffect(() => {
     if (!ref.current) return;
     ref.current.innerHTML = '';
-    window.__tg_auth_callback = (user) => onAuth(user);
+    window.__tg_auth_callback = (user) => {
+      if (_pendingTgAuth) _pendingTgAuth(user);
+    };
     const s = document.createElement('script');
     s.src = 'https://telegram.org/js/telegram-widget.js?22';
     s.setAttribute('data-telegram-login', 'y7dispatch_bot');
@@ -21,7 +29,7 @@ function TelegramLoginWidget({ onAuth }) {
     s.setAttribute('data-onauth', '__tg_auth_callback(user)');
     s.async = true;
     ref.current.appendChild(s);
-    return () => { delete window.__tg_auth_callback; };
+    return () => { delete window.__tg_auth_callback; _pendingTgAuth = null; };
   }, []);
   return <div ref={ref} style={{ display: 'flex', justifyContent: 'center', margin: '16px 0' }} />;
 }
@@ -210,11 +218,18 @@ export default function Login() {
       if (data.ok && data.session_token) {
         login(data.session_token, data.user);
         navigate('/portal/dashboard', { replace: true });
+      } else if (res.status === 401) {
+        setError('Authentication failed. Please try again.');
       } else {
-        setError(data.error || 'Telegram login failed');
+        setError(data.error || data.detail || 'Telegram login failed. Try email login instead.');
       }
     } catch (err) {
-      setError(err.message || 'Telegram login failed');
+      // "Failed to fetch" = network/CORS error
+      if (err.name === 'TypeError' && err.message.includes('fetch')) {
+        setError('Connection error. Please check your internet and try again.');
+      } else {
+        setError('Telegram login failed. Try email login instead.');
+      }
     } finally {
       setLoading(false);
     }

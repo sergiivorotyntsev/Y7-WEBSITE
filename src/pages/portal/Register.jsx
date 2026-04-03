@@ -5,22 +5,28 @@ import { API_URL } from '../../config';
 import SmsConsent from '../../components/SmsConsent';
 import { colors, fonts, button as btnStyles } from '../../theme';
 
+let _pendingTgAuthReg = null;
+
 function TelegramLoginWidget({ onAuth }) {
   const ref = useRef(null);
+  _pendingTgAuthReg = onAuth;
+
   useEffect(() => {
     if (!ref.current) return;
     ref.current.innerHTML = '';
-    window.__tg_auth_callback = (user) => onAuth(user);
+    window.__tg_auth_callback_reg = (user) => {
+      if (_pendingTgAuthReg) _pendingTgAuthReg(user);
+    };
     const s = document.createElement('script');
     s.src = 'https://telegram.org/js/telegram-widget.js?22';
     s.setAttribute('data-telegram-login', 'y7dispatch_bot');
     s.setAttribute('data-size', 'large');
     s.setAttribute('data-radius', '20');
     s.setAttribute('data-request-access', 'write');
-    s.setAttribute('data-onauth', '__tg_auth_callback(user)');
+    s.setAttribute('data-onauth', '__tg_auth_callback_reg(user)');
     s.async = true;
     ref.current.appendChild(s);
-    return () => { delete window.__tg_auth_callback; };
+    return () => { delete window.__tg_auth_callback_reg; _pendingTgAuthReg = null; };
   }, []);
   return <div ref={ref} style={{ display: 'flex', justifyContent: 'center', margin: '16px 0' }} />;
 }
@@ -81,7 +87,11 @@ export default function Register() {
         setError(data.error || 'Telegram sign up failed');
       }
     } catch (err) {
-      setError(err.message || 'Telegram sign up failed');
+      if (err.name === 'TypeError' && err.message.includes('fetch')) {
+        setError('Connection error. Please check your internet and try again.');
+      } else {
+        setError('Telegram sign up failed. Try the form below instead.');
+      }
     } finally {
       setLoading(false);
     }
