@@ -73,9 +73,13 @@ export default function QuoteForm({ compact = false }) {
   const step2Ref = useRef(null);
   const [step2Height, setStep2Height] = useState(0);
 
+  // Pre-fill from URL params (e.g. resubmit after decline: ?vin=...&pickup_zip=...)
+  const urlParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
   const [form, setForm] = useState({
-    vin: '', vehicle_year: '', vehicle_make: '', vehicle_model: '',
-    pickup_zip: '', pickup_location_type: '',
+    vin: urlParams?.get('vin') || '',
+    vehicle_year: '', vehicle_make: '', vehicle_model: '',
+    pickup_zip: urlParams?.get('pickup_zip') || '',
+    pickup_location_type: '',
     delivery_zip: '', delivery_location_type: '',
     transport_type: 'open',
     name: '', phone: '', email: '',
