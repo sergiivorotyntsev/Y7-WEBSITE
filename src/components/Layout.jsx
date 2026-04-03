@@ -2,6 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import FloatingContact from './FloatingContact';
+import MobileCTA from './MobileCTA';
 import { keyframes } from '../theme';
 
 export default function Layout() {
@@ -16,6 +17,7 @@ export default function Layout() {
       </main>
       <Footer />
       <FloatingContact />
+      <MobileCTA />
     </>
   );
 }
