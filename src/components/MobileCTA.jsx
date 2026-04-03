@@ -6,15 +6,16 @@ export default function MobileCTA() {
   const [visible, setVisible] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-
-  // Hide on portal pages
-  if (location.pathname.startsWith('/portal')) return null;
+  const isPortal = location.pathname.startsWith('/portal');
 
   useEffect(() => {
+    if (isPortal) return;
     const handleScroll = () => setVisible(window.scrollY > 300);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isPortal]);
+
+  if (isPortal) return null;
 
   const handleQuote = () => {
     if (location.pathname === '/' || location.pathname.match(/^\/[a-z]{2}$/)) {
