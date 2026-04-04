@@ -64,17 +64,17 @@ export default function Home() {
         </p>
       </section>
 
-      {/* 2. Live Activity Feed */}
-      <LiveActivityFeed />
-
-      {/* 3. Trust Bar */}
-      <ScrollReveal style={{ padding: '20px 24px 60px' }}>
-        <TrustBar />
+      {/* 2. National Segment Cards */}
+      <ScrollReveal style={{ padding: '40px 24px 20px' }}>
+        <AudienceCards />
       </ScrollReveal>
 
-      {/* 4. Audience Cards */}
+      {/* 3. Live Activity Feed */}
+      <LiveActivityFeed />
+
+      {/* 4. Trust Bar */}
       <ScrollReveal style={{ padding: '20px 24px 60px' }}>
-        <AudienceCards />
+        <TrustBar />
       </ScrollReveal>
 
       {/* 5. How It Works */}

@@ -1,11 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { colors, fonts, button } from '../theme';
-import { DealerTradeIcon, GlobeRouteIcon, PersonalCarIcon } from './icons';
+import { PersonalCarIcon, DealerTradeIcon, GlobeRouteIcon } from './icons';
 
-function Card({ title, desc, to, icon }) {
+function Card({ title, desc, cta, to, icon }) {
   const navigate = useNavigate();
-  const { t } = useTranslation();
 
   return (
     <div
@@ -54,7 +53,7 @@ function Card({ title, desc, to, icon }) {
         onClick={e => { e.stopPropagation(); navigate(to); }}
         style={{ ...button.secondary, alignSelf: 'flex-start' }}
       >
-        {t('cta.learnMore')}
+        {cta} &rarr;
       </button>
     </div>
   );
@@ -64,9 +63,27 @@ export default function AudienceCards() {
   const { t } = useTranslation('home');
 
   const cards = [
-    { title: t('audience.dealersTitle'), desc: t('audience.dealersDesc'), to: '/dealers', icon: <DealerTradeIcon size={40} /> },
-    { title: t('audience.exportersTitle'), desc: t('audience.exportersDesc'), to: '/exporters', icon: <GlobeRouteIcon size={40} /> },
-    { title: t('audience.shipMyCarTitle'), desc: t('audience.shipMyCarDesc'), to: '/ship-my-car', icon: <PersonalCarIcon size={40} /> },
+    {
+      title: t('audience.shipMyCarTitle'),
+      desc: t('audience.shipMyCarDesc'),
+      cta: t('audience.shipMyCarCta'),
+      to: '/ship-my-car',
+      icon: <PersonalCarIcon size={40} />,
+    },
+    {
+      title: t('audience.dealersTitle'),
+      desc: t('audience.dealersDesc'),
+      cta: t('audience.dealersCta'),
+      to: '/dealer-auto-transport',
+      icon: <DealerTradeIcon size={40} />,
+    },
+    {
+      title: t('audience.exportersTitle'),
+      desc: t('audience.exportersDesc'),
+      cta: t('audience.exportersCta'),
+      to: '/door-to-port-auto-transport',
+      icon: <GlobeRouteIcon size={40} />,
+    },
   ];
 
   return (
