@@ -91,6 +91,149 @@ export default function ShipMyCar() {
         </div>
       </section>
 
+      {/* Pricing Factors */}
+      <section style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}>
+        <h2 style={{
+          fontFamily: fonts.serif,
+          fontSize: '22px',
+          fontWeight: 700,
+          color: colors.text,
+          marginBottom: '16px',
+        }}>
+          What Determines Your Shipping Cost
+        </h2>
+        <p style={{
+          fontFamily: fonts.sans,
+          fontSize: '14px',
+          color: colors.textMuted,
+          lineHeight: 1.7,
+        }}>
+          {t('pricingFactors')}
+        </p>
+      </section>
+
+      {/* Peak Season */}
+      <section style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}>
+        <h2 style={{
+          fontFamily: fonts.serif,
+          fontSize: '22px',
+          fontWeight: 700,
+          color: colors.text,
+          marginBottom: '16px',
+        }}>
+          Seasonal Pricing Patterns
+        </h2>
+        <p style={{
+          fontFamily: fonts.sans,
+          fontSize: '14px',
+          color: colors.textMuted,
+          lineHeight: 1.7,
+        }}>
+          {t('peakSeason')}
+        </p>
+      </section>
+
+      {/* Preparation Checklist */}
+      <section style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}>
+        <h2 style={{
+          fontFamily: fonts.serif,
+          fontSize: '22px',
+          fontWeight: 700,
+          color: colors.text,
+          marginBottom: '16px',
+        }}>
+          How to Prepare Your Car for Shipping
+        </h2>
+        <ul style={{
+          paddingLeft: '20px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '10px',
+        }}>
+          {Array.isArray(t('prepChecklist', { returnObjects: true })) &&
+            t('prepChecklist', { returnObjects: true }).map((item, i) => (
+              <li key={i} style={{
+                fontFamily: fonts.sans,
+                fontSize: '14px',
+                color: colors.textMuted,
+                lineHeight: 1.7,
+              }}>
+                {item}
+              </li>
+            ))}
+        </ul>
+      </section>
+
+      {/* What to Expect at Pickup */}
+      <section style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}>
+        <h2 style={{
+          fontFamily: fonts.serif,
+          fontSize: '22px',
+          fontWeight: 700,
+          color: colors.text,
+          marginBottom: '16px',
+        }}>
+          What to Expect at Pickup
+        </h2>
+        <p style={{
+          fontFamily: fonts.sans,
+          fontSize: '14px',
+          color: colors.textMuted,
+          lineHeight: 1.7,
+        }}>
+          {t('pickupProcess')}
+        </p>
+      </section>
+
+      {/* What to Expect at Delivery */}
+      <section style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}>
+        <h2 style={{
+          fontFamily: fonts.serif,
+          fontSize: '22px',
+          fontWeight: 700,
+          color: colors.text,
+          marginBottom: '16px',
+        }}>
+          What to Expect at Delivery
+        </h2>
+        <p style={{
+          fontFamily: fonts.sans,
+          fontSize: '14px',
+          color: colors.textMuted,
+          lineHeight: 1.7,
+        }}>
+          {t('deliveryProcess')}
+        </p>
+      </section>
+
+      {/* Insurance */}
+      <section style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}>
+        <div style={{
+          background: '#FFF8F5',
+          borderLeft: `4px solid ${colors.accent}`,
+          borderRadius: '0 12px 12px 0',
+          padding: '24px 28px',
+        }}>
+          <h3 style={{
+            fontFamily: fonts.sans,
+            fontSize: '15px',
+            fontWeight: 700,
+            color: colors.text,
+            marginBottom: '10px',
+          }}>
+            Insurance Coverage During Transport
+          </h3>
+          <p style={{
+            fontFamily: fonts.sans,
+            fontSize: '13px',
+            color: colors.textMuted,
+            lineHeight: 1.7,
+          }}>
+            {t('insuranceInfo')}
+          </p>
+        </div>
+      </section>
+
       {/* Open vs Enclosed Comparison */}
       <section style={{ maxWidth: '900px', margin: '0 auto', padding: '0 24px 48px' }}>
         <TransportComparison />

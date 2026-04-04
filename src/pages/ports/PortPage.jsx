@@ -118,6 +118,73 @@ export default function PortPage() {
         </p>
       </div>
 
+      {/* Address & Gate Hours */}
+      {(port.address || port.gateHours) && (
+        <div style={{
+          background: colors.bgCard,
+          border: `1px solid ${colors.border}`,
+          borderRadius: '16px',
+          padding: '28px 32px',
+          marginBottom: '48px',
+        }}>
+          <h2 style={{
+            fontFamily: fonts.serif,
+            fontSize: '22px',
+            fontWeight: 700,
+            color: colors.text,
+            marginBottom: '20px',
+          }}>
+            Address &amp; Gate Hours
+          </h2>
+          {port.address && (
+            <div style={{ marginBottom: '16px' }}>
+              <div style={{
+                fontFamily: fonts.sans,
+                fontSize: '13px',
+                fontWeight: 600,
+                color: colors.text,
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px',
+                marginBottom: '6px',
+              }}>
+                Terminal Address
+              </div>
+              <div style={{
+                fontFamily: fonts.sans,
+                fontSize: '15px',
+                color: colors.textMuted,
+                lineHeight: 1.6,
+              }}>
+                {port.address}
+              </div>
+            </div>
+          )}
+          {port.gateHours && (
+            <div>
+              <div style={{
+                fontFamily: fonts.sans,
+                fontSize: '13px',
+                fontWeight: 600,
+                color: colors.text,
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px',
+                marginBottom: '6px',
+              }}>
+                Gate Hours
+              </div>
+              <div style={{
+                fontFamily: fonts.sans,
+                fontSize: '15px',
+                color: colors.textMuted,
+                lineHeight: 1.6,
+              }}>
+                {port.gateHours}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Popular Routes */}
       <div style={{ marginBottom: '48px' }}>
         <h2 style={{
@@ -215,6 +282,29 @@ export default function PortPage() {
         </ul>
       </div>
 
+      {/* Storage Info */}
+      {port.storageInfo && (
+        <div style={{ marginBottom: '48px' }}>
+          <h2 style={{
+            fontFamily: fonts.serif,
+            fontSize: '22px',
+            fontWeight: 700,
+            color: colors.text,
+            marginBottom: '12px',
+          }}>
+            Storage &amp; Demurrage
+          </h2>
+          <p style={{
+            fontFamily: fonts.sans,
+            fontSize: '15px',
+            color: colors.textMuted,
+            lineHeight: 1.7,
+          }}>
+            {port.storageInfo}
+          </p>
+        </div>
+      )}
+
       {/* Shipping Destinations */}
       <div style={{ marginBottom: '48px' }}>
         <h2 style={{
@@ -237,6 +327,35 @@ export default function PortPage() {
           Contact us for guidance on which shipping method works best for your destination.
         </p>
       </div>
+
+      {/* Tips */}
+      {port.tips && (
+        <div style={{
+          background: colors.bgCard,
+          border: `1px solid ${colors.border}`,
+          borderRadius: '16px',
+          padding: '28px 32px',
+          marginBottom: '48px',
+        }}>
+          <h2 style={{
+            fontFamily: fonts.serif,
+            fontSize: '22px',
+            fontWeight: 700,
+            color: colors.text,
+            marginBottom: '12px',
+          }}>
+            Tips for {port.name}
+          </h2>
+          <p style={{
+            fontFamily: fonts.sans,
+            fontSize: '15px',
+            color: colors.textMuted,
+            lineHeight: 1.7,
+          }}>
+            {port.tips}
+          </p>
+        </div>
+      )}
 
       {/* CTA */}
       <div style={{

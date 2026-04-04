@@ -101,6 +101,27 @@ export default function Footer() {
             <Link to="/copart-shipping" style={linkStyle}>Copart Shipping</Link>
             <Link to="/door-to-port-auto-transport" style={linkStyle}>Door-to-Port Transport</Link>
             <Link to="/dealer-auto-transport" style={linkStyle}>Dealer Auto Transport</Link>
+            <Link to="/state-to-state-car-shipping" style={linkStyle}>State-to-State Shipping</Link>
+          </div>
+        </div>
+
+        {/* Guides column */}
+        <div>
+          <div style={{
+            fontFamily: fonts.sans,
+            fontSize: '12px',
+            fontWeight: 600,
+            color: colors.text,
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+            marginBottom: '16px',
+          }}>
+            Guides
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <Link to="/how-to-ship-a-car-bought-at-auction" style={linkStyle}>Auction Car Shipping Guide</Link>
+            <Link to="/open-vs-enclosed-auto-transport" style={linkStyle}>Open vs Enclosed Transport</Link>
+            <Link to="/what-is-a-bill-of-lading" style={linkStyle}>What Is a Bill of Lading?</Link>
           </div>
         </div>
 
