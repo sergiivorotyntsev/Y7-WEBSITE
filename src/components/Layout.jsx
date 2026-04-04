@@ -5,6 +5,7 @@ import Footer from './Footer';
 import FloatingContact from './FloatingContact';
 import MobileCTA from './MobileCTA';
 import ErrorBoundary from './ErrorBoundary';
+import ChatWidget from './ChatWidget';
 import { keyframes } from '../theme';
 
 function ScrollToTop() {
@@ -30,6 +31,7 @@ export default function Layout() {
       </main>
       <Footer />
       <FloatingContact />
+      <ChatWidget />
       <MobileCTA />
     </>
   );
