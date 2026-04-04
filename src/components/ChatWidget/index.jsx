@@ -8,6 +8,17 @@ const QUICK_REPLIES = [
   'What are your rates?',
 ]
 
+// Strip markdown that Claude may return despite prompt instructions
+function cleanMd(text) {
+  if (!text) return ''
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '$1')
+    .replace(/\*(.*?)\*/g, '$1')
+    .replace(/`(.*?)`/g, '$1')
+    .replace(/^#{1,3}\s/gm, '')
+    .replace(/^[-*]\s/gm, '\u2022 ')
+}
+
 // ── Bubble button ──────────────────────────────────────────────
 
 function ChatBubbleButton({ onClick, open }) {
@@ -42,16 +53,16 @@ function ChatMessage({ msg }) {
       marginBottom: 10, animation: 'fadeUp 0.25s ease',
     }}>
       <div style={{
-        maxWidth: '80%', padding: '10px 14px', borderRadius: 16,
+        maxWidth: '85%', padding: '10px 14px', borderRadius: 16,
         background: isUser ? colors.accent : '#fff',
         color: isUser ? '#fff' : colors.text,
         fontSize: 14, lineHeight: 1.5,
         fontFamily: fonts.sans,
         border: isUser ? 'none' : `1px solid ${colors.border}`,
         boxShadow: isUser ? 'none' : '0 1px 3px rgba(0,0,0,0.05)',
-        whiteSpace: 'pre-wrap', wordBreak: 'break-word',
+        whiteSpace: 'pre-wrap', wordBreak: 'break-word', overflowWrap: 'break-word',
       }}>
-        {msg.content}
+        {isUser ? msg.content : cleanMd(msg.content)}
         {msg.streaming && <span style={{ animation: 'pulse 1s infinite', marginLeft: 2 }}>{'\u2588'}</span>}
       </div>
     </div>
@@ -98,8 +109,9 @@ function ChatInput({ onSend, disabled }) {
 
   return (
     <form onSubmit={handleSubmit} style={{
-      display: 'flex', gap: 8, padding: '10px 16px',
+      display: 'flex', gap: 8, padding: '8px 12px',
       borderTop: `1px solid ${colors.border}`, background: '#fff',
+      alignItems: 'center',
     }}>
       <input
         ref={inputRef}
@@ -108,18 +120,22 @@ function ChatInput({ onSend, disabled }) {
         placeholder="Type a message..."
         disabled={disabled}
         style={{
-          flex: 1, padding: '10px 14px', fontSize: 14,
-          border: `1px solid ${colors.border}`, borderRadius: 20,
+          flex: 1, minWidth: 0, padding: '10px 14px',
+          fontSize: 16,  /* 16px prevents iOS zoom on focus */
+          border: `1px solid ${colors.border}`, borderRadius: 22,
           outline: 'none', fontFamily: fonts.sans,
           background: colors.bgInput,
         }}
       />
       <button type="submit" disabled={disabled || !text.trim()} style={{
-        padding: '8px 16px', borderRadius: 20, border: 'none',
+        minWidth: 48, height: 44, /* WCAG touch target */
+        padding: '0 16px', borderRadius: 22, border: 'none',
+        flexShrink: 0,
         background: text.trim() && !disabled ? colors.accent : colors.bgMuted,
         color: text.trim() && !disabled ? '#fff' : colors.textMuted,
-        fontSize: 14, fontWeight: 600, cursor: text.trim() && !disabled ? 'pointer' : 'default',
+        fontSize: 16, fontWeight: 600, cursor: text.trim() && !disabled ? 'pointer' : 'default',
         fontFamily: fonts.sans, transition: 'background 0.15s',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
       }}>Send</button>
     </form>
   )
@@ -166,6 +182,7 @@ export default function ChatWidget() {
           right: isMobile ? 0 : 24,
           width: isMobile ? '100vw' : 400,
           height: isMobile ? '100dvh' : 520,
+          paddingBottom: isMobile ? 'env(safe-area-inset-bottom, 0px)' : 0,
           background: colors.bg,
           borderRadius: isMobile ? 0 : 16,
           boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
