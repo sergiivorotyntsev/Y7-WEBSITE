@@ -75,15 +75,14 @@ export default function DealerAutoTransport() {
           a: 'Yes, we offer door-to-door delivery on behalf of your dealership. Your customer gets a professional delivery experience.',
         },
       ]}
-      ctaLabel="Get a Quote"
-      ctaTo="/quote"
+      ctaLabel="Get Dealer Pricing"
+      ctaTo="/dealer-quote"
       related={[
         { label: 'For Dealers', to: '/dealers' },
         { label: 'Auction Shipping', to: '/auction-car-shipping' },
         { label: 'Copart Shipping', to: '/copart-shipping' },
         { label: 'Manheim Transport', to: '/manheim-transport' },
         { label: 'IAA Transport', to: '/iaai-transport' },
-        { label: 'Dealer Quote', to: '/dealer-quote' },
         { label: 'Port Delivery', to: '/door-to-port-auto-transport' },
         { label: 'Get a Quote', to: '/quote' },
       ]}

@@ -67,15 +67,14 @@ export default function ManheimTransport() {
           a: 'Yes, inter-auction and dealer-to-dealer transport is available. We handle logistics between any combination of auctions and dealerships.',
         },
       ]}
-      ctaLabel="Get a Quote"
-      ctaTo="/quote"
+      ctaLabel="Get Dealer Pricing"
+      ctaTo="/dealer-quote"
       related={[
         { label: 'Auction Shipping', to: '/auction-car-shipping' },
         { label: 'Dealer Transport', to: '/dealer-auto-transport' },
         { label: 'For Dealers', to: '/dealers' },
         { label: 'Copart Shipping', to: '/copart-shipping' },
         { label: 'IAA Transport', to: '/iaai-transport' },
-        { label: 'Dealer Quote', to: '/dealer-quote' },
         { label: 'Get a Quote', to: '/quote' },
       ]}
     >
