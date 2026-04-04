@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import { colors, fonts } from '../theme';
 
@@ -8,14 +9,6 @@ const h2Style = {
   color: colors.text,
   marginTop: '36px',
   marginBottom: '12px',
-};
-const h3Style = {
-  fontFamily: fonts.sans,
-  fontSize: '15px',
-  fontWeight: 600,
-  color: colors.text,
-  marginTop: '20px',
-  marginBottom: '8px',
 };
 const pStyle = {
   fontFamily: fonts.sans,
@@ -32,11 +25,20 @@ const ulStyle = {
   paddingLeft: '24px',
   marginBottom: '12px',
 };
+const strongStyle = {
+  color: colors.text,
+  fontWeight: 600,
+};
 
 export default function PrivacyPolicy() {
   return (
-    <div style={{ maxWidth: '760px', margin: '0 auto', padding: '60px 24px 80px' }}>
-      <PageMeta title="Privacy Policy" description="Y7 Consulting Inc privacy policy. Data collection, SMS terms, your rights." path="/privacy" />
+    <div style={{ maxWidth: '800px', margin: '0 auto', padding: '60px 24px 80px' }}>
+      <PageMeta
+        title="Privacy Policy"
+        description="Y7 Consulting Inc d/b/a Y7 Logistics privacy policy. Data collection, SMS terms, your rights."
+        path="/privacy"
+      />
+
       <h1 style={{
         fontFamily: fonts.serif,
         fontSize: 'clamp(28px, 4vw, 38px)',
@@ -44,155 +46,231 @@ export default function PrivacyPolicy() {
         color: colors.text,
         marginBottom: '8px',
       }}>
-        Privacy Policy &amp; SMS Terms
+        Privacy Policy
       </h1>
-      <p style={{ ...pStyle, fontStyle: 'italic' }}>
-        Y7 Consulting Inc (DBA Y7 Logistics) &mdash; Last updated: July 2025
+
+      {/* 1. Last Updated */}
+      <p style={{ ...pStyle, fontStyle: 'italic', marginBottom: '24px' }}>
+        Last Updated: April 3, 2026
       </p>
 
-      <h2 style={h2Style}>1. Who We Are</h2>
+      {/* 2. Introduction */}
+      <h2 style={h2Style}>1. Introduction</h2>
       <p style={pStyle}>
-        Y7 Consulting INC (&ldquo;Company,&rdquo; &ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;)
-        is a U.S.-based vehicle-transport brokerage, DBA Y7 Logistics. This Privacy Policy explains how we
-        collect, use, disclose, and protect your personal information when you visit y7agency.com, use our
-        services, or communicate with us by phone, SMS, email, or other channels.
+        Y7 Consulting Inc d/b/a Y7 Logistics (&ldquo;Y7,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo;
+        or &ldquo;our&rdquo;) operates the website located at{' '}
+        <Link to="/" style={{ color: colors.accent }}>www.y7agency.com</Link>.
+        We are a licensed property broker under the Federal Motor Carrier Safety Administration (FMCSA),
+        USDOT #4427359 | MC #1741537. This Privacy Policy describes how we collect, use, and protect
+        your information when you visit our website, use our services, or otherwise interact with us.
       </p>
 
-      <h2 style={h2Style}>2. What Personal Information We Collect</h2>
-
-      <h3 style={h3Style}>Contact Information</h3>
+      {/* 3. Information We Collect */}
+      <h2 style={h2Style}>2. Information We Collect</h2>
       <p style={pStyle}>
-        We collect your name, business name, mailing address, e-mail address, and telephone number when you
-        submit a rate-quote request, open an account, or contact our dispatch team. We use this data to
-        issue quotes and confirmations, create and maintain your account, and send operational updates by
-        e-mail, SMS, or Telegram.
+        <span style={strongStyle}>Information you provide directly:</span>
       </p>
-
-      <h3 style={h3Style}>Load &amp; Transport Details</h3>
-      <p style={pStyle}>
-        When a shipment is booked, we receive the load ID, vehicle make/model/VIN, and the pick-up and
-        delivery locations from the shipper or carrier. This information allows us to arrange and track your
-        auto-transport, prepare dispatch sheets and bills of lading, and complete export or customs paperwork.
-      </p>
-
-      <h3 style={h3Style}>Regulatory Identifiers</h3>
-      <p style={pStyle}>
-        Motor-Carrier (MC) and USDOT numbers, certificates of insurance, W-9 forms, driver&rsquo;s-license
-        images, EIN/SSN/ITIN, and similar documents are supplied by carriers and vendors. We use them for
-        FMCSA safety vetting, compliance screening, and tax reporting.
-      </p>
-
-      <h3 style={h3Style}>Payment Information</h3>
-      <p style={pStyle}>
-        Bank routing and account numbers (ACH forms) and billing addresses are provided by carriers or
-        clients so we can remit carrier pay, issue invoices, process refunds, and satisfy bookkeeping and
-        IRS requirements.
-      </p>
-
-      <h3 style={h3Style}>Website &amp; Device Data</h3>
-      <p style={pStyle}>
-        When you browse our site, we automatically log your IP address, cookie identifiers, browser type,
-        referring pages, and session timestamps. We use this data to secure the website, prevent fraud,
-        improve performance, and compile non-identifiable usage analytics.
-      </p>
-
-      <h3 style={h3Style}>SMS Consent Records</h3>
-      <p style={pStyle}>
-        If you opt in to text messaging, we record your phone number, keyword or checkbox consent, and the
-        date/time of opt-in. This record is required to show compliance with the TCPA, CTIA guidelines, and
-        carrier (TCR) rules, and to manage STOP/HELP requests.
-      </p>
-
-      <h3 style={h3Style}>Communications &amp; Support History</h3>
-      <p style={pStyle}>
-        Call recordings, e-mail threads, chat transcripts, and voicemails created during customer-support
-        interactions are stored for quality assurance, dispute resolution, staff training, and regulatory audits.
-      </p>
-
-      <p style={{ ...pStyle, fontWeight: 600, color: colors.text }}>
-        We do not sell or rent personal data. SMS opt-in details and phone numbers are never shared with
-        third parties or affiliates for marketing purposes.
-      </p>
-
-      <p style={pStyle}>
-        Legal bases for processing: contract performance, legitimate business interests (e.g., fraud
-        prevention), and compliance with federal and state law, including FMCSA, IRS, TCPA, and Mass.
-        Gen. Laws ch. 93A.
-      </p>
-
-      <h2 style={h2Style}>3. How We Use Personal Information</h2>
-      <p style={pStyle}><strong>To perform our brokerage services.</strong> We use contact and load details to provide rate quotes, secure transportation, issue dispatch instructions, and coordinate pick-up and delivery of vehicles.</p>
-      <p style={pStyle}><strong>To vet and monitor carriers.</strong> Regulatory identifiers and insurance documents are reviewed to confirm FMCSA authority, safety ratings, and active coverage before a carrier is assigned to your load.</p>
-      <p style={pStyle}><strong>To keep you informed.</strong> We send operational updates, invoices, payment confirmations, and the SMS notifications you request, using the communication channels you have consented to.</p>
-      <p style={pStyle}><strong>To meet legal and regulatory obligations.</strong> Records are retained and disclosed as required by federal and Massachusetts law (e.g., IRS reporting, FMCSA audits, TCPA compliance) and to safeguard our contractual rights.</p>
-      <p style={pStyle}><strong>To improve our site and services.</strong> Website and device data help us detect fraud, enhance performance, and analyse aggregated usage trends so we can refine the user experience.</p>
-
-      <h2 style={h2Style}>4. Who We Share Information With</h2>
       <ul style={ulStyle}>
-        <li>Service providers that process data on our behalf (e.g., RingCentral for calls/SMS, secure payment processors).</li>
-        <li>Government or regulatory authorities when required by law.</li>
-        <li>We do not sell or rent personal information. SMS opt-in data and phone numbers collected for SMS communication purposes will never be shared with any third party or affiliate for marketing purposes.</li>
-        <li>We may disclose information to enforce our brokerage contracts, protect legal rights, or prevent fraud.</li>
+        <li>Name, email address, phone number, and company name</li>
+        <li>Delivery and pick-up addresses</li>
+        <li>Vehicle information, including VIN, year, make, and model</li>
+        <li>Payment and billing information</li>
+      </ul>
+      <p style={pStyle}>
+        <span style={strongStyle}>Information collected automatically:</span>
+      </p>
+      <ul style={ulStyle}>
+        <li>IP address, browser type, and device information</li>
+        <li>Pages visited, referral URL, and session data</li>
+        <li>Cookies and similar tracking technologies</li>
+      </ul>
+      <p style={pStyle}>
+        <span style={strongStyle}>Information from third-party services:</span>
+      </p>
+      <ul style={ulStyle}>
+        <li>Telegram (for shipment communication)</li>
+        <li>Google Analytics (for website usage analytics)</li>
       </ul>
 
-      <h2 style={h2Style} id="sms">5. SMS Messaging Policy</h2>
-      <p style={pStyle}>
-        By opting in &mdash; either by checking the SMS-consent box on our forms or by texting us first &mdash;
-        you authorize Y7 Consulting Inc. (d/b/a Y7 Logistics) to send conversational text messages about
-        quotes, load status, documentation, and payments.
-      </p>
-      <p style={pStyle}><strong>Message frequency:</strong> varies with your shipments, up to 8 texts per active load.</p>
-      <p style={pStyle}><strong>Charges:</strong> standard message and data rates may apply.</p>
-      <p style={pStyle}><strong>Opt-out:</strong> text STOP at any time; you will receive one final confirmation text.</p>
-      <p style={pStyle}><strong>Help:</strong> text HELP or e-mail info@y7agency.com.</p>
+      {/* 4. How We Use Your Information */}
+      <h2 style={h2Style}>3. How We Use Your Information</h2>
+      <p style={pStyle}>We use the information we collect for the following purposes:</p>
+      <ul style={ulStyle}>
+        <li>Processing quotes, orders, and service requests</li>
+        <li>Arranging vehicle transport with authorized carriers</li>
+        <li>Communicating with you about shipments via email, SMS (where you have provided explicit consent), and Telegram</li>
+        <li>Sending operational updates, invoices, and delivery confirmations</li>
+        <li>Improving our website, services, and user experience</li>
+        <li>Complying with applicable legal and regulatory obligations</li>
+      </ul>
 
+      {/* 5. SMS/Text Message Terms */}
+      <h2 style={h2Style} id="sms">4. SMS/Text Message Terms</h2>
+      <p style={pStyle}>
+        By checking the SMS consent checkbox on our forms, you expressly authorize Y7 Consulting Inc
+        d/b/a Y7 Logistics to send you text messages related to your shipment. SMS consent is obtained
+        through a clear, affirmative opt-in action and is never assumed.
+      </p>
+      <p style={pStyle}>
+        <span style={strongStyle}>Types of messages:</span> Shipment status updates, assigned carrier
+        information, delivery confirmations, and other operational notifications directly related to
+        your transport order.
+      </p>
+      <p style={pStyle}>
+        <span style={strongStyle}>Message frequency:</span> You may receive approximately 3 to 8 text
+        messages per shipment, depending on the nature and status of your transport.
+      </p>
+      <p style={pStyle}>
+        <span style={strongStyle}>Rates:</span> Standard message and data rates may apply. Please
+        consult your wireless carrier for details regarding your messaging plan.
+      </p>
+      <p style={pStyle}>
+        <span style={strongStyle}>Opt-out:</span> You may opt out of receiving text messages at any
+        time by replying <strong>STOP</strong> to any message. You will receive a single confirmation
+        message acknowledging your opt-out request.
+      </p>
+      <p style={pStyle}>
+        <span style={strongStyle}>Help:</span> For assistance, reply <strong>HELP</strong> to any
+        message or contact us at{' '}
+        <a href="mailto:info@y7agency.com" style={{ color: colors.accent }}>info@y7agency.com</a>.
+      </p>
+      <p style={pStyle}>
+        SMS consent is <strong>not</strong> a condition of purchasing any service from Y7 Logistics.
+        You may use our services without opting in to text messages.
+      </p>
+      <p style={{ ...pStyle, fontWeight: 600, color: colors.text }}>
+        We do not sell, share, or distribute your phone number or SMS consent information to third
+        parties or affiliates for marketing or any other purpose.
+      </p>
+
+      {/* 6. Information Sharing */}
+      <h2 style={h2Style}>5. Information Sharing</h2>
+      <p style={pStyle}>We may share your information with the following parties, solely as necessary to provide our services:</p>
+      <ul style={ulStyle}>
+        <li>
+          <span style={strongStyle}>Carriers:</span> Vehicle details, pick-up and delivery addresses,
+          and contact information are shared with carriers assigned to fulfill your transport order.
+        </li>
+        <li>
+          <span style={strongStyle}>Payment processors:</span> Billing and payment information is
+          transmitted to secure, third-party payment processors to complete transactions.
+        </li>
+        <li>
+          <span style={strongStyle}>Government and regulatory authorities:</span> We may disclose
+          information when required to do so by law, regulation, or lawful government request.
+        </li>
+      </ul>
+      <p style={{ ...pStyle, fontWeight: 600, color: colors.text }}>
+        We do not sell your personal data. We do not share your information with third parties for
+        marketing purposes.
+      </p>
+
+      {/* 7. Cookies & Tracking */}
       <h2 style={h2Style}>6. Cookies &amp; Tracking</h2>
+      <p style={pStyle}>Our website uses the following categories of cookies and tracking technologies:</p>
+      <ul style={ulStyle}>
+        <li>
+          <span style={strongStyle}>Essential cookies:</span> Required for core website functionality,
+          including session management and authentication.
+        </li>
+        <li>
+          <span style={strongStyle}>Analytics cookies:</span> We use Google Analytics 4 (GA4) with IP
+          anonymization enabled to understand website traffic and usage patterns.
+        </li>
+      </ul>
       <p style={pStyle}>
-        We use first-party cookies and Google Analytics to understand traffic and improve our site. You can
-        disable cookies in your browser; some features may not function.
+        We do not use advertising or third-party marketing cookies. You may disable cookies through
+        your browser settings at any time; however, certain website features may not function properly
+        if cookies are disabled.
       </p>
 
-      <h2 style={h2Style}>7. Data Security</h2>
+      {/* 8. Data Retention */}
+      <h2 style={h2Style}>7. Data Retention</h2>
+      <p style={pStyle}>We retain your information in accordance with our legal and regulatory obligations:</p>
+      <ul style={ulStyle}>
+        <li>Account and financial records: seven (7) years, as required by the Internal Revenue Service (IRS)</li>
+        <li>Transport and shipment records: three (3) years, in compliance with FMCSA regulations</li>
+        <li>Communication logs: three (3) years</li>
+      </ul>
       <p style={pStyle}>
-        We implement administrative, technical, and physical safeguards (TLS encryption, least-privilege
-        access, 2FA) to protect your data. No method of transmission is 100% secure, but we strive to use
-        commercially reasonable means.
+        You may request deletion of your personal information at any time. Please note that certain
+        data may be retained as required by applicable law, even after a deletion request is fulfilled.
       </p>
 
-      <h2 style={h2Style}>8. Data Retention</h2>
+      {/* 9. Your Rights */}
+      <h2 style={h2Style}>8. Your Rights</h2>
+      <p style={pStyle}>Depending on your jurisdiction, you may have the right to:</p>
+      <ul style={ulStyle}>
+        <li>Access the personal information we hold about you</li>
+        <li>Request correction of inaccurate or incomplete information</li>
+        <li>Request deletion of your personal information, subject to applicable legal retention requirements</li>
+        <li>Opt out of marketing communications at any time</li>
+      </ul>
       <p style={pStyle}>
-        We keep records only as long as necessary for the purposes described or as required by law (FMCSA,
-        IRS). Carrier payment records are retained for seven (7) years.
+        <span style={strongStyle}>California residents:</span> Under the California Consumer Privacy
+        Act (CCPA), you have the right to know what personal information we collect, to request
+        deletion of your personal information, and to opt out of the sale of your personal
+        information. We do not sell personal information. To exercise any of these rights, please
+        contact us at{' '}
+        <a href="mailto:info@y7agency.com" style={{ color: colors.accent }}>info@y7agency.com</a>.
       </p>
 
-      <h2 style={h2Style}>9. Your Rights</h2>
+      {/* 10. Data Security */}
+      <h2 style={h2Style}>9. Data Security</h2>
       <p style={pStyle}>
-        Depending on your jurisdiction, you may have the right to access, correct, delete, or restrict the
-        use of your personal information, and to opt out of marketing. Email privacy@y7agency.com with
-        your request.
+        We implement industry-standard security measures to protect your personal information, including:
+      </p>
+      <ul style={ulStyle}>
+        <li>HTTPS/TLS encryption for all data transmitted between your browser and our servers</li>
+        <li>Encryption of data at rest</li>
+        <li>Role-based access controls limiting data access to authorized personnel</li>
+        <li>Regular security reviews and assessments</li>
+      </ul>
+      <p style={pStyle}>
+        While no method of electronic transmission or storage is completely secure, we are committed
+        to maintaining commercially reasonable safeguards to protect your data.
       </p>
 
-      <h2 style={h2Style}>10. Contact &amp; Data-Protection Information</h2>
+      {/* 11. Children's Privacy */}
+      <h2 style={h2Style}>10. Children&rsquo;s Privacy</h2>
       <p style={pStyle}>
-        Y7 Consulting Inc. (d/b/a Y7 Logistics)<br />
-        1007 Chestnut St, Suite A, Newton, MA 02464, USA
-      </p>
-      <p style={pStyle}>
-        Data-Protection &amp; Privacy Team: dispatch@y7agency.com<br />
-        General inquiries: info@y7agency.com
+        Our website and services are not directed to individuals under the age of 13. We do not
+        knowingly collect personal information from children under 13. If we become aware that we
+        have inadvertently collected personal information from a child under 13, we will take prompt
+        steps to delete such information.
       </p>
 
+      {/* 12. Changes to This Policy */}
+      <h2 style={h2Style}>11. Changes to This Policy</h2>
+      <p style={pStyle}>
+        We may update this Privacy Policy from time to time to reflect changes in our practices,
+        services, or applicable law. When we make changes, we will revise the &ldquo;Last
+        Updated&rdquo; date at the top of this page. We encourage you to review this Privacy Policy
+        periodically to stay informed about how we protect your information.
+      </p>
+
+      {/* 13. Contact */}
+      <h2 style={h2Style}>12. Contact</h2>
+      <p style={pStyle}>
+        If you have questions or concerns about this Privacy Policy or our data practices, please
+        contact us:
+      </p>
+      <p style={pStyle}>
+        Y7 Consulting Inc d/b/a Y7 Logistics<br />
+        1007 Chestnut St, Newton, MA 02464<br />
+        <a href="mailto:info@y7agency.com" style={{ color: colors.accent }}>info@y7agency.com</a>
+      </p>
+
+      {/* Disclaimer */}
       <div style={{
         marginTop: '40px',
         padding: '24px',
         background: colors.bgMuted,
         borderRadius: '12px',
       }}>
-        <h2 style={{ ...h2Style, marginTop: 0 }}>SMS Terms &amp; Conditions</h2>
-        <p style={pStyle}>
-          By submitting your phone number, you agree to receive operational text messages from Y7 Logistics.
-          Message frequency may vary. Message &amp; data rates may apply. Text STOP to cancel, HELP for help.
-          SMS consent is not shared with third parties.
+        <p style={{ ...pStyle, marginBottom: 0, fontStyle: 'italic' }}>
+          This Privacy Policy is for informational purposes and does not constitute legal advice.
+          Consult your own attorney for legal guidance.
         </p>
       </div>
     </div>
