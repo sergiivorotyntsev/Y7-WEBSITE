@@ -551,6 +551,16 @@ export default function QuoteForm({ compact = false }) {
         </div>
       )}
 
+      <p style={{
+        fontFamily: fonts.sans, fontSize: '11px', color: colors.textMuted,
+        lineHeight: 1.5, textAlign: 'center', margin: '0 0 12px',
+      }}>
+        By submitting this form, you agree to our{' '}
+        <a href="/terms" target="_blank" rel="noopener noreferrer" style={{ color: colors.accent, textDecoration: 'underline' }}>Terms &amp; Conditions</a>
+        {' '}and{' '}
+        <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: colors.accent, textDecoration: 'underline' }}>Privacy Policy</a>.
+      </p>
+
       <button
         type="submit"
         disabled={submitting || !canSubmit}

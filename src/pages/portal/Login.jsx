@@ -349,6 +349,16 @@ export default function Login() {
 
           <SmsConsent checked={reg.sms_consent} onChange={v => setRegField('sms_consent', v)} />
 
+          <p style={{
+            fontFamily: fonts.sans, fontSize: '11px', color: colors.textMuted,
+            lineHeight: 1.5, textAlign: 'center', margin: '0 0 12px',
+          }}>
+            By creating an account, you agree to our{' '}
+            <a href="/terms" target="_blank" rel="noopener noreferrer" style={{ color: colors.accent, textDecoration: 'underline' }}>Terms &amp; Conditions</a>
+            {' '}and{' '}
+            <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: colors.accent, textDecoration: 'underline' }}>Privacy Policy</a>.
+          </p>
+
           <button type="submit" disabled={loading} style={{
             ...btnStyles.accent, width: '100%', padding: '14px', fontSize: '14px',
             opacity: loading ? 0.6 : 1,
