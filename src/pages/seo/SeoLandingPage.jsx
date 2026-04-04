@@ -20,21 +20,54 @@ import { colors, fonts, button as btnStyles } from '../../theme';
  */
 export default function SeoLandingPage({
   meta, heading, intro, whenNeeded, steps, requirements, capabilities, faqs,
-  ctaLabel = 'Get a Free Quote', ctaTo = '/quote', related = [],
+  ctaLabel = 'Get a Free Quote', ctaTo = '/quote', related = [], children,
 }) {
-  const faqSchema = faqs && faqs.length > 0 ? JSON.stringify({
+  const schemas = [];
+
+  // BreadcrumbList schema
+  schemas.push({
     '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map(f => ({
-      '@type': 'Question',
-      name: f.q,
-      acceptedAnswer: { '@type': 'Answer', text: f.a },
-    })),
-  }) : null;
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.y7agency.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://www.y7agency.com/services' },
+      { '@type': 'ListItem', position: 3, name: heading, item: `https://www.y7agency.com${meta.path}` },
+    ],
+  });
+
+  // FAQPage schema
+  if (faqs && faqs.length > 0) {
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(f => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    });
+  }
+
+  // Service schema
+  schemas.push({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: heading,
+    description: meta.description,
+    provider: {
+      '@type': 'Organization',
+      name: 'Y7 Logistics',
+      url: 'https://www.y7agency.com',
+      areaServed: { '@type': 'Country', name: 'United States' },
+    },
+    url: `https://www.y7agency.com${meta.path}`,
+  });
+
+  const combinedSchema = JSON.stringify(schemas);
 
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '60px 24px 80px' }}>
-      <PageMeta title={meta.title} description={meta.description} path={meta.path} schema={faqSchema} />
+      <PageMeta title={meta.title} description={meta.description} path={meta.path} schema={combinedSchema} />
 
       {/* Breadcrumb */}
       <nav aria-label="Breadcrumb" style={{
@@ -67,6 +100,9 @@ export default function SeoLandingPage({
       }}>
         {intro}
       </p>
+
+      {/* Rich content sections */}
+      {children}
 
       {/* When You Need This */}
       {whenNeeded && whenNeeded.length > 0 && (
@@ -211,7 +247,7 @@ export default function SeoLandingPage({
   );
 }
 
-function Section({ title, children }) {
+export function Section({ title, children }) {
   return (
     <section style={{ marginBottom: '40px' }}>
       <h2 style={{
@@ -228,7 +264,7 @@ function Section({ title, children }) {
   );
 }
 
-const listItemStyle = {
+export const listItemStyle = {
   fontFamily: fonts.sans,
   fontSize: '14px',
   color: colors.textMuted,

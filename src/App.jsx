@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './hooks/useAuth';
 import Layout from './components/Layout';
@@ -52,6 +52,9 @@ const NewJerseyToFlorida = lazyWithRetry(() => import('./pages/seo/routes/NewJer
 const TexasToNewark = lazyWithRetry(() => import('./pages/seo/routes/TexasToNewark'));
 const ChicagoToNewark = lazyWithRetry(() => import('./pages/seo/routes/ChicagoToNewark'));
 const AuctionToPort = lazyWithRetry(() => import('./pages/seo/routes/AuctionToPort'));
+const HowToShipAuctionCar = lazyWithRetry(() => import('./pages/seo/guides/HowToShipAuctionCar'));
+const OpenVsEnclosed = lazyWithRetry(() => import('./pages/seo/guides/OpenVsEnclosed'));
+const BillOfLading = lazyWithRetry(() => import('./pages/seo/guides/BillOfLading'));
 const Login = lazyWithRetry(() => import('./pages/portal/Login'));
 const Dashboard = lazyWithRetry(() => import('./pages/portal/Dashboard'));
 const OrderDetail = lazyWithRetry(() => import('./pages/portal/OrderDetail'));
@@ -71,6 +74,11 @@ const skipVisible = {
 };
 
 export default function App() {
+  useEffect(() => {
+    document.__PRERENDER_READY = true;
+    document.dispatchEvent(new Event('prerender-ready'));
+  }, []);
+
   return (
     <AuthProvider>
       <a
@@ -130,6 +138,10 @@ export default function App() {
             <Route path="/texas-to-newark-port-auto-transport" element={<TexasToNewark />} />
             <Route path="/chicago-to-port-newark-car-shipping" element={<ChicagoToNewark />} />
             <Route path="/auction-to-port-transport" element={<AuctionToPort />} />
+            {/* Guide pages */}
+            <Route path="/how-to-ship-a-car-bought-at-auction" element={<HowToShipAuctionCar />} />
+            <Route path="/open-vs-enclosed-auto-transport" element={<OpenVsEnclosed />} />
+            <Route path="/what-is-a-bill-of-lading" element={<BillOfLading />} />
             <Route path="/quote" element={<Quote />} />
             <Route path="/:lang/quote" element={<Quote />} />
             <Route path="/:lang/quote/:action/:orderId" element={<QuoteAction />} />
