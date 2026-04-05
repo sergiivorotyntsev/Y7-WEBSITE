@@ -5,6 +5,7 @@
   <!-- Pages WITH lang prefix routes -->
   <url>
     <loc>https://www.y7agency.com/</loc>
+    <lastmod>2026-04-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl"/>
@@ -15,6 +16,7 @@
 
   <url>
     <loc>https://www.y7agency.com/quote</loc>
+    <lastmod>2026-04-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/quote"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/quote"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/quote"/>
@@ -25,6 +27,7 @@
 
   <url>
     <loc>https://www.y7agency.com/faq</loc>
+    <lastmod>2026-04-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/faq"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/faq"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/faq"/>
@@ -35,6 +38,7 @@
 
   <url>
     <loc>https://www.y7agency.com/about</loc>
+    <lastmod>2026-04-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/about"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/about"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/about"/>
@@ -45,6 +49,7 @@
 
   <url>
     <loc>https://www.y7agency.com/dealer-quote</loc>
+    <lastmod>2026-04-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/dealer-quote"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/dealer-quote"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/dealer-quote"/>
@@ -56,6 +61,7 @@
   <!-- Port pages (have /:lang/ports/:slug routes) -->
   <url>
     <loc>https://www.y7agency.com/ports/newark</loc>
+    <lastmod>2026-04-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/ports/newark"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/newark"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/newark"/>
@@ -66,6 +72,7 @@
 
   <url>
     <loc>https://www.y7agency.com/ports/houston</loc>
+    <lastmod>2026-04-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/ports/houston"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/houston"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/houston"/>
@@ -76,6 +83,7 @@
 
   <url>
     <loc>https://www.y7agency.com/ports/savannah</loc>
+    <lastmod>2026-04-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/ports/savannah"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/savannah"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/savannah"/>
@@ -86,6 +94,7 @@
 
   <url>
     <loc>https://www.y7agency.com/ports/los-angeles</loc>
+    <lastmod>2026-04-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/ports/los-angeles"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/los-angeles"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/los-angeles"/>
@@ -96,6 +105,7 @@
 
   <url>
     <loc>https://www.y7agency.com/ports/baltimore</loc>
+    <lastmod>2026-04-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/ports/baltimore"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/baltimore"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/baltimore"/>
@@ -106,6 +116,7 @@
 
   <url>
     <loc>https://www.y7agency.com/ports/jacksonville</loc>
+    <lastmod>2026-04-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/ports/jacksonville"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/jacksonville"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/jacksonville"/>
@@ -117,161 +128,211 @@
   <!-- Pages WITHOUT lang prefix routes (no hreflang) -->
   <url>
     <loc>https://www.y7agency.com/services</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/dealers</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/exporters</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/ship-my-car</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/track</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/contact</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.7</priority>
   </url>
 
   <!-- SEO landing pages -->
   <url>
     <loc>https://www.y7agency.com/car-shipping-cost</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/enclosed-car-shipping</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/auction-car-shipping</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/copart-shipping</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/iaai-transport</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/manheim-transport</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/door-to-port-auto-transport</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/dealer-auto-transport</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.8</priority>
   </url>
 
   <!-- Additional service pages -->
   <url>
     <loc>https://www.y7agency.com/salvage-car-shipping</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/open-car-shipping</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/state-to-state-car-shipping</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.8</priority>
+  </url>
+
+  <!-- Guide pages -->
+  <url>
+    <loc>https://www.y7agency.com/how-to-ship-a-car-bought-at-auction</loc>
+    <lastmod>2026-04-05</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/open-vs-enclosed-auto-transport</loc>
+    <lastmod>2026-04-05</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.y7agency.com/what-is-a-bill-of-lading</loc>
+    <lastmod>2026-04-05</lastmod>
+    <priority>0.7</priority>
   </url>
 
   <!-- Location pages -->
   <url>
     <loc>https://www.y7agency.com/massachusetts-car-shipping</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/boston-car-shipping</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/newton-auto-transport</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/florida-car-shipping</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/new-jersey-auto-transport</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/texas-auto-transport</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.7</priority>
   </url>
 
   <!-- Route pages -->
   <url>
     <loc>https://www.y7agency.com/massachusetts-to-florida-car-shipping</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/new-jersey-to-florida-car-shipping</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/texas-to-newark-port-auto-transport</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/chicago-to-port-newark-car-shipping</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/auction-to-port-transport</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.8</priority>
   </url>
 
   <!-- Legal (no lang prefix routes) -->
   <url>
     <loc>https://www.y7agency.com/privacy</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.3</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/terms</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.3</priority>
   </url>
 
   <url>
     <loc>https://www.y7agency.com/accessibility</loc>
+    <lastmod>2026-04-05</lastmod>
     <priority>0.3</priority>
   </url>
 
