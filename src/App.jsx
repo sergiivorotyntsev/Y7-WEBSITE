@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider } from './hooks/useAuth';
+import { trackPageView } from './utils/analytics';
 import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
 import LoadingSpinner from './components/LoadingSpinner';
@@ -55,6 +56,7 @@ const AuctionToPort = lazyWithRetry(() => import('./pages/seo/routes/AuctionToPo
 const HowToShipAuctionCar = lazyWithRetry(() => import('./pages/seo/guides/HowToShipAuctionCar'));
 const OpenVsEnclosed = lazyWithRetry(() => import('./pages/seo/guides/OpenVsEnclosed'));
 const BillOfLading = lazyWithRetry(() => import('./pages/seo/guides/BillOfLading'));
+const ReviewSubmit = lazyWithRetry(() => import('./pages/ReviewSubmit'));
 const Login = lazyWithRetry(() => import('./pages/portal/Login'));
 const Dashboard = lazyWithRetry(() => import('./pages/portal/Dashboard'));
 const OrderDetail = lazyWithRetry(() => import('./pages/portal/OrderDetail'));
@@ -74,10 +76,16 @@ const skipVisible = {
 };
 
 export default function App() {
+  const location = useLocation();
+
   useEffect(() => {
     document.__PRERENDER_READY = true;
     document.dispatchEvent(new Event('prerender-ready'));
   }, []);
+
+  useEffect(() => {
+    trackPageView(location.pathname);
+  }, [location.pathname]);
 
   return (
     <AuthProvider>
@@ -138,6 +146,8 @@ export default function App() {
             <Route path="/texas-to-newark-port-auto-transport" element={<TexasToNewark />} />
             <Route path="/chicago-to-port-newark-car-shipping" element={<ChicagoToNewark />} />
             <Route path="/auction-to-port-transport" element={<AuctionToPort />} />
+            {/* Review submission */}
+            <Route path="/review/:token" element={<ReviewSubmit />} />
             {/* Guide pages */}
             <Route path="/how-to-ship-a-car-bought-at-auction" element={<HowToShipAuctionCar />} />
             <Route path="/open-vs-enclosed-auto-transport" element={<OpenVsEnclosed />} />
