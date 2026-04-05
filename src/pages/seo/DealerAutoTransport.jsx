@@ -128,7 +128,7 @@ export default function DealerAutoTransport() {
 
       <Section title="Compliance and Carrier Verification">
         <p style={p}>
-          Y7 Logistics operates under MC #1677498 and USDOT #4427359. We are a licensed and bonded freight broker — not a carrier pretending to be a broker, and not an unlicensed middleman.
+          Y7 Logistics operates under MC #1741537 and USDOT #4427359. We are a licensed and bonded freight broker — not a carrier pretending to be a broker, and not an unlicensed middleman.
         </p>
         <p style={p}>
           Every carrier we dispatch is verified before they touch your inventory. We check active MC authority, minimum insurance coverage ($750K cargo, $1M general liability), FMCSA safety rating, and inspection history. Carriers with conditional or unsatisfactory ratings, insurance lapses, or recent out-of-service violations are excluded from our network. This is not a checkbox exercise — it is how we protect your $30,000-$80,000 vehicles in transit.

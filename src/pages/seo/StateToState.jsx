@@ -9,7 +9,7 @@ export default function StateToState() {
         path: '/state-to-state-car-shipping',
       }}
       heading="State-to-State Car Shipping — Interstate Auto Transport"
-      intro="Shipping a vehicle across state lines requires a federally licensed broker and verified interstate carriers. Y7 Logistics holds USDOT #4427359 and MC #1677498, authorizing us to arrange vehicle transport between all 50 US states. Whether it's a neighboring state or coast-to-coast, we handle the logistics from door to door."
+      intro="Shipping a vehicle across state lines requires a federally licensed broker and verified interstate carriers. Y7 Logistics holds USDOT #4427359 and MC #1741537, authorizing us to arrange vehicle transport between all 50 US states. Whether it's a neighboring state or coast-to-coast, we handle the logistics from door to door."
       whenNeeded={[
         'Relocating to a new state for work or family',
         'Buying a car from a seller in another state',
@@ -35,7 +35,7 @@ export default function StateToState() {
       ]}
       capabilities={[
         'All 50 US states covered',
-        'FMCSA-licensed broker (USDOT #4427359, MC #1677498)',
+        'FMCSA-licensed broker (USDOT #4427359, MC #1741537)',
         'All carriers verified for interstate authority',
         'Open and enclosed transport options',
         'Door-to-door service — no terminal drop-off needed',
@@ -53,7 +53,7 @@ export default function StateToState() {
         },
         {
           q: 'Is interstate auto transport regulated?',
-          a: 'Yes. Interstate vehicle transport is regulated by the Federal Motor Carrier Safety Administration (FMCSA). Both brokers and carriers must hold federal operating authority. Y7 Logistics is fully licensed with USDOT #4427359 and MC #1677498.',
+          a: 'Yes. Interstate vehicle transport is regulated by the Federal Motor Carrier Safety Administration (FMCSA). Both brokers and carriers must hold federal operating authority. Y7 Logistics is fully licensed with USDOT #4427359 and MC #1741537.',
         },
         {
           q: 'What are the most popular state-to-state routes?',

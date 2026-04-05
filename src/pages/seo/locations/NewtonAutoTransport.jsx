@@ -39,7 +39,7 @@ export default function NewtonAutoTransport() {
         'Serving Newton + Wellesley + Needham + Waltham + Watertown + Brookline',
         'All transport types \u2014 open + enclosed + auction + port + dealer',
         'Personal attention from a local team',
-        'USDOT #4427359 and MC #1677498',
+        'USDOT #4427359 and MC #1741537',
       ]}
       faqs={[
         {
