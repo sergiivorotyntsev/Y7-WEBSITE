@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { colors, fonts } from '../theme';
+import { trackEvent } from '../utils/analytics';
+import TrustBadges from './TrustBadges';
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -53,6 +55,9 @@ export default function Footer() {
           }}>
             <div>{t('footer.usdot')}</div>
             <div>{t('footer.mc')}</div>
+          </div>
+          <div style={{ marginTop: 12 }}>
+            <TrustBadges layout="vertical" variant="compact" />
           </div>
         </div>
 
@@ -205,8 +210,8 @@ export default function Footer() {
             {t('footer.contact')}
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            <a href="mailto:info@y7agency.com" style={linkStyle}>info@y7agency.com</a>
-            <a href="https://t.me/y7dispatch_bot" target="_blank" rel="noopener noreferrer" style={linkStyle}>Telegram Bot</a>
+            <a href="mailto:info@y7agency.com" style={linkStyle} onClick={() => trackEvent('email_cta_click', { location: 'footer' })}>info@y7agency.com</a>
+            <a href="https://t.me/y7dispatch_bot" target="_blank" rel="noopener noreferrer" style={linkStyle} onClick={() => trackEvent('telegram_cta_click', { location: 'footer' })}>Telegram Bot</a>
             <span style={linkStyle}>1007 Chestnut St, Newton, MA 02464</span>
           </div>
         </div>

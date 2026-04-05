@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { colors, fonts, keyframes } from '../theme';
 import { TelegramIcon, WhatsAppIcon, EmailIcon, CloseIcon } from './icons';
+import { trackEvent } from '../utils/analytics';
 
 const CHANNELS = [
-  { icon: <TelegramIcon size={18} />, label: 'Telegram', href: 'https://t.me/y7dispatch_bot' },
-  { icon: <WhatsAppIcon size={18} />, label: 'WhatsApp', href: 'https://wa.me/18578958555?text=Hi%20Y7%20Logistics' },
-  { icon: <EmailIcon size={18} />, label: 'Email', href: 'mailto:info@y7agency.com' },
+  { icon: <TelegramIcon size={18} />, label: 'Telegram', href: 'https://t.me/y7dispatch_bot', event: 'telegram_cta_click' },
+  { icon: <WhatsAppIcon size={18} />, label: 'WhatsApp', href: 'https://wa.me/18578958555?text=Hi%20Y7%20Logistics', event: null },
+  { icon: <EmailIcon size={18} />, label: 'Email', href: 'mailto:info@y7agency.com', event: 'email_cta_click' },
 ];
 
 export default function FloatingContact() {
@@ -58,13 +59,13 @@ export default function FloatingContact() {
           gap: '8px',
           animation: 'popUp 200ms ease',
         }}>
-          {CHANNELS.map(({ icon, label, href }, i) => (
+          {CHANNELS.map(({ icon, label, href, event }, i) => (
             <a
               key={label}
               href={href}
               target={href.startsWith('http') ? '_blank' : undefined}
               rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              onClick={() => setOpen(false)}
+              onClick={() => { if (event) trackEvent(event, { location: 'mobile_cta' }); setOpen(false); }}
               style={{
                 display: 'flex',
                 alignItems: 'center',

@@ -94,9 +94,14 @@ export default function QuoteForm({ compact = false }) {
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
   const [touched, setTouched] = useState({});
+  const formStarted = useRef(false);
 
   function markTouched(field) {
     setTouched(prev => ({ ...prev, [field]: true }));
+    if (!formStarted.current) {
+      formStarted.current = true;
+      trackEvent('quote_form_start');
+    }
   }
 
   const vinRegex = /^[A-HJ-NPR-Z0-9]{17}$/;
@@ -138,6 +143,7 @@ export default function QuoteForm({ compact = false }) {
 
   async function handleDecode() {
     const result = await decode(form.vin);
+    trackEvent('vin_decoded', { success: !!result });
     if (result) {
       setForm(prev => ({
         ...prev,
@@ -183,7 +189,7 @@ export default function QuoteForm({ compact = false }) {
       };
       const res = await apiPost('/api/public/quote', payload);
       setSuccess(res);
-      trackEvent('quote_form_submit', { transport_type: form.transport_type });
+      trackEvent('quote_submit', { has_vin: !noVinMode, transport_type: form.transport_type });
     } catch (err) {
       setError(err.message || 'Something went wrong');
     } finally {

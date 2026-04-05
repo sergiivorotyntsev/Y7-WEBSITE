@@ -6,6 +6,7 @@ import { SearchIcon, QuestionIcon } from '../components/icons';
 import { apiGet } from '../hooks/useApi';
 import { colors, fonts, button as btnStyles } from '../theme';
 import { STATUS_PIPELINE, STATUS_LABELS } from '../utils/orderStatus';
+import { trackEvent } from '../utils/analytics';
 
 function fmtDate(d) {
   if (!d) return null;
@@ -27,6 +28,7 @@ export default function Track() {
     try {
       const data = await apiGet(`/api/public/track?code=${encodeURIComponent(code.trim())}`);
       setResult(data);
+      trackEvent('track_shipment_submit');
     } catch (err) {
       setError(err.message || 'Shipment not found');
     } finally {

@@ -5,6 +5,7 @@ import { CheckIcon } from '../components/icons';
 import { apiPost } from '../hooks/useApi';
 import SmsConsent from '../components/SmsConsent';
 import { colors, fonts, button as btnStyles } from '../theme';
+import { trackEvent } from '../utils/analytics';
 
 const US_STATES = [
   'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD',
@@ -111,6 +112,7 @@ export default function DealerQuote() {
     try {
       const res = await apiPost('/api/public/dealer-inquiry', form);
       setSuccess(res.reference);
+      trackEvent('dealer_inquiry_submit', { monthly_volume: form.monthly_volume || '' });
     } catch (err) {
       setError(err.message || 'Something went wrong');
     } finally {
