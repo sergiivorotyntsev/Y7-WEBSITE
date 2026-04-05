@@ -1,0 +1,51 @@
+# Y7 Logistics — Nationwide Auto Transport Broker
+
+> Y7 Logistics is a US-based, FMCSA-licensed auto transport brokerage (USDOT #4427359, MC #1741537) connecting shippers with verified carriers across all 50 states. We specialize in auction pickups, dealer transport, and port delivery for international export. Multilingual support in English, Russian, Polish, and Ukrainian.
+
+## About Y7 Logistics
+
+- Licensed FMCSA broker (MC #1741537, USDOT #4427359)
+- $75,000 surety bond (BMC-84)
+- Central Dispatch verified, 90% of orders through CD
+- Team with 10+ years combined auto transport experience
+- Based in Newton, MA; operates nationwide
+
+## Core Services
+
+- [Ship My Car](https://www.y7agency.com/ship-my-car): Door-to-door auto transport for individuals, 50 states
+- [Dealer Transport](https://www.y7agency.com/dealers): B2B transport for auto dealerships with volume pricing
+- [Export & Port Delivery](https://www.y7agency.com/exporters): Auction-to-port and door-to-port delivery for international exporters
+- [Auction Car Shipping](https://www.y7agency.com/auction-car-shipping): Copart, IAAI, Manheim pickup and delivery
+- [Enclosed Car Shipping](https://www.y7agency.com/enclosed-car-shipping): Covered transport for luxury and classic vehicles
+
+## Port Delivery (6 major US ports)
+
+- [Port Newark, NJ](https://www.y7agency.com/ports/newark)
+- [Port of Houston, TX](https://www.y7agency.com/ports/houston)
+- [Port of Savannah, GA](https://www.y7agency.com/ports/savannah)
+- [Port of Los Angeles, CA](https://www.y7agency.com/ports/los-angeles)
+- [Port of Baltimore, MD](https://www.y7agency.com/ports/baltimore)
+- [JAXPORT, FL](https://www.y7agency.com/ports/jacksonville)
+
+## Auction Coverage
+
+- [Copart Shipping](https://www.y7agency.com/copart-shipping)
+- [IAAI Transport](https://www.y7agency.com/iaai-transport)
+- [Manheim Transport](https://www.y7agency.com/manheim-transport)
+
+## Educational Resources
+
+- [How to Ship a Car Bought at Auction](https://www.y7agency.com/how-to-ship-a-car-bought-at-auction)
+- [Open vs Enclosed Auto Transport](https://www.y7agency.com/open-vs-enclosed-auto-transport)
+- [What Is a Bill of Lading?](https://www.y7agency.com/what-is-a-bill-of-lading)
+
+## Contact
+
+- Email: info@y7agency.com
+- Telegram: https://t.me/y7dispatch_bot
+- Customer Portal: https://www.y7agency.com/portal/login
+- Address: 1007 Chestnut St, Newton, MA 02464
+
+## Languages Supported
+
+English, Russian, Polish, Ukrainian
