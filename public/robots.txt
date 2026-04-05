@@ -1,21 +1,76 @@
+# Y7 Logistics robots.txt
+# Updated: April 5, 2026
+
 User-agent: *
 Allow: /
 Disallow: /portal/
 
-# AI Search Bots - welcome
-User-agent: OAI-SearchBot
+# Google ecosystem
+User-agent: Googlebot
 Allow: /
 
-User-agent: Claude-SearchBot
+User-agent: Googlebot-Image
 Allow: /
 
-User-agent: PerplexityBot
+User-agent: Google-Extended
 Allow: /
 
+# Bing ecosystem
 User-agent: Bingbot
 Allow: /
 
-User-agent: Googlebot
+User-agent: BingPreview
 Allow: /
+
+# OpenAI
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Common Crawl (used by many LLM training sets)
+User-agent: CCBot
+Allow: /
+
+# Apple / DuckDuckGo
+User-agent: Applebot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Block low-value scrapers
+User-agent: Bytespider
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
 
 Sitemap: https://www.y7agency.com/sitemap.xml
