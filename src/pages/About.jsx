@@ -1,4 +1,5 @@
 import PageMeta from '../components/PageMeta';
+import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { ScalesIcon, VerifiedIcon, EyeIcon, MapPinIcon, GlobeIcon, BellIcon } from '../components/icons';
 import { colors, fonts } from '../theme';
 
@@ -69,6 +70,7 @@ const commitments = [
 export default function About() {
   return (
     <div style={styles.page}>
+      <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'About',url:'/about'}]} />
       <PageMeta
         title="About Y7 Logistics"
         description="Licensed auto transport broker USDOT #4427359. Verified carriers, 24/7 dispatch, transparent pricing."

@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
+import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { colors, fonts, button as btnStyles } from '../theme';
 
 const servicePages = [
@@ -26,6 +27,25 @@ export default function Services() {
 
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '60px 24px 80px' }}>
+      <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Services',url:'/services'}]} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "Auto Transport Brokerage",
+        "provider": {"@type": "MovingCompany", "name": "Y7 Logistics"},
+        "areaServed": "United States",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Auto Transport Services",
+          "itemListElement": [
+            {"@type":"Offer","itemOffered":{"@type":"Service","name":"Open Auto Transport"}},
+            {"@type":"Offer","itemOffered":{"@type":"Service","name":"Enclosed Auto Transport"}},
+            {"@type":"Offer","itemOffered":{"@type":"Service","name":"Auction Car Pickup"}},
+            {"@type":"Offer","itemOffered":{"@type":"Service","name":"Door-to-Port Delivery"}},
+            {"@type":"Offer","itemOffered":{"@type":"Service","name":"Dealer Transport"}}
+          ]
+        }
+      }) }} />
       <PageMeta title="Auto Transport Services" description="Auction pickup, dealer trades, port delivery, enclosed transport. Licensed broker with 100+ verified carriers." path="/services" />
       <style>{`
         .services-grid {

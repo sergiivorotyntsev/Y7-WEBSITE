@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
+import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { CheckIcon } from '../components/icons';
 import { apiPost } from '../hooks/useApi';
 import { colors, fonts, button as btnStyles } from '../theme';
@@ -90,6 +91,7 @@ export default function Exporters() {
 
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '60px 24px 80px' }}>
+      <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Exporters',url:'/exporters'}]} />
       <PageMeta title="Vehicle Export & Port Delivery" description="Transparent dispatch services for vehicle exporters. Carrier rate at cost + service fee. All major US ports." path="/exporters" />
       <style>{`
         .exporters-ports-grid {

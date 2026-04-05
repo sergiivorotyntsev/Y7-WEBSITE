@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
+import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { SearchIcon, QuestionIcon } from '../components/icons';
 import { apiGet } from '../hooks/useApi';
 import { colors, fonts, button as btnStyles } from '../theme';
@@ -38,6 +39,7 @@ export default function Track() {
 
   return (
     <div style={{ maxWidth: '640px', margin: '0 auto', padding: '60px 24px 80px' }}>
+      <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Track',url:'/track'}]} />
       <PageMeta title="Track Your Shipment" description="Track your vehicle shipment in real-time. Enter your reference number or VIN." path="/track" />
       <div style={{ textAlign: 'center', marginBottom: '32px' }}>
         <div style={{ marginBottom: '12px' }}><SearchIcon size={20} /></div>

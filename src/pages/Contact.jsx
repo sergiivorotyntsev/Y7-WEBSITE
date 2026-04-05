@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PageMeta from '../components/PageMeta';
+import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { EmailIcon, TelegramIcon, PortalIcon, CheckIcon } from '../components/icons';
 import { apiPost } from '../hooks/useApi';
 import { colors, fonts, button as btnStyles } from '../theme';
@@ -54,6 +55,20 @@ export default function Contact() {
 
   return (
     <div style={{ maxWidth: '600px', margin: '0 auto', padding: '60px 24px 80px' }}>
+      <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Contact',url:'/contact'}]} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Y7 Logistics",
+        "url": "https://www.y7agency.com",
+        "contactPoint": [{
+          "@type": "ContactPoint",
+          "email": "info@y7agency.com",
+          "contactType": "customer service",
+          "availableLanguage": ["English","Russian","Polish","Ukrainian"],
+          "areaServed": "US"
+        }]
+      }) }} />
       <PageMeta title="Contact Us" description="Get in touch with Y7 Logistics. Email, Telegram, customer portal. Newton, MA." path="/contact" />
       <h1 style={{ fontFamily: fonts.serif, fontSize: 'clamp(28px, 4vw, 38px)', fontWeight: 700, color: colors.text, textAlign: 'center', marginBottom: '8px' }}>
         Contact Us

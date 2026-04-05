@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
+import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { colors, fonts, button as btnStyles } from '../theme';
 
 export default function Dealers() {
@@ -10,6 +11,7 @@ export default function Dealers() {
 
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '60px 24px 80px' }}>
+      <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Dealers',url:'/dealers'}]} />
       <PageMeta title="For Auto Dealers" description="Volume auto transport for dealerships. Fixed pricing, dedicated dispatcher, auction pickups." path="/dealers" />
       <style>{`
         .dealers-benefits-grid {

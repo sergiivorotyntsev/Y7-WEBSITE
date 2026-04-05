@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import PageMeta from '../components/PageMeta';
+import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { ChevronRightIcon } from '../components/icons';
 import { colors, fonts } from '../theme';
 
@@ -204,6 +205,7 @@ export default function FAQ() {
 
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '60px 24px 80px' }}>
+      <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'FAQ',url:'/faq'}]} />
       <PageMeta
         title="FAQ"
         description="Common questions about auto transport: pricing, timing, insurance, BOL, auction pickup, port delivery."
