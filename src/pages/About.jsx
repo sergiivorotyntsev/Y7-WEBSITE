@@ -110,9 +110,9 @@ export default function About() {
         <div style={styles.card}>
           <p style={{ ...styles.body, marginBottom: '12px' }}>
             Y7 Consulting Inc, operating as <strong style={{ color: colors.text }}>Y7 Logistics</strong>, is a
-            US-based auto transport brokerage. With over 5 years of hands-on operations in the vehicle shipping
-            industry, we connect shippers with verified carriers through Central Dispatch &mdash; the industry's
-            leading load board.
+            US-based auto transport brokerage. Our team brings 10+ years of combined auto transport experience,
+            with Y7 operating as an FMCSA-licensed broker since 2025. We connect shippers with verified carriers
+            through Central Dispatch &mdash; the industry's leading load board.
           </p>
           <p style={styles.body}>
             From auction pickups to cross-country relocations, we handle every detail so our customers
