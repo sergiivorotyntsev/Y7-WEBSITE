@@ -8,9 +8,17 @@ export function initGA() {
   if (consent !== 'all') return;
   const gaId = import.meta.env.VITE_GA_ID;
   if (!gaId) return;
-  if (typeof window.gtag === 'function') {
-    window.gtag('config', gaId);
+
+  // Initialize dataLayer and gtag if not already present
+  window.dataLayer = window.dataLayer || [];
+  if (typeof window.gtag !== 'function') {
+    window.gtag = function() { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
   }
+  window.gtag('config', gaId, {
+    send_page_view: true,
+    anonymize_ip: true,
+  });
 }
 
 export function trackEvent(name, params = {}) {
@@ -18,4 +26,11 @@ export function trackEvent(name, params = {}) {
   if (typeof window.gtag === 'function') {
     window.gtag('event', name, params);
   }
+}
+
+export function trackPageView(path) {
+  if (getConsent() !== 'all') return;
+  const gaId = import.meta.env.VITE_GA_ID;
+  if (!gaId || typeof window.gtag !== 'function') return;
+  window.gtag('config', gaId, { page_path: path });
 }
