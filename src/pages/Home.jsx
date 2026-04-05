@@ -1,5 +1,7 @@
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import PageMeta from '../components/PageMeta';
+import { API_URL } from '../config';
 import ScrollReveal from '../components/ScrollReveal';
 import TrustBar from '../components/TrustBar';
 import QuoteForm from '../components/QuoteForm';
@@ -7,17 +9,46 @@ import AudienceCards from '../components/AudienceCards';
 import PortPills from '../components/PortPills';
 import LiveActivityFeed from '../components/LiveActivityFeed';
 import HowItWorks from '../components/HowItWorks';
-import TestimonialCarousel from '../components/TestimonialCarousel';
+import ReviewsCarousel from '../components/ReviewsCarousel';
+import TrustBadges from '../components/TrustBadges';
+import ExternalReviewsStrip from '../components/ExternalReviewsStrip';
 import WhyY7 from '../components/WhyY7';
 import TrustSection from '../components/TrustSection';
 import { colors, fonts } from '../theme';
 
 export default function Home() {
   const { t } = useTranslation('home');
+  const [aggregate, setAggregate] = useState(null);
+
+  useEffect(() => {
+    fetch(`${API_URL}/api/public/reviews?limit=1`)
+      .then(r => r.ok ? r.json() : null)
+      .then(data => { if (data?.aggregate) setAggregate(data.aggregate); })
+      .catch(() => {});
+  }, []);
+
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "MovingCompany",
+    "name": "Y7 Logistics",
+    "url": "https://www.y7agency.com",
+    "telephone": "+1-617-010-7171",
+    "address": { "@type": "PostalAddress", "streetAddress": "1007 Chestnut St, Suite A", "addressLocality": "Newton", "addressRegion": "MA", "postalCode": "02464", "addressCountry": "US" },
+    ...(aggregate && aggregate.total_count >= 5 ? {
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": aggregate.average_rating,
+        "reviewCount": aggregate.total_count,
+        "bestRating": 5,
+        "worstRating": 1,
+      }
+    } : {}),
+  };
 
   return (
     <div>
       <PageMeta description="Licensed auto transport broker. Ship your vehicle door-to-door or to any US port. Instant quotes, verified carriers, real-time tracking." path="/" i18n />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
       {/* 1. Hero */}
       <style>{`
         .hero-section { padding: 80px 24px 40px; }
@@ -63,6 +94,9 @@ export default function Home() {
           {t('hero.description')}
         </p>
       </section>
+
+      {/* External reviews strip (visible when env vars set) */}
+      <ExternalReviewsStrip />
 
       {/* 2. National Segment Cards */}
       <ScrollReveal style={{ padding: '40px 24px 20px' }}>
@@ -121,11 +155,14 @@ export default function Home() {
           </div>
         </ScrollReveal>
         <QuoteForm compact />
+        <div style={{ marginTop: 20, textAlign: 'center' }}>
+          <TrustBadges layout="horizontal" variant="compact" />
+        </div>
       </section>
 
       {/* 9. Testimonials */}
       <ScrollReveal style={{ padding: '40px 24px 60px', background: colors.bgMuted }}>
-        <TestimonialCarousel />
+        <ReviewsCarousel />
       </ScrollReveal>
 
       {/* 10. Port Pills */}
