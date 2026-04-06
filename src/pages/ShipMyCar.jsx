@@ -3,6 +3,7 @@ import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import QuoteForm from '../components/QuoteForm';
 import TransportComparison from '../components/TransportComparison';
+import WhatHappensNext from '../components/WhatHappensNext';
 import { colors, fonts } from '../theme';
 
 export default function ShipMyCar() {
@@ -296,6 +297,9 @@ export default function ShipMyCar() {
         </p>
         <QuoteForm />
       </section>
+
+      {/* What Happens Next */}
+      <WhatHappensNext />
 
       {/* FAQ */}
       <section style={{

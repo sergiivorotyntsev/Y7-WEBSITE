@@ -1,5 +1,6 @@
 import PageMeta from '../components/PageMeta';
 import QuoteForm from '../components/QuoteForm';
+import WhatHappensNext from '../components/WhatHappensNext';
 import { colors, fonts } from '../theme';
 
 export default function Quote() {
@@ -15,6 +16,7 @@ export default function Quote() {
         </p>
       </div>
       <QuoteForm />
+      <WhatHappensNext />
     </div>
   );
 }

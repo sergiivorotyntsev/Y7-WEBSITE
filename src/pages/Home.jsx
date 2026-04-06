@@ -14,6 +14,7 @@ import TrustBadges from '../components/TrustBadges';
 import ExternalReviewsStrip from '../components/ExternalReviewsStrip';
 import WhyY7 from '../components/WhyY7';
 import TrustSection from '../components/TrustSection';
+import WhatHappensNext from '../components/WhatHappensNext';
 import { colors, fonts } from '../theme';
 
 export default function Home() {
@@ -159,6 +160,9 @@ export default function Home() {
           <TrustBadges layout="horizontal" variant="compact" />
         </div>
       </section>
+
+      {/* 8b. What Happens Next */}
+      <WhatHappensNext />
 
       {/* 9. Testimonials */}
       <ScrollReveal style={{ padding: '40px 24px 60px', background: colors.bgMuted }}>
