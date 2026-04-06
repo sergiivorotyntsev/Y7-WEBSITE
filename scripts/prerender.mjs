@@ -75,18 +75,12 @@ const PUBLIC_ROUTES = [
   '/pl',
   '/pl/copart-shipping',
   '/pl/ship-my-car',
-  '/pl-us',
-  '/pl-us/copart-shipping',
-  '/pl-us/ship-my-car',
   '/ua',
   '/ua/copart-shipping',
   '/ua/ship-my-car',
-  '/ua-us',
-  '/ua-us/copart-shipping',
-  '/ua-us/ship-my-car',
-  '/ru-us',
-  '/ru-us/copart-shipping',
-  '/ru-us/ship-my-car',
+  '/ru',
+  '/ru/copart-shipping',
+  '/ru/ship-my-car',
 ];
 
 // Minimal static file server for dist/
