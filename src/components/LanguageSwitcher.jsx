@@ -7,10 +7,8 @@ import { trackEvent } from '../utils/analytics';
 const langs = [
   { code: 'en', label: 'EN' },
   { code: 'pl', label: 'PL' },
-  { code: 'pl-us', label: 'PL-US' },
   { code: 'ua', label: 'UA' },
-  { code: 'ua-us', label: 'UA-US' },
-  { code: 'ru-us', label: 'RU-US' },
+  { code: 'ru', label: 'RU' },
 ];
 
 // Routes that have /:lang/ prefix versions in App.jsx
