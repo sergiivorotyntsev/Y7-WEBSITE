@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
+import { colors, fonts, button as btnStyles } from '../../theme';
 
 // =============================================================================
 // UkraineCopart.jsx — Merged audience (Ukraine import + діаспора в США)
@@ -10,89 +11,76 @@ import HreflangTags from '../../components/HreflangTags';
 // Secondary audience: Ukrainian diaspora in USA using Copart for local purchases
 // Y7-centric: FMCSA broker, Ukrainian-speaking support
 // International leg: "через перевірених партнерів-експедиторів" (Y7-centric)
-// Sources: native Ukrainian auto sites, Copart public data, post-2022 market
+// Visual structure mirrors English CopartShipping.jsx + SeoLandingPage template
+// (breadcrumb + H1 + intro + Section blocks + Real Scenario + lists + FAQ + CTA)
 // =============================================================================
 
-// -- Shared style objects -----------------------------------------------------
+// -- Reusable styles (theme-driven, mirror SeoLandingPage) --------------------
 
-const pageStyle = {
-  fontFamily: 'Georgia, "Times New Roman", serif',
-  color: '#2C2C2A',
-  background: '#F7F5F0',
+const editorialP = {
+  fontFamily: fonts.sans,
+  fontSize: '14px',
+  color: colors.textMuted,
+  lineHeight: 1.7,
+  marginBottom: '16px',
 };
 
-const sectionStyle = {
-  maxWidth: '900px',
-  margin: '0 auto',
-  padding: 'clamp(2rem, 5vw, 4rem) clamp(1.25rem, 4vw, 2rem)',
+const listItemStyle = {
+  fontFamily: fonts.sans,
+  fontSize: '14px',
+  color: colors.textMuted,
+  lineHeight: 1.6,
 };
 
-const h1Style = {
-  fontSize: 'clamp(2rem, 5vw, 3.25rem)',
-  lineHeight: '1.15',
-  fontWeight: 400,
-};
-
-const h2Style = {
-  fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
-  lineHeight: '1.2',
-  fontWeight: 400,
-  marginBottom: '1rem',
-};
-
-const h3Style = {
-  fontSize: '1.25rem',
-  fontWeight: 600,
-  marginBottom: '0.75rem',
-  fontFamily: 'system-ui, sans-serif',
-};
-
-const pStyle = {
-  fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-  lineHeight: '1.7',
-  color: '#4A4A46',
+const stepNumberStyle = {
+  width: 32,
+  height: 32,
+  borderRadius: '50%',
+  background: colors.accent,
+  color: '#fff',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  fontSize: '14px',
+  fontWeight: 700,
+  fontFamily: fonts.sans,
+  flexShrink: 0,
 };
 
 const cardStyle = {
-  background: '#fff',
-  padding: '1.5rem',
-  borderRadius: '8px',
-  border: '1px solid #E8E4DC',
-};
-
-const ctaButtonStyle = {
-  background: '#993C1D',
-  color: '#fff',
-  padding: '0.875rem 1.75rem',
-  borderRadius: '6px',
-  display: 'inline-block',
-  textDecoration: 'none',
-  fontFamily: 'system-ui, sans-serif',
-  fontWeight: 500,
-  border: 'none',
-  cursor: 'pointer',
-};
-
-const darkCtaStyle = {
-  background: '#2C2C2A',
-  color: '#F7F5F0',
-};
-
-const dividerSectionStyle = {
-  background: '#EFEAE0',
-  borderTop: '1px solid #E8E4DC',
-  borderBottom: '1px solid #E8E4DC',
+  background: colors.bgCard,
+  border: `1px solid ${colors.border}`,
+  borderRadius: '12px',
+  padding: '20px 24px',
 };
 
 const warningCardStyle = {
   background: '#FDF6E8',
-  padding: '1.5rem',
-  borderRadius: '8px',
   border: '1px solid #E8DCC0',
   borderLeft: '4px solid #C89B3C',
+  borderRadius: '12px',
+  padding: '20px 24px',
 };
 
-const accentColor = '#993C1D';
+// Inline Section helper (mirrors SeoLandingPage's exported Section)
+function Section({ title, children }) {
+  return (
+    <section style={{ marginBottom: '40px' }}>
+      <h2
+        style={{
+          fontFamily: fonts.serif,
+          fontSize: '22px',
+          fontWeight: 700,
+          color: colors.text,
+          marginBottom: '16px',
+        }}
+      >
+        {title}
+      </h2>
+      {children}
+    </section>
+  );
+}
 
 // -- Structured data ----------------------------------------------------------
 
@@ -227,35 +215,55 @@ const riskWarnings = [
 
 const processSteps = [
   {
-    num: 1,
     title: 'Вибір лоту і попередній розрахунок',
     desc: 'Надсилаєте нам номер лоту з Copart або IAAI до початку торгів. Ми рахуємо повну логістику до вашого міста, щоб ви знали реальну кінцеву ціну ще до ставки. Розрахунок безкоштовний і нічого не зобовʼязує.',
   },
   {
-    num: 2,
     title: 'Участь у торгах',
     desc: 'Купівля з Copart відбувається через ліцензованого дилера або брокера з правом участі. Ми не займаємося самою ставкою — це робите ви особисто через брокера або замовляєте послугу у спеціалізованої компанії. Ми включаємося на етапі логістики після виграшу.',
   },
   {
-    num: 3,
     title: 'Оплата та документи Copart',
     desc: 'Після виграшу у вас 2 робочих дні для повної оплати лоту плюс buyer fees. Copart надсилає title (документ на авто) поштою протягом 1-2 тижнів. Для транспортування title не обовʼязковий одразу — ми забираємо авто за dispatch order.',
   },
   {
-    num: 4,
     title: 'Забір з майданчика Copart',
     desc: 'Наш перевізник забирає авто протягом 3-10 днів після дозволу. Водій робить фотодокументацію стану перед завантаженням. Якщо авто не заводиться (non-running), додаткова плата за лебідку $100-200.',
   },
   {
-    num: 5,
     title: 'Транспорт до порту завантаження',
     desc: 'Авто їде до одного з портів: Newark (NJ), Baltimore (MD), Savannah (GA), Houston (TX) або Los Angeles (CA). Вибір порту залежить від локації майданчика Copart і доступності контейнерних слотів. На цьому етапі завершується американська частина від Y7.',
   },
   {
-    num: 6,
     title: 'Морський фрахт і доставка в Україну',
     desc: 'Далі авто передається перевіреним партнерам-експедиторам для морського перевезення та доставки до вашого міста в Україні через один з трьох маршрутів: Гдиня, Клайпеда або Констанца. Ви отримуєте коносамент (BOL) після завантаження на корабель і далі працюєте з митним брокером в Україні для розмитнення.',
   },
+];
+
+const whenNeeded = [
+  'Виграли лот на Copart або IAAI і не маєте перевізника по США',
+  'Купуєте авто на американському аукціоні для імпорту в Україну',
+  'Потрібна доставка з будь-якого з 200+ майданчиків Copart до порту',
+  'Купуєте salvage title для відновлення в Україні',
+  'Дилер закуповує інвентар з Copart для українського ринку',
+  'Експортуєте авто в Україну — потрібна доставка з Copart до порту США',
+];
+
+const requirements = [
+  'Номер лоту з Copart або IAAI',
+  'Buyer number або member number',
+  'Підтвердження оплати лоту в Copart',
+  'Gate pass (Copart видає після того, як платіж пройде)',
+  'Адреса призначення (порт США або українське місто)',
+];
+
+const capabilities = [
+  'Усі 200+ майданчиків Copart по США',
+  'Salvage та clean title — обидва типи',
+  'Non-running авто з лебідкою або форкліфтом',
+  'Швидкий забір у межах безкоштовного storage-вікна',
+  'Доставка до порту, дому або сервісу',
+  'Відкритий і закритий (enclosed) автовоз',
 ];
 
 const diasporaUseCases = [
@@ -277,14 +285,26 @@ const diasporaUseCases = [
   },
 ];
 
+const relatedLinks = [
+  { label: 'Замовити перевезення', to: '/ua/ship-my-car' },
+  { label: 'Головна (Україна)', to: '/ua' },
+  { label: 'Copart Shipping (EN)', to: '/copart-shipping' },
+  { label: 'Auction Shipping (EN)', to: '/auction-car-shipping' },
+];
+
 // =============================================================================
 // Component
 // =============================================================================
 
 function UkraineCopart() {
   return (
-    <div style={pageStyle} lang="uk">
-      {/* -- Head ----------------------------------------------------------- */}
+    <div
+      lang="uk"
+      style={{
+        background: colors.bg,
+        color: colors.text,
+      }}
+    >
       <Helmet>
         <title>Copart — пригін авто з аукціону в Україну | Y7 Logistics</title>
         <meta
@@ -322,740 +342,815 @@ function UkraineCopart() {
         hasRussianVersion={true}
       />
 
-      {/* ================================================================== */}
-      {/* SECTION 1 — Hero                                                    */}
-      {/* ================================================================== */}
-      <section style={{ ...sectionStyle, paddingTop: 'clamp(3rem, 8vw, 6rem)' }}>
-        <div
+      <div style={{ maxWidth: '800px', margin: '0 auto', padding: '60px 24px 80px' }}>
+        {/* Breadcrumb (mirrors SeoLandingPage) */}
+        <nav
+          aria-label="Breadcrumb"
           style={{
-            display: 'inline-block',
-            padding: '0.375rem 0.875rem',
-            background: '#fff',
-            border: '1px solid #E8E4DC',
-            borderRadius: '999px',
-            fontSize: '0.8rem',
-            color: accentColor,
-            letterSpacing: '0.05em',
-            textTransform: 'uppercase',
-            marginBottom: '1rem',
-            fontFamily: 'system-ui, sans-serif',
+            fontFamily: fonts.sans,
+            fontSize: '13px',
+            color: colors.textMuted,
+            marginBottom: '24px',
           }}
         >
-          Copart × Україна
-        </div>
-        <h1 style={h1Style}>
+          <Link to="/ua" style={{ color: colors.textMuted, textDecoration: 'none' }}>
+            Головна (UA)
+          </Link>
+          <span style={{ margin: '0 6px' }}>/</span>
+          <span style={{ color: colors.textMuted }}>Послуги</span>
+          <span style={{ margin: '0 6px' }}>/</span>
+          <span style={{ color: colors.text }}>Copart — пригін з аукціону</span>
+        </nav>
+
+        {/* H1 (mirrors SeoLandingPage typography) */}
+        <h1
+          style={{
+            fontFamily: fonts.serif,
+            fontSize: 'clamp(28px, 4vw, 40px)',
+            fontWeight: 700,
+            color: colors.text,
+            marginBottom: '16px',
+            lineHeight: 1.2,
+          }}
+        >
           Пригін авто з Copart в Україну — чесний гайд без маркетингу
         </h1>
-        <p style={{ ...pStyle, marginTop: '1.5rem', maxWidth: '720px' }}>
-          Copart — найбільший страховий аукціон у США. Понад 175 тисяч авто щоденно,
-          понад 200 майданчиків, мільйон продажів на рік. Для українського покупця
-          це шанс купити авто на 30-50% дешевше ніж на внутрішньому ринку — але
-          шлях від &laquo;молотка до гаража&raquo; має більше етапів і пасток, ніж
-          обіцяє реклама. Y7 Logistics — ліцензований FMCSA-брокер (MC #1741537),
-          обслуговує американську частину процесу: забір з майданчика Copart, транспорт
-          до порту завантаження, передачу перевіреним партнерам-експедиторам для
-          морської частини. У нашій команді є українськомовні співробітники.
-          Ця сторінка описує процес чесно — що варто знати до ставки і чого не варто
-          чекати від аукціонних авто.
-        </p>
-      </section>
 
-      {/* ================================================================== */}
-      {/* SECTION 2 — What Copart really is                                   */}
-      {/* ================================================================== */}
-      <section style={sectionStyle}>
-        <h2 style={h2Style}>Що таке Copart насправді</h2>
-        <p style={{ ...pStyle, marginBottom: '1.25rem' }}>
-          Copart (Copart Inc., заснований 1982 року в Каліфорнії) — це платформа,
-          що зʼєднує страхові компанії, дилерів і банки з покупцями по всьому світу.
-          На відміну від класичних аукціонних домів, Copart працює виключно онлайн —
-          усі торги відбуваються через інтернет у системі VB3 (Virtual Bidding 3.0).
-          Штаб-квартира у Далласі, Техас.
-        </p>
-        <p style={{ ...pStyle, marginBottom: '1.25rem' }}>
-          Більшість авто на Copart — це пошкоджені транспортні засоби від страхових
-          компаній. Після ДТП, крадіжки, повені або градобою страхова визнає авто
-          total loss (повна конструктивна загибель) і передає на аукціон. Ключовий
-          момент: &laquo;total loss&raquo; у США не завжди означає знищення. Американські
-          правила вимагають визнання авто збитковим, коли ремонт перевищує 70-80%
-          ринкової вартості. Через високі ціни на запчастини та роботу в США багато
-          легко пошкоджених авто потрапляє на Copart лише тому, що їх невигідно
-          ремонтувати для американського ринку.
-        </p>
-        <p style={{ ...pStyle, marginBottom: 0 }}>
-          Для українського імпортера це шанс: авто після легкого ДТП у США за
-          $10 000 може після ремонту та пригону коштувати в Україні значно дорожче.
-          Але ця ж логіка діє у зворотний бік — недосвідчений покупець може виграти
-          лот з прихованими проблемами, вартість ремонту яких зʼїсть всю економію.
-        </p>
-      </section>
-
-      {/* ================================================================== */}
-      {/* SECTION 3 — Copart vs IAAI                                          */}
-      {/* ================================================================== */}
-      <section style={sectionStyle}>
-        <h2 style={h2Style}>Copart vs IAAI — у чому різниця</h2>
-        <p style={{ ...pStyle, marginBottom: '1.5rem' }}>
-          В США працює два великих страхових аукціони. Обидва продають подібний товар —
-          авто після страхових випадків — але мають свої особливості.
-        </p>
-
-        <div
-          style={{
-            ...cardStyle,
-            padding: 0,
-            overflow: 'hidden',
-          }}
-        >
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-            <thead>
-              <tr style={{ background: '#F7F5F0', borderBottom: '1px solid #E8E4DC' }}>
-                <th
-                  style={{
-                    padding: '0.875rem 1rem',
-                    textAlign: 'left',
-                    fontFamily: 'system-ui, sans-serif',
-                    fontSize: '0.9rem',
-                    fontWeight: 600,
-                    color: '#4A4A46',
-                  }}
-                >
-                  Характеристика
-                </th>
-                <th
-                  style={{
-                    padding: '0.875rem 1rem',
-                    textAlign: 'left',
-                    fontFamily: 'system-ui, sans-serif',
-                    fontSize: '0.9rem',
-                    fontWeight: 600,
-                    color: accentColor,
-                  }}
-                >
-                  Copart
-                </th>
-                <th
-                  style={{
-                    padding: '0.875rem 1rem',
-                    textAlign: 'left',
-                    fontFamily: 'system-ui, sans-serif',
-                    fontSize: '0.9rem',
-                    fontWeight: 600,
-                    color: '#4A4A46',
-                  }}
-                >
-                  IAAI
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {copartVsIaai.map((row, idx) => (
-                <tr
-                  key={idx}
-                  style={{
-                    borderBottom: idx < copartVsIaai.length - 1 ? '1px solid #E8E4DC' : 'none',
-                  }}
-                >
-                  <td
-                    style={{
-                      padding: '0.875rem 1rem',
-                      fontSize: '0.95rem',
-                      color: '#4A4A46',
-                      fontFamily: 'system-ui, sans-serif',
-                      fontWeight: 500,
-                    }}
-                  >
-                    {row.feature}
-                  </td>
-                  <td style={{ padding: '0.875rem 1rem', fontSize: '0.95rem', color: '#4A4A46' }}>
-                    {row.copart}
-                  </td>
-                  <td style={{ padding: '0.875rem 1rem', fontSize: '0.95rem', color: '#4A4A46' }}>
-                    {row.iaai}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <p style={{ ...pStyle, marginTop: '1.25rem', marginBottom: 0, fontStyle: 'italic' }}>
-          Для більшості українських покупців обидва аукціони працюють аналогічно.
-          Ми обслуговуємо логістику з обох — різниця лише у номері лоту, який ви нам
-          надсилаєте.
-        </p>
-      </section>
-
-      {/* ================================================================== */}
-      {/* SECTION 4 — Risks and warnings                                      */}
-      {/* ================================================================== */}
-      <section style={sectionStyle}>
-        <h2 style={h2Style}>На що звернути увагу до ставки</h2>
-        <p style={{ ...pStyle, marginBottom: '1.5rem' }}>
-          Найбільша помилка новачків — покладатися лише на фото і mileage. Copart
-          не дає гарантій стану авто, умови продажу &laquo;as-is&raquo;. Нижче —
-          чотири речі, які реально впливають на фінансовий результат.
-        </p>
-
-        <div style={{ display: 'grid', gap: '1rem' }}>
-          {riskWarnings.map((warn, idx) => (
-            <div key={idx} style={warningCardStyle}>
-              <h3
-                style={{
-                  fontFamily: 'system-ui, sans-serif',
-                  fontSize: '1.05rem',
-                  fontWeight: 600,
-                  marginTop: 0,
-                  marginBottom: '0.5rem',
-                  color: '#8B6B1F',
-                }}
-              >
-                {warn.title}
-              </h3>
-              <p style={{ ...pStyle, fontSize: '0.95rem', margin: 0 }}>{warn.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ================================================================== */}
-      {/* SECTION 5 — Process                                                 */}
-      {/* ================================================================== */}
-      <section style={sectionStyle}>
-        <h2 style={h2Style}>Процес пригону — крок за кроком</h2>
-        <p style={{ ...pStyle, marginBottom: '2rem' }}>
-          Увесь цикл — від виграшу лоту до отримання авто в Україні — займає типово
-          6-8 тижнів. Нижче деталі кожного етапу і що саме робить Y7, а що залежить
-          від вас та інших учасників процесу.
-        </p>
-
-        <div style={{ display: 'grid', gap: '1.5rem' }}>
-          {processSteps.map((step) => (
-            <div
-              key={step.num}
-              style={{
-                ...cardStyle,
-                display: 'flex',
-                alignItems: 'flex-start',
-                gap: '1.25rem',
-              }}
-            >
-              <div
-                style={{
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '50%',
-                  background: accentColor,
-                  color: '#fff',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontFamily: 'system-ui, sans-serif',
-                  fontWeight: 600,
-                  fontSize: '1.125rem',
-                  flexShrink: 0,
-                }}
-              >
-                {step.num}
-              </div>
-              <div>
-                <h3 style={{ fontSize: '1.125rem', fontWeight: 600, marginBottom: '0.5rem' }}>
-                  {step.title}
-                </h3>
-                <p style={{ ...pStyle, margin: 0 }}>{step.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ================================================================== */}
-      {/* SECTION 6 — Pricing                                                 */}
-      {/* ================================================================== */}
-      <section style={sectionStyle}>
-        <h2 style={h2Style}>Орієнтовні витрати на логістику</h2>
-        <p style={{ ...pStyle, marginBottom: '1.5rem' }}>
-          Нижче типові діапазони для стандартного легкового авто (седан, SUV,
-          кросовер до 2,5 тонни). Конкретну вартість рахуємо після отримання номера
-          лоту — різниця між майданчиками Copart і портами завантаження може складати
-          кілька сотень доларів. Ціни не включають саме авто, buyer fee Copart та
-          розмитнення в Україні.
-        </p>
-
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: '1rem',
-          }}
-        >
-          <div style={cardStyle}>
-            <h3
-              style={{
-                fontFamily: 'system-ui, sans-serif',
-                fontWeight: 600,
-                fontSize: '0.95rem',
-                marginTop: 0,
-                marginBottom: '0.75rem',
-                color: '#4A4A46',
-              }}
-            >
-              Транспорт по США (Y7)
-            </h3>
-            <div
-              style={{
-                fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
-                fontWeight: 300,
-                color: accentColor,
-                marginBottom: '0.5rem',
-              }}
-            >
-              $350–950
-            </div>
-            <p style={{ ...pStyle, fontSize: '0.9rem', margin: 0 }}>
-              Забір з майданчика Copart до порту завантаження. Залежить від відстані,
-              стану авто (їде/не їде), сезону.
-            </p>
-          </div>
-
-          <div style={cardStyle}>
-            <h3
-              style={{
-                fontFamily: 'system-ui, sans-serif',
-                fontWeight: 600,
-                fontSize: '0.95rem',
-                marginTop: 0,
-                marginBottom: '0.75rem',
-                color: '#4A4A46',
-              }}
-            >
-              Морський фрахт
-            </h3>
-            <div
-              style={{
-                fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
-                fontWeight: 300,
-                color: accentColor,
-                marginBottom: '0.5rem',
-              }}
-            >
-              $1 200–2 400
-            </div>
-            <p style={{ ...pStyle, fontSize: '0.9rem', margin: 0 }}>
-              Контейнер 40HC (1-3 авто у контейнері) або RoRo. Залежить від порту США
-              та європейського порту призначення.
-            </p>
-          </div>
-
-          <div style={cardStyle}>
-            <h3
-              style={{
-                fontFamily: 'system-ui, sans-serif',
-                fontWeight: 600,
-                fontSize: '0.95rem',
-                marginTop: 0,
-                marginBottom: '0.75rem',
-                color: '#4A4A46',
-              }}
-            >
-              Доставка в Україну
-            </h3>
-            <div
-              style={{
-                fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
-                fontWeight: 300,
-                color: accentColor,
-                marginBottom: '0.5rem',
-              }}
-            >
-              $600–1 200
-            </div>
-            <p style={{ ...pStyle, fontSize: '0.9rem', margin: 0 }}>
-              Автовоз з європейського порту до вашого міста через один з трьох
-              маршрутів (Гдиня, Клайпеда, Констанца).
-            </p>
-          </div>
-        </div>
-
+        {/* Intro paragraph */}
         <p
           style={{
-            ...pStyle,
-            fontSize: '0.95rem',
-            marginTop: '1.5rem',
-            marginBottom: 0,
-            fontStyle: 'italic',
+            fontFamily: fonts.sans,
+            fontSize: '16px',
+            color: colors.textMuted,
+            lineHeight: 1.7,
+            marginBottom: '48px',
           }}
         >
-          <strong>Застереження:</strong> не забудьте додати buyer fee Copart
-          ($500-1 200 залежно від лоту), мито, акциз та ПДВ при розмитненні.
-          Для точного розрахунку надішліть номер лоту — дамо конкретні цифри для
-          вашого кейсу.
+          Copart — найбільший страховий аукціон у США. Понад 175 тисяч авто
+          щоденно, понад 200 майданчиків, мільйон продажів на рік. Для
+          українського покупця це шанс купити авто на 30-50% дешевше ніж на
+          внутрішньому ринку — але шлях від «молотка до гаража» має більше
+          етапів і пасток, ніж обіцяє реклама. Y7 Logistics — ліцензований
+          FMCSA-брокер (MC #1741537), що обслуговує американську частину
+          процесу.
         </p>
-      </section>
 
-      {/* ================================================================== */}
-      {/* SECTION 7 — Trust + FMCSA                                           */}
-      {/* ================================================================== */}
-      <section style={sectionStyle}>
-        <div style={{ ...cardStyle, borderLeft: `4px solid ${accentColor}` }}>
-          <h2 style={{ ...h2Style, fontSize: '1.5rem' }}>
-            Чому Y7 Logistics
-          </h2>
-          <p style={{ ...pStyle, marginBottom: '1rem' }}>
-            Y7 Logistics працює як ліцензований FMCSA-брокер — це означає федеральний
-            нагляд Департаменту транспорту США, обовʼязкове страхування відповідальності,
-            публічна реєстрація в базі SAFER (safer.fmcsa.dot.gov). Ви можете перевірити
-            наш статус за номером MC #1741537 самостійно в будь-який момент.
+        {/* Editorial Section: What is Copart */}
+        <Section title="Що таке Copart насправді">
+          <p style={editorialP}>
+            Copart (Copart Inc., заснований 1982 року в Каліфорнії) — це
+            платформа, що зʼєднує страхові компанії, дилерів і банки з
+            покупцями по всьому світу. На відміну від класичних аукціонних
+            домів, Copart працює виключно онлайн — усі торги відбуваються через
+            інтернет у системі VB3 (Virtual Bidding 3.0). Штаб-квартира у
+            Далласі, Техас.
           </p>
+          <p style={editorialP}>
+            Більшість авто на Copart — це пошкоджені транспортні засоби від
+            страхових компаній. Після ДТП, крадіжки, повені або градобою
+            страхова визнає авто total loss (повна конструктивна загибель) і
+            передає на аукціон. Ключовий момент: «total loss» у США не завжди
+            означає знищення. Американські правила вимагають визнання авто
+            збитковим, коли ремонт перевищує 70-80% ринкової вартості. Через
+            високі ціни на запчастини та роботу в США багато легко пошкоджених
+            авто потрапляє на Copart лише тому, що їх невигідно ремонтувати для
+            американського ринку.
+          </p>
+          <p style={editorialP}>
+            Для українського імпортера це шанс: авто після легкого ДТП у США за
+            $10 000 може після ремонту та пригону коштувати в Україні значно
+            дорожче. Але ця ж логіка діє у зворотний бік — недосвідчений
+            покупець може виграти лот з прихованими проблемами, вартість
+            ремонту яких зʼїсть всю економію.
+          </p>
+        </Section>
 
+        {/* Editorial Section: Copart vs IAAI table */}
+        <Section title="Copart vs IAAI — у чому різниця">
+          <p style={editorialP}>
+            В США працює два великих страхових аукціони. Обидва продають
+            подібний товар — авто після страхових випадків — але мають свої
+            особливості.
+          </p>
+          <div
+            style={{
+              ...cardStyle,
+              padding: 0,
+              overflow: 'hidden',
+            }}
+          >
+            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+              <thead>
+                <tr
+                  style={{
+                    background: colors.bgMuted,
+                    borderBottom: `1px solid ${colors.border}`,
+                  }}
+                >
+                  <th
+                    style={{
+                      padding: '12px 16px',
+                      textAlign: 'left',
+                      fontFamily: fonts.sans,
+                      fontSize: '13px',
+                      fontWeight: 600,
+                      color: colors.text,
+                    }}
+                  >
+                    Характеристика
+                  </th>
+                  <th
+                    style={{
+                      padding: '12px 16px',
+                      textAlign: 'left',
+                      fontFamily: fonts.sans,
+                      fontSize: '13px',
+                      fontWeight: 600,
+                      color: colors.accent,
+                    }}
+                  >
+                    Copart
+                  </th>
+                  <th
+                    style={{
+                      padding: '12px 16px',
+                      textAlign: 'left',
+                      fontFamily: fonts.sans,
+                      fontSize: '13px',
+                      fontWeight: 600,
+                      color: colors.text,
+                    }}
+                  >
+                    IAAI
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {copartVsIaai.map((row, idx) => (
+                  <tr
+                    key={idx}
+                    style={{
+                      borderBottom:
+                        idx < copartVsIaai.length - 1
+                          ? `1px solid ${colors.border}`
+                          : 'none',
+                    }}
+                  >
+                    <td
+                      style={{
+                        padding: '12px 16px',
+                        fontSize: '13px',
+                        color: colors.text,
+                        fontFamily: fonts.sans,
+                        fontWeight: 500,
+                      }}
+                    >
+                      {row.feature}
+                    </td>
+                    <td
+                      style={{
+                        padding: '12px 16px',
+                        fontSize: '13px',
+                        color: colors.textMuted,
+                        fontFamily: fonts.sans,
+                      }}
+                    >
+                      {row.copart}
+                    </td>
+                    <td
+                      style={{
+                        padding: '12px 16px',
+                        fontSize: '13px',
+                        color: colors.textMuted,
+                        fontFamily: fonts.sans,
+                      }}
+                    >
+                      {row.iaai}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p
+            style={{
+              ...editorialP,
+              marginTop: '16px',
+              marginBottom: 0,
+              fontStyle: 'italic',
+            }}
+          >
+            Для більшості українських покупців обидва аукціони працюють
+            аналогічно. Ми обслуговуємо логістику з обох — різниця лише у
+            номері лоту, який ви нам надсилаєте.
+          </p>
+        </Section>
+
+        {/* Editorial Section: Risk warnings */}
+        <Section title="На що звернути увагу до ставки">
+          <p style={editorialP}>
+            Найбільша помилка новачків — покладатися лише на фото і mileage.
+            Copart не дає гарантій стану авто, умови продажу «as-is». Нижче —
+            чотири речі, які реально впливають на фінансовий результат.
+          </p>
+          <div style={{ display: 'grid', gap: '12px' }}>
+            {riskWarnings.map((warn, idx) => (
+              <div key={idx} style={warningCardStyle}>
+                <h3
+                  style={{
+                    fontFamily: fonts.sans,
+                    fontSize: '15px',
+                    fontWeight: 600,
+                    marginTop: 0,
+                    marginBottom: '8px',
+                    color: '#8B6B1F',
+                  }}
+                >
+                  {warn.title}
+                </h3>
+                <p
+                  style={{
+                    fontFamily: fonts.sans,
+                    fontSize: '14px',
+                    color: colors.textMuted,
+                    lineHeight: 1.6,
+                    margin: 0,
+                  }}
+                >
+                  {warn.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        {/* Real Scenario (mirrors English "Real Scenario: Copart Dallas to Houston") */}
+        <Section title="Реальний приклад: Copart Dallas → Одеса">
+          <p style={editorialP}>
+            Ви виграли Honda Civic 2019 з salvage title на Copart Dallas у
+            понеділок за $6 800. У вівторок робите wire-переказ; платіж
+            проходить у середу зранку. У четвер опівдні Copart видає gate pass.
+            У пʼятницю наш перевізник забирає авто з майданчика (Civic не
+            заводиться через ушкодження передньої частини — завантажуємо
+            лебідкою) і доставляє до порту Houston у понеділок. Вартість
+            наземного транспорту по США: $580 (відстань 384 милі + доплата за
+            non-running). Storage fees: нуль, бо забір вкладається у безкоштовне
+            вікно.
+          </p>
+          <p style={editorialP}>
+            У Houston авто чекає на завантаження у 40HC контейнер близько 10
+            днів. Морський фрахт до Констанци (Румунія) — $1 850, транзит 28
+            днів. Локальний експедитор передає авто українському митному
+            брокеру; розмитнення в Україні (мито + акциз + ПДВ для авто 2019
+            року з бензиновим двигуном 2.0л) — приблизно $2 100. Автовоз від
+            Констанци до Одеси — $250. Сумарна логістика від Dallas до Одеси:
+            $2 680 без розмитнення, $4 780 з розмитненням. Загальний термін
+            від виграшу лоту до отримання у Одесі: 6 тижнів і 4 дні.
+          </p>
+        </Section>
+
+        {/* When You Need This (mirrors SeoLandingPage whenNeeded) */}
+        <Section title="Коли вам потрібен Y7 для Copart">
+          <ul
+            style={{
+              paddingLeft: '20px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '8px',
+              margin: 0,
+            }}
+          >
+            {whenNeeded.map((item, i) => (
+              <li key={i} style={listItemStyle}>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </Section>
+
+        {/* How It Works — numbered steps (mirrors SeoLandingPage steps) */}
+        <Section title="Як це працює">
+          <p style={editorialP}>
+            Увесь цикл — від виграшу лоту до отримання авто в Україні — займає
+            типово 6-8 тижнів. Нижче деталі кожного етапу і що саме робить Y7,
+            а що залежить від вас та інших учасників процесу.
+          </p>
           <div
             style={{
               display: 'flex',
-              flexWrap: 'wrap',
-              gap: '1.5rem',
-              marginTop: '1rem',
+              flexDirection: 'column',
+              gap: '20px',
             }}
           >
-            <div>
-              <span
+            {processSteps.map((step, i) => (
+              <div
+                key={i}
                 style={{
-                  fontFamily: 'system-ui, sans-serif',
-                  fontWeight: 600,
-                  display: 'block',
-                  marginBottom: '0.25rem',
+                  display: 'flex',
+                  gap: '16px',
+                  alignItems: 'flex-start',
                 }}
               >
-                Ліцензія брокера
-              </span>
-              <span style={pStyle}>MC #1741537</span>
-            </div>
-            <div>
-              <span
-                style={{
-                  fontFamily: 'system-ui, sans-serif',
-                  fontWeight: 600,
-                  display: 'block',
-                  marginBottom: '0.25rem',
-                }}
-              >
-                USDOT
-              </span>
-              <span style={pStyle}>#4427359</span>
-            </div>
-            <div>
-              <span
-                style={{
-                  fontFamily: 'system-ui, sans-serif',
-                  fontWeight: 600,
-                  display: 'block',
-                  marginBottom: '0.25rem',
-                }}
-              >
-                Статус FMCSA
-              </span>
-              <span style={pStyle}>Активний, застрахований</span>
-            </div>
+                <div style={stepNumberStyle}>{i + 1}</div>
+                <div>
+                  <div
+                    style={{
+                      fontFamily: fonts.sans,
+                      fontSize: '15px',
+                      fontWeight: 600,
+                      color: colors.text,
+                      marginBottom: '4px',
+                    }}
+                  >
+                    {step.title}
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: fonts.sans,
+                      fontSize: '14px',
+                      color: colors.textMuted,
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {step.desc}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
+        </Section>
 
-          <p style={{ ...pStyle, marginTop: '1rem', marginBottom: 0 }}>
-            Для українських клієнтів ми пропонуємо українськомовну підтримку через
-            Telegram, прозорі ціни без прихованих комісій і реальний досвід роботи
-            з маршрутами через Гдиню, Клайпеду та Констанцу.
-          </p>
-        </div>
-      </section>
-
-      {/* ================================================================== */}
-      {/* SECTION 8 — Для діаспори в США (diaspora split)                     */}
-      {/* ================================================================== */}
-      <section style={dividerSectionStyle}>
-        <div style={sectionStyle}>
-          <div
+        {/* What You Need (requirements) */}
+        <Section title="Що потрібно від вас">
+          <ul
             style={{
-              display: 'inline-block',
-              padding: '0.375rem 0.875rem',
-              background: '#fff',
-              border: '1px solid #E8E4DC',
-              borderRadius: '999px',
-              fontSize: '0.8rem',
-              color: accentColor,
-              letterSpacing: '0.05em',
-              textTransform: 'uppercase',
-              marginBottom: '1rem',
-              fontFamily: 'system-ui, sans-serif',
+              paddingLeft: '20px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '8px',
+              margin: 0,
             }}
           >
-            Для діаспори в США
-          </div>
-          <h2 style={h2Style}>
-            Купуєте на Copart і живете в Штатах? Доставимо під дім
-          </h2>
-          <p style={{ ...pStyle, marginBottom: '1.25rem' }}>
-            Увесь попередній розділ описує шлях авто з Copart до України — повний
-            імпорт з морським фрахтом і розмитненням. Але якщо ви з української
-            діаспори в США і купуєте авто для використання у Штатах або на продаж —
-            ваш маршрут коротший: від майданчика Copart одразу під дім у Чикаго,
-            Лос-Анджелесі, Нью-Йорку чи будь-де в США. Y7 обслуговує цей обсяг
-            самостійно, без міжнародного етапу.
-          </p>
-          <p style={{ ...pStyle, marginBottom: '1.25rem' }}>
-            Як ліцензований FMCSA-брокер (MC #1741537) маємо доступ до мережі
-            перевірених перевізників по всіх 50 штатах. Типовий маршрут між штатами
-            для седана з Copart — 5-8 днів від виграшу лоту до доставки за вашою
-            адресою. <strong>Важливо:</strong> памʼятайте, що Copart нараховує плату
-            за зберігання з 3 дня після виграшу, тому швидке підтвердження замовлення
-            економить $100-300.
-          </p>
+            {requirements.map((item, i) => (
+              <li key={i} style={listItemStyle}>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </Section>
 
-          <h3
-            style={{
-              fontFamily: 'system-ui, sans-serif',
-              fontSize: '1.125rem',
-              fontWeight: 600,
-              marginBottom: '1rem',
-              marginTop: '2rem',
-            }}
-          >
-            Типові замовлення
-          </h3>
-
+        {/* Our Capabilities */}
+        <Section title="Наші можливості">
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-              gap: '1rem',
-              marginBottom: '2rem',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+              gap: '12px',
+            }}
+          >
+            {capabilities.map((item, i) => (
+              <div
+                key={i}
+                style={{
+                  background: colors.bgCard,
+                  border: `1px solid ${colors.border}`,
+                  borderRadius: '12px',
+                  padding: '16px 20px',
+                  fontFamily: fonts.sans,
+                  fontSize: '14px',
+                  color: colors.text,
+                  lineHeight: 1.5,
+                }}
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        {/* Pricing (preserved from original) */}
+        <Section title="Орієнтовні витрати на логістику">
+          <p style={editorialP}>
+            Нижче типові діапазони для стандартного легкового авто (седан, SUV,
+            кросовер до 2,5 тонни). Конкретну вартість рахуємо після отримання
+            номера лоту — різниця між майданчиками Copart і портами завантаження
+            може складати кілька сотень доларів. Ціни не включають саме авто,
+            buyer fee Copart та розмитнення в Україні.
+          </p>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+              gap: '12px',
+            }}
+          >
+            <div style={cardStyle}>
+              <div
+                style={{
+                  fontFamily: fonts.sans,
+                  fontWeight: 600,
+                  fontSize: '13px',
+                  color: colors.text,
+                  marginBottom: '8px',
+                }}
+              >
+                Транспорт по США (Y7)
+              </div>
+              <div
+                style={{
+                  fontFamily: fonts.serif,
+                  fontSize: '24px',
+                  fontWeight: 700,
+                  color: colors.accent,
+                  marginBottom: '8px',
+                }}
+              >
+                $350–950
+              </div>
+              <p
+                style={{
+                  fontFamily: fonts.sans,
+                  fontSize: '13px',
+                  color: colors.textMuted,
+                  lineHeight: 1.5,
+                  margin: 0,
+                }}
+              >
+                Забір з майданчика Copart до порту завантаження. Залежить від
+                відстані, стану авто (їде/не їде), сезону.
+              </p>
+            </div>
+            <div style={cardStyle}>
+              <div
+                style={{
+                  fontFamily: fonts.sans,
+                  fontWeight: 600,
+                  fontSize: '13px',
+                  color: colors.text,
+                  marginBottom: '8px',
+                }}
+              >
+                Морський фрахт
+              </div>
+              <div
+                style={{
+                  fontFamily: fonts.serif,
+                  fontSize: '24px',
+                  fontWeight: 700,
+                  color: colors.accent,
+                  marginBottom: '8px',
+                }}
+              >
+                $1 200–2 400
+              </div>
+              <p
+                style={{
+                  fontFamily: fonts.sans,
+                  fontSize: '13px',
+                  color: colors.textMuted,
+                  lineHeight: 1.5,
+                  margin: 0,
+                }}
+              >
+                Контейнер 40HC (1-3 авто у контейнері) або RoRo. Залежить від
+                порту США та європейського порту призначення.
+              </p>
+            </div>
+            <div style={cardStyle}>
+              <div
+                style={{
+                  fontFamily: fonts.sans,
+                  fontWeight: 600,
+                  fontSize: '13px',
+                  color: colors.text,
+                  marginBottom: '8px',
+                }}
+              >
+                Доставка в Україну
+              </div>
+              <div
+                style={{
+                  fontFamily: fonts.serif,
+                  fontSize: '24px',
+                  fontWeight: 700,
+                  color: colors.accent,
+                  marginBottom: '8px',
+                }}
+              >
+                $600–1 200
+              </div>
+              <p
+                style={{
+                  fontFamily: fonts.sans,
+                  fontSize: '13px',
+                  color: colors.textMuted,
+                  lineHeight: 1.5,
+                  margin: 0,
+                }}
+              >
+                Автовоз з європейського порту до вашого міста через один з
+                трьох маршрутів (Гдиня, Клайпеда, Констанца).
+              </p>
+            </div>
+          </div>
+          <p
+            style={{
+              ...editorialP,
+              marginTop: '16px',
+              marginBottom: 0,
+              fontStyle: 'italic',
+            }}
+          >
+            <strong>Застереження:</strong> не забудьте додати buyer fee Copart
+            ($500-1 200 залежно від лоту), мито, акциз та ПДВ при розмитненні.
+            Для точного розрахунку надішліть номер лоту — дамо конкретні цифри
+            для вашого кейсу.
+          </p>
+        </Section>
+
+        {/* Why Y7 Trust Box */}
+        <Section title="Чому Y7 Logistics">
+          <div
+            style={{
+              ...cardStyle,
+              borderLeft: `4px solid ${colors.accent}`,
+            }}
+          >
+            <p style={editorialP}>
+              Y7 Logistics працює як ліцензований FMCSA-брокер — це означає
+              федеральний нагляд Департаменту транспорту США, обовʼязкове
+              страхування відповідальності, публічна реєстрація в базі SAFER
+              (safer.fmcsa.dot.gov). Ви можете перевірити наш статус за номером
+              MC #1741537 самостійно в будь-який момент.
+            </p>
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '24px',
+                marginTop: '8px',
+                marginBottom: '16px',
+              }}
+            >
+              <div>
+                <div
+                  style={{
+                    fontFamily: fonts.sans,
+                    fontWeight: 600,
+                    fontSize: '12px',
+                    color: colors.text,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.5px',
+                    marginBottom: '4px',
+                  }}
+                >
+                  Ліцензія брокера
+                </div>
+                <div
+                  style={{
+                    fontFamily: fonts.serif,
+                    fontSize: '16px',
+                    color: colors.accent,
+                    fontWeight: 700,
+                  }}
+                >
+                  MC #1741537
+                </div>
+              </div>
+              <div>
+                <div
+                  style={{
+                    fontFamily: fonts.sans,
+                    fontWeight: 600,
+                    fontSize: '12px',
+                    color: colors.text,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.5px',
+                    marginBottom: '4px',
+                  }}
+                >
+                  USDOT
+                </div>
+                <div
+                  style={{
+                    fontFamily: fonts.serif,
+                    fontSize: '16px',
+                    color: colors.accent,
+                    fontWeight: 700,
+                  }}
+                >
+                  #4427359
+                </div>
+              </div>
+              <div>
+                <div
+                  style={{
+                    fontFamily: fonts.sans,
+                    fontWeight: 600,
+                    fontSize: '12px',
+                    color: colors.text,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.5px',
+                    marginBottom: '4px',
+                  }}
+                >
+                  Статус FMCSA
+                </div>
+                <div
+                  style={{
+                    fontFamily: fonts.serif,
+                    fontSize: '16px',
+                    color: colors.accent,
+                    fontWeight: 700,
+                  }}
+                >
+                  Активний
+                </div>
+              </div>
+            </div>
+            <p
+              style={{
+                ...editorialP,
+                marginBottom: 0,
+              }}
+            >
+              Для українських клієнтів ми пропонуємо українськомовну підтримку
+              через Telegram, прозорі ціни без прихованих комісій і реальний
+              досвід роботи з маршрутами через Гдиню, Клайпеду та Констанцу.
+            </p>
+          </div>
+        </Section>
+
+        {/* Diaspora section (preserved as inline editorial) */}
+        <Section title="Для діаспори в США — Copart під дім">
+          <p style={editorialP}>
+            Якщо ви з української діаспори в США і купуєте авто для
+            використання у Штатах або на продаж — ваш маршрут коротший: від
+            майданчика Copart одразу під дім у Чикаго, Лос-Анджелесі, Нью-Йорку
+            чи будь-де в США. Y7 обслуговує цей обсяг самостійно, без
+            міжнародного етапу.
+          </p>
+          <p style={editorialP}>
+            Як ліцензований FMCSA-брокер (MC #1741537) маємо доступ до мережі
+            перевірених перевізників по всіх 50 штатах. Типовий маршрут між
+            штатами для седана з Copart — 5-8 днів від виграшу лоту до
+            доставки за вашою адресою. <strong>Важливо:</strong> памʼятайте, що
+            Copart нараховує плату за зберігання з 3 дня після виграшу, тому
+            швидке підтвердження замовлення економить $100-300.
+          </p>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+              gap: '12px',
+              marginTop: '16px',
+              marginBottom: '24px',
             }}
           >
             {diasporaUseCases.map((uc, idx) => (
               <div key={idx} style={cardStyle}>
                 <h4
                   style={{
-                    fontFamily: 'system-ui, sans-serif',
-                    fontSize: '1rem',
+                    fontFamily: fonts.sans,
+                    fontSize: '14px',
                     fontWeight: 600,
                     marginTop: 0,
-                    marginBottom: '0.5rem',
-                    color: '#2C2C2A',
+                    marginBottom: '6px',
+                    color: colors.text,
                   }}
                 >
                   {uc.title}
                 </h4>
-                <p style={{ ...pStyle, fontSize: '0.95rem', margin: 0 }}>{uc.desc}</p>
+                <p
+                  style={{
+                    fontFamily: fonts.sans,
+                    fontSize: '13px',
+                    color: colors.textMuted,
+                    lineHeight: 1.5,
+                    margin: 0,
+                  }}
+                >
+                  {uc.desc}
+                </p>
               </div>
             ))}
           </div>
-
-          <h3
-            style={{
-              fontFamily: 'system-ui, sans-serif',
-              fontSize: '1.125rem',
-              fontWeight: 600,
-              marginBottom: '1rem',
-              marginTop: '2rem',
-            }}
-          >
-            Орієнтовні ціни доставки з Copart по США
-          </h3>
-          <p style={{ ...pStyle, marginBottom: '1.5rem' }}>
-            Ціни для стандартного седана чи кросовера на відкритому автовозі.
-            Non-running авто — доплата $150-300 за завантаження лебідкою. Закриті
-            автовози (enclosed) — доплата 30-60%.
-          </p>
-
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-              gap: '1rem',
-            }}
-          >
-            <div style={cardStyle}>
-              <h4
-                style={{
-                  fontFamily: 'system-ui, sans-serif',
-                  fontWeight: 600,
-                  fontSize: '0.95rem',
-                  marginTop: 0,
-                  marginBottom: '0.75rem',
-                  color: '#4A4A46',
-                }}
-              >
-                Copart під дім (до 500 миль)
-              </h4>
-              <div
-                style={{
-                  fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
-                  fontWeight: 300,
-                  color: accentColor,
-                  marginBottom: '0.5rem',
-                }}
-              >
-                $450–750
-              </div>
-              <p style={{ ...pStyle, fontSize: '0.9rem', margin: 0 }}>
-                В межах одного регіону. Наприклад, Copart NJ → Нью-Йорк, Copart CA →
-                Лос-Анджелес. Доставка 3-5 днів.
-              </p>
-            </div>
-
-            <div style={cardStyle}>
-              <h4
-                style={{
-                  fontFamily: 'system-ui, sans-serif',
-                  fontWeight: 600,
-                  fontSize: '0.95rem',
-                  marginTop: 0,
-                  marginBottom: '0.75rem',
-                  color: '#4A4A46',
-                }}
-              >
-                Copart між регіонами (500-1500 миль)
-              </h4>
-              <div
-                style={{
-                  fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
-                  fontWeight: 300,
-                  color: accentColor,
-                  marginBottom: '0.5rem',
-                }}
-              >
-                $750–1 200
-              </div>
-              <p style={{ ...pStyle, fontSize: '0.9rem', margin: 0 }}>
-                Наприклад, Copart Texas → Chicago, Copart Florida → New York.
-                Доставка 5-8 днів.
-              </p>
-            </div>
-
-            <div style={cardStyle}>
-              <h4
-                style={{
-                  fontFamily: 'system-ui, sans-serif',
-                  fontWeight: 600,
-                  fontSize: '0.95rem',
-                  marginTop: 0,
-                  marginBottom: '0.75rem',
-                  color: '#4A4A46',
-                }}
-              >
-                Через усю країну (1500+ миль)
-              </h4>
-              <div
-                style={{
-                  fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
-                  fontWeight: 300,
-                  color: accentColor,
-                  marginBottom: '0.5rem',
-                }}
-              >
-                $1 100–1 600
-              </div>
-              <p style={{ ...pStyle, fontSize: '0.9rem', margin: 0 }}>
-                Наприклад, Copart California → New York, Washington → Florida.
-                Доставка 7-10 днів.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================== */}
-      {/* SECTION 9 — FAQ                                                     */}
-      {/* ================================================================== */}
-      <section style={sectionStyle}>
-        <h2 style={h2Style}>Часті запитання</h2>
-        <p style={{ ...pStyle, marginBottom: '1.5rem' }}>
-          Нижче — запитання, які найчастіше отримуємо від клієнтів перед ставкою
-          на Copart. Якщо не знайдете тут відповіді, напишіть нам у Telegram —
-          відповімо без шаблонів.
-        </p>
-
-        <div style={{ display: 'grid', gap: '0.75rem' }}>
-          {faqSchema.mainEntity.map((faq, idx) => (
-            <details key={idx} style={{ ...cardStyle, cursor: 'pointer' }}>
-              <summary
-                style={{
-                  fontFamily: 'system-ui, sans-serif',
-                  fontWeight: 600,
-                  fontSize: '1.05rem',
-                  listStyle: 'none',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                {faq.name}
-                <span
-                  style={{
-                    color: accentColor,
-                    fontSize: '1.25rem',
-                    marginLeft: '1rem',
-                    flexShrink: 0,
-                  }}
-                >
-                  +
-                </span>
-              </summary>
-              <p style={{ ...pStyle, marginTop: '1rem' }}>{faq.acceptedAnswer.text}</p>
-            </details>
-          ))}
-        </div>
-      </section>
-
-      {/* ================================================================== */}
-      {/* SECTION 10 — Dark CTA                                               */}
-      {/* ================================================================== */}
-      <section
-        style={{
-          ...darkCtaStyle,
-          padding: 'clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 2rem)',
-        }}
-      >
-        <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
-          <h2 style={{ ...h2Style, color: '#F7F5F0' }}>Маєте вибраний лот на Copart?</h2>
           <p
             style={{
-              ...pStyle,
-              color: '#C5C0B8',
-              maxWidth: '600px',
-              margin: '0 auto 2rem',
+              ...editorialP,
+              marginBottom: 0,
+              fontStyle: 'italic',
             }}
           >
-            Надішліть номер лоту через Telegram — отримаєте повну кальк&shy;уляцію
-            door-to-door протягом години. Безкоштовно, без зобовʼязань, без
-            маркетингових продажів.
+            Ціни для стандартного седана чи кросовера на відкритому автовозі.
+            Non-running авто — доплата $150-300 за завантаження лебідкою.
+            Закриті автовози (enclosed) — доплата 30-60%. Діапазони: $450-750
+            (до 500 миль), $750-1 200 (500-1500 миль), $1 100-1 600 (через усю
+            країну).
           </p>
-          <div
+        </Section>
+
+        {/* FAQ (mirrors SeoLandingPage faqs) */}
+        <Section title="Часті запитання">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            {faqSchema.mainEntity.map((faq, idx) => (
+              <div key={idx} style={cardStyle}>
+                <h3
+                  style={{
+                    fontFamily: fonts.sans,
+                    fontSize: '15px',
+                    fontWeight: 600,
+                    color: colors.text,
+                    marginBottom: '8px',
+                  }}
+                >
+                  {faq.name}
+                </h3>
+                <p
+                  style={{
+                    fontFamily: fonts.sans,
+                    fontSize: '14px',
+                    color: colors.textMuted,
+                    lineHeight: 1.6,
+                    margin: 0,
+                  }}
+                >
+                  {faq.acceptedAnswer.text}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        {/* CTA (mirrors SeoLandingPage CTA) */}
+        <div
+          style={{
+            textAlign: 'center',
+            padding: '40px 0',
+            borderTop: `1px solid ${colors.border}`,
+            marginTop: '16px',
+          }}
+        >
+          <a
+            href="https://t.me/y7dispatch_bot"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '1rem',
-              justifyContent: 'center',
+              ...btnStyles.accent,
+              display: 'inline-block',
+              padding: '14px 32px',
+              fontSize: '13px',
+              textDecoration: 'none',
+              borderRadius: '24px',
             }}
           >
-            <a
-              href="https://t.me/y7dispatch_bot"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={ctaButtonStyle}
-            >
-              Telegram — швидкий розрахунок
-            </a>
-            <Link
-              to="/ua/ship-my-car"
-              style={{
-                ...ctaButtonStyle,
-                background: 'transparent',
-                border: '1px solid #F7F5F0',
-                color: '#F7F5F0',
-              }}
-            >
-              Як замовити пригін →
-            </Link>
+            Розрахунок у Telegram
+          </a>
+        </div>
+
+        {/* Related Pages (mirrors SeoLandingPage related) */}
+        <div
+          style={{
+            borderTop: `1px solid ${colors.border}`,
+            paddingTop: '32px',
+          }}
+        >
+          <h3
+            style={{
+              fontFamily: fonts.sans,
+              fontSize: '13px',
+              fontWeight: 600,
+              color: colors.text,
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px',
+              marginBottom: '16px',
+            }}
+          >
+            Повʼязані сторінки
+          </h3>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+            {relatedLinks.map((link, i) => (
+              <Link
+                key={i}
+                to={link.to}
+                style={{
+                  fontFamily: fonts.sans,
+                  fontSize: '13px',
+                  color: colors.accent,
+                  background: colors.bgCard,
+                  border: `1px solid ${colors.border}`,
+                  borderRadius: '20px',
+                  padding: '8px 16px',
+                  textDecoration: 'none',
+                  transition: 'border-color 0.2s',
+                }}
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 }
