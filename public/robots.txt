@@ -3,7 +3,14 @@
 
 User-agent: *
 Allow: /
+Allow: /pl/
+Allow: /pl-us/
+Allow: /ua/
+Allow: /ua-us/
+Allow: /ru-us/
 Disallow: /portal/
+Disallow: /agreement/
+Disallow: /api/
 
 # Google ecosystem
 User-agent: Googlebot
