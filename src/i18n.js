@@ -50,42 +50,6 @@ import agreementUa from './locales/ua/agreement.json';
 import aboutUa from './locales/ua/about.json';
 import faqUa from './locales/ua/faq.json';
 
-// Polish US diaspora (shares PL translations, customized in content sprint)
-import commonPlUs from './locales/pl-us/common.json';
-import homePlUs from './locales/pl-us/home.json';
-import quotePlUs from './locales/pl-us/quote.json';
-import servicesPlUs from './locales/pl-us/services.json';
-import dealersPlUs from './locales/pl-us/dealers.json';
-import exportersPlUs from './locales/pl-us/exporters.json';
-import shipMycarPlUs from './locales/pl-us/shipMycar.json';
-import agreementPlUs from './locales/pl-us/agreement.json';
-import aboutPlUs from './locales/pl-us/about.json';
-import faqPlUs from './locales/pl-us/faq.json';
-
-// Ukrainian US diaspora (shares UA translations, customized in content sprint)
-import commonUaUs from './locales/ua-us/common.json';
-import homeUaUs from './locales/ua-us/home.json';
-import quoteUaUs from './locales/ua-us/quote.json';
-import servicesUaUs from './locales/ua-us/services.json';
-import dealersUaUs from './locales/ua-us/dealers.json';
-import exportersUaUs from './locales/ua-us/exporters.json';
-import shipMycarUaUs from './locales/ua-us/shipMycar.json';
-import agreementUaUs from './locales/ua-us/agreement.json';
-import aboutUaUs from './locales/ua-us/about.json';
-import faqUaUs from './locales/ua-us/faq.json';
-
-// Russian US diaspora (shares RU translations, customized in content sprint)
-import commonRuUs from './locales/ru-us/common.json';
-import homeRuUs from './locales/ru-us/home.json';
-import quoteRuUs from './locales/ru-us/quote.json';
-import servicesRuUs from './locales/ru-us/services.json';
-import dealersRuUs from './locales/ru-us/dealers.json';
-import exportersRuUs from './locales/ru-us/exporters.json';
-import shipMycarRuUs from './locales/ru-us/shipMycar.json';
-import agreementRuUs from './locales/ru-us/agreement.json';
-import aboutRuUs from './locales/ru-us/about.json';
-import faqRuUs from './locales/ru-us/faq.json';
-
 const resources = {
   en: {
     common: commonEn, home: homeEn, quote: quoteEn, services: servicesEn,
@@ -103,25 +67,13 @@ const resources = {
     common: commonUa, home: homeUa, quote: quoteUa, services: servicesUa,
     dealers: dealersUa, exporters: exportersUa, shipMycar: shipMycarUa, agreement: agreementUa, about: aboutUa, faq: faqUa,
   },
-  'pl-us': {
-    common: commonPlUs, home: homePlUs, quote: quotePlUs, services: servicesPlUs,
-    dealers: dealersPlUs, exporters: exportersPlUs, shipMycar: shipMycarPlUs, agreement: agreementPlUs, about: aboutPlUs, faq: faqPlUs,
-  },
-  'ua-us': {
-    common: commonUaUs, home: homeUaUs, quote: quoteUaUs, services: servicesUaUs,
-    dealers: dealersUaUs, exporters: exportersUaUs, shipMycar: shipMycarUaUs, agreement: agreementUaUs, about: aboutUaUs, faq: faqUaUs,
-  },
-  'ru-us': {
-    common: commonRuUs, home: homeRuUs, quote: quoteRuUs, services: servicesRuUs,
-    dealers: dealersRuUs, exporters: exportersRuUs, shipMycar: shipMycarRuUs, agreement: agreementRuUs, about: aboutRuUs, faq: faqRuUs,
-  },
 };
 
 i18n.use(initReactI18next).init({
   resources,
   lng: 'en',
   fallbackLng: 'en',
-  supportedLngs: ['en', 'ru', 'pl', 'ua', 'pl-us', 'ua-us', 'ru-us'],
+  supportedLngs: ['en', 'pl', 'ua', 'ru'],
   defaultNS: 'common',
   interpolation: { escapeValue: false },
 });
