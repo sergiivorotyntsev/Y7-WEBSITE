@@ -1,0 +1,23 @@
+{
+  "title": "Wyślij swój samochód w dowolne miejsce w USA",
+  "subtitle": "Przeprowadzka? Kupiłeś auto w innym stanie? Łączymy Cię z profesjonalnymi przewoźnikami, gwarantując bezpieczną i terminową dostawę ze śledzeniem w czasie rzeczywistym.",
+  "steps": [
+    { "title": "Opowiedz o swoim samochodzie", "desc": "Wprowadź VIN lub dane pojazdu i podaj, dokąd ma trafić." },
+    { "title": "Otrzymaj wycenę", "desc": "Odpowiemy w ciągu 1 godziny z konkurencyjną ceną obejmującą wszystkie koszty." },
+    { "title": "Odbieramy pojazd", "desc": "Sprawdzony przewoźnik odbiera Twój pojazd w umówionym terminie." },
+    { "title": "Śledź i odbierz", "desc": "Otrzymuj aktualizacje statusu przez SMS i email aż do zakończenia dostawy." }
+  ],
+  "bol": {
+    "title": "Ważne: inspekcja Bill of Lading (BOL)",
+    "text": "Przy dostawie Ty lub Twój przedstawiciel MUSICIE dokonać oględzin pojazdu wspólnie z kierowcą przewoźnika i podpisać Bill of Lading (BOL). Podpisując BOL, potwierdzasz stan pojazdu przy dostawie. Wszelkie roszczenia z tytułu uszkodzeń zgłoszone po podpisaniu BOL bez stosownych adnotacji są odpowiedzialnością odbiorcy."
+  },
+  "quoteTitle": "Otrzymaj darmową wycenę",
+  "quoteSubtitle": "Bez zobowiązań. Odpowiemy w ciągu 1 godziny.",
+  "faqTitle": "Często zadawane pytania",
+  "faqs": [
+    { "q": "Ile trwa transport?", "a": "Większość tras zajmuje 3-7 dni roboczych. Transport z wybrzeża na wybrzeże może trwać 7-10 dni. Przy rezerwacji podajemy szacowane okno czasowe." },
+    { "q": "Czy mój samochód jest ubezpieczony podczas transportu?", "a": "Tak. Każdy przewoźnik, z którym współpracujemy, posiada ubezpieczenie ładunku. Weryfikujemy aktywne ubezpieczenie przed przydzieleniem każdego zlecenia." },
+    { "q": "Czy mogę wysłać pojazd niesprawny?", "a": "Tak. Zaznacz to w formularzu wyceny. Pojazdy niesprawne wymagają wciągarki lub wózka widłowego do załadunku, co może wpłynąć na cenę." },
+    { "q": "Otwarty czy zamknięty — co wybrać?", "a": "Transport otwarty jest najpopularniejszą i najtańszą opcją. Zamknięty zalecany jest dla samochodów luksusowych, klasycznych i o wysokiej wartości." }
+  ]
+}

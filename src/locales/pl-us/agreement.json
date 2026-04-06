@@ -1,0 +1,59 @@
+{
+  "title": "Umowa o świadczenie usług transportowych",
+  "loading": "Ładowanie szczegółów zamówienia...",
+  "sections": {
+    "service": {
+      "title": "Opis usług i rola brokera",
+      "body": "Y7 Consulting Inc (DBA Y7 Logistics), USDOT #4427359, MC #1741537, działa jako licencjonowany broker transportowy, a nie przewoźnik drogowy. Organizujemy transport pojazdów za pośrednictwem licencjonowanych i ubezpieczonych przewoźników w Twoim imieniu. Nie posiadamy ani nie obsługujemy ciężarówek; transport realizowany jest wyłącznie przez niezależne firmy przewozowe. Nasza rola polega na zapewnieniu niezawodnego transportu, koordynacji dyspozycji oraz ułatwieniu komunikacji między Tobą a przydzielonym przewoźnikiem."
+    },
+    "bol": {
+      "title": "Inspekcja pojazdu i Bill of Lading (BOL)",
+      "body": "Przy dostawie Ty lub Twój upoważniony przedstawiciel MUSICIE dokonać oględzin pojazdu wspólnie z kierowcą przewoźnika i podpisać Bill of Lading (BOL). BOL dokumentuje stan pojazdu zarówno przy odbiorze, jak i dostawie. Podpisując BOL przy dostawie bez adnotacji o uszkodzeniach, potwierdzasz, że pojazd został odebrany w opisanym stanie. Wszelkie roszczenia z tytułu uszkodzeń zgłoszone po podpisaniu czystego BOL są wyłączną odpowiedzialnością odbiorcy. Masz prawo odnotować wszelkie nowe uszkodzenia na BOL przed podpisaniem. Jeśli przewoźnik odmawia inspekcji, nie podpisuj i natychmiast skontaktuj się z Y7."
+    },
+    "payment": {
+      "title": "Warunki płatności",
+      "body": "Płatność jest wymagana zgodnie z metodą uzgodnioną przy rezerwacji. Opcje obejmują: (1) Przedpłata — pełna opłata transportowa wpłacona na rzecz Y7 Consulting Inc przed wysyłką przez Zelle (info@y7agency.com), przelew bankowy lub ACH; (2) COD (płatność przy dostawie) — płatność dokonywana bezpośrednio kierowcy przewoźnika przy dostawie gotówką, czekiem bankowym lub certyfikowanymi środkami zgodnie z Potwierdzeniem Stawki. Jeśli wymagana jest zaliczka, jest ona płatna przy potwierdzeniu rezerwacji przed przydzieleniem przewoźnika. W przypadku wyboru COD, brak zapłaty przewoźnikowi przy dostawie może skutkować zatrzymaniem pojazdu przez przewoźnika, dziennymi opłatami za przechowanie i/lub zastawem na pojeździe. Y7 Consulting Inc nie ponosi odpowiedzialności za opłaty nałożone przez przewoźnika w wyniku braku płatności przy dostawie."
+    },
+    "insurance": {
+      "title": "Ubezpieczenie i roszczenia",
+      "body": "Wszyscy przewoźnicy w naszej sieci posiadają minimalne ubezpieczenie ładunku na kwotę $100 000 zgodnie z wymogami FMCSA, przy czym większość posiada $250 000 lub więcej. Weryfikujemy aktywne ubezpieczenie przed przydzieleniem każdego przewoźnika. W przypadku uszkodzenia roszczenia muszą być zgłoszone w ciągu 24 godzin od dostawy wraz ze zdjęciami uszkodzeń i kopią BOL z adnotacjami o uszkodzeniach. Y7 Consulting Inc pomoże Ci w złożeniu roszczenia u ubezpieczyciela przewoźnika, jednak jako broker nie ponosimy bezpośredniej odpowiedzialności za ładunek. Roszczenia rozstrzygane są między Tobą a ubezpieczycielem przewoźnika. Klienci mogą wykupić dodatkowe ubezpieczenie u zewnętrznych dostawców ubezpieczeń transportowych."
+    },
+    "cancellation": {
+      "title": "Polityka anulowania",
+      "body": "Bezpłatne anulowanie jest dostępne w każdej chwili przed przydzieleniem przewoźnika. Po przydzieleniu przewoźnika: może obowiązywać opłata za anulowanie do $200 na pokrycie kosztów rezerwacji i dyspozycji. Niestawienie się przy odbiorze: jeśli pojazd nie jest dostępny do odbioru w umówionym terminie i miejscu, a wcześniejsze przełożenie nie zostało uzgodnione, może zostać naliczona pełna opłata transportowa. Aby anulować lub przełożyć, skontaktuj się z nami pod adresem info@y7agency.com jak najwcześniej."
+    },
+    "customer": {
+      "title": "Obowiązki klienta",
+      "body": "Zgadzasz się: (1) podać dokładne informacje o pojeździe, w tym VIN, stan i sprawność; (2) zapewnić dostępność pojazdu do odbioru w umówionym terminie i miejscu; (3) dokonać oględzin pojazdu przy odbiorze i dostawie oraz podpisać Bill of Lading; (4) ujawnić wszelkie modyfikacje, przedmioty osobiste w pojeździe lub niesprawność; (5) zapłacić uzgodnioną opłatę transportową zgodnie z warunkami płatności. Pojazdy niesprawne (nie uruchamiają się, nie skręcają, nie hamują) wymagają specjalnego sprzętu i mogą wiązać się z dodatkową opłatą w wysokości $100-$300. Musisz dokładnie określić stan pojazdu — podanie nieprawdziwych informacji może skutkować dodatkowymi opłatami przy odbiorze."
+    },
+    "delays": {
+      "title": "Szacowane terminy i opóźnienia",
+      "body": "Wszystkie daty odbioru i dostawy są szacunkowe, nie gwarantowane. Rzeczywisty czas tranzytu zależy od odległości, dostępności przewoźników, warunków pogodowych, stanu dróg i innych czynników. Typowy czas tranzytu: 1-3 dni dla tras poniżej 500 mil, 3-7 dni na trasach międzystanowych. Ani Y7 Consulting Inc, ani przydzielony przewoźnik nie ponoszą odpowiedzialności za opóźnienia spowodowane zjawiskami pogodowymi, klęskami żywiołowymi, działaniami organów państwowych, zamknięciem dróg, awariami mechanicznymi, korkami lub innymi okolicznościami pozostającymi poza rozsądną kontrolą (siła wyższa). Y7 poinformuje Cię proaktywnie w przypadku istotnych opóźnień."
+    },
+    "liability": {
+      "title": "Ograniczenie odpowiedzialności i rozstrzyganie sporów",
+      "body": "Łączna odpowiedzialność Y7 Consulting Inc wynikająca z lub związana ze świadczonymi usługami brokerskimi jest ograniczona do opłaty brokerskiej zapłaconej za konkretną przesyłkę. Nie ponosimy odpowiedzialności za opóźnienia przewoźnika, uszkodzenia pojazdu podczas transportu, usterki mechaniczne, siłę wyższą, zjawiska pogodowe, zamknięcie dróg ani żadne inne okoliczności pozostające poza naszą rozsądną kontrolą. Wszelkie spory wynikające z niniejszej umowy podlegają rozstrzygnięciu w drodze wiążącego arbitrażu zgodnie z zasadami Amerykańskiego Stowarzyszenia Arbitrażowego, prowadzonego w hrabstwie Suffolk, stan Massachusetts. Niniejsza umowa podlega prawu stanu Massachusetts i jest zgodnie z nim interpretowana. Niniejsze ograniczenie obowiązuje w najszerszym zakresie dozwolonym przez prawo."
+    }
+  },
+  "checkboxes": {
+    "bol": "Rozumiem, że muszę dokonać oględzin pojazdu i podpisać Bill of Lading (BOL) przy dostawie oraz że podpisanie bez odnotowania uszkodzeń zwalnia przewoźnika z odpowiedzialności.",
+    "payment": "Rozumiem warunki płatności, w tym wymogi dotyczące zaliczki i mój obowiązek zapłaty przewoźnikowi przy dostawie w przypadku wyboru płatności COD.",
+    "broker": "Rozumiem, że Y7 Consulting Inc jest licencjonowanym brokerem, a nie przewoźnikiem, i że jego odpowiedzialność jest ograniczona do zapłaconej opłaty brokerskiej.",
+    "cancellation": "Zapoznałem/am się i zgadzam się z polityką anulowania, obowiązkami klienta i wszystkimi warunkami zawartymi w niniejszej umowie."
+  },
+  "signature": {
+    "label": "Wpisz swoje pełne imię i nazwisko jako podpis elektroniczny",
+    "placeholder": "Twoje pełne imię i nazwisko",
+    "legal": "Wpisując swoje imię powyżej, potwierdzasz, że stanowi to prawnie wiążący podpis elektroniczny zgodnie z E-SIGN Act (15 U.S.C. §7001). Data i adres IP podpisania są rejestrowane.",
+    "button": "Podpisz umowę",
+    "submitting": "Podpisywanie..."
+  },
+  "success": {
+    "title": "Umowa podpisana pomyślnie",
+    "message": "Dziękujemy. Twoja podpisana umowa została zarejestrowana. Możesz teraz składać zlecenia transportowe."
+  },
+  "errors": {
+    "orderNotFound": "Zamówienie nie znalezione. Sprawdź link i spróbuj ponownie.",
+    "submitFailed": "Nie udało się wysłać umowy. Spróbuj ponownie."
+  }
+}

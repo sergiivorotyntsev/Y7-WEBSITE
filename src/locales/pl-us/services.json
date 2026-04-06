@@ -1,0 +1,30 @@
+{
+  "title": "Nasze usługi",
+  "subtitle": "Pełen zakres usług transportu samochodów",
+  "list": [
+    {
+      "title": "Odbiór i dostawa z aukcji",
+      "desc": "Odbieramy pojazdy z aukcji Copart, IAA, Manheim i ADESA w całym kraju. Koordynacja gate pass i wysyłka tego samego dnia."
+    },
+    {
+      "title": "Wymiana między dealerami",
+      "desc": "Szybki i niezawodny transport między salonami. Ceny hurtowe na stałych trasach. Jeden punkt kontaktowy dla wszystkich wymian."
+    },
+    {
+      "title": "Transport portowy i eksportowy",
+      "desc": "Dostawa od drzwi do portu na potrzeby eksportu międzynarodowego. Obsługujemy Newark, Houston, Savannah, Baltimore, LA i Jacksonville."
+    },
+    {
+      "title": "Prywatna relokacja pojazdu",
+      "desc": "Przeprowadzka? Transport otwarty lub zamknięty ze śledzeniem w czasie rzeczywistym i powiadomieniami SMS oraz email."
+    },
+    {
+      "title": "Transport premium w zamkniętej naczepie",
+      "desc": "Zamknięte naczepy premium dla samochodów klasycznych, luksusowych i o wysokiej wartości. Pełne ubezpieczenie i staranna obsługa."
+    },
+    {
+      "title": "Transport wielu pojazdów",
+      "desc": "Wysyłasz kilka samochodów? Koordynujemy transport grupowy ze zniżkami ilościowymi i jednym punktem dyspozytorskim."
+    }
+  ]
+}

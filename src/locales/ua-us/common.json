@@ -1,0 +1,40 @@
+{
+  "nav": {
+    "home": "Головна",
+    "services": "Послуги",
+    "dealers": "Дилерам",
+    "exporters": "Експорт",
+    "shipMyCar": "Авто",
+    "track": "Трекінг",
+    "faq": "FAQ",
+    "about": "Про нас",
+    "contact": "Контакти"
+  },
+  "cta": {
+    "getQuote": "Отримати розрахунок",
+    "submit": "Надіслати",
+    "learnMore": "Дізнатися більше",
+    "trackShipment": "Відстежити вантаж",
+    "getFreeQuote": "Безкоштовний розрахунок"
+  },
+  "footer": {
+    "company": "Y7 Consulting Inc",
+    "usdot": "USDOT #4427359",
+    "mc": "MC #1741537",
+    "tagline": "Перевезення автомобілів по всій території США.",
+    "privacy": "Політика конфіденційності",
+    "terms": "Умови використання",
+    "accessibility": "Доступність",
+    "smsTerms": "Умови SMS",
+    "copyright": "2026 Y7 Consulting Inc. Усі права захищені.",
+    "navigation": "Навігація",
+    "legal": "Юридична інформація",
+    "contact": "Контакти"
+  },
+  "lang": {
+    "en": "EN",
+    "ru": "RU",
+    "pl": "PL",
+    "uk": "UK"
+  }
+}

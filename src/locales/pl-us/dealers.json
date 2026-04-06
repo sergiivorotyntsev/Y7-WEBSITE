@@ -1,0 +1,35 @@
+{
+  "title": "Transport samochodów dla dealerów",
+  "subtitle": "Zajmujemy się logistyką, abyś mógł skupić się na sprzedaży. Od odbiorów z aukcji po wymianę dealerską — Y7 przewozi Twój towar niezawodnie i na czas.",
+  "benefits": [
+    { "title": "Ceny hurtowe", "desc": "Konkurencyjne stawki dla dealerów o dużych wolumenach. Im więcej wysyłasz, tym więcej oszczędzasz." },
+    { "title": "Odbiory z aukcji", "desc": "Wysyłka tego samego dnia z aukcji Copart, IAA, Manheim i ADESA. Koordynacja gate pass w cenie." },
+    { "title": "Wymiana między dealerami", "desc": "Szybki transport między salonami. Jeden punkt kontaktowy dla wszystkich wymian." },
+    { "title": "Dedykowany dyspozytor", "desc": "Twój własny koordynator, który zna Twoje trasy, terminy i preferencje." },
+    { "title": "Integracja z Central Dispatch", "desc": "90% naszych ładunków przechodzi przez Central Dispatch. Aktualizacje statusu i śledzenie przewoźnika w czasie rzeczywistym." },
+    { "title": "Elastyczne płatności", "desc": "Warunki Net-15, ACH i fakturowanie zaprojektowane dla operacji dealerskich." }
+  ],
+  "pricing": {
+    "title": "Modele cenowe",
+    "models": [
+      {
+        "title": "Płatność przewoźnikowi przez brokera",
+        "desc": "Y7 obsługuje wszystkie płatności dla przewoźnika. Wyższa opłata za usługę, ale zero kłopotów — nie musisz zajmować się płatnościami dla przewoźnika, sporami dotyczącymi BOL ani koordynacją COD."
+      },
+      {
+        "title": "Bezpośrednia płatność przewoźnikowi (COD)",
+        "desc": "Dealer płaci przewoźnikowi przy dostawie. Niższa opłata za usługę, ale sam zajmujesz się inspekcją BOL i płatnością. Najlepsze dla doświadczonych dealerów z personelem przyjmującym."
+      }
+    ],
+    "volumeTitle": "Progi zniżek ilościowych",
+    "tiers": [
+      { "volume": "1-5", "label": "pojazdów/miesiąc", "discount": "Ceny standardowe", "perk": "Pełna obsługa, bez minimum" },
+      { "volume": "6-15", "label": "pojazdów/miesiąc", "discount": "10% zniżki na opłatę serwisową", "perk": "Priorytetowa kolejka dyspozytorska" },
+      { "volume": "16-30", "label": "pojazdów/miesiąc", "discount": "15% zniżki", "perk": "Przydzielony dedykowany dyspozytor" },
+      { "volume": "30+", "label": "pojazdów/miesiąc", "discount": "Indywidualny kontrakt", "perk": "Skontaktuj się po wycenę" }
+    ]
+  },
+  "ctaTitle": "Gotowy, aby usprawnić transport?",
+  "ctaSubtitle": "Otrzymaj wycenę w kilka minut. Odpowiemy w ciągu 1 godziny.",
+  "ctaButton": "Wycena dla dealerów"
+}
