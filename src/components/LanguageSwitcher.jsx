@@ -6,13 +6,15 @@ import { trackEvent } from '../utils/analytics';
 
 const langs = [
   { code: 'en', label: 'EN' },
-  { code: 'ru', label: 'RU' },
   { code: 'pl', label: 'PL' },
+  { code: 'pl-us', label: 'PL-US' },
   { code: 'ua', label: 'UA' },
+  { code: 'ua-us', label: 'UA-US' },
+  { code: 'ru-us', label: 'RU-US' },
 ];
 
 // Routes that have /:lang/ prefix versions in App.jsx
-const I18N_PATHS = ['/faq', '/about', '/quote', '/dealer-quote'];
+const I18N_PATHS = ['/faq', '/about', '/quote', '/dealer-quote', '/copart-shipping', '/ship-my-car'];
 const I18N_PREFIXES = ['/ports/'];
 
 export default function LanguageSwitcher() {
