@@ -232,6 +232,26 @@ export default function Footer() {
       }}>
         &copy; {t('footer.copyright')}
       </div>
+      <div style={{
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: '12px 24px',
+        textAlign: 'center',
+        fontFamily: fonts.sans,
+        fontSize: '13px',
+        color: colors.textMuted,
+      }}>
+        <strong>International shipping:</strong>{' '}
+        <a
+          href="https://daytonacargo.com"
+          target="_blank"
+          rel="noopener"
+          style={{ color: colors.accent }}
+        >
+          DaytonaCargo
+        </a>
+        {' '}&mdash; sister company specializing in USA&rarr;Europe car export (Poland, Netherlands, EU)
+      </div>
     </footer>
   );
 }
