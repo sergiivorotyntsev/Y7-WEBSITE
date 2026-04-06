@@ -1,4 +1,5 @@
 import SeoLandingPage from '../SeoLandingPage';
+import PricingRange from '../../../components/PricingRange';
 
 export default function NewJerseyToFlorida() {
   return (
@@ -12,7 +13,7 @@ export default function NewJerseyToFlorida() {
       heading="New Jersey to Florida Car Shipping"
       intro="New Jersey to Florida is one of the highest-volume auto transport corridors on the East Coast. Whether you're a snowbird, relocating, or a dealer moving inventory, Y7 Logistics provides fast, reliable transport along the I-95 corridor from any NJ address to anywhere in Florida."
       whenNeeded={[
-        'Snowbird seasonal transport (NJ\u2192FL and back)',
+        'Snowbird seasonal transport (NJ→FL and back)',
         'Relocating from New Jersey to Florida',
         'Dealer inventory moves between NJ and FL',
         'Sending a vehicle ahead of your move',
@@ -24,7 +25,7 @@ export default function NewJerseyToFlorida() {
         { title: 'Receive pricing', desc: 'High-volume corridor means competitive rates.' },
         { title: 'Confirm and schedule', desc: 'Lock in your preferred transport window.' },
         { title: 'Carrier picks up from your NJ location', desc: 'Door-to-door pickup anywhere in New Jersey.' },
-        { title: 'Delivered in Florida', desc: 'Door-to-door delivery in 3\u20135 business days.' },
+        { title: 'Delivered in Florida', desc: 'Door-to-door delivery in 3–5 business days.' },
       ]}
       requirements={[
         'NJ pickup address',
@@ -35,20 +36,20 @@ export default function NewJerseyToFlorida() {
       ]}
       capabilities={[
         '~1,100 miles via I-95 corridor',
-        'Transit 3\u20135 business days',
+        'Transit 3–5 business days',
         'High-volume route with frequent carrier availability',
-        'Popular pairs \u2014 Newark\u2192Miami, Princeton\u2192Orlando, Jersey City\u2192Tampa',
+        'Popular pairs — Newark→Miami, Princeton→Orlando, Jersey City→Tampa',
         'Open and enclosed transport',
         'Year-round service with seasonal expertise',
       ]}
       faqs={[
         {
           q: 'How long does NJ to FL car shipping take?',
-          a: 'Standard transit time is 3\u20135 business days via the I-95 corridor. This is one of the fastest East Coast routes due to high carrier volume.',
+          a: 'Standard transit time is 3–5 business days via the I-95 corridor. This is one of the fastest East Coast routes due to high carrier volume.',
         },
         {
           q: 'Is NJ to FL cheaper than other routes?',
-          a: 'Yes \u2014 this is one of the most competitive corridors in auto transport. High carrier volume and a direct highway route keep prices lower than many comparable distances.',
+          a: 'Yes — this is one of the most competitive corridors in auto transport. High carrier volume and a direct highway route keep prices lower than many comparable distances.',
         },
         {
           q: 'Do you offer round-trip snowbird transport?',
@@ -62,6 +63,17 @@ export default function NewJerseyToFlorida() {
         { label: 'State to State Shipping', to: '/state-to-state-car-shipping' },
         { label: 'Get a Quote', to: '/quote' },
       ]}
-    />
+    >
+      <PricingRange
+        routeName="New Jersey to Florida"
+        openLow={550}
+        openHigh={900}
+        enclosedLow={1050}
+        enclosedHigh={1550}
+        distance={1150}
+        typicalTransitDays="3-5"
+        seasonalNote="Expect 15-20% higher rates November-March due to snowbird migration."
+      />
+    </SeoLandingPage>
   );
 }

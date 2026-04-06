@@ -1,4 +1,5 @@
 import SeoLandingPage from '../SeoLandingPage';
+import PricingRange from '../../../components/PricingRange';
 
 export default function ChicagoToNewark() {
   return (
@@ -23,19 +24,19 @@ export default function ChicagoToNewark() {
         { title: 'We quote the ~800-mile corridor', desc: 'Competitive pricing on this well-traveled route.' },
         { title: 'Carrier assigned on the I-80/I-76 route', desc: 'Frequent carrier availability on this corridor.' },
         { title: 'Vehicle picked up from Chicago area', desc: 'All metro and suburban locations served.' },
-        { title: 'Delivered to Port Newark warehouse', desc: 'Door-to-port delivery in 3\u20134 business days.' },
+        { title: 'Delivered to Port Newark warehouse', desc: 'Door-to-port delivery in 3–4 business days.' },
       ]}
       requirements={[
         'Chicago-area pickup address or auction location',
         'Port Newark warehouse details',
         'Vehicle information',
         'Timing to coordinate with port operations',
-        'For auctions \u2014 lot number and gate pass',
+        'For auctions — lot number and gate pass',
       ]}
       capabilities={[
         'All Chicago metro and suburban areas',
         '~800 miles via I-80/I-76 corridor',
-        'Transit 3\u20134 business days',
+        'Transit 3–4 business days',
         'Copart and IAAI Chicagoland pickup',
         'Port Newark warehouse delivery',
         'Multi-vehicle transport available',
@@ -44,7 +45,7 @@ export default function ChicagoToNewark() {
       faqs={[
         {
           q: 'How long does Chicago to Port Newark take?',
-          a: 'Standard transit is 3\u20134 business days. The ~800-mile I-80/I-76 route is well-traveled by carriers, ensuring consistent scheduling.',
+          a: 'Standard transit is 3–4 business days. The ~800-mile I-80/I-76 route is well-traveled by carriers, ensuring consistent scheduling.',
         },
         {
           q: 'Do you pick up from Chicago-area auctions?',
@@ -62,6 +63,16 @@ export default function ChicagoToNewark() {
         { label: 'Auction to Port', to: '/auction-to-port-transport' },
         { label: 'Car Shipping Cost', to: '/car-shipping-cost' },
       ]}
-    />
+    >
+      <PricingRange
+        routeName="Chicago to Port Newark"
+        openLow={600}
+        openHigh={950}
+        enclosedLow={1150}
+        enclosedHigh={1650}
+        distance={800}
+        typicalTransitDays="2-4"
+      />
+    </SeoLandingPage>
   );
 }

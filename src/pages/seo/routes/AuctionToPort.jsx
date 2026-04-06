@@ -1,4 +1,5 @@
 import SeoLandingPage from '../SeoLandingPage';
+import PricingRange from '../../../components/PricingRange';
 
 export default function AuctionToPort() {
   return (
@@ -16,7 +17,7 @@ export default function AuctionToPort() {
         'Shipping Copart/IAAI purchases directly to port',
         'Dealer exporting auction inventory',
         'Multiple auction purchases consolidated at one port',
-        'Any auction \u2192 port domestic transport need',
+        'Any auction → port domestic transport need',
       ]}
       steps={[
         { title: 'Win your vehicle at auction', desc: 'Complete payment and secure the title.' },
@@ -34,25 +35,25 @@ export default function AuctionToPort() {
         'Vessel/export timeline (so we coordinate delivery)',
       ]}
       capabilities={[
-        'All auction platforms \u2014 Copart (200+ locations), IAAI (170+ locations), Manheim, and independent auctions',
-        'All 6 major export ports \u2014 Newark, Houston, Savannah, Los Angeles, Baltimore, Jacksonville',
+        'All auction platforms — Copart (200+ locations), IAAI (170+ locations), Manheim, and independent auctions',
+        'All 6 major export ports — Newark, Houston, Savannah, Los Angeles, Baltimore, Jacksonville',
         'Gate pass coordination and storage fee prevention',
         'Single or multi-vehicle consolidation',
         'Open transport (most common) or enclosed for high-value',
-        'Complete documentation \u2014 BOL, delivery receipts, carrier insurance',
+        'Complete documentation — BOL, delivery receipts, carrier insurance',
       ]}
       faqs={[
         {
           q: 'Which auctions do you pick up from?',
-          a: 'We pick up from all Copart, IAAI, and Manheim locations nationwide \u2014 over 500 auction yards in total. We also serve independent and regional auctions.',
+          a: 'We pick up from all Copart, IAAI, and Manheim locations nationwide — over 500 auction yards in total. We also serve independent and regional auctions.',
         },
         {
           q: 'Which ports do you deliver to?',
-          a: 'We deliver to all 6 major US export ports \u2014 Port Newark (NJ), Port Houston (TX), Port Savannah (GA), Port of Los Angeles (CA), Port of Baltimore (MD), and JAXPORT (FL). Other ports available on request.',
+          a: 'We deliver to all 6 major US export ports — Port Newark (NJ), Port Houston (TX), Port Savannah (GA), Port of Los Angeles (CA), Port of Baltimore (MD), and JAXPORT (FL). Other ports available on request.',
         },
         {
           q: 'How do you prevent auction storage fees?',
-          a: 'We prioritize pickup within the auction\u2019s free storage period (typically 3\u20135 days after payment). Our dispatch team schedules carriers to arrive before storage charges begin.',
+          a: 'We prioritize pickup within the auction\u2019s free storage period (typically 3–5 days after payment). Our dispatch team schedules carriers to arrive before storage charges begin.',
         },
         {
           q: 'Can you handle multiple vehicles from different auctions to one port?',
@@ -73,6 +74,15 @@ export default function AuctionToPort() {
         { label: 'Port Savannah', to: '/ports/savannah' },
         { label: 'For Exporters', to: '/exporters' },
       ]}
-    />
+    >
+      <PricingRange
+        routeName="Auction to Port"
+        variants={[
+          { label: 'Copart Dallas → Houston Port', low: 300, high: 500, distance: 250, transit: '1-2 days' },
+          { label: 'IAAI Newark → Port Newark', low: 150, high: 350, distance: 15, transit: '1 day' },
+          { label: 'Manheim Atlanta → Savannah Port', low: 400, high: 650, distance: 250, transit: '1-2 days' },
+        ]}
+      />
+    </SeoLandingPage>
   );
 }

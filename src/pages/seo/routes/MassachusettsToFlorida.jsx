@@ -1,4 +1,5 @@
 import SeoLandingPage from '../SeoLandingPage';
+import PricingRange from '../../../components/PricingRange';
 
 export default function MassachusettsToFlorida() {
   return (
@@ -12,7 +13,7 @@ export default function MassachusettsToFlorida() {
       heading="Massachusetts to Florida Car Shipping"
       intro="The Massachusetts-to-Florida corridor is one of the busiest auto transport routes in the country, driven by snowbird migration, relocations, and dealer trades. Y7 Logistics — based in Newton, MA — runs this route year-round with reliable carriers along the I-95 corridor."
       whenNeeded={[
-        'Snowbird seasonal move (MA\u2192FL in fall, FL\u2192MA in spring)',
+        'Snowbird seasonal move (MA→FL in fall, FL→MA in spring)',
         'Relocating from Massachusetts to Florida',
         'Buying a vehicle from a FL dealer or private seller',
         'Sending car ahead before a move',
@@ -20,11 +21,11 @@ export default function MassachusettsToFlorida() {
         'Shipping auction purchase between states',
       ]}
       steps={[
-        { title: 'Request a quote', desc: 'Mention MA\u2192FL for corridor pricing.' },
+        { title: 'Request a quote', desc: 'Mention MA→FL for corridor pricing.' },
         { title: 'Receive competitive pricing', desc: 'This is a high-volume route with strong carrier availability.' },
         { title: 'Confirm and pick your transport window', desc: 'Choose your preferred pickup dates.' },
         { title: 'Carrier picks up from your Massachusetts address', desc: 'Door-to-door service from anywhere in MA.' },
-        { title: 'Delivered to your Florida address', desc: 'Door-to-door delivery in 4\u20136 business days.' },
+        { title: 'Delivered to your Florida address', desc: 'Door-to-door delivery in 4–6 business days.' },
       ]}
       requirements={[
         'Massachusetts pickup address',
@@ -35,8 +36,8 @@ export default function MassachusettsToFlorida() {
       ]}
       capabilities={[
         '~1,500 miles via I-95 corridor',
-        'Transit time 4\u20136 business days (open) or 5\u20137 days (enclosed)',
-        'Popular city pairs \u2014 Boston\u2192Miami, Boston\u2192Orlando, Worcester\u2192Tampa, Springfield\u2192Fort Lauderdale',
+        'Transit time 4–6 business days (open) or 5–7 days (enclosed)',
+        'Popular city pairs — Boston→Miami, Boston→Orlando, Worcester→Tampa, Springfield→Fort Lauderdale',
         'Snowbird seasonal scheduling with early booking discounts',
         'Both open and enclosed transport',
         'Year-round service with winter weather contingency',
@@ -44,7 +45,7 @@ export default function MassachusettsToFlorida() {
       faqs={[
         {
           q: 'How long does it take to ship a car from MA to FL?',
-          a: 'Standard open transport takes 4\u20136 business days. Enclosed transport may take 5\u20137 days due to fewer available carriers. Expedited service (2\u20133 days) is available at a premium.',
+          a: 'Standard open transport takes 4–6 business days. Enclosed transport may take 5–7 days due to fewer available carriers. Expedited service (2–3 days) is available at a premium.',
         },
         {
           q: 'How much does MA to FL car shipping cost?',
@@ -52,7 +53,7 @@ export default function MassachusettsToFlorida() {
         },
         {
           q: 'When should I book snowbird transport?',
-          a: 'Book early \u2014 ideally 2\u20134 weeks before your desired pickup date. The October\u2013December southbound rush fills carrier slots quickly. Spring return trips (March\u2013May) also book fast.',
+          a: 'Book early — ideally 2–4 weeks before your desired pickup date. The October–December southbound rush fills carrier slots quickly. Spring return trips (March–May) also book fast.',
         },
         {
           q: 'Can you ship both ways on this route?',
@@ -66,6 +67,17 @@ export default function MassachusettsToFlorida() {
         { label: 'Car Shipping Cost', to: '/car-shipping-cost' },
         { label: 'Get a Quote', to: '/quote' },
       ]}
-    />
+    >
+      <PricingRange
+        routeName="Massachusetts to Florida"
+        openLow={600}
+        openHigh={950}
+        enclosedLow={1100}
+        enclosedHigh={1650}
+        distance={1320}
+        typicalTransitDays="3-5"
+        seasonalNote="Expect 15-20% higher rates November-March due to snowbird migration."
+      />
+    </SeoLandingPage>
   );
 }

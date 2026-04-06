@@ -1,4 +1,5 @@
 import SeoLandingPage from '../SeoLandingPage';
+import PricingRange from '../../../components/PricingRange';
 
 export default function TexasToNewark() {
   return (
@@ -21,8 +22,8 @@ export default function TexasToNewark() {
       steps={[
         { title: 'Win your vehicle at a Texas auction', desc: 'Or provide pickup details for any TX address.' },
         { title: 'Share lot number and buyer info with Y7', desc: 'We coordinate gate pass and port warehouse delivery.' },
-        { title: 'Carrier dispatched on the TX\u2192Newark corridor', desc: 'Via I-40/I-78 or I-81 corridor.' },
-        { title: 'Vehicle delivered to your Port Newark warehouse', desc: 'Door-to-port delivery in 4\u20136 business days.' },
+        { title: 'Carrier dispatched on the TX→Newark corridor', desc: 'Via I-40/I-78 or I-81 corridor.' },
+        { title: 'Vehicle delivered to your Port Newark warehouse', desc: 'Door-to-port delivery in 4–6 business days.' },
         { title: 'Receive BOL and delivery confirmation', desc: 'Full documentation for export processing.' },
       ]}
       requirements={[
@@ -35,7 +36,7 @@ export default function TexasToNewark() {
       capabilities={[
         'All Copart and IAAI Texas locations',
         '~1,700 miles via I-40/I-78 or I-81 corridor',
-        'Transit time 4\u20136 business days',
+        'Transit time 4–6 business days',
         'Port Newark/Elizabeth warehouse delivery coordination',
         'Multi-vehicle consolidation',
         'Gate pass and BOL documentation',
@@ -44,15 +45,15 @@ export default function TexasToNewark() {
       faqs={[
         {
           q: 'How long does TX to Port Newark take?',
-          a: 'Standard transit is 4\u20136 business days. We can coordinate delivery timing with your vessel schedule to avoid early arrival warehouse storage fees.',
+          a: 'Standard transit is 4–6 business days. We can coordinate delivery timing with your vessel schedule to avoid early arrival warehouse storage fees.',
         },
         {
           q: 'Can you pick up from any Copart/IAAI in Texas?',
-          a: 'Yes. Texas has some of the highest-volume auction locations in the country. We pick up from all Copart and IAAI yards across the state \u2014 Houston, Dallas, San Antonio, and beyond.',
+          a: 'Yes. Texas has some of the highest-volume auction locations in the country. We pick up from all Copart and IAAI yards across the state — Houston, Dallas, San Antonio, and beyond.',
         },
         {
           q: 'Do you handle documentation for port delivery?',
-          a: 'We handle the domestic transport documentation \u2014 Bill of Lading, carrier insurance, delivery receipts. For export-specific paperwork (title, customs), work with your freight forwarder.',
+          a: 'We handle the domestic transport documentation — Bill of Lading, carrier insurance, delivery receipts. For export-specific paperwork (title, customs), work with your freight forwarder.',
         },
         {
           q: 'Can you deliver multiple vehicles to the same port warehouse?',
@@ -66,6 +67,16 @@ export default function TexasToNewark() {
         { label: 'Copart Shipping', to: '/copart-shipping' },
         { label: 'Auction to Port', to: '/auction-to-port-transport' },
       ]}
-    />
+    >
+      <PricingRange
+        routeName="Texas to Port Newark"
+        openLow={950}
+        openHigh={1450}
+        enclosedLow={1700}
+        enclosedHigh={2400}
+        distance={1650}
+        typicalTransitDays="4-6"
+      />
+    </SeoLandingPage>
   );
 }
