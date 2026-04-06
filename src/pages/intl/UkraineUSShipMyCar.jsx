@@ -186,7 +186,12 @@ const UkraineUSShipMyCar = () => {
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
 
-      <HreflangTags currentPath="/ship-my-car" />
+      <HreflangTags
+        currentPath="/ship-my-car"
+        hasPolishVersion={true}
+        hasUkrainianVersion={true}
+        hasRussianUSVersion={true}
+      />
 
       {/* ============================================================ */}
       {/*  HERO SECTION (short)                                        */}
@@ -491,6 +496,32 @@ const UkraineUSShipMyCar = () => {
       </section>
 
       {/* ============================================================ */}
+      {/*  WHAT TO EXPECT TIMELINE                                     */}
+      {/* ============================================================ */}
+      <section style={sectionStyle}>
+        {/* TODO-UA-US: Replace with Ukrainian section title */}
+        <h2 style={h2Style}>PLACEHOLDER_TIMELINE_H2</h2>
+        <p style={{ ...pStyle, marginBottom: '1.25rem' }}>
+          PLACEHOLDER_TIMELINE_PARAGRAPH_1_LINE_1.
+          PLACEHOLDER_TIMELINE_PARAGRAPH_1_LINE_2.
+          PLACEHOLDER_TIMELINE_PARAGRAPH_1_LINE_3.
+          PLACEHOLDER_TIMELINE_PARAGRAPH_1_LINE_4.
+        </p>
+        <p style={{ ...pStyle, marginBottom: '1.25rem' }}>
+          PLACEHOLDER_TIMELINE_PARAGRAPH_2_LINE_1.
+          PLACEHOLDER_TIMELINE_PARAGRAPH_2_LINE_2.
+          PLACEHOLDER_TIMELINE_PARAGRAPH_2_LINE_3.
+          PLACEHOLDER_TIMELINE_PARAGRAPH_2_LINE_4.
+        </p>
+        <p style={pStyle}>
+          PLACEHOLDER_TIMELINE_PARAGRAPH_3_LINE_1.
+          PLACEHOLDER_TIMELINE_PARAGRAPH_3_LINE_2.
+          PLACEHOLDER_TIMELINE_PARAGRAPH_3_LINE_3.
+          PLACEHOLDER_TIMELINE_PARAGRAPH_3_LINE_4.
+        </p>
+      </section>
+
+      {/* ============================================================ */}
       {/*  TRUST SIGNALS                                               */}
       {/* ============================================================ */}
       <section style={sectionStyle}>
@@ -530,6 +561,28 @@ const UkraineUSShipMyCar = () => {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/*  INSURANCE AND PROTECTION                                    */}
+      {/* ============================================================ */}
+      <section style={sectionStyle}>
+        {/* TODO-UA-US: Replace with Ukrainian section title */}
+        <h2 style={h2Style}>PLACEHOLDER_INSURANCE_H2</h2>
+        <p style={{ ...pStyle, marginBottom: '1.25rem' }}>
+          PLACEHOLDER_INSURANCE_PARAGRAPH_1_LINE_1.
+          PLACEHOLDER_INSURANCE_PARAGRAPH_1_LINE_2.
+          PLACEHOLDER_INSURANCE_PARAGRAPH_1_LINE_3.
+          PLACEHOLDER_INSURANCE_PARAGRAPH_1_LINE_4.
+          PLACEHOLDER_INSURANCE_PARAGRAPH_1_LINE_5.
+        </p>
+        <p style={pStyle}>
+          PLACEHOLDER_INSURANCE_PARAGRAPH_2_LINE_1.
+          PLACEHOLDER_INSURANCE_PARAGRAPH_2_LINE_2.
+          PLACEHOLDER_INSURANCE_PARAGRAPH_2_LINE_3.
+          PLACEHOLDER_INSURANCE_PARAGRAPH_2_LINE_4.
+          PLACEHOLDER_INSURANCE_PARAGRAPH_2_LINE_5.
+        </p>
       </section>
 
       {/* ============================================================ */}

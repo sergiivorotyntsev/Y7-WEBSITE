@@ -222,7 +222,12 @@ const UkraineUSCopart = () => {
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
 
-      <HreflangTags currentPath="/copart-shipping" />
+      <HreflangTags
+        currentPath="/copart-shipping"
+        hasPolishVersion={true}
+        hasUkrainianVersion={true}
+        hasRussianUSVersion={true}
+      />
 
       {/* ============================================================ */}
       {/*  BREADCRUMB NAV                                              */}

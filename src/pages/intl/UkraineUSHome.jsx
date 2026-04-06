@@ -273,7 +273,12 @@ const UkraineUSHome = () => {
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
 
-      <HreflangTags currentPath="" />
+      <HreflangTags
+        currentPath=""
+        hasPolishVersion={true}
+        hasUkrainianVersion={true}
+        hasRussianUSVersion={true}
+      />
 
       {/* ============================================================ */}
       {/*  HERO SECTION                                                */}
@@ -593,6 +598,39 @@ const UkraineUSHome = () => {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/*  WHY Y7 LOGISTICS                                           */}
+      {/* ============================================================ */}
+      <section style={sectionStyle}>
+        {/* TODO-UA-US: Replace with Ukrainian section title
+            NOTE: Emphasize Ukrainian-speaking staff, understanding of diaspora needs */}
+        <h2 style={h2Style}>PLACEHOLDER_WHY_US_H2</h2>
+
+        <p style={{ ...pStyle, marginBottom: '1.25rem' }}>
+          PLACEHOLDER_WHY_US_PARAGRAPH_1_LINE_1.
+          PLACEHOLDER_WHY_US_PARAGRAPH_1_LINE_2.
+          PLACEHOLDER_WHY_US_PARAGRAPH_1_LINE_3.
+          PLACEHOLDER_WHY_US_PARAGRAPH_1_LINE_4.
+          PLACEHOLDER_WHY_US_PARAGRAPH_1_LINE_5.
+        </p>
+
+        <p style={{ ...pStyle, marginBottom: '1.25rem' }}>
+          PLACEHOLDER_WHY_US_PARAGRAPH_2_LINE_1.
+          PLACEHOLDER_WHY_US_PARAGRAPH_2_LINE_2.
+          PLACEHOLDER_WHY_US_PARAGRAPH_2_LINE_3.
+          PLACEHOLDER_WHY_US_PARAGRAPH_2_LINE_4.
+          PLACEHOLDER_WHY_US_PARAGRAPH_2_LINE_5.
+        </p>
+
+        <p style={pStyle}>
+          PLACEHOLDER_WHY_US_PARAGRAPH_3_LINE_1.
+          PLACEHOLDER_WHY_US_PARAGRAPH_3_LINE_2.
+          PLACEHOLDER_WHY_US_PARAGRAPH_3_LINE_3.
+          PLACEHOLDER_WHY_US_PARAGRAPH_3_LINE_4.
+          PLACEHOLDER_WHY_US_PARAGRAPH_3_LINE_5.
+        </p>
       </section>
 
       {/* ============================================================ */}

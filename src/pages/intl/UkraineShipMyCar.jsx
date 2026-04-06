@@ -144,6 +144,23 @@ const workflowSteps = [
   { num: '06', title: 'PLACEHOLDER_WORKFLOW_6_TITLE', desc: 'PLACEHOLDER_WORKFLOW_6_DESC' },
 ];
 
+// TODO-UA: Replace with real common mistakes
+const commonMistakes = [
+  { title: 'PLACEHOLDER_MISTAKE_1_TITLE', desc: 'PLACEHOLDER_MISTAKE_1_DESC' },
+  { title: 'PLACEHOLDER_MISTAKE_2_TITLE', desc: 'PLACEHOLDER_MISTAKE_2_DESC' },
+  { title: 'PLACEHOLDER_MISTAKE_3_TITLE', desc: 'PLACEHOLDER_MISTAKE_3_DESC' },
+  { title: 'PLACEHOLDER_MISTAKE_4_TITLE', desc: 'PLACEHOLDER_MISTAKE_4_DESC' },
+  { title: 'PLACEHOLDER_MISTAKE_5_TITLE', desc: 'PLACEHOLDER_MISTAKE_5_DESC' },
+];
+
+// TODO-UA: Replace with real pricing tiers
+const pricingTiers = [
+  { route: 'PLACEHOLDER_TIER_1_ROUTE', price: 'PLACEHOLDER_TIER_1_PRICE', note: 'PLACEHOLDER_TIER_1_NOTE' },
+  { route: 'PLACEHOLDER_TIER_2_ROUTE', price: 'PLACEHOLDER_TIER_2_PRICE', note: 'PLACEHOLDER_TIER_2_NOTE' },
+  { route: 'PLACEHOLDER_TIER_3_ROUTE', price: 'PLACEHOLDER_TIER_3_PRICE', note: 'PLACEHOLDER_TIER_3_NOTE' },
+  { route: 'PLACEHOLDER_TIER_4_ROUTE', price: 'PLACEHOLDER_TIER_4_PRICE', note: 'PLACEHOLDER_TIER_4_NOTE' },
+];
+
 // TODO-UA: Replace with real trust signal items
 const trustSignals = [
   'PLACEHOLDER_TRUST_1',
@@ -169,7 +186,12 @@ const UkraineShipMyCar = () => {
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
 
-      <HreflangTags currentPath="/ship-my-car" />
+      <HreflangTags
+        currentPath="/ship-my-car"
+        hasPolishVersion={true}
+        hasUkrainianVersion={true}
+        hasRussianUSVersion={true}
+      />
 
       {/* ============================================================ */}
       {/*  HERO SECTION (short)                                        */}
@@ -315,6 +337,90 @@ const UkraineShipMyCar = () => {
       </section>
 
       {/* ============================================================ */}
+      {/*  PRICING TIERS                                               */}
+      {/* ============================================================ */}
+      <section style={sectionStyle}>
+        {/* TODO-UA: Replace with Ukrainian section title */}
+        <h2 style={h2Style}>PLACEHOLDER_PRICING_H2</h2>
+        <p style={{ ...pStyle, marginBottom: '2rem' }}>
+          PLACEHOLDER_PRICING_INTRO
+        </p>
+
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '1.25rem',
+          }}
+        >
+          {pricingTiers.map((tier, i) => (
+            <div key={i} style={cardStyle}>
+              <h3
+                style={{
+                  ...sansFont,
+                  fontSize: '1rem',
+                  fontWeight: 600,
+                  marginBottom: '0.5rem',
+                }}
+              >
+                {tier.route}
+              </h3>
+              <div
+                style={{
+                  fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+                  fontWeight: 300,
+                  color: '#993C1D',
+                  marginBottom: '0.5rem',
+                }}
+              >
+                {tier.price}
+              </div>
+              <p style={{ ...pStyle, fontSize: '0.85rem', margin: 0 }}>
+                {tier.note}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/*  COMMON MISTAKES                                             */}
+      {/* ============================================================ */}
+      <section style={sectionStyle}>
+        {/* TODO-UA: Replace with Ukrainian section title */}
+        <h2 style={h2Style}>PLACEHOLDER_MISTAKES_H2</h2>
+        <p style={{ ...pStyle, marginBottom: '2rem' }}>
+          PLACEHOLDER_MISTAKES_INTRO
+        </p>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          {commonMistakes.map((mistake, i) => (
+            <div
+              key={i}
+              style={{
+                ...cardStyle,
+                borderLeft: '3px solid #993C1D',
+              }}
+            >
+              <h3
+                style={{
+                  ...sansFont,
+                  fontSize: '1rem',
+                  fontWeight: 600,
+                  marginBottom: '0.35rem',
+                }}
+              >
+                {mistake.title}
+              </h3>
+              <p style={{ ...pStyle, fontSize: '0.9rem', margin: 0 }}>
+                {mistake.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ============================================================ */}
       {/*  CONTACT SECTION (international page - includes DaytonaCargo)*/}
       {/* ============================================================ */}
       <section style={sectionStyle}>
@@ -395,6 +501,32 @@ const UkraineShipMyCar = () => {
       </section>
 
       {/* ============================================================ */}
+      {/*  WHAT TO EXPECT TIMELINE                                     */}
+      {/* ============================================================ */}
+      <section style={sectionStyle}>
+        {/* TODO-UA: Replace with Ukrainian section title */}
+        <h2 style={h2Style}>PLACEHOLDER_TIMELINE_H2</h2>
+        <p style={{ ...pStyle, marginBottom: '1.25rem' }}>
+          PLACEHOLDER_TIMELINE_PARAGRAPH_1_LINE_1.
+          PLACEHOLDER_TIMELINE_PARAGRAPH_1_LINE_2.
+          PLACEHOLDER_TIMELINE_PARAGRAPH_1_LINE_3.
+          PLACEHOLDER_TIMELINE_PARAGRAPH_1_LINE_4.
+        </p>
+        <p style={{ ...pStyle, marginBottom: '1.25rem' }}>
+          PLACEHOLDER_TIMELINE_PARAGRAPH_2_LINE_1.
+          PLACEHOLDER_TIMELINE_PARAGRAPH_2_LINE_2.
+          PLACEHOLDER_TIMELINE_PARAGRAPH_2_LINE_3.
+          PLACEHOLDER_TIMELINE_PARAGRAPH_2_LINE_4.
+        </p>
+        <p style={pStyle}>
+          PLACEHOLDER_TIMELINE_PARAGRAPH_3_LINE_1.
+          PLACEHOLDER_TIMELINE_PARAGRAPH_3_LINE_2.
+          PLACEHOLDER_TIMELINE_PARAGRAPH_3_LINE_3.
+          PLACEHOLDER_TIMELINE_PARAGRAPH_3_LINE_4.
+        </p>
+      </section>
+
+      {/* ============================================================ */}
       {/*  TRUST SIGNALS                                               */}
       {/* ============================================================ */}
       <section style={sectionStyle}>
@@ -434,6 +566,28 @@ const UkraineShipMyCar = () => {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/*  INSURANCE AND PROTECTION                                    */}
+      {/* ============================================================ */}
+      <section style={sectionStyle}>
+        {/* TODO-UA: Replace with Ukrainian section title */}
+        <h2 style={h2Style}>PLACEHOLDER_INSURANCE_H2</h2>
+        <p style={{ ...pStyle, marginBottom: '1.25rem' }}>
+          PLACEHOLDER_INSURANCE_PARAGRAPH_1_LINE_1.
+          PLACEHOLDER_INSURANCE_PARAGRAPH_1_LINE_2.
+          PLACEHOLDER_INSURANCE_PARAGRAPH_1_LINE_3.
+          PLACEHOLDER_INSURANCE_PARAGRAPH_1_LINE_4.
+          PLACEHOLDER_INSURANCE_PARAGRAPH_1_LINE_5.
+        </p>
+        <p style={pStyle}>
+          PLACEHOLDER_INSURANCE_PARAGRAPH_2_LINE_1.
+          PLACEHOLDER_INSURANCE_PARAGRAPH_2_LINE_2.
+          PLACEHOLDER_INSURANCE_PARAGRAPH_2_LINE_3.
+          PLACEHOLDER_INSURANCE_PARAGRAPH_2_LINE_4.
+          PLACEHOLDER_INSURANCE_PARAGRAPH_2_LINE_5.
+        </p>
       </section>
 
       {/* ============================================================ */}
