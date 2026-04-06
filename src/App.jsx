@@ -53,6 +53,10 @@ const NewJerseyToFlorida = lazyWithRetry(() => import('./pages/seo/routes/NewJer
 const TexasToNewark = lazyWithRetry(() => import('./pages/seo/routes/TexasToNewark'));
 const ChicagoToNewark = lazyWithRetry(() => import('./pages/seo/routes/ChicagoToNewark'));
 const AuctionToPort = lazyWithRetry(() => import('./pages/seo/routes/AuctionToPort'));
+const TeslaCarShipping = lazyWithRetry(() => import('./pages/seo/TeslaCarShipping'));
+const EVAutoTransport = lazyWithRetry(() => import('./pages/seo/EVAutoTransport'));
+const CybertruckShipping = lazyWithRetry(() => import('./pages/seo/CybertruckShipping'));
+const ElectricVehiclePortDelivery = lazyWithRetry(() => import('./pages/seo/ElectricVehiclePortDelivery'));
 const HowToShipAuctionCar = lazyWithRetry(() => import('./pages/seo/guides/HowToShipAuctionCar'));
 const OpenVsEnclosed = lazyWithRetry(() => import('./pages/seo/guides/OpenVsEnclosed'));
 const BillOfLading = lazyWithRetry(() => import('./pages/seo/guides/BillOfLading'));
@@ -146,6 +150,11 @@ export default function App() {
             <Route path="/texas-to-newark-port-auto-transport" element={<TexasToNewark />} />
             <Route path="/chicago-to-port-newark-car-shipping" element={<ChicagoToNewark />} />
             <Route path="/auction-to-port-transport" element={<AuctionToPort />} />
+            {/* EV/Tesla pages */}
+            <Route path="/tesla-car-shipping" element={<TeslaCarShipping />} />
+            <Route path="/ev-auto-transport" element={<EVAutoTransport />} />
+            <Route path="/cybertruck-shipping" element={<CybertruckShipping />} />
+            <Route path="/electric-vehicle-port-delivery" element={<ElectricVehiclePortDelivery />} />
             {/* Review submission */}
             <Route path="/review/:token" element={<ReviewSubmit />} />
             {/* Guide pages */}
