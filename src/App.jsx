@@ -66,6 +66,22 @@ const Dashboard = lazyWithRetry(() => import('./pages/portal/Dashboard'));
 const OrderDetail = lazyWithRetry(() => import('./pages/portal/OrderDetail'));
 const DispatchDetails = lazyWithRetry(() => import('./pages/portal/DispatchDetails'));
 const Profile = lazyWithRetry(() => import('./pages/portal/Profile'));
+// Intl placeholder pages
+const PolandHome = lazyWithRetry(() => import('./pages/intl/PolandHome'));
+const PolandCopart = lazyWithRetry(() => import('./pages/intl/PolandCopart'));
+const PolandShipMyCar = lazyWithRetry(() => import('./pages/intl/PolandShipMyCar'));
+const PolandUSHome = lazyWithRetry(() => import('./pages/intl/PolandUSHome'));
+const PolandUSCopart = lazyWithRetry(() => import('./pages/intl/PolandUSCopart'));
+const PolandUSShipMyCar = lazyWithRetry(() => import('./pages/intl/PolandUSShipMyCar'));
+const UkraineHome = lazyWithRetry(() => import('./pages/intl/UkraineHome'));
+const UkraineCopart = lazyWithRetry(() => import('./pages/intl/UkraineCopart'));
+const UkraineShipMyCar = lazyWithRetry(() => import('./pages/intl/UkraineShipMyCar'));
+const UkraineUSHome = lazyWithRetry(() => import('./pages/intl/UkraineUSHome'));
+const UkraineUSCopart = lazyWithRetry(() => import('./pages/intl/UkraineUSCopart'));
+const UkraineUSShipMyCar = lazyWithRetry(() => import('./pages/intl/UkraineUSShipMyCar'));
+const RussiaUSHome = lazyWithRetry(() => import('./pages/intl/RussiaUSHome'));
+const RussiaUSCopart = lazyWithRetry(() => import('./pages/intl/RussiaUSCopart'));
+const RussiaUSShipMyCar = lazyWithRetry(() => import('./pages/intl/RussiaUSShipMyCar'));
 
 const skipHidden = {
   position: 'absolute', left: '-9999px', top: 'auto',
@@ -179,6 +195,26 @@ export default function App() {
             <Route path="/privacy-policy" element={<Navigate to="/privacy" replace />} />
             <Route path="/terms-and-conditions" element={<Navigate to="/terms" replace />} />
             <Route path="/accessibility-statement" element={<Navigate to="/accessibility" replace />} />
+            {/* International pages — Poland */}
+            <Route path="/pl" element={<PolandHome />} />
+            <Route path="/pl/copart-shipping" element={<PolandCopart />} />
+            <Route path="/pl/ship-my-car" element={<PolandShipMyCar />} />
+            {/* International pages — Polish US diaspora */}
+            <Route path="/pl-us" element={<PolandUSHome />} />
+            <Route path="/pl-us/copart-shipping" element={<PolandUSCopart />} />
+            <Route path="/pl-us/ship-my-car" element={<PolandUSShipMyCar />} />
+            {/* International pages — Ukraine */}
+            <Route path="/ua" element={<UkraineHome />} />
+            <Route path="/ua/copart-shipping" element={<UkraineCopart />} />
+            <Route path="/ua/ship-my-car" element={<UkraineShipMyCar />} />
+            {/* International pages — Ukrainian US diaspora */}
+            <Route path="/ua-us" element={<UkraineUSHome />} />
+            <Route path="/ua-us/copart-shipping" element={<UkraineUSCopart />} />
+            <Route path="/ua-us/ship-my-car" element={<UkraineUSShipMyCar />} />
+            {/* International pages — Russian US diaspora */}
+            <Route path="/ru-us" element={<RussiaUSHome />} />
+            <Route path="/ru-us/copart-shipping" element={<RussiaUSCopart />} />
+            <Route path="/ru-us/ship-my-car" element={<RussiaUSShipMyCar />} />
             <Route path="/:lang" element={<Home />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
