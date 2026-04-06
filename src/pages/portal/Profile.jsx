@@ -179,6 +179,24 @@ export default function Profile() {
           </div>
         </div>
 
+        {/* Account type */}
+        <div style={{
+          paddingTop: '12px',
+          borderTop: `1px solid ${colors.border}`,
+        }}>
+          <div style={{ ...labelStyle, marginBottom: '4px' }}>Account Type</div>
+          <div style={{
+            fontFamily: fonts.sans,
+            fontSize: '13px',
+            color: colors.text,
+            marginBottom: '16px',
+          }}>
+            {user?.customer_type === 'dealer'
+              ? `Dealer Account \u2014 ${user.billing_mode === 'monthly' ? 'Monthly billing' : 'Pay per delivery'}`
+              : 'Customer Account'}
+          </div>
+        </div>
+
         {/* Connected accounts */}
         <div style={{
           paddingTop: '12px',

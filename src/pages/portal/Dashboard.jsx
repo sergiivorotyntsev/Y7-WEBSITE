@@ -108,16 +108,45 @@ export default function Dashboard() {
         flexWrap: 'wrap',
         gap: '16px',
       }}>
-        <h1 style={{
-          fontFamily: fonts.serif,
-          fontSize: '28px',
-          fontWeight: 700,
-          color: colors.text,
-        }}>
-          Welcome back, {user?.name?.split(' ')[0] || 'there'}
-        </h1>
-        <button onClick={() => navigate('/ship-my-car')} style={btnStyles.accent}>
-          New Quote
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
+            <h1 style={{
+              fontFamily: fonts.serif,
+              fontSize: '28px',
+              fontWeight: 700,
+              color: colors.text,
+            }}>
+              Welcome back, {user?.name?.split(' ')[0] || 'there'}
+            </h1>
+            {user?.customer_type === 'dealer' && (
+              <span style={{
+                fontFamily: fonts.sans,
+                fontSize: '11px',
+                fontWeight: 700,
+                color: '#fff',
+                background: '#1a1a2e',
+                padding: '3px 10px',
+                borderRadius: '10px',
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px',
+                whiteSpace: 'nowrap',
+              }}>
+                Dealer Account
+              </span>
+            )}
+          </div>
+          {user?.customer_type === 'dealer' && (
+            <span style={{
+              fontFamily: fonts.sans,
+              fontSize: '12px',
+              color: colors.textMuted,
+            }}>
+              {user.billing_mode === 'monthly' ? 'Monthly billing' : 'Pay per delivery'}
+            </span>
+          )}
+        </div>
+        <button onClick={() => navigate(user?.customer_type === 'dealer' ? '/quote' : '/ship-my-car')} style={btnStyles.accent}>
+          {user?.customer_type === 'dealer' ? 'New Order' : 'New Quote'}
         </button>
       </div>
 
@@ -162,10 +191,12 @@ export default function Dashboard() {
           textAlign: 'center',
         }}>
           <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, marginBottom: '16px' }}>
-            No orders yet. Submit your first quote to get started.
+            {user?.customer_type === 'dealer'
+              ? 'No orders yet. Submit your first transport order to get started.'
+              : 'No orders yet. Submit your first quote to get started.'}
           </p>
-          <button onClick={() => navigate('/ship-my-car')} style={btnStyles.accent}>
-            Get a Quote
+          <button onClick={() => navigate(user?.customer_type === 'dealer' ? '/quote' : '/ship-my-car')} style={btnStyles.accent}>
+            {user?.customer_type === 'dealer' ? 'New Order' : 'Get a Quote'}
           </button>
         </div>
       ) : (
@@ -273,7 +304,7 @@ export default function Dashboard() {
           gap: '12px',
         }}>
           {[
-            { icon: <ClipboardIcon size={18} />, label: 'New Quote', to: '/ship-my-car' },
+            { icon: <ClipboardIcon size={18} />, label: user?.customer_type === 'dealer' ? 'New Order' : 'New Quote', to: user?.customer_type === 'dealer' ? '/quote' : '/ship-my-car' },
             { icon: <MapPinIcon size={18} />, label: 'Track Shipment', to: '/track' },
             { icon: <ProfileIcon size={18} />, label: 'Profile', to: '/portal/profile' },
             { icon: <TelegramIcon size={18} />, label: 'Telegram Bot', href: 'https://t.me/y7dispatch_bot' },
