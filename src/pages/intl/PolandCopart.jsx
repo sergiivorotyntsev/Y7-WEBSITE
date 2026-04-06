@@ -788,6 +788,252 @@ const PolandCopart = () => {
           </div>
         </section>
 
+
+        {/* ================================================================== */}
+        {/* SECTION — Dla Polonii w USA (diaspora addendum)                    */}
+        {/* ================================================================== */}
+        <section style={{
+          background: '#EFEAE0',
+          borderTop: '1px solid #E8E4DC',
+          borderBottom: '1px solid #E8E4DC',
+        }}>
+          <div style={{
+            maxWidth: '900px',
+            margin: '0 auto',
+            padding: 'clamp(3rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem)',
+          }}>
+            <div style={{
+              display: 'inline-block',
+              padding: '0.375rem 0.875rem',
+              background: '#fff',
+              border: '1px solid #E8E4DC',
+              borderRadius: '999px',
+              fontSize: '0.8rem',
+              color: '#993C1D',
+              letterSpacing: '0.05em',
+              textTransform: 'uppercase',
+              marginBottom: '1rem',
+              fontFamily: 'system-ui, sans-serif',
+            }}>
+              Dla Polonii w USA
+            </div>
+            <h2 style={{
+              fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
+              fontWeight: 400,
+              marginBottom: '1rem',
+              letterSpacing: '-0.01em',
+            }}>
+              Kupujesz na Copart i mieszkasz w USA? Dostarczymy pod dom
+            </h2>
+            <p style={{
+              fontSize: '1.0625rem',
+              lineHeight: '1.7',
+              color: '#4A4A46',
+              marginBottom: '1.25rem',
+            }}>
+              Cały powyższy przewodnik opisuje drogę auta z Copart do Polski — pełny import
+              z aukcji, przez fracht morski, aż po odprawę celną w Gdyni. Ale jeśli jesteś
+              z Polonii mieszkającej w Stanach i kupujesz auto na Copart na własne potrzeby
+              albo na sprzedaż w USA, Twoja droga jest krótsza: od placu aukcyjnego
+              bezpośrednio pod dom w Chicago, Los Angeles, Nowym Jorku albo gdziekolwiek
+              w Stanach. Y7 Logistics obsługuje ten zakres samodzielnie.
+            </p>
+            <p style={{
+              fontSize: '1.0625rem',
+              lineHeight: '1.7',
+              color: '#4A4A46',
+              marginBottom: '1.25rem',
+            }}>
+              Jako licencjonowany broker FMCSA (MC #1741537) odbieramy auta z każdego
+              z ponad 200 placów Copart w USA i Kanadzie oraz z aukcji IAAI. Sieć
+              zweryfikowanych przewoźników pokrywa wszystkie 50 stanów. Typowa trasa
+              międzystanowa dla sedana z Copart to 5-8 dni od wygranej licytacji do
+              dostawy pod Twój adres. <strong>Ważne:</strong> pamiętaj, że Copart nalicza
+              opłaty za storage od 3. dnia po wygranej licytacji, więc szybkie potwierdzenie
+              zlecenia oszczędza 100-300 USD.
+            </p>
+            <p style={{
+              fontSize: '1.0625rem',
+              lineHeight: '1.7',
+              color: '#4A4A46',
+              marginBottom: '1.5rem',
+            }}>
+              <strong>Uczciwie mówiąc:</strong> nasz zespół w Y7 nie prowadzi obsługi
+              w języku polskim — komunikację prowadzimy po angielsku lub rosyjsku przez
+              Telegram. Jeśli zależy Ci na pełnej obsłudze po polsku również w USA,
+              warto napisać do DaytonaCargo, która obsługuje polskojęzycznych klientów
+              także na rynku amerykańskim.
+            </p>
+
+            {/* Pricing cards for US-internal transport from Copart */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: '1rem',
+              marginTop: '2rem',
+            }}>
+              <div style={{
+                background: '#fff',
+                padding: '1.5rem',
+                borderRadius: '8px',
+                border: '1px solid #E8E4DC',
+              }}>
+                <h3 style={{
+                  fontFamily: 'system-ui, sans-serif',
+                  fontWeight: 600,
+                  fontSize: '0.95rem',
+                  marginTop: 0,
+                  marginBottom: '0.75rem',
+                  color: '#4A4A46',
+                }}>
+                  Copart pod dom (do 500 mil)
+                </h3>
+                <div style={{
+                  fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
+                  fontWeight: 300,
+                  color: '#993C1D',
+                  marginBottom: '0.5rem',
+                }}>
+                  $450–750
+                </div>
+                <p style={{
+                  fontSize: '0.9rem',
+                  lineHeight: '1.6',
+                  color: '#4A4A46',
+                  margin: 0,
+                }}>
+                  Typowa trasa wewnątrz jednego regionu. Np. Copart NJ → Nowy Jork,
+                  Copart CA → Los Angeles.
+                </p>
+              </div>
+
+              <div style={{
+                background: '#fff',
+                padding: '1.5rem',
+                borderRadius: '8px',
+                border: '1px solid #E8E4DC',
+              }}>
+                <h3 style={{
+                  fontFamily: 'system-ui, sans-serif',
+                  fontWeight: 600,
+                  fontSize: '0.95rem',
+                  marginTop: 0,
+                  marginBottom: '0.75rem',
+                  color: '#4A4A46',
+                }}>
+                  Copart między regionami (500-1500 mil)
+                </h3>
+                <div style={{
+                  fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
+                  fontWeight: 300,
+                  color: '#993C1D',
+                  marginBottom: '0.5rem',
+                }}>
+                  $750–1 200
+                </div>
+                <p style={{
+                  fontSize: '0.9rem',
+                  lineHeight: '1.6',
+                  color: '#4A4A46',
+                  margin: 0,
+                }}>
+                  Np. Copart Texas → Chicago, Copart Florida → Nowy Jork.
+                  Czas dostawy 5-8 dni.
+                </p>
+              </div>
+
+              <div style={{
+                background: '#fff',
+                padding: '1.5rem',
+                borderRadius: '8px',
+                border: '1px solid #E8E4DC',
+              }}>
+                <h3 style={{
+                  fontFamily: 'system-ui, sans-serif',
+                  fontWeight: 600,
+                  fontSize: '0.95rem',
+                  marginTop: 0,
+                  marginBottom: '0.75rem',
+                  color: '#4A4A46',
+                }}>
+                  Copart przez cały kraj (1500+ mil)
+                </h3>
+                <div style={{
+                  fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
+                  fontWeight: 300,
+                  color: '#993C1D',
+                  marginBottom: '0.5rem',
+                }}>
+                  $1 100–1 600
+                </div>
+                <p style={{
+                  fontSize: '0.9rem',
+                  lineHeight: '1.6',
+                  color: '#4A4A46',
+                  margin: 0,
+                }}>
+                  Np. Copart California → New York, Copart Washington → Florida.
+                  Czas dostawy 7-10 dni.
+                </p>
+              </div>
+            </div>
+
+            <p style={{
+              fontSize: '0.95rem',
+              lineHeight: '1.6',
+              color: '#4A4A46',
+              marginTop: '1.5rem',
+              marginBottom: 0,
+              fontStyle: 'italic',
+            }}>
+              Ceny dla standardowego sedana lub crossovera na lawecie otwartej.
+              Auta niejężdżące (non-running) — dopłata 150-300 USD za wciąganie wciągarką.
+              Auta powypadkowe bez szyby/drzwi — wymagana enclosed laweta, dopłata 30-60%.
+            </p>
+
+            <div style={{
+              marginTop: '2rem',
+              display: 'flex',
+              gap: '1rem',
+              flexWrap: 'wrap',
+            }}>
+              <a
+                href="https://t.me/y7dispatch_bot"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  background: '#993C1D',
+                  color: '#fff',
+                  padding: '0.75rem 1.5rem',
+                  borderRadius: '6px',
+                  textDecoration: 'none',
+                  fontSize: '0.95rem',
+                  fontWeight: 500,
+                  fontFamily: 'system-ui, sans-serif',
+                }}
+              >
+                Telegram — wyślij numer lotu
+              </a>
+              <Link
+                to="/pl/ship-my-car"
+                style={{
+                  background: 'transparent',
+                  color: '#993C1D',
+                  padding: '0.75rem 1.5rem',
+                  borderRadius: '6px',
+                  textDecoration: 'none',
+                  fontSize: '0.95rem',
+                  fontWeight: 500,
+                  border: '1px solid #993C1D',
+                  fontFamily: 'system-ui, sans-serif',
+                }}
+              >
+                Jak zamówić transport →
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* CTA */}
         <section style={{
           background: '#2C2C2A',
