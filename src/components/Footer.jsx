@@ -107,6 +107,8 @@ export default function Footer() {
             <Link to="/door-to-port-auto-transport" style={linkStyle}>Door-to-Port Transport</Link>
             <Link to="/dealer-auto-transport" style={linkStyle}>Dealer Auto Transport</Link>
             <Link to="/state-to-state-car-shipping" style={linkStyle}>State-to-State Shipping</Link>
+            <Link to="/tesla-car-shipping" style={linkStyle}>Tesla Shipping</Link>
+            <Link to="/ev-auto-transport" style={linkStyle}>Electric Vehicle Transport</Link>
           </div>
         </div>
 
