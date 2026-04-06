@@ -878,6 +878,247 @@ const PolandHome = () => {
           </div>
         </section>
 
+
+        {/* ================================================================== */}
+        {/* SECTION — Dla Polonii w USA (diaspora addendum)                    */}
+        {/* ================================================================== */}
+        <section style={{
+          background: '#EFEAE0',
+          borderTop: '1px solid #E8E4DC',
+          borderBottom: '1px solid #E8E4DC',
+        }}>
+          <div style={{
+            maxWidth: '900px',
+            margin: '0 auto',
+            padding: 'clamp(3rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem)',
+          }}>
+            <div style={{
+              display: 'inline-block',
+              padding: '0.375rem 0.875rem',
+              background: '#fff',
+              border: '1px solid #E8E4DC',
+              borderRadius: '999px',
+              fontSize: '0.8rem',
+              color: '#993C1D',
+              letterSpacing: '0.05em',
+              textTransform: 'uppercase',
+              marginBottom: '1rem',
+              fontFamily: 'system-ui, sans-serif',
+            }}>
+              Dla Polonii w USA
+            </div>
+            <h2 style={{
+              fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
+              fontWeight: 400,
+              marginBottom: '1rem',
+              letterSpacing: '-0.01em',
+            }}>
+              Mieszkasz w Stanach? Obsługujemy transport również u Ciebie
+            </h2>
+            <p style={{
+              fontSize: '1.0625rem',
+              lineHeight: '1.7',
+              color: '#4A4A46',
+              marginBottom: '1.25rem',
+            }}>
+              Cała góra tej strony opisuje drogę auta z USA do Polski — pełny import
+              z aukcji Copart pod dom w Gdańsku czy Krakowie. Ale jeśli jesteś z Polonii
+              mieszkającej w Stanach i potrzebujesz jedynie transportu lądowego między
+              stanami — odbioru z Copart pod dom w Chicago, przewozu z Kalifornii do
+              Nowego Jorku albo dostawy do portu przed wysłaniem auta rodzinie w Polsce —
+              Y7 Logistics obsługuje ten zakres samodzielnie, bez angażowania DaytonaCargo.
+            </p>
+            <p style={{
+              fontSize: '1.0625rem',
+              lineHeight: '1.7',
+              color: '#4A4A46',
+              marginBottom: '1.25rem',
+            }}>
+              Jako licencjonowany broker FMCSA (MC #1741537) mamy dostęp do sieci
+              zweryfikowanych przewoźników na terenie wszystkich 50 stanów. Typowe
+              zlecenia od Polonii to transport z aukcji Copart i IAAI, przeprowadzki
+              międzystanowe, dostawy aut sprzedanych na Facebook Marketplace czy
+              Cars.com, oraz dowóz auta do portu (Newark, Baltimore, Savannah, Houston,
+              Los Angeles) przed wysyłką oceaniczną.
+            </p>
+            <p style={{
+              fontSize: '1.0625rem',
+              lineHeight: '1.7',
+              color: '#4A4A46',
+              marginBottom: '1.5rem',
+            }}>
+              <strong>Uczciwie mówiąc:</strong> nasz zespół w Y7 nie prowadzi obsługi
+              w języku polskim — komunikację prowadzimy po angielsku lub rosyjsku przez
+              Telegram. Jeśli zależy Ci na pełnej obsłudze po polsku również w USA,
+              warto napisać do DaytonaCargo, która obsługuje polskojęzycznych klientów
+              także na rynku amerykańskim.
+            </p>
+
+            {/* Pricing cards for US-internal transport */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: '1rem',
+              marginTop: '2rem',
+            }}>
+              <div style={{
+                background: '#fff',
+                padding: '1.5rem',
+                borderRadius: '8px',
+                border: '1px solid #E8E4DC',
+              }}>
+                <h3 style={{
+                  fontFamily: 'system-ui, sans-serif',
+                  fontWeight: 600,
+                  fontSize: '0.95rem',
+                  marginTop: 0,
+                  marginBottom: '0.75rem',
+                  color: '#4A4A46',
+                }}>
+                  Krótki dystans (do 500 mil)
+                </h3>
+                <div style={{
+                  fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
+                  fontWeight: 300,
+                  color: '#993C1D',
+                  marginBottom: '0.5rem',
+                }}>
+                  $450–750
+                </div>
+                <p style={{
+                  fontSize: '0.9rem',
+                  lineHeight: '1.6',
+                  color: '#4A4A46',
+                  margin: 0,
+                }}>
+                  Np. NY → Chicago, LA → San Francisco, Miami → Atlanta. Czas dostawy 3-5 dni.
+                </p>
+              </div>
+
+              <div style={{
+                background: '#fff',
+                padding: '1.5rem',
+                borderRadius: '8px',
+                border: '1px solid #E8E4DC',
+              }}>
+                <h3 style={{
+                  fontFamily: 'system-ui, sans-serif',
+                  fontWeight: 600,
+                  fontSize: '0.95rem',
+                  marginTop: 0,
+                  marginBottom: '0.75rem',
+                  color: '#4A4A46',
+                }}>
+                  Średni dystans (500-1500 mil)
+                </h3>
+                <div style={{
+                  fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
+                  fontWeight: 300,
+                  color: '#993C1D',
+                  marginBottom: '0.5rem',
+                }}>
+                  $750–1 200
+                </div>
+                <p style={{
+                  fontSize: '0.9rem',
+                  lineHeight: '1.6',
+                  color: '#4A4A46',
+                  margin: 0,
+                }}>
+                  Np. Chicago → Miami, NY → Dallas, Denver → Seattle. Czas dostawy 5-8 dni.
+                </p>
+              </div>
+
+              <div style={{
+                background: '#fff',
+                padding: '1.5rem',
+                borderRadius: '8px',
+                border: '1px solid #E8E4DC',
+              }}>
+                <h3 style={{
+                  fontFamily: 'system-ui, sans-serif',
+                  fontWeight: 600,
+                  fontSize: '0.95rem',
+                  marginTop: 0,
+                  marginBottom: '0.75rem',
+                  color: '#4A4A46',
+                }}>
+                  Przez cały kraj (1500+ mil)
+                </h3>
+                <div style={{
+                  fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
+                  fontWeight: 300,
+                  color: '#993C1D',
+                  marginBottom: '0.5rem',
+                }}>
+                  $1 100–1 600
+                </div>
+                <p style={{
+                  fontSize: '0.9rem',
+                  lineHeight: '1.6',
+                  color: '#4A4A46',
+                  margin: 0,
+                }}>
+                  Np. Kalifornia → New York, Florida → Washington. Czas dostawy 7-10 dni.
+                </p>
+              </div>
+            </div>
+
+            <p style={{
+              fontSize: '0.95rem',
+              lineHeight: '1.6',
+              color: '#4A4A46',
+              marginTop: '1.5rem',
+              marginBottom: 0,
+              fontStyle: 'italic',
+            }}>
+              Ceny dla standardowego sedana lub crossovera na lawecie otwartej. Auta enclosed
+              (kryte), pickupy i auta niejężdżące wyceniamy indywidualnie — dopłata typowo 30-60%.
+            </p>
+
+            <div style={{
+              marginTop: '2rem',
+              display: 'flex',
+              gap: '1rem',
+              flexWrap: 'wrap',
+            }}>
+              <Link
+                to="/pl/ship-my-car"
+                style={{
+                  background: '#993C1D',
+                  color: '#fff',
+                  padding: '0.75rem 1.5rem',
+                  borderRadius: '6px',
+                  textDecoration: 'none',
+                  fontSize: '0.95rem',
+                  fontWeight: 500,
+                  fontFamily: 'system-ui, sans-serif',
+                }}
+              >
+                Szczegóły zlecenia transportu →
+              </Link>
+              <a
+                href="https://t.me/y7dispatch_bot"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  background: 'transparent',
+                  color: '#993C1D',
+                  padding: '0.75rem 1.5rem',
+                  borderRadius: '6px',
+                  textDecoration: 'none',
+                  fontSize: '0.95rem',
+                  fontWeight: 500,
+                  border: '1px solid #993C1D',
+                  fontFamily: 'system-ui, sans-serif',
+                }}
+              >
+                Telegram — napisz po angielsku
+              </a>
+            </div>
+          </div>
+        </section>
+
         {/* Final CTA */}
         <section style={{
           background: '#2C2C2A',
