@@ -33,7 +33,7 @@ export default function PageMeta({ title, description, path = '', lang = 'en', i
           <link rel="alternate" hreflang="en" href={`${base}/en${path}`} />
           <link rel="alternate" hreflang="ru" href={`${base}/ru${path}`} />
           <link rel="alternate" hreflang="pl" href={`${base}/pl${path}`} />
-          <link rel="alternate" hreflang="uk" href={`${base}/uk${path}`} />
+          <link rel="alternate" hreflang="uk" href={`${base}/ua${path}`} />
           <link rel="alternate" hreflang="x-default" href={`${base}${path}`} />
         </>
       )}

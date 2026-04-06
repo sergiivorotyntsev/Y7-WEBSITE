@@ -8,7 +8,7 @@ const langs = [
   { code: 'en', label: 'EN' },
   { code: 'ru', label: 'RU' },
   { code: 'pl', label: 'PL' },
-  { code: 'uk', label: 'UA' },
+  { code: 'ua', label: 'UA' },
 ];
 
 // Routes that have /:lang/ prefix versions in App.jsx

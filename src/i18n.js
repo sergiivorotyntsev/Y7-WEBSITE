@@ -38,16 +38,16 @@ import aboutPl from './locales/pl/about.json';
 import faqPl from './locales/pl/faq.json';
 
 // Ukrainian
-import commonUk from './locales/uk/common.json';
-import homeUk from './locales/uk/home.json';
-import quoteUk from './locales/uk/quote.json';
-import servicesUk from './locales/uk/services.json';
-import dealersUk from './locales/uk/dealers.json';
-import exportersUk from './locales/uk/exporters.json';
-import shipMycarUk from './locales/uk/shipMycar.json';
-import agreementUk from './locales/uk/agreement.json';
-import aboutUk from './locales/uk/about.json';
-import faqUk from './locales/uk/faq.json';
+import commonUa from './locales/ua/common.json';
+import homeUa from './locales/ua/home.json';
+import quoteUa from './locales/ua/quote.json';
+import servicesUa from './locales/ua/services.json';
+import dealersUa from './locales/ua/dealers.json';
+import exportersUa from './locales/ua/exporters.json';
+import shipMycarUa from './locales/ua/shipMycar.json';
+import agreementUa from './locales/ua/agreement.json';
+import aboutUa from './locales/ua/about.json';
+import faqUa from './locales/ua/faq.json';
 
 const resources = {
   en: {
@@ -62,9 +62,9 @@ const resources = {
     common: commonPl, home: homePl, quote: quotePl, services: servicesPl,
     dealers: dealersPl, exporters: exportersPl, shipMycar: shipMycarPl, agreement: agreementPl, about: aboutPl, faq: faqPl,
   },
-  uk: {
-    common: commonUk, home: homeUk, quote: quoteUk, services: servicesUk,
-    dealers: dealersUk, exporters: exportersUk, shipMycar: shipMycarUk, agreement: agreementUk, about: aboutUk, faq: faqUk,
+  ua: {
+    common: commonUa, home: homeUa, quote: quoteUa, services: servicesUa,
+    dealers: dealersUa, exporters: exportersUa, shipMycar: shipMycarUa, agreement: agreementUa, about: aboutUa, faq: faqUa,
   },
 };
 
