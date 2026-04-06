@@ -9,7 +9,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/ua"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.y7agency.com/"/>
     <priority>1.0</priority>
   </url>
@@ -20,7 +20,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/quote"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/quote"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/quote"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/quote"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/ua/quote"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.y7agency.com/quote"/>
     <priority>0.9</priority>
   </url>
@@ -31,7 +31,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/faq"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/faq"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/faq"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/faq"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/ua/faq"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.y7agency.com/faq"/>
     <priority>0.8</priority>
   </url>
@@ -42,7 +42,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/about"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/about"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/about"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/about"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/ua/about"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.y7agency.com/about"/>
     <priority>0.6</priority>
   </url>
@@ -53,7 +53,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/dealer-quote"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/dealer-quote"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/dealer-quote"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/dealer-quote"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/ua/dealer-quote"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.y7agency.com/dealer-quote"/>
     <priority>0.6</priority>
   </url>
@@ -65,7 +65,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/ports/newark"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/newark"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/newark"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/ports/newark"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/ua/ports/newark"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.y7agency.com/ports/newark"/>
     <priority>0.7</priority>
   </url>
@@ -76,7 +76,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/ports/houston"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/houston"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/houston"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/ports/houston"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/ua/ports/houston"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.y7agency.com/ports/houston"/>
     <priority>0.7</priority>
   </url>
@@ -87,7 +87,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/ports/savannah"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/savannah"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/savannah"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/ports/savannah"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/ua/ports/savannah"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.y7agency.com/ports/savannah"/>
     <priority>0.7</priority>
   </url>
@@ -98,7 +98,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/ports/los-angeles"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/los-angeles"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/los-angeles"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/ports/los-angeles"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/ua/ports/los-angeles"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.y7agency.com/ports/los-angeles"/>
     <priority>0.7</priority>
   </url>
@@ -109,7 +109,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/ports/baltimore"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/baltimore"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/baltimore"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/ports/baltimore"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/ua/ports/baltimore"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.y7agency.com/ports/baltimore"/>
     <priority>0.7</priority>
   </url>
@@ -120,7 +120,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/en/ports/jacksonville"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/jacksonville"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/jacksonville"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/uk/ports/jacksonville"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.y7agency.com/ua/ports/jacksonville"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.y7agency.com/ports/jacksonville"/>
     <priority>0.7</priority>
   </url>
@@ -359,6 +359,127 @@
     <loc>https://www.y7agency.com/accessibility</loc>
     <lastmod>2026-04-05</lastmod>
     <priority>0.3</priority>
+  </url>
+
+  <!-- International pages — Polish (Poland) -->
+  <url>
+    <loc>https://www.y7agency.com/pl</loc>
+    <lastmod>2026-04-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl"/>
+    <xhtml:link rel="alternate" hreflang="pl-US" href="https://www.y7agency.com/pl-us"/>
+    <xhtml:link rel="alternate" hreflang="uk-UA" href="https://www.y7agency.com/ua"/>
+    <xhtml:link rel="alternate" hreflang="uk-US" href="https://www.y7agency.com/ua-us"/>
+    <xhtml:link rel="alternate" hreflang="ru-US" href="https://www.y7agency.com/ru-us"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.y7agency.com/"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.y7agency.com/pl/copart-shipping</loc>
+    <lastmod>2026-04-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/copart-shipping"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/copart-shipping"/>
+    <xhtml:link rel="alternate" hreflang="pl-US" href="https://www.y7agency.com/pl-us/copart-shipping"/>
+    <xhtml:link rel="alternate" hreflang="uk-UA" href="https://www.y7agency.com/ua/copart-shipping"/>
+    <xhtml:link rel="alternate" hreflang="uk-US" href="https://www.y7agency.com/ua-us/copart-shipping"/>
+    <xhtml:link rel="alternate" hreflang="ru-US" href="https://www.y7agency.com/ru-us/copart-shipping"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.y7agency.com/copart-shipping"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.y7agency.com/pl/ship-my-car</loc>
+    <lastmod>2026-04-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/ship-my-car"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ship-my-car"/>
+    <xhtml:link rel="alternate" hreflang="pl-US" href="https://www.y7agency.com/pl-us/ship-my-car"/>
+    <xhtml:link rel="alternate" hreflang="uk-UA" href="https://www.y7agency.com/ua/ship-my-car"/>
+    <xhtml:link rel="alternate" hreflang="uk-US" href="https://www.y7agency.com/ua-us/ship-my-car"/>
+    <xhtml:link rel="alternate" hreflang="ru-US" href="https://www.y7agency.com/ru-us/ship-my-car"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.y7agency.com/ship-my-car"/>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- International pages — Polish US diaspora -->
+  <url>
+    <loc>https://www.y7agency.com/pl-us</loc>
+    <lastmod>2026-04-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/"/>
+    <xhtml:link rel="alternate" hreflang="pl-US" href="https://www.y7agency.com/pl-us"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.y7agency.com/"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.y7agency.com/pl-us/copart-shipping</loc>
+    <lastmod>2026-04-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.y7agency.com/pl-us/ship-my-car</loc>
+    <lastmod>2026-04-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- International pages — Ukrainian (Ukraine) -->
+  <url>
+    <loc>https://www.y7agency.com/ua</loc>
+    <lastmod>2026-04-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/"/>
+    <xhtml:link rel="alternate" hreflang="uk-UA" href="https://www.y7agency.com/ua"/>
+    <xhtml:link rel="alternate" hreflang="uk-US" href="https://www.y7agency.com/ua-us"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.y7agency.com/"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.y7agency.com/ua/copart-shipping</loc>
+    <lastmod>2026-04-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.y7agency.com/ua/ship-my-car</loc>
+    <lastmod>2026-04-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- International pages — Ukrainian US diaspora -->
+  <url>
+    <loc>https://www.y7agency.com/ua-us</loc>
+    <lastmod>2026-04-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/"/>
+    <xhtml:link rel="alternate" hreflang="uk-US" href="https://www.y7agency.com/ua-us"/>
+    <xhtml:link rel="alternate" hreflang="uk-UA" href="https://www.y7agency.com/ua"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.y7agency.com/"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.y7agency.com/ua-us/copart-shipping</loc>
+    <lastmod>2026-04-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.y7agency.com/ua-us/ship-my-car</loc>
+    <lastmod>2026-04-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- International pages — Russian US diaspora -->
+  <url>
+    <loc>https://www.y7agency.com/ru-us</loc>
+    <lastmod>2026-04-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.y7agency.com/"/>
+    <xhtml:link rel="alternate" hreflang="ru-US" href="https://www.y7agency.com/ru-us"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.y7agency.com/"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.y7agency.com/ru-us/copart-shipping</loc>
+    <lastmod>2026-04-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.y7agency.com/ru-us/ship-my-car</loc>
+    <lastmod>2026-04-05</lastmod>
+    <priority>0.8</priority>
   </url>
 
 </urlset>
