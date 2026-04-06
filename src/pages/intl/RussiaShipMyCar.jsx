@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
 
 // =============================================================================
-// RussiaUSShipMyCar.jsx — Template C (Action/Ordering)
-// Route: /ru-us/ship-my-car | lang="ru"
+// RussiaShipMyCar.jsx — Template C (Action/Ordering)
+// Route: /ru/ship-my-car | lang="ru"
 // Audience: Russian-speaking US diaspora ready to order transport
 // =============================================================================
 // IMPORTANT NOTES:
@@ -81,14 +81,14 @@ const breadcrumbSchema = {
     {
       '@type': 'ListItem',
       position: 2,
-      name: 'PLACEHOLDER_BREADCRUMB_RU_US',
-      item: 'https://www.y7agency.com/ru-us',
+      name: 'PLACEHOLDER_BREADCRUMB_RU',
+      item: 'https://www.y7agency.com/ru',
     },
     {
       '@type': 'ListItem',
       position: 3,
       name: 'PLACEHOLDER_BREADCRUMB_SHIP',
-      item: 'https://www.y7agency.com/ru-us/ship-my-car',
+      item: 'https://www.y7agency.com/ru/ship-my-car',
     },
   ],
 };
@@ -97,7 +97,7 @@ const breadcrumbSchema = {
 // Data arrays
 // ---------------------------------------------------------------------------
 
-// TODO-RU-US: Replace with real checklist items
+// TODO-RU: Replace with real checklist items
 const CHECKLIST = [
   { label: 'PLACEHOLDER_CHECK_1_LABEL', detail: 'PLACEHOLDER_CHECK_1_DETAIL' },
   { label: 'PLACEHOLDER_CHECK_2_LABEL', detail: 'PLACEHOLDER_CHECK_2_DETAIL' },
@@ -107,7 +107,7 @@ const CHECKLIST = [
   { label: 'PLACEHOLDER_CHECK_6_LABEL', detail: 'PLACEHOLDER_CHECK_6_DETAIL' },
 ];
 
-// TODO-RU-US: Replace with real workflow steps
+// TODO-RU: Replace with real workflow steps
 const WORKFLOW_STEPS = [
   { num: 1, title: 'PLACEHOLDER_WORKFLOW_1_TITLE', desc: 'PLACEHOLDER_WORKFLOW_1_DESC' },
   { num: 2, title: 'PLACEHOLDER_WORKFLOW_2_TITLE', desc: 'PLACEHOLDER_WORKFLOW_2_DESC' },
@@ -117,7 +117,7 @@ const WORKFLOW_STEPS = [
   { num: 6, title: 'PLACEHOLDER_WORKFLOW_6_TITLE', desc: 'PLACEHOLDER_WORKFLOW_6_DESC' },
 ];
 
-// TODO-RU-US: Replace with real FAQ content
+// TODO-RU: Replace with real FAQ content
 const FAQS = [
   { q: 'PLACEHOLDER_FAQ_Q1', a: 'PLACEHOLDER_FAQ_A1' },
   { q: 'PLACEHOLDER_FAQ_Q2', a: 'PLACEHOLDER_FAQ_A2' },
@@ -194,23 +194,23 @@ const styles = {
 // =============================================================================
 // Component
 // =============================================================================
-function RussiaUSShipMyCar() {
+function RussiaShipMyCar() {
   return (
     <div style={styles.main}>
       {/* ----------------------------------------------------------------- */}
       {/* Head / SEO                                                        */}
       {/* ----------------------------------------------------------------- */}
       <Helmet>
-        {/* TODO-RU-US: Replace PLACEHOLDER meta with real Russian copy */}
+        {/* TODO-RU: Replace PLACEHOLDER meta with real Russian copy */}
         <html lang="ru" />
         <title>PLACEHOLDER_META_TITLE</title>
         <meta name="description" content="PLACEHOLDER_META_DESCRIPTION" />
-        <link rel="canonical" href="https://www.y7agency.com/ru-us/ship-my-car" />
+        <link rel="canonical" href="https://www.y7agency.com/ru/ship-my-car" />
         <meta property="og:title" content="PLACEHOLDER_OG_TITLE" />
         <meta property="og:description" content="PLACEHOLDER_OG_DESCRIPTION" />
-        <meta property="og:url" content="https://www.y7agency.com/ru-us/ship-my-car" />
+        <meta property="og:url" content="https://www.y7agency.com/ru/ship-my-car" />
         <meta property="og:type" content="website" />
-        <meta property="og:locale" content="ru_US" />
+        <meta property="og:locale" content="ru" />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
@@ -219,14 +219,14 @@ function RussiaUSShipMyCar() {
         currentPath="/ship-my-car"
         hasPolishVersion={true}
         hasUkrainianVersion={true}
-        hasRussianUSVersion={true}
+        hasRussianVersion={true}
       />
 
       {/* ================================================================= */}
       {/* SECTION 1 — Hero (short)                                          */}
       {/* ================================================================= */}
       <section style={styles.section}>
-        {/* TODO-RU-US: Replace hero heading and lead (~80 words) */}
+        {/* TODO-RU: Replace hero heading and lead (~80 words) */}
         <h1 style={styles.h1}>
           PLACEHOLDER_H1
         </h1>
@@ -255,7 +255,7 @@ function RussiaUSShipMyCar() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
-        {/* TODO-RU-US: Replace heading */}
+        {/* TODO-RU: Replace heading */}
         <h2 style={styles.h2}>PLACEHOLDER_CHECKLIST_H2</h2>
 
         <div style={{ display: 'grid', gap: '1rem' }}>
@@ -318,7 +318,7 @@ function RussiaUSShipMyCar() {
       {/* SECTION 3 — Ordering workflow                                     */}
       {/* ================================================================= */}
       <section style={styles.section}>
-        {/* TODO-RU-US: Replace heading */}
+        {/* TODO-RU: Replace heading */}
         <h2 style={styles.h2}>PLACEHOLDER_WORKFLOW_H2</h2>
 
         <ol
@@ -388,7 +388,7 @@ function RussiaUSShipMyCar() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
-        {/* TODO-RU-US: Replace heading and reasons */}
+        {/* TODO-RU: Replace heading and reasons */}
         <h2 style={styles.h2}>PLACEHOLDER_WHY_Y7_H2</h2>
         <p style={{ ...styles.paragraph, marginBottom: '2rem' }}>
           PLACEHOLDER_WHY_Y7_INTRO
@@ -490,7 +490,7 @@ function RussiaUSShipMyCar() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
-        {/* TODO-RU-US: Replace heading */}
+        {/* TODO-RU: Replace heading */}
         <h2 style={styles.h2}>PLACEHOLDER_CONTACT_H2</h2>
 
         <div
@@ -647,7 +647,7 @@ function RussiaUSShipMyCar() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
-        {/* TODO-RU-US: Replace heading */}
+        {/* TODO-RU: Replace heading */}
         <h2 style={styles.h2}>PLACEHOLDER_FAQ_H2</h2>
 
         <div style={{ display: 'grid', gap: '0.75rem' }}>
@@ -708,7 +708,7 @@ function RussiaUSShipMyCar() {
         }}
       >
         <div style={{ maxWidth: '700px', margin: '0 auto' }}>
-          {/* TODO-RU-US: Replace CTA copy */}
+          {/* TODO-RU: Replace CTA copy */}
           <h2
             style={{
               ...styles.h2,
@@ -754,4 +754,4 @@ function RussiaUSShipMyCar() {
   );
 }
 
-export default RussiaUSShipMyCar;
+export default RussiaShipMyCar;

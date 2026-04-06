@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
 
 // =============================================================================
-// RussiaUSCopart.jsx — Template B (Copart Guide)
-// Route: /ru-us/copart-shipping | lang="ru"
+// RussiaCopart.jsx — Template B (Copart Guide)
+// Route: /ru/copart-shipping | lang="ru"
 // Audience: Russian-speaking US diaspora buying from Copart/IAAI
 // =============================================================================
 // IMPORTANT NOTES:
@@ -117,14 +117,14 @@ const breadcrumbSchema = {
     {
       '@type': 'ListItem',
       position: 2,
-      name: 'PLACEHOLDER_BREADCRUMB_RU_US',
-      item: 'https://www.y7agency.com/ru-us',
+      name: 'PLACEHOLDER_BREADCRUMB_RU',
+      item: 'https://www.y7agency.com/ru',
     },
     {
       '@type': 'ListItem',
       position: 3,
       name: 'PLACEHOLDER_BREADCRUMB_COPART',
-      item: 'https://www.y7agency.com/ru-us/copart-shipping',
+      item: 'https://www.y7agency.com/ru/copart-shipping',
     },
   ],
 };
@@ -133,7 +133,7 @@ const breadcrumbSchema = {
 // Data arrays
 // ---------------------------------------------------------------------------
 
-// TODO-RU-US: Replace with real comparison data
+// TODO-RU: Replace with real comparison data
 const COMPARISON_ROWS = [
   {
     feature: 'PLACEHOLDER_COMPARE_FEATURE_1',
@@ -177,7 +177,7 @@ const COMPARISON_ROWS = [
   },
 ];
 
-// TODO-RU-US: Replace with real fee data
+// TODO-RU: Replace with real fee data
 const FEES = [
   { name: 'PLACEHOLDER_FEE_1_NAME', amount: 'PLACEHOLDER_FEE_1_AMOUNT', note: 'PLACEHOLDER_FEE_1_NOTE' },
   { name: 'PLACEHOLDER_FEE_2_NAME', amount: 'PLACEHOLDER_FEE_2_AMOUNT', note: 'PLACEHOLDER_FEE_2_NOTE' },
@@ -187,7 +187,7 @@ const FEES = [
   { name: 'PLACEHOLDER_FEE_6_NAME', amount: 'PLACEHOLDER_FEE_6_AMOUNT', note: 'PLACEHOLDER_FEE_6_NOTE' },
 ];
 
-// TODO-RU-US: Replace with real route data
+// TODO-RU: Replace with real route data
 const ROUTES = [
   {
     from: 'PLACEHOLDER_ROUTE_1_FROM',
@@ -215,7 +215,7 @@ const ROUTES = [
   },
 ];
 
-// TODO-RU-US: Replace with real pitfall descriptions
+// TODO-RU: Replace with real pitfall descriptions
 const PITFALLS = [
   { title: 'PLACEHOLDER_PITFALL_1_TITLE', desc: 'PLACEHOLDER_PITFALL_1_DESC' },
   { title: 'PLACEHOLDER_PITFALL_2_TITLE', desc: 'PLACEHOLDER_PITFALL_2_DESC' },
@@ -226,7 +226,7 @@ const PITFALLS = [
   { title: 'PLACEHOLDER_PITFALL_7_TITLE', desc: 'PLACEHOLDER_PITFALL_7_DESC' },
 ];
 
-// TODO-RU-US: Replace with real step descriptions
+// TODO-RU: Replace with real step descriptions
 const HOW_IT_WORKS = [
   { title: 'PLACEHOLDER_HIW_1_TITLE', desc: 'PLACEHOLDER_HIW_1_DESC' },
   { title: 'PLACEHOLDER_HIW_2_TITLE', desc: 'PLACEHOLDER_HIW_2_DESC' },
@@ -237,7 +237,7 @@ const HOW_IT_WORKS = [
   { title: 'PLACEHOLDER_HIW_7_TITLE', desc: 'PLACEHOLDER_HIW_7_DESC' },
 ];
 
-// TODO-RU-US: Replace with real FAQ content
+// TODO-RU: Replace with real FAQ content
 const FAQS = [
   { q: 'PLACEHOLDER_FAQ_Q1', a: 'PLACEHOLDER_FAQ_A1' },
   { q: 'PLACEHOLDER_FAQ_Q2', a: 'PLACEHOLDER_FAQ_A2' },
@@ -316,23 +316,23 @@ const styles = {
 // =============================================================================
 // Component
 // =============================================================================
-function RussiaUSCopart() {
+function RussiaCopart() {
   return (
     <div style={styles.main}>
       {/* ----------------------------------------------------------------- */}
       {/* Head / SEO                                                        */}
       {/* ----------------------------------------------------------------- */}
       <Helmet>
-        {/* TODO-RU-US: Replace PLACEHOLDER meta with real Russian copy */}
+        {/* TODO-RU: Replace PLACEHOLDER meta with real Russian copy */}
         <html lang="ru" />
         <title>PLACEHOLDER_META_TITLE</title>
         <meta name="description" content="PLACEHOLDER_META_DESCRIPTION" />
-        <link rel="canonical" href="https://www.y7agency.com/ru-us/copart-shipping" />
+        <link rel="canonical" href="https://www.y7agency.com/ru/copart-shipping" />
         <meta property="og:title" content="PLACEHOLDER_OG_TITLE" />
         <meta property="og:description" content="PLACEHOLDER_OG_DESCRIPTION" />
-        <meta property="og:url" content="https://www.y7agency.com/ru-us/copart-shipping" />
+        <meta property="og:url" content="https://www.y7agency.com/ru/copart-shipping" />
         <meta property="og:type" content="article" />
-        <meta property="og:locale" content="ru_US" />
+        <meta property="og:locale" content="ru" />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
@@ -342,7 +342,7 @@ function RussiaUSCopart() {
         currentPath="/copart-shipping"
         hasPolishVersion={true}
         hasUkrainianVersion={true}
-        hasRussianUSVersion={true}
+        hasRussianVersion={true}
       />
 
       {/* ================================================================= */}
@@ -380,10 +380,10 @@ function RussiaUSCopart() {
           </li>
           <li>
             <Link
-              to="/ru-us"
+              to="/ru"
               style={{ color: '#993C1D', textDecoration: 'none' }}
             >
-              PLACEHOLDER_BREADCRUMB_RU_US
+              PLACEHOLDER_BREADCRUMB_RU
             </Link>
             <span style={{ margin: '0 0.25rem' }}>/</span>
           </li>
@@ -397,7 +397,7 @@ function RussiaUSCopart() {
       {/* SECTION 1 — Hero                                                  */}
       {/* ================================================================= */}
       <section style={styles.section}>
-        {/* TODO-RU-US: Replace hero heading and lead */}
+        {/* TODO-RU: Replace hero heading and lead */}
         <h1 style={styles.h1}>
           PLACEHOLDER_H1
         </h1>
@@ -421,7 +421,7 @@ function RussiaUSCopart() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
-        {/* TODO-RU-US: Replace heading and paragraphs */}
+        {/* TODO-RU: Replace heading and paragraphs */}
         <h2 style={styles.h2}>PLACEHOLDER_WHAT_COPART_H2</h2>
         <p style={{ ...styles.paragraph, marginBottom: '1rem' }}>
           PLACEHOLDER_WHAT_COPART_P1
@@ -438,7 +438,7 @@ function RussiaUSCopart() {
       {/* SECTION 3 — Copart vs IAAI comparison table                       */}
       {/* ================================================================= */}
       <section style={styles.section}>
-        {/* TODO-RU-US: Replace heading */}
+        {/* TODO-RU: Replace heading */}
         <h2 style={styles.h2}>PLACEHOLDER_COMPARISON_H2</h2>
 
         <div
@@ -534,7 +534,7 @@ function RussiaUSCopart() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
-        {/* TODO-RU-US: Replace heading */}
+        {/* TODO-RU: Replace heading */}
         <h2 style={styles.h2}>PLACEHOLDER_FEES_H2</h2>
 
         <div style={{ display: 'grid', gap: '1rem' }}>
@@ -589,7 +589,7 @@ function RussiaUSCopart() {
       {/* SECTION 5 — Transport routes                                      */}
       {/* ================================================================= */}
       <section style={styles.section}>
-        {/* TODO-RU-US: Replace heading */}
+        {/* TODO-RU: Replace heading */}
         <h2 style={styles.h2}>PLACEHOLDER_ROUTES_H2</h2>
 
         <div
@@ -650,7 +650,7 @@ function RussiaUSCopart() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
-        {/* TODO-RU-US: Replace heading */}
+        {/* TODO-RU: Replace heading */}
         <h2 style={styles.h2}>PLACEHOLDER_PITFALLS_H2</h2>
 
         <div style={{ display: 'grid', gap: '1.25rem' }}>
@@ -699,7 +699,7 @@ function RussiaUSCopart() {
       {/* SECTION 7 — How it works                                          */}
       {/* ================================================================= */}
       <section style={styles.section}>
-        {/* TODO-RU-US: Replace heading */}
+        {/* TODO-RU: Replace heading */}
         <h2 style={styles.h2}>PLACEHOLDER_HIW_H2</h2>
 
         <ol
@@ -769,7 +769,7 @@ function RussiaUSCopart() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
-        {/* TODO-RU-US: Replace heading */}
+        {/* TODO-RU: Replace heading */}
         <h2 style={styles.h2}>PLACEHOLDER_FAQ_H2</h2>
 
         <div style={{ display: 'grid', gap: '0.75rem' }}>
@@ -830,7 +830,7 @@ function RussiaUSCopart() {
         }}
       >
         <div style={{ maxWidth: '700px', margin: '0 auto' }}>
-          {/* TODO-RU-US: Replace CTA copy */}
+          {/* TODO-RU: Replace CTA copy */}
           <h2
             style={{
               ...styles.h2,
@@ -850,7 +850,7 @@ function RussiaUSCopart() {
             PLACEHOLDER_DARK_CTA_DESCRIPTION
           </p>
           <Link
-            to="/ru-us/ship-my-car"
+            to="/ru/ship-my-car"
             style={{
               ...styles.ctaButton,
               fontSize: '1.05rem',
@@ -874,4 +874,4 @@ function RussiaUSCopart() {
   );
 }
 
-export default RussiaUSCopart;
+export default RussiaCopart;

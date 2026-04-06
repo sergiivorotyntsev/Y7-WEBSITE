@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
 
 // =============================================================================
-// RussiaUSHome.jsx — Template A (Home/Overview)
-// Route: /ru-us | lang="ru" | Audience: Russian-speaking US diaspora
+// RussiaHome.jsx — Template A (Home/Overview)
+// Route: /ru | lang="ru" | Audience: Russian-speaking US diaspora
 // =============================================================================
 // IMPORTANT NOTES:
 // - Y7 HAS Russian-speaking team members
@@ -88,8 +88,8 @@ const breadcrumbSchema = {
     {
       '@type': 'ListItem',
       position: 2,
-      name: 'PLACEHOLDER_BREADCRUMB_RU_US',
-      item: 'https://www.y7agency.com/ru-us',
+      name: 'PLACEHOLDER_BREADCRUMB_RU',
+      item: 'https://www.y7agency.com/ru',
     },
   ],
 };
@@ -98,14 +98,14 @@ const breadcrumbSchema = {
 // Data arrays
 // ---------------------------------------------------------------------------
 
-// TODO-RU-US: Replace all PLACEHOLDER strings with real Russian copy
+// TODO-RU: Replace all PLACEHOLDER strings with real Russian copy
 const STATS = [
   { number: 'PLACEHOLDER_STAT_1_NUMBER', label: 'PLACEHOLDER_STAT_1_LABEL' },
   { number: 'PLACEHOLDER_STAT_2_NUMBER', label: 'PLACEHOLDER_STAT_2_LABEL' },
   { number: 'PLACEHOLDER_STAT_3_NUMBER', label: 'PLACEHOLDER_STAT_3_LABEL' },
 ];
 
-// TODO-RU-US: Services for US diaspora — NOT "two companies" framing
+// TODO-RU: Services for US diaspora — NOT "two companies" framing
 const SERVICES = [
   {
     title: 'PLACEHOLDER_SERVICE_1_TITLE',
@@ -134,7 +134,7 @@ const SERVICES = [
   },
 ];
 
-// TODO-RU-US: Replace with real process steps
+// TODO-RU: Replace with real process steps
 const PROCESS_STEPS = [
   { num: 1, title: 'PLACEHOLDER_STEP_1_TITLE', desc: 'PLACEHOLDER_STEP_1_DESC' },
   { num: 2, title: 'PLACEHOLDER_STEP_2_TITLE', desc: 'PLACEHOLDER_STEP_2_DESC' },
@@ -143,7 +143,7 @@ const PROCESS_STEPS = [
   { num: 5, title: 'PLACEHOLDER_STEP_5_TITLE', desc: 'PLACEHOLDER_STEP_5_DESC' },
 ];
 
-// TODO-RU-US: Replace with real cost breakdown
+// TODO-RU: Replace with real cost breakdown
 const COST_CARDS = [
   {
     title: 'PLACEHOLDER_COST_1_TITLE',
@@ -167,7 +167,7 @@ const COST_CARDS = [
   },
 ];
 
-// TODO-RU-US: Replace with real car examples
+// TODO-RU: Replace with real car examples
 const CAR_EXAMPLES = [
   {
     title: 'PLACEHOLDER_CAR_1_TITLE',
@@ -189,7 +189,7 @@ const CAR_EXAMPLES = [
   },
 ];
 
-// TODO-RU-US: Replace with real risk descriptions
+// TODO-RU: Replace with real risk descriptions
 const RISKS = [
   { title: 'PLACEHOLDER_RISK_1_TITLE', desc: 'PLACEHOLDER_RISK_1_DESC' },
   { title: 'PLACEHOLDER_RISK_2_TITLE', desc: 'PLACEHOLDER_RISK_2_DESC' },
@@ -197,7 +197,7 @@ const RISKS = [
   { title: 'PLACEHOLDER_RISK_4_TITLE', desc: 'PLACEHOLDER_RISK_4_DESC' },
 ];
 
-// TODO-RU-US: Replace with real FAQ content
+// TODO-RU: Replace with real FAQ content
 const FAQS = [
   { q: 'PLACEHOLDER_FAQ_Q1', a: 'PLACEHOLDER_FAQ_A1' },
   { q: 'PLACEHOLDER_FAQ_Q2', a: 'PLACEHOLDER_FAQ_A2' },
@@ -275,23 +275,23 @@ const styles = {
 // =============================================================================
 // Component
 // =============================================================================
-function RussiaUSHome() {
+function RussiaHome() {
   return (
     <div style={styles.main}>
       {/* ----------------------------------------------------------------- */}
       {/* Head / SEO                                                        */}
       {/* ----------------------------------------------------------------- */}
       <Helmet>
-        {/* TODO-RU-US: Replace PLACEHOLDER meta with real Russian copy */}
+        {/* TODO-RU: Replace PLACEHOLDER meta with real Russian copy */}
         <html lang="ru" />
         <title>PLACEHOLDER_META_TITLE</title>
         <meta name="description" content="PLACEHOLDER_META_DESCRIPTION" />
-        <link rel="canonical" href="https://www.y7agency.com/ru-us" />
+        <link rel="canonical" href="https://www.y7agency.com/ru" />
         <meta property="og:title" content="PLACEHOLDER_OG_TITLE" />
         <meta property="og:description" content="PLACEHOLDER_OG_DESCRIPTION" />
-        <meta property="og:url" content="https://www.y7agency.com/ru-us" />
+        <meta property="og:url" content="https://www.y7agency.com/ru" />
         <meta property="og:type" content="website" />
-        <meta property="og:locale" content="ru_US" />
+        <meta property="og:locale" content="ru" />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
@@ -300,7 +300,7 @@ function RussiaUSHome() {
         currentPath=""
         hasPolishVersion={true}
         hasUkrainianVersion={true}
-        hasRussianUSVersion={true}
+        hasRussianVersion={true}
       />
 
       {/* ================================================================= */}
@@ -321,12 +321,12 @@ function RussiaUSHome() {
           Y7 Logistics
         </p>
 
-        {/* TODO-RU-US: Replace hero heading */}
+        {/* TODO-RU: Replace hero heading */}
         <h1 style={styles.h1}>
           PLACEHOLDER_H1
         </h1>
 
-        {/* TODO-RU-US: Replace lead paragraph (~100 words) */}
+        {/* TODO-RU: Replace lead paragraph (~100 words) */}
         <p
           style={{
             ...styles.paragraph,
@@ -346,7 +346,7 @@ function RussiaUSHome() {
 
         {/* CTA button */}
         <div style={{ marginTop: '2rem' }}>
-          <Link to="/ru-us/ship-my-car" style={styles.ctaButton}>
+          <Link to="/ru/ship-my-car" style={styles.ctaButton}>
             PLACEHOLDER_CTA_HERO
           </Link>
         </div>
@@ -391,7 +391,7 @@ function RussiaUSHome() {
       {/* SECTION 3 — Our Services (US diaspora framing)                    */}
       {/* ================================================================= */}
       <section style={styles.section}>
-        {/* TODO-RU-US: Replace heading and description */}
+        {/* TODO-RU: Replace heading and description */}
         <h2 style={styles.h2}>PLACEHOLDER_SERVICES_H2</h2>
         <p style={{ ...styles.paragraph, marginBottom: '2rem' }}>
           PLACEHOLDER_SERVICES_DESCRIPTION
@@ -442,7 +442,7 @@ function RussiaUSHome() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
-        {/* TODO-RU-US: Replace heading */}
+        {/* TODO-RU: Replace heading */}
         <h2 style={styles.h2}>PLACEHOLDER_PROCESS_H2</h2>
 
         <ol
@@ -499,7 +499,7 @@ function RussiaUSHome() {
       {/* SECTION 5 — Cost Breakdown                                        */}
       {/* ================================================================= */}
       <section style={styles.section}>
-        {/* TODO-RU-US: Replace heading */}
+        {/* TODO-RU: Replace heading */}
         <h2 style={styles.h2}>PLACEHOLDER_COST_H2</h2>
 
         <div
@@ -555,7 +555,7 @@ function RussiaUSHome() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
-        {/* TODO-RU-US: Replace heading */}
+        {/* TODO-RU: Replace heading */}
         <h2 style={styles.h2}>PLACEHOLDER_EXAMPLES_H2</h2>
 
         <div
@@ -614,7 +614,7 @@ function RussiaUSHome() {
       {/* SECTION 7 — Risks                                                 */}
       {/* ================================================================= */}
       <section style={styles.section}>
-        {/* TODO-RU-US: Replace heading */}
+        {/* TODO-RU: Replace heading */}
         <h2 style={styles.h2}>PLACEHOLDER_RISKS_H2</h2>
 
         <div
@@ -660,7 +660,7 @@ function RussiaUSHome() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
-        {/* TODO-RU-US: Replace heading */}
+        {/* TODO-RU: Replace heading */}
         <h2 style={styles.h2}>PLACEHOLDER_FAQ_H2</h2>
 
         <div style={{ display: 'grid', gap: '0.75rem' }}>
@@ -721,7 +721,7 @@ function RussiaUSHome() {
         }}
       >
         <div style={{ maxWidth: '700px', margin: '0 auto' }}>
-          {/* TODO-RU-US: Replace CTA copy */}
+          {/* TODO-RU: Replace CTA copy */}
           <h2
             style={{
               ...styles.h2,
@@ -741,7 +741,7 @@ function RussiaUSHome() {
             PLACEHOLDER_DARK_CTA_DESCRIPTION
           </p>
           <Link
-            to="/ru-us/ship-my-car"
+            to="/ru/ship-my-car"
             style={{
               ...styles.ctaButton,
               fontSize: '1.05rem',
@@ -765,4 +765,4 @@ function RussiaUSHome() {
   );
 }
 
-export default RussiaUSHome;
+export default RussiaHome;
