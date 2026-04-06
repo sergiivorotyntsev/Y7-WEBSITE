@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
+import AuctionToPortWorkflow from '../../components/AuctionToPortWorkflow';
 import { colors, fonts, button as btnStyles } from '../../theme';
 import { PORTS } from './portData';
 
@@ -327,6 +328,9 @@ export default function PortPage() {
           Contact us for guidance on which shipping method works best for your destination.
         </p>
       </div>
+
+      {/* Auction-to-Port Workflow */}
+      <AuctionToPortWorkflow />
 
       {/* Tips */}
       {port.tips && (
