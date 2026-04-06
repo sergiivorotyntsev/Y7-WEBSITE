@@ -55,6 +55,11 @@ const PUBLIC_ROUTES = [
   '/texas-to-newark-port-auto-transport',
   '/chicago-to-port-newark-car-shipping',
   '/auction-to-port-transport',
+  // EV/Tesla pages
+  '/tesla-car-shipping',
+  '/ev-auto-transport',
+  '/cybertruck-shipping',
+  '/electric-vehicle-port-delivery',
   // Guide pages
   '/how-to-ship-a-car-bought-at-auction',
   '/open-vs-enclosed-auto-transport',
