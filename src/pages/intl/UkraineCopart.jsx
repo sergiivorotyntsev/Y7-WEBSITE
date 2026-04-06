@@ -217,7 +217,7 @@ const UkraineCopart = () => {
         currentPath="/copart-shipping"
         hasPolishVersion={true}
         hasUkrainianVersion={true}
-        hasRussianUSVersion={true}
+        hasRussianVersion={true}
       />
 
       {/* ============================================================ */}

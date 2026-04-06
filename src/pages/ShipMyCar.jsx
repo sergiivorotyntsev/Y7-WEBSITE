@@ -16,7 +16,7 @@ export default function ShipMyCar() {
     <div>
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Ship My Car',url:'/ship-my-car'}]} />
       <PageMeta title="Ship My Car" description="Open and enclosed auto transport nationwide. VIN decode, real-time tracking, insured carriers." path="/ship-my-car" />
-      <HreflangTags currentPath="/ship-my-car" hasPolishVersion hasUkrainianVersion hasRussianUSVersion />
+      <HreflangTags currentPath="/ship-my-car" hasPolishVersion hasUkrainianVersion hasRussianVersion />
       {/* Hero */}
       <section style={{
         maxWidth: '800px',

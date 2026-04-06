@@ -108,7 +108,7 @@ const PolandHome = () => {
         currentPath=""
         hasPolishVersion={true}
         hasUkrainianVersion={true}
-        hasRussianUSVersion={true}
+        hasRussianVersion={true}
       />
 
       <main style={{

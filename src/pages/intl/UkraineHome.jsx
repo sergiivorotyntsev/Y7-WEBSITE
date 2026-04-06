@@ -255,7 +255,7 @@ const UkraineHome = () => {
         currentPath=""
         hasPolishVersion={true}
         hasUkrainianVersion={true}
-        hasRussianUSVersion={true}
+        hasRussianVersion={true}
       />
 
       {/* ============================================================ */}

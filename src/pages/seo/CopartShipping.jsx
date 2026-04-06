@@ -80,7 +80,7 @@ export default function CopartShipping() {
         { label: 'Get a Quote', to: '/quote' },
       ]}
     >
-      <HreflangTags currentPath="/copart-shipping" hasPolishVersion hasUkrainianVersion hasRussianUSVersion />
+      <HreflangTags currentPath="/copart-shipping" hasPolishVersion hasUkrainianVersion hasRussianVersion />
       <Section title="The Copart Purchase-to-Pickup Process">
         <p style={p}>
           Winning a vehicle on Copart is only half the job. The real logistics start the moment the

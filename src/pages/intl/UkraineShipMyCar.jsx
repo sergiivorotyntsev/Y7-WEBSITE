@@ -190,7 +190,7 @@ const UkraineShipMyCar = () => {
         currentPath="/ship-my-car"
         hasPolishVersion={true}
         hasUkrainianVersion={true}
-        hasRussianUSVersion={true}
+        hasRussianVersion={true}
       />
 
       {/* ============================================================ */}
