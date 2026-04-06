@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import PageMeta from '../components/PageMeta';
+import HreflangTags from '../components/HreflangTags';
 import { API_URL } from '../config';
 import ScrollReveal from '../components/ScrollReveal';
 import TrustBar from '../components/TrustBar';
@@ -49,6 +50,7 @@ export default function Home() {
   return (
     <div>
       <PageMeta description="Licensed auto transport broker. Ship your vehicle door-to-door or to any US port. Instant quotes, verified carriers, real-time tracking." path="/" i18n />
+      <HreflangTags currentPath="" hasPolishVersion hasUkrainianVersion hasRussianUSVersion />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
       {/* 1. Hero */}
       <style>{`

@@ -1,4 +1,5 @@
 import SeoLandingPage, { Section } from './SeoLandingPage';
+import HreflangTags from '../../components/HreflangTags';
 import { colors, fonts } from '../../theme';
 
 const p = {
@@ -79,6 +80,7 @@ export default function CopartShipping() {
         { label: 'Get a Quote', to: '/quote' },
       ]}
     >
+      <HreflangTags currentPath="/copart-shipping" hasPolishVersion hasUkrainianVersion hasRussianUSVersion />
       <Section title="The Copart Purchase-to-Pickup Process">
         <p style={p}>
           Winning a vehicle on Copart is only half the job. The real logistics start the moment the

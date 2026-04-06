@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import PageMeta from '../components/PageMeta';
+import HreflangTags from '../components/HreflangTags';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import QuoteForm from '../components/QuoteForm';
 import TransportComparison from '../components/TransportComparison';
@@ -15,6 +16,7 @@ export default function ShipMyCar() {
     <div>
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Ship My Car',url:'/ship-my-car'}]} />
       <PageMeta title="Ship My Car" description="Open and enclosed auto transport nationwide. VIN decode, real-time tracking, insured carriers." path="/ship-my-car" />
+      <HreflangTags currentPath="/ship-my-car" hasPolishVersion hasUkrainianVersion hasRussianUSVersion />
       {/* Hero */}
       <section style={{
         maxWidth: '800px',
