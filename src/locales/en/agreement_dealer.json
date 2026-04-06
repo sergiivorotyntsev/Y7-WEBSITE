@@ -1,0 +1,59 @@
+{
+  "title": "Dealer Transport Service Agreement",
+  "loading": "Loading agreement...",
+  "sections": {
+    "service": {
+      "title": "Service Description & Broker Role",
+      "body": "Y7 Consulting Inc (DBA Y7 Logistics), USDOT #4427359, MC #1741537, provides licensed auto transport broker services for licensed auto dealers shipping vehicles between auctions, ports, and dealer facilities. Y7 acts as a broker intermediary, arranging transportation services with independent motor carriers. Y7 does not own, operate, or maintain carrier equipment."
+    },
+    "bol": {
+      "title": "Vehicle Inspection & Bill of Lading (BOL)",
+      "body": "The Bill of Lading is signed at vehicle pickup by the originating party (auction representative or seller's agent) and at delivery by the dealer or dealer's designated representative. The dealer representative must conduct a thorough vehicle inspection at delivery before signing BOL and before releasing payment to the carrier. Any damage, discrepancy, or concern must be noted on the BOL at time of delivery."
+    },
+    "payment": {
+      "title": "Payment Terms",
+      "body": "Payment terms for dealer accounts:\n\n1. CARRIER PAYMENT: The dealer pays the motor carrier DIRECTLY at the time of delivery, after joint vehicle inspection, via check or Zelle. Y7 does not collect or hold carrier payments on behalf of dealer accounts. The dealer is solely responsible for all carrier charges, fuel surcharges, and any accessorial fees agreed upon at dispatch.\n\n2. BROKER SERVICE FEE TO Y7: The dealer pays Y7 Logistics the agreed broker service fee via Zelle or ACH. Payment method and schedule depends on dealer billing mode:\n- PER-DELIVERY MODE (default for new dealers): Service fee due within 48 hours after vehicle delivery is completed and confirmed.\n- MONTHLY MODE (for established dealers only, at Y7 discretion): Consolidated invoice issued at end of each calendar month for all completed deliveries in that period. Payment due within 10 calendar days of invoice date.\n\n3. LATE PAYMENT: Unpaid service fees beyond the due date may result in suspension of dealer account and refusal of new dispatch requests until balance is cleared.\n\n4. NO CREDIT EXTENSION: Y7 does not extend credit beyond the billing terms stated above. No net-30, no deferred payment, no invoicing by third-party services.\n\n5. NO REFUNDS: Service fees are earned upon successful dispatch and delivery, regardless of subsequent disputes between dealer and carrier."
+    },
+    "insurance": {
+      "title": "Insurance & Claims",
+      "body": "Carrier maintains cargo insurance as required by FMCSA regulations (minimum $100,000 single-vehicle, $250,000 combined for enclosed transport). Y7 maintains a broker bond ($75,000 BMC-84) as required by FMCSA. The dealer is responsible for maintaining its own commercial insurance covering vehicles while in dealer possession. Claims for cargo damage must be filed directly with the carrier within 9 months of delivery per Carmack Amendment."
+    },
+    "cancellation": {
+      "title": "Cancellation Policy",
+      "body": "Cancellation policy:\n\n1. Before CD listing: Order may be cancelled at no cost to dealer.\n2. After CD listing but before carrier acceptance: $25 listing cancellation fee.\n3. After carrier acceptance but before carrier dispatch: Standard Central Dispatch cancellation fee (typically $50-150) may apply per carrier policy.\n4. After carrier dispatch: Full service fee + any carrier deadhead charges apply.\n\nCancellations must be submitted in writing via portal or email to info@y7agency.com."
+    },
+    "customer": {
+      "title": "Dealer Account Requirements",
+      "body": "Dealer account requirements:\n\n1. Valid state auto dealer license with number provided at registration.\n2. Current commercial business insurance.\n3. Accurate delivery location information for each order.\n4. Responsible inspection of vehicles at delivery before carrier payment.\n5. Timely communication of any delivery issues within 24 hours.\n6. Compliance with all applicable federal, state, and local auto dealer regulations.\n7. Maintenance of accurate contact information in portal profile."
+    },
+    "delays": {
+      "title": "Estimated Dates & Delays",
+      "body": "Transit times are estimates provided by carriers and are subject to weather, traffic, mechanical issues, driver hours-of-service regulations, and other circumstances. Y7 does not guarantee specific delivery dates unless explicitly agreed in writing. The dealer acknowledges that delays may occur and agrees that delay-related claims must be directed to the carrier, not to Y7 as broker."
+    },
+    "liability": {
+      "title": "Limitation of Liability",
+      "body": "Y7 Logistics acts solely as a licensed broker (USDOT #4427359, MC #1741537) arranging transportation services between the dealer and independent motor carriers. Y7 is not responsible for:\n\n1. Carrier performance, timeliness, or vehicle handling.\n2. Cargo damage claims (direct dealer-carrier matter).\n3. Delivery delays beyond reasonable broker effort.\n4. Disputes between dealer and carrier regarding payment or service quality.\n\nY7's total liability is limited to the broker service fee paid by the dealer for the specific order in question. This agreement does not create any employment, agency, or joint venture relationship beyond the broker role as defined by FMCSA regulations."
+    }
+  },
+  "checkboxes": {
+    "bol": "I understand that the dealer or dealer's representative must inspect the vehicle and sign the Bill of Lading (BOL) upon delivery, and that signing without noting damage releases the carrier from liability.",
+    "payment": "I understand the payment terms: the dealer pays the carrier directly at delivery, and pays Y7 the broker service fee via Zelle or ACH according to the assigned billing mode (per-delivery or monthly).",
+    "broker": "I understand that Y7 Consulting Inc is a licensed broker, not a carrier. Y7's liability is limited to the brokerage fee. The carrier's cargo insurance covers the vehicle during transport. Y7 is not liable for vehicle damage, theft, fire, total loss, or disputes between dealer and carrier.",
+    "cancellation": "I have read and agree to the cancellation policy, dealer account requirements, and all terms stated in this agreement."
+  },
+  "signature": {
+    "label": "Type your full legal name as digital signature",
+    "placeholder": "Your Full Legal Name",
+    "legal": "By typing your name above, you acknowledge that this constitutes a legally binding electronic signature under the E-SIGN Act (15 U.S.C. §7001). Date and IP address of signing are recorded.",
+    "button": "Sign Dealer Agreement",
+    "submitting": "Signing..."
+  },
+  "success": {
+    "title": "Dealer Agreement Signed Successfully",
+    "message": "Thank you. Your dealer agreement has been recorded. You can now place transport orders through the dealer portal."
+  },
+  "errors": {
+    "orderNotFound": "Order not found. Please check the link and try again.",
+    "submitFailed": "Failed to submit agreement. Please try again."
+  }
+}
