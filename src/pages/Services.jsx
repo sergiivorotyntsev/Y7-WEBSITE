@@ -197,6 +197,86 @@ export default function Services() {
         </div>
       </div>
 
+      {/* EV & Tesla Services */}
+      <div style={{ marginTop: '64px' }}>
+        <h2 style={{
+          fontFamily: fonts.serif,
+          fontSize: '24px',
+          fontWeight: 700,
+          color: colors.text,
+          textAlign: 'center',
+          marginBottom: '8px',
+        }}>
+          Electric Vehicle Transport
+        </h2>
+        <p style={{
+          fontFamily: fonts.sans,
+          fontSize: '14px',
+          color: colors.textMuted,
+          textAlign: 'center',
+          marginBottom: '32px',
+        }}>
+          Specialized carriers for Tesla, Rivian, Lucid, and every major EV brand
+        </p>
+        <div className="services-grid" style={{ alignItems: 'stretch' }}>
+          {[
+            { to: '/tesla-car-shipping', title: 'Tesla Shipping', desc: 'Specialized transport for Model S, 3, X, Y, and Cybertruck. Air suspension, transport mode, stainless steel handling expertise.' },
+            { to: '/ev-auto-transport', title: 'Electric Vehicle Transport', desc: 'Nationwide EV shipping for Tesla, Rivian, Lucid, Ford Lightning, Porsche Taycan, Hummer EV, and more.' },
+            { to: '/cybertruck-shipping', title: 'Cybertruck Shipping', desc: 'Heavy-duty carriers for the 6,600 lb Cybertruck. Stainless steel safe handling, enclosed options available.' },
+            { to: '/electric-vehicle-port-delivery', title: 'EV Port Delivery', desc: 'Ship EVs from US auctions and dealers to export ports. Battery safety compliance, international shipping coordination.' },
+          ].map((page) => (
+            <Link key={page.to} to={page.to} style={{
+              background: colors.bgCard,
+              border: `1px solid ${colors.border}`,
+              borderRadius: '16px',
+              padding: '24px 20px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '8px',
+              textDecoration: 'none',
+              transition: 'transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease',
+            }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'translateY(-3px)';
+                e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,0,0,0.08)';
+                e.currentTarget.style.borderColor = colors.accent;
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.borderColor = colors.border;
+              }}
+            >
+              <h3 style={{
+                fontFamily: fonts.sans,
+                fontSize: '15px',
+                fontWeight: 600,
+                color: colors.text,
+              }}>
+                {page.title}
+              </h3>
+              <p style={{
+                fontFamily: fonts.sans,
+                fontSize: '13px',
+                color: colors.textMuted,
+                lineHeight: 1.5,
+                flex: 1,
+              }}>
+                {page.desc}
+              </p>
+              <span style={{
+                fontFamily: fonts.sans,
+                fontSize: '12px',
+                color: colors.accent,
+                fontWeight: 600,
+              }}>
+                Learn more &rarr;
+              </span>
+            </Link>
+          ))}
+        </div>
+      </div>
+
       <div style={{ textAlign: 'center', marginTop: '48px' }}>
         <button onClick={() => navigate('/quote')} style={btnStyles.accent}>
           Get a Free Quote
