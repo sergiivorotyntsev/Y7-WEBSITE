@@ -37,7 +37,12 @@ export function AuthProvider({ children }) {
       if (res.ok) {
         const data = await res.json();
         if (data.authenticated) {
-          setUser({ id: data.customer_id, name: data.customer_name });
+          setUser({
+            id: data.customer_id,
+            name: data.customer_name,
+            customer_type: data.customer_type || 'shipper',
+            billing_mode: data.billing_mode || 'per_delivery',
+          });
           return;
         }
       }
