@@ -10,6 +10,7 @@ import dealersEn from './locales/en/dealers.json';
 import exportersEn from './locales/en/exporters.json';
 import shipMycarEn from './locales/en/shipMycar.json';
 import agreementEn from './locales/en/agreement.json';
+import agreementDealerEn from './locales/en/agreement_dealer.json';
 import aboutEn from './locales/en/about.json';
 import faqEn from './locales/en/faq.json';
 
@@ -88,7 +89,7 @@ import faqRuUs from './locales/ru-us/faq.json';
 const resources = {
   en: {
     common: commonEn, home: homeEn, quote: quoteEn, services: servicesEn,
-    dealers: dealersEn, exporters: exportersEn, shipMycar: shipMycarEn, agreement: agreementEn, about: aboutEn, faq: faqEn,
+    dealers: dealersEn, exporters: exportersEn, shipMycar: shipMycarEn, agreement: agreementEn, agreement_dealer: agreementDealerEn, about: aboutEn, faq: faqEn,
   },
   ru: {
     common: commonRu, home: homeRu, quote: quoteRu, services: servicesRu,

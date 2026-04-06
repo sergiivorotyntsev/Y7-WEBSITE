@@ -60,8 +60,9 @@ function PendingIcon() {
 export default function Agreement() {
   const { orderId } = useParams();
   const navigate = useNavigate();
-  const { t } = useTranslation('agreement');
   const { user } = useAuth();
+  const agreementNs = user?.customer_type === 'dealer' ? 'agreement_dealer' : 'agreement';
+  const { t } = useTranslation(agreementNs);
   const scrollRef = useRef(null);
   const sectionRefs = useRef({});
   const agreementIdRef = useRef(null);
@@ -149,6 +150,7 @@ export default function Agreement() {
         signed_at: new Date().toISOString(),
         user_agent: navigator.userAgent,
         lang: 'en',
+        agreement_type: user?.customer_type === 'dealer' ? 'dealer' : 'shipper',
       };
       if (isCustomerLevel && resolvedCustomerId) {
         payload.customer_id = resolvedCustomerId;
