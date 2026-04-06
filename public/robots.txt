@@ -4,10 +4,8 @@
 User-agent: *
 Allow: /
 Allow: /pl/
-Allow: /pl-us/
 Allow: /ua/
-Allow: /ua-us/
-Allow: /ru-us/
+Allow: /ru/
 Disallow: /portal/
 Disallow: /agreement/
 Disallow: /api/
