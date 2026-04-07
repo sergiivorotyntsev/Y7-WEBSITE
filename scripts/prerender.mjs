@@ -167,7 +167,9 @@ async function prerender() {
         timeout: 30000,
       });
 
-      // Wait for the prerender-ready event or a max of 5s
+      // Wait for the prerender-ready event or a max of 5s.
+      // This signals that App.jsx has mounted, but the lazy-loaded route
+      // component (and its <PageMeta>/<Helmet>) may still be pending.
       await page.evaluate(() => {
         return new Promise((resolve) => {
           if (document.__PRERENDER_READY) {
@@ -176,6 +178,29 @@ async function prerender() {
           }
           document.addEventListener('prerender-ready', resolve, { once: true });
           setTimeout(resolve, 5000);
+        });
+      });
+
+      // Wait for react-helmet-async to actually apply per-page meta tags.
+      // react-helmet-async marks managed elements with data-rh="true" once
+      // it has flushed its batched updates from <Helmet> children. Without
+      // this wait, we snapshot the index.html fallback meta description
+      // because Helmet runs on the next animation frame after Suspense
+      // resolves the lazy route. Then we add two more rAFs as a final
+      // safety margin so any in-flight Helmet batch settles.
+      await page.evaluate(() => {
+        return new Promise((resolve) => {
+          const TIMEOUT_MS = 5000;
+          const startedAt = Date.now();
+          const check = () => {
+            const helmetManaged = document.querySelector('head meta[data-rh="true"], head title[data-rh="true"], head link[data-rh="true"]');
+            if (helmetManaged || Date.now() - startedAt > TIMEOUT_MS) {
+              requestAnimationFrame(() => requestAnimationFrame(resolve));
+              return;
+            }
+            requestAnimationFrame(check);
+          };
+          check();
         });
       });
 
