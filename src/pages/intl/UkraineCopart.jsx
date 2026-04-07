@@ -436,7 +436,8 @@ function UkraineCopart() {
             style={{
               ...cardStyle,
               padding: 0,
-              overflow: 'hidden',
+              overflowX: 'auto',
+              WebkitOverflowScrolling: 'touch',
             }}
           >
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>

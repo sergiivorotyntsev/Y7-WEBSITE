@@ -286,7 +286,8 @@ const PolandCopart = () => {
             background: '#fff',
             border: '1px solid #E5E0D8',
             borderRadius: '8px',
-            overflow: 'hidden',
+            overflowX: 'auto',
+            WebkitOverflowScrolling: 'touch',
             marginBottom: '2rem',
             fontSize: '0.9375rem',
           }}>
