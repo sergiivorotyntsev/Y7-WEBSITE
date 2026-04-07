@@ -12,8 +12,10 @@ const langs = [
 ];
 
 // Routes that have /:lang/ prefix versions in App.jsx
-const I18N_PATHS = ['/faq', '/about', '/quote', '/dealer-quote', '/copart-shipping', '/ship-my-car'];
-const I18N_PREFIXES = ['/ports/'];
+// Only 3 English pages have real intl counterparts: /, /copart-shipping, /ship-my-car
+// Home is handled separately (basePath === '' check below).
+const I18N_PATHS = ['/copart-shipping', '/ship-my-car'];
+const I18N_PREFIXES = [];
 
 export default function LanguageSwitcher() {
   const { i18n } = useTranslation();

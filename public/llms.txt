@@ -44,7 +44,7 @@
 - Email: info@y7agency.com
 - Telegram: https://t.me/y7dispatch_bot
 - Customer Portal: https://www.y7agency.com/portal/login
-- Address: 1007 Chestnut St, Newton, MA 02464
+- Location: Newton, MA, USA
 
 ## Languages Supported
 

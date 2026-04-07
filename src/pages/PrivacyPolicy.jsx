@@ -257,7 +257,7 @@ export default function PrivacyPolicy() {
       </p>
       <p style={pStyle}>
         Y7 Consulting Inc d/b/a Y7 Logistics<br />
-        1007 Chestnut St, Newton, MA 02464<br />
+        Newton, MA, USA<br />
         <a href="mailto:info@y7agency.com" style={{ color: colors.accent }}>info@y7agency.com</a>
       </p>
 

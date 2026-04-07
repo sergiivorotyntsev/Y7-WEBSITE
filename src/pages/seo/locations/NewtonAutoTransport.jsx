@@ -10,7 +10,7 @@ export default function NewtonAutoTransport() {
         path: '/newton-auto-transport',
       }}
       heading="Newton Auto Transport — Your Local Car Shipping Company"
-      intro="Y7 Logistics calls Newton, Massachusetts home. Our office at 1007 Chestnut St, Suite A, Newton, MA 02464 is the hub for our nationwide auto transport brokerage. When you work with us, you're working with a local business that understands your community and provides personal, responsive service."
+      intro="Y7 Logistics is based in Newton, Massachusetts. Our team coordinates a nationwide auto transport brokerage from the Newton area, serving Greater Boston and the entire United States. When you work with us, you're working with a local business that understands your community and provides personal, responsive service."
       whenNeeded={[
         'Shipping a vehicle from your Newton home',
         'Receiving a car purchased out of state',
@@ -34,7 +34,7 @@ export default function NewtonAutoTransport() {
         'Any special instructions (gated driveway, etc.)',
       ]}
       capabilities={[
-        'Headquartered at 1007 Chestnut St, Suite A, Newton, MA 02464',
+        'Based in Newton, MA — serving the entire United States',
         'Same-day quote response for local customers',
         'Serving Newton + Wellesley + Needham + Waltham + Watertown + Brookline',
         'All transport types \u2014 open + enclosed + auction + port + dealer',
@@ -52,7 +52,7 @@ export default function NewtonAutoTransport() {
         },
         {
           q: 'Can I visit your office?',
-          a: 'Our office is at 1007 Chestnut St, Suite A, Newton, MA 02464. While most of our business is handled remotely for efficiency, local customers are welcome to reach out for in-person coordination.',
+          a: 'We are based in Newton, MA. Most of our business is handled remotely via portal and Telegram for maximum efficiency. Local customers in the Greater Boston area can contact us via portal or Telegram to arrange a meeting if needed.',
         },
       ]}
       related={[

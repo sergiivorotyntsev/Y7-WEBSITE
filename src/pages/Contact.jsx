@@ -125,7 +125,7 @@ export default function Contact() {
 
       <div style={{ marginTop: '32px', fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted, textAlign: 'center', lineHeight: 1.6 }}>
         Y7 Consulting Inc (DBA Y7 Logistics)<br />
-        1007 Chestnut St, Suite A, Newton, MA 02464<br />
+        Newton, MA, USA<br />
         USDOT #4427359 | MC #1741537
       </div>
     </div>

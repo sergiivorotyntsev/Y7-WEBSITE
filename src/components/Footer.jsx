@@ -214,7 +214,7 @@ export default function Footer() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             <a href="mailto:info@y7agency.com" style={linkStyle} onClick={() => trackEvent('email_cta_click', { location: 'footer' })}>info@y7agency.com</a>
             <a href="https://t.me/y7dispatch_bot" target="_blank" rel="noopener noreferrer" style={linkStyle} onClick={() => trackEvent('telegram_cta_click', { location: 'footer' })}>Telegram Bot</a>
-            <span style={linkStyle}>1007 Chestnut St, Newton, MA 02464</span>
+            <span style={linkStyle}>Newton, MA, USA</span>
           </div>
         </div>
       </div>

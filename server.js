@@ -29,6 +29,14 @@ const DIST_DIR = path.join(__dirname, 'dist');
 // Each redirect preserves query string via req.originalUrl parsing.
 
 const LEGACY_REDIRECTS = [
+  // Legacy Wix URLs (still indexed by Google) — server-side 301 so crawlers follow.
+  { from: '/blog',                    to: '/' },
+  { from: '/global-sourcing',         to: '/services' },
+  { from: '/careers',                 to: '/' },
+  { from: '/privacy-policy',          to: '/privacy' },
+  { from: '/terms-and-conditions',    to: '/terms' },
+  { from: '/accessibility-statement', to: '/accessibility' },
+  // Legacy diaspora URLs (pre-Sprint 5 refactor).
   { from: '/pl-us',                   to: '/pl' },
   { from: '/pl-us/copart-shipping',   to: '/pl/copart-shipping' },
   { from: '/pl-us/ship-my-car',       to: '/pl/ship-my-car' },

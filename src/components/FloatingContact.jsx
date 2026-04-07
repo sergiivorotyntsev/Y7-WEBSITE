@@ -1,11 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { colors, fonts, keyframes } from '../theme';
-import { TelegramIcon, WhatsAppIcon, EmailIcon, CloseIcon } from './icons';
+import { TelegramIcon, EmailIcon, CloseIcon } from './icons';
 import { trackEvent } from '../utils/analytics';
 
 const CHANNELS = [
   { icon: <TelegramIcon size={18} />, label: 'Telegram', href: 'https://t.me/y7dispatch_bot', event: 'telegram_cta_click' },
-  { icon: <WhatsAppIcon size={18} />, label: 'WhatsApp', href: 'https://wa.me/18578958555?text=Hi%20Y7%20Logistics', event: null },
   { icon: <EmailIcon size={18} />, label: 'Email', href: 'mailto:info@y7agency.com', event: 'email_cta_click' },
 ];
 

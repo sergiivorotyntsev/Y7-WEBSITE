@@ -104,7 +104,7 @@ export default function Terms() {
         <li>USDOT #4427359</li>
         <li>MC #1741537</li>
         <li>$75,000 surety bond (BMC-84)</li>
-        <li>Principal address: 1007 Chestnut St, Newton, MA 02464</li>
+        <li>Principal location: Newton, MA, USA</li>
       </ul>
 
       {/* ── 4. Broker Disclosure (49 CFR 371.3) ── */}
@@ -364,7 +364,7 @@ export default function Terms() {
       </p>
       <p style={pStyle}>
         Y7 Consulting Inc d/b/a Y7 Logistics<br />
-        1007 Chestnut St, Newton, MA 02464<br />
+        Newton, MA, USA<br />
         Email:{' '}
         <a href="mailto:info@y7agency.com" style={linkStyle}>info@y7agency.com</a>
       </p>
