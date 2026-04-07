@@ -1,0 +1,241 @@
+name: Safety Check
+
+# Block merges/pushes that contain known-bad strings or broken structure.
+# Each check runs as a separate step so failures are easy to diagnose.
+# Hard checks fail the build. Soft checks emit warnings only.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  safety:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ============================================================
+      # HARD CHECKS — fail the build if any match found
+      # ============================================================
+
+      - name: Check for old MC number (1677498)
+        run: |
+          if grep -rn "1677498" \
+              --include="*.jsx" --include="*.js" --include="*.ts" --include="*.tsx" \
+              --include="*.html" --include="*.json" --include="*.md" --include="*.txt" \
+              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist .; then
+            echo "::error::Found old MC number 1677498. Current MC is 1741537. See [FIX-02] commit from April 5."
+            exit 1
+          fi
+          echo "OK: no 1677498 references"
+
+      - name: Check for old brand 'Y7 AGENCY'
+        run: |
+          if grep -rn "Y7 AGENCY" \
+              --include="*.jsx" --include="*.js" --include="*.ts" --include="*.tsx" \
+              --include="*.html" --include="*.json" --include="*.md" --include="*.txt" \
+              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist .; then
+            echo "::error::Found old brand 'Y7 AGENCY'. Current brand is 'Y7 Logistics' (legal: Y7 Consulting Inc)."
+            exit 1
+          fi
+          echo "OK: no 'Y7 AGENCY' references"
+
+      - name: Check for dispatch@ email
+        run: |
+          if grep -rn "dispatch@y7agency" \
+              --include="*.jsx" --include="*.js" --include="*.ts" --include="*.tsx" \
+              --include="*.html" --include="*.json" --include="*.md" --include="*.txt" \
+              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist .; then
+            echo "::error::Found dispatch@y7agency email. Only info@y7agency.com is published on the public site."
+            exit 1
+          fi
+          echo "OK: no dispatch@ references"
+
+      - name: Check for old Wix phone (857-895-8555)
+        run: |
+          if grep -rnE "857.{0,5}895" \
+              --include="*.jsx" --include="*.js" --include="*.ts" --include="*.tsx" \
+              --include="*.html" --include="*.json" --include="*.md" --include="*.txt" \
+              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist .; then
+            echo "::error::Found old Wix phone number (857-895-xxxx). Public site has no phone numbers."
+            exit 1
+          fi
+          echo "OK: no 857-895 references"
+
+      - name: Check for fake VOIP phone (617-010-xxxx)
+        run: |
+          if grep -rnE "617.{0,5}010" \
+              --include="*.jsx" --include="*.js" --include="*.ts" --include="*.tsx" \
+              --include="*.html" --include="*.json" --include="*.md" --include="*.txt" \
+              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist .; then
+            echo "::error::Found fake VOIP phone (617-010-xxxx). Public site has no phone numbers."
+            exit 1
+          fi
+          echo "OK: no 617-010 references"
+
+      - name: Check for tel: links
+        run: |
+          if grep -rnE 'href=.tel:' \
+              --include="*.jsx" --include="*.js" --include="*.ts" --include="*.tsx" \
+              --include="*.html" \
+              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist .; then
+            echo "::error::Found tel: link. Public site has no clickable phone numbers."
+            exit 1
+          fi
+          echo "OK: no tel: links"
+
+      - name: Check for telephone field in JSON-LD
+        run: |
+          if grep -rn '"telephone"' \
+              --include="*.jsx" --include="*.js" --include="*.ts" --include="*.tsx" \
+              --include="*.html" --include="*.json" \
+              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist .; then
+            echo "::error::Found 'telephone' field in JSON-LD schema. Remove it - public site has no phone."
+            exit 1
+          fi
+          echo "OK: no telephone JSON-LD field"
+
+      - name: Check for street address (1007 Chestnut)
+        run: |
+          if grep -rn "1007 Chestnut" \
+              --include="*.jsx" --include="*.js" --include="*.ts" --include="*.tsx" \
+              --include="*.html" --include="*.json" --include="*.md" --include="*.txt" \
+              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist .; then
+            echo "::error::Found '1007 Chestnut' street address. Replace with 'Newton, MA, USA'."
+            exit 1
+          fi
+          echo "OK: no street address"
+
+      - name: Check for old ZIP code (02464)
+        run: |
+          if grep -rn "02464" \
+              --include="*.jsx" --include="*.js" --include="*.ts" --include="*.tsx" \
+              --include="*.html" --include="*.json" --include="*.md" --include="*.txt" \
+              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist .; then
+            echo "::error::Found ZIP code 02464. Address is now 'Newton, MA, USA' without ZIP."
+            exit 1
+          fi
+          echo "OK: no ZIP code 02464"
+
+      - name: Check sitemap for broken /en/ hreflang
+        run: |
+          if grep -n "/en/" public/sitemap.xml; then
+            echo "::error::Sitemap contains /en/ hreflang URLs. The site has no /en/ prefix routes - English is the default."
+            exit 1
+          fi
+          if grep -nE 'href="https://www\.y7agency\.com/en"' public/sitemap.xml; then
+            echo "::error::Sitemap contains /en hreflang URL. The site has no /en prefix routes."
+            exit 1
+          fi
+          echo "OK: no /en/ in sitemap"
+
+      - name: Check sitemap URL count (must be 58)
+        run: |
+          COUNT=$(grep -c "<loc>" public/sitemap.xml || echo 0)
+          if [ "$COUNT" -ne 58 ]; then
+            echo "::error::Sitemap has $COUNT URLs, expected 58. If you intentionally added/removed pages, update this check."
+            exit 1
+          fi
+          echo "OK: sitemap has 58 URLs"
+
+      - name: Check for DaytonaCargo in Ukrainian pages
+        run: |
+          if grep -rn "DaytonaCargo" src/pages/intl/Ukraine* 2>/dev/null; then
+            echo "::error::Found DaytonaCargo in Ukrainian pages. Ukrainian content is Y7-centric (no sister-company mentions)."
+            exit 1
+          fi
+          echo "OK: Ukrainian pages are Y7-centric"
+
+      - name: Check sitemap fake intl URLs
+        run: |
+          FOUND=0
+          for pat in "/pl/quote" "/ua/quote" "/ru/quote" "/pl/faq" "/ua/faq" "/ru/faq" "/pl/about" "/ua/about" "/ru/about" "/pl/dealer-quote" "/ua/dealer-quote" "/ru/dealer-quote" "/pl/ports/" "/ua/ports/" "/ru/ports/"; do
+            if grep -q "$pat" public/sitemap.xml; then
+              echo "::error::Sitemap contains fake intl URL: $pat (no such page exists)"
+              FOUND=1
+            fi
+          done
+          if [ "$FOUND" -eq 1 ]; then exit 1; fi
+          echo "OK: no fake intl URLs in sitemap"
+
+      # ============================================================
+      # BUILD VERIFICATION
+      # ============================================================
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build and verify prerender count
+        run: |
+          npm run build 2>&1 | tee build.log
+          if ! grep -q "58 OK, 0 failed" build.log; then
+            echo "::error::Build did not report '58 OK, 0 failed'. Check build.log output above."
+            exit 1
+          fi
+          echo "OK: build complete with 58 OK, 0 failed"
+
+      - name: Verify dist sitemap matches public sitemap
+        run: |
+          DIST_COUNT=$(grep -c "<loc>" dist/sitemap.xml || echo 0)
+          if [ "$DIST_COUNT" -ne 58 ]; then
+            echo "::error::dist/sitemap.xml has $DIST_COUNT URLs, expected 58"
+            exit 1
+          fi
+          echo "OK: dist/sitemap.xml has 58 URLs"
+
+      - name: Verify dist contains intl pages
+        run: |
+          for page in pl pl/copart-shipping pl/ship-my-car ua ua/copart-shipping ua/ship-my-car ru ru/copart-shipping ru/ship-my-car; do
+            if [ ! -f "dist/$page/index.html" ]; then
+              echo "::error::Missing prerendered file: dist/$page/index.html"
+              exit 1
+            fi
+          done
+          echo "OK: all 9 intl pages prerendered"
+
+      - name: Verify info@y7agency.com still present
+        run: |
+          if ! grep -rn "info@y7agency" \
+              --include="*.jsx" --include="*.js" --include="*.html" --include="*.json" --include="*.md" --include="*.txt" \
+              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist . > /dev/null; then
+            echo "::error::info@y7agency.com is missing from the codebase. This email must remain."
+            exit 1
+          fi
+          echo "OK: info@y7agency.com still present"
+
+      - name: Verify Telegram bot link still present
+        run: |
+          if ! grep -rn "y7dispatch_bot" \
+              --include="*.jsx" --include="*.js" --include="*.html" --include="*.json" --include="*.md" --include="*.txt" \
+              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist . > /dev/null; then
+            echo "::error::Telegram bot link y7dispatch_bot is missing. This link must remain."
+            exit 1
+          fi
+          echo "OK: Telegram bot link still present"
+
+      # ============================================================
+      # SOFT CHECKS — warn but do not fail
+      # ============================================================
+
+      - name: Soft check — PLACEHOLDER_ in intl pages
+        run: |
+          if grep -rn "PLACEHOLDER_" src/pages/intl/ 2>/dev/null; then
+            echo "::warning::Found PLACEHOLDER_ markers in intl pages. These should be replaced with real content before merging to main."
+          else
+            echo "OK: no placeholder markers in intl pages"
+          fi
+        continue-on-error: true
+
+      - name: Final summary
+        if: always()
+        run: |
+          echo "::notice::Safety check complete. See individual step results above."
