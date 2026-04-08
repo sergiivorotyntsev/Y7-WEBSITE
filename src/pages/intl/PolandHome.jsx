@@ -10,6 +10,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
 import LanguageSwitcher from '../../components/LanguageSwitcher';
+import { colors, fonts } from '../../theme';
 
 const PolandHome = () => {
   const faqSchema = {
@@ -112,9 +113,9 @@ const PolandHome = () => {
       />
 
       <main style={{
-        fontFamily: 'Georgia, "Times New Roman", serif',
-        color: '#2C2C2A',
-        background: '#F7F5F0',
+        fontFamily: fonts.serif,
+        color: colors.text,
+        background: colors.bg,
         minHeight: '100vh',
       }}>
         {/* Hero section */}
@@ -127,9 +128,9 @@ const PolandHome = () => {
             fontSize: '14px', 
             textTransform: 'uppercase', 
             letterSpacing: '0.15em', 
-            color: '#993C1D',
+            color: colors.accent,
             marginBottom: '1rem',
-            fontFamily: 'system-ui, sans-serif'
+            fontFamily: fonts.sans
           }}>
             Y7 Logistics × DaytonaCargo
           </div>
@@ -168,14 +169,14 @@ const PolandHome = () => {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                background: '#993C1D',
+                background: colors.accent,
                 color: '#fff',
                 padding: '0.875rem 1.75rem',
                 borderRadius: '6px',
                 textDecoration: 'none',
                 fontSize: '1rem',
                 fontWeight: 500,
-                fontFamily: 'system-ui, sans-serif',
+                fontFamily: fonts.sans,
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.5rem',
@@ -187,14 +188,14 @@ const PolandHome = () => {
               href="mailto:info@y7agency.com"
               style={{
                 background: 'transparent',
-                color: '#2C2C2A',
+                color: colors.text,
                 padding: '0.875rem 1.75rem',
                 borderRadius: '6px',
                 textDecoration: 'none',
                 fontSize: '1rem',
                 fontWeight: 500,
-                fontFamily: 'system-ui, sans-serif',
-                border: '1px solid #2C2C2A',
+                fontFamily: fonts.sans,
+                border: `1px solid ${colors.text}`,
               }}
             >
               info@y7agency.com
@@ -205,8 +206,8 @@ const PolandHome = () => {
         {/* Quick stats */}
         <section style={{
           background: '#fff',
-          borderTop: '1px solid #E5E0D8',
-          borderBottom: '1px solid #E5E0D8',
+          borderTop: `1px solid ${colors.border}`,
+          borderBottom: `1px solid ${colors.border}`,
           padding: '2rem 0',
         }}>
           <div style={{
@@ -218,20 +219,20 @@ const PolandHome = () => {
             gap: '2rem',
           }}>
             <div>
-              <div style={{ fontSize: '2rem', color: '#993C1D', fontWeight: 400 }}>6-10 tyg.</div>
-              <div style={{ fontSize: '0.875rem', color: '#6B6B65', fontFamily: 'system-ui, sans-serif' }}>
+              <div style={{ fontSize: '2rem', color: colors.accent, fontWeight: 400 }}>6-10 tyg.</div>
+              <div style={{ fontSize: '0.875rem', color: '#6B6B65', fontFamily: fonts.sans }}>
                 typowy czas od wygranej aukcji do odbioru w Polsce
               </div>
             </div>
             <div>
-              <div style={{ fontSize: '2rem', color: '#993C1D', fontWeight: 400 }}>4-8 tys. zł</div>
-              <div style={{ fontSize: '0.875rem', color: '#6B6B65', fontFamily: 'system-ui, sans-serif' }}>
+              <div style={{ fontSize: '2rem', color: colors.accent, fontWeight: 400 }}>4-8 tys. zł</div>
+              <div style={{ fontSize: '0.875rem', color: '#6B6B65', fontFamily: fonts.sans }}>
                 koszt transportu USA → Polska (kontener lub RoRo)
               </div>
             </div>
             <div>
-              <div style={{ fontSize: '2rem', color: '#993C1D', fontWeight: 400 }}>MC #1741537</div>
-              <div style={{ fontSize: '0.875rem', color: '#6B6B65', fontFamily: 'system-ui, sans-serif' }}>
+              <div style={{ fontSize: '2rem', color: colors.accent, fontWeight: 400 }}>MC #1741537</div>
+              <div style={{ fontSize: '0.875rem', color: '#6B6B65', fontFamily: fonts.sans }}>
                 licencja FMCSA — pełna weryfikacja DOT
               </div>
             </div>
@@ -273,7 +274,7 @@ const PolandHome = () => {
             {/* Y7 card */}
             <div style={{
               background: '#fff',
-              border: '1px solid #E5E0D8',
+              border: `1px solid ${colors.border}`,
               borderRadius: '8px',
               padding: '2rem',
             }}>
@@ -281,9 +282,9 @@ const PolandHome = () => {
                 fontSize: '0.75rem', 
                 textTransform: 'uppercase', 
                 letterSpacing: '0.1em',
-                color: '#993C1D',
+                color: colors.accent,
                 marginBottom: '0.5rem',
-                fontFamily: 'system-ui, sans-serif'
+                fontFamily: fonts.sans
               }}>
                 Etap amerykański
               </div>
@@ -321,7 +322,7 @@ const PolandHome = () => {
             {/* DaytonaCargo card */}
             <div style={{
               background: '#fff',
-              border: '1px solid #E5E0D8',
+              border: `1px solid ${colors.border}`,
               borderRadius: '8px',
               padding: '2rem',
             }}>
@@ -329,9 +330,9 @@ const PolandHome = () => {
                 fontSize: '0.75rem', 
                 textTransform: 'uppercase', 
                 letterSpacing: '0.1em',
-                color: '#993C1D',
+                color: colors.accent,
                 marginBottom: '0.5rem',
-                fontFamily: 'system-ui, sans-serif'
+                fontFamily: fonts.sans
               }}>
                 Etap międzynarodowy
               </div>
@@ -368,13 +369,13 @@ const PolandHome = () => {
               <p style={{ 
                 fontSize: '0.875rem', 
                 marginTop: '1rem',
-                fontFamily: 'system-ui, sans-serif'
+                fontFamily: fonts.sans
               }}>
                 <a 
                   href="https://daytonacargo.com/pl" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  style={{ color: '#993C1D' }}
+                  style={{ color: colors.accent }}
                 >
                   daytonacargo.com/pl →
                 </a>
@@ -386,7 +387,7 @@ const PolandHome = () => {
         {/* Etapy procesu */}
         <section style={{
           background: '#fff',
-          borderTop: '1px solid #E5E0D8',
+          borderTop: `1px solid ${colors.border}`,
         }}>
           <div style={{
             maxWidth: '900px',
@@ -449,20 +450,20 @@ const PolandHome = () => {
                 gap: '1.5rem',
                 marginBottom: '2rem',
                 paddingBottom: '2rem',
-                borderBottom: '1px solid #E5E0D8'
+                borderBottom: `1px solid ${colors.border}`
               }}>
                 <div style={{
                   flexShrink: 0,
                   width: '3rem',
                   height: '3rem',
                   borderRadius: '50%',
-                  background: '#F7F5F0',
-                  color: '#993C1D',
+                  background: colors.bg,
+                  color: colors.accent,
                   fontSize: '1.5rem',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontFamily: 'Georgia, serif'
+                  fontFamily: fonts.serif
                 }}>
                   {step.num}
                 </div>
@@ -485,7 +486,7 @@ const PolandHome = () => {
                     <span style={{
                       fontSize: '0.875rem',
                       color: '#6B6B65',
-                      fontFamily: 'system-ui, sans-serif',
+                      fontFamily: fonts.sans,
                       whiteSpace: 'nowrap'
                     }}>
                       {step.time}
@@ -532,7 +533,7 @@ const PolandHome = () => {
 
           <div style={{ 
             background: '#fff', 
-            border: '1px solid #E5E0D8',
+            border: `1px solid ${colors.border}`,
             borderRadius: '8px',
             overflow: 'hidden',
             marginBottom: '2rem'
@@ -563,7 +564,7 @@ const PolandHome = () => {
                 key={i}
                 style={{
                   padding: '1.5rem',
-                  borderBottom: i < 3 ? '1px solid #E5E0D8' : 'none'
+                  borderBottom: i < 3 ? `1px solid ${colors.border}` : 'none'
                 }}
               >
                 <div style={{ 
@@ -582,9 +583,9 @@ const PolandHome = () => {
                     {item.label}
                   </h3>
                   <span style={{
-                    color: '#993C1D',
+                    color: colors.accent,
                     fontSize: '1rem',
-                    fontFamily: 'system-ui, sans-serif',
+                    fontFamily: fonts.sans,
                     fontWeight: 500
                   }}>
                     {item.range}
@@ -606,7 +607,7 @@ const PolandHome = () => {
             fontSize: '0.875rem',
             color: '#6B6B65',
             fontStyle: 'italic',
-            borderLeft: '3px solid #E5E0D8',
+            borderLeft: `3px solid ${colors.border}`,
             paddingLeft: '1rem',
             margin: 0
           }}>
@@ -620,7 +621,7 @@ const PolandHome = () => {
         {/* Przykłady realnych rachunków */}
         <section style={{
           background: '#fff',
-          borderTop: '1px solid #E5E0D8',
+          borderTop: `1px solid ${colors.border}`,
         }}>
           <div style={{
             maxWidth: '900px',
@@ -680,8 +681,8 @@ const PolandHome = () => {
                 <div 
                   key={i}
                   style={{
-                    background: '#F7F5F0',
-                    border: '1px solid #E5E0D8',
+                    background: colors.bg,
+                    border: `1px solid ${colors.border}`,
                     borderRadius: '8px',
                     padding: '1.5rem'
                   }}
@@ -697,7 +698,7 @@ const PolandHome = () => {
                     fontSize: '0.875rem', 
                     color: '#6B6B65', 
                     marginBottom: '1rem',
-                    fontFamily: 'system-ui, sans-serif'
+                    fontFamily: fonts.sans
                   }}>
                     Rocznik {ex.year}
                   </div>
@@ -714,7 +715,7 @@ const PolandHome = () => {
                         justifyContent: 'space-between',
                         fontSize: '0.875rem',
                         marginBottom: '0.375rem',
-                        fontFamily: 'system-ui, sans-serif'
+                        fontFamily: fonts.sans
                       }}
                     >
                       <span style={{ color: '#6B6B65' }}>{label}</span>
@@ -725,13 +726,13 @@ const PolandHome = () => {
                   <div style={{
                     marginTop: '0.75rem',
                     paddingTop: '0.75rem',
-                    borderTop: '1px solid #E5E0D8',
+                    borderTop: `1px solid ${colors.border}`,
                     display: 'flex',
                     justifyContent: 'space-between',
-                    fontFamily: 'system-ui, sans-serif'
+                    fontFamily: fonts.sans
                   }}>
-                    <span style={{ color: '#993C1D', fontWeight: 500 }}>Oszczędność</span>
-                    <span style={{ color: '#993C1D', fontWeight: 500 }}>{ex.savings}</span>
+                    <span style={{ color: colors.accent, fontWeight: 500 }}>Oszczędność</span>
+                    <span style={{ color: colors.accent, fontWeight: 500 }}>{ex.savings}</span>
                   </div>
                 </div>
               ))}
@@ -797,7 +798,7 @@ const PolandHome = () => {
           ].map((item, i) => (
             <div key={i} style={{
               background: '#fff',
-              border: '1px solid #E5E0D8',
+              border: `1px solid ${colors.border}`,
               borderRadius: '8px',
               padding: '1.5rem',
               marginBottom: '1rem'
@@ -806,7 +807,7 @@ const PolandHome = () => {
                 fontSize: '1.125rem', 
                 fontWeight: 400, 
                 margin: '0 0 0.5rem 0',
-                color: '#2C2C2A'
+                color: colors.text
               }}>
                 {item.title}
               </h3>
@@ -825,7 +826,7 @@ const PolandHome = () => {
         {/* FAQ */}
         <section style={{
           background: '#fff',
-          borderTop: '1px solid #E5E0D8',
+          borderTop: `1px solid ${colors.border}`,
         }}>
           <div style={{
             maxWidth: '900px',
@@ -845,7 +846,7 @@ const PolandHome = () => {
               <details 
                 key={i}
                 style={{
-                  borderBottom: '1px solid #E5E0D8',
+                  borderBottom: `1px solid ${colors.border}`,
                   paddingBottom: '1rem',
                   marginBottom: '1rem'
                 }}
@@ -862,7 +863,7 @@ const PolandHome = () => {
                   gap: '1rem'
                 }}>
                   <span>{faq.name}</span>
-                  <span style={{ color: '#993C1D', fontSize: '1.5rem' }}>+</span>
+                  <span style={{ color: colors.accent, fontSize: '1.5rem' }}>+</span>
                 </summary>
                 <p style={{
                   fontSize: '0.9375rem',
@@ -899,11 +900,11 @@ const PolandHome = () => {
               border: '1px solid #E8E4DC',
               borderRadius: '999px',
               fontSize: '0.8rem',
-              color: '#993C1D',
+              color: colors.accent,
               letterSpacing: '0.05em',
               textTransform: 'uppercase',
               marginBottom: '1rem',
-              fontFamily: 'system-ui, sans-serif',
+              fontFamily: fonts.sans,
             }}>
               Dla Polonii w USA
             </div>
@@ -968,7 +969,7 @@ const PolandHome = () => {
                 border: '1px solid #E8E4DC',
               }}>
                 <h3 style={{
-                  fontFamily: 'system-ui, sans-serif',
+                  fontFamily: fonts.sans,
                   fontWeight: 600,
                   fontSize: '0.95rem',
                   marginTop: 0,
@@ -980,7 +981,7 @@ const PolandHome = () => {
                 <div style={{
                   fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
                   fontWeight: 300,
-                  color: '#993C1D',
+                  color: colors.accent,
                   marginBottom: '0.5rem',
                 }}>
                   $450–750
@@ -1002,7 +1003,7 @@ const PolandHome = () => {
                 border: '1px solid #E8E4DC',
               }}>
                 <h3 style={{
-                  fontFamily: 'system-ui, sans-serif',
+                  fontFamily: fonts.sans,
                   fontWeight: 600,
                   fontSize: '0.95rem',
                   marginTop: 0,
@@ -1014,7 +1015,7 @@ const PolandHome = () => {
                 <div style={{
                   fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
                   fontWeight: 300,
-                  color: '#993C1D',
+                  color: colors.accent,
                   marginBottom: '0.5rem',
                 }}>
                   $750–1 200
@@ -1036,7 +1037,7 @@ const PolandHome = () => {
                 border: '1px solid #E8E4DC',
               }}>
                 <h3 style={{
-                  fontFamily: 'system-ui, sans-serif',
+                  fontFamily: fonts.sans,
                   fontWeight: 600,
                   fontSize: '0.95rem',
                   marginTop: 0,
@@ -1048,7 +1049,7 @@ const PolandHome = () => {
                 <div style={{
                   fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
                   fontWeight: 300,
-                  color: '#993C1D',
+                  color: colors.accent,
                   marginBottom: '0.5rem',
                 }}>
                   $1 100–1 600
@@ -1085,14 +1086,14 @@ const PolandHome = () => {
               <Link
                 to="/pl/ship-my-car"
                 style={{
-                  background: '#993C1D',
+                  background: colors.accent,
                   color: '#fff',
                   padding: '0.75rem 1.5rem',
                   borderRadius: '6px',
                   textDecoration: 'none',
                   fontSize: '0.95rem',
                   fontWeight: 500,
-                  fontFamily: 'system-ui, sans-serif',
+                  fontFamily: fonts.sans,
                 }}
               >
                 Szczegóły zlecenia transportu →
@@ -1103,14 +1104,14 @@ const PolandHome = () => {
                 rel="noopener noreferrer"
                 style={{
                   background: 'transparent',
-                  color: '#993C1D',
+                  color: colors.accent,
                   padding: '0.75rem 1.5rem',
                   borderRadius: '6px',
                   textDecoration: 'none',
                   fontSize: '0.95rem',
                   fontWeight: 500,
-                  border: '1px solid #993C1D',
-                  fontFamily: 'system-ui, sans-serif',
+                  border: `1px solid ${colors.accent}`,
+                  fontFamily: fonts.sans,
                 }}
               >
                 Telegram — napisz po angielsku
@@ -1121,8 +1122,8 @@ const PolandHome = () => {
 
         {/* Final CTA */}
         <section style={{
-          background: '#2C2C2A',
-          color: '#F7F5F0'
+          background: colors.text,
+          color: colors.bg
         }}>
           <div style={{
             maxWidth: '900px',
@@ -1135,7 +1136,7 @@ const PolandHome = () => {
               fontWeight: 400,
               marginBottom: '1rem',
               letterSpacing: '-0.01em',
-              color: '#F7F5F0'
+              color: colors.bg
             }}>
               Rozważasz sprowadzenie auta z USA?
             </h2>
@@ -1161,14 +1162,14 @@ const PolandHome = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  background: '#993C1D',
+                  background: colors.accent,
                   color: '#fff',
                   padding: '0.875rem 2rem',
                   borderRadius: '6px',
                   textDecoration: 'none',
                   fontSize: '1rem',
                   fontWeight: 500,
-                  fontFamily: 'system-ui, sans-serif'
+                  fontFamily: fonts.sans
                 }}
               >
                 Telegram — szybka wycena
@@ -1179,14 +1180,14 @@ const PolandHome = () => {
                 rel="noopener noreferrer"
                 style={{
                   background: 'transparent',
-                  color: '#F7F5F0',
+                  color: colors.bg,
                   padding: '0.875rem 2rem',
                   borderRadius: '6px',
                   textDecoration: 'none',
                   fontSize: '1rem',
                   fontWeight: 500,
-                  border: '1px solid #F7F5F0',
-                  fontFamily: 'system-ui, sans-serif'
+                  border: `1px solid ${colors.bg}`,
+                  fontFamily: fonts.sans
                 }}
               >
                 DaytonaCargo.com/pl

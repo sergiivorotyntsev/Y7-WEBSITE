@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
+import { colors, fonts } from '../../theme';
 
 // =============================================================================
 // PolandShipMyCar.jsx — Merged audience (Poland + Polonia w USA)
@@ -16,9 +17,9 @@ import HreflangTags from '../../components/HreflangTags';
 // -- Shared style objects -----------------------------------------------------
 
 const pageStyle = {
-  fontFamily: 'Georgia, "Times New Roman", serif',
-  color: '#2C2C2A',
-  background: '#F7F5F0',
+  fontFamily: fonts.serif,
+  color: colors.text,
+  background: colors.bg,
 };
 
 const sectionStyle = {
@@ -54,24 +55,24 @@ const cardStyle = {
 };
 
 const ctaButtonStyle = {
-  background: '#993C1D',
+  background: colors.accent,
   color: '#fff',
   padding: '0.875rem 1.75rem',
   borderRadius: '6px',
   display: 'inline-block',
   textDecoration: 'none',
-  fontFamily: 'system-ui, sans-serif',
+  fontFamily: fonts.sans,
   fontWeight: 500,
   border: 'none',
   cursor: 'pointer',
 };
 
 const darkCtaStyle = {
-  background: '#2C2C2A',
-  color: '#F7F5F0',
+  background: colors.text,
+  color: colors.bg,
 };
 
-const accentColor = '#993C1D';
+const accentColor = colors.accent;
 
 // Section divider style for the "Dla Polonii w USA" split
 const dividerSectionStyle = {
@@ -289,7 +290,7 @@ function PolandShipMyCar() {
             letterSpacing: '0.05em',
             textTransform: 'uppercase',
             marginBottom: '1rem',
-            fontFamily: 'system-ui, sans-serif',
+            fontFamily: fonts.sans,
           }}
         >
           Zam\u00f3wienie transportu
@@ -382,7 +383,7 @@ function PolandShipMyCar() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontFamily: 'system-ui, sans-serif',
+                  fontFamily: fonts.sans,
                   fontWeight: 600,
                   fontSize: '1.125rem',
                   flexShrink: 0,
@@ -424,7 +425,7 @@ function PolandShipMyCar() {
           <div style={cardStyle}>
             <h3
               style={{
-                fontFamily: 'system-ui, sans-serif',
+                fontFamily: fonts.sans,
                 fontWeight: 600,
                 fontSize: '0.95rem',
                 marginBottom: '0.75rem',
@@ -452,7 +453,7 @@ function PolandShipMyCar() {
           <div style={cardStyle}>
             <h3
               style={{
-                fontFamily: 'system-ui, sans-serif',
+                fontFamily: fonts.sans,
                 fontWeight: 600,
                 fontSize: '0.95rem',
                 marginBottom: '0.75rem',
@@ -480,7 +481,7 @@ function PolandShipMyCar() {
           <div style={cardStyle}>
             <h3
               style={{
-                fontFamily: 'system-ui, sans-serif',
+                fontFamily: fonts.sans,
                 fontWeight: 600,
                 fontSize: '0.95rem',
                 marginBottom: '0.75rem',
@@ -528,7 +529,7 @@ function PolandShipMyCar() {
             <div>
               <span
                 style={{
-                  fontFamily: 'system-ui, sans-serif',
+                  fontFamily: fonts.sans,
                   fontWeight: 600,
                   display: 'block',
                   marginBottom: '0.25rem',
@@ -542,7 +543,7 @@ function PolandShipMyCar() {
             <div>
               <span
                 style={{
-                  fontFamily: 'system-ui, sans-serif',
+                  fontFamily: fonts.sans,
                   fontWeight: 600,
                   display: 'block',
                   marginBottom: '0.25rem',
@@ -556,7 +557,7 @@ function PolandShipMyCar() {
             <div>
               <span
                 style={{
-                  fontFamily: 'system-ui, sans-serif',
+                  fontFamily: fonts.sans,
                   fontWeight: 600,
                   display: 'block',
                   marginBottom: '0.25rem',
@@ -599,7 +600,7 @@ function PolandShipMyCar() {
           }}
         >
           <div style={cardStyle}>
-            <p style={{ fontFamily: 'system-ui, sans-serif', fontWeight: 600, marginBottom: '0.5rem' }}>
+            <p style={{ fontFamily: fonts.sans, fontWeight: 600, marginBottom: '0.5rem' }}>
               Telegram (EN/RU)
             </p>
             <a
@@ -613,7 +614,7 @@ function PolandShipMyCar() {
           </div>
 
           <div style={cardStyle}>
-            <p style={{ fontFamily: 'system-ui, sans-serif', fontWeight: 600, marginBottom: '0.5rem' }}>
+            <p style={{ fontFamily: fonts.sans, fontWeight: 600, marginBottom: '0.5rem' }}>
               Email
             </p>
             <a
@@ -625,7 +626,7 @@ function PolandShipMyCar() {
           </div>
 
           <div style={cardStyle}>
-            <p style={{ fontFamily: 'system-ui, sans-serif', fontWeight: 600, marginBottom: '0.5rem' }}>
+            <p style={{ fontFamily: fonts.sans, fontWeight: 600, marginBottom: '0.5rem' }}>
               DaytonaCargo (PL)
             </p>
             <a
@@ -657,7 +658,7 @@ function PolandShipMyCar() {
               letterSpacing: '0.05em',
               textTransform: 'uppercase',
               marginBottom: '1rem',
-              fontFamily: 'system-ui, sans-serif',
+              fontFamily: fonts.sans,
             }}
           >
             Dla Polonii w USA
@@ -681,7 +682,7 @@ function PolandShipMyCar() {
 
           <h3
             style={{
-              fontFamily: 'system-ui, sans-serif',
+              fontFamily: fonts.sans,
               fontSize: '1.125rem',
               fontWeight: 600,
               marginBottom: '1rem',
@@ -703,12 +704,12 @@ function PolandShipMyCar() {
               <div key={idx} style={cardStyle}>
                 <h4
                   style={{
-                    fontFamily: 'system-ui, sans-serif',
+                    fontFamily: fonts.sans,
                     fontSize: '1rem',
                     fontWeight: 600,
                     marginTop: 0,
                     marginBottom: '0.5rem',
-                    color: '#2C2C2A',
+                    color: colors.text,
                   }}
                 >
                   {uc.title}
@@ -720,7 +721,7 @@ function PolandShipMyCar() {
 
           <h3
             style={{
-              fontFamily: 'system-ui, sans-serif',
+              fontFamily: fonts.sans,
               fontSize: '1.125rem',
               fontWeight: 600,
               marginBottom: '1rem',
@@ -745,7 +746,7 @@ function PolandShipMyCar() {
             <div style={cardStyle}>
               <h4
                 style={{
-                  fontFamily: 'system-ui, sans-serif',
+                  fontFamily: fonts.sans,
                   fontWeight: 600,
                   fontSize: '0.95rem',
                   marginTop: 0,
@@ -774,7 +775,7 @@ function PolandShipMyCar() {
             <div style={cardStyle}>
               <h4
                 style={{
-                  fontFamily: 'system-ui, sans-serif',
+                  fontFamily: fonts.sans,
                   fontWeight: 600,
                   fontSize: '0.95rem',
                   marginTop: 0,
@@ -803,7 +804,7 @@ function PolandShipMyCar() {
             <div style={cardStyle}>
               <h4
                 style={{
-                  fontFamily: 'system-ui, sans-serif',
+                  fontFamily: fonts.sans,
                   fontWeight: 600,
                   fontSize: '0.95rem',
                   marginTop: 0,
@@ -848,7 +849,7 @@ function PolandShipMyCar() {
             <details key={idx} style={{ ...cardStyle, cursor: 'pointer' }}>
               <summary
                 style={{
-                  fontFamily: 'system-ui, sans-serif',
+                  fontFamily: fonts.sans,
                   fontWeight: 600,
                   fontSize: '1.05rem',
                   listStyle: 'none',
@@ -880,7 +881,7 @@ function PolandShipMyCar() {
       {/* ================================================================== */}
       <section style={{ ...darkCtaStyle, padding: 'clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 2rem)' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
-          <h2 style={{ ...h2Style, color: '#F7F5F0' }}>Gotowy do zam\u00f3wienia transportu?</h2>
+          <h2 style={{ ...h2Style, color: colors.bg }}>Gotowy do zam\u00f3wienia transportu?</h2>
           <p
             style={{
               ...pStyle,
@@ -914,8 +915,8 @@ function PolandShipMyCar() {
               style={{
                 ...ctaButtonStyle,
                 background: 'transparent',
-                border: '1px solid #F7F5F0',
-                color: '#F7F5F0',
+                border: `1px solid ${colors.bg}`,
+                color: colors.bg,
               }}
             >
               Wr\u00f3\u0107 do przewodnika

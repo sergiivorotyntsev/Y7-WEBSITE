@@ -9,6 +9,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
+import { colors, fonts } from '../../theme';
 
 const PolandCopart = () => {
   const faqSchema = {
@@ -120,9 +121,9 @@ const PolandCopart = () => {
       />
 
       <main style={{
-        fontFamily: 'Georgia, "Times New Roman", serif',
-        color: '#2C2C2A',
-        background: '#F7F5F0',
+        fontFamily: fonts.serif,
+        color: colors.text,
+        background: colors.bg,
         minHeight: '100vh',
       }}>
         {/* Breadcrumb */}
@@ -132,7 +133,7 @@ const PolandCopart = () => {
           padding: '1.5rem clamp(1.25rem, 4vw, 2rem) 0',
           fontSize: '0.875rem',
           color: '#6B6B65',
-          fontFamily: 'system-ui, sans-serif',
+          fontFamily: fonts.sans,
         }}>
           <Link to="/pl" style={{ color: '#6B6B65', textDecoration: 'none' }}>
             Sprowadzanie aut z USA
@@ -151,9 +152,9 @@ const PolandCopart = () => {
             fontSize: '14px', 
             textTransform: 'uppercase', 
             letterSpacing: '0.15em', 
-            color: '#993C1D',
+            color: colors.accent,
             marginBottom: '1rem',
-            fontFamily: 'system-ui, sans-serif'
+            fontFamily: fonts.sans
           }}>
             Copart × Polska
           </div>
@@ -198,7 +199,7 @@ const PolandCopart = () => {
         {/* What Copart really is */}
         <section style={{
           background: '#fff',
-          borderTop: '1px solid #E5E0D8',
+          borderTop: `1px solid ${colors.border}`,
         }}>
           <div style={{
             maxWidth: '900px',
@@ -284,7 +285,7 @@ const PolandCopart = () => {
 
           <div style={{
             background: '#fff',
-            border: '1px solid #E5E0D8',
+            border: `1px solid ${colors.border}`,
             borderRadius: '8px',
             overflowX: 'auto',
             WebkitOverflowScrolling: 'touch',
@@ -293,13 +294,13 @@ const PolandCopart = () => {
           }}>
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
               <thead>
-                <tr style={{ background: '#F7F5F0' }}>
-                  <th style={{ padding: '0.75rem 1rem', textAlign: 'left', borderBottom: '1px solid #E5E0D8', fontWeight: 500 }}></th>
-                  <th style={{ padding: '0.75rem 1rem', textAlign: 'left', borderBottom: '1px solid #E5E0D8', fontWeight: 500 }}>Copart</th>
-                  <th style={{ padding: '0.75rem 1rem', textAlign: 'left', borderBottom: '1px solid #E5E0D8', fontWeight: 500 }}>IAAI</th>
+                <tr style={{ background: colors.bg }}>
+                  <th style={{ padding: '0.75rem 1rem', textAlign: 'left', borderBottom: `1px solid ${colors.border}`, fontWeight: 500 }}></th>
+                  <th style={{ padding: '0.75rem 1rem', textAlign: 'left', borderBottom: `1px solid ${colors.border}`, fontWeight: 500 }}>Copart</th>
+                  <th style={{ padding: '0.75rem 1rem', textAlign: 'left', borderBottom: `1px solid ${colors.border}`, fontWeight: 500 }}>IAAI</th>
                 </tr>
               </thead>
-              <tbody style={{ fontFamily: 'system-ui, sans-serif', color: '#4A4A46' }}>
+              <tbody style={{ fontFamily: fonts.sans, color: '#4A4A46' }}>
                 {[
                   ['Wolumen dzienny', '~175 000 lotów', '~50 000 lotów'],
                   ['Placów w USA', 'Ponad 260', 'Ponad 200'],
@@ -310,8 +311,8 @@ const PolandCopart = () => {
                   ['Interfejs', 'Bardziej techniczny', 'Prostszy w obsłudze'],
                   ['Narzędzia oceny', 'Standardowe zdjęcia', 'Key Images, Engine Start Video'],
                 ].map((row, i) => (
-                  <tr key={i} style={{ borderBottom: i < 7 ? '1px solid #E5E0D8' : 'none' }}>
-                    <td style={{ padding: '0.75rem 1rem', fontWeight: 500, color: '#2C2C2A' }}>{row[0]}</td>
+                  <tr key={i} style={{ borderBottom: i < 7 ? `1px solid ${colors.border}` : 'none' }}>
+                    <td style={{ padding: '0.75rem 1rem', fontWeight: 500, color: colors.text }}>{row[0]}</td>
                     <td style={{ padding: '0.75rem 1rem' }}>{row[1]}</td>
                     <td style={{ padding: '0.75rem 1rem' }}>{row[2]}</td>
                   </tr>
@@ -326,7 +327,7 @@ const PolandCopart = () => {
             color: '#4A4A46',
             marginBottom: '1rem'
           }}>
-            <strong style={{ color: '#2C2C2A' }}>Kiedy Copart:</strong> gdy szukasz maksymalnie 
+            <strong style={{ color: colors.text }}>Kiedy Copart:</strong> gdy szukasz maksymalnie 
             szerokiej oferty, chcesz mieć dostęp do klasyków lub nietypowych modeli, cenisz 
             dynamiczną licytację i masz doświadczenie z amerykańskimi platformami.
           </p>
@@ -336,7 +337,7 @@ const PolandCopart = () => {
             color: '#4A4A46',
             margin: 0
           }}>
-            <strong style={{ color: '#2C2C2A' }}>Kiedy IAAI:</strong> gdy priorytetem jest 
+            <strong style={{ color: colors.text }}>Kiedy IAAI:</strong> gdy priorytetem jest 
             pewne źródło pochodzenia (głównie ubezpieczyciele), cenisz dodatkowe narzędzia 
             oceny stanu technicznego i zaczynasz przygodę z importem — interfejs jest bardziej 
             przejrzysty.
@@ -346,7 +347,7 @@ const PolandCopart = () => {
         {/* Opłaty Copart */}
         <section style={{
           background: '#fff',
-          borderTop: '1px solid #E5E0D8',
+          borderTop: `1px solid ${colors.border}`,
         }}>
           <div style={{
             maxWidth: '900px',
@@ -374,7 +375,7 @@ const PolandCopart = () => {
             </p>
 
             <div style={{
-              background: '#F7F5F0',
+              background: colors.bg,
               borderRadius: '8px',
               padding: '1.5rem',
               marginBottom: '2rem'
@@ -384,13 +385,13 @@ const PolandCopart = () => {
                 fontWeight: 500, 
                 marginTop: 0,
                 marginBottom: '1rem',
-                fontFamily: 'system-ui, sans-serif'
+                fontFamily: fonts.sans
               }}>
                 Typowy rachunek Copart (auto za 10 000 USD)
               </h3>
               <div style={{ 
                 fontSize: '0.9375rem',
-                fontFamily: 'system-ui, sans-serif',
+                fontFamily: fonts.sans,
                 color: '#4A4A46',
                 lineHeight: '1.7'
               }}>
@@ -406,7 +407,7 @@ const PolandCopart = () => {
                     display: 'flex',
                     justifyContent: 'space-between',
                     padding: '0.5rem 0',
-                    borderBottom: i < 5 ? '1px solid #E5E0D8' : 'none'
+                    borderBottom: i < 5 ? `1px solid ${colors.border}` : 'none'
                   }}>
                     <span>{row[0]}</span>
                     <span style={{ fontVariantNumeric: 'tabular-nums' }}>{row[1]}</span>
@@ -417,7 +418,7 @@ const PolandCopart = () => {
                   justifyContent: 'space-between',
                   padding: '0.75rem 0 0 0',
                   fontWeight: 500,
-                  color: '#2C2C2A'
+                  color: colors.text
                 }}>
                   <span>Realny koszt wyjścia z placu</span>
                   <span>11 250-12 550 USD</span>
@@ -442,7 +443,7 @@ const PolandCopart = () => {
               color: '#4A4A46',
               margin: 0
             }}>
-              <strong style={{ color: '#2C2C2A' }}>Dlaczego broker obniża koszty:</strong> licencjonowany 
+              <strong style={{ color: colors.text }}>Dlaczego broker obniża koszty:</strong> licencjonowany 
               dealer ma dostęp do niższych buyer fees (tzw. dealer rates), nie płaci rocznego 
               membership i może łączyć zakupy kilku klientów w jeden transport — co obniża 
               koszt na jedno auto. W praktyce ta oszczędność często pokrywa koszt prowizji brokera.
@@ -517,7 +518,7 @@ const PolandCopart = () => {
           ].map((item, i) => (
             <div key={i} style={{
               background: '#fff',
-              border: '1px solid #E5E0D8',
+              border: `1px solid ${colors.border}`,
               borderRadius: '8px',
               padding: '1.25rem 1.5rem',
               marginBottom: '1rem'
@@ -526,7 +527,7 @@ const PolandCopart = () => {
                 fontSize: '1.0625rem', 
                 fontWeight: 500, 
                 margin: '0 0 0.75rem 0',
-                fontFamily: 'system-ui, sans-serif'
+                fontFamily: fonts.sans
               }}>
                 {item.route}
               </h3>
@@ -535,13 +536,13 @@ const PolandCopart = () => {
                 gap: '1.5rem',
                 flexWrap: 'wrap',
                 fontSize: '0.875rem',
-                fontFamily: 'system-ui, sans-serif',
+                fontFamily: fonts.sans,
                 color: '#6B6B65',
                 marginBottom: '0.75rem'
               }}>
-                <span><strong style={{ color: '#2C2C2A' }}>Dystans:</strong> {item.distance}</span>
-                <span><strong style={{ color: '#2C2C2A' }}>Koszt:</strong> {item.cost}</span>
-                <span><strong style={{ color: '#2C2C2A' }}>Czas:</strong> {item.time}</span>
+                <span><strong style={{ color: colors.text }}>Dystans:</strong> {item.distance}</span>
+                <span><strong style={{ color: colors.text }}>Koszt:</strong> {item.cost}</span>
+                <span><strong style={{ color: colors.text }}>Czas:</strong> {item.time}</span>
               </div>
               <p style={{ 
                 fontSize: '0.9375rem', 
@@ -558,7 +559,7 @@ const PolandCopart = () => {
         {/* Na co uważać */}
         <section style={{
           background: '#fff',
-          borderTop: '1px solid #E5E0D8',
+          borderTop: `1px solid ${colors.border}`,
         }}>
           <div style={{
             maxWidth: '900px',
@@ -626,21 +627,21 @@ const PolandCopart = () => {
                 gap: '1rem',
                 marginBottom: '1.5rem',
                 paddingBottom: '1.5rem',
-                borderBottom: item.num !== '7' ? '1px solid #E5E0D8' : 'none'
+                borderBottom: item.num !== '7' ? `1px solid ${colors.border}` : 'none'
               }}>
                 <div style={{
                   flexShrink: 0,
                   width: '2rem',
                   height: '2rem',
                   borderRadius: '50%',
-                  background: '#F7F5F0',
-                  color: '#993C1D',
+                  background: colors.bg,
+                  color: colors.accent,
                   fontSize: '1rem',
                   fontWeight: 500,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontFamily: 'Georgia, serif'
+                  fontFamily: fonts.serif
                 }}>
                   {item.num}
                 </div>
@@ -649,8 +650,8 @@ const PolandCopart = () => {
                     fontSize: '1.0625rem', 
                     fontWeight: 500, 
                     margin: '0 0 0.5rem 0',
-                    color: '#2C2C2A',
-                    fontFamily: 'system-ui, sans-serif'
+                    color: colors.text,
+                    fontFamily: fonts.sans
                   }}>
                     {item.title}
                   </h3>
@@ -736,7 +737,7 @@ const PolandCopart = () => {
         {/* FAQ */}
         <section style={{
           background: '#fff',
-          borderTop: '1px solid #E5E0D8',
+          borderTop: `1px solid ${colors.border}`,
         }}>
           <div style={{
             maxWidth: '900px',
@@ -756,7 +757,7 @@ const PolandCopart = () => {
               <details 
                 key={i}
                 style={{
-                  borderBottom: '1px solid #E5E0D8',
+                  borderBottom: `1px solid ${colors.border}`,
                   paddingBottom: '1rem',
                   marginBottom: '1rem'
                 }}
@@ -773,7 +774,7 @@ const PolandCopart = () => {
                   gap: '1rem'
                 }}>
                   <span>{faq.name}</span>
-                  <span style={{ color: '#993C1D', fontSize: '1.5rem' }}>+</span>
+                  <span style={{ color: colors.accent, fontSize: '1.5rem' }}>+</span>
                 </summary>
                 <p style={{
                   fontSize: '0.9375rem',
@@ -810,11 +811,11 @@ const PolandCopart = () => {
               border: '1px solid #E8E4DC',
               borderRadius: '999px',
               fontSize: '0.8rem',
-              color: '#993C1D',
+              color: colors.accent,
               letterSpacing: '0.05em',
               textTransform: 'uppercase',
               marginBottom: '1rem',
-              fontFamily: 'system-ui, sans-serif',
+              fontFamily: fonts.sans,
             }}>
               Dla Polonii w USA
             </div>
@@ -880,7 +881,7 @@ const PolandCopart = () => {
                 border: '1px solid #E8E4DC',
               }}>
                 <h3 style={{
-                  fontFamily: 'system-ui, sans-serif',
+                  fontFamily: fonts.sans,
                   fontWeight: 600,
                   fontSize: '0.95rem',
                   marginTop: 0,
@@ -892,7 +893,7 @@ const PolandCopart = () => {
                 <div style={{
                   fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
                   fontWeight: 300,
-                  color: '#993C1D',
+                  color: colors.accent,
                   marginBottom: '0.5rem',
                 }}>
                   $450–750
@@ -915,7 +916,7 @@ const PolandCopart = () => {
                 border: '1px solid #E8E4DC',
               }}>
                 <h3 style={{
-                  fontFamily: 'system-ui, sans-serif',
+                  fontFamily: fonts.sans,
                   fontWeight: 600,
                   fontSize: '0.95rem',
                   marginTop: 0,
@@ -927,7 +928,7 @@ const PolandCopart = () => {
                 <div style={{
                   fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
                   fontWeight: 300,
-                  color: '#993C1D',
+                  color: colors.accent,
                   marginBottom: '0.5rem',
                 }}>
                   $750–1 200
@@ -950,7 +951,7 @@ const PolandCopart = () => {
                 border: '1px solid #E8E4DC',
               }}>
                 <h3 style={{
-                  fontFamily: 'system-ui, sans-serif',
+                  fontFamily: fonts.sans,
                   fontWeight: 600,
                   fontSize: '0.95rem',
                   marginTop: 0,
@@ -962,7 +963,7 @@ const PolandCopart = () => {
                 <div style={{
                   fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
                   fontWeight: 300,
-                  color: '#993C1D',
+                  color: colors.accent,
                   marginBottom: '0.5rem',
                 }}>
                   $1 100–1 600
@@ -1003,14 +1004,14 @@ const PolandCopart = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  background: '#993C1D',
+                  background: colors.accent,
                   color: '#fff',
                   padding: '0.75rem 1.5rem',
                   borderRadius: '6px',
                   textDecoration: 'none',
                   fontSize: '0.95rem',
                   fontWeight: 500,
-                  fontFamily: 'system-ui, sans-serif',
+                  fontFamily: fonts.sans,
                 }}
               >
                 Telegram — wyślij numer lotu
@@ -1019,14 +1020,14 @@ const PolandCopart = () => {
                 to="/pl/ship-my-car"
                 style={{
                   background: 'transparent',
-                  color: '#993C1D',
+                  color: colors.accent,
                   padding: '0.75rem 1.5rem',
                   borderRadius: '6px',
                   textDecoration: 'none',
                   fontSize: '0.95rem',
                   fontWeight: 500,
-                  border: '1px solid #993C1D',
-                  fontFamily: 'system-ui, sans-serif',
+                  border: `1px solid ${colors.accent}`,
+                  fontFamily: fonts.sans,
                 }}
               >
                 Jak zamówić transport →
@@ -1037,8 +1038,8 @@ const PolandCopart = () => {
 
         {/* CTA */}
         <section style={{
-          background: '#2C2C2A',
-          color: '#F7F5F0'
+          background: colors.text,
+          color: colors.bg
         }}>
           <div style={{
             maxWidth: '900px',
@@ -1051,7 +1052,7 @@ const PolandCopart = () => {
               fontWeight: 400,
               marginBottom: '1rem',
               letterSpacing: '-0.01em',
-              color: '#F7F5F0'
+              color: colors.bg
             }}>
               Masz wybrane auto na Copart?
             </h2>
@@ -1077,14 +1078,14 @@ const PolandCopart = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  background: '#993C1D',
+                  background: colors.accent,
                   color: '#fff',
                   padding: '0.875rem 2rem',
                   borderRadius: '6px',
                   textDecoration: 'none',
                   fontSize: '1rem',
                   fontWeight: 500,
-                  fontFamily: 'system-ui, sans-serif'
+                  fontFamily: fonts.sans
                 }}
               >
                 Telegram — szybka wycena
@@ -1093,14 +1094,14 @@ const PolandCopart = () => {
                 to="/pl/ship-my-car"
                 style={{
                   background: 'transparent',
-                  color: '#F7F5F0',
+                  color: colors.bg,
                   padding: '0.875rem 2rem',
                   borderRadius: '6px',
                   textDecoration: 'none',
                   fontSize: '1rem',
                   fontWeight: 500,
-                  border: '1px solid #F7F5F0',
-                  fontFamily: 'system-ui, sans-serif'
+                  border: `1px solid ${colors.bg}`,
+                  fontFamily: fonts.sans
                 }}
               >
                 Jak zamówić auto →
