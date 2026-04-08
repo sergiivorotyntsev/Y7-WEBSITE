@@ -48,7 +48,7 @@ export default function Home() {
 
   return (
     <div>
-      <PageMeta description="Licensed auto transport broker. Ship your vehicle door-to-door or to any US port. Instant quotes, verified carriers, real-time tracking." path="/" i18n />
+      <PageMeta description="Licensed auto transport broker. Ship your vehicle door-to-door or to any US port. Instant quotes, verified carriers, real-time tracking." path="/" />
       <HreflangTags currentPath="" hasPolishVersion hasUkrainianVersion hasRussianVersion />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
       {/* 1. Hero */}
