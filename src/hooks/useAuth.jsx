@@ -65,6 +65,30 @@ export async function portalFetch(path, options = {}) {
   if (res.status === 401) {
     setSessionToken(null);
   }
+  // SPRINT-E-T2: centralised handler for the structured 403 responses
+  // emitted by api.dependencies.portal.require_active_customer.
+  // Pages used to surface generic "request failed" toasts on these
+  // errors; now we peek the body and hard-redirect into the right
+  // recovery flow.
+  if (res.status === 403) {
+    try {
+      const cloned = res.clone();
+      const body = await cloned.json();
+      const detail = body?.detail || body;
+      const errorCode = detail?.error;
+      if (errorCode === 'classification_required' && detail?.classification_url) {
+        window.location.href = detail.classification_url;
+        return res;
+      }
+      if (errorCode === 'agreement_required' && detail?.agreement_url) {
+        window.location.href = detail.agreement_url;
+        return res;
+      }
+      // account_inactive and unrecognised 403s fall through unchanged.
+    } catch {
+      // body wasn't JSON or clone failed — let the caller handle it
+    }
+  }
   return res;
 }
 
