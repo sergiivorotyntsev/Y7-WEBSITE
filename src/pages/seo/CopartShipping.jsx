@@ -14,7 +14,7 @@ export default function CopartShipping() {
   return (
     <SeoLandingPage
       meta={{
-        title: 'Copart Shipping — Vehicle Transport from Copart Auctions | Y7 Logistics',
+        title: 'Copart Shipping — Vehicle Transport from Copart Auctions',
         description:
           'Ship your Copart purchase nationwide. Gate pass coordination, salvage & clean title vehicles, inoperable transport. Licensed broker Y7 Logistics.',
         path: '/copart-shipping',

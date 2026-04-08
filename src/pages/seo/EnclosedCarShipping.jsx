@@ -4,7 +4,7 @@ export default function EnclosedCarShipping() {
   return (
     <SeoLandingPage
       meta={{
-        title: 'Enclosed Car Shipping — Premium Vehicle Transport | Y7 Logistics',
+        title: 'Enclosed Car Shipping — Premium Vehicle Transport',
         description:
           'Enclosed car shipping for luxury, classic, and high-value vehicles. Fully covered transport with premium insurance. Get a quote from Y7 Logistics.',
         path: '/enclosed-car-shipping',

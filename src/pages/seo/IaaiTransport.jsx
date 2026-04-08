@@ -13,7 +13,7 @@ export default function IaaiTransport() {
   return (
     <SeoLandingPage
       meta={{
-        title: 'IAA Transport — Ship Your Vehicle from IAA Auctions | Y7 Logistics',
+        title: 'IAA Transport — Ship Your Vehicle from IAA Auctions',
         description:
           'Vehicle transport from IAA (Insurance Auto Auctions) locations nationwide. Gate pass coordination, salvage vehicles, fast pickup. Y7 Logistics.',
         path: '/iaai-transport',

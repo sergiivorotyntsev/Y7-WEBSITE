@@ -39,7 +39,7 @@ export default function CarShippingCost() {
   return (
     <SeoLandingPage
       meta={{
-        title: 'How Much Does Car Shipping Cost? | Y7 Logistics',
+        title: 'How Much Does Car Shipping Cost?',
         description:
           'Car shipping costs depend on distance, vehicle type, transport method, and season. Get a free quote from Y7 Logistics — licensed auto transport broker.',
         path: '/car-shipping-cost',

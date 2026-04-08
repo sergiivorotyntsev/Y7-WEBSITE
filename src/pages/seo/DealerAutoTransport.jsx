@@ -14,7 +14,7 @@ export default function DealerAutoTransport() {
   return (
     <SeoLandingPage
       meta={{
-        title: 'Dealer Auto Transport — Vehicle Shipping for Dealerships | Y7 Logistics',
+        title: 'Dealer Auto Transport — Vehicle Shipping for Dealerships',
         description:
           'Auto transport for car dealerships. Volume pricing, auction pickup, dealer trades, dedicated dispatcher. Licensed broker Y7 Logistics.',
         path: '/dealer-auto-transport',
