@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
 import { ClipboardIcon, MapPinIcon, ProfileIcon, TelegramIcon, EmailIcon } from '../../components/icons';
+import AccountTypeModal from '../../components/AccountTypeModal';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles, keyframes } from '../../theme';
 import { STATUS_COLORS, getStatusBadge } from '../../utils/orderStatus';
@@ -40,12 +41,16 @@ function StatCard({ value, label, delay }) {
 }
 
 export default function Dashboard() {
-  const { user } = useAuth();
+  const { user, checkAuth } = useAuth();
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  // SPRINT-E-T3: classification modal — shown on first visit when
+  // user.customer_type === 'unknown', or when redirected from a 403
+  // classification_required response (?classify=1 query param).
+  const [showClassifyModal, setShowClassifyModal] = useState(false);
 
   useEffect(() => {
     portalFetch('/api/portal/data/orders?limit=10')
@@ -58,6 +63,27 @@ export default function Dashboard() {
       .finally(() => setLoading(false));
   }, []);
 
+  // Show modal when needed: unknown type OR ?classify=1 redirect target
+  useEffect(() => {
+    if (!user) return;
+    const params = new URLSearchParams(window.location.search);
+    if (user.customer_type === 'unknown' || params.get('classify') === '1') {
+      setShowClassifyModal(true);
+    }
+  }, [user]);
+
+  async function handleClassifyComplete() {
+    setShowClassifyModal(false);
+    // Refresh user from /me so the new customer_type propagates
+    await checkAuth();
+    // Drop the ?classify=1 param so a refresh doesn't re-open the modal
+    if (window.location.search.includes('classify=1')) {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('classify');
+      window.history.replaceState({}, '', url.toString());
+    }
+  }
+
   const active = (summary?.pending || 0) + (summary?.quoted || 0) + (summary?.confirmed || 0);
   const inTransit = (summary?.dispatched || 0);
   const delivered = (summary?.delivered || 0) + (summary?.completed || 0);
@@ -67,6 +93,10 @@ export default function Dashboard() {
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '40px 24px 80px' }}>
       <PageMeta title="My Dashboard" description="Your active orders, shipment tracking, account management." path="/portal/dashboard" />
       <style>{keyframes}</style>
+
+      {showClassifyModal && (
+        <AccountTypeModal onComplete={handleClassifyComplete} />
+      )}
 
       {loading && (
         <div style={{ marginBottom: '40px' }}>

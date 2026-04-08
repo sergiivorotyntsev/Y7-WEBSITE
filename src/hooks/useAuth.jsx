@@ -105,7 +105,10 @@ export function AuthProvider({ children }) {
           setUser({
             id: data.customer_id,
             name: data.customer_name,
-            customer_type: data.customer_type || 'shipper',
+            // SPRINT-E-T3: default 'unknown' so the dashboard knows
+            // to prompt for classification on first visit. Was 'shipper'
+            // pre-Sprint-E.
+            customer_type: data.customer_type || 'unknown',
             billing_mode: data.billing_mode || 'per_delivery',
           });
           return;
