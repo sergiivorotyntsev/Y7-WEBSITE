@@ -62,6 +62,7 @@ const OpenVsEnclosed = lazyWithRetry(() => import('./pages/seo/guides/OpenVsEncl
 const BillOfLading = lazyWithRetry(() => import('./pages/seo/guides/BillOfLading'));
 const ReviewSubmit = lazyWithRetry(() => import('./pages/ReviewSubmit'));
 const Login = lazyWithRetry(() => import('./pages/portal/Login'));
+const MagicLogin = lazyWithRetry(() => import('./pages/MagicLogin'));
 const Dashboard = lazyWithRetry(() => import('./pages/portal/Dashboard'));
 const OrderDetail = lazyWithRetry(() => import('./pages/portal/OrderDetail'));
 const DispatchDetails = lazyWithRetry(() => import('./pages/portal/DispatchDetails'));
@@ -178,6 +179,9 @@ export default function App() {
             {/* Portal auth — unified login/register */}
             <Route path="/portal/login" element={<Login />} />
             <Route path="/portal/register" element={<Navigate to="/portal/login" replace />} />
+            {/* Magic-link landing — single-use token from dealer welcome email.
+                Dynamic route, intentionally not prerendered. */}
+            <Route path="/portal/magic/:token" element={<MagicLogin />} />
             {/* Portal protected routes — placeholder for PORTAL-02/03/04 */}
             <Route path="/portal/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
             <Route path="/portal/order/:id" element={<ProtectedRoute><OrderDetail /></ProtectedRoute>} />
