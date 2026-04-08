@@ -75,6 +75,10 @@ export default function Agreement() {
   const [signerName, setSignerName] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+  // Template metadata for the dealer DRAFT flow — drives the banner and
+  // the agreement_version we send back when signing. Shipper flow leaves
+  // this null so nothing renders and the backend uses its default version.
+  const [template, setTemplate] = useState(null);
 
   // Customer-level agreement modes:
   // 1. /agreement (logged-in user, customer_id from session)
@@ -84,6 +88,17 @@ export default function Agreement() {
   const customerIdParam = searchParams.get('customer_id');
   const isCustomerLevel = !orderId || (orderId === 'new' && customerIdParam);
   const resolvedCustomerId = user?.id || (customerIdParam ? parseInt(customerIdParam, 10) : null);
+
+  // Fetch template metadata so we know the version + draft status. This
+  // runs in parallel with the signed-status fetch and is best-effort: a
+  // failure here only suppresses the DRAFT banner, it does not break the
+  // sign flow.
+  useEffect(() => {
+    const tplType = user?.customer_type === 'dealer' ? 'dealer' : 'shipper';
+    apiGet(`/api/public/agreement-template?type=${tplType}`)
+      .then(setTemplate)
+      .catch(() => setTemplate(null));
+  }, [user?.customer_type]);
 
   // Check if already signed, fetch order for legacy mode
   useEffect(() => {
@@ -152,6 +167,12 @@ export default function Agreement() {
         lang: 'en',
         agreement_type: user?.customer_type === 'dealer' ? 'dealer' : 'shipper',
       };
+      // Send the version that the user actually saw — recorded on the
+      // customer_agreements row. If the template fetch failed earlier we
+      // omit the field and let the backend fall back to its column default.
+      if (template?.version) {
+        payload.agreement_version = template.version;
+      }
       if (isCustomerLevel && resolvedCustomerId) {
         payload.customer_id = resolvedCustomerId;
       } else if (orderId) {
@@ -276,6 +297,34 @@ export default function Agreement() {
           marginBottom: '20px',
         }}>
           {error}
+        </div>
+      )}
+
+      {/* DRAFT banner — shown only when the active template is unfinalised
+          legal text. Uses warning yellow so it is hard to miss but does not
+          read as an error state. The banner text comes from the backend so
+          legal can revise wording without a frontend deploy. */}
+      {template?.is_draft && template?.draft_warning && (
+        <div
+          role="alert"
+          aria-label="Draft agreement notice"
+          style={{
+            fontFamily: fonts.sans,
+            fontSize: '13px',
+            color: '#5C3A00',
+            background: '#FFF6D6',
+            border: '1px solid #E6C75C',
+            borderLeft: '4px solid #C99A1F',
+            borderRadius: '8px',
+            padding: '14px 18px',
+            marginBottom: '20px',
+            lineHeight: 1.6,
+          }}
+        >
+          <div style={{ fontWeight: 700, marginBottom: '4px' }}>
+            DRAFT — Pending Attorney Review
+          </div>
+          <div>{template.draft_warning}</div>
         </div>
       )}
 
