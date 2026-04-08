@@ -15,6 +15,120 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const DIST = join(__dirname, '..', 'dist');
 const PORT = 4567;
 
+/**
+ * Deduplicate head tags in prerendered HTML.
+ *
+ * Defensive backup to the snapshot fix in startServer(): even after the
+ * static server stops contaminating non-Home pages with Home's PageMeta,
+ * react-helmet-async + React 19 + Suspense can still flush its tags more
+ * than once across Suspense boundaries on a single page render. Without
+ * dedup, even Home produces 2 <title> and 2 <meta description>.
+ *
+ * Verified empirically against current dist/ output:
+ *   - <title>:           per-page is FIRST  (Helmet replaces in DOM in place)
+ *   - <meta description>:per-page is LAST   (Helmet appends new <meta>)
+ *   - <link canonical>:  per-page is LAST
+ *   - <meta og:*>:       per-page is LAST
+ *   - <meta twitter:*>:  per-page is LAST
+ *   - <link hreflang>:   per-page is LAST per unique hreflang value
+ *   - prerender-status:  may appear more than once — keep last
+ *
+ * UNTOUCHED:
+ *   - <script type="application/ld+json"> — multiple JSON-LD blocks are valid
+ *   - <meta charset>, <meta viewport>, <meta name="robots">, <meta fragment>
+ *   - <link rel="stylesheet|icon|preload|modulepreload|sitemap">
+ *   - Anything in <body>
+ *
+ * Verified safe: zero `>` characters appear inside any description/og/title
+ * content across all 58 prerendered pages, so the [^>]* attribute pattern
+ * cannot break on real-world content.
+ *
+ * Sprint B may still want to migrate off react-helmet-async to React 19's
+ * native metadata API, which would let us remove this function entirely.
+ *
+ * @param {string} html — full prerendered HTML document
+ * @returns {string} HTML with deduplicated head tags
+ */
+function deduplicateHead(html) {
+  const headMatch = html.match(/<head[^>]*>([\s\S]*?)<\/head>/i);
+  if (!headMatch) return html;
+
+  const headFull = headMatch[0];
+  const headInner = headMatch[1];
+
+  // Tags where the per-page version is FIRST in DOM order.
+  const keepFirstPatterns = [
+    /<title\b[^>]*>[^<]*<\/title>/gi,
+  ];
+
+  // Tags where the per-page version is LAST in DOM order.
+  const keepLastPatterns = [
+    /<meta\s+name="description"[^>]*\/?>/gi,
+    /<link\s+rel="canonical"[^>]*\/?>/gi,
+    /<meta\s+property="og:title"[^>]*\/?>/gi,
+    /<meta\s+property="og:description"[^>]*\/?>/gi,
+    /<meta\s+property="og:url"[^>]*\/?>/gi,
+    /<meta\s+property="og:image"[^>]*\/?>/gi,
+    /<meta\s+property="og:type"[^>]*\/?>/gi,
+    /<meta\s+property="og:site_name"[^>]*\/?>/gi,
+    /<meta\s+name="twitter:card"[^>]*\/?>/gi,
+    /<meta\s+name="twitter:title"[^>]*\/?>/gi,
+    /<meta\s+name="twitter:description"[^>]*\/?>/gi,
+    /<meta\s+name="twitter:image"[^>]*\/?>/gi,
+    /<meta\s+name="prerender-status"[^>]*\/?>/gi,
+  ];
+
+  let newHeadInner = headInner;
+
+  // Keep first occurrence: remove indices [1..N-1] in reverse order so
+  // earlier match positions stay valid as we splice from the end.
+  for (const regex of keepFirstPatterns) {
+    const matches = [...newHeadInner.matchAll(regex)];
+    if (matches.length > 1) {
+      for (let i = matches.length - 1; i >= 1; i--) {
+        const m = matches[i];
+        newHeadInner = newHeadInner.slice(0, m.index) + newHeadInner.slice(m.index + m[0].length);
+      }
+    }
+  }
+
+  // Keep last occurrence: remove indices [0..N-2] in reverse order.
+  for (const regex of keepLastPatterns) {
+    const matches = [...newHeadInner.matchAll(regex)];
+    if (matches.length > 1) {
+      for (let i = matches.length - 2; i >= 0; i--) {
+        const m = matches[i];
+        newHeadInner = newHeadInner.slice(0, m.index) + newHeadInner.slice(m.index + m[0].length);
+      }
+    }
+  }
+
+  // Hreflang: keep the LAST occurrence per unique hreflang value.
+  // Walk backwards to mark the first encounter (= last in document order)
+  // as "keep", remove everything else.
+  const hreflangRegex = /<link\s+rel="alternate"\s+hreflang="([^"]+)"[^>]*\/?>/gi;
+  const hreflangMatches = [...newHeadInner.matchAll(hreflangRegex)];
+  if (hreflangMatches.length > 0) {
+    const seen = new Set();
+    const keepIdx = new Set();
+    for (let i = hreflangMatches.length - 1; i >= 0; i--) {
+      const value = hreflangMatches[i][1];
+      if (!seen.has(value)) {
+        seen.add(value);
+        keepIdx.add(i);
+      }
+    }
+    for (let i = hreflangMatches.length - 1; i >= 0; i--) {
+      if (keepIdx.has(i)) continue;
+      const m = hreflangMatches[i];
+      newHeadInner = newHeadInner.slice(0, m.index) + newHeadInner.slice(m.index + m[0].length);
+    }
+  }
+
+  const newHeadFull = headFull.replace(headInner, newHeadInner);
+  return html.replace(headFull, newHeadFull);
+}
+
 const PUBLIC_ROUTES = [
   '/',
   '/services',
@@ -97,19 +211,27 @@ const MIME = {
   '.woff2': 'font/woff2',
 };
 
-function startServer() {
+function startServer(indexHtmlBuffer) {
+  const distIndexPath = join(DIST, 'index.html');
   return new Promise((resolve) => {
     const server = createServer((req, res) => {
       let filePath = join(DIST, req.url === '/' ? 'index.html' : req.url);
 
-      // If no extension, serve index.html (SPA fallback)
-      if (!extname(filePath)) {
-        filePath = join(DIST, 'index.html');
-      }
+      // SPA fallback: any extensionless URL or any 404 should serve the
+      // index.html template. We always serve from the in-memory snapshot
+      // taken BEFORE the prerender loop began — otherwise the '/' route's
+      // own prerender output (which is written to dist/index.html) would
+      // be served to every subsequent route, contaminating their HEAD
+      // sections with Home's PageMeta tags and HreflangTags.
+      const isSpaFallback =
+        !extname(filePath) ||
+        !existsSync(filePath) ||
+        filePath === distIndexPath;
 
-      // If file doesn't exist, serve index.html (SPA fallback)
-      if (!existsSync(filePath)) {
-        filePath = join(DIST, 'index.html');
+      if (isSpaFallback) {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(indexHtmlBuffer);
+        return;
       }
 
       try {
@@ -136,7 +258,14 @@ async function prerender() {
     process.exit(1);
   }
 
-  const server = await startServer();
+  // Snapshot the clean Vite-built index.html template BEFORE the loop begins.
+  // The '/' route's prerender output overwrites dist/index.html on disk, so
+  // without this snapshot, every later route would load Home's contaminated
+  // index.html as its base and inherit Home's PageMeta tags. The static
+  // server below serves this in-memory copy for all SPA fallbacks.
+  const cleanIndexHtml = readFileSync(join(DIST, 'index.html'));
+
+  const server = await startServer(cleanIndexHtml);
 
   const browser = await puppeteer.launch({
     headless: true,
@@ -205,6 +334,11 @@ async function prerender() {
       });
 
       let html = await page.content();
+
+      // Deduplicate head tags before writing. See deduplicateHead() above
+      // for the full rationale; runs before the prerender-status injection
+      // so the status meta is always positioned right before </head>.
+      html = deduplicateHead(html);
 
       // Add prerender indicator meta tag
       html = html.replace(
