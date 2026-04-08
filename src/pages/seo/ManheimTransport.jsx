@@ -13,7 +13,7 @@ export default function ManheimTransport() {
   return (
     <SeoLandingPage
       meta={{
-        title: 'Manheim Transport — Dealer Auction Vehicle Shipping',
+        title: 'Manheim Auction Transport',
         description:
           'Vehicle transport from Manheim dealer auctions. Contract pricing for dealerships, nationwide coverage. Licensed auto transport broker Y7 Logistics.',
         path: '/manheim-transport',

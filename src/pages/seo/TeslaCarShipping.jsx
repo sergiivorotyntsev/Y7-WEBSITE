@@ -31,7 +31,7 @@ export default function TeslaCarShipping() {
   return (
     <SeoLandingPage
       meta={{
-        title: 'Tesla Car Shipping | Ship Your Model S, 3, X, Y & Cybertruck',
+        title: 'Tesla Car Shipping',
         description: 'Professional Tesla transport service. Licensed broker handling Model S, 3, X, Y, and Cybertruck shipping with specialized carriers. Free quotes, insured, nationwide.',
         path: '/tesla-car-shipping',
       }}

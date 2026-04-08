@@ -14,7 +14,7 @@ export default function AuctionCarShipping() {
   return (
     <SeoLandingPage
       meta={{
-        title: 'Auction Car Shipping — Pickup from Any US Auction',
+        title: 'Auction Car Shipping',
         description:
           'Ship vehicles from Copart, IAAI, Manheim, and other US auto auctions. Gate pass coordination, storage fee prevention. Licensed broker Y7 Logistics.',
         path: '/auction-car-shipping',

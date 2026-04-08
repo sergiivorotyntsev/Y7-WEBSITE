@@ -32,7 +32,7 @@ export default function ElectricVehiclePortDelivery() {
   return (
     <SeoLandingPage
       meta={{
-        title: 'Electric Vehicle Port Delivery | EV Export Transport to US Ports',
+        title: 'EV Port Delivery',
         description: 'Ship electric vehicles from US auctions and dealers to major US ports for international export. Tesla, Rivian, Lucid, and more. Specialized EV port delivery service.',
         path: '/electric-vehicle-port-delivery',
       }}

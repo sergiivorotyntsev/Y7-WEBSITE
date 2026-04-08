@@ -23,7 +23,7 @@ export default function CybertruckShipping() {
   return (
     <SeoLandingPage
       meta={{
-        title: 'Cybertruck Shipping | Specialized Tesla Cybertruck Transport',
+        title: 'Cybertruck Shipping',
         description: 'Professional Cybertruck shipping service. Specialized heavy-duty carriers, stainless steel safe handling, enclosed options available. Licensed broker, nationwide delivery.',
         path: '/cybertruck-shipping',
       }}

@@ -14,7 +14,7 @@ export default function DoorToPort() {
   return (
     <SeoLandingPage
       meta={{
-        title: 'Door-to-Port Auto Transport — Vehicle Delivery to US Ports',
+        title: 'Door-to-Port Auto Transport',
         description:
           'Transport vehicles from anywhere in the US to major export ports. Newark, Houston, Savannah, LA, Baltimore, Jacksonville. Y7 Logistics.',
         path: '/door-to-port-auto-transport',

@@ -5,7 +5,7 @@ export default function MassachusettsToFlorida() {
   return (
     <SeoLandingPage
       meta={{
-        title: 'MA to FL Car Shipping — Boston to Miami Auto Transport',
+        title: 'Massachusetts to Florida Car Shipping',
         description:
           'Ship your car from Massachusetts to Florida. ~1,500 miles, 4-6 business days. Open and enclosed transport. Snowbird specials.',
         path: '/massachusetts-to-florida-car-shipping',

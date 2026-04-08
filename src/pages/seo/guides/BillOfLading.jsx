@@ -31,7 +31,7 @@ export default function BillOfLading() {
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '60px 24px 80px' }}>
       <PageMeta
-        title="What Is a Bill of Lading (BOL) in Auto Transport? | Y7 Logistics"
+        title="What Is a Bill of Lading?"
         description="Understanding the Bill of Lading in vehicle shipping. What it includes, why it matters, and how to use it to protect yourself during auto transport."
         path="/what-is-a-bill-of-lading"
       />

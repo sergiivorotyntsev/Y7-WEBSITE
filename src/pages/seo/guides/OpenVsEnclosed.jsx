@@ -31,7 +31,7 @@ export default function OpenVsEnclosed() {
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '60px 24px 80px' }}>
       <PageMeta
-        title="Open vs Enclosed Auto Transport: Which Is Right? | Y7 Logistics"
+        title="Open vs Enclosed Auto Transport"
         description="Compare open and enclosed auto transport. Cost differences, risk factors, and when to choose each option. Expert guide from Y7 Logistics."
         path="/open-vs-enclosed-auto-transport"
       />

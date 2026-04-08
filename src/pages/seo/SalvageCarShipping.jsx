@@ -4,7 +4,7 @@ export default function SalvageCarShipping() {
   return (
     <SeoLandingPage
       meta={{
-        title: 'Salvage Car Shipping — Inoperable Vehicle Transport',
+        title: 'Salvage Car Shipping',
         description: 'Transport salvage, non-running, and inoperable vehicles. Winch/forklift loading, auction pickup, nationwide delivery.',
         path: '/salvage-car-shipping',
       }}

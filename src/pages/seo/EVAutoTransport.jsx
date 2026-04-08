@@ -36,7 +36,7 @@ export default function EVAutoTransport() {
   return (
     <SeoLandingPage
       meta={{
-        title: 'EV Auto Transport | Electric Vehicle Shipping Services Nationwide',
+        title: 'EV Auto Transport',
         description: 'Expert electric vehicle transport for Tesla, Rivian, Lucid, BMW i-Series, Porsche Taycan, Ford Lightning & more. Licensed broker, specialized EV carriers, nationwide.',
         path: '/ev-auto-transport',
       }}
