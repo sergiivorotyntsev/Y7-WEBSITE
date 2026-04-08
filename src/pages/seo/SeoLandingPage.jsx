@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
+import RelatedGuides from '../../components/RelatedGuides';
+import { RELATED_GUIDES } from '../../data/relatedGuides';
 import { colors, fonts, button as btnStyles } from '../../theme';
 
 /**
@@ -65,7 +67,13 @@ export default function SeoLandingPage({
 
   const combinedSchema = JSON.stringify(schemas);
 
+  // Topical clustering links for this page (looked up by route path).
+  // Returns undefined if the page is not in the matrix; <RelatedGuides />
+  // renders nothing in that case.
+  const relatedGuidesLinks = RELATED_GUIDES[meta.path];
+
   return (
+    <>
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '60px 24px 80px' }}>
       <PageMeta title={meta.title} description={meta.description} path={meta.path} schema={combinedSchema} />
 
@@ -244,6 +252,8 @@ export default function SeoLandingPage({
         </div>
       )}
     </div>
+    <RelatedGuides links={relatedGuidesLinks} />
+    </>
   );
 }
 
