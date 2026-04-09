@@ -2,7 +2,6 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
-import { API_URL } from '../../config';
 import SmsConsent from '../../components/SmsConsent';
 import { colors, fonts, button as btnStyles } from '../../theme';
 import { trackEvent } from '../../utils/analytics';
@@ -63,11 +62,9 @@ export default function Login() {
   // Telegram auth — completely decoupled from component lifecycle.
   // Uses refs for login/navigate so it works even if component re-renders.
   const handleTelegramAuth = useCallback(async (tgUser) => {
-    const url = `${API_URL}/api/public/telegram-login`;
     try {
-      const res = await fetch(url, {
+      const res = await portalFetch('/api/public/telegram-login', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(tgUser),
       });
       const data = await res.json();
