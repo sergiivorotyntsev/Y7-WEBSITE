@@ -110,13 +110,17 @@ export default function Header() {
 
           {user ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              {/* SPRINT-E-T4: show first name in header so users can see
+                  they're logged in from any page on the marketing site.
+                  Pre-Sprint-E only the dashboard surfaced the user name. */}
               <Link to="/portal/dashboard" style={{
                 fontFamily: fonts.sans,
                 fontSize: '12px',
                 fontWeight: 600,
                 color: colors.accent,
+                whiteSpace: 'nowrap',
               }}>
-                My Account
+                {user.name?.split(' ')[0] || 'My Account'}
               </Link>
               <button
                 onClick={async () => { await logout(); navigate('/'); }}

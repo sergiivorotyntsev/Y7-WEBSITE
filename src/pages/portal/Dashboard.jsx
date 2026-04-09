@@ -7,6 +7,20 @@ import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles, keyframes } from '../../theme';
 import { STATUS_COLORS, getStatusBadge } from '../../utils/orderStatus';
 
+// SPRINT-E-T4: route the "New Quote" / "New Order" button by customer
+// type. dealer -> /quote (dealer-only flow), exporter -> /exporters,
+// everyone else (individual, auction_buyer, unknown) -> /ship-my-car.
+function getNewOrderPath(type) {
+  if (type === 'dealer') return '/quote';
+  if (type === 'exporter') return '/exporters';
+  return '/ship-my-car';
+}
+
+function getNewOrderLabel(type) {
+  if (type === 'dealer') return 'New Order';
+  return 'New Quote';
+}
+
 function StatCard({ value, label, delay }) {
   return (
     <div style={{
@@ -175,8 +189,11 @@ export default function Dashboard() {
             </span>
           )}
         </div>
-        <button onClick={() => navigate(user?.customer_type === 'dealer' ? '/quote' : '/ship-my-car')} style={btnStyles.accent}>
-          {user?.customer_type === 'dealer' ? 'New Order' : 'New Quote'}
+        <button
+          onClick={() => navigate(getNewOrderPath(user?.customer_type))}
+          style={btnStyles.accent}
+        >
+          {getNewOrderLabel(user?.customer_type)}
         </button>
       </div>
 
@@ -225,7 +242,10 @@ export default function Dashboard() {
               ? 'No orders yet. Submit your first transport order to get started.'
               : 'No orders yet. Submit your first quote to get started.'}
           </p>
-          <button onClick={() => navigate(user?.customer_type === 'dealer' ? '/quote' : '/ship-my-car')} style={btnStyles.accent}>
+          <button
+            onClick={() => navigate(getNewOrderPath(user?.customer_type))}
+            style={btnStyles.accent}
+          >
             {user?.customer_type === 'dealer' ? 'New Order' : 'Get a Quote'}
           </button>
         </div>
@@ -238,7 +258,15 @@ export default function Dashboard() {
         }}>
           {orders.map((order, i) => {
             const vehicle = [order.vehicle_year, order.vehicle_make, order.vehicle_model].filter(Boolean).join(' ') || 'Vehicle TBD';
-            const route = [order.pickup_zip, order.delivery_zip].filter(Boolean).join(' \u2192 ');
+            // SPRINT-E-T4: enriched route shows pickup city + ZIP, then arrow + delivery
+            const pickup = [order.pickup_city, order.pickup_zip].filter(Boolean).join(' ');
+            const delivery = [order.delivery_city, order.delivery_zip].filter(Boolean).join(' ');
+            const route = [pickup, delivery].filter(Boolean).join(' \u2192 ');
+            // Load ID falls back through web_reference to numeric id
+            const loadId = order.load_id || order.web_reference || `#${order.id}`;
+            const createdDate = order.created_at
+              ? new Date(order.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+              : null;
             const price = order.final_price ? `$${order.final_price}` :
               (order.quote_price_min && order.quote_price_max)
                 ? `$${order.quote_price_min}-$${order.quote_price_max}` : '';
@@ -278,8 +306,15 @@ export default function Dashboard() {
                       fontSize: '12px',
                       color: colors.textMuted,
                       marginTop: '2px',
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
                     }}>
-                      {route}
+                      <span style={{ fontFamily: fonts.mono, marginRight: '8px' }}>
+                        {loadId}
+                      </span>
+                      {route && <span>{route}</span>}
+                      {createdDate && <span> &middot; {createdDate}</span>}
                     </div>
                   </div>
                 </div>
@@ -334,7 +369,7 @@ export default function Dashboard() {
           gap: '12px',
         }}>
           {[
-            { icon: <ClipboardIcon size={18} />, label: user?.customer_type === 'dealer' ? 'New Order' : 'New Quote', to: user?.customer_type === 'dealer' ? '/quote' : '/ship-my-car' },
+            { icon: <ClipboardIcon size={18} />, label: getNewOrderLabel(user?.customer_type), to: getNewOrderPath(user?.customer_type) },
             { icon: <MapPinIcon size={18} />, label: 'Track Shipment', to: '/track' },
             { icon: <ProfileIcon size={18} />, label: 'Profile', to: '/portal/profile' },
             { icon: <TelegramIcon size={18} />, label: 'Telegram Bot', href: 'https://t.me/y7dispatch_bot' },
