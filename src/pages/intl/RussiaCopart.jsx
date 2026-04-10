@@ -12,7 +12,7 @@ import HreflangTags from '../../components/HreflangTags';
 // - Y7 HAS Russian-speaking team members
 // - DO NOT mention Russia as a destination (sanctions compliance)
 // - Mention DaytonaCargo only as "international shipping" without specifying country
-// - All visible text is PLACEHOLDER — replace with real copy before launch
+// - Content translated from PLACEHOLDERs — Audit-T1C
 // =============================================================================
 
 // ---------------------------------------------------------------------------
@@ -24,58 +24,58 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'PLACEHOLDER_FAQ_Q1',
+      name: 'Что такое Copart и как там покупать автомобили?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'PLACEHOLDER_FAQ_A1',
+        text: 'Copart — крупнейший онлайн-аукцион подержанных и повреждённых автомобилей в США. Для участия нужна лицензия дилера или аккаунт через брокера (например, CrashedToys). Торги проходят онлайн, автомобиль нужно забрать с площадки в течение 3–5 рабочих дней после оплаты.',
       },
     },
     {
       '@type': 'Question',
-      name: 'PLACEHOLDER_FAQ_Q2',
+      name: 'Чем отличается Copart от IAAI?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'PLACEHOLDER_FAQ_A2',
+        text: 'Обе площадки продают автомобили после ДТП, страховых случаев и конфискаций. Copart — крупнее по объёму (200+ площадок), IAAI — часто предлагает лучшие цены на отдельные лоты. Рекомендуем отслеживать обе площадки.',
       },
     },
     {
       '@type': 'Question',
-      name: 'PLACEHOLDER_FAQ_Q3',
+      name: 'Сколько стоит забрать автомобиль с площадки Copart?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'PLACEHOLDER_FAQ_A3',
+        text: 'Транспортировка с площадки Copart стоит от $150 до $500 в зависимости от расстояния до конечного пункта. Дополнительно Copart взимает gate fee ($79) и storage fees при задержке забора.',
       },
     },
     {
       '@type': 'Question',
-      name: 'PLACEHOLDER_FAQ_Q4',
+      name: 'Можно ли перевезти неисправный автомобиль?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'PLACEHOLDER_FAQ_A4',
+        text: 'Да. Большинство автомобилей с Copart — неходовые. Наши перевозчики используют лебёдки (winch) для погрузки. Укажите при заказе, что автомобиль inoperable — это влияет на стоимость (+$50–$150) и выбор перевозчика.',
       },
     },
     {
       '@type': 'Question',
-      name: 'PLACEHOLDER_FAQ_Q5',
+      name: 'За какой срок нужно забрать авто с Copart?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'PLACEHOLDER_FAQ_A5',
+        text: 'Стандартный срок — 3 рабочих дня после оплаты (business days). После этого начисляется storage fee: $40–$75 в день. Мы рекомендуем бронировать транспорт заранее, до завершения торгов.',
       },
     },
     {
       '@type': 'Question',
-      name: 'PLACEHOLDER_FAQ_Q6',
+      name: 'Y7 помогает с оформлением title после покупки?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'PLACEHOLDER_FAQ_A6',
+        text: 'Y7 Logistics — транспортный брокер, мы не занимаемся оформлением title. Для оформления salvage title обратитесь в DMV вашего штата. Мы доставим автомобиль по любому адресу — домой, в мастерскую или в порт.',
       },
     },
     {
       '@type': 'Question',
-      name: 'PLACEHOLDER_FAQ_Q7',
+      name: 'Как отследить перевозку?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'PLACEHOLDER_FAQ_A7',
+        text: 'После бронирования вы получаете данные перевозчика и ориентировочные даты забора и доставки. Статус обновляется через нашу диспетчерскую — пишите в Telegram @y7dispatch_bot в любое время.',
       },
     },
   ],
@@ -87,8 +87,8 @@ const faqSchema = {
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'PLACEHOLDER_SERVICE_NAME',
-  serviceType: 'PLACEHOLDER_SERVICE_TYPE',
+  name: 'Перевозка автомобилей с Copart и IAAI',
+  serviceType: 'Автоперевозки с аукционов',
   provider: {
     '@type': 'Organization',
     name: 'Y7 Logistics',
@@ -96,9 +96,9 @@ const serviceSchema = {
   },
   areaServed: {
     '@type': 'Country',
-    name: 'PLACEHOLDER_AREA_SERVED',
+    name: 'United States',
   },
-  description: 'PLACEHOLDER_SERVICE_DESCRIPTION',
+  description: 'Перевозка автомобилей с аукционных площадок Copart и IAAI по всей территории США. Лицензированный брокер FMCSA MC #1741537.',
 };
 
 // ---------------------------------------------------------------------------
@@ -111,19 +111,19 @@ const breadcrumbSchema = {
     {
       '@type': 'ListItem',
       position: 1,
-      name: 'PLACEHOLDER_BREADCRUMB_HOME',
+      name: 'Главная',
       item: 'https://www.y7agency.com/',
     },
     {
       '@type': 'ListItem',
       position: 2,
-      name: 'PLACEHOLDER_BREADCRUMB_RU',
+      name: 'Русский',
       item: 'https://www.y7agency.com/ru',
     },
     {
       '@type': 'ListItem',
       position: 3,
-      name: 'PLACEHOLDER_BREADCRUMB_COPART',
+      name: 'Copart и IAAI',
       item: 'https://www.y7agency.com/ru/copart-shipping',
     },
   ],
@@ -133,119 +133,61 @@ const breadcrumbSchema = {
 // Data arrays
 // ---------------------------------------------------------------------------
 
-// TODO-RU: Replace with real comparison data
 const COMPARISON_ROWS = [
-  {
-    feature: 'PLACEHOLDER_COMPARE_FEATURE_1',
-    copart: 'PLACEHOLDER_COMPARE_COPART_1',
-    iaai: 'PLACEHOLDER_COMPARE_IAAI_1',
-  },
-  {
-    feature: 'PLACEHOLDER_COMPARE_FEATURE_2',
-    copart: 'PLACEHOLDER_COMPARE_COPART_2',
-    iaai: 'PLACEHOLDER_COMPARE_IAAI_2',
-  },
-  {
-    feature: 'PLACEHOLDER_COMPARE_FEATURE_3',
-    copart: 'PLACEHOLDER_COMPARE_COPART_3',
-    iaai: 'PLACEHOLDER_COMPARE_IAAI_3',
-  },
-  {
-    feature: 'PLACEHOLDER_COMPARE_FEATURE_4',
-    copart: 'PLACEHOLDER_COMPARE_COPART_4',
-    iaai: 'PLACEHOLDER_COMPARE_IAAI_4',
-  },
-  {
-    feature: 'PLACEHOLDER_COMPARE_FEATURE_5',
-    copart: 'PLACEHOLDER_COMPARE_COPART_5',
-    iaai: 'PLACEHOLDER_COMPARE_IAAI_5',
-  },
-  {
-    feature: 'PLACEHOLDER_COMPARE_FEATURE_6',
-    copart: 'PLACEHOLDER_COMPARE_COPART_6',
-    iaai: 'PLACEHOLDER_COMPARE_IAAI_6',
-  },
-  {
-    feature: 'PLACEHOLDER_COMPARE_FEATURE_7',
-    copart: 'PLACEHOLDER_COMPARE_COPART_7',
-    iaai: 'PLACEHOLDER_COMPARE_IAAI_7',
-  },
-  {
-    feature: 'PLACEHOLDER_COMPARE_FEATURE_8',
-    copart: 'PLACEHOLDER_COMPARE_COPART_8',
-    iaai: 'PLACEHOLDER_COMPARE_IAAI_8',
-  },
+  { feature: 'Количество площадок', copart: '200+ по всей территории США', iaai: '170+ площадок' },
+  { feature: 'Типы автомобилей', copart: 'Salvage, clean title, восстановленные', iaai: 'Преимущественно salvage и страховые' },
+  { feature: 'Доступ для покупателей', copart: 'Через брокера или дилерскую лицензию', iaai: 'Прямой доступ (с ограничениями) или через брокера' },
+  { feature: 'Аукционный сбор', copart: '10–18% от цены + gate fee $79', iaai: '10–15% от цены + gate fee $79' },
+  { feature: 'Срок забора', copart: '3 бизнес-дня после оплаты', iaai: '3 бизнес-дня после оплаты' },
+  { feature: 'Storage fee', copart: '$40–$75/день после дедлайна', iaai: '$35–$60/день после дедлайна' },
+  { feature: 'VIN-история', copart: 'Предоставляет Run & Drive статус', iaai: 'Указывает Primary Damage' },
+  { feature: 'Онлайн-торги', copart: 'VB3 (Virtual Bidding 3rd Gen)', iaai: 'ACV Auctions platform' },
 ];
 
-// TODO-RU: Replace with real fee data
 const FEES = [
-  { name: 'PLACEHOLDER_FEE_1_NAME', amount: 'PLACEHOLDER_FEE_1_AMOUNT', note: 'PLACEHOLDER_FEE_1_NOTE' },
-  { name: 'PLACEHOLDER_FEE_2_NAME', amount: 'PLACEHOLDER_FEE_2_AMOUNT', note: 'PLACEHOLDER_FEE_2_NOTE' },
-  { name: 'PLACEHOLDER_FEE_3_NAME', amount: 'PLACEHOLDER_FEE_3_AMOUNT', note: 'PLACEHOLDER_FEE_3_NOTE' },
-  { name: 'PLACEHOLDER_FEE_4_NAME', amount: 'PLACEHOLDER_FEE_4_AMOUNT', note: 'PLACEHOLDER_FEE_4_NOTE' },
-  { name: 'PLACEHOLDER_FEE_5_NAME', amount: 'PLACEHOLDER_FEE_5_AMOUNT', note: 'PLACEHOLDER_FEE_5_NOTE' },
-  { name: 'PLACEHOLDER_FEE_6_NAME', amount: 'PLACEHOLDER_FEE_6_AMOUNT', note: 'PLACEHOLDER_FEE_6_NOTE' },
+  { name: 'Gate fee', amount: '$79', note: 'Разовый сбор при заборе автомобиля с площадки. Одинаков для Copart и IAAI.' },
+  { name: 'Аукционный сбор', amount: '10–18%', note: 'Процент от финальной цены. Зависит от стоимости лота и типа аккаунта покупателя.' },
+  { name: 'Транспорт с площадки', amount: '$150–$500', note: 'Зависит от расстояния. Включает погрузку лебёдкой для неходовых авто.' },
+  { name: 'Storage fee', amount: '$40–$75/день', note: 'Начисляется после истечения бесплатного срока хранения (обычно 3 дня).' },
+  { name: 'Title processing', amount: '$55–$150', note: 'Оформление title через DMV. Стоимость варьируется по штатам.' },
+  { name: 'Закрытый транспорт', amount: '+40–60%', note: 'Надбавка за закрытый автовоз. Рекомендуется для дорогих автомобилей.' },
 ];
 
-// TODO-RU: Replace with real route data
 const ROUTES = [
-  {
-    from: 'PLACEHOLDER_ROUTE_1_FROM',
-    to: 'PLACEHOLDER_ROUTE_1_TO',
-    distance: 'PLACEHOLDER_ROUTE_1_DISTANCE',
-    time: 'PLACEHOLDER_ROUTE_1_TIME',
-  },
-  {
-    from: 'PLACEHOLDER_ROUTE_2_FROM',
-    to: 'PLACEHOLDER_ROUTE_2_TO',
-    distance: 'PLACEHOLDER_ROUTE_2_DISTANCE',
-    time: 'PLACEHOLDER_ROUTE_2_TIME',
-  },
-  {
-    from: 'PLACEHOLDER_ROUTE_3_FROM',
-    to: 'PLACEHOLDER_ROUTE_3_TO',
-    distance: 'PLACEHOLDER_ROUTE_3_DISTANCE',
-    time: 'PLACEHOLDER_ROUTE_3_TIME',
-  },
-  {
-    from: 'PLACEHOLDER_ROUTE_4_FROM',
-    to: 'PLACEHOLDER_ROUTE_4_TO',
-    distance: 'PLACEHOLDER_ROUTE_4_DISTANCE',
-    time: 'PLACEHOLDER_ROUTE_4_TIME',
-  },
+  { from: 'Copart Dallas, TX', to: 'Port Newark, NJ', distance: '~1 550 миль', time: '5–8 дней' },
+  { from: 'IAAI Los Angeles, CA', to: 'Port Houston, TX', distance: '~1 550 миль', time: '5–8 дней' },
+  { from: 'Copart Atlanta, GA', to: 'Port Savannah, GA', distance: '~250 миль', time: '2–3 дня' },
+  { from: 'IAAI Chicago, IL', to: 'Port Newark, NJ', distance: '~790 миль', time: '3–5 дней' },
 ];
 
-// TODO-RU: Replace with real pitfall descriptions
 const PITFALLS = [
-  { title: 'PLACEHOLDER_PITFALL_1_TITLE', desc: 'PLACEHOLDER_PITFALL_1_DESC' },
-  { title: 'PLACEHOLDER_PITFALL_2_TITLE', desc: 'PLACEHOLDER_PITFALL_2_DESC' },
-  { title: 'PLACEHOLDER_PITFALL_3_TITLE', desc: 'PLACEHOLDER_PITFALL_3_DESC' },
-  { title: 'PLACEHOLDER_PITFALL_4_TITLE', desc: 'PLACEHOLDER_PITFALL_4_DESC' },
-  { title: 'PLACEHOLDER_PITFALL_5_TITLE', desc: 'PLACEHOLDER_PITFALL_5_DESC' },
-  { title: 'PLACEHOLDER_PITFALL_6_TITLE', desc: 'PLACEHOLDER_PITFALL_6_DESC' },
-  { title: 'PLACEHOLDER_PITFALL_7_TITLE', desc: 'PLACEHOLDER_PITFALL_7_DESC' },
+  { title: 'Не проверили VIN-историю', desc: 'Перед торгами обязательно проверьте VIN через NMVTIS, Carfax или AutoCheck. Скрытые повреждения рамы, flood damage или лимонный закон — всё это влияет на стоимость восстановления.' },
+  { title: 'Не учли все сборы', desc: 'Цена молотка — не финальная цена. Прибавьте аукционный сбор (10–18%), gate fee ($79), транспорт и storage fees. Реальная стоимость может быть на 30–50% выше цены лота.' },
+  { title: 'Задержали забор', desc: 'После 3 бизнес-дней начинается storage fee ($40–$75/день). За две недели задержки это может составить $500–$1 000. Бронируйте транспорт заранее.' },
+  { title: 'Не указали inoperable', desc: 'Если автомобиль не на ходу, перевозчику нужна лебёдка. Неожиданный inoperable на месте — это задержка, доплата или отказ перевозчика.' },
+  { title: 'Выбрали нелицензированного перевозчика', desc: 'Дешёвые перевозчики без MC-номера не имеют страховки. При повреждении в пути вы не получите компенсацию. Всегда проверяйте MC в базе FMCSA.' },
+  { title: 'Не зафиксировали состояние', desc: 'При получении автомобиля сфотографируйте его со всех сторон и сверьте с Bill of Lading. Претензии принимаются только при задокументированных расхождениях.' },
+  { title: 'Пропустили дедлайн оплаты', desc: 'Copart и IAAI аннулируют покупку при просрочке оплаты и удерживают депозит. Убедитесь, что средства готовы до участия в торгах.' },
 ];
 
-// TODO-RU: Replace with real step descriptions
 const HOW_IT_WORKS = [
-  { title: 'PLACEHOLDER_HIW_1_TITLE', desc: 'PLACEHOLDER_HIW_1_DESC' },
-  { title: 'PLACEHOLDER_HIW_2_TITLE', desc: 'PLACEHOLDER_HIW_2_DESC' },
-  { title: 'PLACEHOLDER_HIW_3_TITLE', desc: 'PLACEHOLDER_HIW_3_DESC' },
-  { title: 'PLACEHOLDER_HIW_4_TITLE', desc: 'PLACEHOLDER_HIW_4_DESC' },
-  { title: 'PLACEHOLDER_HIW_5_TITLE', desc: 'PLACEHOLDER_HIW_5_DESC' },
-  { title: 'PLACEHOLDER_HIW_6_TITLE', desc: 'PLACEHOLDER_HIW_6_DESC' },
-  { title: 'PLACEHOLDER_HIW_7_TITLE', desc: 'PLACEHOLDER_HIW_7_DESC' },
+  { title: 'Выиграйте лот', desc: 'Участвуйте в торгах на Copart или IAAI через вашего брокера или дилерский аккаунт. Оплатите лот в установленный срок.' },
+  { title: 'Свяжитесь с нами', desc: 'Напишите в Telegram @y7dispatch_bot или на info@y7agency.com. Укажите VIN, номер лота, площадку и куда нужно доставить.' },
+  { title: 'Получите расчёт', desc: 'Мы рассчитаем стоимость и сроки в течение нескольких минут. Цена фиксируется при подтверждении заказа.' },
+  { title: 'Мы забираем автомобиль', desc: 'Перевозчик прибывает на площадку с gate pass. Погрузка лебёдкой для неходовых авто включена.' },
+  { title: 'Доставка по назначению', desc: 'Автомобиль доставляется по указанному адресу — домой, в мастерскую, в порт или на склад.' },
+  { title: 'Осмотр и подписание', desc: 'При получении вы осматриваете автомобиль и подписываете Bill of Lading. Состояние зафиксировано документально.' },
+  { title: 'Дальнейшая логистика', desc: 'Нужен экспорт? Наш партнёр DaytonaCargo организует международную доставку. Напишите нам для деталей.' },
 ];
 
-// TODO-RU: Replace with real FAQ content
 const FAQS = [
-  { q: 'PLACEHOLDER_FAQ_Q1', a: 'PLACEHOLDER_FAQ_A1' },
-  { q: 'PLACEHOLDER_FAQ_Q2', a: 'PLACEHOLDER_FAQ_A2' },
-  { q: 'PLACEHOLDER_FAQ_Q3', a: 'PLACEHOLDER_FAQ_A3' },
-  { q: 'PLACEHOLDER_FAQ_Q4', a: 'PLACEHOLDER_FAQ_A4' },
-  { q: 'PLACEHOLDER_FAQ_Q5', a: 'PLACEHOLDER_FAQ_A5' },
-  { q: 'PLACEHOLDER_FAQ_Q6', a: 'PLACEHOLDER_FAQ_A6' },
-  { q: 'PLACEHOLDER_FAQ_Q7', a: 'PLACEHOLDER_FAQ_A7' },
+  { q: 'Что такое Copart и как там покупать?', a: 'Copart — крупнейший онлайн-аукцион подержанных и повреждённых автомобилей в США. Для участия нужна дилерская лицензия или аккаунт через брокера. Торги проходят онлайн, автомобиль нужно забрать в течение 3 бизнес-дней после оплаты.' },
+  { q: 'Чем отличается Copart от IAAI?', a: 'Обе площадки продают автомобили после ДТП и страховых случаев. Copart крупнее (200+ площадок), IAAI иногда предлагает лучшие цены. Рекомендуем отслеживать обе.' },
+  { q: 'Сколько стоит забрать авто с площадки?', a: 'От $150 до $500 в зависимости от расстояния. Плюс gate fee $79. Для неходовых авто — доплата за лебёдку $50–$150.' },
+  { q: 'Можно перевезти неисправный автомобиль?', a: 'Да. Укажите при заказе, что авто inoperable. Наши перевозчики оборудованы лебёдками для погрузки неходовых автомобилей.' },
+  { q: 'За сколько дней нужно забрать авто?', a: '3 бизнес-дня после оплаты. Далее — storage fee $40–$75/день. Рекомендуем бронировать транспорт заранее.' },
+  { q: 'Помогаете с оформлением title?', a: 'Y7 — транспортный брокер. Оформление salvage title — через DMV вашего штата. Мы доставим авто по любому адресу.' },
+  { q: 'Как отследить перевозку?', a: 'После бронирования вы получаете данные перевозчика и ориентировочные даты. Статус — через @y7dispatch_bot в любое время.' },
 ];
 
 // ---------------------------------------------------------------------------
@@ -323,13 +265,12 @@ function RussiaCopart() {
       {/* Head / SEO                                                        */}
       {/* ----------------------------------------------------------------- */}
       <Helmet>
-        {/* TODO-RU: Replace PLACEHOLDER meta with real Russian copy */}
         <html lang="ru" />
-        <title>PLACEHOLDER_META_TITLE</title>
-        <meta name="description" content="PLACEHOLDER_META_DESCRIPTION" />
+        <title>Доставка автомобилей с Copart и IAAI — Y7 Logistics | Перевозка с аукционов по США</title>
+        <meta name="description" content="Перевозка автомобилей с аукционов Copart и IAAI по всей территории США. Забор с площадки, доставка до адреса или порта. Лицензированный брокер FMCSA MC #1741537. Русскоязычная поддержка 24/7." />
         <link rel="canonical" href="https://www.y7agency.com/ru/copart-shipping" />
-        <meta property="og:title" content="PLACEHOLDER_OG_TITLE" />
-        <meta property="og:description" content="PLACEHOLDER_OG_DESCRIPTION" />
+        <meta property="og:title" content="Доставка с Copart и IAAI — Y7 Logistics" />
+        <meta property="og:description" content="Забор автомобилей с аукционных площадок и доставка по всем 50 штатам. MC #1741537." />
         <meta property="og:url" content="https://www.y7agency.com/ru/copart-shipping" />
         <meta property="og:type" content="article" />
         <meta property="og:locale" content="ru" />
@@ -374,7 +315,7 @@ function RussiaCopart() {
               to="/"
               style={{ color: '#993C1D', textDecoration: 'none' }}
             >
-              PLACEHOLDER_BREADCRUMB_HOME
+              Главная
             </Link>
             <span style={{ margin: '0 0.25rem' }}>/</span>
           </li>
@@ -383,12 +324,12 @@ function RussiaCopart() {
               to="/ru"
               style={{ color: '#993C1D', textDecoration: 'none' }}
             >
-              PLACEHOLDER_BREADCRUMB_RU
+              Русский
             </Link>
             <span style={{ margin: '0 0.25rem' }}>/</span>
           </li>
           <li style={{ color: '#2C2C2A' }}>
-            PLACEHOLDER_BREADCRUMB_COPART
+            Copart и IAAI
           </li>
         </ol>
       </nav>
@@ -397,9 +338,8 @@ function RussiaCopart() {
       {/* SECTION 1 — Hero                                                  */}
       {/* ================================================================= */}
       <section style={styles.section}>
-        {/* TODO-RU: Replace hero heading and lead */}
         <h1 style={styles.h1}>
-          PLACEHOLDER_H1
+          Перевозка автомобилей с аукционов Copart и IAAI по всей территории США
         </h1>
         <p
           style={{
@@ -408,7 +348,10 @@ function RussiaCopart() {
             maxWidth: '720px',
           }}
         >
-          PLACEHOLDER_LEAD_PARAGRAPH
+          Покупаете автомобили на аукционах Copart или IAAI? Y7 Logistics организует забор
+          с площадки и доставку в любую точку США — домой, в мастерскую или в морской порт.
+          Лицензированный брокер FMCSA (MC&nbsp;#1741537), русскоязычная команда, опыт работы
+          со всеми площадками Copart и IAAI.
         </p>
       </section>
 
@@ -421,16 +364,21 @@ function RussiaCopart() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
-        {/* TODO-RU: Replace heading and paragraphs */}
-        <h2 style={styles.h2}>PLACEHOLDER_WHAT_COPART_H2</h2>
+        <h2 style={styles.h2}>Что такое Copart и IAAI</h2>
         <p style={{ ...styles.paragraph, marginBottom: '1rem' }}>
-          PLACEHOLDER_WHAT_COPART_P1
+          Copart и IAAI — два крупнейших онлайн-аукциона подержанных и повреждённых автомобилей
+          в Соединённых Штатах. Вместе они обрабатывают миллионы лотов ежегодно: автомобили после ДТП,
+          страховых случаев, лизинговые возвраты, конфискации и fleet-списания.
         </p>
         <p style={{ ...styles.paragraph, marginBottom: '1rem' }}>
-          PLACEHOLDER_WHAT_COPART_P2
+          Для покупки на этих площадках нужна дилерская лицензия или аккаунт через
+          брокера-посредника (CrashedToys, BidFax и другие). Торги проходят полностью
+          онлайн — вы можете участвовать из любой точки мира.
         </p>
         <p style={styles.paragraph}>
-          PLACEHOLDER_WHAT_COPART_P3
+          После выигрыша и оплаты лота вам даётся ограниченное время на вывоз автомобиля
+          с площадки (обычно 3 бизнес-дня). Именно на этом этапе подключается Y7 Logistics —
+          мы забираем автомобиль и доставляем его по указанному адресу.
         </p>
       </section>
 
@@ -438,8 +386,7 @@ function RussiaCopart() {
       {/* SECTION 3 — Copart vs IAAI comparison table                       */}
       {/* ================================================================= */}
       <section style={styles.section}>
-        {/* TODO-RU: Replace heading */}
-        <h2 style={styles.h2}>PLACEHOLDER_COMPARISON_H2</h2>
+        <h2 style={styles.h2}>Сравнение Copart и IAAI</h2>
 
         <div
           style={{
@@ -468,7 +415,7 @@ function RussiaCopart() {
                     borderBottom: '2px solid #E8E4DC',
                   }}
                 >
-                  PLACEHOLDER_TH_FEATURE
+                  Параметр
                 </th>
                 <th
                   style={{
@@ -479,7 +426,7 @@ function RussiaCopart() {
                     borderBottom: '2px solid #E8E4DC',
                   }}
                 >
-                  PLACEHOLDER_TH_COPART
+                  Copart
                 </th>
                 <th
                   style={{
@@ -490,7 +437,7 @@ function RussiaCopart() {
                     borderBottom: '2px solid #E8E4DC',
                   }}
                 >
-                  PLACEHOLDER_TH_IAAI
+                  IAAI
                 </th>
               </tr>
             </thead>
@@ -534,8 +481,7 @@ function RussiaCopart() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
-        {/* TODO-RU: Replace heading */}
-        <h2 style={styles.h2}>PLACEHOLDER_FEES_H2</h2>
+        <h2 style={styles.h2}>Какие расходы учитывать</h2>
 
         <div style={{ display: 'grid', gap: '1rem' }}>
           {FEES.map((fee, i) => (
@@ -589,8 +535,7 @@ function RussiaCopart() {
       {/* SECTION 5 — Transport routes                                      */}
       {/* ================================================================= */}
       <section style={styles.section}>
-        {/* TODO-RU: Replace heading */}
-        <h2 style={styles.h2}>PLACEHOLDER_ROUTES_H2</h2>
+        <h2 style={styles.h2}>Популярные маршруты с аукционов</h2>
 
         <div
           style={{
@@ -650,8 +595,7 @@ function RussiaCopart() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
-        {/* TODO-RU: Replace heading */}
-        <h2 style={styles.h2}>PLACEHOLDER_PITFALLS_H2</h2>
+        <h2 style={styles.h2}>7 ошибок при покупке на аукционе</h2>
 
         <div style={{ display: 'grid', gap: '1.25rem' }}>
           {PITFALLS.map((pit, i) => (
@@ -699,8 +643,7 @@ function RussiaCopart() {
       {/* SECTION 7 — How it works                                          */}
       {/* ================================================================= */}
       <section style={styles.section}>
-        {/* TODO-RU: Replace heading */}
-        <h2 style={styles.h2}>PLACEHOLDER_HIW_H2</h2>
+        <h2 style={styles.h2}>Как заказать перевозку с аукциона</h2>
 
         <ol
           style={{
@@ -769,8 +712,7 @@ function RussiaCopart() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
-        {/* TODO-RU: Replace heading */}
-        <h2 style={styles.h2}>PLACEHOLDER_FAQ_H2</h2>
+        <h2 style={styles.h2}>Часто задаваемые вопросы</h2>
 
         <div style={{ display: 'grid', gap: '0.75rem' }}>
           {FAQS.map((faq, i) => (
@@ -830,14 +772,13 @@ function RussiaCopart() {
         }}
       >
         <div style={{ maxWidth: '700px', margin: '0 auto' }}>
-          {/* TODO-RU: Replace CTA copy */}
           <h2
             style={{
               ...styles.h2,
               color: '#F7F5F0',
             }}
           >
-            PLACEHOLDER_DARK_CTA_H2
+            Выиграли лот? Закажите перевозку
           </h2>
           <p
             style={{
@@ -847,7 +788,8 @@ function RussiaCopart() {
               marginBottom: '2rem',
             }}
           >
-            PLACEHOLDER_DARK_CTA_DESCRIPTION
+            Напишите нам VIN и номер площадки — мы рассчитаем стоимость и организуем
+            забор автомобиля до истечения бесплатного срока хранения.
           </p>
           <Link
             to="/ru/ship-my-car"
@@ -856,7 +798,7 @@ function RussiaCopart() {
               fontSize: '1.05rem',
             }}
           >
-            PLACEHOLDER_DARK_CTA_BUTTON
+            Заказать перевозку
           </Link>
           <p
             style={{
@@ -866,7 +808,7 @@ function RussiaCopart() {
               marginTop: '1rem',
             }}
           >
-            PLACEHOLDER_DARK_CTA_SUBTEXT
+            MC #1741537 · USDOT #4427359 · Лицензированный брокер FMCSA
           </p>
         </div>
       </section>
