@@ -7,18 +7,14 @@ import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles, keyframes } from '../../theme';
 import { STATUS_COLORS, getStatusBadge } from '../../utils/orderStatus';
 
-// SPRINT-E-T4: route the "New Quote" / "New Order" button by customer
-// type. dealer -> /quote (dealer-only flow), exporter -> /exporters,
-// everyone else (individual, auction_buyer, unknown) -> /ship-my-car.
-function getNewOrderPath(type) {
-  if (type === 'dealer') return '/quote';
-  if (type === 'exporter') return '/exporters';
-  return '/ship-my-car';
+// SPRINT-F: all customer types use the authenticated portal order form.
+// Previously routed to public pages (/quote, /exporters, /ship-my-car).
+function getNewOrderPath() {
+  return '/portal/new-order';
 }
 
-function getNewOrderLabel(type) {
-  if (type === 'dealer') return 'New Order';
-  return 'New Quote';
+function getNewOrderLabel() {
+  return 'New Order';
 }
 
 function StatCard({ value, label, delay }) {
@@ -190,10 +186,10 @@ export default function Dashboard() {
           )}
         </div>
         <button
-          onClick={() => navigate(getNewOrderPath(user?.customer_type))}
+          onClick={() => navigate(getNewOrderPath())}
           style={btnStyles.accent}
         >
-          {getNewOrderLabel(user?.customer_type)}
+          {getNewOrderLabel()}
         </button>
       </div>
 
@@ -243,10 +239,10 @@ export default function Dashboard() {
               : 'No orders yet. Submit your first quote to get started.'}
           </p>
           <button
-            onClick={() => navigate(getNewOrderPath(user?.customer_type))}
+            onClick={() => navigate(getNewOrderPath())}
             style={btnStyles.accent}
           >
-            {user?.customer_type === 'dealer' ? 'New Order' : 'Get a Quote'}
+            {getNewOrderLabel()}
           </button>
         </div>
       ) : (
@@ -369,7 +365,7 @@ export default function Dashboard() {
           gap: '12px',
         }}>
           {[
-            { icon: <ClipboardIcon size={18} />, label: getNewOrderLabel(user?.customer_type), to: getNewOrderPath(user?.customer_type) },
+            { icon: <ClipboardIcon size={18} />, label: getNewOrderLabel(), to: getNewOrderPath() },
             { icon: <MapPinIcon size={18} />, label: 'Track Shipment', to: '/track' },
             { icon: <ProfileIcon size={18} />, label: 'Profile', to: '/portal/profile' },
             { icon: <TelegramIcon size={18} />, label: 'Telegram Bot', href: 'https://t.me/y7dispatch_bot' },
