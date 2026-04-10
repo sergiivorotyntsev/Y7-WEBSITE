@@ -13,6 +13,9 @@ export const colors = {
   successBg: '#E1F5EE',
   border: '#e5e0d8',
   borderInput: '#ddd',
+  blogPurple: '#5B3C96',
+  blogBlue: '#14648C',
+  blogBrown: '#8C5020',
 };
 
 export const fonts = {
