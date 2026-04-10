@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
-import { useAuth, portalFetch } from '../../hooks/useAuth';
+import { portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles } from '../../theme';
 
 const inputStyle = {
@@ -39,59 +39,42 @@ const VIN_RE = /^[A-HJ-NPR-Z0-9]{17}$/i;
 const ZIP_RE = /^\d{5}$/;
 
 export default function NewOrder() {
-  const { user } = useAuth();
   const navigate = useNavigate();
 
   const [vin, setVin] = useState('');
+  const [vehicleYear, setVehicleYear] = useState('');
+  const [vehicleMake, setVehicleMake] = useState('');
+  const [vehicleModel, setVehicleModel] = useState('');
   const [pickupZip, setPickupZip] = useState('');
   const [deliveryZip, setDeliveryZip] = useState('');
-  const [contactName, setContactName] = useState('');
-  const [contactPhone, setContactPhone] = useState('');
   const [notes, setNotes] = useState('');
 
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(null);
 
-  // Pre-fill contact from profile
-  useEffect(() => {
-    portalFetch('/api/portal/data/profile')
-      .then(r => r.ok ? r.json() : null)
-      .then(data => {
-        if (!data) return;
-        if (data.contact_name) setContactName(data.contact_name);
-        if (data.phone) setContactPhone(data.phone);
-      })
-      .catch(() => {});
-  }, []);
+  const vinClean = vin.trim().toUpperCase();
+  const hasFullVin = VIN_RE.test(vinClean);
+  const showVehicleDetails = !hasFullVin;
 
   async function handleSubmit(e) {
     e.preventDefault();
     setError('');
 
-    if (!pickupZip || !deliveryZip) {
-      setError('Pickup and delivery ZIP codes are required.');
+    if (vinClean && vinClean !== 'TBD' && !VIN_RE.test(vinClean)) {
+      setError('VIN must be exactly 17 characters (letters A-H, J-N, P, R-Z and digits). No I, O, or Q.');
       return;
     }
-    if (!ZIP_RE.test(pickupZip)) {
+    if (!hasFullVin && !vehicleMake.trim()) {
+      setError('Please enter the VIN or at least the vehicle make.');
+      return;
+    }
+    if (!pickupZip || !ZIP_RE.test(pickupZip)) {
       setError('Pickup ZIP must be exactly 5 digits.');
       return;
     }
-    if (!ZIP_RE.test(deliveryZip)) {
+    if (!deliveryZip || !ZIP_RE.test(deliveryZip)) {
       setError('Delivery ZIP must be exactly 5 digits.');
-      return;
-    }
-    if (!contactName.trim()) {
-      setError('Contact name is required.');
-      return;
-    }
-    if (!contactPhone.trim()) {
-      setError('Contact phone or email is required.');
-      return;
-    }
-    const vinClean = vin.trim().toUpperCase();
-    if (vinClean && vinClean !== 'TBD' && !VIN_RE.test(vinClean)) {
-      setError('VIN must be exactly 17 characters (letters A-H, J-N, P, R-Z and digits). No I, O, or Q.');
       return;
     }
 
@@ -99,10 +82,11 @@ export default function NewOrder() {
     try {
       const body = {
         vin: vinClean || 'TBD',
+        vehicle_year: vehicleYear.trim() || undefined,
+        vehicle_make: vehicleMake.trim() || undefined,
+        vehicle_model: vehicleModel.trim() || undefined,
         pickup_zip: pickupZip,
         delivery_zip: deliveryZip,
-        pickup_contact_name: contactName.trim(),
-        pickup_contact_phone: contactPhone.trim(),
         notes: notes.trim() || undefined,
       };
       const res = await portalFetch('/api/portal/data/orders', {
@@ -166,6 +150,9 @@ export default function NewOrder() {
               onClick={() => {
                 setSuccess(null);
                 setVin('');
+                setVehicleYear('');
+                setVehicleMake('');
+                setVehicleModel('');
                 setPickupZip('');
                 setDeliveryZip('');
                 setNotes('');
@@ -207,14 +194,25 @@ export default function NewOrder() {
         fontFamily: fonts.sans,
         fontSize: '14px',
         color: colors.textMuted,
-        marginBottom: '32px',
+        marginBottom: '6px',
       }}>
         Submit a transport request. We'll review it and send you a quote.
+      </p>
+      <p style={{
+        fontFamily: fonts.sans,
+        fontSize: '12px',
+        color: colors.textMuted,
+        marginBottom: '32px',
+      }}>
+        Contact info from your profile will be used.{' '}
+        <Link to="/portal/profile" style={{ color: colors.accent }}>
+          Update in Profile
+        </Link>
       </p>
 
       <form onSubmit={handleSubmit}>
         {/* VIN */}
-        <div style={{ marginBottom: '20px' }}>
+        <div style={{ marginBottom: showVehicleDetails ? '12px' : '20px' }}>
           <label style={labelStyle}>VIN Number</label>
           <input
             style={inputStyle}
@@ -223,8 +221,48 @@ export default function NewOrder() {
             placeholder="Enter 17-character VIN or leave blank"
             maxLength={17}
           />
-          <div style={hintStyle}>Optional. If unknown, we'll request it later.</div>
+          <div style={hintStyle}>Optional. If unknown, enter vehicle details below.</div>
         </div>
+
+        {/* Vehicle details — shown when VIN is not a full 17-char match */}
+        {showVehicleDetails && (
+          <div style={{ marginBottom: '20px' }}>
+            <div style={{ ...hintStyle, marginTop: 0, marginBottom: '8px' }}>
+              Don't have the VIN? Enter vehicle details:
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px' }}>
+              <div>
+                <label style={labelStyle}>Year</label>
+                <input
+                  style={inputStyle}
+                  value={vehicleYear}
+                  onChange={e => setVehicleYear(e.target.value)}
+                  placeholder="e.g. 2022"
+                  maxLength={4}
+                  inputMode="numeric"
+                />
+              </div>
+              <div>
+                <label style={labelStyle}>Make *</label>
+                <input
+                  style={inputStyle}
+                  value={vehicleMake}
+                  onChange={e => setVehicleMake(e.target.value)}
+                  placeholder="e.g. Honda"
+                />
+              </div>
+              <div>
+                <label style={labelStyle}>Model</label>
+                <input
+                  style={inputStyle}
+                  value={vehicleModel}
+                  onChange={e => setVehicleModel(e.target.value)}
+                  placeholder="e.g. CR-V"
+                />
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* ZIP Codes */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '20px' }}>
@@ -249,29 +287,6 @@ export default function NewOrder() {
               placeholder="e.g. 33101"
               inputMode="numeric"
               maxLength={5}
-              required
-            />
-          </div>
-        </div>
-
-        {/* Contact */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '20px' }}>
-          <div>
-            <label style={labelStyle}>Contact Name *</label>
-            <input
-              style={inputStyle}
-              value={contactName}
-              onChange={e => setContactName(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label style={labelStyle}>Phone or Email *</label>
-            <input
-              style={inputStyle}
-              value={contactPhone}
-              onChange={e => setContactPhone(e.target.value)}
-              placeholder="Phone or email"
               required
             />
           </div>
