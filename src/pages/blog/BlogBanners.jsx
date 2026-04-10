@@ -4,7 +4,7 @@ const svgStyle = { width: '100%', height: '100%', display: 'block' };
 
 export function BannerCarrier() {
   return (
-    <svg viewBox="0 0 1200 400" style={svgStyle} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <svg viewBox="0 0 1200 400" style={svgStyle} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
       <defs>
         <linearGradient id="bgC" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#1a1a2e" />
@@ -54,7 +54,7 @@ export function BannerCarrier() {
 
 export function BannerInsurance() {
   return (
-    <svg viewBox="0 0 1200 400" style={svgStyle} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <svg viewBox="0 0 1200 400" style={svgStyle} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
       <defs>
         <linearGradient id="bgI" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#993C1D" />
@@ -110,7 +110,7 @@ export function BannerInsurance() {
 export function BannerFMCSA() {
   const checks = [0, 3, 5, 7, 8, 11, 13, 16, 19, 22];
   return (
-    <svg viewBox="0 0 1200 400" style={svgStyle} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <svg viewBox="0 0 1200 400" style={svgStyle} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
       <defs>
         <linearGradient id="bgF" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#0F6E56" />
@@ -164,7 +164,7 @@ export function BannerFMCSA() {
 
 export function BannerBroker() {
   return (
-    <svg viewBox="0 0 1200 400" style={svgStyle} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <svg viewBox="0 0 1200 400" style={svgStyle} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
       <defs>
         <linearGradient id="bgB" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#3c2878" />
@@ -224,7 +224,7 @@ export function BannerBroker() {
 
 export function BannerDealer() {
   return (
-    <svg viewBox="0 0 1200 400" style={svgStyle} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <svg viewBox="0 0 1200 400" style={svgStyle} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
       <defs>
         <linearGradient id="bgD" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#14648C" />
@@ -292,7 +292,7 @@ export function BannerDealer() {
 
 export function BannerExporter() {
   return (
-    <svg viewBox="0 0 1200 400" style={svgStyle} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <svg viewBox="0 0 1200 400" style={svgStyle} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
       <defs>
         <linearGradient id="bgE" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#8C5020" />

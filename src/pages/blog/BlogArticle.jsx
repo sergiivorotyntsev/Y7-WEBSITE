@@ -84,8 +84,16 @@ export default function BlogArticle() {
       ]} />
 
       {/* Banner */}
-      <div style={{ height: 'clamp(200px, 20vw, 280px)', overflow: 'hidden' }}>
-        {Banner && <Banner />}
+      <div style={{ maxWidth: 980, margin: '0 auto', padding: '0 24px', marginBottom: 32 }}>
+        <div style={{
+          width: '100%',
+          aspectRatio: '1200 / 400',
+          borderRadius: 12,
+          overflow: 'hidden',
+          background: colors.dark,
+        }}>
+          {Banner && <Banner />}
+        </div>
       </div>
 
       {/* Content container */}
