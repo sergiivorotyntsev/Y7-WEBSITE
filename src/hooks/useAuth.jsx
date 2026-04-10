@@ -80,8 +80,10 @@ export async function portalFetch(path, options = {}) {
         window.location.href = detail.classification_url;
         return res;
       }
-      if (errorCode === 'agreement_required' && detail?.agreement_url) {
-        window.location.href = detail.agreement_url;
+      if (errorCode === 'agreement_required') {
+        // Route to dashboard — AccountSetupBanner shows clear CTAs
+        // instead of abruptly landing on agreement page.
+        window.location.href = '/portal/dashboard';
         return res;
       }
       // account_inactive and unrecognised 403s fall through unchanged.

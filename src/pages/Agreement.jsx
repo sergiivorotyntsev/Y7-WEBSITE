@@ -59,6 +59,7 @@ function PendingIcon() {
 
 function BankAuthAgreement({ user }) {
   const navigate = useNavigate();
+  const { checkAuth } = useAuth();
   const [checks, setChecks] = useState([false, false, false, false]);
   const [signerName, setSignerName] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -101,6 +102,7 @@ function BankAuthAgreement({ user }) {
         body: JSON.stringify({ signer_name: signerName.trim() }),
       });
       if (res.ok) {
+        await checkAuth();
         setSuccess(true);
       } else {
         const data = await res.json().catch(() => ({}));
@@ -205,7 +207,7 @@ function BankAuthAgreement({ user }) {
 export default function Agreement() {
   const { orderId } = useParams();
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, checkAuth } = useAuth();
   const agreementNs = user?.customer_type === 'dealer' ? 'agreement_dealer' : 'agreement';
   const { t } = useTranslation(agreementNs);
   const scrollRef = useRef(null);
@@ -336,6 +338,7 @@ export default function Agreement() {
       }
       const result = await apiPost('/api/public/agreement', payload);
       agreementIdRef.current = result.agreement_id;
+      await checkAuth();
       setSuccess(true);
       trackEvent('agreement_sign');
       setTimeout(() => {

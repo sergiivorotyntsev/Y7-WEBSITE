@@ -226,7 +226,7 @@ export default function Dashboard() {
               fontSize: '12px',
               color: colors.textMuted,
             }}>
-              {user.billing_mode === 'monthly' ? 'Monthly billing' : 'Pay per delivery'}
+              {{ per_delivery: 'Pay per delivery', prepay_manual_invoice: 'Prepay (manual invoice)', prepay_auto_debit: 'Prepay (auto debit)', monthly: 'Monthly billing' }[user.billing_mode] || 'Pay per delivery'}
             </span>
           )}
         </div>
