@@ -54,13 +54,16 @@ function StatCard({ value, label, delay }) {
 function BillingSummary() {
   const [billing, setBilling] = useState(null);
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   useEffect(() => {
+    // Only fetch billing if dealer with signed agreement — avoids 403
+    if (!user?.agreement_signed || user?.customer_type !== 'dealer') return;
     portalFetch('/api/portal/billing/summary')
       .then(r => r.ok ? r.json() : null)
       .then(d => setBilling(d))
       .catch(() => {});
-  }, []);
+  }, [user?.agreement_signed, user?.customer_type]);
 
   if (!billing || !billing.is_dealer) return null;
 
