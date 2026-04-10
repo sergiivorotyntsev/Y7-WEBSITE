@@ -105,11 +105,13 @@ export function AuthProvider({ children }) {
           setUser({
             id: data.customer_id,
             name: data.customer_name,
-            // SPRINT-E-T3: default 'unknown' so the dashboard knows
-            // to prompt for classification on first visit. Was 'shipper'
-            // pre-Sprint-E.
             customer_type: data.customer_type || 'unknown',
             billing_mode: data.billing_mode || 'per_delivery',
+            agreement_signed: !!data.agreement_signed,
+            agreement_signed_at: data.agreement_signed_at || null,
+            deposit_balance_cents: data.deposit_balance_cents || 0,
+            bank_auth_signed: !!data.bank_auth_signed,
+            billing_blocked: !!data.billing_blocked,
           });
           return;
         }
