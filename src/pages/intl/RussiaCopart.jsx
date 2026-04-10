@@ -312,10 +312,10 @@ function RussiaCopart() {
         >
           <li>
             <Link
-              to="/"
+              to="/ru"
               style={{ color: '#993C1D', textDecoration: 'none' }}
             >
-              Главная
+              Y7 Logistics
             </Link>
             <span style={{ margin: '0 0.25rem' }}>/</span>
           </li>
