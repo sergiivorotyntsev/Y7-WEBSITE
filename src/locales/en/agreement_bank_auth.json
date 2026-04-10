@@ -1,7 +1,6 @@
 {
   "title": "Bank Authorization Agreement",
-  "version": "v0.1_DRAFT",
-  "draft_warning": "DRAFT \u2014 This agreement is pending legal review. Signing constitutes acceptance of current terms. Y7 will notify dealer of any changes in finalized version.",
+  "version": "v1.0",
   "intro": "This Bank Authorization Agreement (\u201cAgreement\u201d) is entered into between Y7 Consulting Inc. d/b/a Y7 Logistics (\u201cY7\u201d) and the undersigned dealer (\u201cDealer\u201d) for the purpose of authorizing Y7 to bill Dealer for weekly carrier payment deposits.",
   "sections": [
     {

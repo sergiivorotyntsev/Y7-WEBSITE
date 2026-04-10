@@ -121,16 +121,7 @@ function BankAuthAgreement({ user }) {
         {tpl.title}
       </h1>
 
-      {tpl.draft_warning && (
-        <div style={{
-          fontFamily: fonts.sans, fontSize: '13px', color: '#5C3A00',
-          background: '#FFF6D6', border: '1px solid #E6C75C', borderLeft: '4px solid #C99A1F',
-          borderRadius: '8px', padding: '14px 18px', marginBottom: '20px', lineHeight: 1.6,
-        }}>
-          <div style={{ fontWeight: 700, marginBottom: '4px' }}>DRAFT — Pending Attorney Review</div>
-          <div>{tpl.draft_warning}</div>
-        </div>
-      )}
+
 
       {error && (
         <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.accent, padding: '12px 16px', background: '#FFF0EC', borderRadius: '8px', marginBottom: '20px' }}>
@@ -451,34 +442,6 @@ export default function Agreement() {
           marginBottom: '20px',
         }}>
           {error}
-        </div>
-      )}
-
-      {/* DRAFT banner — shown only when the active template is unfinalised
-          legal text. Uses warning yellow so it is hard to miss but does not
-          read as an error state. The banner text comes from the backend so
-          legal can revise wording without a frontend deploy. */}
-      {template?.is_draft && template?.draft_warning && (
-        <div
-          role="alert"
-          aria-label="Draft agreement notice"
-          style={{
-            fontFamily: fonts.sans,
-            fontSize: '13px',
-            color: '#5C3A00',
-            background: '#FFF6D6',
-            border: '1px solid #E6C75C',
-            borderLeft: '4px solid #C99A1F',
-            borderRadius: '8px',
-            padding: '14px 18px',
-            marginBottom: '20px',
-            lineHeight: 1.6,
-          }}
-        >
-          <div style={{ fontWeight: 700, marginBottom: '4px' }}>
-            DRAFT — Pending Attorney Review
-          </div>
-          <div>{template.draft_warning}</div>
         </div>
       )}
 
