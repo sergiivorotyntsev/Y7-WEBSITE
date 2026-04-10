@@ -10,6 +10,11 @@
     "about": "O nas",
     "contact": "Kontakt"
   },
+  "auth": {
+    "myAccount": "Moje konto",
+    "logIn": "Zaloguj się",
+    "logOut": "Wyloguj"
+  },
   "cta": {
     "getQuote": "Zapytaj o wycenę",
     "submit": "Wyślij",
@@ -29,7 +34,46 @@
     "copyright": "2026 Y7 Consulting Inc. Wszelkie prawa zastrzeżone.",
     "navigation": "Nawigacja",
     "legal": "Informacje prawne",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "popularServices": "Popularne usługi",
+    "guides": "Poradniki",
+    "portDelivery": "Dostawa do portów",
+    "popularRoutes": "Popularne trasy",
+    "telegramBot": "Bot Telegram",
+    "location": "Newton, MA, USA",
+    "internationalShipping": "Transport międzynarodowy:",
+    "daytonaCargoDesc": "firma partnerska specjalizująca się w eksporcie aut z USA do Europy (Polska, Holandia, UE)",
+    "serviceLinks": {
+      "carShippingCost": "Koszt transportu auta",
+      "enclosedCarShipping": "Transport zamknięty",
+      "auctionCarShipping": "Transport z aukcji",
+      "copartShipping": "Transport z Copart",
+      "doorToPort": "Transport door-to-port",
+      "dealerAutoTransport": "Transport dla dealerów",
+      "stateToState": "Transport międzystanowy",
+      "teslaShipping": "Transport Tesli",
+      "evTransport": "Transport aut elektrycznych"
+    },
+    "guideLinks": {
+      "auctionGuide": "Jak wysłać auto z aukcji",
+      "openVsEnclosed": "Transport otwarty vs zamknięty",
+      "billOfLading": "Czym jest list przewozowy?"
+    },
+    "portLinks": {
+      "newark": "Port Newark, NJ",
+      "houston": "Port Houston, TX",
+      "savannah": "Port Savannah, GA",
+      "losAngeles": "Port Los Angeles, CA",
+      "baltimore": "Port Baltimore, MD",
+      "jacksonville": "JAXPORT, FL"
+    },
+    "routeLinks": {
+      "maToFl": "MA do FL",
+      "njToFl": "NJ do FL",
+      "txToNewark": "TX do Port Newark",
+      "chicagoToNewark": "Chicago do Port Newark",
+      "auctionToPort": "Aukcja do portu"
+    }
   },
   "lang": {
     "en": "EN",

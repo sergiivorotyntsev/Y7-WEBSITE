@@ -10,6 +10,11 @@
     "about": "О нас",
     "contact": "Контакты"
   },
+  "auth": {
+    "myAccount": "Мой кабинет",
+    "logIn": "Войти",
+    "logOut": "Выйти"
+  },
   "cta": {
     "getQuote": "Получить расчёт",
     "submit": "Отправить",
@@ -29,7 +34,46 @@
     "copyright": "2026 Y7 Consulting Inc. Все права защищены.",
     "navigation": "Навигация",
     "legal": "Юридическая информация",
-    "contact": "Контакты"
+    "contact": "Контакты",
+    "popularServices": "Популярные услуги",
+    "guides": "Руководства",
+    "portDelivery": "Доставка в порты",
+    "popularRoutes": "Популярные маршруты",
+    "telegramBot": "Telegram-бот",
+    "location": "Newton, MA, USA",
+    "internationalShipping": "Международная доставка:",
+    "daytonaCargoDesc": "компания-партнёр, специализирующаяся на экспорте авто из США в Европу (Польша, Нидерланды, ЕС)",
+    "serviceLinks": {
+      "carShippingCost": "Стоимость перевозки",
+      "enclosedCarShipping": "Закрытый транспорт",
+      "auctionCarShipping": "Доставка с аукционов",
+      "copartShipping": "Доставка с Copart",
+      "doorToPort": "Доставка до порта",
+      "dealerAutoTransport": "Транспорт для дилеров",
+      "stateToState": "Перевозка между штатами",
+      "teslaShipping": "Перевозка Tesla",
+      "evTransport": "Перевозка электромобилей"
+    },
+    "guideLinks": {
+      "auctionGuide": "Как отправить авто с аукциона",
+      "openVsEnclosed": "Открытый vs закрытый транспорт",
+      "billOfLading": "Что такое коносамент?"
+    },
+    "portLinks": {
+      "newark": "Порт Ньюарк, NJ",
+      "houston": "Порт Хьюстон, TX",
+      "savannah": "Порт Саванна, GA",
+      "losAngeles": "Порт Лос-Анджелес, CA",
+      "baltimore": "Порт Балтимор, MD",
+      "jacksonville": "JAXPORT, FL"
+    },
+    "routeLinks": {
+      "maToFl": "MA — FL",
+      "njToFl": "NJ — FL",
+      "txToNewark": "TX — Порт Ньюарк",
+      "chicagoToNewark": "Чикаго — Порт Ньюарк",
+      "auctionToPort": "Аукцион — порт"
+    }
   },
   "lang": {
     "en": "EN",

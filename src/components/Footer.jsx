@@ -97,18 +97,18 @@ export default function Footer() {
             letterSpacing: '1px',
             marginBottom: '16px',
           }}>
-            Popular Services
+            {t('footer.popularServices')}
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            <Link to="/car-shipping-cost" style={linkStyle}>Car Shipping Cost</Link>
-            <Link to="/enclosed-car-shipping" style={linkStyle}>Enclosed Car Shipping</Link>
-            <Link to="/auction-car-shipping" style={linkStyle}>Auction Car Shipping</Link>
-            <Link to="/copart-shipping" style={linkStyle}>Copart Shipping</Link>
-            <Link to="/door-to-port-auto-transport" style={linkStyle}>Door-to-Port Transport</Link>
-            <Link to="/dealer-auto-transport" style={linkStyle}>Dealer Auto Transport</Link>
-            <Link to="/state-to-state-car-shipping" style={linkStyle}>State-to-State Shipping</Link>
-            <Link to="/tesla-car-shipping" style={linkStyle}>Tesla Shipping</Link>
-            <Link to="/ev-auto-transport" style={linkStyle}>Electric Vehicle Transport</Link>
+            <Link to="/car-shipping-cost" style={linkStyle}>{t('footer.serviceLinks.carShippingCost')}</Link>
+            <Link to="/enclosed-car-shipping" style={linkStyle}>{t('footer.serviceLinks.enclosedCarShipping')}</Link>
+            <Link to="/auction-car-shipping" style={linkStyle}>{t('footer.serviceLinks.auctionCarShipping')}</Link>
+            <Link to="/copart-shipping" style={linkStyle}>{t('footer.serviceLinks.copartShipping')}</Link>
+            <Link to="/door-to-port-auto-transport" style={linkStyle}>{t('footer.serviceLinks.doorToPort')}</Link>
+            <Link to="/dealer-auto-transport" style={linkStyle}>{t('footer.serviceLinks.dealerAutoTransport')}</Link>
+            <Link to="/state-to-state-car-shipping" style={linkStyle}>{t('footer.serviceLinks.stateToState')}</Link>
+            <Link to="/tesla-car-shipping" style={linkStyle}>{t('footer.serviceLinks.teslaShipping')}</Link>
+            <Link to="/ev-auto-transport" style={linkStyle}>{t('footer.serviceLinks.evTransport')}</Link>
           </div>
         </div>
 
@@ -123,12 +123,12 @@ export default function Footer() {
             letterSpacing: '1px',
             marginBottom: '16px',
           }}>
-            Guides
+            {t('footer.guides')}
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            <Link to="/how-to-ship-a-car-bought-at-auction" style={linkStyle}>Auction Car Shipping Guide</Link>
-            <Link to="/open-vs-enclosed-auto-transport" style={linkStyle}>Open vs Enclosed Transport</Link>
-            <Link to="/what-is-a-bill-of-lading" style={linkStyle}>What Is a Bill of Lading?</Link>
+            <Link to="/how-to-ship-a-car-bought-at-auction" style={linkStyle}>{t('footer.guideLinks.auctionGuide')}</Link>
+            <Link to="/open-vs-enclosed-auto-transport" style={linkStyle}>{t('footer.guideLinks.openVsEnclosed')}</Link>
+            <Link to="/what-is-a-bill-of-lading" style={linkStyle}>{t('footer.guideLinks.billOfLading')}</Link>
           </div>
         </div>
 
@@ -143,15 +143,15 @@ export default function Footer() {
             letterSpacing: '1px',
             marginBottom: '16px',
           }}>
-            Port Delivery
+            {t('footer.portDelivery')}
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            <Link to="/ports/newark" style={linkStyle}>Port Newark, NJ</Link>
-            <Link to="/ports/houston" style={linkStyle}>Port of Houston, TX</Link>
-            <Link to="/ports/savannah" style={linkStyle}>Port of Savannah, GA</Link>
-            <Link to="/ports/los-angeles" style={linkStyle}>Port of Los Angeles, CA</Link>
-            <Link to="/ports/baltimore" style={linkStyle}>Port of Baltimore, MD</Link>
-            <Link to="/ports/jacksonville" style={linkStyle}>JAXPORT, FL</Link>
+            <Link to="/ports/newark" style={linkStyle}>{t('footer.portLinks.newark')}</Link>
+            <Link to="/ports/houston" style={linkStyle}>{t('footer.portLinks.houston')}</Link>
+            <Link to="/ports/savannah" style={linkStyle}>{t('footer.portLinks.savannah')}</Link>
+            <Link to="/ports/los-angeles" style={linkStyle}>{t('footer.portLinks.losAngeles')}</Link>
+            <Link to="/ports/baltimore" style={linkStyle}>{t('footer.portLinks.baltimore')}</Link>
+            <Link to="/ports/jacksonville" style={linkStyle}>{t('footer.portLinks.jacksonville')}</Link>
           </div>
         </div>
 
@@ -166,14 +166,14 @@ export default function Footer() {
             letterSpacing: '1px',
             marginBottom: '16px',
           }}>
-            Popular Routes
+            {t('footer.popularRoutes')}
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            <Link to="/massachusetts-to-florida-car-shipping" style={linkStyle}>MA to FL</Link>
-            <Link to="/new-jersey-to-florida-car-shipping" style={linkStyle}>NJ to FL</Link>
-            <Link to="/texas-to-newark-port-auto-transport" style={linkStyle}>TX to Port Newark</Link>
-            <Link to="/chicago-to-port-newark-car-shipping" style={linkStyle}>Chicago to Port Newark</Link>
-            <Link to="/auction-to-port-transport" style={linkStyle}>Auction to Port</Link>
+            <Link to="/massachusetts-to-florida-car-shipping" style={linkStyle}>{t('footer.routeLinks.maToFl')}</Link>
+            <Link to="/new-jersey-to-florida-car-shipping" style={linkStyle}>{t('footer.routeLinks.njToFl')}</Link>
+            <Link to="/texas-to-newark-port-auto-transport" style={linkStyle}>{t('footer.routeLinks.txToNewark')}</Link>
+            <Link to="/chicago-to-port-newark-car-shipping" style={linkStyle}>{t('footer.routeLinks.chicagoToNewark')}</Link>
+            <Link to="/auction-to-port-transport" style={linkStyle}>{t('footer.routeLinks.auctionToPort')}</Link>
           </div>
         </div>
 
@@ -213,8 +213,8 @@ export default function Footer() {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             <a href="mailto:info@y7agency.com" style={linkStyle} onClick={() => trackEvent('email_cta_click', { location: 'footer' })}>info@y7agency.com</a>
-            <a href="https://t.me/y7dispatch_bot" target="_blank" rel="noopener noreferrer" style={linkStyle} onClick={() => trackEvent('telegram_cta_click', { location: 'footer' })}>Telegram Bot</a>
-            <span style={linkStyle}>Newton, MA, USA</span>
+            <a href="https://t.me/y7dispatch_bot" target="_blank" rel="noopener noreferrer" style={linkStyle} onClick={() => trackEvent('telegram_cta_click', { location: 'footer' })}>{t('footer.telegramBot')}</a>
+            <span style={linkStyle}>{t('footer.location')}</span>
           </div>
         </div>
       </div>
@@ -241,7 +241,7 @@ export default function Footer() {
         fontSize: '13px',
         color: colors.textMuted,
       }}>
-        <strong>International shipping:</strong>{' '}
+        <strong>{t('footer.internationalShipping')}</strong>{' '}
         <a
           href="https://daytonacargo.com"
           target="_blank"
@@ -250,7 +250,7 @@ export default function Footer() {
         >
           DaytonaCargo
         </a>
-        {' '}&mdash; sister company specializing in USA&rarr;Europe car export (Poland, Netherlands, EU)
+        {' '}&mdash; {t('footer.daytonaCargoDesc')}
       </div>
     </footer>
   );

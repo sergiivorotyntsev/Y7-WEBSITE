@@ -10,6 +10,11 @@
     "about": "About",
     "contact": "Contact"
   },
+  "auth": {
+    "myAccount": "My Account",
+    "logIn": "Log in",
+    "logOut": "Log out"
+  },
   "cta": {
     "getQuote": "Get a Quote",
     "submit": "Submit",
@@ -29,7 +34,46 @@
     "copyright": "2026 Y7 Consulting Inc. All rights reserved.",
     "navigation": "Navigation",
     "legal": "Legal",
-    "contact": "Contact"
+    "contact": "Contact",
+    "popularServices": "Popular Services",
+    "guides": "Guides",
+    "portDelivery": "Port Delivery",
+    "popularRoutes": "Popular Routes",
+    "telegramBot": "Telegram Bot",
+    "location": "Newton, MA, USA",
+    "internationalShipping": "International shipping:",
+    "daytonaCargoDesc": "sister company specializing in USA\u2192Europe car export (Poland, Netherlands, EU)",
+    "serviceLinks": {
+      "carShippingCost": "Car Shipping Cost",
+      "enclosedCarShipping": "Enclosed Car Shipping",
+      "auctionCarShipping": "Auction Car Shipping",
+      "copartShipping": "Copart Shipping",
+      "doorToPort": "Door-to-Port Transport",
+      "dealerAutoTransport": "Dealer Auto Transport",
+      "stateToState": "State-to-State Shipping",
+      "teslaShipping": "Tesla Shipping",
+      "evTransport": "Electric Vehicle Transport"
+    },
+    "guideLinks": {
+      "auctionGuide": "Auction Car Shipping Guide",
+      "openVsEnclosed": "Open vs Enclosed Transport",
+      "billOfLading": "What Is a Bill of Lading?"
+    },
+    "portLinks": {
+      "newark": "Port Newark, NJ",
+      "houston": "Port of Houston, TX",
+      "savannah": "Port of Savannah, GA",
+      "losAngeles": "Port of Los Angeles, CA",
+      "baltimore": "Port of Baltimore, MD",
+      "jacksonville": "JAXPORT, FL"
+    },
+    "routeLinks": {
+      "maToFl": "MA to FL",
+      "njToFl": "NJ to FL",
+      "txToNewark": "TX to Port Newark",
+      "chicagoToNewark": "Chicago to Port Newark",
+      "auctionToPort": "Auction to Port"
+    }
   },
   "lang": {
     "en": "EN",

@@ -120,13 +120,13 @@ export default function Header() {
                 color: colors.accent,
                 whiteSpace: 'nowrap',
               }}>
-                {user.name?.split(' ')[0] || 'My Account'}
+                {user.name?.split(' ')[0] || t('auth.myAccount')}
               </Link>
               <button
                 onClick={async () => { await logout(); navigate('/'); }}
                 style={{ ...button.secondary, padding: '6px 14px', fontSize: '10px' }}
               >
-                Log out
+                {t('auth.logOut')}
               </button>
             </div>
           ) : (
@@ -135,7 +135,7 @@ export default function Header() {
                 onClick={() => navigate('/portal/login')}
                 style={{ ...button.secondary, padding: '6px 14px', fontSize: '10px' }}
               >
-                Log in
+                {t('auth.logIn')}
               </button>
               <button
                 onClick={handleQuoteClick}
