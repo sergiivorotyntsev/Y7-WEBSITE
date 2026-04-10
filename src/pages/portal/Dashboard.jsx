@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
 import { ClipboardIcon, MapPinIcon, ProfileIcon, TelegramIcon, EmailIcon } from '../../components/icons';
 import AccountTypeModal from '../../components/AccountTypeModal';
+import AccountSetupBanner from '../../components/AccountSetupBanner';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles, keyframes } from '../../theme';
 import { STATUS_COLORS, getStatusBadge } from '../../utils/orderStatus';
@@ -236,6 +237,8 @@ export default function Dashboard() {
           {getNewOrderLabel()}
         </button>
       </div>
+
+      <AccountSetupBanner />
 
       {/* Stat cards */}
       <div style={{

@@ -1,0 +1,130 @@
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
+import { colors, fonts } from '../theme';
+
+export default function AccountSetupBanner() {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  if (!user) return null;
+
+  const items = [];
+
+  if (!user.customer_type || user.customer_type === 'unknown') {
+    items.push({
+      id: 'classify',
+      title: 'Complete Account Classification',
+      description: 'Tell us about your business to get started.',
+      action: () => navigate('/portal/dashboard?classify=1'),
+      actionLabel: 'Classify Now',
+    });
+  }
+
+  if (user.customer_type && user.customer_type !== 'unknown' && !user.agreement_signed) {
+    const typeLabel = {
+      dealer: 'Dealer Transport Agreement',
+      individual: 'Transport Service Agreement',
+      auction_buyer: 'Transport Service Agreement',
+      exporter: 'Exporter Transport Agreement',
+    }[user.customer_type] || 'Transport Service Agreement';
+
+    items.push({
+      id: 'agreement',
+      title: `Sign ${typeLabel}`,
+      description: 'Required to create transport orders.',
+      action: () => {
+        const t = user.customer_type === 'dealer' ? 'dealer' : 'shipper';
+        navigate(`/agreement?customer_id=${user.id}&type=${t}`);
+      },
+      actionLabel: 'Sign Now',
+    });
+  }
+
+  if (
+    user.customer_type === 'dealer' &&
+    user.billing_mode === 'prepay_manual_invoice' &&
+    !user.bank_auth_signed
+  ) {
+    items.push({
+      id: 'bank_auth',
+      title: 'Sign Bank Authorization Agreement',
+      description: 'Required for prepay billing. Allows Y7 to issue weekly deposit invoices.',
+      action: () => navigate(`/agreement?customer_id=${user.id}&type=bank_auth`),
+      actionLabel: 'Sign Now',
+    });
+  }
+
+  if (items.length === 0) return null;
+
+  return (
+    <div style={{
+      background: '#FFF8F0',
+      border: `2px solid ${colors.accent}`,
+      borderRadius: '12px',
+      padding: '24px',
+      marginBottom: '24px',
+    }}>
+      <h2 style={{
+        margin: '0 0 8px',
+        fontSize: '18px',
+        fontWeight: 700,
+        color: colors.accent,
+        fontFamily: fonts.serif,
+      }}>
+        Account Setup Incomplete
+      </h2>
+      <p style={{
+        margin: '0 0 20px',
+        fontSize: '13px',
+        color: colors.textMuted,
+        fontFamily: fonts.sans,
+      }}>
+        Complete the following {items.length === 1 ? 'step' : 'steps'} to activate your account:
+      </p>
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        {items.map(item => (
+          <div key={item.id} style={{
+            background: colors.bgCard,
+            borderRadius: '8px',
+            padding: '16px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '12px',
+            border: `1px solid ${colors.border}`,
+          }}>
+            <div style={{ flex: 1, minWidth: '200px' }}>
+              <div style={{ fontFamily: fonts.sans, fontWeight: 600, fontSize: '14px', color: colors.text, marginBottom: '4px' }}>
+                {item.title}
+              </div>
+              <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted }}>
+                {item.description}
+              </div>
+            </div>
+            <button
+              onClick={item.action}
+              style={{
+                background: colors.accent,
+                color: '#fff',
+                border: 'none',
+                padding: '10px 20px',
+                borderRadius: '20px',
+                fontSize: '12px',
+                fontWeight: 600,
+                fontFamily: fonts.sans,
+                letterSpacing: '0.5px',
+                textTransform: 'uppercase',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {item.actionLabel}
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
