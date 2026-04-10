@@ -12,7 +12,7 @@ import HreflangTags from '../../components/HreflangTags';
 // - Y7 HAS Russian-speaking team members
 // - DO NOT mention Russia as a destination (sanctions compliance)
 // - Mention DaytonaCargo only as "international shipping" without specifying country
-// - All visible text is PLACEHOLDER — replace with real copy before launch
+// - Content translated from PLACEHOLDERs — Audit-T1D
 // =============================================================================
 
 // ---------------------------------------------------------------------------
@@ -24,42 +24,42 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'PLACEHOLDER_FAQ_Q1',
+      name: 'Какая информация нужна для заказа перевозки?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'PLACEHOLDER_FAQ_A1',
+        text: 'Для расчёта и оформления заказа нам нужны: адрес забора и доставки (ZIP-код или город), марка, модель и год выпуска автомобиля, состояние (на ходу или нет), желаемые сроки и тип транспорта (открытый или закрытый).',
       },
     },
     {
       '@type': 'Question',
-      name: 'PLACEHOLDER_FAQ_Q2',
+      name: 'Как быстро можно забрать автомобиль?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'PLACEHOLDER_FAQ_A2',
+        text: 'Стандартный срок подачи перевозчика — 1–5 дней после подтверждения заказа. При срочной необходимости возможен экспресс-забор за 24–48 часов (доплата зависит от маршрута).',
       },
     },
     {
       '@type': 'Question',
-      name: 'PLACEHOLDER_FAQ_Q3',
+      name: 'Нужно ли присутствовать при погрузке и выгрузке?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'PLACEHOLDER_FAQ_A3',
+        text: 'Желательно, но не обязательно. Вы можете назначить доверенное лицо. При передаче составляется Bill of Lading с фиксацией состояния автомобиля — это ваша защита.',
       },
     },
     {
       '@type': 'Question',
-      name: 'PLACEHOLDER_FAQ_Q4',
+      name: 'Какие способы оплаты принимаются?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'PLACEHOLDER_FAQ_A4',
+        text: 'Оплата банковским переводом, Zelle, кредитной/дебетовой картой. Предоплата или оплата при доставке (COD) — зависит от маршрута и суммы заказа.',
       },
     },
     {
       '@type': 'Question',
-      name: 'PLACEHOLDER_FAQ_Q5',
+      name: 'Что делать, если автомобиль повреждён в пути?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'PLACEHOLDER_FAQ_A5',
+        text: 'При получении сверьте состояние автомобиля с Bill of Lading. Если обнаружены новые повреждения — зафиксируйте их на BOL и сфотографируйте. Все наши перевозчики застрахованы, претензия подаётся через страховую компанию перевозчика.',
       },
     },
   ],
@@ -75,19 +75,19 @@ const breadcrumbSchema = {
     {
       '@type': 'ListItem',
       position: 1,
-      name: 'PLACEHOLDER_BREADCRUMB_HOME',
+      name: 'Главная',
       item: 'https://www.y7agency.com/',
     },
     {
       '@type': 'ListItem',
       position: 2,
-      name: 'PLACEHOLDER_BREADCRUMB_RU',
+      name: 'Русский',
       item: 'https://www.y7agency.com/ru',
     },
     {
       '@type': 'ListItem',
       position: 3,
-      name: 'PLACEHOLDER_BREADCRUMB_SHIP',
+      name: 'Заказать перевозку',
       item: 'https://www.y7agency.com/ru/ship-my-car',
     },
   ],
@@ -97,33 +97,30 @@ const breadcrumbSchema = {
 // Data arrays
 // ---------------------------------------------------------------------------
 
-// TODO-RU: Replace with real checklist items
 const CHECKLIST = [
-  { label: 'PLACEHOLDER_CHECK_1_LABEL', detail: 'PLACEHOLDER_CHECK_1_DETAIL' },
-  { label: 'PLACEHOLDER_CHECK_2_LABEL', detail: 'PLACEHOLDER_CHECK_2_DETAIL' },
-  { label: 'PLACEHOLDER_CHECK_3_LABEL', detail: 'PLACEHOLDER_CHECK_3_DETAIL' },
-  { label: 'PLACEHOLDER_CHECK_4_LABEL', detail: 'PLACEHOLDER_CHECK_4_DETAIL' },
-  { label: 'PLACEHOLDER_CHECK_5_LABEL', detail: 'PLACEHOLDER_CHECK_5_DETAIL' },
-  { label: 'PLACEHOLDER_CHECK_6_LABEL', detail: 'PLACEHOLDER_CHECK_6_DETAIL' },
+  { label: 'Адреса забора и доставки', detail: 'Точный адрес или ZIP-код точки отправления и назначения. Для аукционов — номер площадки и номер лота.' },
+  { label: 'Данные автомобиля', detail: 'Марка, модель, год выпуска. Если есть VIN — укажите его для точной идентификации.' },
+  { label: 'Состояние автомобиля', detail: 'На ходу (operable) или нет (inoperable). Для неходовых авто требуется лебёдка, что влияет на стоимость.' },
+  { label: 'Тип транспорта', detail: 'Открытый автовоз (стандарт, дешевле) или закрытый (enclosed, +40–60% к стоимости). Закрытый рекомендуется для премиальных авто.' },
+  { label: 'Желаемые сроки', detail: 'Когда автомобиль готов к забору и когда нужна доставка. Чем гибче сроки, тем лучше цена.' },
+  { label: 'Контактные данные', detail: 'Имя и контакт лица, присутствующего при погрузке и выгрузке. Может быть другой человек.' },
 ];
 
-// TODO-RU: Replace with real workflow steps
 const WORKFLOW_STEPS = [
-  { num: 1, title: 'PLACEHOLDER_WORKFLOW_1_TITLE', desc: 'PLACEHOLDER_WORKFLOW_1_DESC' },
-  { num: 2, title: 'PLACEHOLDER_WORKFLOW_2_TITLE', desc: 'PLACEHOLDER_WORKFLOW_2_DESC' },
-  { num: 3, title: 'PLACEHOLDER_WORKFLOW_3_TITLE', desc: 'PLACEHOLDER_WORKFLOW_3_DESC' },
-  { num: 4, title: 'PLACEHOLDER_WORKFLOW_4_TITLE', desc: 'PLACEHOLDER_WORKFLOW_4_DESC' },
-  { num: 5, title: 'PLACEHOLDER_WORKFLOW_5_TITLE', desc: 'PLACEHOLDER_WORKFLOW_5_DESC' },
-  { num: 6, title: 'PLACEHOLDER_WORKFLOW_6_TITLE', desc: 'PLACEHOLDER_WORKFLOW_6_DESC' },
+  { num: 1, title: 'Отправьте запрос', desc: 'Напишите в Telegram @y7dispatch_bot или на info@y7agency.com. Укажите маршрут, автомобиль и желаемые сроки.' },
+  { num: 2, title: 'Получите расчёт', desc: 'Мы рассчитаем стоимость на основе данных Central Dispatch за несколько минут. Цена фиксируется при подтверждении.' },
+  { num: 3, title: 'Подтвердите заказ', desc: 'Согласуйте условия и подпишите договор-заказ (Broker-Shipper Agreement). Оплата — переводом, Zelle или картой.' },
+  { num: 4, title: 'Ожидайте перевозчика', desc: 'Мы подбираем перевозчика из нашей сети. Стандартный срок подачи — 1–5 дней. Вы получаете данные водителя заранее.' },
+  { num: 5, title: 'Передайте автомобиль', desc: 'Перевозчик осматривает авто, составляет Bill of Lading и производит погрузку. Фотофиксация состояния.' },
+  { num: 6, title: 'Получите доставку', desc: 'При получении сверьте состояние с BOL, подпишите документы. Автомобиль доставлен.' },
 ];
 
-// TODO-RU: Replace with real FAQ content
 const FAQS = [
-  { q: 'PLACEHOLDER_FAQ_Q1', a: 'PLACEHOLDER_FAQ_A1' },
-  { q: 'PLACEHOLDER_FAQ_Q2', a: 'PLACEHOLDER_FAQ_A2' },
-  { q: 'PLACEHOLDER_FAQ_Q3', a: 'PLACEHOLDER_FAQ_A3' },
-  { q: 'PLACEHOLDER_FAQ_Q4', a: 'PLACEHOLDER_FAQ_A4' },
-  { q: 'PLACEHOLDER_FAQ_Q5', a: 'PLACEHOLDER_FAQ_A5' },
+  { q: 'Какая информация нужна для заказа?', a: 'Адреса забора и доставки (ZIP-код), марка/модель/год автомобиля, состояние (на ходу или нет), желаемые сроки и тип транспорта (открытый или закрытый).' },
+  { q: 'Как быстро можно забрать авто?', a: 'Стандартно — 1–5 дней после подтверждения. Экспресс-забор за 24–48 часов возможен за доплату.' },
+  { q: 'Нужно ли присутствовать при погрузке?', a: 'Желательно, но не обязательно. Можно назначить доверенное лицо. При передаче составляется Bill of Lading.' },
+  { q: 'Какие способы оплаты?', a: 'Банковский перевод, Zelle, кредитная/дебетовая карта. Предоплата или оплата при доставке — зависит от маршрута.' },
+  { q: 'Что если авто повредили в пути?', a: 'Зафиксируйте новые повреждения на Bill of Lading при получении и сфотографируйте. Претензия подаётся через страховую перевозчика. Все наши перевозчики застрахованы.' },
 ];
 
 // ---------------------------------------------------------------------------
@@ -201,13 +198,12 @@ function RussiaShipMyCar() {
       {/* Head / SEO                                                        */}
       {/* ----------------------------------------------------------------- */}
       <Helmet>
-        {/* TODO-RU: Replace PLACEHOLDER meta with real Russian copy */}
         <html lang="ru" />
-        <title>PLACEHOLDER_META_TITLE</title>
-        <meta name="description" content="PLACEHOLDER_META_DESCRIPTION" />
+        <title>Заказать перевозку автомобиля по США — Y7 Logistics | Расчёт за минуты</title>
+        <meta name="description" content="Закажите перевозку автомобиля по США: от аукциона до двери, между городами, до порта. Расчёт за минуты, фиксированная цена, застрахованные перевозчики. Брокер FMCSA MC #1741537." />
         <link rel="canonical" href="https://www.y7agency.com/ru/ship-my-car" />
-        <meta property="og:title" content="PLACEHOLDER_OG_TITLE" />
-        <meta property="og:description" content="PLACEHOLDER_OG_DESCRIPTION" />
+        <meta property="og:title" content="Заказать перевозку автомобиля — Y7 Logistics" />
+        <meta property="og:description" content="Расчёт стоимости за минуты. Фиксированная цена, все 50 штатов. MC #1741537." />
         <meta property="og:url" content="https://www.y7agency.com/ru/ship-my-car" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="ru" />
@@ -226,9 +222,8 @@ function RussiaShipMyCar() {
       {/* SECTION 1 — Hero (short)                                          */}
       {/* ================================================================= */}
       <section style={styles.section}>
-        {/* TODO-RU: Replace hero heading and lead (~80 words) */}
         <h1 style={styles.h1}>
-          PLACEHOLDER_H1
+          Заказать перевозку автомобиля по США
         </h1>
         <p
           style={{
@@ -237,12 +232,10 @@ function RussiaShipMyCar() {
             maxWidth: '720px',
           }}
         >
-          PLACEHOLDER_LEAD_PARAGRAPH_LINE_1
-          PLACEHOLDER_LEAD_PARAGRAPH_LINE_2
-          PLACEHOLDER_LEAD_PARAGRAPH_LINE_3
-          PLACEHOLDER_LEAD_PARAGRAPH_LINE_4
-          PLACEHOLDER_LEAD_PARAGRAPH_LINE_5
-          PLACEHOLDER_LEAD_PARAGRAPH_LINE_6
+          Готовы отправить автомобиль? Ниже — всё, что нужно знать перед оформлением
+          заказа: какую информацию подготовить, как проходит процесс и что ожидать
+          на каждом этапе. Расчёт стоимости — за несколько минут через Telegram
+          @y7dispatch_bot или по email info@y7agency.com.
         </p>
       </section>
 
@@ -255,8 +248,7 @@ function RussiaShipMyCar() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
-        {/* TODO-RU: Replace heading */}
-        <h2 style={styles.h2}>PLACEHOLDER_CHECKLIST_H2</h2>
+        <h2 style={styles.h2}>Что подготовить перед заказом</h2>
 
         <div style={{ display: 'grid', gap: '1rem' }}>
           {CHECKLIST.map((item, i) => (
@@ -318,8 +310,7 @@ function RussiaShipMyCar() {
       {/* SECTION 3 — Ordering workflow                                     */}
       {/* ================================================================= */}
       <section style={styles.section}>
-        {/* TODO-RU: Replace heading */}
-        <h2 style={styles.h2}>PLACEHOLDER_WORKFLOW_H2</h2>
+        <h2 style={styles.h2}>Как оформить заказ</h2>
 
         <ol
           style={{
@@ -388,10 +379,10 @@ function RussiaShipMyCar() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
-        {/* TODO-RU: Replace heading and reasons */}
-        <h2 style={styles.h2}>PLACEHOLDER_WHY_Y7_H2</h2>
+        <h2 style={styles.h2}>Почему Y7 Logistics</h2>
         <p style={{ ...styles.paragraph, marginBottom: '2rem' }}>
-          PLACEHOLDER_WHY_Y7_INTRO
+          Лицензированный брокер FMCSA с опытом более 10 лет. Русскоязычная команда,
+          круглосуточная диспетчерская, прозрачное ценообразование.
         </p>
 
         <div
@@ -409,7 +400,7 @@ function RussiaShipMyCar() {
                 marginBottom: '0.5rem',
               }}
             >
-              PLACEHOLDER_WHY_1_ICON
+              🛡️
             </p>
             <h3
               style={{
@@ -420,10 +411,11 @@ function RussiaShipMyCar() {
                 color: '#2C2C2A',
               }}
             >
-              PLACEHOLDER_WHY_1_TITLE
+              Лицензия и страховка
             </h3>
             <p style={{ ...styles.paragraph, fontSize: '0.9rem' }}>
-              PLACEHOLDER_WHY_1_DESC
+              MC #1741537, USDOT #4427359. Все перевозчики в нашей сети застрахованы.
+              Проверьте нас в базе FMCSA.
             </p>
           </div>
 
@@ -435,7 +427,7 @@ function RussiaShipMyCar() {
                 marginBottom: '0.5rem',
               }}
             >
-              PLACEHOLDER_WHY_2_ICON
+              ⚡
             </p>
             <h3
               style={{
@@ -446,10 +438,11 @@ function RussiaShipMyCar() {
                 color: '#2C2C2A',
               }}
             >
-              PLACEHOLDER_WHY_2_TITLE
+              Быстрый расчёт
             </h3>
             <p style={{ ...styles.paragraph, fontSize: '0.9rem' }}>
-              PLACEHOLDER_WHY_2_DESC
+              Стоимость и сроки — за несколько минут. Цена фиксируется при бронировании,
+              без скрытых доплат.
             </p>
           </div>
 
@@ -461,7 +454,7 @@ function RussiaShipMyCar() {
                 marginBottom: '0.5rem',
               }}
             >
-              PLACEHOLDER_WHY_3_ICON
+              🇷🇺
             </p>
             <h3
               style={{
@@ -472,10 +465,10 @@ function RussiaShipMyCar() {
                 color: '#2C2C2A',
               }}
             >
-              PLACEHOLDER_WHY_3_TITLE
+              Русскоязычная поддержка
             </h3>
             <p style={{ ...styles.paragraph, fontSize: '0.9rem' }}>
-              PLACEHOLDER_WHY_3_DESC
+              Общайтесь на русском языке. Наша команда на связи через Telegram 24/7.
             </p>
           </div>
         </div>
@@ -490,8 +483,7 @@ function RussiaShipMyCar() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
-        {/* TODO-RU: Replace heading */}
-        <h2 style={styles.h2}>PLACEHOLDER_CONTACT_H2</h2>
+        <h2 style={styles.h2}>Свяжитесь с нами</h2>
 
         <div
           style={{
@@ -515,7 +507,7 @@ function RussiaShipMyCar() {
               Telegram
             </p>
             <a
-              href="https://t.me/y7logistics"
+              href="https://t.me/y7dispatch_bot"
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -526,7 +518,7 @@ function RussiaShipMyCar() {
                 textDecoration: 'none',
               }}
             >
-              PLACEHOLDER_TELEGRAM_HANDLE
+              @y7dispatch_bot
             </a>
             <p
               style={{
@@ -535,7 +527,7 @@ function RussiaShipMyCar() {
                 marginTop: '0.5rem',
               }}
             >
-              PLACEHOLDER_TELEGRAM_NOTE
+              Самый быстрый способ связи. Ответ в течение нескольких минут, 24/7.
             </p>
           </div>
 
@@ -572,7 +564,7 @@ function RussiaShipMyCar() {
                 marginTop: '0.5rem',
               }}
             >
-              PLACEHOLDER_EMAIL_NOTE
+              Для подробных запросов и документации. Ответ в рабочие часы.
             </p>
           </div>
         </div>
@@ -600,7 +592,7 @@ function RussiaShipMyCar() {
               marginBottom: '0.75rem',
             }}
           >
-            PLACEHOLDER_TRUST_LABEL
+            Лицензированный брокер FMCSA
           </p>
           <p
             style={{
@@ -618,7 +610,8 @@ function RussiaShipMyCar() {
               fontSize: '0.95rem',
             }}
           >
-            PLACEHOLDER_TRUST_FMCSA_NOTE
+            Y7 Consulting Inc — зарегистрированный транспортный брокер. USDOT #4427359.
+            Более 10 лет опыта, 100+ проверенных перевозчиков, все 50 штатов.
           </p>
           <a
             href="https://safer.fmcsa.dot.gov/CompanySnapshot.aspx"
@@ -633,7 +626,7 @@ function RussiaShipMyCar() {
               textDecoration: 'underline',
             }}
           >
-            PLACEHOLDER_TRUST_VERIFY_LINK
+            Проверить лицензию на сайте FMCSA →
           </a>
         </div>
       </section>
@@ -647,8 +640,7 @@ function RussiaShipMyCar() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
-        {/* TODO-RU: Replace heading */}
-        <h2 style={styles.h2}>PLACEHOLDER_FAQ_H2</h2>
+        <h2 style={styles.h2}>Часто задаваемые вопросы</h2>
 
         <div style={{ display: 'grid', gap: '0.75rem' }}>
           {FAQS.map((faq, i) => (
@@ -708,14 +700,13 @@ function RussiaShipMyCar() {
         }}
       >
         <div style={{ maxWidth: '700px', margin: '0 auto' }}>
-          {/* TODO-RU: Replace CTA copy */}
           <h2
             style={{
               ...styles.h2,
               color: '#F7F5F0',
             }}
           >
-            PLACEHOLDER_DARK_CTA_H2
+            Готовы заказать перевозку?
           </h2>
           <p
             style={{
@@ -725,10 +716,11 @@ function RussiaShipMyCar() {
               marginBottom: '2rem',
             }}
           >
-            PLACEHOLDER_DARK_CTA_DESCRIPTION
+            Напишите нам маршрут и данные автомобиля — мы рассчитаем стоимость
+            и подберём перевозчика. Ответ в Telegram — за минуты.
           </p>
           <a
-            href="https://t.me/y7logistics"
+            href="https://t.me/y7dispatch_bot"
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -736,7 +728,7 @@ function RussiaShipMyCar() {
               fontSize: '1.05rem',
             }}
           >
-            PLACEHOLDER_DARK_CTA_BUTTON
+            Написать в Telegram
           </a>
           <p
             style={{
@@ -746,7 +738,7 @@ function RussiaShipMyCar() {
               marginTop: '1rem',
             }}
           >
-            PLACEHOLDER_DARK_CTA_SUBTEXT
+            MC #1741537 · USDOT #4427359 · Круглосуточная диспетчерская
           </p>
         </div>
       </section>
