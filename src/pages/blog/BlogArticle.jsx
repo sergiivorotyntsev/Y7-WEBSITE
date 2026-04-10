@@ -3,6 +3,7 @@ import PageMeta from '../../components/PageMeta';
 import BreadcrumbSchema from '../../components/BreadcrumbSchema';
 import articles, { CATEGORIES } from '../../data/blogArticles';
 import BANNER_MAP from './BlogBanners';
+import ShareButtons from '../../components/ShareButtons';
 import { colors, fonts } from '../../theme';
 
 // Static imports — required for prerender (no React.lazy)
@@ -136,11 +137,27 @@ export default function BlogArticle() {
           <span>Y7 Dispatch Team</span>
         </div>
 
+        {/* Share buttons (top) */}
+        <ShareButtons
+          url={`https://www.y7agency.com/blog/${article.slug}`}
+          title={article.title}
+          description={article.excerpt}
+        />
+
         {/* Divider */}
         <div style={{ height: 1, background: colors.border, marginBottom: 32 }} />
 
         {/* Article body */}
         {ArticleContent && <ArticleContent theme={theme} />}
+
+        {/* Share buttons (bottom) */}
+        <div style={{ borderTop: `1px solid ${colors.border}`, paddingTop: 24, marginTop: 36 }}>
+          <ShareButtons
+            url={`https://www.y7agency.com/blog/${article.slug}`}
+            title={article.title}
+            description={article.excerpt}
+          />
+        </div>
 
         {/* Tags */}
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 40, marginBottom: 32 }}>
