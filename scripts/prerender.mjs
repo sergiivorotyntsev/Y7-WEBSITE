@@ -185,6 +185,16 @@ const PUBLIC_ROUTES = [
   '/ports/los-angeles',
   '/ports/baltimore',
   '/ports/jacksonville',
+  // Blog
+  '/blog',
+  '/blog/carrier-who-vanished',
+  '/blog/carrier-coi-verification-guide',
+  '/blog/fmcsa-2026-new-rules',
+  '/blog/outbox-pattern-dispatch',
+  '/blog/dealer-auction-pickup-guide',
+  '/blog/exporter-documentation-checklist',
+  '/blog/fmcsa-broker-recordkeeping-2026',
+  '/blog/75000-bond-claims-guide',
   // International pages
   '/pl',
   '/pl/copart-shipping',

@@ -30,7 +30,7 @@ const DIST_DIR = path.join(__dirname, 'dist');
 
 const LEGACY_REDIRECTS = [
   // Legacy Wix URLs (still indexed by Google) — server-side 301 so crawlers follow.
-  { from: '/blog',                    to: '/' },
+  // NOTE: /blog redirect removed — blog section now active (BLOG sprint April 2026)
   { from: '/global-sourcing',         to: '/services' },
   { from: '/careers',                 to: '/' },
   { from: '/privacy-policy',          to: '/privacy' },
