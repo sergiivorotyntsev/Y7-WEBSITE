@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { CheckIcon } from '../../components/icons';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles } from '../../theme';
@@ -27,8 +27,31 @@ const labelStyle = {
   marginBottom: '4px',
 };
 
+const TYPE_LABELS = {
+  dealer: 'Dealer',
+  individual: 'Individual',
+  auction_buyer: 'Auction Buyer',
+  exporter: 'Exporter',
+  unknown: 'Not Classified',
+};
+
+const BILLING_LABELS = {
+  per_delivery: 'Pay Per Delivery (COD)',
+  prepay_manual_invoice: 'Prepay (Manual Invoice)',
+};
+
+function StatusRow({ label, value, valueColor }) {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: `1px solid ${colors.border}` }}>
+      <span style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted }}>{label}</span>
+      <span style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600, color: valueColor || colors.text }}>{value}</span>
+    </div>
+  );
+}
+
 export default function Profile() {
   const { user, checkAuth } = useAuth();
+  const navigate = useNavigate();
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -179,74 +202,81 @@ export default function Profile() {
           </div>
         </div>
 
-        {/* Account type */}
-        <div style={{
-          paddingTop: '12px',
-          borderTop: `1px solid ${colors.border}`,
-        }}>
-          <div style={{ ...labelStyle, marginBottom: '4px' }}>Account Type</div>
-          <div style={{
-            fontFamily: fonts.sans,
-            fontSize: '13px',
-            color: colors.text,
-            marginBottom: '16px',
-          }}>
-            {user?.customer_type === 'dealer'
-              ? `Dealer Account \u2014 ${user.billing_mode === 'monthly' ? 'Monthly billing' : 'Pay per delivery'}`
-              : 'Customer Account'}
+        {/* Account Status */}
+        <div style={{ paddingTop: '12px', borderTop: `1px solid ${colors.border}` }}>
+          <div style={{ ...labelStyle, marginBottom: '8px' }}>Account Status</div>
+          <StatusRow label="Account Type" value={TYPE_LABELS[user?.customer_type] || 'Unknown'} />
+          {user?.customer_type === 'dealer' && (
+            <StatusRow label="Billing Mode" value={BILLING_LABELS[user?.billing_mode] || user?.billing_mode} />
+          )}
+          {user?.customer_type === 'dealer' && user?.billing_mode === 'prepay_manual_invoice' && (
+            <StatusRow
+              label="Deposit Balance"
+              value={`$${((user?.deposit_balance_cents || 0) / 100).toFixed(2)}`}
+              valueColor={(user?.deposit_balance_cents || 0) < 0 ? '#DC2626' : colors.success}
+            />
+          )}
+        </div>
+
+        {/* Documents & Agreements */}
+        <div style={{ paddingTop: '12px', borderTop: `1px solid ${colors.border}` }}>
+          <div style={{ ...labelStyle, marginBottom: '8px' }}>Documents & Agreements</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            {/* Transport agreement */}
+            <div style={{
+              padding: '12px', borderRadius: '8px',
+              background: user?.agreement_signed ? colors.successBg : '#FFF0EC',
+              border: `1px solid ${user?.agreement_signed ? '#A7D6BE' : '#FFD0C2'}`,
+              display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px',
+            }}>
+              <div>
+                <div style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600, color: colors.text }}>
+                  {user?.customer_type === 'dealer' ? 'Dealer Transport Agreement' : 'Transport Service Agreement'}
+                </div>
+                <div style={{ fontFamily: fonts.sans, fontSize: '11px', color: user?.agreement_signed ? colors.success : colors.accent }}>
+                  {user?.agreement_signed ? 'Signed' : 'Not signed — required to create orders'}
+                </div>
+              </div>
+              {!user?.agreement_signed && (
+                <button onClick={() => {
+                  const t = user?.customer_type === 'dealer' ? 'dealer' : 'shipper';
+                  navigate(`/agreement?customer_id=${user?.id}&type=${t}`);
+                }} style={{ ...btnStyles.accent, padding: '6px 14px', fontSize: '11px' }}>Sign</button>
+              )}
+            </div>
+
+            {/* Bank auth (prepay dealers only) */}
+            {user?.customer_type === 'dealer' && user?.billing_mode === 'prepay_manual_invoice' && (
+              <div style={{
+                padding: '12px', borderRadius: '8px',
+                background: user?.bank_auth_signed ? colors.successBg : '#FFF0EC',
+                border: `1px solid ${user?.bank_auth_signed ? '#A7D6BE' : '#FFD0C2'}`,
+                display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px',
+              }}>
+                <div>
+                  <div style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600, color: colors.text }}>Bank Authorization Agreement</div>
+                  <div style={{ fontFamily: fonts.sans, fontSize: '11px', color: user?.bank_auth_signed ? colors.success : colors.accent }}>
+                    {user?.bank_auth_signed ? 'Signed' : 'Not signed — required for prepay billing'}
+                  </div>
+                </div>
+                {!user?.bank_auth_signed && (
+                  <button onClick={() => navigate(`/agreement?customer_id=${user?.id}&type=bank_auth`)} style={{ ...btnStyles.accent, padding: '6px 14px', fontSize: '11px' }}>Sign</button>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
         {/* Connected accounts */}
-        <div style={{
-          paddingTop: '12px',
-          borderTop: `1px solid ${colors.border}`,
-        }}>
+        <div style={{ paddingTop: '12px', borderTop: `1px solid ${colors.border}` }}>
           <div style={{ ...labelStyle, marginBottom: '8px' }}>Connected Accounts</div>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            fontFamily: fonts.sans,
-            fontSize: '13px',
-            color: colors.textMuted,
-          }}>
+          <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted }}>
             {profile.telegram_username ? (
               <span>Telegram: <strong style={{ color: colors.success }}>@{profile.telegram_username} <CheckIcon size={14} /></strong></span>
             ) : (
               <span>
                 Telegram: Not connected.{' '}
-                <a href="https://t.me/y7dispatch_bot" target="_blank" rel="noopener noreferrer" style={{ color: colors.accent }}>
-                  Connect &rarr;
-                </a>
-              </span>
-            )}
-          </div>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            fontFamily: fonts.sans,
-            fontSize: '13px',
-            color: colors.textMuted,
-          }}>
-            {profile.agreement_signed ? (
-              <span>
-                Agreement: <strong style={{ color: colors.success }}>Signed <CheckIcon size={14} /></strong>
-                {profile.agreement_signed_at && (
-                  <> on {new Date(profile.agreement_signed_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</>
-                )}
-                {profile.agreement_id && (
-                  <> &mdash; <a href={`https://dispatch.y7agency.com/api/public/agreement/${profile.agreement_id}/pdf`}
-                    target="_blank" rel="noopener noreferrer" style={{ color: colors.accent }}>
-                    Download PDF
-                  </a></>
-                )}
-              </span>
-            ) : (
-              <span>
-                Agreement: Not signed.{' '}
-                <Link to="/agreement" style={{ color: colors.accent }}>Sign now &rarr;</Link>
+                <a href="https://t.me/y7dispatch_bot" target="_blank" rel="noopener noreferrer" style={{ color: colors.accent }}>Connect &rarr;</a>
               </span>
             )}
           </div>
