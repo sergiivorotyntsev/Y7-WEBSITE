@@ -57,6 +57,151 @@ function PendingIcon() {
   );
 }
 
+function BankAuthAgreement({ user }) {
+  const navigate = useNavigate();
+  const [checks, setChecks] = useState([false, false, false, false]);
+  const [signerName, setSignerName] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(null);
+
+  // Load bank auth template directly (no i18n — English only for now)
+  const [tpl, setTpl] = useState(null);
+  useEffect(() => {
+    import('../locales/en/agreement_bank_auth.json').then(m => setTpl(m.default || m));
+  }, []);
+
+  if (!tpl) return <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: fonts.sans, color: colors.textMuted }}>Loading...</div>;
+
+  if (success) {
+    return (
+      <div style={{ maxWidth: '600px', margin: '0 auto', padding: '80px 24px', textAlign: 'center' }}>
+        <div style={{ fontSize: '48px', marginBottom: '16px' }}>&#10003;</div>
+        <h2 style={{ fontFamily: fonts.serif, fontSize: '24px', color: colors.success, marginBottom: '12px' }}>Bank Authorization Signed</h2>
+        <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, marginBottom: '24px' }}>
+          Your bank authorization agreement has been recorded. You can now receive weekly invoices.
+        </p>
+        <button onClick={() => navigate('/portal/dashboard')} style={btnStyles.accent}>Go to Dashboard</button>
+      </div>
+    );
+  }
+
+  const allChecked = checks.every(Boolean);
+  const canSign = allChecked && signerName.trim().length >= 2;
+  const checkboxEntries = Object.entries(tpl.checkboxes || {});
+
+  async function handleSign() {
+    if (!canSign || submitting) return;
+    setSubmitting(true);
+    setError(null);
+    try {
+      const res = await portalFetch('/api/portal/billing/sign-bank-auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ signer_name: signerName.trim() }),
+      });
+      if (res.ok) {
+        setSuccess(true);
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setError(data.detail || 'Failed to sign agreement.');
+      }
+    } catch {
+      setError('Network error. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  return (
+    <div style={{ maxWidth: '760px', margin: '0 auto', padding: '48px 24px 80px' }}>
+      <h1 style={{ fontFamily: fonts.serif, fontSize: 'clamp(24px, 4vw, 34px)', fontWeight: 700, color: colors.text, marginBottom: '8px' }}>
+        {tpl.title}
+      </h1>
+
+      {tpl.draft_warning && (
+        <div style={{
+          fontFamily: fonts.sans, fontSize: '13px', color: '#5C3A00',
+          background: '#FFF6D6', border: '1px solid #E6C75C', borderLeft: '4px solid #C99A1F',
+          borderRadius: '8px', padding: '14px 18px', marginBottom: '20px', lineHeight: 1.6,
+        }}>
+          <div style={{ fontWeight: 700, marginBottom: '4px' }}>DRAFT — Pending Attorney Review</div>
+          <div>{tpl.draft_warning}</div>
+        </div>
+      )}
+
+      {error && (
+        <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.accent, padding: '12px 16px', background: '#FFF0EC', borderRadius: '8px', marginBottom: '20px' }}>
+          {error}
+        </div>
+      )}
+
+      {/* Agreement body */}
+      <div style={{ border: `1px solid ${colors.border}`, borderRadius: '12px', padding: '32px 28px', marginBottom: '24px', background: colors.bgCard }}>
+        <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, lineHeight: 1.7, marginBottom: '24px' }}>
+          {tpl.intro}
+        </p>
+        {(tpl.sections || []).map(sec => (
+          <div key={sec.id} style={{ marginBottom: '24px', paddingBottom: '20px', borderBottom: `1px solid ${colors.border}` }}>
+            <h3 style={{ fontFamily: fonts.serif, fontSize: '18px', fontWeight: 700, color: colors.text, marginBottom: '10px' }}>{sec.title}</h3>
+            <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, lineHeight: 1.7 }}>{sec.body}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Checkboxes */}
+      <div style={{ marginBottom: '24px' }}>
+        {checkboxEntries.map(([, label], i) => (
+          <label key={i} style={{
+            display: 'flex', alignItems: 'flex-start', gap: '10px', padding: '10px 0',
+            cursor: 'pointer', fontFamily: fonts.sans, fontSize: '13px', color: colors.text, lineHeight: 1.5,
+          }}>
+            <input
+              type="checkbox"
+              checked={checks[i] || false}
+              onChange={() => setChecks(prev => prev.map((v, j) => j === i ? !v : v))}
+              style={{ marginTop: '2px', accentColor: colors.accent }}
+            />
+            {label}
+          </label>
+        ))}
+      </div>
+
+      {/* Signer name + sign button */}
+      <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-end', flexWrap: 'wrap' }}>
+        <div style={{ flex: 1, minWidth: '200px' }}>
+          <label style={{ fontFamily: fonts.sans, fontSize: '12px', fontWeight: 600, color: colors.text, textTransform: 'uppercase', letterSpacing: '0.5px', display: 'block', marginBottom: '4px' }}>
+            Full Legal Name
+          </label>
+          <input
+            value={signerName}
+            onChange={e => setSignerName(e.target.value)}
+            placeholder="Enter your full legal name"
+            style={{
+              fontFamily: fonts.sans, fontSize: '16px', padding: '10px 14px', borderRadius: '8px',
+              border: `1px solid ${colors.borderInput}`, background: colors.bgInput, color: colors.text,
+              outline: 'none', width: '100%', boxSizing: 'border-box',
+            }}
+          />
+        </div>
+        <button
+          onClick={handleSign}
+          disabled={!canSign || submitting}
+          style={{
+            ...btnStyles.accent,
+            padding: '12px 32px',
+            fontSize: '14px',
+            opacity: canSign && !submitting ? 1 : 0.5,
+            cursor: canSign && !submitting ? 'pointer' : 'default',
+          }}
+        >
+          {submitting ? 'Signing...' : 'Sign Agreement'}
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function Agreement() {
   const { orderId } = useParams();
   const navigate = useNavigate();
@@ -85,9 +230,15 @@ export default function Agreement() {
   // 2. /agreement/new?customer_id=123 (legacy deep link)
   // 3. /agreement/:orderId (legacy order-linked, resolves to customer)
   const searchParams = new URLSearchParams(window.location.search);
+  const typeParam = searchParams.get('type');
   const customerIdParam = searchParams.get('customer_id');
   const isCustomerLevel = !orderId || (orderId === 'new' && customerIdParam);
   const resolvedCustomerId = user?.id || (customerIdParam ? parseInt(customerIdParam, 10) : null);
+
+  // Bank auth sub-agreement — completely separate rendering path
+  if (typeParam === 'bank_auth') {
+    return <BankAuthAgreement user={user} />;
+  }
 
   // Fetch template metadata so we know the version + draft status. This
   // runs in parallel with the signed-status fetch and is best-effort: a
