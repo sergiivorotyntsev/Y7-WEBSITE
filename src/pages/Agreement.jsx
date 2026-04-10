@@ -103,7 +103,7 @@ function BankAuthAgreement({ user }) {
       });
       if (res.ok) {
         await checkAuth();
-        setSuccess(true);
+        navigate('/portal/dashboard?toast=bank_auth_signed', { replace: true });
       } else {
         const data = await res.json().catch(() => ({}));
         setError(data.detail || 'Failed to sign agreement.');
@@ -330,16 +330,13 @@ export default function Agreement() {
       const result = await apiPost('/api/public/agreement', payload);
       agreementIdRef.current = result.agreement_id;
       await checkAuth();
-      setSuccess(true);
       trackEvent('agreement_sign');
-      setTimeout(() => {
-        if (isCustomerLevel) {
-          navigate('/portal/dashboard', { replace: true });
-        } else {
-          const ref = orderId.match(/^\d+$/) ? `WEB-${String(orderId).padStart(5, '0')}` : orderId;
-          navigate(`/track?code=${encodeURIComponent(ref)}`);
-        }
-      }, 3000);
+      if (isCustomerLevel) {
+        navigate('/portal/dashboard?toast=agreement_signed', { replace: true });
+      } else {
+        const ref = orderId.match(/^\d+$/) ? `WEB-${String(orderId).padStart(5, '0')}` : orderId;
+        navigate(`/track?code=${encodeURIComponent(ref)}`);
+      }
     } catch (err) {
       setError(err.message || t('errors.submitFailed'));
     } finally {

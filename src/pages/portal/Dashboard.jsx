@@ -1,12 +1,18 @@
-import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useCallback } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
+import Toast from '../../components/Toast';
 import { ClipboardIcon, MapPinIcon, ProfileIcon, TelegramIcon, EmailIcon } from '../../components/icons';
 import AccountTypeModal from '../../components/AccountTypeModal';
 import AccountSetupBanner from '../../components/AccountSetupBanner';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles, keyframes } from '../../theme';
 import { STATUS_COLORS, getStatusBadge } from '../../utils/orderStatus';
+
+const TOAST_MESSAGES = {
+  agreement_signed: 'Dealer Agreement Signed Successfully',
+  bank_auth_signed: 'Bank Authorization Signed Successfully',
+};
 
 // SPRINT-F: all customer types use the authenticated portal order form.
 // Previously routed to public pages (/quote, /exporters, /ship-my-car).
@@ -101,14 +107,26 @@ function BillingSummary() {
 export default function Dashboard() {
   const { user, checkAuth } = useAuth();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [orders, setOrders] = useState([]);
   const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [toastMsg, setToastMsg] = useState(null);
   // SPRINT-E-T3: classification modal — shown on first visit when
   // user.customer_type === 'unknown', or when redirected from a 403
   // classification_required response (?classify=1 query param).
   const [showClassifyModal, setShowClassifyModal] = useState(false);
+
+  // Toast from agreement signing redirect
+  useEffect(() => {
+    const toast = searchParams.get('toast');
+    if (toast && TOAST_MESSAGES[toast]) {
+      setToastMsg(TOAST_MESSAGES[toast]);
+      searchParams.delete('toast');
+      setSearchParams(searchParams, { replace: true });
+    }
+  }, [searchParams, setSearchParams]);
 
   useEffect(() => {
     portalFetch('/api/portal/data/orders?limit=10')
@@ -150,6 +168,7 @@ export default function Dashboard() {
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '40px 24px 80px' }}>
       <PageMeta title="My Dashboard" description="Your active orders, shipment tracking, account management." path="/portal/dashboard" />
+      {toastMsg && <Toast message={toastMsg} onDismiss={() => setToastMsg(null)} />}
       <style>{keyframes}</style>
 
       {showClassifyModal && (
