@@ -77,6 +77,9 @@ const UkraineShipMyCar = lazyWithRetry(() => import('./pages/intl/UkraineShipMyC
 const RussiaHome = lazyWithRetry(() => import('./pages/intl/RussiaHome'));
 const RussiaCopart = lazyWithRetry(() => import('./pages/intl/RussiaCopart'));
 const RussiaShipMyCar = lazyWithRetry(() => import('./pages/intl/RussiaShipMyCar'));
+// Blog — static imports for prerender compatibility
+import BlogIndex from './pages/blog/BlogIndex';
+import BlogArticle from './pages/blog/BlogArticle';
 
 const skipHidden = {
   position: 'absolute', left: '-9999px', top: 'auto',
@@ -176,6 +179,9 @@ export default function App() {
             <Route path="/:lang/quote" element={<Quote />} />
             <Route path="/:lang/quote/:action/:orderId" element={<QuoteAction />} />
             <Route path="/:lang/agreement/:orderId" element={<Agreement />} />
+            {/* Blog */}
+            <Route path="/blog" element={<BlogIndex />} />
+            <Route path="/blog/:slug" element={<BlogArticle />} />
             {/* Portal auth — unified login/register */}
             <Route path="/portal/login" element={<Login />} />
             <Route path="/portal/register" element={<Navigate to="/portal/login" replace />} />

@@ -36,6 +36,7 @@ export default function Header() {
     { key: 'exporters', to: '/exporters' },
     { key: 'shipMyCar', to: '/ship-my-car' },
     { key: 'track', to: '/track' },
+    { key: 'blog', to: '/blog' },
     { key: 'faq', to: '/faq' },
     { key: 'contact', to: '/contact' },
   ];

@@ -82,6 +82,7 @@ export default function Footer() {
             <Link to="/track" style={linkStyle}>{t('nav.track')}</Link>
             <Link to="/faq" style={linkStyle}>{t('nav.faq')}</Link>
             <Link to="/about" style={linkStyle}>{t('nav.about')}</Link>
+            <Link to="/blog" style={linkStyle}>{t('nav.blog')}</Link>
             <Link to="/contact" style={linkStyle}>{t('nav.contact')}</Link>
           </div>
         </div>
