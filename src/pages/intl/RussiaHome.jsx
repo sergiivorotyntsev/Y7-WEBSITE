@@ -5,13 +5,13 @@ import HreflangTags from '../../components/HreflangTags';
 
 // =============================================================================
 // RussiaHome.jsx — Template A (Home/Overview)
-// Route: /ru | lang="ru" | Audience: Russian-speaking US diaspora
+// Route: /ru | lang="ru" | Audience: Russian-speaking US diaspora + CIS
 // =============================================================================
 // IMPORTANT NOTES:
 // - Y7 HAS Russian-speaking team members
 // - DO NOT mention Russia as a destination (sanctions compliance)
 // - Mention DaytonaCargo only as "international shipping" without specifying country
-// - All visible text is PLACEHOLDER — replace with real copy before launch
+// - Content translated from PLACEHOLDER — Sprint C / Audit-T1B
 // =============================================================================
 
 // ---------------------------------------------------------------------------
@@ -23,50 +23,50 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'PLACEHOLDER_FAQ_Q1',
+      name: 'Сколько стоит перевозка автомобиля по США?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'PLACEHOLDER_FAQ_A1',
+        text: 'Стоимость зависит от расстояния, типа транспорта (открытый или закрытый) и размера автомобиля. Типичный диапазон: $300–$600 для коротких маршрутов (до 500 миль), $600–$1200 для средних (500–1500 миль) и $900–$1600 для кросс-кантри перевозок. Запросите точный расчёт через нашего Telegram-бота @y7dispatch_bot.',
       },
     },
     {
       '@type': 'Question',
-      name: 'PLACEHOLDER_FAQ_Q2',
+      name: 'Как долго занимает доставка автомобиля?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'PLACEHOLDER_FAQ_A2',
+        text: 'Сроки доставки зависят от расстояния: локальная перевозка (до 500 миль) — 2–4 дня, средняя дистанция — 4–7 дней, перевозка через всю страну — 7–14 дней. На сроки также влияют сезон, маршрут и доступность перевозчиков.',
       },
     },
     {
       '@type': 'Question',
-      name: 'PLACEHOLDER_FAQ_Q3',
+      name: 'Y7 Logistics — это перевозчик или брокер?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'PLACEHOLDER_FAQ_A3',
+        text: 'Y7 Logistics — лицензированный брокер автоперевозок FMCSA (MC #1741537, USDOT #4427359). Мы координируем доставку через сеть 100+ проверенных перевозчиков, подбирая оптимальный вариант по маршруту, срокам и бюджету.',
       },
     },
     {
       '@type': 'Question',
-      name: 'PLACEHOLDER_FAQ_Q4',
+      name: 'Застрахован ли автомобиль во время перевозки?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'PLACEHOLDER_FAQ_A4',
+        text: 'Да. Каждый перевозчик в нашей сети обязан иметь действующую страховку cargo insurance на полную стоимость перевозимых автомобилей. Перед погрузкой мы проверяем актуальность полиса и предоставляем информацию о покрытии.',
       },
     },
     {
       '@type': 'Question',
-      name: 'PLACEHOLDER_FAQ_Q5',
+      name: 'Можно ли перевезти автомобиль с аукциона Copart или IAAI?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'PLACEHOLDER_FAQ_A5',
+        text: 'Да, это одна из наших основных специализаций. Мы организуем вывоз автомобилей со всех площадок Copart и IAAI по всей территории США. Подробности — на странице /ru/copart-shipping.',
       },
     },
     {
       '@type': 'Question',
-      name: 'PLACEHOLDER_FAQ_Q6',
+      name: 'Как связаться с Y7 Logistics?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'PLACEHOLDER_FAQ_A6',
+        text: 'Самый быстрый способ — через Telegram-бот @y7dispatch_bot (ответ в течение нескольких минут). Также можно написать на info@y7agency.com. Наша диспетчерская работает круглосуточно.',
       },
     },
   ],
@@ -82,13 +82,13 @@ const breadcrumbSchema = {
     {
       '@type': 'ListItem',
       position: 1,
-      name: 'PLACEHOLDER_BREADCRUMB_HOME',
+      name: 'Главная',
       item: 'https://www.y7agency.com/',
     },
     {
       '@type': 'ListItem',
       position: 2,
-      name: 'PLACEHOLDER_BREADCRUMB_RU',
+      name: 'Русский',
       item: 'https://www.y7agency.com/ru',
     },
   ],
@@ -98,113 +98,106 @@ const breadcrumbSchema = {
 // Data arrays
 // ---------------------------------------------------------------------------
 
-// TODO-RU: Replace all PLACEHOLDER strings with real Russian copy
 const STATS = [
-  { number: 'PLACEHOLDER_STAT_1_NUMBER', label: 'PLACEHOLDER_STAT_1_LABEL' },
-  { number: 'PLACEHOLDER_STAT_2_NUMBER', label: 'PLACEHOLDER_STAT_2_LABEL' },
-  { number: 'PLACEHOLDER_STAT_3_NUMBER', label: 'PLACEHOLDER_STAT_3_LABEL' },
+  { number: '10+', label: 'лет в автоперевозках по США' },
+  { number: '100+', label: 'проверенных перевозчиков в сети' },
+  { number: '50', label: 'штатов — полное покрытие' },
 ];
 
-// TODO-RU: Services for US diaspora — NOT "two companies" framing
 const SERVICES = [
   {
-    title: 'PLACEHOLDER_SERVICE_1_TITLE',
-    description: 'PLACEHOLDER_SERVICE_1_DESC',
-    icon: 'PLACEHOLDER_SERVICE_1_ICON',
+    title: 'Доставка с аукционов',
+    description: 'Вывоз автомобилей с площадок Copart, IAAI и Manheim по всей территории США. Координация оплаты, оформления и вывоза в одном окне.',
+    icon: '🏷️',
   },
   {
-    title: 'PLACEHOLDER_SERVICE_2_TITLE',
-    description: 'PLACEHOLDER_SERVICE_2_DESC',
-    icon: 'PLACEHOLDER_SERVICE_2_ICON',
+    title: 'Перевозка до порта',
+    description: 'Доставка автомобиля от любой точки в США до ближайшего порта — Newark, Houston, Savannah, Baltimore, Los Angeles, Jacksonville.',
+    icon: '🚢',
   },
   {
-    title: 'PLACEHOLDER_SERVICE_3_TITLE',
-    description: 'PLACEHOLDER_SERVICE_3_DESC',
-    icon: 'PLACEHOLDER_SERVICE_3_ICON',
+    title: 'Внутренняя перевозка',
+    description: 'Перевозка между городами и штатами на открытом или закрытом автовозе. Подходит для переезда, покупки или продажи автомобиля.',
+    icon: '🚛',
   },
   {
-    title: 'PLACEHOLDER_SERVICE_4_TITLE',
-    description: 'PLACEHOLDER_SERVICE_4_DESC',
-    icon: 'PLACEHOLDER_SERVICE_4_ICON',
+    title: 'Дилерские перевозки',
+    description: 'Регулярные маршруты для автодилеров: оптовые тарифы, приоритетная диспетчеризация, ежемесячная отчётность.',
+    icon: '🏢',
   },
   {
-    title: 'PLACEHOLDER_SERVICE_5_TITLE',
-    description: 'PLACEHOLDER_SERVICE_5_DESC',
-    icon: 'PLACEHOLDER_SERVICE_5_ICON',
+    title: 'Международная логистика',
+    description: 'Полный цикл доставки за рубеж совместно с партнёрской компанией DaytonaCargo — от аукциона в США до конечного пункта.',
+    icon: '🌍',
   },
 ];
 
-// TODO-RU: Replace with real process steps
 const PROCESS_STEPS = [
-  { num: 1, title: 'PLACEHOLDER_STEP_1_TITLE', desc: 'PLACEHOLDER_STEP_1_DESC' },
-  { num: 2, title: 'PLACEHOLDER_STEP_2_TITLE', desc: 'PLACEHOLDER_STEP_2_DESC' },
-  { num: 3, title: 'PLACEHOLDER_STEP_3_TITLE', desc: 'PLACEHOLDER_STEP_3_DESC' },
-  { num: 4, title: 'PLACEHOLDER_STEP_4_TITLE', desc: 'PLACEHOLDER_STEP_4_DESC' },
-  { num: 5, title: 'PLACEHOLDER_STEP_5_TITLE', desc: 'PLACEHOLDER_STEP_5_DESC' },
+  { num: 1, title: 'Запрос расчёта', desc: 'Напишите нам в Telegram @y7dispatch_bot или на info@y7agency.com. Укажите откуда, куда и какой автомобиль.' },
+  { num: 2, title: 'Расчёт стоимости', desc: 'В течение нескольких минут мы рассчитаем стоимость и сроки доставки на основе реальных данных Central Dispatch.' },
+  { num: 3, title: 'Подтверждение заказа', desc: 'После согласования условий мы бронируем перевозчика. Предоплата или оплата при доставке — зависит от маршрута.' },
+  { num: 4, title: 'Забор автомобиля', desc: 'Перевозчик прибывает в согласованное время. Осмотр автомобиля, фиксация состояния, погрузка на автовоз.' },
+  { num: 5, title: 'Отслеживание в пути', desc: 'Вы получаете обновления по статусу доставки. Диспетчерская на связи круглосуточно при любых вопросах.' },
 ];
 
-// TODO-RU: Replace with real cost breakdown
 const COST_CARDS = [
   {
-    title: 'PLACEHOLDER_COST_1_TITLE',
-    amount: 'PLACEHOLDER_COST_1_AMOUNT',
-    note: 'PLACEHOLDER_COST_1_NOTE',
+    title: 'Локальная перевозка',
+    amount: '$300–$600',
+    note: 'До 500 миль. Например, внутри одного штата или между соседними штатами.',
   },
   {
-    title: 'PLACEHOLDER_COST_2_TITLE',
-    amount: 'PLACEHOLDER_COST_2_AMOUNT',
-    note: 'PLACEHOLDER_COST_2_NOTE',
+    title: 'Средняя дистанция',
+    amount: '$600–$1 200',
+    note: '500–1 500 миль. Например, Нью-Йорк — Флорида или Техас — Джорджия.',
   },
   {
-    title: 'PLACEHOLDER_COST_3_TITLE',
-    amount: 'PLACEHOLDER_COST_3_AMOUNT',
-    note: 'PLACEHOLDER_COST_3_NOTE',
+    title: 'Кросс-кантри',
+    amount: '$900–$1 600',
+    note: 'Более 1 500 миль. Например, Калифорния — Нью-Йорк или побережье — побережье.',
   },
   {
-    title: 'PLACEHOLDER_COST_4_TITLE',
-    amount: 'PLACEHOLDER_COST_4_AMOUNT',
-    note: 'PLACEHOLDER_COST_4_NOTE',
+    title: 'Закрытый транспорт',
+    amount: '+40–60%',
+    note: 'Надбавка за закрытый автовоз. Рекомендуется для премиальных и классических автомобилей.',
   },
 ];
 
-// TODO-RU: Replace with real car examples
 const CAR_EXAMPLES = [
   {
-    title: 'PLACEHOLDER_CAR_1_TITLE',
-    route: 'PLACEHOLDER_CAR_1_ROUTE',
-    price: 'PLACEHOLDER_CAR_1_PRICE',
-    detail: 'PLACEHOLDER_CAR_1_DETAIL',
+    title: 'BMW X5 с аукциона Copart',
+    route: 'Dallas, TX → Port Newark, NJ',
+    price: '$750–$950',
+    detail: 'Открытый автовоз, 5–7 дней. Типичный маршрут для экспорта через восточное побережье.',
   },
   {
-    title: 'PLACEHOLDER_CAR_2_TITLE',
-    route: 'PLACEHOLDER_CAR_2_ROUTE',
-    price: 'PLACEHOLDER_CAR_2_PRICE',
-    detail: 'PLACEHOLDER_CAR_2_DETAIL',
+    title: 'Tesla Model 3',
+    route: 'Los Angeles, CA → Miami, FL',
+    price: '$1 100–$1 400',
+    detail: 'Закрытый транспорт, 8–12 дней. Кросс-кантри маршрут с защитой от непогоды.',
   },
   {
-    title: 'PLACEHOLDER_CAR_3_TITLE',
-    route: 'PLACEHOLDER_CAR_3_ROUTE',
-    price: 'PLACEHOLDER_CAR_3_PRICE',
-    detail: 'PLACEHOLDER_CAR_3_DETAIL',
+    title: 'Ford F-150 для переезда',
+    route: 'Chicago, IL → Houston, TX',
+    price: '$650–$850',
+    detail: 'Открытый автовоз, 4–6 дней. Популярный маршрут Средний Запад — Техас.',
   },
 ];
 
-// TODO-RU: Replace with real risk descriptions
 const RISKS = [
-  { title: 'PLACEHOLDER_RISK_1_TITLE', desc: 'PLACEHOLDER_RISK_1_DESC' },
-  { title: 'PLACEHOLDER_RISK_2_TITLE', desc: 'PLACEHOLDER_RISK_2_DESC' },
-  { title: 'PLACEHOLDER_RISK_3_TITLE', desc: 'PLACEHOLDER_RISK_3_DESC' },
-  { title: 'PLACEHOLDER_RISK_4_TITLE', desc: 'PLACEHOLDER_RISK_4_DESC' },
+  { title: 'Нелицензированные перевозчики', desc: 'Работа с нелицензированным брокером или перевозчиком — главный риск. Всегда проверяйте наличие MC-номера в базе FMCSA. Наш номер: MC #1741537.' },
+  { title: 'Скрытые доплаты', desc: 'Некоторые компании занижают начальную цену, а потом добавляют «топливный сбор», «страховку» или «плату за пикап». В Y7 цена фиксируется при бронировании.' },
+  { title: 'Задержки без уведомления', desc: 'Погода, поломки, загруженность маршрута — задержки случаются. Разница в том, предупреждают ли вас. Наш диспетчер информирует о любых изменениях.' },
+  { title: 'Повреждения при перевозке', desc: 'Перед погрузкой и при выгрузке составляется Bill of Lading с фиксацией состояния автомобиля. Это ваша защита при подаче претензии. Все наши перевозчики застрахованы.' },
 ];
 
-// TODO-RU: Replace with real FAQ content
 const FAQS = [
-  { q: 'PLACEHOLDER_FAQ_Q1', a: 'PLACEHOLDER_FAQ_A1' },
-  { q: 'PLACEHOLDER_FAQ_Q2', a: 'PLACEHOLDER_FAQ_A2' },
-  { q: 'PLACEHOLDER_FAQ_Q3', a: 'PLACEHOLDER_FAQ_A3' },
-  { q: 'PLACEHOLDER_FAQ_Q4', a: 'PLACEHOLDER_FAQ_A4' },
-  { q: 'PLACEHOLDER_FAQ_Q5', a: 'PLACEHOLDER_FAQ_A5' },
-  { q: 'PLACEHOLDER_FAQ_Q6', a: 'PLACEHOLDER_FAQ_A6' },
+  { q: 'Сколько стоит перевозка автомобиля по США?', a: 'Стоимость зависит от расстояния, типа транспорта и размера автомобиля. Локальная перевозка (до 500 миль) — $300–$600, средняя дистанция — $600–$1 200, через всю страну — $900–$1 600. Запросите точный расчёт через @y7dispatch_bot.' },
+  { q: 'Как долго занимает доставка?', a: 'Типичные сроки: 2–4 дня (локально), 4–7 дней (средняя дистанция), 7–14 дней (кросс-кантри). Сроки могут меняться в зависимости от сезона и маршрута.' },
+  { q: 'Y7 — это перевозчик или брокер?', a: 'Y7 Logistics — лицензированный брокер FMCSA (MC #1741537). Мы работаем с сетью 100+ проверенных перевозчиков, подбирая оптимальный вариант для каждого заказа.' },
+  { q: 'Застрахован ли автомобиль при перевозке?', a: 'Да. Все перевозчики в нашей сети имеют действующий полис cargo insurance. Перед отправкой мы проверяем актуальность страховки и предоставляем информацию о покрытии.' },
+  { q: 'Можно ли перевезти машину с аукциона?', a: 'Да, вывоз с Copart, IAAI и Manheim — одна из наших специализаций. Мы координируем оплату, gate pass и своевременный забор автомобиля.' },
+  { q: 'Как с вами связаться?', a: 'Самый быстрый способ — Telegram-бот @y7dispatch_bot (ответ в течение минут). Также можно написать на info@y7agency.com. Диспетчерская работает 24/7.' },
 ];
 
 // ---------------------------------------------------------------------------
@@ -282,13 +275,12 @@ function RussiaHome() {
       {/* Head / SEO                                                        */}
       {/* ----------------------------------------------------------------- */}
       <Helmet>
-        {/* TODO-RU: Replace PLACEHOLDER meta with real Russian copy */}
         <html lang="ru" />
-        <title>PLACEHOLDER_META_TITLE</title>
-        <meta name="description" content="PLACEHOLDER_META_DESCRIPTION" />
+        <title>Перевозка автомобилей по США — Y7 Logistics | Лицензированный брокер FMCSA</title>
+        <meta name="description" content="Y7 Logistics (MC #1741537, USDOT #4427359) — перевозка автомобилей по всем 50 штатам. Доставка с аукционов Copart и IAAI, перевозка до порта, дилерские маршруты. Русскоязычная поддержка, круглосуточная диспетчерская." />
         <link rel="canonical" href="https://www.y7agency.com/ru" />
-        <meta property="og:title" content="PLACEHOLDER_OG_TITLE" />
-        <meta property="og:description" content="PLACEHOLDER_OG_DESCRIPTION" />
+        <meta property="og:title" content="Перевозка автомобилей по США — Y7 Logistics" />
+        <meta property="og:description" content="Лицензированный брокер FMCSA. 100+ перевозчиков, все 50 штатов. Русскоязычная поддержка." />
         <meta property="og:url" content="https://www.y7agency.com/ru" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="ru" />
@@ -321,12 +313,10 @@ function RussiaHome() {
           Y7 Logistics
         </p>
 
-        {/* TODO-RU: Replace hero heading */}
         <h1 style={styles.h1}>
-          PLACEHOLDER_H1
+          Перевозка автомобилей по всей территории США — от аукциона до вашего адреса
         </h1>
 
-        {/* TODO-RU: Replace lead paragraph (~100 words) */}
         <p
           style={{
             ...styles.paragraph,
@@ -334,20 +324,18 @@ function RussiaHome() {
             maxWidth: '720px',
           }}
         >
-          PLACEHOLDER_LEAD_PARAGRAPH_LINE_1
-          PLACEHOLDER_LEAD_PARAGRAPH_LINE_2
-          PLACEHOLDER_LEAD_PARAGRAPH_LINE_3
-          PLACEHOLDER_LEAD_PARAGRAPH_LINE_4
-          PLACEHOLDER_LEAD_PARAGRAPH_LINE_5
-          PLACEHOLDER_LEAD_PARAGRAPH_LINE_6
-          PLACEHOLDER_LEAD_PARAGRAPH_LINE_7
-          PLACEHOLDER_LEAD_PARAGRAPH_LINE_8
+          Y7 Logistics — лицензированный брокер автоперевозок FMCSA (MC&nbsp;#1741537).
+          Мы организуем доставку автомобилей по всем 50 штатам: с аукционов Copart и IAAI,
+          между городами, до морских портов. Более 10 лет опыта, сеть из 100+ проверенных
+          перевозчиков и русскоязычная команда, которая на связи круглосуточно. Наши цены
+          формируются на основе реальных данных Central Dispatch — без скрытых доплат
+          и неприятных сюрпризов.
         </p>
 
         {/* CTA button */}
         <div style={{ marginTop: '2rem' }}>
           <Link to="/ru/ship-my-car" style={styles.ctaButton}>
-            PLACEHOLDER_CTA_HERO
+            Рассчитать стоимость доставки
           </Link>
         </div>
       </section>
@@ -391,10 +379,10 @@ function RussiaHome() {
       {/* SECTION 3 — Our Services (US diaspora framing)                    */}
       {/* ================================================================= */}
       <section style={styles.section}>
-        {/* TODO-RU: Replace heading and description */}
-        <h2 style={styles.h2}>PLACEHOLDER_SERVICES_H2</h2>
+        <h2 style={styles.h2}>Наши услуги</h2>
         <p style={{ ...styles.paragraph, marginBottom: '2rem' }}>
-          PLACEHOLDER_SERVICES_DESCRIPTION
+          Полный спектр автоперевозок внутри США — от единичного заказа до регулярных дилерских
+          маршрутов. Все услуги доступны на русском языке.
         </p>
 
         <div
@@ -442,8 +430,7 @@ function RussiaHome() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
-        {/* TODO-RU: Replace heading */}
-        <h2 style={styles.h2}>PLACEHOLDER_PROCESS_H2</h2>
+        <h2 style={styles.h2}>Как это работает</h2>
 
         <ol
           style={{
@@ -499,8 +486,7 @@ function RussiaHome() {
       {/* SECTION 5 — Cost Breakdown                                        */}
       {/* ================================================================= */}
       <section style={styles.section}>
-        {/* TODO-RU: Replace heading */}
-        <h2 style={styles.h2}>PLACEHOLDER_COST_H2</h2>
+        <h2 style={styles.h2}>Ориентировочная стоимость</h2>
 
         <div
           style={{
@@ -555,8 +541,7 @@ function RussiaHome() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
-        {/* TODO-RU: Replace heading */}
-        <h2 style={styles.h2}>PLACEHOLDER_EXAMPLES_H2</h2>
+        <h2 style={styles.h2}>Примеры реальных маршрутов</h2>
 
         <div
           style={{
@@ -614,8 +599,7 @@ function RussiaHome() {
       {/* SECTION 7 — Risks                                                 */}
       {/* ================================================================= */}
       <section style={styles.section}>
-        {/* TODO-RU: Replace heading */}
-        <h2 style={styles.h2}>PLACEHOLDER_RISKS_H2</h2>
+        <h2 style={styles.h2}>На что обратить внимание</h2>
 
         <div
           style={{
@@ -660,8 +644,7 @@ function RussiaHome() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
-        {/* TODO-RU: Replace heading */}
-        <h2 style={styles.h2}>PLACEHOLDER_FAQ_H2</h2>
+        <h2 style={styles.h2}>Часто задаваемые вопросы</h2>
 
         <div style={{ display: 'grid', gap: '0.75rem' }}>
           {FAQS.map((faq, i) => (
@@ -721,14 +704,13 @@ function RussiaHome() {
         }}
       >
         <div style={{ maxWidth: '700px', margin: '0 auto' }}>
-          {/* TODO-RU: Replace CTA copy */}
           <h2
             style={{
               ...styles.h2,
               color: '#F7F5F0',
             }}
           >
-            PLACEHOLDER_DARK_CTA_H2
+            Готовы перевезти автомобиль?
           </h2>
           <p
             style={{
@@ -738,7 +720,8 @@ function RussiaHome() {
               marginBottom: '2rem',
             }}
           >
-            PLACEHOLDER_DARK_CTA_DESCRIPTION
+            Получите расчёт стоимости за несколько минут. Укажите маршрут — мы подберём
+            оптимального перевозчика из нашей сети.
           </p>
           <Link
             to="/ru/ship-my-car"
@@ -747,7 +730,7 @@ function RussiaHome() {
               fontSize: '1.05rem',
             }}
           >
-            PLACEHOLDER_DARK_CTA_BUTTON
+            Рассчитать стоимость
           </Link>
           <p
             style={{
@@ -757,7 +740,7 @@ function RussiaHome() {
               marginTop: '1rem',
             }}
           >
-            PLACEHOLDER_DARK_CTA_SUBTEXT
+            MC #1741537 · USDOT #4427359 · Лицензированный брокер FMCSA
           </p>
         </div>
       </section>
