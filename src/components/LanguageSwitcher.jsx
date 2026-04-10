@@ -11,20 +11,36 @@ const langs = [
   { code: 'ru', label: 'RU' },
 ];
 
-// Routes that have /:lang/ prefix versions in App.jsx
-// Only 3 English pages have real intl counterparts: /, /copart-shipping, /ship-my-car
+// Routes that have /:lang/ prefix versions in App.jsx.
 // Home is handled separately (basePath === '' check below).
-const I18N_PATHS = ['/copart-shipping', '/ship-my-car'];
-const I18N_PREFIXES = [];
+// Exact-match paths:
+const I18N_PATHS = ['/copart-shipping', '/ship-my-car', '/faq', '/about', '/quote', '/dealer-quote'];
+// Prefix-match paths (e.g. /ports/newark → /pl/ports/newark):
+const I18N_PREFIXES = ['/ports/', '/quote/', '/agreement/'];
 
 export default function LanguageSwitcher() {
   const { i18n } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const { lang } = useParams();
-  const current = lang || i18n.language || 'en';
+
+  // Detect language from URL — covers both /:lang/faq param routes AND
+  // /pl, /ua, /ru dedicated intl routes (which don't set :lang param).
+  const langCodes = langs.map(l => l.code);
+  const firstSegment = location.pathname.split('/').filter(Boolean)[0];
+  const urlLang = lang || (langCodes.includes(firstSegment) ? firstSegment : null);
+  const current = urlLang || i18n.language || 'en';
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
+
+  // Sync URL lang → i18n locale on direct navigation (e.g. /pl/faq from
+  // a search engine, or /ru from a link). Without this, the page content
+  // stays in the default language even though the URL contains a lang prefix.
+  useEffect(() => {
+    if (urlLang && urlLang !== i18n.language) {
+      i18n.changeLanguage(urlLang);
+    }
+  }, [urlLang, i18n]);
 
   function switchLang(code) {
     i18n.changeLanguage(code);
