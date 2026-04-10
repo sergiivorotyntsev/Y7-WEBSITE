@@ -50,6 +50,50 @@ function StatCard({ value, label, delay }) {
   );
 }
 
+function BillingSummary() {
+  const [billing, setBilling] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    portalFetch('/api/portal/billing/summary')
+      .then(r => r.ok ? r.json() : null)
+      .then(d => setBilling(d))
+      .catch(() => {});
+  }, []);
+
+  if (!billing || !billing.is_dealer) return null;
+
+  const bal = billing.balance_cents || 0;
+
+  return (
+    <div
+      onClick={() => navigate('/portal/billing')}
+      style={{
+        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+        background: colors.bgCard, border: `1px solid ${colors.border}`, borderRadius: '12px',
+        padding: '16px 20px', marginBottom: '24px', cursor: 'pointer',
+      }}
+    >
+      <div>
+        <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+          Deposit Balance
+        </div>
+        <div style={{ fontFamily: fonts.serif, fontSize: '24px', fontWeight: 700, color: bal < 0 ? '#DC2626' : '#059669' }}>
+          ${(bal / 100).toLocaleString('en-US', { minimumFractionDigits: 2 })}
+        </div>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        {billing.is_blocked && (
+          <span style={{ padding: '3px 10px', borderRadius: '10px', background: '#FEE2E2', color: '#991B1B', fontSize: '10px', fontWeight: 600, fontFamily: fonts.sans }}>
+            Orders Paused
+          </span>
+        )}
+        <span style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.accent }}>View Billing &rarr;</span>
+      </div>
+    </div>
+  );
+}
+
 export default function Dashboard() {
   const { user, checkAuth } = useAuth();
   const navigate = useNavigate();
@@ -205,6 +249,11 @@ export default function Dashboard() {
         <StatCard value={delivered} label="Delivered" delay={160} />
         <StatCard value={total} label="All Time" delay={240} />
       </div>
+
+      {/* Billing summary — dealers with prepay billing only */}
+      {user?.customer_type === 'dealer' && user?.billing_mode === 'prepay_manual_invoice' && (
+        <BillingSummary />
+      )}
 
       {/* Recent Orders */}
       <div style={{
