@@ -255,6 +255,7 @@ function PolandShipMyCar() {
         />
         <meta property="og:url" content="https://www.y7agency.com/pl/ship-my-car" />
         <meta property="og:type" content="website" />
+        <meta property="og:locale" content="pl_PL" />
         <meta property="og:image" content="https://www.y7agency.com/og/ship-my-car-pl.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Zam\u00f3w transport auta z USA" />

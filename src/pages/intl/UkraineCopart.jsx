@@ -323,6 +323,7 @@ function UkraineCopart() {
         />
         <meta property="og:url" content="https://www.y7agency.com/ua/copart-shipping" />
         <meta property="og:type" content="article" />
+        <meta property="og:locale" content="uk_UA" />
         <meta property="og:image" content="https://www.y7agency.com/og/copart-ua.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Copart — пригін авто з аукціону в Україну" />

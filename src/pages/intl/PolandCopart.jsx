@@ -107,6 +107,8 @@ const PolandCopart = () => {
         <meta property="og:title" content="Sprowadzanie aut z Copart do Polski — przewodnik 2026" />
         <meta property="og:description" content="Co naprawdę kosztuje sprowadzenie auta z Copart, ile to trwa i na co uważać. Bez marketingowych obietnic." />
         <meta property="og:locale" content="pl_PL" />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://www.y7agency.com/pl/copart-shipping" />
         <html lang="pl" />
         <link rel="canonical" href="https://www.y7agency.com/pl/copart-shipping" />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>

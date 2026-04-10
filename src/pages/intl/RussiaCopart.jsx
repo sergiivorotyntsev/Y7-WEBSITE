@@ -266,8 +266,8 @@ function RussiaCopart() {
       {/* ----------------------------------------------------------------- */}
       <Helmet>
         <html lang="ru" />
-        <title>Доставка автомобилей с Copart и IAAI — Y7 Logistics | Перевозка с аукционов по США</title>
-        <meta name="description" content="Перевозка автомобилей с аукционов Copart и IAAI по всей территории США. Забор с площадки, доставка до адреса или порта. Лицензированный брокер FMCSA MC #1741537. Русскоязычная поддержка 24/7." />
+        <title>Доставка с Copart и IAAI по США — Y7 Logistics</title>
+        <meta name="description" content="Перевозка авто с аукционов Copart и IAAI по всей территории США. Забор с площадки, доставка до адреса или порта. Брокер FMCSA MC #1741537." />
         <link rel="canonical" href="https://www.y7agency.com/ru/copart-shipping" />
         <meta property="og:title" content="Доставка с Copart и IAAI — Y7 Logistics" />
         <meta property="og:description" content="Забор автомобилей с аукционных площадок и доставка по всем 50 штатам. MC #1741537." />

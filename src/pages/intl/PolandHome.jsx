@@ -98,6 +98,7 @@ const PolandHome = () => {
         <meta property="og:title" content="Sprowadzanie aut z USA do Polski — Y7 Logistics" />
         <meta property="og:description" content="Kompleksowa obsługa od aukcji Copart i IAAI po dostawę pod dom w Polsce. Licencjonowany broker FMCSA MC #1741537." />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.y7agency.com/pl" />
         <meta property="og:locale" content="pl_PL" />
         <html lang="pl" />
         <link rel="canonical" href="https://www.y7agency.com/pl" />

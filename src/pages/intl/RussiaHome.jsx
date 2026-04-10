@@ -276,8 +276,8 @@ function RussiaHome() {
       {/* ----------------------------------------------------------------- */}
       <Helmet>
         <html lang="ru" />
-        <title>Перевозка автомобилей по США — Y7 Logistics | Лицензированный брокер FMCSA</title>
-        <meta name="description" content="Y7 Logistics (MC #1741537, USDOT #4427359) — перевозка автомобилей по всем 50 штатам. Доставка с аукционов Copart и IAAI, перевозка до порта, дилерские маршруты. Русскоязычная поддержка, круглосуточная диспетчерская." />
+        <title>Перевозка автомобилей по США — Y7 Logistics</title>
+        <meta name="description" content="Y7 Logistics (MC #1741537) — перевозка авто по всем 50 штатам. Доставка с Copart и IAAI, до порта, дилерские маршруты. Русскоязычная поддержка 24/7." />
         <link rel="canonical" href="https://www.y7agency.com/ru" />
         <meta property="og:title" content="Перевозка автомобилей по США — Y7 Logistics" />
         <meta property="og:description" content="Лицензированный брокер FMCSA. 100+ перевозчиков, все 50 штатов. Русскоязычная поддержка." />

@@ -400,6 +400,7 @@ function UkraineHome() {
         />
         <meta property="og:url" content="https://www.y7agency.com/ua" />
         <meta property="og:type" content="website" />
+        <meta property="og:locale" content="uk_UA" />
         <meta property="og:image" content="https://www.y7agency.com/og/ukraine-home.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Пригін авто з США в Україну" />
