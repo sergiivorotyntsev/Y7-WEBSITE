@@ -1,0 +1,59 @@
+{
+  "title": "Umowa o świadczenie usług transportowych dla dealerów",
+  "loading": "Ładowanie umowy...",
+  "sections": {
+    "service": {
+      "title": "Opis usługi i rola brokera",
+      "body": "Y7 Consulting Inc (DBA Y7 Logistics), USDOT #4427359, MC #1741537, świadczy licencjonowane usługi brokerskie w zakresie transportu samochodów dla licencjonowanych dealerów, obejmujące przewóz pojazdów między aukcjami, portami i placówkami dealerskimi. Y7 działa jako pośrednik brokerski, organizując usługi transportowe z niezależnymi przewoźnikami. Y7 nie posiada, nie obsługuje ani nie utrzymuje sprzętu przewoźników."
+    },
+    "bol": {
+      "title": "Inspekcja pojazdu i list przewozowy (BOL)",
+      "body": "List przewozowy (Bill of Lading) jest podpisywany przy odbiorze pojazdu przez przedstawiciela nadawcy (przedstawiciel aukcji lub agent sprzedawcy) oraz przy dostawie przez dealera lub wyznaczonego przedstawiciela dealera. Przedstawiciel dealera musi przeprowadzić dokładną inspekcję pojazdu przy dostawie przed podpisaniem BOL i przed dokonaniem płatności na rzecz przewoźnika. Wszelkie uszkodzenia, rozbieżności lub zastrzeżenia muszą być odnotowane na BOL w momencie dostawy."
+    },
+    "payment": {
+      "title": "Warunki płatności",
+      "body": "Warunki płatności dla kont dealerskich:\n\n1. PŁATNOŚĆ DLA PRZEWOŹNIKA: Dealer płaci przewoźnikowi BEZPOŚREDNIO w momencie dostawy, po wspólnej inspekcji pojazdu, czekiem lub za pośrednictwem Zelle. Y7 nie pobiera ani nie przechowuje płatności na rzecz przewoźnika w imieniu kont dealerskich. Dealer ponosi wyłączną odpowiedzialność za wszystkie opłaty przewoźnika, dopłaty paliwowe i wszelkie dodatkowe opłaty uzgodnione przy realizacji zlecenia.\n\n2. OPŁATA BROKERSKA DLA Y7: Dealer płaci Y7 Logistics uzgodnioną opłatę brokerską za pośrednictwem Zelle lub ACH. Metoda i harmonogram płatności zależy od trybu rozliczeń dealera:\n- TRYB ZA DOSTAWĘ (domyślny dla nowych dealerów): Opłata za usługę należna w ciągu 48 godzin od zakończenia i potwierdzenia dostawy pojazdu.\n- TRYB MIESIĘCZNY (tylko dla stałych dealerów, według uznania Y7): Skonsolidowana faktura wystawiana na koniec każdego miesiąca kalendarzowego za wszystkie zrealizowane dostawy w danym okresie. Płatność w ciągu 10 dni kalendarzowych od daty wystawienia faktury.\n\n3. OPÓŹNIONA PŁATNOŚĆ: Nieopłacone prowizje po upływie terminu mogą skutkować zawieszeniem konta dealera i odmową przyjęcia nowych zleceń do czasu uregulowania salda.\n\n4. BRAK PRZEDŁUŻENIA KREDYTU: Y7 nie udziela kredytu poza warunkami rozliczeń określonymi powyżej. Brak net-30, płatności odroczonych ani fakturowania przez usługi zewnętrzne.\n\n5. BRAK ZWROTÓW: Opłaty za usługi są naliczane po pomyślnej wysyłce i dostawie, niezależnie od późniejszych sporów między dealerem a przewoźnikiem."
+    },
+    "insurance": {
+      "title": "Ubezpieczenie i roszczenia",
+      "body": "Przewoźnik utrzymuje ubezpieczenie cargo zgodnie z wymogami przepisów FMCSA (minimum 100 000 USD za pojedynczy pojazd, 250 000 USD łącznie dla transportu zamkniętego). Y7 utrzymuje gwarancję brokerską (75 000 USD BMC-84) zgodnie z wymogami FMCSA. Dealer jest odpowiedzialny za utrzymanie własnego ubezpieczenia komercyjnego obejmującego pojazdy będące w posiadaniu dealera. Roszczenia z tytułu uszkodzenia ładunku muszą być zgłaszane bezpośrednio do przewoźnika w ciągu 9 miesięcy od dostawy zgodnie z Carmack Amendment."
+    },
+    "cancellation": {
+      "title": "Polityka anulowania",
+      "body": "Polityka anulowania:\n\n1. Przed wystawieniem na CD: Zlecenie może być anulowane bez kosztów dla dealera.\n2. Po wystawieniu na CD, ale przed akceptacją przez przewoźnika: Opłata za anulowanie ogłoszenia w wysokości 25 USD.\n3. Po akceptacji przez przewoźnika, ale przed wysyłką: Standardowa opłata za anulowanie Central Dispatch (zwykle 50-150 USD) może obowiązywać zgodnie z polityką przewoźnika.\n4. Po wysyłce przez przewoźnika: Pełna opłata za usługę + ewentualne opłaty za przejazd powrotny przewoźnika.\n\nAnulowanie musi być zgłoszone pisemnie za pośrednictwem portalu lub e-mailem na info@y7agency.com."
+    },
+    "customer": {
+      "title": "Wymagania dotyczące konta dealera",
+      "body": "Wymagania dotyczące konta dealera:\n\n1. Ważna stanowa licencja dealera samochodowego z numerem podanym przy rejestracji.\n2. Aktualne ubezpieczenie komercyjne.\n3. Dokładne informacje o lokalizacji dostawy dla każdego zlecenia.\n4. Odpowiedzialna inspekcja pojazdów przy dostawie przed płatnością na rzecz przewoźnika.\n5. Terminowa komunikacja wszelkich problemów z dostawą w ciągu 24 godzin.\n6. Zgodność ze wszystkimi obowiązującymi federalnymi, stanowymi i lokalnymi przepisami dotyczącymi dealerów samochodowych.\n7. Utrzymywanie aktualnych danych kontaktowych w profilu portalu."
+    },
+    "delays": {
+      "title": "Szacowane terminy i opóźnienia",
+      "body": "Czasy tranzytu to szacunki podane przez przewoźników i podlegają wpływowi pogody, ruchu drogowego, problemów mechanicznych, przepisów o czasie pracy kierowcy oraz innych okoliczności. Y7 nie gwarantuje konkretnych dat dostawy, chyba że zostało to wyraźnie uzgodnione na piśmie. Dealer przyjmuje do wiadomości, że opóźnienia mogą wystąpić i zgadza się, że roszczenia związane z opóźnieniami należy kierować do przewoźnika, a nie do Y7 jako brokera."
+    },
+    "liability": {
+      "title": "Ograniczenie odpowiedzialności",
+      "body": "Y7 Logistics działa wyłącznie jako licencjonowany broker (USDOT #4427359, MC #1741537), organizujący usługi transportowe między dealerem a niezależnymi przewoźnikami. Y7 nie ponosi odpowiedzialności za:\n\n1. Realizację usług przez przewoźnika, terminowość lub obsługę pojazdu.\n2. Roszczenia z tytułu uszkodzenia ładunku (sprawa bezpośrednio między dealerem a przewoźnikiem).\n3. Opóźnienia w dostawie wykraczające poza rozsądne wysiłki brokera.\n4. Spory między dealerem a przewoźnikiem dotyczące płatności lub jakości usług.\n\nCałkowita odpowiedzialność Y7 jest ograniczona do opłaty brokerskiej zapłaconej przez dealera za konkretne zlecenie. Niniejsza umowa nie tworzy żadnego stosunku pracy, agencji ani joint venture poza rolą brokera zdefiniowaną w przepisach FMCSA."
+    }
+  },
+  "checkboxes": {
+    "bol": "Rozumiem, że dealer lub przedstawiciel dealera musi dokonać inspekcji pojazdu i podpisać list przewozowy (BOL) przy dostawie, oraz że podpisanie bez odnotowania uszkodzeń zwalnia przewoźnika z odpowiedzialności.",
+    "payment": "Rozumiem warunki płatności: dealer płaci przewoźnikowi bezpośrednio przy dostawie, a Y7 prowizję brokerską za pośrednictwem Zelle lub ACH zgodnie z przypisanym trybem rozliczeń (za dostawę lub miesięcznie).",
+    "broker": "Rozumiem, że Y7 Consulting Inc jest licencjonowanym brokerem, nie przewoźnikiem. Odpowiedzialność Y7 jest ograniczona do prowizji brokerskiej. Ubezpieczenie cargo przewoźnika obejmuje pojazd podczas transportu. Y7 nie ponosi odpowiedzialności za uszkodzenie pojazdu, kradzież, pożar, utratę całkowitą ani spory między dealerem a przewoźnikiem.",
+    "cancellation": "Zapoznałem/am się i zgadzam się z polityką anulowania, wymaganiami dotyczącymi konta dealera oraz wszystkimi warunkami określonymi w niniejszej umowie."
+  },
+  "signature": {
+    "label": "Wpisz swoje pełne imię i nazwisko jako podpis cyfrowy",
+    "placeholder": "Imię i Nazwisko",
+    "legal": "Wpisując swoje imię i nazwisko powyżej, potwierdzasz, że stanowi to prawnie wiążący podpis elektroniczny zgodnie z E-SIGN Act (15 U.S.C. §7001). Data i adres IP podpisu są rejestrowane.",
+    "button": "Podpisz umowę dealerską",
+    "submitting": "Podpisywanie..."
+  },
+  "success": {
+    "title": "Umowa dealerska podpisana pomyślnie",
+    "message": "Dziękujemy. Twoja umowa dealerska została zarejestrowana. Możesz teraz składać zlecenia transportowe za pośrednictwem portalu dealerskiego."
+  },
+  "errors": {
+    "orderNotFound": "Zlecenie nie zostało znalezione. Sprawdź link i spróbuj ponownie.",
+    "submitFailed": "Nie udało się przesłać umowy. Spróbuj ponownie."
+  }
+}

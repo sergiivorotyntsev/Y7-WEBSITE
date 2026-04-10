@@ -23,6 +23,7 @@ import dealersRu from './locales/ru/dealers.json';
 import exportersRu from './locales/ru/exporters.json';
 import shipMycarRu from './locales/ru/shipMycar.json';
 import agreementRu from './locales/ru/agreement.json';
+import agreementDealerRu from './locales/ru/agreement_dealer.json';
 import aboutRu from './locales/ru/about.json';
 import faqRu from './locales/ru/faq.json';
 
@@ -35,6 +36,7 @@ import dealersPl from './locales/pl/dealers.json';
 import exportersPl from './locales/pl/exporters.json';
 import shipMycarPl from './locales/pl/shipMycar.json';
 import agreementPl from './locales/pl/agreement.json';
+import agreementDealerPl from './locales/pl/agreement_dealer.json';
 import aboutPl from './locales/pl/about.json';
 import faqPl from './locales/pl/faq.json';
 
@@ -47,6 +49,7 @@ import dealersUa from './locales/ua/dealers.json';
 import exportersUa from './locales/ua/exporters.json';
 import shipMycarUa from './locales/ua/shipMycar.json';
 import agreementUa from './locales/ua/agreement.json';
+import agreementDealerUa from './locales/ua/agreement_dealer.json';
 import aboutUa from './locales/ua/about.json';
 import faqUa from './locales/ua/faq.json';
 
@@ -57,15 +60,15 @@ const resources = {
   },
   ru: {
     common: commonRu, home: homeRu, quote: quoteRu, services: servicesRu,
-    dealers: dealersRu, exporters: exportersRu, shipMycar: shipMycarRu, agreement: agreementRu, about: aboutRu, faq: faqRu,
+    dealers: dealersRu, exporters: exportersRu, shipMycar: shipMycarRu, agreement: agreementRu, agreement_dealer: agreementDealerRu, about: aboutRu, faq: faqRu,
   },
   pl: {
     common: commonPl, home: homePl, quote: quotePl, services: servicesPl,
-    dealers: dealersPl, exporters: exportersPl, shipMycar: shipMycarPl, agreement: agreementPl, about: aboutPl, faq: faqPl,
+    dealers: dealersPl, exporters: exportersPl, shipMycar: shipMycarPl, agreement: agreementPl, agreement_dealer: agreementDealerPl, about: aboutPl, faq: faqPl,
   },
   ua: {
     common: commonUa, home: homeUa, quote: quoteUa, services: servicesUa,
-    dealers: dealersUa, exporters: exportersUa, shipMycar: shipMycarUa, agreement: agreementUa, about: aboutUa, faq: faqUa,
+    dealers: dealersUa, exporters: exportersUa, shipMycar: shipMycarUa, agreement: agreementUa, agreement_dealer: agreementDealerUa, about: aboutUa, faq: faqUa,
   },
 };
 
