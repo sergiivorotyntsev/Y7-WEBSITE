@@ -1,8 +1,9 @@
 # Y7 Logistics robots.txt
-# Updated: April 5, 2026
+# Updated: April 10, 2026
 
 User-agent: *
 Allow: /
+Allow: /blog/
 Allow: /pl/
 Allow: /ua/
 Allow: /ru/
