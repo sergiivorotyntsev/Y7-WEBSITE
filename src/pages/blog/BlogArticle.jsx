@@ -70,6 +70,11 @@ export default function BlogArticle() {
         description={article.metaDescription}
         path={`/blog/${slug}`}
         schema={blogPostingSchema}
+        ogType="article"
+        ogImage="https://www.y7agency.com/og-blog.svg"
+        articlePublishedTime={article.dateISO}
+        articleAuthor="Y7 Logistics"
+        articleSection={cat.label}
       />
       <BreadcrumbSchema items={[
         { name: 'Home', url: '/' },

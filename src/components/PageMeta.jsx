@@ -20,7 +20,7 @@ import { Helmet } from 'react-helmet-async';
  * @param {string} path        Path like "/services" (include leading slash)
  * @param {string} schema      Optional JSON-LD schema string
  */
-export default function PageMeta({ title, description, path = '', schema }) {
+export default function PageMeta({ title, description, path = '', schema, ogType, ogImage, articlePublishedTime, articleAuthor, articleSection }) {
   const base = 'https://www.y7agency.com';
   const fullTitle = title
     ? (title.endsWith('| Y7 Logistics') ||
@@ -38,11 +38,21 @@ export default function PageMeta({ title, description, path = '', schema }) {
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonical} />
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content={ogType || 'website'} />
       <meta property="og:site_name" content="Y7 Logistics" />
-      <meta property="og:image" content={`${base}/og-image.svg`} />
+      <meta property="og:image" content={ogImage || `${base}/og-image.svg`} />
+      <meta property="og:locale" content="en_US" />
+      {ogType === 'article' && articlePublishedTime && (
+        <meta property="article:published_time" content={articlePublishedTime} />
+      )}
+      {ogType === 'article' && articleAuthor && (
+        <meta property="article:author" content={articleAuthor} />
+      )}
+      {ogType === 'article' && articleSection && (
+        <meta property="article:section" content={articleSection} />
+      )}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:image" content={`${base}/og-image.svg`} />
+      <meta name="twitter:image" content={ogImage || `${base}/og-image.svg`} />
       <link rel="canonical" href={canonical} />
       {schema && <script type="application/ld+json">{schema}</script>}
     </Helmet>
