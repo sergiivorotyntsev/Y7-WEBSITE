@@ -27,6 +27,9 @@
     "title": "Покрытие основных портов",
     "list": ["Newark, NJ", "Houston, TX", "Savannah, GA", "Baltimore, MD", "Los Angeles, CA", "Jacksonville, FL"]
   },
+  "howItWorks": {
+    "title": "Как это работает"
+  },
   "quoteSection": {
     "title": "Получите бесплатный расчёт",
     "subtitle": "Укажите, куда нужно доставить автомобиль. Мы ответим в течение 1 часа."

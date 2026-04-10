@@ -30,6 +30,9 @@
     "title": "Major Port Coverage",
     "list": ["Newark, NJ", "Houston, TX", "Savannah, GA", "Baltimore, MD", "Los Angeles, CA", "Jacksonville, FL"]
   },
+  "howItWorks": {
+    "title": "How It Works"
+  },
   "quoteSection": {
     "title": "Get Your Free Quote",
     "subtitle": "Tell us where your vehicle needs to go. We'll respond within 1 hour."

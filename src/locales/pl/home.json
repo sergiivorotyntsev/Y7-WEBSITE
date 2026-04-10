@@ -27,6 +27,9 @@
     "title": "Zasięg głównych portów",
     "list": ["Newark, NJ", "Houston, TX", "Savannah, GA", "Baltimore, MD", "Los Angeles, CA", "Jacksonville, FL"]
   },
+  "howItWorks": {
+    "title": "Jak to działa"
+  },
   "quoteSection": {
     "title": "Otrzymaj darmową wycenę",
     "subtitle": "Powiedz nam, dokąd ma trafić Twój pojazd. Odpowiemy w ciągu 1 godziny."

@@ -123,7 +123,7 @@ export default function Home() {
           textAlign: 'center',
           marginBottom: '32px',
         }}>
-          How It Works
+          {t('howItWorks.title')}
         </h2>
         <HowItWorks />
       </ScrollReveal>
