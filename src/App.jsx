@@ -69,6 +69,8 @@ const DispatchDetails = lazyWithRetry(() => import('./pages/portal/DispatchDetai
 const Profile = lazyWithRetry(() => import('./pages/portal/Profile'));
 const NewOrder = lazyWithRetry(() => import('./pages/portal/NewOrder'));
 const Billing = lazyWithRetry(() => import('./pages/portal/Billing'));
+const LocationSetup = lazyWithRetry(() => import('./pages/portal/LocationSetup'));
+const Locations = lazyWithRetry(() => import('./pages/portal/Locations'));
 // Intl placeholder pages
 const PolandHome = lazyWithRetry(() => import('./pages/intl/PolandHome'));
 const PolandCopart = lazyWithRetry(() => import('./pages/intl/PolandCopart'));
@@ -196,6 +198,8 @@ export default function App() {
             <Route path="/portal/order/:id/dispatch-details" element={<ProtectedRoute><DispatchDetails /></ProtectedRoute>} />
             <Route path="/portal/new-order" element={<ProtectedRoute><NewOrder /></ProtectedRoute>} />
             <Route path="/portal/billing" element={<ProtectedRoute><Billing /></ProtectedRoute>} />
+            <Route path="/portal/locations/setup" element={<ProtectedRoute><LocationSetup /></ProtectedRoute>} />
+            <Route path="/portal/locations" element={<ProtectedRoute><Locations /></ProtectedRoute>} />
             <Route path="/portal/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             {/* International pages — Poland */}
             <Route path="/pl" element={<PolandHome />} />
