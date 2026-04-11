@@ -440,6 +440,9 @@ export default function Dashboard() {
         }}>
           {[
             { icon: <ClipboardIcon size={18} />, label: getNewOrderLabel(), to: getNewOrderPath() },
+            ...(['dealer', 'exporter', 'auction_buyer'].includes(user?.customer_type)
+              ? [{ icon: <MapPinIcon size={18} />, label: 'Locations', to: '/portal/locations' }]
+              : []),
             { icon: <MapPinIcon size={18} />, label: 'Track Shipment', to: '/track' },
             { icon: <ProfileIcon size={18} />, label: 'Profile', to: '/portal/profile' },
             { icon: <TelegramIcon size={18} />, label: 'Telegram Bot', href: 'https://t.me/y7dispatch_bot' },
