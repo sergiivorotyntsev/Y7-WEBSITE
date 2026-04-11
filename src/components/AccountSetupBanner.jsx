@@ -20,6 +20,17 @@ export default function AccountSetupBanner() {
     });
   }
 
+  const needsLocation = ['dealer', 'exporter', 'auction_buyer'].includes(user.customer_type);
+  if (needsLocation && !user.has_locations) {
+    items.push({
+      id: 'set_location',
+      title: 'Set Default Delivery Location',
+      description: 'Add your primary delivery address so we can route shipments correctly.',
+      action: () => navigate('/portal/locations/setup'),
+      actionLabel: 'Add Location',
+    });
+  }
+
   if (user.customer_type && user.customer_type !== 'unknown' && !user.agreement_signed) {
     const typeLabel = {
       dealer: 'Dealer Transport Agreement',

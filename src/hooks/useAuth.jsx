@@ -112,6 +112,7 @@ export function AuthProvider({ children }) {
             deposit_balance_cents: data.deposit_balance_cents || 0,
             bank_auth_signed: !!data.bank_auth_signed,
             billing_blocked: !!data.billing_blocked,
+            has_locations: !!data.has_locations,
           });
           return;
         }
