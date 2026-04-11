@@ -50,6 +50,58 @@ function StatusRow({ label, value, valueColor }) {
   );
 }
 
+function SavedLocationsPreview() {
+  const [locs, setLocs] = useState([]);
+  const [loaded, setLoaded] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    portalFetch('/api/portal/locations')
+      .then(r => r.ok ? r.json() : { items: [] })
+      .then(d => { setLocs(d.items || []); setLoaded(true); })
+      .catch(() => setLoaded(true));
+  }, []);
+
+  if (!loaded) return null;
+
+  const shown = locs.slice(0, 3);
+  const extra = locs.length - 3;
+
+  return (
+    <div style={{ paddingTop: '12px', borderTop: `1px solid ${colors.border}` }}>
+      <div style={{ ...labelStyle, marginBottom: '8px' }}>Saved Locations</div>
+      {locs.length === 0 ? (
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <span style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted }}>No saved locations</span>
+          <button onClick={() => navigate('/portal/locations')} style={{
+            background: 'none', border: `1px solid ${colors.border}`, borderRadius: 6,
+            padding: '6px 12px', fontSize: 12, fontFamily: fonts.sans, color: colors.accent,
+            cursor: 'pointer',
+          }}>+ Add Location</button>
+        </div>
+      ) : (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          {shown.map(loc => (
+            <div key={loc.id} style={{ display: 'flex', alignItems: 'center', gap: 6, fontFamily: fonts.sans, fontSize: 13 }}>
+              <span style={{ fontWeight: 600, color: colors.text }}>{loc.label || loc.name}</span>
+              {loc.is_default && (
+                <span style={{ padding: '1px 5px', borderRadius: 3, fontSize: 9, fontWeight: 600, background: '#FEF3C7', color: '#92400E' }}>DEFAULT</span>
+              )}
+              <span style={{ color: colors.textMuted }}>{loc.city}, {loc.state}</span>
+            </div>
+          ))}
+          {extra > 0 && (
+            <span style={{ fontFamily: fonts.sans, fontSize: 12, color: colors.textMuted }}>and {extra} more</span>
+          )}
+          <Link to="/portal/locations" style={{ fontFamily: fonts.sans, fontSize: 12, color: colors.accent, marginTop: 4 }}>
+            Manage all locations &rarr;
+          </Link>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Profile() {
   const { user, checkAuth } = useAuth();
   const navigate = useNavigate();
@@ -314,6 +366,11 @@ export default function Profile() {
             )}
           </div>
         </div>
+
+        {/* Saved Locations (dealer/exporter/auction_buyer only) */}
+        {['dealer', 'exporter', 'auction_buyer'].includes(user?.customer_type) && (
+          <SavedLocationsPreview />
+        )}
 
         {/* Connected accounts */}
         <div style={{ paddingTop: '12px', borderTop: `1px solid ${colors.border}` }}>
