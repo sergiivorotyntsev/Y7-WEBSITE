@@ -1,8 +1,9 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import { CheckIcon } from '../components/icons';
 import { apiPost } from '../hooks/useApi';
+import { portalFetch } from '../hooks/useAuth';
 import SmsConsent from '../components/SmsConsent';
 import { colors, fonts, button as btnStyles } from '../theme';
 import { trackEvent } from '../utils/analytics';
@@ -77,6 +78,8 @@ const sectionTitle = {
 const rowStyle = { marginBottom: '12px' };
 
 export default function DealerQuote() {
+  const [searchParams] = useSearchParams();
+  const [prefilled, setPrefilled] = useState(false);
   const [form, setForm] = useState({
     dealership_name: '', contact_name: '', email: '', phone: '',
     address: '', city: '', state: '', zip: '',
@@ -86,6 +89,23 @@ export default function DealerQuote() {
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (searchParams.get('prefill') !== '1') return;
+    portalFetch('/api/portal/data/profile')
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (!data) return;
+        setForm(prev => ({
+          ...prev,
+          contact_name: data.contact_name || prev.contact_name,
+          email: data.email || prev.email,
+          phone: data.phone || prev.phone,
+        }));
+        setPrefilled(true);
+      })
+      .catch(() => {});
+  }, [searchParams]);
 
   function set(field, value) {
     setForm(prev => ({ ...prev, [field]: value }));
@@ -157,6 +177,16 @@ export default function DealerQuote() {
       <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, marginBottom: '28px', lineHeight: 1.5 }}>
         Tell us about your dealership and transportation needs. We'll build a custom logistics plan for your business.
       </p>
+
+      {prefilled && (
+        <div style={{
+          fontFamily: fonts.sans, fontSize: '13px', color: '#065F46',
+          padding: '10px 14px', background: '#D1FAE5', borderRadius: '8px',
+          marginBottom: '16px', lineHeight: 1.5,
+        }}>
+          We've pre-filled some information from your account. Please complete the remaining business details below.
+        </div>
+      )}
 
       <form onSubmit={handleSubmit}>
         {/* Business Info */}
