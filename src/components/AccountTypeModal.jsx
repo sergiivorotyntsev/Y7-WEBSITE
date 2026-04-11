@@ -14,6 +14,14 @@ import { colors, fonts } from '../theme';
  * form on /dealers, not self-promote through this modal.
  */
 
+const TYPE_LABELS = {
+  dealer: 'Dealer',
+  individual: 'Individual',
+  auction_buyer: 'Auction Buyer',
+  exporter: 'Exporter',
+  unknown: 'Not Classified',
+};
+
 const TYPES = [
   {
     id: 'individual',
@@ -39,7 +47,9 @@ const TYPES = [
   },
 ];
 
-export default function AccountTypeModal({ onComplete }) {
+export default function AccountTypeModal({ onComplete, mode = 'initial', currentType, onClose }) {
+  const isEdit = mode === 'edit';
+  const editTypes = TYPES.filter(t => t.id !== 'dealer');
   const [selected, setSelected] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
@@ -53,13 +63,41 @@ export default function AccountTypeModal({ onComplete }) {
     setSubmitting(true);
     setError(null);
     try {
+      const body = { customer_type: selected };
       const response = await portalFetch('/api/portal/data/customer-type', {
         method: 'PATCH',
-        body: JSON.stringify({ customer_type: selected }),
+        body: JSON.stringify(body),
       });
+      if (response.status === 409) {
+        const data = await response.json().catch(() => ({}));
+        if (data.detail?.error === 'deposit_refund_required') {
+          const proceed = window.confirm(
+            `You have a deposit balance of $${(data.detail.deposit_balance_cents / 100).toFixed(2)}. ` +
+            'This will be refunded manually by Y7.\n\nProceed with type change?'
+          );
+          if (proceed) {
+            const r2 = await portalFetch('/api/portal/data/customer-type', {
+              method: 'PATCH',
+              body: JSON.stringify({ ...body, confirm_refund: true }),
+            });
+            if (!r2.ok) {
+              const err2 = await r2.json().catch(() => ({}));
+              throw new Error(err2.detail?.message || err2.detail || 'Failed to save');
+            }
+            const d2 = await r2.json();
+            onComplete?.(d2.customer_type);
+            return;
+          }
+          setSubmitting(false);
+          return;
+        }
+        const msg = data.detail?.message || data.detail || 'Failed to save';
+        throw new Error(typeof msg === 'string' ? msg : JSON.stringify(msg));
+      }
       if (!response.ok) {
         const err = await response.json().catch(() => ({}));
-        throw new Error(err.detail || 'Failed to save');
+        const msg = err.detail?.message || err.detail || 'Failed to save';
+        throw new Error(typeof msg === 'string' ? msg : JSON.stringify(msg));
       }
       const data = await response.json();
       onComplete?.(data.customer_type);
@@ -94,28 +132,47 @@ export default function AccountTypeModal({ onComplete }) {
         padding: 32,
         maxHeight: '90vh',
         overflowY: 'auto',
+        position: 'relative',
       }}>
+        {isEdit && onClose && (
+          <button onClick={onClose} style={{
+            position: 'absolute', top: 16, right: 16, background: 'none', border: 'none',
+            fontSize: 20, color: colors.textMuted, cursor: 'pointer', lineHeight: 1,
+          }}>&times;</button>
+        )}
+
         <h2 style={{
           fontFamily: fonts.serif,
           fontSize: 24,
           marginBottom: 8,
           color: colors.text,
         }}>
-          Welcome to Y7 Logistics
+          {isEdit ? 'Change Account Type' : 'Welcome to Y7 Logistics'}
         </h2>
+        {isEdit && currentType && (
+          <p style={{ fontFamily: fonts.sans, fontSize: 13, color: colors.textMuted, marginBottom: 8 }}>
+            Current type: <strong>{TYPE_LABELS[currentType] || currentType}</strong>
+          </p>
+        )}
         <p style={{
           fontFamily: fonts.sans,
           fontSize: 14,
           color: colors.textMuted,
-          marginBottom: 24,
+          marginBottom: isEdit ? 8 : 24,
           lineHeight: 1.6,
         }}>
-          To get started, please tell us what kind of customer you are.
-          This helps us show you the right forms and the right agreement.
+          {isEdit
+            ? 'Select a new account type below.'
+            : 'To get started, please tell us what kind of customer you are. This helps us show you the right forms and the right agreement.'}
         </p>
+        {isEdit && (
+          <p style={{ fontFamily: fonts.sans, fontSize: 12, color: colors.accent, marginBottom: 16, lineHeight: 1.5 }}>
+            Changing your account type will require re-signing your agreement under the new terms.
+          </p>
+        )}
 
         <div style={{ display: 'grid', gap: 12, marginBottom: 20 }}>
-          {TYPES.map(type => (
+          {(isEdit ? editTypes : TYPES).map(type => (
             <button
               key={type.id}
               type="button"
@@ -202,15 +259,17 @@ export default function AccountTypeModal({ onComplete }) {
               : 'Continue'}
         </button>
 
-        <p style={{
-          fontSize: 11,
-          color: colors.textMuted,
-          textAlign: 'center',
-          marginTop: 12,
-          fontFamily: fonts.sans,
-        }}>
-          You can change this later in your profile settings.
-        </p>
+        {!isEdit && (
+          <p style={{
+            fontSize: 11,
+            color: colors.textMuted,
+            textAlign: 'center',
+            marginTop: 12,
+            fontFamily: fonts.sans,
+          }}>
+            This selection determines your agreement type and available features.
+          </p>
+        )}
       </div>
     </div>
   );

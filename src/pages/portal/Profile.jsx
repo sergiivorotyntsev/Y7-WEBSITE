@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CheckIcon } from '../../components/icons';
+import AccountTypeModal from '../../components/AccountTypeModal';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles } from '../../theme';
 
@@ -56,6 +57,7 @@ export default function Profile() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState(null);
+  const [showTypeModal, setShowTypeModal] = useState(false);
 
   useEffect(() => {
     portalFetch('/api/portal/data/profile')
@@ -242,6 +244,26 @@ export default function Profile() {
               </p>
             </div>
           )}
+
+          {user?.customer_type && user.customer_type !== 'dealer' && user.customer_type !== 'unknown' && (
+            <button
+              onClick={() => setShowTypeModal(true)}
+              style={{
+                marginTop: '8px',
+                background: 'none',
+                border: `1px solid ${colors.border}`,
+                borderRadius: '8px',
+                padding: '8px 14px',
+                fontSize: '12px',
+                fontFamily: fonts.sans,
+                color: colors.textMuted,
+                cursor: 'pointer',
+                width: '100%',
+              }}
+            >
+              Change Account Type
+            </button>
+          )}
         </div>
 
         {/* Documents & Agreements */}
@@ -319,6 +341,19 @@ export default function Profile() {
           {saving ? 'Saving...' : 'Save Profile'}
         </button>
       </form>
+
+      {showTypeModal && (
+        <AccountTypeModal
+          mode="edit"
+          currentType={user?.customer_type}
+          onClose={() => setShowTypeModal(false)}
+          onComplete={() => {
+            setShowTypeModal(false);
+            checkAuth();
+            setMessage({ type: 'success', text: 'Account type updated. You may need to re-sign your agreement.' });
+          }}
+        />
+      )}
     </div>
   );
 }
