@@ -216,6 +216,32 @@ export default function Profile() {
               valueColor={(user?.deposit_balance_cents || 0) < 0 ? '#DC2626' : colors.success}
             />
           )}
+
+          {user?.customer_type && user.customer_type !== 'dealer' && (
+            <div style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <button
+                onClick={() => navigate('/dealer-quote?prefill=1')}
+                style={{
+                  ...btnStyles.accent,
+                  width: '100%',
+                  padding: '12px 16px',
+                  fontSize: '13px',
+                  fontWeight: 600,
+                }}
+              >
+                Upgrade to Dealer Account
+              </button>
+              <p style={{
+                fontFamily: fonts.sans,
+                fontSize: '11px',
+                color: colors.textMuted,
+                lineHeight: 1.5,
+                margin: 0,
+              }}>
+                Already running a dealership? Upgrade to access volume pricing, prepay billing, and dedicated dispatch support. We'll need a few business details.
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Documents & Agreements */}
