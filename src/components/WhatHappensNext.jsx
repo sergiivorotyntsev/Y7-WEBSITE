@@ -22,9 +22,9 @@ const steps = [
     desc: 'We find a carrier through Central Dispatch, verify their FMCSA authority and active insurance, then send you the driver\u2019s name and truck details.',
   },
   {
-    title: 'Pickup & delivery with tracking',
+    title: 'Pickup & delivery with status updates',
     timing: 'Varies by route',
-    desc: 'Real-time updates at every stage. BOL at pickup and delivery. Photo documentation. Portal tracking 24/7.',
+    desc: 'Status updates at every stage. BOL at pickup and delivery. Photo documentation. Carrier phone number provided.',
   },
 ];
 

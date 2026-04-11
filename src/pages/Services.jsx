@@ -5,7 +5,7 @@ import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { colors, fonts, button as btnStyles } from '../theme';
 
 const servicePages = [
-  { to: '/ship-my-car', title: 'Ship My Car', desc: 'Door-to-door auto transport for individuals. Open or enclosed carriers, real-time tracking.' },
+  { to: '/ship-my-car', title: 'Ship My Car', desc: 'Door-to-door auto transport for individuals. Open or enclosed carriers, status updates at every stage.' },
   { to: '/car-shipping-cost', title: 'Car Shipping Cost', desc: 'Understand pricing factors and get a transparent quote with no hidden fees.' },
   { to: '/enclosed-car-shipping', title: 'Enclosed Car Shipping', desc: 'Premium covered transport for luxury, classic, and high-value vehicles.' },
   { to: '/auction-car-shipping', title: 'Auction Car Shipping', desc: 'Pickup from Copart, IAAI, Manheim, and independent auctions nationwide.' },

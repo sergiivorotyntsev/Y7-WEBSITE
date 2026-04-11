@@ -117,7 +117,7 @@ export default function DealerAuctionPickupGuide({ theme }) {
       </p>
 
       <p style={{ marginBottom: 18, fontSize: '1.02rem', lineHeight: 1.8, color: theme.text }}>
-        Y7 is building a self-service dealer portal with exactly this in mind — real-time visibility into every
+        Y7 is building a self-service dealer portal with exactly this in mind — full visibility into every
         load, document access, and direct communication channels. If you want early access or want to discuss
         volume pricing for your dealership, visit our{' '}
         <Link to="/dealers" style={{ color: theme.accent, textDecoration: 'underline' }}>dealer services page</Link>{' '}

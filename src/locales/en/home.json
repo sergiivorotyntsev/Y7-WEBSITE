@@ -10,14 +10,14 @@
     "experienceLabel": "Years Team Experience",
     "carriers": "100+",
     "carriersLabel": "Vetted Carriers",
-    "support": "24/7",
-    "supportLabel": "Dispatch Support",
+    "support": "1hr",
+    "supportLabel": "Quote Response",
     "cd": "90%",
     "cdLabel": "Central Dispatch"
   },
   "audience": {
     "shipMyCarTitle": "Ship My Car",
-    "shipMyCarDesc": "Door-to-door anywhere in the US. Open or enclosed transport with real-time tracking.",
+    "shipMyCarDesc": "Door-to-door anywhere in the US. Open or enclosed transport with status updates at every stage.",
     "shipMyCarCta": "Get Quote",
     "dealersTitle": "Dealer Transport",
     "dealersDesc": "Auction pickup, dealer trades, volume pricing. One broker for Copart, IAAI, and Manheim.",

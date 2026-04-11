@@ -30,7 +30,7 @@ const STEPS = [
   {
     icon: <CheckIcon />,
     title: 'Vehicle Delivered',
-    desc: 'Track your shipment in real time. Inspect on arrival, sign BOL, and you\'re done.',
+    desc: 'Follow your shipment status via portal. Inspect on arrival, sign BOL, and you\'re done.',
     stat: '3-10 business days',
   },
 ];

@@ -390,7 +390,7 @@ export default function PostQuoteFlow({ quoteResult, formData }) {
               Get instant updates via Telegram
             </div>
             <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, lineHeight: 1.5 }}>
-              Carrier assigned, pickup scheduled, delivery confirmed — all in real time.
+              Carrier assigned, pickup scheduled, delivery confirmed — status updates at every step.
             </div>
           </div>
           <a

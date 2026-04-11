@@ -6,7 +6,7 @@
     { "title": "Auction Pickups", "desc": "Same-day dispatch from Copart, IAA, Manheim, and ADESA. Gate pass coordination included." },
     { "title": "Dealer-to-Dealer Trades", "desc": "Fast transport between dealerships. One point of contact for all your trade moves." },
     { "title": "Dedicated Dispatch", "desc": "Your own dispatch coordinator who knows your routes, your timeline, and your preferences." },
-    { "title": "Central Dispatch Integration", "desc": "90% of our loads go through Central Dispatch. Real-time status updates and carrier tracking." },
+    { "title": "Central Dispatch Integration", "desc": "90% of our loads go through Central Dispatch. Status updates at every stage via portal." },
     { "title": "Flexible Payment", "desc": "Net-15 terms, ACH, and invoice-based billing designed for dealer operations." }
   ],
   "pricing": {

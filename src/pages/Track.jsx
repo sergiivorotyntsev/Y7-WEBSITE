@@ -42,7 +42,7 @@ export default function Track() {
   return (
     <div style={{ maxWidth: '640px', margin: '0 auto', padding: '60px 24px 80px' }}>
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Track',url:'/track'}]} />
-      <PageMeta title="Track Your Shipment" description="Track your vehicle shipment in real-time. Enter your reference number or VIN." path="/track" />
+      <PageMeta title="Track Your Shipment" description="Check your vehicle shipment status. Enter your reference number or VIN." path="/track" />
       <div style={{ textAlign: 'center', marginBottom: '32px' }}>
         <div style={{ marginBottom: '12px' }}><SearchIcon size={20} /></div>
         <h1 style={{
@@ -60,7 +60,7 @@ export default function Track() {
           color: colors.textMuted,
           lineHeight: 1.6,
         }}>
-          Enter your reference number, VIN, or tracking code to see real-time status.
+          Enter your reference number, VIN, or tracking code to check shipment status.
         </p>
       </div>
 

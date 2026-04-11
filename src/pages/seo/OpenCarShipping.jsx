@@ -37,7 +37,7 @@ export default function OpenCarShipping() {
         'Door-to-door pickup and delivery',
         'Nationwide coverage — all 50 states',
         'Fully insured carriers with cargo insurance',
-        'Real-time tracking during transit',
+        'Shipment status updates during transit',
         'Condition inspection at pickup and delivery',
       ]}
       faqs={[

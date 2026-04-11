@@ -51,7 +51,7 @@ export default function DealerAutoTransport() {
         'Multi-car hauling discounts',
         'Priority dispatch',
         'Enclosed transport for high-value inventory',
-        'Real-time tracking dashboard',
+        'Shipment status dashboard',
       ]}
       faqs={[
         {
@@ -101,7 +101,7 @@ export default function DealerAutoTransport() {
 
       <Section title="Multi-Vehicle Moves">
         <p style={p}>
-          The most common scenario: you buy 3-5 vehicles at Tuesday's Manheim or Copart sale, scattered across 2-3 different auction locations, and you need all of them on your lot by the end of the week. One order, one point of contact, all tracked in real-time.
+          The most common scenario: you buy 3-5 vehicles at Tuesday's Manheim or Copart sale, scattered across 2-3 different auction locations, and you need all of them on your lot by the end of the week. One order, one point of contact, all tracked through our portal.
         </p>
         <p style={p}>
           Here is how it works operationally. You send us the list — VINs, lot numbers, auction locations. Your dedicated dispatcher maps out the most efficient routing. If two vehicles are at the same auction or nearby locations, we consolidate them on one carrier to reduce cost. If they are in different regions, we dispatch multiple carriers but coordinate delivery windows so everything arrives within your target timeframe. You get a single status update thread — not five separate conversations with five different brokers.
@@ -140,7 +140,7 @@ export default function DealerAutoTransport() {
 
       <Section title="Technology: Dealer Portal and Tracking">
         <p style={p}>
-          Dealer accounts get access to our portal with real-time tracking for every active shipment. You can see carrier location, estimated arrival time, and current status (dispatched, picked up, in transit, delivered) for each vehicle without calling or emailing.
+          Dealer accounts get access to our portal with shipment status updates for every active shipment. You can see current status (dispatched, picked up, in transit, delivered) and estimated arrival time for each vehicle through the portal.
         </p>
         <p style={p}>
           Automated status updates go out via email at every milestone: carrier assigned, vehicle picked up, in transit, out for delivery, delivered. Your sales team can forward these directly to customers waiting for deliveries. ETA notifications go out 24 hours and 2 hours before delivery so your lot staff can prepare for receiving.

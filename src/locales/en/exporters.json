@@ -24,7 +24,7 @@
     { "title": "Tell Us Your Needs", "desc": "Monthly volume, preferred ports, vehicle types. We'll tailor a service plan." },
     { "title": "Receive Our Service Rates", "desc": "Transparent fee schedule — our dispatch fee + carrier rate (at cost). No hidden markups." },
     { "title": "Send Us Your Vehicles", "desc": "VINs + pickup locations. One vehicle or a hundred — we handle each one." },
-    { "title": "We Dispatch & Deliver", "desc": "Carrier assignment, real-time tracking, port delivery with full documentation." }
+    { "title": "We Dispatch & Deliver", "desc": "Carrier assignment, shipment status updates, port delivery with full documentation." }
   ],
   "ports": {
     "title": "Port Coverage",

@@ -6,9 +6,9 @@ const ITEMS = [
   { icon: <ShieldCheckIcon />, title: 'Licensed & Insured', desc: 'USDOT #4427359, MC #1741537. Fully licensed property broker.' },
   { icon: <VerifiedIcon />, title: 'Central Dispatch Verified', desc: '90% of our orders go through CD. Verified broker with top ratings.' },
   { icon: <EyeIcon />, title: 'Transparent Pricing', desc: 'No hidden fees. Carrier rate + service fee. What you see is what you pay.' },
-  { icon: <MapPinIcon />, title: 'Real-Time Tracking', desc: 'Track your shipment anytime via portal, email, SMS, or Telegram.' },
+  { icon: <MapPinIcon />, title: 'Shipment Status Updates', desc: 'Monitor your shipment via portal, email, SMS, or Telegram. Carrier phone number provided after dispatch.' },
   { icon: <GlobeIcon />, title: 'Multilingual Support', desc: 'EN, RU, PL, UK — we speak your language. Global exporter network.' },
-  { icon: <ClockIcon />, title: '24/7 Dispatch', desc: 'Round-the-clock dispatch support. Quotes within 1 hour, any time.' },
+  { icon: <ClockIcon />, title: 'Fast Dispatch Response', desc: 'Quotes typically within 1 hour during business hours. Dedicated dispatch coordinator.' },
 ];
 
 export default function WhyY7() {

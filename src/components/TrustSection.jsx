@@ -6,7 +6,7 @@ const ITEMS = [
   { icon: <VerifiedIcon size={20} />, title: 'Carrier Vetting', desc: 'Every carrier verified through Central Dispatch. FMCSA authority, active insurance, safety rating checked before assignment.' },
   { icon: <InsuranceIcon size={20} />, title: 'Insurance Verification', desc: 'COI confirmed before every dispatch. Minimum $100K cargo coverage required. Most carriers carry $250K+.' },
   { icon: <DocumentIcon size={20} />, title: 'Documentation', desc: 'BOL at pickup and delivery. Photo documentation. Digital records accessible in your customer portal.' },
-  { icon: <BellIcon size={20} />, title: 'Real-Time Updates', desc: 'Email at every stage. Telegram bot for instant updates. Portal tracking 24/7.' },
+  { icon: <BellIcon size={20} />, title: 'Status Notifications', desc: 'Email at every stage. Telegram bot for updates. Portal access to shipment status anytime.' },
   { icon: <HeadphonesIcon size={20} />, title: 'Claims Support', desc: '24-hour claim window with photo documentation. We coordinate with the carrier\'s insurance on your behalf.' },
   { icon: <EscalationIcon size={20} />, title: 'Escalation Path', desc: 'Dispatcher \u2192 operations manager \u2192 resolution within 48 hours. Every issue gets tracked.' },
 ];

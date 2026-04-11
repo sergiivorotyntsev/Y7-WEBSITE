@@ -130,7 +130,7 @@ export default function ElectricVehiclePortDelivery() {
           {[
             { step: 'Purchase Confirmation', desc: 'You win an auction or complete a private purchase. Send us VIN, lot number, purchase receipt, and destination port preference.' },
             { step: 'Carrier Assignment', desc: 'We assign a verified carrier experienced with EV transport and port delivery — not all carriers have port credentials or EV handling experience.' },
-            { step: 'Pickup & Transport', desc: 'Carrier picks up from auction or dealer with proper EV loading techniques. Transit monitored via GPS with real-time updates.' },
+            { step: 'Pickup & Transport', desc: 'Carrier picks up from auction or dealer with proper EV loading techniques. Transit monitored with status updates at each stage.' },
             { step: 'Port Delivery & Documentation', desc: 'Vehicle delivered directly to port warehouse or export terminal. Gate pass and release documents coordinated with port agents.' },
             { step: 'Handoff to Freight Forwarder', desc: 'We coordinate with your ocean freight forwarder for container loading or RoRo booking. Full documentation package provided.' },
           ].map((item, i) => (

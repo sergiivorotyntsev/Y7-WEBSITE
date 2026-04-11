@@ -140,7 +140,7 @@ export default function HowToShipAuctionCar() {
       {/* Step 5 */}
       <h2 style={h2Style}>Step 5: Track Your Shipment</h2>
       <p style={pStyle}>
-        Once the carrier has loaded your vehicle, your broker should provide tracking updates. At Y7 Logistics, we provide real-time status updates through our customer portal, including pickup confirmation, en-route status, and estimated delivery time. Most auction vehicle shipments are completed within 1-7 days depending on the distance between the auction yard and the delivery location.
+        Once the carrier has loaded your vehicle, your broker should provide tracking updates. At Y7 Logistics, we provide status updates through our customer portal, including pickup confirmation, transit status, and estimated delivery time. Most auction vehicle shipments are completed within 1-7 days depending on the distance between the auction yard and the delivery location.
       </p>
       <p style={pStyle}>
         During transit, the carrier is responsible for the vehicle. All carriers in the Y7 Logistics network carry cargo insurance with minimum coverage of $100,000 per vehicle. The Bill of Lading (BOL) signed at pickup documents the vehicle's condition at the time of loading, serving as the baseline for any damage claims.

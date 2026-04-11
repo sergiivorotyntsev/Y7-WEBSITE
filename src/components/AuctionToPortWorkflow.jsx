@@ -5,7 +5,7 @@ const steps = [
   { title: 'Share Details', timing: 'Day 0-1', desc: 'Send us lot number, VIN, purchase confirmation' },
   { title: 'Release Coordination', timing: 'Day 1-2', desc: 'We handle auction release documents' },
   { title: 'Carrier Pickup', timing: 'Day 3-5', desc: 'Verified carrier picks up within 3-5 days of release' },
-  { title: 'Transit to Port', timing: 'Varies', desc: 'Real-time tracking, photo documentation' },
+  { title: 'Transit to Port', timing: 'Varies', desc: 'Status updates at each stage, photo documentation' },
   { title: 'Port Handoff', timing: 'Arrival', desc: 'Delivery to port warehouse with gate pass' },
 ];
 

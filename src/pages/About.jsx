@@ -47,7 +47,7 @@ const styles = {
 const steps = [
   { num: 1, title: 'Receive Order', desc: 'Customer submits vehicle details, pickup and delivery locations.' },
   { num: 2, title: 'Vet & Assign Carrier', desc: 'We match your load with a verified, insured carrier through Central Dispatch.' },
-  { num: 3, title: 'Monitor Transit', desc: 'Real-time tracking and proactive updates from pickup to delivery.' },
+  { num: 3, title: 'Monitor Transit', desc: 'Status updates and notifications from pickup to delivery.' },
   { num: 4, title: 'Deliver & Document', desc: 'Signed BOL, condition reports, and delivery confirmation on file.' },
 ];
 
@@ -55,7 +55,7 @@ const whyPoints = [
   { icon: <ScalesIcon />, title: 'Licensed Broker', desc: 'FMCSA-registered auto transport broker with active MC and USDOT authority.' },
   { icon: <VerifiedIcon />, title: 'Verified Carriers', desc: 'Every carrier is vetted for insurance, safety record, and operating authority.' },
   { icon: <EyeIcon />, title: 'Transparent Pricing', desc: 'Upfront quotes with no hidden fees. Price locked once you confirm.' },
-  { icon: <MapPinIcon />, title: 'Real-Time Tracking', desc: 'Portal and Telegram updates so you always know where your vehicle is.' },
+  { icon: <MapPinIcon />, title: 'Shipment Status Updates', desc: 'Portal and Telegram notifications so you know your shipment status at every stage.' },
   { icon: <GlobeIcon />, title: 'Multilingual Support', desc: 'We communicate in English, Russian, Polish, and Ukrainian.' },
   { icon: <BellIcon />, title: 'Automated Updates', desc: 'Email and Telegram notifications at every stage of transport.' },
 ];
@@ -73,7 +73,7 @@ export default function About() {
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'About',url:'/about'}]} />
       <PageMeta
         title="About"
-        description="Licensed auto transport broker USDOT #4427359. Verified carriers, 24/7 dispatch, transparent pricing."
+        description="Licensed auto transport broker USDOT #4427359. Verified carriers, fast dispatch response, transparent pricing."
         path="/about"
       />
       <style>{`

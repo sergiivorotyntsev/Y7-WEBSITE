@@ -39,7 +39,7 @@ export default function StateToState() {
         'All carriers verified for interstate authority',
         'Open and enclosed transport options',
         'Door-to-door service — no terminal drop-off needed',
-        'Real-time tracking throughout transit',
+        'Shipment status updates throughout transit',
         'Common corridors: Northeast↔Florida, Texas↔East Coast, California↔Midwest',
       ]}
       faqs={[

@@ -70,7 +70,7 @@ export default function CarShippingCost() {
         'Door-to-door service',
         'Expedited shipping available',
         'Inoperable vehicle transport',
-        'Real-time tracking',
+        'Shipment status updates',
       ]}
       faqs={[
         {

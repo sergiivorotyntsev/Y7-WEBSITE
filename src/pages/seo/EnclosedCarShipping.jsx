@@ -37,7 +37,7 @@ export default function EnclosedCarShipping() {
         'Lift-gate loading and unloading',
         'Single-vehicle transport available',
         'Premium insurance coverage',
-        'GPS tracking throughout transit',
+        'Shipment status updates throughout transit',
         'Experienced specialty drivers',
       ]}
       faqs={[
