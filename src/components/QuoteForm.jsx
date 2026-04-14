@@ -158,16 +158,27 @@ export default function QuoteForm({ compact = false }) {
     e.preventDefault();
     setError(null);
 
-    // VIN validation (unless no-VIN mode)
+    // VIN format check (if user typed something in VIN mode)
     const vinRegex = /^[A-HJ-NPR-Z0-9]{17}$/;
     if (!noVinMode && form.vin && !vinRegex.test(form.vin.trim().toUpperCase())) {
       setError('Invalid VIN. Must be 17 characters (letters A-H, J-N, P, R-Z and digits).');
       return;
     }
-    if (noVinMode) {
-      if (!form.vehicle_year) { setError('Vehicle year is required.'); return; }
-      if (!form.vehicle_make.trim()) { setError('Vehicle make is required.'); return; }
-      if (!form.vehicle_model.trim()) { setError('Vehicle model is required.'); return; }
+
+    // Unified vehicle identification rule: 17-char VIN OR full Year+Make+Model
+    const vinTrim = (form.vin || '').trim().toUpperCase();
+    const yearTrim = String(form.vehicle_year || '').trim();
+    const makeTrim = (form.vehicle_make || '').trim();
+    const modelTrim = (form.vehicle_model || '').trim();
+    const hasVin = vinTrim.length === 17;
+    const hasYMM = yearTrim.length === 4 && /^\d{4}$/.test(yearTrim) && makeTrim.length > 0 && modelTrim.length > 0;
+    if (!hasVin && !hasYMM) {
+      setError(
+        'Please provide either a 17-character VIN, or fill in Year + Make + Model. ' +
+        'We cannot quote without knowing which vehicle to transport.'
+      );
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
     }
 
     if (!form.name.trim()) { setError(t('errors.nameRequired')); return; }
@@ -251,6 +262,11 @@ export default function QuoteForm({ compact = false }) {
           {fieldErrors.vin && (
             <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.accent, marginTop: '4px' }}>{fieldErrors.vin}</div>
           )}
+          {!form.vin && (
+            <div style={{ fontFamily: fonts.sans, fontSize: '11px', color: colors.textMuted, marginTop: '4px' }}>
+              No VIN? Use &quot;I don&apos;t have a VIN&quot; below to enter Year, Make and Model.
+            </div>
+          )}
           {vinResult && (
             <>
               <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.success, marginTop: '4px' }}>
@@ -301,7 +317,14 @@ export default function QuoteForm({ compact = false }) {
         <div style={{ ...rowStyle, gridTemplateColumns: '1fr 1fr 1fr' }}>
           <div>
             <label style={labelStyle}>{t('form.vehicleYear')}</label>
-            <input value={form.vehicle_year} onChange={e => set('vehicle_year', e.target.value)} style={inputStyle} />
+            <input
+              value={form.vehicle_year}
+              onChange={e => set('vehicle_year', e.target.value.replace(/\D/g, '').slice(0, 4))}
+              inputMode="numeric"
+              maxLength={4}
+              pattern="\d{4}"
+              style={inputStyle}
+            />
           </div>
           <div>
             <label style={labelStyle}>{t('form.vehicleMake')}</label>
