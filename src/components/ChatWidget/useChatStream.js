@@ -5,6 +5,11 @@ export default function useChatStream() {
   const [messages, setMessages] = useState([])
   const [streaming, setStreaming] = useState(false)
   const [sessionId] = useState(() => Math.random().toString(36).slice(2, 14))
+  // Server-assigned UUID from the first SSE `session` event of a conversation.
+  // Stays stable across every follow-up `send()` so lead-capture can attribute
+  // all messages back to one chat session.
+  const [sessionUuid, setSessionUuid] = useState(null)
+  const sessionUuidRef = useRef(null)
   const [quoteDone, setQuoteDone] = useState(null)
   const bufferRef = useRef('')
   const rafRef = useRef(null)
@@ -41,7 +46,10 @@ export default function useChatStream() {
         body: JSON.stringify({
           messages: apiMessages,
           session_id: sessionId,
+          session_uuid: sessionUuidRef.current || undefined,
           channel: 'ai_chat_website',
+          landing_page: typeof window !== 'undefined' ? window.location.pathname : undefined,
+          language: typeof document !== 'undefined' ? (document.documentElement.lang || 'en') : 'en',
         }),
       })
 
@@ -53,6 +61,9 @@ export default function useChatStream() {
       const reader = resp.body.getReader()
       const decoder = new TextDecoder()
       let partialLine = ''
+      // SSE: `event:` and `data:` arrive on separate lines. Track the most
+      // recent event name so the matching data payload is dispatched correctly.
+      let currentEvent = null
 
       while (true) {
         const { done, value } = await reader.read()
@@ -63,12 +74,23 @@ export default function useChatStream() {
         partialLine = lines.pop() || ''
 
         for (const line of lines) {
+          if (line.startsWith('event: ')) {
+            currentEvent = line.slice(7).trim()
+            continue
+          }
           if (line.startsWith('data: ')) {
             const dataStr = line.slice(6)
             try {
               const data = JSON.parse(dataStr)
 
-              if (data.text) {
+              if (currentEvent === 'session') {
+                const uuid = data.session_uuid || data.uuid || null
+                if (uuid && !sessionUuidRef.current) {
+                  sessionUuidRef.current = uuid
+                  setSessionUuid(uuid)
+                }
+              } else if (data.text) {
+                // Default payload: streamed assistant text.
                 bufferRef.current += data.text
                 if (!rafRef.current) {
                   rafRef.current = requestAnimationFrame(() => {
@@ -78,14 +100,12 @@ export default function useChatStream() {
                 }
               }
             } catch { /* ignore parse errors */ }
-          } else if (line.startsWith('event: ')) {
-            const event = line.slice(7).trim()
-            if (event === 'tool_result') {
-              // Read next data line
-              // Tool results are handled via the text response from the assistant
-            } else if (event === 'done') {
-              // Read next data line for done payload
-            }
+            // A single event is consumed by its data line; reset so a stray
+            // line without an `event:` header falls through to default handling.
+            currentEvent = null
+          } else if (line === '') {
+            // Blank line terminates an SSE frame.
+            currentEvent = null
           }
         }
       }
@@ -118,7 +138,9 @@ export default function useChatStream() {
   const reset = useCallback(() => {
     setMessages([])
     setQuoteDone(null)
+    setSessionUuid(null)
+    sessionUuidRef.current = null
   }, [])
 
-  return { messages, streaming, send, reset, sessionId, quoteDone }
+  return { messages, streaming, send, reset, sessionId, sessionUuid, quoteDone }
 }
