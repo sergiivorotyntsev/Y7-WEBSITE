@@ -27,16 +27,31 @@ const TYPES = [
     id: 'individual',
     title: 'Individual',
     description: "I'm shipping my own vehicle (private, not for resale)",
+    benefits: [
+      'Single-vehicle web quote form',
+      'Pay on delivery (COD)',
+      'Portal tracking & email updates',
+    ],
   },
   {
     id: 'auction_buyer',
     title: 'Auction Buyer',
     description: 'I buy from Copart, IAA, Manheim, or other auctions',
+    benefits: [
+      'Auction-origin presets (Copart/IAA/Manheim)',
+      'VIN decode & gate pass upload',
+      'Saved pickup locations',
+    ],
   },
   {
     id: 'exporter',
     title: 'Exporter',
     description: 'I ship vehicles internationally',
+    benefits: [
+      'Saved port & warehouse addresses',
+      'Exporter-specific transport agreement',
+      'Route presets for international ports',
+    ],
   },
   {
     id: 'dealer',
@@ -44,6 +59,11 @@ const TYPES = [
     description: 'I run a dealership (requires separate application)',
     disabled: true,
     note: 'Dealers must apply via the Dealers page',
+    benefits: [
+      'Prepay billing & weekly invoicing',
+      'Saved locations & dedicated dispatch',
+      'Dealer-specific transport agreement',
+    ],
   },
 ];
 
@@ -207,6 +227,20 @@ export default function AccountTypeModal({ onComplete, mode = 'initial', current
               }}>
                 {type.description}
               </div>
+              {type.benefits && (
+                <ul style={{
+                  margin: '8px 0 0 0',
+                  padding: '0 0 0 18px',
+                  fontFamily: fonts.sans,
+                  fontSize: 12,
+                  color: colors.textMuted,
+                  lineHeight: 1.6,
+                }}>
+                  {type.benefits.map((b, i) => (
+                    <li key={i}>{b}</li>
+                  ))}
+                </ul>
+              )}
               {type.note && (
                 <div style={{
                   fontSize: 11,
