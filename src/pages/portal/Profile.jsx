@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CheckIcon } from '../../components/icons';
 import AccountTypeModal from '../../components/AccountTypeModal';
+import Toast from '../../components/Toast';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles } from '../../theme';
 
@@ -110,6 +111,7 @@ export default function Profile() {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState(null);
   const [showTypeModal, setShowTypeModal] = useState(false);
+  const [reSignToast, setReSignToast] = useState(null);
 
   useEffect(() => {
     portalFetch('/api/portal/data/profile')
@@ -407,8 +409,20 @@ export default function Profile() {
           onComplete={() => {
             setShowTypeModal(false);
             checkAuth();
-            setMessage({ type: 'success', text: 'Account type updated. You may need to re-sign your agreement.' });
+            // Server clears agreement_signed on any type change (portal_data.py
+            // set_customer_type). Surface a floating toast so the user notices
+            // the re-sign requirement even if they scroll past the inline banner.
+            setReSignToast('Account type updated. Please sign the new agreement for your updated account type.');
           }}
+        />
+      )}
+
+      {reSignToast && (
+        <Toast
+          message={reSignToast}
+          type="accent"
+          duration={6000}
+          onDismiss={() => setReSignToast(null)}
         />
       )}
     </div>
