@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { colors, fonts } from '../../theme'
 import useChatStream from './useChatStream'
+import LeadForm from './LeadForm'
 
 const QUICK_REPLIES = [
   'I need a transport quote',
@@ -251,6 +252,33 @@ export default function ChatWidget() {
               </div>
             )}
             {messages.map((msg, i) => <ChatMessage key={i} msg={msg} />)}
+
+            {showLeadForm && !leadSubmitted && (
+              <LeadForm
+                sessionUuid={sessionUuid}
+                onSubmitted={() => {
+                  setLeadSubmitted(true)
+                  setShowLeadForm(false)
+                }}
+                onCancel={() => setShowLeadForm(false)}
+              />
+            )}
+
+            {leadSubmitted && (
+              <div style={{
+                padding: '10px 14px',
+                background: colors.successBg,
+                border: `1px solid ${colors.success}33`,
+                borderRadius: 12,
+                margin: '6px 4px 2px',
+                fontSize: 13,
+                lineHeight: 1.5,
+                color: colors.success,
+                fontFamily: fonts.sans,
+              }}>
+                Thanks! We'll get back to you shortly with a personalized quote.
+              </div>
+            )}
 
             {showLeadPrompt && (
               <div style={{
