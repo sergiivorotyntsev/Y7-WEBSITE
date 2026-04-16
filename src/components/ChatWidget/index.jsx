@@ -145,7 +145,9 @@ function ChatInput({ onSend, disabled }) {
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false)
-  const { messages, streaming, send, reset } = useChatStream()
+  const { messages, streaming, send, reset, sessionUuid } = useChatStream()
+  const [showLeadForm, setShowLeadForm] = useState(false)
+  const [leadSubmitted, setLeadSubmitted] = useState(false)
   const scrollRef = useRef(null)
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
 
@@ -154,7 +156,7 @@ export default function ChatWidget() {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight
     }
-  }, [messages])
+  }, [messages, showLeadForm, leadSubmitted])
 
   // Close on Escape
   useEffect(() => {
@@ -163,7 +165,21 @@ export default function ChatWidget() {
     return () => document.removeEventListener('keydown', handler)
   }, [open])
 
+  // Reset lead-capture state whenever a new chat is started
+  useEffect(() => {
+    if (messages.length === 0) {
+      setShowLeadForm(false)
+      setLeadSubmitted(false)
+    }
+  }, [messages.length])
+
   const showQuickReplies = messages.length === 0
+  // Show the "get a personal quote" prompt once 3 user + 3 assistant turns
+  // have happened AND we have a server-assigned session UUID to hand off.
+  const showLeadPrompt = !showLeadForm && !leadSubmitted && sessionUuid && messages.length >= 6
+  const telegramLink = sessionUuid
+    ? `https://t.me/y7dispatch_bot?start=chat_${sessionUuid}`
+    : null
 
   return (
     <>
@@ -235,6 +251,70 @@ export default function ChatWidget() {
               </div>
             )}
             {messages.map((msg, i) => <ChatMessage key={i} msg={msg} />)}
+
+            {showLeadPrompt && (
+              <div style={{
+                padding: '12px 14px',
+                background: colors.bgCard,
+                border: `1px solid ${colors.border}`,
+                borderRadius: 12,
+                margin: '6px 4px 2px',
+                fontSize: 13,
+                lineHeight: 1.5,
+                fontFamily: fonts.sans,
+                color: colors.text,
+              }}>
+                <div style={{ fontWeight: 600, marginBottom: 8 }}>
+                  Want a personalized quote?
+                </div>
+                <div style={{ color: colors.textMuted, marginBottom: 10 }}>
+                  Leave your contact info or continue in Telegram — we'll get
+                  back to you with a firm quote.
+                </div>
+                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                  <button
+                    onClick={() => setShowLeadForm(true)}
+                    style={{
+                      padding: '8px 14px',
+                      background: colors.accent,
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: 18,
+                      cursor: 'pointer',
+                      fontSize: 12,
+                      fontWeight: 600,
+                      fontFamily: fonts.sans,
+                      letterSpacing: '0.3px',
+                    }}
+                  >
+                    Leave contact info
+                  </button>
+                  <a
+                    href={telegramLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      padding: '8px 14px',
+                      background: '#0088cc',
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: 18,
+                      cursor: 'pointer',
+                      fontSize: 12,
+                      fontWeight: 600,
+                      fontFamily: fonts.sans,
+                      letterSpacing: '0.3px',
+                      textDecoration: 'none',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 4,
+                    }}
+                  >
+                    Continue in Telegram
+                  </a>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Quick replies */}
