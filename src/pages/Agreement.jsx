@@ -8,6 +8,17 @@ import { trackEvent } from '../utils/analytics';
 
 const SECTION_IDS = ['service', 'bol', 'payment', 'insurance', 'cancellation', 'customer', 'delays', 'liability'];
 
+// Map customers.customer_type to the agreement_type string the backend
+// accepts in sign_agreement + get_agreement_template. Mirrors the
+// AGREEMENT_TEMPLATE_MAP in db/customer_types.py: dealer and exporter
+// each have their own template; individual/auction_buyer/unknown share
+// the 'shipper' template.
+function getAgreementType(customerType) {
+  if (customerType === 'dealer') return 'dealer';
+  if (customerType === 'exporter') return 'exporter';
+  return 'shipper';
+}
+
 const highlightedBox = {
   background: '#FFF8F5',
   borderLeft: `4px solid ${colors.accent}`,
@@ -238,7 +249,7 @@ export default function Agreement() {
   // failure here only suppresses the DRAFT banner, it does not break the
   // sign flow.
   useEffect(() => {
-    const tplType = user?.customer_type === 'dealer' ? 'dealer' : 'shipper';
+    const tplType = getAgreementType(user?.customer_type);
     apiGet(`/api/public/agreement-template?type=${tplType}`)
       .then(setTemplate)
       .catch(() => setTemplate(null));
@@ -309,7 +320,7 @@ export default function Agreement() {
         signed_at: new Date().toISOString(),
         user_agent: navigator.userAgent,
         lang: 'en',
-        agreement_type: user?.customer_type === 'dealer' ? 'dealer' : 'shipper',
+        agreement_type: getAgreementType(user?.customer_type),
       };
       // Send the version that the user actually saw — recorded on the
       // customer_agreements row. If the template fetch failed earlier we
