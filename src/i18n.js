@@ -72,11 +72,24 @@ const resources = {
   },
 };
 
+const SUPPORTED = ['en', 'pl', 'ua', 'ru'];
+
+function detectInitialLang() {
+  if (typeof window === 'undefined') return 'en';
+  try {
+    const stored = window.localStorage?.getItem('y7_lang');
+    if (stored && SUPPORTED.includes(stored)) return stored;
+  } catch {}
+  const nav = (typeof navigator !== 'undefined' && navigator.language) ? navigator.language.slice(0, 2).toLowerCase() : 'en';
+  if (nav === 'uk') return 'ua';
+  return SUPPORTED.includes(nav) ? nav : 'en';
+}
+
 i18n.use(initReactI18next).init({
   resources,
-  lng: 'en',
+  lng: detectInitialLang(),
   fallbackLng: 'en',
-  supportedLngs: ['en', 'pl', 'ua', 'ru'],
+  supportedLngs: SUPPORTED,
   defaultNS: 'common',
   interpolation: { escapeValue: false },
 });
