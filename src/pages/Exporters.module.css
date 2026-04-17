@@ -1,39 +1,83 @@
-/* Exporters — value callout, fee table, 4-step process, port cards, request form. */
+/* Exporters — hero, value callout, fee table, process, port cards, request form. */
 
 .wrap {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 60px 24px 80px;
+  padding: 0 0 80px;
+}
+
+.hero {
+  padding: clamp(64px, 10vh, 96px) 24px clamp(36px, 6vh, 48px);
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 100%, rgba(153, 60, 29, 0.06), transparent 60%),
+    linear-gradient(180deg, var(--bg, #F7F5F0) 0%, var(--bg-muted, #EFECE6) 100%);
+  margin-bottom: clamp(40px, 6vh, 56px);
+}
+
+.heroMicro {
+  display: inline-block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 12px;
 }
 
 .title {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(28px, 4vw, 42px);
+  font-size: clamp(1.8rem, 4vw, 2.75rem);
   font-weight: 700;
   color: var(--text, #2C2C2A);
   text-align: center;
-  margin: 0 0 8px;
+  margin: 0 0 14px;
   letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
 .subtitle {
   font-family: var(--font-sans, system-ui);
-  font-size: 15px;
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
   color: var(--text-muted, #888780);
   text-align: center;
-  max-width: 620px;
-  margin: 0 auto 48px;
+  max-width: 640px;
+  margin: 0 auto;
   line-height: 1.7;
+}
+
+.body {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.sectionMicro {
+  display: inline-block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin: 0 0 10px;
 }
 
 .sectionHeading {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: 24px;
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
   font-weight: 700;
   color: var(--text, #2C2C2A);
   text-align: center;
-  margin: 0 0 24px;
+  margin: 0;
   letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 /* =====================================================================
@@ -90,6 +134,10 @@
   gap: 20px;
   flex-wrap: wrap;
   transition: background-color var(--transition-fast, 150ms ease-out);
+}
+
+.feeRow:nth-child(even) {
+  background: rgba(247, 245, 240, 0.4);
 }
 
 .feeRow:last-child { border-bottom: none; }

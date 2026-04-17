@@ -72,9 +72,14 @@ export default function Exporters() {
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Exporters',url:'/exporters'}]} />
       <PageMeta title="Vehicle Export & Port Delivery" description="Transparent dispatch services for vehicle exporters. Carrier rate at cost + service fee. All major US ports." path="/exporters" />
 
-      <h1 className={styles.title}>{t('title')}</h1>
-      <p className={styles.subtitle}>{t('subtitle')}</p>
+      {/* Hero */}
+      <section className={styles.hero}>
+        <span className={styles.heroMicro}>&#9670; For Exporters</span>
+        <h1 className={styles.title}>{t('title')}</h1>
+        <p className={styles.subtitle}>{t('subtitle')}</p>
+      </section>
 
+      <div className={styles.body}>
       {/* Value proposition */}
       <div className={styles.valueCallout}>
         <h2 className={styles.valueTitle}>{t('value.title')}</h2>
@@ -87,7 +92,10 @@ export default function Exporters() {
 
       {/* Service Fee Table */}
       <div className={styles.feeBlock}>
-        <h2 className={styles.sectionHeading}>{t('fees.title')}</h2>
+        <div className={styles.sectionHeader}>
+          <span className={styles.sectionMicro}>Transparent Fees</span>
+          <h2 className={styles.sectionHeading}>{t('fees.title')}</h2>
+        </div>
         <div className={styles.feeTable}>
           {Array.isArray(fees) && fees.map((fee, i) => (
             <div key={i} className={styles.feeRow}>
@@ -226,6 +234,7 @@ export default function Exporters() {
             </form>
           </>
         )}
+      </div>
       </div>
     </div>
   );
