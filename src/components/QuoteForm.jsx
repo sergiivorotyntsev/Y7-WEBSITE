@@ -6,47 +6,9 @@ import SmsConsent from './SmsConsent';
 import RouteEstimator from './RouteEstimator';
 import VehicleSilhouette from './VehicleSilhouette';
 import PostQuoteFlow from './PostQuoteFlow';
-import { colors, fonts, button as btnStyles } from '../theme';
 import { trackEvent } from '../utils/analytics';
-
-const inputStyle = {
-  fontFamily: fonts.sans,
-  fontSize: '14px',
-  padding: '10px 14px',
-  borderRadius: '8px',
-  border: `1px solid ${colors.borderInput}`,
-  background: colors.bgInput,
-  color: colors.text,
-  outline: 'none',
-  width: '100%',
-};
-
-const selectStyle = {
-  ...inputStyle,
-  appearance: 'none',
-  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888780' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`,
-  backgroundRepeat: 'no-repeat',
-  backgroundPosition: 'right 12px center',
-  paddingRight: '32px',
-  cursor: 'pointer',
-};
-
-const labelStyle = {
-  fontFamily: fonts.sans,
-  fontSize: '12px',
-  fontWeight: 600,
-  color: colors.text,
-  marginBottom: '4px',
-  display: 'block',
-  textTransform: 'uppercase',
-  letterSpacing: '0.5px',
-};
-
-const rowStyle = {
-  display: 'grid',
-  gridTemplateColumns: '1fr 1fr',
-  gap: '12px',
-};
+import styles from './QuoteForm.module.css';
+import btn from '../styles/buttons.module.css';
 
 const PICKUP_LOCATION_TYPES = [
   { value: '', label: 'Select...' },
@@ -213,100 +175,89 @@ export default function QuoteForm({ compact = false }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{
-      background: colors.bgCard,
-      border: `1px solid ${colors.border}`,
-      borderRadius: '16px',
-      padding: compact ? '24px' : '32px',
-      maxWidth: '680px',
-      margin: '0 auto',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '16px',
-    }}>
+    <div className={styles.wrap}>
+      <div className={styles.header}>
+        <span className={styles.kicker}>&#9670; Free Estimate</span>
+        <h2 className={styles.title}>Get Your Transport Quote</h2>
+      </div>
+
+      <form onSubmit={handleSubmit} className={compact ? styles.formCompact : styles.form}>
 
       {/* ── STEP 1: Vehicle + Route ── */}
 
       {/* VIN or manual vehicle entry */}
       {!noVinMode ? (
-        <div>
-          <label style={labelStyle}>{t('form.vin')}</label>
-          <div style={{ display: 'flex', gap: '8px' }}>
+        <div className={styles.field}>
+          <label className={styles.label}>{t('form.vin')}</label>
+          <div className={styles.vinRow}>
             <input
               value={form.vin}
               onChange={e => set('vin', e.target.value.toUpperCase())}
               onBlur={() => markTouched('vin')}
               placeholder={t('form.vinPlaceholder')}
               maxLength={17}
-              style={{ ...inputStyle, fontFamily: fonts.mono, flex: 1, fontSize: '16px', borderColor: fieldErrors.vin ? colors.accent : colors.borderInput }}
+              className={fieldErrors.vin ? styles.vinInputError : styles.vinInput}
             />
             <button
               type="button"
               onClick={handleDecode}
               disabled={vinLoading || form.vin.length !== 17}
-              style={{
-                ...btnStyles.secondary,
-                padding: '8px 16px',
-                fontSize: '11px',
-                opacity: (vinLoading || form.vin.length !== 17) ? 0.5 : 1,
-              }}
+              className={`${btn.btnSecondary} ${styles.decodeBtn}`}
             >
               {vinLoading ? '...' : t('form.decode')}
             </button>
           </div>
-          {vinError && (
-            <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.accent, marginTop: '4px' }}>
-              {vinError}
-            </div>
-          )}
-          {fieldErrors.vin && (
-            <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.accent, marginTop: '4px' }}>{fieldErrors.vin}</div>
-          )}
+          {vinError && <div className={styles.errorText}>{vinError}</div>}
+          {fieldErrors.vin && <div className={styles.errorText}>{fieldErrors.vin}</div>}
           {!form.vin && (
-            <div style={{ fontFamily: fonts.sans, fontSize: '11px', color: colors.textMuted, marginTop: '4px' }}>
+            <div className={styles.hint}>
               No VIN? Use &quot;I don&apos;t have a VIN&quot; below to enter Year, Make and Model.
             </div>
           )}
           {vinResult && (
             <>
-              <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.success, marginTop: '4px' }}>
+              <div className={styles.hintSuccess}>
                 {vinResult.year} {vinResult.make} {vinResult.model}
               </div>
               <VehicleSilhouette make={vinResult.make} model={vinResult.model} year={vinResult.year} bodyClass={vinResult.bodyClass} />
             </>
           )}
-          <div
+          <button
+            type="button"
             onClick={() => setNoVinMode(true)}
-            style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.accent, cursor: 'pointer', marginTop: '8px' }}
+            className={styles.toggleLink}
+            style={{ border: 'none', background: 'none' }}
           >
             I don&apos;t have a VIN
-          </div>
+          </button>
         </div>
       ) : (
         <div>
-          <div
+          <button
+            type="button"
             onClick={() => setNoVinMode(false)}
-            style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.accent, cursor: 'pointer', marginBottom: '12px' }}
+            className={styles.toggleLink}
+            style={{ border: 'none', background: 'none', marginBottom: '12px' }}
           >
             &larr; I have a VIN
-          </div>
-          <div style={{ ...rowStyle, gridTemplateColumns: '100px 1fr 1fr' }}>
-            <div>
-              <label style={labelStyle}>Year *</label>
-              <select value={form.vehicle_year} onChange={e => set('vehicle_year', e.target.value)} style={{ ...selectStyle, fontSize: '16px' }}>
+          </button>
+          <div className={styles.row3}>
+            <div className={styles.field}>
+              <label className={styles.label}>Year *</label>
+              <select value={form.vehicle_year} onChange={e => set('vehicle_year', e.target.value)} className={styles.selectLg}>
                 <option value="">Year</option>
                 {Array.from({ length: 28 }, (_, i) => 2027 - i).map(y => (
                   <option key={y} value={y}>{y}</option>
                 ))}
               </select>
             </div>
-            <div>
-              <label style={labelStyle}>Make *</label>
-              <input value={form.vehicle_make} onChange={e => set('vehicle_make', e.target.value)} placeholder="Honda" style={{ ...inputStyle, fontSize: '16px' }} />
+            <div className={styles.field}>
+              <label className={styles.label}>Make *</label>
+              <input value={form.vehicle_make} onChange={e => set('vehicle_make', e.target.value)} placeholder="Honda" className={styles.inputLg} />
             </div>
-            <div>
-              <label style={labelStyle}>Model *</label>
-              <input value={form.vehicle_model} onChange={e => set('vehicle_model', e.target.value)} placeholder="Civic" style={{ ...inputStyle, fontSize: '16px' }} />
+            <div className={styles.field}>
+              <label className={styles.label}>Model *</label>
+              <input value={form.vehicle_model} onChange={e => set('vehicle_model', e.target.value)} placeholder="Civic" className={styles.inputLg} />
             </div>
           </div>
         </div>
@@ -314,55 +265,51 @@ export default function QuoteForm({ compact = false }) {
 
       {/* Vehicle details (show if decoded) */}
       {!noVinMode && vinResult && (
-        <div style={{ ...rowStyle, gridTemplateColumns: '1fr 1fr 1fr' }}>
-          <div>
-            <label style={labelStyle}>{t('form.vehicleYear')}</label>
+        <div className={styles.row3Even}>
+          <div className={styles.field}>
+            <label className={styles.label}>{t('form.vehicleYear')}</label>
             <input
               value={form.vehicle_year}
               onChange={e => set('vehicle_year', e.target.value.replace(/\D/g, '').slice(0, 4))}
               inputMode="numeric"
               maxLength={4}
               pattern="\d{4}"
-              style={inputStyle}
+              className={styles.input}
             />
           </div>
-          <div>
-            <label style={labelStyle}>{t('form.vehicleMake')}</label>
-            <input value={form.vehicle_make} onChange={e => set('vehicle_make', e.target.value)} style={inputStyle} />
+          <div className={styles.field}>
+            <label className={styles.label}>{t('form.vehicleMake')}</label>
+            <input value={form.vehicle_make} onChange={e => set('vehicle_make', e.target.value)} className={styles.input} />
           </div>
-          <div>
-            <label style={labelStyle}>{t('form.vehicleModel')}</label>
-            <input value={form.vehicle_model} onChange={e => set('vehicle_model', e.target.value)} style={inputStyle} />
+          <div className={styles.field}>
+            <label className={styles.label}>{t('form.vehicleModel')}</label>
+            <input value={form.vehicle_model} onChange={e => set('vehicle_model', e.target.value)} className={styles.input} />
           </div>
         </div>
       )}
 
       {/* Pickup section */}
       <div>
-        <div style={{
-          fontFamily: fonts.sans, fontSize: '11px', fontWeight: 700,
-          color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '1px',
-          marginBottom: '8px',
-        }}>
-          Pickup
-        </div>
-        <div style={rowStyle}>
-          <div>
-            <label style={labelStyle}>ZIP</label>
+        <div className={styles.sectionLabel}>Pickup</div>
+        <div className={styles.row}>
+          <div className={styles.field}>
+            <label className={styles.label}>ZIP</label>
             <input
               value={form.pickup_zip}
               onChange={e => set('pickup_zip', e.target.value)}
+              onBlur={() => markTouched('pickup_zip')}
               placeholder="e.g. 07114"
               maxLength={10}
-              style={inputStyle}
+              className={fieldErrors.pickup_zip ? styles.inputError : styles.input}
             />
+            {fieldErrors.pickup_zip && <div className={styles.errorText}>{fieldErrors.pickup_zip}</div>}
           </div>
-          <div>
-            <label style={labelStyle}>Location Type</label>
+          <div className={styles.field}>
+            <label className={styles.label}>Location Type</label>
             <select
               value={form.pickup_location_type}
               onChange={e => set('pickup_location_type', e.target.value)}
-              style={selectStyle}
+              className={styles.select}
             >
               {PICKUP_LOCATION_TYPES.map(o => (
                 <option key={o.value} value={o.value}>{o.label}</option>
@@ -374,30 +321,26 @@ export default function QuoteForm({ compact = false }) {
 
       {/* Delivery section */}
       <div>
-        <div style={{
-          fontFamily: fonts.sans, fontSize: '11px', fontWeight: 700,
-          color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '1px',
-          marginBottom: '8px',
-        }}>
-          Delivery
-        </div>
-        <div style={rowStyle}>
-          <div>
-            <label style={labelStyle}>ZIP</label>
+        <div className={styles.sectionLabel}>Delivery</div>
+        <div className={styles.row}>
+          <div className={styles.field}>
+            <label className={styles.label}>ZIP</label>
             <input
               value={form.delivery_zip}
               onChange={e => set('delivery_zip', e.target.value)}
+              onBlur={() => markTouched('delivery_zip')}
               placeholder="e.g. 77029"
               maxLength={10}
-              style={inputStyle}
+              className={fieldErrors.delivery_zip ? styles.inputError : styles.input}
             />
+            {fieldErrors.delivery_zip && <div className={styles.errorText}>{fieldErrors.delivery_zip}</div>}
           </div>
-          <div>
-            <label style={labelStyle}>Location Type</label>
+          <div className={styles.field}>
+            <label className={styles.label}>Location Type</label>
             <select
               value={form.delivery_location_type}
               onChange={e => set('delivery_location_type', e.target.value)}
-              style={selectStyle}
+              className={styles.select}
             >
               {DELIVERY_LOCATION_TYPES.map(o => (
                 <option key={o.value} value={o.value}>{o.label}</option>
@@ -409,25 +352,17 @@ export default function QuoteForm({ compact = false }) {
 
       {/* Transport type */}
       <div>
-        <label style={labelStyle}>{t('form.transportType')}</label>
-        <div style={{ display: 'flex', gap: '12px' }}>
+        <label className={styles.label}>{t('form.transportType')}</label>
+        <div className={styles.radioGroup}>
           {['open', 'enclosed'].map(type => (
-            <label key={type} style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              cursor: 'pointer',
-              fontFamily: fonts.sans,
-              fontSize: '13px',
-              color: colors.text,
-            }}>
+            <label key={type} className={styles.radioLabel}>
               <input
                 type="radio"
                 name="transport_type"
                 value={type}
                 checked={form.transport_type === type}
                 onChange={() => set('transport_type', type)}
-                style={{ accentColor: colors.accent }}
+                className={styles.radioInput}
               />
               {t(`form.${type}`)}
             </label>
@@ -437,22 +372,19 @@ export default function QuoteForm({ compact = false }) {
 
       {/* Vehicle condition */}
       <div>
-        <label style={labelStyle}>Vehicle Condition</label>
-        <div style={{ display: 'flex', gap: '12px' }}>
+        <label className={styles.label}>Vehicle Condition</label>
+        <div className={styles.radioGroup}>
           {[
             { value: false, label: 'Runs and drives' },
             { value: true, label: 'Non-running / Inoperable' },
           ].map(opt => (
-            <label key={String(opt.value)} style={{
-              display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer',
-              fontFamily: fonts.sans, fontSize: '13px', color: colors.text,
-            }}>
+            <label key={String(opt.value)} className={styles.radioLabel}>
               <input
                 type="radio"
                 name="is_inoperable"
                 checked={form.is_inoperable === opt.value}
                 onChange={() => set('is_inoperable', opt.value)}
-                style={{ accentColor: colors.accent }}
+                className={styles.radioInput}
               />
               {opt.label}
             </label>
@@ -462,31 +394,25 @@ export default function QuoteForm({ compact = false }) {
 
       {/* Preferred pickup date */}
       <div>
-        <label style={labelStyle}>When should we pick up?</label>
-        <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-          <label style={{
-            display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer',
-            fontFamily: fonts.sans, fontSize: '13px', color: colors.text,
-          }}>
+        <label className={styles.label}>When should we pick up?</label>
+        <div className={styles.radioGroup}>
+          <label className={styles.radioLabel}>
             <input
               type="radio"
               name="pickup_date_type"
               checked={form.pickup_date_type === 'asap'}
               onChange={() => { set('pickup_date_type', 'asap'); set('preferred_pickup_date', ''); }}
-              style={{ accentColor: colors.accent }}
+              className={styles.radioInput}
             />
             As soon as possible
           </label>
-          <label style={{
-            display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer',
-            fontFamily: fonts.sans, fontSize: '13px', color: colors.text,
-          }}>
+          <label className={styles.radioLabel}>
             <input
               type="radio"
               name="pickup_date_type"
               checked={form.pickup_date_type === 'date'}
               onChange={() => set('pickup_date_type', 'date')}
-              style={{ accentColor: colors.accent }}
+              className={styles.radioInput}
             />
             Specific date:
           </label>
@@ -497,7 +423,8 @@ export default function QuoteForm({ compact = false }) {
               onChange={e => set('preferred_pickup_date', e.target.value)}
               min={new Date().toISOString().split('T')[0]}
               max={new Date(Date.now() + 90 * 86400000).toISOString().split('T')[0]}
-              style={{ ...inputStyle, width: 'auto' }}
+              className={styles.input}
+              style={{ width: 'auto' }}
             />
           )}
         </div>
@@ -507,55 +434,51 @@ export default function QuoteForm({ compact = false }) {
       <RouteEstimator pickupZip={form.pickup_zip} deliveryZip={form.delivery_zip} />
 
       {/* ── STEP 2: Contact (animated reveal) ── */}
-      <div style={{
-        maxHeight: showStep2 ? `${step2Height + 20}px` : '0px',
-        opacity: showStep2 ? 1 : 0,
-        overflow: 'hidden',
-        transition: 'max-height 300ms ease, opacity 300ms ease',
-      }}>
-        <div ref={step2Ref} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          {/* "Almost there" label */}
-          <div style={{
-            fontFamily: fonts.sans,
-            fontSize: '13px',
-            fontWeight: 600,
-            color: colors.accent,
-            textTransform: 'uppercase',
-            letterSpacing: '0.5px',
-            paddingTop: '8px',
-            borderTop: `1px solid ${colors.border}`,
-          }}>
-            {t('form.almostThere')}
-          </div>
+      <div
+        className={styles.step2}
+        style={{
+          maxHeight: showStep2 ? `${step2Height + 20}px` : '0px',
+          opacity: showStep2 ? 1 : 0,
+        }}
+      >
+        <div ref={step2Ref} className={styles.step2Content}>
+          <div className={styles.step2Kicker}>{t('form.almostThere')}</div>
 
           {/* Name */}
-          <div>
-            <label style={labelStyle}>{t('form.name')}</label>
-            <input value={form.name} onChange={e => set('name', e.target.value)} style={inputStyle} />
+          <div className={styles.field}>
+            <label className={styles.label}>{t('form.name')}</label>
+            <input value={form.name} onChange={e => set('name', e.target.value)} className={styles.input} />
           </div>
 
           {/* Phone + Email */}
-          <div style={rowStyle}>
-            <div>
-              <label style={labelStyle}>{t('form.phone')}</label>
-              <input value={form.phone} onChange={e => set('phone', e.target.value)} type="tel" style={inputStyle} />
+          <div className={styles.row}>
+            <div className={styles.field}>
+              <label className={styles.label}>{t('form.phone')}</label>
+              <input value={form.phone} onChange={e => set('phone', e.target.value)} type="tel" className={styles.input} />
             </div>
-            <div>
-              <label style={labelStyle}>{t('form.email')}</label>
-              <input value={form.email} onChange={e => set('email', e.target.value)} type="email" style={inputStyle} />
+            <div className={styles.field}>
+              <label className={styles.label}>{t('form.email')}</label>
+              <input
+                value={form.email}
+                onChange={e => set('email', e.target.value)}
+                onBlur={() => markTouched('email')}
+                type="email"
+                className={fieldErrors.email ? styles.inputError : styles.input}
+              />
+              {fieldErrors.email && <div className={styles.errorText}>{fieldErrors.email}</div>}
             </div>
           </div>
 
           {/* Notes (hidden in compact mode) */}
           {!compact && (
-            <div>
-              <label style={labelStyle}>{t('form.notes')}</label>
+            <div className={styles.field}>
+              <label className={styles.label}>{t('form.notes')}</label>
               <textarea
                 value={form.notes}
                 onChange={e => set('notes', e.target.value)}
                 placeholder={t('form.notesPlaceholder')}
                 rows={3}
-                style={{ ...inputStyle, resize: 'vertical' }}
+                className={styles.textarea}
               />
             </div>
           )}
@@ -567,44 +490,36 @@ export default function QuoteForm({ compact = false }) {
 
       {/* ── STEP 3: Error + Submit ── */}
 
-      {error && (
-        <div style={{
-          fontFamily: fonts.sans,
-          fontSize: '13px',
-          color: colors.accent,
-          padding: '10px 14px',
-          background: '#FFF0EC',
-          borderRadius: '8px',
-        }}>
-          {error}
-        </div>
-      )}
+      {error && <div className={styles.errorAlert}>{error}</div>}
 
-      <p style={{
-        fontFamily: fonts.sans, fontSize: '11px', color: colors.textMuted,
-        lineHeight: 1.5, textAlign: 'center', margin: '0 0 12px',
-      }}>
+      <p className={styles.legal}>
         By submitting this form, you agree to our{' '}
-        <a href="/terms" target="_blank" rel="noopener noreferrer" style={{ color: colors.accent, textDecoration: 'underline' }}>Terms &amp; Conditions</a>
+        <a href="/terms" target="_blank" rel="noopener noreferrer" className={styles.legalLink}>Terms &amp; Conditions</a>
         {' '}and{' '}
-        <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: colors.accent, textDecoration: 'underline' }}>Privacy Policy</a>.
+        <a href="/privacy" target="_blank" rel="noopener noreferrer" className={styles.legalLink}>Privacy Policy</a>.
       </p>
 
       <button
         type="submit"
         disabled={submitting || !canSubmit}
-        style={{
-          ...btnStyles.accent,
-          padding: '14px 32px',
-          fontSize: '14px',
-          width: '100%',
-          opacity: (submitting || !canSubmit) ? 0.45 : 1,
-          cursor: (submitting || !canSubmit) ? 'not-allowed' : 'pointer',
-          transition: 'opacity 200ms ease',
-        }}
+        className={`${btn.btnAccent} ${styles.submitBtn}`}
       >
         {submitting ? t('form.submitting') : t('form.submit')}
       </button>
+
+      {/* Trust badges */}
+      <div className={styles.trustRow}>
+        <span className={styles.trustItem}>
+          <span className={styles.trustDot}>&#9670;</span> Secure
+        </span>
+        <span className={styles.trustItem}>
+          <span className={styles.trustDot}>&#9670;</span> No spam
+        </span>
+        <span className={styles.trustItem}>
+          <span className={styles.trustDot}>&#9670;</span> Quote in under 1 hour
+        </span>
+      </div>
     </form>
+    </div>
   );
 }
