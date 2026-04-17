@@ -6,6 +6,7 @@ import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
 import LoadingSpinner from './components/LoadingSpinner';
 import Home from './pages/Home';
+import PromoLanding from './pages/PromoLanding';
 import { colors } from './theme';
 
 function lazyWithRetry(importFn) {
@@ -137,6 +138,7 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/:lang/faq" element={<FAQ />} />
             <Route path="/:lang/about" element={<About />} />
+            <Route path="/promo/:code" element={<PromoLanding />} />
             <Route path="/agreement" element={<ProtectedRoute><Agreement /></ProtectedRoute>} />
             <Route path="/agreement/:orderId" element={<Agreement />} />
             <Route path="/ports/:slug" element={<PortPage />} />

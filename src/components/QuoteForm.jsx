@@ -86,6 +86,23 @@ export default function QuoteForm({ compact = false }) {
     return () => window.removeEventListener('selectTransportType', handler);
   }, []);
 
+  // Sprint P: pick up promo code from ?promo= URL param and stash in
+  // localStorage so it survives the full quote → confirmation → portal
+  // checkout flow. URL is cleaned so bookmarking doesn't re-trigger.
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const promo = params.get('promo');
+      if (promo) {
+        localStorage.setItem('y7_promo_code', promo.toUpperCase());
+        params.delete('promo');
+        const qs = params.toString();
+        const newUrl = (qs ? `?${qs}` : '') + window.location.hash;
+        window.history.replaceState({}, '', window.location.pathname + newUrl);
+      }
+    } catch { /* ignore */ }
+  }, []);
+
   // Step 2: both ZIPs must be >= 5 chars
   const showStep2 = form.pickup_zip.trim().length >= 5 && form.delivery_zip.trim().length >= 5;
 
