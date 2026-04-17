@@ -66,6 +66,19 @@
     box-shadow var(--transition-normal, 250ms ease-out);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .category {
+    opacity: 0;
+    animation: faqCategoryIn 500ms ease-out forwards;
+    animation-delay: calc(var(--i, 0) * 60ms);
+  }
+}
+
+@keyframes faqCategoryIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .categoryOpen {
   composes: category;
   border-color: var(--accent, #993C1D);

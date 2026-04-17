@@ -131,7 +131,7 @@ export default function DealerQuote() {
 
         <form onSubmit={handleSubmit} className={styles.form}>
           {/* Business Info */}
-          <div className={styles.section}>
+          <div className={styles.section} style={{ '--i': 0 }}>
             <div className={styles.sectionTitle}>Business Information</div>
             <div className={styles.row}>
               <label className={qForm.label}>Dealership Name *</label>
@@ -154,7 +154,7 @@ export default function DealerQuote() {
           </div>
 
           {/* Address */}
-          <div className={styles.section}>
+          <div className={styles.section} style={{ '--i': 1 }}>
             <div className={styles.sectionTitle}>Dealership Address</div>
             <div className={styles.row}>
               <label className={qForm.label}>Street</label>
@@ -180,7 +180,7 @@ export default function DealerQuote() {
           </div>
 
           {/* Transportation Needs */}
-          <div className={styles.section}>
+          <div className={styles.section} style={{ '--i': 2 }}>
             <div className={styles.sectionTitle}>Transportation Needs</div>
             <div className={styles.row2}>
               <div>
@@ -250,7 +250,7 @@ export default function DealerQuote() {
           </div>
 
           {/* Notes */}
-          <div className={styles.section}>
+          <div className={styles.section} style={{ '--i': 3 }}>
             <div className={styles.sectionTitle}>Additional Information</div>
             <textarea
               className={qForm.textarea}

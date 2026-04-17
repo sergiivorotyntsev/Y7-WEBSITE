@@ -126,13 +126,14 @@ export default function FAQ() {
 
       <div className={styles.body}>
         {validCategories.map((cat, i) => (
-          <Category
-            key={i}
-            name={cat.name}
-            items={cat.items}
-            isOpen={openCat === i}
-            onToggle={() => setOpenCat(prev => (prev === i ? -1 : i))}
-          />
+          <div key={i} style={{ '--i': i }}>
+            <Category
+              name={cat.name}
+              items={cat.items}
+              isOpen={openCat === i}
+              onToggle={() => setOpenCat(prev => (prev === i ? -1 : i))}
+            />
+          </div>
         ))}
       </div>
     </div>
