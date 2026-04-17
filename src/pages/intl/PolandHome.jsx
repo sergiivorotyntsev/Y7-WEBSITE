@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
 import LanguageSwitcher from '../../components/LanguageSwitcher';
 import { colors, fonts } from '../../theme';
+import styles from './PolandHome.module.css';
 
 const PolandHome = () => {
   const faqSchema = {
@@ -165,10 +166,11 @@ const PolandHome = () => {
             flexWrap: 'wrap',
             marginBottom: '3rem',
           }}>
-            <a 
-              href="https://t.me/y7dispatch_bot" 
+            <a
+              href="https://t.me/y7dispatch_bot"
               target="_blank"
               rel="noopener noreferrer"
+              className={`${styles.subtleLift} ${styles.focusRing}`}
               style={{
                 background: colors.accent,
                 color: '#fff',
@@ -185,8 +187,9 @@ const PolandHome = () => {
             >
               Napisz na Telegramie →
             </a>
-            <a 
+            <a
               href="mailto:info@y7agency.com"
+              className={`${styles.subtleLift} ${styles.focusRing}`}
               style={{
                 background: 'transparent',
                 color: colors.text,
@@ -273,7 +276,7 @@ const PolandHome = () => {
             marginBottom: '2rem',
           }}>
             {/* Y7 card */}
-            <div style={{
+            <div className={styles.liftCard} style={{
               background: '#fff',
               border: `1px solid ${colors.border}`,
               borderRadius: '8px',
@@ -321,7 +324,7 @@ const PolandHome = () => {
             </div>
 
             {/* DaytonaCargo card */}
-            <div style={{
+            <div className={styles.liftCard} style={{
               background: '#fff',
               border: `1px solid ${colors.border}`,
               borderRadius: '8px',
@@ -372,10 +375,11 @@ const PolandHome = () => {
                 marginTop: '1rem',
                 fontFamily: fonts.sans
               }}>
-                <a 
-                  href="https://daytonacargo.com/pl" 
-                  target="_blank" 
+                <a
+                  href="https://daytonacargo.com/pl"
+                  target="_blank"
                   rel="noopener noreferrer"
+                  className={`${styles.underlineGrow} ${styles.focusRing}`}
                   style={{ color: colors.accent }}
                 >
                   daytonacargo.com/pl →
@@ -963,7 +967,7 @@ const PolandHome = () => {
               gap: '1rem',
               marginTop: '2rem',
             }}>
-              <div style={{
+              <div className={styles.liftCard} style={{
                 background: '#fff',
                 padding: '1.5rem',
                 borderRadius: '8px',
@@ -997,7 +1001,7 @@ const PolandHome = () => {
                 </p>
               </div>
 
-              <div style={{
+              <div className={styles.liftCard} style={{
                 background: '#fff',
                 padding: '1.5rem',
                 borderRadius: '8px',
@@ -1031,7 +1035,7 @@ const PolandHome = () => {
                 </p>
               </div>
 
-              <div style={{
+              <div className={styles.liftCard} style={{
                 background: '#fff',
                 padding: '1.5rem',
                 borderRadius: '8px',
@@ -1086,6 +1090,7 @@ const PolandHome = () => {
             }}>
               <Link
                 to="/pl/ship-my-car"
+                className={`${styles.subtleLift} ${styles.focusRing}`}
                 style={{
                   background: colors.accent,
                   color: '#fff',
@@ -1103,6 +1108,7 @@ const PolandHome = () => {
                 href="https://t.me/y7dispatch_bot"
                 target="_blank"
                 rel="noopener noreferrer"
+                className={`${styles.subtleLift} ${styles.focusRing}`}
                 style={{
                   background: 'transparent',
                   color: colors.accent,
@@ -1158,10 +1164,11 @@ const PolandHome = () => {
               justifyContent: 'center',
               flexWrap: 'wrap'
             }}>
-              <a 
+              <a
                 href="https://t.me/y7dispatch_bot"
                 target="_blank"
                 rel="noopener noreferrer"
+                className={`${styles.subtleLift} ${styles.focusRing}`}
                 style={{
                   background: colors.accent,
                   color: '#fff',
@@ -1175,10 +1182,11 @@ const PolandHome = () => {
               >
                 Telegram — szybka wycena
               </a>
-              <a 
+              <a
                 href="https://daytonacargo.com/pl"
                 target="_blank"
                 rel="noopener noreferrer"
+                className={`${styles.subtleLift} ${styles.focusRing}`}
                 style={{
                   background: 'transparent',
                   color: colors.bg,

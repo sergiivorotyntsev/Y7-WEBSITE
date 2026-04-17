@@ -1,0 +1,105 @@
+/* PolandHome.module.css — composes from shared primitives.
+   Applied to key interactive elements: buttons, cards, FAQ, CTA strip.
+   Keeps existing inline styles as visual baseline; adds hover/focus. */
+
+.btnAccent {
+  composes: btnAccent from '../../styles/buttons.module.css';
+}
+
+.btnSecondary {
+  composes: btnSecondary from '../../styles/buttons.module.css';
+}
+
+.liftCard {
+  composes: liftCard from '../../styles/interactions.module.css';
+}
+
+.subtleLift {
+  composes: subtleLift from '../../styles/interactions.module.css';
+}
+
+.underlineGrow {
+  composes: underlineGrow from '../../styles/interactions.module.css';
+}
+
+.focusRing {
+  composes: focusRing from '../../styles/interactions.module.css';
+}
+
+.ctaStrip {
+  composes: ctaStrip from '../../styles/layout.module.css';
+}
+
+.ctaStripTitle {
+  composes: ctaStripTitle from '../../styles/layout.module.css';
+}
+
+.ctaStripSubtitle {
+  composes: ctaStripSubtitle from '../../styles/layout.module.css';
+}
+
+.ctaStripBtn {
+  composes: ctaStripBtn from '../../styles/layout.module.css';
+}
+
+/* =====================================================================
+   FAQ ACCORDION — details/summary styled
+   ===================================================================== */
+
+.faqItem {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-lg, 12px);
+  margin-bottom: 12px;
+  overflow: hidden;
+  transition: border-color var(--transition-normal, 250ms ease-out);
+}
+
+.faqItem[open] {
+  border-color: var(--accent, #993C1D);
+}
+
+.faqSummary {
+  padding: 20px 24px;
+  cursor: pointer;
+  font-family: var(--font-sans, system-ui);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text, #2C2C2A);
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.faqSummary::-webkit-details-marker { display: none; }
+
+.faqSummary::after {
+  content: '+';
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--accent, #993C1D);
+  transition: transform var(--transition-normal, 250ms ease-out);
+  flex-shrink: 0;
+}
+
+.faqItem[open] .faqSummary::after {
+  transform: rotate(45deg);
+}
+
+.faqAnswer {
+  padding: 0 24px 20px;
+  font-family: var(--font-sans, system-ui);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-muted, #4A4A46);
+}
+
+/* =====================================================================
+   SECTION RHYTHM — alternating backgrounds
+   ===================================================================== */
+
+.sectionAlt {
+  background: var(--bg-muted, #EFECE6);
+}
