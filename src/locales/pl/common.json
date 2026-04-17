@@ -25,6 +25,40 @@
     "faqDesc": "Najczęstsze pytania",
     "aboutDesc": "O firmie Y7 Logistics"
   },
+  "contact": {
+    "kicker": "Skontaktuj się",
+    "h1": "Kontakt",
+    "subtitle": "Pytania o transport? Potrzebujesz indywidualnej wyceny? Chętnie pomożemy.",
+    "infoHeading": "Jak się z nami skontaktować",
+    "channelEmail": "Email",
+    "channelTelegram": "Telegram",
+    "channelPortal": "Panel klienta",
+    "portalDetail": "Zaloguj się, aby zobaczyć status transportu",
+    "legalDba": "Y7 Consulting Inc (DBA Y7 Logistics)",
+    "legalLocation": "Newton, MA, USA",
+    "formHeading": "Wyślij nam wiadomość",
+    "formSubtitle": "Typowy czas odpowiedzi — w ciągu 1 godziny w godzinach pracy.",
+    "labelName": "Imię i nazwisko *",
+    "labelEmail": "Email",
+    "labelPhone": "Telefon",
+    "labelMessage": "Wiadomość *",
+    "sending": "Wysyłanie...",
+    "submit": "Wyślij",
+    "successTitle": "Wiadomość wysłana!",
+    "successMsg": "Odezwiemy się do Ciebie w ciągu 24 godzin."
+  },
+  "track": {
+    "kicker": "Status transportu",
+    "h1": "Śledź transport",
+    "subtitle": "Wprowadź numer referencyjny, VIN lub kod śledzenia, aby sprawdzić status.",
+    "searchPlaceholder": "WEB-00042, VIN lub Load ID...",
+    "currentLabel": "Aktualny",
+    "helpLink": "Uzyskaj wycenę"
+  },
+  "quote": {
+    "h1": "Uzyskaj darmową wycenę",
+    "subtitle": "Wypełnij formularz poniżej. Odpowiemy w ciągu 1 godziny z konkurencyjną ceną."
+  },
   "meta": {
     "homeTitle": "",
     "homeDescription": "Licencjonowany broker transportu aut. Transport od drzwi do drzwi lub do dowolnego portu USA. Wycena w godzinę, zweryfikowani przewoźnicy, status dostawy.",

@@ -43,9 +43,9 @@ export default function Contact() {
   }
 
   const contactChannels = [
-    { icon: <EmailIcon size={20} />, method: 'Email', detail: 'info@y7agency.com', href: 'mailto:info@y7agency.com' },
-    { icon: <TelegramIcon size={20} />, method: 'Telegram', detail: '@y7dispatch_bot', href: 'https://t.me/y7dispatch_bot' },
-    { icon: <PortalIcon size={20} />, method: 'Customer Portal', detail: 'Sign in for shipment status', href: '/portal/login' },
+    { icon: <EmailIcon size={20} />, method: t('contact.channelEmail'), detail: 'info@y7agency.com', href: 'mailto:info@y7agency.com' },
+    { icon: <TelegramIcon size={20} />, method: t('contact.channelTelegram'), detail: '@y7dispatch_bot', href: 'https://t.me/y7dispatch_bot' },
+    { icon: <PortalIcon size={20} />, method: t('contact.channelPortal'), detail: t('contact.portalDetail'), href: '/portal/login' },
   ];
 
   return (
@@ -67,17 +67,15 @@ export default function Contact() {
       <PageMeta title={t('meta.contactTitle')} description={t('meta.contactDescription')} path="/contact" />
 
       <div className={styles.header}>
-        <span className={styles.headerMicro}>&#9670; Get in Touch</span>
-        <h1 className={styles.title}>Contact Us</h1>
-        <p className={styles.subtitle}>
-          Questions about transport? Need a custom quote? We're here to help.
-        </p>
+        <span className={styles.headerMicro}>&#9670; {t('contact.kicker')}</span>
+        <h1 className={styles.title}>{t('contact.h1')}</h1>
+        <p className={styles.subtitle}>{t('contact.subtitle')}</p>
       </div>
 
       <div className={styles.layout}>
         {/* Left column — contact info */}
         <div className={styles.infoColumn}>
-          <h2 className={styles.infoColumnHeading}>How to reach us</h2>
+          <h2 className={styles.infoColumnHeading}>{t('contact.infoHeading')}</h2>
           {contactChannels.map(c => (
             <a
               key={c.method}
@@ -94,8 +92,8 @@ export default function Contact() {
             </a>
           ))}
           <div className={styles.legal}>
-            Y7 Consulting Inc (DBA Y7 Logistics)<br />
-            Newton, MA, USA<br />
+            {t('contact.legalDba')}<br />
+            {t('contact.legalLocation')}<br />
             USDOT #4427359 &middot; MC #1741537
           </div>
         </div>
@@ -105,17 +103,17 @@ export default function Contact() {
           {success ? (
             <div className={styles.successBlock}>
               <div className={styles.successIconWrap}><CheckIcon size={28} /></div>
-              <h3 className={styles.successTitle}>Message Sent!</h3>
-              <p className={styles.successMsg}>We'll get back to you within 24 hours.</p>
+              <h3 className={styles.successTitle}>{t('contact.successTitle')}</h3>
+              <p className={styles.successMsg}>{t('contact.successMsg')}</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className={styles.form}>
               <div>
-                <h2 className={styles.formHeading}>Send us a message</h2>
-                <p className={styles.formSubtitle}>Typical response within 1 hour during business hours.</p>
+                <h2 className={styles.formHeading}>{t('contact.formHeading')}</h2>
+                <p className={styles.formSubtitle}>{t('contact.formSubtitle')}</p>
               </div>
               <div className={forms.inputGroup}>
-                <label className={forms.label}>Name *</label>
+                <label className={forms.label}>{t('contact.labelName')}</label>
                 <input
                   className={forms.input}
                   value={form.name}
@@ -124,7 +122,7 @@ export default function Contact() {
               </div>
               <div className={styles.formRow}>
                 <div className={forms.inputGroup}>
-                  <label className={forms.label}>Email</label>
+                  <label className={forms.label}>{t('contact.labelEmail')}</label>
                   <input
                     type="email"
                     className={forms.input}
@@ -133,7 +131,7 @@ export default function Contact() {
                   />
                 </div>
                 <div className={forms.inputGroup}>
-                  <label className={forms.label}>Phone</label>
+                  <label className={forms.label}>{t('contact.labelPhone')}</label>
                   <PhoneInput
                     className={forms.input}
                     value={form.phone}
@@ -142,7 +140,7 @@ export default function Contact() {
                 </div>
               </div>
               <div className={forms.inputGroup}>
-                <label className={forms.label}>Message *</label>
+                <label className={forms.label}>{t('contact.labelMessage')}</label>
                 <textarea
                   className={forms.textarea}
                   value={form.message}
@@ -156,7 +154,7 @@ export default function Contact() {
                 disabled={submitting}
                 className={`${btn.btnAccent} ${styles.submitBtn}`}
               >
-                {submitting ? 'Sending...' : 'Send Message'}
+                {submitting ? t('contact.sending') : t('contact.submit')}
               </button>
             </form>
           )}

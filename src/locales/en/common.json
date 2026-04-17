@@ -25,6 +25,40 @@
     "faqDesc": "Common questions answered",
     "aboutDesc": "About Y7 Logistics"
   },
+  "contact": {
+    "kicker": "Get in Touch",
+    "h1": "Contact Us",
+    "subtitle": "Questions about transport? Need a custom quote? We're here to help.",
+    "infoHeading": "How to reach us",
+    "channelEmail": "Email",
+    "channelTelegram": "Telegram",
+    "channelPortal": "Customer Portal",
+    "portalDetail": "Sign in for shipment status",
+    "legalDba": "Y7 Consulting Inc (DBA Y7 Logistics)",
+    "legalLocation": "Newton, MA, USA",
+    "formHeading": "Send us a message",
+    "formSubtitle": "Typical response within 1 hour during business hours.",
+    "labelName": "Name *",
+    "labelEmail": "Email",
+    "labelPhone": "Phone",
+    "labelMessage": "Message *",
+    "sending": "Sending...",
+    "submit": "Send Message",
+    "successTitle": "Message Sent!",
+    "successMsg": "We'll get back to you within 24 hours."
+  },
+  "track": {
+    "kicker": "Shipment Status",
+    "h1": "Track Your Shipment",
+    "subtitle": "Enter your reference number, VIN, or tracking code to check shipment status.",
+    "searchPlaceholder": "WEB-00042, VIN, or Load ID...",
+    "currentLabel": "Current",
+    "helpLink": "Get a Quote"
+  },
+  "quote": {
+    "h1": "Get a Free Quote",
+    "subtitle": "Fill in the details below. We respond within 1 hour with competitive pricing."
+  },
   "meta": {
     "homeTitle": "",
     "homeDescription": "Licensed auto transport broker. Ship your vehicle door-to-door or to any US port. Instant quotes, verified carriers, shipment status updates.",

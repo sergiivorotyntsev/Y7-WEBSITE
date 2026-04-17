@@ -49,18 +49,16 @@ export default function Track() {
 
       <div className={styles.header}>
         <div className={styles.headerIcon}><SearchIcon size={22} /></div>
-        <span className={styles.kicker}>&#9670; Shipment Status</span>
-        <h1 className={styles.title}>Track Your Shipment</h1>
-        <p className={styles.subtitle}>
-          Enter your reference number, VIN, or tracking code to check shipment status.
-        </p>
+        <span className={styles.kicker}>&#9670; {t('track.kicker')}</span>
+        <h1 className={styles.title}>{t('track.h1')}</h1>
+        <p className={styles.subtitle}>{t('track.subtitle')}</p>
       </div>
 
       <form onSubmit={handleSearch} className={styles.form}>
         <input
           value={code}
           onChange={e => setCode(e.target.value)}
-          placeholder="WEB-00042, VIN, or Load ID..."
+          placeholder={t('track.searchPlaceholder')}
           className={styles.searchInput}
         />
         <button
@@ -119,7 +117,7 @@ export default function Track() {
                   </div>
                   <div className={styles.timelineText}>
                     <span className={labelClass}>{label}</span>
-                    {isCurrent && <span className={styles.timelineCurrent}>Current</span>}
+                    {isCurrent && <span className={styles.timelineCurrent}>{t('track.currentLabel')}</span>}
                   </div>
                 </div>
               );
@@ -148,7 +146,7 @@ export default function Track() {
       {!result && !error && !loading && (
         <div className={styles.helpText}>
           Don't have a tracking code?{' '}
-          <Link to="/ship-my-car" className={styles.helpLink}>Get a Quote</Link>
+          <Link to="/ship-my-car" className={styles.helpLink}>{t('track.helpLink')}</Link>
           {' or '}
           <Link to="/portal/login" className={styles.helpLink}>Log In</Link>
         </div>
