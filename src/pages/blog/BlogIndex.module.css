@@ -185,6 +185,19 @@
     border-color var(--transition-normal, 250ms ease-out);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .card {
+    opacity: 0;
+    animation: blogCardIn 500ms ease-out forwards;
+    animation-delay: calc(var(--i, 0) * 50ms);
+  }
+}
+
+@keyframes blogCardIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .card::before {
   content: '';
   position: absolute;

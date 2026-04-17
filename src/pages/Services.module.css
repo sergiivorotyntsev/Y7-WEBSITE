@@ -196,6 +196,20 @@
     border-color var(--transition-normal, 250ms ease-out);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .card,
+  .linkCard {
+    opacity: 0;
+    animation: servicesCardIn 500ms ease-out forwards;
+    animation-delay: calc(var(--i, 0) * 60ms);
+  }
+}
+
+@keyframes servicesCardIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 @media (hover: hover) {
   .card:hover {
     transform: translateY(-3px);

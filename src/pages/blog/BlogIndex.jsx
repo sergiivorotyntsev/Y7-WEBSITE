@@ -91,11 +91,16 @@ export default function BlogIndex() {
       {/* Articles Grid */}
       <section className={styles.articlesSection}>
         <div className={styles.grid}>
-          {filtered.map(article => {
+          {filtered.map((article, i) => {
             const cat = CATEGORIES[article.category] || {};
             const Banner = BANNER_MAP[article.category];
             return (
-              <Link key={article.slug} to={`/blog/${article.slug}`} className={styles.card}>
+              <Link
+                key={article.slug}
+                to={`/blog/${article.slug}`}
+                className={styles.card}
+                style={{ '--i': i }}
+              >
                 <div className={styles.banner}>
                   {Banner && <Banner />}
                 </div>
