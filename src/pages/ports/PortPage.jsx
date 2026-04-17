@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
+import BreadcrumbSchema from '../../components/BreadcrumbSchema';
 import AuctionToPortWorkflow from '../../components/AuctionToPortWorkflow';
 import { PORTS } from './portData';
 import styles from './PortPage.module.css';
@@ -31,6 +32,12 @@ export default function PortPage() {
         path={`/ports/${slug}`}
         i18n
       />
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: '/' },
+        { name: 'Services', url: '/services' },
+        { name: 'Port Delivery', url: '/exporters' },
+        { name: port.name, url: `/ports/${slug}` },
+      ]} />
 
       {/* Hero */}
       <section className={styles.hero}>
