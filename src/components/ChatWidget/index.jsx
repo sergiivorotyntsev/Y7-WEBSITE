@@ -144,13 +144,32 @@ function ChatInput({ onSend, disabled }) {
 
 // ── Main ChatWidget ────────────────────────────────────────────
 
+// Persist the "lead already captured for this session" flag so a page
+// reload doesn't re-prompt the same visitor. Stored against the current
+// sessionUuid so switching sessions (via reset) wipes it.
+const LS_LEAD_UUID = 'y7_chat_lead_for'
+function readLeadSubmittedFor(uuid) {
+  if (!uuid) return false
+  try { return localStorage.getItem(LS_LEAD_UUID) === uuid } catch { return false }
+}
+
 export default function ChatWidget() {
   const [open, setOpen] = useState(false)
   const { messages, streaming, send, reset, sessionUuid } = useChatStream()
   const [showLeadForm, setShowLeadForm] = useState(false)
-  const [leadSubmitted, setLeadSubmitted] = useState(false)
+  const [leadSubmitted, setLeadSubmitted] = useState(() => readLeadSubmittedFor(
+    typeof window !== 'undefined' ? localStorage.getItem('y7_chat_session') : null
+  ))
   const scrollRef = useRef(null)
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+
+  // When the restored session's lead flag matches the current uuid, skip the
+  // prompt. If uuid changes (new session, or server rotated), re-evaluate.
+  useEffect(() => {
+    if (sessionUuid && readLeadSubmittedFor(sessionUuid)) {
+      setLeadSubmitted(true)
+    }
+  }, [sessionUuid])
 
   // Auto-scroll to bottom
   useEffect(() => {
@@ -259,6 +278,9 @@ export default function ChatWidget() {
                 onSubmitted={() => {
                   setLeadSubmitted(true)
                   setShowLeadForm(false)
+                  if (sessionUuid) {
+                    try { localStorage.setItem(LS_LEAD_UUID, sessionUuid) } catch { /* ignore */ }
+                  }
                 }}
                 onCancel={() => setShowLeadForm(false)}
               />
