@@ -57,7 +57,7 @@ export default function Home() {
 
   return (
     <div>
-      <PageMeta description="Licensed auto transport broker. Ship your vehicle door-to-door or to any US port. Instant quotes, verified carriers, shipment status updates." path="/" />
+      <PageMeta description={tCommon('meta.homeDescription')} path="/" />
       <HreflangTags currentPath="" hasPolishVersion hasUkrainianVersion hasRussianVersion />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
 

@@ -12,6 +12,7 @@ import forms from '../styles/forms.module.css';
 
 export default function Exporters() {
   const { t } = useTranslation('exporters');
+  const { t: tCommon } = useTranslation('common');
   const steps = t('steps', { returnObjects: true });
   const fees = t('fees.items', { returnObjects: true });
   const valuePoints = t('value.points', { returnObjects: true });
@@ -75,7 +76,7 @@ export default function Exporters() {
   return (
     <div className={styles.wrap}>
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Exporters',url:'/exporters'}]} />
-      <PageMeta title="Vehicle Export & Port Delivery" description="Transparent dispatch services for vehicle exporters. Carrier rate at cost + service fee. All major US ports." path="/exporters" />
+      <PageMeta title={tCommon('meta.exportersTitle')} description={tCommon('meta.exportersDescription')} path="/exporters" />
 
       {/* Hero */}
       <section className={styles.hero}>

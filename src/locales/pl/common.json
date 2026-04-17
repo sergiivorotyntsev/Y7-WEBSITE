@@ -25,6 +25,28 @@
     "faqDesc": "Najczęstsze pytania",
     "aboutDesc": "O firmie Y7 Logistics"
   },
+  "meta": {
+    "homeTitle": "",
+    "homeDescription": "Licencjonowany broker transportu aut. Transport od drzwi do drzwi lub do dowolnego portu USA. Wycena w godzinę, zweryfikowani przewoźnicy, status dostawy.",
+    "servicesTitle": "Usługi transportu aut",
+    "servicesDescription": "Odbiór z aukcji, wymiany dilerskie, dostawa do portu, zamknięte lawety. Licencjonowany broker ze 100+ zweryfikowanymi przewoźnikami.",
+    "dealersTitle": "Dla dilerów samochodowych",
+    "dealersDescription": "Hurtowy transport aut dla dilerów. Stałe ceny, dedykowany dyspozytor, odbiór z aukcji.",
+    "exportersTitle": "Eksport aut i dostawa do portu",
+    "exportersDescription": "Przejrzyste usługi dyspozytorskie dla eksporterów. Stawka przewoźnika + stała opłata. Wszystkie główne porty USA.",
+    "shipMyCarTitle": "Transport mojego auta — od drzwi do drzwi",
+    "shipMyCarDescription": "Otwarty i zamknięty transport aut w całych USA. Dekodowanie VIN, aktualizacje statusu, ubezpieczeni przewoźnicy.",
+    "aboutTitle": "O Y7 Logistics",
+    "aboutDescription": "Licencjonowany broker FMCSA transportu aut z siedzibą w Newton, MA. MC #1741537. Zweryfikowani przewoźnicy, przejrzyste ceny.",
+    "contactTitle": "Kontakt",
+    "contactDescription": "Skontaktuj się z Y7 Logistics. Email, Telegram, panel klienta. Newton, MA.",
+    "faqTitle": "Najczęściej zadawane pytania",
+    "faqDescription": "Odpowiedzi o cenach, terminach, ubezpieczeniu, aukcjach i dostawie do portów w transporcie aut.",
+    "quoteTitle": "Uzyskaj bezpłatną wycenę",
+    "quoteDescription": "Zapytaj o bezpłatną wycenę transportu auta. Odpowiadamy w ciągu godziny. Bez zobowiązań.",
+    "trackTitle": "Śledź przesyłkę",
+    "trackDescription": "Sprawdź status transportu swojego auta. Wprowadź numer referencyjny lub VIN."
+  },
   "trustBadges": {
     "fmcsaLabel": "Licencja FMCSA",
     "cdDetail": "Zweryfikowany broker",

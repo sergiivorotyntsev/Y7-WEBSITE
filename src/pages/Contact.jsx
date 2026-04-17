@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { EmailIcon, TelegramIcon, PortalIcon, CheckIcon } from '../components/icons';
@@ -9,6 +10,7 @@ import btn from '../styles/buttons.module.css';
 import forms from '../styles/forms.module.css';
 
 export default function Contact() {
+  const { t } = useTranslation('common');
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -62,7 +64,7 @@ export default function Contact() {
           "areaServed": "US"
         }]
       }) }} />
-      <PageMeta title="Contact Us" description="Get in touch with Y7 Logistics. Email, Telegram, customer portal. Newton, MA." path="/contact" />
+      <PageMeta title={t('meta.contactTitle')} description={t('meta.contactDescription')} path="/contact" />
 
       <div className={styles.header}>
         <span className={styles.headerMicro}>&#9670; Get in Touch</span>

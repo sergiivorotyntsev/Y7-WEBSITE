@@ -7,6 +7,7 @@ import btn from '../styles/buttons.module.css';
 
 export default function Dealers() {
   const { t } = useTranslation('dealers');
+  const { t: tCommon } = useTranslation('common');
   const navigate = useNavigate();
   const benefits = t('benefits', { returnObjects: true });
   const models = t('pricing.models', { returnObjects: true });
@@ -15,7 +16,7 @@ export default function Dealers() {
   return (
     <div className={styles.wrap}>
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Dealers',url:'/dealers'}]} />
-      <PageMeta title="For Auto Dealers" description="Volume auto transport for dealerships. Fixed pricing, dedicated dispatcher, auction pickups." path="/dealers" />
+      <PageMeta title={tCommon('meta.dealersTitle')} description={tCommon('meta.dealersDescription')} path="/dealers" />
 
       {/* Hero */}
       <section className={styles.hero}>

@@ -96,6 +96,7 @@ function Category({ name, items, isOpen, onToggle }) {
 
 export default function FAQ() {
   const { t } = useTranslation('faq');
+  const { t: tCommon } = useTranslation('common');
   const categories = t('categories', { returnObjects: true });
   const [openCat, setOpenCat] = useState(0);
 
@@ -105,10 +106,9 @@ export default function FAQ() {
     <div className={styles.wrap}>
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'FAQ',url:'/faq'}]} />
       <PageMeta
-        title="FAQ"
-        description="Common questions about auto transport: pricing, timing, insurance, BOL, auction pickup, port delivery."
+        title={tCommon('meta.faqTitle')}
+        description={tCommon('meta.faqDescription')}
         path="/faq"
-        i18n
       />
 
       {validCategories.length > 0 && (

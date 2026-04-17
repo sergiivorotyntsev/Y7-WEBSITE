@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { ScalesIcon, VerifiedIcon, EyeIcon, MapPinIcon, GlobeIcon, BellIcon, ShieldIcon } from '../components/icons';
@@ -27,12 +28,13 @@ const commitments = [
 ];
 
 export default function About() {
+  const { t } = useTranslation('common');
   return (
     <div className={styles.page}>
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'About',url:'/about'}]} />
       <PageMeta
-        title="About"
-        description="Licensed auto transport broker USDOT #4427359. Verified carriers, fast dispatch response, transparent pricing."
+        title={t('meta.aboutTitle')}
+        description={t('meta.aboutDescription')}
         path="/about"
       />
 

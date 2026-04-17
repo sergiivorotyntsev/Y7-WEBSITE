@@ -30,6 +30,7 @@ const evPages = [
 
 export default function Services() {
   const { t } = useTranslation('services');
+  const { t: tCommon } = useTranslation('common');
   const navigate = useNavigate();
   const list = t('list', { returnObjects: true });
 
@@ -54,7 +55,7 @@ export default function Services() {
           ]
         }
       }) }} />
-      <PageMeta title="Auto Transport Services" description="Auction pickup, dealer trades, port delivery, enclosed transport. Licensed broker with 100+ verified carriers." path="/services" />
+      <PageMeta title={tCommon('meta.servicesTitle')} description={tCommon('meta.servicesDescription')} path="/services" />
 
       {/* Compact dark hero */}
       <section className={styles.hero}>

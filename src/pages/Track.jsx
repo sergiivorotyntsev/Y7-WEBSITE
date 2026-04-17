@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { SearchIcon, QuestionIcon } from '../components/icons';
@@ -15,6 +16,7 @@ function fmtDate(d) {
 }
 
 export default function Track() {
+  const { t } = useTranslation('common');
   const [code, setCode] = useState('');
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -43,7 +45,7 @@ export default function Track() {
   return (
     <div className={styles.wrap}>
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Track',url:'/track'}]} />
-      <PageMeta title="Track Your Shipment" description="Check your vehicle shipment status. Enter your reference number or VIN." path="/track" />
+      <PageMeta title={t('meta.trackTitle')} description={t('meta.trackDescription')} path="/track" />
 
       <div className={styles.header}>
         <div className={styles.headerIcon}><SearchIcon size={22} /></div>

@@ -29,6 +29,7 @@ function Chevron() {
 
 export default function ShipMyCar() {
   const { t } = useTranslation('shipMycar');
+  const { t: tCommon } = useTranslation('common');
   const steps = t('steps', { returnObjects: true });
   const faqs = t('faqs', { returnObjects: true });
   const prepList = t('prepChecklist', { returnObjects: true });
@@ -36,7 +37,7 @@ export default function ShipMyCar() {
   return (
     <div className={styles.page}>
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Ship My Car',url:'/ship-my-car'}]} />
-      <PageMeta title="Ship My Car — Door-to-Door Auto Transport" description="Open and enclosed auto transport nationwide. VIN decode, shipment status updates, insured carriers." path="/ship-my-car" />
+      <PageMeta title={tCommon('meta.shipMyCarTitle')} description={tCommon('meta.shipMyCarDescription')} path="/ship-my-car" />
       <HreflangTags currentPath="/ship-my-car" hasPolishVersion hasUkrainianVersion hasRussianVersion />
 
       {/* Hero */}

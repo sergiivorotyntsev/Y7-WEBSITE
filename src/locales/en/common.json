@@ -25,6 +25,28 @@
     "faqDesc": "Common questions answered",
     "aboutDesc": "About Y7 Logistics"
   },
+  "meta": {
+    "homeTitle": "",
+    "homeDescription": "Licensed auto transport broker. Ship your vehicle door-to-door or to any US port. Instant quotes, verified carriers, shipment status updates.",
+    "servicesTitle": "Auto Transport Services",
+    "servicesDescription": "Auction pickup, dealer trades, port delivery, enclosed transport. Licensed broker with 100+ verified carriers.",
+    "dealersTitle": "For Auto Dealers",
+    "dealersDescription": "Volume auto transport for dealerships. Fixed pricing, dedicated dispatcher, auction pickups.",
+    "exportersTitle": "Vehicle Export & Port Delivery",
+    "exportersDescription": "Transparent dispatch services for vehicle exporters. Carrier rate at cost + service fee. All major US ports.",
+    "shipMyCarTitle": "Ship My Car — Door-to-Door Auto Transport",
+    "shipMyCarDescription": "Open and enclosed auto transport nationwide. VIN decode, shipment status updates, insured carriers.",
+    "aboutTitle": "About Y7 Logistics",
+    "aboutDescription": "Licensed FMCSA auto transport broker based in Newton, MA. MC #1741537. Vetted carriers, transparent pricing.",
+    "contactTitle": "Contact Us",
+    "contactDescription": "Get in touch with Y7 Logistics. Email, Telegram, customer portal. Newton, MA.",
+    "faqTitle": "Frequently Asked Questions",
+    "faqDescription": "Answers about auto transport pricing, timing, insurance, auctions, and port delivery.",
+    "quoteTitle": "Get a Free Quote",
+    "quoteDescription": "Request a free auto transport quote. We respond within 1 hour. No obligation.",
+    "trackTitle": "Track Your Shipment",
+    "trackDescription": "Check your vehicle shipment status. Enter your reference number or VIN."
+  },
   "trustBadges": {
     "fmcsaLabel": "FMCSA Licensed",
     "cdDetail": "Verified Broker",
