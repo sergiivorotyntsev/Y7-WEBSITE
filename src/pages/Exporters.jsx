@@ -5,40 +5,9 @@ import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { CheckIcon } from '../components/icons';
 import { apiPost } from '../hooks/useApi';
-import { colors, fonts, button as btnStyles } from '../theme';
-
-const inputStyle = {
-  fontFamily: fonts.sans,
-  fontSize: '16px',
-  padding: '10px 14px',
-  borderRadius: '8px',
-  border: `1px solid ${colors.borderInput}`,
-  background: colors.bgInput,
-  color: colors.text,
-  outline: 'none',
-  width: '100%',
-};
-
-const selectStyle = {
-  ...inputStyle,
-  appearance: 'none',
-  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888780' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`,
-  backgroundRepeat: 'no-repeat',
-  backgroundPosition: 'right 12px center',
-  paddingRight: '32px',
-  cursor: 'pointer',
-};
-
-const labelStyle = {
-  fontFamily: fonts.sans,
-  fontSize: '12px',
-  fontWeight: 600,
-  color: colors.text,
-  textTransform: 'uppercase',
-  letterSpacing: '0.5px',
-  display: 'block',
-  marginBottom: '4px',
-};
+import styles from './Exporters.module.css';
+import btn from '../styles/buttons.module.css';
+import forms from '../styles/forms.module.css';
 
 export default function Exporters() {
   const { t } = useTranslation('exporters');
@@ -89,69 +58,27 @@ export default function Exporters() {
     }
   }
 
+  const slugMap = {
+    'Port Newark': 'newark',
+    'Port of Houston': 'houston',
+    'Port of Savannah': 'savannah',
+    'Port of Los Angeles': 'los-angeles',
+    'Port of Baltimore': 'baltimore',
+    'JAXPORT': 'jacksonville',
+  };
+
   return (
-    <div style={{ maxWidth: '900px', margin: '0 auto', padding: '60px 24px 80px' }}>
+    <div className={styles.wrap}>
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Exporters',url:'/exporters'}]} />
       <PageMeta title="Vehicle Export & Port Delivery" description="Transparent dispatch services for vehicle exporters. Carrier rate at cost + service fee. All major US ports." path="/exporters" />
-      <style>{`
-        .exporters-ports-grid {
-          grid-template-columns: repeat(3, 1fr);
-        }
-        @media (max-width: 768px) {
-          .exporters-ports-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 480px) {
-          .exporters-ports-grid { grid-template-columns: 1fr; }
-        }
-      `}</style>
-      {/* Hero */}
-      <h1 style={{
-        fontFamily: fonts.serif,
-        fontSize: 'clamp(28px, 4vw, 42px)',
-        fontWeight: 700,
-        color: colors.text,
-        textAlign: 'center',
-        marginBottom: '8px',
-      }}>
-        {t('title')}
-      </h1>
-      <p style={{
-        fontFamily: fonts.sans,
-        fontSize: '15px',
-        color: colors.textMuted,
-        textAlign: 'center',
-        maxWidth: '620px',
-        margin: '0 auto 48px',
-        lineHeight: 1.6,
-      }}>
-        {t('subtitle')}
-      </p>
 
-      {/* Value proposition — transparent model callout */}
-      <div style={{
-        background: '#FFF8F5',
-        borderLeft: `4px solid ${colors.accent}`,
-        borderRadius: '0 12px 12px 0',
-        padding: '24px 28px',
-        marginBottom: '40px',
-      }}>
-        <h2 style={{
-          fontFamily: fonts.serif,
-          fontSize: '20px',
-          fontWeight: 700,
-          color: colors.text,
-          marginBottom: '16px',
-        }}>
-          {t('value.title')}
-        </h2>
-        <ul style={{
-          fontFamily: fonts.sans,
-          fontSize: '14px',
-          color: colors.textMuted,
-          lineHeight: 1.8,
-          paddingLeft: '20px',
-          margin: 0,
-        }}>
+      <h1 className={styles.title}>{t('title')}</h1>
+      <p className={styles.subtitle}>{t('subtitle')}</p>
+
+      {/* Value proposition */}
+      <div className={styles.valueCallout}>
+        <h2 className={styles.valueTitle}>{t('value.title')}</h2>
+        <ul className={styles.valueList}>
           {Array.isArray(valuePoints) && valuePoints.map((point, i) => (
             <li key={i}>{point}</li>
           ))}
@@ -159,205 +86,50 @@ export default function Exporters() {
       </div>
 
       {/* Service Fee Table */}
-      <div style={{ marginBottom: '48px' }}>
-        <h2 style={{
-          fontFamily: fonts.serif,
-          fontSize: '24px',
-          fontWeight: 700,
-          color: colors.text,
-          textAlign: 'center',
-          marginBottom: '24px',
-        }}>
-          {t('fees.title')}
-        </h2>
-        <div style={{
-          background: colors.bgCard,
-          border: `1px solid ${colors.border}`,
-          borderRadius: '12px',
-          overflow: 'hidden',
-        }}>
+      <div className={styles.feeBlock}>
+        <h2 className={styles.sectionHeading}>{t('fees.title')}</h2>
+        <div className={styles.feeTable}>
           {Array.isArray(fees) && fees.map((fee, i) => (
-            <div key={i} style={{
-              padding: '20px 24px',
-              borderBottom: i < fees.length - 1 ? `1px solid ${colors.border}` : 'none',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'flex-start',
-              gap: '20px',
-              flexWrap: 'wrap',
-            }}>
-              <div style={{ flex: 1, minWidth: '200px' }}>
-                <div style={{
-                  fontFamily: fonts.sans,
-                  fontSize: '15px',
-                  fontWeight: 600,
-                  color: colors.text,
-                  marginBottom: '4px',
-                }}>
-                  {fee.service}
-                </div>
-                <div style={{
-                  fontFamily: fonts.sans,
-                  fontSize: '13px',
-                  color: colors.textMuted,
-                  lineHeight: 1.5,
-                }}>
-                  {fee.desc}
-                </div>
+            <div key={i} className={styles.feeRow}>
+              <div className={styles.feeLabel}>
+                <div className={styles.feeTitle}>{fee.service}</div>
+                <div className={styles.feeDesc}>{fee.desc}</div>
               </div>
-              <div style={{
-                fontFamily: fonts.mono,
-                fontSize: '12px',
-                fontWeight: 600,
-                color: colors.accent,
-                background: '#FFF8F5',
-                padding: '4px 12px',
-                borderRadius: '20px',
-                whiteSpace: 'nowrap',
-                flexShrink: 0,
-              }}>
-                {fee.note}
-              </div>
+              <div className={styles.feeBadge}>{fee.note}</div>
             </div>
           ))}
         </div>
       </div>
 
       {/* How It Works — 4 steps */}
-      <div style={{
-        background: colors.bgMuted,
-        borderRadius: '16px',
-        padding: '40px 32px',
-        marginBottom: '48px',
-      }}>
-        <h2 style={{
-          fontFamily: fonts.serif,
-          fontSize: '22px',
-          fontWeight: 700,
-          color: colors.text,
-          marginBottom: '24px',
-          textAlign: 'center',
-        }}>
-          {t('howTitle')}
-        </h2>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-          gap: '24px',
-        }}>
+      <div className={styles.howBlock}>
+        <h2 className={styles.howTitle}>{t('howTitle')}</h2>
+        <div className={styles.stepsGrid}>
           {Array.isArray(steps) && steps.map((step, i) => (
-            <div key={i} style={{ textAlign: 'center' }}>
-              <div style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '50%',
-                background: colors.accent,
-                color: '#fff',
-                fontFamily: fonts.serif,
-                fontSize: '18px',
-                fontWeight: 700,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 12px',
-              }}>
-                {i + 1}
-              </div>
-              <h3 style={{
-                fontFamily: fonts.sans,
-                fontSize: '15px',
-                fontWeight: 600,
-                color: colors.text,
-                marginBottom: '6px',
-              }}>
-                {step.title}
-              </h3>
-              <p style={{
-                fontFamily: fonts.sans,
-                fontSize: '13px',
-                color: colors.textMuted,
-                lineHeight: 1.5,
-              }}>
-                {step.desc}
-              </p>
+            <div key={i} className={styles.step}>
+              <div className={styles.stepNum}>{i + 1}</div>
+              <h3 className={styles.stepTitle}>{step.title}</h3>
+              <p className={styles.stepDesc}>{step.desc}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Port Coverage */}
-      <div style={{ marginBottom: '48px' }}>
-        <h2 style={{
-          fontFamily: fonts.serif,
-          fontSize: '22px',
-          fontWeight: 700,
-          color: colors.text,
-          textAlign: 'center',
-          marginBottom: '20px',
-        }}>
-          {t('ports.title')}
-        </h2>
-        <div className="exporters-ports-grid" style={{
-          display: 'grid',
-          gap: '16px',
-          alignItems: 'stretch',
-        }}>
+      <div className={styles.portsBlock}>
+        <h2 className={styles.portsTitle}>{t('ports.title')}</h2>
+        <div className={styles.portsGrid}>
           {Array.isArray(portList) && portList.map((port, i) => {
-            const slugMap = { 'Port Newark': 'newark', 'Port of Houston': 'houston', 'Port of Savannah': 'savannah', 'Port of Los Angeles': 'los-angeles', 'Port of Baltimore': 'baltimore', 'JAXPORT': 'jacksonville' };
             const portSlug = Object.entries(slugMap).find(([key]) => port.name?.includes(key))?.[1];
             const card = (
-              <div style={{
-                background: colors.bgCard,
-                border: `1px solid ${colors.border}`,
-                borderRadius: '10px',
-                padding: '16px 20px',
-                display: 'flex',
-                flexDirection: 'column',
-                height: '100%',
-                transition: 'transform 200ms ease, box-shadow 200ms ease',
-              }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.06)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = 'none';
-                }}
-              >
-                <div style={{
-                  fontFamily: fonts.serif,
-                  fontSize: '15px',
-                  fontWeight: 700,
-                  color: colors.accent,
-                  marginBottom: '4px',
-                }}>
-                  {port.name}
-                </div>
-                <div style={{
-                  fontFamily: fonts.sans,
-                  fontSize: '12px',
-                  color: colors.textMuted,
-                  lineHeight: 1.5,
-                  flex: 1,
-                }}>
-                  {port.desc}
-                </div>
-                {portSlug && (
-                  <div style={{
-                    fontFamily: fonts.sans,
-                    fontSize: '12px',
-                    fontWeight: 600,
-                    color: colors.accent,
-                    marginTop: '8px',
-                  }}>
-                    View port details &rarr;
-                  </div>
-                )}
+              <div className={styles.portCard}>
+                <div className={styles.portName}>{port.name}</div>
+                <div className={styles.portDesc}>{port.desc}</div>
+                {portSlug && <div className={styles.portCta}>View port details &rarr;</div>}
               </div>
             );
             return portSlug ? (
-              <Link key={i} to={`/ports/${portSlug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <Link key={i} to={`/ports/${portSlug}`} className={styles.portLink}>
                 {card}
               </Link>
             ) : (
@@ -368,123 +140,87 @@ export default function Exporters() {
       </div>
 
       {/* Request Form */}
-      <div style={{
-        background: colors.bgMuted,
-        borderRadius: '16px',
-        padding: '40px 32px',
-      }}>
+      <div className={styles.formBlock}>
         {success ? (
-          <div style={{ textAlign: 'center', padding: '20px 0' }}>
-            <div style={{ marginBottom: '12px' }}><CheckIcon size={16} /></div>
-            <h3 style={{ fontFamily: fonts.serif, fontSize: '22px', color: colors.success, marginBottom: '8px' }}>
-              {t('formSuccess.title')}
-            </h3>
-            <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted }}>
-              {t('formSuccess.message')}
-            </p>
+          <div className={styles.successBlock}>
+            <div className={styles.successIcon}><CheckIcon size={16} /></div>
+            <h3 className={styles.successTitle}>{t('formSuccess.title')}</h3>
+            <p className={styles.successMsg}>{t('formSuccess.message')}</p>
           </div>
         ) : (
           <>
-            <h2 style={{
-              fontFamily: fonts.serif,
-              fontSize: '22px',
-              fontWeight: 700,
-              color: colors.text,
-              textAlign: 'center',
-              marginBottom: '8px',
-            }}>
-              {t('form.title')}
-            </h2>
-            <p style={{
-              fontFamily: fonts.sans,
-              fontSize: '14px',
-              color: colors.textMuted,
-              textAlign: 'center',
-              marginBottom: '28px',
-            }}>
-              {t('form.subtitle')}
-            </p>
+            <h2 className={styles.formTitle}>{t('form.title')}</h2>
+            <p className={styles.formSubtitle}>{t('form.subtitle')}</p>
 
-            <form onSubmit={handleSubmit} style={{
-              maxWidth: '600px',
-              margin: '0 auto',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '16px',
-            }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                <div>
-                  <label style={labelStyle}>{t('form.companyName')}</label>
-                  <input value={form.company_name} onChange={e => set('company_name', e.target.value)} style={inputStyle} />
+            <form onSubmit={handleSubmit} className={styles.form}>
+              <div className={styles.formRow}>
+                <div className={forms.inputGroup}>
+                  <label className={forms.label}>{t('form.companyName')}</label>
+                  <input className={forms.input} value={form.company_name} onChange={e => set('company_name', e.target.value)} />
                 </div>
-                <div>
-                  <label style={labelStyle}>{t('form.contactName')} *</label>
-                  <input value={form.contact_name} onChange={e => set('contact_name', e.target.value)} style={inputStyle} />
+                <div className={forms.inputGroup}>
+                  <label className={forms.label}>{t('form.contactName')} *</label>
+                  <input className={forms.input} value={form.contact_name} onChange={e => set('contact_name', e.target.value)} />
                 </div>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                <div>
-                  <label style={labelStyle}>{t('form.email')} *</label>
-                  <input type="email" value={form.email} onChange={e => set('email', e.target.value)} style={inputStyle} />
+              <div className={styles.formRow}>
+                <div className={forms.inputGroup}>
+                  <label className={forms.label}>{t('form.email')} *</label>
+                  <input type="email" className={forms.input} value={form.email} onChange={e => set('email', e.target.value)} />
                 </div>
-                <div>
-                  <label style={labelStyle}>{t('form.phone')}</label>
-                  <input type="tel" value={form.phone} onChange={e => set('phone', e.target.value)} style={inputStyle} />
+                <div className={forms.inputGroup}>
+                  <label className={forms.label}>{t('form.phone')}</label>
+                  <input type="tel" className={forms.input} value={form.phone} onChange={e => set('phone', e.target.value)} />
                 </div>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                <div>
-                  <label style={labelStyle}>{t('form.monthlyVolume')}</label>
-                  <select value={form.monthly_volume} onChange={e => set('monthly_volume', e.target.value)} style={selectStyle}>
+              <div className={styles.formRow}>
+                <div className={forms.inputGroup}>
+                  <label className={forms.label}>{t('form.monthlyVolume')}</label>
+                  <select className={forms.select} value={form.monthly_volume} onChange={e => set('monthly_volume', e.target.value)}>
                     <option value="">Select...</option>
                     {Array.isArray(volumes) && volumes.map(v => (
                       <option key={v} value={v}>{v}</option>
                     ))}
                   </select>
                 </div>
-                <div>
-                  <label style={labelStyle}>{t('form.preferredPorts')}</label>
-                  <input value={form.preferred_ports} onChange={e => set('preferred_ports', e.target.value)}
-                    placeholder="Newark, Houston..." style={inputStyle} />
+                <div className={forms.inputGroup}>
+                  <label className={forms.label}>{t('form.preferredPorts')}</label>
+                  <input
+                    className={forms.input}
+                    value={form.preferred_ports}
+                    onChange={e => set('preferred_ports', e.target.value)}
+                    placeholder="Newark, Houston..."
+                  />
                 </div>
               </div>
-              <div>
-                <label style={labelStyle}>{t('form.vins')}</label>
+              <div className={forms.inputGroup}>
+                <label className={forms.label}>{t('form.vins')}</label>
                 <textarea
+                  className={`${forms.textarea} ${styles.vinTextarea}`}
                   value={form.vins}
                   onChange={e => set('vins', e.target.value)}
                   placeholder={t('form.vinsPlaceholder')}
                   rows={4}
-                  style={{ ...inputStyle, fontFamily: fonts.mono, fontSize: '13px', resize: 'vertical' }}
                 />
               </div>
-              <div>
-                <label style={labelStyle}>{t('form.notes')}</label>
+              <div className={forms.inputGroup}>
+                <label className={forms.label}>{t('form.notes')}</label>
                 <textarea
+                  className={forms.textarea}
                   value={form.notes}
                   onChange={e => set('notes', e.target.value)}
                   placeholder={t('form.notesPlaceholder')}
                   rows={3}
-                  style={{ ...inputStyle, resize: 'vertical' }}
                 />
               </div>
 
-              {error && (
-                <div style={{
-                  fontFamily: fonts.sans, fontSize: '13px', color: colors.accent,
-                  padding: '10px 14px', background: '#FFF0EC', borderRadius: '8px',
-                }}>
-                  {error}
-                </div>
-              )}
+              {error && <div className={styles.errorAlert}>{error}</div>}
 
-              <button type="submit" disabled={submitting} style={{
-                ...btnStyles.accent,
-                padding: '14px 32px',
-                fontSize: '14px',
-                width: '100%',
-                opacity: submitting ? 0.6 : 1,
-              }}>
+              <button
+                type="submit"
+                disabled={submitting}
+                className={`${btn.btnAccent} ${styles.submitBtn}`}
+              >
                 {submitting ? t('form.submitting') : t('form.submit')}
               </button>
             </form>
