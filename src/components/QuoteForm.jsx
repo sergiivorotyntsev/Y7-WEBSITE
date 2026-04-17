@@ -11,10 +11,12 @@ import { trackEvent } from '../utils/analytics';
 import styles from './QuoteForm.module.css';
 import btn from '../styles/buttons.module.css';
 
+// Pickup/delivery location type lists: residential is the most common
+// individual-customer case and is pre-selected below so the form is never
+// submitted with an empty "Select..." value.
 const PICKUP_LOCATION_TYPES = [
-  { value: '', label: 'Select...' },
-  { value: 'business', label: 'Business' },
   { value: 'residential', label: 'Residential' },
+  { value: 'business', label: 'Business' },
   { value: 'auction', label: 'Auction (IAAI/Copart/Manheim)' },
   { value: 'dealer', label: 'Dealer' },
   { value: 'port', label: 'Port' },
@@ -22,9 +24,8 @@ const PICKUP_LOCATION_TYPES = [
 ];
 
 const DELIVERY_LOCATION_TYPES = [
-  { value: '', label: 'Select...' },
-  { value: 'business', label: 'Business' },
   { value: 'residential', label: 'Residential' },
+  { value: 'business', label: 'Business' },
   { value: 'dealer', label: 'Dealer' },
   { value: 'port', label: 'Port' },
   { value: 'storage', label: 'Storage Facility' },
@@ -43,8 +44,8 @@ export default function QuoteForm({ compact = false }) {
     vin: urlParams?.get('vin') || '',
     vehicle_year: '', vehicle_make: '', vehicle_model: '',
     pickup_zip: urlParams?.get('pickup_zip') || '',
-    pickup_location_type: '',
-    delivery_zip: '', delivery_location_type: '',
+    pickup_location_type: 'residential',
+    delivery_zip: '', delivery_location_type: 'residential',
     transport_type: 'open',
     is_inoperable: false,
     pickup_date_type: 'asap',
