@@ -381,7 +381,7 @@ function RussiaShipMyCar() {
       >
         <h2 style={styles.h2}>Почему Y7 Logistics</h2>
         <p style={{ ...styles.paragraph, marginBottom: '2rem' }}>
-          Лицензированный брокер FMCSA с опытом более 10 лет. Русскоязычная команда,
+          Лицензированный брокер FMCSA (MC #1741537). Русскоязычная команда,
           быстрый ответ диспетчера, прозрачное ценообразование.
         </p>
 
@@ -611,7 +611,7 @@ function RussiaShipMyCar() {
             }}
           >
             Y7 Consulting Inc — зарегистрированный транспортный брокер. USDOT #4427359.
-            Более 10 лет опыта, 100+ проверенных перевозчиков, все 50 штатов.
+            Сеть из 100+ проверенных перевозчиков, все 50 штатов.
           </p>
           <a
             href="https://safer.fmcsa.dot.gov/CompanySnapshot.aspx"
