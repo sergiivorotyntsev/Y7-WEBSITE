@@ -16,6 +16,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
+  const [mobileIntlOpen, setMobileIntlOpen] = useState(false);
 
   // Close menu on Escape key
   useEffect(() => {
@@ -59,8 +60,17 @@ export default function Header() {
     { to: '/about', label: t('nav.about'), desc: t('nav.aboutDesc') },
   ];
 
+  // Intl landing pages — labels stay in native language (they identify
+  // the target page, not translate the UI chrome).
+  const internationalItems = [
+    { to: '/ua', label: 'Для України', desc: 'Пригін авто зі США' },
+    { to: '/pl', label: 'Dla Polski', desc: 'Transport aut z USA' },
+    { to: '/ru', label: 'Для диаспоры', desc: 'Доставка авто из США' },
+  ];
+
   const servicesMatch = /^\/(services|dealers|exporters|ship-my-car|door-to-port)/;
   const resourcesMatch = /^\/(blog|faq|about)/;
+  const intlMatch = /^\/(ua|pl|ru)(\/|$)/;
   const trackActive = location.pathname === '/track';
   const contactActive = location.pathname === '/contact';
 
@@ -94,6 +104,11 @@ export default function Header() {
               label={t('nav.resources')}
               items={resourcesItems}
               activeMatch={resourcesMatch}
+            />
+            <NavDropdown
+              label={t('nav.international')}
+              items={internationalItems}
+              activeMatch={intlMatch}
             />
             <Link
               to="/track"
@@ -226,6 +241,38 @@ export default function Header() {
           {mobileResourcesOpen && (
             <div className={styles.mobileSubmenu}>
               {resourcesItems.map((it) => (
+                <Link
+                  key={it.to}
+                  to={it.to}
+                  className={`${styles.mobileSubLink} ${location.pathname === it.to ? styles.mobileNavLinkActive : ''}`}
+                >
+                  {it.label}
+                </Link>
+              ))}
+            </div>
+          )}
+
+          <button
+            type="button"
+            className={styles.mobileSectionToggle}
+            aria-expanded={mobileIntlOpen}
+            onClick={() => setMobileIntlOpen((v) => !v)}
+          >
+            <span>{t('nav.international')}</span>
+            <span
+              aria-hidden="true"
+              style={{
+                display: 'inline-flex',
+                transition: 'transform 200ms ease-out',
+                transform: mobileIntlOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+              }}
+            >
+              <ChevronDownIcon size={14} color="currentColor" />
+            </span>
+          </button>
+          {mobileIntlOpen && (
+            <div className={styles.mobileSubmenu}>
+              {internationalItems.map((it) => (
                 <Link
                   key={it.to}
                   to={it.to}
