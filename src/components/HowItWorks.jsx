@@ -40,13 +40,17 @@ export default function HowItWorks() {
       <div className={styles.steps}>
         {STEPS.map((step, i) => (
           <div key={step.title} className={styles.step} style={{ '--i': i }}>
-            <div className={styles.num}>
-              {String(i + 1).padStart(2, '0')}
-              <span className={styles.numIconOverlay}>{step.icon}</span>
+            <div className={styles.numWrap}>
+              <div className={styles.num}>
+                {String(i + 1).padStart(2, '0')}
+                <span className={styles.numIconOverlay}>{step.icon}</span>
+              </div>
             </div>
-            <h3 className={styles.title}>{step.title}</h3>
-            <p className={styles.desc}>{step.desc}</p>
-            <span className={styles.stat}>{step.stat}</span>
+            <div className={styles.content}>
+              <h3 className={styles.title}>{step.title}</h3>
+              <p className={styles.desc}>{step.desc}</p>
+              <span className={styles.stat}>{step.stat}</span>
+            </div>
           </div>
         ))}
       </div>

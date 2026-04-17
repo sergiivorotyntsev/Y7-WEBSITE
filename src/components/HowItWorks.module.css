@@ -1,69 +1,52 @@
-/* HowItWorks — horizontal numbered step flow with dashed connectors. */
+/* HowItWorks — vertical timeline: number on left, content on right,
+   dashed vertical connector running down the line of medallions. */
 
 .wrap {
-  max-width: 1200px;
+  max-width: 720px;
   margin: 0 auto;
+  padding: 0 24px;
 }
 
 .steps {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0;
   position: relative;
-}
-
-@media (max-width: 960px) {
-  .steps {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 32px 24px;
-  }
-}
-
-@media (max-width: 520px) {
-  .steps {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 .step {
   position: relative;
-  padding: 0 16px;
-  text-align: center;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 24px;
+  padding: 4px 0 28px;
+  align-items: start;
   transition: transform var(--transition-normal, 250ms ease-out);
 }
 
-/* Dashed connector line between steps (not after the last) */
-.step:not(:last-child)::after {
+/* Vertical dashed connector runs from this step's medallion bottom down to
+   the next step. Using ::before on the step (not after) keeps it above the
+   medallion of the NEXT step visually. */
+.step:not(:last-child)::before {
   content: '';
   position: absolute;
-  top: 28px;
-  left: calc(50% + 36px);
-  right: calc(-50% + 36px);
-  height: 0;
-  border-top: 1.5px dashed var(--border, #e5e0d8);
+  left: 34px;
+  top: 72px;
+  bottom: -4px;
+  width: 0;
+  border-left: 1.5px dashed var(--border, #e5e0d8);
   z-index: 0;
 }
 
-@media (max-width: 960px) {
-  /* Hide connectors on multi-row grid */
-  .step:not(:last-child)::after {
-    display: none;
-  }
-}
-
 @media (hover: hover) {
-  .step:hover {
-    transform: translateY(-4px);
-  }
   .step:hover .num {
     background: var(--accent, #993C1D);
     color: #fff;
     border-color: var(--accent, #993C1D);
-    transform: scale(1.06);
+    transform: scale(1.04);
   }
-  .step:hover .desc {
-    color: var(--text, #2C2C2A);
+  .step:hover .title {
+    color: var(--accent, #993C1D);
   }
 }
 
@@ -71,23 +54,29 @@
    NUMBER MEDALLION
    ===================================================================== */
 
-.num {
+.numWrap {
   position: relative;
   z-index: 1;
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.num {
+  position: relative;
+  width: 68px;
+  height: 68px;
   border-radius: 50%;
   background: var(--bg-card, #fff);
   border: 1.5px solid var(--border, #e5e0d8);
   color: var(--accent, #993C1D);
   font-family: var(--font-serif, Georgia, serif);
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   letter-spacing: -0.02em;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06));
   transition:
     background-color var(--transition-normal, 250ms ease-out),
     color var(--transition-normal, 250ms ease-out),
@@ -100,8 +89,8 @@
   position: absolute;
   bottom: -6px;
   right: -6px;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background: var(--accent, #993C1D);
   color: #fff;
@@ -109,25 +98,35 @@
   align-items: center;
   justify-content: center;
   border: 2px solid var(--bg, #F7F5F0);
-  opacity: 0.95;
+}
+
+/* =====================================================================
+   CONTENT
+   ===================================================================== */
+
+.content {
+  padding-top: 10px;
+  min-width: 0;
 }
 
 .title {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--text, #2C2C2A);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
   margin: 0 0 8px;
+  transition: color var(--transition-fast, 150ms ease-out);
 }
 
 .desc {
   font-family: var(--font-sans, system-ui);
-  font-size: 13px;
+  font-size: 14.5px;
   color: var(--text-muted, #888780);
-  line-height: 1.65;
+  line-height: 1.7;
   margin: 0 0 10px;
-  transition: color var(--transition-normal, 250ms ease-out);
+  max-width: 540px;
 }
 
 .stat {
@@ -142,7 +141,10 @@
   letter-spacing: 0.02em;
 }
 
-/* Staggered entrance */
+/* =====================================================================
+   STAGGERED ENTRANCE — opacity only to avoid conflict with hover
+   ===================================================================== */
+
 @media (prefers-reduced-motion: no-preference) {
   .step {
     opacity: 0;
@@ -152,6 +154,37 @@
 }
 
 @keyframes hiwStepIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* =====================================================================
+   MOBILE — tighter layout
+   ===================================================================== */
+
+@media (max-width: 520px) {
+  .step {
+    grid-template-columns: 60px 1fr;
+    gap: 18px;
+    padding-bottom: 24px;
+  }
+  .step:not(:last-child)::before {
+    left: 25px;
+    top: 62px;
+  }
+  .num {
+    width: 54px;
+    height: 54px;
+    font-size: 1.25rem;
+  }
+  .numIconOverlay {
+    width: 24px;
+    height: 24px;
+  }
+  .content {
+    padding-top: 6px;
+  }
+  .title {
+    font-size: 1.1rem;
+  }
 }
