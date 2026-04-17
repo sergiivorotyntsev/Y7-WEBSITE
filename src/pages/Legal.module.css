@@ -1,0 +1,188 @@
+/* Legal pages — shared typography for PrivacyPolicy, Terms, Accessibility. */
+
+.wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 0 80px;
+}
+
+.hero {
+  padding: clamp(56px, 8vh, 80px) 24px clamp(28px, 4vh, 40px);
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 100%, rgba(153, 60, 29, 0.05), transparent 60%),
+    linear-gradient(180deg, var(--bg, #F7F5F0) 0%, var(--bg-muted, #EFECE6) 100%);
+  margin-bottom: clamp(32px, 5vh, 48px);
+}
+
+.kicker {
+  display: inline-block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.updated {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 12px;
+  color: var(--text-muted, #888780);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.h2 {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: clamp(32px, 5vh, 44px) 0 12px;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.h3 {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 28px 0 10px;
+  letter-spacing: -0.01em;
+}
+
+.p {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14.5px;
+  color: var(--text-muted, #888780);
+  line-height: 1.8;
+  margin: 0 0 14px;
+}
+
+.pItalic {
+  composes: p;
+  font-style: italic;
+}
+
+.ul {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14.5px;
+  color: var(--text-muted, #888780);
+  line-height: 1.8;
+  padding-left: 22px;
+  margin: 0 0 14px;
+}
+
+.strong {
+  color: var(--text, #2C2C2A);
+  font-weight: 600;
+}
+
+.link {
+  color: var(--accent, #993C1D);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 2px;
+  padding: 1px 3px;
+  margin: 0 -3px;
+  outline: none;
+  transition: background-color var(--transition-fast, 150ms ease-out);
+}
+
+@media (hover: hover) {
+  .link:hover {
+    background-color: var(--accent-glow, rgba(153, 60, 29, 0.15));
+    color: var(--accent-hover, #7A3017);
+    text-decoration: underline;
+  }
+}
+
+.link:focus-visible {
+  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 3px var(--accent, #993C1D);
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background: var(--border, #e5e0d8);
+  margin: 36px 0;
+}
+
+.footerNote {
+  margin-top: clamp(32px, 5vh, 44px);
+  padding: 20px 24px;
+  background: var(--bg-muted, #EFECE6);
+  border-radius: var(--radius-md, 8px);
+  font-family: var(--font-sans, system-ui);
+  font-size: 13.5px;
+  color: var(--text-muted, #888780);
+  line-height: 1.7;
+}
+
+/* Table of contents (for long docs) */
+.toc {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-lg, 12px);
+  padding: 20px 24px;
+  margin-bottom: 40px;
+}
+
+.tocHeading {
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin: 0 0 12px;
+}
+
+.tocList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tocLink {
+  font-family: var(--font-sans, system-ui);
+  font-size: 13.5px;
+  color: var(--text, #2C2C2A);
+  text-decoration: none;
+  padding: 4px 0;
+  display: inline-block;
+  border-radius: 2px;
+  transition: color var(--transition-fast, 150ms ease-out);
+}
+
+@media (hover: hover) {
+  .tocLink:hover {
+    color: var(--accent, #993C1D);
+    text-decoration: underline;
+  }
+}
+
+.tocLink:focus-visible {
+  box-shadow: 0 0 0 2px var(--bg-card, #fff), 0 0 0 3px var(--accent, #993C1D);
+}
