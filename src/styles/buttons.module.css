@@ -19,12 +19,20 @@
   cursor: pointer;
   user-select: none;
   outline: none;
+  min-height: 40px;
+  box-sizing: border-box;
   transition:
     background-color var(--transition-normal, 250ms ease-out),
     color var(--transition-normal, 250ms ease-out),
     border-color var(--transition-normal, 250ms ease-out),
     transform var(--transition-fast, 150ms ease-out),
     box-shadow var(--transition-normal, 250ms ease-out);
+}
+
+@media (max-width: 520px) {
+  .btn {
+    min-height: 44px;
+  }
 }
 
 .btn:disabled,
