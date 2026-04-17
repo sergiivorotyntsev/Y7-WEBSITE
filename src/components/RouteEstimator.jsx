@@ -2,13 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { API_URL } from '../config';
 import { colors, fonts } from '../theme';
 
-function getTransitDays(miles) {
-  if (miles < 500) return '2-4';
-  if (miles < 1000) return '3-5';
-  if (miles < 1500) return '4-6';
-  return '5-8';
-}
-
 export default function RouteEstimator({ pickupZip, deliveryZip }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -74,7 +67,6 @@ export default function RouteEstimator({ pickupZip, deliveryZip }) {
     );
   }
 
-  const transitDays = getTransitDays(data.distance_miles);
   const routeLabel = (data.from_city && data.to_city)
     ? `${data.from_city} \u2192 ${data.to_city}`
     : `${pickupZip} \u2192 ${deliveryZip}`;
@@ -137,17 +129,6 @@ export default function RouteEstimator({ pickupZip, deliveryZip }) {
           width: '100%',
           animation: 'growBar 600ms ease forwards',
         }} />
-      </div>
-
-      <div style={{
-        fontFamily: fonts.sans,
-        fontSize: '12px',
-        color: colors.textMuted,
-      }}>
-        Est. transit: {transitDays} business days
-        {data.duration_text && (
-          <span style={{ marginLeft: '12px' }}>Drive time: {data.duration_text}</span>
-        )}
       </div>
     </div>
   );
