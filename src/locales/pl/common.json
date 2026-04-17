@@ -23,7 +23,13 @@
     "portDeliveryDesc": "Newark, Houston, Savannah…",
     "blogDesc": "Poradniki, wiedza branżowa",
     "faqDesc": "Najczęstsze pytania",
-    "aboutDesc": "O firmie Y7 Logistics"
+    "aboutDesc": "O firmie Y7 Logistics",
+    "carShippingCost": "Koszt transportu",
+    "carShippingCostDesc": "Czynniki ceny i wyceny",
+    "openVsEnclosed": "Otwarty vs zamknięty",
+    "openVsEnclosedDesc": "Porównaj typy transportu",
+    "auctionCarShipping": "Auto z aukcji",
+    "auctionCarShippingDesc": "Odbiór z Copart, IAAI, Manheim"
   },
   "contact": {
     "kicker": "Skontaktuj się",

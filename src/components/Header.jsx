@@ -60,6 +60,10 @@ export default function Header() {
     { to: L('/ship-my-car'), label: t('nav.shipMyCar'),     desc: t('nav.shipMyCarDesc') },
     { to: L('/services'),    label: t('nav.allServices'),   desc: t('nav.allServicesDesc') },
     { to: '/door-to-port-auto-transport', label: t('nav.portDelivery'), desc: t('nav.portDeliveryDesc') },
+    { divider: true },
+    { to: '/car-shipping-cost',    label: t('nav.carShippingCost'),   desc: t('nav.carShippingCostDesc') },
+    { to: '/open-car-shipping',    label: t('nav.openVsEnclosed'),    desc: t('nav.openVsEnclosedDesc') },
+    { to: '/auction-car-shipping', label: t('nav.auctionCarShipping'), desc: t('nav.auctionCarShippingDesc') },
   ];
 
   const resourcesItems = [
@@ -217,7 +221,7 @@ export default function Header() {
           </button>
           {mobileServicesOpen && (
             <div className={styles.mobileSubmenu}>
-              {servicesItems.map((it) => (
+              {servicesItems.filter((it) => !it.divider).map((it) => (
                 <Link
                   key={it.to}
                   to={it.to}

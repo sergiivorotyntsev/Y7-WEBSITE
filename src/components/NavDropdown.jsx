@@ -75,7 +75,10 @@ export default function NavDropdown({ label, items, activeMatch }) {
           role="menu"
           aria-label={label}
         >
-          {items.map((it) => {
+          {items.map((it, idx) => {
+            if (it.divider) {
+              return <li key={`divider-${idx}`} role="separator" className={styles.divider} />;
+            }
             const active = location.pathname === it.to;
             return (
               <li key={it.to} role="none">

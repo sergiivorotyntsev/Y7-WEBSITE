@@ -23,7 +23,13 @@
     "portDeliveryDesc": "Ньюарк, Хьюстон, Саванна…",
     "blogDesc": "Гиды и отраслевые материалы",
     "faqDesc": "Ответы на частые вопросы",
-    "aboutDesc": "О компании Y7 Logistics"
+    "aboutDesc": "О компании Y7 Logistics",
+    "carShippingCost": "Стоимость перевозки",
+    "carShippingCostDesc": "Факторы цены и расчёт",
+    "openVsEnclosed": "Открытый vs закрытый",
+    "openVsEnclosedDesc": "Сравнить типы перевозки",
+    "auctionCarShipping": "Авто с аукциона",
+    "auctionCarShippingDesc": "Забор с Copart, IAAI, Manheim"
   },
   "contact": {
     "kicker": "Свяжитесь с нами",

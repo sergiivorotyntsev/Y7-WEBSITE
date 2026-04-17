@@ -174,3 +174,10 @@
 .itemActive .itemDesc {
   color: var(--text, #2C2C2A);
 }
+
+.divider {
+  height: 1px;
+  background: var(--border, #e5e0d8);
+  margin: 6px 10px;
+  list-style: none;
+}
