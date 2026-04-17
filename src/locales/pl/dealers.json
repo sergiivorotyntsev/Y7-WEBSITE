@@ -22,6 +22,11 @@
       }
     ],
     "volumeTitle": "Progi zniżek ilościowych",
+    "popularBadge": "Najpopularniejszy",
+    "colVolume": "Wolumen",
+    "colTier": "Poziom",
+    "colDiscount": "Zniżka",
+    "colPerk": "Bonus",
     "tiers": [
       { "volume": "1-5", "label": "pojazdów/miesiąc", "discount": "Ceny standardowe", "perk": "Pełna obsługa, bez minimum" },
       { "volume": "6-15", "label": "pojazdów/miesiąc", "discount": "10% zniżki na opłatę serwisową", "perk": "Priorytetowa kolejka dyspozytorska" },

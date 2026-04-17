@@ -99,7 +99,7 @@ export default function Exporters() {
       {/* Service Fee Table */}
       <div className={styles.feeBlock}>
         <div className={styles.sectionHeader}>
-          <span className={styles.sectionMicro}>Transparent Fees</span>
+          <span className={styles.sectionMicro}>{t('fees.kicker')}</span>
           <h2 className={styles.sectionHeading}>{t('fees.title')}</h2>
         </div>
         <div className={styles.feeTable}>

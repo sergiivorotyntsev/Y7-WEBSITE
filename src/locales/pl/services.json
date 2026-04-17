@@ -1,4 +1,14 @@
 {
+  "heroKicker": "Nasze usługi",
+  "exploreKicker": "Przegląd",
+  "exploreTitle": "Wszystkie nasze usługi",
+  "linkCta": "Dowiedz się więcej",
+  "evKicker": "Specjaliści od EV",
+  "evTitle": "Transport samochodów elektrycznych",
+  "evLede": "Wyspecjalizowani przewoźnicy dla Tesla, Rivian, Lucid i innych marek EV",
+  "ctaTitle": "Gotowy na transport auta?",
+  "ctaSubtitle": "Uzyskaj przejrzystą wycenę w mniej niż godzinę. Bez ukrytych kosztów, bez presji.",
+  "ctaButton": "Uzyskaj darmową wycenę",
   "title": "Nasze usługi",
   "subtitle": "Pełen zakres usług transportu samochodów",
   "list": [

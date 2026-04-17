@@ -22,6 +22,11 @@
       }
     ],
     "volumeTitle": "Volume Discount Tiers",
+    "popularBadge": "Most Popular",
+    "colVolume": "Volume",
+    "colTier": "Tier",
+    "colDiscount": "Discount",
+    "colPerk": "Perk",
     "tiers": [
       { "volume": "1-5", "label": "vehicles/month", "discount": "Standard pricing", "perk": "Full service, no minimum" },
       { "volume": "6-15", "label": "vehicles/month", "discount": "10% service fee discount", "perk": "Priority dispatch queue" },

@@ -60,7 +60,7 @@ export default function Services() {
       {/* Compact dark hero */}
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <span className={styles.heroMicro}>&#9670; Our Services</span>
+          <span className={styles.heroMicro}>&#9670; {t('heroKicker')}</span>
           <h1 className={styles.title}>{t('title')}</h1>
           <p className={styles.subtitle}>{t('subtitle')}</p>
         </div>
@@ -79,15 +79,15 @@ export default function Services() {
         {/* Service pages hub */}
         <div className={styles.section}>
           <div className={styles.sectionHeadingWrap}>
-            <span className={styles.sectionMicro}>Explore</span>
-            <h2 className={styles.sectionHeading}>Every service we offer</h2>
+            <span className={styles.sectionMicro}>{t('exploreKicker')}</span>
+            <h2 className={styles.sectionHeading}>{t('exploreTitle')}</h2>
           </div>
           <div className={styles.grid}>
             {servicePages.map((page, i) => (
               <Link key={page.to} to={page.to} className={styles.linkCard} style={{ '--i': i }}>
                 <h3 className={styles.linkTitle}>{page.title}</h3>
                 <p className={styles.linkDesc}>{page.desc}</p>
-                <span className={styles.linkCta}>Learn more &rarr;</span>
+                <span className={styles.linkCta}>{t('linkCta')} &rarr;</span>
               </Link>
             ))}
           </div>
@@ -96,16 +96,16 @@ export default function Services() {
         {/* EV & Tesla Services */}
         <div className={styles.section}>
           <div className={styles.sectionHeadingWrap}>
-            <span className={styles.sectionMicro}>EV Specialists</span>
-            <h2 className={styles.sectionHeading}>Electric Vehicle Transport</h2>
-            <p className={styles.sectionLede}>Specialized carriers for Tesla, Rivian, Lucid, and every major EV brand</p>
+            <span className={styles.sectionMicro}>{t('evKicker')}</span>
+            <h2 className={styles.sectionHeading}>{t('evTitle')}</h2>
+            <p className={styles.sectionLede}>{t('evLede')}</p>
           </div>
           <div className={styles.grid}>
             {evPages.map((page, i) => (
               <Link key={page.to} to={page.to} className={styles.linkCard} style={{ '--i': i }}>
                 <h3 className={styles.linkTitle}>{page.title}</h3>
                 <p className={styles.linkDesc}>{page.desc}</p>
-                <span className={styles.linkCta}>Learn more &rarr;</span>
+                <span className={styles.linkCta}>{t('linkCta')} &rarr;</span>
               </Link>
             ))}
           </div>
@@ -113,15 +113,13 @@ export default function Services() {
 
         {/* CTA strip */}
         <div className={styles.ctaStrip}>
-          <h2 className={styles.ctaTitle}>Ready to move your vehicle?</h2>
-          <p className={styles.ctaSubtitle}>
-            Get a transparent quote in under an hour. No hidden fees, no pressure.
-          </p>
+          <h2 className={styles.ctaTitle}>{t('ctaTitle')}</h2>
+          <p className={styles.ctaSubtitle}>{t('ctaSubtitle')}</p>
           <button
             onClick={() => navigate('/quote')}
             className={`${btn.btn} ${styles.ctaBtnLight}`}
           >
-            Get a Free Quote
+            {t('ctaButton')}
           </button>
         </div>
       </div>

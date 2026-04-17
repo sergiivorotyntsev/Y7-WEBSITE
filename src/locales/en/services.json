@@ -1,4 +1,14 @@
 {
+  "heroKicker": "Our Services",
+  "exploreKicker": "Explore",
+  "exploreTitle": "Every service we offer",
+  "linkCta": "Learn more",
+  "evKicker": "EV Specialists",
+  "evTitle": "Electric Vehicle Transport",
+  "evLede": "Specialized carriers for Tesla, Rivian, Lucid, and every major EV brand",
+  "ctaTitle": "Ready to move your vehicle?",
+  "ctaSubtitle": "Get a transparent quote in under an hour. No hidden fees, no pressure.",
+  "ctaButton": "Get a Free Quote",
   "title": "Our Services",
   "subtitle": "Full-service auto transport for every need",
   "list": [

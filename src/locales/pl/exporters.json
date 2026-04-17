@@ -12,6 +12,7 @@
     ]
   },
   "fees": {
+    "kicker": "Przejrzyste opłaty",
     "title": "Struktura opłat serwisowych",
     "items": [
       { "service": "Dyspozycja za pojazd", "desc": "Ogłoszenie na Central Dispatch, negocjacje z przewoźnikiem, koordynacja wysyłki, dokumentacja (BOL, gate pass), monitoring przesyłki", "note": "Stała opłata za pojazd" },

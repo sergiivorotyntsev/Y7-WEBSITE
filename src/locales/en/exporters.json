@@ -12,6 +12,7 @@
     ]
   },
   "fees": {
+    "kicker": "Transparent Fees",
     "title": "Service Fee Structure",
     "items": [
       { "service": "Per-Vehicle Dispatch", "desc": "CD listing, carrier negotiation, dispatch coordination, documentation (BOL, gate pass), shipment monitoring", "note": "Flat fee per vehicle" },

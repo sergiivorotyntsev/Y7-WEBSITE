@@ -51,7 +51,7 @@ export default function Dealers() {
                 key={i}
                 className={`${styles.pricingCard} ${i === 0 ? styles.pricingCardPopular : ''}`}
               >
-                {i === 0 && <div className={styles.popularBadge}>Most Popular</div>}
+                {i === 0 && <div className={styles.popularBadge}>{t('pricing.popularBadge')}</div>}
                 <h3 className={styles.modelTitle}>{model.title}</h3>
                 <p className={styles.modelDesc}>{model.desc}</p>
               </div>
@@ -62,10 +62,10 @@ export default function Dealers() {
           <h3 className={styles.subHeading}>{t('pricing.volumeTitle')}</h3>
           <div className={styles.tierTable}>
             <div className={styles.tierHead}>
-              <div>Volume</div>
-              <div>Tier</div>
-              <div>Discount</div>
-              <div>Perk</div>
+              <div>{t('pricing.colVolume')}</div>
+              <div>{t('pricing.colTier')}</div>
+              <div>{t('pricing.colDiscount')}</div>
+              <div>{t('pricing.colPerk')}</div>
             </div>
             {Array.isArray(tiers) && tiers.map((tier, i) => (
               <div
