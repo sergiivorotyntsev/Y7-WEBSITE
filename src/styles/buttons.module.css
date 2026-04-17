@@ -1,0 +1,131 @@
+/* Shared button primitives.
+   Variants: btnPrimary, btnAccent, btnSecondary, btnGhost.
+   All compose `.btn` for base behavior (transitions, focus ring, active scale). */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border-radius: var(--radius-pill, 20px);
+  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 0.5px solid transparent;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  transition:
+    background-color var(--transition-normal, 250ms ease-out),
+    color var(--transition-normal, 250ms ease-out),
+    border-color var(--transition-normal, 250ms ease-out),
+    transform var(--transition-fast, 150ms ease-out),
+    box-shadow var(--transition-normal, 250ms ease-out);
+}
+
+.btn:disabled,
+.btn[aria-disabled='true'] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (hover: hover) {
+  .btn:not(:disabled):not([aria-disabled='true']):active {
+    transform: scale(0.97);
+  }
+}
+
+.btn:focus-visible {
+  box-shadow:
+    0 0 0 2px var(--bg, #F7F5F0),
+    0 0 0 4px var(--accent, #993C1D);
+}
+
+/* =====================================================================
+   PRIMARY — dark, most common action
+   ===================================================================== */
+
+.btnPrimary {
+  composes: btn;
+  background-color: var(--text, #2C2C2A);
+  color: var(--bg, #F7F5F0);
+}
+
+@media (hover: hover) {
+  .btnPrimary:not(:disabled):hover {
+    background-color: #1a1a19;
+    box-shadow: var(--shadow-md, 0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06));
+  }
+}
+
+/* =====================================================================
+   ACCENT — coral, for high-intent CTAs
+   ===================================================================== */
+
+.btnAccent {
+  composes: btn;
+  background-color: var(--accent, #993C1D);
+  color: #fff;
+}
+
+@media (hover: hover) {
+  .btnAccent:not(:disabled):hover {
+    background-color: var(--accent-hover, #7A3017);
+    box-shadow:
+      0 2px 8px var(--accent-glow, rgba(153, 60, 29, 0.15)),
+      0 8px 24px var(--accent-glow, rgba(153, 60, 29, 0.15));
+  }
+}
+
+/* =====================================================================
+   SECONDARY — outline, low-emphasis
+   ===================================================================== */
+
+.btnSecondary {
+  composes: btn;
+  background-color: transparent;
+  color: var(--text, #2C2C2A);
+  border-color: #ccc;
+}
+
+@media (hover: hover) {
+  .btnSecondary:not(:disabled):hover {
+    background-color: var(--bg-muted, #EFECE6);
+    border-color: var(--text, #2C2C2A);
+  }
+}
+
+/* =====================================================================
+   GHOST — fully transparent, tertiary
+   ===================================================================== */
+
+.btnGhost {
+  composes: btn;
+  background-color: transparent;
+  color: var(--text, #2C2C2A);
+  border-color: transparent;
+}
+
+@media (hover: hover) {
+  .btnGhost:not(:disabled):hover {
+    background-color: rgba(44, 44, 42, 0.06);
+  }
+}
+
+/* =====================================================================
+   SIZE MODIFIERS — compose onto any variant
+   ===================================================================== */
+
+.btnSm {
+  padding: 6px 14px;
+  font-size: 11px;
+}
+
+.btnLg {
+  padding: 14px 32px;
+  font-size: 13px;
+}
