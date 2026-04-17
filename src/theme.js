@@ -36,6 +36,47 @@ export const keyframes = `
   @keyframes growBar { from { width: 0; } to { width: 100%; } }
 `;
 
+export const spacing = { xs: 4, sm: 8, md: 16, lg: 24, xl: 32, xxl: 48, xxxl: 64 };
+
+export const shadows = {
+  sm: '0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06)',
+  md: '0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06)',
+  lg: '0 4px 12px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08)',
+  xl: '0 8px 24px rgba(0,0,0,0.06), 0 16px 48px rgba(0,0,0,0.12)',
+};
+
+export const radii = { sm: 4, md: 8, lg: 12, xl: 16, pill: 20, round: '50%' };
+
+export const transitions = {
+  fast: '150ms ease-out',
+  normal: '250ms ease-out',
+  slow: '400ms ease-out',
+};
+
+export const breakpoints = { mobile: 480, tablet: 768, desktop: 1024, wide: 1280 };
+
+export const typography = {
+  sectionTitle: {
+    fontFamily: "Georgia, 'Times New Roman', serif",
+    fontWeight: 700,
+    letterSpacing: '-0.02em',
+  },
+  body: {
+    fontFamily: "system-ui, -apple-system, sans-serif",
+    lineHeight: 1.7,
+  },
+  label: {
+    fontFamily: "system-ui, -apple-system, sans-serif",
+    fontSize: 12,
+    fontWeight: 600,
+    textTransform: 'uppercase',
+    letterSpacing: '0.08em',
+  },
+  mono: {
+    fontFamily: "'JetBrains Mono', 'Courier New', monospace",
+  },
+};
+
 export const button = {
   primary: {
     background: colors.dark,
