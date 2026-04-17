@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
 import { colors, fonts, button as btnStyles } from '../../theme';
+import styles from './UkraineShipMyCar.module.css';
 
 // =============================================================================
 // UkraineShipMyCar.jsx — Merged audience (Ukraine import + діаспора в США)
@@ -482,7 +483,7 @@ function UkraineShipMyCar() {
             marginTop: '16px',
           }}
         >
-          <div style={cardStyle}>
+          <div className={styles.liftCard} style={cardStyle}>
             <div
               style={{
                 fontFamily: fonts.sans,
@@ -518,7 +519,7 @@ function UkraineShipMyCar() {
               Залежить від відстані, стану авто, сезону.
             </p>
           </div>
-          <div style={cardStyle}>
+          <div className={styles.liftCard} style={cardStyle}>
             <div
               style={{
                 fontFamily: fonts.sans,
@@ -554,7 +555,7 @@ function UkraineShipMyCar() {
               європейського порту призначення.
             </p>
           </div>
-          <div style={cardStyle}>
+          <div className={styles.liftCard} style={cardStyle}>
             <div
               style={{
                 fontFamily: fonts.sans,
@@ -744,7 +745,7 @@ function UkraineShipMyCar() {
             marginTop: '16px',
           }}
         >
-          <div style={cardStyle}>
+          <div className={styles.liftCard} style={cardStyle}>
             <div
               style={{
                 fontFamily: fonts.sans,
@@ -772,7 +773,7 @@ function UkraineShipMyCar() {
               @y7dispatch_bot
             </a>
           </div>
-          <div style={cardStyle}>
+          <div className={styles.liftCard} style={cardStyle}>
             <div
               style={{
                 fontFamily: fonts.sans,
@@ -798,7 +799,7 @@ function UkraineShipMyCar() {
               info@y7agency.com
             </a>
           </div>
-          <div style={cardStyle}>
+          <div className={styles.liftCard} style={cardStyle}>
             <div
               style={{
                 fontFamily: fonts.sans,
@@ -890,7 +891,7 @@ function UkraineShipMyCar() {
           }}
         >
           {diasporaUseCases.map((uc, idx) => (
-            <div key={idx} style={cardStyle}>
+            <div key={idx} className={styles.liftCard} style={cardStyle}>
               <h4
                 style={{
                   fontFamily: fonts.sans,
@@ -941,40 +942,14 @@ function UkraineShipMyCar() {
         >
           Часті запитання
         </h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           {faqSchema.mainEntity.map((faq, i) => (
-            <div
-              key={i}
-              style={{
-                background: colors.bgCard,
-                border: `1px solid ${colors.border}`,
-                borderRadius: '12px',
-                padding: '20px',
-              }}
-            >
-              <h3
-                style={{
-                  fontFamily: fonts.sans,
-                  fontSize: '15px',
-                  fontWeight: 600,
-                  color: colors.text,
-                  marginBottom: '8px',
-                }}
-              >
-                {faq.name}
-              </h3>
-              <p
-                style={{
-                  fontFamily: fonts.sans,
-                  fontSize: '14px',
-                  color: colors.textMuted,
-                  lineHeight: 1.6,
-                  margin: 0,
-                }}
-              >
-                {faq.acceptedAnswer.text}
-              </p>
-            </div>
+            <details key={i} className={styles.faqItem}>
+              <summary className={styles.faqSummary}>
+                <span>{faq.name}</span>
+              </summary>
+              <p className={styles.faqAnswer}>{faq.acceptedAnswer.text}</p>
+            </details>
           ))}
         </div>
       </section>
@@ -1027,6 +1002,7 @@ function UkraineShipMyCar() {
               href="https://t.me/y7dispatch_bot"
               target="_blank"
               rel="noopener noreferrer"
+              className={`${styles.subtleLift} ${styles.focusRing}`}
               style={{
                 ...btnStyles.accent,
                 display: 'inline-block',
@@ -1040,6 +1016,7 @@ function UkraineShipMyCar() {
             </a>
             <Link
               to="/ua"
+              className={`${styles.subtleLift} ${styles.focusRing}`}
               style={{
                 background: 'transparent',
                 color: colors.bg,
