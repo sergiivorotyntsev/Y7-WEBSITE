@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
+import pageStyles from './RussiaShipMyCar.module.css';
 
 // =============================================================================
 // RussiaShipMyCar.jsx — Template C (Action/Ordering)
@@ -392,7 +393,7 @@ function RussiaShipMyCar() {
             gap: '1.25rem',
           }}
         >
-          <div style={styles.card}>
+          <div className={pageStyles.liftCard} style={styles.card}>
             <p
               style={{
                 ...styles.statNumber,
@@ -419,7 +420,7 @@ function RussiaShipMyCar() {
             </p>
           </div>
 
-          <div style={styles.card}>
+          <div className={pageStyles.liftCard} style={styles.card}>
             <p
               style={{
                 ...styles.statNumber,
@@ -446,7 +447,7 @@ function RussiaShipMyCar() {
             </p>
           </div>
 
-          <div style={styles.card}>
+          <div className={pageStyles.liftCard} style={styles.card}>
             <p
               style={{
                 ...styles.statNumber,
@@ -493,7 +494,7 @@ function RussiaShipMyCar() {
           }}
         >
           {/* Telegram */}
-          <div style={styles.card}>
+          <div className={pageStyles.liftCard} style={styles.card}>
             <p
               style={{
                 ...styles.sansFont,
@@ -532,7 +533,7 @@ function RussiaShipMyCar() {
           </div>
 
           {/* Email */}
-          <div style={styles.card}>
+          <div className={pageStyles.liftCard} style={styles.card}>
             <p
               style={{
                 ...styles.sansFont,
@@ -632,6 +633,119 @@ function RussiaShipMyCar() {
       </section>
 
       {/* ================================================================= */}
+      {/* SECTION 6b — Открытый vs закрытый автовоз (transport comparison)  */}
+      {/* ================================================================= */}
+      <section style={{ ...styles.section, borderTop: '1px solid #E8E4DC' }}>
+        <h2 style={styles.h2}>Открытый или закрытый автовоз — что выбрать</h2>
+        <p style={{ ...styles.paragraph, marginBottom: '1rem', maxWidth: '720px' }}>
+          Два формата перевозки — разница в цене и в уровне защиты. Коротко: для
+          большинства машин открытый трак — нормальный выбор. Закрытый (enclosed) берут
+          для редких, коллекционных, свежекупленных премиум-авто и новых электрокаров.
+        </p>
+        <div className={pageStyles.comparisonGrid}>
+          <div className={`${pageStyles.comparisonCard} ${pageStyles.liftCard}`}>
+            <h3 className={pageStyles.comparisonTitle}>Открытый автовоз</h3>
+            <p className={pageStyles.comparisonPrice}>базовая цена · стандарт рынка</p>
+            <ul className={pageStyles.comparisonList}>
+              <li>Большинство машин едет именно так — седаны, кроссоверы, пикапы</li>
+              <li>Подача перевозчика быстрее (много траков на рынке)</li>
+              <li>Машина видна в пути — возможна пыль и лёгкие осадки</li>
+              <li>Страховка cargo покрывает повреждения при ДТП и падениях</li>
+              <li>Оптимально для аукционных машин с salvage/clean title</li>
+            </ul>
+          </div>
+          <div className={`${pageStyles.comparisonCard} ${pageStyles.liftCard}`}>
+            <h3 className={pageStyles.comparisonTitle}>Закрытый (enclosed)</h3>
+            <p className={pageStyles.comparisonPrice}>+40–60% к стандартной цене</p>
+            <ul className={pageStyles.comparisonList}>
+              <li>Машина едет в закрытом прицепе — ни пыли, ни дождя, ни камней</li>
+              <li>Для премиум, классики, лоурайдеров, гоночных машин</li>
+              <li>Для EV и новых Tesla — страховка на высокую оценку проще</li>
+              <li>Подача дольше — закрытых траков в сети меньше</li>
+              <li>Имеет смысл когда цена машины от $60k или есть уникальная ценность</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================= */}
+      {/* SECTION 6c — Что влияет на цену (pricing factors)                  */}
+      {/* ================================================================= */}
+      <section style={{ ...styles.section, borderTop: '1px solid #E8E4DC' }}>
+        <h2 style={styles.h2}>Что влияет на итоговую цену</h2>
+        <p style={{ ...styles.paragraph, maxWidth: '720px' }}>
+          Цена складывается из пяти факторов. Central Dispatch (биржа перевозчиков)
+          показывает реальный диапазон по каждому маршруту — мы ориентируемся на него,
+          а не на «средние» цифры с баннеров.
+        </p>
+        <ul style={{ ...styles.paragraph, paddingLeft: '1.25rem', maxWidth: '720px' }}>
+          <li><strong>Расстояние.</strong> Локальные маршруты (до 500 миль) дешевле в пересчёте
+          на милю, кросс-кантри — обычно дороже, но выигрывает консолидация.</li>
+          <li><strong>Размер и состояние машины.</strong> Пикапы, SUV и минивэны занимают больше
+          места; не на ходу (inop) — доплата $100–$300 за лебёдку.</li>
+          <li><strong>Тип транспорта.</strong> Открытый — стандарт; закрытый — +40–60%.</li>
+          <li><strong>Сезон и маршрут.</strong> Январь и пик лета (июнь–август) — пиковый спрос
+          на популярных маршрутах (снежные штаты → Флорида, Калифорния → Восток).</li>
+          <li><strong>Сроки.</strong> Гибкая дата — дешевле. Срочный забор за 24–48 часов —
+          доплата $100–$400 в зависимости от маршрута.</li>
+        </ul>
+      </section>
+
+      {/* ================================================================= */}
+      {/* SECTION 6d — Высокий сезон (peak season)                           */}
+      {/* ================================================================= */}
+      <section style={{ ...styles.section, borderTop: '1px solid #E8E4DC' }}>
+        <h2 style={styles.h2}>Высокий сезон — о чём стоит знать</h2>
+        <p style={{ ...styles.paragraph, maxWidth: '720px' }}>
+          Два пика в году: <strong>январь</strong> (snowbirds едут из северных штатов в Флориду
+          и обратно весной) и <strong>июнь–август</strong> (летний переезд, отпуска, аукционные
+          закупки перед осенью). В эти периоды ставки поднимаются на 15–30%, подача
+          перевозчика занимает больше дней. Совет простой: если знаете маршрут заранее —
+          бронируйте за 10–14 дней, не за сутки.
+        </p>
+      </section>
+
+      {/* ================================================================= */}
+      {/* SECTION 6e — Забор и доставка (pickup & delivery details)          */}
+      {/* ================================================================= */}
+      <section style={{ ...styles.section, borderTop: '1px solid #E8E4DC' }}>
+        <h2 style={styles.h2}>Как проходит забор и доставка</h2>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '1.25rem',
+          }}
+        >
+          <div className={pageStyles.liftCard} style={styles.card}>
+            <h3 style={{ ...styles.sansFont, fontSize: '1.05rem', fontWeight: 600, marginBottom: '0.5rem' }}>
+              Забор
+            </h3>
+            <p style={{ ...styles.paragraph, fontSize: '0.95rem' }}>
+              Водитель звонит за 1–2 часа до приезда. Встретьте его или оставьте ключи
+              доверенному лицу (аукционы Copart/IAAI — по gate pass). При погрузке
+              оформляется <strong>Bill of Lading (BOL)</strong> — это ваша главная защита.
+              Перед подписью осмотрите машину, сверьте состояние, сделайте фото на телефон
+              со всех сторон. Любая царапина или вмятина должна быть отмечена в BOL.
+            </p>
+          </div>
+          <div className={pageStyles.liftCard} style={styles.card}>
+            <h3 style={{ ...styles.sansFont, fontSize: '1.05rem', fontWeight: 600, marginBottom: '0.5rem' }}>
+              Доставка
+            </h3>
+            <p style={{ ...styles.paragraph, fontSize: '0.95rem' }}>
+              Водитель согласовывает точное время за 12–24 часа. При получении снова
+              осмотрите машину и сверьте с BOL. Если есть новые повреждения — зафиксируйте
+              их на BOL <em>до</em> подписи и сфотографируйте. Претензия подаётся через
+              страховую компанию перевозчика (cargo insurance) — мы поможем оформить.
+              Оплата — банковским переводом, Zelle или COD на месте, в зависимости от
+              маршрута.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================= */}
       {/* SECTION 7 — FAQ                                                   */}
       {/* ================================================================= */}
       <section
@@ -646,6 +760,7 @@ function RussiaShipMyCar() {
           {FAQS.map((faq, i) => (
             <details
               key={i}
+              className={pageStyles.faqItem}
               style={{
                 ...styles.card,
                 cursor: 'pointer',
@@ -723,6 +838,7 @@ function RussiaShipMyCar() {
             href="https://t.me/y7dispatch_bot"
             target="_blank"
             rel="noopener noreferrer"
+            className={`${pageStyles.subtleLift} ${pageStyles.focusRing}`}
             style={{
               ...styles.ctaButton,
               fontSize: '1.05rem',
