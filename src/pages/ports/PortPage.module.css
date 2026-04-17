@@ -1,0 +1,364 @@
+/* PortPage — hero, info cards, route list, CTA. Renders 6 port slugs. */
+
+.wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 0 80px;
+}
+
+/* =====================================================================
+   HERO
+   ===================================================================== */
+
+.hero {
+  padding: clamp(56px, 8vh, 80px) 24px clamp(32px, 5vh, 48px);
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 100%, rgba(153, 60, 29, 0.06), transparent 60%),
+    linear-gradient(180deg, var(--bg, #F7F5F0) 0%, var(--bg-muted, #EFECE6) 100%);
+  margin-bottom: clamp(40px, 6vh, 56px);
+}
+
+.heroKicker {
+  display: inline-block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.subtitle {
+  font-family: var(--font-sans, system-ui);
+  font-size: clamp(1rem, 1.4vw, 1.1rem);
+  color: var(--text-muted, #888780);
+  margin: 0 0 6px;
+  line-height: 1.6;
+}
+
+.location {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  color: var(--text-muted, #888780);
+  margin: 0 0 20px;
+}
+
+.credentials {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.credBadge {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  color: var(--text-muted, #888780);
+  background: var(--bg-muted, #EFECE6);
+  padding: 5px 14px;
+  border-radius: var(--radius-pill, 20px);
+  border: 1px solid var(--border, #e5e0d8);
+}
+
+/* =====================================================================
+   BODY
+   ===================================================================== */
+
+.body {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  margin-bottom: clamp(40px, 6vh, 56px);
+}
+
+.sectionHeader {
+  margin-bottom: 20px;
+}
+
+.sectionMicro {
+  display: inline-block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin: 0 0 8px;
+}
+
+.sectionTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1.35rem, 2.5vw, 1.65rem);
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.bodyText {
+  font-family: var(--font-sans, system-ui);
+  font-size: 15px;
+  color: var(--text-muted, #888780);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* =====================================================================
+   INFO CARD (address + gate hours, tips)
+   ===================================================================== */
+
+.infoCard {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-xl, 16px);
+  padding: clamp(24px, 4vw, 32px);
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06));
+}
+
+.infoCardMuted {
+  composes: infoCard;
+  background: var(--bg-muted, #EFECE6);
+  box-shadow: none;
+}
+
+.infoLabel {
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 6px;
+}
+
+.infoValue {
+  font-family: var(--font-sans, system-ui);
+  font-size: 15px;
+  color: var(--text, #2C2C2A);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.infoValue:last-child {
+  margin-bottom: 0;
+}
+
+/* =====================================================================
+   ROUTES GRID
+   ===================================================================== */
+
+.routesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 560px) {
+  .routesGrid { grid-template-columns: 1fr; }
+}
+
+.routeCard {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-lg, 12px);
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  transition:
+    transform var(--transition-normal, 250ms ease-out),
+    box-shadow var(--transition-normal, 250ms ease-out),
+    border-color var(--transition-normal, 250ms ease-out);
+}
+
+@media (hover: hover) {
+  .routeCard:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md, 0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06));
+    border-color: var(--accent, #993C1D);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .routeCard {
+    opacity: 0;
+    animation: portCardIn 500ms ease-out forwards;
+    animation-delay: calc(var(--i, 0) * 60ms);
+  }
+}
+
+@keyframes portCardIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.routeFrom {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text, #2C2C2A);
+  margin-bottom: 2px;
+}
+
+.routeTo {
+  font-family: var(--font-sans, system-ui);
+  font-size: 12px;
+  color: var(--text-muted, #888780);
+}
+
+.routeDays {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent, #993C1D);
+  background: #FFF8F5;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill, 20px);
+  white-space: nowrap;
+}
+
+/* =====================================================================
+   DOCUMENTS LIST
+   ===================================================================== */
+
+.docsList {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14.5px;
+  color: var(--text-muted, #888780);
+  line-height: 1.8;
+  padding-left: 20px;
+  margin: 0;
+}
+
+/* =====================================================================
+   CTA CARD
+   ===================================================================== */
+
+.ctaCard {
+  background: linear-gradient(135deg, var(--accent, #993C1D) 0%, var(--accent-hover, #7A3017) 100%);
+  border-radius: var(--radius-xl, 16px);
+  padding: clamp(32px, 5vh, 48px);
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 12px 32px rgba(153, 60, 29, 0.18);
+  margin-bottom: 48px;
+}
+
+.ctaTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+}
+
+.ctaSubtitle {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 22px;
+  line-height: 1.7;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaBtn {
+  background: #fff !important;
+  color: var(--accent, #993C1D) !important;
+  padding: 14px 32px !important;
+  font-size: 13px !important;
+  text-decoration: none;
+  display: inline-block;
+}
+
+@media (hover: hover) {
+  .ctaBtn:hover {
+    background: var(--bg, #F7F5F0) !important;
+    color: var(--accent-hover, #7A3017) !important;
+  }
+}
+
+/* =====================================================================
+   COMPANY FOOTER
+   ===================================================================== */
+
+.companyFooter {
+  text-align: center;
+  border-top: 1px solid var(--border, #e5e0d8);
+  padding-top: 32px;
+}
+
+.companyName {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  color: var(--text, #2C2C2A);
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+.companyDesc {
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  color: var(--text-muted, #888780);
+  line-height: 1.6;
+  margin: 0 0 8px;
+}
+
+.companyIds {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 12px;
+  color: var(--text-muted, #888780);
+}
+
+/* =====================================================================
+   NOT FOUND FALLBACK
+   ===================================================================== */
+
+.notFound {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.notFoundTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 2rem;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 12px;
+  letter-spacing: -0.02em;
+}
+
+.notFoundMsg {
+  font-family: var(--font-sans, system-ui);
+  font-size: 15px;
+  color: var(--text-muted, #888780);
+  margin: 0 0 32px;
+  line-height: 1.6;
+}
+
+.notFoundBtn {
+  padding: 12px 28px !important;
+  font-size: 12px !important;
+  text-decoration: none;
+  display: inline-block;
+}
