@@ -1,10 +1,45 @@
 {
-  "title": "O Y7 Logistics",
-  "hero": "Licencjonowany i ubezpieczony broker transportu samochodowego",
-  "ourStory": "Nasza historia",
-  "howWeWork": "Jak pracujemy",
-  "whyY7": "Dlaczego Y7",
-  "commitments": "Nasze zobowiązania",
-  "fmcsa": "Rejestracja FMCSA",
-  "contact": "Kontakt"
+  "heroKicker": "O Y7 Logistics",
+  "heroH1": "Licencjonowany i ubezpieczony broker transportu aut",
+  "storyKicker": "Nasza historia",
+  "storyTitle": "Dlaczego zbudowaliśmy Y7",
+  "storyPara1": "Y7 Consulting Inc, działająca pod marką <strong>Y7 Logistics</strong>, to amerykański broker transportu samochodów. Nasz zespół ma ponad 10 lat łącznego doświadczenia w transporcie aut, a Y7 działa jako broker z licencją FMCSA od 2025 roku. Łączymy nadawców ze zweryfikowanymi przewoźnikami poprzez Central Dispatch — wiodącą giełdę ładunków w branży.",
+  "storyPara2": "Od odbiorów z aukcji po przeprowadzki między stanami — zajmujemy się każdym szczegółem, aby klienci nie musieli. Nasz zespół dyspozytorski koordynuje przewoźników, prowadzi dokumentację i informuje Cię na każdym etapie.",
+  "processKicker": "Proces",
+  "processTitle": "Jak pracujemy",
+  "steps": [
+    { "num": 1, "title": "Przyjmujemy zlecenie", "desc": "Klient przesyła dane pojazdu, adresy odbioru i dostawy." },
+    { "num": 2, "title": "Weryfikujemy i przydzielamy przewoźnika", "desc": "Dobieramy sprawdzonego i ubezpieczonego przewoźnika przez Central Dispatch." },
+    { "num": 3, "title": "Monitorujemy transport", "desc": "Aktualizacje statusu i powiadomienia od odbioru do dostawy." },
+    { "num": 4, "title": "Dostarczamy z dokumentami", "desc": "Podpisany BOL, raporty stanu i potwierdzenie dostawy w aktach." }
+  ],
+  "valuesKicker": "Nasze wartości",
+  "valuesTitle": "Co wyróżnia Y7",
+  "whyPoints": [
+    { "title": "Licencjonowany broker", "desc": "Zarejestrowany broker FMCSA z aktywną licencją MC i USDOT." },
+    { "title": "Zweryfikowani przewoźnicy", "desc": "Każdy przewoźnik sprawdzany pod kątem ubezpieczenia, historii bezpieczeństwa i licencji operacyjnej." },
+    { "title": "Przejrzyste ceny", "desc": "Stała wycena bez ukrytych kosztów. Cena ustalana po potwierdzeniu." },
+    { "title": "Aktualizacje statusu", "desc": "Powiadomienia przez panel i Telegram — znasz status transportu na każdym etapie." },
+    { "title": "Wsparcie wielojęzyczne", "desc": "Komunikujemy się w polskim, ukraińskim, rosyjskim i angielskim." },
+    { "title": "Automatyczne aktualizacje", "desc": "Email i Telegram na każdym etapie transportu." }
+  ],
+  "commitmentsKicker": "Obietnice",
+  "commitmentsTitle": "Nasze zobowiązania",
+  "commitments": [
+    "Odpowiedź na nowe zapytania w ciągu 1 godziny w godzinach pracy",
+    "Przydzielamy tylko zweryfikowanych i ubezpieczonych przewoźników",
+    "Dokumentacja na każdym etapie — BOL, gate pass, raporty stanu",
+    "Przejrzyste ceny bez ukrytych kosztów i niespodzianek",
+    "Panel klienta i bot Telegram dla aktualizacji statusu"
+  ],
+  "fmcsaKicker": "Weryfikacja",
+  "fmcsaTitle": "Rejestracja FMCSA",
+  "fmcsaHeading": "Federal Motor Carrier Safety Administration",
+  "fmcsaText": "Y7 Consulting Inc jest zarejestrowana w Federal Motor Carrier Safety Administration (FMCSA) jako broker transportu aut.",
+  "fmcsaVerify": "Zweryfikuj w systemie FMCSA SAFER",
+  "contactKicker": "Porozmawiajmy",
+  "contactTitle": "Kontakt",
+  "contactEmailLabel": "Email:",
+  "contactTelegramLabel": "Telegram:",
+  "contactPortalLabel": "Panel klienta:"
 }

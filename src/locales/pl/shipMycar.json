@@ -24,6 +24,18 @@
   "pickupProcess": "Kierowca zadzwoni 12-24 godziny przed przybyciem z orientacyjnym oknem odbioru (zwykle 1-2 godziny). Przy odbiorze Ty i kierowca obchodzicie pojazd wspólnie, notując stan na Bill of Lading (BOL): każde zadrapanie, wgniecenie, odprysk. Kierowca również robi zdjęcia. Podpisujesz BOL przy odbiorze, potwierdzając stan. Kierowca ładuje auto na lawetę, zabezpiecza pasami i mocowaniami, a Ty otrzymujesz kopię podpisanego BOL. Zachowaj ten dokument — to Twój dowód stanu auta w chwili przejęcia przez przewoźnika.",
   "deliveryProcess": "Przy dostawie proces jest lustrzany. Kierowca dzwoni wcześniej z oknem przyjazdu. Ty (lub Twój przedstawiciel) spotykasz się z kierowcą i robicie drugą inspekcję, porównując stan pojazdu z BOL z odbioru. Sprawdź każdy panel, dach, zderzaki, koła, szyby. Jeśli wszystko się zgadza — podpisz BOL dostawy. Jeśli zauważysz nowe uszkodzenie, zaznacz je wyraźnie na BOL PRZED podpisaniem — ta adnotacja jest kluczowa przy składaniu roszczenia. Jeśli płatność to COD (cash on delivery), miej dokładną kwotę gotówką lub w formie certyfikowanej zgodnie z umową. Po podpisaniu dostawa jest zakończona.",
   "insuranceInfo": "Każdy przewoźnik w naszej sieci posiada ubezpieczenie ładunku na minimum $100,000, większość — $250,000 i więcej. Sprawdzamy aktualne certyfikaty ubezpieczenia przed powierzeniem jakiegokolwiek zlecenia. To pokrycie chroni przed uszkodzeniami w trakcie transportu — nie przed wcześniej istniejącymi wadami. Jeśli uszkodzenie wystąpi, proces zaczyna się od BOL: raporty stanu przy odbiorze i dostawie to Twój dowód. Zgłoś roszczenie do ubezpieczyciela przewoźnika w ciągu 48 godzin od dostawy. Pomagamy z dokumentacją, ale roszczenie jest między Tobą a ubezpieczycielem przewoźnika. Dla aut o wysokiej wartości można wykupić dodatkowe pokrycie u zewnętrznego dostawcy przed wysyłką.",
+  "sections": {
+    "heroKicker": "Transport aut dla osób prywatnych",
+    "costHeading": "Co wpływa na koszt transportu",
+    "seasonHeading": "Sezonowe wzorce cen",
+    "prepHeading": "Jak przygotować auto do transportu",
+    "pickupHeading": "Czego oczekiwać przy odbiorze",
+    "deliveryHeading": "Czego oczekiwać przy dostawie",
+    "coverageKicker": "Pokrycie",
+    "insuranceTitle": "Ubezpieczenie podczas transportu",
+    "atDeliveryKicker": "Przy dostawie",
+    "faqKicker": "Często zadawane"
+  },
   "quoteTitle": "Otrzymaj darmową wycenę",
   "quoteSubtitle": "Bez zobowiązań. Odpowiadamy w ciągu godziny.",
   "faqTitle": "Często zadawane pytania o transport aut w USA",

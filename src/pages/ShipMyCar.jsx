@@ -42,7 +42,7 @@ export default function ShipMyCar() {
 
       {/* Hero */}
       <section className={styles.hero}>
-        <span className={styles.heroMicro}>&#9670; Personal Auto Transport</span>
+        <span className={styles.heroMicro}>&#9670; {t('sections.heroKicker')}</span>
         <h1 className={styles.title}>{t('title')}</h1>
         <p className={styles.subtitle}>{t('subtitle')}</p>
       </section>
@@ -62,19 +62,19 @@ export default function ShipMyCar() {
 
       {/* Pricing Factors */}
       <section className={styles.narrow}>
-        <h2 className={styles.sectionHeading}>What Determines Your Shipping Cost</h2>
+        <h2 className={styles.sectionHeading}>{t('sections.costHeading')}</h2>
         <p className={styles.bodyText}>{t('pricingFactors')}</p>
       </section>
 
       {/* Peak Season */}
       <section className={styles.narrow}>
-        <h2 className={styles.sectionHeading}>Seasonal Pricing Patterns</h2>
+        <h2 className={styles.sectionHeading}>{t('sections.seasonHeading')}</h2>
         <p className={styles.bodyText}>{t('peakSeason')}</p>
       </section>
 
       {/* Preparation Checklist */}
       <section className={styles.narrow}>
-        <h2 className={styles.sectionHeading}>How to Prepare Your Car for Shipping</h2>
+        <h2 className={styles.sectionHeading}>{t('sections.prepHeading')}</h2>
         <ul className={styles.checkList}>
           {Array.isArray(prepList) && prepList.map((item, i) => (
             <li key={i} className={styles.checkItem}>{item}</li>
@@ -84,21 +84,21 @@ export default function ShipMyCar() {
 
       {/* What to Expect at Pickup */}
       <section className={styles.narrow}>
-        <h2 className={styles.sectionHeading}>What to Expect at Pickup</h2>
+        <h2 className={styles.sectionHeading}>{t('sections.pickupHeading')}</h2>
         <p className={styles.bodyText}>{t('pickupProcess')}</p>
       </section>
 
       {/* What to Expect at Delivery */}
       <section className={styles.narrow}>
-        <h2 className={styles.sectionHeading}>What to Expect at Delivery</h2>
+        <h2 className={styles.sectionHeading}>{t('sections.deliveryHeading')}</h2>
         <p className={styles.bodyText}>{t('deliveryProcess')}</p>
       </section>
 
       {/* Insurance callout */}
       <section className={styles.narrow}>
         <div className={styles.callout}>
-          <span className={styles.calloutKicker}>Coverage</span>
-          <h3 className={styles.calloutTitle}>Insurance Coverage During Transport</h3>
+          <span className={styles.calloutKicker}>{t('sections.coverageKicker')}</span>
+          <h3 className={styles.calloutTitle}>{t('sections.insuranceTitle')}</h3>
           <p className={styles.calloutText}>{t('insuranceInfo')}</p>
         </div>
       </section>
@@ -111,7 +111,7 @@ export default function ShipMyCar() {
       {/* BOL callout */}
       <section className={styles.narrow}>
         <div className={styles.callout}>
-          <span className={styles.calloutKicker}>At delivery</span>
+          <span className={styles.calloutKicker}>{t('sections.atDeliveryKicker')}</span>
           <h3 className={styles.calloutTitle}>{t('bol.title')}</h3>
           <p className={styles.calloutText}>{t('bol.text')}</p>
         </div>
@@ -130,7 +130,7 @@ export default function ShipMyCar() {
       {/* FAQ Accordion */}
       <section className={styles.faqSection}>
         <div className={styles.faqHeader}>
-          <span className={styles.faqMicro}>&#9670; Frequently Asked</span>
+          <span className={styles.faqMicro}>&#9670; {t('sections.faqKicker')}</span>
           <h2 className={styles.faqTitle}>{t('faqTitle')}</h2>
         </div>
         <div className={styles.faqList}>

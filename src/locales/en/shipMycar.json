@@ -24,6 +24,18 @@
   "pickupProcess": "The carrier driver will call you 12–24 hours before arrival with an estimated pickup window, usually a 1–2 hour range. At pickup, you and the driver walk around the vehicle together to inspect and document its current condition on the Bill of Lading (BOL). This includes every scratch, dent, and mark — both of you note these on the form. The driver takes photos as well. You sign the BOL at pickup, confirming the vehicle's condition. The driver then loads the vehicle onto the trailer, secures it with wheel straps and tie-downs, and you receive a copy of the signed BOL. Keep this document — it is your proof of the vehicle's condition at the time the carrier took possession.",
   "deliveryProcess": "At delivery, the process mirrors pickup. The driver calls ahead with an arrival window. You (or your designated representative) meet the driver and do a second walk-around inspection comparing the vehicle's condition against the pickup BOL. Check every panel, the roof, bumpers, wheels, and glass. If everything matches, sign the delivery BOL. If you spot new damage, note it clearly on the BOL before signing — this notation is critical for filing a claim. If payment is COD (cash on delivery), have the exact amount ready in cash or certified funds as specified in your contract. Once you sign off, the delivery is complete.",
   "insuranceInfo": "Every carrier in our network carries a minimum of $100,000 in cargo insurance, and most carry $250,000 or more. We verify active insurance certificates before dispatching any load. This coverage protects your vehicle against damage during transport — not pre-existing conditions. If damage occurs, the process starts with the BOL: your pickup and delivery condition reports are the evidence. File a claim with the carrier's insurance provider within 48 hours of delivery. We assist with documentation and follow-up, but the claim is between you and the carrier's insurer. For high-value vehicles, you can purchase supplemental coverage through a third-party provider before shipping.",
+  "sections": {
+    "heroKicker": "Personal Auto Transport",
+    "costHeading": "What Determines Your Shipping Cost",
+    "seasonHeading": "Seasonal Pricing Patterns",
+    "prepHeading": "How to Prepare Your Car for Shipping",
+    "pickupHeading": "What to Expect at Pickup",
+    "deliveryHeading": "What to Expect at Delivery",
+    "coverageKicker": "Coverage",
+    "insuranceTitle": "Insurance Coverage During Transport",
+    "atDeliveryKicker": "At delivery",
+    "faqKicker": "Frequently Asked"
+  },
   "quoteTitle": "Get Your Free Quote",
   "quoteSubtitle": "No obligation. We respond within 1 hour.",
   "faqTitle": "Frequently Asked Questions",

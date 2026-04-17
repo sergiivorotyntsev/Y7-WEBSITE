@@ -1,10 +1,45 @@
 {
-  "title": "About Y7 Logistics",
-  "hero": "Licensed & Insured Auto Transport Broker",
-  "ourStory": "Our Story",
-  "howWeWork": "How We Work",
-  "whyY7": "Why Y7",
-  "commitments": "Our Commitments",
-  "fmcsa": "FMCSA Registration",
-  "contact": "Contact"
+  "heroKicker": "About Y7 Logistics",
+  "heroH1": "Licensed & Insured Auto Transport Broker",
+  "storyKicker": "Our Story",
+  "storyTitle": "Why we built Y7",
+  "storyPara1": "Y7 Consulting Inc, operating as <strong>Y7 Logistics</strong>, is a US-based auto transport brokerage. Our team brings 10+ years of combined auto transport experience, with Y7 operating as an FMCSA-licensed broker since 2025. We connect shippers with verified carriers through Central Dispatch — the industry's leading load board.",
+  "storyPara2": "From auction pickups to cross-country relocations, we handle every detail so our customers don't have to. Our dispatch team coordinates carriers, manages documentation, and keeps you informed at every step.",
+  "processKicker": "Process",
+  "processTitle": "How We Work",
+  "steps": [
+    { "num": 1, "title": "Receive Order", "desc": "Customer submits vehicle details, pickup and delivery locations." },
+    { "num": 2, "title": "Vet & Assign Carrier", "desc": "We match your load with a verified, insured carrier through Central Dispatch." },
+    { "num": 3, "title": "Monitor Transit", "desc": "Status updates and notifications from pickup to delivery." },
+    { "num": 4, "title": "Deliver & Document", "desc": "Signed BOL, condition reports, and delivery confirmation on file." }
+  ],
+  "valuesKicker": "Our Values",
+  "valuesTitle": "What sets Y7 apart",
+  "whyPoints": [
+    { "title": "Licensed Broker", "desc": "FMCSA-registered auto transport broker with active MC and USDOT authority." },
+    { "title": "Verified Carriers", "desc": "Every carrier is vetted for insurance, safety record, and operating authority." },
+    { "title": "Transparent Pricing", "desc": "Upfront quotes with no hidden fees. Price locked once you confirm." },
+    { "title": "Shipment Status Updates", "desc": "Portal and Telegram notifications so you know your shipment status at every stage." },
+    { "title": "Multilingual Support", "desc": "We communicate in English, Russian, Polish, and Ukrainian." },
+    { "title": "Automated Updates", "desc": "Email and Telegram notifications at every stage of transport." }
+  ],
+  "commitmentsKicker": "Promises",
+  "commitmentsTitle": "Our Commitments",
+  "commitments": [
+    "Response to new inquiries under 1 hour during business hours",
+    "Only verified, insured carriers assigned to your load",
+    "Documentation at every step — BOL, gate passes, condition reports",
+    "Transparent pricing with no hidden fees or surprise charges",
+    "Customer portal and Telegram bot for status updates"
+  ],
+  "fmcsaKicker": "Verification",
+  "fmcsaTitle": "FMCSA Registration",
+  "fmcsaHeading": "Federal Motor Carrier Safety Administration",
+  "fmcsaText": "Y7 Consulting Inc is registered with the Federal Motor Carrier Safety Administration (FMCSA) as an auto transport broker.",
+  "fmcsaVerify": "Verify on FMCSA SAFER System",
+  "contactKicker": "Talk to us",
+  "contactTitle": "Contact",
+  "contactEmailLabel": "Email:",
+  "contactTelegramLabel": "Telegram:",
+  "contactPortalLabel": "Customer Portal:"
 }
