@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { PersonalCarIcon, DealerTradeIcon, GlobeRouteIcon } from './icons';
 import styles from './AudienceCards.module.css';
-import btn from '../styles/buttons.module.css';
 
 function Card({ title, desc, cta, to, icon, index }) {
   const navigate = useNavigate();
@@ -29,9 +28,9 @@ function Card({ title, desc, cta, to, icon, index }) {
       <p className={styles.desc}>{desc}</p>
       <button
         onClick={e => { e.stopPropagation(); navigate(to); }}
-        className={`${btn.btnSecondary} ${styles.cta}`}
+        className={styles.cta}
       >
-        {cta} &rarr;
+        {cta} <span className={styles.ctaArrow}>&rarr;</span>
       </button>
     </div>
   );
@@ -46,21 +45,21 @@ export default function AudienceCards() {
       desc: t('audience.shipMyCarDesc'),
       cta: t('audience.shipMyCarCta'),
       to: '/ship-my-car',
-      icon: <PersonalCarIcon size={40} />,
+      icon: <PersonalCarIcon size={36} />,
     },
     {
       title: t('audience.dealersTitle'),
       desc: t('audience.dealersDesc'),
       cta: t('audience.dealersCta'),
       to: '/dealer-auto-transport',
-      icon: <DealerTradeIcon size={40} />,
+      icon: <DealerTradeIcon size={36} />,
     },
     {
       title: t('audience.exportersTitle'),
       desc: t('audience.exportersDesc'),
       cta: t('audience.exportersCta'),
       to: '/door-to-port-auto-transport',
-      icon: <GlobeRouteIcon size={40} />,
+      icon: <GlobeRouteIcon size={36} />,
     },
   ];
 
