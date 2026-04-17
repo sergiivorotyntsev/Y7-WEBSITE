@@ -100,6 +100,9 @@ export default function DealerQuote() {
         <p className={styles.successMsg}>
           Our dealer relations team will contact you within 24 hours to discuss your transportation needs and set up your account.
         </p>
+        <p className={styles.successMsg}>
+          We've also sent a portal access link to your email — check your inbox to log in and track your inquiry.
+        </p>
         <Link to="/dealers" className={`${btn.btnSecondary} ${styles.backBtn}`}>
           Back to Dealers
         </Link>
