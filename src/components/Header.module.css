@@ -149,6 +149,31 @@
   gap: 8px;
 }
 
+.loginBtn {
+  padding: 6px 14px !important;
+  font-size: 10px !important;
+}
+
+/* =====================================================================
+   PERSISTENT HEADER CTA — accent pill, visible across all breakpoints
+   ===================================================================== */
+
+.headerCta {
+  padding: 9px 22px !important;
+  font-size: 11px !important;
+  letter-spacing: 0.08em !important;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@media (max-width: 520px) {
+  .headerCta {
+    padding: 8px 16px !important;
+    font-size: 10px !important;
+    letter-spacing: 0.06em !important;
+  }
+}
+
 /* =====================================================================
    MOBILE MENU BUTTON
    ===================================================================== */
@@ -259,5 +284,18 @@
   }
   .mobileMenuBtn {
     display: block;
+  }
+}
+
+/* On very narrow screens we keep the CTA but shrink everything */
+@media (max-width: 380px) {
+  .inner {
+    padding: 0 14px;
+  }
+  .logo {
+    font-size: 20px;
+  }
+  .nav {
+    gap: 8px;
   }
 }

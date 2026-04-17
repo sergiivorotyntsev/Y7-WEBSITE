@@ -86,20 +86,20 @@ export default function Header() {
             <div className={styles.ctaGroup}>
               <button
                 onClick={() => navigate('/portal/login')}
-                className={btn.btnSecondary}
-                style={{ padding: '6px 14px', fontSize: '10px' }}
+                className={`${btn.btnSecondary} ${styles.loginBtn}`}
               >
                 {t('auth.logIn')}
               </button>
-              <button
-                onClick={handleQuoteClick}
-                className={btn.btnPrimary}
-                style={{ padding: '8px 20px', fontSize: '11px' }}
-              >
-                {t('cta.getQuote')}
-              </button>
             </div>
           )}
+
+          {/* Persistent Get a Quote CTA — visible on desktop and tablet */}
+          <button
+            onClick={handleQuoteClick}
+            className={`${btn.btnAccent} ${styles.headerCta}`}
+          >
+            {t('cta.getQuote')}
+          </button>
 
           {/* Mobile hamburger */}
           <button
