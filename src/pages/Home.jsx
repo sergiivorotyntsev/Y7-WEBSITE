@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import HreflangTags from '../components/HreflangTags';
 import { API_URL } from '../config';
@@ -16,10 +17,14 @@ import ExternalReviewsStrip from '../components/ExternalReviewsStrip';
 import WhyY7 from '../components/WhyY7';
 import TrustSection from '../components/TrustSection';
 import WhatHappensNext from '../components/WhatHappensNext';
+import HeroRouteVisual from '../components/HeroRouteVisual';
 import styles from './Home.module.css';
+import btn from '../styles/buttons.module.css';
 
 export default function Home() {
   const { t } = useTranslation('home');
+  const { t: tCommon } = useTranslation();
+  const navigate = useNavigate();
   const [aggregate, setAggregate] = useState(null);
 
   useEffect(() => {
@@ -46,27 +51,53 @@ export default function Home() {
     } : {}),
   };
 
+  const scrollToQuote = () => {
+    const el = document.getElementById('quote-section');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div>
       <PageMeta description="Licensed auto transport broker. Ship your vehicle door-to-door or to any US port. Instant quotes, verified carriers, shipment status updates." path="/" />
       <HreflangTags currentPath="" hasPolishVersion hasUkrainianVersion hasRussianVersion />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
 
-      {/* 1. Hero */}
+      {/* 1. Hero — asymmetric two-column */}
       <section className={styles.hero}>
-        <p className={styles.heroKicker}>{t('hero.title')}</p>
-        <h1 className={styles.heroTitle}>
-          {t('hero.tagline')}<br />
-          <span className={styles.heroAccent}>{t('hero.taglineAccent')}</span>
-        </h1>
-        <p className={styles.heroDesc}>{t('hero.description')}</p>
+        <div className={styles.heroInner}>
+          <div className={styles.heroText}>
+            <span className={styles.heroKicker}>&#9670; {t('hero.title')}</span>
+            <h1 className={styles.heroTitle}>
+              {t('hero.tagline')}{' '}
+              <span className={styles.heroAccent}>{t('hero.taglineAccent')}</span>
+            </h1>
+            <p className={styles.heroDesc}>{t('hero.description')}</p>
+            <div className={styles.heroCtas}>
+              <button
+                onClick={scrollToQuote}
+                className={`${btn.btnAccent} ${styles.heroCtaPrimary}`}
+              >
+                {tCommon('cta.getQuote')}
+              </button>
+              <button
+                onClick={() => navigate('/track')}
+                className={`${btn.btnSecondary} ${styles.heroCtaSecondary}`}
+              >
+                {tCommon('nav.track')}
+              </button>
+            </div>
+          </div>
+          <div className={styles.heroVisual}>
+            <HeroRouteVisual />
+          </div>
+        </div>
       </section>
 
       {/* External reviews strip (visible when env vars set) */}
       <ExternalReviewsStrip />
 
       {/* 2. National Segment Cards */}
-      <ScrollReveal style={{ padding: '40px 24px 20px' }}>
+      <ScrollReveal style={{ padding: 'clamp(60px, 8vh, 100px) 24px clamp(30px, 4vh, 60px)' }}>
         <AudienceCards />
       </ScrollReveal>
 
@@ -74,18 +105,19 @@ export default function Home() {
       <LiveActivityFeed />
 
       {/* 4. Trust Bar */}
-      <ScrollReveal style={{ padding: '20px 24px 60px' }}>
-        <TrustBar />
-      </ScrollReveal>
+      <TrustBar />
 
       {/* 5. How It Works */}
-      <ScrollReveal style={{ padding: '60px 24px' }}>
-        <h2 className={styles.sectionTitle}>{t('howItWorks.title')}</h2>
+      <ScrollReveal style={{ padding: 'clamp(60px, 8vh, 100px) 24px' }}>
+        <div className={styles.sectionHeader}>
+          <span className={styles.sectionMicro}>Process</span>
+          <h2 className={styles.sectionTitle}>{t('howItWorks.title')}</h2>
+        </div>
         <HowItWorks />
       </ScrollReveal>
 
       {/* 6. Why Y7 */}
-      <ScrollReveal style={{ padding: '20px 24px 60px' }}>
+      <ScrollReveal style={{ padding: 'clamp(60px, 8vh, 100px) 24px', background: 'var(--bg-muted)' }}>
         <WhyY7 />
       </ScrollReveal>
 
@@ -98,6 +130,7 @@ export default function Home() {
       <section id="quote-section" className={styles.quoteSection}>
         <ScrollReveal>
           <div className={styles.quoteSectionHeader}>
+            <span className={styles.quoteSectionKicker}>&#9670; Request a Quote</span>
             <h2 className={styles.quoteSectionTitle}>{t('quoteSection.title')}</h2>
             <p className={styles.quoteSectionSubtitle}>{t('quoteSection.subtitle')}</p>
           </div>
@@ -112,12 +145,12 @@ export default function Home() {
       <WhatHappensNext />
 
       {/* 9. Testimonials */}
-      <ScrollReveal style={{ padding: '40px 24px 60px', background: 'var(--bg-muted)' }}>
+      <ScrollReveal style={{ padding: 'clamp(60px, 8vh, 100px) 24px', background: 'var(--bg-muted)' }}>
         <ReviewsCarousel />
       </ScrollReveal>
 
       {/* 10. Port Pills */}
-      <ScrollReveal style={{ padding: '60px 24px 80px' }}>
+      <ScrollReveal style={{ padding: 'clamp(60px, 8vh, 100px) 24px' }}>
         <PortPills />
       </ScrollReveal>
     </div>

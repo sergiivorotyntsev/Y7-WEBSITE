@@ -1,64 +1,232 @@
-/* Home page — hero, section titles, quote-section wrapper. */
+/* Home page — asymmetric hero with route visual, section rhythm, quote section. */
+
+/* =====================================================================
+   HERO — asymmetric two-column layout, warm gradient background
+   ===================================================================== */
 
 .hero {
-  padding: 80px 24px 40px;
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
+  padding: clamp(80px, 12vh, 160px) 24px clamp(60px, 10vh, 120px);
+  background:
+    radial-gradient(circle at 75% 40%, rgba(153, 60, 29, 0.06) 0%, transparent 55%),
+    linear-gradient(180deg, var(--bg, #F7F5F0) 0%, var(--bg-muted, #EFECE6) 100%);
+  position: relative;
+  overflow: hidden;
 }
 
-@media (max-width: 768px) {
-  .hero {
-    padding: 48px 24px 32px;
+.heroInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 4fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: center;
+}
+
+@media (max-width: 960px) {
+  .heroInner {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
 }
 
+.heroText {
+  min-width: 0;
+}
+
 .heroKicker {
+  display: inline-block;
   font-family: var(--font-sans, system-ui);
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-muted, #888780);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
   text-transform: uppercase;
-  letter-spacing: 0.22em;
-  margin: 0 0 16px;
+  letter-spacing: 0.14em;
+  padding: 6px 12px;
+  background: rgba(153, 60, 29, 0.08);
+  border-radius: var(--radius-pill, 20px);
+  margin: 0 0 24px;
 }
 
 .heroTitle {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(36px, 5.5vw, 52px);
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
   color: var(--text, #2C2C2A);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
   margin: 0 0 20px;
 }
 
 .heroAccent {
   color: var(--accent, #993C1D);
   font-style: italic;
+  font-weight: 400;
 }
 
 .heroDesc {
   font-family: var(--font-sans, system-ui);
-  font-size: 15px;
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
   color: var(--text-muted, #888780);
   line-height: 1.7;
-  max-width: 600px;
+  max-width: 520px;
+  margin: 0 0 32px;
+}
+
+.heroCtas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.heroCtaPrimary,
+.heroCtaSecondary {
+  padding: 14px 28px !important;
+  font-size: 12px !important;
+}
+
+/* =====================================================================
+   HERO — route visualization (right column)
+   ===================================================================== */
+
+.heroVisual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+  position: relative;
+}
+
+@media (max-width: 960px) {
+  .heroVisual {
+    min-height: 200px;
+    order: -1;
+  }
+}
+
+.routeSvg {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  filter: drop-shadow(0 8px 24px rgba(44, 44, 42, 0.08));
+}
+
+.routeTrack {
+  stroke: var(--text-muted, #888780);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 6;
+  stroke-linecap: round;
+  fill: none;
+  opacity: 0.4;
+}
+
+.routeDot {
+  fill: var(--bg-card, #fff);
+  stroke: var(--accent, #993C1D);
+  stroke-width: 2;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .routeDot {
+    animation: routeDotPulse 3s ease-in-out infinite;
+  }
+  .routeDot:nth-of-type(2) { animation-delay: 0.75s; }
+  .routeDot:nth-of-type(3) { animation-delay: 1.5s; }
+  .routeDot:nth-of-type(4) { animation-delay: 2.25s; }
+}
+
+@keyframes routeDotPulse {
+  0%, 100% { r: 6; opacity: 1; }
+  50% { r: 8; opacity: 0.7; }
+}
+
+.routeLabel {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  fill: var(--text-muted, #888780);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.routeCar {
+  fill: var(--accent, #993C1D);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .routeCar {
+    animation: routeCarMove 8s ease-in-out infinite;
+  }
+}
+
+@keyframes routeCarMove {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(220px); }
+  100% { transform: translateX(0); }
+}
+
+/* =====================================================================
+   SECTION RHYTHM — alternating backgrounds + consistent spacing
+   ===================================================================== */
+
+.section {
+  padding: clamp(60px, 8vh, 100px) 24px;
+}
+
+.sectionMuted {
+  background: var(--bg-muted, #EFECE6);
+}
+
+.sectionDark {
+  background: var(--text, #2C2C2A);
+  color: var(--bg, #F7F5F0);
+}
+
+.sectionInner {
+  max-width: 1200px;
   margin: 0 auto;
+}
+
+.sectionInnerNarrow {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: clamp(32px, 6vh, 56px);
+}
+
+.sectionMicro {
+  display: inline-block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 12px;
 }
 
 .sectionTitle {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: 28px;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 700;
   color: var(--text, #2C2C2A);
   text-align: center;
-  margin: 0 0 32px;
+  margin: 0;
   letter-spacing: -0.02em;
+  line-height: 1.15;
 }
 
+.sectionDark .sectionTitle {
+  color: var(--bg, #F7F5F0);
+}
+
+/* =====================================================================
+   QUOTE SECTION
+   ===================================================================== */
+
 .quoteSection {
-  padding: 60px 24px;
+  padding: clamp(60px, 8vh, 100px) 24px;
   background: var(--bg-muted, #EFECE6);
 }
 
@@ -67,24 +235,39 @@
   margin-bottom: 32px;
 }
 
+.quoteSectionKicker {
+  display: inline-block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin: 0 0 12px;
+}
+
 .quoteSectionTitle {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: 28px;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 700;
   color: var(--text, #2C2C2A);
-  margin: 0 0 8px;
+  margin: 0 0 10px;
   letter-spacing: -0.02em;
+  line-height: 1.15;
 }
 
 .quoteSectionSubtitle {
   font-family: var(--font-sans, system-ui);
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text-muted, #888780);
   margin: 0;
   line-height: 1.7;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .trustBadgesRow {
-  margin-top: 20px;
+  margin-top: 24px;
   text-align: center;
 }
