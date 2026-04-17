@@ -5,346 +5,142 @@ import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import QuoteForm from '../components/QuoteForm';
 import TransportComparison from '../components/TransportComparison';
 import WhatHappensNext from '../components/WhatHappensNext';
-import { colors, fonts } from '../theme';
+import styles from './ShipMyCar.module.css';
+
+function Chevron() {
+  return (
+    <svg
+      className={styles.faqChevron}
+      viewBox="0 0 14 14"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M3 5L7 9L11 5"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+    </svg>
+  );
+}
 
 export default function ShipMyCar() {
   const { t } = useTranslation('shipMycar');
   const steps = t('steps', { returnObjects: true });
   const faqs = t('faqs', { returnObjects: true });
+  const prepList = t('prepChecklist', { returnObjects: true });
 
   return (
-    <div>
+    <div className={styles.page}>
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Ship My Car',url:'/ship-my-car'}]} />
       <PageMeta title="Ship My Car — Door-to-Door Auto Transport" description="Open and enclosed auto transport nationwide. VIN decode, shipment status updates, insured carriers." path="/ship-my-car" />
       <HreflangTags currentPath="/ship-my-car" hasPolishVersion hasUkrainianVersion hasRussianVersion />
+
       {/* Hero */}
-      <section style={{
-        maxWidth: '800px',
-        margin: '0 auto',
-        padding: '60px 24px 40px',
-        textAlign: 'center',
-      }}>
-        <h1 style={{
-          fontFamily: fonts.serif,
-          fontSize: 'clamp(28px, 4vw, 42px)',
-          fontWeight: 700,
-          color: colors.text,
-          marginBottom: '12px',
-        }}>
-          {t('title')}
-        </h1>
-        <p style={{
-          fontFamily: fonts.sans,
-          fontSize: '15px',
-          color: colors.textMuted,
-          lineHeight: 1.6,
-          maxWidth: '560px',
-          margin: '0 auto',
-        }}>
-          {t('subtitle')}
-        </p>
+      <section className={styles.hero}>
+        <span className={styles.heroMicro}>&#9670; Personal Auto Transport</span>
+        <h1 className={styles.title}>{t('title')}</h1>
+        <p className={styles.subtitle}>{t('subtitle')}</p>
       </section>
 
-      {/* How it works */}
-      <section style={{
-        maxWidth: '900px',
-        margin: '0 auto',
-        padding: '0 24px 48px',
-      }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-          gap: '24px',
-        }}>
+      {/* Steps */}
+      <section className={styles.stepsSection}>
+        <div className={styles.steps}>
           {Array.isArray(steps) && steps.map((step, i) => (
-            <div key={i} style={{ textAlign: 'center' }}>
-              <div style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '50%',
-                background: colors.accent,
-                color: '#fff',
-                fontFamily: fonts.serif,
-                fontSize: '18px',
-                fontWeight: 700,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 12px',
-              }}>
-                {i + 1}
-              </div>
-              <h3 style={{
-                fontFamily: fonts.sans,
-                fontSize: '15px',
-                fontWeight: 600,
-                color: colors.text,
-                marginBottom: '6px',
-              }}>
-                {step.title}
-              </h3>
-              <p style={{
-                fontFamily: fonts.sans,
-                fontSize: '13px',
-                color: colors.textMuted,
-                lineHeight: 1.5,
-              }}>
-                {step.desc}
-              </p>
+            <div key={i} className={styles.step}>
+              <div className={styles.stepNum}>{i + 1}</div>
+              <h3 className={styles.stepTitle}>{step.title}</h3>
+              <p className={styles.stepDesc}>{step.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Pricing Factors */}
-      <section style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}>
-        <h2 style={{
-          fontFamily: fonts.serif,
-          fontSize: '22px',
-          fontWeight: 700,
-          color: colors.text,
-          marginBottom: '16px',
-        }}>
-          What Determines Your Shipping Cost
-        </h2>
-        <p style={{
-          fontFamily: fonts.sans,
-          fontSize: '14px',
-          color: colors.textMuted,
-          lineHeight: 1.7,
-        }}>
-          {t('pricingFactors')}
-        </p>
+      <section className={styles.narrow}>
+        <h2 className={styles.sectionHeading}>What Determines Your Shipping Cost</h2>
+        <p className={styles.bodyText}>{t('pricingFactors')}</p>
       </section>
 
       {/* Peak Season */}
-      <section style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}>
-        <h2 style={{
-          fontFamily: fonts.serif,
-          fontSize: '22px',
-          fontWeight: 700,
-          color: colors.text,
-          marginBottom: '16px',
-        }}>
-          Seasonal Pricing Patterns
-        </h2>
-        <p style={{
-          fontFamily: fonts.sans,
-          fontSize: '14px',
-          color: colors.textMuted,
-          lineHeight: 1.7,
-        }}>
-          {t('peakSeason')}
-        </p>
+      <section className={styles.narrow}>
+        <h2 className={styles.sectionHeading}>Seasonal Pricing Patterns</h2>
+        <p className={styles.bodyText}>{t('peakSeason')}</p>
       </section>
 
       {/* Preparation Checklist */}
-      <section style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}>
-        <h2 style={{
-          fontFamily: fonts.serif,
-          fontSize: '22px',
-          fontWeight: 700,
-          color: colors.text,
-          marginBottom: '16px',
-        }}>
-          How to Prepare Your Car for Shipping
-        </h2>
-        <ul style={{
-          paddingLeft: '20px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '10px',
-        }}>
-          {Array.isArray(t('prepChecklist', { returnObjects: true })) &&
-            t('prepChecklist', { returnObjects: true }).map((item, i) => (
-              <li key={i} style={{
-                fontFamily: fonts.sans,
-                fontSize: '14px',
-                color: colors.textMuted,
-                lineHeight: 1.7,
-              }}>
-                {item}
-              </li>
-            ))}
+      <section className={styles.narrow}>
+        <h2 className={styles.sectionHeading}>How to Prepare Your Car for Shipping</h2>
+        <ul className={styles.checkList}>
+          {Array.isArray(prepList) && prepList.map((item, i) => (
+            <li key={i} className={styles.checkItem}>{item}</li>
+          ))}
         </ul>
       </section>
 
       {/* What to Expect at Pickup */}
-      <section style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}>
-        <h2 style={{
-          fontFamily: fonts.serif,
-          fontSize: '22px',
-          fontWeight: 700,
-          color: colors.text,
-          marginBottom: '16px',
-        }}>
-          What to Expect at Pickup
-        </h2>
-        <p style={{
-          fontFamily: fonts.sans,
-          fontSize: '14px',
-          color: colors.textMuted,
-          lineHeight: 1.7,
-        }}>
-          {t('pickupProcess')}
-        </p>
+      <section className={styles.narrow}>
+        <h2 className={styles.sectionHeading}>What to Expect at Pickup</h2>
+        <p className={styles.bodyText}>{t('pickupProcess')}</p>
       </section>
 
       {/* What to Expect at Delivery */}
-      <section style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}>
-        <h2 style={{
-          fontFamily: fonts.serif,
-          fontSize: '22px',
-          fontWeight: 700,
-          color: colors.text,
-          marginBottom: '16px',
-        }}>
-          What to Expect at Delivery
-        </h2>
-        <p style={{
-          fontFamily: fonts.sans,
-          fontSize: '14px',
-          color: colors.textMuted,
-          lineHeight: 1.7,
-        }}>
-          {t('deliveryProcess')}
-        </p>
+      <section className={styles.narrow}>
+        <h2 className={styles.sectionHeading}>What to Expect at Delivery</h2>
+        <p className={styles.bodyText}>{t('deliveryProcess')}</p>
       </section>
 
-      {/* Insurance */}
-      <section style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}>
-        <div style={{
-          background: '#FFF8F5',
-          borderLeft: `4px solid ${colors.accent}`,
-          borderRadius: '0 12px 12px 0',
-          padding: '24px 28px',
-        }}>
-          <h3 style={{
-            fontFamily: fonts.sans,
-            fontSize: '15px',
-            fontWeight: 700,
-            color: colors.text,
-            marginBottom: '10px',
-          }}>
-            Insurance Coverage During Transport
-          </h3>
-          <p style={{
-            fontFamily: fonts.sans,
-            fontSize: '13px',
-            color: colors.textMuted,
-            lineHeight: 1.7,
-          }}>
-            {t('insuranceInfo')}
-          </p>
+      {/* Insurance callout */}
+      <section className={styles.narrow}>
+        <div className={styles.callout}>
+          <span className={styles.calloutKicker}>Coverage</span>
+          <h3 className={styles.calloutTitle}>Insurance Coverage During Transport</h3>
+          <p className={styles.calloutText}>{t('insuranceInfo')}</p>
         </div>
       </section>
 
       {/* Open vs Enclosed Comparison */}
-      <section style={{ maxWidth: '900px', margin: '0 auto', padding: '0 24px 48px' }}>
+      <section className={styles.comparisonSection}>
         <TransportComparison />
       </section>
 
-      {/* BOL Inspection Notice */}
-      <section style={{
-        maxWidth: '700px',
-        margin: '0 auto',
-        padding: '0 24px 48px',
-      }}>
-        <div style={{
-          background: '#FFF8F5',
-          borderLeft: `4px solid ${colors.accent}`,
-          borderRadius: '0 12px 12px 0',
-          padding: '24px 28px',
-        }}>
-          <h3 style={{
-            fontFamily: fonts.sans,
-            fontSize: '15px',
-            fontWeight: 700,
-            color: colors.text,
-            marginBottom: '10px',
-          }}>
-            {t('bol.title')}
-          </h3>
-          <p style={{
-            fontFamily: fonts.sans,
-            fontSize: '13px',
-            color: colors.textMuted,
-            lineHeight: 1.7,
-          }}>
-            {t('bol.text')}
-          </p>
+      {/* BOL callout */}
+      <section className={styles.narrow}>
+        <div className={styles.callout}>
+          <span className={styles.calloutKicker}>At delivery</span>
+          <h3 className={styles.calloutTitle}>{t('bol.title')}</h3>
+          <p className={styles.calloutText}>{t('bol.text')}</p>
         </div>
       </section>
 
       {/* Quote form */}
-      <section id="quote-section" style={{ padding: '48px 24px', background: colors.bgMuted }}>
-        <h2 style={{
-          fontFamily: fonts.serif,
-          fontSize: '24px',
-          fontWeight: 700,
-          color: colors.text,
-          textAlign: 'center',
-          marginBottom: '8px',
-        }}>
-          {t('quoteTitle')}
-        </h2>
-        <p style={{
-          fontFamily: fonts.sans,
-          fontSize: '14px',
-          color: colors.textMuted,
-          textAlign: 'center',
-          marginBottom: '28px',
-        }}>
-          {t('quoteSubtitle')}
-        </p>
+      <section id="quote-section" className={styles.quoteSection}>
+        <h2 className={styles.quoteTitle}>{t('quoteTitle')}</h2>
+        <p className={styles.quoteSubtitle}>{t('quoteSubtitle')}</p>
         <QuoteForm />
       </section>
 
       {/* What Happens Next */}
       <WhatHappensNext />
 
-      {/* FAQ */}
-      <section style={{
-        maxWidth: '700px',
-        margin: '0 auto',
-        padding: '60px 24px 80px',
-      }}>
-        <h2 style={{
-          fontFamily: fonts.serif,
-          fontSize: '24px',
-          fontWeight: 700,
-          color: colors.text,
-          textAlign: 'center',
-          marginBottom: '32px',
-        }}>
-          {t('faqTitle')}
-        </h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      {/* FAQ Accordion */}
+      <section className={styles.faqSection}>
+        <div className={styles.faqHeader}>
+          <span className={styles.faqMicro}>&#9670; Frequently Asked</span>
+          <h2 className={styles.faqTitle}>{t('faqTitle')}</h2>
+        </div>
+        <div className={styles.faqList}>
           {Array.isArray(faqs) && faqs.map((faq, i) => (
-            <div key={i} style={{
-              background: colors.bgCard,
-              border: `1px solid ${colors.border}`,
-              borderRadius: '12px',
-              padding: '20px',
-            }}>
-              <h3 style={{
-                fontFamily: fonts.sans,
-                fontSize: '15px',
-                fontWeight: 600,
-                color: colors.text,
-                marginBottom: '8px',
-              }}>
-                {faq.q}
-              </h3>
-              <p style={{
-                fontFamily: fonts.sans,
-                fontSize: '14px',
-                color: colors.textMuted,
-                lineHeight: 1.6,
-              }}>
-                {faq.a}
-              </p>
-            </div>
+            <details key={i} className={styles.faqItem}>
+              <summary className={styles.faqSummary}>
+                <span>{faq.q}</span>
+                <Chevron />
+              </summary>
+              <p className={styles.faqAnswer}>{faq.a}</p>
+            </details>
           ))}
         </div>
       </section>
