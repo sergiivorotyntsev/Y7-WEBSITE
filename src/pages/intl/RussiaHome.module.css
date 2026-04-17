@@ -1,0 +1,112 @@
+/* RussiaHome.module.css — composes from shared primitives. */
+
+.liftCard { composes: liftCard from '../../styles/interactions.module.css'; }
+.subtleLift { composes: subtleLift from '../../styles/interactions.module.css'; }
+.underlineGrow { composes: underlineGrow from '../../styles/interactions.module.css'; }
+.focusRing { composes: focusRing from '../../styles/interactions.module.css'; }
+
+.sectionAlt { background: var(--bg-muted, #EFECE6); }
+
+.faqItem {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-lg, 12px);
+  margin-bottom: 12px;
+  overflow: hidden;
+  transition: border-color var(--transition-normal, 250ms ease-out);
+}
+.faqItem[open] { border-color: var(--accent, #993C1D); }
+.faqSummary {
+  padding: 20px 24px;
+  cursor: pointer;
+  font-family: var(--font-sans, system-ui);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text, #2C2C2A);
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.faqSummary::-webkit-details-marker { display: none; }
+.faqSummary::after {
+  content: '+';
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--accent, #993C1D);
+  transition: transform var(--transition-normal, 250ms ease-out);
+  flex-shrink: 0;
+}
+.faqItem[open] .faqSummary::after { transform: rotate(45deg); }
+.faqAnswer {
+  padding: 0 24px 20px;
+  font-family: var(--font-sans, system-ui);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-muted, #4A4A46);
+}
+
+/* =====================================================================
+   PORT PILLS — small rounded labels
+   ===================================================================== */
+.portPillGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 760px;
+}
+.portPill {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 18px;
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: 999px;
+  font-family: var(--font-sans, system-ui);
+  font-size: 0.9rem;
+  color: var(--text, #2C2C2A);
+  transition:
+    transform var(--transition-fast, 150ms ease-out),
+    border-color var(--transition-normal, 250ms ease-out);
+}
+@media (hover: hover) {
+  .portPill:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent, #993C1D);
+  }
+}
+
+/* =====================================================================
+   TESTIMONIALS
+   ===================================================================== */
+.testimonialGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.testimonialCard {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-lg, 12px);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.testimonialQuote {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text, #2C2C2A);
+  margin: 0;
+}
+.testimonialAttribution {
+  font-family: var(--font-sans, system-ui);
+  font-size: 0.85rem;
+  color: var(--text-muted, #6B6963);
+  margin: 0;
+  letter-spacing: 0.02em;
+}

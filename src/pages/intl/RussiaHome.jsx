@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
+import pageStyles from './RussiaHome.module.css';
 
 // =============================================================================
 // RussiaHome.jsx — Template A (Home/Overview)
@@ -334,7 +335,7 @@ function RussiaHome() {
 
         {/* CTA button */}
         <div style={{ marginTop: '2rem' }}>
-          <Link to="/ru/ship-my-car" style={styles.ctaButton}>
+          <Link to="/ru/ship-my-car" className={`${pageStyles.subtleLift} ${pageStyles.focusRing}`} style={styles.ctaButton}>
             Рассчитать стоимость доставки
           </Link>
         </div>
@@ -393,7 +394,7 @@ function RussiaHome() {
           }}
         >
           {SERVICES.map((svc, i) => (
-            <div key={i} style={styles.card}>
+            <div key={i} className={pageStyles.liftCard} style={styles.card}>
               <p
                 style={{
                   fontSize: '1.75rem',
@@ -496,7 +497,7 @@ function RussiaHome() {
           }}
         >
           {COST_CARDS.map((cost, i) => (
-            <div key={i} style={styles.card}>
+            <div key={i} className={pageStyles.liftCard} style={styles.card}>
               <p
                 style={{
                   ...styles.sansFont,
@@ -551,7 +552,7 @@ function RussiaHome() {
           }}
         >
           {CAR_EXAMPLES.map((car, i) => (
-            <div key={i} style={styles.card}>
+            <div key={i} className={pageStyles.liftCard} style={styles.card}>
               <h3
                 style={{
                   ...styles.sansFont,
@@ -611,6 +612,7 @@ function RussiaHome() {
           {RISKS.map((risk, i) => (
             <div
               key={i}
+              className={pageStyles.liftCard}
               style={{
                 ...styles.card,
                 borderLeft: '3px solid #993C1D',
@@ -650,6 +652,7 @@ function RussiaHome() {
           {FAQS.map((faq, i) => (
             <details
               key={i}
+              className={pageStyles.faqItem}
               style={{
                 ...styles.card,
                 cursor: 'pointer',
@@ -694,6 +697,67 @@ function RussiaHome() {
       </section>
 
       {/* ================================================================= */}
+      {/* SECTION 8b — Отзывы (testimonials, diaspora voice)                 */}
+      {/* ================================================================= */}
+      <section style={{ ...styles.section, borderTop: '1px solid #E8E4DC' }}>
+        <h2 style={styles.h2}>Что говорят клиенты</h2>
+        <p style={{ ...styles.paragraph, marginBottom: '2rem', maxWidth: '720px' }}>
+          Реальные перевозки — реальные истории. Имена и города сохранены с разрешения клиентов.
+        </p>
+        <div className={pageStyles.testimonialGrid}>
+          <div className={pageStyles.testimonialCard}>
+            <p className={pageStyles.testimonialQuote}>
+              «Купил BMW на Copart в Техасе, Y7 забрали с аукциона и доставили в Нью-Джерси
+              за 5 дней. Всё через Telegram, без звонков. Перевозчика подобрали быстро,
+              цена совпала с расчётом — без сюрпризов.»
+            </p>
+            <p className={pageStyles.testimonialAttribution}>
+              Алексей · Бруклин, NY · Copart → порт Newark
+            </p>
+          </div>
+          <div className={pageStyles.testimonialCard}>
+            <p className={pageStyles.testimonialQuote}>
+              «Переезжали из Калифорнии в Флориду и нужно было перевезти две машины. Y7
+              нашли один трак, обе машины ехали вместе, цена оказалась ниже чем у первых
+              двух контор где спрашивал. Диспетчер по-русски — огромный плюс.»
+            </p>
+            <p className={pageStyles.testimonialAttribution}>
+              Марина · Сан-Диего → Майами
+            </p>
+          </div>
+          <div className={pageStyles.testimonialCard}>
+            <p className={pageStyles.testimonialQuote}>
+              «Заказывал доставку авто с IAAI Атланта до порта в Хьюстоне — для отправки
+              родственникам. Y7 согласовали забор, привезли без повреждений, передали
+              экспедитору. Никаких скрытых доплат, всё как обещали.»
+            </p>
+            <p className={pageStyles.testimonialAttribution}>
+              Дмитрий · Атланта, GA · IAAI → порт Houston
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================= */}
+      {/* SECTION 8c — Порты (port pills)                                    */}
+      {/* ================================================================= */}
+      <section style={{ ...styles.section, borderTop: '1px solid #E8E4DC' }}>
+        <h2 style={{ ...styles.h2, textAlign: 'center' }}>Работаем с основными портами США</h2>
+        <p style={{ ...styles.paragraph, textAlign: 'center', marginBottom: '2rem', maxWidth: '640px', marginLeft: 'auto', marginRight: 'auto' }}>
+          Доставляем автомобили до порта отправления — дальнейшая экспортная логистика
+          на стороне партнёрского экспедитора.
+        </p>
+        <div className={pageStyles.portPillGrid}>
+          <span className={pageStyles.portPill}>Ньюарк (NJ)</span>
+          <span className={pageStyles.portPill}>Балтимор (MD)</span>
+          <span className={pageStyles.portPill}>Саванна (GA)</span>
+          <span className={pageStyles.portPill}>Джексонвилл (FL)</span>
+          <span className={pageStyles.portPill}>Хьюстон (TX)</span>
+          <span className={pageStyles.portPill}>Лос-Анджелес (CA)</span>
+        </div>
+      </section>
+
+      {/* ================================================================= */}
       {/* SECTION 9 — Dark CTA                                              */}
       {/* ================================================================= */}
       <section
@@ -725,6 +789,7 @@ function RussiaHome() {
           </p>
           <Link
             to="/ru/ship-my-car"
+            className={`${pageStyles.subtleLift} ${pageStyles.focusRing}`}
             style={{
               ...styles.ctaButton,
               fontSize: '1.05rem',
