@@ -134,6 +134,26 @@
   opacity: 0.4;
 }
 
+.routeTrackGlow {
+  stroke: var(--accent, #993C1D);
+  stroke-width: 2;
+  stroke-linecap: round;
+  fill: none;
+  opacity: 0.85;
+  stroke-dasharray: 520;
+  stroke-dashoffset: 520;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .routeTrackGlow {
+    animation: routeTrackDraw 3.5s ease-out 0.4s forwards;
+  }
+}
+
+@keyframes routeTrackDraw {
+  to { stroke-dashoffset: 0; }
+}
+
 .routeDot {
   fill: var(--bg-card, #fff);
   stroke: var(--accent, #993C1D);

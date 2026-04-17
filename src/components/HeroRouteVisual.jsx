@@ -19,6 +19,12 @@ export default function HeroRouteVisual() {
         d="M 40 200 Q 100 80 170 140 T 300 80 T 400 60"
       />
 
+      {/* Draw-on accent overlay — animates on mount for the WOW effect */}
+      <path
+        className={styles.routeTrackGlow}
+        d="M 40 200 Q 100 80 170 140 T 300 80 T 400 60"
+      />
+
       {/* Stylized car — small, premium silhouette */}
       <g className={styles.routeCar} transform="translate(60 188)">
         <path d="M -14 0 L -11 -6 L 11 -6 L 14 0 L 14 4 L 11 4 L 11 2 L -11 2 L -11 4 L -14 4 Z" />
