@@ -6,6 +6,7 @@ import SmsConsent from './SmsConsent';
 import RouteEstimator from './RouteEstimator';
 import VehicleSilhouette from './VehicleSilhouette';
 import PostQuoteFlow from './PostQuoteFlow';
+import PhoneInput, { getCleanPhone, isValidPhone } from './PhoneInput';
 import { trackEvent } from '../utils/analytics';
 import styles from './QuoteForm.module.css';
 import btn from '../styles/buttons.module.css';
@@ -147,12 +148,17 @@ export default function QuoteForm({ compact = false }) {
     if (!form.email.trim() || !form.email.includes('@')) { setError(t('errors.emailRequired')); return; }
     if (form.pickup_zip.trim().length < 5) { setError(t('errors.pickupRequired')); return; }
     if (form.delivery_zip.trim().length < 5) { setError(t('errors.deliveryRequired')); return; }
+    if (form.phone && !isValidPhone(form.phone)) {
+      setError('Please enter a valid 10-digit phone number, or leave it blank.');
+      return;
+    }
 
     setSubmitting(true);
     try {
       const payload = {
         ...form,
         vin: noVinMode ? 'TBD' : form.vin.trim().toUpperCase(),
+        phone: form.phone ? getCleanPhone(form.phone) : '',
         is_inoperable: form.is_inoperable,
         preferred_pickup_date: form.pickup_date_type === 'date' ? form.preferred_pickup_date : null,
         sms_consent_timestamp: form.sms_consent ? new Date().toISOString() : null,
@@ -454,7 +460,7 @@ export default function QuoteForm({ compact = false }) {
           <div className={styles.row}>
             <div className={styles.field}>
               <label className={styles.label}>{t('form.phone')}</label>
-              <input value={form.phone} onChange={e => set('phone', e.target.value)} type="tel" className={styles.input} />
+              <PhoneInput value={form.phone} onChange={v => set('phone', v)} className={styles.input} />
             </div>
             <div className={styles.field}>
               <label className={styles.label}>{t('form.email')}</label>
