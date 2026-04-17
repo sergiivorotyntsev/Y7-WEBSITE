@@ -1,10 +1,15 @@
 {
   "title": "Transport Service Agreement",
+  "version": "v1.1",
   "loading": "Loading order details...",
   "sections": {
     "service": {
       "title": "Service Description & Broker Role",
       "body": "Y7 Consulting Inc (DBA Y7 Logistics), USDOT #4427359, MC #1741537, acts as a licensed property broker, not a motor carrier. We arrange vehicle transportation with licensed, insured motor carriers on your behalf. We do not own or operate trucks, and transportation is performed solely by independent carrier companies. Our role is to secure reliable transport, coordinate dispatch, and facilitate communication between you and the assigned carrier."
+    },
+    "fees": {
+      "title": "Service Fee Schedule",
+      "body": "Y7 Consulting Inc (\"Y7 Logistics\") charges a dispatch fee for brokerage services:\n\n• Standard (COD): $50.00 — Y7 arranges carrier transport. Customer pays the carrier directly upon delivery after vehicle inspection.\n• Full Service: $65.00 + carrier transport cost — Y7 arranges carrier transport AND handles carrier payment on Customer's behalf.\n\nThe dispatch fee covers carrier sourcing, quote negotiation, dispatch coordination, shipment monitoring, and customer support throughout the transport process."
     },
     "bol": {
       "title": "Vehicle Inspection & Bill of Lading (BOL)",
@@ -12,15 +17,15 @@
     },
     "payment": {
       "title": "Payment Terms",
-      "body": "Payment is due according to the method agreed upon at booking. Options include: (1) Prepayment — full transport fee paid to Y7 Consulting Inc before dispatch via Zelle (info@y7agency.com), wire transfer, or ACH; (2) COD (Cash On Delivery) — payment made directly to the carrier driver at delivery via cash, cashier's check, or certified funds as specified on the Rate Confirmation. If a deposit is required, it is due at booking confirmation before carrier assignment. If COD is selected, failure to pay the carrier at delivery may result in the carrier retaining possession of the vehicle, daily storage fees, and/or a lien on the vehicle. Y7 Consulting Inc is not responsible for carrier-imposed fees resulting from non-payment at delivery."
+      "body": "Standard (COD) Orders:\n• Dispatch fee ($50.00) is charged via credit/debit card at the time of order confirmation.\n• Carrier transport cost is paid by Customer directly to the carrier driver upon delivery, after vehicle inspection. Accepted payment methods vary by carrier (typically cash, cashier's check, or money order).\n\nFull Service Orders:\n• Total amount (carrier transport cost + $65.00 dispatch fee) is charged via credit/debit card at the time of order confirmation.\n• Y7 pays the carrier on Customer's behalf after successful delivery confirmation.\n\nIf COD is selected, failure to pay the carrier at delivery may result in the carrier retaining possession of the vehicle, daily storage fees, and/or a lien on the vehicle. Y7 Consulting Inc is not responsible for carrier-imposed fees resulting from non-payment at delivery."
     },
     "insurance": {
       "title": "Insurance & Claims",
       "body": "All carriers in our network maintain minimum $100,000 cargo insurance per FMCSA requirements, with most carrying $250,000 or more. We verify active insurance coverage before assigning any carrier to your load. In the event of damage, claims must be filed within 24 hours of delivery with photographs of the damage and a copy of the BOL noting the damage. Y7 Consulting Inc will assist you in filing the claim with the carrier's insurance, but as a broker, we bear no direct cargo liability. Claims are settled between you and the carrier's insurance provider. Customers may purchase additional coverage through third-party transport insurance providers. Theft, Fire & Total Loss: In the event of vehicle theft, fire, or total loss during transport, the carrier's cargo insurance applies up to the policy limit. Customer should immediately file a police report (in case of theft) and contact Y7 Logistics. Y7 will provide the carrier's insurance information and assist in filing the claim. Vehicle valuation for total loss is determined by the carrier's insurance provider based on actual cash value at the time of loss."
     },
     "cancellation": {
-      "title": "Cancellation Policy",
-      "body": "Free cancellation is available at any time before a carrier has been assigned to your load. After carrier assignment: a cancellation fee of up to $200 may apply to cover carrier reservation and dispatch costs. No-show at pickup: if the vehicle is not available for pickup at the scheduled time and location, and no prior rescheduling was arranged, the full transport fee may apply. To cancel or reschedule, contact us at info@y7agency.com as early as possible."
+      "title": "Cancellation & Refund Policy",
+      "body": "Customer may cancel a confirmed order subject to the following refund policy:\n\n• Cancellation within 24 hours of payment AND before a carrier has been assigned: Full refund of all amounts paid.\n• Cancellation after 24 hours OR after a carrier has been assigned: Refund minus a $10.00 administrative fee.\n• For Full Service orders: Payment processing fees (approximately 2.9% + $0.30) are non-refundable and will be deducted from any refund amount.\n• For Standard (COD) orders: Y7 absorbs payment processing fees — Customer receives the full refund amount as stated above.\n\nRefunds are processed within 5-10 business days to the original payment method.\n\nNo-show at pickup: if the vehicle is not available for pickup at the scheduled time and location, and no prior rescheduling was arranged, the dispatch fee is non-refundable and additional carrier charges may apply.\n\nY7 reserves the right to issue a full refund at its discretion for customer service purposes. To cancel or reschedule, contact us at info@y7agency.com as early as possible."
     },
     "customer": {
       "title": "Customer Obligations",
@@ -32,14 +37,14 @@
     },
     "liability": {
       "title": "Limitation of Liability & Dispute Resolution",
-      "body": "Y7 Consulting Inc's total liability arising from or related to the brokerage services provided is limited to the brokerage fee paid for the specific shipment in question. We are not liable for carrier delays, vehicle damage during transport, mechanical issues, acts of God, weather events, road closures, or any other circumstances beyond our reasonable control. Any dispute arising from this agreement shall be resolved through binding arbitration in accordance with the rules of the American Arbitration Association, conducted in Suffolk County, Massachusetts. This agreement shall be governed by and construed in accordance with the laws of the Commonwealth of Massachusetts. This limitation applies to the fullest extent permitted by law."
+      "body": "Y7 Consulting Inc acts solely as a licensed property broker (FMCSA MC #1741537, USDOT #4427359). Y7 does NOT operate as a motor carrier and does NOT transport vehicles.\n\nY7's total liability for any claim arising from brokerage services is limited to the dispatch fee paid for the specific shipment in question.\n\nY7 is NOT liable for:\n• Vehicle damage during transport (carrier's insurance applies)\n• Carrier delays or missed pickup/delivery windows\n• Acts of God, weather events, or road conditions\n• Loss of personal items left in the vehicle\n\nCarrier liability is governed by the carrier's own insurance and the Bill of Lading (BOL) signed at pickup. Customer should inspect the vehicle upon delivery and note any damage on the BOL before signing.\n\nAny dispute arising from this agreement shall be resolved through binding arbitration in accordance with the rules of the American Arbitration Association, conducted in Suffolk County, Massachusetts. This agreement shall be governed by and construed in accordance with the laws of the Commonwealth of Massachusetts. This limitation applies to the fullest extent permitted by law."
     }
   },
   "checkboxes": {
     "bol": "I understand that I must inspect the vehicle and sign the Bill of Lading (BOL) upon delivery, and that signing without noting damage releases the carrier from liability.",
-    "payment": "I understand the payment terms, including deposit requirements and my obligation to pay the carrier at delivery if COD payment is selected.",
-    "broker": "I understand that Y7 Consulting Inc is a licensed broker, not a carrier. Y7's liability is limited to the brokerage fee. The carrier's cargo insurance covers the vehicle during transport. Y7 is not liable for vehicle damage, theft, fire, total loss, or personal items left in the vehicle.",
-    "cancellation": "I have read and agree to the cancellation policy, customer obligations, and all terms stated in this agreement."
+    "payment": "I understand the dispatch fee schedule ($50.00 COD / $65.00 Full Service), the payment terms, and my obligation to pay the carrier at delivery if COD is selected.",
+    "broker": "I understand that Y7 Consulting Inc is a licensed broker, not a carrier. Y7's liability is limited to the dispatch fee paid. The carrier's cargo insurance covers the vehicle during transport. Y7 is not liable for vehicle damage, theft, fire, total loss, or personal items left in the vehicle.",
+    "cancellation": "I have read and agree to the cancellation and refund policy (24-hour full refund window, $10.00 administrative fee thereafter), customer obligations, and all terms stated in this agreement."
   },
   "signature": {
     "label": "Type your full legal name as digital signature",
