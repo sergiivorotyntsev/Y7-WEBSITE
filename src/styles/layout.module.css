@@ -1,0 +1,240 @@
+/* Shared layout primitives — hero, section headers, CTA strip, columns.
+   Composed into page modules via `composes` or imported directly. */
+
+/* =====================================================================
+   PAGE HERO — warm, dark, and subtle variants
+   ===================================================================== */
+
+.pageHero {
+  padding: clamp(64px, 10vh, 96px) 24px clamp(40px, 6vh, 56px);
+  text-align: center;
+  margin-bottom: clamp(48px, 8vh, 72px);
+}
+
+.pageHeroWarm {
+  composes: pageHero;
+  background:
+    radial-gradient(circle at 50% 100%, rgba(153, 60, 29, 0.06), transparent 60%),
+    linear-gradient(180deg, var(--bg, #F7F5F0) 0%, var(--bg-muted, #EFECE6) 100%);
+}
+
+.pageHeroDark {
+  composes: pageHero;
+  background: var(--text, #2C2C2A);
+  color: var(--bg, #F7F5F0);
+  position: relative;
+  overflow: hidden;
+}
+
+.pageHeroDark::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(153, 60, 29, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.pageHeroInner {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.pageHeroKicker {
+  display: inline-block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 12px;
+}
+
+.pageHeroTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1.8rem, 4vw, 2.75rem);
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  text-align: center;
+  margin: 0 0 14px;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.pageHeroDark .pageHeroTitle {
+  color: var(--bg, #F7F5F0);
+}
+
+.pageHeroSubtitle {
+  font-family: var(--font-sans, system-ui);
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+  color: var(--text-muted, #888780);
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.pageHeroDark .pageHeroSubtitle {
+  color: rgba(247, 245, 240, 0.7);
+}
+
+/* =====================================================================
+   SECTION HEADER — kicker + title, reusable across all pages
+   ===================================================================== */
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: clamp(32px, 5vh, 48px);
+}
+
+.sectionKicker {
+  display: inline-block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin: 0 0 10px;
+}
+
+.sectionTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  text-align: center;
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.sectionLede {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  color: var(--text-muted, #888780);
+  text-align: center;
+  margin: 10px auto 0;
+  line-height: 1.7;
+  max-width: 620px;
+}
+
+/* =====================================================================
+   CTA STRIP — full-width coral gradient with centered content
+   ===================================================================== */
+
+.ctaStrip {
+  background: linear-gradient(135deg, var(--accent, #993C1D) 0%, var(--accent-hover, #7A3017) 100%);
+  border-radius: var(--radius-xl, 16px);
+  padding: clamp(36px, 6vh, 56px) clamp(24px, 4vw, 48px);
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 12px 32px rgba(153, 60, 29, 0.18);
+}
+
+.ctaStripTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.ctaStripSubtitle {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.82);
+  margin: 0 auto 24px;
+  line-height: 1.7;
+  max-width: 520px;
+}
+
+.ctaStripBtn {
+  background: #fff !important;
+  color: var(--accent, #993C1D) !important;
+  padding: 14px 32px !important;
+  font-size: 13px !important;
+  display: inline-block;
+  text-decoration: none;
+  font-family: var(--font-sans, system-ui);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-radius: 24px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast, 150ms ease-out),
+    transform var(--transition-fast, 150ms ease-out),
+    box-shadow var(--transition-normal, 250ms ease-out);
+}
+
+@media (hover: hover) {
+  .ctaStripBtn:hover {
+    background: var(--bg, #F7F5F0) !important;
+    color: var(--accent-hover, #7A3017) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  }
+  .ctaStripBtn:active {
+    transform: scale(0.97);
+  }
+}
+
+.ctaStripBtn:focus-visible {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.6);
+}
+
+/* =====================================================================
+   COLUMN CONTAINERS
+   ===================================================================== */
+
+.narrowColumn {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.wideColumn {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.mediumColumn {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* =====================================================================
+   SECTION PADDING / BACKGROUNDS
+   ===================================================================== */
+
+.sectionPadding {
+  padding: clamp(60px, 8vh, 100px) 24px;
+}
+
+.sectionMuted {
+  background: var(--bg-muted, #EFECE6);
+}
+
+.sectionDark {
+  background: var(--text, #2C2C2A);
+  color: var(--bg, #F7F5F0);
+}
+
+.sectionDivider {
+  border: none;
+  height: 1px;
+  background: var(--border, #e5e0d8);
+  margin: 0;
+}
