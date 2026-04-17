@@ -28,6 +28,23 @@ const evPages = [
   { to: '/electric-vehicle-port-delivery', title: 'EV Port Delivery', desc: 'Ship EVs from US auctions and dealers to export ports. Battery safety compliance, international shipping coordination.' },
 ];
 
+const locationPages = [
+  { to: '/newton-auto-transport',      title: 'Newton, MA Auto Transport', desc: 'Our home base. Local broker service for all 13 Newton villages plus Wellesley, Brookline, Waltham, Watertown, Needham.' },
+  { to: '/boston-car-shipping',        title: 'Boston Car Shipping',       desc: 'Greater Boston pickup and delivery. Cambridge, Somerville, Back Bay, Dorchester, Southie — carriers who know the city.' },
+  { to: '/massachusetts-car-shipping', title: 'Massachusetts Car Shipping', desc: 'Statewide coverage. Boston metro, Western MA, Cape Cod, MetroWest. Copart Lowell and IAAI East Taunton pickups.' },
+  { to: '/florida-car-shipping',       title: 'Florida Car Shipping',      desc: 'America\u2019s #1 destination. Miami, Tampa, Orlando, Jacksonville. Snowbird corridor expertise and port delivery.' },
+  { to: '/new-jersey-auto-transport',  title: 'New Jersey Auto Transport', desc: 'Port Newark export gateway. Dealer-dense market. Route 287, Turnpike, Garden State Parkway carrier frequency.' },
+  { to: '/texas-auto-transport',       title: 'Texas Auto Transport',      desc: 'Houston, Dallas, Austin, San Antonio. Port of Houston export coordination. Copart Houston + IAAI Dallas pickups.' },
+];
+
+const routePages = [
+  { to: '/massachusetts-to-florida-car-shipping',   title: 'Massachusetts → Florida', desc: 'The #1 snowbird corridor. $750\u2013$1,050 open trailer, 5\u20137 days transit. Peak season Oct\u2013Jan.' },
+  { to: '/new-jersey-to-florida-car-shipping',     title: 'New Jersey → Florida',    desc: 'Dealer trades and snowbird traffic. $600\u2013$900 range, 4\u20136 days transit. High volume corridor.' },
+  { to: '/texas-to-newark-port-auto-transport',    title: 'Texas → Port Newark',     desc: 'Long-haul export corridor. Houston and Dallas to Port Newark for international shipping.' },
+  { to: '/chicago-to-port-newark-car-shipping',    title: 'Chicago → Port Newark',   desc: 'Midwest export lane. Dealer trade and auction-to-port combined loads.' },
+  { to: '/auction-to-port-transport',              title: 'Auction → Port',          desc: 'Copart and IAAI purchase → export port delivery. Gate pass coordination, flatbed for inoperables.' },
+];
+
 export default function Services() {
   const { t } = useTranslation('services');
   const { t: tCommon } = useTranslation('common');
@@ -84,6 +101,40 @@ export default function Services() {
           </div>
           <div className={styles.grid}>
             {servicePages.map((page, i) => (
+              <Link key={page.to} to={page.to} className={styles.linkCard} style={{ '--i': i }}>
+                <h3 className={styles.linkTitle}>{page.title}</h3>
+                <p className={styles.linkDesc}>{page.desc}</p>
+                <span className={styles.linkCta}>{t('linkCta')} &rarr;</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Locations We Serve */}
+        <div className={styles.section}>
+          <div className={styles.sectionHeadingWrap}>
+            <span className={styles.sectionMicro}>&#9670; {t('locationsKicker')}</span>
+            <h2 className={styles.sectionHeading}>{t('locationsTitle')}</h2>
+          </div>
+          <div className={styles.grid}>
+            {locationPages.map((page, i) => (
+              <Link key={page.to} to={page.to} className={styles.linkCard} style={{ '--i': i }}>
+                <h3 className={styles.linkTitle}>{page.title}</h3>
+                <p className={styles.linkDesc}>{page.desc}</p>
+                <span className={styles.linkCta}>{t('linkCta')} &rarr;</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Popular Routes */}
+        <div className={styles.section}>
+          <div className={styles.sectionHeadingWrap}>
+            <span className={styles.sectionMicro}>&#9670; {t('routesKicker')}</span>
+            <h2 className={styles.sectionHeading}>{t('routesTitle')}</h2>
+          </div>
+          <div className={styles.grid}>
+            {routePages.map((page, i) => (
               <Link key={page.to} to={page.to} className={styles.linkCard} style={{ '--i': i }}>
                 <h3 className={styles.linkTitle}>{page.title}</h3>
                 <p className={styles.linkDesc}>{page.desc}</p>
