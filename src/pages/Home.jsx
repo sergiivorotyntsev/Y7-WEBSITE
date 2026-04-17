@@ -62,9 +62,12 @@ export default function Home() {
       <HreflangTags currentPath="" hasPolishVersion hasUkrainianVersion hasRussianVersion />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
 
-      {/* 1. Hero — asymmetric two-column */}
+      {/* 1. Hero — centered with subtle route visual background */}
       <section className={styles.hero}>
         <div className={styles.heroInner}>
+          <div className={styles.heroVisual} aria-hidden="true">
+            <HeroRouteVisual />
+          </div>
           <div className={styles.heroText}>
             <span className={styles.heroKicker}>&#9670; {t('hero.title')}</span>
             <h1 className={styles.heroTitle}>
@@ -86,9 +89,6 @@ export default function Home() {
                 {tCommon('nav.track')}
               </button>
             </div>
-          </div>
-          <div className={styles.heroVisual}>
-            <HeroRouteVisual />
           </div>
         </div>
       </section>

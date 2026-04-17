@@ -1,36 +1,32 @@
 /* Home page — asymmetric hero with route visual, section rhythm, quote section. */
 
 /* =====================================================================
-   HERO — asymmetric two-column layout, warm gradient background
+   HERO — centered layout with subtle route visual behind text
    ===================================================================== */
 
 .hero {
   padding: clamp(80px, 12vh, 160px) 24px clamp(60px, 10vh, 120px);
   background:
-    radial-gradient(circle at 75% 40%, rgba(153, 60, 29, 0.06) 0%, transparent 55%),
+    radial-gradient(circle at 50% 40%, rgba(153, 60, 29, 0.06) 0%, transparent 55%),
     linear-gradient(180deg, var(--bg, #F7F5F0) 0%, var(--bg-muted, #EFECE6) 100%);
   position: relative;
   overflow: hidden;
 }
 
 .heroInner {
-  max-width: 1200px;
+  max-width: 920px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(0, 6fr) minmax(0, 4fr);
-  gap: clamp(32px, 5vw, 80px);
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
-@media (max-width: 960px) {
-  .heroInner {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-}
-
 .heroText {
-  min-width: 0;
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
 }
 
 .heroKicker {
@@ -41,7 +37,7 @@
   color: var(--accent, #993C1D);
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  padding: 6px 12px;
+  padding: 6px 14px;
   background: rgba(153, 60, 29, 0.08);
   border-radius: var(--radius-pill, 20px);
   margin: 0 0 24px;
@@ -68,14 +64,15 @@
   font-size: clamp(1rem, 1.6vw, 1.15rem);
   color: var(--text-muted, #888780);
   line-height: 1.7;
-  max-width: 520px;
-  margin: 0 0 32px;
+  max-width: 620px;
+  margin: 0 auto 36px;
 }
 
 .heroCtas {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .heroCtaPrimary,
@@ -98,29 +95,34 @@
 }
 
 /* =====================================================================
-   HERO — route visualization (right column)
+   HERO — route visualization as subtle background decoration
    ===================================================================== */
 
 .heroVisual {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(80vw, 900px);
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 320px;
-  position: relative;
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 0;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 520px) {
   .heroVisual {
-    min-height: 200px;
-    order: -1;
+    opacity: 0.12;
+    width: 100vw;
   }
 }
 
 .routeSvg {
   width: 100%;
-  max-width: 420px;
+  max-width: 900px;
   height: auto;
-  filter: drop-shadow(0 8px 24px rgba(44, 44, 42, 0.08));
 }
 
 .routeTrack {
