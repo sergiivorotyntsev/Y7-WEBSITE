@@ -13,7 +13,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const DIST = join(__dirname, '..', 'dist');
-const PORT = 4567;
+const PORT = Number(process.env.PRERENDER_PORT) || 4567;
 
 /**
  * Deduplicate head tags in prerendered HTML.
