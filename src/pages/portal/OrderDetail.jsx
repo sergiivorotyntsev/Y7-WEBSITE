@@ -87,6 +87,9 @@ export default function OrderDetail() {
   const [payLoading, setPayLoading] = useState(false);
   const [payError, setPayError] = useState(null);
   const [feeAcknowledged, setFeeAcknowledged] = useState(false);
+  const [promoCode, setPromoCode] = useState('');
+  const [promoMsg, setPromoMsg] = useState(null);
+  const [promoLoading, setPromoLoading] = useState(false);
   const dispatchSaved = searchParams.get('dispatch_saved') === '1';
   const justPaid = searchParams.get('paid') === '1';
 
@@ -115,7 +118,36 @@ export default function OrderDetail() {
       fetchOrder();
       window.history.replaceState({}, '', window.location.pathname);
     }
+    try {
+      const stored = localStorage.getItem('y7_promo_code');
+      if (stored) setPromoCode(stored);
+    } catch { /* ignore */ }
   }, []);
+
+  const handleApplyPromo = async () => {
+    const code = promoCode.trim().toUpperCase();
+    if (!code) return;
+    setPromoLoading(true);
+    setPromoMsg(null);
+    try {
+      const res = await portalFetch(`/api/portal/orders/${id}/apply-promo`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ promo_code: code }),
+      });
+      const data = await res.json();
+      if (!res.ok || data.valid === false) {
+        setPromoMsg({ ok: false, text: data.error || data.detail || 'Invalid promo code' });
+      } else {
+        setPromoMsg({ ok: true, text: `Applied: −$${(data.discount_cents / 100).toFixed(2)} off` });
+        fetchPayment();
+      }
+    } catch (e) {
+      setPromoMsg({ ok: false, text: 'Failed to validate promo' });
+    } finally {
+      setPromoLoading(false);
+    }
+  };
 
   const handlePayNow = async () => {
     setPayLoading(true);
@@ -332,11 +364,56 @@ export default function OrderDetail() {
               {paymentData.payment.service_tier === 'full_service' && (
                 <InfoRow label="Carrier transport" value={`$${(paymentData.payment.carrier_quote_cents / 100).toFixed(2)}`} mono />
               )}
+              {paymentData.payment.discount_cents > 0 && (
+                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '4px 0', fontSize: '13px', color: colors.success }}>
+                  <span>Promo ({paymentData.payment.promo_code})</span>
+                  <span style={{ fontFamily: 'monospace' }}>−${(paymentData.payment.discount_cents / 100).toFixed(2)}</span>
+                </div>
+              )}
               <InfoRow label="Total" value={`$${(paymentData.payment.total_charge_cents / 100).toFixed(2)}`} mono />
               <InfoRow label="Status" value={paymentData.payment.status} />
 
               {paymentData.payment.status === 'pending' && ['quoted', 'confirmed'].includes(order.status) && (
                 <div style={{ marginTop: '14px' }}>
+                  {!paymentData.payment.promo_code && (
+                    <div style={{ marginBottom: '12px' }}>
+                      <label style={{ fontSize: '11px', fontWeight: 600, color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '4px', display: 'block' }}>
+                        Promo code
+                      </label>
+                      <div style={{ display: 'flex', gap: '8px' }}>
+                        <input
+                          type="text"
+                          value={promoCode}
+                          onChange={e => { setPromoCode(e.target.value.toUpperCase()); setPromoMsg(null); }}
+                          placeholder="SAVE10"
+                          style={{
+                            flex: 1, padding: '8px 10px',
+                            border: `1px solid ${colors.border}`, borderRadius: '6px',
+                            fontSize: '14px', fontFamily: 'monospace', letterSpacing: '1px',
+                            textTransform: 'uppercase',
+                          }}
+                        />
+                        <button
+                          onClick={handleApplyPromo}
+                          disabled={promoLoading || !promoCode.trim()}
+                          style={{
+                            padding: '8px 14px',
+                            border: `1px solid ${colors.border}`, borderRadius: '6px',
+                            background: '#fff', fontSize: '13px', fontWeight: 600,
+                            cursor: (promoLoading || !promoCode.trim()) ? 'not-allowed' : 'pointer',
+                            opacity: (promoLoading || !promoCode.trim()) ? 0.6 : 1,
+                          }}
+                        >
+                          {promoLoading ? '...' : 'Apply'}
+                        </button>
+                      </div>
+                      {promoMsg && (
+                        <div style={{ marginTop: '6px', fontSize: '12px', color: promoMsg.ok ? colors.success : colors.accent }}>
+                          {promoMsg.text}
+                        </div>
+                      )}
+                    </div>
+                  )}
                   {paymentData.payment.service_tier === 'full_service' && (
                     <label style={{ display: 'flex', gap: '8px', fontSize: '12px', color: colors.textMuted, marginBottom: '10px', lineHeight: 1.45 }}>
                       <input
