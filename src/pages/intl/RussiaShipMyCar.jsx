@@ -738,7 +738,7 @@ function RussiaShipMyCar() {
               marginTop: '1rem',
             }}
           >
-            MC #1741537 · USDOT #4427359 · Круглосуточная диспетчерская
+            MC #1741537 · USDOT #4427359 · Диспетчерская в рабочие часы
           </p>
         </div>
       </section>
