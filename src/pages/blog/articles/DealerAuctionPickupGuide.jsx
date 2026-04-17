@@ -100,7 +100,7 @@ export default function DealerAuctionPickupGuide({ theme }) {
       </p>
 
       <p style={{ marginBottom: 18, fontSize: '1.02rem', lineHeight: 1.8, color: theme.text }}>
-        Y7 Agency (MC #1741537, USDOT #4427359) structures volume agreements for dealers who commit to regular
+        Y7 Logistics (MC #1741537, USDOT #4427359) structures volume agreements for dealers who commit to regular
         lanes. Rather than renegotiating each load, you get a rate card that reflects your actual shipping
         patterns, with priority dispatch built in.
       </p>

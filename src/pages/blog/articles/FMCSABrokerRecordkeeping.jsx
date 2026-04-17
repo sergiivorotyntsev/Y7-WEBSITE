@@ -119,7 +119,7 @@ export default function FMCSABrokerRecordkeeping({ theme }) {
       </p>
 
       <p style={{ marginBottom: 18, fontSize: '1.02rem', lineHeight: 1.8, color: theme.text }}>
-        Y7 Agency (MC #1741537, USDOT #4427359) builds compliance into the operational workflow. Every action
+        Y7 Logistics (MC #1741537, USDOT #4427359) builds compliance into the operational workflow. Every action
         in our dispatch system — carrier assignment, rate confirmation, pickup, delivery, payment — generates
         a timestamped database record automatically. There is no separate compliance step because compliance is
         a byproduct of the operation itself. When an auditor asks for the record of a load from 18 months ago,

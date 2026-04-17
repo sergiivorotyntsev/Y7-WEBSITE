@@ -147,7 +147,7 @@ export default function OutboxPatternDispatch({ theme }) {
       </p>
 
       <p style={{ marginBottom: 18, fontSize: '1.02rem', lineHeight: 1.8, color: theme.text }}>
-        At Y7 Transport (MC #1741537, USDOT #4427359), every external write — every Central
+        At Y7 Logistics (MC #1741537, USDOT #4427359), every external write — every Central
         Dispatch listing, every carrier notification, every status update — goes through the
         transactional outbox. The{' '}
         <Link to="/services" style={{ color: theme.accent, textDecoration: 'none', borderBottom: `1px solid ${theme.accent}` }}>

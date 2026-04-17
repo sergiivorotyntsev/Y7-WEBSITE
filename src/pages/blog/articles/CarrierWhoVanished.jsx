@@ -149,7 +149,7 @@ export default function CarrierWhoVanished({ theme }) {
       </p>
 
       <p style={{ marginBottom: 18, fontSize: '1.02rem', lineHeight: 1.8, color: theme.text }}>
-        At Y7 Transport (MC #1741537, USDOT #4427359), we built these systems because we got
+        At Y7 Logistics (MC #1741537, USDOT #4427359), we built these systems because we got
         burned — and because we believe that the{' '}
         <Link to="/services" style={{ color: theme.accent, textDecoration: 'none', borderBottom: `1px solid ${theme.accent}` }}>
           transport services

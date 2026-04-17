@@ -149,7 +149,7 @@ export default function CarrierCOIVerification({ theme }) {
       </p>
 
       <p style={{ marginBottom: 18, fontSize: '1.02rem', lineHeight: 1.8, color: theme.text }}>
-        At Y7 Transport (MC #1741537, USDOT #4427359), we treat insurance verification as
+        At Y7 Logistics (MC #1741537, USDOT #4427359), we treat insurance verification as
         infrastructure, not paperwork. Every vehicle we move is backed by a carrier whose coverage
         we have confirmed at the source and supplemented with our own contingent policy. Because
         when a $60,000 vehicle is damaged in transit, the only thing that matters is whether the

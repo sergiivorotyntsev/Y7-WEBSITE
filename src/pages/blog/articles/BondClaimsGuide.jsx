@@ -146,7 +146,7 @@ export default function BondClaimsGuide({ theme }) {
       </p>
 
       <p style={{ marginBottom: 18, fontSize: '1.02rem', lineHeight: 1.8, color: theme.text }}>
-        Y7 Agency (MC #1741537, USDOT #4427359) maintains its authority with the understanding that the bond
+        Y7 Logistics (MC #1741537, USDOT #4427359) maintains its authority with the understanding that the bond
         is operational infrastructure, not paperwork. Every transaction in our system generates the documentation
         needed to respond to a claim — rate confirmations, payment records, delivery verification — automatically
         and in real time. That is not a feature. It is a requirement for operating responsibly under FMCSA

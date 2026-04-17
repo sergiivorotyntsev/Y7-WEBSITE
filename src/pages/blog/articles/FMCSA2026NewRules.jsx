@@ -137,7 +137,7 @@ export default function FMCSA2026NewRules({ theme }) {
       </p>
 
       <p style={{ marginBottom: 18, fontSize: '1.02rem', lineHeight: 1.8, color: theme.text }}>
-        At Y7 Transport (MC #1741537, USDOT #4427359), we view these regulatory changes as
+        At Y7 Logistics (MC #1741537, USDOT #4427359), we view these regulatory changes as
         overdue. Stronger identity verification, faster bond replenishment, and surety provider
         accountability all serve the same purpose: ensuring that the brokerages moving your
         vehicles have the authority, the insurance, and the financial backing to do it right.
