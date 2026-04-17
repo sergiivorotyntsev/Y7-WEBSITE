@@ -1,0 +1,171 @@
+/* LanguageSwitcher — pill group (desktop) + dropdown (mobile). */
+
+/* =====================================================================
+   DESKTOP — inline pill buttons with accent underline for active
+   ===================================================================== */
+
+.desktop {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  padding: 2px;
+  background: rgba(44, 44, 42, 0.04);
+  border-radius: var(--radius-pill, 20px);
+}
+
+.btn {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 12px;
+  font-size: 11.5px;
+  font-family: var(--font-sans, system-ui);
+  font-weight: 500;
+  color: var(--text-muted, #888780);
+  letter-spacing: 0.08em;
+  border-radius: var(--radius-pill, 20px);
+  outline: none;
+  transition:
+    color var(--transition-fast, 150ms ease-out),
+    background-color var(--transition-fast, 150ms ease-out);
+}
+
+@media (hover: hover) {
+  .btn:hover:not(.btnActive) {
+    color: var(--text, #2C2C2A);
+    background-color: rgba(44, 44, 42, 0.06);
+  }
+}
+
+.btn:focus-visible {
+  color: var(--accent, #993C1D);
+  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 3px var(--accent, #993C1D);
+}
+
+.btnActive {
+  composes: btn;
+  color: var(--accent, #993C1D);
+  font-weight: 700;
+  background-color: var(--bg-card, #fff);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+@media (hover: hover) {
+  .btnActive:hover {
+    color: var(--accent-hover, #7A3017);
+  }
+}
+
+/* =====================================================================
+   MOBILE — compact dropdown trigger + panel
+   ===================================================================== */
+
+.mobile {
+  display: none;
+  position: relative;
+}
+
+.mobileBtn {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+  padding: 7px 12px;
+  font-size: 12px;
+  font-family: var(--font-sans, system-ui);
+  font-weight: 600;
+  color: var(--text, #2C2C2A);
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  outline: none;
+  min-height: 36px;
+  transition: border-color var(--transition-fast, 150ms ease-out);
+}
+
+@media (hover: hover) {
+  .mobileBtn:hover {
+    border-color: var(--accent, #993C1D);
+  }
+}
+
+.mobileBtn:focus-visible {
+  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+}
+
+.mobileCaret {
+  font-size: 9px;
+  color: var(--text-muted, #888780);
+}
+
+.mobilePanel {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 6px;
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-lg, 12px);
+  box-shadow: var(--shadow-lg, 0 4px 12px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08));
+  z-index: 200;
+  min-width: 100px;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .mobilePanel {
+    animation: langDropdownIn 200ms ease-out;
+  }
+}
+
+@keyframes langDropdownIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.mobileItem {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-family: var(--font-sans, system-ui);
+  font-weight: 500;
+  color: var(--text, #2C2C2A);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  letter-spacing: 0.04em;
+  outline: none;
+  transition: background-color var(--transition-fast, 150ms ease-out), color var(--transition-fast, 150ms ease-out);
+}
+
+@media (hover: hover) {
+  .mobileItem:hover {
+    background-color: var(--bg-muted, #EFECE6);
+    color: var(--accent, #993C1D);
+  }
+}
+
+.mobileItem:focus-visible {
+  background-color: var(--bg-muted, #EFECE6);
+  box-shadow: inset 0 0 0 2px var(--accent, #993C1D);
+}
+
+.mobileItemActive {
+  composes: mobileItem;
+  color: var(--accent, #993C1D);
+  font-weight: 700;
+  background-color: rgba(153, 60, 29, 0.08);
+}
+
+/* =====================================================================
+   RESPONSIVE SWITCH
+   ===================================================================== */
+
+@media (max-width: 1024px) {
+  .desktop { display: none; }
+  .mobile { display: block; }
+}

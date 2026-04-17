@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import { colors, fonts } from '../theme';
 import { trackEvent } from '../utils/analytics';
+import styles from './LanguageSwitcher.module.css';
 
 const langs = [
   { code: 'en', label: 'EN' },
@@ -11,11 +11,7 @@ const langs = [
   { code: 'ru', label: 'RU' },
 ];
 
-// Routes that have /:lang/ prefix versions in App.jsx.
-// Home is handled separately (basePath === '' check below).
-// Exact-match paths:
 const I18N_PATHS = ['/copart-shipping', '/ship-my-car', '/faq', '/about', '/quote', '/dealer-quote'];
-// Prefix-match paths (e.g. /ports/newark → /pl/ports/newark):
 const I18N_PREFIXES = ['/ports/', '/quote/', '/agreement/'];
 
 export default function LanguageSwitcher() {
@@ -24,8 +20,6 @@ export default function LanguageSwitcher() {
   const location = useLocation();
   const { lang } = useParams();
 
-  // Detect language from URL — covers both /:lang/faq param routes AND
-  // /pl, /ua, /ru dedicated intl routes (which don't set :lang param).
   const langCodes = langs.map(l => l.code);
   const firstSegment = location.pathname.split('/').filter(Boolean)[0];
   const urlLang = lang || (langCodes.includes(firstSegment) ? firstSegment : null);
@@ -33,9 +27,6 @@ export default function LanguageSwitcher() {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
-  // Sync URL lang → i18n locale on direct navigation (e.g. /pl/faq from
-  // a search engine, or /ru from a link). Without this, the page content
-  // stays in the default language even though the URL contains a lang prefix.
   useEffect(() => {
     if (urlLang && urlLang !== i18n.language) {
       i18n.changeLanguage(urlLang);
@@ -46,32 +37,25 @@ export default function LanguageSwitcher() {
     i18n.changeLanguage(code);
     trackEvent('language_switch', { language: code });
 
-    // Determine the base path (strip current lang prefix if present)
     let basePath = location.pathname;
-    const langCodes = langs.map(l => l.code);
     const pathParts = basePath.split('/').filter(Boolean);
     if (pathParts.length > 0 && langCodes.includes(pathParts[0])) {
       basePath = '/' + pathParts.slice(1).join('/');
     }
     if (!basePath || basePath === '/') basePath = '';
 
-    // Check if this path has a /:lang/ version
     const hasLangRoute = basePath === '' ||
       I18N_PATHS.includes(basePath) ||
       I18N_PREFIXES.some(p => basePath.startsWith(p));
 
     if (hasLangRoute) {
       navigate(code === 'en' ? (basePath || '/') : `/${code}${basePath}`);
-    } else {
-      // No lang route — stay on current path, just switch i18n
-      // (navigate to same path to trigger re-render if needed)
     }
     setOpen(false);
   }
 
   const currentLabel = langs.find(l => l.code === current)?.label || 'EN';
 
-  // Close dropdown on outside click
   useEffect(() => {
     if (!open) return;
     const handler = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
@@ -81,88 +65,41 @@ export default function LanguageSwitcher() {
 
   return (
     <>
-      {/* Desktop: flat links */}
-      <div className="lang-desktop" style={{ display: 'flex', gap: '2px', alignItems: 'center' }}>
-        {langs.map((l, i) => (
-          <span key={l.code} style={{ display: 'flex', alignItems: 'center' }}>
-            <button
-              onClick={() => switchLang(l.code)}
-              style={{
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                padding: '4px 6px',
-                fontSize: '13px',
-                fontFamily: fonts.sans,
-                fontWeight: current === l.code ? 700 : 400,
-                color: current === l.code ? colors.accent : colors.textMuted,
-                letterSpacing: '0.5px',
-              }}
-            >
-              {l.label}
-            </button>
-            {i < langs.length - 1 && (
-              <span style={{ color: colors.border, fontSize: '13px' }}>|</span>
-            )}
-          </span>
+      {/* Desktop: pill group */}
+      <div className={styles.desktop}>
+        {langs.map(l => (
+          <button
+            key={l.code}
+            onClick={() => switchLang(l.code)}
+            className={current === l.code ? styles.btnActive : styles.btn}
+            aria-pressed={current === l.code}
+            aria-label={`Switch language to ${l.label}`}
+          >
+            {l.label}
+          </button>
         ))}
       </div>
 
       {/* Mobile: dropdown */}
-      <div className="lang-mobile" ref={ref} style={{ display: 'none', position: 'relative' }}>
+      <div className={styles.mobile} ref={ref}>
         <button
           onClick={() => setOpen(!open)}
-          style={{
-            background: 'none',
-            border: `1px solid ${colors.border}`,
-            borderRadius: '6px',
-            cursor: 'pointer',
-            padding: '4px 10px',
-            fontSize: '13px',
-            fontFamily: fonts.sans,
-            fontWeight: 600,
-            color: colors.text,
-            letterSpacing: '0.5px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '4px',
-          }}
+          className={styles.mobileBtn}
+          aria-haspopup="listbox"
+          aria-expanded={open}
         >
           {currentLabel}
-          <span style={{ fontSize: '10px', color: colors.textMuted }}>&#9662;</span>
+          <span className={styles.mobileCaret}>&#9662;</span>
         </button>
         {open && (
-          <div style={{
-            position: 'absolute',
-            top: '100%',
-            right: 0,
-            marginTop: '4px',
-            background: colors.bgCard,
-            border: `1px solid ${colors.border}`,
-            borderRadius: '8px',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-            zIndex: 200,
-            minWidth: '80px',
-            overflow: 'hidden',
-          }}>
+          <div className={styles.mobilePanel} role="listbox">
             {langs.map(l => (
               <button
                 key={l.code}
                 onClick={() => switchLang(l.code)}
-                style={{
-                  display: 'block',
-                  width: '100%',
-                  padding: '8px 14px',
-                  fontSize: '13px',
-                  fontFamily: fonts.sans,
-                  fontWeight: current === l.code ? 700 : 400,
-                  color: current === l.code ? colors.accent : colors.text,
-                  background: current === l.code ? colors.bgMuted : 'transparent',
-                  border: 'none',
-                  cursor: 'pointer',
-                  textAlign: 'left',
-                  letterSpacing: '0.5px',
-                }}
+                className={current === l.code ? styles.mobileItemActive : styles.mobileItem}
+                role="option"
+                aria-selected={current === l.code}
               >
                 {l.label}
               </button>
@@ -170,17 +107,6 @@ export default function LanguageSwitcher() {
           </div>
         )}
       </div>
-
-      <style>{`
-        @media (max-width: 1024px) {
-          .lang-desktop { display: none !important; }
-          .lang-mobile { display: block !important; }
-        }
-        @media (min-width: 1025px) {
-          .lang-desktop { display: flex !important; }
-          .lang-mobile { display: none !important; }
-        }
-      `}</style>
     </>
   );
 }
