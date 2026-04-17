@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
-import { colors, fonts } from '../theme';
 import { StarFilledIcon, StarEmptyIcon } from './icons';
 import { API_URL } from '../config';
+import styles from './ReviewsCarousel.module.css';
 
 const STATIC_TESTIMONIALS = [
   { id: 's1', rating: 5, customer_name: 'Mike R.', review_text: 'Y7 moved 12 vehicles for us last month — all on time, no damage. Their dispatch team is always reachable and they know the auction pickup process inside out.', route: null, vehicle: null },
@@ -13,7 +13,7 @@ const STATIC_TESTIMONIALS = [
 
 function Stars({ count, size = 14 }) {
   return (
-    <span style={{ display: 'inline-flex', gap: '2px' }}>
+    <span className={styles.starsRow}>
       {Array.from({ length: count }, (_, i) => <StarFilledIcon key={`f${i}`} size={size} />)}
       {Array.from({ length: 5 - count }, (_, i) => <StarEmptyIcon key={`e${i}`} size={size} />)}
     </span>
@@ -54,77 +54,40 @@ export default function ReviewsCarousel() {
 
   return (
     <div
-      style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}
+      className={styles.wrap}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
     >
-      <h3 style={{
-        fontFamily: fonts.serif, fontSize: '20px', fontWeight: 700,
-        color: colors.text, marginBottom: '8px',
-      }}>
-        What Our Customers Say
-      </h3>
+      <h3 className={styles.heading}>What Our Customers Say</h3>
 
       {aggregate && aggregate.total_count > 0 && (
-        <p style={{ fontSize: 13, color: colors.textMuted, marginBottom: 20 }}>
-          <span style={{ color: '#F5A623', fontWeight: 700 }}>{aggregate.average_rating}&#9733;</span>
+        <p className={styles.aggregate}>
+          <span className={styles.aggregateStar}>{aggregate.average_rating}&#9733;</span>
           {' '}average based on {aggregate.total_count} review{aggregate.total_count !== 1 ? 's' : ''}
         </p>
       )}
 
-      <div
-        key={r.id || active}
-        style={{
-          background: colors.bgCard, border: `1px solid ${colors.border}`,
-          borderRadius: '16px', padding: '32px 28px',
-          animation: 'fadeIn 400ms ease', minHeight: '180px',
-          display: 'flex', flexDirection: 'column', justifyContent: 'center',
-        }}
-      >
-        <style>{`@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }`}</style>
+      <div key={r.id || active} className={styles.card}>
         <Stars count={r.rating} />
-        <p style={{
-          fontFamily: fonts.serif, fontSize: '16px', fontStyle: 'italic',
-          color: colors.text, lineHeight: 1.6, margin: '16px 0',
-        }}>
-          &ldquo;{r.review_text}&rdquo;
-        </p>
-        <div style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600, color: colors.text }}>
-          {r.customer_name}
-        </div>
+        <p className={styles.quoteText}>&ldquo;{r.review_text}&rdquo;</p>
+        <div className={styles.author}>{r.customer_name}</div>
         {(r.route || r.vehicle) && (
-          <div style={{ display: 'flex', gap: 8, justifyContent: 'center', marginTop: 6, flexWrap: 'wrap' }}>
-            {r.route && (
-              <span style={{
-                fontSize: 11, padding: '2px 8px', borderRadius: 10,
-                background: colors.bgMuted, color: colors.textMuted,
-              }}>{r.route}</span>
-            )}
-            {r.vehicle && (
-              <span style={{
-                fontSize: 11, padding: '2px 8px', borderRadius: 10,
-                background: colors.bgMuted, color: colors.textMuted,
-              }}>{r.vehicle}</span>
-            )}
+          <div className={styles.badgeRow}>
+            {r.route && <span className={styles.badge}>{r.route}</span>}
+            {r.vehicle && <span className={styles.badge}>{r.vehicle}</span>}
           </div>
         )}
-        <div style={{ fontSize: 11, color: colors.textMuted, marginTop: 8 }}>
-          Verified Y7 Customer
-        </div>
+        <div className={styles.verified}>Verified Y7 Customer</div>
       </div>
 
-      {/* Dots */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '6px', marginTop: '16px' }}>
+      <div className={styles.dots}>
         {reviews.map((_, i) => (
           <button
             key={i}
             onClick={() => setActive(i)}
-            style={{
-              width: '8px', height: '8px', borderRadius: '50%',
-              background: i === active ? colors.accent : colors.border,
-              border: 'none', cursor: 'pointer', padding: 0,
-              transition: 'background 200ms ease',
-            }}
+            className={`${styles.dot} ${i === active ? styles.dotActive : ''}`}
             aria-label={`Review ${i + 1}`}
           />
         ))}

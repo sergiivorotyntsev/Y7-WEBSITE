@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { colors, fonts } from '../theme';
 import { StarFilledIcon, StarEmptyIcon } from './icons';
+import styles from './ReviewsCarousel.module.css';
 
 const TESTIMONIALS = [
   {
@@ -37,7 +37,7 @@ const TESTIMONIALS = [
 
 function Stars({ count }) {
   return (
-    <span style={{ display: 'inline-flex', gap: '2px' }}>
+    <span className={styles.starsRow}>
       {Array.from({ length: count }, (_, i) => <StarFilledIcon key={`f${i}`} size={14} />)}
       {Array.from({ length: 5 - count }, (_, i) => <StarEmptyIcon key={`e${i}`} size={14} />)}
     </span>
@@ -63,89 +63,27 @@ export default function TestimonialCarousel() {
 
   return (
     <div
-      style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}
+      className={styles.wrap}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
     >
-      <h3 style={{
-        fontFamily: fonts.serif,
-        fontSize: '20px',
-        fontWeight: 700,
-        color: colors.text,
-        marginBottom: '24px',
-      }}>
-        What Our Customers Say
-      </h3>
+      <h3 className={styles.heading}>What Our Customers Say</h3>
 
-      <div
-        key={active}
-        style={{
-          background: colors.bgCard,
-          border: `1px solid ${colors.border}`,
-          borderRadius: '16px',
-          padding: '32px 28px',
-          animation: 'fadeIn 400ms ease',
-          minHeight: '180px',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-        }}
-      >
-        <style>{`
-          @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-          }
-        `}</style>
+      <div key={active} className={styles.card}>
         <Stars count={t.stars} />
-        <p style={{
-          fontFamily: fonts.serif,
-          fontSize: '16px',
-          fontStyle: 'italic',
-          color: colors.text,
-          lineHeight: 1.6,
-          margin: '16px 0',
-        }}>
-          &ldquo;{t.text}&rdquo;
-        </p>
-        <div style={{
-          fontFamily: fonts.sans,
-          fontSize: '13px',
-          fontWeight: 600,
-          color: colors.text,
-        }}>
-          {t.name}
-        </div>
-        <div style={{
-          fontFamily: fonts.sans,
-          fontSize: '12px',
-          color: colors.textMuted,
-        }}>
-          {t.company}
-        </div>
+        <p className={styles.quoteText}>&ldquo;{t.text}&rdquo;</p>
+        <div className={styles.author}>{t.name}</div>
+        <div className={styles.verified}>{t.company}</div>
       </div>
 
-      {/* Dots */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        gap: '6px',
-        marginTop: '16px',
-      }}>
+      <div className={styles.dots}>
         {TESTIMONIALS.map((_, i) => (
           <button
             key={i}
             onClick={() => setActive(i)}
-            style={{
-              width: '8px',
-              height: '8px',
-              borderRadius: '50%',
-              background: i === active ? colors.accent : colors.border,
-              border: 'none',
-              cursor: 'pointer',
-              padding: 0,
-              transition: 'background 200ms ease',
-            }}
+            className={`${styles.dot} ${i === active ? styles.dotActive : ''}`}
             aria-label={`Testimonial ${i + 1}`}
           />
         ))}

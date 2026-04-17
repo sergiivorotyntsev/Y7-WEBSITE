@@ -1,0 +1,167 @@
+/* ReviewsCarousel — single-card quote carousel with auto-advance. */
+
+.wrap {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.heading {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.aggregate {
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  color: var(--text-muted, #888780);
+  margin: 0 0 20px;
+}
+
+.aggregateStar {
+  color: #F5A623;
+  font-weight: 700;
+}
+
+/* =====================================================================
+   CARD — with large serif opening quote mark
+   ===================================================================== */
+
+.card {
+  position: relative;
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-xl, 16px);
+  padding: clamp(32px, 5vw, 44px) clamp(24px, 4vw, 36px);
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: var(--shadow-md, 0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06));
+  overflow: hidden;
+}
+
+/* Large decorative opening quote mark */
+.card::before {
+  content: '\201C';
+  position: absolute;
+  top: -8px;
+  left: 16px;
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 6rem;
+  line-height: 1;
+  color: var(--accent, #993C1D);
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card {
+    animation: reviewCardIn 400ms ease-out;
+  }
+}
+
+@keyframes reviewCardIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.starsRow {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  color: #F5A623;
+}
+
+.quoteText {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  font-style: italic;
+  color: var(--text, #2C2C2A);
+  line-height: 1.7;
+  margin: 18px 0 14px;
+}
+
+.author {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  letter-spacing: 0.01em;
+}
+
+.badgeRow {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill, 20px);
+  background: var(--bg-muted, #EFECE6);
+  color: var(--text-muted, #888780);
+  letter-spacing: 0.02em;
+}
+
+.verified {
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  color: var(--text-muted, #888780);
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* =====================================================================
+   NAVIGATION DOTS
+   ===================================================================== */
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1.5px solid var(--border, #e5e0d8);
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  transition:
+    background-color var(--transition-normal, 250ms ease-out),
+    border-color var(--transition-normal, 250ms ease-out),
+    width var(--transition-normal, 250ms ease-out);
+}
+
+@media (hover: hover) {
+  .dot:hover:not(.dotActive) {
+    border-color: var(--text-muted, #888780);
+    background: var(--text-muted, #888780);
+  }
+}
+
+.dot:focus-visible {
+  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+}
+
+.dotActive {
+  width: 22px;
+  border-radius: var(--radius-pill, 20px);
+  background: var(--accent, #993C1D);
+  border-color: var(--accent, #993C1D);
+}
