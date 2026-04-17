@@ -72,21 +72,14 @@
 @media (prefers-reduced-motion: no-preference) {
   .card {
     opacity: 0;
-    transform: translateY(10px);
     animation: audienceIn 500ms ease-out forwards;
     animation-delay: calc(var(--i, 0) * 100ms);
-  }
-  @media (hover: hover) {
-    .card:hover {
-      animation: none;
-      opacity: 1;
-      transform: translateY(-4px);
-    }
   }
 }
 
 @keyframes audienceIn {
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .iconWrap {
