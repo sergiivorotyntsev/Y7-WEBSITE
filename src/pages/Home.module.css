@@ -82,6 +82,19 @@
 .heroCtaSecondary {
   padding: 14px 28px !important;
   font-size: 12px !important;
+  min-height: 44px;
+}
+
+@media (max-width: 520px) {
+  .heroCtas {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+  .heroCtaPrimary,
+  .heroCtaSecondary {
+    justify-content: center;
+  }
 }
 
 /* =====================================================================
