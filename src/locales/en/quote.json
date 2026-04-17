@@ -1,4 +1,25 @@
 {
+  "header": {
+    "kicker": "Free Estimate",
+    "title": "Get Your Transport Quote"
+  },
+  "legal": {
+    "prefix": "By submitting this form, you agree to our",
+    "terms": "Terms & Conditions",
+    "and": "and",
+    "privacy": "Privacy Policy"
+  },
+  "trust": {
+    "secure": "Secure",
+    "noSpam": "No spam",
+    "fast": "Quote in under 1 hour"
+  },
+  "placeholders": {
+    "make": "Honda",
+    "model": "Civic",
+    "pickupZip": "e.g. 07114",
+    "deliveryZip": "e.g. 77029"
+  },
   "form": {
     "title": "Request a Quote",
     "vin": "VIN (optional)",
@@ -21,7 +42,32 @@
     "notesPlaceholder": "Special instructions, flexible dates, etc.",
     "almostThere": "Almost there! Tell us how to reach you.",
     "submit": "Get My Quote",
-    "submitting": "Submitting..."
+    "submitting": "Submitting...",
+    "pickup": "Pickup",
+    "delivery": "Delivery",
+    "zip": "ZIP",
+    "locationType": "Location Type",
+    "vehicleCondition": "Vehicle Condition",
+    "runsAndDrives": "Runs and drives",
+    "nonRunning": "Non-running / Inoperable",
+    "whenPickup": "When should we pick up?",
+    "asap": "As soon as possible",
+    "specificDate": "Specific date:",
+    "noVinHint": "No VIN? Use \"I don't have a VIN\" below to enter Year, Make and Model.",
+    "iDontHaveVin": "I don't have a VIN",
+    "iHaveVin": "← I have a VIN",
+    "year": "Year *",
+    "make": "Make *",
+    "model": "Model *",
+    "locations": {
+      "residential": "Residential",
+      "business": "Business",
+      "auction": "Auction (IAAI/Copart/Manheim)",
+      "dealer": "Dealer",
+      "port": "Port",
+      "storage": "Storage Facility",
+      "other": "Other"
+    }
   },
   "sms": {
     "consent": "By checking this box, you consent to receive SMS notifications and updates related to your vehicle transport from Y7 Consulting Inc at the phone number provided. Message frequency varies. Message & data rates may apply. Reply STOP to opt out, HELP for help. This consent is not a condition of purchase.",

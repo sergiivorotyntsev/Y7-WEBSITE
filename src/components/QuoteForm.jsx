@@ -11,29 +11,27 @@ import { trackEvent } from '../utils/analytics';
 import styles from './QuoteForm.module.css';
 import btn from '../styles/buttons.module.css';
 
-// Pickup/delivery location type lists: residential is the most common
-// individual-customer case and is pre-selected below so the form is never
-// submitted with an empty "Select..." value.
-const PICKUP_LOCATION_TYPES = [
-  { value: 'residential', label: 'Residential' },
-  { value: 'business', label: 'Business' },
-  { value: 'auction', label: 'Auction (IAAI/Copart/Manheim)' },
-  { value: 'dealer', label: 'Dealer' },
-  { value: 'port', label: 'Port' },
-  { value: 'other', label: 'Other' },
-];
-
-const DELIVERY_LOCATION_TYPES = [
-  { value: 'residential', label: 'Residential' },
-  { value: 'business', label: 'Business' },
-  { value: 'dealer', label: 'Dealer' },
-  { value: 'port', label: 'Port' },
-  { value: 'storage', label: 'Storage Facility' },
-  { value: 'other', label: 'Other' },
-];
-
 export default function QuoteForm({ compact = false }) {
-  const { t } = useTranslation('quote');
+  const { t, i18n } = useTranslation('quote');
+
+  const PICKUP_LOCATION_TYPES = [
+    { value: 'residential', label: t('form.locations.residential') },
+    { value: 'business',    label: t('form.locations.business') },
+    { value: 'auction',     label: t('form.locations.auction') },
+    { value: 'dealer',      label: t('form.locations.dealer') },
+    { value: 'port',        label: t('form.locations.port') },
+    { value: 'other',       label: t('form.locations.other') },
+  ];
+
+  const DELIVERY_LOCATION_TYPES = [
+    { value: 'residential', label: t('form.locations.residential') },
+    { value: 'business',    label: t('form.locations.business') },
+    { value: 'dealer',      label: t('form.locations.dealer') },
+    { value: 'port',        label: t('form.locations.port') },
+    { value: 'storage',     label: t('form.locations.storage') },
+    { value: 'other',       label: t('form.locations.other') },
+  ];
+
   const { decode, loading: vinLoading, error: vinError, result: vinResult } = useVinDecode();
   const step2Ref = useRef(null);
   const [step2Height, setStep2Height] = useState(0);
@@ -165,7 +163,7 @@ export default function QuoteForm({ compact = false }) {
         sms_consent_timestamp: form.sms_consent ? new Date().toISOString() : null,
         sms_consent_page_url: window.location.href,
         source: 'website',
-        lang: 'en',
+        lang: i18n.language || 'en',
       };
       const res = await apiPost('/api/public/quote', payload);
       setSuccess(res);
@@ -184,8 +182,8 @@ export default function QuoteForm({ compact = false }) {
   return (
     <div className={styles.wrap}>
       <div className={styles.header}>
-        <span className={styles.kicker}>&#9670; Free Estimate</span>
-        <h2 className={styles.title}>Get Your Transport Quote</h2>
+        <span className={styles.kicker}>&#9670; {t('header.kicker')}</span>
+        <h2 className={styles.title}>{t('header.title')}</h2>
       </div>
 
       <form onSubmit={handleSubmit} className={compact ? styles.formCompact : styles.form}>
@@ -218,7 +216,7 @@ export default function QuoteForm({ compact = false }) {
           {fieldErrors.vin && <div className={styles.errorText}>{fieldErrors.vin}</div>}
           {!form.vin && (
             <div className={styles.hint}>
-              No VIN? Use &quot;I don&apos;t have a VIN&quot; below to enter Year, Make and Model.
+              {t('form.noVinHint')}
             </div>
           )}
           {vinResult && (
@@ -235,7 +233,7 @@ export default function QuoteForm({ compact = false }) {
             className={styles.toggleLink}
             style={{ border: 'none', background: 'none' }}
           >
-            I don&apos;t have a VIN
+            {t('form.iDontHaveVin')}
           </button>
         </div>
       ) : (
@@ -246,25 +244,25 @@ export default function QuoteForm({ compact = false }) {
             className={styles.toggleLink}
             style={{ border: 'none', background: 'none', marginBottom: '12px' }}
           >
-            &larr; I have a VIN
+            {t('form.iHaveVin')}
           </button>
           <div className={styles.row3}>
             <div className={styles.field}>
-              <label className={styles.label}>Year *</label>
+              <label className={styles.label}>{t('form.year')}</label>
               <select value={form.vehicle_year} onChange={e => set('vehicle_year', e.target.value)} className={styles.selectLg}>
-                <option value="">Year</option>
+                <option value="">{t('form.vehicleYear')}</option>
                 {Array.from({ length: 28 }, (_, i) => 2027 - i).map(y => (
                   <option key={y} value={y}>{y}</option>
                 ))}
               </select>
             </div>
             <div className={styles.field}>
-              <label className={styles.label}>Make *</label>
-              <input value={form.vehicle_make} onChange={e => set('vehicle_make', e.target.value)} placeholder="Honda" className={styles.inputLg} />
+              <label className={styles.label}>{t('form.make')}</label>
+              <input value={form.vehicle_make} onChange={e => set('vehicle_make', e.target.value)} placeholder={t('placeholders.make')} className={styles.inputLg} />
             </div>
             <div className={styles.field}>
-              <label className={styles.label}>Model *</label>
-              <input value={form.vehicle_model} onChange={e => set('vehicle_model', e.target.value)} placeholder="Civic" className={styles.inputLg} />
+              <label className={styles.label}>{t('form.model')}</label>
+              <input value={form.vehicle_model} onChange={e => set('vehicle_model', e.target.value)} placeholder={t('placeholders.model')} className={styles.inputLg} />
             </div>
           </div>
         </div>
@@ -297,22 +295,22 @@ export default function QuoteForm({ compact = false }) {
 
       {/* Pickup section */}
       <div>
-        <div className={styles.sectionLabel}>Pickup</div>
+        <div className={styles.sectionLabel}>{t('form.pickup')}</div>
         <div className={styles.row}>
           <div className={styles.field}>
-            <label className={styles.label}>ZIP</label>
+            <label className={styles.label}>{t('form.zip')}</label>
             <input
               value={form.pickup_zip}
               onChange={e => set('pickup_zip', e.target.value)}
               onBlur={() => markTouched('pickup_zip')}
-              placeholder="e.g. 07114"
+              placeholder={t('placeholders.pickupZip')}
               maxLength={10}
               className={fieldErrors.pickup_zip ? styles.inputError : styles.input}
             />
             {fieldErrors.pickup_zip && <div className={styles.errorText}>{fieldErrors.pickup_zip}</div>}
           </div>
           <div className={styles.field}>
-            <label className={styles.label}>Location Type</label>
+            <label className={styles.label}>{t('form.locationType')}</label>
             <select
               value={form.pickup_location_type}
               onChange={e => set('pickup_location_type', e.target.value)}
@@ -328,22 +326,22 @@ export default function QuoteForm({ compact = false }) {
 
       {/* Delivery section */}
       <div>
-        <div className={styles.sectionLabel}>Delivery</div>
+        <div className={styles.sectionLabel}>{t('form.delivery')}</div>
         <div className={styles.row}>
           <div className={styles.field}>
-            <label className={styles.label}>ZIP</label>
+            <label className={styles.label}>{t('form.zip')}</label>
             <input
               value={form.delivery_zip}
               onChange={e => set('delivery_zip', e.target.value)}
               onBlur={() => markTouched('delivery_zip')}
-              placeholder="e.g. 77029"
+              placeholder={t('placeholders.deliveryZip')}
               maxLength={10}
               className={fieldErrors.delivery_zip ? styles.inputError : styles.input}
             />
             {fieldErrors.delivery_zip && <div className={styles.errorText}>{fieldErrors.delivery_zip}</div>}
           </div>
           <div className={styles.field}>
-            <label className={styles.label}>Location Type</label>
+            <label className={styles.label}>{t('form.locationType')}</label>
             <select
               value={form.delivery_location_type}
               onChange={e => set('delivery_location_type', e.target.value)}
@@ -379,11 +377,11 @@ export default function QuoteForm({ compact = false }) {
 
       {/* Vehicle condition */}
       <div>
-        <label className={styles.label}>Vehicle Condition</label>
+        <label className={styles.label}>{t('form.vehicleCondition')}</label>
         <div className={styles.radioGroup}>
           {[
-            { value: false, label: 'Runs and drives' },
-            { value: true, label: 'Non-running / Inoperable' },
+            { value: false, label: t('form.runsAndDrives') },
+            { value: true, label: t('form.nonRunning') },
           ].map(opt => (
             <label key={String(opt.value)} className={styles.radioLabel}>
               <input
@@ -401,7 +399,7 @@ export default function QuoteForm({ compact = false }) {
 
       {/* Preferred pickup date */}
       <div>
-        <label className={styles.label}>When should we pick up?</label>
+        <label className={styles.label}>{t('form.whenPickup')}</label>
         <div className={styles.radioGroup}>
           <label className={styles.radioLabel}>
             <input
@@ -411,7 +409,7 @@ export default function QuoteForm({ compact = false }) {
               onChange={() => { set('pickup_date_type', 'asap'); set('preferred_pickup_date', ''); }}
               className={styles.radioInput}
             />
-            As soon as possible
+            {t('form.asap')}
           </label>
           <label className={styles.radioLabel}>
             <input
@@ -421,7 +419,7 @@ export default function QuoteForm({ compact = false }) {
               onChange={() => set('pickup_date_type', 'date')}
               className={styles.radioInput}
             />
-            Specific date:
+            {t('form.specificDate')}
           </label>
           {form.pickup_date_type === 'date' && (
             <input
@@ -500,10 +498,10 @@ export default function QuoteForm({ compact = false }) {
       {error && <div className={styles.errorAlert}>{error}</div>}
 
       <p className={styles.legal}>
-        By submitting this form, you agree to our{' '}
-        <a href="/terms" target="_blank" rel="noopener noreferrer" className={styles.legalLink}>Terms &amp; Conditions</a>
-        {' '}and{' '}
-        <a href="/privacy" target="_blank" rel="noopener noreferrer" className={styles.legalLink}>Privacy Policy</a>.
+        {t('legal.prefix')}{' '}
+        <a href="/terms" target="_blank" rel="noopener noreferrer" className={styles.legalLink}>{t('legal.terms')}</a>
+        {' '}{t('legal.and')}{' '}
+        <a href="/privacy" target="_blank" rel="noopener noreferrer" className={styles.legalLink}>{t('legal.privacy')}</a>.
       </p>
 
       <button
@@ -517,13 +515,13 @@ export default function QuoteForm({ compact = false }) {
       {/* Trust badges */}
       <div className={styles.trustRow}>
         <span className={styles.trustItem}>
-          <span className={styles.trustDot}>&#9670;</span> Secure
+          <span className={styles.trustDot}>&#9670;</span> {t('trust.secure')}
         </span>
         <span className={styles.trustItem}>
-          <span className={styles.trustDot}>&#9670;</span> No spam
+          <span className={styles.trustDot}>&#9670;</span> {t('trust.noSpam')}
         </span>
         <span className={styles.trustItem}>
-          <span className={styles.trustDot}>&#9670;</span> Quote in under 1 hour
+          <span className={styles.trustDot}>&#9670;</span> {t('trust.fast')}
         </span>
       </div>
     </form>

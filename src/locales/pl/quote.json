@@ -1,4 +1,25 @@
 {
+  "header": {
+    "kicker": "Bezpłatna wycena",
+    "title": "Otrzymaj wycenę transportu"
+  },
+  "legal": {
+    "prefix": "Przesyłając ten formularz, akceptujesz nasze",
+    "terms": "Warunki korzystania",
+    "and": "i",
+    "privacy": "Politykę prywatności"
+  },
+  "trust": {
+    "secure": "Bezpiecznie",
+    "noSpam": "Bez spamu",
+    "fast": "Wycena w mniej niż godzinę"
+  },
+  "placeholders": {
+    "make": "Honda",
+    "model": "Civic",
+    "pickupZip": "np. 07114",
+    "deliveryZip": "np. 77029"
+  },
   "form": {
     "title": "Zapytaj o wycenę",
     "vin": "VIN (opcjonalnie)",
@@ -21,7 +42,32 @@
     "notesPlaceholder": "Specjalne instrukcje, elastyczne daty itp.",
     "almostThere": "Prawie gotowe! Podaj dane kontaktowe.",
     "submit": "Otrzymaj wycenę",
-    "submitting": "Wysyłanie..."
+    "submitting": "Wysyłanie...",
+    "pickup": "Odbiór",
+    "delivery": "Dostawa",
+    "zip": "ZIP",
+    "locationType": "Typ miejsca",
+    "vehicleCondition": "Stan pojazdu",
+    "runsAndDrives": "Sprawny, jeździ",
+    "nonRunning": "Niesprawny / niejezdny",
+    "whenPickup": "Kiedy odebrać?",
+    "asap": "Jak najszybciej",
+    "specificDate": "Konkretna data:",
+    "noVinHint": "Brak VIN? Kliknij „Nie mam numeru VIN\" poniżej, aby wpisać rok, markę i model.",
+    "iDontHaveVin": "Nie mam numeru VIN",
+    "iHaveVin": "← Mam numer VIN",
+    "year": "Rok *",
+    "make": "Marka *",
+    "model": "Model *",
+    "locations": {
+      "residential": "Adres domowy",
+      "business": "Firma",
+      "auction": "Aukcja (IAAI/Copart/Manheim)",
+      "dealer": "Dealer",
+      "port": "Port",
+      "storage": "Magazyn",
+      "other": "Inne"
+    }
   },
   "sms": {
     "consent": "Zaznaczając to pole, wyrażasz zgodę na otrzymywanie powiadomień SMS i aktualizacji dotyczących transportu Twojego pojazdu od Y7 Consulting Inc na podany numer telefonu. Częstotliwość wiadomości może się różnić. Mogą obowiązywać standardowe stawki za wiadomości i transmisję danych. Odpowiedz STOP, aby zrezygnować, HELP, aby uzyskać pomoc. Ta zgoda nie jest warunkiem zakupu.",
