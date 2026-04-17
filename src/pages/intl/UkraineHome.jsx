@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
 import { colors, fonts, button } from '../../theme';
+import interactions from '../../styles/interactions.module.css';
 import {
   PersonalCarIcon,
   GlobeRouteIcon,
@@ -274,6 +275,7 @@ function AudienceCard({ title, desc, cta, to, icon }) {
 
   return (
     <div
+      className={interactions.liftCard}
       style={{
         background: colors.bgCard,
         border: `1px solid ${colors.border}`,
@@ -282,18 +284,7 @@ function AudienceCard({ title, desc, cta, to, icon }) {
         display: 'flex',
         flexDirection: 'column',
         gap: '16px',
-        transition: 'transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease',
         cursor: 'pointer',
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'translateY(-4px)';
-        e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.10)';
-        e.currentTarget.style.borderColor = colors.accent;
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = 'none';
-        e.currentTarget.style.borderColor = colors.border;
       }}
       onClick={handleClick}
     >

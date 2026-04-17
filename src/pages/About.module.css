@@ -1,0 +1,272 @@
+/* About page — story, how-we-work, why, commitments, FMCSA, contact. */
+
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 24px 80px;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.h1 {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 20px;
+  letter-spacing: -0.02em;
+}
+
+.badgeRow {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-block;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text, #2C2C2A);
+  background: var(--bg-muted, #EFECE6);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-pill, 20px);
+  padding: 6px 16px;
+}
+
+.section {
+  margin-bottom: 60px;
+}
+
+.sectionTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+}
+
+.card {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-xl, 16px);
+  padding: 28px 24px;
+  transition:
+    border-color var(--transition-normal, 250ms ease-out),
+    box-shadow var(--transition-normal, 250ms ease-out);
+}
+
+@media (hover: hover) {
+  .card:hover {
+    border-color: var(--accent, #993C1D);
+    box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.04));
+  }
+}
+
+.body {
+  font-family: var(--font-sans, system-ui);
+  font-size: 15px;
+  color: var(--text-muted, #888780);
+  line-height: 1.7;
+}
+
+.bodyStrong {
+  color: var(--text, #2C2C2A);
+}
+
+.bodyMargin {
+  margin-bottom: 12px;
+}
+
+/* =====================================================================
+   HOW STEPS
+   ===================================================================== */
+
+.stepsCard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0;
+  padding: 32px 24px;
+  position: relative;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 12px 16px;
+  position: relative;
+}
+
+.connector {
+  position: absolute;
+  top: 24px;
+  left: 60%;
+  width: 80%;
+  height: 2px;
+  background: var(--border, #e5e0d8);
+  z-index: 0;
+}
+
+.stepNum {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent, #993C1D);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans, system-ui);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.stepTitle {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 6px;
+}
+
+.stepDesc {
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  color: var(--text-muted, #888780);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* =====================================================================
+   WHY GRID
+   ===================================================================== */
+
+.whyGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+@media (max-width: 768px) { .whyGrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .whyGrid { grid-template-columns: 1fr; } }
+
+.whyCard {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-xl, 16px);
+  padding: 28px 24px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  transition:
+    transform var(--transition-normal, 250ms ease-out),
+    box-shadow var(--transition-normal, 250ms ease-out),
+    border-color var(--transition-normal, 250ms ease-out);
+}
+
+@media (hover: hover) {
+  .whyCard:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md, 0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06));
+    border-color: var(--accent, #993C1D);
+  }
+}
+
+.whyIcon {
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.whyTitle {
+  font-family: var(--font-sans, system-ui);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 4px;
+}
+
+.whyDesc {
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  color: var(--text-muted, #888780);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* =====================================================================
+   COMMITMENTS LIST
+   ===================================================================== */
+
+.commitmentsList {
+  margin: 0;
+  padding: 0 0 0 20px;
+}
+
+.commitment {
+  font-family: var(--font-sans, system-ui);
+  font-size: 15px;
+  color: var(--text-muted, #888780);
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+.commitment:last-child { margin-bottom: 0; }
+
+/* =====================================================================
+   LINKS
+   ===================================================================== */
+
+.accentLink {
+  color: var(--accent, #993C1D);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 2px;
+  padding: 2px 4px;
+  margin: 0 -4px;
+  outline: none;
+  transition: color var(--transition-fast, 150ms ease-out), background-color var(--transition-fast, 150ms ease-out);
+}
+
+@media (hover: hover) {
+  .accentLink:hover {
+    color: var(--accent-hover, #7A3017);
+    background-color: var(--accent-glow, rgba(153, 60, 29, 0.15));
+    text-decoration: underline;
+  }
+}
+
+.accentLink:focus-visible {
+  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+}
+
+.fmcsaCard,
+.contactCard {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-xl, 16px);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color var(--transition-normal, 250ms ease-out), box-shadow var(--transition-normal, 250ms ease-out);
+}
+
+@media (hover: hover) {
+  .fmcsaCard:hover,
+  .contactCard:hover {
+    border-color: var(--accent, #993C1D);
+    box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.04));
+  }
+}

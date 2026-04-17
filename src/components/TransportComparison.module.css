@@ -1,0 +1,117 @@
+/* TransportComparison — Open vs Enclosed side-by-side comparison. */
+
+.title {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  text-align: center;
+  margin: 0 0 24px;
+  letter-spacing: -0.02em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-xl, 16px);
+  padding: 28px 24px;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  transition:
+    transform var(--transition-normal, 250ms ease-out),
+    border-color var(--transition-normal, 250ms ease-out),
+    box-shadow var(--transition-normal, 250ms ease-out);
+}
+
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent, #993C1D);
+    box-shadow: var(--shadow-md, 0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06));
+  }
+}
+
+.card:focus-visible {
+  border-color: var(--accent, #993C1D);
+  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+}
+
+.badge {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  background: var(--accent, #993C1D);
+  color: #fff;
+  font-family: var(--font-sans, system-ui);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.cardTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.feature {
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  color: var(--text-muted, #888780);
+  line-height: 1.7;
+  padding-left: 22px;
+  position: relative;
+}
+
+.featureIcon {
+  position: absolute;
+  left: 0;
+  top: 2px;
+  color: var(--success, #0F6E56);
+}
+
+.price {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  margin-bottom: 16px;
+}
+
+.cta {
+  width: 100%;
+  padding: 12px !important;
+  font-size: 12px !important;
+}
+
+.disclaimer {
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  color: var(--text-hint, #999);
+  text-align: center;
+  margin-top: 16px;
+}

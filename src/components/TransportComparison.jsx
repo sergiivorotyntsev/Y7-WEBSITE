@@ -1,5 +1,6 @@
-import { colors, fonts, button as btnStyles } from '../theme';
 import { CheckIcon } from './icons';
+import styles from './TransportComparison.module.css';
+import btn from '../styles/buttons.module.css';
 
 const TYPES = [
   {
@@ -35,118 +36,44 @@ export default function TransportComparison() {
   function scrollToQuote(type) {
     const el = document.getElementById('quote-section');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
-    // Pre-select transport type via custom event
     window.dispatchEvent(new CustomEvent('selectTransportType', { detail: type }));
   }
 
+  const handleKey = (type) => (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      scrollToQuote(type);
+    }
+  };
+
   return (
     <div>
-      <h2 style={{
-        fontFamily: fonts.serif,
-        fontSize: '24px',
-        fontWeight: 700,
-        color: colors.text,
-        textAlign: 'center',
-        marginBottom: '24px',
-      }}>
-        Open vs Enclosed Transport
-      </h2>
+      <h2 className={styles.title}>Open vs Enclosed Transport</h2>
 
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-        gap: '20px',
-        maxWidth: '700px',
-        margin: '0 auto',
-      }}>
+      <div className={styles.grid}>
         {TYPES.map(t => (
           <div
             key={t.type}
-            style={{
-              background: colors.bgCard,
-              border: `1px solid ${colors.border}`,
-              borderRadius: '16px',
-              padding: '28px 24px',
-              transition: 'border-color 200ms ease, transform 200ms ease',
-              cursor: 'pointer',
-              position: 'relative',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.borderColor = colors.accent;
-              e.currentTarget.style.transform = 'translateY(-3px)';
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.borderColor = colors.border;
-              e.currentTarget.style.transform = 'translateY(0)';
-            }}
+            className={styles.card}
             onClick={() => scrollToQuote(t.type)}
+            onKeyDown={handleKey(t.type)}
+            role="button"
+            tabIndex={0}
           >
-            {t.premium && (
-              <div style={{
-                position: 'absolute',
-                top: '-10px',
-                right: '20px',
-                background: colors.accent,
-                color: '#fff',
-                fontFamily: fonts.sans,
-                fontSize: '10px',
-                fontWeight: 700,
-                padding: '3px 10px',
-                borderRadius: '10px',
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px',
-              }}>
-                Premium
-              </div>
-            )}
-            <h3 style={{
-              fontFamily: fonts.serif,
-              fontSize: '20px',
-              fontWeight: 700,
-              color: colors.text,
-              marginBottom: '16px',
-            }}>
-              {t.title}
-            </h3>
-            <ul style={{
-              listStyle: 'none',
-              padding: 0,
-              margin: '0 0 20px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '8px',
-            }}>
+            {t.premium && <div className={styles.badge}>Premium</div>}
+            <h3 className={styles.cardTitle}>{t.title}</h3>
+            <ul className={styles.featureList}>
               {t.features.map((f, i) => (
-                <li key={i} style={{
-                  fontFamily: fonts.sans,
-                  fontSize: '13px',
-                  color: colors.textMuted,
-                  lineHeight: 1.5,
-                  paddingLeft: '20px',
-                  position: 'relative',
-                }}>
-                  <span style={{ position: 'absolute', left: 0, color: colors.success }}><CheckIcon size={16} /></span>
+                <li key={i} className={styles.feature}>
+                  <span className={styles.featureIcon}><CheckIcon size={16} /></span>
                   {f}
                 </li>
               ))}
             </ul>
-            <div style={{
-              fontFamily: fonts.mono,
-              fontSize: '18px',
-              fontWeight: 700,
-              color: colors.accent,
-              marginBottom: '16px',
-            }}>
-              {t.price}
-            </div>
+            <div className={styles.price}>{t.price}</div>
             <button
               onClick={e => { e.stopPropagation(); scrollToQuote(t.type); }}
-              style={{
-                ...(t.premium ? btnStyles.accent : btnStyles.primary),
-                width: '100%',
-                padding: '12px',
-                fontSize: '12px',
-              }}
+              className={`${t.premium ? btn.btnAccent : btn.btnPrimary} ${styles.cta}`}
             >
               {t.cta}
             </button>
@@ -154,13 +81,7 @@ export default function TransportComparison() {
         ))}
       </div>
 
-      <p style={{
-        fontFamily: fonts.sans,
-        fontSize: '11px',
-        color: colors.textHint,
-        textAlign: 'center',
-        marginTop: '16px',
-      }}>
+      <p className={styles.disclaimer}>
         Actual pricing varies by route, vehicle size, and season.
       </p>
     </div>

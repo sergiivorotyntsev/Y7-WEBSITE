@@ -3,6 +3,7 @@ import PageMeta from '../../components/PageMeta';
 import AuctionToPortWorkflow from '../../components/AuctionToPortWorkflow';
 import { colors, fonts, button as btnStyles } from '../../theme';
 import { PORTS } from './portData';
+import interactions from '../../styles/interactions.module.css';
 
 export default function PortPage() {
   const { slug } = useParams();
@@ -199,7 +200,7 @@ export default function PortPage() {
         </h2>
         <div className="port-routes-grid">
           {port.routes.map((route, i) => (
-            <div key={i} style={{
+            <div key={i} className={interactions.subtleLift} style={{
               background: colors.bgCard,
               border: `1px solid ${colors.border}`,
               borderRadius: '12px',
@@ -207,17 +208,7 @@ export default function PortPage() {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              transition: 'transform 200ms ease, box-shadow 200ms ease',
-            }}
-              onMouseEnter={e => {
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.06)';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            >
+            }}>
               <div>
                 <div style={{
                   fontFamily: fonts.sans,

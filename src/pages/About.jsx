@@ -1,48 +1,7 @@
 import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { ScalesIcon, VerifiedIcon, EyeIcon, MapPinIcon, GlobeIcon, BellIcon } from '../components/icons';
-import { colors, fonts } from '../theme';
-
-const styles = {
-  page: {
-    maxWidth: '900px',
-    margin: '0 auto',
-    padding: '60px 24px 80px',
-  },
-  sectionTitle: {
-    fontFamily: fonts.serif,
-    fontSize: '24px',
-    fontWeight: 700,
-    color: colors.text,
-    marginBottom: '16px',
-  },
-  section: {
-    marginBottom: '60px',
-  },
-  body: {
-    fontFamily: fonts.sans,
-    fontSize: '15px',
-    color: colors.textMuted,
-    lineHeight: 1.7,
-  },
-  card: {
-    background: colors.bgCard,
-    border: `1px solid ${colors.border}`,
-    borderRadius: '16px',
-    padding: '28px 24px',
-  },
-  badge: {
-    display: 'inline-block',
-    fontFamily: fonts.mono,
-    fontSize: '13px',
-    fontWeight: 600,
-    color: colors.text,
-    background: colors.bgMuted,
-    border: `1px solid ${colors.border}`,
-    borderRadius: '20px',
-    padding: '6px 16px',
-  },
-};
+import styles from './About.module.css';
 
 const steps = [
   { num: 1, title: 'Receive Order', desc: 'Customer submits vehicle details, pickup and delivery locations.' },
@@ -69,53 +28,34 @@ const commitments = [
 
 export default function About() {
   return (
-    <div style={styles.page}>
+    <div className={styles.page}>
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'About',url:'/about'}]} />
       <PageMeta
         title="About"
         description="Licensed auto transport broker USDOT #4427359. Verified carriers, fast dispatch response, transparent pricing."
         path="/about"
       />
-      <style>{`
-        .about-why-grid {
-          grid-template-columns: repeat(3, 1fr);
-        }
-        @media (max-width: 768px) {
-          .about-why-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 480px) {
-          .about-why-grid { grid-template-columns: 1fr; }
-        }
-      `}</style>
 
       {/* Hero */}
-      <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-        <h1 style={{
-          fontFamily: fonts.serif,
-          fontSize: 'clamp(28px, 4vw, 42px)',
-          fontWeight: 700,
-          color: colors.text,
-          marginBottom: '20px',
-        }}>
-          Licensed &amp; Insured Auto Transport Broker
-        </h1>
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
-          <span style={styles.badge}>USDOT #4427359</span>
-          <span style={styles.badge}>MC #1741537</span>
+      <div className={styles.hero}>
+        <h1 className={styles.h1}>Licensed &amp; Insured Auto Transport Broker</h1>
+        <div className={styles.badgeRow}>
+          <span className={styles.badge}>USDOT #4427359</span>
+          <span className={styles.badge}>MC #1741537</span>
         </div>
       </div>
 
       {/* Our Story */}
-      <div style={styles.section}>
-        <h2 style={styles.sectionTitle}>Our Story</h2>
-        <div style={styles.card}>
-          <p style={{ ...styles.body, marginBottom: '12px' }}>
-            Y7 Consulting Inc, operating as <strong style={{ color: colors.text }}>Y7 Logistics</strong>, is a
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>Our Story</h2>
+        <div className={styles.card}>
+          <p className={`${styles.body} ${styles.bodyMargin}`}>
+            Y7 Consulting Inc, operating as <strong className={styles.bodyStrong}>Y7 Logistics</strong>, is a
             US-based auto transport brokerage. Our team brings 10+ years of combined auto transport experience,
             with Y7 operating as an FMCSA-licensed broker since 2025. We connect shippers with verified carriers
             through Central Dispatch &mdash; the industry's leading load board.
           </p>
-          <p style={styles.body}>
+          <p className={styles.body}>
             From auction pickups to cross-country relocations, we handle every detail so our customers
             don't have to. Our dispatch team coordinates carriers, manages documentation, and keeps you
             informed at every step.
@@ -124,113 +64,30 @@ export default function About() {
       </div>
 
       {/* How We Work */}
-      <div style={styles.section}>
-        <h2 style={styles.sectionTitle}>How We Work</h2>
-        <div style={{
-          ...styles.card,
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-          gap: '0',
-          padding: '32px 24px',
-          position: 'relative',
-        }}>
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>How We Work</h2>
+        <div className={`${styles.card} ${styles.stepsCard}`}>
           {steps.map((step, i) => (
-            <div key={step.num} style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              textAlign: 'center',
-              padding: '12px 16px',
-              position: 'relative',
-            }}>
-              {/* Connector line */}
-              {i < steps.length - 1 && (
-                <div style={{
-                  position: 'absolute',
-                  top: '24px',
-                  left: '60%',
-                  width: '80%',
-                  height: '2px',
-                  background: colors.border,
-                  zIndex: 0,
-                }} />
-              )}
-              {/* Number circle */}
-              <div style={{
-                width: '48px',
-                height: '48px',
-                borderRadius: '50%',
-                background: colors.accent,
-                color: '#fff',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontFamily: fonts.sans,
-                fontSize: '18px',
-                fontWeight: 700,
-                marginBottom: '14px',
-                position: 'relative',
-                zIndex: 1,
-                flexShrink: 0,
-              }}>
-                {step.num}
-              </div>
-              <h4 style={{
-                fontFamily: fonts.sans,
-                fontSize: '14px',
-                fontWeight: 700,
-                color: colors.text,
-                marginBottom: '6px',
-              }}>
-                {step.title}
-              </h4>
-              <p style={{
-                fontFamily: fonts.sans,
-                fontSize: '13px',
-                color: colors.textMuted,
-                lineHeight: 1.5,
-              }}>
-                {step.desc}
-              </p>
+            <div key={step.num} className={styles.step}>
+              {i < steps.length - 1 && <div className={styles.connector} />}
+              <div className={styles.stepNum}>{step.num}</div>
+              <h4 className={styles.stepTitle}>{step.title}</h4>
+              <p className={styles.stepDesc}>{step.desc}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Why Y7 */}
-      <div style={styles.section}>
-        <h2 style={styles.sectionTitle}>Why Y7</h2>
-        <div className="about-why-grid" style={{
-          display: 'grid',
-          gap: '20px',
-          alignItems: 'stretch',
-        }}>
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>Why Y7</h2>
+        <div className={styles.whyGrid}>
           {whyPoints.map((point) => (
-            <div key={point.title} style={{
-              ...styles.card,
-              display: 'flex',
-              gap: '14px',
-              alignItems: 'flex-start',
-            }}>
-              <span style={{ lineHeight: 1, flexShrink: 0 }}>{point.icon}</span>
+            <div key={point.title} className={styles.whyCard}>
+              <span className={styles.whyIcon}>{point.icon}</span>
               <div>
-                <h4 style={{
-                  fontFamily: fonts.sans,
-                  fontSize: '15px',
-                  fontWeight: 700,
-                  color: colors.text,
-                  marginBottom: '4px',
-                }}>
-                  {point.title}
-                </h4>
-                <p style={{
-                  fontFamily: fonts.sans,
-                  fontSize: '13px',
-                  color: colors.textMuted,
-                  lineHeight: 1.5,
-                }}>
-                  {point.desc}
-                </p>
+                <h4 className={styles.whyTitle}>{point.title}</h4>
+                <p className={styles.whyDesc}>{point.desc}</p>
               </div>
             </div>
           ))}
@@ -238,39 +95,26 @@ export default function About() {
       </div>
 
       {/* Our Commitments */}
-      <div style={styles.section}>
-        <h2 style={styles.sectionTitle}>Our Commitments</h2>
-        <div style={styles.card}>
-          <ul style={{ margin: 0, padding: '0 0 0 20px' }}>
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>Our Commitments</h2>
+        <div className={styles.card}>
+          <ul className={styles.commitmentsList}>
             {commitments.map((item, i) => (
-              <li key={i} style={{
-                fontFamily: fonts.sans,
-                fontSize: '15px',
-                color: colors.textMuted,
-                lineHeight: 1.7,
-                marginBottom: i < commitments.length - 1 ? '8px' : 0,
-              }}>
-                {item}
-              </li>
+              <li key={i} className={styles.commitment}>{item}</li>
             ))}
           </ul>
         </div>
       </div>
 
       {/* FMCSA */}
-      <div style={styles.section}>
-        <h2 style={styles.sectionTitle}>FMCSA Registration</h2>
-        <div style={{
-          ...styles.card,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '12px',
-        }}>
-          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-            <span style={styles.badge}>MC #1741537</span>
-            <span style={styles.badge}>USDOT #4427359</span>
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>FMCSA Registration</h2>
+        <div className={styles.fmcsaCard}>
+          <div className={styles.badgeRow} style={{ justifyContent: 'flex-start' }}>
+            <span className={styles.badge}>MC #1741537</span>
+            <span className={styles.badge}>USDOT #4427359</span>
           </div>
-          <p style={styles.body}>
+          <p className={styles.body}>
             Y7 Consulting Inc is registered with the Federal Motor Carrier Safety Administration (FMCSA)
             as an auto transport broker.
           </p>
@@ -278,13 +122,7 @@ export default function About() {
             href="https://safer.fmcsa.dot.gov/CompanySnapshot.aspx"
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              fontFamily: fonts.sans,
-              fontSize: '14px',
-              color: colors.accent,
-              fontWeight: 600,
-              textDecoration: 'underline',
-            }}
+            className={styles.accentLink}
           >
             Verify on FMCSA SAFER System &rarr;
           </a>
@@ -292,38 +130,33 @@ export default function About() {
       </div>
 
       {/* Contact */}
-      <div style={{ marginBottom: 0 }}>
-        <h2 style={styles.sectionTitle}>Contact</h2>
-        <div style={{
-          ...styles.card,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '10px',
-        }}>
-          <p style={styles.body}>
-            <strong style={{ color: colors.text }}>Email:</strong>{' '}
-            <a href="mailto:info@y7agency.com" style={{ color: colors.accent, textDecoration: 'none' }}>
+      <div>
+        <h2 className={styles.sectionTitle}>Contact</h2>
+        <div className={styles.contactCard}>
+          <p className={styles.body}>
+            <strong className={styles.bodyStrong}>Email:</strong>{' '}
+            <a href="mailto:info@y7agency.com" className={styles.accentLink}>
               info@y7agency.com
             </a>
           </p>
-          <p style={styles.body}>
-            <strong style={{ color: colors.text }}>Telegram:</strong>{' '}
+          <p className={styles.body}>
+            <strong className={styles.bodyStrong}>Telegram:</strong>{' '}
             <a
               href="https://t.me/y7dispatch_bot"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: colors.accent, textDecoration: 'none' }}
+              className={styles.accentLink}
             >
               @y7dispatch_bot
             </a>
           </p>
-          <p style={styles.body}>
-            <strong style={{ color: colors.text }}>Customer Portal:</strong>{' '}
+          <p className={styles.body}>
+            <strong className={styles.bodyStrong}>Customer Portal:</strong>{' '}
             <a
               href="https://dispatch.y7agency.com"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: colors.accent, textDecoration: 'none' }}
+              className={styles.accentLink}
             >
               dispatch.y7agency.com
             </a>

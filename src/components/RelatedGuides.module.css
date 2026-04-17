@@ -1,0 +1,98 @@
+/* RelatedGuides — topical clustering section for SEO pages. */
+
+.section {
+  padding: 60px 24px;
+  background: var(--bg-muted, #EFECE6);
+  border-top: 1px solid var(--border, #e5e0d8);
+}
+
+.inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 1.5rem;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.link {
+  display: block;
+  padding: 20px;
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-md, 8px);
+  text-decoration: none;
+  color: var(--text, #2C2C2A);
+  outline: none;
+  position: relative;
+  transition:
+    transform var(--transition-normal, 250ms ease-out),
+    border-color var(--transition-normal, 250ms ease-out),
+    box-shadow var(--transition-normal, 250ms ease-out);
+}
+
+.link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 3px;
+  border-top-left-radius: var(--radius-md, 8px);
+  border-bottom-left-radius: var(--radius-md, 8px);
+  background: var(--accent, #993C1D);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform var(--transition-normal, 250ms ease-out);
+}
+
+@media (hover: hover) {
+  .link:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent, #993C1D);
+    box-shadow: var(--shadow-md, 0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06));
+  }
+  .link:hover::before {
+    transform: scaleY(1);
+  }
+}
+
+.link:focus-visible {
+  border-color: var(--accent, #993C1D);
+  box-shadow: 0 0 0 2px var(--bg-muted, #EFECE6), 0 0 0 4px var(--accent, #993C1D);
+}
+.link:focus-visible::before { transform: scaleY(1); }
+
+.linkTitle {
+  font-family: var(--font-sans, system-ui);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--text, #2C2C2A);
+  transition: color var(--transition-fast, 150ms ease-out);
+}
+
+@media (hover: hover) {
+  .link:hover .linkTitle {
+    color: var(--accent, #993C1D);
+  }
+}
+
+.linkDesc {
+  font-family: var(--font-sans, system-ui);
+  font-size: 0.9rem;
+  color: var(--text-muted, #888780);
+  line-height: 1.6;
+  margin-top: 8px;
+}
