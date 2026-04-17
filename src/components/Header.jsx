@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../hooks/useAuth';
@@ -64,6 +64,14 @@ export default function Header() {
   const trackActive = location.pathname === '/track';
   const contactActive = location.pathname === '/contact';
 
+  // Language-aware Home route. On /ru* → /ru, /pl* → /pl, /ua* → /ua, else /
+  const homeHref = useMemo(() => {
+    const first = location.pathname.split('/').filter(Boolean)[0];
+    if (first === 'ru' || first === 'pl' || first === 'ua') return `/${first}`;
+    return '/';
+  }, [location.pathname]);
+  const homeActive = location.pathname === homeHref;
+
   return (
     <header role="banner" className={styles.header}>
       <div className={styles.inner}>
@@ -75,6 +83,12 @@ export default function Header() {
         {/* Desktop Nav */}
         <nav aria-label="Main navigation" className={styles.nav}>
           <div className={styles.desktopNav}>
+            <Link
+              to={homeHref}
+              className={`${styles.navLink} ${homeActive ? styles.navLinkActive : ''}`}
+            >
+              {t('nav.home')}
+            </Link>
             <NavDropdown
               label={t('nav.services')}
               items={servicesItems}
@@ -154,6 +168,13 @@ export default function Header() {
           >
             {t('cta.getQuote')}
           </button>
+
+          <Link
+            to={homeHref}
+            className={`${styles.mobileNavLink} ${homeActive ? styles.mobileNavLinkActive : ''}`}
+          >
+            {t('nav.home')}
+          </Link>
 
           <button
             type="button"
