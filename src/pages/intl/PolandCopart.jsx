@@ -10,6 +10,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
 import { colors, fonts } from '../../theme';
+import styles from './PolandCopart.module.css';
 
 const PolandCopart = () => {
   const faqSchema = {
@@ -756,8 +757,9 @@ const PolandCopart = () => {
             </h2>
 
             {faqSchema.mainEntity.map((faq, i) => (
-              <details 
+              <details
                 key={i}
+                className={styles.faqItem}
                 style={{
                   borderBottom: `1px solid ${colors.border}`,
                   paddingBottom: '1rem',
@@ -1020,6 +1022,7 @@ const PolandCopart = () => {
               </a>
               <Link
                 to="/pl/ship-my-car"
+                className={`${styles.subtleLift} ${styles.focusRing}`}
                 style={{
                   background: 'transparent',
                   color: colors.accent,
@@ -1075,10 +1078,11 @@ const PolandCopart = () => {
               justifyContent: 'center',
               flexWrap: 'wrap'
             }}>
-              <a 
+              <a
                 href="https://t.me/y7dispatch_bot"
                 target="_blank"
                 rel="noopener noreferrer"
+                className={`${styles.subtleLift} ${styles.focusRing}`}
                 style={{
                   background: colors.accent,
                   color: '#fff',
@@ -1092,8 +1096,9 @@ const PolandCopart = () => {
               >
                 Telegram — szybka wycena
               </a>
-              <Link 
+              <Link
                 to="/pl/ship-my-car"
+                className={`${styles.subtleLift} ${styles.focusRing}`}
                 style={{
                   background: 'transparent',
                   color: colors.bg,
