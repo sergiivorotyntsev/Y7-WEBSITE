@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
 import { colors, fonts, button } from '../../theme';
 import interactions from '../../styles/interactions.module.css';
+import styles from './UkraineHome.module.css';
 import {
   PersonalCarIcon,
   GlobeRouteIcon,
@@ -552,7 +553,7 @@ function UkraineHome() {
             gap: '1rem',
           }}
         >
-          <div style={cardStyle}>
+          <div className={styles.liftCard} style={cardStyle}>
             <h3 style={h3Style}>Ліцензія FMCSA</h3>
             <p style={{ ...pStyle, margin: 0 }}>
               MC #1741537, USDOT #4427359. Статус «активний» можна перевірити у
@@ -561,7 +562,7 @@ function UkraineHome() {
             </p>
           </div>
 
-          <div style={cardStyle}>
+          <div className={styles.liftCard} style={cardStyle}>
             <h3 style={h3Style}>Українськомовна підтримка</h3>
             <p style={{ ...pStyle, margin: 0 }}>
               У команді є українськомовні співробітники. Спілкуємося через
@@ -570,7 +571,7 @@ function UkraineHome() {
             </p>
           </div>
 
-          <div style={cardStyle}>
+          <div className={styles.liftCard} style={cardStyle}>
             <h3 style={h3Style}>Прозорі ціни</h3>
             <p style={{ ...pStyle, margin: 0 }}>
               Розрахунок фіксуємо до початку роботи. Без прихованих комісій,
@@ -579,7 +580,7 @@ function UkraineHome() {
             </p>
           </div>
 
-          <div style={cardStyle}>
+          <div className={styles.liftCard} style={cardStyle}>
             <h3 style={h3Style}>Портал клієнта</h3>
             <p style={{ ...pStyle, margin: 0 }}>
               Ви бачите статус авто на кожному етапі — від забору з майданчика
@@ -604,7 +605,7 @@ function UkraineHome() {
 
         <div style={{ display: 'grid', gap: '1.5rem' }}>
           {routeOptions.map((route, idx) => (
-            <div key={idx} style={cardStyle}>
+            <div key={idx} className={styles.liftCard} style={cardStyle}>
               <div
                 style={{
                   display: 'flex',
@@ -734,7 +735,7 @@ function UkraineHome() {
             gap: '1rem',
           }}
         >
-          <div style={cardStyle}>
+          <div className={styles.liftCard} style={cardStyle}>
             <h3
               style={{
                 fontFamily: fonts.sans,
@@ -764,7 +765,7 @@ function UkraineHome() {
             </p>
           </div>
 
-          <div style={cardStyle}>
+          <div className={styles.liftCard} style={cardStyle}>
             <h3
               style={{
                 fontFamily: fonts.sans,
@@ -794,7 +795,7 @@ function UkraineHome() {
             </p>
           </div>
 
-          <div style={cardStyle}>
+          <div className={styles.liftCard} style={cardStyle}>
             <h3
               style={{
                 fontFamily: fonts.sans,
@@ -908,7 +909,7 @@ function UkraineHome() {
             }}
           >
             {diasporaUseCases.map((uc, idx) => (
-              <div key={idx} style={cardStyle}>
+              <div key={idx} className={styles.liftCard} style={cardStyle}>
                 <h4
                   style={{
                     fontFamily: fonts.sans,
@@ -953,7 +954,7 @@ function UkraineHome() {
               gap: '1rem',
             }}
           >
-            <div style={cardStyle}>
+            <div className={styles.liftCard} style={cardStyle}>
               <h4
                 style={{
                   fontFamily: fonts.sans,
@@ -983,7 +984,7 @@ function UkraineHome() {
               </p>
             </div>
 
-            <div style={cardStyle}>
+            <div className={styles.liftCard} style={cardStyle}>
               <h4
                 style={{
                   fontFamily: fonts.sans,
@@ -1013,7 +1014,7 @@ function UkraineHome() {
               </p>
             </div>
 
-            <div style={cardStyle}>
+            <div className={styles.liftCard} style={cardStyle}>
               <h4
                 style={{
                   fontFamily: fonts.sans,
@@ -1065,7 +1066,7 @@ function UkraineHome() {
             gap: '1rem',
           }}
         >
-          <div style={cardStyle}>
+          <div className={styles.liftCard} style={cardStyle}>
             <p
               style={{
                 fontFamily: fonts.sans,
@@ -1086,7 +1087,7 @@ function UkraineHome() {
             </a>
           </div>
 
-          <div style={cardStyle}>
+          <div className={styles.liftCard} style={cardStyle}>
             <p
               style={{
                 fontFamily: fonts.sans,
@@ -1105,7 +1106,7 @@ function UkraineHome() {
             </a>
           </div>
 
-          <div style={cardStyle}>
+          <div className={styles.liftCard} style={cardStyle}>
             <p
               style={{
                 fontFamily: fonts.sans,
@@ -1141,7 +1142,7 @@ function UkraineHome() {
 
         <div style={{ display: 'grid', gap: '0.75rem' }}>
           {faqSchema.mainEntity.map((faq, idx) => (
-            <details key={idx} style={{ ...cardStyle, cursor: 'pointer' }}>
+            <details key={idx} className={styles.faqItem} style={{ ...cardStyle, cursor: 'pointer' }}>
               <summary
                 style={{
                   fontFamily: fonts.sans,
@@ -1210,12 +1211,14 @@ function UkraineHome() {
               href="https://t.me/y7dispatch_bot"
               target="_blank"
               rel="noopener noreferrer"
+              className={`${styles.subtleLift} ${styles.focusRing}`}
               style={ctaButtonStyle}
             >
               Написати в Telegram
             </a>
             <Link
               to="/ua/ship-my-car"
+              className={`${styles.subtleLift} ${styles.focusRing}`}
               style={{
                 ...ctaButtonStyle,
                 background: 'transparent',

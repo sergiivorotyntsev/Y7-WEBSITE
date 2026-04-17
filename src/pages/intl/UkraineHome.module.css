@@ -1,0 +1,46 @@
+/* UkraineHome.module.css — composes from shared primitives. */
+
+.liftCard { composes: liftCard from '../../styles/interactions.module.css'; }
+.subtleLift { composes: subtleLift from '../../styles/interactions.module.css'; }
+.underlineGrow { composes: underlineGrow from '../../styles/interactions.module.css'; }
+.focusRing { composes: focusRing from '../../styles/interactions.module.css'; }
+
+.faqItem {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-lg, 12px);
+  margin-bottom: 12px;
+  overflow: hidden;
+  transition: border-color var(--transition-normal, 250ms ease-out);
+}
+.faqItem[open] { border-color: var(--accent, #993C1D); }
+.faqSummary {
+  padding: 20px 24px;
+  cursor: pointer;
+  font-family: var(--font-sans, system-ui);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text, #2C2C2A);
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.faqSummary::-webkit-details-marker { display: none; }
+.faqSummary::after {
+  content: '+';
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--accent, #993C1D);
+  transition: transform var(--transition-normal, 250ms ease-out);
+  flex-shrink: 0;
+}
+.faqItem[open] .faqSummary::after { transform: rotate(45deg); }
+.faqAnswer {
+  padding: 0 24px 20px;
+  font-family: var(--font-sans, system-ui);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-muted, #4A4A46);
+}
