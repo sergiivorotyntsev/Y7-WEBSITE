@@ -1,23 +1,64 @@
-/* About page — story, how-we-work, why, commitments, FMCSA, contact. */
+/* About page — editorial layout, FMCSA badge, values grid. */
 
 .page {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 60px 24px 80px;
+  padding: 0 0 80px;
 }
 
 .hero {
+  padding: clamp(64px, 10vh, 96px) 24px clamp(40px, 6vh, 56px);
   text-align: center;
-  margin-bottom: 60px;
+  background:
+    radial-gradient(circle at 50% 100%, rgba(153, 60, 29, 0.06), transparent 60%),
+    linear-gradient(180deg, var(--bg, #F7F5F0) 0%, var(--bg-muted, #EFECE6) 100%);
+  margin-bottom: clamp(48px, 8vh, 72px);
+}
+
+.heroMicro {
+  display: inline-block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 12px;
 }
 
 .h1 {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(28px, 4vw, 42px);
+  font-size: clamp(1.8rem, 4vw, 2.75rem);
   font-weight: 700;
   color: var(--text, #2C2C2A);
   margin: 0 0 20px;
   letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.body {
+  padding: 0 24px;
+}
+
+.narrowColumn {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.sectionMicro {
+  display: inline-block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin: 0 0 10px;
 }
 
 .badgeRow {
@@ -40,16 +81,18 @@
 }
 
 .section {
-  margin-bottom: 60px;
+  margin-bottom: clamp(56px, 8vh, 80px);
 }
 
 .sectionTitle {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: 24px;
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
   font-weight: 700;
   color: var(--text, #2C2C2A);
   margin: 0 0 16px;
   letter-spacing: -0.02em;
+  line-height: 1.2;
+  text-align: center;
 }
 
 .card {
@@ -69,11 +112,11 @@
   }
 }
 
-.body {
+.bodyText {
   font-family: var(--font-sans, system-ui);
   font-size: 15px;
   color: var(--text-muted, #888780);
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
 .bodyStrong {
@@ -259,8 +302,43 @@
   padding: 28px 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
   transition: border-color var(--transition-normal, 250ms ease-out), box-shadow var(--transition-normal, 250ms ease-out);
+}
+
+.fmcsaShieldRow {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding-bottom: 4px;
+}
+
+.fmcsaShield {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md, 8px);
+  background: linear-gradient(135deg, var(--accent, #993C1D) 0%, var(--accent-hover, #7A3017) 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(153, 60, 29, 0.22);
+}
+
+.fmcsaHeading {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
+}
+
+.fmcsaIds {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 @media (hover: hover) {
