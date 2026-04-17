@@ -16,7 +16,7 @@ import ExternalReviewsStrip from '../components/ExternalReviewsStrip';
 import WhyY7 from '../components/WhyY7';
 import TrustSection from '../components/TrustSection';
 import WhatHappensNext from '../components/WhatHappensNext';
-import { colors, fonts } from '../theme';
+import styles from './Home.module.css';
 
 export default function Home() {
   const { t } = useTranslation('home');
@@ -51,50 +51,15 @@ export default function Home() {
       <PageMeta description="Licensed auto transport broker. Ship your vehicle door-to-door or to any US port. Instant quotes, verified carriers, shipment status updates." path="/" />
       <HreflangTags currentPath="" hasPolishVersion hasUkrainianVersion hasRussianVersion />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
+
       {/* 1. Hero */}
-      <style>{`
-        .hero-section { padding: 80px 24px 40px; }
-        @media (max-width: 768px) { .hero-section { padding: 48px 24px 32px; } }
-      `}</style>
-      <section className="hero-section" style={{
-        textAlign: 'center',
-        maxWidth: '800px',
-        margin: '0 auto',
-      }}>
-        <p style={{
-          fontFamily: fonts.sans,
-          fontSize: '14px',
-          fontWeight: 600,
-          color: colors.textMuted,
-          textTransform: 'uppercase',
-          letterSpacing: '3px',
-          marginBottom: '16px',
-        }}>
-          {t('hero.title')}
-        </p>
-        <h1 style={{
-          fontFamily: fonts.serif,
-          fontSize: 'clamp(36px, 5.5vw, 52px)',
-          fontWeight: 700,
-          color: colors.text,
-          lineHeight: 1.15,
-          marginBottom: '20px',
-        }}>
+      <section className={styles.hero}>
+        <p className={styles.heroKicker}>{t('hero.title')}</p>
+        <h1 className={styles.heroTitle}>
           {t('hero.tagline')}<br />
-          <span style={{ color: colors.accent, fontStyle: 'italic' }}>
-            {t('hero.taglineAccent')}
-          </span>
+          <span className={styles.heroAccent}>{t('hero.taglineAccent')}</span>
         </h1>
-        <p style={{
-          fontFamily: fonts.sans,
-          fontSize: '15px',
-          color: colors.textMuted,
-          lineHeight: 1.7,
-          maxWidth: '600px',
-          margin: '0 auto',
-        }}>
-          {t('hero.description')}
-        </p>
+        <p className={styles.heroDesc}>{t('hero.description')}</p>
       </section>
 
       {/* External reviews strip (visible when env vars set) */}
@@ -115,16 +80,7 @@ export default function Home() {
 
       {/* 5. How It Works */}
       <ScrollReveal style={{ padding: '60px 24px' }}>
-        <h2 style={{
-          fontFamily: fonts.serif,
-          fontSize: '28px',
-          fontWeight: 700,
-          color: colors.text,
-          textAlign: 'center',
-          marginBottom: '32px',
-        }}>
-          {t('howItWorks.title')}
-        </h2>
+        <h2 className={styles.sectionTitle}>{t('howItWorks.title')}</h2>
         <HowItWorks />
       </ScrollReveal>
 
@@ -139,25 +95,15 @@ export default function Home() {
       </ScrollReveal>
 
       {/* 8. Quote Form */}
-      <section id="quote-section" style={{ padding: '60px 24px', background: colors.bgMuted }}>
+      <section id="quote-section" className={styles.quoteSection}>
         <ScrollReveal>
-          <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-            <h2 style={{
-              fontFamily: fonts.serif,
-              fontSize: '28px',
-              fontWeight: 700,
-              color: colors.text,
-              marginBottom: '8px',
-            }}>
-              {t('quoteSection.title')}
-            </h2>
-            <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted }}>
-              {t('quoteSection.subtitle')}
-            </p>
+          <div className={styles.quoteSectionHeader}>
+            <h2 className={styles.quoteSectionTitle}>{t('quoteSection.title')}</h2>
+            <p className={styles.quoteSectionSubtitle}>{t('quoteSection.subtitle')}</p>
           </div>
         </ScrollReveal>
         <QuoteForm compact />
-        <div style={{ marginTop: 20, textAlign: 'center' }}>
+        <div className={styles.trustBadgesRow}>
           <TrustBadges layout="horizontal" variant="compact" />
         </div>
       </section>
@@ -166,7 +112,7 @@ export default function Home() {
       <WhatHappensNext />
 
       {/* 9. Testimonials */}
-      <ScrollReveal style={{ padding: '40px 24px 60px', background: colors.bgMuted }}>
+      <ScrollReveal style={{ padding: '40px 24px 60px', background: 'var(--bg-muted)' }}>
         <ReviewsCarousel />
       </ScrollReveal>
 

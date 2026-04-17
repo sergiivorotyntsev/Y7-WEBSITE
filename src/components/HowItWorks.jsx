@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { colors, fonts } from '../theme';
 import { ClipboardIcon, DollarIcon, HandshakeIcon, TruckIcon, CheckIcon } from './icons';
+import styles from './HowItWorks.module.css';
 
 const STEPS = [
   {
@@ -54,117 +54,35 @@ export default function HowItWorks() {
 
   return (
     <div
-      style={{ maxWidth: '600px', margin: '0 auto' }}
+      className={styles.wrap}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
     >
-      {/* Dots */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        gap: '8px',
-        marginBottom: '24px',
-      }}>
+      <div className={styles.dots}>
         {STEPS.map((_, i) => (
           <button
             key={i}
             onClick={() => { setActive(i); setPaused(true); setTimeout(() => setPaused(false), 10000); }}
-            style={{
-              width: i === active ? '24px' : '10px',
-              height: '10px',
-              borderRadius: '5px',
-              background: i === active ? colors.accent : colors.border,
-              border: 'none',
-              cursor: 'pointer',
-              transition: 'all 300ms ease',
-              padding: 0,
-            }}
+            className={`${styles.dot} ${i === active ? styles.dotActive : ''}`}
             aria-label={`Step ${i + 1}`}
           />
         ))}
       </div>
 
-      {/* Step content */}
-      <div
-        key={active}
-        style={{
-          background: colors.bgCard,
-          border: `1px solid ${colors.border}`,
-          borderRadius: '16px',
-          padding: '36px 32px',
-          textAlign: 'center',
-          animation: 'slideIn 300ms ease',
-          minHeight: '220px',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <style>{`
-          @keyframes slideIn {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
-          }
-        `}</style>
-
-        <div style={{ marginBottom: '16px' }}>{step.icon}</div>
-        <div style={{
-          fontFamily: fonts.sans,
-          fontSize: '11px',
-          fontWeight: 600,
-          color: colors.textMuted,
-          textTransform: 'uppercase',
-          letterSpacing: '1px',
-          marginBottom: '8px',
-        }}>
-          Step {active + 1} of {STEPS.length}
-        </div>
-        <h3 style={{
-          fontFamily: fonts.serif,
-          fontSize: '22px',
-          fontWeight: 700,
-          color: colors.text,
-          marginBottom: '12px',
-        }}>
-          {step.title}
-        </h3>
-        <p style={{
-          fontFamily: fonts.sans,
-          fontSize: '14px',
-          color: colors.textMuted,
-          lineHeight: 1.6,
-          maxWidth: '440px',
-          marginBottom: '16px',
-        }}>
-          {step.desc}
-        </p>
-        <div style={{
-          fontFamily: fonts.mono,
-          fontSize: '13px',
-          fontWeight: 600,
-          color: colors.accent,
-          background: '#FFF8F5',
-          padding: '6px 14px',
-          borderRadius: '20px',
-        }}>
-          {step.stat}
-        </div>
+      <div key={active} className={styles.card}>
+        <div className={styles.iconWrap}>{step.icon}</div>
+        <div className={styles.stepLabel}>Step {active + 1} of {STEPS.length}</div>
+        <h3 className={styles.stepTitle}>{step.title}</h3>
+        <p className={styles.stepDesc}>{step.desc}</p>
+        <div className={styles.stepStat}>{step.stat}</div>
       </div>
 
-      {/* Next button */}
-      <div style={{ textAlign: 'center', marginTop: '16px' }}>
+      <div className={styles.nextWrap}>
         <button
           onClick={() => { next(); setPaused(true); setTimeout(() => setPaused(false), 10000); }}
-          style={{
-            background: 'none',
-            border: 'none',
-            fontFamily: fonts.sans,
-            fontSize: '13px',
-            color: colors.accent,
-            cursor: 'pointer',
-            fontWeight: 600,
-          }}
+          className={styles.nextBtn}
         >
           Next &rarr;
         </button>

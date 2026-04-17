@@ -1,0 +1,119 @@
+/* Audience cards — Home.jsx audience grid. Three big cards with accent border reveal + lift. */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+@media (max-width: 768px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-xl, 16px);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  cursor: pointer;
+  outline: none;
+  text-align: left;
+  transition:
+    transform var(--transition-normal, 250ms ease-out),
+    box-shadow var(--transition-normal, 250ms ease-out),
+    border-color var(--transition-normal, 250ms ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle accent glow band that pulses in on hover */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent, #993C1D);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-normal, 250ms ease-out);
+}
+
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg, 0 4px 12px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08));
+    border-color: var(--accent, #993C1D);
+  }
+  .card:hover::before {
+    transform: scaleX(1);
+  }
+}
+
+.card:focus-visible {
+  border-color: var(--accent, #993C1D);
+  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+}
+.card:focus-visible::before {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: audienceIn 500ms ease-out forwards;
+    animation-delay: calc(var(--i, 0) * 100ms);
+  }
+  @media (hover: hover) {
+    .card:hover {
+      animation: none;
+      opacity: 1;
+      transform: translateY(-4px);
+    }
+  }
+}
+
+@keyframes audienceIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.title {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.desc {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  color: var(--text-muted, #888780);
+  line-height: 1.7;
+  flex: 1;
+  margin: 0;
+}
+
+.cta {
+  align-self: flex-start;
+  margin-top: 4px;
+}

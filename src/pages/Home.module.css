@@ -1,0 +1,90 @@
+/* Home page — hero, section titles, quote-section wrapper. */
+
+.hero {
+  padding: 80px 24px 40px;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 48px 24px 32px;
+  }
+}
+
+.heroKicker {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted, #888780);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  margin: 0 0 16px;
+}
+
+.heroTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(36px, 5.5vw, 52px);
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 20px;
+}
+
+.heroAccent {
+  color: var(--accent, #993C1D);
+  font-style: italic;
+}
+
+.heroDesc {
+  font-family: var(--font-sans, system-ui);
+  font-size: 15px;
+  color: var(--text-muted, #888780);
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  text-align: center;
+  margin: 0 0 32px;
+  letter-spacing: -0.02em;
+}
+
+.quoteSection {
+  padding: 60px 24px;
+  background: var(--bg-muted, #EFECE6);
+}
+
+.quoteSectionHeader {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.quoteSectionTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+
+.quoteSectionSubtitle {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  color: var(--text-muted, #888780);
+  margin: 0;
+  line-height: 1.7;
+}
+
+.trustBadgesRow {
+  margin-top: 20px;
+  text-align: center;
+}

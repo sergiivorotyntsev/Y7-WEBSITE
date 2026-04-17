@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { colors, fonts } from '../theme';
+import styles from './TrustBar.module.css';
 
 function useCountUp(target, visible, duration = 1500) {
   const [display, setDisplay] = useState(target);
@@ -14,7 +14,7 @@ function useCountUp(target, visible, duration = 1500) {
     const step = (ts) => {
       if (!start) start = ts;
       const progress = Math.min((ts - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3); // easeOut
+      const eased = 1 - Math.pow(1 - progress, 3);
       setDisplay(`${Math.round(numVal * eased)}${suffix}`);
       if (progress < 1) requestAnimationFrame(step);
     };
@@ -28,35 +28,16 @@ function StatCard({ value, label, visible, delay }) {
   const counted = useCountUp(value, visible);
 
   return (
-    <div style={{
-      background: colors.bgMuted,
-      borderRadius: '12px',
-      padding: '24px 16px',
-      textAlign: 'center',
-      opacity: visible ? 1 : 0,
-      transform: visible ? 'translateY(0)' : 'translateY(16px)',
-      transition: `opacity 500ms ease ${delay}ms, transform 500ms ease ${delay}ms`,
-    }}>
-      <div style={{
-        fontFamily: fonts.serif,
-        fontSize: '32px',
-        fontWeight: 700,
-        color: colors.accent,
-        lineHeight: 1,
-        marginBottom: '8px',
-      }}>
-        {counted}
-      </div>
-      <div style={{
-        fontFamily: fonts.sans,
-        fontSize: '12px',
-        color: colors.textMuted,
-        textTransform: 'uppercase',
-        letterSpacing: '0.5px',
-        fontWeight: 500,
-      }}>
-        {label}
-      </div>
+    <div
+      className={styles.stat}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0)' : 'translateY(16px)',
+        transition: `opacity 500ms ease ${delay}ms, transform 500ms ease ${delay}ms`,
+      }}
+    >
+      <div className={styles.value}>{counted}</div>
+      <div className={styles.label}>{label}</div>
     </div>
   );
 }
@@ -85,13 +66,7 @@ export default function TrustBar() {
   ];
 
   return (
-    <div ref={ref} style={{
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
-      gap: '16px',
-      maxWidth: '800px',
-      margin: '0 auto',
-    }}>
+    <div ref={ref} className={styles.grid}>
       {stats.map(({ value, label }, i) => (
         <StatCard key={label} value={value} label={label} visible={visible} delay={i * 100} />
       ))}
