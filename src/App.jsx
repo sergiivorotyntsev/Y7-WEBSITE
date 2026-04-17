@@ -124,20 +124,34 @@ export default function App() {
         <Suspense fallback={<LoadingSpinner />}>
         <Routes>
           <Route element={<Layout />}>
+            {/* English (default, no prefix) */}
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
             <Route path="/dealers" element={<Dealers />} />
             <Route path="/exporters" element={<Exporters />} />
             <Route path="/ship-my-car" element={<ShipMyCar />} />
-            <Route path="/privacy" element={<PrivacyPolicy />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/accessibility" element={<Accessibility />} />
             <Route path="/track" element={<Track />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/about" element={<About />} />
-            <Route path="/:lang/faq" element={<FAQ />} />
-            <Route path="/:lang/about" element={<About />} />
+            {/* Locale-prefixed translations (SAME components, LocaleDetector
+                flips i18n.language from URL prefix). These are the hreflang
+                equivalents of their English counterparts. */}
+            {['ua', 'pl', 'ru'].flatMap((lang) => [
+              <Route key={`${lang}-home`} path={`/${lang}`} element={<Home />} />,
+              <Route key={`${lang}-services`} path={`/${lang}/services`} element={<Services />} />,
+              <Route key={`${lang}-dealers`} path={`/${lang}/dealers`} element={<Dealers />} />,
+              <Route key={`${lang}-exporters`} path={`/${lang}/exporters`} element={<Exporters />} />,
+              <Route key={`${lang}-ship-my-car`} path={`/${lang}/ship-my-car`} element={<ShipMyCar />} />,
+              <Route key={`${lang}-track`} path={`/${lang}/track`} element={<Track />} />,
+              <Route key={`${lang}-contact`} path={`/${lang}/contact`} element={<Contact />} />,
+              <Route key={`${lang}-faq`} path={`/${lang}/faq`} element={<FAQ />} />,
+              <Route key={`${lang}-about`} path={`/${lang}/about`} element={<About />} />,
+              <Route key={`${lang}-quote`} path={`/${lang}/quote`} element={<Quote />} />,
+            ])}
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/accessibility" element={<Accessibility />} />
             <Route path="/promo/:code" element={<PromoLanding />} />
             <Route path="/agreement" element={<ProtectedRoute><Agreement /></ProtectedRoute>} />
             <Route path="/agreement/:orderId" element={<Agreement />} />
@@ -203,29 +217,33 @@ export default function App() {
             <Route path="/portal/locations/setup" element={<ProtectedRoute><LocationSetup /></ProtectedRoute>} />
             <Route path="/portal/locations" element={<ProtectedRoute><Locations /></ProtectedRoute>} />
             <Route path="/portal/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-            {/* International pages — Poland */}
-            <Route path="/pl" element={<PolandHome />} />
-            <Route path="/pl/copart-shipping" element={<PolandCopart />} />
-            <Route path="/pl/ship-my-car" element={<PolandShipMyCar />} />
-            {/* International pages — Ukraine */}
-            <Route path="/ua" element={<UkraineHome />} />
-            <Route path="/ua/copart-shipping" element={<UkraineCopart />} />
-            <Route path="/ua/ship-my-car" element={<UkraineShipMyCar />} />
-            {/* International pages — Russia */}
-            <Route path="/ru" element={<RussiaHome />} />
-            <Route path="/ru/copart-shipping" element={<RussiaCopart />} />
-            <Route path="/ru/ship-my-car" element={<RussiaShipMyCar />} />
-            {/* Legacy diaspora redirects */}
+            {/* UNIQUE international landing pages — descriptive native slugs,
+                unique content, NOT hreflang equivalents of English pages */}
+            <Route path="/pl/transport-z-usa" element={<PolandHome />} />
+            <Route path="/pl/transport-z-aukcji" element={<PolandCopart />} />
+            <Route path="/pl/wysylka-auta-z-usa" element={<PolandShipMyCar />} />
+            <Route path="/ua/import-z-usa" element={<UkraineHome />} />
+            <Route path="/ua/copart-ta-iaai" element={<UkraineCopart />} />
+            <Route path="/ua/dostavka-avto-z-usa" element={<UkraineShipMyCar />} />
+            <Route path="/ru/dostavka-avto-iz-usa" element={<RussiaHome />} />
+            <Route path="/ru/copart-i-iaai" element={<RussiaCopart />} />
+            <Route path="/ru/perevozka-avto" element={<RussiaShipMyCar />} />
+            {/* Legacy SPA redirects: the old /ua /pl /ru pointed at the
+                unique pages above. They now point to the translated Home.
+                The old copart-shipping slug redirects to the new unique slug.
+                Translated ship-my-car stays on /{lang}/ship-my-car. */}
+            <Route path="/pl/copart-shipping" element={<Navigate to="/pl/transport-z-aukcji" replace />} />
+            <Route path="/ua/copart-shipping" element={<Navigate to="/ua/copart-ta-iaai" replace />} />
+            <Route path="/ru/copart-shipping" element={<Navigate to="/ru/copart-i-iaai" replace />} />
             <Route path="/pl-us" element={<Navigate to="/pl" replace />} />
-            <Route path="/pl-us/copart-shipping" element={<Navigate to="/pl/copart-shipping" replace />} />
+            <Route path="/pl-us/copart-shipping" element={<Navigate to="/pl/transport-z-aukcji" replace />} />
             <Route path="/pl-us/ship-my-car" element={<Navigate to="/pl/ship-my-car" replace />} />
             <Route path="/ua-us" element={<Navigate to="/ua" replace />} />
-            <Route path="/ua-us/copart-shipping" element={<Navigate to="/ua/copart-shipping" replace />} />
+            <Route path="/ua-us/copart-shipping" element={<Navigate to="/ua/copart-ta-iaai" replace />} />
             <Route path="/ua-us/ship-my-car" element={<Navigate to="/ua/ship-my-car" replace />} />
             <Route path="/ru-us" element={<Navigate to="/ru" replace />} />
-            <Route path="/ru-us/copart-shipping" element={<Navigate to="/ru/copart-shipping" replace />} />
+            <Route path="/ru-us/copart-shipping" element={<Navigate to="/ru/copart-i-iaai" replace />} />
             <Route path="/ru-us/ship-my-car" element={<Navigate to="/ru/ship-my-car" replace />} />
-            <Route path="/:lang" element={<Home />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>

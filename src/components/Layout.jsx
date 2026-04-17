@@ -5,6 +5,8 @@ import Footer from './Footer';
 import MobileCTA from './MobileCTA';
 import ErrorBoundary from './ErrorBoundary';
 import ChatWidget from './ChatWidget';
+import LocaleDetector from './LocaleDetector';
+import HreflangTags from './HreflangTags';
 import { keyframes } from '../theme';
 
 function ScrollToTop() {
@@ -20,6 +22,8 @@ export default function Layout() {
 
   return (
     <>
+      <LocaleDetector />
+      <HreflangTags />
       <ScrollToTop />
       <style>{keyframes}</style>
       <Header />
