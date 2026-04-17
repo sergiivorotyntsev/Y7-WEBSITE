@@ -5,6 +5,7 @@ import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { CheckIcon } from '../components/icons';
 import { apiPost } from '../hooks/useApi';
+import PhoneInput, { getCleanPhone, isValidPhone } from '../components/PhoneInput';
 import styles from './Exporters.module.css';
 import btn from '../styles/buttons.module.css';
 import forms from '../styles/forms.module.css';
@@ -34,13 +35,17 @@ export default function Exporters() {
     setError(null);
     if (!form.contact_name.trim()) { setError('Contact name is required'); return; }
     if (!form.email.trim()) { setError('Email is required'); return; }
+    if (form.phone && !isValidPhone(form.phone)) {
+      setError('Please enter a valid 10-digit phone number, or leave it blank.');
+      return;
+    }
 
     setSubmitting(true);
     try {
       await apiPost('/api/public/contact', {
         name: `${form.company_name} — ${form.contact_name}`.trim(),
         email: form.email,
-        phone: form.phone,
+        phone: form.phone ? getCleanPhone(form.phone) : '',
         message: [
           `Exporter Service Rate Request`,
           `Company: ${form.company_name || 'N/A'}`,
@@ -178,7 +183,7 @@ export default function Exporters() {
                 </div>
                 <div className={forms.inputGroup}>
                   <label className={forms.label}>{t('form.phone')}</label>
-                  <input type="tel" className={forms.input} value={form.phone} onChange={e => set('phone', e.target.value)} />
+                  <PhoneInput className={forms.input} value={form.phone} onChange={v => set('phone', v)} />
                 </div>
               </div>
               <div className={styles.formRow}>

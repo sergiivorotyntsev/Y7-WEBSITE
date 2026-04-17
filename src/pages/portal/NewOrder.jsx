@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles } from '../../theme';
+import PhoneInput from '../../components/PhoneInput';
 
 const inputStyle = {
   fontFamily: fonts.sans,
@@ -167,7 +168,7 @@ function ManualAddressFields({ fields, onChange }) {
         </div>
         <div>
           <label style={labelStyle}>Contact Phone</label>
-          <input style={inputStyle} type="tel" value={fields.contact_phone} onChange={e => onChange('contact_phone', e.target.value)} />
+          <PhoneInput style={inputStyle} value={fields.contact_phone} onChange={v => onChange('contact_phone', v)} />
         </div>
       </div>
     </div>

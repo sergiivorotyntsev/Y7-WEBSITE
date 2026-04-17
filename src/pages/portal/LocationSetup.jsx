@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles } from '../../theme';
+import PhoneInput from '../../components/PhoneInput';
 
 const inputStyle = {
   fontFamily: fonts.sans,
@@ -216,7 +217,7 @@ export default function LocationSetup() {
           </div>
           <div>
             <label style={labelStyle}>Contact Phone</label>
-            <input style={inputStyle} type="tel" value={form.contact_phone} onChange={e => set('contact_phone', e.target.value)} placeholder="(555) 123-4567" />
+            <PhoneInput style={inputStyle} value={form.contact_phone} onChange={v => set('contact_phone', v)} />
           </div>
         </div>
 

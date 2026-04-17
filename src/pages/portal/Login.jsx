@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import SmsConsent from '../../components/SmsConsent';
+import PhoneInput, { getCleanPhone, isValidPhone } from '../../components/PhoneInput';
 import { colors, fonts, button as btnStyles } from '../../theme';
 import { trackEvent } from '../../utils/analytics';
 
@@ -116,12 +117,20 @@ export default function Login() {
     e.preventDefault();
     setError(null);
     if (!reg.contact_name.trim()) { setError('Full name is required'); return; }
+    if (reg.phone && !isValidPhone(reg.phone)) {
+      setError('Please enter a valid 10-digit phone number, or leave it blank.');
+      return;
+    }
 
     setLoading(true);
     try {
       const res = await portalFetch('/api/portal/auth/web-register', {
         method: 'POST',
-        body: JSON.stringify({ ...reg, email: email.trim() }),
+        body: JSON.stringify({
+          ...reg,
+          email: email.trim(),
+          phone: reg.phone ? getCleanPhone(reg.phone) : '',
+        }),
       });
       const data = await res.json();
       if (res.ok && data.ok) {
@@ -313,7 +322,7 @@ export default function Login() {
           </div>
           <div>
             <label style={labelStyle}>Phone</label>
-            <input type="tel" value={reg.phone} onChange={e => setRegField('phone', e.target.value)} style={inputStyle} />
+            <PhoneInput value={reg.phone} onChange={v => setRegField('phone', v)} style={inputStyle} />
           </div>
 
           <div style={{

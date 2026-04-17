@@ -3,6 +3,7 @@ import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { EmailIcon, TelegramIcon, PortalIcon, CheckIcon } from '../components/icons';
 import { apiPost } from '../hooks/useApi';
+import PhoneInput, { getCleanPhone, isValidPhone } from '../components/PhoneInput';
 import styles from './Contact.module.css';
 import btn from '../styles/buttons.module.css';
 import forms from '../styles/forms.module.css';
@@ -21,9 +22,16 @@ export default function Contact() {
     if (!form.name.trim()) { setError('Name is required'); return; }
     if (!form.email.trim() && !form.phone.trim()) { setError('Email or phone required'); return; }
     if (!form.message.trim()) { setError('Message is required'); return; }
+    if (form.phone && !isValidPhone(form.phone)) {
+      setError('Please enter a valid 10-digit phone number, or leave it blank.');
+      return;
+    }
     setSubmitting(true);
     try {
-      await apiPost('/api/public/contact', form);
+      await apiPost('/api/public/contact', {
+        ...form,
+        phone: form.phone ? getCleanPhone(form.phone) : '',
+      });
       setSuccess(true);
     } catch (err) {
       setError(err.message || 'Something went wrong');
@@ -124,11 +132,10 @@ export default function Contact() {
                 </div>
                 <div className={forms.inputGroup}>
                   <label className={forms.label}>Phone</label>
-                  <input
-                    type="tel"
+                  <PhoneInput
                     className={forms.input}
                     value={form.phone}
-                    onChange={e => set('phone', e.target.value)}
+                    onChange={v => set('phone', v)}
                   />
                 </div>
               </div>

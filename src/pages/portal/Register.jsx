@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { API_URL } from '../../config';
 import SmsConsent from '../../components/SmsConsent';
+import PhoneInput, { getCleanPhone, isValidPhone } from '../../components/PhoneInput';
 import { colors, fonts, button as btnStyles } from '../../theme';
 import { trackEvent } from '../../utils/analytics';
 
@@ -110,12 +111,16 @@ export default function Register() {
     if (!form.contact_name.trim()) { setError('Full name is required'); return; }
     if (!form.email.trim() || !form.email.includes('@')) { setError('Valid email is required'); return; }
     if (!form.phone.trim()) { setError('Phone number is required'); return; }
+    if (!isValidPhone(form.phone)) {
+      setError('Please enter a valid 10-digit phone number.');
+      return;
+    }
 
     setLoading(true);
     try {
       const res = await portalFetch('/api/portal/auth/web-register', {
         method: 'POST',
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, phone: getCleanPhone(form.phone) }),
       });
       const data = await res.json();
       if (res.ok && data.ok) {
@@ -204,7 +209,7 @@ export default function Register() {
           </div>
           <div>
             <label style={labelStyle}>Phone *</label>
-            <input type="tel" value={form.phone} onChange={e => set('phone', e.target.value)} style={inputStyle} />
+            <PhoneInput value={form.phone} onChange={v => set('phone', v)} style={inputStyle} required />
           </div>
         </div>
 

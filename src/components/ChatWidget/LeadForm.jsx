@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { API_URL } from '../../config'
 import { colors, fonts } from '../../theme'
+import PhoneInput, { getCleanPhone, isValidPhone } from '../PhoneInput'
 
 // Inline lead-capture form. Rendered inside the chat widget (not a modal)
 // so the conversation context stays visible while the user fills in a name
@@ -18,6 +19,10 @@ export default function LeadForm({ sessionUuid, onSubmitted, onCancel }) {
       setError('Please fill in at least one field')
       return
     }
+    if (phone && !isValidPhone(phone)) {
+      setError('Please enter a valid 10-digit phone number, or leave it blank.')
+      return
+    }
 
     setSubmitting(true)
     setError(null)
@@ -30,7 +35,7 @@ export default function LeadForm({ sessionUuid, onSubmitted, onCancel }) {
           session_uuid: sessionUuid,
           name: name.trim() || undefined,
           email: email.trim() || undefined,
-          phone: phone.trim() || undefined,
+          phone: phone ? getCleanPhone(phone) : undefined,
         }),
       })
 
@@ -110,14 +115,10 @@ export default function LeadForm({ sessionUuid, onSubmitted, onCancel }) {
         </div>
         <div>
           <label style={labelStyle}>Phone (optional)</label>
-          <input
-            type="tel"
+          <PhoneInput
             value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            placeholder="+1 (555) 000-0000"
+            onChange={setPhone}
             style={inputStyle}
-            autoComplete="tel"
-            inputMode="tel"
           />
         </div>
       </div>

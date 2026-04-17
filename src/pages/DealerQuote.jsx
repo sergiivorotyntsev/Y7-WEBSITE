@@ -5,6 +5,7 @@ import { CheckIcon } from '../components/icons';
 import { apiPost } from '../hooks/useApi';
 import { portalFetch } from '../hooks/useAuth';
 import SmsConsent from '../components/SmsConsent';
+import PhoneInput, { getCleanPhone, isValidPhone } from '../components/PhoneInput';
 import { trackEvent } from '../utils/analytics';
 import styles from './DealerQuote.module.css';
 import qForm from '../components/QuoteForm.module.css';
@@ -75,10 +76,17 @@ export default function DealerQuote() {
     if (!form.contact_name.trim()) { setError('Contact person is required'); return; }
     if (!form.email.trim()) { setError('Email is required'); return; }
     if (!form.phone.trim()) { setError('Phone is required'); return; }
+    if (!isValidPhone(form.phone)) {
+      setError('Please enter a valid 10-digit phone number.');
+      return;
+    }
 
     setSubmitting(true);
     try {
-      const res = await apiPost('/api/public/dealer-inquiry', form);
+      const res = await apiPost('/api/public/dealer-inquiry', {
+        ...form,
+        phone: getCleanPhone(form.phone),
+      });
       setSuccess(res.reference);
       trackEvent('dealer_inquiry_submit', { monthly_volume: form.monthly_volume || '' });
     } catch (err) {
@@ -147,7 +155,7 @@ export default function DealerQuote() {
               </div>
               <div>
                 <label className={qForm.label}>Phone *</label>
-                <input className={qForm.input} type="tel" value={form.phone} onChange={e => set('phone', e.target.value)} placeholder="(555) 123-4567" />
+                <PhoneInput className={qForm.input} value={form.phone} onChange={v => set('phone', v)} required />
               </div>
             </div>
             <div className={styles.row}>
