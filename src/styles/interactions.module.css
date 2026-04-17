@@ -1,0 +1,147 @@
+/* Shared interaction primitives — hover, focus, entrance animations.
+   Composable via `composes` in other modules or used directly via className. */
+
+/* =====================================================================
+   CARD LIFTS
+   ===================================================================== */
+
+.liftCard {
+  transition:
+    transform var(--transition-normal, 250ms ease-out),
+    box-shadow var(--transition-normal, 250ms ease-out),
+    border-color var(--transition-normal, 250ms ease-out);
+  will-change: transform;
+}
+
+@media (hover: hover) {
+  .liftCard:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg, 0 4px 12px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08));
+    border-color: var(--accent, #993C1D);
+  }
+}
+
+.subtleLift {
+  transition:
+    transform var(--transition-normal, 250ms ease-out),
+    box-shadow var(--transition-normal, 250ms ease-out);
+  will-change: transform;
+}
+
+@media (hover: hover) {
+  .subtleLift:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md, 0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06));
+  }
+}
+
+/* =====================================================================
+   LINK UNDERLINES
+   ===================================================================== */
+
+.underlineGrow {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
+}
+
+.underlineGrow::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1.5px;
+  background: var(--accent, #993C1D);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--transition-normal, 250ms ease-out);
+}
+
+@media (hover: hover) {
+  .underlineGrow:hover::after,
+  .underlineGrow:focus-visible::after {
+    transform: scaleX(1);
+  }
+}
+
+.underlineCenter {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
+}
+
+.underlineCenter::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 100%;
+  height: 1.5px;
+  background: var(--accent, #993C1D);
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform var(--transition-normal, 250ms ease-out);
+}
+
+@media (hover: hover) {
+  .underlineCenter:hover::after,
+  .underlineCenter:focus-visible::after {
+    transform: translateX(-50%) scaleX(1);
+  }
+}
+
+/* =====================================================================
+   FOCUS RING — :focus-visible only (keyboard nav, not mouse clicks)
+   ===================================================================== */
+
+.focusRing {
+  outline: none;
+  transition: box-shadow var(--transition-fast, 150ms ease-out);
+  border-radius: var(--radius-md, 8px);
+}
+
+.focusRing:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--bg, #F7F5F0),
+    0 0 0 4px var(--accent, #993C1D);
+}
+
+/* =====================================================================
+   ENTRANCE ANIMATIONS (respect prefers-reduced-motion)
+   ===================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  .fadeIn {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: interactionsFadeUp 500ms ease-out forwards;
+  }
+
+  .staggerChild {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: interactionsFadeUp 500ms ease-out forwards;
+    animation-delay: calc(var(--i, 0) * 80ms);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fadeIn,
+  .staggerChild {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes interactionsFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
