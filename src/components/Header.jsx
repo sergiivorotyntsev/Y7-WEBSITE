@@ -38,45 +38,54 @@ export default function Header() {
     }
   }, [menuOpen]);
 
+  // Locale-aware link helper: prepends /{locale} to paths for translated
+  // pages when the visitor is already inside a locale prefix.
+  const localeMatch = location.pathname.match(/^\/(ua|pl|ru)(\/|$)/);
+  const currentLocale = localeMatch ? localeMatch[1] : 'en';
+  const prefix = currentLocale === 'en' ? '' : `/${currentLocale}`;
+  const L = (path) => `${prefix}${path}`;
+
   const handleQuoteClick = () => {
-    if (location.pathname === '/' || location.pathname.match(/^\/[a-z]{2}$/)) {
+    const base = location.pathname.replace(/^\/(ua|pl|ru)(\/|$)/, '/').replace(/\/+$/, '') || '/';
+    if (base === '/') {
       const el = document.getElementById('quote-section');
       if (el) { el.scrollIntoView({ behavior: 'smooth' }); return; }
     }
-    navigate('/quote');
+    navigate(L('/quote'));
   };
 
   const servicesItems = [
-    { to: '/dealers', label: t('nav.forDealers'), desc: t('nav.forDealersDesc') },
-    { to: '/exporters', label: t('nav.forExporters'), desc: t('nav.forExportersDesc') },
-    { to: '/ship-my-car', label: t('nav.shipMyCar'), desc: t('nav.shipMyCarDesc') },
-    { to: '/services', label: t('nav.allServices'), desc: t('nav.allServicesDesc') },
+    { to: L('/dealers'),     label: t('nav.forDealers'),    desc: t('nav.forDealersDesc') },
+    { to: L('/exporters'),   label: t('nav.forExporters'),  desc: t('nav.forExportersDesc') },
+    { to: L('/ship-my-car'), label: t('nav.shipMyCar'),     desc: t('nav.shipMyCarDesc') },
+    { to: L('/services'),    label: t('nav.allServices'),   desc: t('nav.allServicesDesc') },
     { to: '/door-to-port-auto-transport', label: t('nav.portDelivery'), desc: t('nav.portDeliveryDesc') },
   ];
 
   const resourcesItems = [
-    { to: '/blog', label: t('nav.blog'), desc: t('nav.blogDesc') },
-    { to: '/faq', label: t('nav.faq'), desc: t('nav.faqDesc') },
-    { to: '/about', label: t('nav.about'), desc: t('nav.aboutDesc') },
+    { to: '/blog',       label: t('nav.blog'), desc: t('nav.blogDesc') },
+    { to: L('/faq'),     label: t('nav.faq'),  desc: t('nav.faqDesc') },
+    { to: L('/about'),   label: t('nav.about'), desc: t('nav.aboutDesc') },
   ];
 
   // Intl landing pages — labels stay in native language (they identify
-  // the target page, not translate the UI chrome).
+  // the target page, not translate the UI chrome). Slugs match the new
+  // unique native slugs introduced in SEO-ARCH sprint.
   const internationalItems = [
-    { to: '/ua', label: 'Для України', desc: 'Пригін авто зі США' },
-    { to: '/pl', label: 'Dla Polski', desc: 'Transport aut z USA' },
-    { to: '/ru', label: 'Для диаспоры', desc: 'Доставка авто из США' },
+    { to: '/ua/import-z-usa',        label: 'Пригін авто (UA)',  desc: 'Пригін авто зі США в Україну' },
+    { to: '/pl/transport-z-usa',     label: 'Transport aut (PL)', desc: 'Sprowadzanie aut z USA' },
+    { to: '/ru/dostavka-avto-iz-usa',label: 'Доставка авто (RU)', desc: 'Перевозка авто для диаспоры' },
   ];
 
-  const servicesMatch = /^\/(services|dealers|exporters|ship-my-car|door-to-port)/;
-  const resourcesMatch = /^\/(blog|faq|about)/;
-  const intlMatch = /^\/(ua|pl|ru)(\/|$)/;
-  const trackActive = location.pathname === '/track';
-  const contactActive = location.pathname === '/contact';
+  const servicesMatch = /^\/(ua|pl|ru)?\/?(services|dealers|exporters|ship-my-car|door-to-port)/;
+  const resourcesMatch = /^\/(ua|pl|ru)?\/?(blog|faq|about)/;
+  const intlMatch = /^\/(ua|pl|ru)\/(import-z-usa|transport-z-usa|dostavka-avto-iz-usa|copart-ta-iaai|transport-z-aukcji|copart-i-iaai|dostavka-avto-z-usa|wysylka-auta-z-usa|perevozka-avto)/;
+  const trackActive = location.pathname === L('/track');
+  const contactActive = location.pathname === L('/contact');
 
-  // Home always points to /. Translation of the label is handled by i18n.
-  const homeHref = '/';
-  const homeActive = location.pathname === '/';
+  // Home always points to the current-locale Home (e.g. /ua when in UA).
+  const homeHref = prefix || '/';
+  const homeActive = location.pathname === homeHref;
 
   return (
     <header role="banner" className={styles.header}>
@@ -111,13 +120,13 @@ export default function Header() {
               activeMatch={intlMatch}
             />
             <Link
-              to="/track"
+              to={L('/track')}
               className={`${styles.navLink} ${trackActive ? styles.navLinkActive : ''}`}
             >
               {t('nav.track')}
             </Link>
             <Link
-              to="/contact"
+              to={L('/contact')}
               className={`${styles.navLink} ${contactActive ? styles.navLinkActive : ''}`}
             >
               {t('nav.contact')}
@@ -285,13 +294,13 @@ export default function Header() {
           )}
 
           <Link
-            to="/track"
+            to={L('/track')}
             className={`${styles.mobileNavLink} ${trackActive ? styles.mobileNavLinkActive : ''}`}
           >
             {t('nav.track')}
           </Link>
           <Link
-            to="/contact"
+            to={L('/contact')}
             className={`${styles.mobileNavLink} ${contactActive ? styles.mobileNavLinkActive : ''}`}
           >
             {t('nav.contact')}

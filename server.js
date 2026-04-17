@@ -38,14 +38,19 @@ const LEGACY_REDIRECTS = [
   { from: '/accessibility-statement', to: '/accessibility' },
   // Legacy diaspora URLs (pre-Sprint 5 refactor).
   { from: '/pl-us',                   to: '/pl' },
-  { from: '/pl-us/copart-shipping',   to: '/pl/copart-shipping' },
+  { from: '/pl-us/copart-shipping',   to: '/pl/transport-z-aukcji' },
   { from: '/pl-us/ship-my-car',       to: '/pl/ship-my-car' },
   { from: '/ua-us',                   to: '/ua' },
-  { from: '/ua-us/copart-shipping',   to: '/ua/copart-shipping' },
+  { from: '/ua-us/copart-shipping',   to: '/ua/copart-ta-iaai' },
   { from: '/ua-us/ship-my-car',       to: '/ua/ship-my-car' },
   { from: '/ru-us',                   to: '/ru' },
-  { from: '/ru-us/copart-shipping',   to: '/ru/copart-shipping' },
+  { from: '/ru-us/copart-shipping',   to: '/ru/copart-i-iaai' },
   { from: '/ru-us/ship-my-car',       to: '/ru/ship-my-car' },
+  // SEO-ARCH (Sprint April 2026): old /{lang}/copart-shipping URLs now
+  // map to the new unique native-slug intl landing pages.
+  { from: '/ua/copart-shipping',      to: '/ua/copart-ta-iaai' },
+  { from: '/pl/copart-shipping',      to: '/pl/transport-z-aukcji' },
+  { from: '/ru/copart-shipping',      to: '/ru/copart-i-iaai' },
 ];
 
 for (const { from, to } of LEGACY_REDIRECTS) {
