@@ -3,9 +3,7 @@ import { useTranslation } from 'react-i18next';
 import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { ChevronRightIcon } from '../components/icons';
-import { colors, fonts } from '../theme';
-
-/* ── helpers ─────────────────────────────────── */
+import styles from './FAQ.module.css';
 
 function buildJsonLd(categories) {
   const entities = [];
@@ -25,8 +23,6 @@ function buildJsonLd(categories) {
   });
 }
 
-/* ── single Q/A row ──────────────────────────── */
-
 function QAItem({ question, answer, onToggle }) {
   const [open, setOpen] = useState(false);
   const bodyRef = useRef(null);
@@ -38,75 +34,28 @@ function QAItem({ question, answer, onToggle }) {
 
   function handleClick() {
     setOpen(o => !o);
-    // Notify parent so Category can remeasure
     if (onToggle) setTimeout(onToggle, 50);
   }
 
   return (
-    <div style={{ borderBottom: `1px solid ${colors.border}` }}>
-      <button
-        onClick={handleClick}
-        aria-expanded={open}
-        style={{
-          width: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '12px',
-          padding: '16px 0',
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          textAlign: 'left',
-          fontFamily: fonts.sans,
-          fontSize: '15px',
-          fontWeight: 600,
-          color: colors.text,
-          lineHeight: 1.5,
-        }}
-      >
+    <div className={styles.qaItem}>
+      <button onClick={handleClick} aria-expanded={open} className={styles.qaToggle}>
         <span>{question}</span>
-        <span
-          style={{
-            color: colors.accent,
-            flexShrink: 0,
-            transition: 'transform 250ms ease',
-            transform: open ? 'rotate(90deg)' : 'rotate(0deg)',
-            display: 'flex',
-            alignItems: 'center',
-          }}
-          aria-hidden="true"
-        >
+        <span className={open ? styles.qaChevronOpen : styles.qaChevron} aria-hidden="true">
           <ChevronRightIcon size={16} />
         </span>
       </button>
       <div
-        style={{
-          maxHeight: open ? `${height}px` : '0px',
-          overflow: 'hidden',
-          transition: 'max-height 300ms ease',
-        }}
+        className={styles.qaBody}
+        style={{ maxHeight: open ? `${height}px` : '0px' }}
       >
         <div ref={bodyRef}>
-          <p
-            style={{
-              fontFamily: fonts.sans,
-              fontSize: '14px',
-              color: colors.textMuted,
-              lineHeight: 1.7,
-              padding: '0 0 16px',
-              margin: 0,
-            }}
-          >
-            {answer}
-          </p>
+          <p className={styles.qaAnswer}>{answer}</p>
         </div>
       </div>
     </div>
   );
 }
-
-/* ── category accordion ──────────────────────── */
 
 function Category({ name, items, isOpen, onToggle }) {
   const bodyRef = useRef(null);
@@ -116,75 +65,26 @@ function Category({ name, items, isOpen, onToggle }) {
     if (bodyRef.current) setHeight(bodyRef.current.scrollHeight);
   }, []);
 
-  // Remeasure when opened, when items change, or after inner QA toggles
   useEffect(() => { measure(); }, [items, isOpen, measure]);
 
-  // Allow inner QA items to trigger remeasure
   const handleInnerToggle = useCallback(() => {
-    // Small delay to let the inner animation start
     setTimeout(measure, 10);
     setTimeout(measure, 320);
   }, [measure]);
 
   return (
-    <div
-      style={{
-        background: colors.bgCard,
-        border: `1px solid ${colors.border}`,
-        borderRadius: '16px',
-        marginBottom: '16px',
-        overflow: 'hidden',
-      }}
-    >
-      <button
-        onClick={onToggle}
-        aria-expanded={isOpen}
-        style={{
-          width: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '12px',
-          padding: '20px 24px',
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          textAlign: 'left',
-        }}
-      >
-        <span
-          style={{
-            fontFamily: fonts.serif,
-            fontSize: '18px',
-            fontWeight: 700,
-            color: colors.text,
-          }}
-        >
-          {name}
-        </span>
-        <span
-          style={{
-            color: colors.accent,
-            flexShrink: 0,
-            transition: 'transform 300ms ease',
-            transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)',
-            lineHeight: 1,
-            display: 'flex',
-            alignItems: 'center',
-          }}
-          aria-hidden="true"
-        >
+    <div className={isOpen ? styles.categoryOpen : styles.category}>
+      <button onClick={onToggle} aria-expanded={isOpen} className={styles.categoryToggle}>
+        <span className={styles.categoryName}>{name}</span>
+        <span className={isOpen ? styles.chevronOpen : styles.chevron} aria-hidden="true">
           <ChevronRightIcon size={16} />
         </span>
       </button>
       <div
-        style={{
-          maxHeight: isOpen ? `${height}px` : '0px',
-          overflow: 'hidden',
-          transition: 'max-height 350ms ease',
-        }}
+        className={styles.categoryBody}
+        style={{ maxHeight: isOpen ? `${height}px` : '0px' }}
       >
-        <div ref={bodyRef} style={{ padding: '0 24px 8px' }}>
+        <div ref={bodyRef} className={styles.categoryBodyInner}>
           {items.map((item, j) => (
             <QAItem key={j} question={item.q} answer={item.a} onToggle={handleInnerToggle} />
           ))}
@@ -194,8 +94,6 @@ function Category({ name, items, isOpen, onToggle }) {
   );
 }
 
-/* ── page ─────────────────────────────────────── */
-
 export default function FAQ() {
   const { t } = useTranslation('faq');
   const categories = t('categories', { returnObjects: true });
@@ -204,7 +102,7 @@ export default function FAQ() {
   const validCategories = Array.isArray(categories) ? categories : [];
 
   return (
-    <div style={{ maxWidth: '800px', margin: '0 auto', padding: '60px 24px 80px' }}>
+    <div className={styles.wrap}>
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'FAQ',url:'/faq'}]} />
       <PageMeta
         title="FAQ"
@@ -220,39 +118,23 @@ export default function FAQ() {
         />
       )}
 
-      <h1
-        style={{
-          fontFamily: fonts.serif,
-          fontSize: 'clamp(28px, 4vw, 42px)',
-          fontWeight: 700,
-          color: colors.text,
-          textAlign: 'center',
-          marginBottom: '8px',
-        }}
-      >
-        {t('title')}
-      </h1>
-      <p
-        style={{
-          fontFamily: fonts.sans,
-          fontSize: '15px',
-          color: colors.textMuted,
-          textAlign: 'center',
-          marginBottom: '48px',
-        }}
-      >
-        {t('subtitle')}
-      </p>
+      <section className={styles.hero}>
+        <span className={styles.kicker}>&#9670; Help Center</span>
+        <h1 className={styles.title}>{t('title')}</h1>
+        <p className={styles.subtitle}>{t('subtitle')}</p>
+      </section>
 
-      {validCategories.map((cat, i) => (
-        <Category
-          key={i}
-          name={cat.name}
-          items={cat.items}
-          isOpen={openCat === i}
-          onToggle={() => setOpenCat(prev => (prev === i ? -1 : i))}
-        />
-      ))}
+      <div className={styles.body}>
+        {validCategories.map((cat, i) => (
+          <Category
+            key={i}
+            name={cat.name}
+            items={cat.items}
+            isOpen={openCat === i}
+            onToggle={() => setOpenCat(prev => (prev === i ? -1 : i))}
+          />
+        ))}
+      </div>
     </div>
   );
 }

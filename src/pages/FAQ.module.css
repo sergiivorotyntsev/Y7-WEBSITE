@@ -1,0 +1,209 @@
+/* FAQ page — hero, category filter pills, nested accordions. */
+
+.wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 0 80px;
+}
+
+.hero {
+  padding: clamp(56px, 8vh, 80px) 24px clamp(32px, 5vh, 48px);
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 100%, rgba(153, 60, 29, 0.06), transparent 60%),
+    linear-gradient(180deg, var(--bg, #F7F5F0) 0%, var(--bg-muted, #EFECE6) 100%);
+  margin-bottom: clamp(32px, 5vh, 48px);
+}
+
+.kicker {
+  display: inline-block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 12px;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.subtitle {
+  font-family: var(--font-sans, system-ui);
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+  color: var(--text-muted, #888780);
+  margin: 0 auto;
+  line-height: 1.7;
+  max-width: 560px;
+}
+
+.body {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* =====================================================================
+   CATEGORY CARD — outer accordion
+   ===================================================================== */
+
+.category {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-xl, 16px);
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition:
+    border-color var(--transition-normal, 250ms ease-out),
+    box-shadow var(--transition-normal, 250ms ease-out);
+}
+
+.categoryOpen {
+  composes: category;
+  border-color: var(--accent, #993C1D);
+  box-shadow: 0 2px 12px rgba(153, 60, 29, 0.06);
+}
+
+@media (hover: hover) {
+  .category:hover:not(.categoryOpen) {
+    border-color: var(--text-muted, #888780);
+  }
+}
+
+.categoryToggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  outline: none;
+  transition: background-color var(--transition-fast, 150ms ease-out);
+}
+
+.categoryToggle:focus-visible {
+  background-color: var(--bg-muted, #EFECE6);
+  box-shadow: inset 0 0 0 2px var(--accent, #993C1D);
+}
+
+@media (hover: hover) {
+  .categoryToggle:hover {
+    background-color: rgba(247, 245, 240, 0.6);
+  }
+}
+
+.categoryName {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  letter-spacing: -0.01em;
+}
+
+.chevron {
+  color: var(--accent, #993C1D);
+  flex-shrink: 0;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  transition: transform var(--transition-normal, 250ms ease-out);
+}
+
+.chevronOpen {
+  composes: chevron;
+  transform: rotate(90deg);
+}
+
+.categoryBody {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 350ms ease-out;
+}
+
+.categoryBodyInner {
+  padding: 0 24px 8px;
+}
+
+/* =====================================================================
+   INNER Q&A ROWS
+   ===================================================================== */
+
+.qaItem {
+  border-bottom: 1px solid var(--border, #e5e0d8);
+}
+
+.qaItem:last-child {
+  border-bottom: none;
+}
+
+.qaToggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-sans, system-ui);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text, #2C2C2A);
+  line-height: 1.5;
+  outline: none;
+  transition: color var(--transition-fast, 150ms ease-out);
+}
+
+.qaToggle:focus-visible {
+  color: var(--accent, #993C1D);
+  box-shadow: inset 0 0 0 2px var(--accent, #993C1D);
+  border-radius: var(--radius-sm, 4px);
+}
+
+@media (hover: hover) {
+  .qaToggle:hover {
+    color: var(--accent, #993C1D);
+  }
+}
+
+.qaChevron {
+  color: var(--accent, #993C1D);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  transition: transform var(--transition-normal, 250ms ease-out);
+}
+
+.qaChevronOpen {
+  composes: qaChevron;
+  transform: rotate(90deg);
+}
+
+.qaBody {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 300ms ease-out;
+}
+
+.qaAnswer {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  color: var(--text-muted, #888780);
+  line-height: 1.75;
+  padding: 0 0 18px;
+  margin: 0;
+}
