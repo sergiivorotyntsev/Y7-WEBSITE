@@ -2,7 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
-import { colors, fonts, button as btnStyles } from '../theme';
+import styles from './Services.module.css';
+import btn from '../styles/buttons.module.css';
 
 const servicePages = [
   { to: '/ship-my-car', title: 'Ship My Car', desc: 'Door-to-door auto transport for individuals. Open or enclosed carriers, status updates at every stage.' },
@@ -20,13 +21,20 @@ const servicePages = [
   { to: '/auction-to-port-transport', title: 'Auction to Port', desc: 'Direct pipeline from US auction yards to export ports. Gate pass to port delivery.' },
 ];
 
+const evPages = [
+  { to: '/tesla-car-shipping', title: 'Tesla Shipping', desc: 'Specialized transport for Model S, 3, X, Y, and Cybertruck. Air suspension, transport mode, stainless steel handling expertise.' },
+  { to: '/ev-auto-transport', title: 'Electric Vehicle Transport', desc: 'Nationwide EV shipping for Tesla, Rivian, Lucid, Ford Lightning, Porsche Taycan, Hummer EV, and more.' },
+  { to: '/cybertruck-shipping', title: 'Cybertruck Shipping', desc: 'Heavy-duty carriers for the 6,600 lb Cybertruck. Stainless steel safe handling, enclosed options available.' },
+  { to: '/electric-vehicle-port-delivery', title: 'EV Port Delivery', desc: 'Ship EVs from US auctions and dealers to export ports. Battery safety compliance, international shipping coordination.' },
+];
+
 export default function Services() {
   const { t } = useTranslation('services');
   const navigate = useNavigate();
   const list = t('list', { returnObjects: true });
 
   return (
-    <div style={{ maxWidth: '900px', margin: '0 auto', padding: '60px 24px 80px' }}>
+    <div className={styles.wrap}>
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Services',url:'/services'}]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
@@ -47,238 +55,51 @@ export default function Services() {
         }
       }) }} />
       <PageMeta title="Auto Transport Services" description="Auction pickup, dealer trades, port delivery, enclosed transport. Licensed broker with 100+ verified carriers." path="/services" />
-      <style>{`
-        .services-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 24px;
-        }
-        @media (max-width: 768px) {
-          .services-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 480px) {
-          .services-grid { grid-template-columns: 1fr; }
-        }
-      `}</style>
-      <h1 style={{
-        fontFamily: fonts.serif,
-        fontSize: 'clamp(28px, 4vw, 42px)',
-        fontWeight: 700,
-        color: colors.text,
-        textAlign: 'center',
-        marginBottom: '8px',
-      }}>
-        {t('title')}
-      </h1>
-      <p style={{
-        fontFamily: fonts.sans,
-        fontSize: '15px',
-        color: colors.textMuted,
-        textAlign: 'center',
-        marginBottom: '48px',
-      }}>
-        {t('subtitle')}
-      </p>
 
-      <div className="services-grid" style={{ alignItems: 'stretch' }}>
+      <h1 className={styles.title}>{t('title')}</h1>
+      <p className={styles.subtitle}>{t('subtitle')}</p>
+
+      <div className={styles.grid}>
         {Array.isArray(list) && list.map((item, i) => (
-          <div key={i} style={{
-            background: colors.bgCard,
-            border: `1px solid ${colors.border}`,
-            borderRadius: '16px',
-            padding: '28px 24px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '12px',
-            transition: 'transform 200ms ease, box-shadow 200ms ease',
-          }}
-            onMouseEnter={e => {
-              e.currentTarget.style.transform = 'translateY(-3px)';
-              e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,0,0,0.08)';
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = 'none';
-            }}
-          >
-            <h3 style={{
-              fontFamily: fonts.serif,
-              fontSize: '18px',
-              fontWeight: 700,
-              color: colors.text,
-            }}>
-              {item.title}
-            </h3>
-            <p style={{
-              fontFamily: fonts.sans,
-              fontSize: '14px',
-              color: colors.textMuted,
-              lineHeight: 1.6,
-              flex: 1,
-            }}>
-              {item.desc}
-            </p>
+          <div key={i} className={styles.card}>
+            <h3 className={styles.cardTitle}>{item.title}</h3>
+            <p className={styles.cardDesc}>{item.desc}</p>
           </div>
         ))}
       </div>
 
       {/* Service pages hub */}
-      <div style={{ marginTop: '64px' }}>
-        <h2 style={{
-          fontFamily: fonts.serif,
-          fontSize: '24px',
-          fontWeight: 700,
-          color: colors.text,
-          textAlign: 'center',
-          marginBottom: '8px',
-        }}>
-          Explore Our Services
-        </h2>
-        <p style={{
-          fontFamily: fonts.sans,
-          fontSize: '14px',
-          color: colors.textMuted,
-          textAlign: 'center',
-          marginBottom: '32px',
-        }}>
-          Learn more about each service we offer
-        </p>
-        <div className="services-grid" style={{ alignItems: 'stretch' }}>
+      <div className={styles.section}>
+        <h2 className={styles.sectionHeading}>Explore Our Services</h2>
+        <p className={styles.sectionLede}>Learn more about each service we offer</p>
+        <div className={styles.grid}>
           {servicePages.map((page) => (
-            <Link key={page.to} to={page.to} style={{
-              background: colors.bgCard,
-              border: `1px solid ${colors.border}`,
-              borderRadius: '16px',
-              padding: '24px 20px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '8px',
-              textDecoration: 'none',
-              transition: 'transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease',
-            }}
-              onMouseEnter={e => {
-                e.currentTarget.style.transform = 'translateY(-3px)';
-                e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,0,0,0.08)';
-                e.currentTarget.style.borderColor = colors.accent;
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-                e.currentTarget.style.borderColor = colors.border;
-              }}
-            >
-              <h3 style={{
-                fontFamily: fonts.sans,
-                fontSize: '15px',
-                fontWeight: 600,
-                color: colors.text,
-              }}>
-                {page.title}
-              </h3>
-              <p style={{
-                fontFamily: fonts.sans,
-                fontSize: '13px',
-                color: colors.textMuted,
-                lineHeight: 1.5,
-                flex: 1,
-              }}>
-                {page.desc}
-              </p>
-              <span style={{
-                fontFamily: fonts.sans,
-                fontSize: '12px',
-                color: colors.accent,
-                fontWeight: 600,
-              }}>
-                Learn more &rarr;
-              </span>
+            <Link key={page.to} to={page.to} className={styles.linkCard}>
+              <h3 className={styles.linkTitle}>{page.title}</h3>
+              <p className={styles.linkDesc}>{page.desc}</p>
+              <span className={styles.linkCta}>Learn more &rarr;</span>
             </Link>
           ))}
         </div>
       </div>
 
       {/* EV & Tesla Services */}
-      <div style={{ marginTop: '64px' }}>
-        <h2 style={{
-          fontFamily: fonts.serif,
-          fontSize: '24px',
-          fontWeight: 700,
-          color: colors.text,
-          textAlign: 'center',
-          marginBottom: '8px',
-        }}>
-          Electric Vehicle Transport
-        </h2>
-        <p style={{
-          fontFamily: fonts.sans,
-          fontSize: '14px',
-          color: colors.textMuted,
-          textAlign: 'center',
-          marginBottom: '32px',
-        }}>
-          Specialized carriers for Tesla, Rivian, Lucid, and every major EV brand
-        </p>
-        <div className="services-grid" style={{ alignItems: 'stretch' }}>
-          {[
-            { to: '/tesla-car-shipping', title: 'Tesla Shipping', desc: 'Specialized transport for Model S, 3, X, Y, and Cybertruck. Air suspension, transport mode, stainless steel handling expertise.' },
-            { to: '/ev-auto-transport', title: 'Electric Vehicle Transport', desc: 'Nationwide EV shipping for Tesla, Rivian, Lucid, Ford Lightning, Porsche Taycan, Hummer EV, and more.' },
-            { to: '/cybertruck-shipping', title: 'Cybertruck Shipping', desc: 'Heavy-duty carriers for the 6,600 lb Cybertruck. Stainless steel safe handling, enclosed options available.' },
-            { to: '/electric-vehicle-port-delivery', title: 'EV Port Delivery', desc: 'Ship EVs from US auctions and dealers to export ports. Battery safety compliance, international shipping coordination.' },
-          ].map((page) => (
-            <Link key={page.to} to={page.to} style={{
-              background: colors.bgCard,
-              border: `1px solid ${colors.border}`,
-              borderRadius: '16px',
-              padding: '24px 20px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '8px',
-              textDecoration: 'none',
-              transition: 'transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease',
-            }}
-              onMouseEnter={e => {
-                e.currentTarget.style.transform = 'translateY(-3px)';
-                e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,0,0,0.08)';
-                e.currentTarget.style.borderColor = colors.accent;
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-                e.currentTarget.style.borderColor = colors.border;
-              }}
-            >
-              <h3 style={{
-                fontFamily: fonts.sans,
-                fontSize: '15px',
-                fontWeight: 600,
-                color: colors.text,
-              }}>
-                {page.title}
-              </h3>
-              <p style={{
-                fontFamily: fonts.sans,
-                fontSize: '13px',
-                color: colors.textMuted,
-                lineHeight: 1.5,
-                flex: 1,
-              }}>
-                {page.desc}
-              </p>
-              <span style={{
-                fontFamily: fonts.sans,
-                fontSize: '12px',
-                color: colors.accent,
-                fontWeight: 600,
-              }}>
-                Learn more &rarr;
-              </span>
+      <div className={styles.section}>
+        <h2 className={styles.sectionHeading}>Electric Vehicle Transport</h2>
+        <p className={styles.sectionLede}>Specialized carriers for Tesla, Rivian, Lucid, and every major EV brand</p>
+        <div className={styles.grid}>
+          {evPages.map((page) => (
+            <Link key={page.to} to={page.to} className={styles.linkCard}>
+              <h3 className={styles.linkTitle}>{page.title}</h3>
+              <p className={styles.linkDesc}>{page.desc}</p>
+              <span className={styles.linkCta}>Learn more &rarr;</span>
             </Link>
           ))}
         </div>
       </div>
 
-      <div style={{ textAlign: 'center', marginTop: '48px' }}>
-        <button onClick={() => navigate('/quote')} style={btnStyles.accent}>
+      <div className={styles.ctaWrap}>
+        <button onClick={() => navigate('/quote')} className={btn.btnAccent}>
           Get a Free Quote
         </button>
       </div>

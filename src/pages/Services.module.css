@@ -1,0 +1,190 @@
+/* Services — 3-column hub layout. */
+
+.wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 24px 80px;
+}
+
+.title {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  text-align: center;
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-family: var(--font-sans, system-ui);
+  font-size: 15px;
+  color: var(--text-muted, #888780);
+  text-align: center;
+  line-height: 1.7;
+  margin: 0 0 48px;
+}
+
+.sectionHeading {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  text-align: center;
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+
+.sectionLede {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  color: var(--text-muted, #888780);
+  text-align: center;
+  margin: 0 0 32px;
+  line-height: 1.7;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+@media (max-width: 768px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.section {
+  margin-top: 64px;
+}
+
+/* =====================================================================
+   CARDS
+   ===================================================================== */
+
+.card {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-xl, 16px);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition:
+    transform var(--transition-normal, 250ms ease-out),
+    box-shadow var(--transition-normal, 250ms ease-out),
+    border-color var(--transition-normal, 250ms ease-out);
+}
+
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg, 0 4px 12px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08));
+    border-color: var(--accent, #993C1D);
+  }
+}
+
+.cardTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.cardDesc {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  color: var(--text-muted, #888780);
+  line-height: 1.7;
+  flex: 1;
+  margin: 0;
+}
+
+/* =====================================================================
+   LINK CARDS (sub-service pages)
+   ===================================================================== */
+
+.linkCard {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-xl, 16px);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+  outline: none;
+  position: relative;
+  transition:
+    transform var(--transition-normal, 250ms ease-out),
+    box-shadow var(--transition-normal, 250ms ease-out),
+    border-color var(--transition-normal, 250ms ease-out);
+}
+
+.linkCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-top-left-radius: var(--radius-xl, 16px);
+  border-top-right-radius: var(--radius-xl, 16px);
+  background: var(--accent, #993C1D);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-normal, 250ms ease-out);
+}
+
+@media (hover: hover) {
+  .linkCard:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg, 0 4px 12px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08));
+    border-color: var(--accent, #993C1D);
+  }
+  .linkCard:hover::before {
+    transform: scaleX(1);
+  }
+}
+
+.linkCard:focus-visible {
+  border-color: var(--accent, #993C1D);
+  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+}
+.linkCard:focus-visible::before { transform: scaleX(1); }
+
+.linkTitle {
+  font-family: var(--font-sans, system-ui);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text, #2C2C2A);
+  margin: 0;
+}
+
+.linkDesc {
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  color: var(--text-muted, #888780);
+  line-height: 1.6;
+  flex: 1;
+  margin: 0;
+}
+
+.linkCta {
+  font-family: var(--font-sans, system-ui);
+  font-size: 12px;
+  color: var(--accent, #993C1D);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.ctaWrap {
+  text-align: center;
+  margin-top: 48px;
+}
