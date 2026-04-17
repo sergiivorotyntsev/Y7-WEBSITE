@@ -1,33 +1,5 @@
 import { useState, useEffect } from 'react';
-import { colors, fonts } from '../theme';
-
-const btnBase = {
-  display: 'inline-flex',
-  alignItems: 'center',
-  gap: 6,
-  padding: '6px 14px',
-  borderRadius: 20,
-  border: `1px solid ${colors.border}`,
-  background: colors.bgCard,
-  color: colors.text,
-  textDecoration: 'none',
-  fontSize: '0.8rem',
-  fontWeight: 600,
-  fontFamily: fonts.sans,
-  cursor: 'pointer',
-  transition: 'all 0.2s',
-};
-
-function hoverIn(e) {
-  e.currentTarget.style.background = colors.dark;
-  e.currentTarget.style.color = '#fff';
-  e.currentTarget.style.borderColor = colors.dark;
-}
-function hoverOut(e) {
-  e.currentTarget.style.background = colors.bgCard;
-  e.currentTarget.style.color = colors.text;
-  e.currentTarget.style.borderColor = colors.border;
-}
+import styles from './ShareButtons.module.css';
 
 const XIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -84,18 +56,8 @@ export default function ShareButtons({ url, title, description }) {
   ];
 
   return (
-    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center', margin: '16px 0' }}>
-      <span style={{
-        fontSize: '0.78rem',
-        fontWeight: 600,
-        color: colors.textMuted,
-        textTransform: 'uppercase',
-        letterSpacing: '0.5px',
-        fontFamily: fonts.sans,
-        marginRight: 4,
-      }}>
-        Share
-      </span>
+    <div className={styles.wrap}>
+      <span className={styles.label}>Share</span>
 
       {shares.map(s => (
         <a
@@ -103,9 +65,7 @@ export default function ShareButtons({ url, title, description }) {
           href={s.href}
           target="_blank"
           rel="noopener noreferrer"
-          style={btnBase}
-          onMouseEnter={hoverIn}
-          onMouseLeave={hoverOut}
+          className={styles.btn}
         >
           {s.icon}
           {s.label}
@@ -114,21 +74,14 @@ export default function ShareButtons({ url, title, description }) {
 
       <button
         onClick={handleCopy}
-        style={{ ...btnBase, ...(copied ? { background: colors.success, color: '#fff', borderColor: colors.success } : {}) }}
-        onMouseEnter={!copied ? hoverIn : undefined}
-        onMouseLeave={!copied ? hoverOut : undefined}
+        className={`${styles.btn} ${copied ? styles.btnCopied : ''}`}
       >
         <LinkIcon />
         {copied ? 'Copied!' : 'Copy Link'}
       </button>
 
       {hasNativeShare && (
-        <button
-          onClick={handleNativeShare}
-          style={btnBase}
-          onMouseEnter={hoverIn}
-          onMouseLeave={hoverOut}
-        >
+        <button onClick={handleNativeShare} className={styles.btn}>
           <ShareIcon />
           Share
         </button>

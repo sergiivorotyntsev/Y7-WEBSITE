@@ -4,7 +4,7 @@ import PageMeta from '../../components/PageMeta';
 import BreadcrumbSchema from '../../components/BreadcrumbSchema';
 import articles, { CATEGORIES } from '../../data/blogArticles';
 import BANNER_MAP from './BlogBanners';
-import { colors, fonts } from '../../theme';
+import styles from './BlogIndex.module.css';
 
 const ALL_FILTERS = [
   { key: 'all', label: 'All' },
@@ -44,60 +44,25 @@ export default function BlogIndex() {
       <BreadcrumbSchema items={[{ name: 'Home', url: '/' }, { name: 'Blog', url: '/blog' }]} />
 
       {/* Hero */}
-      <section style={{
-        background: colors.dark,
-        padding: 'clamp(48px, 8vw, 80px) 24px clamp(40px, 6vw, 64px)',
-      }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <div style={{
-            fontFamily: fonts.sans,
-            fontSize: '0.75rem',
-            fontWeight: 600,
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            color: colors.accent,
-            marginBottom: 16,
-          }}>
-            &#9670; Dispatches from the Road
-          </div>
-          <h1 style={{
-            fontFamily: fonts.serif,
-            fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
-            fontWeight: 700,
-            color: colors.bg,
-            lineHeight: 1.15,
-            marginBottom: 16,
-          }}>
+      <section className={styles.hero}>
+        <div className={styles.heroInner}>
+          <div className={styles.heroKicker}>&#9670; Dispatches from the Road</div>
+          <h1 className={styles.heroTitle}>
             Real Stories. Real Loads.{' '}
             <span style={{ display: 'block' }}>No Sugarcoating.</span>
           </h1>
-          <p style={{
-            fontFamily: fonts.sans,
-            fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)',
-            color: '#A8A49C',
-            lineHeight: 1.7,
-            maxWidth: 600,
-            marginBottom: 32,
-          }}>
+          <p className={styles.heroDesc}>
             Industry insights from a team that processes thousands of loads, carrier messages, and compliance events every month. Written for brokers, dealers, and exporters who want substance over marketing.
           </p>
-          <div style={{
-            display: 'flex',
-            gap: 'clamp(16px, 3vw, 32px)',
-            flexWrap: 'wrap',
-          }}>
+          <div className={styles.heroStats}>
             {[
               { num: '267+', label: 'Carriers' },
               { num: '3,674', label: 'Messages' },
               { num: 'MC #1741537', label: 'FMCSA Licensed' },
             ].map(s => (
               <div key={s.label}>
-                <div style={{ fontFamily: fonts.mono, fontSize: 'clamp(1.2rem, 2vw, 1.6rem)', fontWeight: 700, color: colors.accent }}>
-                  {s.num}
-                </div>
-                <div style={{ fontFamily: fonts.sans, fontSize: '0.75rem', color: '#888780', textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: 2 }}>
-                  {s.label}
-                </div>
+                <div className={styles.heroStatNum}>{s.num}</div>
+                <div className={styles.heroStatLabel}>{s.label}</div>
               </div>
             ))}
           </div>
@@ -105,41 +70,16 @@ export default function BlogIndex() {
       </section>
 
       {/* Filter Bar */}
-      <section style={{
-        background: colors.bg,
-        borderBottom: `1px solid ${colors.border}`,
-        padding: '16px 24px',
-        position: 'sticky',
-        top: 64,
-        zIndex: 50,
-      }}>
-        <div style={{
-          maxWidth: 1200,
-          margin: '0 auto',
-          display: 'flex',
-          gap: 8,
-          flexWrap: 'wrap',
-        }}>
+      <section className={styles.filterBar}>
+        <div className={styles.filterInner}>
           {ALL_FILTERS.map(f => {
             const active = filter === f.key;
             return (
               <button
                 key={f.key}
                 onClick={() => setFilter(f.key)}
-                style={{
-                  fontFamily: fonts.sans,
-                  fontSize: '0.8rem',
-                  fontWeight: 600,
-                  letterSpacing: '0.03em',
-                  textTransform: 'uppercase',
-                  padding: '8px 16px',
-                  borderRadius: 20,
-                  border: active ? 'none' : `1px solid ${colors.border}`,
-                  background: active ? colors.dark : 'transparent',
-                  color: active ? '#fff' : colors.textMuted,
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                }}
+                className={`${styles.filterBtn} ${active ? styles.filterBtnActive : ''}`}
+                aria-pressed={active}
               >
                 {f.label}
               </button>
@@ -149,101 +89,36 @@ export default function BlogIndex() {
       </section>
 
       {/* Articles Grid */}
-      <section style={{
-        maxWidth: 1200,
-        margin: '0 auto',
-        padding: '40px 24px 80px',
-      }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))',
-          gap: 24,
-        }}>
+      <section className={styles.articlesSection}>
+        <div className={styles.grid}>
           {filtered.map(article => {
             const cat = CATEGORIES[article.category] || {};
             const Banner = BANNER_MAP[article.category];
             return (
-              <Link
-                key={article.slug}
-                to={`/blog/${article.slug}`}
-                style={{
-                  textDecoration: 'none',
-                  color: 'inherit',
-                  background: '#fff',
-                  borderRadius: 12,
-                  overflow: 'hidden',
-                  boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                  display: 'flex',
-                  flexDirection: 'column',
-                }}
-                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.1)'; }}
-                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 2px 12px rgba(0,0,0,0.06)'; }}
-              >
-                {/* Banner */}
-                <div style={{ height: 160, overflow: 'hidden' }}>
+              <Link key={article.slug} to={`/blog/${article.slug}`} className={styles.card}>
+                <div className={styles.banner}>
                   {Banner && <Banner />}
                 </div>
 
-                {/* Content */}
-                <div style={{ padding: '20px 24px 24px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                  {/* Category + Meta */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
-                    <span style={{
-                      fontFamily: fonts.sans,
-                      fontSize: '0.7rem',
-                      fontWeight: 700,
-                      letterSpacing: '0.04em',
-                      textTransform: 'uppercase',
-                      color: '#fff',
-                      background: cat.color || colors.dark,
-                      padding: '3px 10px',
-                      borderRadius: 10,
-                    }}>
+                <div className={styles.content}>
+                  <div className={styles.meta}>
+                    <span
+                      className={styles.categoryBadge}
+                      style={{ background: cat.color || 'var(--text)' }}
+                    >
                       {cat.label}
                     </span>
-                    <span style={{ fontFamily: fonts.sans, fontSize: '0.78rem', color: colors.textMuted }}>
+                    <span className={styles.metaText}>
                       {article.date} &middot; {article.readTime}
                     </span>
                   </div>
 
-                  {/* Title */}
-                  <h2 style={{
-                    fontFamily: fonts.serif,
-                    fontSize: 'clamp(1.05rem, 2vw, 1.2rem)',
-                    fontWeight: 700,
-                    color: colors.text,
-                    lineHeight: 1.35,
-                    marginBottom: 10,
-                  }}>
-                    {article.title}
-                  </h2>
+                  <h2 className={styles.cardTitle}>{article.title}</h2>
+                  <p className={styles.cardExcerpt}>{article.excerpt}</p>
 
-                  {/* Excerpt */}
-                  <p style={{
-                    fontFamily: fonts.sans,
-                    fontSize: '0.88rem',
-                    color: colors.textMuted,
-                    lineHeight: 1.6,
-                    flex: 1,
-                    marginBottom: 16,
-                  }}>
-                    {article.excerpt}
-                  </p>
-
-                  {/* Tags */}
-                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                  <div className={styles.tags}>
                     {article.tags.slice(0, 3).map(tag => (
-                      <span key={tag} style={{
-                        fontFamily: fonts.mono,
-                        fontSize: '0.7rem',
-                        color: colors.textMuted,
-                        background: colors.bgMuted,
-                        padding: '2px 8px',
-                        borderRadius: 6,
-                      }}>
-                        {tag}
-                      </span>
+                      <span key={tag} className={styles.tag}>{tag}</span>
                     ))}
                   </div>
                 </div>
@@ -253,15 +128,7 @@ export default function BlogIndex() {
         </div>
 
         {filtered.length === 0 && (
-          <p style={{
-            fontFamily: fonts.sans,
-            fontSize: '1rem',
-            color: colors.textMuted,
-            textAlign: 'center',
-            padding: '60px 0',
-          }}>
-            No articles in this category yet. Check back soon.
-          </p>
+          <p className={styles.empty}>No articles in this category yet. Check back soon.</p>
         )}
       </section>
     </div>

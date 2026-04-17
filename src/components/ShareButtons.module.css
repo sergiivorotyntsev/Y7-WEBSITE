@@ -1,0 +1,72 @@
+/* ShareButtons — pill-shaped social share row with dark fill on hover. */
+
+.wrap {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted, #888780);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: var(--font-sans, system-ui);
+  margin-right: 4px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill, 20px);
+  border: 1px solid var(--border, #e5e0d8);
+  background: var(--bg-card, #fff);
+  color: var(--text, #2C2C2A);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: var(--font-sans, system-ui);
+  cursor: pointer;
+  outline: none;
+  transition:
+    background-color var(--transition-normal, 250ms ease-out),
+    color var(--transition-normal, 250ms ease-out),
+    border-color var(--transition-normal, 250ms ease-out),
+    transform var(--transition-fast, 150ms ease-out);
+}
+
+@media (hover: hover) {
+  .btn:hover {
+    background: var(--text, #2C2C2A);
+    color: #fff;
+    border-color: var(--text, #2C2C2A);
+    transform: translateY(-1px);
+  }
+  .btn:active {
+    transform: scale(0.97);
+  }
+}
+
+.btn:focus-visible {
+  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+}
+
+.btnCopied {
+  background: var(--success, #0F6E56);
+  color: #fff;
+  border-color: var(--success, #0F6E56);
+}
+
+@media (hover: hover) {
+  .btnCopied:hover {
+    background: var(--success, #0F6E56);
+    color: #fff;
+    border-color: var(--success, #0F6E56);
+    transform: none;
+  }
+}

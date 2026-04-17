@@ -1,0 +1,194 @@
+/* BlogArticle — article page layout, category badge, related articles. */
+
+.bannerWrap {
+  max-width: 980px;
+  margin: 0 auto 32px;
+  padding: 0 24px;
+}
+
+.bannerInner {
+  width: 100%;
+  aspect-ratio: 1200 / 400;
+  border-radius: var(--radius-lg, 12px);
+  overflow: hidden;
+  background: var(--text, #2C2C2A);
+}
+
+.article {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+.categoryBadge {
+  display: inline-block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  line-height: 1.2;
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+}
+
+.meta {
+  font-family: var(--font-sans, system-ui);
+  font-size: 0.88rem;
+  color: var(--text-muted, #888780);
+  margin-bottom: 24px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border, #e5e0d8);
+  margin-bottom: 32px;
+}
+
+.shareFooter {
+  border-top: 1px solid var(--border, #e5e0d8);
+  padding-top: 24px;
+  margin-top: 36px;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  margin-bottom: 32px;
+}
+
+.tag {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.75rem;
+  color: var(--text-muted, #888780);
+  background: var(--bg-muted, #EFECE6);
+  padding: 4px 12px;
+  border-radius: var(--radius-md, 8px);
+}
+
+.backLink {
+  font-family: var(--font-sans, system-ui);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent, #993C1D);
+  text-decoration: none;
+  outline: none;
+  padding: 4px 6px;
+  margin-left: -6px;
+  border-radius: var(--radius-sm, 4px);
+  transition: color var(--transition-fast, 150ms ease-out), background-color var(--transition-fast, 150ms ease-out);
+}
+
+@media (hover: hover) {
+  .backLink:hover {
+    color: var(--accent-hover, #7A3017);
+    background-color: var(--accent-glow, rgba(153, 60, 29, 0.15));
+  }
+}
+
+.backLink:focus-visible {
+  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+}
+
+/* =====================================================================
+   RELATED ARTICLES
+   ===================================================================== */
+
+.relatedSection {
+  background: var(--bg-muted, #EFECE6);
+  border-top: 1px solid var(--border, #e5e0d8);
+  padding: 48px 24px 64px;
+}
+
+.relatedInner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.relatedTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 24px;
+  letter-spacing: -0.02em;
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.relatedCard {
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 20px 24px;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06));
+  display: block;
+  outline: none;
+  transition:
+    transform var(--transition-normal, 250ms ease-out),
+    box-shadow var(--transition-normal, 250ms ease-out),
+    border-color var(--transition-normal, 250ms ease-out);
+}
+
+@media (hover: hover) {
+  .relatedCard:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md, 0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06));
+    border-color: var(--accent, #993C1D);
+  }
+}
+
+.relatedCard:focus-visible {
+  border-color: var(--accent, #993C1D);
+  box-shadow: 0 0 0 2px var(--bg-muted, #EFECE6), 0 0 0 4px var(--accent, #993C1D);
+}
+
+.relatedBadge {
+  font-family: var(--font-sans, system-ui);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 8px;
+  letter-spacing: 0.08em;
+}
+
+.relatedCardTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  line-height: 1.4;
+  margin: 10px 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.relatedCardMeta {
+  font-family: var(--font-sans, system-ui);
+  font-size: 0.78rem;
+  color: var(--text-muted, #888780);
+}
