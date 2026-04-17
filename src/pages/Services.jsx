@@ -56,52 +56,73 @@ export default function Services() {
       }) }} />
       <PageMeta title="Auto Transport Services" description="Auction pickup, dealer trades, port delivery, enclosed transport. Licensed broker with 100+ verified carriers." path="/services" />
 
-      <h1 className={styles.title}>{t('title')}</h1>
-      <p className={styles.subtitle}>{t('subtitle')}</p>
+      {/* Compact dark hero */}
+      <section className={styles.hero}>
+        <div className={styles.heroInner}>
+          <span className={styles.heroMicro}>&#9670; Our Services</span>
+          <h1 className={styles.title}>{t('title')}</h1>
+          <p className={styles.subtitle}>{t('subtitle')}</p>
+        </div>
+      </section>
 
-      <div className={styles.grid}>
-        {Array.isArray(list) && list.map((item, i) => (
-          <div key={i} className={styles.card}>
-            <h3 className={styles.cardTitle}>{item.title}</h3>
-            <p className={styles.cardDesc}>{item.desc}</p>
+      <div className={styles.bodyWrap}>
+        <div className={styles.grid}>
+          {Array.isArray(list) && list.map((item, i) => (
+            <div key={i} className={styles.card} style={{ '--i': i }}>
+              <h3 className={styles.cardTitle}>{item.title}</h3>
+              <p className={styles.cardDesc}>{item.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Service pages hub */}
+        <div className={styles.section}>
+          <div className={styles.sectionHeadingWrap}>
+            <span className={styles.sectionMicro}>Explore</span>
+            <h2 className={styles.sectionHeading}>Every service we offer</h2>
           </div>
-        ))}
-      </div>
-
-      {/* Service pages hub */}
-      <div className={styles.section}>
-        <h2 className={styles.sectionHeading}>Explore Our Services</h2>
-        <p className={styles.sectionLede}>Learn more about each service we offer</p>
-        <div className={styles.grid}>
-          {servicePages.map((page) => (
-            <Link key={page.to} to={page.to} className={styles.linkCard}>
-              <h3 className={styles.linkTitle}>{page.title}</h3>
-              <p className={styles.linkDesc}>{page.desc}</p>
-              <span className={styles.linkCta}>Learn more &rarr;</span>
-            </Link>
-          ))}
+          <div className={styles.grid}>
+            {servicePages.map((page, i) => (
+              <Link key={page.to} to={page.to} className={styles.linkCard} style={{ '--i': i }}>
+                <h3 className={styles.linkTitle}>{page.title}</h3>
+                <p className={styles.linkDesc}>{page.desc}</p>
+                <span className={styles.linkCta}>Learn more &rarr;</span>
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* EV & Tesla Services */}
-      <div className={styles.section}>
-        <h2 className={styles.sectionHeading}>Electric Vehicle Transport</h2>
-        <p className={styles.sectionLede}>Specialized carriers for Tesla, Rivian, Lucid, and every major EV brand</p>
-        <div className={styles.grid}>
-          {evPages.map((page) => (
-            <Link key={page.to} to={page.to} className={styles.linkCard}>
-              <h3 className={styles.linkTitle}>{page.title}</h3>
-              <p className={styles.linkDesc}>{page.desc}</p>
-              <span className={styles.linkCta}>Learn more &rarr;</span>
-            </Link>
-          ))}
+        {/* EV & Tesla Services */}
+        <div className={styles.section}>
+          <div className={styles.sectionHeadingWrap}>
+            <span className={styles.sectionMicro}>EV Specialists</span>
+            <h2 className={styles.sectionHeading}>Electric Vehicle Transport</h2>
+            <p className={styles.sectionLede}>Specialized carriers for Tesla, Rivian, Lucid, and every major EV brand</p>
+          </div>
+          <div className={styles.grid}>
+            {evPages.map((page, i) => (
+              <Link key={page.to} to={page.to} className={styles.linkCard} style={{ '--i': i }}>
+                <h3 className={styles.linkTitle}>{page.title}</h3>
+                <p className={styles.linkDesc}>{page.desc}</p>
+                <span className={styles.linkCta}>Learn more &rarr;</span>
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
 
-      <div className={styles.ctaWrap}>
-        <button onClick={() => navigate('/quote')} className={btn.btnAccent}>
-          Get a Free Quote
-        </button>
+        {/* CTA strip */}
+        <div className={styles.ctaStrip}>
+          <h2 className={styles.ctaTitle}>Ready to move your vehicle?</h2>
+          <p className={styles.ctaSubtitle}>
+            Get a transparent quote in under an hour. No hidden fees, no pressure.
+          </p>
+          <button
+            onClick={() => navigate('/quote')}
+            className={`${btn.btn} ${styles.ctaBtnLight}`}
+          >
+            Get a Free Quote
+          </button>
+        </div>
       </div>
     </div>
   );
