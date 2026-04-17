@@ -14,16 +14,17 @@ const ITEMS = [
 export default function WhyY7() {
   return (
     <div>
-      <h2 className={styles.title}>Why Shippers Choose Y7</h2>
+      <div className={styles.header}>
+        <span className={styles.micro}>Why Choose Y7</span>
+        <h2 className={styles.title}>Why Shippers Choose Y7</h2>
+      </div>
       <div className={styles.grid}>
         {ITEMS.map(({ icon, title, desc }, i) => (
-          <ScrollReveal key={title} delay={i * 80} style={{ display: 'flex' }}>
+          <ScrollReveal key={title} delay={i * 60} style={{ display: 'contents' }}>
             <div className={styles.item}>
               <span className={styles.iconWrap}>{icon}</span>
-              <div>
-                <div className={styles.itemTitle}>{title}</div>
-                <div className={styles.itemDesc}>{desc}</div>
-              </div>
+              <div className={styles.itemTitle}>{title}</div>
+              <div className={styles.itemDesc}>{desc}</div>
             </div>
           </ScrollReveal>
         ))}
