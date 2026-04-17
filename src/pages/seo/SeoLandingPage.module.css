@@ -1,0 +1,288 @@
+/* SeoLandingPage — shared template for 15+ SEO landing pages. High leverage. */
+
+.wrap {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 60px 24px 80px;
+}
+
+.breadcrumb {
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  color: var(--text-muted, #888780);
+  margin-bottom: 24px;
+}
+
+.crumbLink {
+  color: var(--text-muted, #888780);
+  text-decoration: none;
+  outline: none;
+  padding: 2px 4px;
+  margin: 0 -4px;
+  border-radius: var(--radius-sm, 4px);
+  transition: color var(--transition-fast, 150ms ease-out), background-color var(--transition-fast, 150ms ease-out);
+}
+
+@media (hover: hover) {
+  .crumbLink:hover {
+    color: var(--accent, #993C1D);
+    background-color: var(--accent-glow, rgba(153, 60, 29, 0.15));
+  }
+}
+
+.crumbLink:focus-visible {
+  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+}
+
+.crumbSep { margin: 0 6px; }
+
+.crumbCurrent { color: var(--text, #2C2C2A); }
+
+.title {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 16px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.intro {
+  font-family: var(--font-sans, system-ui);
+  font-size: 16px;
+  color: var(--text-muted, #888780);
+  line-height: 1.7;
+  margin: 0 0 48px;
+}
+
+/* =====================================================================
+   SECTION
+   ===================================================================== */
+
+.section {
+  margin-bottom: 40px;
+}
+
+.sectionTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+}
+
+.list {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+}
+
+.listItem {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  color: var(--text-muted, #888780);
+  line-height: 1.7;
+}
+
+/* =====================================================================
+   STEPS (numbered list)
+   ===================================================================== */
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.step {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.stepNum {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent, #993C1D);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: var(--font-sans, system-ui);
+  flex-shrink: 0;
+}
+
+.stepTitle {
+  font-family: var(--font-sans, system-ui);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text, #2C2C2A);
+  margin-bottom: 4px;
+}
+
+.stepDesc {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  color: var(--text-muted, #888780);
+  line-height: 1.7;
+}
+
+/* =====================================================================
+   CAPABILITIES GRID
+   ===================================================================== */
+
+.capabilityGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.capability {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-lg, 12px);
+  padding: 16px 20px;
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  color: var(--text, #2C2C2A);
+  line-height: 1.6;
+  transition:
+    transform var(--transition-normal, 250ms ease-out),
+    border-color var(--transition-normal, 250ms ease-out),
+    box-shadow var(--transition-normal, 250ms ease-out);
+}
+
+@media (hover: hover) {
+  .capability:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent, #993C1D);
+    box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.04));
+  }
+}
+
+/* =====================================================================
+   FAQ
+   ===================================================================== */
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-lg, 12px);
+  padding: 20px 24px;
+  outline: none;
+  transition:
+    border-color var(--transition-normal, 250ms ease-out),
+    box-shadow var(--transition-normal, 250ms ease-out);
+}
+
+@media (hover: hover) {
+  .faq:hover {
+    border-color: var(--text-muted, #888780);
+    box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.04));
+  }
+}
+
+.faq:focus-within {
+  border-color: var(--accent, #993C1D);
+  box-shadow: 0 0 0 3px var(--accent-glow, rgba(153, 60, 29, 0.15));
+}
+
+.faqQ {
+  font-family: var(--font-sans, system-ui);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 8px;
+}
+
+.faqA {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  color: var(--text-muted, #888780);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* =====================================================================
+   CTA
+   ===================================================================== */
+
+.ctaBlock {
+  text-align: center;
+  padding: 40px 0;
+  border-top: 1px solid var(--border, #e5e0d8);
+  margin-top: 16px;
+}
+
+.ctaBtn {
+  padding: 14px 32px !important;
+  font-size: 13px !important;
+  border-radius: 24px !important;
+}
+
+/* =====================================================================
+   RELATED
+   ===================================================================== */
+
+.relatedBlock {
+  border-top: 1px solid var(--border, #e5e0d8);
+  padding-top: 32px;
+}
+
+.relatedHeading {
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text, #2C2C2A);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 16px;
+}
+
+.relatedPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.relatedPill {
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  color: var(--accent, #993C1D);
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-pill, 20px);
+  padding: 8px 16px;
+  text-decoration: none;
+  outline: none;
+  transition:
+    border-color var(--transition-fast, 150ms ease-out),
+    background-color var(--transition-fast, 150ms ease-out),
+    transform var(--transition-fast, 150ms ease-out);
+}
+
+@media (hover: hover) {
+  .relatedPill:hover {
+    border-color: var(--accent, #993C1D);
+    background-color: #FFF8F5;
+    transform: translateY(-1px);
+  }
+}
+
+.relatedPill:focus-visible {
+  border-color: var(--accent, #993C1D);
+  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+}
