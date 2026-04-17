@@ -4,9 +4,10 @@ import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { SearchIcon, QuestionIcon } from '../components/icons';
 import { apiGet } from '../hooks/useApi';
-import { colors, fonts, button as btnStyles } from '../theme';
 import { STATUS_PIPELINE, STATUS_LABELS } from '../utils/orderStatus';
 import { trackEvent } from '../utils/analytics';
+import styles from './Track.module.css';
+import btn from '../styles/buttons.module.css';
 
 function fmtDate(d) {
   if (!d) return null;
@@ -40,146 +41,83 @@ export default function Track() {
   const statusIdx = result ? STATUS_PIPELINE.indexOf(normalizedStatus) : -1;
 
   return (
-    <div style={{ maxWidth: '640px', margin: '0 auto', padding: '60px 24px 80px' }}>
+    <div className={styles.wrap}>
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Track',url:'/track'}]} />
       <PageMeta title="Track Your Shipment" description="Check your vehicle shipment status. Enter your reference number or VIN." path="/track" />
-      <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-        <div style={{ marginBottom: '12px' }}><SearchIcon size={20} /></div>
-        <h1 style={{
-          fontFamily: fonts.serif,
-          fontSize: 'clamp(24px, 4vw, 34px)',
-          fontWeight: 700,
-          color: colors.text,
-          marginBottom: '8px',
-        }}>
-          Track Your Shipment
-        </h1>
-        <p style={{
-          fontFamily: fonts.sans,
-          fontSize: '14px',
-          color: colors.textMuted,
-          lineHeight: 1.6,
-        }}>
+
+      <div className={styles.header}>
+        <div className={styles.headerIcon}><SearchIcon size={22} /></div>
+        <span className={styles.kicker}>&#9670; Shipment Status</span>
+        <h1 className={styles.title}>Track Your Shipment</h1>
+        <p className={styles.subtitle}>
           Enter your reference number, VIN, or tracking code to check shipment status.
         </p>
       </div>
 
-      <form onSubmit={handleSearch} style={{
-        display: 'flex',
-        gap: '10px',
-        marginBottom: '32px',
-      }}>
+      <form onSubmit={handleSearch} className={styles.form}>
         <input
           value={code}
           onChange={e => setCode(e.target.value)}
           placeholder="WEB-00042, VIN, or Load ID..."
-          style={{
-            flex: 1,
-            fontFamily: fonts.mono,
-            fontSize: '16px',
-            padding: '12px 16px',
-            borderRadius: '10px',
-            border: `1px solid ${colors.borderInput}`,
-            background: colors.bgCard,
-            color: colors.text,
-            outline: 'none',
-          }}
+          className={styles.searchInput}
         />
-        <button type="submit" disabled={loading} style={{
-          ...btnStyles.accent,
-          padding: '12px 24px',
-          fontSize: '13px',
-          opacity: loading ? 0.6 : 1,
-        }}>
+        <button
+          type="submit"
+          disabled={loading}
+          className={`${btn.btnAccent} ${styles.submitBtn}`}
+        >
           {loading ? '...' : 'Track'}
         </button>
       </form>
 
       {error && (
-        <div style={{
-          background: colors.bgCard,
-          border: `1px solid ${colors.border}`,
-          borderRadius: '12px',
-          padding: '32px 24px',
-          textAlign: 'center',
-        }}>
-          <div style={{ marginBottom: '12px' }}><QuestionIcon size={48} /></div>
-          <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, marginBottom: '20px' }}>
+        <div className={styles.errorCard}>
+          <div className={styles.errorIcon}><QuestionIcon size={44} /></div>
+          <p className={styles.errorMsg}>
             {error === 'Shipment not found' ? 'No shipment found with that code. Please check and try again.' : error}
           </p>
-          <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
-            <Link to="/ship-my-car" style={{ ...btnStyles.accent, textDecoration: 'none', padding: '10px 20px', fontSize: '12px' }}>
+          <div className={styles.errorCtas}>
+            <Link to="/ship-my-car" className={`${btn.btnAccent} ${styles.errorBtn}`}>
               Get a Quote
             </Link>
-            <Link to="/portal/register" style={{ ...btnStyles.secondary, textDecoration: 'none', padding: '10px 20px', fontSize: '12px' }}>
-              Create Account
+            <Link to="/portal/login" className={`${btn.btnSecondary} ${styles.errorBtn}`}>
+              Sign In
             </Link>
           </div>
         </div>
       )}
 
       {result && (
-        <div style={{
-          background: colors.bgCard,
-          border: `1px solid ${colors.border}`,
-          borderRadius: '12px',
-          padding: '24px',
-        }}>
-          {/* Vehicle header */}
-          {result.vehicle && (
-            <h2 style={{
-              fontFamily: fonts.serif,
-              fontSize: '20px',
-              fontWeight: 700,
-              color: colors.text,
-              marginBottom: '4px',
-            }}>
-              {result.vehicle}
-            </h2>
-          )}
-          {result.vin && (
-            <p style={{ fontFamily: fonts.mono, fontSize: '12px', color: colors.textMuted, marginBottom: '20px' }}>
-              VIN: {result.vin}
-            </p>
-          )}
+        <div className={styles.resultCard}>
+          {result.vehicle && <h2 className={styles.vehicle}>{result.vehicle}</h2>}
+          {result.vin && <p className={styles.vin}>VIN: {result.vin}</p>}
 
           {/* Status timeline */}
-          <div style={{ marginBottom: '20px' }}>
+          <div className={styles.timeline}>
             {STATUS_PIPELINE.map((s, i) => {
               const done = i <= statusIdx;
               const isCurrent = s === normalizedStatus;
+              const isLast = i === STATUS_PIPELINE.length - 1;
               const label = STATUS_LABELS[s] || s;
+
+              const dotClass = isCurrent
+                ? styles.timelineDotCurrent
+                : done
+                  ? styles.timelineDotDone
+                  : styles.timelineDot;
+              const labelClass = done ? styles.timelineLabelDone : styles.timelineLabel;
+
               return (
-                <div key={s} style={{
-                  display: 'flex',
-                  gap: '12px',
-                  minHeight: i < STATUS_PIPELINE.length - 1 ? '40px' : 'auto',
-                }}>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '16px' }}>
-                    <div style={{
-                      width: '12px', height: '12px', borderRadius: '50%',
-                      background: done ? colors.success : (isCurrent ? colors.accent : 'transparent'),
-                      border: `2px solid ${done ? colors.success : (isCurrent ? colors.accent : colors.border)}`,
-                      flexShrink: 0, marginTop: '2px',
-                    }} />
-                    {i < STATUS_PIPELINE.length - 1 && (
-                      <div style={{ width: '2px', flex: 1, background: done ? colors.success : colors.border, opacity: 0.3 }} />
+                <div key={s} className={isLast ? styles.timelineRowLast : styles.timelineRow}>
+                  <div className={styles.timelineDotWrap}>
+                    <div className={dotClass} />
+                    {!isLast && (
+                      <div className={done ? styles.timelineLineDone : styles.timelineLine} />
                     )}
                   </div>
-                  <div style={{ paddingBottom: '8px' }}>
-                    <span style={{
-                      fontFamily: fonts.sans,
-                      fontSize: '13px',
-                      fontWeight: done ? 600 : 400,
-                      color: done ? colors.text : colors.textHint,
-                    }}>
-                      {label}
-                    </span>
-                    {isCurrent && (
-                      <span style={{ fontFamily: fonts.sans, fontSize: '11px', color: colors.accent, marginLeft: '8px' }}>
-                        Current
-                      </span>
-                    )}
+                  <div className={styles.timelineText}>
+                    <span className={labelClass}>{label}</span>
+                    {isCurrent && <span className={styles.timelineCurrent}>Current</span>}
                   </div>
                 </div>
               );
@@ -187,43 +125,30 @@ export default function Track() {
           </div>
 
           {/* Route + carrier */}
-          <div style={{
-            background: colors.bgInput,
-            borderRadius: '8px',
-            padding: '14px 16px',
-            fontFamily: fonts.sans,
-            fontSize: '13px',
-            color: colors.textMuted,
-            lineHeight: 1.8,
-          }}>
+          <div className={styles.meta}>
             {(result.pickup || result.route) && (
-              <div>Route: <strong style={{ color: colors.text }}>
-                {result.pickup && result.delivery ? `${result.pickup} \u2192 ${result.delivery}` : result.route}
-              </strong></div>
+              <div>
+                Route:{' '}
+                <strong className={styles.metaStrong}>
+                  {result.pickup && result.delivery ? `${result.pickup} \u2192 ${result.delivery}` : result.route}
+                </strong>
+              </div>
             )}
             {result.carrier_name && (
-              <div>Carrier: <strong style={{ color: colors.text }}>{result.carrier_name}</strong></div>
+              <div>Carrier: <strong className={styles.metaStrong}>{result.carrier_name}</strong></div>
             )}
-            {result.last_update && (
-              <div>Last updated: {fmtDate(result.last_update)}</div>
-            )}
+            {result.last_update && <div>Last updated: {fmtDate(result.last_update)}</div>}
           </div>
         </div>
       )}
 
       {/* Help text */}
       {!result && !error && !loading && (
-        <div style={{
-          textAlign: 'center',
-          fontFamily: fonts.sans,
-          fontSize: '13px',
-          color: colors.textHint,
-          marginTop: '24px',
-        }}>
+        <div className={styles.helpText}>
           Don't have a tracking code?{' '}
-          <Link to="/ship-my-car" style={{ color: colors.accent }}>Get a Quote</Link>
+          <Link to="/ship-my-car" className={styles.helpLink}>Get a Quote</Link>
           {' or '}
-          <Link to="/portal/login" style={{ color: colors.accent }}>Log In</Link>
+          <Link to="/portal/login" className={styles.helpLink}>Log In</Link>
         </div>
       )}
     </div>

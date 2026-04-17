@@ -1,0 +1,325 @@
+/* Track page — centered search, status timeline card. */
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: clamp(48px, 8vh, 72px) 24px 80px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.headerIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(153, 60, 29, 0.08);
+  color: var(--accent, #993C1D);
+  margin-bottom: 16px;
+}
+
+.kicker {
+  display: inline-block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.subtitle {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14.5px;
+  color: var(--text-muted, #888780);
+  line-height: 1.7;
+  margin: 0 auto;
+  max-width: 480px;
+}
+
+/* =====================================================================
+   SEARCH FORM
+   ===================================================================== */
+
+.form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 32px;
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-pill, 20px);
+  padding: 4px;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06));
+  transition: border-color var(--transition-normal, 250ms ease-out), box-shadow var(--transition-normal, 250ms ease-out);
+}
+
+.form:focus-within {
+  border-color: var(--accent, #993C1D);
+  box-shadow: 0 0 0 3px var(--accent-glow, rgba(153, 60, 29, 0.15));
+}
+
+.searchInput {
+  flex: 1;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 15px;
+  padding: 12px 18px;
+  border-radius: var(--radius-pill, 20px);
+  border: none;
+  background: transparent;
+  color: var(--text, #2C2C2A);
+  outline: none;
+  min-width: 0;
+  letter-spacing: 0.02em;
+}
+
+.searchInput::placeholder {
+  color: var(--text-hint, #999);
+  font-style: italic;
+}
+
+.submitBtn {
+  padding: 12px 28px !important;
+  font-size: 12px !important;
+  flex-shrink: 0;
+  min-width: 88px;
+}
+
+@media (max-width: 480px) {
+  .form {
+    flex-direction: column;
+    padding: 10px;
+    border-radius: var(--radius-lg, 12px);
+  }
+  .searchInput {
+    padding: 10px 14px;
+    border-radius: var(--radius-md, 8px);
+  }
+  .submitBtn {
+    width: 100%;
+  }
+}
+
+/* =====================================================================
+   ERROR / NOT FOUND
+   ===================================================================== */
+
+.errorCard {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-xl, 16px);
+  padding: 40px 28px;
+  text-align: center;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.04));
+}
+
+.errorIcon {
+  margin-bottom: 16px;
+  color: var(--text-muted, #888780);
+}
+
+.errorMsg {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  color: var(--text-muted, #888780);
+  line-height: 1.7;
+  margin: 0 0 24px;
+}
+
+.errorCtas {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.errorBtn {
+  padding: 10px 22px !important;
+  font-size: 12px !important;
+  text-decoration: none;
+}
+
+/* =====================================================================
+   RESULT CARD
+   ===================================================================== */
+
+.resultCard {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-xl, 16px);
+  padding: clamp(24px, 4vw, 32px);
+  box-shadow: var(--shadow-md, 0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06));
+}
+
+.vehicle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 4px;
+  letter-spacing: -0.02em;
+}
+
+.vin {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 12px;
+  color: var(--text-muted, #888780);
+  margin: 0 0 24px;
+  letter-spacing: 0.03em;
+}
+
+/* =====================================================================
+   STATUS TIMELINE
+   ===================================================================== */
+
+.timeline {
+  margin-bottom: 24px;
+}
+
+.timelineRow {
+  display: flex;
+  gap: 14px;
+  min-height: 40px;
+}
+
+.timelineRowLast {
+  composes: timelineRow;
+  min-height: auto;
+}
+
+.timelineDotWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 16px;
+}
+
+.timelineDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+  border: 2px solid var(--border, #e5e0d8);
+  background: transparent;
+}
+
+.timelineDotDone {
+  composes: timelineDot;
+  background: var(--success, #0F6E56);
+  border-color: var(--success, #0F6E56);
+}
+
+.timelineDotCurrent {
+  composes: timelineDot;
+  background: var(--accent, #993C1D);
+  border-color: var(--accent, #993C1D);
+  box-shadow: 0 0 0 4px var(--accent-glow, rgba(153, 60, 29, 0.15));
+}
+
+.timelineLine {
+  width: 2px;
+  flex: 1;
+  background: var(--border, #e5e0d8);
+  opacity: 0.5;
+}
+
+.timelineLineDone {
+  composes: timelineLine;
+  background: var(--success, #0F6E56);
+  opacity: 1;
+}
+
+.timelineText {
+  padding-bottom: 10px;
+}
+
+.timelineLabel {
+  font-family: var(--font-sans, system-ui);
+  font-size: 13.5px;
+  color: var(--text-hint, #999);
+}
+
+.timelineLabelDone {
+  composes: timelineLabel;
+  color: var(--text, #2C2C2A);
+  font-weight: 600;
+}
+
+.timelineCurrent {
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  color: var(--accent, #993C1D);
+  margin-left: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* =====================================================================
+   ROUTE / CARRIER INFO
+   ===================================================================== */
+
+.meta {
+  background: var(--bg-input, #F7F5F0);
+  border-radius: var(--radius-md, 8px);
+  padding: 16px 18px;
+  font-family: var(--font-sans, system-ui);
+  font-size: 13.5px;
+  color: var(--text-muted, #888780);
+  line-height: 1.9;
+}
+
+.metaStrong {
+  color: var(--text, #2C2C2A);
+  font-weight: 600;
+}
+
+/* =====================================================================
+   HELP TEXT
+   ===================================================================== */
+
+.helpText {
+  text-align: center;
+  font-family: var(--font-sans, system-ui);
+  font-size: 13.5px;
+  color: var(--text-muted, #888780);
+  margin-top: 24px;
+  line-height: 1.7;
+}
+
+.helpLink {
+  color: var(--accent, #993C1D);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 2px;
+  padding: 2px 4px;
+  margin: 0 -2px;
+  outline: none;
+  transition: background-color var(--transition-fast, 150ms ease-out);
+}
+
+@media (hover: hover) {
+  .helpLink:hover {
+    background-color: var(--accent-glow, rgba(153, 60, 29, 0.15));
+  }
+}
+
+.helpLink:focus-visible {
+  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+}
