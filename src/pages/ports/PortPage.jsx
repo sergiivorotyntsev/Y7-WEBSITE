@@ -81,7 +81,7 @@ export default function PortPage() {
             borderRadius: '20px',
             border: `1px solid ${colors.border}`,
           }}>
-            USDOT 4246498
+            USDOT #4427359
           </span>
           <span style={{
             fontFamily: fonts.mono,
@@ -92,7 +92,7 @@ export default function PortPage() {
             borderRadius: '20px',
             border: `1px solid ${colors.border}`,
           }}>
-            MC 1627229
+            MC #1741537
           </span>
         </div>
       </div>
@@ -416,7 +416,7 @@ export default function PortPage() {
           fontSize: '12px',
           color: colors.textMuted,
         }}>
-          USDOT 4246498 &middot; MC 1627229
+          USDOT #4427359 &middot; MC #1741537
         </div>
       </div>
     </div>
