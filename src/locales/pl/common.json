@@ -25,6 +25,16 @@
     "faqDesc": "Najczęstsze pytania",
     "aboutDesc": "O firmie Y7 Logistics"
   },
+  "trustBadges": {
+    "fmcsaLabel": "Licencja FMCSA",
+    "cdDetail": "Zweryfikowany broker",
+    "bbbLabel": "Ocena BBB A+",
+    "bbbDetail": "Firma akredytowana",
+    "googleLabel": "Google Business",
+    "googleDetail": "Zweryfikowany profil",
+    "trDetail": "Zweryfikowany przewoźnik",
+    "trustpilotDetail": "Ocena „Doskonała\""
+  },
   "auth": {
     "myAccount": "Moje konto",
     "logIn": "Zaloguj się",

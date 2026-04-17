@@ -25,6 +25,16 @@
     "faqDesc": "Ответы на частые вопросы",
     "aboutDesc": "О компании Y7 Logistics"
   },
+  "trustBadges": {
+    "fmcsaLabel": "Лицензия FMCSA",
+    "cdDetail": "Проверенный брокер",
+    "bbbLabel": "Рейтинг BBB A+",
+    "bbbDetail": "Аккредитованный бизнес",
+    "googleLabel": "Google Business",
+    "googleDetail": "Подтверждённый профиль",
+    "trDetail": "Проверенный перевозчик",
+    "trustpilotDetail": "Оценка «Отлично»"
+  },
   "auth": {
     "myAccount": "Мой кабинет",
     "logIn": "Войти",

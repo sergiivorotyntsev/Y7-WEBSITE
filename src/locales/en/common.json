@@ -25,6 +25,16 @@
     "faqDesc": "Common questions answered",
     "aboutDesc": "About Y7 Logistics"
   },
+  "trustBadges": {
+    "fmcsaLabel": "FMCSA Licensed",
+    "cdDetail": "Verified Broker",
+    "bbbLabel": "BBB A+ Rating",
+    "bbbDetail": "Accredited Business",
+    "googleLabel": "Google Business",
+    "googleDetail": "Verified Profile",
+    "trDetail": "Verified Carrier",
+    "trustpilotDetail": "Rated Excellent"
+  },
   "auth": {
     "myAccount": "My Account",
     "logIn": "Log in",

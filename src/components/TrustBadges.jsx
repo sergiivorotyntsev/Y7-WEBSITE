@@ -1,49 +1,52 @@
+import { useTranslation } from 'react-i18next';
 import { colors, fonts } from '../theme';
 
-const BADGES = [
-  {
-    key: 'fmcsa',
-    label: 'FMCSA Licensed',
-    detail: 'MC #1741537',
-    always: true,
-  },
-  {
-    key: 'cd',
-    label: 'Central Dispatch',
-    detail: 'Verified Broker',
-    always: true,
-  },
-  {
-    key: 'bbb',
-    label: 'BBB A+ Rating',
-    detail: 'Accredited Business',
-    envVar: 'VITE_BBB_URL',
-    url: import.meta.env.VITE_BBB_URL,
-  },
-  {
-    key: 'google',
-    label: 'Google Business',
-    detail: 'Verified Profile',
-    envVar: 'VITE_GBP_URL',
-    url: import.meta.env.VITE_GBP_URL,
-  },
-  {
-    key: 'tr',
-    label: 'TransportReviews',
-    detail: 'Verified Carrier',
-    envVar: 'VITE_TR_URL',
-    url: import.meta.env.VITE_TR_URL,
-  },
-  {
-    key: 'trustpilot',
-    label: 'Trustpilot',
-    detail: 'Rated Excellent',
-    envVar: 'VITE_TRUSTPILOT_ID',
-    url: import.meta.env.VITE_TRUSTPILOT_ID ? `https://www.trustpilot.com/review/${import.meta.env.VITE_TRUSTPILOT_ID}` : null,
-  },
-];
-
 export default function TrustBadges({ layout = 'horizontal', variant = 'full' }) {
+  const { t } = useTranslation();
+
+  const BADGES = [
+    {
+      key: 'fmcsa',
+      label: t('trustBadges.fmcsaLabel'),
+      detail: 'MC #1741537',
+      always: true,
+    },
+    {
+      key: 'cd',
+      label: 'Central Dispatch',
+      detail: t('trustBadges.cdDetail'),
+      always: true,
+    },
+    {
+      key: 'bbb',
+      label: t('trustBadges.bbbLabel'),
+      detail: t('trustBadges.bbbDetail'),
+      envVar: 'VITE_BBB_URL',
+      url: import.meta.env.VITE_BBB_URL,
+    },
+    {
+      key: 'google',
+      label: t('trustBadges.googleLabel'),
+      detail: t('trustBadges.googleDetail'),
+      envVar: 'VITE_GBP_URL',
+      url: import.meta.env.VITE_GBP_URL,
+    },
+    {
+      key: 'tr',
+      label: 'TransportReviews',
+      detail: t('trustBadges.trDetail'),
+      envVar: 'VITE_TR_URL',
+      url: import.meta.env.VITE_TR_URL,
+    },
+    {
+      key: 'trustpilot',
+      label: 'Trustpilot',
+      detail: t('trustBadges.trustpilotDetail'),
+      envVar: 'VITE_TRUSTPILOT_ID',
+      url: import.meta.env.VITE_TRUSTPILOT_ID ? `https://www.trustpilot.com/review/${import.meta.env.VITE_TRUSTPILOT_ID}` : null,
+    },
+  ];
+
   const visible = BADGES.filter(b => b.always || b.url);
   if (visible.length === 0) return null;
 
