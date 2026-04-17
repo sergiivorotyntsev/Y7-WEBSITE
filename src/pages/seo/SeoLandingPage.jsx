@@ -3,7 +3,26 @@ import PageMeta from '../../components/PageMeta';
 import RelatedGuides from '../../components/RelatedGuides';
 import { RELATED_GUIDES } from '../../data/relatedGuides';
 import styles from './SeoLandingPage.module.css';
-import btn from '../../styles/buttons.module.css';
+
+function Chevron() {
+  return (
+    <svg
+      className={styles.faqChevron}
+      viewBox="0 0 14 14"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M3 5L7 9L11 5"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+    </svg>
+  );
+}
 
 /**
  * SeoLandingPage — reusable template for SEO landing pages.
@@ -134,17 +153,22 @@ export default function SeoLandingPage({
           <Section title="Frequently Asked Questions">
             <div className={styles.faqList}>
               {faqs.map((faq, i) => (
-                <div key={i} className={styles.faq} tabIndex={0}>
-                  <h3 className={styles.faqQ}>{faq.q}</h3>
+                <details key={i} className={styles.faq}>
+                  <summary className={styles.faqSummary}>
+                    <span>{faq.q}</span>
+                    <Chevron />
+                  </summary>
                   <p className={styles.faqA}>{faq.a}</p>
-                </div>
+                </details>
               ))}
             </div>
           </Section>
         )}
 
         <div className={styles.ctaBlock}>
-          <Link to={ctaTo} className={`${btn.btnAccent} ${styles.ctaBtn}`}>
+          <h2 className={styles.ctaTitle}>Ready to get started?</h2>
+          <p className={styles.ctaSubtitle}>Transparent pricing, verified carriers, fast dispatch response.</p>
+          <Link to={ctaTo} className={styles.ctaBtn}>
             {ctaLabel}
           </Link>
         </div>

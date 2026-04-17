@@ -168,21 +168,20 @@
 }
 
 /* =====================================================================
-   FAQ
+   FAQ — native details accordion with chevron
    ===================================================================== */
 
 .faqList {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .faq {
   background: var(--bg-card, #fff);
   border: 1px solid var(--border, #e5e0d8);
   border-radius: var(--radius-lg, 12px);
-  padding: 20px 24px;
-  outline: none;
+  overflow: hidden;
   transition:
     border-color var(--transition-normal, 250ms ease-out),
     box-shadow var(--transition-normal, 250ms ease-out);
@@ -191,46 +190,143 @@
 @media (hover: hover) {
   .faq:hover {
     border-color: var(--text-muted, #888780);
-    box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.04));
   }
 }
 
-.faq:focus-within {
+.faq[open] {
   border-color: var(--accent, #993C1D);
-  box-shadow: 0 0 0 3px var(--accent-glow, rgba(153, 60, 29, 0.15));
+  box-shadow: 0 2px 12px rgba(153, 60, 29, 0.06);
 }
 
-.faqQ {
+.faqSummary {
+  list-style: none;
+  padding: 16px 24px;
   font-family: var(--font-sans, system-ui);
   font-size: 15px;
   font-weight: 600;
   color: var(--text, #2C2C2A);
-  margin: 0 0 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  outline: none;
+  transition: background-color var(--transition-fast, 150ms ease-out);
+}
+
+.faqSummary::-webkit-details-marker {
+  display: none;
+}
+
+.faqSummary:focus-visible {
+  background-color: var(--bg-muted, #EFECE6);
+  box-shadow: inset 0 0 0 2px var(--accent, #993C1D);
+}
+
+@media (hover: hover) {
+  .faqSummary:hover {
+    background-color: rgba(247, 245, 240, 0.6);
+  }
+}
+
+.faqChevron {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  color: var(--accent, #993C1D);
+  transition: transform var(--transition-normal, 250ms ease-out);
+}
+
+.faq[open] .faqChevron {
+  transform: rotate(180deg);
 }
 
 .faqA {
+  padding: 0 24px 18px;
   font-family: var(--font-sans, system-ui);
   font-size: 14px;
   color: var(--text-muted, #888780);
-  line-height: 1.7;
+  line-height: 1.75;
   margin: 0;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .faq[open] .faqA {
+    animation: seoFaqSlide 250ms ease-out;
+  }
+}
+
+@keyframes seoFaqSlide {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* =====================================================================
-   CTA
+   CTA — accent background strip
    ===================================================================== */
 
 .ctaBlock {
+  margin-top: clamp(40px, 6vh, 56px);
+  background: linear-gradient(135deg, var(--accent, #993C1D) 0%, var(--accent-hover, #7A3017) 100%);
+  border-radius: var(--radius-xl, 16px);
+  padding: clamp(32px, 5vh, 48px) clamp(24px, 4vw, 40px);
   text-align: center;
-  padding: 40px 0;
-  border-top: 1px solid var(--border, #e5e0d8);
-  margin-top: 16px;
+  color: #fff;
+  box-shadow: 0 12px 32px rgba(153, 60, 29, 0.18);
+}
+
+.ctaTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+
+.ctaSubtitle {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.82);
+  margin: 0 0 20px;
+  line-height: 1.7;
 }
 
 .ctaBtn {
+  background: #fff !important;
+  color: var(--accent, #993C1D) !important;
   padding: 14px 32px !important;
   font-size: 13px !important;
   border-radius: 24px !important;
+  display: inline-block;
+  text-decoration: none;
+  font-family: var(--font-sans, system-ui);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast, 150ms ease-out),
+    transform var(--transition-fast, 150ms ease-out),
+    box-shadow var(--transition-normal, 250ms ease-out);
+}
+
+@media (hover: hover) {
+  .ctaBtn:hover {
+    background: var(--bg, #F7F5F0) !important;
+    color: var(--accent-hover, #7A3017) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  }
+  .ctaBtn:active {
+    transform: scale(0.97);
+  }
+}
+
+.ctaBtn:focus-visible {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.6);
 }
 
 /* =====================================================================
