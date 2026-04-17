@@ -444,11 +444,23 @@ function PolandShipMyCar() {
                 marginBottom: '0.5rem',
               }}
             >
-              $350\u2013950
+              $300\u20131 600
             </div>
-            <p style={{ ...pStyle, fontSize: '0.9rem', margin: 0 }}>
-              Odbi\u00f3r z placu Copart/IAAI i dostawa do portu za\u0142adunku.
-              Cena zale\u017cy od dystansu, stanu auta (je\u017adzi/nie je\u017adzi) i pory roku.
+            <ul
+              style={{
+                ...pStyle,
+                fontSize: '0.9rem',
+                margin: 0,
+                paddingLeft: '1.1rem',
+              }}
+            >
+              <li>Do 500 mil: $300\u2013600</li>
+              <li>500\u20131 500 mil: $600\u20131 200</li>
+              <li>Cross-country (1 500+ mil): $900\u20131 600</li>
+            </ul>
+            <p style={{ ...pStyle, fontSize: '0.85rem', marginTop: '0.6rem', marginBottom: 0, fontStyle: 'italic' }}>
+              Odbi\u00f3r z placu Copart/IAAI i dostawa pod adres lub do portu. Cena zale\u017cy
+              od dystansu, stanu auta (je\u017adzi/nie je\u017adzi) i pory roku.
             </p>
           </div>
 

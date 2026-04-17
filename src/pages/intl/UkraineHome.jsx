@@ -757,11 +757,23 @@ function UkraineHome() {
                 marginBottom: '0.5rem',
               }}
             >
-              $350–950
+              $300–1 600
             </div>
-            <p style={{ ...pStyle, fontSize: '0.9rem', margin: 0 }}>
-              Забір з майданчика Copart/IAAI і доставка до порту завантаження.
-              Залежить від відстані, стану авто (їде/не їде), сезону.
+            <ul
+              style={{
+                ...pStyle,
+                fontSize: '0.9rem',
+                margin: 0,
+                paddingLeft: '1.1rem',
+              }}
+            >
+              <li>До 500 миль: $300–600</li>
+              <li>500–1 500 миль: $600–1 200</li>
+              <li>Через усю країну (1 500+ миль): $900–1 600</li>
+            </ul>
+            <p style={{ ...pStyle, fontSize: '0.85rem', marginTop: '0.6rem', marginBottom: 0, fontStyle: 'italic' }}>
+              Забір з майданчика Copart/IAAI і доставка до порту завантаження. Залежить
+              від відстані, стану авто (їде/не їде), сезону.
             </p>
           </div>
 

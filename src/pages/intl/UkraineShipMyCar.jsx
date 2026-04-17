@@ -504,19 +504,34 @@ function UkraineShipMyCar() {
                 marginBottom: '8px',
               }}
             >
-              $350–950
+              $300–1 600
             </div>
-            <p
+            <ul
               style={{
                 fontFamily: fonts.sans,
                 fontSize: '13px',
                 color: colors.textMuted,
-                lineHeight: 1.5,
+                lineHeight: 1.55,
                 margin: 0,
+                paddingLeft: '1.1rem',
               }}
             >
-              Забір з майданчика Copart/IAAI і доставка до порту завантаження.
-              Залежить від відстані, стану авто, сезону.
+              <li>До 500 миль: $300–600</li>
+              <li>500–1 500 миль: $600–1 200</li>
+              <li>Через усю країну (1 500+ миль): $900–1 600</li>
+            </ul>
+            <p
+              style={{
+                fontFamily: fonts.sans,
+                fontSize: '12px',
+                color: colors.textMuted,
+                lineHeight: 1.5,
+                margin: '8px 0 0',
+                fontStyle: 'italic',
+              }}
+            >
+              Забір з майданчика Copart/IAAI і доставка. Залежить від відстані,
+              стану авто, сезону.
             </p>
           </div>
           <div className={styles.liftCard} style={cardStyle}>
