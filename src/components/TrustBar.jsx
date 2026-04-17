@@ -24,7 +24,7 @@ function useCountUp(target, visible, duration = 1500) {
   return display;
 }
 
-function StatCard({ value, label, visible, delay }) {
+function Stat({ value, label, visible, delay, accent }) {
   const counted = useCountUp(value, visible);
 
   return (
@@ -36,7 +36,9 @@ function StatCard({ value, label, visible, delay }) {
         transition: `opacity 500ms ease ${delay}ms, transform 500ms ease ${delay}ms`,
       }}
     >
-      <div className={styles.value}>{counted}</div>
+      <div className={`${styles.value} ${accent ? styles.valueAccent : ''}`}>
+        {counted}
+      </div>
       <div className={styles.label}>{label}</div>
     </div>
   );
@@ -59,17 +61,26 @@ export default function TrustBar() {
   }, []);
 
   const stats = [
-    { value: t('trust.experience'), label: t('trust.experienceLabel') },
-    { value: t('trust.carriers'), label: t('trust.carriersLabel') },
-    { value: t('trust.support'), label: t('trust.supportLabel') },
-    { value: t('trust.cd'), label: t('trust.cdLabel') },
+    { value: t('trust.experience'), label: t('trust.experienceLabel'), accent: true },
+    { value: t('trust.carriers'), label: t('trust.carriersLabel'), accent: false },
+    { value: t('trust.support'), label: t('trust.supportLabel'), accent: false },
+    { value: t('trust.cd'), label: t('trust.cdLabel'), accent: true },
   ];
 
   return (
-    <div ref={ref} className={styles.grid}>
-      {stats.map(({ value, label }, i) => (
-        <StatCard key={label} value={value} label={label} visible={visible} delay={i * 100} />
-      ))}
-    </div>
+    <section ref={ref} className={styles.wrap}>
+      <div className={styles.grid}>
+        {stats.map(({ value, label, accent }, i) => (
+          <Stat
+            key={label}
+            value={value}
+            label={label}
+            visible={visible}
+            delay={i * 100}
+            accent={accent}
+          />
+        ))}
+      </div>
+    </section>
   );
 }

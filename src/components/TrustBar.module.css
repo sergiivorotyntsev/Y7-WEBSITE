@@ -1,47 +1,103 @@
-/* TrustBar — 4 stat tiles, count-up animation with staggered entry. */
+/* TrustBar — dark horizontal strip with large serif numbers and subtle dividers.
+   Creates a visual break between lighter content sections. */
+
+.wrap {
+  background: var(--text, #2C2C2A);
+  padding: clamp(40px, 6vh, 64px) 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle warm glow in the center for depth */
+.wrap::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 100%;
+  background: radial-gradient(ellipse, rgba(153, 60, 29, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 16px;
-  max-width: 800px;
+  position: relative;
+  max-width: 1100px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 32px;
+  }
 }
 
 .stat {
-  background: var(--bg-muted, #EFECE6);
-  border-radius: var(--radius-lg, 12px);
-  padding: 24px 16px;
   text-align: center;
-  transition:
-    transform var(--transition-normal, 250ms ease-out),
-    background-color var(--transition-normal, 250ms ease-out),
-    box-shadow var(--transition-normal, 250ms ease-out);
+  padding: 0 clamp(8px, 2vw, 24px);
+  position: relative;
+  transition: transform var(--transition-normal, 250ms ease-out);
+}
+
+/* Vertical divider between stats (not after the last) */
+.stat + .stat::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 60%;
+  background: rgba(247, 245, 240, 0.12);
+}
+
+@media (max-width: 720px) {
+  /* On mobile 2x2, only cols 2 and 4 get left divider */
+  .stat:nth-child(odd) + .stat::before {
+    display: block;
+  }
+  /* Row 2 top border */
+  .stat:nth-child(n + 3)::after {
+    content: '';
+    position: absolute;
+    top: -16px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: rgba(247, 245, 240, 0.12);
+  }
 }
 
 @media (hover: hover) {
   .stat:hover {
     transform: translateY(-2px);
-    background-color: var(--bg-card, #fff);
-    box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06));
   }
 }
 
 .value {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: 32px;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 700;
-  color: var(--accent, #993C1D);
+  color: var(--bg, #F7F5F0);
   line-height: 1;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   letter-spacing: -0.02em;
+}
+
+.valueAccent {
+  color: var(--accent, #993C1D);
 }
 
 .label {
   font-family: var(--font-sans, system-ui);
-  font-size: 12px;
-  color: var(--text-muted, #888780);
+  font-size: 11px;
+  color: rgba(247, 245, 240, 0.55);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-weight: 500;
+  font-weight: 600;
 }
