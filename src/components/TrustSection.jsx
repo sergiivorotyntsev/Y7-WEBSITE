@@ -1,18 +1,20 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { colors, fonts } from '../theme';
 import { VerifiedIcon, InsuranceIcon, DocumentIcon, BellIcon, HeadphonesIcon, EscalationIcon, ShieldIcon } from './icons';
 
-const ITEMS = [
-  { icon: <VerifiedIcon size={20} />, title: 'Carrier Vetting', desc: 'Every carrier verified through Central Dispatch. FMCSA authority, active insurance, safety rating checked before assignment.' },
-  { icon: <InsuranceIcon size={20} />, title: 'Insurance Verification', desc: 'COI confirmed before every dispatch. Minimum $100K cargo coverage required. Most carriers carry $250K+.' },
-  { icon: <DocumentIcon size={20} />, title: 'Documentation', desc: 'BOL at pickup and delivery. Photo documentation. Digital records accessible in your customer portal.' },
-  { icon: <BellIcon size={20} />, title: 'Status Notifications', desc: 'Email at every stage. Telegram bot for updates. Portal access to shipment status anytime.' },
-  { icon: <HeadphonesIcon size={20} />, title: 'Claims Support', desc: '24-hour claim window with photo documentation. We coordinate with the carrier\'s insurance on your behalf.' },
-  { icon: <EscalationIcon size={20} />, title: 'Escalation Path', desc: 'Dispatcher \u2192 operations manager \u2192 resolution within 48 hours. Every issue gets tracked.' },
-];
-
 export default function TrustSection() {
+  const { t } = useTranslation('home');
   const [open, setOpen] = useState(false);
+
+  const items = [
+    { icon: <VerifiedIcon size={20} />,    title: t('trustSection.carrierVettingTitle'), desc: t('trustSection.carrierVettingDesc') },
+    { icon: <InsuranceIcon size={20} />,   title: t('trustSection.insuranceTitle'),      desc: t('trustSection.insuranceDesc') },
+    { icon: <DocumentIcon size={20} />,    title: t('trustSection.documentationTitle'),  desc: t('trustSection.documentationDesc') },
+    { icon: <BellIcon size={20} />,        title: t('trustSection.notificationsTitle'),  desc: t('trustSection.notificationsDesc') },
+    { icon: <HeadphonesIcon size={20} />,  title: t('trustSection.claimsTitle'),         desc: t('trustSection.claimsDesc') },
+    { icon: <EscalationIcon size={20} />,  title: t('trustSection.escalationTitle'),     desc: t('trustSection.escalationDesc') },
+  ];
 
   return (
     <div style={{
@@ -39,7 +41,7 @@ export default function TrustSection() {
           fontWeight: 700,
           color: colors.text,
         }}>
-          How we protect your shipment
+          {t('trustSection.title')}
         </span>
         <span style={{
           fontFamily: fonts.sans,
@@ -48,7 +50,7 @@ export default function TrustSection() {
           fontWeight: 600,
           transition: 'transform 200ms',
         }}>
-          {open ? 'Hide \u25B4' : 'Learn more \u25BE'}
+          {open ? `${t('trustSection.hide')} \u25B4` : `${t('trustSection.learnMore')} \u25BE`}
         </span>
       </div>
 
@@ -65,7 +67,7 @@ export default function TrustSection() {
           gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
           gap: '20px',
         }}>
-          {ITEMS.map(({ icon, title, desc }) => (
+          {items.map(({ icon, title, desc }) => (
             <div key={title} style={{
               display: 'flex',
               gap: '12px',

@@ -1,44 +1,22 @@
+import { useTranslation } from 'react-i18next';
 import { ClipboardIcon, DollarIcon, HandshakeIcon, TruckIcon, CheckIcon } from './icons';
 import styles from './HowItWorks.module.css';
 
-const STEPS = [
-  {
-    icon: <ClipboardIcon size={14} />,
-    title: 'Submit Your Quote',
-    desc: 'Enter your VIN and route details. We decode your vehicle instantly and show estimated pricing.',
-    stat: 'Under 1 hour',
-  },
-  {
-    icon: <DollarIcon size={14} />,
-    title: 'Get Your Pricing',
-    desc: 'Receive a competitive price range within 1 hour. Confirm when you are ready — no pressure.',
-    stat: 'Transparent',
-  },
-  {
-    icon: <HandshakeIcon size={14} />,
-    title: 'Sign Agreement',
-    desc: 'Quick digital signature on our transport agreement. Review terms, check boxes, type your name.',
-    stat: '~2 min',
-  },
-  {
-    icon: <TruckIcon size={14} />,
-    title: 'Carrier Assigned',
-    desc: 'We match your load with a vetted, insured carrier from our network. You get carrier name and phone.',
-    stat: '100+ carriers',
-  },
-  {
-    icon: <CheckIcon size={14} />,
-    title: 'Vehicle Delivered',
-    desc: 'Follow your shipment status via portal. Inspect on arrival, sign BOL, and you are done.',
-    stat: '3–10 days',
-  },
-];
-
 export default function HowItWorks() {
+  const { t } = useTranslation('home');
+
+  const steps = [
+    { icon: <ClipboardIcon size={14} />, title: t('howItWorks.steps.submitTitle'),    desc: t('howItWorks.steps.submitDesc'),    stat: t('howItWorks.steps.submitStat') },
+    { icon: <DollarIcon size={14} />,    title: t('howItWorks.steps.priceTitle'),     desc: t('howItWorks.steps.priceDesc'),     stat: t('howItWorks.steps.priceStat') },
+    { icon: <HandshakeIcon size={14} />, title: t('howItWorks.steps.signTitle'),      desc: t('howItWorks.steps.signDesc'),      stat: t('howItWorks.steps.signStat') },
+    { icon: <TruckIcon size={14} />,     title: t('howItWorks.steps.carrierTitle'),   desc: t('howItWorks.steps.carrierDesc'),   stat: t('howItWorks.steps.carrierStat') },
+    { icon: <CheckIcon size={14} />,     title: t('howItWorks.steps.deliveredTitle'), desc: t('howItWorks.steps.deliveredDesc'), stat: t('howItWorks.steps.deliveredStat') },
+  ];
+
   return (
     <div className={styles.wrap}>
       <div className={styles.steps}>
-        {STEPS.map((step, i) => (
+        {steps.map((step, i) => (
           <div key={step.title} className={styles.step} style={{ '--i': i }}>
             <div className={styles.numWrap}>
               <div className={styles.num}>

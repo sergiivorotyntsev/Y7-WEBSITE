@@ -1,25 +1,28 @@
+import { useTranslation } from 'react-i18next';
 import ScrollReveal from './ScrollReveal';
 import { ShieldCheckIcon, VerifiedIcon, EyeIcon, MapPinIcon, GlobeIcon, ClockIcon } from './icons';
 import styles from './WhyY7.module.css';
 
-const ITEMS = [
-  { icon: <ShieldCheckIcon />, title: 'Licensed & Insured', desc: 'USDOT #4427359, MC #1741537. Fully licensed property broker.' },
-  { icon: <VerifiedIcon />, title: 'Central Dispatch Verified', desc: '90% of our orders go through CD. Verified broker with top ratings.' },
-  { icon: <EyeIcon />, title: 'Transparent Pricing', desc: 'No hidden fees. Carrier rate + service fee. What you see is what you pay.' },
-  { icon: <MapPinIcon />, title: 'Shipment Status Updates', desc: 'Monitor your shipment via portal, email, SMS, or Telegram. Carrier phone number provided after dispatch.' },
-  { icon: <GlobeIcon />, title: 'Multilingual Support', desc: 'EN, RU, PL, UK — we speak your language. Global exporter network.' },
-  { icon: <ClockIcon />, title: 'Fast Dispatch Response', desc: 'Quotes typically within 1 hour during business hours. Dedicated dispatch coordinator.' },
-];
-
 export default function WhyY7() {
+  const { t } = useTranslation('home');
+
+  const items = [
+    { icon: <ShieldCheckIcon />, title: t('whyY7.licensedTitle'),     desc: t('whyY7.licensedDesc') },
+    { icon: <VerifiedIcon />,    title: t('whyY7.verifiedTitle'),     desc: t('whyY7.verifiedDesc') },
+    { icon: <EyeIcon />,         title: t('whyY7.transparentTitle'),  desc: t('whyY7.transparentDesc') },
+    { icon: <MapPinIcon />,      title: t('whyY7.statusTitle'),       desc: t('whyY7.statusDesc') },
+    { icon: <GlobeIcon />,       title: t('whyY7.multilingualTitle'), desc: t('whyY7.multilingualDesc') },
+    { icon: <ClockIcon />,       title: t('whyY7.fastTitle'),         desc: t('whyY7.fastDesc') },
+  ];
+
   return (
     <div>
       <div className={styles.header}>
-        <span className={styles.micro}>Why Choose Y7</span>
-        <h2 className={styles.title}>Why Shippers Choose Y7</h2>
+        <span className={styles.micro}>{t('whyY7.kicker')}</span>
+        <h2 className={styles.title}>{t('whyY7.title')}</h2>
       </div>
       <div className={styles.grid}>
-        {ITEMS.map(({ icon, title, desc }, i) => (
+        {items.map(({ icon, title, desc }, i) => (
           <ScrollReveal key={title} delay={i * 60} style={{ display: 'contents' }}>
             <div className={styles.item}>
               <span className={styles.iconWrap}>{icon}</span>

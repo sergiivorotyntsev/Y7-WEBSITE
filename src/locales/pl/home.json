@@ -28,7 +28,64 @@
     "list": ["Newark, NJ", "Houston, TX", "Savannah, GA", "Baltimore, MD", "Los Angeles, CA", "Jacksonville, FL"]
   },
   "howItWorks": {
-    "title": "Jak to działa"
+    "title": "Jak to działa",
+    "kicker": "Proces",
+    "steps": {
+      "submitTitle": "Wyślij zapytanie",
+      "submitDesc": "Podaj VIN i trasę. Natychmiast odkodujemy pojazd i pokażemy szacunkową cenę.",
+      "submitStat": "Do 1 godziny",
+      "priceTitle": "Otrzymaj wycenę",
+      "priceDesc": "Konkurencyjny zakres cen w ciągu godziny. Potwierdź, gdy będziesz gotowy — bez nacisku.",
+      "priceStat": "Przejrzyście",
+      "signTitle": "Podpisz umowę",
+      "signDesc": "Szybki podpis cyfrowy umowy transportowej. Sprawdź warunki, zaznacz pola, wpisz imię.",
+      "signStat": "~2 min",
+      "carrierTitle": "Przewoźnik przydzielony",
+      "carrierDesc": "Dobieramy sprawdzonego ubezpieczonego przewoźnika z naszej sieci. Otrzymujesz imię i telefon kierowcy.",
+      "carrierStat": "100+ przewoźników",
+      "deliveredTitle": "Pojazd dostarczony",
+      "deliveredDesc": "Śledź status przez portal. Przy odbiorze — oględziny, podpis BOL, gotowe.",
+      "deliveredStat": "3–10 dni"
+    }
+  },
+  "whyY7": {
+    "kicker": "Dlaczego Y7",
+    "title": "Dlaczego klienci nas wybierają",
+    "licensedTitle": "Licencja i ubezpieczenie",
+    "licensedDesc": "USDOT #4427359, MC #1741537. W pełni licencjonowany broker transportowy.",
+    "verifiedTitle": "Zweryfikowany Central Dispatch",
+    "verifiedDesc": "90% naszych zleceń przez CD. Zweryfikowany broker z wysokimi ocenami.",
+    "transparentTitle": "Transparentne ceny",
+    "transparentDesc": "Bez ukrytych opłat. Stawka przewoźnika + opłata serwisowa. Cena widoczna = cena końcowa.",
+    "statusTitle": "Aktualizacje statusu",
+    "statusDesc": "Śledź przesyłkę przez portal, email, SMS lub Telegram. Telefon przewoźnika — po przydzieleniu.",
+    "multilingualTitle": "Wsparcie wielojęzyczne",
+    "multilingualDesc": "EN, RU, PL, UK — mówimy w Twoim języku. Globalna sieć eksporterów.",
+    "fastTitle": "Szybka odpowiedź dyspozytora",
+    "fastDesc": "Wycena zwykle w ciągu godziny w godzinach pracy. Dedykowany dyspozytor."
+  },
+  "trustSection": {
+    "title": "Jak chronimy Twoją przesyłkę",
+    "learnMore": "Więcej",
+    "hide": "Ukryj",
+    "carrierVettingTitle": "Weryfikacja przewoźników",
+    "carrierVettingDesc": "Każdy przewoźnik zweryfikowany przez Central Dispatch. Licencja FMCSA, aktywne ubezpieczenie, rating bezpieczeństwa — przed przydzieleniem.",
+    "insuranceTitle": "Weryfikacja ubezpieczenia",
+    "insuranceDesc": "COI potwierdzany przed każdą wysyłką. Minimum $100K pokrycia cargo. Większość przewoźników ma $250K+.",
+    "documentationTitle": "Dokumentacja",
+    "documentationDesc": "BOL przy odbiorze i dostawie. Dokumentacja fotograficzna. Zapisy cyfrowe w portalu klienta.",
+    "notificationsTitle": "Powiadomienia statusu",
+    "notificationsDesc": "Email na każdym etapie. Bot Telegram dla aktualizacji. Portal — dostęp w każdej chwili.",
+    "claimsTitle": "Obsługa reklamacji",
+    "claimsDesc": "24-godzinne okno reklamacji z dokumentacją fotograficzną. Koordynujemy z ubezpieczycielem przewoźnika.",
+    "escalationTitle": "Ścieżka eskalacji",
+    "escalationDesc": "Dyspozytor → kierownik operacyjny → rozwiązanie w ciągu 48 godzin. Każda sprawa śledzona."
+  },
+  "sections": {
+    "whoWeServe": "Nasze usługi",
+    "coverage": "Zasięg",
+    "testimonials": "Opinie",
+    "requestQuote": "Zapytaj o wycenę"
   },
   "quoteSection": {
     "title": "Otrzymaj darmową wycenę",

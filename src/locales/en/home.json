@@ -31,7 +31,64 @@
     "list": ["Newark, NJ", "Houston, TX", "Savannah, GA", "Baltimore, MD", "Los Angeles, CA", "Jacksonville, FL"]
   },
   "howItWorks": {
-    "title": "How It Works"
+    "title": "How It Works",
+    "kicker": "Process",
+    "steps": {
+      "submitTitle": "Submit Your Quote",
+      "submitDesc": "Enter your VIN and route details. We decode your vehicle instantly and show estimated pricing.",
+      "submitStat": "Under 1 hour",
+      "priceTitle": "Get Your Pricing",
+      "priceDesc": "Receive a competitive price range within 1 hour. Confirm when you are ready — no pressure.",
+      "priceStat": "Transparent",
+      "signTitle": "Sign Agreement",
+      "signDesc": "Quick digital signature on our transport agreement. Review terms, check boxes, type your name.",
+      "signStat": "~2 min",
+      "carrierTitle": "Carrier Assigned",
+      "carrierDesc": "We match your load with a vetted, insured carrier from our network. You get carrier name and phone.",
+      "carrierStat": "100+ carriers",
+      "deliveredTitle": "Vehicle Delivered",
+      "deliveredDesc": "Follow your shipment status via portal. Inspect on arrival, sign BOL, and you are done.",
+      "deliveredStat": "3–10 days"
+    }
+  },
+  "whyY7": {
+    "kicker": "Why Choose Y7",
+    "title": "Why Shippers Choose Y7",
+    "licensedTitle": "Licensed & Insured",
+    "licensedDesc": "USDOT #4427359, MC #1741537. Fully licensed property broker.",
+    "verifiedTitle": "Central Dispatch Verified",
+    "verifiedDesc": "90% of our orders go through CD. Verified broker with top ratings.",
+    "transparentTitle": "Transparent Pricing",
+    "transparentDesc": "No hidden fees. Carrier rate + service fee. What you see is what you pay.",
+    "statusTitle": "Shipment Status Updates",
+    "statusDesc": "Monitor your shipment via portal, email, SMS, or Telegram. Carrier phone number provided after dispatch.",
+    "multilingualTitle": "Multilingual Support",
+    "multilingualDesc": "EN, RU, PL, UK — we speak your language. Global exporter network.",
+    "fastTitle": "Fast Dispatch Response",
+    "fastDesc": "Quotes typically within 1 hour during business hours. Dedicated dispatch coordinator."
+  },
+  "trustSection": {
+    "title": "How we protect your shipment",
+    "learnMore": "Learn more",
+    "hide": "Hide",
+    "carrierVettingTitle": "Carrier Vetting",
+    "carrierVettingDesc": "Every carrier verified through Central Dispatch. FMCSA authority, active insurance, safety rating checked before assignment.",
+    "insuranceTitle": "Insurance Verification",
+    "insuranceDesc": "COI confirmed before every dispatch. Minimum $100K cargo coverage required. Most carriers carry $250K+.",
+    "documentationTitle": "Documentation",
+    "documentationDesc": "BOL at pickup and delivery. Photo documentation. Digital records accessible in your customer portal.",
+    "notificationsTitle": "Status Notifications",
+    "notificationsDesc": "Email at every stage. Telegram bot for updates. Portal access to shipment status anytime.",
+    "claimsTitle": "Claims Support",
+    "claimsDesc": "24-hour claim window with photo documentation. We coordinate with the carrier's insurance on your behalf.",
+    "escalationTitle": "Escalation Path",
+    "escalationDesc": "Dispatcher → operations manager → resolution within 48 hours. Every issue gets tracked."
+  },
+  "sections": {
+    "whoWeServe": "Who We Serve",
+    "coverage": "Coverage",
+    "testimonials": "Testimonials",
+    "requestQuote": "Request a Quote"
   },
   "quoteSection": {
     "title": "Get Your Free Quote",
