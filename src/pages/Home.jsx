@@ -16,7 +16,6 @@ import TrustBadges from '../components/TrustBadges';
 import ExternalReviewsStrip from '../components/ExternalReviewsStrip';
 import WhyY7 from '../components/WhyY7';
 import TrustSection from '../components/TrustSection';
-import WhatHappensNext from '../components/WhatHappensNext';
 import HeroRouteVisual from '../components/HeroRouteVisual';
 import styles from './Home.module.css';
 import btn from '../styles/buttons.module.css';
@@ -139,9 +138,6 @@ export default function Home() {
           <TrustBadges layout="horizontal" variant="compact" />
         </div>
       </section>
-
-      {/* 8b. What Happens Next */}
-      <WhatHappensNext />
 
       {/* 9. Testimonials */}
       <ScrollReveal style={{ padding: 'clamp(60px, 8vh, 100px) 24px', background: 'var(--bg-muted)' }}>
