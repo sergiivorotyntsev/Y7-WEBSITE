@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
-import FloatingContact from './FloatingContact';
 import MobileCTA from './MobileCTA';
 import ErrorBoundary from './ErrorBoundary';
 import ChatWidget from './ChatWidget';
@@ -30,7 +29,6 @@ export default function Layout() {
         </ErrorBoundary>
       </main>
       <Footer />
-      <FloatingContact />
       <ChatWidget />
       <MobileCTA />
     </>
