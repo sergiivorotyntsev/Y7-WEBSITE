@@ -6,6 +6,45 @@ import { PORTS } from './portData';
 import styles from './PortPage.module.css';
 import btn from '../../styles/buttons.module.css';
 
+const RELATED_BY_PORT = {
+  newark: [
+    { to: '/new-jersey-auto-transport', label: 'New Jersey Auto Transport services' },
+    { to: '/auction-to-port-transport', label: 'Auction-to-port shipping workflow' },
+    { to: '/new-jersey-to-florida-car-shipping', label: 'NJ to Florida corridor' },
+    { to: '/door-to-port-auto-transport', label: 'Door-to-port transport overview' },
+  ],
+  houston: [
+    { to: '/texas-auto-transport', label: 'Texas auto transport services' },
+    { to: '/texas-to-newark-port-auto-transport', label: 'TX to Port Newark corridor' },
+    { to: '/auction-to-port-transport', label: 'Auction-to-port shipping workflow' },
+    { to: '/door-to-port-auto-transport', label: 'Door-to-port transport overview' },
+  ],
+  savannah: [
+    { to: '/florida-car-shipping', label: 'Florida car shipping services' },
+    { to: '/auction-to-port-transport', label: 'Auction-to-port shipping workflow' },
+    { to: '/door-to-port-auto-transport', label: 'Door-to-port transport overview' },
+    { to: '/state-to-state-car-shipping', label: 'State-to-state shipping' },
+  ],
+  'los-angeles': [
+    { to: '/state-to-state-car-shipping', label: 'State-to-state shipping' },
+    { to: '/enclosed-car-shipping', label: 'Enclosed car shipping' },
+    { to: '/auction-to-port-transport', label: 'Auction-to-port shipping workflow' },
+    { to: '/door-to-port-auto-transport', label: 'Door-to-port transport overview' },
+  ],
+  baltimore: [
+    { to: '/state-to-state-car-shipping', label: 'State-to-state shipping' },
+    { to: '/auction-to-port-transport', label: 'Auction-to-port shipping workflow' },
+    { to: '/door-to-port-auto-transport', label: 'Door-to-port transport overview' },
+    { to: '/new-jersey-auto-transport', label: 'New Jersey auto transport' },
+  ],
+  jacksonville: [
+    { to: '/florida-car-shipping', label: 'Florida car shipping services' },
+    { to: '/massachusetts-to-florida-car-shipping', label: 'Massachusetts to Florida corridor' },
+    { to: '/new-jersey-to-florida-car-shipping', label: 'New Jersey to Florida corridor' },
+    { to: '/auction-to-port-transport', label: 'Auction-to-port shipping workflow' },
+  ],
+};
+
 export default function PortPage() {
   const { slug } = useParams();
   const port = PORTS[slug];
@@ -162,6 +201,25 @@ export default function PortPage() {
             <div className={styles.infoCard}>
               <p className={styles.bodyText}>{port.tips}</p>
             </div>
+          </section>
+        )}
+
+        {/* Related Services */}
+        {RELATED_BY_PORT[slug] && (
+          <section className={styles.section}>
+            <div className={styles.sectionHeader}>
+              <span className={styles.sectionMicro}>Related</span>
+              <h2 className={styles.sectionTitle}>Related Services</h2>
+            </div>
+            <ul className={styles.relatedList}>
+              {RELATED_BY_PORT[slug].map((link, i) => (
+                <li key={i}>
+                  <Link to={link.to} className={styles.relatedLink}>
+                    {link.label} &rarr;
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </section>
         )}
 
