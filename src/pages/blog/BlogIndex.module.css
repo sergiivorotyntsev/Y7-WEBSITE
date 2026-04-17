@@ -78,35 +78,50 @@
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  gap: 8px;
+  gap: 0;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .filterBtn {
+  position: relative;
   font-family: var(--font-sans, system-ui);
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  padding: 8px 16px;
-  border-radius: var(--radius-pill, 20px);
-  border: 1px solid var(--border, #e5e0d8);
+  padding: 10px 4px;
+  margin: 0 12px;
+  border-radius: 0;
+  border: none;
   background: transparent;
   color: var(--text-muted, #888780);
   cursor: pointer;
   outline: none;
   transition:
-    background-color var(--transition-fast, 150ms ease-out),
     color var(--transition-fast, 150ms ease-out),
-    border-color var(--transition-fast, 150ms ease-out),
     transform var(--transition-fast, 150ms ease-out);
+}
+
+.filterBtn::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent, #993C1D);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--transition-normal, 250ms ease-out);
 }
 
 @media (hover: hover) {
   .filterBtn:hover {
-    background: var(--bg-muted, #EFECE6);
     color: var(--text, #2C2C2A);
-    border-color: var(--text-muted, #888780);
+  }
+  .filterBtn:hover::after {
+    transform: scaleX(0.6);
   }
   .filterBtn:active {
     transform: scale(0.97);
@@ -114,20 +129,25 @@
 }
 
 .filterBtn:focus-visible {
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+  color: var(--text, #2C2C2A);
+  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 3px var(--accent, #993C1D);
+  border-radius: var(--radius-sm, 4px);
 }
 
 .filterBtnActive {
-  background: var(--text, #2C2C2A);
-  color: #fff;
-  border-color: var(--text, #2C2C2A);
+  color: var(--accent, #993C1D);
+}
+
+.filterBtnActive::after {
+  transform: scaleX(1);
 }
 
 @media (hover: hover) {
   .filterBtnActive:hover {
-    background: #1a1a19;
-    color: #fff;
-    border-color: #1a1a19;
+    color: var(--accent, #993C1D);
+  }
+  .filterBtnActive:hover::after {
+    transform: scaleX(1);
   }
 }
 
