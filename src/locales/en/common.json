@@ -120,6 +120,7 @@
     "guides": "Guides",
     "portDelivery": "Port Delivery",
     "popularRoutes": "Popular Routes",
+    "locations": "Locations",
     "telegramBot": "Telegram Bot",
     "location": "Newton, MA, USA",
     "internationalShipping": "International shipping:",
@@ -154,6 +155,14 @@
       "txToNewark": "TX to Port Newark",
       "chicagoToNewark": "Chicago to Port Newark",
       "auctionToPort": "Auction to Port"
+    },
+    "locationLinks": {
+      "newton": "Newton, MA",
+      "boston": "Boston Car Shipping",
+      "massachusetts": "Massachusetts",
+      "florida": "Florida Car Shipping",
+      "newJersey": "New Jersey",
+      "texas": "Texas Auto Transport"
     }
   },
   "lang": {

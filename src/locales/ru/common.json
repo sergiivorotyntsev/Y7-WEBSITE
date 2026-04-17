@@ -120,6 +120,7 @@
     "guides": "Руководства",
     "portDelivery": "Доставка в порты",
     "popularRoutes": "Популярные маршруты",
+    "locations": "Локации",
     "telegramBot": "Telegram-бот",
     "location": "Newton, MA, USA",
     "internationalShipping": "Международная доставка:",
@@ -154,6 +155,14 @@
       "txToNewark": "TX — Порт Ньюарк",
       "chicagoToNewark": "Чикаго — Порт Ньюарк",
       "auctionToPort": "Аукцион — порт"
+    },
+    "locationLinks": {
+      "newton": "Newton, MA",
+      "boston": "Бостон",
+      "massachusetts": "Массачусетс",
+      "florida": "Флорида",
+      "newJersey": "Нью-Джерси",
+      "texas": "Техас"
     }
   },
   "lang": {

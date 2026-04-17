@@ -80,6 +80,19 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Locations */}
+        <div>
+          <div className={styles.colHeading}>{t('footer.locations')}</div>
+          <div className={styles.colLinks}>
+            <Link to="/newton-auto-transport" className={styles.link}>{t('footer.locationLinks.newton')}</Link>
+            <Link to="/boston-car-shipping" className={styles.link}>{t('footer.locationLinks.boston')}</Link>
+            <Link to="/massachusetts-car-shipping" className={styles.link}>{t('footer.locationLinks.massachusetts')}</Link>
+            <Link to="/florida-car-shipping" className={styles.link}>{t('footer.locationLinks.florida')}</Link>
+            <Link to="/new-jersey-auto-transport" className={styles.link}>{t('footer.locationLinks.newJersey')}</Link>
+            <Link to="/texas-auto-transport" className={styles.link}>{t('footer.locationLinks.texas')}</Link>
+          </div>
+        </div>
+
         {/* Popular Routes */}
         <div>
           <div className={styles.colHeading}>{t('footer.popularRoutes')}</div>

@@ -120,6 +120,7 @@
     "guides": "Poradniki",
     "portDelivery": "Dostawa do portów",
     "popularRoutes": "Popularne trasy",
+    "locations": "Lokalizacje",
     "telegramBot": "Bot Telegram",
     "location": "Newton, MA, USA",
     "internationalShipping": "Transport międzynarodowy:",
@@ -154,6 +155,14 @@
       "txToNewark": "TX do Port Newark",
       "chicagoToNewark": "Chicago do Port Newark",
       "auctionToPort": "Aukcja do portu"
+    },
+    "locationLinks": {
+      "newton": "Newton, MA",
+      "boston": "Boston",
+      "massachusetts": "Massachusetts",
+      "florida": "Floryda",
+      "newJersey": "New Jersey",
+      "texas": "Teksas"
     }
   },
   "lang": {
