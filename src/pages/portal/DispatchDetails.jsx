@@ -4,6 +4,7 @@ import { CheckIcon } from '../../components/icons';
 import { portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button } from '../../theme';
 import { API_URL } from '../../config';
+import PhoneInput, { getCleanPhone, isValidPhone } from '../../components/PhoneInput';
 
 const US_STATES = [
   'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD',
@@ -94,6 +95,12 @@ export default function DispatchDetails() {
     // Validation
     if (!form.pickup_contact_name.trim()) { setError('Pickup contact name is required'); return; }
     if (!form.pickup_contact_phone.trim()) { setError('Pickup contact phone is required'); return; }
+    if (!isValidPhone(form.pickup_contact_phone)) {
+      setError('Please enter a valid 10-digit pickup phone number.'); return;
+    }
+    if (form.delivery_contact_phone && !isValidPhone(form.delivery_contact_phone)) {
+      setError('Please enter a valid 10-digit delivery phone number, or leave it blank.'); return;
+    }
     if (!form.pickup_business_hours.trim()) { setError('Pickup business hours are required'); return; }
     if (!form.pickup_city.trim() && !form.pickup_zip.trim()) { setError('Pickup city or ZIP is required'); return; }
 
@@ -109,7 +116,7 @@ export default function DispatchDetails() {
           pickup_zip: form.pickup_zip || null,
           pickup_location_type: form.pickup_location_type || null,
           pickup_contact_name: form.pickup_contact_name,
-          pickup_contact_phone: form.pickup_contact_phone,
+          pickup_contact_phone: getCleanPhone(form.pickup_contact_phone),
           pickup_business_hours: form.pickup_business_hours,
           gate_pass: form.gate_pass || null,
           delivery_full_address: form.delivery_full_address || null,
@@ -118,7 +125,7 @@ export default function DispatchDetails() {
           delivery_zip: form.delivery_zip || null,
           delivery_location_type: form.delivery_location_type || null,
           delivery_contact_name: form.delivery_contact_name || null,
-          delivery_contact_phone: form.delivery_contact_phone || null,
+          delivery_contact_phone: form.delivery_contact_phone ? getCleanPhone(form.delivery_contact_phone) : null,
           special_instructions: form.special_instructions || null,
         }),
       });
@@ -239,7 +246,7 @@ export default function DispatchDetails() {
             </div>
             <div>
               <label style={labelStyle}>Contact Phone *</label>
-              <input style={inputStyle} value={form.pickup_contact_phone} onChange={set('pickup_contact_phone')} placeholder="(555) 123-4567" />
+              <PhoneInput style={inputStyle} value={form.pickup_contact_phone} onChange={v => setForm(f => ({ ...f, pickup_contact_phone: v }))} required />
             </div>
           </div>
 
@@ -347,7 +354,7 @@ export default function DispatchDetails() {
             </div>
             <div>
               <label style={labelStyle}>Contact Phone</label>
-              <input style={inputStyle} value={form.delivery_contact_phone} onChange={set('delivery_contact_phone')} placeholder="(555) 987-6543" />
+              <PhoneInput style={inputStyle} value={form.delivery_contact_phone} onChange={v => setForm(f => ({ ...f, delivery_contact_phone: v }))} />
             </div>
           </div>
         </div>
