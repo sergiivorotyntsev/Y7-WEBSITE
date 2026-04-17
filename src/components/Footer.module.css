@@ -1,0 +1,138 @@
+/* Footer — columns, link hover states, focus-visible. */
+
+.footer {
+  background: var(--bg-muted, #EFECE6);
+  border-top: 1px solid var(--border, #e5e0d8);
+  padding: 48px 24px 32px;
+}
+
+.grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+}
+
+.brandTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin-bottom: 12px;
+}
+
+.brandDot {
+  color: var(--accent, #993C1D);
+}
+
+.tagline {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  color: var(--text-muted, #888780);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.legalIds {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 12px;
+  color: var(--text-muted, #888780);
+  line-height: 1.8;
+}
+
+.colHeading {
+  font-family: var(--font-sans, system-ui);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text, #2C2C2A);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.colLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* =====================================================================
+   LINK — muted, hover to accent with subtle slide
+   ===================================================================== */
+
+.link {
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  color: var(--text-muted, #888780);
+  text-decoration: none;
+  transition: color var(--transition-fast, 150ms ease-out), transform var(--transition-fast, 150ms ease-out);
+  outline: none;
+  padding: 2px 0;
+  display: inline-block;
+  width: fit-content;
+  border-radius: 2px;
+}
+
+@media (hover: hover) {
+  .link:hover {
+    color: var(--accent, #993C1D);
+    transform: translateX(2px);
+  }
+}
+
+.link:focus-visible {
+  color: var(--accent, #993C1D);
+  box-shadow: 0 0 0 2px var(--bg-muted, #EFECE6), 0 0 0 4px var(--accent, #993C1D);
+}
+
+.linkStatic {
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  color: var(--text-muted, #888780);
+}
+
+/* =====================================================================
+   BOTTOM BAR
+   ===================================================================== */
+
+.bottomBar {
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--border, #e5e0d8);
+  text-align: center;
+  font-family: var(--font-sans, system-ui);
+  font-size: 12px;
+  color: var(--text-hint, #999);
+}
+
+.intlLine {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  text-align: center;
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  color: var(--text-muted, #888780);
+}
+
+.intlLink {
+  color: var(--accent, #993C1D);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--transition-fast, 150ms ease-out);
+  outline: none;
+  border-radius: 2px;
+}
+
+@media (hover: hover) {
+  .intlLink:hover {
+    color: var(--accent-hover, #7A3017);
+    text-decoration: underline;
+  }
+}
+
+.intlLink:focus-visible {
+  box-shadow: 0 0 0 2px var(--bg-muted, #EFECE6), 0 0 0 4px var(--accent, #993C1D);
+}
