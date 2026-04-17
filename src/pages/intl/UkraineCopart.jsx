@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
 import { colors, fonts, button as btnStyles } from '../../theme';
+import styles from './UkraineCopart.module.css';
 
 // =============================================================================
 // UkraineCopart.jsx — Merged audience (Ukraine import + діаспора в США)
@@ -746,7 +747,7 @@ function UkraineCopart() {
               gap: '12px',
             }}
           >
-            <div style={cardStyle}>
+            <div className={styles.liftCard} style={cardStyle}>
               <div
                 style={{
                   fontFamily: fonts.sans,
@@ -782,7 +783,7 @@ function UkraineCopart() {
                 відстані, стану авто (їде/не їде), сезону.
               </p>
             </div>
-            <div style={cardStyle}>
+            <div className={styles.liftCard} style={cardStyle}>
               <div
                 style={{
                   fontFamily: fonts.sans,
@@ -818,7 +819,7 @@ function UkraineCopart() {
                 порту США та європейського порту призначення.
               </p>
             </div>
-            <div style={cardStyle}>
+            <div className={styles.liftCard} style={cardStyle}>
               <div
                 style={{
                   fontFamily: fonts.sans,
@@ -1010,7 +1011,7 @@ function UkraineCopart() {
             }}
           >
             {diasporaUseCases.map((uc, idx) => (
-              <div key={idx} style={cardStyle}>
+              <div key={idx} className={styles.liftCard} style={cardStyle}>
                 <h4
                   style={{
                     fontFamily: fonts.sans,
@@ -1054,32 +1055,14 @@ function UkraineCopart() {
 
         {/* FAQ (mirrors SeoLandingPage faqs) */}
         <Section title="Часті запитання">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {faqSchema.mainEntity.map((faq, idx) => (
-              <div key={idx} style={cardStyle}>
-                <h3
-                  style={{
-                    fontFamily: fonts.sans,
-                    fontSize: '15px',
-                    fontWeight: 600,
-                    color: colors.text,
-                    marginBottom: '8px',
-                  }}
-                >
-                  {faq.name}
-                </h3>
-                <p
-                  style={{
-                    fontFamily: fonts.sans,
-                    fontSize: '14px',
-                    color: colors.textMuted,
-                    lineHeight: 1.6,
-                    margin: 0,
-                  }}
-                >
-                  {faq.acceptedAnswer.text}
-                </p>
-              </div>
+              <details key={idx} className={styles.faqItem}>
+                <summary className={styles.faqSummary}>
+                  <span>{faq.name}</span>
+                </summary>
+                <p className={styles.faqAnswer}>{faq.acceptedAnswer.text}</p>
+              </details>
             ))}
           </div>
         </Section>
@@ -1097,6 +1080,7 @@ function UkraineCopart() {
             href="https://t.me/y7dispatch_bot"
             target="_blank"
             rel="noopener noreferrer"
+            className={`${styles.subtleLift} ${styles.focusRing}`}
             style={{
               ...btnStyles.accent,
               display: 'inline-block',
