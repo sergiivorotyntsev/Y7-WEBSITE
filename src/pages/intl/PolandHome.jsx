@@ -12,6 +12,7 @@ import HreflangTags from '../../components/HreflangTags';
 import LanguageSwitcher from '../../components/LanguageSwitcher';
 import { colors, fonts } from '../../theme';
 import styles from './PolandHome.module.css';
+import HeroRouteVisual from '../../components/HeroRouteVisual';
 
 const PolandHome = () => {
   const faqSchema = {
@@ -122,6 +123,9 @@ const PolandHome = () => {
       }}>
         {/* Hero section */}
         <section className={styles.heroSection}>
+          <div className={styles.heroVisual} aria-hidden="true">
+            <HeroRouteVisual />
+          </div>
           <div className={styles.heroInner}>
             <span className={styles.heroKickerPill}>◆ Y7 Logistics × DaytonaCargo</span>
 

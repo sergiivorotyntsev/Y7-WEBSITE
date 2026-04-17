@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
 import pageStyles from './RussiaHome.module.css';
+import HeroRouteVisual from '../../components/HeroRouteVisual';
 
 // =============================================================================
 // RussiaHome.jsx — Template A (Home/Overview)
@@ -300,6 +301,9 @@ function RussiaHome() {
       {/* SECTION 1 — Hero (centered, pill kicker, matches Home.jsx pattern) */}
       {/* ================================================================= */}
       <section className={pageStyles.heroSection}>
+        <div className={pageStyles.heroVisual} aria-hidden="true">
+          <HeroRouteVisual />
+        </div>
         <div className={pageStyles.heroInner}>
           <span className={pageStyles.heroKickerPill}>◆ Y7 Logistics</span>
 

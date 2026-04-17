@@ -10,6 +10,7 @@ import {
   GlobeRouteIcon,
   TruckIcon,
 } from '../../components/icons';
+import HeroRouteVisual from '../../components/HeroRouteVisual';
 
 // =============================================================================
 // UkraineHome.jsx — Merged audience (Ukraine + діаспора в США)
@@ -442,6 +443,9 @@ function UkraineHome() {
         }
       `}</style>
       <section className={`ua-hero-section ${styles.heroSection}`}>
+        <div className={styles.heroVisual} aria-hidden="true">
+          <HeroRouteVisual />
+        </div>
         <div className={styles.heroInner}>
         <span className={styles.heroKickerPill}>◆ Пригін авто з США</span>
         <h1
