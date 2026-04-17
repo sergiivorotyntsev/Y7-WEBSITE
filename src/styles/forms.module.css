@@ -1,0 +1,130 @@
+/* Shared form primitives — inputs, textareas, selects, input groups, error states. */
+
+.input {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+  font-size: 14px;
+  color: var(--text, #2C2C2A);
+  background-color: var(--bg-card, #fff);
+  border: 1px solid var(--border-input, #ddd);
+  border-radius: var(--radius-md, 8px);
+  outline: none;
+  box-sizing: border-box;
+  transition:
+    border-color var(--transition-normal, 250ms ease-out),
+    box-shadow var(--transition-normal, 250ms ease-out),
+    background-color var(--transition-normal, 250ms ease-out);
+}
+
+.input::placeholder {
+  color: var(--text-hint, #999);
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.input:hover:not(:disabled):not(:focus) {
+  border-color: #bbb;
+}
+
+.input:focus {
+  border-color: var(--accent, #993C1D);
+  box-shadow: 0 0 0 3px var(--accent-glow, rgba(153, 60, 29, 0.15));
+}
+
+.input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: var(--bg-muted, #EFECE6);
+}
+
+/* =====================================================================
+   TEXTAREA — composes input, resize vertical
+   ===================================================================== */
+
+.textarea {
+  composes: input;
+  resize: vertical;
+  min-height: 96px;
+  line-height: 1.6;
+}
+
+/* =====================================================================
+   SELECT — composes input
+   ===================================================================== */
+
+.select {
+  composes: input;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3e%3cpath fill='none' stroke='%23888' stroke-width='1.5' d='M1 1l4 4 4-4'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 10px 6px;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+/* =====================================================================
+   INPUT GROUP — label + input wrapper
+   ===================================================================== */
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.inputGroup label,
+.label {
+  display: block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text, #2C2C2A);
+  letter-spacing: 0.02em;
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--text-muted, #888780);
+  margin-top: 2px;
+}
+
+/* =====================================================================
+   ERROR STATE — red border + subtle red shadow on focus
+   ===================================================================== */
+
+.inputError {
+  composes: input;
+  border-color: #c0392b;
+}
+
+.inputError:focus {
+  border-color: #c0392b;
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.15);
+}
+
+.errorMessage {
+  font-size: 12px;
+  color: #c0392b;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* =====================================================================
+   CHECKBOX / RADIO accent color
+   ===================================================================== */
+
+.checkbox,
+.radio {
+  accent-color: var(--accent, #993C1D);
+  cursor: pointer;
+}
+
+.checkbox:focus-visible,
+.radio:focus-visible {
+  outline: 2px solid var(--accent, #993C1D);
+  outline-offset: 2px;
+}
