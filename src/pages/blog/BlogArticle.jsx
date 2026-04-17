@@ -28,6 +28,49 @@ const ARTICLE_COMPONENTS = {
   '75000-bond-claims-guide': BondClaimsGuide,
 };
 
+const RELATED_SERVICES = {
+  'dealer-auction-pickup-guide': [
+    { to: '/auction-car-shipping',   label: 'Auction car shipping' },
+    { to: '/copart-shipping',        label: 'Copart shipping services' },
+    { to: '/dealer-auto-transport',  label: 'Dealer auto transport' },
+  ],
+  'exporter-documentation-checklist': [
+    { to: '/door-to-port-auto-transport', label: 'Door-to-port transport' },
+    { to: '/auction-to-port-transport',   label: 'Auction-to-port shipping' },
+    { to: '/new-jersey-auto-transport',   label: 'New Jersey (Port Newark) transport' },
+  ],
+  'carrier-who-vanished': [
+    { to: '/state-to-state-car-shipping', label: 'State-to-state car shipping' },
+    { to: '/ship-my-car',                 label: 'Ship my car — door-to-door' },
+    { to: '/car-shipping-cost',           label: 'Car shipping cost guide' },
+  ],
+  'carrier-coi-verification-guide': [
+    { to: '/enclosed-car-shipping', label: 'Enclosed car shipping' },
+    { to: '/ship-my-car',           label: 'Ship my car service' },
+    { to: '/car-shipping-cost',     label: 'Car shipping cost guide' },
+  ],
+  'fmcsa-2026-new-rules': [
+    { to: '/state-to-state-car-shipping', label: 'State-to-state car shipping' },
+    { to: '/ship-my-car',                 label: 'Ship my car service' },
+    { to: '/car-shipping-cost',           label: 'Car shipping cost guide' },
+  ],
+  'fmcsa-broker-recordkeeping-2026': [
+    { to: '/state-to-state-car-shipping', label: 'State-to-state car shipping' },
+    { to: '/dealer-auto-transport',       label: 'Dealer auto transport' },
+    { to: '/ship-my-car',                 label: 'Ship my car service' },
+  ],
+  'outbox-pattern-dispatch': [
+    { to: '/state-to-state-car-shipping', label: 'State-to-state car shipping' },
+    { to: '/dealer-auto-transport',       label: 'Dealer auto transport' },
+    { to: '/ship-my-car',                 label: 'Ship my car service' },
+  ],
+  '75000-bond-claims-guide': [
+    { to: '/car-shipping-cost',     label: 'Car shipping cost guide' },
+    { to: '/ship-my-car',           label: 'Ship my car service' },
+    { to: '/enclosed-car-shipping', label: 'Enclosed car shipping' },
+  ],
+};
+
 const theme = { text: colors.text, accent: colors.accent, success: colors.success, dark: colors.dark, bg: colors.bg, fonts };
 
 export default function BlogArticle() {
@@ -122,6 +165,21 @@ export default function BlogArticle() {
             <span key={tag} className={styles.tag}>{tag}</span>
           ))}
         </div>
+
+        {RELATED_SERVICES[slug] && (
+          <div className={styles.relatedServicesBlock}>
+            <h3 className={styles.relatedServicesTitle}>Related Services</h3>
+            <ul className={styles.relatedServicesList}>
+              {RELATED_SERVICES[slug].map((link, i) => (
+                <li key={i}>
+                  <Link to={link.to} className={styles.relatedServicesLink}>
+                    {link.label} &rarr;
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         <Link to="/blog" className={styles.backLink}>
           &larr; Back to Blog

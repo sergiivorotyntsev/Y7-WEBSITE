@@ -192,3 +192,45 @@
   font-size: 0.78rem;
   color: var(--text-muted, #888780);
 }
+
+.relatedServicesBlock {
+  background: var(--bg-muted, #EFECE6);
+  border-left: 3px solid var(--accent, #993C1D);
+  padding: 20px 24px;
+  margin: 36px 0 20px;
+  border-radius: 0 8px 8px 0;
+}
+
+.relatedServicesTitle {
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent, #993C1D);
+  margin: 0 0 12px;
+}
+
+.relatedServicesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.relatedServicesLink {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  color: var(--text, #2C2C2A);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--transition-fast, 150ms ease-out);
+}
+
+@media (hover: hover) {
+  .relatedServicesLink:hover {
+    color: var(--accent, #993C1D);
+  }
+}
