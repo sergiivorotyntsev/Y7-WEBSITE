@@ -195,16 +195,31 @@ const PUBLIC_ROUTES = [
   '/blog/exporter-documentation-checklist',
   '/blog/fmcsa-broker-recordkeeping-2026',
   '/blog/75000-bond-claims-guide',
-  // International pages
-  '/pl',
-  '/pl/copart-shipping',
-  '/pl/ship-my-car',
-  '/ua',
-  '/ua/copart-shipping',
-  '/ua/ship-my-car',
-  '/ru',
-  '/ru/copart-shipping',
-  '/ru/ship-my-car',
+  // Locale-prefixed translations of the 10 translatable pages.
+  // Each is the SAME React component as its English counterpart with
+  // i18n.language flipped by LocaleDetector from the URL prefix.
+  ...['ua', 'pl', 'ru'].flatMap((lang) => [
+    `/${lang}`,
+    `/${lang}/services`,
+    `/${lang}/dealers`,
+    `/${lang}/exporters`,
+    `/${lang}/ship-my-car`,
+    `/${lang}/track`,
+    `/${lang}/contact`,
+    `/${lang}/faq`,
+    `/${lang}/about`,
+    `/${lang}/quote`,
+  ]),
+  // Unique intl landing pages — distinct content, distinct slugs.
+  '/pl/transport-z-usa',
+  '/pl/transport-z-aukcji',
+  '/pl/wysylka-auta-z-usa',
+  '/ua/import-z-usa',
+  '/ua/copart-ta-iaai',
+  '/ua/dostavka-avto-z-usa',
+  '/ru/dostavka-avto-iz-usa',
+  '/ru/copart-i-iaai',
+  '/ru/perevozka-avto',
 ];
 
 // Minimal static file server for dist/
