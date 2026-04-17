@@ -98,6 +98,9 @@ export default function Home() {
 
       {/* 2. National Segment Cards */}
       <ScrollReveal style={{ padding: 'clamp(60px, 8vh, 100px) 24px clamp(30px, 4vh, 60px)' }}>
+        <div className={styles.sectionHeader}>
+          <span className={styles.sectionMicro}>&#9670; Who We Serve</span>
+        </div>
         <AudienceCards />
       </ScrollReveal>
 
@@ -146,11 +149,17 @@ export default function Home() {
 
       {/* 9. Testimonials */}
       <ScrollReveal style={{ padding: 'clamp(60px, 8vh, 100px) 24px', background: 'var(--bg-muted)' }}>
+        <div className={styles.sectionHeader}>
+          <span className={styles.sectionMicro}>&#9670; Testimonials</span>
+        </div>
         <ReviewsCarousel />
       </ScrollReveal>
 
       {/* 10. Port Pills */}
       <ScrollReveal style={{ padding: 'clamp(60px, 8vh, 100px) 24px' }}>
+        <div className={styles.sectionHeader}>
+          <span className={styles.sectionMicro}>&#9670; Coverage</span>
+        </div>
         <PortPills />
       </ScrollReveal>
     </div>
