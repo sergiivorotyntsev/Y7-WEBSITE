@@ -1,0 +1,149 @@
+/* Shared card primitives — card, cardStatic, cardMuted, cardDark, cardGrid.
+   Replaces ad-hoc card styling scattered across pages. */
+
+.card {
+  background-color: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-lg, 12px);
+  padding: 28px;
+  box-sizing: border-box;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06));
+  transition:
+    transform var(--transition-normal, 250ms ease-out),
+    box-shadow var(--transition-normal, 250ms ease-out),
+    border-color var(--transition-normal, 250ms ease-out);
+}
+
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg, 0 4px 12px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08));
+    border-color: var(--accent, #993C1D);
+  }
+}
+
+/* =====================================================================
+   STATIC — same visual as .card but no hover animation
+   ===================================================================== */
+
+.cardStatic {
+  background-color: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-lg, 12px);
+  padding: 28px;
+  box-sizing: border-box;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06));
+}
+
+/* =====================================================================
+   MUTED — soft bg, transparent border
+   ===================================================================== */
+
+.cardMuted {
+  background-color: var(--bg-muted, #EFECE6);
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg, 12px);
+  padding: 28px;
+  box-sizing: border-box;
+  transition:
+    transform var(--transition-normal, 250ms ease-out),
+    border-color var(--transition-normal, 250ms ease-out),
+    background-color var(--transition-normal, 250ms ease-out);
+}
+
+@media (hover: hover) {
+  .cardMuted:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent, #993C1D);
+    background-color: var(--bg-card, #fff);
+  }
+}
+
+/* =====================================================================
+   DARK — dark bg, light text
+   ===================================================================== */
+
+.cardDark {
+  background-color: var(--text, #2C2C2A);
+  color: var(--bg, #F7F5F0);
+  border: 1px solid var(--text, #2C2C2A);
+  border-radius: var(--radius-lg, 12px);
+  padding: 28px;
+  box-sizing: border-box;
+  transition:
+    transform var(--transition-normal, 250ms ease-out),
+    box-shadow var(--transition-normal, 250ms ease-out);
+}
+
+@media (hover: hover) {
+  .cardDark:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg, 0 4px 12px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08));
+  }
+}
+
+/* =====================================================================
+   GRID — responsive 3 → 2 → 1
+   ===================================================================== */
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 1024px) {
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .cardGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.cardGrid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .cardGrid2 {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.cardGrid4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1100px) {
+  .cardGrid4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .cardGrid4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =====================================================================
+   ACCENT BADGE — "Most Popular", etc.
+   ===================================================================== */
+
+.accentBorder {
+  border-color: var(--accent, #993C1D);
+  box-shadow:
+    0 0 0 1px var(--accent, #993C1D),
+    var(--shadow-md, 0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06));
+}
