@@ -27,6 +27,22 @@
     "title": "Zasięg głównych portów",
     "list": ["Newark, NJ", "Houston, TX", "Savannah, GA", "Baltimore, MD", "Los Angeles, CA", "Jacksonville, FL"]
   },
+  "benefits": {
+    "kicker": "TWOJA PRZEWAGA",
+    "title": "Kompletne rozwiązanie transportowe",
+    "quoteAnywhereTitle": "Wycena w każdej chwili",
+    "quoteAnywhereDesc": "Wycena z telefonu, komputera lub przez Telegram. Bez dzwonienia.",
+    "realTimeTitle": "Komunikacja w czasie rzeczywistym",
+    "realTimeDesc": "Śledź status przez Telegram, email lub panel klienta. Aktualizacje na każdym etapie.",
+    "transparentTitle": "Przejrzyste ceny",
+    "transparentDesc": "Stawka przewoźnika + stała opłata. Bez ukrytych kosztów. Cena ustalona przed wysyłką.",
+    "flexibleTitle": "Elastyczna płatność",
+    "flexibleDesc": "Płatność przy dostawie lub przedpłata. Ceny hurtowe dla dilerów. Faktury tygodniowe.",
+    "verifiedTitle": "Tylko zweryfikowani przewoźnicy",
+    "verifiedDesc": "Każdy przewoźnik sprawdzony przez Central Dispatch. Licencja FMCSA i ubezpieczenie potwierdzone.",
+    "documentationTitle": "Dokumenty pod kontrolą",
+    "documentationDesc": "List przewozowy przy odbiorze i dostawie. Dokumentacja fotograficzna. Numer telefonu kierowcy."
+  },
   "howItWorks": {
     "title": "Jak to działa",
     "kicker": "Proces",

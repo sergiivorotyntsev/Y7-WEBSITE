@@ -30,6 +30,22 @@
     "title": "Major Port Coverage",
     "list": ["Newark, NJ", "Houston, TX", "Savannah, GA", "Baltimore, MD", "Los Angeles, CA", "Jacksonville, FL"]
   },
+  "benefits": {
+    "kicker": "YOUR ADVANTAGE",
+    "title": "Your Complete Transport Solution",
+    "quoteAnywhereTitle": "Quote Anywhere, Anytime",
+    "quoteAnywhereDesc": "Get a quote from your phone, desktop, or Telegram bot. No calls needed.",
+    "realTimeTitle": "Real-Time Communication",
+    "realTimeDesc": "Track progress via Telegram, email, or customer portal. Updates at every stage.",
+    "transparentTitle": "Transparent Pricing",
+    "transparentDesc": "Carrier rate + flat service fee. No hidden charges. Price locked before dispatch.",
+    "flexibleTitle": "Flexible Payment",
+    "flexibleDesc": "Pay on delivery or prepay. Volume pricing for dealers. Weekly invoicing available.",
+    "verifiedTitle": "Verified Carriers Only",
+    "verifiedDesc": "Every carrier checked through Central Dispatch. FMCSA authority and insurance verified.",
+    "documentationTitle": "Documentation Handled",
+    "documentationDesc": "BOL at pickup and delivery. Photo documentation. Carrier phone number provided."
+  },
   "howItWorks": {
     "title": "How It Works",
     "kicker": "Process",

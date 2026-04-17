@@ -10,7 +10,7 @@ import QuoteForm from '../components/QuoteForm';
 import AudienceCards from '../components/AudienceCards';
 import PortPills from '../components/PortPills';
 import LiveActivityFeed from '../components/LiveActivityFeed';
-import HowItWorks from '../components/HowItWorks';
+import Benefits from '../components/Benefits';
 import ReviewsCarousel from '../components/ReviewsCarousel';
 import TrustBadges from '../components/TrustBadges';
 import ExternalReviewsStrip from '../components/ExternalReviewsStrip';
@@ -110,13 +110,9 @@ export default function Home() {
       {/* 4. Trust Bar */}
       <TrustBar />
 
-      {/* 5. How It Works */}
-      <ScrollReveal style={{ padding: 'clamp(60px, 8vh, 100px) 24px' }}>
-        <div className={styles.sectionHeader}>
-          <span className={styles.sectionMicro}>&#9670; {t('howItWorks.kicker')}</span>
-          <h2 className={styles.sectionTitle}>{t('howItWorks.title')}</h2>
-        </div>
-        <HowItWorks />
+      {/* 5. Benefits — "Your Complete Transport Solution" */}
+      <ScrollReveal style={{ padding: 'clamp(60px, 8vh, 100px) 24px', background: 'var(--bg-muted)' }}>
+        <Benefits />
       </ScrollReveal>
 
       {/* 6. Why Y7 */}
