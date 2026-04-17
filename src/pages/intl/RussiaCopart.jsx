@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
+import pageStyles from './RussiaCopart.module.css';
 
 // =============================================================================
 // RussiaCopart.jsx — Template B (Copart Guide)
@@ -545,7 +546,7 @@ function RussiaCopart() {
           }}
         >
           {ROUTES.map((route, i) => (
-            <div key={i} style={styles.card}>
+            <div key={i} className={pageStyles.liftCard} style={styles.card}>
               <p
                 style={{
                   ...styles.sansFont,
@@ -718,6 +719,7 @@ function RussiaCopart() {
           {FAQS.map((faq, i) => (
             <details
               key={i}
+              className={pageStyles.faqItem}
               style={{
                 ...styles.card,
                 cursor: 'pointer',
@@ -793,6 +795,7 @@ function RussiaCopart() {
           </p>
           <Link
             to="/ru/ship-my-car"
+            className={`${pageStyles.subtleLift} ${pageStyles.focusRing}`}
             style={{
               ...styles.ctaButton,
               fontSize: '1.05rem',
