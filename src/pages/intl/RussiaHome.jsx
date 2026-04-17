@@ -297,80 +297,62 @@ function RussiaHome() {
       />
 
       {/* ================================================================= */}
-      {/* SECTION 1 — Hero                                                  */}
+      {/* SECTION 1 — Hero (centered, pill kicker, matches Home.jsx pattern) */}
       {/* ================================================================= */}
-      <section style={styles.section}>
-        {/* Brand line */}
-        <p
-          style={{
-            ...styles.sansFont,
-            fontSize: '0.875rem',
-            textTransform: 'uppercase',
-            letterSpacing: '0.1em',
-            color: '#993C1D',
-            marginBottom: '0.75rem',
-          }}
-        >
-          Y7 Logistics
-        </p>
+      <section className={pageStyles.heroSection}>
+        <div className={pageStyles.heroInner}>
+          <span className={pageStyles.heroKickerPill}>◆ Y7 Logistics</span>
 
-        <h1 style={styles.h1}>
-          Перевозка автомобилей по всей территории США — от аукциона до вашего адреса
-        </h1>
+          <h1 style={{ ...styles.h1, textAlign: 'center' }}>
+            Перевозка автомобилей по всей территории США — от аукциона до вашего адреса
+          </h1>
 
-        <p
-          style={{
-            ...styles.paragraph,
-            marginTop: '1.5rem',
-            maxWidth: '720px',
-          }}
-        >
-          Y7 Logistics — лицензированный брокер автоперевозок FMCSA (MC&nbsp;#1741537).
-          Мы организуем доставку автомобилей по всем 50 штатам: с аукционов Copart и IAAI,
-          между городами, до морских портов. Сеть из 100+ проверенных
-          перевозчиков и русскоязычная команда, которая отвечает быстро через Telegram и email. Наши цены
-          формируются на основе реальных данных Central Dispatch — без скрытых доплат
-          и неприятных сюрпризов.
-        </p>
+          <p
+            style={{
+              ...styles.paragraph,
+              marginTop: '1.5rem',
+              maxWidth: '720px',
+              textAlign: 'center',
+            }}
+          >
+            Y7 Logistics — лицензированный брокер автоперевозок FMCSA (MC&nbsp;#1741537).
+            Мы организуем доставку автомобилей по всем 50 штатам: с аукционов Copart и IAAI,
+            между городами, до морских портов. Сеть из 100+ проверенных
+            перевозчиков и русскоязычная команда, которая отвечает быстро через Telegram и email. Наши цены
+            формируются на основе реальных данных Central Dispatch — без скрытых доплат
+            и неприятных сюрпризов.
+          </p>
 
-        {/* CTA button */}
-        <div style={{ marginTop: '2rem' }}>
-          <Link to="/ru/ship-my-car" className={`${pageStyles.subtleLift} ${pageStyles.focusRing}`} style={styles.ctaButton}>
-            Рассчитать стоимость доставки
-          </Link>
+          {/* CTA buttons — centered row */}
+          <div style={{ marginTop: '2rem', display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <Link to="/ru/ship-my-car" className={`${pageStyles.subtleLift} ${pageStyles.focusRing}`} style={styles.ctaButton}>
+              Рассчитать стоимость доставки
+            </Link>
+            <Link
+              to="/track"
+              className={`${pageStyles.subtleLift} ${pageStyles.focusRing}`}
+              style={{
+                ...styles.ctaButton,
+                background: 'transparent',
+                color: '#2C2C2A',
+                border: '1px solid #2C2C2A',
+              }}
+            >
+              Трекинг
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* ================================================================= */}
-      {/* SECTION 2 — Quick Stats                                           */}
+      {/* SECTION 2 — Quick Stats (dark strip, parity with English TrustBar)*/}
       {/* ================================================================= */}
-      <section
-        style={{
-          ...styles.section,
-          borderTop: '1px solid #E8E4DC',
-        }}
-      >
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '2rem',
-            textAlign: 'center',
-          }}
-        >
+      <section className={pageStyles.statsStrip}>
+        <div className={pageStyles.statsGrid}>
           {STATS.map((stat, i) => (
-            <div key={i}>
-              <p style={styles.statNumber}>{stat.number}</p>
-              <p
-                style={{
-                  ...styles.sansFont,
-                  fontSize: '0.95rem',
-                  color: '#4A4A46',
-                  marginTop: '0.25rem',
-                }}
-              >
-                {stat.label}
-              </p>
+            <div key={i} style={{ padding: '8px 16px' }}>
+              <p className={pageStyles.statNumberDark}>{stat.number}</p>
+              <p className={pageStyles.statLabelDark}>{stat.label}</p>
             </div>
           ))}
         </div>
@@ -380,6 +362,7 @@ function RussiaHome() {
       {/* SECTION 3 — Our Services (US diaspora framing)                    */}
       {/* ================================================================= */}
       <section style={styles.section}>
+        <span className={pageStyles.sectionKicker}>◆ Услуги</span>
         <h2 style={styles.h2}>Наши услуги</h2>
         <p style={{ ...styles.paragraph, marginBottom: '2rem' }}>
           Полный спектр автоперевозок внутри США — от единичного заказа до регулярных дилерских
@@ -431,6 +414,7 @@ function RussiaHome() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
+        <span className={pageStyles.sectionKicker}>◆ Процесс</span>
         <h2 style={styles.h2}>Как это работает</h2>
 
         <ol
@@ -487,6 +471,7 @@ function RussiaHome() {
       {/* SECTION 5 — Cost Breakdown                                        */}
       {/* ================================================================= */}
       <section style={styles.section}>
+        <span className={pageStyles.sectionKicker}>◆ Цены</span>
         <h2 style={styles.h2}>Ориентировочная стоимость</h2>
 
         <div
@@ -542,6 +527,7 @@ function RussiaHome() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
+        <span className={pageStyles.sectionKicker}>◆ Маршруты</span>
         <h2 style={styles.h2}>Примеры реальных маршрутов</h2>
 
         <div
@@ -600,6 +586,7 @@ function RussiaHome() {
       {/* SECTION 7 — Risks                                                 */}
       {/* ================================================================= */}
       <section style={styles.section}>
+        <span className={pageStyles.sectionKicker}>◆ Важно знать</span>
         <h2 style={styles.h2}>На что обратить внимание</h2>
 
         <div
@@ -646,6 +633,7 @@ function RussiaHome() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
+        <span className={pageStyles.sectionKicker}>◆ FAQ</span>
         <h2 style={styles.h2}>Часто задаваемые вопросы</h2>
 
         <div style={{ display: 'grid', gap: '0.75rem' }}>
@@ -700,6 +688,7 @@ function RussiaHome() {
       {/* SECTION 8b — Отзывы (testimonials, diaspora voice)                 */}
       {/* ================================================================= */}
       <section style={{ ...styles.section, borderTop: '1px solid #E8E4DC' }}>
+        <span className={pageStyles.sectionKicker}>◆ Отзывы</span>
         <h2 style={styles.h2}>Что говорят клиенты</h2>
         <p style={{ ...styles.paragraph, marginBottom: '2rem', maxWidth: '720px' }}>
           Реальные перевозки — реальные истории. Имена и города сохранены с разрешения клиентов.
@@ -742,6 +731,9 @@ function RussiaHome() {
       {/* SECTION 8c — Порты (port pills)                                    */}
       {/* ================================================================= */}
       <section style={{ ...styles.section, borderTop: '1px solid #E8E4DC' }}>
+        <div style={{ textAlign: 'center' }}>
+          <span className={pageStyles.sectionKicker}>◆ Порты</span>
+        </div>
         <h2 style={{ ...styles.h2, textAlign: 'center' }}>Работаем с основными портами США</h2>
         <p style={{ ...styles.paragraph, textAlign: 'center', marginBottom: '2rem', maxWidth: '640px', marginLeft: 'auto', marginRight: 'auto' }}>
           Доставляем автомобили до порта отправления — дальнейшая экспортная логистика
