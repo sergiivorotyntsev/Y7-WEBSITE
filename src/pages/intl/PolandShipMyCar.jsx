@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
 import { colors, fonts } from '../../theme';
+import styles from './PolandShipMyCar.module.css';
 
 // =============================================================================
 // PolandShipMyCar.jsx — Merged audience (Poland + Polonia w USA)
@@ -335,7 +336,7 @@ function PolandShipMyCar() {
           }}
         >
           {checklistItems.map((item, idx) => (
-            <div key={idx} style={cardStyle}>
+            <div key={idx} className={styles.liftCard} style={cardStyle}>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
                 <span
                   style={{
@@ -372,7 +373,7 @@ function PolandShipMyCar() {
           {orderingSteps.map((step) => (
             <div
               key={step.num}
-              style={{ ...cardStyle, display: 'flex', alignItems: 'flex-start', gap: '1.25rem' }}
+              className={styles.liftCard} style={{ ...cardStyle, display: 'flex', alignItems: 'flex-start', gap: '1.25rem' }}
             >
               <div
                 style={{
@@ -423,7 +424,7 @@ function PolandShipMyCar() {
             gap: '1rem',
           }}
         >
-          <div style={cardStyle}>
+          <div className={styles.liftCard} style={cardStyle}>
             <h3
               style={{
                 fontFamily: fonts.sans,
@@ -451,7 +452,7 @@ function PolandShipMyCar() {
             </p>
           </div>
 
-          <div style={cardStyle}>
+          <div className={styles.liftCard} style={cardStyle}>
             <h3
               style={{
                 fontFamily: fonts.sans,
@@ -479,7 +480,7 @@ function PolandShipMyCar() {
             </p>
           </div>
 
-          <div style={cardStyle}>
+          <div className={styles.liftCard} style={cardStyle}>
             <h3
               style={{
                 fontFamily: fonts.sans,
@@ -513,7 +514,7 @@ function PolandShipMyCar() {
       {/* SECTION 5 — Trust signals                                          */}
       {/* ================================================================== */}
       <section style={sectionStyle}>
-        <div style={{ ...cardStyle, borderLeft: `4px solid ${accentColor}` }}>
+        <div className={styles.liftCard} style={{ ...cardStyle, borderLeft: `4px solid ${accentColor}` }}>
           <h2 style={{ ...h2Style, fontSize: '1.5rem' }}>
             Dlaczego warto zaufa\u0107 Y7 \u00d7 DaytonaCargo
           </h2>
@@ -600,7 +601,7 @@ function PolandShipMyCar() {
             gap: '1rem',
           }}
         >
-          <div style={cardStyle}>
+          <div className={styles.liftCard} style={cardStyle}>
             <p style={{ fontFamily: fonts.sans, fontWeight: 600, marginBottom: '0.5rem' }}>
               Telegram (EN/RU)
             </p>
@@ -614,7 +615,7 @@ function PolandShipMyCar() {
             </a>
           </div>
 
-          <div style={cardStyle}>
+          <div className={styles.liftCard} style={cardStyle}>
             <p style={{ fontFamily: fonts.sans, fontWeight: 600, marginBottom: '0.5rem' }}>
               Email
             </p>
@@ -626,7 +627,7 @@ function PolandShipMyCar() {
             </a>
           </div>
 
-          <div style={cardStyle}>
+          <div className={styles.liftCard} style={cardStyle}>
             <p style={{ fontFamily: fonts.sans, fontWeight: 600, marginBottom: '0.5rem' }}>
               DaytonaCargo (PL)
             </p>
@@ -702,7 +703,7 @@ function PolandShipMyCar() {
             }}
           >
             {diasporaUseCases.map((uc, idx) => (
-              <div key={idx} style={cardStyle}>
+              <div key={idx} className={styles.liftCard} style={cardStyle}>
                 <h4
                   style={{
                     fontFamily: fonts.sans,
@@ -744,7 +745,7 @@ function PolandShipMyCar() {
               gap: '1rem',
             }}
           >
-            <div style={cardStyle}>
+            <div className={styles.liftCard} style={cardStyle}>
               <h4
                 style={{
                   fontFamily: fonts.sans,
@@ -773,7 +774,7 @@ function PolandShipMyCar() {
               </p>
             </div>
 
-            <div style={cardStyle}>
+            <div className={styles.liftCard} style={cardStyle}>
               <h4
                 style={{
                   fontFamily: fonts.sans,
@@ -802,7 +803,7 @@ function PolandShipMyCar() {
               </p>
             </div>
 
-            <div style={cardStyle}>
+            <div className={styles.liftCard} style={cardStyle}>
               <h4
                 style={{
                   fontFamily: fonts.sans,
@@ -847,7 +848,7 @@ function PolandShipMyCar() {
 
         <div style={{ display: 'grid', gap: '0.75rem' }}>
           {faqSchema.mainEntity.map((faq, idx) => (
-            <details key={idx} style={{ ...cardStyle, cursor: 'pointer' }}>
+            <details key={idx} className={styles.faqItem} style={{ ...cardStyle, cursor: 'pointer' }}>
               <summary
                 style={{
                   fontFamily: fonts.sans,
@@ -907,7 +908,7 @@ function PolandShipMyCar() {
               href="https://t.me/y7dispatch_bot"
               target="_blank"
               rel="noopener noreferrer"
-              style={ctaButtonStyle}
+              className={`${styles.subtleLift} ${styles.focusRing}`} style={ctaButtonStyle}
             >
               Napisz na Telegram
             </a>
