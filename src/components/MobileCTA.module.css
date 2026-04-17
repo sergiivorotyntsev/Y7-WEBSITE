@@ -1,0 +1,60 @@
+/* MobileCTA — fixed bottom bar with Telegram/Email/Quote buttons.
+   Hidden on desktop. Slides up when scrolled past 300px. */
+
+.bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 52px;
+  background: var(--text, #2C2C2A);
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  transform: translateY(100%);
+  transition: transform 300ms ease-out;
+}
+
+.barVisible {
+  transform: translateY(0);
+}
+
+.btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-family: var(--font-sans, system-ui);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 10px 0;
+  outline: none;
+  min-height: 44px;
+  transition: background-color var(--transition-fast, 150ms ease-out);
+}
+
+@media (hover: hover) {
+  .btn:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+  }
+}
+
+.btn:focus-visible {
+  background-color: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 0 0 2px var(--accent, #993C1D);
+}
+
+.btn + .btn {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 1025px) {
+  .bar { display: none; }
+}
