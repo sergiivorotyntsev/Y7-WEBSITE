@@ -11,6 +11,8 @@ const langs = [
   { code: 'ru', label: 'RU' },
 ];
 
+// Paths that exist in every intl language variant (PL/UA/RU). Used to decide
+// whether a language switch can stay on the current page.
 const I18N_PATHS = ['/copart-shipping', '/ship-my-car', '/faq', '/about', '/quote', '/dealer-quote'];
 const I18N_PREFIXES = ['/ports/', '/quote/', '/agreement/'];
 
@@ -37,6 +39,7 @@ export default function LanguageSwitcher() {
     i18n.changeLanguage(code);
     trackEvent('language_switch', { language: code });
 
+    // Strip any leading language prefix to get the pure English path.
     let basePath = location.pathname;
     const pathParts = basePath.split('/').filter(Boolean);
     if (pathParts.length > 0 && langCodes.includes(pathParts[0])) {
@@ -44,13 +47,24 @@ export default function LanguageSwitcher() {
     }
     if (!basePath || basePath === '/') basePath = '';
 
-    const hasLangRoute = basePath === '' ||
+    // Does the current page have an intl version?
+    const hasIntlVariant = basePath === '' ||
       I18N_PATHS.includes(basePath) ||
       I18N_PREFIXES.some(p => basePath.startsWith(p));
 
-    if (hasLangRoute) {
-      navigate(code === 'en' ? (basePath || '/') : `/${code}${basePath}`);
+    let target;
+    if (code === 'en') {
+      // Back to English — keep base path if known route, else fall back to root.
+      target = basePath || '/';
+    } else if (hasIntlVariant) {
+      // Stay on the same page in the target language.
+      target = `/${code}${basePath}`;
+    } else {
+      // No intl version for this page — land on the intl Home.
+      target = `/${code}`;
     }
+
+    navigate(target);
     setOpen(false);
   }
 

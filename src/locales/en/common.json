@@ -9,7 +9,20 @@
     "faq": "FAQ",
     "about": "About",
     "blog": "Blog",
-    "contact": "Contact"
+    "contact": "Contact",
+    "resources": "Resources",
+    "forDealers": "For Dealers",
+    "forExporters": "For Exporters",
+    "allServices": "All Services",
+    "portDelivery": "Port Delivery",
+    "forDealersDesc": "Volume pricing, auction pickup",
+    "forExportersDesc": "Port delivery, gate pass coordination",
+    "shipMyCarDesc": "Door-to-door personal transport",
+    "allServicesDesc": "Full service overview",
+    "portDeliveryDesc": "Newark, Houston, Savannah…",
+    "blogDesc": "Guides, industry insights",
+    "faqDesc": "Common questions answered",
+    "aboutDesc": "About Y7 Logistics"
   },
   "auth": {
     "myAccount": "My Account",

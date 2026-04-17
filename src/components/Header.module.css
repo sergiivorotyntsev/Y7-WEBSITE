@@ -267,9 +267,102 @@
 }
 
 .mobileCta {
-  margin-top: 12px;
+  margin-top: 4px;
+  margin-bottom: 12px;
   font-size: 14px !important;
+  min-height: 48px;
+  align-self: stretch;
+}
+
+/* =====================================================================
+   MOBILE SECTION TOGGLE (Services, Resources)
+   ===================================================================== */
+
+.mobileSectionToggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border, #e5e0d8);
+  border-left: 3px solid transparent;
+  padding: 14px 12px 14px 12px;
+  font-family: var(--font-sans, system-ui);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text, #2C2C2A);
+  cursor: pointer;
+  outline: none;
   min-height: 44px;
+  text-align: left;
+  transition: color var(--transition-fast, 150ms ease-out), border-left-color var(--transition-fast, 150ms ease-out);
+}
+
+@media (hover: hover) {
+  .mobileSectionToggle:hover {
+    color: var(--accent, #993C1D);
+    border-left-color: var(--accent, #993C1D);
+  }
+}
+
+.mobileSectionToggle:focus-visible {
+  color: var(--accent, #993C1D);
+  border-left-color: var(--accent, #993C1D);
+  background-color: var(--bg-muted, #EFECE6);
+}
+
+.mobileSubmenu {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 0 4px 24px;
+  background: var(--bg-muted, #EFECE6);
+  border-radius: var(--radius-md, 8px);
+  margin: 0 0 6px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .mobileSubmenu {
+    animation: headerMenuSlide 180ms ease-out;
+  }
+}
+
+.mobileSubLink {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-sans, system-ui);
+  font-size: 15px;
+  color: var(--text, #2C2C2A);
+  font-weight: 500;
+  text-decoration: none;
+  padding: 12px 10px;
+  min-height: 42px;
+  border-left: 2px solid transparent;
+  transition: color var(--transition-fast, 150ms ease-out), border-left-color var(--transition-fast, 150ms ease-out);
+  outline: none;
+}
+
+@media (hover: hover) {
+  .mobileSubLink:hover {
+    color: var(--accent, #993C1D);
+    border-left-color: var(--accent, #993C1D);
+  }
+}
+
+.mobileSubLink:focus-visible {
+  color: var(--accent, #993C1D);
+  border-left-color: var(--accent, #993C1D);
+}
+
+/* Footer area in mobile menu — lang switcher + login */
+.mobileFooter {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--border, #e5e0d8);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
 }
 
 /* =====================================================================

@@ -9,7 +9,20 @@
     "faq": "FAQ",
     "about": "O nas",
     "blog": "Blog",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "resources": "Zasoby",
+    "forDealers": "Dla dilerów",
+    "forExporters": "Eksport",
+    "allServices": "Wszystkie usługi",
+    "portDelivery": "Dostawa do portu",
+    "forDealersDesc": "Ceny hurtowe, odbiór z aukcji",
+    "forExportersDesc": "Dostawa do portu, gate pass",
+    "shipMyCarDesc": "Transport od drzwi do drzwi",
+    "allServicesDesc": "Przegląd wszystkich usług",
+    "portDeliveryDesc": "Newark, Houston, Savannah…",
+    "blogDesc": "Poradniki, wiedza branżowa",
+    "faqDesc": "Najczęstsze pytania",
+    "aboutDesc": "O firmie Y7 Logistics"
   },
   "auth": {
     "myAccount": "Moje konto",

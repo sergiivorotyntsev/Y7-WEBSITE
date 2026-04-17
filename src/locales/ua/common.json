@@ -9,7 +9,20 @@
     "faq": "FAQ",
     "about": "Про нас",
     "blog": "Блог",
-    "contact": "Контакти"
+    "contact": "Контакти",
+    "resources": "Ресурси",
+    "forDealers": "Для дилерів",
+    "forExporters": "Експорт",
+    "allServices": "Усі послуги",
+    "portDelivery": "Доставка в порт",
+    "forDealersDesc": "Гуртові ціни, забір з аукціонів",
+    "forExportersDesc": "Доставка в порт, gate pass",
+    "shipMyCarDesc": "Доставка від дверей до дверей",
+    "allServicesDesc": "Огляд усіх послуг",
+    "portDeliveryDesc": "Ньюарк, Х’юстон, Саванна…",
+    "blogDesc": "Посібники, галузеві матеріали",
+    "faqDesc": "Відповіді на часті питання",
+    "aboutDesc": "Про компанію Y7 Logistics"
   },
   "auth": {
     "myAccount": "Мій кабінет",

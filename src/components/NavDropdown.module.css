@@ -1,0 +1,176 @@
+/* NavDropdown — desktop hover/click-opened menu with animated entrance. */
+
+.wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  color: var(--text, #2C2C2A);
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 0;
+  outline: none;
+  transition: color var(--transition-fast, 150ms ease-out);
+}
+
+.trigger::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent, #993C1D);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--transition-normal, 250ms ease-out);
+}
+
+@media (hover: hover) {
+  .wrapper:hover .trigger,
+  .trigger:hover {
+    color: var(--accent, #993C1D);
+  }
+  .wrapper:hover .trigger::after,
+  .trigger:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+.trigger:focus-visible {
+  color: var(--accent, #993C1D);
+}
+.trigger:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.triggerActive {
+  composes: trigger;
+  color: var(--accent, #993C1D);
+  font-weight: 700;
+}
+.triggerActive::after {
+  transform: scaleX(1);
+}
+
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid currentColor;
+  transition: transform var(--transition-fast, 150ms ease-out);
+}
+
+.wrapper[data-open="true"] .caret,
+.trigger[aria-expanded="true"] .caret {
+  transform: rotate(180deg);
+}
+
+/* =====================================================================
+   MENU PANEL
+   ===================================================================== */
+
+.panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 260px;
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-lg, 12px);
+  box-shadow: var(--shadow-lg, 0 4px 12px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08));
+  padding: 8px;
+  z-index: 150;
+  list-style: none;
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .panel {
+    animation: navDropdownIn 200ms ease-out;
+  }
+}
+
+@keyframes navDropdownIn {
+  from { opacity: 0; transform: translate(-50%, -8px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* Invisible connector keeps hover alive between trigger and panel */
+.panel::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: transparent;
+}
+
+.item {
+  display: block;
+  padding: 10px 16px;
+  border-radius: var(--radius-md, 8px);
+  text-decoration: none;
+  color: var(--text, #2C2C2A);
+  transition:
+    background-color var(--transition-fast, 150ms ease-out),
+    color var(--transition-fast, 150ms ease-out);
+  outline: none;
+}
+
+@media (hover: hover) {
+  .item:hover {
+    background-color: var(--bg-muted, #EFECE6);
+    color: var(--accent, #993C1D);
+  }
+}
+
+.item:focus-visible {
+  background-color: var(--bg-muted, #EFECE6);
+  box-shadow: inset 0 0 0 2px var(--accent, #993C1D);
+}
+
+.itemActive {
+  composes: item;
+  background-color: rgba(153, 60, 29, 0.08);
+  color: var(--accent, #993C1D);
+}
+
+.itemTitle {
+  display: block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+  letter-spacing: 0;
+}
+
+.itemDesc {
+  display: block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 11.5px;
+  color: var(--text-muted, #888780);
+  line-height: 1.4;
+  margin: 3px 0 0;
+  letter-spacing: 0;
+}
+
+.item:hover .itemDesc,
+.item:focus-visible .itemDesc,
+.itemActive .itemDesc {
+  color: var(--text, #2C2C2A);
+}
