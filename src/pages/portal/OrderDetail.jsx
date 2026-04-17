@@ -83,7 +83,12 @@ export default function OrderDetail() {
   const [message, setMessage] = useState('');
   const [messageSent, setMessageSent] = useState(false);
   const [sendingMessage, setSendingMessage] = useState(false);
+  const [paymentData, setPaymentData] = useState(null);
+  const [payLoading, setPayLoading] = useState(false);
+  const [payError, setPayError] = useState(null);
+  const [feeAcknowledged, setFeeAcknowledged] = useState(false);
   const dispatchSaved = searchParams.get('dispatch_saved') === '1';
+  const justPaid = searchParams.get('paid') === '1';
 
   const fetchOrder = () => {
     setLoading(true);
@@ -95,7 +100,40 @@ export default function OrderDetail() {
       .finally(() => setLoading(false));
   };
 
-  useEffect(() => { fetchOrder(); }, [id]);
+  const fetchPayment = () => {
+    portalFetch(`/api/portal/orders/${id}/payment`)
+      .then(r => r.ok ? r.json() : null)
+      .then(setPaymentData)
+      .catch(() => setPaymentData(null));
+  };
+
+  useEffect(() => { fetchOrder(); fetchPayment(); }, [id]);
+
+  useEffect(() => {
+    if (justPaid) {
+      fetchPayment();
+      fetchOrder();
+      window.history.replaceState({}, '', window.location.pathname);
+    }
+  }, []);
+
+  const handlePayNow = async () => {
+    setPayLoading(true);
+    setPayError(null);
+    try {
+      const res = await portalFetch(`/api/portal/orders/${id}/checkout`, { method: 'POST' });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || 'Payment system error');
+      if (data.checkout_url) {
+        window.location.href = data.checkout_url;
+        return;
+      }
+      throw new Error('No checkout URL returned');
+    } catch (err) {
+      setPayError(err.message || 'Payment system error. Please try again.');
+      setPayLoading(false);
+    }
+  };
 
   const handleCancel = async () => {
     if (!confirmCancel) { setConfirmCancel(true); return; }
@@ -282,10 +320,67 @@ export default function OrderDetail() {
       </InfoCard>
 
       {/* Payment */}
-      {price && (
+      {(price || paymentData?.payment) && (
         <InfoCard title="Payment">
-          <InfoRow label="Transport fee" value={price} mono />
+          {price && <InfoRow label="Transport fee" value={price} mono />}
           {order.payment_responsibility && <InfoRow label="Payment method" value={order.payment_responsibility === 'broker' ? 'Prepaid to Y7' : 'COD at delivery'} />}
+
+          {paymentData?.payment && (
+            <div style={{ marginTop: '12px', paddingTop: '12px', borderTop: `1px solid ${colors.border}` }}>
+              <InfoRow label="Tier" value={paymentData.payment.service_tier === 'full_service' ? 'Full Service' : 'COD'} />
+              <InfoRow label="Dispatch fee" value={`$${(paymentData.payment.dispatch_fee_cents / 100).toFixed(2)}`} mono />
+              {paymentData.payment.service_tier === 'full_service' && (
+                <InfoRow label="Carrier transport" value={`$${(paymentData.payment.carrier_quote_cents / 100).toFixed(2)}`} mono />
+              )}
+              <InfoRow label="Total" value={`$${(paymentData.payment.total_charge_cents / 100).toFixed(2)}`} mono />
+              <InfoRow label="Status" value={paymentData.payment.status} />
+
+              {paymentData.payment.status === 'pending' && ['quoted', 'confirmed'].includes(order.status) && (
+                <div style={{ marginTop: '14px' }}>
+                  {paymentData.payment.service_tier === 'full_service' && (
+                    <label style={{ display: 'flex', gap: '8px', fontSize: '12px', color: colors.textMuted, marginBottom: '10px', lineHeight: 1.45 }}>
+                      <input
+                        type="checkbox"
+                        checked={feeAcknowledged}
+                        onChange={e => setFeeAcknowledged(e.target.checked)}
+                      />
+                      <span>
+                        I understand that payment processing fees (~${(paymentData.payment.total_charge_cents * 0.029 / 100 + 0.30).toFixed(2)}) are non-refundable and will be deducted from any refund.
+                      </span>
+                    </label>
+                  )}
+                  <button
+                    onClick={handlePayNow}
+                    disabled={payLoading || (paymentData.payment.service_tier === 'full_service' && !feeAcknowledged)}
+                    style={{
+                      width: '100%',
+                      padding: '12px 18px',
+                      border: 'none',
+                      borderRadius: '10px',
+                      background: colors.brand || '#1F3864',
+                      color: '#fff',
+                      fontFamily: fonts.sans,
+                      fontSize: '14px',
+                      fontWeight: 600,
+                      cursor: payLoading ? 'not-allowed' : 'pointer',
+                      opacity: (payLoading || (paymentData.payment.service_tier === 'full_service' && !feeAcknowledged)) ? 0.6 : 1,
+                    }}
+                  >
+                    {payLoading ? 'Redirecting...' : `Pay $${(paymentData.payment.total_charge_cents / 100).toFixed(2)} Now`}
+                  </button>
+                  {payError && (
+                    <div style={{ marginTop: '8px', fontSize: '12px', color: colors.accent }}>{payError}</div>
+                  )}
+                </div>
+              )}
+
+              {paymentData.payment.status === 'paid' && (
+                <div style={{ marginTop: '12px', fontSize: '12px', color: colors.success, fontStyle: 'italic' }}>
+                  Payment received. Thank you!
+                </div>
+              )}
+            </div>
+          )}
         </InfoCard>
       )}
 
