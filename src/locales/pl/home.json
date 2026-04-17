@@ -106,5 +106,9 @@
   "quoteSection": {
     "title": "Otrzymaj darmową wycenę",
     "subtitle": "Powiedz nam, dokąd ma trafić Twój pojazd. Odpowiemy w ciągu 1 godziny."
+  },
+  "coverage": {
+    "kicker": "Zasięg",
+    "title": "Dokąd dostarczamy"
   }
 }

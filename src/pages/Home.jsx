@@ -9,6 +9,7 @@ import TrustBar from '../components/TrustBar';
 import QuoteForm from '../components/QuoteForm';
 import AudienceCards from '../components/AudienceCards';
 import PortPills from '../components/PortPills';
+import CoverageMap from '../components/CoverageMap';
 import LiveActivityFeed from '../components/LiveActivityFeed';
 import Benefits from '../components/Benefits';
 import ReviewsCarousel from '../components/ReviewsCarousel';
@@ -112,6 +113,11 @@ export default function Home() {
       {/* 5. Benefits — "Your Complete Transport Solution" */}
       <ScrollReveal style={{ padding: 'clamp(60px, 8vh, 100px) 24px', background: 'var(--bg-muted)' }}>
         <Benefits />
+      </ScrollReveal>
+
+      {/* 5b. Coverage Map — internal SEO links to location + route pages */}
+      <ScrollReveal style={{ padding: 'clamp(50px, 7vh, 80px) 24px' }}>
+        <CoverageMap />
       </ScrollReveal>
 
       {/* 6. Why Y7 */}
