@@ -249,6 +249,7 @@ function RussiaShipMyCar() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
+        <span className={pageStyles.sectionKicker}>◆ ПОДГОТОВКА</span>
         <h2 style={styles.h2}>Что подготовить перед заказом</h2>
 
         <div style={{ display: 'grid', gap: '1rem' }}>
@@ -311,6 +312,7 @@ function RussiaShipMyCar() {
       {/* SECTION 3 — Ordering workflow                                     */}
       {/* ================================================================= */}
       <section style={styles.section}>
+        <span className={pageStyles.sectionKicker}>◆ ПРОЦЕСС</span>
         <h2 style={styles.h2}>Как оформить заказ</h2>
 
         <ol
@@ -380,6 +382,7 @@ function RussiaShipMyCar() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
+        <span className={pageStyles.sectionKicker}>◆ ПОЧЕМУ Y7</span>
         <h2 style={styles.h2}>Почему Y7 Logistics</h2>
         <p style={{ ...styles.paragraph, marginBottom: '2rem' }}>
           Лицензированный брокер FMCSA (MC #1741537). Русскоязычная команда,
@@ -484,6 +487,7 @@ function RussiaShipMyCar() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
+        <span className={pageStyles.sectionKicker}>◆ КОНТАКТЫ</span>
         <h2 style={styles.h2}>Свяжитесь с нами</h2>
 
         <div
@@ -636,6 +640,7 @@ function RussiaShipMyCar() {
       {/* SECTION 6b — Открытый vs закрытый автовоз (transport comparison)  */}
       {/* ================================================================= */}
       <section style={{ ...styles.section, borderTop: '1px solid #E8E4DC' }}>
+        <span className={pageStyles.sectionKicker}>◆ СРАВНЕНИЕ</span>
         <h2 style={styles.h2}>Открытый или закрытый автовоз — что выбрать</h2>
         <p style={{ ...styles.paragraph, marginBottom: '1rem', maxWidth: '720px' }}>
           Два формата перевозки — разница в цене и в уровне защиты. Коротко: для
@@ -672,6 +677,7 @@ function RussiaShipMyCar() {
       {/* SECTION 6c — Что влияет на цену (pricing factors)                  */}
       {/* ================================================================= */}
       <section style={{ ...styles.section, borderTop: '1px solid #E8E4DC' }}>
+        <span className={pageStyles.sectionKicker}>◆ ФАКТОРЫ ЦЕНЫ</span>
         <h2 style={styles.h2}>Что влияет на итоговую цену</h2>
         <p style={{ ...styles.paragraph, maxWidth: '720px' }}>
           Цена складывается из пяти факторов. Central Dispatch (биржа перевозчиков)
@@ -695,6 +701,7 @@ function RussiaShipMyCar() {
       {/* SECTION 6d — Высокий сезон (peak season)                           */}
       {/* ================================================================= */}
       <section style={{ ...styles.section, borderTop: '1px solid #E8E4DC' }}>
+        <span className={pageStyles.sectionKicker}>◆ СЕЗОН</span>
         <h2 style={styles.h2}>Высокий сезон — о чём стоит знать</h2>
         <p style={{ ...styles.paragraph, maxWidth: '720px' }}>
           Два пика в году: <strong>январь</strong> (snowbirds едут из северных штатов в Флориду
@@ -709,6 +716,7 @@ function RussiaShipMyCar() {
       {/* SECTION 6e — Забор и доставка (pickup & delivery details)          */}
       {/* ================================================================= */}
       <section style={{ ...styles.section, borderTop: '1px solid #E8E4DC' }}>
+        <span className={pageStyles.sectionKicker}>◆ ЗАБОР И ДОСТАВКА</span>
         <h2 style={styles.h2}>Как проходит забор и доставка</h2>
         <div
           style={{
@@ -754,6 +762,7 @@ function RussiaShipMyCar() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
+        <span className={pageStyles.sectionKicker}>◆ FAQ</span>
         <h2 style={styles.h2}>Часто задаваемые вопросы</h2>
 
         <div style={{ display: 'grid', gap: '0.75rem' }}>

@@ -357,6 +357,7 @@ function UkraineShipMyCar() {
       <section
         style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}
       >
+        <span className={styles.sectionKicker}>◆ ПІДГОТОВКА</span>
         <h2 style={sectionH2}>Що підготувати перед замовленням</h2>
         <p style={editorialP}>
           Чим раніше зберете ці відомості, тим швидше отримаєте точний
@@ -394,6 +395,7 @@ function UkraineShipMyCar() {
       <section
         style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}
       >
+        <span className={styles.sectionKicker}>◆ ЯК ЦЕ ПРАЦЮЄ</span>
         <h2 style={sectionH2}>Як виглядає процес замовлення — крок за кроком</h2>
         <p style={editorialP}>
           Увесь процес — від першого запиту до отримання авто в Україні —
@@ -467,6 +469,7 @@ function UkraineShipMyCar() {
       <section
         style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}
       >
+        <span className={styles.sectionKicker}>◆ ЦІНИ</span>
         <h2 style={sectionH2}>Орієнтовні витрати</h2>
         <p style={editorialP}>
           Нижче типові діапазони для стандартного легкового авто (седан, SUV,
@@ -745,6 +748,7 @@ function UkraineShipMyCar() {
       <section
         style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}
       >
+        <span className={styles.sectionKicker}>◆ КОНТАКТИ</span>
         <h2 style={sectionH2}>Звʼяжіться з нами</h2>
         <p style={editorialP}>
           Найшвидше — через Telegram. Типово відповідаємо протягом 1-2 годин у
@@ -896,6 +900,7 @@ function UkraineShipMyCar() {
       <section
         style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}
       >
+        <span className={styles.sectionKicker}>◆ ДЛЯ ДІАСПОРИ</span>
         <h2 style={sectionH2}>Типові замовлення від діаспори</h2>
         <div
           style={{

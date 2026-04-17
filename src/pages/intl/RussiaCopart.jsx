@@ -365,6 +365,7 @@ function RussiaCopart() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
+        <span className={pageStyles.sectionKicker}>◆ COPART И IAAI</span>
         <h2 style={styles.h2}>Что такое Copart и IAAI</h2>
         <p style={{ ...styles.paragraph, marginBottom: '1rem' }}>
           Copart и IAAI — два крупнейших онлайн-аукциона подержанных и повреждённых автомобилей
@@ -387,6 +388,7 @@ function RussiaCopart() {
       {/* SECTION 3 — Copart vs IAAI comparison table                       */}
       {/* ================================================================= */}
       <section style={styles.section}>
+        <span className={pageStyles.sectionKicker}>◆ СРАВНЕНИЕ</span>
         <h2 style={styles.h2}>Сравнение Copart и IAAI</h2>
 
         <div
@@ -482,6 +484,7 @@ function RussiaCopart() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
+        <span className={pageStyles.sectionKicker}>◆ РАСХОДЫ</span>
         <h2 style={styles.h2}>Какие расходы учитывать</h2>
 
         <div style={{ display: 'grid', gap: '1rem' }}>
@@ -536,6 +539,7 @@ function RussiaCopart() {
       {/* SECTION 5 — Transport routes                                      */}
       {/* ================================================================= */}
       <section style={styles.section}>
+        <span className={pageStyles.sectionKicker}>◆ МАРШРУТЫ</span>
         <h2 style={styles.h2}>Популярные маршруты с аукционов</h2>
 
         <div
@@ -596,6 +600,7 @@ function RussiaCopart() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
+        <span className={pageStyles.sectionKicker}>◆ РИСКИ</span>
         <h2 style={styles.h2}>7 ошибок при покупке на аукционе</h2>
 
         <div style={{ display: 'grid', gap: '1.25rem' }}>
@@ -644,6 +649,7 @@ function RussiaCopart() {
       {/* SECTION 7 — How it works                                          */}
       {/* ================================================================= */}
       <section style={styles.section}>
+        <span className={pageStyles.sectionKicker}>◆ ЗАКАЗ</span>
         <h2 style={styles.h2}>Как заказать перевозку с аукциона</h2>
 
         <ol
@@ -713,6 +719,7 @@ function RussiaCopart() {
           borderTop: '1px solid #E8E4DC',
         }}
       >
+        <span className={pageStyles.sectionKicker}>◆ FAQ</span>
         <h2 style={styles.h2}>Часто задаваемые вопросы</h2>
 
         <div style={{ display: 'grid', gap: '0.75rem' }}>

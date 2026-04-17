@@ -320,6 +320,7 @@ function PolandShipMyCar() {
       {/* SECTION 2 — Checklist                                              */}
       {/* ================================================================== */}
       <section style={sectionStyle}>
+        <span className={styles.sectionKicker}>◆ PRZYGOTOWANIE</span>
         <h2 style={h2Style}>Co przygotowa\u0107 przed z\u0142o\u017ceniem zlecenia</h2>
         <p style={{ ...pStyle, marginBottom: '1.5rem' }}>
           Im wcze\u015bniej skompletujesz te informacje, tym szybciej dostaniesz
@@ -360,6 +361,7 @@ function PolandShipMyCar() {
       {/* SECTION 3 — Ordering workflow (6 steps) — Poland import            */}
       {/* ================================================================== */}
       <section style={sectionStyle}>
+        <span className={styles.sectionKicker}>◆ JAK TO DZIAŁA</span>
         <h2 style={h2Style}>Jak wygl\u0105da proces importu do Polski \u2014 krok po kroku</h2>
         <p style={{ ...pStyle, marginBottom: '2rem' }}>
           Ca\u0142y proces \u2014 od pierwszego zapytania do dostawy pod dom w Polsce \u2014
@@ -408,6 +410,7 @@ function PolandShipMyCar() {
       {/* SECTION 4 — Pricing overview (Poland import)                        */}
       {/* ================================================================== */}
       <section style={sectionStyle}>
+        <span className={styles.sectionKicker}>◆ KOSZTY</span>
         <h2 style={h2Style}>Orientacyjne koszty transportu do Polski</h2>
         <p style={{ ...pStyle, marginBottom: '1.5rem' }}>
           Poni\u017cej typowe zakresy cen dla standardowego auta osobowego (sedan,
@@ -597,6 +600,7 @@ function PolandShipMyCar() {
       {/* SECTION 6 — Contact (shared)                                        */}
       {/* ================================================================== */}
       <section style={sectionStyle}>
+        <span className={styles.sectionKicker}>◆ KONTAKT</span>
         <h2 style={h2Style}>Skontaktuj si\u0119 z nami</h2>
         <p style={{ ...pStyle, marginBottom: '1.5rem' }}>
           Najszybsza odpowied\u017a \u2014 przez Telegram. Standardowo odpisujemy
@@ -851,6 +855,7 @@ function PolandShipMyCar() {
       {/* SECTION 8 — FAQ                                                    */}
       {/* ================================================================== */}
       <section style={sectionStyle}>
+        <span className={styles.sectionKicker}>◆ FAQ</span>
         <h2 style={h2Style}>Najcz\u0119\u015bciej zadawane pytania</h2>
         <p style={{ ...pStyle, marginBottom: '1.5rem' }}>
           Zebrali\u015bmy pytania, kt\u00f3re najcz\u0119\u015bciej dostajemy od klient\u00f3w \u2014 zar\u00f3wno

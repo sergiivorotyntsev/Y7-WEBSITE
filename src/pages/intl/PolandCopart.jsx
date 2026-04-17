@@ -209,6 +209,7 @@ const PolandCopart = () => {
             margin: '0 auto',
             padding: 'clamp(3rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem)',
           }}>
+            <span className={styles.sectionKicker}>◆ O COPART</span>
             <h2 style={{
               fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
               fontWeight: 400,
@@ -267,6 +268,7 @@ const PolandCopart = () => {
           margin: '0 auto',
           padding: 'clamp(3rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem)',
         }}>
+          <span className={styles.sectionKicker}>◆ COPART vs IAAI</span>
           <h2 style={{
             fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
             fontWeight: 400,
@@ -357,6 +359,7 @@ const PolandCopart = () => {
             margin: '0 auto',
             padding: 'clamp(3rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem)',
           }}>
+            <span className={styles.sectionKicker}>◆ OPŁATY</span>
             <h2 style={{
               fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
               fontWeight: 400,
@@ -460,6 +463,7 @@ const PolandCopart = () => {
           margin: '0 auto',
           padding: 'clamp(3rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem)',
         }}>
+          <span className={styles.sectionKicker}>◆ TRANSPORT USA</span>
           <h2 style={{
             fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
             fontWeight: 400,
@@ -569,6 +573,7 @@ const PolandCopart = () => {
             margin: '0 auto',
             padding: 'clamp(3rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem)',
           }}>
+            <span className={styles.sectionKicker}>◆ PUŁAPKI</span>
             <h2 style={{
               fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
               fontWeight: 400,
@@ -678,6 +683,7 @@ const PolandCopart = () => {
           margin: '0 auto',
           padding: 'clamp(3rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem)',
         }}>
+          <span className={styles.sectionKicker}>◆ WSPÓŁPRACA</span>
           <h2 style={{
             fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
             fontWeight: 400,
@@ -747,6 +753,7 @@ const PolandCopart = () => {
             margin: '0 auto',
             padding: 'clamp(3rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem)',
           }}>
+            <span className={styles.sectionKicker}>◆ FAQ</span>
             <h2 style={{
               fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
               fontWeight: 400,

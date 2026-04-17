@@ -1,5 +1,30 @@
 /* UkraineShipMyCar.module.css — composes from shared primitives. */
 
+.sectionKicker {
+  display: block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin: 0 0 10px;
+}
+
+.heroKickerPill {
+  display: inline-block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 6px 14px;
+  background: rgba(153, 60, 29, 0.08);
+  border-radius: var(--radius-pill, 20px);
+  margin: 0 0 24px;
+}
+
 .liftCard { composes: liftCard from '../../styles/interactions.module.css'; }
 .subtleLift { composes: subtleLift from '../../styles/interactions.module.css'; }
 .underlineGrow { composes: underlineGrow from '../../styles/interactions.module.css'; }

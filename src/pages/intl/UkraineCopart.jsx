@@ -64,9 +64,25 @@ const warningCardStyle = {
 };
 
 // Inline Section helper (mirrors SeoLandingPage's exported Section)
-function Section({ title, children }) {
+function Section({ title, kicker, children }) {
   return (
     <section style={{ marginBottom: '40px' }}>
+      {kicker && (
+        <span
+          style={{
+            display: 'block',
+            fontFamily: fonts.sans,
+            fontSize: '11px',
+            fontWeight: 700,
+            color: colors.accent,
+            textTransform: 'uppercase',
+            letterSpacing: '0.14em',
+            marginBottom: '8px',
+          }}
+        >
+          {kicker}
+        </span>
+      )}
       <h2
         style={{
           fontFamily: fonts.serif,
@@ -398,7 +414,7 @@ function UkraineCopart() {
         </p>
 
         {/* Editorial Section: What is Copart */}
-        <Section title="Що таке Copart насправді">
+        <Section kicker="◆ ПРО COPART" title="Що таке Copart насправді">
           <p style={editorialP}>
             Copart (Copart Inc., заснований 1982 року в Каліфорнії) — це
             платформа, що зʼєднує страхові компанії, дилерів і банки з
@@ -428,7 +444,7 @@ function UkraineCopart() {
         </Section>
 
         {/* Editorial Section: Copart vs IAAI table */}
-        <Section title="Copart vs IAAI — у чому різниця">
+        <Section kicker="◆ COPART vs IAAI" title="Copart vs IAAI — у чому різниця">
           <p style={editorialP}>
             В США працює два великих страхових аукціони. Обидва продають
             подібний товар — авто після страхових випадків — але мають свої
@@ -550,7 +566,7 @@ function UkraineCopart() {
         </Section>
 
         {/* Editorial Section: Risk warnings */}
-        <Section title="На що звернути увагу до ставки">
+        <Section kicker="◆ ПЕРЕД СТАВКОЮ" title="На що звернути увагу до ставки">
           <p style={editorialP}>
             Найбільша помилка новачків — покладатися лише на фото і mileage.
             Copart не дає гарантій стану авто, умови продажу «as-is». Нижче —
@@ -632,7 +648,7 @@ function UkraineCopart() {
         </Section>
 
         {/* How It Works — numbered steps (mirrors SeoLandingPage steps) */}
-        <Section title="Як це працює">
+        <Section kicker="◆ ЯК ЦЕ ПРАЦЮЄ" title="Як це працює">
           <p style={editorialP}>
             Увесь цикл — від виграшу лоту до отримання авто в Україні — займає
             типово 6-8 тижнів. Нижче деталі кожного етапу і що саме робить Y7,
@@ -732,7 +748,7 @@ function UkraineCopart() {
         </Section>
 
         {/* Pricing (preserved from original) */}
-        <Section title="Орієнтовні витрати на логістику">
+        <Section kicker="◆ ЦІНИ" title="Орієнтовні витрати на логістику">
           <p style={editorialP}>
             Нижче типові діапазони для стандартного легкового авто (седан, SUV,
             кросовер до 2,5 тонни). Конкретну вартість рахуємо після отримання
@@ -887,7 +903,7 @@ function UkraineCopart() {
         </Section>
 
         {/* Why Y7 Trust Box */}
-        <Section title="Чому Y7 Logistics">
+        <Section kicker="◆ ЧОМУ Y7" title="Чому Y7 Logistics">
           <div
             style={{
               ...cardStyle,
@@ -1069,7 +1085,7 @@ function UkraineCopart() {
         </Section>
 
         {/* FAQ (mirrors SeoLandingPage faqs) */}
-        <Section title="Часті запитання">
+        <Section kicker="◆ FAQ" title="Часті запитання">
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {faqSchema.mainEntity.map((faq, idx) => (
               <details key={idx} className={styles.faqItem}>
