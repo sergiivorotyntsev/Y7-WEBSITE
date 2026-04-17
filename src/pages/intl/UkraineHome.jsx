@@ -441,27 +441,9 @@ function UkraineHome() {
           margin: 0 auto;
         }
       `}</style>
-      <section
-        className="ua-hero-section"
-        style={{
-          textAlign: 'center',
-          maxWidth: '800px',
-          margin: '0 auto',
-        }}
-      >
-        <p
-          style={{
-            fontFamily: fonts.sans,
-            fontSize: '14px',
-            fontWeight: 600,
-            color: colors.textMuted,
-            textTransform: 'uppercase',
-            letterSpacing: '3px',
-            marginBottom: '16px',
-          }}
-        >
-          Пригін авто з США
-        </p>
+      <section className={`ua-hero-section ${styles.heroSection}`}>
+        <div className={styles.heroInner}>
+        <span className={styles.heroKickerPill}>◆ Пригін авто з США</span>
         <h1
           style={{
             fontFamily: fonts.serif,
@@ -493,6 +475,7 @@ function UkraineHome() {
           Copart та IAAI, доставляємо до портів завантаження, передаємо
           перевіреним партнерам-експедиторам для морської частини.
         </p>
+        </div>
       </section>
 
       {/* ================================================================== */}
@@ -536,6 +519,7 @@ function UkraineHome() {
       {/* SECTION 5 — Why Y7 (trust signals)                                  */}
       {/* ================================================================== */}
       <section style={sectionStyle}>
+        <span className={styles.sectionKicker}>◆ ЧОМУ Y7</span>
         <h2 style={h2Style}>Чому варто обрати Y7 Logistics</h2>
         <p style={{ ...pStyle, marginBottom: '1.5rem' }}>
           Ринок пригону авто з США переповнений посередниками, які обіцяють
@@ -595,6 +579,7 @@ function UkraineHome() {
       {/* SECTION 6 — Three route options                                     */}
       {/* ================================================================== */}
       <section style={sectionStyle}>
+        <span className={styles.sectionKicker}>◆ МАРШРУТИ</span>
         <h2 style={h2Style}>Три маршрути доставки в Україну</h2>
         <p style={{ ...pStyle, marginBottom: '2rem' }}>
           У нинішніх умовах вибір маршруту залежить від вашого місцезнаходження
@@ -659,6 +644,7 @@ function UkraineHome() {
       {/* SECTION 7 — Process (6 steps)                                       */}
       {/* ================================================================== */}
       <section style={sectionStyle}>
+        <span className={styles.sectionKicker}>◆ ЯК ЦЕ ПРАЦЮЄ</span>
         <h2 style={h2Style}>Як виглядає процес — крок за кроком</h2>
         <p style={{ ...pStyle, marginBottom: '2rem' }}>
           Увесь процес — від першого запиту до отримання авто в Україні —
@@ -718,6 +704,7 @@ function UkraineHome() {
       {/* SECTION 8 — Pricing overview                                        */}
       {/* ================================================================== */}
       <section style={sectionStyle}>
+        <span className={styles.sectionKicker}>◆ ЦІНИ</span>
         <h2 style={h2Style}>Орієнтовні витрати на логістику</h2>
         <p style={{ ...pStyle, marginBottom: '1.5rem' }}>
           Нижче — типові діапазони цін для стандартного легкового авто (седан,
@@ -884,6 +871,7 @@ function UkraineHome() {
           >
             Для діаспори в США
           </div>
+          <span className={styles.sectionKicker}>◆ ДЛЯ ДІАСПОРИ</span>
           <h2 style={h2Style}>Живете в Штатах? Перевозимо авто по всій країні</h2>
           <p style={{ ...pStyle, marginBottom: '1.5rem' }}>
             Українська громада в США виросла значно після 2022 року, і ми
@@ -1063,6 +1051,7 @@ function UkraineHome() {
       {/* SECTION 10 — Contact                                                */}
       {/* ================================================================== */}
       <section style={sectionStyle}>
+        <span className={styles.sectionKicker}>◆ КОНТАКТИ</span>
         <h2 style={h2Style}>Зв’яжіться з нами</h2>
         <p style={{ ...pStyle, marginBottom: '1.5rem' }}>
           Найшвидший спосіб — Telegram. Відповідаємо протягом 1-2 годин у
@@ -1145,6 +1134,7 @@ function UkraineHome() {
       {/* SECTION 11 — FAQ                                                    */}
       {/* ================================================================== */}
       <section style={sectionStyle}>
+        <span className={styles.sectionKicker}>◆ FAQ</span>
         <h2 style={h2Style}>Часті запитання</h2>
         <p style={{ ...pStyle, marginBottom: '1.5rem' }}>
           Ми зібрали запитання, які найчастіше отримуємо від клієнтів — як тих,

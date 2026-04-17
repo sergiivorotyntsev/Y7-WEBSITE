@@ -2,6 +2,108 @@
    Applied to key interactive elements: buttons, cards, FAQ, CTA strip.
    Keeps existing inline styles as visual baseline; adds hover/focus. */
 
+/* =====================================================================
+   HERO — centered, warm gradient, pill kicker (parity with Home.jsx)
+   ===================================================================== */
+
+.heroSection {
+  padding: clamp(80px, 12vh, 140px) 24px clamp(50px, 8vh, 90px) !important;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(153, 60, 29, 0.06) 0%, transparent 55%),
+    linear-gradient(180deg, var(--bg, #F7F5F0) 0%, var(--bg-muted, #EFECE6) 100%);
+  text-align: center;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+.heroInner {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heroKickerPill {
+  display: inline-block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 6px 14px;
+  background: rgba(153, 60, 29, 0.08);
+  border-radius: var(--radius-pill, 20px);
+  margin: 0 0 24px;
+}
+
+/* =====================================================================
+   SECTION KICKER
+   ===================================================================== */
+
+.sectionKicker {
+  display: block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin: 0 0 10px;
+}
+
+/* =====================================================================
+   DARK STATS STRIP
+   ===================================================================== */
+
+.statsStrip {
+  background: var(--text, #2C2C2A);
+  color: var(--bg, #F7F5F0);
+  padding: clamp(32px, 5vw, 48px) 24px;
+}
+
+.statsGrid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  text-align: center;
+}
+
+.statsGrid > * + * {
+  border-left: 1px solid rgba(247, 245, 240, 0.16);
+}
+
+@media (max-width: 700px) {
+  .statsGrid > * + * {
+    border-left: none;
+    border-top: 1px solid rgba(247, 245, 240, 0.16);
+    padding-top: 20px;
+  }
+}
+
+.statNumberDark {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  line-height: 1.1;
+  margin: 0 0 4px;
+  letter-spacing: -0.02em;
+}
+
+.statLabelDark {
+  font-family: var(--font-sans, system-ui);
+  font-size: 12px;
+  color: rgba(247, 245, 240, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+
 .btnAccent {
   composes: btnAccent from '../../styles/buttons.module.css';
 }

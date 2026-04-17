@@ -121,51 +121,44 @@ const PolandHome = () => {
         minHeight: '100vh',
       }}>
         {/* Hero section */}
-        <section style={{
-          maxWidth: '900px',
-          margin: '0 auto',
-          padding: 'clamp(2rem, 5vw, 4rem) clamp(1.25rem, 4vw, 2rem)',
-        }}>
-          <div style={{ 
-            fontSize: '14px', 
-            textTransform: 'uppercase', 
-            letterSpacing: '0.15em', 
-            color: colors.accent,
-            marginBottom: '1rem',
-            fontFamily: fonts.sans
-          }}>
-            Y7 Logistics × DaytonaCargo
-          </div>
-          
-          <h1 style={{
-            fontSize: 'clamp(2rem, 5vw, 3.25rem)',
-            lineHeight: '1.15',
-            fontWeight: 400,
-            marginTop: 0,
-            marginBottom: '1.5rem',
-            letterSpacing: '-0.01em',
-          }}>
-            Sprowadzanie aut z USA do Polski — od licytacji po dostawę pod dom
-          </h1>
-          
-          <p style={{
-            fontSize: 'clamp(1.125rem, 2vw, 1.25rem)',
-            lineHeight: '1.6',
-            color: '#4A4A46',
-            marginBottom: '2rem',
-          }}>
-            Licencjonowany broker FMCSA (MC #1741537) obsługujący odbiór z aukcji Copart, IAAI 
-            i Manheim oraz transport lądowy w USA. Dalszą część drogi — fracht morski, odprawę 
-            celną i dostawę do Polski — prowadzi nasza siostrzana firma DaytonaCargo LLC.
-            Razem pokrywamy cały łańcuch: od placu aukcyjnego pod Twój dom w Polsce.
-          </p>
+        <section className={styles.heroSection}>
+          <div className={styles.heroInner}>
+            <span className={styles.heroKickerPill}>◆ Y7 Logistics × DaytonaCargo</span>
 
-          <div style={{
-            display: 'flex',
-            gap: '1rem',
-            flexWrap: 'wrap',
-            marginBottom: '3rem',
-          }}>
+            <h1 style={{
+              fontFamily: fonts.serif,
+              fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+              lineHeight: '1.1',
+              fontWeight: 700,
+              marginTop: 0,
+              marginBottom: '1.5rem',
+              letterSpacing: '-0.02em',
+              textAlign: 'center',
+            }}>
+              Sprowadzanie aut z USA do Polski — od licytacji po dostawę pod dom
+            </h1>
+          
+            <p style={{
+              fontSize: 'clamp(1.05rem, 1.6vw, 1.15rem)',
+              lineHeight: '1.7',
+              color: '#4A4A46',
+              marginBottom: '2rem',
+              textAlign: 'center',
+              maxWidth: '620px',
+              fontFamily: fonts.sans,
+            }}>
+              Licencjonowany broker FMCSA (MC #1741537) obsługujący odbiór z aukcji Copart, IAAI
+              i Manheim oraz transport lądowy w USA. Dalszą część drogi — fracht morski, odprawę
+              celną i dostawę do Polski — prowadzi nasza siostrzana firma DaytonaCargo LLC.
+            </p>
+
+            <div style={{
+              display: 'flex',
+              gap: '12px',
+              flexWrap: 'wrap',
+              marginBottom: '1rem',
+              justifyContent: 'center',
+            }}>
             <a
               href="https://t.me/y7dispatch_bot"
               target="_blank"
@@ -205,40 +198,23 @@ const PolandHome = () => {
               info@y7agency.com
             </a>
           </div>
+          </div>
         </section>
 
-        {/* Quick stats */}
-        <section style={{
-          background: '#fff',
-          borderTop: `1px solid ${colors.border}`,
-          borderBottom: `1px solid ${colors.border}`,
-          padding: '2rem 0',
-        }}>
-          <div style={{
-            maxWidth: '900px',
-            margin: '0 auto',
-            padding: '0 clamp(1.25rem, 4vw, 2rem)',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '2rem',
-          }}>
-            <div>
-              <div style={{ fontSize: '2rem', color: colors.accent, fontWeight: 400 }}>6-10 tyg.</div>
-              <div style={{ fontSize: '0.875rem', color: '#6B6B65', fontFamily: fonts.sans }}>
-                typowy czas od wygranej aukcji do odbioru w Polsce
-              </div>
+        {/* Quick stats — dark strip, parity with English TrustBar */}
+        <section className={styles.statsStrip}>
+          <div className={styles.statsGrid}>
+            <div style={{ padding: '8px 16px' }}>
+              <p className={styles.statNumberDark}>6-10 tyg.</p>
+              <p className={styles.statLabelDark}>typowy czas od wygranej aukcji do odbioru w Polsce</p>
             </div>
-            <div>
-              <div style={{ fontSize: '2rem', color: colors.accent, fontWeight: 400 }}>4-8 tys. zł</div>
-              <div style={{ fontSize: '0.875rem', color: '#6B6B65', fontFamily: fonts.sans }}>
-                koszt transportu USA → Polska (kontener lub RoRo)
-              </div>
+            <div style={{ padding: '8px 16px' }}>
+              <p className={styles.statNumberDark}>4-8 tys. zł</p>
+              <p className={styles.statLabelDark}>koszt transportu USA → Polska (kontener lub RoRo)</p>
             </div>
-            <div>
-              <div style={{ fontSize: '2rem', color: colors.accent, fontWeight: 400 }}>MC #1741537</div>
-              <div style={{ fontSize: '0.875rem', color: '#6B6B65', fontFamily: fonts.sans }}>
-                licencja FMCSA — pełna weryfikacja DOT
-              </div>
+            <div style={{ padding: '8px 16px' }}>
+              <p className={styles.statNumberDark}>MC #1741537</p>
+              <p className={styles.statLabelDark}>licencja FMCSA — pełna weryfikacja DOT</p>
             </div>
           </div>
         </section>
@@ -249,6 +225,7 @@ const PolandHome = () => {
           margin: '0 auto',
           padding: 'clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 2rem)',
         }}>
+          <span className={styles.sectionKicker}>◆ PARTNERSTWO</span>
           <h2 style={{
             fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
             fontWeight: 400,
@@ -399,6 +376,7 @@ const PolandHome = () => {
             margin: '0 auto',
             padding: 'clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 2rem)',
           }}>
+            <span className={styles.sectionKicker}>◆ JAK TO DZIAŁA</span>
             <h2 style={{
               fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
               fontWeight: 400,
@@ -517,6 +495,7 @@ const PolandHome = () => {
           margin: '0 auto',
           padding: 'clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 2rem)',
         }}>
+          <span className={styles.sectionKicker}>◆ KOSZTY</span>
           <h2 style={{
             fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
             fontWeight: 400,
@@ -633,6 +612,7 @@ const PolandHome = () => {
             margin: '0 auto',
             padding: 'clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 2rem)',
           }}>
+            <span className={styles.sectionKicker}>◆ OPŁACALNOŚĆ</span>
             <h2 style={{
               fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
               fontWeight: 400,
@@ -764,6 +744,7 @@ const PolandHome = () => {
           margin: '0 auto',
           padding: 'clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 2rem)',
         }}>
+          <span className={styles.sectionKicker}>◆ RYZYKA</span>
           <h2 style={{
             fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
             fontWeight: 400,
@@ -838,6 +819,7 @@ const PolandHome = () => {
             margin: '0 auto',
             padding: 'clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 2rem)',
           }}>
+            <span className={styles.sectionKicker}>◆ FAQ</span>
             <h2 style={{
               fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
               fontWeight: 400,
