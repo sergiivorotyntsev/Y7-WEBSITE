@@ -11,10 +11,19 @@
   border-radius: var(--radius-md, 8px);
   outline: none;
   box-sizing: border-box;
+  min-height: 44px;
   transition:
     border-color var(--transition-normal, 250ms ease-out),
     box-shadow var(--transition-normal, 250ms ease-out),
     background-color var(--transition-normal, 250ms ease-out);
+}
+
+/* iOS Safari auto-zooms on inputs with font-size < 16px. Bump on touch/mobile. */
+@media (max-width: 640px) {
+  .input {
+    font-size: 16px;
+    padding: 12px 14px;
+  }
 }
 
 .input::placeholder {
