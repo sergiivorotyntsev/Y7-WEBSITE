@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { trackEvent } from '../utils/analytics';
 import TrustBadges from './TrustBadges';
+import AnimatedLogo from './AnimatedLogo';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -13,7 +14,7 @@ export default function Footer() {
         {/* Brand column */}
         <div>
           <div className={styles.brandTitle}>
-            Y7<span className={styles.brandDot}>.</span>
+            <AnimatedLogo size={22} to="/" />
           </div>
           <p className={styles.tagline}>{t('footer.tagline')}</p>
           <div className={styles.legalIds}>
