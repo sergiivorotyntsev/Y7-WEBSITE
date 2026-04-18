@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
+import { Trans, useTranslation } from 'react-i18next';
 import { colors, fonts } from '../theme';
 
 export default function SmsConsent({ checked, onChange }) {
+  const { t } = useTranslation();
   return (
     <label style={{
       display: 'flex',
@@ -27,18 +29,24 @@ export default function SmsConsent({ checked, onChange }) {
         color: colors.textMuted,
         lineHeight: 1.5,
       }}>
-        By checking this box, you consent to receive SMS notifications and updates
-        related to your vehicle transport from Y7 Consulting Inc at the phone number
-        provided. Message frequency varies. Message &amp; data rates may apply.
-        Reply STOP to opt out, HELP for help. This consent is not a condition of
-        purchase. See our{' '}
-        <Link to="/privacy" style={{ color: colors.accent, textDecoration: 'underline' }}>
-          Privacy Policy
-        </Link>{' '}
-        and{' '}
-        <Link to="/privacy#sms" style={{ color: colors.accent, textDecoration: 'underline' }}>
-          SMS Terms &amp; Conditions
-        </Link>.
+        <Trans
+          t={t}
+          i18nKey="sms.fullConsent"
+          components={{
+            privacyLink: (
+              <Link
+                to="/privacy"
+                style={{ color: colors.accent, textDecoration: 'underline' }}
+              />
+            ),
+            smsTermsLink: (
+              <Link
+                to="/privacy#sms"
+                style={{ color: colors.accent, textDecoration: 'underline' }}
+              />
+            ),
+          }}
+        />
       </span>
     </label>
   );

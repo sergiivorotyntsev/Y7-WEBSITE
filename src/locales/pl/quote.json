@@ -72,7 +72,8 @@
   },
   "sms": {
     "consent": "Zaznaczając to pole, wyrażasz zgodę na otrzymywanie powiadomień SMS i aktualizacji dotyczących transportu Twojego pojazdu od Y7 Consulting Inc na podany numer telefonu. Częstotliwość wiadomości może się różnić. Mogą obowiązywać standardowe stawki za wiadomości i transmisję danych. Odpowiedz STOP, aby zrezygnować, HELP, aby uzyskać pomoc. Ta zgoda nie jest warunkiem zakupu.",
-    "terms": "Zapoznaj się z naszą Polityką prywatności i Warunkami SMS."
+    "terms": "Zapoznaj się z naszą Polityką prywatności i Warunkami SMS.",
+    "fullConsent": "Zaznaczając to pole, wyrażasz zgodę na otrzymywanie powiadomień SMS i aktualizacji dotyczących transportu Twojego pojazdu od Y7 Consulting Inc na podany numer telefonu. Częstotliwość wiadomości może się różnić. Mogą obowiązywać standardowe stawki za wiadomości i transmisję danych. Odpowiedz STOP, aby zrezygnować, HELP, aby uzyskać pomoc. Ta zgoda nie jest warunkiem zakupu. Zobacz naszą <privacyLink>Politykę prywatności</privacyLink> oraz <smsTermsLink>Warunki SMS</smsTermsLink>."
   },
   "success": {
     "title": "Zapytanie otrzymane!",
