@@ -72,6 +72,18 @@
       "other": "Other"
     }
   },
+  "location": {
+    "residence": "Residential",
+    "commercialBusiness": "Business / Commercial",
+    "auction": "Auction",
+    "dealership": "Dealership",
+    "port": "Port",
+    "warehouse": "Warehouse",
+    "terminal": "Terminal",
+    "other": "Other",
+    "twicRequired": "Driver must have TWIC card",
+    "twicHelp": "A Transportation Worker Identification Credential is required by the Maritime Transportation Security Act to access some port locations. If unsure, contact the port."
+  },
   "sms": {
     "consent": "By checking this box, you consent to receive SMS notifications and updates related to your vehicle transport from Y7 Consulting Inc at the phone number provided. Message frequency varies. Message & data rates may apply. Reply STOP to opt out, HELP for help. This consent is not a condition of purchase.",
     "terms": "See our Privacy Policy and SMS Terms & Conditions.",

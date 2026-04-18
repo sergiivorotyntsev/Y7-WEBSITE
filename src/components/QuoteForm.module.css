@@ -359,6 +359,33 @@
   margin-top: 12px;
 }
 
+.twicRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 8px 10px;
+  background: #FFF7ED;
+  border-left: 3px solid #B45309;
+  border-radius: 4px;
+  font-family: var(--font-sans, system-ui);
+}
+
+.twicLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: #7C2D12;
+}
+
+.twicHelp {
+  flex-basis: 100%;
+  font-size: 11px;
+  color: #7C2D12;
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
 .consentWarn {
   font-family: var(--font-sans, system-ui);
   font-size: 12px;

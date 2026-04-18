@@ -14,22 +14,16 @@ import btn from '../styles/buttons.module.css';
 export default function QuoteForm({ compact = false }) {
   const { t, i18n } = useTranslation('quote');
 
-  const PICKUP_LOCATION_TYPES = [
-    { value: 'residential', label: t('form.locations.residential') },
-    { value: 'business',    label: t('form.locations.business') },
-    { value: 'auction',     label: t('form.locations.auction') },
-    { value: 'dealer',      label: t('form.locations.dealer') },
-    { value: 'port',        label: t('form.locations.port') },
-    { value: 'other',       label: t('form.locations.other') },
-  ];
-
-  const DELIVERY_LOCATION_TYPES = [
-    { value: 'residential', label: t('form.locations.residential') },
-    { value: 'business',    label: t('form.locations.business') },
-    { value: 'dealer',      label: t('form.locations.dealer') },
-    { value: 'port',        label: t('form.locations.port') },
-    { value: 'storage',     label: t('form.locations.storage') },
-    { value: 'other',       label: t('form.locations.other') },
+  // QUOTE-P1 T04: CD-native CamelCase values (same set for pickup + delivery)
+  const LOCATION_TYPES = [
+    { value: 'Residence',          label: t('location.residence') },
+    { value: 'CommercialBusiness', label: t('location.commercialBusiness') },
+    { value: 'Auction',            label: t('location.auction') },
+    { value: 'Dealership',         label: t('location.dealership') },
+    { value: 'Port',               label: t('location.port') },
+    { value: 'Warehouse',          label: t('location.warehouse') },
+    { value: 'Terminal',           label: t('location.terminal') },
+    { value: 'Other',              label: t('location.other') },
   ];
 
   const { decode, loading: vinLoading, error: vinError, result: vinResult } = useVinDecode();
@@ -42,8 +36,10 @@ export default function QuoteForm({ compact = false }) {
     vin: urlParams?.get('vin') || '',
     vehicle_year: '', vehicle_make: '', vehicle_model: '',
     pickup_zip: urlParams?.get('pickup_zip') || '',
-    pickup_location_type: 'residential',
-    delivery_zip: '', delivery_location_type: 'residential',
+    pickup_location_type: 'Residence',
+    pickup_requires_twic: false,
+    delivery_zip: '', delivery_location_type: 'Residence',
+    delivery_requires_twic: false,
     transport_type: 'open',
     is_inoperable: false,
     pickup_date_type: 'asap',
@@ -334,10 +330,21 @@ export default function QuoteForm({ compact = false }) {
               onChange={e => set('pickup_location_type', e.target.value)}
               className={styles.select}
             >
-              {PICKUP_LOCATION_TYPES.map(o => (
+              {LOCATION_TYPES.map(o => (
                 <option key={o.value} value={o.value}>{o.label}</option>
               ))}
             </select>
+            {form.pickup_location_type === 'Port' && (
+              <label className={styles.twicRow}>
+                <input
+                  type="checkbox"
+                  checked={form.pickup_requires_twic}
+                  onChange={e => set('pickup_requires_twic', e.target.checked)}
+                />
+                <span className={styles.twicLabel}>{t('location.twicRequired')}</span>
+                <small className={styles.twicHelp}>{t('location.twicHelp')}</small>
+              </label>
+            )}
           </div>
         </div>
       </div>
@@ -365,10 +372,21 @@ export default function QuoteForm({ compact = false }) {
               onChange={e => set('delivery_location_type', e.target.value)}
               className={styles.select}
             >
-              {DELIVERY_LOCATION_TYPES.map(o => (
+              {LOCATION_TYPES.map(o => (
                 <option key={o.value} value={o.value}>{o.label}</option>
               ))}
             </select>
+            {form.delivery_location_type === 'Port' && (
+              <label className={styles.twicRow}>
+                <input
+                  type="checkbox"
+                  checked={form.delivery_requires_twic}
+                  onChange={e => set('delivery_requires_twic', e.target.checked)}
+                />
+                <span className={styles.twicLabel}>{t('location.twicRequired')}</span>
+                <small className={styles.twicHelp}>{t('location.twicHelp')}</small>
+              </label>
+            )}
           </div>
         </div>
       </div>
