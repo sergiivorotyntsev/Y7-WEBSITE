@@ -112,6 +112,29 @@
     grid-template-columns: 1fr;
   }
   .item {
-    padding: 26px 22px;
+    padding: 22px 20px;
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    grid-template-areas:
+      "icon title"
+      "icon desc";
+    gap: 2px 16px;
+    align-items: start;
+  }
+  .iconWrap {
+    grid-area: icon;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0;
+    align-self: start;
+  }
+  .itemTitle {
+    grid-area: title;
+    font-size: 1.08rem;
+    margin-bottom: 4px;
+  }
+  .itemDesc {
+    grid-area: desc;
+    font-size: 13.5px;
   }
 }

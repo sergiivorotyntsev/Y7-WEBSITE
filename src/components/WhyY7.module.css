@@ -67,6 +67,32 @@
   .item:nth-child(odd) {
     border-right: none !important;
   }
+  .item {
+    padding: 22px 20px;
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    grid-template-areas:
+      "icon title"
+      "icon desc";
+    gap: 2px 16px;
+    align-items: start;
+  }
+  .iconWrap {
+    grid-area: icon;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 0;
+    align-self: start;
+  }
+  .itemTitle {
+    grid-area: title;
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+  }
+  .itemDesc {
+    grid-area: desc;
+    font-size: 13.5px;
+  }
 }
 
 @media (hover: hover) {

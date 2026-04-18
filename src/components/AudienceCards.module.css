@@ -14,7 +14,39 @@
 }
 
 @media (max-width: 560px) {
-  .grid { grid-template-columns: 1fr; gap: 18px; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }
+
+  /* Mobile: icon on the left, content on the right */
+  .card {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    grid-template-areas:
+      "icon tag"
+      "icon title"
+      "icon desc"
+      "icon cta";
+    gap: 4px 16px;
+    padding: 22px 20px;
+    align-items: start;
+  }
+  .iconWrap {
+    grid-area: icon;
+    width: 56px;
+    height: 56px;
+    align-self: start;
+  }
+  .tag { grid-area: tag; margin-top: 0; }
+  .title {
+    grid-area: title;
+    font-size: 1.2rem;
+    margin-top: 2px;
+  }
+  .desc {
+    grid-area: desc;
+    font-size: 14px;
+    margin-top: 6px;
+  }
+  .cta { grid-area: cta; margin-top: 8px; }
 }
 
 /* =====================================================================
