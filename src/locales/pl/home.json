@@ -16,16 +16,29 @@
     "cdLabel": "Central Dispatch"
   },
   "audience": {
-    "dealersTitle": "Dla dealerów",
-    "dealersDesc": "Ceny hurtowe, odbiory z aukcji i wymiana dealer-dealer. Wysyłka tego samego dnia na większości tras.",
-    "exportersTitle": "Dla eksporterów",
-    "exportersDesc": "Transport od drzwi do portu w całych USA. Obsługujemy Newark, Houston, Savannah i wszystkie główne porty eksportowe.",
-    "shipMyCarTitle": "Wyślij auto",
-    "shipMyCarDesc": "Przeprowadzka? Dostarczymy Państwa samochód bezpiecznie, ze śledzeniem w czasie rzeczywistym."
+    "dealersTitle": "Transport dilerski",
+    "dealersDesc": "Odbiór z aukcji, wymiany dilerskie, ceny hurtowe. Jeden broker dla Copart, IAAI i Manheim.",
+    "exportersTitle": "Eksport i dostawa do portu",
+    "exportersDesc": "Z dowolnej aukcji do dowolnego portu USA. Koordynacja gate pass i dostawa do magazynu.",
+    "shipMyCarTitle": "Wyślij mój samochód",
+    "shipMyCarDesc": "Od drzwi do drzwi w całych USA. Transport otwarty lub zamknięty z aktualizacjami statusu na każdym etapie.",
+    "shipMyCarTag": "OSOBY PRYWATNE",
+    "shipMyCarCta": "Otrzymaj wycenę",
+    "dealersTag": "DILERZY",
+    "dealersCta": "Zobacz cennik",
+    "exportersTag": "EKSPORTERZY",
+    "exportersCta": "Usługi dla eksporterów"
   },
   "ports": {
     "title": "Zasięg głównych portów",
-    "list": ["Newark, NJ", "Houston, TX", "Savannah, GA", "Baltimore, MD", "Los Angeles, CA", "Jacksonville, FL"]
+    "list": [
+      "Newark, NJ",
+      "Houston, TX",
+      "Savannah, GA",
+      "Baltimore, MD",
+      "Los Angeles, CA",
+      "Jacksonville, FL"
+    ]
   },
   "benefits": {
     "kicker": "TWOJA PRZEWAGA",

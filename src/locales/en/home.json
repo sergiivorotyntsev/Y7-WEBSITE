@@ -21,14 +21,24 @@
     "shipMyCarCta": "Get Quote",
     "dealersTitle": "Dealer Transport",
     "dealersDesc": "Auction pickup, dealer trades, volume pricing. One broker for Copart, IAAI, and Manheim.",
-    "dealersCta": "Dealer Pricing",
+    "dealersCta": "View Pricing",
     "exportersTitle": "Export & Port Delivery",
     "exportersDesc": "Any US auction to any US port. Gate pass coordination and warehouse delivery.",
-    "exportersCta": "Port Delivery"
+    "exportersCta": "Exporter Services",
+    "shipMyCarTag": "INDIVIDUALS",
+    "dealersTag": "DEALERS",
+    "exportersTag": "EXPORTERS"
   },
   "ports": {
     "title": "Major Port Coverage",
-    "list": ["Newark, NJ", "Houston, TX", "Savannah, GA", "Baltimore, MD", "Los Angeles, CA", "Jacksonville, FL"]
+    "list": [
+      "Newark, NJ",
+      "Houston, TX",
+      "Savannah, GA",
+      "Baltimore, MD",
+      "Los Angeles, CA",
+      "Jacksonville, FL"
+    ]
   },
   "benefits": {
     "kicker": "YOUR ADVANTAGE",

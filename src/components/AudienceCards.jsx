@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { PersonalCarIcon, DealerTradeIcon, GlobeRouteIcon } from './icons';
 import styles from './AudienceCards.module.css';
 
-function Card({ title, desc, cta, to, icon, index }) {
+function Card({ tag, title, desc, cta, to, icon, index, tone }) {
   const navigate = useNavigate();
 
   const handleKey = (e) => {
@@ -15,7 +15,7 @@ function Card({ title, desc, cta, to, icon, index }) {
 
   return (
     <div
-      className={styles.card}
+      className={`${styles.card} ${styles[`tone_${tone}`]}`}
       style={{ '--i': index }}
       onClick={() => navigate(to)}
       onKeyDown={handleKey}
@@ -23,7 +23,10 @@ function Card({ title, desc, cta, to, icon, index }) {
       tabIndex={0}
       aria-label={`${title} — ${cta}`}
     >
-      <div className={styles.iconWrap}>{icon}</div>
+      <div className={styles.iconWrap}>
+        <div className={styles.iconInner}>{icon}</div>
+      </div>
+      <span className={styles.tag}>{tag}</span>
       <h3 className={styles.title}>{title}</h3>
       <p className={styles.desc}>{desc}</p>
       <button
@@ -41,25 +44,31 @@ export default function AudienceCards() {
 
   const cards = [
     {
+      tag: t('audience.shipMyCarTag'),
       title: t('audience.shipMyCarTitle'),
       desc: t('audience.shipMyCarDesc'),
       cta: t('audience.shipMyCarCta'),
       to: '/ship-my-car',
-      icon: <PersonalCarIcon size={36} />,
+      icon: <PersonalCarIcon size={40} />,
+      tone: 'coral',
     },
     {
+      tag: t('audience.dealersTag'),
       title: t('audience.dealersTitle'),
       desc: t('audience.dealersDesc'),
       cta: t('audience.dealersCta'),
-      to: '/dealer-auto-transport',
-      icon: <DealerTradeIcon size={36} />,
+      to: '/dealers',
+      icon: <DealerTradeIcon size={40} />,
+      tone: 'teal',
     },
     {
+      tag: t('audience.exportersTag'),
       title: t('audience.exportersTitle'),
       desc: t('audience.exportersDesc'),
       cta: t('audience.exportersCta'),
-      to: '/door-to-port-auto-transport',
-      icon: <GlobeRouteIcon size={36} />,
+      to: '/exporters',
+      icon: <GlobeRouteIcon size={40} />,
+      tone: 'amber',
     },
   ];
 

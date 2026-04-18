@@ -16,16 +16,29 @@
     "cdLabel": "Central Dispatch"
   },
   "audience": {
-    "dealersTitle": "Для дилерів",
-    "dealersDesc": "Оптові ціни, забір з аукціонів та обмін між дилерами. Відправлення у той самий день на більшості маршрутів.",
-    "exportersTitle": "Для експортерів",
-    "exportersDesc": "Доставка від дверей до порту по всій території США. Працюємо з Newark, Houston, Savannah та всіма великими експортними портами.",
-    "shipMyCarTitle": "Доставка авто",
-    "shipMyCarDesc": "Переїжджаєте? Ми доставимо ваш автомобіль безпечно з відстеженням у реальному часі."
+    "dealersTitle": "Перевезення для дилерів",
+    "dealersDesc": "Забір з аукціонів, дилерські обміни, гуртові ціни. Один брокер для Copart, IAAI та Manheim.",
+    "exportersTitle": "Експорт та доставка в порт",
+    "exportersDesc": "З будь-якого аукціону в будь-який порт США. Координація gate pass та доставка на склад.",
+    "shipMyCarTitle": "Перевезти моє авто",
+    "shipMyCarDesc": "Від дверей до дверей по всій США. Відкрите або закрите перевезення зі статусом на кожному етапі.",
+    "shipMyCarTag": "ПРИВАТНІ КЛІЄНТИ",
+    "shipMyCarCta": "Отримати розрахунок",
+    "dealersTag": "ДИЛЕРИ",
+    "dealersCta": "Дивитися ціни",
+    "exportersTag": "ЕКСПОРТЕРИ",
+    "exportersCta": "Послуги для експортерів"
   },
   "ports": {
     "title": "Покриття основних портів",
-    "list": ["Newark, NJ", "Houston, TX", "Savannah, GA", "Baltimore, MD", "Los Angeles, CA", "Jacksonville, FL"]
+    "list": [
+      "Newark, NJ",
+      "Houston, TX",
+      "Savannah, GA",
+      "Baltimore, MD",
+      "Los Angeles, CA",
+      "Jacksonville, FL"
+    ]
   },
   "benefits": {
     "kicker": "ВАШІ ПЕРЕВАГИ",
