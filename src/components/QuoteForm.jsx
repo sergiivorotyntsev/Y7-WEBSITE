@@ -66,6 +66,7 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
+  const [submitAttempted, setSubmitAttempted] = useState(false);
   const [touched, setTouched] = useState({});
   const formStarted = useRef(false);
 
@@ -147,6 +148,7 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
   async function handleSubmit(e) {
     e.preventDefault();
     setError(null);
+    setSubmitAttempted(true);  // reveals SmsConsent error banner if consent missing
 
     // VIN format check (if user typed something in VIN mode)
     const vinRegex = /^[A-HJ-NPR-Z0-9]{17}$/;
@@ -542,20 +544,17 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
             </div>
           )}
 
-          {/* Unified consent block (QUOTE-P0 T13): SMS + Terms/Privacy in one place */}
+          {/* Unified consent block (QUOTE-P0 T13 + SMS-CONSENT-UX T02):
+              label always visible inside <SmsConsent>, error only after
+              failed submit attempt. Footnote stays as the legal line. */}
           <div className={styles.consentBlock}>
-            <SmsConsent checked={form.sms_consent} onChange={v => set('sms_consent', v)} />
-            {!form.sms_consent && (
-              <p className={styles.consentWarn}>
-                {t('legal.smsConsentRequired')}
-              </p>
-            )}
+            <SmsConsent
+              checked={form.sms_consent}
+              onChange={v => set('sms_consent', v)}
+              showError={submitAttempted}
+            />
             <p className={styles.legal}>
-              {t('legal.submissionAgree')}{' '}
-              <a href="/terms" target="_blank" rel="noopener noreferrer" className={styles.legalLink}>{t('legal.terms')}</a>
-              {' '}{t('legal.and')}{' '}
-              <a href="/privacy" target="_blank" rel="noopener noreferrer" className={styles.legalLink}>{t('legal.privacy')}</a>.{' '}
-              {t('legal.consentRecorded')}
+              {t('sms.footnote')}
             </p>
           </div>
         </div>

@@ -49,6 +49,7 @@ export default function DealerQuote() {
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
+  const [submitAttempted, setSubmitAttempted] = useState(false);
 
   useEffect(() => {
     if (searchParams.get('prefill') !== '1') return;
@@ -83,6 +84,7 @@ export default function DealerQuote() {
   async function handleSubmit(e) {
     e.preventDefault();
     setError(null);
+    setSubmitAttempted(true);  // reveals SmsConsent error banner if consent missing
     if (!form.dealership_name.trim()) { setError('Dealership name is required'); return; }
     if (!form.contact_name.trim()) { setError('Contact person is required'); return; }
     if (!form.email.trim()) { setError('Email is required'); return; }
@@ -293,14 +295,13 @@ export default function DealerQuote() {
             />
           </div>
 
-          {/* SMS Consent */}
+          {/* SMS Consent (SMS-CONSENT-UX T02: label always visible; error via showError) */}
           <div>
-            <SmsConsent checked={form.sms_consent} onChange={v => set('sms_consent', v)} />
-            {!form.sms_consent && (
-              <p className={qForm.consentWarn}>
-                You must agree to receive SMS notifications to submit. We use SMS for verification and shipment updates only.
-              </p>
-            )}
+            <SmsConsent
+              checked={form.sms_consent}
+              onChange={v => set('sms_consent', v)}
+              showError={submitAttempted}
+            />
           </div>
 
           {error && <div className={styles.errorAlert}>{error}</div>}
