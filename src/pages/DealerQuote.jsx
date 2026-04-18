@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import { CheckIcon } from '../components/icons';
@@ -29,6 +29,17 @@ const SERVICES = [
 export default function DealerQuote() {
   const [searchParams] = useSearchParams();
   const [prefilled, setPrefilled] = useState(false);
+
+  // QUOTE-P2 T09: capture marketing attribution on every form mount.
+  const utm = useMemo(() => ({
+    utm_source:   searchParams.get('utm_source')   || '',
+    utm_medium:   searchParams.get('utm_medium')   || '',
+    utm_campaign: searchParams.get('utm_campaign') || '',
+    utm_term:     searchParams.get('utm_term')     || '',
+    utm_content:  searchParams.get('utm_content')  || '',
+    gclid:        searchParams.get('gclid')        || '',
+    fbclid:       searchParams.get('fbclid')       || '',
+  }), [searchParams]);
   const [form, setForm] = useState({
     dealership_name: '', contact_name: '', email: '', phone: '',
     address: '', city: '', state: '', zip: '',
@@ -95,6 +106,7 @@ export default function DealerQuote() {
         sms_consent_page: window.location.href,
         source: 'website_dealer',
         lang: 'en',
+        ...utm,  // QUOTE-P2 T09
       });
       setSuccess(res.reference);
       trackEvent('dealer_inquiry_submit', { monthly_volume: form.monthly_volume || '' });

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useVinDecode } from '../hooks/useVinDecode';
 import { apiPost } from '../hooks/useApi';
@@ -11,7 +11,7 @@ import { trackEvent } from '../utils/analytics';
 import styles from './QuoteForm.module.css';
 import btn from '../styles/buttons.module.css';
 
-export default function QuoteForm({ compact = false }) {
+export default function QuoteForm({ compact = false, hideHeader = false }) {
   const { t, i18n } = useTranslation('quote');
 
   // QUOTE-P1 T04: CD-native CamelCase values (same set for pickup + delivery)
@@ -32,6 +32,21 @@ export default function QuoteForm({ compact = false }) {
 
   // Pre-fill from URL params (e.g. resubmit after decline: ?vin=...&pickup_zip=...)
   const urlParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+
+  // QUOTE-P2 T09: capture marketing attribution on every form mount.
+  // Per locked decision: URL-only, no sessionStorage / cookie persistence.
+  const utm = useMemo(() => {
+    const p = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+    return {
+      utm_source:   p?.get('utm_source')   || '',
+      utm_medium:   p?.get('utm_medium')   || '',
+      utm_campaign: p?.get('utm_campaign') || '',
+      utm_term:     p?.get('utm_term')     || '',
+      utm_content:  p?.get('utm_content')  || '',
+      gclid:        p?.get('gclid')        || '',
+      fbclid:       p?.get('fbclid')       || '',
+    };
+  }, []);
   const [form, setForm] = useState({
     vin: urlParams?.get('vin') || '',
     vehicle_year: '', vehicle_make: '', vehicle_model: '',
@@ -178,6 +193,7 @@ export default function QuoteForm({ compact = false }) {
         sms_consent_page: window.location.href,
         source: 'website',
         lang: i18n.language || 'en',
+        ...utm,  // QUOTE-P2 T09: utm_source, utm_medium, utm_campaign, utm_term, utm_content, gclid, fbclid
       };
       const res = await apiPost('/api/public/quote', payload);
       setSuccess(res);
@@ -195,10 +211,12 @@ export default function QuoteForm({ compact = false }) {
 
   return (
     <div className={styles.wrap}>
-      <div className={styles.header}>
-        <span className={styles.kicker}>&#9670; {t('header.kicker')}</span>
-        <h2 className={styles.title}>{t('header.title')}</h2>
-      </div>
+      {!hideHeader && (
+        <div className={styles.header}>
+          <span className={styles.kicker}>&#9670; {t('header.kicker')}</span>
+          <h2 className={styles.title}>{t('header.title')}</h2>
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} className={compact ? styles.formCompact : styles.form}>
 
