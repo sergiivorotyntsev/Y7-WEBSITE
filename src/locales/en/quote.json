@@ -87,7 +87,9 @@
   "sms": {
     "consent": "By checking this box, you consent to receive SMS notifications and updates related to your vehicle transport from Y7 Consulting Inc at the phone number provided. Message frequency varies. Message & data rates may apply. Reply STOP to opt out, HELP for help. This consent is not a condition of purchase.",
     "terms": "See our Privacy Policy and SMS Terms & Conditions.",
-    "fullConsent": "By checking this box, you consent to receive SMS notifications and updates related to your vehicle transport from Y7 Consulting Inc at the phone number provided. Message frequency varies. Message & data rates may apply. Reply STOP to opt out, HELP for help. This consent is not a condition of purchase. See our <privacyLink>Privacy Policy</privacyLink> and <smsTermsLink>SMS Terms & Conditions</smsTermsLink>."
+    "checkboxLabel": "I agree to receive SMS messages from Y7 Consulting Inc related to my transport quote, including verification codes, shipment updates, and billing reminders. Message frequency varies by shipment status. Message and data rates may apply. Reply STOP to opt out or HELP for assistance.",
+    "errorRequired": "SMS consent is required to submit this quote.",
+    "footnote": "By submitting this form, you agree to our Terms & Conditions and Privacy Policy. Your consent (IP, timestamp, version) is recorded for TCPA compliance."
   },
   "success": {
     "title": "Quote Request Received!",

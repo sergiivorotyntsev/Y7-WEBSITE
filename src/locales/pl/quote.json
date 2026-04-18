@@ -87,7 +87,9 @@
   "sms": {
     "consent": "Zaznaczając to pole, wyrażasz zgodę na otrzymywanie powiadomień SMS i aktualizacji dotyczących transportu Twojego pojazdu od Y7 Consulting Inc na podany numer telefonu. Częstotliwość wiadomości może się różnić. Mogą obowiązywać standardowe stawki za wiadomości i transmisję danych. Odpowiedz STOP, aby zrezygnować, HELP, aby uzyskać pomoc. Ta zgoda nie jest warunkiem zakupu.",
     "terms": "Zapoznaj się z naszą Polityką prywatności i Warunkami SMS.",
-    "fullConsent": "Zaznaczając to pole, wyrażasz zgodę na otrzymywanie powiadomień SMS i aktualizacji dotyczących transportu Twojego pojazdu od Y7 Consulting Inc na podany numer telefonu. Częstotliwość wiadomości może się różnić. Mogą obowiązywać standardowe stawki za wiadomości i transmisję danych. Odpowiedz STOP, aby zrezygnować, HELP, aby uzyskać pomoc. Ta zgoda nie jest warunkiem zakupu. Zobacz naszą <privacyLink>Politykę prywatności</privacyLink> oraz <smsTermsLink>Warunki SMS</smsTermsLink>."
+    "checkboxLabel": "Zgadzam się na otrzymywanie wiadomości SMS od Y7 Consulting Inc dotyczących mojego zamówienia transportowego, w tym kodów weryfikacyjnych, aktualizacji statusu przesyłki i przypomnień o płatnościach. Częstotliwość wiadomości zależy od statusu przesyłki. Mogą obowiązywać standardowe opłaty operatora. Odpowiedz STOP, aby zrezygnować, lub HELP, aby uzyskać pomoc.",
+    "errorRequired": "Wymagana jest zgoda na SMS, aby przesłać tę wycenę.",
+    "footnote": "Przesyłając ten formularz, zgadzasz się na nasz Regulamin i Politykę prywatności. Twoja zgoda (IP, znacznik czasu, wersja) jest rejestrowana zgodnie z TCPA."
   },
   "success": {
     "title": "Zapytanie otrzymane!",
