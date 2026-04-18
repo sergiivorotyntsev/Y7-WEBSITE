@@ -7,7 +7,8 @@
     "prefix": "By submitting this form, you agree to our",
     "terms": "Terms & Conditions",
     "and": "and",
-    "privacy": "Privacy Policy"
+    "privacy": "Privacy Policy",
+    "smsConsentRequired": "You must agree to receive SMS notifications to submit a quote. We use SMS for verification and shipment updates only."
   },
   "trust": {
     "secure": "Secure",

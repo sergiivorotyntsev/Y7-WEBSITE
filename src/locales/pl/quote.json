@@ -7,7 +7,8 @@
     "prefix": "Przesyłając ten formularz, akceptujesz nasze",
     "terms": "Warunki korzystania",
     "and": "i",
-    "privacy": "Politykę prywatności"
+    "privacy": "Politykę prywatności",
+    "smsConsentRequired": "Musisz wyrazić zgodę na otrzymywanie powiadomień SMS, aby przesłać zapytanie. SMS używamy wyłącznie do weryfikacji i aktualizacji dotyczących transportu."
   },
   "trust": {
     "secure": "Bezpiecznie",

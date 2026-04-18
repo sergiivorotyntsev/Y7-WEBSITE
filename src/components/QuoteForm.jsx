@@ -106,8 +106,8 @@ export default function QuoteForm({ compact = false }) {
   // Step 2: both ZIPs must be >= 5 chars
   const showStep2 = form.pickup_zip.trim().length >= 5 && form.delivery_zip.trim().length >= 5;
 
-  // Step 3: button active when name + (phone or email)
-  const canSubmit = !!(form.name.trim() && form.email.trim() && form.email.includes('@'));
+  // Step 3: button active when name + valid email + sms_consent (QUOTE-P0 TCPA gate)
+  const canSubmit = !!(form.name.trim() && form.email.trim() && form.email.includes('@') && form.sms_consent);
 
   // Measure step2 inner height for smooth animation
   useEffect(() => {
@@ -508,6 +508,11 @@ export default function QuoteForm({ compact = false }) {
 
           {/* SMS Consent */}
           <SmsConsent checked={form.sms_consent} onChange={v => set('sms_consent', v)} />
+          {!form.sms_consent && (
+            <p className={styles.consentWarn}>
+              {t('legal.smsConsentRequired')}
+            </p>
+          )}
         </div>
       </div>
 

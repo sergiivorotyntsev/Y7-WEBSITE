@@ -352,6 +352,18 @@
    LEGAL LINE + SUBMIT BUTTON
    ===================================================================== */
 
+.consentWarn {
+  font-family: var(--font-sans, system-ui);
+  font-size: 12px;
+  color: #B45309;
+  background: #FFF7ED;
+  border-left: 3px solid #B45309;
+  padding: 8px 12px;
+  margin-top: 8px;
+  line-height: 1.5;
+  border-radius: 4px;
+}
+
 .legal {
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
