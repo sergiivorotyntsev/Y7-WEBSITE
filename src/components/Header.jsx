@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '../hooks/useAuth';
 import LanguageSwitcher from './LanguageSwitcher';
 import NavDropdown from './NavDropdown';
+import AnimatedLogo from './AnimatedLogo';
 import { CloseIcon, MenuIcon, ChevronDownIcon } from './icons';
 import styles from './Header.module.css';
 import btn from '../styles/buttons.module.css';
@@ -95,9 +96,7 @@ export default function Header() {
     <header role="banner" className={styles.header}>
       <div className={styles.inner}>
         {/* Logo */}
-        <Link to="/" className={styles.logo}>
-          Y7<span className={styles.logoDot}>.</span>
-        </Link>
+        <AnimatedLogo size={28} to={L('/')} />
 
         {/* Desktop Nav */}
         <nav aria-label="Main navigation" className={styles.nav}>
