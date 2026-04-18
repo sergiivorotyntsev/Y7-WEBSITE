@@ -5,7 +5,7 @@
    ===================================================================== */
 
 .hero {
-  padding: clamp(80px, 12vh, 160px) 24px clamp(60px, 10vh, 120px);
+  padding: clamp(48px, 10vh, 160px) 20px clamp(40px, 8vh, 120px);
   background:
     radial-gradient(circle at 50% 40%, rgba(153, 60, 29, 0.06) 0%, transparent 55%),
     linear-gradient(180deg, var(--bg, #F7F5F0) 0%, var(--bg-muted, #EFECE6) 100%);
@@ -32,7 +32,7 @@
 .heroKicker {
   display: inline-block;
   font-family: var(--font-sans, system-ui);
-  font-size: 11px;
+  font-size: clamp(10px, 2.6vw, 11px);
   font-weight: 700;
   color: var(--accent, #993C1D);
   text-transform: uppercase;
@@ -40,17 +40,20 @@
   padding: 6px 14px;
   background: rgba(153, 60, 29, 0.08);
   border-radius: var(--radius-pill, 20px);
-  margin: 0 0 24px;
+  margin: 0 0 20px;
 }
 
 .heroTitle {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(1.85rem, 7.5vw, 3.5rem);
   font-weight: 700;
   color: var(--text, #2C2C2A);
-  line-height: 1.08;
+  line-height: 1.1;
   letter-spacing: -0.03em;
-  margin: 0 0 20px;
+  margin: 0 0 18px;
+  padding: 0 4px;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .heroAccent {
@@ -61,11 +64,12 @@
 
 .heroDesc {
   font-family: var(--font-sans, system-ui);
-  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  font-size: clamp(0.95rem, 3.4vw, 1.15rem);
   color: var(--text-muted, #888780);
-  line-height: 1.7;
+  line-height: 1.65;
   max-width: 620px;
-  margin: 0 auto 36px;
+  margin: 0 auto 28px;
+  padding: 0 8px;
 }
 
 .heroCtas {

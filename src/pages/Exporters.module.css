@@ -7,18 +7,18 @@
 }
 
 .hero {
-  padding: clamp(64px, 10vh, 96px) 24px clamp(36px, 6vh, 48px);
+  padding: clamp(48px, 8vh, 96px) 20px clamp(32px, 6vh, 48px);
   text-align: center;
   background:
     radial-gradient(circle at 50% 100%, rgba(153, 60, 29, 0.06), transparent 60%),
     linear-gradient(180deg, var(--bg, #F7F5F0) 0%, var(--bg-muted, #EFECE6) 100%);
-  margin-bottom: clamp(40px, 6vh, 56px);
+  margin-bottom: clamp(32px, 5vh, 56px);
 }
 
 .heroMicro {
   display: inline-block;
   font-family: var(--font-sans, system-ui);
-  font-size: 11px;
+  font-size: clamp(10px, 2.6vw, 11px);
   font-weight: 700;
   color: var(--accent, #993C1D);
   text-transform: uppercase;
@@ -28,23 +28,25 @@
 
 .title {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.8rem, 4vw, 2.75rem);
+  font-size: clamp(1.75rem, 6.5vw, 2.75rem);
   font-weight: 700;
   color: var(--text, #2C2C2A);
   text-align: center;
   margin: 0 0 14px;
   letter-spacing: -0.02em;
   line-height: 1.1;
+  overflow-wrap: break-word;
 }
 
 .subtitle {
   font-family: var(--font-sans, system-ui);
-  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+  font-size: clamp(0.95rem, 3.2vw, 1.1rem);
   color: var(--text-muted, #888780);
   text-align: center;
   max-width: 640px;
   margin: 0 auto;
-  line-height: 1.7;
+  line-height: 1.65;
+  padding: 0 4px;
 }
 
 .heroTrust {
