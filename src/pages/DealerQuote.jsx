@@ -80,12 +80,21 @@ export default function DealerQuote() {
       setError('Please enter a valid 10-digit phone number.');
       return;
     }
+    if (!form.sms_consent) {
+      setError('You must agree to receive SMS notifications to submit.');
+      return;
+    }
 
     setSubmitting(true);
     try {
       const res = await apiPost('/api/public/dealer-inquiry', {
         ...form,
         phone: getCleanPhone(form.phone),
+        sms_consent_timestamp: form.sms_consent ? new Date().toISOString() : null,
+        sms_consent_page_url: window.location.href,
+        sms_consent_page: window.location.href,
+        source: 'website_dealer',
+        lang: 'en',
       });
       setSuccess(res.reference);
       trackEvent('dealer_inquiry_submit', { monthly_volume: form.monthly_volume || '' });
@@ -275,11 +284,20 @@ export default function DealerQuote() {
           {/* SMS Consent */}
           <div>
             <SmsConsent checked={form.sms_consent} onChange={v => set('sms_consent', v)} />
+            {!form.sms_consent && (
+              <p className={qForm.consentWarn}>
+                You must agree to receive SMS notifications to submit. We use SMS for verification and shipment updates only.
+              </p>
+            )}
           </div>
 
           {error && <div className={styles.errorAlert}>{error}</div>}
 
-          <button type="submit" disabled={submitting} className={`${btn.btnAccent} ${styles.submitBtn}`}>
+          <button
+            type="submit"
+            disabled={submitting || !form.sms_consent}
+            className={`${btn.btnAccent} ${styles.submitBtn}`}
+          >
             {submitting ? 'Submitting...' : 'REQUEST DEALER PARTNERSHIP'}
           </button>
 
