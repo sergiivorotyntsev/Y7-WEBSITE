@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import PageMeta from '../components/PageMeta';
 import QuoteForm from '../components/QuoteForm';
-import WhatHappensNext from '../components/WhatHappensNext';
+import ProcessTimeline from '../components/ProcessTimeline';
 import { colors, fonts } from '../theme';
 
 export default function Quote() {
@@ -18,7 +18,7 @@ export default function Quote() {
         </p>
       </div>
       <QuoteForm />
-      <WhatHappensNext />
+      <ProcessTimeline />
     </div>
   );
 }

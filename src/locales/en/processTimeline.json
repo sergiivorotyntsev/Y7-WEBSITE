@@ -1,0 +1,32 @@
+{
+  "kicker": "HOW IT WORKS",
+  "title": "From Quote to Delivery",
+  "subtitle": "No surprises. No hidden steps. Here's exactly what to expect from request to delivery.",
+  "steps": [
+    {
+      "title": "Submit Your Request",
+      "timing": "Instant",
+      "desc": "Enter vehicle details and route. VIN decode fills make and model automatically."
+    },
+    {
+      "title": "Receive a Quote",
+      "timing": "Under 1 hour",
+      "desc": "A real dispatcher reviews your route and sends a firm price — not a generic range."
+    },
+    {
+      "title": "Confirm Your Price",
+      "timing": "When ready",
+      "desc": "One click to lock in your price. No deposit required until we assign a carrier."
+    },
+    {
+      "title": "Carrier Assigned",
+      "timing": "24–72 hours",
+      "desc": "We find a vetted carrier through Central Dispatch. You get the driver's name and truck details."
+    },
+    {
+      "title": "Pickup & Delivery",
+      "timing": "Varies by route",
+      "desc": "BOL at pickup. Status updates throughout. Photo documentation at delivery."
+    }
+  ]
+}

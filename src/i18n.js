@@ -13,6 +13,7 @@ import agreementEn from './locales/en/agreement.json';
 import agreementDealerEn from './locales/en/agreement_dealer.json';
 import aboutEn from './locales/en/about.json';
 import faqEn from './locales/en/faq.json';
+import processTimelineEn from './locales/en/processTimeline.json';
 
 // Russian
 import commonRu from './locales/ru/common.json';
@@ -26,6 +27,7 @@ import agreementRu from './locales/ru/agreement.json';
 import agreementDealerRu from './locales/ru/agreement_dealer.json';
 import aboutRu from './locales/ru/about.json';
 import faqRu from './locales/ru/faq.json';
+import processTimelineRu from './locales/ru/processTimeline.json';
 
 // Polish
 import commonPl from './locales/pl/common.json';
@@ -39,6 +41,7 @@ import agreementPl from './locales/pl/agreement.json';
 import agreementDealerPl from './locales/pl/agreement_dealer.json';
 import aboutPl from './locales/pl/about.json';
 import faqPl from './locales/pl/faq.json';
+import processTimelinePl from './locales/pl/processTimeline.json';
 
 // Ukrainian
 import commonUa from './locales/ua/common.json';
@@ -52,23 +55,24 @@ import agreementUa from './locales/ua/agreement.json';
 import agreementDealerUa from './locales/ua/agreement_dealer.json';
 import aboutUa from './locales/ua/about.json';
 import faqUa from './locales/ua/faq.json';
+import processTimelineUa from './locales/ua/processTimeline.json';
 
 const resources = {
   en: {
     common: commonEn, home: homeEn, quote: quoteEn, services: servicesEn,
-    dealers: dealersEn, exporters: exportersEn, shipMycar: shipMycarEn, agreement: agreementEn, agreement_dealer: agreementDealerEn, about: aboutEn, faq: faqEn,
+    dealers: dealersEn, exporters: exportersEn, shipMycar: shipMycarEn, agreement: agreementEn, agreement_dealer: agreementDealerEn, about: aboutEn, faq: faqEn, processTimeline: processTimelineEn,
   },
   ru: {
     common: commonRu, home: homeRu, quote: quoteRu, services: servicesRu,
-    dealers: dealersRu, exporters: exportersRu, shipMycar: shipMycarRu, agreement: agreementRu, agreement_dealer: agreementDealerRu, about: aboutRu, faq: faqRu,
+    dealers: dealersRu, exporters: exportersRu, shipMycar: shipMycarRu, agreement: agreementRu, agreement_dealer: agreementDealerRu, about: aboutRu, faq: faqRu, processTimeline: processTimelineRu,
   },
   pl: {
     common: commonPl, home: homePl, quote: quotePl, services: servicesPl,
-    dealers: dealersPl, exporters: exportersPl, shipMycar: shipMycarPl, agreement: agreementPl, agreement_dealer: agreementDealerPl, about: aboutPl, faq: faqPl,
+    dealers: dealersPl, exporters: exportersPl, shipMycar: shipMycarPl, agreement: agreementPl, agreement_dealer: agreementDealerPl, about: aboutPl, faq: faqPl, processTimeline: processTimelinePl,
   },
   ua: {
     common: commonUa, home: homeUa, quote: quoteUa, services: servicesUa,
-    dealers: dealersUa, exporters: exportersUa, shipMycar: shipMycarUa, agreement: agreementUa, agreement_dealer: agreementDealerUa, about: aboutUa, faq: faqUa,
+    dealers: dealersUa, exporters: exportersUa, shipMycar: shipMycarUa, agreement: agreementUa, agreement_dealer: agreementDealerUa, about: aboutUa, faq: faqUa, processTimeline: processTimelineUa,
   },
 };
 

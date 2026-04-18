@@ -1,0 +1,32 @@
+{
+  "kicker": "JAK TO DZIAŁA",
+  "title": "Od wyceny do dostawy",
+  "subtitle": "Bez niespodzianek. Bez ukrytych kroków. Oto dokładnie, czego oczekiwać od zapytania do dostawy.",
+  "steps": [
+    {
+      "title": "Wyślij zapytanie",
+      "timing": "Natychmiast",
+      "desc": "Wpisz dane pojazdu i trasę. Dekoder VIN automatycznie uzupełnia markę i model."
+    },
+    {
+      "title": "Otrzymaj wycenę",
+      "timing": "W ciągu godziny",
+      "desc": "Prawdziwy dyspozytor sprawdza trasę i wysyła stałą cenę — nie ogólny zakres."
+    },
+    {
+      "title": "Potwierdź cenę",
+      "timing": "Kiedy chcesz",
+      "desc": "Jeden klik blokuje cenę. Bez zaliczki do momentu przypisania przewoźnika."
+    },
+    {
+      "title": "Przypisanie przewoźnika",
+      "timing": "24–72 godziny",
+      "desc": "Znajdujemy zweryfikowanego przewoźnika przez Central Dispatch. Otrzymujesz dane kierowcy i pojazdu."
+    },
+    {
+      "title": "Odbiór i dostawa",
+      "timing": "Zależnie od trasy",
+      "desc": "BOL przy odbiorze. Aktualizacje statusu na każdym etapie. Dokumentacja zdjęciowa przy dostawie."
+    }
+  ]
+}

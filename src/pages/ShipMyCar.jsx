@@ -4,7 +4,7 @@ import HreflangTags from '../components/HreflangTags';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import QuoteForm from '../components/QuoteForm';
 import TransportComparison from '../components/TransportComparison';
-import WhatHappensNext from '../components/WhatHappensNext';
+import ProcessTimeline from '../components/ProcessTimeline';
 import styles from './ShipMyCar.module.css';
 
 function Chevron() {
@@ -124,8 +124,8 @@ export default function ShipMyCar() {
         <QuoteForm />
       </section>
 
-      {/* What Happens Next */}
-      <WhatHappensNext />
+      {/* Process Timeline */}
+      <ProcessTimeline />
 
       {/* FAQ Accordion */}
       <section className={styles.faqSection}>
