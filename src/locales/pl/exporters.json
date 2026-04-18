@@ -15,27 +15,69 @@
     "kicker": "Przejrzyste opłaty",
     "title": "Struktura opłat serwisowych",
     "items": [
-      { "service": "Dyspozycja za pojazd", "desc": "Ogłoszenie na Central Dispatch, negocjacje z przewoźnikiem, koordynacja wysyłki, dokumentacja (BOL, gate pass), monitoring przesyłki", "note": "Stała opłata za pojazd" },
-      { "service": "Obsługa płatności", "desc": "Płacimy przewoźnikowi w Twoim imieniu i zajmujemy się całą dokumentacją finansową. Zwracasz koszt przewoźnika + opłatę za obsługę.", "note": "Opcjonalny dodatek" },
-      { "service": "Kontrakty ilościowe", "desc": "Indywidualny cennik dla eksporterów wysyłających 10+ pojazdów/miesiąc. Dedykowany dyspozytor, priorytetowe ogłoszenie, miesięczne fakturowanie.", "note": "Skontaktuj się z nami" }
+      {
+        "service": "Dyspozycja za pojazd",
+        "desc": "Ogłoszenie na Central Dispatch, negocjacje z przewoźnikiem, koordynacja wysyłki, dokumentacja (BOL, gate pass), monitoring przesyłki",
+        "note": "Stała opłata za pojazd"
+      },
+      {
+        "service": "Obsługa płatności",
+        "desc": "Płacimy przewoźnikowi w Twoim imieniu i zajmujemy się całą dokumentacją finansową. Zwracasz koszt przewoźnika + opłatę za obsługę.",
+        "note": "Opcjonalny dodatek"
+      },
+      {
+        "service": "Kontrakty ilościowe",
+        "desc": "Indywidualny cennik dla eksporterów wysyłających 10+ pojazdów/miesiąc. Dedykowany dyspozytor, priorytetowe ogłoszenie, miesięczne fakturowanie.",
+        "note": "Skontaktuj się z nami"
+      }
     ]
   },
   "howTitle": "Jak to działa",
   "steps": [
-    { "title": "Opowiedz o swoich potrzebach", "desc": "Miesięczny wolumen, preferowane porty, typy pojazdów. Przygotujemy indywidualny plan obsługi." },
-    { "title": "Otrzymaj nasze stawki", "desc": "Przejrzysta struktura opłat — nasza opłata dyspozytorska + stawka przewoźnika (po kosztach). Bez ukrytych marż." },
-    { "title": "Wyślij nam swoje pojazdy", "desc": "VIN-y + lokalizacje odbioru. Jeden pojazd lub sto — zajmiemy się każdym." },
-    { "title": "Organizujemy i dostarczamy", "desc": "Przydzielenie przewoźnika, śledzenie w czasie rzeczywistym, dostawa do portu z pełną dokumentacją." }
+    {
+      "title": "Opowiedz o swoich potrzebach",
+      "desc": "Miesięczny wolumen, preferowane porty, typy pojazdów. Przygotujemy indywidualny plan obsługi."
+    },
+    {
+      "title": "Otrzymaj nasze stawki",
+      "desc": "Przejrzysta struktura opłat — nasza opłata dyspozytorska + stawka przewoźnika (po kosztach). Bez ukrytych marż."
+    },
+    {
+      "title": "Wyślij nam swoje pojazdy",
+      "desc": "VIN-y + lokalizacje odbioru. Jeden pojazd lub sto — zajmiemy się każdym."
+    },
+    {
+      "title": "Organizujemy i dostarczamy",
+      "desc": "Przydzielenie przewoźnika, śledzenie w czasie rzeczywistym, dostawa do portu z pełną dokumentacją."
+    }
   ],
   "ports": {
     "title": "Zasięg portów",
     "list": [
-      { "name": "Newark, NJ", "desc": "Główny hub eksportowy Wschodniego Wybrzeża. Port Newark-Elizabeth Marine Terminal." },
-      { "name": "Houston, TX", "desc": "Największy port eksportu pojazdów w USA. RoRo + kontenery do Afryki, Bliskiego Wschodu, Ameryki Południowej." },
-      { "name": "Savannah, GA", "desc": "Port południowo-wschodni. Konkurencyjne stawki na trasy europejskie i afrykańskie." },
-      { "name": "Baltimore, MD", "desc": "Dundalk Marine Terminal. Główny terminal RoRo dla pojazdów kierowanych do Europy." },
-      { "name": "Los Angeles, CA", "desc": "Brama na Pacyfik — Azja, Australia, Oceania." },
-      { "name": "Jacksonville, FL", "desc": "Połączenia z Karaibami i Ameryką Południową." }
+      {
+        "name": "Newark, NJ",
+        "desc": "Główny hub eksportowy Wschodniego Wybrzeża. Port Newark-Elizabeth Marine Terminal."
+      },
+      {
+        "name": "Houston, TX",
+        "desc": "Największy port eksportu pojazdów w USA. RoRo + kontenery do Afryki, Bliskiego Wschodu, Ameryki Południowej."
+      },
+      {
+        "name": "Savannah, GA",
+        "desc": "Port południowo-wschodni. Konkurencyjne stawki na trasy europejskie i afrykańskie."
+      },
+      {
+        "name": "Baltimore, MD",
+        "desc": "Dundalk Marine Terminal. Główny terminal RoRo dla pojazdów kierowanych do Europy."
+      },
+      {
+        "name": "Los Angeles, CA",
+        "desc": "Brama na Pacyfik — Azja, Australia, Oceania."
+      },
+      {
+        "name": "Jacksonville, FL",
+        "desc": "Połączenia z Karaibami i Ameryką Południową."
+      }
     ]
   },
   "form": {
@@ -46,7 +88,12 @@
     "email": "Email",
     "phone": "Telefon",
     "monthlyVolume": "Szacowany miesięczny wolumen",
-    "volumes": ["1-5 pojazdów", "6-15 pojazdów", "16-30 pojazdów", "30+ pojazdów"],
+    "volumes": [
+      "1-5 pojazdów",
+      "6-15 pojazdów",
+      "16-30 pojazdów",
+      "30+ pojazdów"
+    ],
     "preferredPorts": "Preferowane porty",
     "vins": "VIN pojazdów (jeden na linię, opcjonalnie)",
     "vinsPlaceholder": "1HGBH41JXMN109186\n5YJSA1E11KF123456\n...",
@@ -58,5 +105,17 @@
   "formSuccess": {
     "title": "Zapytanie otrzymane!",
     "message": "Wyślemy nasz cennik w ciągu 24 godzin. W pilnych sprawach prosimy o kontakt na info@y7agency.com."
+  },
+  "hero": {
+    "kicker": "DLA EKSPORTERÓW",
+    "trust1": "Koordynacja gate pass",
+    "trust2": "Wszystkie główne porty USA",
+    "trust3": "Przejrzyste ceny cost-plus"
+  },
+  "crosslinks": {
+    "title": "Więcej dla eksporterów",
+    "deepDive": "Przewodnik door-to-port",
+    "auction": "Z aukcji do portu",
+    "dealers": "Dla dilerów"
   }
 }

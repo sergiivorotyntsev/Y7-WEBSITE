@@ -47,6 +47,64 @@
   line-height: 1.7;
 }
 
+.heroTrust {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  font-family: var(--font-sans, system-ui);
+  font-size: 12.5px;
+  color: var(--text-muted, #888780);
+}
+.heroTrustItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.heroTrustDot {
+  color: var(--border, #d8d0c3);
+}
+
+/* Cross-links row */
+.crosslinks {
+  margin-top: clamp(48px, 8vh, 72px);
+  padding-top: clamp(32px, 5vh, 40px);
+  border-top: 1px solid var(--border, #e5e0d8);
+  text-align: center;
+}
+.crosslinksTitle {
+  display: block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted, #888780);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.crosslinksRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px 28px;
+}
+.crosslink {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent, #993C1D);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 150ms ease-out, color 150ms ease-out;
+}
+@media (hover: hover) {
+  .crosslink:hover {
+    color: var(--accent-hover, #7A3017);
+    border-bottom-color: var(--accent-hover, #7A3017);
+  }
+}
+
 .body {
   max-width: 900px;
   margin: 0 auto;

@@ -15,27 +15,69 @@
     "kicker": "Transparent Fees",
     "title": "Service Fee Structure",
     "items": [
-      { "service": "Per-Vehicle Dispatch", "desc": "CD listing, carrier negotiation, dispatch coordination, documentation (BOL, gate pass), shipment monitoring", "note": "Flat fee per vehicle" },
-      { "service": "Payment Processing", "desc": "We pay the carrier on your behalf and handle all financial paperwork. You reimburse carrier cost + processing fee.", "note": "Optional add-on" },
-      { "service": "Volume Contracts", "desc": "Custom rate card for exporters shipping 10+ vehicles/month. Dedicated dispatcher, priority listing, monthly invoicing.", "note": "Contact us" }
+      {
+        "service": "Per-Vehicle Dispatch",
+        "desc": "CD listing, carrier negotiation, dispatch coordination, documentation (BOL, gate pass), shipment monitoring",
+        "note": "Flat fee per vehicle"
+      },
+      {
+        "service": "Payment Processing",
+        "desc": "We pay the carrier on your behalf and handle all financial paperwork. You reimburse carrier cost + processing fee.",
+        "note": "Optional add-on"
+      },
+      {
+        "service": "Volume Contracts",
+        "desc": "Custom rate card for exporters shipping 10+ vehicles/month. Dedicated dispatcher, priority listing, monthly invoicing.",
+        "note": "Contact us"
+      }
     ]
   },
   "howTitle": "How It Works",
   "steps": [
-    { "title": "Tell Us Your Needs", "desc": "Monthly volume, preferred ports, vehicle types. We'll tailor a service plan." },
-    { "title": "Receive Our Service Rates", "desc": "Transparent fee schedule — our dispatch fee + carrier rate (at cost). No hidden markups." },
-    { "title": "Send Us Your Vehicles", "desc": "VINs + pickup locations. One vehicle or a hundred — we handle each one." },
-    { "title": "We Dispatch & Deliver", "desc": "Carrier assignment, shipment status updates, port delivery with full documentation." }
+    {
+      "title": "Tell Us Your Needs",
+      "desc": "Monthly volume, preferred ports, vehicle types. We'll tailor a service plan."
+    },
+    {
+      "title": "Receive Our Service Rates",
+      "desc": "Transparent fee schedule — our dispatch fee + carrier rate (at cost). No hidden markups."
+    },
+    {
+      "title": "Send Us Your Vehicles",
+      "desc": "VINs + pickup locations. One vehicle or a hundred — we handle each one."
+    },
+    {
+      "title": "We Dispatch & Deliver",
+      "desc": "Carrier assignment, shipment status updates, port delivery with full documentation."
+    }
   ],
   "ports": {
     "title": "Port Coverage",
     "list": [
-      { "name": "Newark, NJ", "desc": "Primary East Coast export hub. Port Newark-Elizabeth Marine Terminal." },
-      { "name": "Houston, TX", "desc": "Largest US vehicle export port. RoRo + container to Africa, Middle East, South America." },
-      { "name": "Savannah, GA", "desc": "Southeast port. Competitive rates for European and African routes." },
-      { "name": "Baltimore, MD", "desc": "Dundalk Marine Terminal. Major RoRo for European-bound vehicles." },
-      { "name": "Los Angeles, CA", "desc": "Pacific gateway for Asia, Australia, Oceania." },
-      { "name": "Jacksonville, FL", "desc": "Caribbean and South American connections." }
+      {
+        "name": "Newark, NJ",
+        "desc": "Primary East Coast export hub. Port Newark-Elizabeth Marine Terminal."
+      },
+      {
+        "name": "Houston, TX",
+        "desc": "Largest US vehicle export port. RoRo + container to Africa, Middle East, South America."
+      },
+      {
+        "name": "Savannah, GA",
+        "desc": "Southeast port. Competitive rates for European and African routes."
+      },
+      {
+        "name": "Baltimore, MD",
+        "desc": "Dundalk Marine Terminal. Major RoRo for European-bound vehicles."
+      },
+      {
+        "name": "Los Angeles, CA",
+        "desc": "Pacific gateway for Asia, Australia, Oceania."
+      },
+      {
+        "name": "Jacksonville, FL",
+        "desc": "Caribbean and South American connections."
+      }
     ]
   },
   "form": {
@@ -46,7 +88,12 @@
     "email": "Email",
     "phone": "Phone",
     "monthlyVolume": "Estimated Monthly Volume",
-    "volumes": ["1-5 vehicles", "6-15 vehicles", "16-30 vehicles", "30+ vehicles"],
+    "volumes": [
+      "1-5 vehicles",
+      "6-15 vehicles",
+      "16-30 vehicles",
+      "30+ vehicles"
+    ],
     "preferredPorts": "Preferred Ports",
     "vins": "Vehicle VINs (one per line, optional)",
     "vinsPlaceholder": "1HGBH41JXMN109186\n5YJSA1E11KF123456\n...",
@@ -58,5 +105,17 @@
   "formSuccess": {
     "title": "Request Received!",
     "message": "We'll send your service rate card within 24 hours. For urgent requests, email info@y7agency.com."
+  },
+  "hero": {
+    "kicker": "FOR EXPORTERS",
+    "trust1": "Gate pass coordination",
+    "trust2": "All major US ports",
+    "trust3": "Transparent cost-plus pricing"
+  },
+  "crosslinks": {
+    "title": "More for exporters",
+    "deepDive": "Door-to-port guide",
+    "auction": "Auction to port transport",
+    "dealers": "For dealers"
   }
 }

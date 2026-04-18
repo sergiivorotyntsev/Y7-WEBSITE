@@ -80,9 +80,16 @@ export default function Exporters() {
 
       {/* Hero */}
       <section className={styles.hero}>
-        <span className={styles.heroMicro}>&#9670; For Exporters</span>
+        <span className={styles.heroMicro}>&#9670; {t('hero.kicker')}</span>
         <h1 className={styles.title}>{t('title')}</h1>
         <p className={styles.subtitle}>{t('subtitle')}</p>
+        <div className={styles.heroTrust}>
+          <span className={styles.heroTrustItem}>&#x2713; {t('hero.trust1')}</span>
+          <span className={styles.heroTrustDot} aria-hidden="true">&middot;</span>
+          <span className={styles.heroTrustItem}>&#x2713; {t('hero.trust2')}</span>
+          <span className={styles.heroTrustDot} aria-hidden="true">&middot;</span>
+          <span className={styles.heroTrustItem}>&#x2713; {t('hero.trust3')}</span>
+        </div>
       </section>
 
       <div className={styles.body}>
@@ -240,6 +247,16 @@ export default function Exporters() {
             </form>
           </>
         )}
+      </div>
+
+      {/* Cross-links */}
+      <div className={styles.crosslinks}>
+        <span className={styles.crosslinksTitle}>{t('crosslinks.title')}</span>
+        <div className={styles.crosslinksRow}>
+          <Link to="/door-to-port-auto-transport" className={styles.crosslink}>{t('crosslinks.deepDive')} &rarr;</Link>
+          <Link to="/auction-to-port-transport" className={styles.crosslink}>{t('crosslinks.auction')} &rarr;</Link>
+          <Link to="/dealers" className={styles.crosslink}>{t('crosslinks.dealers')} &rarr;</Link>
+        </div>
       </div>
       </div>
     </div>
