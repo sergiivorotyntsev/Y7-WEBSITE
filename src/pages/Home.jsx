@@ -139,7 +139,7 @@ export default function Home() {
             <p className={styles.quoteSectionSubtitle}>{t('quoteSection.subtitle')}</p>
           </div>
         </ScrollReveal>
-        <QuoteForm compact />
+        <QuoteForm compact hideHeader />
         <div className={styles.trustBadgesRow}>
           <TrustBadges layout="horizontal" variant="compact" />
         </div>

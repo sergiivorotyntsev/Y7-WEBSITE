@@ -132,7 +132,7 @@ export default function ShipMyCar() {
       <section id="quote-section" className={styles.quoteSection}>
         <h2 className={styles.quoteTitle}>{t('quoteTitle')}</h2>
         <p className={styles.quoteSubtitle}>{t('quoteSubtitle')}</p>
-        <QuoteForm />
+        <QuoteForm hideHeader />
       </section>
 
       {/* Process Timeline */}

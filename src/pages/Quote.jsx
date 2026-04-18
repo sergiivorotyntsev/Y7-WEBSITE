@@ -17,7 +17,7 @@ export default function Quote() {
           {t('quote.subtitle')}
         </p>
       </div>
-      <QuoteForm />
+      <QuoteForm hideHeader />
       <ProcessTimeline />
     </div>
   );
