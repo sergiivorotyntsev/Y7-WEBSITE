@@ -38,14 +38,16 @@ const labelStyle = {
   marginBottom: '4px',
 };
 
+// QUOTE-P1 T05: CD V2 CamelCase values (match QuoteForm.jsx)
 const LOCATION_TYPES = [
-  { value: 'business', label: 'Business' },
-  { value: 'residence', label: 'Residence' },
-  { value: 'auction', label: 'Auction' },
-  { value: 'port', label: 'Port' },
-  { value: 'dealership', label: 'Dealership' },
-  { value: 'terminal', label: 'Terminal' },
-  { value: 'warehouse', label: 'Warehouse' },
+  { value: 'Residence',          label: 'Residential' },
+  { value: 'CommercialBusiness', label: 'Business / Commercial' },
+  { value: 'Auction',            label: 'Auction' },
+  { value: 'Dealership',         label: 'Dealership' },
+  { value: 'Port',               label: 'Port' },
+  { value: 'Warehouse',          label: 'Warehouse' },
+  { value: 'Terminal',           label: 'Terminal' },
+  { value: 'Other',              label: 'Other' },
 ];
 
 const USAGE_ROLES = [
@@ -55,9 +57,9 @@ const USAGE_ROLES = [
 ];
 
 const DEFAULT_LOCATION_TYPE = {
-  dealer: 'dealership',
-  exporter: 'warehouse',
-  auction_buyer: 'auction',
+  dealer: 'Dealership',
+  exporter: 'Warehouse',
+  auction_buyer: 'Auction',
 };
 
 const US_STATES = [
@@ -74,7 +76,8 @@ export default function LocationSetup() {
   const [error, setError] = useState(null);
   const [form, setForm] = useState({
     label: '',
-    location_type: DEFAULT_LOCATION_TYPE[user?.customer_type] || 'business',
+    location_type: DEFAULT_LOCATION_TYPE[user?.customer_type] || 'CommercialBusiness',
+    requires_twic: false,
     usage_role: 'delivery',
     address: '',
     city: '',
@@ -186,6 +189,28 @@ export default function LocationSetup() {
             </select>
           </div>
         </div>
+
+        {form.location_type === 'Port' && (
+          <label style={{
+            display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px',
+            padding: '8px 10px', background: '#FFF7ED',
+            borderLeft: '3px solid #B45309', borderRadius: '4px',
+          }}>
+            <input
+              type="checkbox"
+              checked={form.requires_twic}
+              onChange={e => set('requires_twic', e.target.checked)}
+            />
+            <span style={{ fontSize: '13px', fontWeight: 600, color: '#7C2D12' }}>
+              Driver must have TWIC card
+            </span>
+            <small style={{ flexBasis: '100%', fontSize: '11px', color: '#7C2D12', lineHeight: 1.4 }}>
+              A Transportation Worker Identification Credential is required by the
+              Maritime Transportation Security Act to access some port locations.
+              If unsure, contact the port.
+            </small>
+          </label>
+        )}
 
         <div>
           <label style={labelStyle}>Street Address *</label>
