@@ -49,7 +49,7 @@ export default function AudienceCards() {
       desc: t('audience.shipMyCarDesc'),
       cta: t('audience.shipMyCarCta'),
       to: '/ship-my-car',
-      icon: <PersonalCarIcon size={40} />,
+      icon: <PersonalCarIcon size={40} color="#ffffff" />,
       tone: 'coral',
     },
     {
@@ -58,7 +58,7 @@ export default function AudienceCards() {
       desc: t('audience.dealersDesc'),
       cta: t('audience.dealersCta'),
       to: '/dealers',
-      icon: <DealerTradeIcon size={40} />,
+      icon: <DealerTradeIcon size={40} color="#ffffff" />,
       tone: 'teal',
     },
     {
@@ -67,7 +67,7 @@ export default function AudienceCards() {
       desc: t('audience.exportersDesc'),
       cta: t('audience.exportersCta'),
       to: '/exporters',
-      icon: <GlobeRouteIcon size={40} />,
+      icon: <GlobeRouteIcon size={40} color="#ffffff" />,
       tone: 'amber',
     },
   ];

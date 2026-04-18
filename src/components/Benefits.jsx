@@ -13,13 +13,14 @@ import styles from './Benefits.module.css';
 export default function Benefits() {
   const { t } = useTranslation('home');
 
+  const ICON_COLOR = '#ffffff';
   const items = [
-    { icon: <QuoteIcon size={22} />,       title: t('benefits.quoteAnywhereTitle'),  desc: t('benefits.quoteAnywhereDesc') },
-    { icon: <TelegramIcon size={22} />,    title: t('benefits.realTimeTitle'),       desc: t('benefits.realTimeDesc') },
-    { icon: <ScalesIcon size={22} />,      title: t('benefits.transparentTitle'),    desc: t('benefits.transparentDesc') },
-    { icon: <DollarIcon size={22} />,      title: t('benefits.flexibleTitle'),       desc: t('benefits.flexibleDesc') },
-    { icon: <ShieldCheckIcon size={22} />, title: t('benefits.verifiedTitle'),       desc: t('benefits.verifiedDesc') },
-    { icon: <DocumentIcon size={22} />,    title: t('benefits.documentationTitle'),  desc: t('benefits.documentationDesc') },
+    { icon: <QuoteIcon size={22} color={ICON_COLOR} />,       title: t('benefits.quoteAnywhereTitle'),  desc: t('benefits.quoteAnywhereDesc') },
+    { icon: <TelegramIcon size={22} color={ICON_COLOR} />,    title: t('benefits.realTimeTitle'),       desc: t('benefits.realTimeDesc') },
+    { icon: <ScalesIcon size={22} color={ICON_COLOR} />,      title: t('benefits.transparentTitle'),    desc: t('benefits.transparentDesc') },
+    { icon: <DollarIcon size={22} color={ICON_COLOR} />,      title: t('benefits.flexibleTitle'),       desc: t('benefits.flexibleDesc') },
+    { icon: <ShieldCheckIcon size={22} color={ICON_COLOR} />, title: t('benefits.verifiedTitle'),       desc: t('benefits.verifiedDesc') },
+    { icon: <DocumentIcon size={22} color={ICON_COLOR} />,    title: t('benefits.documentationTitle'),  desc: t('benefits.documentationDesc') },
   ];
 
   return (

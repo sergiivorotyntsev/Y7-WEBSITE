@@ -6,13 +6,14 @@ import styles from './WhyY7.module.css';
 export default function WhyY7() {
   const { t } = useTranslation('home');
 
+  const ICON_COLOR = '#ffffff';
   const items = [
-    { icon: <ShieldCheckIcon />, title: t('whyY7.licensedTitle'),     desc: t('whyY7.licensedDesc') },
-    { icon: <VerifiedIcon />,    title: t('whyY7.verifiedTitle'),     desc: t('whyY7.verifiedDesc') },
-    { icon: <EyeIcon />,         title: t('whyY7.transparentTitle'),  desc: t('whyY7.transparentDesc') },
-    { icon: <MapPinIcon />,      title: t('whyY7.statusTitle'),       desc: t('whyY7.statusDesc') },
-    { icon: <GlobeIcon />,       title: t('whyY7.multilingualTitle'), desc: t('whyY7.multilingualDesc') },
-    { icon: <ClockIcon />,       title: t('whyY7.fastTitle'),         desc: t('whyY7.fastDesc') },
+    { icon: <ShieldCheckIcon color={ICON_COLOR} />, title: t('whyY7.licensedTitle'),     desc: t('whyY7.licensedDesc') },
+    { icon: <VerifiedIcon color={ICON_COLOR} />,    title: t('whyY7.verifiedTitle'),     desc: t('whyY7.verifiedDesc') },
+    { icon: <EyeIcon color={ICON_COLOR} />,         title: t('whyY7.transparentTitle'),  desc: t('whyY7.transparentDesc') },
+    { icon: <MapPinIcon color={ICON_COLOR} />,      title: t('whyY7.statusTitle'),       desc: t('whyY7.statusDesc') },
+    { icon: <GlobeIcon color={ICON_COLOR} />,       title: t('whyY7.multilingualTitle'), desc: t('whyY7.multilingualDesc') },
+    { icon: <ClockIcon color={ICON_COLOR} />,       title: t('whyY7.fastTitle'),         desc: t('whyY7.fastDesc') },
   ];
 
   return (
