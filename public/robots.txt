@@ -1,82 +1,109 @@
-# Y7 Logistics robots.txt
-# Updated: April 10, 2026
+# ============================================================
+# Y7 Logistics — www.y7agency.com
+# Licensed FMCSA Auto Transport Broker
+# MC #1741537 | USDOT #4427359 | Newton, MA
+# ============================================================
 
+# ── Default: all search engines welcome ──────────────────────
 User-agent: *
 Allow: /
-Allow: /blog/
-Allow: /pl/
-Allow: /ua/
-Allow: /ru/
-Disallow: /portal/
-Disallow: /agreement/
-Disallow: /api/
 
-# Google ecosystem
+# Protected / non-content paths
+Disallow: /portal/
+Disallow: /agreement
+Disallow: /api/
+Disallow: /review/
+
+# Vite build artifacts (hashed filenames, not content)
+Disallow: /assets/*.js$
+Disallow: /assets/*.css$
+Disallow: /assets/*.map$
+
+# ── Google ────────────────────────────────────────────────────
+# Googlebot: full access to all content including JS/CSS for rendering
 User-agent: Googlebot
 Allow: /
 
 User-agent: Googlebot-Image
 Allow: /
 
+# Block Google AI training (does NOT affect Google Search)
 User-agent: Google-Extended
-Allow: /
+Disallow: /
 
-# Bing ecosystem
+# ── Bing / Yahoo / DuckDuckGo ────────────────────────────────
 User-agent: Bingbot
 Allow: /
 
-User-agent: BingPreview
-Allow: /
-
-# OpenAI
-User-agent: GPTBot
-Allow: /
-
-User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-# Anthropic
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Claude-Web
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
-# Perplexity
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Perplexity-User
-Allow: /
-
-# Common Crawl (used by many LLM training sets)
-User-agent: CCBot
-Allow: /
-
-# Apple / DuckDuckGo
-User-agent: Applebot
+User-agent: Slurp
 Allow: /
 
 User-agent: DuckDuckBot
 Allow: /
 
-# Block low-value scrapers
+# ── AI Search Bots (ALLOW — we want to appear in AI answers) ─
+# OpenAI ChatGPT Search
+User-agent: OAI-SearchBot
+Allow: /
+
+# OpenAI browsing (when users ask ChatGPT to visit a page)
+User-agent: ChatGPT-User
+Allow: /
+
+# Perplexity search
+User-agent: PerplexityBot
+Allow: /
+
+# Apple AI / Siri
+User-agent: Applebot
+Allow: /
+
+# ── AI Training Bots (BLOCK — content not for model training) ─
+# OpenAI training crawler
+User-agent: GPTBot
+Disallow: /
+
+# Anthropic training crawler
+User-agent: anthropic-ai
+Disallow: /
+User-agent: ClaudeBot
+Disallow: /
+
+# Common Crawl (used for training many AI models)
+User-agent: CCBot
+Disallow: /
+
+# ByteDance / TikTok crawler
 User-agent: Bytespider
 Disallow: /
 
-User-agent: meta-externalagent
-Disallow: /
-
+# Meta / Facebook training
 User-agent: FacebookBot
 Disallow: /
 
+# Amazon AI
 User-agent: Amazonbot
 Disallow: /
 
+# Cohere AI
+User-agent: cohere-ai
+Disallow: /
+
+# ── Known low-value / aggressive scrapers ─────────────────────
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+# ── Sitemaps ──────────────────────────────────────────────────
 Sitemap: https://www.y7agency.com/sitemap.xml
