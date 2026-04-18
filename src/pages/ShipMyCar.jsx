@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import HreflangTags from '../components/HreflangTags';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
@@ -45,6 +46,16 @@ export default function ShipMyCar() {
         <span className={styles.heroMicro}>&#9670; {t('sections.heroKicker')}</span>
         <h1 className={styles.title}>{t('title')}</h1>
         <p className={styles.subtitle}>{t('subtitle')}</p>
+        <a href="#quote-section" className={styles.heroCta}>
+          {t('hero.cta')} <span aria-hidden="true">&rarr;</span>
+        </a>
+        <div className={styles.heroTrust}>
+          <span className={styles.heroTrustItem}>&#x2713; {t('hero.trust1')}</span>
+          <span className={styles.heroTrustDot} aria-hidden="true">&middot;</span>
+          <span className={styles.heroTrustItem}>&#x2713; {t('hero.trust2')}</span>
+          <span className={styles.heroTrustDot} aria-hidden="true">&middot;</span>
+          <span className={styles.heroTrustItem}>&#x2713; {t('hero.trust3')}</span>
+        </div>
       </section>
 
       {/* Steps */}
@@ -143,6 +154,25 @@ export default function ShipMyCar() {
               <p className={styles.faqAnswer}>{faq.a}</p>
             </details>
           ))}
+        </div>
+      </section>
+
+      {/* Final CTA strip */}
+      <section className={styles.finalCta}>
+        <h2 className={styles.finalCtaTitle}>{t('finalCta.title')}</h2>
+        <p className={styles.finalCtaSubtitle}>{t('finalCta.subtitle')}</p>
+        <a href="#quote-section" className={styles.finalCtaButton}>
+          {t('finalCta.button')} <span aria-hidden="true">&rarr;</span>
+        </a>
+      </section>
+
+      {/* Cross-links */}
+      <section className={styles.crosslinks}>
+        <span className={styles.crosslinksTitle}>{t('crosslinks.title')}</span>
+        <div className={styles.crosslinksRow}>
+          <Link to="/quote" className={styles.crosslink}>{t('crosslinks.quote')} &rarr;</Link>
+          <Link to="/track" className={styles.crosslink}>{t('crosslinks.track')} &rarr;</Link>
+          <Link to="/faq" className={styles.crosslink}>{t('crosslinks.faq')} &rarr;</Link>
         </div>
       </section>
     </div>

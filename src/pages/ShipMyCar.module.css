@@ -47,6 +47,56 @@
   margin: 0 auto;
 }
 
+/* Hero CTA + trust chips */
+.heroCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  padding: 14px 28px;
+  background: var(--accent, #993C1D);
+  color: #fff;
+  font-family: var(--font-sans, system-ui);
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(153, 60, 29, 0.18), 0 8px 22px rgba(153, 60, 29, 0.14);
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out, background-color 200ms ease-out;
+}
+@media (hover: hover) {
+  .heroCta:hover {
+    background: var(--accent-hover, #7A3017);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(153, 60, 29, 0.22), 0 12px 28px rgba(153, 60, 29, 0.20);
+  }
+  .heroCta:hover span { transform: translateX(3px); }
+}
+.heroCta span {
+  display: inline-block;
+  transition: transform 200ms ease-out;
+}
+
+.heroTrust {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  font-family: var(--font-sans, system-ui);
+  font-size: 12.5px;
+  color: var(--text-muted, #888780);
+}
+.heroTrustItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.heroTrustDot {
+  color: var(--border, #d8d0c3);
+}
+
 /* =====================================================================
    STEPS
    ===================================================================== */
@@ -362,4 +412,122 @@
 @keyframes faqSlideDown {
   from { opacity: 0; transform: translateY(-4px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* =====================================================================
+   FINAL CTA STRIP — full-bleed coral gradient
+   ===================================================================== */
+
+.finalCta {
+  margin-top: clamp(60px, 8vh, 96px);
+  padding: clamp(56px, 8vh, 80px) 24px;
+  background: linear-gradient(135deg, #993C1D 0%, #7A3017 60%, #5F2412 100%);
+  text-align: center;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.finalCta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08), transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05), transparent 50%);
+  pointer-events: none;
+}
+
+.finalCtaTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1.6rem, 3.2vw, 2.25rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0 0 12px;
+  position: relative;
+}
+
+.finalCtaSubtitle {
+  font-family: var(--font-sans, system-ui);
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.65;
+  margin: 0 auto 28px;
+  max-width: 520px;
+  position: relative;
+}
+
+.finalCtaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 15px 32px;
+  background: #fff;
+  color: var(--accent, #993C1D);
+  font-family: var(--font-sans, system-ui);
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+  position: relative;
+}
+.finalCtaButton span {
+  display: inline-block;
+  transition: transform 200ms ease-out;
+}
+@media (hover: hover) {
+  .finalCtaButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.22);
+  }
+  .finalCtaButton:hover span { transform: translateX(3px); }
+}
+
+/* =====================================================================
+   CROSS-LINKS — subtle footer-ish row
+   ===================================================================== */
+
+.crosslinks {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: clamp(40px, 6vh, 56px) 24px 0;
+  text-align: center;
+}
+
+.crosslinksTitle {
+  display: block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted, #888780);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.crosslinksRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px 28px;
+}
+
+.crosslink {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent, #993C1D);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 150ms ease-out, color 150ms ease-out;
+}
+@media (hover: hover) {
+  .crosslink:hover {
+    color: var(--accent-hover, #7A3017);
+    border-bottom-color: var(--accent-hover, #7A3017);
+  }
 }

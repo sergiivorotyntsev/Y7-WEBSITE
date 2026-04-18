@@ -2,10 +2,22 @@
   "title": "Transport auta między stanami USA — od drzwi do drzwi",
   "subtitle": "Przeprowadzka do innego stanu? Kupiłeś auto w innym stanie lub na aukcji? Znajdujemy sprawdzonych przewoźników z licencją FMCSA, którzy bezpiecznie i terminowo dostarczą Twój pojazd z aktualizacjami statusu na każdym etapie.",
   "steps": [
-    { "title": "Opowiedz o swoim aucie", "desc": "Wprowadź VIN lub rok, markę i model oraz adresy odbioru i dostawy." },
-    { "title": "Otrzymaj wycenę", "desc": "Odpowiemy w ciągu godziny ze stałą ceną obejmującą wszystkie koszty." },
-    { "title": "Odbieramy auto", "desc": "Sprawdzony przewoźnik odbiera pojazd w umówionym dniu i ładuje na lawetę." },
-    { "title": "Śledź i odbierz", "desc": "SMS i email z aktualizacjami aż do dostawy. BOL przy odbiorze i dostawie." }
+    {
+      "title": "Opowiedz o swoim aucie",
+      "desc": "Wprowadź VIN lub rok, markę i model oraz adresy odbioru i dostawy."
+    },
+    {
+      "title": "Otrzymaj wycenę",
+      "desc": "Odpowiemy w ciągu godziny ze stałą ceną obejmującą wszystkie koszty."
+    },
+    {
+      "title": "Odbieramy auto",
+      "desc": "Sprawdzony przewoźnik odbiera pojazd w umówionym dniu i ładuje na lawetę."
+    },
+    {
+      "title": "Śledź i odbierz",
+      "desc": "SMS i email z aktualizacjami aż do dostawy. BOL przy odbiorze i dostawie."
+    }
   ],
   "bol": {
     "title": "Ważne: inspekcja i Bill of Lading (BOL)",
@@ -40,14 +52,58 @@
   "quoteSubtitle": "Bez zobowiązań. Odpowiadamy w ciągu godziny.",
   "faqTitle": "Często zadawane pytania o transport aut w USA",
   "faqs": [
-    { "q": "Ile trwa transport auta między stanami?", "a": "Większość tras — 3-7 dni roboczych. Coast-to-coast (np. Kalifornia-Nowy Jork) — 7-10 dni. Przy rezerwacji podajemy orientacyjne okno z uwzględnieniem konkretnej trasy i sezonu." },
-    { "q": "Czy moje auto jest ubezpieczone podczas transportu?", "a": "Tak. Każdy przewoźnik posiada ubezpieczenie ładunku na minimum $100,000, większość — $250,000 i więcej. Sprawdzamy aktualne pokrycie przed przydzieleniem zlecenia." },
-    { "q": "Czy mogę transportować auto niesprawne?", "a": "Tak. Zaznacz to w formularzu. Auta niesprawne wymagają wciągarki lub wózka widłowego — dopłata $100-300 w zależności od sposobu załadunku." },
-    { "q": "Laweta otwarta czy zamknięta — co wybrać?", "a": "Otwarta — najpopularniejsza i tańsza o 40-60%. Zamknięta zalecana dla aut luksusowych, klasycznych i o wysokiej wartości." },
-    { "q": "Co się dzieje po wysłaniu zapytania?", "a": "Rozpatrujemy szczegóły i odpowiadamy w ciągu godziny z ceną obejmującą wszystko. Po Twoim potwierdzeniu publikujemy zlecenie w sieci przewoźników. Przewoźnicy składają oferty, a my wybieramy najlepszego pod względem ceny, trasy, terminów i oceny. Większość aut odbierana jest w ciągu 1-5 dni od pierwszej możliwej daty. Otrzymujesz kontakt do przewoźnika po przydzieleniu." },
-    { "q": "Jak przygotować auto do transportu?", "a": "Zabierz rzeczy osobiste z wnętrza i bagażnika. Zostaw około 1/4 baku. Wyłącz alarm. Przekaż działający komplet kluczyków. Zrób datowane zdjęcia istniejących uszkodzeń. Zdejmij antenę i wszystko, co może się zaczepić przy prędkości — bagażniki rowerowe, boxy, spojlery." },
-    { "q": "Co to jest Bill of Lading (BOL)?", "a": "Bill of Lading to prawny dokument transportu zapisujący stan auta przy odbiorze i dostawie. Ty i kierowca oglądacie auto wspólnie i notujecie każdą oznakę, rysę, wgniecenie na BOL przy odbiorze. Przy dostawie porównujesz z tym zapisem. Jeśli jest nowe uszkodzenie — zaznacz je na BOL przed podpisem. Bez właściwej adnotacji udowodnienie uszkodzenia w transporcie jest bardzo trudne." },
-    { "q": "Jak działa ubezpieczenie?", "a": "Każdy przewoźnik posiada ubezpieczenie ładunku (minimum $100K, większość $250K+). Pokrywa uszkodzenia w trakcie transportu. BOL to zapis stanu auta: inspekcje przy odbiorze i dostawie to Twój dowód. Jeśli uszkodzenie wystąpi, zgłoś roszczenie do ubezpieczyciela przewoźnika w ciągu 48 godzin. Pomagamy z dokumentami, ale roszczenie jest między Tobą a ubezpieczycielem przewoźnika." },
-    { "q": "Co zrobić, gdy auto jest uszkodzone w transporcie?", "a": "Po pierwsze — zaznacz uszkodzenie na BOL PRZED podpisem, to obowiązkowe. Zrób zdjęcia natychmiast. Skontaktuj się z nami w ciągu 24 godzin, pomożemy zainicjować roszczenie u ubezpieczyciela przewoźnika. Potrzebne: podpisany BOL z adnotacją, zdjęcia przed wysyłką i zdjęcia nowego uszkodzenia. Większość roszczeń rozstrzygana jest w 30-60 dni. Nie podpisuj czystego BOL, nie pozwól kierowcy naciskać — po podpisie czystego BOL udowodnienie, że uszkodzenie powstało w drodze, jest praktycznie niemożliwe." }
-  ]
+    {
+      "q": "Ile trwa transport auta między stanami?",
+      "a": "Większość tras — 3-7 dni roboczych. Coast-to-coast (np. Kalifornia-Nowy Jork) — 7-10 dni. Przy rezerwacji podajemy orientacyjne okno z uwzględnieniem konkretnej trasy i sezonu."
+    },
+    {
+      "q": "Czy moje auto jest ubezpieczone podczas transportu?",
+      "a": "Tak. Każdy przewoźnik posiada ubezpieczenie ładunku na minimum $100,000, większość — $250,000 i więcej. Sprawdzamy aktualne pokrycie przed przydzieleniem zlecenia."
+    },
+    {
+      "q": "Czy mogę transportować auto niesprawne?",
+      "a": "Tak. Zaznacz to w formularzu. Auta niesprawne wymagają wciągarki lub wózka widłowego — dopłata $100-300 w zależności od sposobu załadunku."
+    },
+    {
+      "q": "Laweta otwarta czy zamknięta — co wybrać?",
+      "a": "Otwarta — najpopularniejsza i tańsza o 40-60%. Zamknięta zalecana dla aut luksusowych, klasycznych i o wysokiej wartości."
+    },
+    {
+      "q": "Co się dzieje po wysłaniu zapytania?",
+      "a": "Rozpatrujemy szczegóły i odpowiadamy w ciągu godziny z ceną obejmującą wszystko. Po Twoim potwierdzeniu publikujemy zlecenie w sieci przewoźników. Przewoźnicy składają oferty, a my wybieramy najlepszego pod względem ceny, trasy, terminów i oceny. Większość aut odbierana jest w ciągu 1-5 dni od pierwszej możliwej daty. Otrzymujesz kontakt do przewoźnika po przydzieleniu."
+    },
+    {
+      "q": "Jak przygotować auto do transportu?",
+      "a": "Zabierz rzeczy osobiste z wnętrza i bagażnika. Zostaw około 1/4 baku. Wyłącz alarm. Przekaż działający komplet kluczyków. Zrób datowane zdjęcia istniejących uszkodzeń. Zdejmij antenę i wszystko, co może się zaczepić przy prędkości — bagażniki rowerowe, boxy, spojlery."
+    },
+    {
+      "q": "Co to jest Bill of Lading (BOL)?",
+      "a": "Bill of Lading to prawny dokument transportu zapisujący stan auta przy odbiorze i dostawie. Ty i kierowca oglądacie auto wspólnie i notujecie każdą oznakę, rysę, wgniecenie na BOL przy odbiorze. Przy dostawie porównujesz z tym zapisem. Jeśli jest nowe uszkodzenie — zaznacz je na BOL przed podpisem. Bez właściwej adnotacji udowodnienie uszkodzenia w transporcie jest bardzo trudne."
+    },
+    {
+      "q": "Jak działa ubezpieczenie?",
+      "a": "Każdy przewoźnik posiada ubezpieczenie ładunku (minimum $100K, większość $250K+). Pokrywa uszkodzenia w trakcie transportu. BOL to zapis stanu auta: inspekcje przy odbiorze i dostawie to Twój dowód. Jeśli uszkodzenie wystąpi, zgłoś roszczenie do ubezpieczyciela przewoźnika w ciągu 48 godzin. Pomagamy z dokumentami, ale roszczenie jest między Tobą a ubezpieczycielem przewoźnika."
+    },
+    {
+      "q": "Co zrobić, gdy auto jest uszkodzone w transporcie?",
+      "a": "Po pierwsze — zaznacz uszkodzenie na BOL PRZED podpisem, to obowiązkowe. Zrób zdjęcia natychmiast. Skontaktuj się z nami w ciągu 24 godzin, pomożemy zainicjować roszczenie u ubezpieczyciela przewoźnika. Potrzebne: podpisany BOL z adnotacją, zdjęcia przed wysyłką i zdjęcia nowego uszkodzenia. Większość roszczeń rozstrzygana jest w 30-60 dni. Nie podpisuj czystego BOL, nie pozwól kierowcy naciskać — po podpisie czystego BOL udowodnienie, że uszkodzenie powstało w drodze, jest praktycznie niemożliwe."
+    }
+  ],
+  "hero": {
+    "cta": "Otrzymaj wycenę",
+    "trust1": "Licencjonowany broker FMCSA",
+    "trust2": "Odpowiedź w godzinę",
+    "trust3": "Bez zaliczki"
+  },
+  "finalCta": {
+    "title": "Gotów na transport auta?",
+    "subtitle": "Wycena od prawdziwego dyspozytora. Bez call center.",
+    "button": "Zamów wycenę"
+  },
+  "crosslinks": {
+    "title": "Więcej zasobów",
+    "quote": "Zamów wycenę",
+    "track": "Śledź dostawę",
+    "faq": "Pełne FAQ"
+  }
 }
