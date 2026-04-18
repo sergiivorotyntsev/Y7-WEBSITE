@@ -41,7 +41,7 @@ export default function OpenCarShipping() {
         'Standard 7–10 car open multi-car haulers',
         'Door-to-door pickup and delivery nationwide',
         'All 50 states plus Canadian border coordination',
-        'Cargo insurance minimum $750,000 per carrier; most $1M+',
+        'Cargo insurance typically $100,000–$250,000 per open carrier',
         'Condition inspection at pickup and delivery',
         'Auction and dealer pickup workflows',
         'USDOT #4427359 • MC #1741537 • FMCSA-registered broker',

@@ -7,7 +7,7 @@ export default function EnclosedCarShipping() {
       meta={{
         title: 'Enclosed Car Shipping — Covered Auto Transport | Y7 Logistics',
         description:
-          'Premium enclosed transport for luxury, classic, and high-value vehicles. Hardside and softside trailers, $1M+ insurance. Licensed FMCSA broker MC #1741537.',
+          'Enclosed auto transport for luxury, classic, exotic, and high-value vehicles. Hardside/softside trailers, $250K–$500K cargo insurance. Licensed FMCSA broker.',
         path: '/enclosed-car-shipping',
       }}
       heading="Enclosed Car Shipping — Premium Covered Auto Transport"
