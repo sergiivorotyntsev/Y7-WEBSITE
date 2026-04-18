@@ -1,51 +1,74 @@
-# Y7 Logistics — Nationwide Auto Transport Broker
+# Y7 Logistics — llms.txt
+# Licensed FMCSA Auto Transport Broker
+# MC #1741537 | USDOT #4427359
+# Newton, MA, USA
+# https://www.y7agency.com
 
-> Y7 Logistics is a US-based, FMCSA-licensed auto transport brokerage (USDOT #4427359, MC #1741537) connecting shippers with verified carriers across all 50 states. We specialize in auction pickups, dealer transport, and port delivery for international export. Multilingual support in English, Russian, Polish, and Ukrainian.
+## About
+Y7 Logistics (Y7 Consulting Inc., d/b/a Y7 Logistics) is a licensed FMCSA property broker specializing in auto transport across the United States. We connect shippers with vetted carriers through Central Dispatch for auction pickups, dealer trades, port deliveries, and private vehicle relocations.
 
-## About Y7 Logistics
+## Services
+- Ship My Car: /ship-my-car — Door-to-door auto transport for individuals
+- For Dealers: /dealers — Volume pricing, auction pickup, weekly invoicing for auto dealers
+- For Exporters: /exporters — Port delivery, gate pass coordination, warehouse management
+- Car Shipping Cost: /car-shipping-cost — Pricing guide and cost calculator
+- Open Car Shipping: /open-car-shipping — Standard open trailer transport
+- Enclosed Car Shipping: /enclosed-car-shipping — Premium enclosed transport for luxury/classic vehicles
+- Salvage Car Shipping: /salvage-car-shipping — Non-running and salvage vehicle transport
+- State to State: /state-to-state-car-shipping — Interstate auto transport
+- Auction Car Shipping: /auction-car-shipping — Copart, IAAI, Manheim pickup
+- Copart Shipping: /copart-shipping — Direct Copart lot pickup
+- IAAI Transport: /iaai-transport — IAAI auction vehicle transport
+- Manheim Transport: /manheim-transport — Manheim dealer auction transport
+- Dealer Auto Transport: /dealer-auto-transport — Dealer-to-dealer trade transport
+- Door to Port: /door-to-port-auto-transport — Auction or residence to port delivery
+- Auction to Port: /auction-to-port-transport — Auction lot to port corridor
 
-- Licensed FMCSA broker (MC #1741537, USDOT #4427359)
-- $75,000 surety bond (BMC-84)
-- Central Dispatch verified, 90% of orders through CD
-- Team with 10+ years combined auto transport experience
-- Based in Newton, MA; operates nationwide
+## Locations
+- Newton, MA (HQ): /newton-auto-transport
+- Boston: /boston-car-shipping
+- Massachusetts: /massachusetts-car-shipping
+- Florida: /florida-car-shipping
+- New Jersey: /new-jersey-auto-transport
+- Texas: /texas-auto-transport
 
-## Core Services
+## Routes
+- Massachusetts to Florida: /massachusetts-to-florida-car-shipping
+- New Jersey to Florida: /new-jersey-to-florida-car-shipping
+- Auction to Port: /auction-to-port-transport
 
-- [Ship My Car](https://www.y7agency.com/ship-my-car): Door-to-door auto transport for individuals, 50 states
-- [Dealer Transport](https://www.y7agency.com/dealers): B2B transport for auto dealerships with volume pricing
-- [Export & Port Delivery](https://www.y7agency.com/exporters): Auction-to-port and door-to-port delivery for international exporters
-- [Auction Car Shipping](https://www.y7agency.com/auction-car-shipping): Copart, IAAI, Manheim pickup and delivery
-- [Enclosed Car Shipping](https://www.y7agency.com/enclosed-car-shipping): Covered transport for luxury and classic vehicles
+## Ports
+- Port Newark, NJ: /ports/newark
+- Port of Houston, TX: /ports/houston
+- Port of Savannah, GA: /ports/savannah
+- Port of Los Angeles, CA: /ports/los-angeles
+- Port of Baltimore, MD: /ports/baltimore
+- JAXPORT, Jacksonville, FL: /ports/jacksonville
 
-## Port Delivery (6 major US ports)
+## Languages
+- English (default): /
+- Ukrainian: /ua/ (10 translated pages)
+- Polish: /pl/ (10 translated pages)
+- Russian: /ru/ (10 translated pages, diaspora focus)
 
-- [Port Newark, NJ](https://www.y7agency.com/ports/newark)
-- [Port of Houston, TX](https://www.y7agency.com/ports/houston)
-- [Port of Savannah, GA](https://www.y7agency.com/ports/savannah)
-- [Port of Los Angeles, CA](https://www.y7agency.com/ports/los-angeles)
-- [Port of Baltimore, MD](https://www.y7agency.com/ports/baltimore)
-- [JAXPORT, FL](https://www.y7agency.com/ports/jacksonville)
-
-## Auction Coverage
-
-- [Copart Shipping](https://www.y7agency.com/copart-shipping)
-- [IAAI Transport](https://www.y7agency.com/iaai-transport)
-- [Manheim Transport](https://www.y7agency.com/manheim-transport)
+## Unique International Landing Pages
+- Ukrainian: /ua/import-z-usa, /ua/copart-ta-iaai, /ua/dostavka-avto-z-usa
+- Polish: /pl/transport-z-usa, /pl/transport-z-aukcji, /pl/wysylka-auta-z-usa
+- Russian: /ru/dostavka-avto-iz-usa, /ru/copart-i-iaai, /ru/perevozka-avto
 
 ## Educational Resources
-
-- [How to Ship a Car Bought at Auction](https://www.y7agency.com/how-to-ship-a-car-bought-at-auction)
-- [Open vs Enclosed Auto Transport](https://www.y7agency.com/open-vs-enclosed-auto-transport)
-- [What Is a Bill of Lading?](https://www.y7agency.com/what-is-a-bill-of-lading)
+- Blog: /blog (8 articles on auto transport topics)
+- FAQ: /faq (51 Q&A pairs in 4 languages)
+- About: /about (company story, FMCSA credentials)
 
 ## Contact
+- Website: https://www.y7agency.com/contact
+- Portal: https://dispatch.y7agency.com
+- Telegram Bot: @y7dispatch_bot
+- Email: dispatch@y7agency.com
 
-- Email: info@y7agency.com
-- Telegram: https://t.me/y7dispatch_bot
-- Customer Portal: https://www.y7agency.com/portal/login
-- Location: Newton, MA, USA
-
-## Languages Supported
-
-English, Russian, Polish, Ukrainian
+## Credentials
+- FMCSA Motor Carrier: MC #1741537
+- USDOT Number: 4427359
+- Central Dispatch verified broker
+- Service area: All 50 US states
