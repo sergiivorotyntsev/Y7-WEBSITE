@@ -72,7 +72,7 @@ export default function StateToState() {
         },
         {
           q: 'Insurance during interstate transport?',
-          a: 'FMCSA-authorized carriers must carry minimum $750,000 cargo insurance for auto transport; most carry $1M+. We verify active insurance before assigning any load. Coverage applies to damage caused during transit — not to pre-existing damage, which is why the Bill of Lading inspection at pickup matters. Keep a copy of the BOL; it is the document any insurance claim depends on.',
+          a: 'FMCSA-authorized carriers carry cargo insurance — typically $100,000–$250,000 for open carriers and $250,000–$500,000 for enclosed transport. (The $750,000+ figure sometimes cited is FMCSA-mandated liability insurance for bodily injury and property damage — a separate policy from cargo coverage.) We verify active insurance before assigning any load. Coverage applies to damage caused during transit — not to pre-existing damage, which is why the Bill of Lading inspection at pickup matters. Keep a copy of the BOL; it is the document any insurance claim depends on.',
         },
       ]}
       related={[

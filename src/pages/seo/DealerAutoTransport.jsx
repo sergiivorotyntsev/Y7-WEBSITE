@@ -131,7 +131,7 @@ export default function DealerAutoTransport() {
           Y7 Logistics operates under MC #1741537 and USDOT #4427359. We are a licensed and bonded freight broker — not a carrier pretending to be a broker, and not an unlicensed middleman.
         </p>
         <p style={p}>
-          Every carrier we dispatch is verified before they touch your inventory. We check active MC authority, minimum insurance coverage ($750K cargo, $1M general liability), FMCSA safety rating, and inspection history. Carriers with conditional or unsatisfactory ratings, insurance lapses, or recent out-of-service violations are excluded from our network. This is not a checkbox exercise — it is how we protect your $30,000-$80,000 vehicles in transit.
+          Every carrier we dispatch is verified before they touch your inventory. We check active MC authority, required insurance coverage (cargo typically $100,000–$250,000 for open and $250,000–$500,000 for enclosed, plus $750,000+ FMCSA liability), FMCSA safety rating, and inspection history. Carriers with conditional or unsatisfactory ratings, insurance lapses, or recent out-of-service violations are excluded from our network. This is not a checkbox exercise — it is how we protect your $30,000-$80,000 vehicles in transit.
         </p>
         <p style={p}>
           For dealerships, this compliance layer matters because you are liable for your customers' experience. If a carrier damages a vehicle en route to your customer, it is your dealership's reputation on the line. Our carrier vetting process means the transport leg of your operation meets the same standard as everything else on your lot.

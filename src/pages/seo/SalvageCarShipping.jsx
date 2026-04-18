@@ -67,7 +67,7 @@ export default function SalvageCarShipping() {
         },
         {
           q: 'Insurance on salvage transport?',
-          a: 'Every carrier we dispatch carries cargo insurance — typically $750,000 minimum, often $1M+. Salvage and non-running vehicles are covered for new damage in transit, but pre-existing damage must be documented on the Bill of Lading at pickup. Take photos of the vehicle before the carrier arrives and compare against the BOL notes. Insurance claims require that paper trail.',
+          a: 'Every carrier we dispatch carries cargo insurance — typically $100,000–$250,000 for open salvage carriers and $250,000–$500,000 for enclosed transport. Salvage and non-running vehicles are covered for new damage in transit, but pre-existing damage must be documented on the Bill of Lading at pickup. Take photos of the vehicle before the carrier arrives and compare against the BOL notes. Insurance claims require that paper trail.',
         },
         {
           q: 'How long does salvage shipping take?',

@@ -100,8 +100,9 @@ export default function OpenCarShipping() {
         <p style={prose}>
           Y7 Logistics coordinates open shipments through Central Dispatch, the
           industry's primary load board. We do not own trucks. We verify carrier
-          operating authority (FMCSA active), cargo insurance ($750,000 minimum; most
-          carry $1M+), and safety ratings before assigning any load. That vetting is
+          operating authority (FMCSA active), cargo insurance (typically
+          $100,000–$250,000 for open carriers), and safety ratings before
+          assigning any load. That vetting is
           where a broker earns the fee, and it is the single most important factor in
           whether your shipment goes smoothly.
         </p>
@@ -224,10 +225,12 @@ export default function OpenCarShipping() {
         </p>
         <h3 style={subhead}>Cargo insurance</h3>
         <p style={muted}>
-          Every carrier in our network carries minimum $750,000 cargo insurance.
-          Most carry $1M+. We verify active coverage through FMCSA's SAFER system
-          before assigning any load. Coverage is on the carrier's policy, not the
-          broker's — the Bill of Lading is the evidence base for any claim.
+          Open auto carriers in our network carry cargo insurance typically in
+          the $100,000–$250,000 range (enclosed specialty carriers carry
+          $250,000–$500,000). We verify active coverage through FMCSA's SAFER
+          system before assigning any load. Coverage is on the carrier's policy,
+          not the broker's — the Bill of Lading is the evidence base for any
+          claim.
         </p>
         <h3 style={subhead}>Rain and precipitation</h3>
         <p style={muted}>

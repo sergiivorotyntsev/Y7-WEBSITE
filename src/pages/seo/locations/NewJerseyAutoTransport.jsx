@@ -65,7 +65,7 @@ export default function NewJerseyAutoTransport() {
         },
         {
           q: 'Is my vehicle insured during NJ transport?',
-          a: 'Yes. Every carrier we dispatch carries a minimum of $750,000 cargo insurance — most carry $1M+. We verify active coverage through Central Dispatch before assigning any load. Your BOL at pickup and delivery is the formal record for any claim against the carrier\u2019s policy.',
+          a: 'Yes. Every carrier we dispatch carries cargo insurance — typically $100,000–$250,000 for open carriers and $250,000–$500,000 for enclosed transport. We verify active coverage through Central Dispatch before assigning any load. Your BOL at pickup and delivery is the formal record for any claim against the carrier\u2019s policy.',
         },
       ]}
       related={[

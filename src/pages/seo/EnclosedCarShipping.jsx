@@ -25,7 +25,7 @@ export default function EnclosedCarShipping() {
         { title: 'Request an Enclosed Quote', desc: 'Provide vehicle details, declared value, and any handling requirements.' },
         { title: 'Receive Pricing', desc: 'Enclosed quote back within 1 hour, with equipment options (hardside, softside, single-car, multi-car).' },
         { title: 'Pre-Transport Documentation', desc: 'Detailed photo documentation of vehicle condition before carrier arrival.' },
-        { title: 'Specialty Carrier Assigned', desc: 'Enclosed carrier with proven specialty experience and $1M+ cargo insurance.' },
+        { title: 'Specialty Carrier Assigned', desc: 'Enclosed carrier with proven specialty experience and $250,000–$500,000 cargo insurance.' },
         { title: 'White-Glove Pickup', desc: 'Soft-tie straps, liftgate or ramp loading, climate control when specified.' },
         { title: 'Secure Delivery', desc: 'Final inspection at destination; BOL signed with condition confirmation.' },
       ]}
@@ -44,7 +44,7 @@ export default function EnclosedCarShipping() {
         'Multi-car enclosed (4–6 vehicles)',
         'Liftgate loading for low-clearance vehicles',
         'Climate-controlled options for classics and vintage',
-        '$1M+ cargo insurance on most specialty carriers',
+        '$250,000–$500,000 cargo insurance on enclosed specialty carriers',
         'Soft-tie wheel straps — no chains, no body contact',
       ]}
       faqs={[
@@ -70,7 +70,7 @@ export default function EnclosedCarShipping() {
         },
         {
           q: 'What insurance coverage do enclosed carriers carry?',
-          a: 'All network carriers carry $750,000 cargo insurance minimum, but enclosed specialty carriers typically carry $1M–$3M because they haul higher-value loads. For declared values over $250,000, we recommend confirming the specific policy limit before dispatch and can arrange supplemental coverage if needed.',
+          a: 'Cargo insurance on network carriers is typically $100,000–$250,000 for open transport and $250,000–$500,000 for enclosed, which is what matters for your shipment. (The $750,000+ figure you may see elsewhere refers to FMCSA-mandated liability insurance for bodily injury and property damage — a separate policy from cargo coverage.) For declared values over $250,000, we recommend confirming the specific cargo policy limit before dispatch and can arrange supplemental coverage if needed.',
         },
       ]}
       ctaLabel="Get an Enclosed Quote"
@@ -244,13 +244,15 @@ export default function EnclosedCarShipping() {
         </p>
         <h3 style={subhead}>Insurance coverage</h3>
         <p style={muted}>
-          Every FMCSA-registered carrier carries minimum $750,000 cargo insurance.
-          Open carriers typically carry exactly that. Enclosed specialty carriers
-          commonly carry $1M–$3M because their cargo is routinely six-figure
-          vehicles and their underwriters require it. For declared values above
-          $250,000 we confirm the specific policy limit before dispatch; for
-          concours or auction-record vehicles we can arrange supplemental coverage
-          on top of the carrier's policy.
+          Open auto carriers typically carry $100,000–$250,000 in cargo insurance.
+          Enclosed specialty carriers commonly carry $250,000–$500,000 because
+          their cargo is routinely six-figure vehicles and their underwriters
+          require it. (The $750,000+ figure sometimes cited is FMCSA-mandated
+          liability insurance for bodily injury and property damage — a separate
+          policy from cargo coverage.) For declared values above $250,000 we
+          confirm the specific cargo policy limit before dispatch; for concours
+          or auction-record vehicles we can arrange supplemental coverage on top
+          of the carrier's policy.
         </p>
         <h3 style={subhead}>Soft-tie straps, never chains</h3>
         <p style={muted}>

@@ -71,7 +71,7 @@ export default function MassachusettsCarShipping() {
         },
         {
           q: 'Is my car insured during transport from Massachusetts?',
-          a: 'Yes. Every carrier in our Central Dispatch network carries minimum $750,000 cargo insurance; most carry $1M+. We verify active coverage before assigning any load. The BOL signed at pickup and delivery is the evidence base for any claim if damage occurs in transit.',
+          a: 'Yes. Every carrier in our Central Dispatch network carries cargo insurance — typically $100,000–$250,000 for open carriers and $250,000–$500,000 for enclosed transport. We verify active coverage before assigning any load. The BOL signed at pickup and delivery is the evidence base for any claim if damage occurs in transit.',
         },
       ]}
       related={[
