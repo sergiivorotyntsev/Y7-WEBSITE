@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import styles from './Dealers.module.css';
@@ -20,9 +20,16 @@ export default function Dealers() {
 
       {/* Hero */}
       <section className={styles.hero}>
-        <span className={styles.heroMicro}>&#9670; For Dealers</span>
+        <span className={styles.heroMicro}>&#9670; {t('hero.kicker')}</span>
         <h1 className={styles.title}>{t('title')}</h1>
         <p className={styles.subtitle}>{t('subtitle')}</p>
+        <div className={styles.heroTrust}>
+          <span className={styles.heroTrustItem}>&#x2713; {t('hero.trust1')}</span>
+          <span className={styles.heroTrustDot} aria-hidden="true">&middot;</span>
+          <span className={styles.heroTrustItem}>&#x2713; {t('hero.trust2')}</span>
+          <span className={styles.heroTrustDot} aria-hidden="true">&middot;</span>
+          <span className={styles.heroTrustItem}>&#x2713; {t('hero.trust3')}</span>
+        </div>
       </section>
 
       <div className={styles.body}>
@@ -91,6 +98,16 @@ export default function Dealers() {
           >
             {t('ctaButton')}
           </button>
+        </div>
+
+        {/* Cross-links */}
+        <div className={styles.crosslinks}>
+          <span className={styles.crosslinksTitle}>{t('crosslinks.title')}</span>
+          <div className={styles.crosslinksRow}>
+            <Link to="/dealer-auto-transport" className={styles.crosslink}>{t('crosslinks.deepDive')} &rarr;</Link>
+            <Link to="/dealer-quote" className={styles.crosslink}>{t('crosslinks.quote')} &rarr;</Link>
+            <Link to="/exporters" className={styles.crosslink}>{t('crosslinks.exporters')} &rarr;</Link>
+          </div>
         </div>
       </div>
     </div>

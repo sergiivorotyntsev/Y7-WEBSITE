@@ -2,12 +2,30 @@
   "title": "Transport samochodów dla dealerów",
   "subtitle": "Zajmujemy się logistyką, abyś mógł skupić się na sprzedaży. Od odbiorów z aukcji po wymianę dealerską — Y7 przewozi Twój towar niezawodnie i na czas.",
   "benefits": [
-    { "title": "Ceny hurtowe", "desc": "Konkurencyjne stawki dla dealerów o dużych wolumenach. Im więcej wysyłasz, tym więcej oszczędzasz." },
-    { "title": "Odbiory z aukcji", "desc": "Wysyłka tego samego dnia z aukcji Copart, IAA, Manheim i ADESA. Koordynacja gate pass w cenie." },
-    { "title": "Wymiana między dealerami", "desc": "Szybki transport między salonami. Jeden punkt kontaktowy dla wszystkich wymian." },
-    { "title": "Dedykowany dyspozytor", "desc": "Twój własny koordynator, który zna Twoje trasy, terminy i preferencje." },
-    { "title": "Integracja z Central Dispatch", "desc": "90% naszych ładunków przechodzi przez Central Dispatch. Aktualizacje statusu i śledzenie przewoźnika w czasie rzeczywistym." },
-    { "title": "Elastyczne płatności", "desc": "Warunki Net-15, ACH i fakturowanie zaprojektowane dla operacji dealerskich." }
+    {
+      "title": "Ceny hurtowe",
+      "desc": "Konkurencyjne stawki dla dealerów o dużych wolumenach. Im więcej wysyłasz, tym więcej oszczędzasz."
+    },
+    {
+      "title": "Odbiory z aukcji",
+      "desc": "Wysyłka tego samego dnia z aukcji Copart, IAA, Manheim i ADESA. Koordynacja gate pass w cenie."
+    },
+    {
+      "title": "Wymiana między dealerami",
+      "desc": "Szybki transport między salonami. Jeden punkt kontaktowy dla wszystkich wymian."
+    },
+    {
+      "title": "Dedykowany dyspozytor",
+      "desc": "Twój własny koordynator, który zna Twoje trasy, terminy i preferencje."
+    },
+    {
+      "title": "Integracja z Central Dispatch",
+      "desc": "90% naszych ładunków przechodzi przez Central Dispatch. Aktualizacje statusu i śledzenie przewoźnika w czasie rzeczywistym."
+    },
+    {
+      "title": "Elastyczne płatności",
+      "desc": "Warunki Net-15, ACH i fakturowanie zaprojektowane dla operacji dealerskich."
+    }
   ],
   "pricing": {
     "title": "Modele cenowe",
@@ -28,13 +46,45 @@
     "colDiscount": "Zniżka",
     "colPerk": "Bonus",
     "tiers": [
-      { "volume": "1-5", "label": "pojazdów/miesiąc", "discount": "Ceny standardowe", "perk": "Pełna obsługa, bez minimum" },
-      { "volume": "6-15", "label": "pojazdów/miesiąc", "discount": "10% zniżki na opłatę serwisową", "perk": "Priorytetowa kolejka dyspozytorska" },
-      { "volume": "16-30", "label": "pojazdów/miesiąc", "discount": "15% zniżki", "perk": "Przydzielony dedykowany dyspozytor" },
-      { "volume": "30+", "label": "pojazdów/miesiąc", "discount": "Indywidualny kontrakt", "perk": "Skontaktuj się po wycenę" }
+      {
+        "volume": "1-5",
+        "label": "pojazdów/miesiąc",
+        "discount": "Ceny standardowe",
+        "perk": "Pełna obsługa, bez minimum"
+      },
+      {
+        "volume": "6-15",
+        "label": "pojazdów/miesiąc",
+        "discount": "10% zniżki na opłatę serwisową",
+        "perk": "Priorytetowa kolejka dyspozytorska"
+      },
+      {
+        "volume": "16-30",
+        "label": "pojazdów/miesiąc",
+        "discount": "15% zniżki",
+        "perk": "Przydzielony dedykowany dyspozytor"
+      },
+      {
+        "volume": "30+",
+        "label": "pojazdów/miesiąc",
+        "discount": "Indywidualny kontrakt",
+        "perk": "Skontaktuj się po wycenę"
+      }
     ]
   },
   "ctaTitle": "Gotowy, aby usprawnić transport?",
   "ctaSubtitle": "Otrzymaj wycenę w kilka minut. Odpowiemy w ciągu 1 godziny.",
-  "ctaButton": "Wycena dla dealerów"
+  "ctaButton": "Wycena dla dealerów",
+  "hero": {
+    "kicker": "DLA DILERÓW",
+    "trust1": "Rozliczenie Net-15",
+    "trust2": "Dedykowany dyspozytor",
+    "trust3": "Ceny hurtowe od 6 aut/mies."
+  },
+  "crosslinks": {
+    "title": "Więcej dla dilerów",
+    "deepDive": "Przewodnik transportu dilerskiego",
+    "quote": "Zapytanie dilerskie",
+    "exporters": "Dla eksporterów"
+  }
 }

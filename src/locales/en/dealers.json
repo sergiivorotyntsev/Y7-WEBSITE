@@ -2,12 +2,30 @@
   "title": "Auto Transport for Dealers",
   "subtitle": "We handle the logistics so you can focus on selling. From auction pickups to dealer trades, Y7 moves your inventory reliably and on time.",
   "benefits": [
-    { "title": "Volume Pricing", "desc": "Competitive rates for high-volume dealer accounts. The more you ship, the more you save." },
-    { "title": "Auction Pickups", "desc": "Same-day dispatch from Copart, IAA, Manheim, and ADESA. Gate pass coordination included." },
-    { "title": "Dealer-to-Dealer Trades", "desc": "Fast transport between dealerships. One point of contact for all your trade moves." },
-    { "title": "Dedicated Dispatch", "desc": "Your own dispatch coordinator who knows your routes, your timeline, and your preferences." },
-    { "title": "Central Dispatch Integration", "desc": "90% of our loads go through Central Dispatch. Status updates at every stage via portal." },
-    { "title": "Flexible Payment", "desc": "Net-15 terms, ACH, and invoice-based billing designed for dealer operations." }
+    {
+      "title": "Volume Pricing",
+      "desc": "Competitive rates for high-volume dealer accounts. The more you ship, the more you save."
+    },
+    {
+      "title": "Auction Pickups",
+      "desc": "Same-day dispatch from Copart, IAA, Manheim, and ADESA. Gate pass coordination included."
+    },
+    {
+      "title": "Dealer-to-Dealer Trades",
+      "desc": "Fast transport between dealerships. One point of contact for all your trade moves."
+    },
+    {
+      "title": "Dedicated Dispatch",
+      "desc": "Your own dispatch coordinator who knows your routes, your timeline, and your preferences."
+    },
+    {
+      "title": "Central Dispatch Integration",
+      "desc": "90% of our loads go through Central Dispatch. Status updates at every stage via portal."
+    },
+    {
+      "title": "Flexible Payment",
+      "desc": "Net-15 terms, ACH, and invoice-based billing designed for dealer operations."
+    }
   ],
   "pricing": {
     "title": "Pricing Models",
@@ -28,13 +46,45 @@
     "colDiscount": "Discount",
     "colPerk": "Perk",
     "tiers": [
-      { "volume": "1-5", "label": "vehicles/month", "discount": "Standard pricing", "perk": "Full service, no minimum" },
-      { "volume": "6-15", "label": "vehicles/month", "discount": "10% service fee discount", "perk": "Priority dispatch queue" },
-      { "volume": "16-30", "label": "vehicles/month", "discount": "15% discount", "perk": "Dedicated dispatcher assigned" },
-      { "volume": "30+", "label": "vehicles/month", "discount": "Custom contract", "perk": "Contact us for pricing" }
+      {
+        "volume": "1-5",
+        "label": "vehicles/month",
+        "discount": "Standard pricing",
+        "perk": "Full service, no minimum"
+      },
+      {
+        "volume": "6-15",
+        "label": "vehicles/month",
+        "discount": "10% service fee discount",
+        "perk": "Priority dispatch queue"
+      },
+      {
+        "volume": "16-30",
+        "label": "vehicles/month",
+        "discount": "15% discount",
+        "perk": "Dedicated dispatcher assigned"
+      },
+      {
+        "volume": "30+",
+        "label": "vehicles/month",
+        "discount": "Custom contract",
+        "perk": "Contact us for pricing"
+      }
     ]
   },
   "ctaTitle": "Ready to streamline your transport?",
   "ctaSubtitle": "Get a quote in minutes. We'll respond within 1 hour.",
-  "ctaButton": "Get a Dealer Quote"
+  "ctaButton": "Get a Dealer Quote",
+  "hero": {
+    "kicker": "FOR DEALERS",
+    "trust1": "Net-15 billing",
+    "trust2": "Dedicated dispatcher",
+    "trust3": "Volume rates from 6+ loads/mo"
+  },
+  "crosslinks": {
+    "title": "More for dealers",
+    "deepDive": "Dealer auto transport guide",
+    "quote": "Request dealer quote",
+    "exporters": "For exporters"
+  }
 }
