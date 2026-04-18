@@ -5,10 +5,12 @@
   },
   "legal": {
     "prefix": "Przesyłając ten formularz, akceptujesz nasze",
+    "submissionAgree": "Przesyłając ten formularz, akceptujesz nasze",
     "terms": "Warunki korzystania",
     "and": "i",
     "privacy": "Politykę prywatności",
-    "smsConsentRequired": "Musisz wyrazić zgodę na otrzymywanie powiadomień SMS, aby przesłać zapytanie. SMS używamy wyłącznie do weryfikacji i aktualizacji dotyczących transportu."
+    "smsConsentRequired": "Musisz wyrazić zgodę na otrzymywanie powiadomień SMS, aby przesłać zapytanie. SMS używamy wyłącznie do weryfikacji i aktualizacji dotyczących transportu.",
+    "consentRecorded": "Twoja zgoda (IP, znacznik czasu, wersja) jest rejestrowana zgodnie z przepisami TCPA."
   },
   "trust": {
     "secure": "Bezpiecznie",

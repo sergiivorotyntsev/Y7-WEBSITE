@@ -506,26 +506,28 @@ export default function QuoteForm({ compact = false }) {
             </div>
           )}
 
-          {/* SMS Consent */}
-          <SmsConsent checked={form.sms_consent} onChange={v => set('sms_consent', v)} />
-          {!form.sms_consent && (
-            <p className={styles.consentWarn}>
-              {t('legal.smsConsentRequired')}
+          {/* Unified consent block (QUOTE-P0 T13): SMS + Terms/Privacy in one place */}
+          <div className={styles.consentBlock}>
+            <SmsConsent checked={form.sms_consent} onChange={v => set('sms_consent', v)} />
+            {!form.sms_consent && (
+              <p className={styles.consentWarn}>
+                {t('legal.smsConsentRequired')}
+              </p>
+            )}
+            <p className={styles.legal}>
+              {t('legal.submissionAgree')}{' '}
+              <a href="/terms" target="_blank" rel="noopener noreferrer" className={styles.legalLink}>{t('legal.terms')}</a>
+              {' '}{t('legal.and')}{' '}
+              <a href="/privacy" target="_blank" rel="noopener noreferrer" className={styles.legalLink}>{t('legal.privacy')}</a>.{' '}
+              {t('legal.consentRecorded')}
             </p>
-          )}
+          </div>
         </div>
       </div>
 
       {/* ── STEP 3: Error + Submit ── */}
 
       {error && <div className={styles.errorAlert}>{error}</div>}
-
-      <p className={styles.legal}>
-        {t('legal.prefix')}{' '}
-        <a href="/terms" target="_blank" rel="noopener noreferrer" className={styles.legalLink}>{t('legal.terms')}</a>
-        {' '}{t('legal.and')}{' '}
-        <a href="/privacy" target="_blank" rel="noopener noreferrer" className={styles.legalLink}>{t('legal.privacy')}</a>.
-      </p>
 
       <button
         type="submit"

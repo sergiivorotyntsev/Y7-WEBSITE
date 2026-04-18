@@ -5,10 +5,12 @@
   },
   "legal": {
     "prefix": "By submitting this form, you agree to our",
+    "submissionAgree": "By submitting this form, you agree to our",
     "terms": "Terms & Conditions",
     "and": "and",
     "privacy": "Privacy Policy",
-    "smsConsentRequired": "You must agree to receive SMS notifications to submit a quote. We use SMS for verification and shipment updates only."
+    "smsConsentRequired": "You must agree to receive SMS notifications to submit a quote. We use SMS for verification and shipment updates only.",
+    "consentRecorded": "Your consent (IP, timestamp, version) is recorded for TCPA compliance."
   },
   "trust": {
     "secure": "Secure",
