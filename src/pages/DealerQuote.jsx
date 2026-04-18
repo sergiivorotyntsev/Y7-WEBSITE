@@ -90,7 +90,7 @@ export default function DealerQuote() {
       const res = await apiPost('/api/public/dealer-inquiry', {
         ...form,
         phone: getCleanPhone(form.phone),
-        sms_consent_timestamp: form.sms_consent ? new Date().toISOString() : null,
+        // sms_consent_timestamp removed (QUOTE-P0 T12) — server is authoritative
         sms_consent_page_url: window.location.href,
         sms_consent_page: window.location.href,
         source: 'website_dealer',

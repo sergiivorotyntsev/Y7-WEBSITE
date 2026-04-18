@@ -177,7 +177,7 @@ export default function QuoteForm({ compact = false }) {
         phone: form.phone ? getCleanPhone(form.phone) : '',
         is_inoperable: form.is_inoperable,
         preferred_pickup_date: form.pickup_date_type === 'date' ? form.preferred_pickup_date : null,
-        sms_consent_timestamp: form.sms_consent ? new Date().toISOString() : null,
+        // sms_consent_timestamp removed (QUOTE-P0 T12) — server is authoritative
         sms_consent_page_url: window.location.href,
         sms_consent_page: window.location.href,
         source: 'website',
