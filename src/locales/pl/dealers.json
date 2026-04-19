@@ -86,5 +86,177 @@
     "deepDive": "Przewodnik transportu dilerskiego",
     "quote": "Zapytanie dilerskie",
     "exporters": "Dla eksporterów"
+  },
+  "timeline": {
+    "kicker": "JAK PRACUJEMY Z DEALERAMI",
+    "title": "Od otwarcia konta do pierwszej dostawy — poniżej 10 dni",
+    "steps": [
+      {
+        "day": "Dzień 1",
+        "title": "Otwarcie konta",
+        "desc": "Prześlij licencję dealerską + W-9. Onboarding tego samego dnia — bez opóźnień związanych z weryfikacją kredytową."
+      },
+      {
+        "day": "Dzień 2",
+        "title": "Dedykowany cennik",
+        "desc": "Budujemy spersonalizowany rate card na podstawie Twoich tras i miesięcznego wolumenu — w ciągu 24 godzin."
+      },
+      {
+        "day": "Dzień 3-4",
+        "title": "Pierwszy ładunek",
+        "desc": "Wyślij VIN-y i loty aukcyjne. Publikacja na Central Dispatch w ciągu 30 minut."
+      },
+      {
+        "day": "Dzień 5-7",
+        "title": "Pierwsze odbiory",
+        "desc": "Zweryfikowani przewoźnicy przydzieleni; gate pass załatwiony; dane kierowcy przez Telegram."
+      },
+      {
+        "day": "Dzień 8-10",
+        "title": "Pierwsza dostawa + faktura",
+        "desc": "Auto dostarczone, zdjęcia BOL w portalu, pierwsza piątkowa faktura wysyła się zgodnie z harmonogramem."
+      }
+    ]
+  },
+  "volumeTable": {
+    "kicker": "CENY HURTOWE",
+    "title": "Rabaty rosną wraz z miesięcznym wolumenem",
+    "headerVolume": "Ładunków miesięcznie",
+    "headerTier": "Poziom",
+    "headerDiscount": "Rabat",
+    "headerPerk": "Korzyści",
+    "rows": [
+      {
+        "volume": "1-4",
+        "tier": "Standard",
+        "discount": "Stawka bazowa",
+        "perk": "Zgłoszenia odbioru tego samego dnia"
+      },
+      {
+        "volume": "5-9",
+        "tier": "Aktywny",
+        "discount": "5%",
+        "perk": "Priorytetowa dyspozycja, dedykowany email"
+      },
+      {
+        "volume": "10-19",
+        "tier": "Hurtowy",
+        "discount": "10%",
+        "perk": "Dedykowany dyspozytor, bot Telegram"
+      },
+      {
+        "volume": "20+",
+        "tier": "Korporacyjny",
+        "discount": "15%",
+        "perk": "Indywidualny rate card, cotygodniowa rozmowa"
+      }
+    ],
+    "footnote": "Wolumen liczony w oknie kroczącym 30 dni. Poziom przeliczany co miesiąc; brak długoterminowych zobowiązań."
+  },
+  "dealerFeatures": {
+    "kicker": "CO DOSTAJĄ DEALERZY",
+    "title": "Dopasowane do codziennej pracy salonu",
+    "items": [
+      {
+        "title": "Portal",
+        "desc": "Panel ze statusem, zdjęciami BOL i historią faktur."
+      },
+      {
+        "title": "Faktura tygodniowa",
+        "desc": "Jedna faktura w piątek na wszystkie ładunki tygodnia. Bez chaosu pojedynczych rozliczeń."
+      },
+      {
+        "title": "Bot statusu Telegram",
+        "desc": "Powiadomienia pickup/dostawa prosto na telefon dyspozytora."
+      },
+      {
+        "title": "Dedykowany dyspozytor",
+        "desc": "Jedna osoba, która zna Twoje trasy, auta i preferowanych przewoźników."
+      },
+      {
+        "title": "Priorytet na aukcjach",
+        "desc": "Gate pass w 2 godziny; odbiór tego samego lub następnego dnia gdy to możliwe."
+      },
+      {
+        "title": "Elastyczne płatności",
+        "desc": "Net-15 dla zaakceptowanych kont; ACH lub Zelle."
+      }
+    ]
+  },
+  "trustSignals": {
+    "kicker": "WERYFIKACJA",
+    "title": "Dokumenty, nie marketing",
+    "items": [
+      {
+        "label": "Licencja brokera FMCSA",
+        "value": "MC #1741537",
+        "link": "https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=1741537",
+        "linkLabel": "Zweryfikuj w SAFER"
+      },
+      {
+        "label": "Numer USDOT",
+        "value": "4427359",
+        "link": "",
+        "linkLabel": ""
+      },
+      {
+        "label": "Broker Central Dispatch",
+        "value": "Potwierdzony",
+        "link": "https://www.centraldispatch.com",
+        "linkLabel": "Central Dispatch"
+      },
+      {
+        "label": "Gwarancja brokerska",
+        "value": "BMC-84 ($75,000)",
+        "link": "",
+        "linkLabel": ""
+      }
+    ]
+  },
+  "dealerFaq": {
+    "kicker": "FAQ DEALERA",
+    "title": "Pytania, które dealerzy zadają najczęściej",
+    "items": [
+      {
+        "q": "Jak szybko wysyłasz odbiór z aukcji?",
+        "a": "W godzinach pracy Copart lub IAAI jest publikowany na Central Dispatch w 30 minut. Manheim dodaje etap gate pass (zwykle 4-24 h). Przewoźnicy akceptują ładunek w 2-6 godzin na popularnych trasach; odbiór first-available zwykle w 48-72 godziny."
+      },
+      {
+        "q": "Obsługujecie Copart + IAAI + Manheim z jednego konta?",
+        "a": "Tak. Jedno konto dealerskie pokrywa wszystkie główne platformy. Podaj numer lotu i buyer ID — zajmiemy się gate passem, weryfikacją płatności i wysyłką przewoźnika w jednym procesie."
+      },
+      {
+        "q": "Jak działa faktura tygodniowa?",
+        "a": "Każdy piątek o 9:00 ET zamykamy tydzień, liczymy łączne sumy i wysyłamy jeden PDF z rozbiciem na każdy ładunek. Płatność net-15 przez ACH lub Zelle. Net-30 dostępny dla zaakceptowanych kont po 90 dniach czystej historii płatności."
+      },
+      {
+        "q": "Co jeśli przewoźnik uszkodzi auto?",
+        "a": "Roszczenie trafia do ubezpieczenia przewoźnika (cargo zazwyczaj $100,000-$250,000 dla otwartych, $250,000-$500,000 dla zamkniętych). Prześlemy COI i kontakt do likwidatora. Y7 jest licencjonowanym brokerem, nie przewoźnikiem, więc bezpośredniej odpowiedzialności za ładunek nie ponosi, ale aktywnie wspieramy klienta."
+      },
+      {
+        "q": "Czy mogę śledzić ładunki w czasie rzeczywistym?",
+        "a": "Tak. Portal dealerski ze statusami pickup/in-transit/delivered oraz bot Telegram z powiadomieniami na telefon dyspozytora. Zdjęcia BOL automatycznie."
+      },
+      {
+        "q": "Robicie dealer trade między salonami?",
+        "a": "Regularnie. Dealer trade to druga najczęstsza przyczyna kontaktu po aukcjach. Pojedyncze lub wielopojazdowe swapy między dachami, zsynchronizowane okna pickup/drop-off i dedykowany dyspozytor."
+      },
+      {
+        "q": "Jaka jest polityka anulacji?",
+        "a": "Bezpłatnie do momentu akceptacji ładunku przez przewoźnika. Po akceptacji obowiązują zasady przewoźnika (zwykle $100-$200 dry-run fee, jeśli kierowca już wyjechał)."
+      },
+      {
+        "q": "Obsługujecie niejeżdżące auta z aukcji?",
+        "a": "Tak. Dopłata $100-$300 za inop ponad stawkę bazową — dokładna kwota zależy od tego, czy wystarczy standardowa wciągarka (taniej) czy potrzebny forklift (drożej). Deklaruj stan uczciwie przy wycenie."
+      },
+      {
+        "q": "A eksport przez port?",
+        "a": "Koordynujemy auction-to-port dla dealerów sprzedających na eksport. Gate pass, warehouse drop i przekazanie BOL do agenta — my odcinek lądowy, agent cło i rezerwacja statku."
+      },
+      {
+        "q": "Jak dostać rate card?",
+        "a": "Prześlij licencję dealerską, trasy i planowany wolumen miesięczny. Budujemy spersonalizowany rate card w ciągu 24 godzin."
+      }
+    ]
   }
 }

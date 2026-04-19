@@ -86,5 +86,177 @@
     "deepDive": "Dealer auto transport guide",
     "quote": "Request dealer quote",
     "exporters": "For exporters"
+  },
+  "timeline": {
+    "kicker": "HOW WE WORK WITH DEALERS",
+    "title": "From account open to first load dispatched in under 10 days",
+    "steps": [
+      {
+        "day": "Day 1",
+        "title": "Account setup",
+        "desc": "Email your dealer license + W-9. Same-day onboarding — no credit-check delay."
+      },
+      {
+        "day": "Day 2",
+        "title": "Rate card built",
+        "desc": "We pull your typical lanes + monthly volume and issue a personalized rate sheet within 24 hours."
+      },
+      {
+        "day": "Day 3-4",
+        "title": "First load posted",
+        "desc": "Send VINs + pickup lots. We post to Central Dispatch within 30 minutes of your request."
+      },
+      {
+        "day": "Day 5-7",
+        "title": "First pickups",
+        "desc": "Vetted carriers assigned; auction gate passes arranged; driver contact info delivered via Telegram."
+      },
+      {
+        "day": "Day 8-10",
+        "title": "First delivery + invoice",
+        "desc": "Vehicle delivered to your lot, BOL photos pushed to the portal, first Friday invoice goes out on schedule."
+      }
+    ]
+  },
+  "volumeTable": {
+    "kicker": "VOLUME PRICING",
+    "title": "Rate tiers scale with your monthly volume",
+    "headerVolume": "Monthly loads",
+    "headerTier": "Tier",
+    "headerDiscount": "Discount",
+    "headerPerk": "Perk",
+    "rows": [
+      {
+        "volume": "1-4",
+        "tier": "Standard",
+        "discount": "Base rate",
+        "perk": "Same-day pickup requests"
+      },
+      {
+        "volume": "5-9",
+        "tier": "Active",
+        "discount": "5%",
+        "perk": "Priority dispatch, dedicated email"
+      },
+      {
+        "volume": "10-19",
+        "tier": "Volume",
+        "discount": "10%",
+        "perk": "Dedicated dispatcher, Telegram bot"
+      },
+      {
+        "volume": "20+",
+        "tier": "Enterprise",
+        "discount": "15%",
+        "perk": "Custom rate card, weekly strategy call"
+      }
+    ],
+    "footnote": "Volume measured on a rolling 30-day basis. Tiers recalculate monthly; no long-term commitment required."
+  },
+  "dealerFeatures": {
+    "kicker": "WHAT DEALERS GET",
+    "title": "Built for the operational reality of a dealership",
+    "items": [
+      {
+        "title": "Portal access",
+        "desc": "Dashboard with live status, BOL photos, and invoice history."
+      },
+      {
+        "title": "Weekly consolidated invoice",
+        "desc": "Single Friday invoice for the week's loads. No per-vehicle bill chaos."
+      },
+      {
+        "title": "Telegram status bot",
+        "desc": "Real-time pickup/delivery notifications to your dispatcher's phone."
+      },
+      {
+        "title": "Dedicated dispatcher",
+        "desc": "Named person who knows your routes, your cars, and your preferred carriers."
+      },
+      {
+        "title": "Priority auction pickup",
+        "desc": "Gate pass coordination within 2 hours; same-day or next-day pickup when possible."
+      },
+      {
+        "title": "Flexible billing",
+        "desc": "Net-15 terms on approved dealer accounts; ACH or Zelle accepted."
+      }
+    ]
+  },
+  "trustSignals": {
+    "kicker": "TRUST SIGNALS",
+    "title": "Compliance, not marketing claims",
+    "items": [
+      {
+        "label": "FMCSA broker authority",
+        "value": "MC #1741537",
+        "link": "https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=1741537",
+        "linkLabel": "Verify on SAFER"
+      },
+      {
+        "label": "USDOT number",
+        "value": "4427359",
+        "link": "",
+        "linkLabel": ""
+      },
+      {
+        "label": "Central Dispatch broker",
+        "value": "Verified",
+        "link": "https://www.centraldispatch.com",
+        "linkLabel": "Central Dispatch"
+      },
+      {
+        "label": "Broker bond",
+        "value": "BMC-84 ($75,000)",
+        "link": "",
+        "linkLabel": ""
+      }
+    ]
+  },
+  "dealerFaq": {
+    "kicker": "DEALER FAQ",
+    "title": "Questions dealers actually ask",
+    "items": [
+      {
+        "q": "How fast can you dispatch an auction pickup?",
+        "a": "Inside business hours, a Copart or IAAI pickup is posted to Central Dispatch within 30 minutes. Manheim adds a gate-pass step (usually 4-24 hours). Carriers typically accept within 2-6 hours on common lanes; a first-available pickup usually happens inside 48-72 hours."
+      },
+      {
+        "q": "Do you handle Copart + IAAI + Manheim from one account?",
+        "a": "Yes. One dealer account works for every major platform. Share the lot number and buyer ID; we handle the gate pass, payment-status check with the auction, and carrier dispatch under a single workflow."
+      },
+      {
+        "q": "How does weekly consolidated invoicing work?",
+        "a": "Every Friday at 9 AM ET we close the week's loads, calculate consolidated totals, and email a single PDF invoice with each load itemized. Due net-15 via ACH or Zelle. Net-30 available on approved accounts after 90 days of clean payment history."
+      },
+      {
+        "q": "What happens when a carrier damages a vehicle?",
+        "a": "You file a claim with the carrier's insurance (cargo coverage is typically $100,000-$250,000 for open trailers, $250,000-$500,000 for enclosed). We pull the carrier's COI and connect you with their adjuster. Y7 does not take direct liability for cargo — we're a licensed broker, not a motor carrier — but we absolutely stay in the loop and advocate for fast resolution."
+      },
+      {
+        "q": "Can I track loads in real time?",
+        "a": "Yes — dedicated dealer portal with pickup/in-transit/delivered status, plus a Telegram bot that pushes notifications to your dispatcher's phone. BOL photos at pickup and delivery are attached automatically."
+      },
+      {
+        "q": "Do you ship dealer trades between lots?",
+        "a": "Regularly. Dealer trade moves are our second-largest dealer use case after auction pickup. Single-vehicle or multi-vehicle swaps between rooftops, coordinated timing, and a dedicated dispatcher to sync pickup and drop-off windows."
+      },
+      {
+        "q": "What's your cancellation policy?",
+        "a": "Free cancellation any time before the carrier accepts the load. Once accepted, the carrier's rules apply (typically $100-$200 dry-run fee if the driver has already dispatched to the pickup location). We flag this in the Telegram feed the moment acceptance happens so you can cancel cleanly."
+      },
+      {
+        "q": "Can you handle non-running auction vehicles?",
+        "a": "Yes. Plan on a $100-$300 inoperable surcharge above the base rate — actual amount depends on whether a standard winch works (cheaper) or the vehicle needs forklift loading (more). Disclose this honestly at quote time so the right carrier is dispatched; mis-disclosed inop at pickup is the #1 cause of surprise fees."
+      },
+      {
+        "q": "What about port delivery for your export flips?",
+        "a": "We coordinate auction-to-port for dealers selling into the export channel. Gate pass, warehouse drop, and BOL handoff to the freight forwarder — we do the domestic leg; your forwarder handles customs and ocean booking."
+      },
+      {
+        "q": "How do I get a rate card?",
+        "a": "Email us your dealer license + the lanes and monthly volume you're planning. We build a personalized rate card within 24 hours. Pricing reflects your actual volume and lane mix, not a published retail rate."
+      }
+    ]
   }
 }

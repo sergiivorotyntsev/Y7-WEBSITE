@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import MoneyPageSchema from '../components/MoneyPageSchema';
+import ContextualCTA from '../components/ContextualCTA';
 import styles from './Dealers.module.css';
 import btn from '../styles/buttons.module.css';
 
@@ -13,6 +14,16 @@ export default function Dealers() {
   const benefits = t('benefits', { returnObjects: true });
   const models = t('pricing.models', { returnObjects: true });
   const tiers = t('pricing.tiers', { returnObjects: true });
+  const timeline = t('timeline', { returnObjects: true });
+  const volumeTable = t('volumeTable', { returnObjects: true });
+  const dealerFeatures = t('dealerFeatures', { returnObjects: true });
+  const trustSignals = t('trustSignals', { returnObjects: true });
+  const dealerFaq = t('dealerFaq', { returnObjects: true });
+  const timelineSteps = timeline && timeline.steps ? timeline.steps : [];
+  const volumeRows = volumeTable && volumeTable.rows ? volumeTable.rows : [];
+  const featureItems = dealerFeatures && dealerFeatures.items ? dealerFeatures.items : [];
+  const trustItems = trustSignals && trustSignals.items ? trustSignals.items : [];
+  const faqItems = dealerFaq && dealerFaq.items ? dealerFaq.items : [];
 
   return (
     <div className={styles.wrap}>
@@ -89,6 +100,125 @@ export default function Dealers() {
             ))}
           </div>
         </div>
+
+        {/* Timeline — Day 1 to Day 10 onboarding cadence */}
+        {timeline && timelineSteps.length > 0 && (
+          <section className={styles.timeline}>
+            <div className={styles.sectionHeader}>
+              <span className={styles.sectionMicro}>&#9670; {timeline.kicker}</span>
+              <h2 className={styles.sectionHeading}>{timeline.title}</h2>
+            </div>
+            <ol className={styles.timelineList}>
+              {timelineSteps.map((step, i) => (
+                <li key={i} className={styles.timelineItem}>
+                  <span className={styles.timelineDay}>{step.day}</span>
+                  <div>
+                    <h3 className={styles.timelineTitle}>{step.title}</h3>
+                    <p className={styles.timelineDesc}>{step.desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
+        {/* Volume pricing table */}
+        {volumeTable && volumeRows.length > 0 && (
+          <section className={styles.volumeSection}>
+            <div className={styles.sectionHeader}>
+              <span className={styles.sectionMicro}>&#9670; {volumeTable.kicker}</span>
+              <h2 className={styles.sectionHeading}>{volumeTable.title}</h2>
+            </div>
+            <div className={styles.volumeTableWrap}>
+              <table className={styles.volumeTable}>
+                <thead>
+                  <tr>
+                    <th>{volumeTable.headerVolume}</th>
+                    <th>{volumeTable.headerTier}</th>
+                    <th>{volumeTable.headerDiscount}</th>
+                    <th>{volumeTable.headerPerk}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {volumeRows.map((row, i) => (
+                    <tr key={i} className={i === 3 ? styles.volumeRowHighlight : ''}>
+                      <td className={styles.volumeCellVolume}>{row.volume}</td>
+                      <td>{row.tier}</td>
+                      <td className={styles.volumeCellDiscount}>{row.discount}</td>
+                      <td>{row.perk}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className={styles.volumeFootnote}>{volumeTable.footnote}</p>
+          </section>
+        )}
+
+        {/* Dealer features grid */}
+        {dealerFeatures && featureItems.length > 0 && (
+          <section className={styles.featuresSection}>
+            <div className={styles.sectionHeader}>
+              <span className={styles.sectionMicro}>&#9670; {dealerFeatures.kicker}</span>
+              <h2 className={styles.sectionHeading}>{dealerFeatures.title}</h2>
+            </div>
+            <div className={styles.featuresGrid}>
+              {featureItems.map((f, i) => (
+                <div key={i} className={styles.featureItem}>
+                  <h3 className={styles.featureTitle}>{f.title}</h3>
+                  <p className={styles.featureDesc}>{f.desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Trust signals */}
+        {trustSignals && trustItems.length > 0 && (
+          <section className={styles.trustSection}>
+            <div className={styles.sectionHeader}>
+              <span className={styles.sectionMicro}>&#9670; {trustSignals.kicker}</span>
+              <h2 className={styles.sectionHeading}>{trustSignals.title}</h2>
+            </div>
+            <div className={styles.trustGrid}>
+              {trustItems.map((item, i) => (
+                <div key={i} className={styles.trustItem}>
+                  <span className={styles.trustLabel}>{item.label}</span>
+                  <span className={styles.trustValue}>{item.value}</span>
+                  {item.link && item.linkLabel && (
+                    <a href={item.link} className={styles.trustLink} target="_blank" rel="noopener noreferrer">
+                      {item.linkLabel} &rarr;
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Contextual CTA to exporters */}
+        <ContextualCTA variant="card" to="/exporters" intlKey="exporters" tone="amber" />
+
+        {/* Dealer FAQ */}
+        {dealerFaq && faqItems.length > 0 && (
+          <section className={styles.faqSection}>
+            <div className={styles.sectionHeader}>
+              <span className={styles.sectionMicro}>&#9670; {dealerFaq.kicker}</span>
+              <h2 className={styles.sectionHeading}>{dealerFaq.title}</h2>
+            </div>
+            <div className={styles.faqList}>
+              {faqItems.map((item, i) => (
+                <details key={i} className={styles.faqItem}>
+                  <summary className={styles.faqSummary}>
+                    <span>{item.q}</span>
+                    <span className={styles.faqChevron} aria-hidden="true">&#9662;</span>
+                  </summary>
+                  <p className={styles.faqAnswer}>{item.a}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* CTA strip */}
         <div className={styles.cta}>
