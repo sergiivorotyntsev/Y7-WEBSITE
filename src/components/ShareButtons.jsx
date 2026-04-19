@@ -25,7 +25,9 @@ export default function ShareButtons({ url, title, description }) {
   const [copied, setCopied] = useState(false);
   const [hasNativeShare, setHasNativeShare] = useState(false);
 
+  // One-shot mount probe of navigator.share — safe to set synchronously.
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setHasNativeShare(typeof navigator !== 'undefined' && !!navigator.share);
   }, []);
 

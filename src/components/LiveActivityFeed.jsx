@@ -25,6 +25,7 @@ export default function LiveActivityFeed() {
 
   useEffect(() => {
     if (events.length === 0) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisible(0);
     timerRef.current = setInterval(() => {
       setVisible(prev => (prev + 1) % events.length);

@@ -121,7 +121,10 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
   // Step 3: button active when name + valid email + sms_consent (QUOTE-P0 TCPA gate)
   const canSubmit = !!(form.name.trim() && form.email.trim() && form.email.includes('@') && form.sms_consent);
 
-  // Measure step2 inner height for smooth animation
+  // Measure step2 inner height for smooth animation on every render because
+  // the collapsed height depends on which fields are currently mounted.
+  // Intentionally no dep array — we want to re-measure after any state update.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (step2Ref.current) {
       setStep2Height(step2Ref.current.scrollHeight);

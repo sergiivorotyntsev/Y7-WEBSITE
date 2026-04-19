@@ -17,8 +17,11 @@ export default function ReviewSubmit() {
   const [status, setStatus] = useState('idle'); // idle, submitting, success, error
   const [errorMsg, setErrorMsg] = useState('');
 
+  // Fire once on mount — preRating is captured from the initial URL param
+  // and intentionally not tracked here.
   useEffect(() => {
     trackEvent('review_page_view', { has_rating_param: preRating >= 1 && preRating <= 5 });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSubmit = async (e) => {

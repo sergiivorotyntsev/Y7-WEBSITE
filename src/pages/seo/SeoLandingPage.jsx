@@ -1,3 +1,7 @@
+/* eslint-disable react-refresh/only-export-components */
+// Exports both the SeoLandingPage default and a `Section` named export used
+// by every enriched SEO page. Splitting would cascade through ~30 imports;
+// dev-only HMR warning safe to suppress.
 import { Link } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
 import ContextualCTA from '../../components/ContextualCTA';

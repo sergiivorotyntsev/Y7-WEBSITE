@@ -97,7 +97,7 @@ function detectInitialLang() {
   try {
     const stored = window.localStorage?.getItem('y7_lang');
     if (stored && SUPPORTED.includes(stored)) return stored;
-  } catch {}
+  } catch { /* storage unavailable — fall through to nav detection */ }
   const nav = (typeof navigator !== 'undefined' && navigator.language) ? navigator.language.slice(0, 2).toLowerCase() : 'en';
   if (nav === 'uk') return 'ua';
   return SUPPORTED.includes(nav) ? nav : 'en';

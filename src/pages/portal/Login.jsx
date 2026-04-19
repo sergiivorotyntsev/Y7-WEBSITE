@@ -404,6 +404,11 @@ export default function Login() {
 function TelegramWidget({ onAuth }) {
   const ref = useRef(null);
   const onAuthRef = useRef(onAuth);
+  // Assigning a ref during render is intentional here — this is the
+  // documented "latest-callback" pattern so the useEffect below can
+  // reference onAuthRef.current and always see the freshest handler
+  // without re-running the telegram-script load on every prop change.
+  // eslint-disable-next-line react-hooks/refs
   onAuthRef.current = onAuth;
 
   useEffect(() => {

@@ -11,6 +11,12 @@ let _pendingTgAuthReg = null;
 
 function TelegramLoginWidget({ onAuth }) {
   const ref = useRef(null);
+  // Reassigning a module-level var during render is the "latest-callback"
+  // bridge pattern — the Telegram widget's global window callback dereferences
+  // this module variable, which always needs the freshest onAuth. Moving it
+  // into the effect body would cause the Telegram callback to fire against
+  // the prior render's handler on the first render after a prop change.
+  // eslint-disable-next-line react-hooks/globals
   _pendingTgAuthReg = onAuth;
 
   useEffect(() => {

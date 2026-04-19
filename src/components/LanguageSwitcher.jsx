@@ -45,7 +45,7 @@ export default function LanguageSwitcher() {
   function switchLang(code) {
     if (code === current) { setOpen(false); return; }
     trackEvent('language_switch', { language: code });
-    try { localStorage.setItem('y7_lang', code); } catch {}
+    try { localStorage.setItem('y7_lang', code); } catch { /* storage unavailable — ignore */ }
 
     // If on a unique intl page, drop to that locale's Home for the target.
     const onUnique = UNIQUE_INTL_PATHS.has(pathname);

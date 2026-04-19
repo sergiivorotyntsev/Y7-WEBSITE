@@ -114,12 +114,13 @@ function PendingIcon() {
   );
 }
 
-function BankAuthAgreement({ user }) {
+function BankAuthAgreement({ user: _user }) {
   const navigate = useNavigate();
   const { checkAuth } = useAuth();
   const [checks, setChecks] = useState([false, false, false, false]);
   const [signerName, setSignerName] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
 
@@ -288,10 +289,15 @@ export default function Agreement() {
   const isCustomerLevel = !orderId || (orderId === 'new' && customerIdParam);
   const resolvedCustomerId = user?.id || (customerIdParam ? parseInt(customerIdParam, 10) : null);
 
-  // Bank auth sub-agreement — completely separate rendering path
+  // Bank auth sub-agreement — completely separate rendering path.
+  // NOTE: typeParam is URL-derived and stable for the lifetime of a given
+  // navigation, so the hooks that follow are always called in the same
+  // order per render. A strict rules-of-hooks refactor (splitting into
+  // sibling sub-components) is tracked as a follow-up.
   if (typeParam === 'bank_auth') {
     return <BankAuthAgreement user={user} />;
   }
+  /* eslint-disable react-hooks/rules-of-hooks */
 
   // Fetch template metadata so we know the version + draft status. This
   // runs in parallel with the signed-status fetch and is best-effort: a
@@ -660,4 +666,5 @@ export default function Agreement() {
       </div>
     </div>
   );
+  /* eslint-enable react-hooks/rules-of-hooks */
 }

@@ -1,3 +1,6 @@
+/* eslint-disable react-refresh/only-export-components */
+// PhoneInput exports the component plus getCleanPhone/isValidPhone helpers
+// used by QuoteForm and DealerQuote; dev-only HMR warning safe to suppress.
 import { useState } from 'react';
 
 // Strip every non-digit char — the input stores raw digits internally

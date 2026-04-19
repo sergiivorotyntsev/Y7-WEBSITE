@@ -110,8 +110,16 @@ export default function OrderDetail() {
       .catch(() => setPaymentData(null));
   };
 
-  useEffect(() => { fetchOrder(); fetchPayment(); }, [id]);
+  // Fetch on id change — fetchOrder/fetchPayment are stable functions
+  // defined at the top of the component.
+  useEffect(() => {
+    fetchOrder();
+    fetchPayment();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
+  // One-shot mount effect — handle justPaid query param and pick up any
+  // stashed promo code from localStorage.
   useEffect(() => {
     if (justPaid) {
       fetchPayment();
@@ -122,6 +130,7 @@ export default function OrderDetail() {
       const stored = localStorage.getItem('y7_promo_code');
       if (stored) setPromoCode(stored);
     } catch { /* ignore */ }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleApplyPromo = async () => {
@@ -142,7 +151,7 @@ export default function OrderDetail() {
         setPromoMsg({ ok: true, text: `Applied: −$${(data.discount_cents / 100).toFixed(2)} off` });
         fetchPayment();
       }
-    } catch (e) {
+    } catch {
       setPromoMsg({ ok: false, text: 'Failed to validate promo' });
     } finally {
       setPromoLoading(false);

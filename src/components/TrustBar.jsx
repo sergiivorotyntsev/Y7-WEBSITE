@@ -8,8 +8,15 @@ function useCountUp(target, visible, duration = 1500) {
   const numVal = numMatch ? parseInt(numMatch[1], 10) : 0;
   const suffix = numMatch ? target.slice(numMatch[0].length) : target;
 
+  // Animation effect — the setDisplay in step() runs inside rAF, which is
+  // exactly the pattern React 19 would prefer; the synchronous setDisplay
+  // on the early-return branch is acceptable for first-frame initialization.
   useEffect(() => {
-    if (!visible || !numVal) { setDisplay(target); return; }
+    if (!visible || !numVal) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setDisplay(target);
+      return;
+    }
     let start = null;
     const step = (ts) => {
       if (!start) start = ts;

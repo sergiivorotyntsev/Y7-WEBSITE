@@ -1,3 +1,6 @@
+/* eslint-disable react-refresh/only-export-components */
+// This file intentionally co-exports the component and a consent-key
+// constant; the Fast-Refresh HMR impact is dev-only.
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { colors, fonts } from '../theme';
@@ -19,8 +22,10 @@ export function getConsent() {
 export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
 
+  // Reads cookie on mount; safe synchronous set because it runs once.
   useEffect(() => {
     if (!getCookie('y7_consent')) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setVisible(true);
     }
   }, []);

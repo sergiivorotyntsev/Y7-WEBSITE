@@ -13,7 +13,7 @@ export default function LocaleDetector() {
     const locale = match ? match[1] : 'en';
     if (i18n.language !== locale) {
       i18n.changeLanguage(locale);
-      try { localStorage.setItem('y7_lang', locale); } catch {}
+      try { localStorage.setItem('y7_lang', locale); } catch { /* storage unavailable */ }
     }
     const htmlLang = locale === 'ua' ? 'uk' : locale;
     if (typeof document !== 'undefined') {

@@ -39,6 +39,7 @@ export default function ShipMyCar() {
   const seasonalNotes = t('seasonalNotes', { returnObjects: true });
   const pricingRows = pricingTiers && pricingTiers.rows ? pricingTiers.rows : [];
   const seasonalItems = seasonalNotes && seasonalNotes.items ? seasonalNotes.items : [];
+  // eslint-disable-next-line no-unused-vars
   const prepItems = prepList && prepList.items ? prepList.items : (Array.isArray(prepList) ? prepList : []);
 
   return (

@@ -12,6 +12,8 @@ export default function PostQuoteFlow({ quoteResult, formData }) {
   const [code, setCode] = useState(['', '', '', '', '', '']);
   const [codeLoading, setCodeLoading] = useState(false);
   const [codeError, setCodeError] = useState(null);
+  // codeSent state is set from the send flow; UI reads setCodeSent only.
+  // eslint-disable-next-line no-unused-vars
   const [codeSent, setCodeSent] = useState(false);
   const [dismissed, setDismissed] = useState(false);
   const codeRefs = useRef([]);

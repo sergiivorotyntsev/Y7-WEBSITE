@@ -5,6 +5,8 @@ import { LegalSection, MAX_SECTIONS, renderLines } from '../components/LegalSect
 import styles from './Legal.module.css';
 
 export default function Terms() {
+  // t is unused here — we read the localized bundle directly from i18n
+  // eslint-disable-next-line no-unused-vars
   const { t, i18n } = useTranslation('terms');
   const bundle = i18n.getResourceBundle(i18n.language, 'terms')
     || i18n.getResourceBundle('en', 'terms')

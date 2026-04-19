@@ -1,3 +1,7 @@
+/* eslint-disable react-refresh/only-export-components */
+// useAuth intentionally co-exports: AuthProvider component, useAuth hook,
+// and portalFetch helper. Splitting would require cascading changes across
+// 10+ importers; dev-only HMR warning safe to suppress here.
 import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { API_URL } from '../config';
 
@@ -124,7 +128,10 @@ export function AuthProvider({ children }) {
     setUser(null);
   }, []);
 
+  // Auth probe runs once on mount; setLoading(false) is the intended
+  // one-time initialization after we learn auth state.
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     checkAuth().finally(() => setLoading(false));
   }, [checkAuth]);
 

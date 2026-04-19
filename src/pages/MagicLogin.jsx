@@ -35,11 +35,15 @@ export default function MagicLogin() {
   // would always fail the second invocation. Guard with a ref.
   const consumedRef = useRef(false);
 
+  // Single-shot token consumption on mount — the consumedRef guard means
+  // the effect body runs exactly once; the synchronous setStatus on the
+  // missing-token branch is the intended initialization.
   useEffect(() => {
     if (consumedRef.current) return;
     consumedRef.current = true;
 
     if (!token) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setStatus('error');
       setErrorMessage('Missing magic link token.');
       return;

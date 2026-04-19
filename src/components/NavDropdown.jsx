@@ -20,7 +20,10 @@ export default function NavDropdown({ label, items, activeMatch }) {
   const isActive = activeMatch ? activeMatch.test(location.pathname) : false;
 
   // Close on route change
-  useEffect(() => { setOpen(false); }, [location.pathname]);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setOpen(false);
+  }, [location.pathname]);
 
   // Click-outside closes the panel
   useEffect(() => {

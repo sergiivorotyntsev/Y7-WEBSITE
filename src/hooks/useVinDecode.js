@@ -33,7 +33,7 @@ export function useVinDecode() {
       setResult(decoded);
       setLoading(false);
       return decoded;
-    } catch (e) {
+    } catch {
       setError('VIN decode failed');
       setLoading(false);
       return null;

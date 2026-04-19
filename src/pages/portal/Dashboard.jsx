@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
 import Toast from '../../components/Toast';
@@ -118,10 +118,12 @@ export default function Dashboard() {
   // classification_required response (?classify=1 query param).
   const [showClassifyModal, setShowClassifyModal] = useState(false);
 
-  // Toast from agreement signing redirect
+  // Toast from agreement signing redirect — guard ensures setState only
+  // fires once per matching toast param.
   useEffect(() => {
     const toast = searchParams.get('toast');
     if (toast && TOAST_MESSAGES[toast]) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setToastMsg(TOAST_MESSAGES[toast]);
       searchParams.delete('toast');
       setSearchParams(searchParams, { replace: true });
@@ -144,6 +146,7 @@ export default function Dashboard() {
     if (!user) return;
     const params = new URLSearchParams(window.location.search);
     if (user.customer_type === 'unknown' || params.get('classify') === '1') {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setShowClassifyModal(true);
     }
   }, [user]);

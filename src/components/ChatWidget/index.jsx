@@ -167,6 +167,7 @@ export default function ChatWidget() {
   // prompt. If uuid changes (new session, or server rotated), re-evaluate.
   useEffect(() => {
     if (sessionUuid && readLeadSubmittedFor(sessionUuid)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLeadSubmitted(true)
     }
   }, [sessionUuid])
@@ -188,6 +189,7 @@ export default function ChatWidget() {
   // Reset lead-capture state whenever a new chat is started
   useEffect(() => {
     if (messages.length === 0) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setShowLeadForm(false)
       setLeadSubmitted(false)
     }

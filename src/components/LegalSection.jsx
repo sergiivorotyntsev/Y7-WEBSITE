@@ -1,3 +1,6 @@
+/* eslint-disable react-refresh/only-export-components */
+// Module co-exports helpers alongside the LegalSection component; dev-only
+// HMR warning — safe to suppress for this utility module.
 export const MAX_SECTIONS = 24;
 
 export function renderLines(text, styles) {
