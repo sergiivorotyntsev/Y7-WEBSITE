@@ -34,29 +34,36 @@ Disallow: /
 # ── Bing / Yahoo / DuckDuckGo ────────────────────────────────
 User-agent: Bingbot
 Allow: /
+Allow: /assets/
 
 User-agent: Slurp
 Allow: /
+Allow: /assets/
 
 User-agent: DuckDuckBot
 Allow: /
+Allow: /assets/
 
 # ── AI Search Bots (ALLOW — we want to appear in AI answers) ─
 # OpenAI ChatGPT Search
 User-agent: OAI-SearchBot
 Allow: /
+Allow: /assets/
 
 # OpenAI browsing (when users ask ChatGPT to visit a page)
 User-agent: ChatGPT-User
 Allow: /
+Allow: /assets/
 
 # Perplexity search
 User-agent: PerplexityBot
 Allow: /
+Allow: /assets/
 
 # Apple AI / Siri
 User-agent: Applebot
 Allow: /
+Allow: /assets/
 
 # ── AI Training Bots (BLOCK — content not for model training) ─
 # OpenAI training crawler
