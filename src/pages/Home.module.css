@@ -319,3 +319,21 @@
   margin-top: 24px;
   text-align: center;
 }
+
+/* =====================================================================
+   HERO SEAL — decorative rotating monogram stamp, bottom-right
+   ===================================================================== */
+
+.heroSeal {
+  position: absolute;
+  bottom: -40px;
+  right: -20px;
+  z-index: 0;
+}
+
+@media (min-width: 1200px) {
+  .heroSeal {
+    bottom: -60px;
+    right: 40px;
+  }
+}

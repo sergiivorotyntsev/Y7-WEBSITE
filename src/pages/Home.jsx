@@ -18,6 +18,7 @@ import ExternalReviewsStrip from '../components/ExternalReviewsStrip';
 import WhyY7 from '../components/WhyY7';
 import TrustSection from '../components/TrustSection';
 import HeroRouteVisual from '../components/HeroRouteVisual';
+import HeroSeal from '../components/HeroSeal';
 import styles from './Home.module.css';
 import btn from '../styles/buttons.module.css';
 
@@ -64,6 +65,7 @@ export default function Home() {
 
       {/* 1. Hero — centered with subtle route visual background */}
       <section className={styles.hero}>
+        <HeroSeal size={320} className={styles.heroSeal} />
         <div className={styles.heroInner}>
           <div className={styles.heroVisual} aria-hidden="true">
             <HeroRouteVisual />
