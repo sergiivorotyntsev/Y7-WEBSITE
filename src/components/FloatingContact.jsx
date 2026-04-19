@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { colors, fonts, keyframes } from '../theme';
 import { TelegramIcon, EmailIcon, CloseIcon } from './icons';
-import { trackEvent } from '../utils/analytics';
+import { trackEvent } from '../utils/trackEvent';
 
 const CHANNELS = [
   { icon: <TelegramIcon size={18} />, label: 'Telegram', href: 'https://t.me/y7dispatch_bot', event: 'telegram_cta_click' },

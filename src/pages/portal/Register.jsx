@@ -5,7 +5,7 @@ import { API_URL } from '../../config';
 import SmsConsent from '../../components/SmsConsent';
 import PhoneInput, { getCleanPhone, isValidPhone } from '../../components/PhoneInput';
 import { colors, fonts, button as btnStyles } from '../../theme';
-import { trackEvent } from '../../utils/analytics';
+import { trackEvent } from '../../utils/trackEvent';
 
 let _pendingTgAuthReg = null;
 

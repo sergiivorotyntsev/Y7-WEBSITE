@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { trackEvent } from '../utils/analytics';
+import { trackEvent } from '../utils/trackEvent';
 import TrustBadges from './TrustBadges';
 import AnimatedLogo from './AnimatedLogo';
 import styles from './Footer.module.css';

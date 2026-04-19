@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect } from 'react';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './hooks/useAuth';
-import { trackPageView } from './utils/analytics';
+import Analytics from './components/Analytics';
 import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
 import LoadingSpinner from './components/LoadingSpinner';
@@ -100,19 +100,14 @@ const skipVisible = {
 };
 
 export default function App() {
-  const location = useLocation();
-
   useEffect(() => {
     document.__PRERENDER_READY = true;
     document.dispatchEvent(new Event('prerender-ready'));
   }, []);
 
-  useEffect(() => {
-    trackPageView(location.pathname);
-  }, [location.pathname]);
-
   return (
     <AuthProvider>
+      <Analytics />
       <a
         href="#main"
         style={skipHidden}

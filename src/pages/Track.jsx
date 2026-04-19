@@ -6,7 +6,7 @@ import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { SearchIcon, QuestionIcon } from '../components/icons';
 import { apiGet } from '../hooks/useApi';
 import { STATUS_PIPELINE, STATUS_LABELS } from '../utils/orderStatus';
-import { trackEvent } from '../utils/analytics';
+import { trackEvent } from '../utils/trackEvent';
 import styles from './Track.module.css';
 import btn from '../styles/buttons.module.css';
 

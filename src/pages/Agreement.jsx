@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth, portalFetch } from '../hooks/useAuth';
 import { apiPost, apiGet } from '../hooks/useApi';
 import { colors, fonts, button as btnStyles } from '../theme';
-import { trackEvent } from '../utils/analytics';
+import { trackEvent } from '../utils/trackEvent';
 
 const LEGACY_SECTION_IDS = ['service', 'bol', 'payment', 'insurance', 'cancellation', 'customer', 'delays', 'liability'];
 const LEGACY_HIGHLIGHTS = new Set(['bol', 'payment', 'customer']);

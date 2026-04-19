@@ -34,11 +34,7 @@ export default function CookieConsent() {
     setCookie('y7_consent', level, 365);
     setVisible(false);
     if (level === 'all') {
-      // Enable GA4 if measurement ID exists
-      const gaId = import.meta.env.VITE_GA_ID;
-      if (gaId && typeof window.gtag === 'function') {
-        window.gtag('config', gaId);
-      }
+      window.dispatchEvent(new Event('y7-consent-accepted'));
     }
   }
 

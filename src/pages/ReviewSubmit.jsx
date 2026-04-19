@@ -3,7 +3,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { colors, fonts } from '../theme';
 import { apiPost } from '../hooks/useApi';
 import PageMeta from '../components/PageMeta';
-import { trackEvent } from '../utils/analytics';
+import { trackEvent } from '../utils/trackEvent';
 
 export default function ReviewSubmit() {
   const { token } = useParams();

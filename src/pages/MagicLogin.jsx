@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { API_URL } from '../config';
 import { colors, fonts, button as btnStyles } from '../theme';
-import { trackEvent } from '../utils/analytics';
+import { trackEvent } from '../utils/trackEvent';
 
 /**
  * Magic-link landing page (SPRINT-DBIS-T3).

@@ -6,7 +6,7 @@ import { apiPost } from '../hooks/useApi';
 import { portalFetch } from '../hooks/useAuth';
 import SmsConsent from '../components/SmsConsent';
 import PhoneInput, { getCleanPhone, isValidPhone } from '../components/PhoneInput';
-import { trackEvent } from '../utils/analytics';
+import { trackEvent } from '../utils/trackEvent';
 import styles from './DealerQuote.module.css';
 import qForm from '../components/QuoteForm.module.css';
 import btn from '../styles/buttons.module.css';

@@ -7,7 +7,7 @@ import RouteEstimator from './RouteEstimator';
 import VehicleSilhouette from './VehicleSilhouette';
 import PostQuoteFlow from './PostQuoteFlow';
 import PhoneInput, { getCleanPhone, isValidPhone } from './PhoneInput';
-import { trackEvent } from '../utils/analytics';
+import { trackEvent } from '../utils/trackEvent';
 import styles from './QuoteForm.module.css';
 import btn from '../styles/buttons.module.css';
 
