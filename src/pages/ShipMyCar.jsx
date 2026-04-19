@@ -35,6 +35,11 @@ export default function ShipMyCar() {
   const steps = t('steps', { returnObjects: true });
   const faqs = t('faqs', { returnObjects: true });
   const prepList = t('prepChecklist', { returnObjects: true });
+  const pricingTiers = t('pricingTiers', { returnObjects: true });
+  const seasonalNotes = t('seasonalNotes', { returnObjects: true });
+  const pricingRows = pricingTiers && pricingTiers.rows ? pricingTiers.rows : [];
+  const seasonalItems = seasonalNotes && seasonalNotes.items ? seasonalNotes.items : [];
+  const prepItems = prepList && prepList.items ? prepList.items : (Array.isArray(prepList) ? prepList : []);
 
   return (
     <div className={styles.page}>
@@ -79,11 +84,62 @@ export default function ShipMyCar() {
         <p className={styles.bodyText}>{t('pricingFactors')}</p>
       </section>
 
+      {/* Pricing by distance */}
+      {pricingTiers && pricingRows.length > 0 && (
+        <section className={styles.pricingSection}>
+          <div className={styles.pricingHeader}>
+            <span className={styles.pricingKicker}>&#9670; {pricingTiers.kicker}</span>
+            <h2 className={styles.pricingTitle}>{pricingTiers.title}</h2>
+          </div>
+          <div className={styles.pricingTableWrap}>
+            <table className={styles.pricingTable}>
+              <thead>
+                <tr>
+                  <th>{pricingTiers.headerRoute}</th>
+                  <th>{pricingTiers.headerOpen}</th>
+                  <th>{pricingTiers.headerEnclosed}</th>
+                  <th>{pricingTiers.headerTransit}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {pricingRows.map((row, i) => (
+                  <tr key={i}>
+                    <td className={styles.pricingRangeCell}>{row.range}</td>
+                    <td>{row.open}</td>
+                    <td>{row.enclosed}</td>
+                    <td>{row.transit}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className={styles.pricingNote}>{pricingTiers.note}</p>
+        </section>
+      )}
+
       {/* Peak Season */}
       <section className={styles.narrow}>
         <h2 className={styles.sectionHeading}>{t('sections.seasonHeading')}</h2>
         <p className={styles.bodyText}>{t('peakSeason')}</p>
       </section>
+
+      {/* Seasonal pricing highlights */}
+      {seasonalNotes && seasonalItems.length > 0 && (
+        <section className={styles.seasonalSection}>
+          <div className={styles.pricingHeader}>
+            <span className={styles.pricingKicker}>&#9670; {seasonalNotes.kicker}</span>
+            <h2 className={styles.pricingTitle}>{seasonalNotes.title}</h2>
+          </div>
+          <ul className={styles.seasonalList}>
+            {seasonalItems.map((item, i) => (
+              <li key={i} className={styles.seasonalItem}>
+                <strong className={styles.seasonalPeriod}>{item.period}</strong>
+                <span className={styles.seasonalNote}>{item.note}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {/* Preparation Checklist */}
       <section className={styles.narrow}>

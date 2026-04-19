@@ -25,14 +25,20 @@
   },
   "pricingFactors": "Your shipping cost comes down to five things: distance, vehicle size, transport type, season, and vehicle condition. Distance is the biggest factor, but it does not scale linearly — a 300-mile haul costs more per mile than a 2,000-mile run because the carrier still has the same loading and unloading overhead regardless of distance. Vehicle size matters because a full-size truck takes up nearly twice the trailer space of a sedan, meaning fewer vehicles per load and higher cost per slot. Open transport is the standard and runs 40–60% less than enclosed. Seasonal demand swings pricing significantly — January through March sees heavy snowbird traffic heading south, driving up southbound rates while northbound lanes out of Florida go cheap. And if your vehicle is non-running, expect $100–$300 extra for winch or forklift loading.",
   "peakSeason": "Auto transport follows predictable demand cycles. January through March is peak snowbird season — rates to Florida and Arizona spike as retirees head south, while carriers offering northbound routes from FL drop prices to avoid deadheading back empty. Summer (June through August) is relocation season: military PCS moves, college relocations, and family moves drive high nationwide volume. September through December sees a steady climb as early snowbirds start moving and dealers ship end-of-year inventory. If your schedule is flexible, shoulder months like April–May and late October often offer the best balance of price and carrier availability.",
-  "prepChecklist": [
-    "Remove all personal items from the interior and trunk — carriers are not liable for personal belongings, and loose items can shift and cause interior damage",
-    "Provide a working set of keys to the carrier driver — they need to start, steer, and brake the vehicle for loading and positioning on the trailer",
-    "Leave about 1/4 tank of gas — enough for loading/unloading maneuvers but not so much that it adds unnecessary weight",
-    "Disable any aftermarket alarm systems — a blaring alarm on a moving trailer at 2 AM on the highway creates problems for everyone",
-    "Document existing damage with dated photos before pickup — scratches, dents, chips, paint imperfections. This is your baseline for any delivery dispute",
-    "Secure or remove loose exterior parts — retractable antennas, aftermarket spoilers, bike racks, roof cargo boxes. If it can catch wind at 65 mph, take it off"
-  ],
+  "prepChecklist": {
+    "kicker": "BEFORE PICKUP",
+    "title": "Get your vehicle ready for the carrier",
+    "items": [
+      "Wash the exterior so the driver can accurately note existing scratches on the BOL",
+      "Take dated photos of every panel plus close-ups of any existing damage",
+      "Remove personal items from the cabin — carrier insurance does not cover them",
+      "Leave approximately 1/4 tank of fuel (not full — adds weight; not empty — driver may need to reposition)",
+      "Disable alarms, toll transponders, parking passes, and aftermarket anti-theft devices",
+      "Secure or remove loose exterior items — antennas, luggage racks, car bras",
+      "Check battery charge — a dead battery at delivery means the driver cannot move the vehicle off the trailer",
+      "Provide the driver with a working spare key; keep your primary set"
+    ]
+  },
   "pickupProcess": "The carrier driver will call you 12–24 hours before arrival with an estimated pickup window, usually a 1–2 hour range. At pickup, you and the driver walk around the vehicle together to inspect and document its current condition on the Bill of Lading (BOL). This includes every scratch, dent, and mark — both of you note these on the form. The driver takes photos as well. You sign the BOL at pickup, confirming the vehicle's condition. The driver then loads the vehicle onto the trailer, secures it with wheel straps and tie-downs, and you receive a copy of the signed BOL. Keep this document — it is your proof of the vehicle's condition at the time the carrier took possession.",
   "deliveryProcess": "At delivery, the process mirrors pickup. The driver calls ahead with an arrival window. You (or your designated representative) meet the driver and do a second walk-around inspection comparing the vehicle's condition against the pickup BOL. Check every panel, the roof, bumpers, wheels, and glass. If everything matches, sign the delivery BOL. If you spot new damage, note it clearly on the BOL before signing — this notation is critical for filing a claim. If payment is COD (cash on delivery), have the exact amount ready in cash or certified funds as specified in your contract. Once you sign off, the delivery is complete.",
   "insuranceInfo": "Every carrier in our network carries a minimum of $100,000 in cargo insurance, and most carry $250,000 or more. We verify active insurance certificates before dispatching any load. This coverage protects your vehicle against damage during transport — not pre-existing conditions. If damage occurs, the process starts with the BOL: your pickup and delivery condition reports are the evidence. File a claim with the carrier's insurance provider within 48 hours of delivery. We assist with documentation and follow-up, but the claim is between you and the carrier's insurer. For high-value vehicles, you can purchase supplemental coverage through a third-party provider before shipping.",
@@ -105,5 +111,56 @@
     "quote": "Request a quote",
     "track": "Track my shipment",
     "faq": "Full FAQ"
+  },
+  "pricingTiers": {
+    "kicker": "PRICING BY DISTANCE",
+    "title": "What it costs to ship a standard vehicle",
+    "note": "Ranges are for open-trailer transport on a standard sedan or SUV. Enclosed adds 40-60%. Non-running adds $100-$300.",
+    "headerRoute": "Distance",
+    "headerOpen": "Open",
+    "headerEnclosed": "Enclosed",
+    "headerTransit": "Transit",
+    "rows": [
+      {
+        "range": "Under 500 mi",
+        "open": "$400-$700",
+        "enclosed": "$650-$1,100",
+        "transit": "1-3 days"
+      },
+      {
+        "range": "500-1,500 mi",
+        "open": "$650-$1,100",
+        "enclosed": "$1,050-$1,700",
+        "transit": "3-5 days"
+      },
+      {
+        "range": "1,500-3,000 mi",
+        "open": "$1,100-$1,600",
+        "enclosed": "$1,700-$2,600",
+        "transit": "6-10 days"
+      }
+    ]
+  },
+  "seasonalNotes": {
+    "kicker": "SEASONAL PRICING",
+    "title": "Prices move with the calendar",
+    "items": [
+      {
+        "period": "Oct-Jan (snowbird south)",
+        "note": "Northeast→Florida rates climb 15-30%; open carrier capacity tightens"
+      },
+      {
+        "period": "Apr-May (snowbird return)",
+        "note": "Florida→Northeast rates spike 20-35% in April; May eases"
+      },
+      {
+        "period": "Jun-Aug (summer family move)",
+        "note": "West-coast and cross-country lanes see modest 10-15% lift"
+      },
+      {
+        "period": "Feb-Mar & Sep-early Oct",
+        "note": "Cheapest windows — shoulder seasons with open carrier capacity"
+      }
+    ]
   }
 }

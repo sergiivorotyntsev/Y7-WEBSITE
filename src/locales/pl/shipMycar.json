@@ -25,14 +25,20 @@
   },
   "pricingFactors": "Koszt transportu auta zależy od pięciu czynników: odległości, rozmiaru pojazdu, typu lawety, sezonu i stanu auta. Odległość to główny czynnik, ale nie skaluje się liniowo: przejazd 300 mil kosztuje więcej za milę niż 2000 mil, bo koszty załadunku i rozładunku są takie same. Rozmiar auta ma znaczenie — pełnowymiarowy pickup zajmuje prawie dwukrotnie więcej miejsca na lawecie niż sedan, więc mniej pojazdów na transporcie i wyższa cena za miejsce. Laweta otwarta jest tańsza od zamkniętej o 40-60%. Sezonowy popyt mocno wpływa na ceny: od stycznia do marca ruch „snowbird\" na południe podnosi stawki, z Florydy na północ spadają. Auto niesprawne — dopłata $100-300 za wciągarkę lub wózek widłowy.",
   "peakSeason": "Transport aut w USA ma przewidywalne cykle popytu. Styczeń-marzec — szczyt sezonu „snowbird\": emeryci jadą na południe, stawki na Florydę i Arizonę rosną, a przewoźnicy z FL na północ obniżają ceny, by nie wracać pusto. Lato (czerwiec-sierpień) — sezon przeprowadzek: PCS wojskowe, przeprowadzki studentów, przeprowadzki rodzinne podnoszą wolumen w całym kraju. Od września do grudnia popyt stopniowo rośnie: wcześni snowbird ruszają, dilerzy transportują roczne stany magazynowe. Jeśli harmonogram jest elastyczny, kwiecień-maj i koniec października zwykle oferują najlepszy balans ceny i dostępności przewoźników.",
-  "prepChecklist": [
-    "Zabierz wszystkie rzeczy osobiste z wnętrza i bagażnika — przewoźnicy nie ponoszą odpowiedzialności za rzeczy osobiste, a luźne przedmioty mogą uszkodzić wnętrze",
-    "Przekaż kierowcy działający komplet kluczyków — potrzebne do uruchomienia silnika, kierowania i hamowania przy załadunku i pozycjonowaniu na lawecie",
-    "Zostaw około 1/4 baku paliwa — wystarczy do manewrów, ale bez zbędnej wagi",
-    "Wyłącz wszystkie dodatkowe alarmy — syrena na lawecie o 2 w nocy na autostradzie tworzy problemy dla wszystkich",
-    "Udokumentuj istniejące uszkodzenia datowanymi zdjęciami przed odbiorem — rysy, wgniecenia, odpryski. To Twoja baza do wszelkich roszczeń",
-    "Zabezpiecz lub zdejmij elementy zewnętrzne: wysuwane anteny, spojlery, bagażniki rowerowe, boxy dachowe. Jeśli łapie wiatr przy 65 mph — zdejmij"
-  ],
+  "prepChecklist": {
+    "kicker": "PRZED ODBIOREM",
+    "title": "Przygotuj auto dla przewoźnika",
+    "items": [
+      "Umyj nadwozie — kierowca dokładnie opisze rysy na BOL",
+      "Zrób datowane zdjęcia wszystkich paneli i zbliżenia istniejących uszkodzeń",
+      "Wyjmij rzeczy osobiste z kabiny — ubezpieczenie przewoźnika ich nie pokrywa",
+      "Zostaw około 1/4 baku paliwa (nie pełny — waga; nie pusty — kierowca musi manewrować)",
+      "Wyłącz alarmy, transpondery płatnych dróg, przepustki i antywłamy",
+      "Zabezpiecz lub zdejmij elementy zewnętrzne — anteny, bagażniki, pokrowce",
+      "Sprawdź akumulator — rozładowany przy dostawie uniemożliwi zjazd z lawety",
+      "Daj kierowcy działający zapasowy kluczyk; zostaw sobie główny"
+    ]
+  },
   "pickupProcess": "Kierowca zadzwoni 12-24 godziny przed przybyciem z orientacyjnym oknem odbioru (zwykle 1-2 godziny). Przy odbiorze Ty i kierowca obchodzicie pojazd wspólnie, notując stan na Bill of Lading (BOL): każde zadrapanie, wgniecenie, odprysk. Kierowca również robi zdjęcia. Podpisujesz BOL przy odbiorze, potwierdzając stan. Kierowca ładuje auto na lawetę, zabezpiecza pasami i mocowaniami, a Ty otrzymujesz kopię podpisanego BOL. Zachowaj ten dokument — to Twój dowód stanu auta w chwili przejęcia przez przewoźnika.",
   "deliveryProcess": "Przy dostawie proces jest lustrzany. Kierowca dzwoni wcześniej z oknem przyjazdu. Ty (lub Twój przedstawiciel) spotykasz się z kierowcą i robicie drugą inspekcję, porównując stan pojazdu z BOL z odbioru. Sprawdź każdy panel, dach, zderzaki, koła, szyby. Jeśli wszystko się zgadza — podpisz BOL dostawy. Jeśli zauważysz nowe uszkodzenie, zaznacz je wyraźnie na BOL PRZED podpisaniem — ta adnotacja jest kluczowa przy składaniu roszczenia. Jeśli płatność to COD (cash on delivery), miej dokładną kwotę gotówką lub w formie certyfikowanej zgodnie z umową. Po podpisaniu dostawa jest zakończona.",
   "insuranceInfo": "Każdy przewoźnik w naszej sieci posiada ubezpieczenie ładunku na minimum $100,000, większość — $250,000 i więcej. Sprawdzamy aktualne certyfikaty ubezpieczenia przed powierzeniem jakiegokolwiek zlecenia. To pokrycie chroni przed uszkodzeniami w trakcie transportu — nie przed wcześniej istniejącymi wadami. Jeśli uszkodzenie wystąpi, proces zaczyna się od BOL: raporty stanu przy odbiorze i dostawie to Twój dowód. Zgłoś roszczenie do ubezpieczyciela przewoźnika w ciągu 48 godzin od dostawy. Pomagamy z dokumentacją, ale roszczenie jest między Tobą a ubezpieczycielem przewoźnika. Dla aut o wysokiej wartości można wykupić dodatkowe pokrycie u zewnętrznego dostawcy przed wysyłką.",
@@ -105,5 +111,56 @@
     "quote": "Zamów wycenę",
     "track": "Śledź dostawę",
     "faq": "Pełne FAQ"
+  },
+  "pricingTiers": {
+    "kicker": "CENY WEDŁUG DYSTANSU",
+    "title": "Ile kosztuje transport standardowego auta",
+    "note": "Zakresy dla transportu otwartego na standardowym sedanie lub SUV-ie. Zamknięty +40-60%. Niejeżdżące +$100-$300.",
+    "headerRoute": "Dystans",
+    "headerOpen": "Otwarty",
+    "headerEnclosed": "Zamknięty",
+    "headerTransit": "Tranzyt",
+    "rows": [
+      {
+        "range": "Do 500 mil",
+        "open": "$400-$700",
+        "enclosed": "$650-$1,100",
+        "transit": "1-3 dni"
+      },
+      {
+        "range": "500-1,500 mil",
+        "open": "$650-$1,100",
+        "enclosed": "$1,050-$1,700",
+        "transit": "3-5 dni"
+      },
+      {
+        "range": "1,500-3,000 mil",
+        "open": "$1,100-$1,600",
+        "enclosed": "$1,700-$2,600",
+        "transit": "6-10 dni"
+      }
+    ]
+  },
+  "seasonalNotes": {
+    "kicker": "CENY SEZONOWE",
+    "title": "Ceny idą za kalendarzem",
+    "items": [
+      {
+        "period": "Paź-Sty (snowbird na południe)",
+        "note": "Stawki NE→Floryda rosną 15-30%; pojemność otwartych lawet się kurczy"
+      },
+      {
+        "period": "Kwi-Maj (powrót snowbird)",
+        "note": "Floryda→NE skaczą 20-35% w kwietniu; w maju spadają"
+      },
+      {
+        "period": "Cze-Sie (letnie przeprowadzki)",
+        "note": "Trasy zachodnie i transkontynentalne +10-15%"
+      },
+      {
+        "period": "Lut-Mar i Wrz-pocz. Paź",
+        "note": "Najtańsze okna — międzysezon z nadmiarem pojemności"
+      }
+    ]
   }
 }

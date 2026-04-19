@@ -417,6 +417,83 @@
 }
 
 /* =====================================================================
+   OVERNIGHT-T07 — Pricing tiers + seasonal highlights
+   ===================================================================== */
+
+.pricingSection,
+.seasonalSection {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(32px, 5vh, 48px) 24px;
+}
+
+.pricingHeader { text-align: center; margin-bottom: 24px; }
+.pricingKicker {
+  display: inline-block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px; font-weight: 700;
+  color: var(--accent, #993C1D);
+  letter-spacing: 0.14em; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.pricingTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.pricingTableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-lg, 12px);
+}
+.pricingTable {
+  width: 100%; border-collapse: collapse;
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+}
+.pricingTable th {
+  text-align: left; padding: 14px 16px;
+  background: var(--bg-muted, #EFECE6);
+  color: var(--text, #2C2C2A);
+  font-weight: 700;
+  font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.pricingTable td {
+  padding: 14px 16px;
+  border-top: 1px solid var(--border, #e5e0d8);
+  color: var(--text-muted, #888780);
+}
+.pricingRangeCell { font-family: var(--font-serif, Georgia, serif); font-weight: 700; color: var(--text, #2C2C2A); }
+.pricingNote {
+  margin-top: 12px;
+  font-family: var(--font-sans, system-ui);
+  font-size: 12.5px; color: var(--text-muted, #888780);
+  font-style: italic; line-height: 1.55;
+}
+
+.seasonalList { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.seasonalItem {
+  padding: 14px 16px;
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-lg, 12px);
+  display: flex; flex-direction: column; gap: 4px;
+}
+.seasonalPeriod {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1rem; color: var(--accent, #993C1D);
+}
+.seasonalNote {
+  font-family: var(--font-sans, system-ui);
+  font-size: 13.5px; color: var(--text-muted, #888780);
+  line-height: 1.6;
+}
+
+/* =====================================================================
    FINAL CTA STRIP — full-bleed coral gradient
    ===================================================================== */
 
