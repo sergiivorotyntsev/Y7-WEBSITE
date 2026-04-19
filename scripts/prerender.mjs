@@ -195,6 +195,14 @@ const PUBLIC_ROUTES = [
   '/blog/exporter-documentation-checklist',
   '/blog/fmcsa-broker-recordkeeping-2026',
   '/blog/75000-bond-claims-guide',
+  '/blog/copart-iaa-manheim-comparison',
+  '/blog/auction-to-port-cost-breakdown-2026',
+  '/blog/central-dispatch-listing-decoded',
+  '/blog/enclosed-transport-when-to-skip',
+  '/blog/non-running-vehicle-shipping-playbook',
+  '/blog/winter-auto-transport-pricing',
+  '/blog/bill-of-lading-pickup-delivery-guide',
+  '/blog/port-specific-export-newark-houston-savannah',
   // Locale-prefixed translations of the 10 translatable pages.
   // Each is the SAME React component as its English counterpart with
   // i18n.language flipped by LocaleDetector from the URL prefix.

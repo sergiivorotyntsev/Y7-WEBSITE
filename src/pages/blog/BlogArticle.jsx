@@ -16,6 +16,14 @@ import DealerAuctionPickupGuide from './articles/DealerAuctionPickupGuide';
 import ExporterDocumentationChecklist from './articles/ExporterDocumentationChecklist';
 import FMCSABrokerRecordkeeping from './articles/FMCSABrokerRecordkeeping';
 import BondClaimsGuide from './articles/BondClaimsGuide';
+import CopartIaaManheimComparison from './articles/CopartIaaManheimComparison';
+import AuctionToPortCostBreakdown2026 from './articles/AuctionToPortCostBreakdown2026';
+import CentralDispatchListingDecoded from './articles/CentralDispatchListingDecoded';
+import EnclosedTransportWhenToSkip from './articles/EnclosedTransportWhenToSkip';
+import NonRunningVehicleShipping from './articles/NonRunningVehicleShipping';
+import WinterAutoTransportPricing from './articles/WinterAutoTransportPricing';
+import BillOfLadingPickupDelivery from './articles/BillOfLadingPickupDelivery';
+import PortExportNewarkHoustonSavannah from './articles/PortExportNewarkHoustonSavannah';
 
 const ARTICLE_COMPONENTS = {
   'carrier-who-vanished': CarrierWhoVanished,
@@ -26,6 +34,14 @@ const ARTICLE_COMPONENTS = {
   'exporter-documentation-checklist': ExporterDocumentationChecklist,
   'fmcsa-broker-recordkeeping-2026': FMCSABrokerRecordkeeping,
   '75000-bond-claims-guide': BondClaimsGuide,
+  'copart-iaa-manheim-comparison': CopartIaaManheimComparison,
+  'auction-to-port-cost-breakdown-2026': AuctionToPortCostBreakdown2026,
+  'central-dispatch-listing-decoded': CentralDispatchListingDecoded,
+  'enclosed-transport-when-to-skip': EnclosedTransportWhenToSkip,
+  'non-running-vehicle-shipping-playbook': NonRunningVehicleShipping,
+  'winter-auto-transport-pricing': WinterAutoTransportPricing,
+  'bill-of-lading-pickup-delivery-guide': BillOfLadingPickupDelivery,
+  'port-specific-export-newark-houston-savannah': PortExportNewarkHoustonSavannah,
 };
 
 const RELATED_SERVICES = {
@@ -68,6 +84,46 @@ const RELATED_SERVICES = {
     { to: '/car-shipping-cost',     label: 'Car shipping cost guide' },
     { to: '/ship-my-car',           label: 'Ship my car service' },
     { to: '/enclosed-car-shipping', label: 'Enclosed car shipping' },
+  ],
+  'copart-iaa-manheim-comparison': [
+    { to: '/dealers', label: 'Dealer program' },
+    { to: '/copart-shipping', label: 'Copart shipping' },
+    { to: '/manheim-transport', label: 'Manheim transport' },
+  ],
+  'auction-to-port-cost-breakdown-2026': [
+    { to: '/exporters', label: 'Export services' },
+    { to: '/auction-to-port-transport', label: 'Auction-to-port' },
+    { to: '/door-to-port-auto-transport', label: 'Door-to-port' },
+  ],
+  'central-dispatch-listing-decoded': [
+    { to: '/dealers', label: 'Dealer program' },
+    { to: '/ship-my-car', label: 'Ship my car service' },
+    { to: '/state-to-state-car-shipping', label: 'State-to-state' },
+  ],
+  'enclosed-transport-when-to-skip': [
+    { to: '/enclosed-car-shipping', label: 'Enclosed car shipping' },
+    { to: '/open-car-shipping', label: 'Open car shipping' },
+    { to: '/ship-my-car', label: 'Ship my car' },
+  ],
+  'non-running-vehicle-shipping-playbook': [
+    { to: '/salvage-car-shipping', label: 'Salvage car shipping' },
+    { to: '/dealers', label: 'Dealer program' },
+    { to: '/ship-my-car', label: 'Ship my car' },
+  ],
+  'winter-auto-transport-pricing': [
+    { to: '/massachusetts-to-florida-car-shipping', label: 'MA to FL' },
+    { to: '/new-jersey-to-florida-car-shipping', label: 'NJ to FL' },
+    { to: '/ship-my-car', label: 'Ship my car' },
+  ],
+  'bill-of-lading-pickup-delivery-guide': [
+    { to: '/ship-my-car', label: 'Ship my car' },
+    { to: '/what-is-a-bill-of-lading', label: 'BOL deep dive' },
+    { to: '/enclosed-car-shipping', label: 'Enclosed transport' },
+  ],
+  'port-specific-export-newark-houston-savannah': [
+    { to: '/exporters', label: 'Export services' },
+    { to: '/ports/newark', label: 'Port Newark' },
+    { to: '/ports/houston', label: 'Port Houston' },
   ],
 };
 
