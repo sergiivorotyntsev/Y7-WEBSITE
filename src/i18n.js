@@ -14,6 +14,8 @@ import agreementDealerEn from './locales/en/agreement_dealer.json';
 import aboutEn from './locales/en/about.json';
 import faqEn from './locales/en/faq.json';
 import processTimelineEn from './locales/en/processTimeline.json';
+import termsEn from './locales/en/terms.json';
+import privacyEn from './locales/en/privacy.json';
 
 // Russian
 import commonRu from './locales/ru/common.json';
@@ -61,18 +63,22 @@ const resources = {
   en: {
     common: commonEn, home: homeEn, quote: quoteEn, services: servicesEn,
     dealers: dealersEn, exporters: exportersEn, shipMycar: shipMycarEn, agreement: agreementEn, agreement_dealer: agreementDealerEn, about: aboutEn, faq: faqEn, processTimeline: processTimelineEn,
+    terms: termsEn, privacy: privacyEn,
   },
   ru: {
     common: commonRu, home: homeRu, quote: quoteRu, services: servicesRu,
     dealers: dealersRu, exporters: exportersRu, shipMycar: shipMycarRu, agreement: agreementRu, agreement_dealer: agreementDealerRu, about: aboutRu, faq: faqRu, processTimeline: processTimelineRu,
+    terms: termsEn, privacy: privacyEn,
   },
   pl: {
     common: commonPl, home: homePl, quote: quotePl, services: servicesPl,
     dealers: dealersPl, exporters: exportersPl, shipMycar: shipMycarPl, agreement: agreementPl, agreement_dealer: agreementDealerPl, about: aboutPl, faq: faqPl, processTimeline: processTimelinePl,
+    terms: termsEn, privacy: privacyEn,
   },
   ua: {
     common: commonUa, home: homeUa, quote: quoteUa, services: servicesUa,
     dealers: dealersUa, exporters: exportersUa, shipMycar: shipMycarUa, agreement: agreementUa, agreement_dealer: agreementDealerUa, about: aboutUa, faq: faqUa, processTimeline: processTimelineUa,
+    terms: termsEn, privacy: privacyEn,
   },
 };
 

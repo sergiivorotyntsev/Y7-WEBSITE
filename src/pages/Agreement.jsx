@@ -6,7 +6,53 @@ import { apiPost, apiGet } from '../hooks/useApi';
 import { colors, fonts, button as btnStyles } from '../theme';
 import { trackEvent } from '../utils/analytics';
 
-const SECTION_IDS = ['service', 'bol', 'payment', 'insurance', 'cancellation', 'customer', 'delays', 'liability'];
+const LEGACY_SECTION_IDS = ['service', 'bol', 'payment', 'insurance', 'cancellation', 'customer', 'delays', 'liability'];
+const LEGACY_HIGHLIGHTS = new Set(['bol', 'payment', 'customer']);
+const MAX_V2_SECTIONS = 20;
+
+// Builds a unified sections array from either the v2.0 shape (section1..sectionN
+// with optional bullets/tiers) or the legacy v1.1 shape (sections.service,
+// sections.bol, ...). Returning null for a shape means the namespace hasn't
+// loaded yet; an empty array means loaded but nothing to show.
+function buildSections(bundle) {
+  if (!bundle || typeof bundle !== 'object') return [];
+  // v2.0 shape
+  if (bundle.section1 && typeof bundle.section1 === 'object') {
+    const out = [];
+    for (let i = 1; i <= MAX_V2_SECTIONS; i++) {
+      const sec = bundle[`section${i}`];
+      if (!sec || typeof sec !== 'object' || !sec.title) break;
+      out.push({
+        id: `s${i}`,
+        title: sec.title,
+        body: sec.body || '',
+        bullets: Array.isArray(sec.bullets) ? sec.bullets : null,
+        tiers: Array.isArray(sec.tiers) ? sec.tiers : null,
+        feeIncludes: sec.feeIncludes || null,
+        highlight: i === 5, // Section 5 (Limitation of Liability) gets the emphasis box
+        index: i,
+      });
+    }
+    return out;
+  }
+  // Legacy v1.1 shape
+  const legacy = bundle.sections;
+  if (legacy && typeof legacy === 'object') {
+    return LEGACY_SECTION_IDS
+      .filter(id => legacy[id])
+      .map((id, i) => ({
+        id,
+        title: legacy[id].title,
+        body: legacy[id].body,
+        bullets: null,
+        tiers: null,
+        feeIncludes: null,
+        highlight: LEGACY_HIGHLIGHTS.has(id),
+        index: i + 1,
+      }));
+  }
+  return [];
+}
 
 // Map customers.customer_type to the agreement_type string the backend
 // accepts in sign_agreement + get_agreement_template. Mirrors the
@@ -211,7 +257,10 @@ export default function Agreement() {
   const navigate = useNavigate();
   const { user, checkAuth } = useAuth();
   const agreementNs = user?.customer_type === 'dealer' ? 'agreement_dealer' : 'agreement';
-  const { t } = useTranslation(agreementNs);
+  const { t, i18n } = useTranslation(agreementNs);
+  const agreementBundle = i18n.getResourceBundle(i18n.language, agreementNs)
+    || i18n.getResourceBundle('en', agreementNs)
+    || {};
   const scrollRef = useRef(null);
   const sectionRefs = useRef({});
   const agreementIdRef = useRef(null);
@@ -280,6 +329,8 @@ export default function Agreement() {
       .catch(() => { setError(t('errors.orderNotFound')); setLoading(false); });
   }, [orderId, t, isCustomerLevel, resolvedCustomerId]);
 
+  const sections = buildSections(agreementBundle);
+
   // Scroll tracking
   const handleScroll = useCallback(() => {
     const container = scrollRef.current;
@@ -288,19 +339,19 @@ export default function Agreement() {
     const threshold = containerRect.top + containerRect.height * 0.6;
 
     const newRead = new Set(readSections);
-    SECTION_IDS.forEach(id => {
-      const el = sectionRefs.current[id];
+    sections.forEach(sec => {
+      const el = sectionRefs.current[sec.id];
       if (el) {
         const rect = el.getBoundingClientRect();
         if (rect.bottom < threshold) {
-          newRead.add(id);
+          newRead.add(sec.id);
         }
       }
     });
     if (newRead.size !== readSections.size) {
       setReadSections(newRead);
     }
-  }, [readSections]);
+  }, [readSections, sections]);
 
   const allChecked = checks.every(Boolean);
   const canSign = allChecked && signerName.trim().length >= 2;
@@ -319,7 +370,7 @@ export default function Agreement() {
         checkboxes: checks,
         signed_at: new Date().toISOString(),
         user_agent: navigator.userAgent,
-        lang: 'en',
+        lang: i18n.language || 'en',
         agreement_type: getAgreementType(user?.customer_type),
       };
       // Send the version that the user actually saw — recorded on the
@@ -393,23 +444,16 @@ export default function Agreement() {
     );
   }
 
-  const sections = [
-    { id: 'service', title: t('sections.service.title'), body: t('sections.service.body'), highlight: false },
-    { id: 'bol', title: t('sections.bol.title'), body: t('sections.bol.body'), highlight: true },
-    { id: 'payment', title: t('sections.payment.title'), body: t('sections.payment.body'), highlight: true },
-    { id: 'insurance', title: t('sections.insurance.title'), body: t('sections.insurance.body'), highlight: false },
-    { id: 'cancellation', title: t('sections.cancellation.title'), body: t('sections.cancellation.body'), highlight: false },
-    { id: 'customer', title: t('sections.customer.title'), body: t('sections.customer.body'), highlight: true },
-    { id: 'delays', title: t('sections.delays.title'), body: t('sections.delays.body'), highlight: false },
-    { id: 'liability', title: t('sections.liability.title'), body: t('sections.liability.body'), highlight: false },
-  ];
-
   const checkboxLabels = [
     t('checkboxes.bol'),
     t('checkboxes.payment'),
     t('checkboxes.broker'),
     t('checkboxes.cancellation'),
   ];
+
+  const agreementVersion = agreementBundle.version || '';
+  const agreementEffective = agreementBundle.effectiveDate || '';
+  const agreementIntro = agreementBundle.intro || '';
 
   return (
     <div style={{ maxWidth: '760px', margin: '0 auto', padding: '48px 24px 80px' }}>
@@ -423,6 +467,19 @@ export default function Agreement() {
       }}>
         {t('title')}
       </h1>
+      {(agreementVersion || agreementEffective) && (
+        <div style={{
+          fontFamily: fonts.mono,
+          fontSize: '12px',
+          color: colors.textMuted,
+          marginBottom: '14px',
+          letterSpacing: '0.02em',
+        }}>
+          {agreementVersion && `Version ${agreementVersion}`}
+          {agreementVersion && agreementEffective && ' · '}
+          {agreementEffective && `Effective ${agreementEffective}`}
+        </div>
+      )}
       {order && (
         <div style={{
           fontFamily: fonts.sans,
@@ -467,7 +524,10 @@ export default function Agreement() {
           marginBottom: '28px',
         }}
       >
-        {sections.map((sec, i) => (
+        {agreementIntro && (
+          <p style={{ ...sectionBody, marginBottom: '24px' }}>{agreementIntro}</p>
+        )}
+        {sections.map((sec) => (
           <div
             key={sec.id}
             ref={el => { sectionRefs.current[sec.id] = el; }}
@@ -475,9 +535,22 @@ export default function Agreement() {
           >
             <div style={sectionTitle}>
               {readSections.has(sec.id) ? <CheckIcon /> : <PendingIcon />}
-              <span>Section {i + 1}: {sec.title}</span>
+              <span>{sec.title}</span>
             </div>
-            <p style={sectionBody}>{sec.body}</p>
+            {sec.body && <p style={{ ...sectionBody, whiteSpace: 'pre-line' }}>{sec.body}</p>}
+            {sec.tiers && (
+              <ul style={{ ...sectionBody, paddingLeft: '20px', marginTop: '8px' }}>
+                {sec.tiers.map((t, idx) => <li key={idx} style={{ marginBottom: '6px' }}>{t}</li>)}
+              </ul>
+            )}
+            {sec.feeIncludes && (
+              <p style={{ ...sectionBody, marginTop: '8px' }}>{sec.feeIncludes}</p>
+            )}
+            {sec.bullets && (
+              <ul style={{ ...sectionBody, paddingLeft: '20px', marginTop: '8px' }}>
+                {sec.bullets.map((b, idx) => <li key={idx} style={{ marginBottom: '6px' }}>{b}</li>)}
+              </ul>
+            )}
           </div>
         ))}
       </div>
