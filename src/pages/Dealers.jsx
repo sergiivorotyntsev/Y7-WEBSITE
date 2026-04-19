@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
+import MoneyPageSchema from '../components/MoneyPageSchema';
 import styles from './Dealers.module.css';
 import btn from '../styles/buttons.module.css';
 
@@ -16,6 +17,7 @@ export default function Dealers() {
   return (
     <div className={styles.wrap}>
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Dealers',url:'/dealers'}]} />
+      <MoneyPageSchema pageType="dealers" />
       <PageMeta title={tCommon('meta.dealersTitle')} description={tCommon('meta.dealersDescription')} path="/dealers" />
 
       {/* Hero */}

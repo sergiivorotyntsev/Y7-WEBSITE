@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
+import MoneyPageSchema from '../components/MoneyPageSchema';
 import { CheckIcon } from '../components/icons';
 import { apiPost } from '../hooks/useApi';
 import PhoneInput, { getCleanPhone, isValidPhone } from '../components/PhoneInput';
@@ -76,6 +77,7 @@ export default function Exporters() {
   return (
     <div className={styles.wrap}>
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Exporters',url:'/exporters'}]} />
+      <MoneyPageSchema pageType="exporters" />
       <PageMeta title={tCommon('meta.exportersTitle')} description={tCommon('meta.exportersDescription')} path="/exporters" />
 
       {/* Hero */}

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import HreflangTags from '../components/HreflangTags';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
+import MoneyPageSchema from '../components/MoneyPageSchema';
 import QuoteForm from '../components/QuoteForm';
 import TransportComparison from '../components/TransportComparison';
 import ProcessTimeline from '../components/ProcessTimeline';
@@ -38,6 +39,7 @@ export default function ShipMyCar() {
   return (
     <div className={styles.page}>
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Ship My Car',url:'/ship-my-car'}]} />
+      <MoneyPageSchema pageType="shipMyCar" />
       <PageMeta title={tCommon('meta.shipMyCarTitle')} description={tCommon('meta.shipMyCarDescription')} path="/ship-my-car" />
       <HreflangTags currentPath="/ship-my-car" hasPolishVersion hasUkrainianVersion hasRussianVersion />
 

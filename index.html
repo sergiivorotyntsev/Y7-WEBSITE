@@ -26,23 +26,43 @@
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
+      "@id": "https://www.y7agency.com/#organization",
       "name": "Y7 Logistics",
       "legalName": "Y7 Consulting Inc",
       "url": "https://www.y7agency.com",
+      "logo": "https://www.y7agency.com/y7-logo-512.png",
+      "image": "https://www.y7agency.com/y7-og-image.png",
       "email": "info@y7agency.com",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Newton",
         "addressRegion": "MA",
+        "postalCode": "02458",
         "addressCountry": "US"
       },
-      "description": "Licensed auto transport broker. Nationwide vehicle shipping and port delivery.",
+      "description": "Licensed FMCSA auto transport broker. Nationwide vehicle shipping, auction pickup, and port delivery.",
       "areaServed": {
         "@type": "Country",
         "name": "United States"
       },
       "serviceType": ["Auto Transport", "Vehicle Shipping", "Port Delivery", "Auction Pickup"],
       "priceRange": "$$",
+      "identifier": [
+        { "@type": "PropertyValue", "name": "USDOT", "value": "4427359" },
+        { "@type": "PropertyValue", "name": "MC", "value": "1741537" }
+      ],
+      "sameAs": [
+        "https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=1741537",
+        "https://www.centraldispatch.com"
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "email": "info@y7agency.com",
+          "availableLanguage": ["English", "Russian", "Ukrainian", "Polish"]
+        }
+      ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Auto Transport Services",
