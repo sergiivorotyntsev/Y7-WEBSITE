@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import MoneyPageSchema from '../components/MoneyPageSchema';
+import ContextualCTA from '../components/ContextualCTA';
 import { CheckIcon } from '../components/icons';
 import { apiPost } from '../hooks/useApi';
 import PhoneInput, { getCleanPhone, isValidPhone } from '../components/PhoneInput';
@@ -19,6 +20,12 @@ export default function Exporters() {
   const valuePoints = t('value.points', { returnObjects: true });
   const portList = t('ports.list', { returnObjects: true });
   const volumes = t('form.volumes', { returnObjects: true });
+  const exportDocs = t('exportDocs', { returnObjects: true });
+  const destinations = t('destinations', { returnObjects: true });
+  const exporterFaq = t('exporterFaq', { returnObjects: true });
+  const docItems = exportDocs && exportDocs.items ? exportDocs.items : [];
+  const destItems = destinations && destinations.items ? destinations.items : [];
+  const faqItems = exporterFaq && exporterFaq.items ? exporterFaq.items : [];
 
   const [form, setForm] = useState({
     company_name: '', contact_name: '', email: '', phone: '',
@@ -250,6 +257,69 @@ export default function Exporters() {
           </>
         )}
       </div>
+
+      {/* Export documents checklist */}
+      {exportDocs && docItems.length > 0 && (
+        <section className={styles.docsSection}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionMicro}>&#9670; {exportDocs.kicker}</span>
+            <h2 className={styles.sectionHeading}>{exportDocs.title}</h2>
+          </div>
+          <ul className={styles.docsList}>
+            {docItems.map((item, i) => (
+              <li key={i} className={styles.docsItem}>
+                <span className={styles.docsCheck} aria-hidden="true">&#10003;</span>
+                <div>
+                  <strong className={styles.docsTitle}>{item.title}</strong>
+                  <span className={styles.docsDesc}>{item.desc}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* Destinations */}
+      {destinations && destItems.length > 0 && (
+        <section className={styles.destinationsSection}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionMicro}>&#9670; {destinations.kicker}</span>
+            <h2 className={styles.sectionHeading}>{destinations.title}</h2>
+          </div>
+          <div className={styles.destinationsGrid}>
+            {destItems.map((item, i) => (
+              <div key={i} className={styles.destItem}>
+                <span className={styles.destCountry}>{item.country}</span>
+                <span className={styles.destNotes}>{item.notes}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Contextual CTA to dealers */}
+      <ContextualCTA variant="card" to="/dealers" intlKey="dealers" tone="teal" />
+
+      {/* Exporter FAQ */}
+      {exporterFaq && faqItems.length > 0 && (
+        <section className={styles.faqSection}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionMicro}>&#9670; {exporterFaq.kicker}</span>
+            <h2 className={styles.sectionHeading}>{exporterFaq.title}</h2>
+          </div>
+          <div className={styles.faqList}>
+            {faqItems.map((item, i) => (
+              <details key={i} className={styles.faqItem}>
+                <summary className={styles.faqSummary}>
+                  <span>{item.q}</span>
+                  <span className={styles.faqChevron} aria-hidden="true">&#9662;</span>
+                </summary>
+                <p className={styles.faqAnswer}>{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Cross-links */}
       <div className={styles.crosslinks}>

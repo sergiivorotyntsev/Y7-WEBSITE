@@ -117,5 +117,119 @@
     "deepDive": "Przewodnik door-to-port",
     "auction": "Z aukcji do portu",
     "dealers": "Dla dilerów"
+  },
+  "exportDocs": {
+    "kicker": "DOKUMENTY EKSPORTOWE",
+    "title": "Co magazyn portu wymaga przy przekazaniu",
+    "items": [
+      {
+        "title": "Bill of Sale / pokwitowanie aukcji",
+        "desc": "Potwierdzenie, że jesteś właścicielem pojazdu w chwili transakcji."
+      },
+      {
+        "title": "Tytuł (oryginał, nie kopia)",
+        "desc": "Clean title, salvage title lub ITV w zależności od zasad importu kraju docelowego."
+      },
+      {
+        "title": "Gate Pass (dla aut z aukcji)",
+        "desc": "Wydawany przez aukcję po zaksięgowaniu płatności. Koordynujemy z Copart/IAAI/Manheim."
+      },
+      {
+        "title": "Bill of Lading (BOL)",
+        "desc": "Protokół stanu podpisany przy odbiorze i dostawie. Zdjęcia w portalu."
+      },
+      {
+        "title": "Ocean Booking Number",
+        "desc": "Od Twojego agenta frachtowego. Magazyn potrzebuje tego do przypisania pojazdu do statku."
+      },
+      {
+        "title": "EIN / Tax ID odbiorcy",
+        "desc": "EIN USA dla eksporterów krajowych, zagraniczny tax ID dla odbiorców zagranicznych."
+      }
+    ]
+  },
+  "destinations": {
+    "kicker": "NAJCZĘSTSZE DESTYNACJE",
+    "title": "Dokąd wysyłamy najczęściej",
+    "items": [
+      {
+        "country": "Ukraina",
+        "notes": "Przeładunek Hamburg lub Kłajpeda; Newark główne źródło"
+      },
+      {
+        "country": "Polska",
+        "notes": "Gdynia bezpośrednio; Newark i Baltimore"
+      },
+      {
+        "country": "Gruzja",
+        "notes": "Poti lub przez Mersin; Baltimore + Jacksonville"
+      },
+      {
+        "country": "Nigeria",
+        "notes": "Lagos; Newark i Houston"
+      },
+      {
+        "country": "Dominikana",
+        "notes": "Rio Haina; Houston, Jacksonville, Miami"
+      },
+      {
+        "country": "ZEA",
+        "notes": "Jebel Ali; Newark, Baltimore, LA"
+      },
+      {
+        "country": "Niemcy",
+        "notes": "Bremerhaven; Newark + Baltimore"
+      },
+      {
+        "country": "Chile",
+        "notes": "San Antonio; LA bezpośrednio"
+      }
+    ]
+  },
+  "exporterFaq": {
+    "kicker": "FAQ EKSPORTERA",
+    "title": "Operacyjne pytania eksporterów",
+    "items": [
+      {
+        "q": "Jak szybko auto trafia z aukcji do portu?",
+        "a": "Standardowo 3-7 dni od płatności na aukcji do dotarcia do magazynu portu. Gate pass Copart zwykle 1-2 dni robocze, IAAI często tego samego dnia, Manheim 2-3 dni. Transport zależy od trasy: Dallas IAAI → Port Houston często 1 dzień, Chicago Copart → Port Newark 3-4 dni."
+      },
+      {
+        "q": "Obsługujecie też fracht morski?",
+        "a": "Nie — jesteśmy licencjonowanym brokerem FMCSA obsługującym odcinek lądowy (aukcja → magazyn portu). Twój agent frachtowy przejmuje dokumentację celną, rezerwację statku i załadunek. Dostarczamy auto do wskazanego magazynu z podpisanym BOL."
+      },
+      {
+        "q": "Czy można przytrzymać auto, jeśli statek nie jest gotowy?",
+        "a": "Składowaniem zajmuje się magazyn portu. Większość oferuje 5-7 dni darmowego składowania wliczając dzień dostarczenia, potem stawka dzienna ($8-$25/dzień)."
+      },
+      {
+        "q": "Co jeśli gate pass się opóźnia?",
+        "a": "Przewoźnik czeka lub zostaje przekierowany. Jeśli Copart opóźnia wydanie gate passa z powodu księgowania płatności u siebie, nie wysyłamy auta do czasu gotowości — dry run kosztuje $100-$200. Statusy w email i Telegram."
+      },
+      {
+        "q": "Pracujecie z załadunkiem RoRo i kontenerowym?",
+        "a": "Nasz serwis kończy się na magazynie portu; decyzja RoRo vs kontener należy do agenta frachtowego. Większość eksportu to RoRo, ale kontenery są częste przy wielopojazdowych wysyłkach i kierunkach, gdzie RoRo pływa rzadko."
+      },
+      {
+        "q": "Które porty USA obsługujecie?",
+        "a": "Wszystkie główne porty eksportu aut: Newark (Elizabeth), Baltimore, Jacksonville, Savannah, Houston, Los Angeles/Long Beach. Mamy ugruntowane relacje z głównymi operatorami magazynów w każdym z nich."
+      },
+      {
+        "q": "Jak z niejeżdżącymi autami do eksportu?",
+        "a": "Tak samo jak krajowe inop — dopłata $100-$300 ponad stawkę bazową, w zależności od tego czy wystarczy wciągarka czy potrzebny forklift."
+      },
+      {
+        "q": "Jakie ubezpieczenie na odcinku lądowym?",
+        "a": "Cargo insurance przewoźnika ($100,000-$250,000 otwarte / $250,000-$500,000 zamknięte). Po podpisaniu BOL przez magazyn odpowiedzialność przechodzi na niego, potem na przewoźnika morskiego na osobnej polisie marine."
+      },
+      {
+        "q": "Można odbierać nie tylko z aukcji?",
+        "a": "Tak. Schemat eksportowy działa identycznie dla Copart, IAAI, Manheim, dealera, domu, warsztatu — różni się tylko krok z gate pass (aukcje go wymagają, inni nie)."
+      },
+      {
+        "q": "Jaki model cenowy?",
+        "a": "Cost-plus, przejrzysty. Widzisz stawkę przewoźnika z Central Dispatch plus stałą opłatę serwisową ($150-$250 w zależności od złożoności trasy i pracy z gate pass). Dla stałych eksporterów budujemy indywidualny rate card."
+      }
+    ]
   }
 }

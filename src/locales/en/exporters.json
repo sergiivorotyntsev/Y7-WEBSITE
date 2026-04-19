@@ -117,5 +117,119 @@
     "deepDive": "Door-to-port guide",
     "auction": "Auction to port transport",
     "dealers": "For dealers"
+  },
+  "exportDocs": {
+    "kicker": "EXPORT DOCUMENTS",
+    "title": "What the port warehouse expects at drop-off",
+    "items": [
+      {
+        "title": "Bill of Sale / Auction Buyer's Receipt",
+        "desc": "Proof that you are the vehicle's owner of record."
+      },
+      {
+        "title": "Title (original, not copy)",
+        "desc": "Clean title, salvage title, or ITV depending on destination country's import rules."
+      },
+      {
+        "title": "Gate Pass (for auction-origin vehicles)",
+        "desc": "Issued by the auction after payment clears. We coordinate this with Copart/IAAI/Manheim."
+      },
+      {
+        "title": "Bill of Lading (BOL)",
+        "desc": "Condition record signed at pickup and delivery. Photo attached to your portal."
+      },
+      {
+        "title": "Ocean Booking Number",
+        "desc": "From your freight forwarder. The warehouse needs it to log your vehicle against the vessel."
+      },
+      {
+        "title": "EIN / Consignee Tax ID (exporters)",
+        "desc": "US EIN for domestic exporters, foreign tax ID for international consignees."
+      }
+    ]
+  },
+  "destinations": {
+    "kicker": "COMMON DESTINATIONS",
+    "title": "Where we send vehicles most often",
+    "items": [
+      {
+        "country": "Ukraine",
+        "notes": "Hamburg or Klaipeda transshipment; Newark primary origin"
+      },
+      {
+        "country": "Poland",
+        "notes": "Gdynia direct; Newark and Baltimore origins"
+      },
+      {
+        "country": "Georgia",
+        "notes": "Poti direct or via Mersin; Baltimore + Jacksonville origins"
+      },
+      {
+        "country": "Nigeria",
+        "notes": "Lagos; Newark and Houston origins"
+      },
+      {
+        "country": "Dominican Republic",
+        "notes": "Rio Haina; Houston, Jacksonville, Miami origins"
+      },
+      {
+        "country": "United Arab Emirates",
+        "notes": "Jebel Ali; Newark, Baltimore, LA origins"
+      },
+      {
+        "country": "Germany",
+        "notes": "Bremerhaven direct; Newark + Baltimore primary"
+      },
+      {
+        "country": "Chile",
+        "notes": "San Antonio; LA direct preferred"
+      }
+    ]
+  },
+  "exporterFaq": {
+    "kicker": "EXPORTER FAQ",
+    "title": "Operational questions exporters ask us",
+    "items": [
+      {
+        "q": "How fast do you move a vehicle from auction to port?",
+        "a": "Standard turnaround is 3-7 days from auction payment to port warehouse arrival. Copart gate passes typically clear in 1-2 business days; IAAI often same-day; Manheim 2-3 days. Transport depends on the lane — a Dallas IAAI to Port Houston is often 1 day; a Chicago Copart to Port Newark runs 3-4 days."
+      },
+      {
+        "q": "Do you handle the freight forwarding too?",
+        "a": "No — we are a licensed FMCSA broker handling the domestic leg (auction → port warehouse). Your freight forwarder takes over for customs documentation, ocean booking, and vessel loading. We deliver the vehicle to their designated warehouse with a signed BOL and their booking number on the paperwork."
+      },
+      {
+        "q": "Can you hold a vehicle if the vessel isn't ready?",
+        "a": "The port warehouse handles storage after drop-off. Most offer 5-7 days free storage inclusive of the drop-off day, then charge daily rates ($8-$25/day depending on the port). We time drop-off to your vessel window so storage fees are minimized."
+      },
+      {
+        "q": "What happens if the gate pass is delayed?",
+        "a": "Carrier holds or re-dispatches. If a Copart gate pass is delayed by payment clearing on their side, we don't dispatch until the pass is ready — dry runs cost $100-$200 and nobody needs that. We push status updates via email and Telegram so you know exactly where your vehicle sits in the pipeline."
+      },
+      {
+        "q": "Do you handle containerized vs RoRo?",
+        "a": "Our service stops at the port warehouse; whether your freight forwarder loads RoRo or books a container is their decision. Most of our exporter flow is RoRo (roll-on/roll-off), but container loads are common for multi-vehicle shipments and for destinations where RoRo vessels don't call frequently."
+      },
+      {
+        "q": "Which US ports do you cover?",
+        "a": "All major vehicle-export ports: Newark (Elizabeth), Baltimore, Jacksonville, Savannah, Houston, Los Angeles/Long Beach. We have established relationships with the primary port warehouse operators at each facility, which matters when a gate pass needs a last-minute swap or a warehouse slot has to be re-booked."
+      },
+      {
+        "q": "How do you handle inoperable export vehicles?",
+        "a": "Same as domestic inop — add $100-$300 above base rate depending on whether a standard winch works or forklift loading is required. Disclose condition honestly at booking; arriving at the auction with a vehicle the dispatched carrier can't load means a 2-5 day delay and a dry-run fee."
+      },
+      {
+        "q": "What insurance covers the domestic leg?",
+        "a": "The carrier's cargo insurance ($100,000-$250,000 open / $250,000-$500,000 enclosed). Once the warehouse signs the BOL, custody transfers to the warehouse, then later to the ocean carrier under a separate marine policy. We don't sell or underwrite marine cargo insurance — that's your freight forwarder's domain."
+      },
+      {
+        "q": "Can you pick up from a dealer or residence, not just auctions?",
+        "a": "Yes. The export flow runs the same whether origin is a Copart yard, an IAAI lot, a Manheim dealer auction, a private dealer, a residence, or a body shop. Routing is identical; only the gate pass step changes (auctions need it; dealers/residences don't)."
+      },
+      {
+        "q": "What's your pricing model?",
+        "a": "Cost-plus transparent. You see the carrier rate from Central Dispatch plus a flat service fee ($150-$250 depending on lane complexity and gate pass work). No hidden markup, no mystery percentage. For recurring exporter accounts we can build a custom rate card based on your typical auction → port pairs."
+      }
+    ]
   }
 }
