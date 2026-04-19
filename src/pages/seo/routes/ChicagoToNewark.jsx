@@ -10,6 +10,8 @@ export default function ChicagoToNewark() {
           'Ship vehicles from Chicago area to Port Newark. Auction pickup, dealer transport, export delivery. ~800 miles, 3-4 days.',
         path: '/chicago-to-port-newark-car-shipping',
       }}
+      primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
+      secondaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
       heading="Chicago to Port Newark Car Shipping"
       intro="The Chicago-to-Port Newark route serves exporters, dealers, and individuals who need vehicles shipped from the Midwest to the East Coast's busiest export terminal. At approximately 800 miles via I-80/I-76, this corridor offers fast transit times and competitive pricing."
       whenNeeded={[

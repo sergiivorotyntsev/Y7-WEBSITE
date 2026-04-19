@@ -10,6 +10,8 @@ export default function StateToState() {
           'State to state car shipping across all 50 states. Licensed FMCSA broker, verified carriers, transparent pricing. Quote in 1 hour.',
         path: '/state-to-state-car-shipping',
       }}
+      primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
+      secondaryCTA={{ intlKey: 'dealers', to: '/dealers', tone: 'teal' }}
       heading="State-to-State Car Shipping — Interstate Auto Transport"
       intro="Moving a vehicle across state lines is federally regulated commerce. It requires a licensed broker, a carrier with interstate operating authority, and a paper trail at both ends. Y7 Logistics is an FMCSA-licensed broker (MC #1741537, USDOT #4427359) based in Newton, MA. We coordinate vehicle transport between all 50 US states using a vetted network of 100+ carriers on Central Dispatch. We do not own trucks — our value is carrier vetting, dispatch expertise, and a single point of contact through the whole process."
       whenNeeded={[

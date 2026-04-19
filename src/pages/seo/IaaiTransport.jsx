@@ -18,6 +18,8 @@ export default function IaaiTransport() {
           'Vehicle transport from IAA (Insurance Auto Auctions) locations nationwide. Gate pass coordination, salvage vehicles, fast pickup. Y7 Logistics.',
         path: '/iaai-transport',
       }}
+      primaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
+      secondaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
       heading="IAA Transport — Ship Your Vehicle from IAA Auctions"
       intro="IAA (formerly Insurance Auto Auctions) is one of the largest salvage vehicle auction platforms. Y7 Logistics picks up from IAA yards across the US with efficient gate pass coordination."
       whenNeeded={[

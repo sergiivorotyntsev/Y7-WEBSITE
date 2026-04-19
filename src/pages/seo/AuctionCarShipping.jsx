@@ -19,6 +19,8 @@ export default function AuctionCarShipping() {
           'Ship vehicles from Copart, IAAI, Manheim, and other US auto auctions. Gate pass coordination, storage fee prevention. Licensed broker Y7 Logistics.',
         path: '/auction-car-shipping',
       }}
+      primaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
+      secondaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
       heading="Auction Car Shipping — Pickup from Any US Auction"
       intro="Won a vehicle at auction? Y7 Logistics coordinates pickup from all major US auto auctions — Copart, IAAI, Manheim, and independent auctions. We handle gate passes, timing, and transport to prevent costly storage fees."
       whenNeeded={[

@@ -11,6 +11,8 @@ export default function AuctionToPort() {
           'Auction to port vehicle transport with gate pass coordination. Copart, IAAI, Manheim to Port Newark, Houston, Savannah. Licensed FMCSA broker.',
         path: '/auction-to-port-transport',
       }}
+      primaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
+      secondaryCTA={{ intlKey: 'dealers', to: '/dealers', tone: 'teal' }}
       heading="Auction to Port Transport — Direct from Auction to Export Port"
       intro="Auction-to-port is the defining workflow of the vehicle export business. You win a car at Copart, IAAI, or Manheim; it needs to be on a vessel within days; the clock is running on auction storage fees on one end and vessel cut-off on the other; and somewhere between the two, a gate pass has to be on file at the terminal or the whole chain breaks. Y7 Logistics (MC #1741537 / USDOT #4427359) is the licensed FMCSA broker that handles the domestic leg — from auction pickup to port warehouse — and hands the vehicle to your freight forwarder ready for vessel loading."
       whenNeeded={[

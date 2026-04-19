@@ -40,6 +40,8 @@ export default function EVAutoTransport() {
         description: 'Expert electric vehicle transport for Tesla, Rivian, Lucid, BMW i-Series, Porsche Taycan, Ford Lightning & more. Licensed broker, specialized EV carriers, nationwide.',
         path: '/ev-auto-transport',
       }}
+      primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
+      secondaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
       heading="Electric Vehicle Transport — Every EV Safely Shipped"
       intro="Electric vehicles are not like their ICE counterparts. Heavier battery packs shift weight distribution, lower ground clearance limits trailer compatibility, each manufacturer has different transport mode settings, and battery state-of-charge must be carefully managed throughout transit. Y7 Logistics works exclusively with carriers who have documented EV transport experience — because the carrier who ships sedans all day may not know how to safely load a 9,600-pound Hummer EV."
       faqs={[

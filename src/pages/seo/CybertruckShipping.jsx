@@ -27,6 +27,8 @@ export default function CybertruckShipping() {
         description: 'Professional Cybertruck shipping service. Specialized heavy-duty carriers, stainless steel safe handling, enclosed options available. Licensed broker, nationwide delivery.',
         path: '/cybertruck-shipping',
       }}
+      primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
+      secondaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
       heading="Cybertruck Shipping — Specialized Transport for the Heaviest Tesla"
       intro="The Tesla Cybertruck presents unique shipping challenges that most auto transport carriers aren't equipped to handle. At over 6,600 pounds, 18.6 feet long, and clad in 3mm cold-rolled stainless steel, it exceeds the weight and size capacity of standard carrier slots. Its angular body shape places tie-down points in non-traditional locations, and the brushed stainless finish shows every scratch — making careful handling not optional but essential. Y7 Logistics matches your Cybertruck with heavy-duty carriers who have documented experience transporting this specific vehicle."
       faqs={[

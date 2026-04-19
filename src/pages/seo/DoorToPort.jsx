@@ -19,6 +19,8 @@ export default function DoorToPort() {
           'Transport vehicles from anywhere in the US to major export ports. Newark, Houston, Savannah, LA, Baltimore, Jacksonville. Y7 Logistics.',
         path: '/door-to-port-auto-transport',
       }}
+      primaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
+      secondaryCTA={{ intlKey: 'dealers', to: '/dealers', tone: 'teal' }}
       heading="Door-to-Port Auto Transport — Vehicle Delivery to US Ports"
       intro="Y7 Logistics delivers vehicles from any US location to major export ports. Whether you're an exporter shipping overseas or need port-side delivery for any reason, we coordinate the entire domestic leg — from your door to the port warehouse."
       whenNeeded={[

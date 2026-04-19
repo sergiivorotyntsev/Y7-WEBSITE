@@ -11,6 +11,8 @@ export default function NewJerseyToFlorida() {
           'NJ to FL auto transport. Port Newark area to Miami, Orlando, Tampa. Dealer volume pricing. Licensed FMCSA broker MC #1741537.',
         path: '/new-jersey-to-florida-car-shipping',
       }}
+      primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
+      secondaryCTA={{ intlKey: 'dealers', to: '/dealers', tone: 'teal' }}
       heading="New Jersey to Florida Car Shipping"
       intro="New Jersey to Florida is the shorter, cheaper cousin of the Massachusetts-to-Florida snowbird lane — 1,100 miles versus 1,350, with the same dense I-95 carrier population but lower total mileage and therefore lower total cost. Y7 Logistics (MC #1741537 / USDOT #4427359) runs this corridor year-round for individual snowbirds, relocating families, and — very importantly — the dealer community concentrated around Newark, Jersey City, and Edison that moves inventory south to the Florida retail market on a weekly basis."
       whenNeeded={[

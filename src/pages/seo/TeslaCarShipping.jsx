@@ -35,6 +35,8 @@ export default function TeslaCarShipping() {
         description: 'Professional Tesla transport service. Licensed broker handling Model S, 3, X, Y, and Cybertruck shipping with specialized carriers. Free quotes, insured, nationwide.',
         path: '/tesla-car-shipping',
       }}
+      primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
+      secondaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
       heading="Tesla Shipping — Specialized Transport for Every Tesla Model"
       intro="Shipping a Tesla requires more than a standard car carrier. Ground clearance limitations, regenerative braking behavior, battery charge management, and unique body materials like Cybertruck's stainless steel all demand carriers with specific EV experience. Y7 Logistics works with vetted carriers who understand Tesla's transport mode, air suspension settings, and Falcon wing door positioning — so your vehicle arrives exactly as it left."
       faqs={[

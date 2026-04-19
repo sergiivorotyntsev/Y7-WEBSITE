@@ -10,6 +10,8 @@ export default function TexasAutoTransport() {
           'Texas auto transport with Houston, Dallas, San Antonio coverage. Port of Houston exports, auction pickups. Licensed FMCSA broker MC #1741537.',
         path: '/texas-auto-transport',
       }}
+      primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
+      secondaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
       heading="Texas Auto Transport — Car Shipping in TX"
       intro="Texas is the second-largest auto-transport market in the country by volume, driven by three major auction metros (Dallas, Houston, San Antonio), the Port of Houston export corridor, a dealer network spread across 800 miles of highway, and the constant snowbird and relocation traffic between Texas, Florida, California, and the Northeast. Y7 Logistics (MC #1741537 / USDOT #4427359) serves the entire state through our carrier network on Central Dispatch — residential pickup, dealer trades, auction pulls, and port deliveries, all coordinated from our Newton, MA office."
       whenNeeded={[

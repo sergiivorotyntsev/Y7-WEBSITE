@@ -10,6 +10,8 @@ export default function TexasToNewark() {
           'Vehicle transport from Texas to Port Newark for export. Auction pickup in TX, door-to-port delivery. All documentation handled.',
         path: '/texas-to-newark-port-auto-transport',
       }}
+      primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
+      secondaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
       heading="Texas to Port Newark Auto Transport"
       intro="The Texas-to-Port Newark corridor is one of the most active export routes in US auto transport. Exporters purchasing vehicles from Texas auctions (Copart, IAAI) regularly ship to Port Newark/Elizabeth for overseas shipping. Y7 Logistics handles the entire domestic leg — from Texas auction yard to port warehouse."
       whenNeeded={[

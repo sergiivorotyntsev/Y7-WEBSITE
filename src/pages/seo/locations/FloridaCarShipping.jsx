@@ -10,6 +10,8 @@ export default function FloridaCarShipping() {
           'Car shipping to and from Florida. Miami, Orlando, Tampa, Jacksonville. Snowbird corridor specialist. Licensed FMCSA broker MC #1741537.',
         path: '/florida-car-shipping',
       }}
+      primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
+      secondaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
       heading="Florida Car Shipping — Auto Transport to and from FL"
       intro="Florida is the busiest state in the country for inbound auto transport, driven by snowbird traffic, retiree relocations, college moves, military transfers, and year-round tourism. Y7 Logistics coordinates Florida shipments from our Newton, MA office using a vetted network of 100+ carriers on Central Dispatch. We are a licensed FMCSA broker (MC #1741537, USDOT #4427359), covering every Florida ZIP from Pensacola to Key West, and every auction yard, dealer lot, and port terminal in between."
       whenNeeded={[

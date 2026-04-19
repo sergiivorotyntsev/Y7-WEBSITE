@@ -44,6 +44,8 @@ export default function CarShippingCost() {
           'Car shipping costs depend on distance, vehicle type, transport method, and season. Get a free quote from Y7 Logistics — licensed auto transport broker.',
         path: '/car-shipping-cost',
       }}
+      primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
+      secondaryCTA={{ intlKey: 'dealers', to: '/dealers', tone: 'teal' }}
       heading="How Much Does Car Shipping Cost?"
       intro="Car shipping pricing depends on several factors — distance, vehicle size, transport type, season, and whether the vehicle runs. Y7 Logistics provides transparent, all-inclusive quotes with no hidden fees so you know exactly what you're paying before you book."
       whenNeeded={[

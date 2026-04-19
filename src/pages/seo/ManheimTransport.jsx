@@ -18,6 +18,8 @@ export default function ManheimTransport() {
           'Vehicle transport from Manheim dealer auctions. Contract pricing for dealerships, nationwide coverage. Licensed auto transport broker Y7 Logistics.',
         path: '/manheim-transport',
       }}
+      primaryCTA={{ intlKey: 'dealers', to: '/dealers', tone: 'teal' }}
+      secondaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
       heading="Manheim Transport — Dealer Auction Vehicle Shipping"
       intro="Manheim is the world's largest wholesale vehicle auction marketplace, serving licensed dealers exclusively. Y7 Logistics provides reliable transport from Manheim locations with competitive pricing for dealers who ship regularly."
       whenNeeded={[

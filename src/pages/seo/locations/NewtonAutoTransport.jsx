@@ -35,6 +35,8 @@ export default function NewtonAutoTransport() {
           'Licensed auto transport broker based in Newton, MA. Pickup from all Newton villages + Greater Boston. Y7 Logistics MC #1741537 / USDOT #4427359.',
         path: '/newton-auto-transport',
       }}
+      primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
+      secondaryCTA={{ intlKey: 'dealers', to: '/dealers', tone: 'teal' }}
       heading="Newton Auto Transport — Your Local Car Shipping Company"
       intro="Y7 Logistics is based in Newton, Massachusetts. Our team coordinates a nationwide auto transport brokerage from the Newton area, serving Greater Boston and the entire United States. When you work with us, you're working with a local business that understands your community and the logistics of moving vehicles in and out of this market."
       whenNeeded={[

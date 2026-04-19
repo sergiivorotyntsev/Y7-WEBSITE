@@ -10,6 +10,8 @@ export default function MassachusettsCarShipping() {
           'Auto transport across Massachusetts — Boston metro to Berkshires and Cape Cod. Pickup from any MA address. Licensed FMCSA broker MC #1741537.',
         path: '/massachusetts-car-shipping',
       }}
+      primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
+      secondaryCTA={{ intlKey: 'dealers', to: '/dealers', tone: 'teal' }}
       heading="Massachusetts Car Shipping — Statewide Auto Transport"
       intro="Y7 Logistics is a Newton, Massachusetts-based FMCSA auto transport broker (MC #1741537 / USDOT #4427359) coordinating vehicle shipping across the entire Bay State — Boston metro, the MetroWest corridor, Central Massachusetts, the South Coast, Cape Cod and the Islands, and the Berkshires. We do not own trucks; we dispatch a vetted network of carriers on Central Dispatch, the industry's primary load board, which gives you access to the full New England carrier market through a single local point of contact."
       whenNeeded={[

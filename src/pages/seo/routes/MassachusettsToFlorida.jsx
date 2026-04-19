@@ -11,6 +11,8 @@ export default function MassachusettsToFlorida() {
           'MA to FL car shipping on the #1 snowbird corridor. Boston to Miami, Orlando, Tampa. Licensed FMCSA broker. Free quote in 1 hour.',
         path: '/massachusetts-to-florida-car-shipping',
       }}
+      primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
+      secondaryCTA={{ intlKey: 'dealers', to: '/dealers', tone: 'teal' }}
       heading="Massachusetts to Florida Car Shipping"
       intro="The Massachusetts-to-Florida lane is the busiest snowbird auto-transport corridor in the United States. From October through April every year, tens of thousands of vehicles move south from New England to Florida; the reverse flow runs from late March through May. Y7 Logistics is based in Newton, MA (MC #1741537 / USDOT #4427359) and runs this route year-round on the I-95 corridor, pairing every load with a vetted carrier from our Central Dispatch network."
       whenNeeded={[

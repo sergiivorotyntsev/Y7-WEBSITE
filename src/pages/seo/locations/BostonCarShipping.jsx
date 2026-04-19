@@ -10,6 +10,8 @@ export default function BostonCarShipping() {
           'Boston car shipping from licensed FMCSA broker. Pickup from any Boston address or dealership. Top corridors: FL, NYC, TX, CA, Port Newark.',
         path: '/boston-car-shipping',
       }}
+      primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
+      secondaryCTA={{ intlKey: 'dealers', to: '/dealers', tone: 'teal' }}
       heading="Boston Car Shipping — Vehicle Transport in Greater Boston"
       intro="Shipping a car to or from the Greater Boston area requires a broker who knows the city — narrow streets, permit-parking zones, seasonal rate swings, and college move cycles all affect pricing and scheduling. Y7 Logistics is based in Newton, just minutes from downtown, and handles the logistics of pickup and delivery across the metro area."
       whenNeeded={[

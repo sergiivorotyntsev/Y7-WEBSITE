@@ -36,6 +36,8 @@ export default function ElectricVehiclePortDelivery() {
         description: 'Ship electric vehicles from US auctions and dealers to major US ports for international export. Tesla, Rivian, Lucid, and more. Specialized EV port delivery service.',
         path: '/electric-vehicle-port-delivery',
       }}
+      primaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
+      secondaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
       heading="Electric Vehicle Delivery to US Ports for Export"
       intro="International demand for American electric vehicles is booming. Whether you're exporting Teslas to Europe, Rivians to the Middle East, or Lucids to Asia, Y7 Logistics handles the critical last-mile transport — from US auctions, dealers, or private sellers to major US export ports. We combine EV-specific transport expertise with port delivery coordination to ensure your electric vehicles arrive at the terminal safely and on schedule for ocean shipping."
       faqs={[

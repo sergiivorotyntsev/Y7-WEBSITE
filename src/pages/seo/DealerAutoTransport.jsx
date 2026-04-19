@@ -19,6 +19,8 @@ export default function DealerAutoTransport() {
           'Auto transport for car dealerships. Volume pricing, auction pickup, dealer trades, dedicated dispatcher. Licensed broker Y7 Logistics.',
         path: '/dealer-auto-transport',
       }}
+      primaryCTA={{ intlKey: 'dealers', to: '/dealers', tone: 'teal' }}
+      secondaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
       heading="Dealer Auto Transport — Vehicle Shipping for Dealerships"
       intro="Y7 Logistics is the transport partner for dealerships that need reliable, cost-effective vehicle shipping. From auction pickups to dealer trades to customer deliveries — we handle the logistics so you can focus on selling cars."
       whenNeeded={[

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
+import ContextualCTA from '../../components/ContextualCTA';
 import RelatedGuides from '../../components/RelatedGuides';
 import { RELATED_GUIDES } from '../../data/relatedGuides';
 import styles from './SeoLandingPage.module.css';
@@ -43,6 +44,11 @@ function Chevron() {
 export default function SeoLandingPage({
   meta, heading, intro, whenNeeded, steps, requirements, capabilities, faqs,
   ctaLabel = 'Get a Free Quote', ctaTo = '/quote', related = [], children,
+  // OVERNIGHT-T04: contextual money-page CTAs.
+  // Each is { intlKey: 'dealers' | 'exporters' | 'shipMyCar', to: '/dealers'|...,
+  //          tone: 'coral'|'teal'|'amber' }. primaryCTA appears after intro,
+  // secondaryCTA appears before the generic "Ready to get started?" block.
+  primaryCTA = null, secondaryCTA = null,
 }) {
   const schemas = [];
 
@@ -100,6 +106,15 @@ export default function SeoLandingPage({
 
         <h1 className={styles.title}>{heading}</h1>
         <p className={styles.intro}>{intro}</p>
+
+        {primaryCTA && (
+          <ContextualCTA
+            variant="card"
+            to={primaryCTA.to}
+            intlKey={primaryCTA.intlKey}
+            tone={primaryCTA.tone || 'coral'}
+          />
+        )}
 
         {children}
 
@@ -163,6 +178,15 @@ export default function SeoLandingPage({
               ))}
             </div>
           </Section>
+        )}
+
+        {secondaryCTA && (
+          <ContextualCTA
+            variant="card"
+            to={secondaryCTA.to}
+            intlKey={secondaryCTA.intlKey}
+            tone={secondaryCTA.tone || 'teal'}
+          />
         )}
 
         <div className={styles.ctaBlock}>

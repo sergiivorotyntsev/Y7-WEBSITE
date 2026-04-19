@@ -19,6 +19,8 @@ export default function CopartShipping() {
           'Ship your Copart purchase nationwide. Gate pass coordination, salvage & clean title vehicles, inoperable transport. Licensed broker Y7 Logistics.',
         path: '/copart-shipping',
       }}
+      primaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
+      secondaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
       heading="Copart Shipping — Vehicle Transport from Copart Auctions"
       intro="Copart is the largest online vehicle auction in the US. Y7 Logistics specializes in picking up vehicles from Copart locations nationwide — whether clean title, salvage, or non-running."
       whenNeeded={[
