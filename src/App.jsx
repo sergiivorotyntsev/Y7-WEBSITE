@@ -6,6 +6,7 @@ import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
 import LoadingSpinner from './components/LoadingSpinner';
 import Home from './pages/Home';
+import NotFound from './pages/NotFound';
 import PromoLanding from './pages/PromoLanding';
 import { colors } from './theme';
 
@@ -244,7 +245,9 @@ export default function App() {
             <Route path="/ru-us" element={<Navigate to="/ru" replace />} />
             <Route path="/ru-us/copart-shipping" element={<Navigate to="/ru/copart-i-iaai" replace />} />
             <Route path="/ru-us/ship-my-car" element={<Navigate to="/ru/ship-my-car" replace />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
+            {/* Explicit /404 route for server-side prerender (OVERNIGHT-T01) */}
+            <Route path="/404" element={<NotFound />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
         </Suspense>

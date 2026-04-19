@@ -13,7 +13,7 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -125,10 +125,41 @@ app.use(
 );
 
 // ---------------------------------------------------------------------------
-// SPA fallback: any unmatched route returns index.html, React Router takes over
+// OVERNIGHT-T01: Proper 404 for unknown paths
+// Prerender emits dist/valid-routes.json (list of every route React prerendered)
+// and dist/404.html (prerendered NotFound page). Known routes return 200 +
+// index.html; unknown routes return 404 + 404.html so Google sees a real
+// not-found response instead of a soft 404.
 // ---------------------------------------------------------------------------
+let VALID_ROUTES = new Set();
+try {
+  const routesPath = path.join(DIST_DIR, 'valid-routes.json');
+  if (existsSync(routesPath)) {
+    VALID_ROUTES = new Set(JSON.parse(readFileSync(routesPath, 'utf8')));
+  }
+} catch (e) {
+  console.warn('[server] could not load valid-routes.json:', e.message);
+}
+
+function isKnownPath(reqPath) {
+  const p = reqPath.replace(/\/$/, '') || '/';
+  if (VALID_ROUTES.has(p) || VALID_ROUTES.has(p + '/')) return true;
+  // Filesystem check for any prerendered directory (covers edge cases).
+  if (existsSync(path.join(DIST_DIR, p, 'index.html'))) return true;
+  return false;
+}
+
 app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(DIST_DIR, 'index.html'));
+  if (isKnownPath(req.path)) {
+    res.sendFile(path.join(DIST_DIR, 'index.html'));
+    return;
+  }
+  const notFoundFile = path.join(DIST_DIR, '404.html');
+  if (existsSync(notFoundFile)) {
+    res.status(404).sendFile(notFoundFile);
+  } else {
+    res.status(404).sendFile(path.join(DIST_DIR, 'index.html'));
+  }
 });
 
 // ---------------------------------------------------------------------------

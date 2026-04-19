@@ -1,0 +1,25 @@
+{
+  "badge": "404",
+  "title": "Strona nie znaleziona",
+  "subtitle": "Strona, której szukasz, nie istnieje lub została przeniesiona. Oto kilka stron, które mogą pomóc:",
+  "suggestionsHeading": "Popularne strony",
+  "cards": {
+    "shipMyCar": {
+      "title": "Transport auta",
+      "desc": "Transport aut od drzwi do drzwi po wszystkich 50 stanach"
+    },
+    "dealers": {
+      "title": "Dla dealerów",
+      "desc": "Odbiór z aukcji, ceny hurtowe, fakturowanie tygodniowe"
+    },
+    "exporters": {
+      "title": "Dla eksporterów",
+      "desc": "Dostawa z aukcji do portu, koordynacja gate pass"
+    }
+  },
+  "links": {
+    "home": "Wróć do strony głównej",
+    "track": "Śledź przesyłkę",
+    "contact": "Skontaktuj się z nami"
+  }
+}

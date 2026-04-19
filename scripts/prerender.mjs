@@ -220,6 +220,8 @@ const PUBLIC_ROUTES = [
   '/ru/dostavka-avto-iz-usa',
   '/ru/copart-i-iaai',
   '/ru/perevozka-avto',
+  // OVERNIGHT-T01: /404 prerendered separately; emitted as dist/404.html by server
+  '/404',
 ];
 
 // Minimal static file server for dist/
@@ -390,6 +392,25 @@ async function prerender() {
 
   await browser.close();
   server.close();
+
+  // OVERNIGHT-T01: emit valid-routes.json so the express server can return
+  // a proper 404 status on unknown paths instead of serving index.html.
+  // Also copy /404/index.html to /404.html at the dist root so the server
+  // can sendFile it as the not-found response body.
+  try {
+    writeFileSync(
+      join(DIST, 'valid-routes.json'),
+      JSON.stringify(PUBLIC_ROUTES, null, 2),
+      'utf-8'
+    );
+    const nf404 = join(DIST, '404', 'index.html');
+    const nfTop = join(DIST, '404.html');
+    if (existsSync(nf404)) {
+      writeFileSync(nfTop, readFileSync(nf404, 'utf-8'), 'utf-8');
+    }
+  } catch (e) {
+    console.warn('[prerender] could not write valid-routes.json / 404.html:', e.message);
+  }
 
   const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
   console.log(`\nPrerender complete: ${success} OK, ${failed} failed (${elapsed}s)`);

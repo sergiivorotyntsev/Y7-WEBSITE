@@ -1,0 +1,25 @@
+{
+  "badge": "404",
+  "title": "Page not found",
+  "subtitle": "The page you're looking for doesn't exist or has been moved. Here are some pages that might help:",
+  "suggestionsHeading": "Popular destinations",
+  "cards": {
+    "shipMyCar": {
+      "title": "Ship My Car",
+      "desc": "Door-to-door auto transport across all 50 states"
+    },
+    "dealers": {
+      "title": "For Dealers",
+      "desc": "Auction pickup, volume pricing, weekly invoicing"
+    },
+    "exporters": {
+      "title": "For Exporters",
+      "desc": "Auction to port delivery, gate pass coordination"
+    }
+  },
+  "links": {
+    "home": "Return to home",
+    "track": "Track a shipment",
+    "contact": "Contact us"
+  }
+}
