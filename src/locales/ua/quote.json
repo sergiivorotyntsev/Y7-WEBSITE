@@ -70,7 +70,9 @@
       "port": "Порт",
       "storage": "Склад",
       "other": "Інше"
-    }
+    },
+    "showAdvanced": "Додати дату та стан авто",
+    "hideAdvanced": "Приховати додаткові поля"
   },
   "location": {
     "residence": "Житловий",

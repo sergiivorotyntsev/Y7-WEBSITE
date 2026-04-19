@@ -70,7 +70,9 @@
       "port": "Порт",
       "storage": "Склад",
       "other": "Другое"
-    }
+    },
+    "showAdvanced": "Добавить дату и состояние авто",
+    "hideAdvanced": "Скрыть дополнительные поля"
   },
   "location": {
     "residence": "Жилой",

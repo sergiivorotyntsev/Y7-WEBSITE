@@ -70,7 +70,9 @@
       "port": "Port",
       "storage": "Storage Facility",
       "other": "Other"
-    }
+    },
+    "showAdvanced": "Add pickup date & vehicle condition",
+    "hideAdvanced": "Hide advanced options"
   },
   "location": {
     "residence": "Residential",

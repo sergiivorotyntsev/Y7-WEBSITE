@@ -68,6 +68,12 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
   const [error, setError] = useState(null);
   const [submitAttempted, setSubmitAttempted] = useState(false);
   const [touched, setTouched] = useState({});
+  // P1-TECH-T04: progressive disclosure. Minimum fields visible by default;
+  // vehicle-condition, pickup-date preference, and free-form notes live behind
+  // an "Add details" toggle to lower B2C mobile friction (21 → ~12 fields
+  // visible initially). Field defaults (is_inoperable=false, pickup_date_type
+  // ='asap') mean leaving them collapsed still produces a valid quote.
+  const [showAdvanced, setShowAdvanced] = useState(false);
   const formStarted = useRef(false);
 
   function markTouched(field) {
@@ -434,65 +440,84 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
         </div>
       </div>
 
-      {/* Vehicle condition */}
-      <div>
-        <label className={styles.label}>{t('form.vehicleCondition')}</label>
-        <div className={styles.radioGroup}>
-          {[
-            { value: false, label: t('form.runsAndDrives') },
-            { value: true, label: t('form.nonRunning') },
-          ].map(opt => (
-            <label key={String(opt.value)} className={styles.radioLabel}>
-              <input
-                type="radio"
-                name="is_inoperable"
-                checked={form.is_inoperable === opt.value}
-                onChange={() => set('is_inoperable', opt.value)}
-                className={styles.radioInput}
-              />
-              {opt.label}
-            </label>
-          ))}
-        </div>
-      </div>
+      {/* P1-TECH-T04: Advanced-options toggle. Vehicle condition + pickup
+          date preference live inside this block so the default view shows
+          only the high-signal fields that shape the quote price. */}
+      <button
+        type="button"
+        onClick={() => setShowAdvanced(!showAdvanced)}
+        className={styles.advancedToggle}
+        aria-expanded={showAdvanced}
+      >
+        <span className={styles.advancedToggleIcon} aria-hidden="true">
+          {showAdvanced ? '\u2212' : '+'}
+        </span>
+        {showAdvanced ? t('form.hideAdvanced') : t('form.showAdvanced')}
+      </button>
 
-      {/* Preferred pickup date */}
-      <div>
-        <label className={styles.label}>{t('form.whenPickup')}</label>
-        <div className={styles.radioGroup}>
-          <label className={styles.radioLabel}>
-            <input
-              type="radio"
-              name="pickup_date_type"
-              checked={form.pickup_date_type === 'asap'}
-              onChange={() => { set('pickup_date_type', 'asap'); set('preferred_pickup_date', ''); }}
-              className={styles.radioInput}
-            />
-            {t('form.asap')}
-          </label>
-          <label className={styles.radioLabel}>
-            <input
-              type="radio"
-              name="pickup_date_type"
-              checked={form.pickup_date_type === 'date'}
-              onChange={() => set('pickup_date_type', 'date')}
-              className={styles.radioInput}
-            />
-            {t('form.specificDate')}
-          </label>
-          {form.pickup_date_type === 'date' && (
-            <input
-              type="date"
-              value={form.preferred_pickup_date}
-              onChange={e => set('preferred_pickup_date', e.target.value)}
-              min={new Date().toISOString().split('T')[0]}
-              max={new Date(Date.now() + 90 * 86400000).toISOString().split('T')[0]}
-              className={styles.input}
-              style={{ width: 'auto' }}
-            />
-          )}
-        </div>
-      </div>
+      {showAdvanced && (
+        <>
+          {/* Vehicle condition */}
+          <div>
+            <label className={styles.label}>{t('form.vehicleCondition')}</label>
+            <div className={styles.radioGroup}>
+              {[
+                { value: false, label: t('form.runsAndDrives') },
+                { value: true, label: t('form.nonRunning') },
+              ].map(opt => (
+                <label key={String(opt.value)} className={styles.radioLabel}>
+                  <input
+                    type="radio"
+                    name="is_inoperable"
+                    checked={form.is_inoperable === opt.value}
+                    onChange={() => set('is_inoperable', opt.value)}
+                    className={styles.radioInput}
+                  />
+                  {opt.label}
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Preferred pickup date */}
+          <div>
+            <label className={styles.label}>{t('form.whenPickup')}</label>
+            <div className={styles.radioGroup}>
+              <label className={styles.radioLabel}>
+                <input
+                  type="radio"
+                  name="pickup_date_type"
+                  checked={form.pickup_date_type === 'asap'}
+                  onChange={() => { set('pickup_date_type', 'asap'); set('preferred_pickup_date', ''); }}
+                  className={styles.radioInput}
+                />
+                {t('form.asap')}
+              </label>
+              <label className={styles.radioLabel}>
+                <input
+                  type="radio"
+                  name="pickup_date_type"
+                  checked={form.pickup_date_type === 'date'}
+                  onChange={() => set('pickup_date_type', 'date')}
+                  className={styles.radioInput}
+                />
+                {t('form.specificDate')}
+              </label>
+              {form.pickup_date_type === 'date' && (
+                <input
+                  type="date"
+                  value={form.preferred_pickup_date}
+                  onChange={e => set('preferred_pickup_date', e.target.value)}
+                  min={new Date().toISOString().split('T')[0]}
+                  max={new Date(Date.now() + 90 * 86400000).toISOString().split('T')[0]}
+                  className={styles.input}
+                  style={{ width: 'auto' }}
+                />
+              )}
+            </div>
+          </div>
+        </>
+      )}
 
       {/* Route Estimator (appears when both ZIPs filled) */}
       <RouteEstimator pickupZip={form.pickup_zip} deliveryZip={form.delivery_zip} />
@@ -533,8 +558,9 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
             </div>
           </div>
 
-          {/* Notes (hidden in compact mode) */}
-          {!compact && (
+          {/* Notes (hidden in compact mode OR until the user opens
+              "Add details" — P1-TECH-T04) */}
+          {!compact && showAdvanced && (
             <div className={styles.field}>
               <label className={styles.label}>{t('form.notes')}</label>
               <textarea

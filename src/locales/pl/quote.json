@@ -70,7 +70,9 @@
       "port": "Port",
       "storage": "Magazyn",
       "other": "Inne"
-    }
+    },
+    "showAdvanced": "Dodaj datę i stan auta",
+    "hideAdvanced": "Ukryj opcje zaawansowane"
   },
   "location": {
     "residence": "Mieszkaniowa",

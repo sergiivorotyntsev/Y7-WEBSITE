@@ -462,3 +462,50 @@
 .trustIcon {
   color: var(--success, #0F6E56);
 }
+
+/* P1-TECH-T04: progressive-disclosure toggle. Subtle, button-shaped so it
+   reads as an optional expansion instead of a required next step. */
+.advancedToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  padding: 10px 16px;
+  margin: 4px 0;
+  background: transparent;
+  color: var(--accent, #993C1D);
+  font-family: var(--font-sans, system-ui);
+  font-size: 13.5px;
+  font-weight: 600;
+  border: 1px dashed var(--accent, #993C1D);
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background-color 150ms ease-out, border-color 150ms ease-out;
+  min-height: 44px;
+}
+
+.advancedToggleIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: var(--accent, #993C1D);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+@media (hover: hover) {
+  .advancedToggle:hover {
+    background: rgba(153, 60, 29, 0.06);
+    border-style: solid;
+  }
+}
+
+.advancedToggle:focus-visible {
+  outline: 2px solid var(--accent, #993C1D);
+  outline-offset: 2px;
+}
