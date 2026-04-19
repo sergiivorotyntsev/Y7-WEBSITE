@@ -1,51 +1,133 @@
 {
-  "title": "Transport Service Agreement",
-  "version": "v1.1",
+  "version": "v2.0",
+  "effectiveDate": "2026-04-19",
+  "title": "Broker-Shipper Transportation Agreement",
   "loading": "Loading order details...",
-  "sections": {
-    "service": {
-      "title": "Service Description & Broker Role",
-      "body": "Y7 Consulting Inc (DBA Y7 Logistics), USDOT #4427359, MC #1741537, acts as a licensed property broker, not a motor carrier. We arrange vehicle transportation with licensed, insured motor carriers on your behalf. We do not own or operate trucks, and transportation is performed solely by independent carrier companies. Our role is to secure reliable transport, coordinate dispatch, and facilitate communication between you and the assigned carrier."
-    },
-    "fees": {
-      "title": "Service Fee Schedule",
-      "body": "Y7 Consulting Inc (\"Y7 Logistics\") charges a dispatch fee for brokerage services:\n\n• Standard (COD): $50.00 — Y7 arranges carrier transport. Customer pays the carrier directly upon delivery after vehicle inspection.\n• Full Service: $65.00 + carrier transport cost — Y7 arranges carrier transport AND handles carrier payment on Customer's behalf.\n\nThe dispatch fee covers carrier sourcing, quote negotiation, dispatch coordination, shipment monitoring, and customer support throughout the transport process."
-    },
-    "bol": {
-      "title": "Vehicle Inspection & Bill of Lading (BOL)",
-      "body": "Upon delivery, you or your authorized representative MUST inspect the vehicle together with the carrier driver and sign the Bill of Lading (BOL). The BOL documents vehicle condition at both pickup and delivery. By signing the BOL at delivery without noting damage, you acknowledge the vehicle was received in the condition described. Any damage claims filed after signing a clean BOL are the recipient's sole responsibility. You have the right to note any new damage on the BOL before signing. If the carrier refuses to allow inspection, do not sign and contact Y7 immediately."
-    },
-    "payment": {
-      "title": "Payment Terms",
-      "body": "Standard (COD) Orders:\n• Dispatch fee ($50.00) is charged via credit/debit card at the time of order confirmation.\n• Carrier transport cost is paid by Customer directly to the carrier driver upon delivery, after vehicle inspection. Accepted payment methods vary by carrier (typically cash, cashier's check, or money order).\n\nFull Service Orders:\n• Total amount (carrier transport cost + $65.00 dispatch fee) is charged via credit/debit card at the time of order confirmation.\n• Y7 pays the carrier on Customer's behalf after successful delivery confirmation.\n\nIf COD is selected, failure to pay the carrier at delivery may result in the carrier retaining possession of the vehicle, daily storage fees, and/or a lien on the vehicle. Y7 Consulting Inc is not responsible for carrier-imposed fees resulting from non-payment at delivery."
-    },
-    "insurance": {
-      "title": "Insurance & Claims",
-      "body": "All carriers in our network maintain minimum $100,000 cargo insurance per FMCSA requirements, with most carrying $250,000 or more. We verify active insurance coverage before assigning any carrier to your load. In the event of damage, claims must be filed within 24 hours of delivery with photographs of the damage and a copy of the BOL noting the damage. Y7 Consulting Inc will assist you in filing the claim with the carrier's insurance, but as a broker, we bear no direct cargo liability. Claims are settled between you and the carrier's insurance provider. Customers may purchase additional coverage through third-party transport insurance providers. Theft, Fire & Total Loss: In the event of vehicle theft, fire, or total loss during transport, the carrier's cargo insurance applies up to the policy limit. Customer should immediately file a police report (in case of theft) and contact Y7 Logistics. Y7 will provide the carrier's insurance information and assist in filing the claim. Vehicle valuation for total loss is determined by the carrier's insurance provider based on actual cash value at the time of loss."
-    },
-    "cancellation": {
-      "title": "Cancellation & Refund Policy",
-      "body": "Customer may cancel a confirmed order subject to the following refund policy:\n\n• Cancellation within 24 hours of payment AND before a carrier has been assigned: Full refund of all amounts paid.\n• Cancellation after 24 hours OR after a carrier has been assigned: Refund minus a $10.00 administrative fee.\n• For Full Service orders: Payment processing fees (approximately 2.9% + $0.30) are non-refundable and will be deducted from any refund amount.\n• For Standard (COD) orders: Y7 absorbs payment processing fees — Customer receives the full refund amount as stated above.\n\nRefunds are processed within 5-10 business days to the original payment method.\n\nNo-show at pickup: if the vehicle is not available for pickup at the scheduled time and location, and no prior rescheduling was arranged, the dispatch fee is non-refundable and additional carrier charges may apply.\n\nY7 reserves the right to issue a full refund at its discretion for customer service purposes. To cancel or reschedule, contact us at info@y7agency.com as early as possible."
-    },
-    "customer": {
-      "title": "Customer Obligations",
-      "body": "You agree to: (1) provide accurate vehicle information including VIN, condition, and operability status; (2) ensure the vehicle is accessible for pickup at the scheduled time and location; (3) inspect the vehicle at both pickup and delivery and sign the Bill of Lading; (4) disclose any modifications or non-running condition; (5) remove all personal belongings before pickup; (6) pay the agreed transport fee per the payment terms. Inoperable vehicles (non-running, non-steering, non-braking) require special equipment and may incur additional fees of $100-$300. You must accurately disclose vehicle condition — failure to do so may result in additional charges at pickup. Personal Items: Y7 Logistics and the assigned carrier are NOT liable for any personal items left in the vehicle during transport. Any personal items remaining in the vehicle are transported at the customer's own risk and are not covered by carrier cargo insurance."
-    },
-    "delays": {
-      "title": "Estimated Dates & Delays",
-      "body": "All pickup and delivery dates are estimates, not guarantees. Actual transit times depend on distance, carrier availability, weather, road conditions, and other factors. Typical transit: 1-3 days for routes under 500 miles, 3-7 days for cross-country. Neither Y7 Consulting Inc nor the assigned carrier shall be liable for delays caused by weather events, natural disasters, government actions, road closures, mechanical breakdowns, traffic, or other circumstances beyond reasonable control (force majeure). Y7 will communicate proactively if significant delays occur."
-    },
-    "liability": {
-      "title": "Limitation of Liability & Dispute Resolution",
-      "body": "Y7 Consulting Inc acts solely as a licensed property broker (FMCSA MC #1741537, USDOT #4427359). Y7 does NOT operate as a motor carrier and does NOT transport vehicles.\n\nY7's total liability for any claim arising from brokerage services is limited to the dispatch fee paid for the specific shipment in question.\n\nY7 is NOT liable for:\n• Vehicle damage during transport (carrier's insurance applies)\n• Carrier delays or missed pickup/delivery windows\n• Acts of God, weather events, or road conditions\n• Loss of personal items left in the vehicle\n\nCarrier liability is governed by the carrier's own insurance and the Bill of Lading (BOL) signed at pickup. Customer should inspect the vehicle upon delivery and note any damage on the BOL before signing.\n\nAny dispute arising from this agreement shall be resolved through binding arbitration in accordance with the rules of the American Arbitration Association, conducted in Suffolk County, Massachusetts. This agreement shall be governed by and construed in accordance with the laws of the Commonwealth of Massachusetts. This limitation applies to the fullest extent permitted by law."
-    }
+
+  "intro": "This Broker-Shipper Transportation Agreement (\"Agreement\") is entered into between Y7 Consulting Inc., a Massachusetts corporation (\"Y7 Logistics\", \"we\", \"us\", or \"our\"), and the Customer identified in the quote request (\"Customer\", \"you\", or \"your\"). Y7 Consulting Inc. is a licensed property broker authorized by the Federal Motor Carrier Safety Administration (USDOT Number 4427359, Motor Carrier Number 1741537).",
+
+  "section1": {
+    "title": "1. Service Description — Y7 is a Broker, Not a Carrier",
+    "body": "Y7 Consulting Inc. operates as a licensed property broker under 49 CFR Part 371. Y7 arranges transportation of motor vehicles by contracting with duly authorized motor carriers. Y7 does NOT operate motor vehicles, does NOT transport vehicles, and does NOT employ drivers. All actual transportation services are performed by independent motor carriers selected by Y7 from its network of vetted carriers. Customer acknowledges and agrees that Y7 is acting solely as an intermediary and is not responsible for the acts, omissions, or performance of any carrier."
   },
+
+  "section2": {
+    "title": "2. Service Fee Schedule",
+    "body": "Y7 charges a non-refundable dispatch fee for brokerage services. Customer selects one of two service tiers at the time of order confirmation:",
+    "tiers": [
+      "Standard (Cash-on-Delivery or \"COD\"): $50.00 USD. Y7 arranges carrier transport. Customer pays the assigned carrier directly upon successful delivery after vehicle inspection. Payment methods accepted by carriers typically include cash, cashier's check, or money order.",
+      "Full Service: $65.00 USD plus the carrier transport cost. Y7 arranges carrier transport AND disburses payment to the carrier on Customer's behalf following successful delivery confirmation. Customer pays the total amount (carrier cost plus $65.00 dispatch fee) via credit or debit card at order confirmation."
+    ],
+    "feeIncludes": "The dispatch fee covers: carrier sourcing, quote negotiation, dispatch coordination, shipment monitoring, and customer support throughout the transportation process. The fee does NOT include the underlying carrier transportation cost, fuel surcharges, toll fees, storage fees, or any ancillary charges imposed by the carrier."
+  },
+
+  "section3": {
+    "title": "3. Cancellation and Refund Policy",
+    "body": "Customer may cancel a confirmed order subject to the following terms:",
+    "bullets": [
+      "Cancellation within 24 hours of payment AND before a carrier has been assigned to the order: Full refund of all amounts paid to Y7.",
+      "Cancellation after 24 hours from payment OR after a carrier has been assigned to the order: Refund minus a $10.00 administrative fee, which covers dispatch coordination work already performed.",
+      "Full Service orders: payment processing fees charged by Stripe (currently approximately 2.9% plus $0.30 per transaction) are non-refundable and will be deducted from any refund amount, as these fees are not returned to Y7 by Stripe.",
+      "Standard (COD) orders: Y7 absorbs Stripe processing fees. Customer receives the full refund amount as stated above.",
+      "Refunds are processed within 5 to 10 business days and credited to the original payment method.",
+      "No-show at pickup: if the vehicle is not available for pickup at the scheduled time and location, and no prior rescheduling was arranged, the dispatch fee is non-refundable and additional carrier charges may apply.",
+      "Y7 reserves the right to issue a full refund at its sole discretion for customer service purposes, waiving the administrative fee."
+    ]
+  },
+
+  "section4": {
+    "title": "4. Customer Obligations and Representations",
+    "body": "Customer represents, warrants, and agrees that:",
+    "bullets": [
+      "All information provided (including but not limited to name, contact information, vehicle identification, pickup and delivery locations, and payment method) is true, accurate, current, and complete.",
+      "Customer is the lawful owner of the vehicle(s) to be transported or has obtained express authorization from the lawful owner to arrange transportation.",
+      "Customer has disclosed all material facts about the vehicle, including operability status, presence of modifications, and any existing damage, on the quote request.",
+      "Customer will not tender for transport any vehicle containing stolen goods, contraband, controlled substances, hazardous materials, or any items prohibited by federal, state, or local law.",
+      "Customer acknowledges that personal items left inside the vehicle are transported at Customer's sole risk and are not covered by carrier insurance or Y7's liability provisions.",
+      "Customer will inspect the vehicle at pickup and delivery, sign the Bill of Lading (BOL) issued by the carrier, and note any damage on the BOL before signing. Failure to note damage on the BOL waives Customer's right to claim for such damage.",
+      "Customer authorizes Y7 to share Customer's contact information with the assigned carrier solely for the purpose of coordinating pickup and delivery.",
+      "Inoperable vehicles (non-running, non-steering, non-braking) require special equipment and may incur additional fees of $100 to $300. Customer must accurately disclose operability status."
+    ]
+  },
+
+  "section5": {
+    "title": "5. Limitation of Liability",
+    "body": "THIS SECTION LIMITS Y7's LIABILITY. READ CAREFULLY.",
+    "bullets": [
+      "Y7's total liability to Customer for any and all claims arising out of or related to this Agreement or the brokerage services provided shall not exceed the dispatch fee paid by Customer for the specific shipment at issue.",
+      "Y7 is NOT liable for: (a) vehicle damage occurring during transport (carrier's cargo insurance applies, subject to the carrier's policy terms); (b) carrier delays or failure to meet pickup or delivery windows; (c) acts of God, weather events, road conditions, traffic, or civil unrest; (d) mechanical failure of the vehicle during transport; (e) loss of or damage to personal items left in the vehicle; (f) consequential, incidental, special, punitive, or indirect damages of any kind, including lost profits, lost use, or rental car expenses; (g) damage that existed prior to pickup and was not documented on the Bill of Lading; (h) any act or omission of the carrier, including but not limited to negligence, misconduct, or breach of the carrier's obligations.",
+      "Carrier liability is governed by the carrier's own insurance policy and the Bill of Lading executed between Customer and the carrier at pickup. Customer's primary recourse for transportation-related damage is against the carrier and the carrier's insurer. All carriers in Y7's network maintain minimum $100,000 cargo insurance per FMCSA requirements, with most carrying $250,000 or more.",
+      "In the event of vehicle theft, fire, or total loss during transport, the carrier's cargo insurance applies up to the policy limit. Customer should immediately file a police report (in case of theft) and contact Y7. Y7 will provide the carrier's insurance information and assist in filing the claim. Vehicle valuation for total loss is determined by the carrier's insurance provider based on actual cash value at the time of loss.",
+      "The limitations and exclusions in this Section 5 apply whether the claim is based in contract, tort (including negligence), statute, or any other legal theory, and apply even if Y7 has been advised of the possibility of such damages."
+    ]
+  },
+
+  "section6": {
+    "title": "6. Consent to Electronic Communications",
+    "body": "By accepting this Agreement, Customer acknowledges and agrees that:",
+    "bullets": [
+      "Customer has consented separately to receive SMS messages from Y7 via an opt-in checkbox on the quote form. SMS consent is revocable at any time by replying STOP to any message. Message and data rates may apply.",
+      "Customer has consented separately to Y7's Terms of Service (version 2.0 or later) and Privacy Policy (version 2.0 or later). These consents are recorded in Y7's consent audit trail with timestamp, IP address, and consent-text hash.",
+      "Customer authorizes Y7 to send transactional email notifications (order confirmations, payment receipts, carrier assignments, and delivery notifications) to the email address provided. Transactional email is not marketing communication and cannot be opted out of while an active order exists.",
+      "Customer may opt out of marketing email at any time via the unsubscribe link included in all marketing communications."
+    ]
+  },
+
+  "section7": {
+    "title": "7. Data Protection and Privacy",
+    "body": "Y7 processes Customer personal data in accordance with Y7's Privacy Policy (version 2.0 or later), available at https://www.y7agency.com/privacy. Key data-protection provisions include:",
+    "bullets": [
+      "Y7 complies with Massachusetts 201 CMR 17.00 (Standards for the Protection of Personal Information of Residents of the Commonwealth) and maintains a Written Information Security Program (WISP).",
+      "For Customers located in the European Economic Area, the United Kingdom, or Switzerland, Y7 complies with the General Data Protection Regulation (GDPR) and has implemented Standard Contractual Clauses for international data transfers.",
+      "Customer personal data is retained for a minimum of 7 years following order completion, consistent with FMCSA record-retention requirements under 49 CFR 379. Customer's right to erasure (where applicable under GDPR Article 17) is limited to data not required to be retained by law.",
+      "Data subject access requests, erasure requests, or other privacy inquiries should be directed to privacy@y7agency.com."
+    ]
+  },
+
+  "section8": {
+    "title": "8. Dispute Resolution",
+    "body": "Customer and Y7 agree as follows:",
+    "bullets": [
+      "Any dispute, controversy, or claim arising out of or relating to this Agreement, the brokerage services, or the Customer relationship shall first be attempted to be resolved through good-faith negotiation for a period of thirty (30) days.",
+      "If negotiation does not resolve the dispute, the parties agree to submit the dispute to binding arbitration administered by the American Arbitration Association under its Consumer Arbitration Rules, with the arbitration taking place in Middlesex County, Massachusetts, unless the parties mutually agree to another location.",
+      "Notwithstanding the foregoing, Customer may pursue any claim arising under Massachusetts General Laws Chapter 93A (Consumer Protection Act) in the appropriate Massachusetts court, provided that Customer has first sent a Chapter 93A demand letter as required by M.G.L. c. 93A § 9(3).",
+      "Customer and Y7 each waive the right to a jury trial for any claim subject to arbitration under this section.",
+      "Customer may opt out of the arbitration provision (but not the jury waiver or choice of law) by sending written notice to Y7 at arbitration-optout@y7agency.com within 30 days of first accepting this Agreement."
+    ]
+  },
+
+  "section9": {
+    "title": "9. Governing Law and Jurisdiction",
+    "body": "This Agreement shall be governed by and construed in accordance with the laws of the Commonwealth of Massachusetts, without regard to conflict-of-laws principles. For any disputes not subject to arbitration under Section 8, the parties submit to the exclusive jurisdiction of the state and federal courts located in Middlesex County, Massachusetts."
+  },
+
+  "section10": {
+    "title": "10. Modifications",
+    "body": "Y7 may modify this Agreement from time to time. Y7 will provide Customer with at least 30 days' advance notice of material changes via email to the address on file. Continued use of Y7's services after the effective date of the modified Agreement constitutes acceptance of the modifications. Historical versions of this Agreement are preserved in Y7's consent audit trail and remain effective for transactions completed under them."
+  },
+
+  "section11": {
+    "title": "11. Severability and Entire Agreement",
+    "body": "If any provision of this Agreement is held to be invalid or unenforceable by a court of competent jurisdiction, the remaining provisions shall remain in full force and effect. This Agreement, together with the Terms of Service, Privacy Policy, and the SMS consent granted at quote submission, constitutes the entire agreement between Customer and Y7 regarding the subject matter hereof and supersedes all prior agreements, understandings, and communications, whether oral or written."
+  },
+
+  "section12": {
+    "title": "12. Contact Information",
+    "body": "Y7 Consulting Inc.\nRegistered in the Commonwealth of Massachusetts\nFMCSA USDOT Number 4427359\nFMCSA Motor Carrier Number 1741537\n\nEmail: info@y7agency.com\nPrivacy: privacy@y7agency.com\nTelegram: @y7dispatch_bot\nWeb: https://www.y7agency.com\n\nFor questions about this Agreement, contact info@y7agency.com.\nFor privacy or data protection inquiries, contact privacy@y7agency.com.\nFor arbitration opt-out, contact arbitration-optout@y7agency.com."
+  },
+
+  "acceptance": {
+    "title": "Acceptance",
+    "body": "By clicking \"I Agree\" or by continuing to use Y7's services after being presented with this Agreement, Customer acknowledges that Customer has read, understood, and agreed to be bound by all terms of this Agreement."
+  },
+
   "checkboxes": {
     "bol": "I understand that I must inspect the vehicle and sign the Bill of Lading (BOL) upon delivery, and that signing without noting damage releases the carrier from liability.",
     "payment": "I understand the dispatch fee schedule ($50.00 COD / $65.00 Full Service), the payment terms, and my obligation to pay the carrier at delivery if COD is selected.",
-    "broker": "I understand that Y7 Consulting Inc is a licensed broker, not a carrier. Y7's liability is limited to the dispatch fee paid. The carrier's cargo insurance covers the vehicle during transport. Y7 is not liable for vehicle damage, theft, fire, total loss, or personal items left in the vehicle.",
-    "cancellation": "I have read and agree to the cancellation and refund policy (24-hour full refund window, $10.00 administrative fee thereafter), customer obligations, and all terms stated in this agreement."
+    "broker": "I understand that Y7 Consulting Inc. is a licensed broker, not a carrier. Y7's liability is limited to the dispatch fee paid. The carrier's cargo insurance covers the vehicle during transport. Y7 is not liable for vehicle damage, theft, fire, total loss, or personal items left in the vehicle.",
+    "cancellation": "I have read and agree to the cancellation and refund policy (24-hour full refund window, $10.00 administrative fee thereafter), customer obligations, and all terms stated in this Agreement."
   },
+
   "signature": {
     "label": "Type your full legal name as digital signature",
     "placeholder": "Your Full Legal Name",
@@ -53,10 +135,12 @@
     "button": "Sign Agreement",
     "submitting": "Signing..."
   },
+
   "success": {
     "title": "Agreement Signed Successfully",
     "message": "Thank you. Your signed agreement has been recorded. You can now place transport orders."
   },
+
   "errors": {
     "orderNotFound": "Order not found. Please check the link and try again.",
     "submitFailed": "Failed to submit agreement. Please try again."

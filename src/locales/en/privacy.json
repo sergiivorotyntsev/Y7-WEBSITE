@@ -1,0 +1,201 @@
+{
+  "version": "v2.0",
+  "effectiveDate": "2026-04-19",
+  "title": "Privacy Policy",
+  "intro": "This Privacy Policy describes how Y7 Consulting Inc. (\"Y7\", \"we\", \"us\", or \"our\") collects, uses, shares, retains, and protects personal information about Customers and visitors to Y7's services. Y7 is committed to protecting Customer privacy and complying with applicable data-protection laws, including the General Data Protection Regulation (Regulation (EU) 2016/679, \"GDPR\"), the Massachusetts Standards for the Protection of Personal Information of Residents of the Commonwealth (201 CMR 17.00), the California Consumer Privacy Act of 2018 as amended by the California Privacy Rights Act (\"CCPA/CPRA\"), and the Telephone Consumer Protection Act (47 U.S.C. § 227, \"TCPA\").",
+
+  "section1": {
+    "title": "1. Controller and Contact Information",
+    "body": "For purposes of GDPR Article 4(7) and equivalent laws, the data controller is:\n\nY7 Consulting Inc.\nA Massachusetts corporation\nPrincipal place of business: Newton, Massachusetts, United States\nFMCSA USDOT Number 4427359 | Motor Carrier Number 1741537\n\nFor privacy inquiries, data-subject requests, or to contact our Data Protection Officer:\nEmail: privacy@y7agency.com\nGeneral: info@y7agency.com\nWeb: https://www.y7agency.com\n\nY7 has not appointed a GDPR representative in the EU or UK because Y7's processing of EU/UK resident data is incidental to the provision of cross-border transportation brokerage services requested by the data subject. EU/UK residents may contact privacy@y7agency.com in English and we will respond within the timelines required by applicable law."
+  },
+
+  "section2": {
+    "title": "2. Scope",
+    "body": "This Privacy Policy applies to all Customers of Y7's services, visitors to y7agency.com, users of Y7's Telegram bot (@y7dispatch_bot), and anyone whose personal information Y7 processes in the course of providing vehicle-transportation brokerage services. It applies whether Customer interacts with Y7 from the United States, the European Economic Area, the United Kingdom, Switzerland, Canada, or any other jurisdiction. Where local law grants stronger protections (e.g., GDPR for EU residents; 201 CMR 17.00 for Massachusetts residents; CCPA/CPRA for California residents), those stronger protections apply and are described below."
+  },
+
+  "section3": {
+    "title": "3. Categories of Personal Information Collected",
+    "body": "Y7 collects the following categories of personal information:",
+    "bullets": [
+      "Identifiers: full name, email address, phone number, IP address, user-agent string, country code derived from IP (via Cloudflare CF-IPCountry header), and session/login tokens.",
+      "Transaction data: order details (pickup and delivery addresses, vehicle identification number, make, model, year, transport type), price quoted, price paid, payment method (card brand, last four digits, expiry — never full card number), Stripe transaction identifiers, carrier assignments, and Bill of Lading records.",
+      "Consent records: every grant or withdrawal of SMS, terms-of-service, privacy-policy, and broker-agreement consent, with timestamp, IP address, user-agent, locale, source (channel), and a SHA-256 hash of the exact consent text the Customer saw at the moment of consent.",
+      "Behavioral data: customer-session history (pages visited, login timestamps, Telegram commands), email open events (pixel-based), portal activity, and shipment-tracking interactions.",
+      "Marketing attribution: UTM parameters (utm_source, utm_medium, utm_campaign, utm_term, utm_content), Google Click Identifier (gclid), and Facebook Click Identifier (fbclid) captured from URL query strings on form submission.",
+      "Communications: SMS messages sent to and received from Customer (Twilio records), email messages (Microsoft 365), Telegram messages, and voice-call logs where Customer has contacted Y7 support.",
+      "Verification data: phone-verified flag with timestamp, email-verified flag with timestamp, and identity-conflict-resolution records when customer-dedup logic encounters ambiguous matches.",
+      "Risk-scoring data: signals used for fraud prevention (IP classification, device fingerprint hash, anomalous quote patterns); kept distinct from the decision output under Automated Decision-Making (see Section 8)."
+    ]
+  },
+
+  "section4": {
+    "title": "4. Sources of Personal Information",
+    "body": "Y7 collects personal information from the following sources:",
+    "bullets": [
+      "Directly from Customer: information Customer provides on the quote form, in portal registration, in Telegram conversations, via email, or by phone.",
+      "Automatically from Customer's device: IP address, user-agent, country code (Cloudflare), cookies and local storage, and clicked-link tracking.",
+      "From carriers: Bill of Lading records, pickup and delivery confirmations, carrier-driver contact information matched to a Customer's shipment, and damage reports.",
+      "From payment processor: Stripe sends limited payment-verification data (card brand, last four digits, success/failure status) to Y7; full card numbers never reach Y7 systems.",
+      "From public regulatory sources: Y7 verifies carrier licenses and insurance via FMCSA SAFER and Central Dispatch, which contain data about carriers (not Customers).",
+      "From Customer's chosen communication apps: Telegram, when Customer interacts with @y7dispatch_bot, provides Telegram user ID and username to Y7 under Customer's explicit consent."
+    ]
+  },
+
+  "section5": {
+    "title": "5. Legal Basis for Processing (GDPR Article 6)",
+    "body": "For Customers to whom GDPR applies, Y7 processes personal information under the following legal bases:",
+    "bullets": [
+      "Performance of a contract (Art. 6(1)(b)): necessary to provide the requested transportation-brokerage services, coordinate carrier assignment, process payment, and deliver Customer communications related to the shipment.",
+      "Legitimate interests (Art. 6(1)(f)): fraud prevention and risk scoring (Y7's interest in avoiding financial loss and illegal-cargo shipments), service improvement (understanding usage patterns through aggregated analytics), security monitoring (intrusion detection and IP-reputation checks), and defending legal claims.",
+      "Consent (Art. 6(1)(a)): SMS marketing and transactional messages, marketing email (where not transactional to an active order), optional behavioral tracking beyond what is necessary to deliver the service, and any international transfers beyond the Standard Contractual Clauses framework.",
+      "Legal obligation (Art. 6(1)(c)): retention of transportation records for 7 years minimum per FMCSA regulation 49 CFR 379, tax-record retention per IRS requirements, and response to lawful requests from law-enforcement or regulatory authorities."
+    ],
+    "footer": "Y7 does not rely on Art. 6(1)(d) (vital interests) or Art. 6(1)(e) (public task) as legal bases. For special-category data (GDPR Art. 9), Y7 does not intentionally collect such data; if incidentally collected, it is processed only under Art. 9(2)(e) (data manifestly made public by the data subject) or Art. 9(2)(f) (establishment, exercise, or defense of legal claims)."
+  },
+
+  "section6": {
+    "title": "6. Purposes of Processing",
+    "body": "Y7 uses personal information for the following purposes:",
+    "bullets": [
+      "Provide the brokerage service: accept quote requests, source carriers, coordinate pickup and delivery, process payments, send status updates, and respond to support inquiries.",
+      "Communicate with Customer: send transactional email and (with consent) SMS and Telegram messages regarding Customer's order; send marketing messages only where Customer has expressly opted in.",
+      "Prevent fraud and misuse: verify identity, flag suspicious activity, block prohibited shipments (stolen vehicles, contraband, hazardous materials), and cooperate with law enforcement where required.",
+      "Improve the service: analyze usage patterns, test new features, investigate bugs, and train internal models for operations (e.g., carrier-matching quality). Where analytics involve personal data, we use aggregation and pseudonymization where feasible.",
+      "Comply with legal obligations: retain records required by FMCSA, IRS, state tax authorities, and consumer-protection agencies; respond to subpoenas and lawful requests.",
+      "Protect Y7's rights: defend against claims, enforce our Terms of Service, and exercise remedies when Customer or third parties breach Y7's policies.",
+      "Record and audit consent: every consent grant or withdrawal is recorded and retained to demonstrate compliance with TCPA, GDPR, and other applicable consent-based laws."
+    ]
+  },
+
+  "section7": {
+    "title": "7. Automated Decision-Making and Profiling",
+    "body": "Y7 uses automated risk-scoring to flag potentially fraudulent or high-risk quote requests (e.g., anomalous VIN patterns, mismatches between customer-provided identity and payment card, IP-reputation red flags). This scoring may contribute to a human reviewer's decision to decline or hold an order. No solely-automated decision producing legal or similarly significant effects is made; a human Y7 operator reviews any decision to decline service.",
+    "rights": "Under GDPR Article 22, Customers have the right not to be subject to a decision based solely on automated processing. To request human review of any decision affecting Customer's order, email privacy@y7agency.com with the subject \"Automated Decision Review\" and include the order reference number."
+  },
+
+  "section8": {
+    "title": "8. Recipients and Third-Party Sharing",
+    "body": "Y7 shares personal information only as necessary to provide the service or to comply with law:",
+    "bullets": [
+      "Motor carriers assigned to Customer's shipment: Customer's name, phone number, pickup and delivery addresses, and vehicle details, limited to what the carrier needs to perform pickup and delivery.",
+      "Stripe, Inc. (payment processor): billing contact details and Customer-authorized payment instrument. Stripe is an independent controller for payment data under PCI-DSS.",
+      "Microsoft Corporation (email delivery via Microsoft 365): email address, email content, and delivery/bounce status.",
+      "Twilio Inc. (SMS delivery): phone number in E.164 format, message content, delivery receipts.",
+      "Telegram Messenger Inc. (where Customer uses @y7dispatch_bot): Telegram user identifier, username, and message content.",
+      "Central Dispatch LLC (carrier marketplace): order-listing data (pickup and delivery cities, vehicle make/model/year/condition, price offered) — personal identifiers are omitted from the listing itself; carrier contact is only established after a carrier accepts the listing.",
+      "Intuit Inc. (QuickBooks, invoicing): billing name, address, email, invoice line-items. Full card numbers are never transmitted to Intuit.",
+      "Cloudflare, Inc. (CDN and WAF): request metadata (IP address, user-agent, headers, requested URL). Cloudflare acts as a processor under GDPR Art. 28 and is bound by a Data Processing Addendum.",
+      "Law-enforcement, regulatory, or judicial authorities: when Y7 receives a legally binding request (subpoena, court order, valid administrative demand) or when Y7 reasonably believes disclosure is necessary to prevent imminent harm or to cooperate with lawful fraud or stolen-vehicle investigations.",
+      "Legal and professional advisors: attorneys, accountants, and auditors under duty of confidentiality, as needed to establish, exercise, or defend legal claims."
+    ],
+    "footer": "Y7 does NOT sell personal information within the meaning of CCPA § 1798.140(ad) or GDPR. Y7 does NOT share personal information for cross-context behavioral advertising within the meaning of CCPA § 1798.140(ah)."
+  },
+
+  "section9": {
+    "title": "9. International Data Transfers",
+    "body": "Y7 is based in the United States. Personal data of Customers located in the EEA, United Kingdom, or Switzerland will be transferred to and processed in the United States. Y7 relies on the following safeguards for international transfers under GDPR Articles 44-49:",
+    "bullets": [
+      "Standard Contractual Clauses (SCCs): Y7 uses the European Commission's Standard Contractual Clauses (Module 2, controller-to-processor, Module 4, processor-to-controller where applicable) adopted by Implementing Decision (EU) 2021/914, executed with all processors that receive EU/UK personal data.",
+      "UK International Data Transfer Addendum (IDTA): for transfers originating in the United Kingdom, Y7 executes the UK IDTA alongside the SCCs.",
+      "Supplementary measures: encryption in transit (TLS 1.2 or higher) and at rest (AES-256 for sensitive fields), access controls limiting data access to authorized Y7 personnel with a need-to-know, and regular security assessments.",
+      "Derogations (Art. 49): for transfers necessary to perform Customer's transportation contract, Y7 relies on Art. 49(1)(b). For transfers based on Customer's explicit informed consent (e.g., optional marketing subscriptions), Y7 relies on Art. 49(1)(a)."
+    ],
+    "footer": "Customers may request a copy of the applicable SCCs and a summary of the transfer impact assessment by emailing privacy@y7agency.com."
+  },
+
+  "section10": {
+    "title": "10. Retention Schedule",
+    "body": "Y7 retains personal information only for as long as necessary for the purposes for which it was collected, subject to the following retention schedule:",
+    "bullets": [
+      "Order and payment records: 7 years minimum from order completion, as required by FMCSA regulation 49 CFR 379 and IRS tax-record-retention rules. These records include Bill of Lading, carrier assignment, shipment status history, and Stripe transaction logs.",
+      "Consent audit records (customer_consents table): retained indefinitely as an immutable audit log, required to demonstrate compliance with TCPA, GDPR, and other consent-based laws. Individual consent rows are never deleted; Customer's erasure requests are satisfied by removing personal identifiers from the customer row while preserving the consent timestamp, hash, and source.",
+      "Customer session history (customer_sessions table): 90 days rolling, after which rows are purged by a scheduled cleanup job.",
+      "Marketing attribution (UTM parameters, gclid, fbclid on orders): 2 years, after which the fields are nulled but the parent order row is retained.",
+      "Email bounce and suppression records: 2 years from the last bounce event, to prevent re-sending to known-bad addresses.",
+      "SMS suppression list (sms_suppression table): retained indefinitely — STOP requests are permanent and required by TCPA.",
+      "Technical logs (access logs, error logs): 30 days. Logs that contain personal data (IP addresses, user IDs) are anonymized or purged after this window.",
+      "Backups: rolling 30-day backup retention; personal data in backups is purged along with the primary store on the retention schedule above."
+    ]
+  },
+
+  "section11": {
+    "title": "11. Your Rights",
+    "body": "Depending on Customer's location, Customer has the following rights with respect to personal information Y7 processes. Y7 honors these rights for all Customers, not only those in jurisdictions that legally mandate them:",
+    "bullets": [
+      "Right of access (GDPR Art. 15; CCPA § 1798.100): request a copy of personal information Y7 holds about Customer, including sources, purposes, recipients, and retention period.",
+      "Right to rectification (GDPR Art. 16): correct inaccurate or incomplete personal information.",
+      "Right to erasure (GDPR Art. 17; CCPA § 1798.105): request deletion of personal information, subject to the FMCSA 7-year retention obligation for transportation records. Y7 will delete or anonymize data not required to be retained by law and will explain what, if anything, must remain.",
+      "Right to restriction of processing (GDPR Art. 18): require Y7 to limit how Customer's data is processed while a dispute or request is under review.",
+      "Right to data portability (GDPR Art. 20; CCPA § 1798.130): receive personal information in a structured, commonly used, machine-readable format (JSON) and transmit it to another controller.",
+      "Right to object (GDPR Art. 21): object to processing based on legitimate interests or for direct marketing. Y7 will stop processing for direct marketing upon any objection.",
+      "Right to withdraw consent (GDPR Art. 7(3)): withdraw consent at any time for processing based on consent. Withdrawal does not affect the lawfulness of processing before withdrawal. SMS consent is withdrawn by replying STOP to any message.",
+      "Right to opt out of automated decision-making (GDPR Art. 22): see Section 7 above.",
+      "Right to non-discrimination (CCPA § 1798.125): Y7 will not discriminate against Customers who exercise their privacy rights (e.g., by denying service, charging different prices, or providing a degraded level of service).",
+      "Right to lodge a complaint: EU/UK residents may lodge a complaint with their local supervisory authority. Massachusetts residents may contact the Massachusetts Attorney General's Office, Consumer Protection Division. California residents may contact the California Privacy Protection Agency (CPPA) or the California Attorney General."
+    ]
+  },
+
+  "section12": {
+    "title": "12. How to Exercise Your Rights",
+    "body": "To exercise any of the rights described in Section 11, email privacy@y7agency.com with the subject \"Privacy Request\" and describe the request. For identity verification, Y7 may ask Customer to confirm recent order details or verify access to the email address on file. Y7 will respond within 30 days (as required by GDPR Art. 12(3); CCPA allows up to 45 days with one 45-day extension). If Customer's request is complex or numerous, Y7 may extend by an additional 60 days with written notice of the reasons for delay. Y7 does not charge a fee for responding to rights requests, except where requests are manifestly unfounded or excessive (in which case Y7 may charge a reasonable administrative fee or refuse the request, as permitted by law)."
+  },
+
+  "section13": {
+    "title": "13. Security Measures",
+    "body": "Y7 maintains a Written Information Security Program (WISP) as required by Massachusetts 201 CMR 17.03, reviewed and updated annually. Security measures include:",
+    "bullets": [
+      "Encryption in transit: TLS 1.2 or higher for all Y7 endpoints; internal service-to-service traffic encrypted.",
+      "Encryption at rest: AES-256 for sensitive fields in the database (payment tokens, agreement HTML snapshots, signer IPs) via PostgreSQL column-level encryption or pgcrypto.",
+      "Access controls: role-based access control (admin, dispatcher, viewer) with least-privilege defaults; all privileged actions logged to an immutable audit trail.",
+      "Authentication: multi-factor where available; customer portal uses magic-link email OTP and single-use tokens with 7-day expiry.",
+      "Monitoring: automated intrusion-detection alerts, anomaly detection on login patterns, and regular vulnerability scans.",
+      "Vendor management: all processors contractually bound by Data Processing Addenda including GDPR SCCs and 201 CMR 17.03 flow-down obligations.",
+      "Employee training: annual security and privacy awareness training for all Y7 personnel with access to personal information.",
+      "Breach response: documented incident response plan with defined roles, escalation paths, and notification timelines."
+    ],
+    "breach": "In the event of a personal-data breach affecting Customer's information, Y7 will notify:\n- The relevant supervisory authority within 72 hours of becoming aware of the breach (GDPR Art. 33), where the breach is likely to result in a risk to rights and freedoms.\n- Affected individuals without undue delay (GDPR Art. 34; 201 CMR 17.04(7)) where the breach poses a high risk.\n- Massachusetts Attorney General and consumers within Massachusetts no later than 30 days per M.G.L. c. 93H.\n- Other state authorities as required by state breach-notification laws."
+  },
+
+  "section14": {
+    "title": "14. Cookies and Tracking",
+    "body": "Y7's website uses the following categories of cookies and similar technologies:",
+    "bullets": [
+      "Strictly necessary cookies: session identifiers, authentication tokens, CSRF tokens. These cannot be disabled without breaking core functionality.",
+      "Preference cookies: selected language, recently-viewed quote references. Disabled by refusing non-essential cookies in the banner.",
+      "Analytics cookies: measure aggregate usage patterns (page views, form completion rates). Set only with Customer consent via the cookie banner for EU/UK visitors; set by default for US visitors with an opt-out link in the footer.",
+      "Marketing cookies: used to measure campaign effectiveness via UTM parameters and click IDs. Set only with explicit consent."
+    ],
+    "dnt": "Y7 honors the Do Not Track (DNT) browser signal where technically feasible. When DNT is enabled, Y7 does not set analytics or marketing cookies regardless of other banner state."
+  },
+
+  "section15": {
+    "title": "15. Children's Privacy",
+    "body": "Y7's services are not directed to individuals under 18, and Y7 does not knowingly collect personal information from children. If Y7 discovers that it has collected personal information from a child under 18, Y7 will delete the information promptly. A parent or guardian who believes their child has submitted personal information to Y7 should contact privacy@y7agency.com to request deletion."
+  },
+
+  "section16": {
+    "title": "16. California Residents (CCPA/CPRA)",
+    "body": "California residents have additional rights under the California Consumer Privacy Act as amended by the California Privacy Rights Act:",
+    "bullets": [
+      "Right to know what personal information Y7 collects, uses, and discloses (described above in Sections 3, 4, 6, 8).",
+      "Right to delete personal information (subject to retention exceptions — see Section 11).",
+      "Right to correct inaccurate personal information.",
+      "Right to opt out of the sale or sharing of personal information. Y7 does not sell personal information and does not share personal information for cross-context behavioral advertising. No opt-out is required.",
+      "Right to limit the use and disclosure of sensitive personal information. Y7 does not use sensitive personal information for purposes outside the primary service.",
+      "Right to non-discrimination for exercising CCPA rights.",
+      "Right to designate an authorized agent to submit CCPA requests. Identity verification of both the agent and the consumer is required."
+    ],
+    "footer": "California residents under 16 may not have their personal information sold without affirmative consent (and under 13 without parental consent); since Y7 does not sell personal information, this does not apply to Y7's processing. To exercise CCPA rights, email privacy@y7agency.com."
+  },
+
+  "section17": {
+    "title": "17. Updates to This Privacy Policy",
+    "body": "Y7 may update this Privacy Policy to reflect changes to law, technology, or business practices. Material changes will be communicated via email to the address on file at least 30 days before taking effect, with the updated effective date shown at the top of this document. Non-material changes (clarifications, typo corrections) may be made without advance notice. Historical versions of this Privacy Policy are preserved in Y7's consent audit trail so that Customers can review the exact version in effect at any given past date."
+  },
+
+  "section18": {
+    "title": "18. Contact",
+    "body": "Y7 Consulting Inc.\nRegistered in the Commonwealth of Massachusetts\nFMCSA USDOT 4427359 | MC 1741537\n\nData Protection Officer / Privacy inquiries: privacy@y7agency.com\nGeneral: info@y7agency.com\nLegal: legal@y7agency.com\nArbitration opt-out: arbitration-optout@y7agency.com\nWeb: https://www.y7agency.com\nTelegram: @y7dispatch_bot\n\nEffective date: 2026-04-19. Version: v2.0."
+  }
+}

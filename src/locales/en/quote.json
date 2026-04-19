@@ -87,9 +87,9 @@
   "sms": {
     "consent": "By checking this box, you consent to receive SMS notifications and updates related to your vehicle transport from Y7 Consulting Inc at the phone number provided. Message frequency varies. Message & data rates may apply. Reply STOP to opt out, HELP for help. This consent is not a condition of purchase.",
     "terms": "See our Privacy Policy and SMS Terms & Conditions.",
-    "checkboxLabel": "I agree to receive SMS messages from Y7 Consulting Inc related to my transport quote, including verification codes, shipment updates, and billing reminders. Message frequency varies by shipment status. Message and data rates may apply. Reply STOP to opt out or HELP for assistance.",
-    "errorRequired": "SMS consent is required to submit this quote.",
-    "footnote": "By submitting this form, you agree to our Terms & Conditions and Privacy Policy. Your consent (IP, timestamp, version) is recorded for TCPA compliance."
+    "checkboxLabel": "I consent to receive SMS text messages from Y7 Consulting Inc. (Y7 Logistics), a licensed property broker (USDOT 4427359, MC 1741537), including verification codes, quote confirmations, shipment status updates, carrier assignment notifications, payment and billing notifications, and delivery notifications. Message frequency varies based on order activity. Message and data rates may apply. Reply STOP to unsubscribe at any time; reply HELP for help. Consent is not a condition of purchase. SMS Privacy Policy at https://www.y7agency.com/privacy.",
+    "errorRequired": "Please confirm SMS consent to submit your quote request.",
+    "footnote": "By submitting this quote request, you agree to our Terms of Service and Privacy Policy, each version 2.0, effective 2026-04-19. Your consent is recorded with timestamp, IP address, and the exact text you agreed to (SHA-256 hash)."
   },
   "success": {
     "title": "Quote Request Received!",
