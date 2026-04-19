@@ -1,0 +1,22 @@
+{
+  "keys": {
+    "dealers": {
+      "title": "Shipping auction vehicles for your dealership?",
+      "body": "Y7 dispatches Copart, IAA, and Manheim loads for licensed dealers every day — weekly invoicing, dedicated dispatcher, and volume tiers from the sixth load of the month.",
+      "cta": "See dealer pricing",
+      "linkLabel": "Y7's dealer program"
+    },
+    "exporters": {
+      "title": "Getting this car to a port?",
+      "body": "If the end game is ocean freight, we run auction-to-port logistics end-to-end — gate passes, warehouse drops, carrier management across Newark, Houston, Savannah, Baltimore, LA, and Jacksonville.",
+      "cta": "See export services",
+      "linkLabel": "Y7 export logistics"
+    },
+    "shipMyCar": {
+      "title": "Shipping one vehicle door-to-door?",
+      "body": "Y7 books door-to-door carrier space across all 50 states, usually with a firm quote back inside an hour. Open or enclosed, running or inop — one form, one dispatcher.",
+      "cta": "Get my car quote",
+      "linkLabel": "Ship My Car"
+    }
+  }
+}

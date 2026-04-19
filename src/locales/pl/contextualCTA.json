@@ -1,0 +1,22 @@
+{
+  "keys": {
+    "dealers": {
+      "title": "Transportujesz auta z aukcji dla swojego salonu?",
+      "body": "Y7 codziennie obsługuje Copart, IAA i Manheim dla licencjonowanych dealerów w USA — fakturowanie tygodniowe, dedykowany dyspozytor, ceny hurtowe od szóstego auta w miesiącu.",
+      "cta": "Cennik dilerski",
+      "linkLabel": "program dla dealerów Y7"
+    },
+    "exporters": {
+      "title": "Potrzebujesz dostawy do portu?",
+      "body": "Jeśli końcem trasy jest fracht morski, prowadzimy logistykę kompleksowo: gate pass, magazyn, koordynacja przewoźników przez porty Newark, Houston, Savannah, Baltimore, LA, Jacksonville.",
+      "cta": "Usługi eksportowe",
+      "linkLabel": "eksport Y7"
+    },
+    "shipMyCar": {
+      "title": "Transport jednego auta od drzwi do drzwi?",
+      "body": "Y7 rezerwuje przewoźnika po wszystkich 50 stanach USA, zwykle ze stałą ceną zwrotną w ciągu godziny. Otwarta lub zamknięta laweta, na chodzie lub nie — jedno zgłoszenie, jeden dyspozytor.",
+      "cta": "Zamów wycenę",
+      "linkLabel": "transport mojego auta"
+    }
+  }
+}

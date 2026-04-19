@@ -17,6 +17,7 @@ import processTimelineEn from './locales/en/processTimeline.json';
 import termsEn from './locales/en/terms.json';
 import privacyEn from './locales/en/privacy.json';
 import notFoundEn from './locales/en/notFound.json';
+import contextualCTAEn from './locales/en/contextualCTA.json';
 
 // Russian
 import commonRu from './locales/ru/common.json';
@@ -32,6 +33,7 @@ import aboutRu from './locales/ru/about.json';
 import faqRu from './locales/ru/faq.json';
 import processTimelineRu from './locales/ru/processTimeline.json';
 import notFoundRu from './locales/ru/notFound.json';
+import contextualCTARu from './locales/ru/contextualCTA.json';
 
 // Polish
 import commonPl from './locales/pl/common.json';
@@ -47,6 +49,7 @@ import aboutPl from './locales/pl/about.json';
 import faqPl from './locales/pl/faq.json';
 import processTimelinePl from './locales/pl/processTimeline.json';
 import notFoundPl from './locales/pl/notFound.json';
+import contextualCTAPl from './locales/pl/contextualCTA.json';
 
 // Ukrainian
 import commonUa from './locales/ua/common.json';
@@ -62,27 +65,28 @@ import aboutUa from './locales/ua/about.json';
 import faqUa from './locales/ua/faq.json';
 import processTimelineUa from './locales/ua/processTimeline.json';
 import notFoundUa from './locales/ua/notFound.json';
+import contextualCTAUa from './locales/ua/contextualCTA.json';
 
 const resources = {
   en: {
     common: commonEn, home: homeEn, quote: quoteEn, services: servicesEn,
     dealers: dealersEn, exporters: exportersEn, shipMycar: shipMycarEn, agreement: agreementEn, agreement_dealer: agreementDealerEn, about: aboutEn, faq: faqEn, processTimeline: processTimelineEn,
-    terms: termsEn, privacy: privacyEn, notFound: notFoundEn,
+    terms: termsEn, privacy: privacyEn, notFound: notFoundEn, contextualCTA: contextualCTAEn,
   },
   ru: {
     common: commonRu, home: homeRu, quote: quoteRu, services: servicesRu,
     dealers: dealersRu, exporters: exportersRu, shipMycar: shipMycarRu, agreement: agreementRu, agreement_dealer: agreementDealerRu, about: aboutRu, faq: faqRu, processTimeline: processTimelineRu,
-    terms: termsEn, privacy: privacyEn, notFound: notFoundRu,
+    terms: termsEn, privacy: privacyEn, notFound: notFoundRu, contextualCTA: contextualCTARu,
   },
   pl: {
     common: commonPl, home: homePl, quote: quotePl, services: servicesPl,
     dealers: dealersPl, exporters: exportersPl, shipMycar: shipMycarPl, agreement: agreementPl, agreement_dealer: agreementDealerPl, about: aboutPl, faq: faqPl, processTimeline: processTimelinePl,
-    terms: termsEn, privacy: privacyEn, notFound: notFoundPl,
+    terms: termsEn, privacy: privacyEn, notFound: notFoundPl, contextualCTA: contextualCTAPl,
   },
   ua: {
     common: commonUa, home: homeUa, quote: quoteUa, services: servicesUa,
     dealers: dealersUa, exporters: exportersUa, shipMycar: shipMycarUa, agreement: agreementUa, agreement_dealer: agreementDealerUa, about: aboutUa, faq: faqUa, processTimeline: processTimelineUa,
-    terms: termsEn, privacy: privacyEn, notFound: notFoundUa,
+    terms: termsEn, privacy: privacyEn, notFound: notFoundUa, contextualCTA: contextualCTAUa,
   },
 };
 
