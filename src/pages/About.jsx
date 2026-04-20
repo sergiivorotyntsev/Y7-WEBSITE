@@ -1,7 +1,7 @@
 import { useTranslation, Trans } from 'react-i18next';
 import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
-import { ScalesIcon, VerifiedIcon, EyeIcon, MapPinIcon, GlobeIcon, BellIcon, ShieldIcon } from '../components/icons';
+import { ScalesIcon, VerifiedIcon, EyeIcon, MapPinIcon, GlobeIcon, BellIcon, ShieldIcon, PortalIcon, TruckIcon } from '../components/icons';
 import styles from './About.module.css';
 
 const ICONS = [ScalesIcon, VerifiedIcon, EyeIcon, MapPinIcon, GlobeIcon, BellIcon];
@@ -12,6 +12,9 @@ export default function About() {
   const steps = t('steps', { returnObjects: true }) || [];
   const whyPoints = t('whyPoints', { returnObjects: true }) || [];
   const commitments = t('commitments', { returnObjects: true }) || [];
+  const commsSupportItems = t('comms.support.items', { returnObjects: true }) || [];
+  const commsDeliveryItems = t('comms.delivery.items', { returnObjects: true }) || [];
+  const commsBenefits = t('comms.benefits.items', { returnObjects: true }) || [];
 
   return (
     <div className={styles.page}>
@@ -86,6 +89,45 @@ export default function About() {
                 </div>
               );
             })}
+          </div>
+        </div>
+
+        {/* How Y7 Communicates */}
+        <div className={styles.section}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionMicro}>{t('comms.kicker')}</span>
+            <h2 className={styles.sectionTitle}>{t('comms.title')}</h2>
+          </div>
+          <p className={styles.commsLead}>{t('comms.lead')}</p>
+          <div className={styles.commsGrid}>
+            <div className={styles.commsCard}>
+              <div className={styles.commsIcon}><PortalIcon size={24} /></div>
+              <h3 className={styles.commsCardTitle}>{t('comms.support.title')}</h3>
+              <p className={styles.commsCardDesc}>{t('comms.support.desc')}</p>
+              <ul className={styles.commsList}>
+                {Array.isArray(commsSupportItems) && commsSupportItems.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <div className={styles.commsCard}>
+              <div className={styles.commsIcon}><TruckIcon size={24} /></div>
+              <h3 className={styles.commsCardTitle}>{t('comms.delivery.title')}</h3>
+              <p className={styles.commsCardDesc}>{t('comms.delivery.desc')}</p>
+              <ul className={styles.commsList}>
+                {Array.isArray(commsDeliveryItems) && commsDeliveryItems.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div className={styles.commsBenefits}>
+            <h3 className={styles.commsBenefitsTitle}>{t('comms.benefits.title')}</h3>
+            <div className={styles.commsBenefitsRow}>
+              {Array.isArray(commsBenefits) && commsBenefits.map((b, i) => (
+                <span key={i} className={styles.commsBenefit}>{b}</span>
+              ))}
+            </div>
           </div>
         </div>
 

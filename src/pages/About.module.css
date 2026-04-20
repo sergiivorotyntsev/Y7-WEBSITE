@@ -356,3 +356,117 @@
     box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.04));
   }
 }
+
+/* ====================================================================
+   How Y7 Communicates section (P3-CLARITY-T02)
+   ==================================================================== */
+
+.commsLead {
+  font-family: var(--font-sans, system-ui);
+  font-size: 15px;
+  color: var(--text, #2C2C2A);
+  line-height: 1.75;
+  max-width: 720px;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+
+.commsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 760px) {
+  .commsGrid { grid-template-columns: 1fr; }
+}
+
+.commsCard {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-lg, 12px);
+  padding: clamp(20px, 3vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.commsCard:nth-child(2) {
+  background: var(--bg-muted, #EFECE6);
+}
+
+.commsIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md, 8px);
+  background: rgba(153, 60, 29, 0.10);
+  color: var(--accent, #993C1D);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.commsCardTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.commsCardDesc {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  color: var(--text-muted, #888780);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.commsList {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  color: var(--text, #2C2C2A);
+  line-height: 1.8;
+  margin: 4px 0 0;
+  padding-left: 20px;
+}
+
+.commsList li { margin-bottom: 4px; }
+
+.commsBenefits {
+  background: var(--bg, #F7F5F0);
+  border: 1px dashed var(--border, #e5e0d8);
+  border-radius: var(--radius-lg, 12px);
+  padding: clamp(18px, 3vw, 24px);
+  text-align: center;
+}
+
+.commsBenefitsTitle {
+  font-family: var(--font-sans, system-ui);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted, #888780);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 14px;
+}
+
+.commsBenefitsRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 16px;
+}
+
+.commsBenefit {
+  display: inline-block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  color: var(--text, #2C2C2A);
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-pill, 20px);
+  padding: 6px 14px;
+}

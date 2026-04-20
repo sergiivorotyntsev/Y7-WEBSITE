@@ -8,20 +8,54 @@
   "processKicker": "Proces",
   "processTitle": "Jak pracujemy",
   "steps": [
-    { "num": 1, "title": "Przyjmujemy zlecenie", "desc": "Klient przesyła dane pojazdu, adresy odbioru i dostawy." },
-    { "num": 2, "title": "Weryfikujemy i przydzielamy przewoźnika", "desc": "Dobieramy sprawdzonego i ubezpieczonego przewoźnika przez Central Dispatch." },
-    { "num": 3, "title": "Monitorujemy transport", "desc": "Aktualizacje statusu i powiadomienia od odbioru do dostawy." },
-    { "num": 4, "title": "Dostarczamy z dokumentami", "desc": "Podpisany BOL, raporty stanu i potwierdzenie dostawy w aktach." }
+    {
+      "num": 1,
+      "title": "Przyjmujemy zlecenie",
+      "desc": "Klient przesyła dane pojazdu, adresy odbioru i dostawy."
+    },
+    {
+      "num": 2,
+      "title": "Weryfikujemy i przydzielamy przewoźnika",
+      "desc": "Dobieramy sprawdzonego i ubezpieczonego przewoźnika przez Central Dispatch."
+    },
+    {
+      "num": 3,
+      "title": "Monitorujemy transport",
+      "desc": "Aktualizacje statusu i powiadomienia od odbioru do dostawy."
+    },
+    {
+      "num": 4,
+      "title": "Dostarczamy z dokumentami",
+      "desc": "Podpisany BOL, raporty stanu i potwierdzenie dostawy w aktach."
+    }
   ],
   "valuesKicker": "Nasze wartości",
   "valuesTitle": "Co wyróżnia Y7",
   "whyPoints": [
-    { "title": "Licencjonowany broker", "desc": "Zarejestrowany broker FMCSA z aktywną licencją MC i USDOT." },
-    { "title": "Zweryfikowani przewoźnicy", "desc": "Każdy przewoźnik sprawdzany pod kątem ubezpieczenia, historii bezpieczeństwa i licencji operacyjnej." },
-    { "title": "Przejrzyste ceny", "desc": "Stała wycena bez ukrytych kosztów. Cena ustalana po potwierdzeniu." },
-    { "title": "Aktualizacje statusu", "desc": "Powiadomienia przez panel i Telegram — znasz status transportu na każdym etapie." },
-    { "title": "Wsparcie wielojęzyczne", "desc": "Komunikujemy się w polskim, ukraińskim, rosyjskim i angielskim." },
-    { "title": "Automatyczne aktualizacje", "desc": "Email i Telegram na każdym etapie transportu." }
+    {
+      "title": "Licencjonowany broker",
+      "desc": "Zarejestrowany broker FMCSA z aktywną licencją MC i USDOT."
+    },
+    {
+      "title": "Zweryfikowani przewoźnicy",
+      "desc": "Każdy przewoźnik sprawdzany pod kątem ubezpieczenia, historii bezpieczeństwa i licencji operacyjnej."
+    },
+    {
+      "title": "Przejrzyste ceny",
+      "desc": "Stała wycena bez ukrytych kosztów. Cena ustalana po potwierdzeniu."
+    },
+    {
+      "title": "Aktualizacje statusu",
+      "desc": "Powiadomienia przez panel i Telegram — znasz status transportu na każdym etapie."
+    },
+    {
+      "title": "Wsparcie wielojęzyczne",
+      "desc": "Komunikujemy się w polskim, ukraińskim, rosyjskim i angielskim."
+    },
+    {
+      "title": "Automatyczne aktualizacje",
+      "desc": "Email i Telegram na każdym etapie transportu."
+    }
   ],
   "commitmentsKicker": "Obietnice",
   "commitmentsTitle": "Nasze zobowiązania",
@@ -41,5 +75,37 @@
   "contactTitle": "Kontakt",
   "contactEmailLabel": "Email:",
   "contactTelegramLabel": "Telegram:",
-  "contactPortalLabel": "Panel klienta:"
+  "contactPortalLabel": "Panel klienta:",
+  "comms": {
+    "kicker": "Model komunikacji",
+    "title": "Jak Y7 komunikuje się z klientami",
+    "lead": "Y7 działa w modelu dwukanałowym: digital-first wsparcie klienta i telefoniczna koordynacja ostatniej mili dostawy. Oto dlaczego.",
+    "support": {
+      "title": "Wsparcie klienta: Digital-First",
+      "desc": "Wszystkie interakcje z zespołem Y7 odbywają się przez kanały pisemne z pełnym śladem audytu.",
+      "items": [
+        "Portal klienta — zlecenia, dokumenty, statusy, wiadomości",
+        "Bot Telegram — natychmiastowe statusy, szybkie wyceny",
+        "Email — umowy, faktury, oficjalna korespondencja",
+        "SMS — powiadomienia o statusie (zgodnie z TCPA)"
+      ]
+    },
+    "delivery": {
+      "title": "Koordynacja dostawy: Kontakt kierowcy",
+      "desc": "Po przydzieleniu przewoźnika otrzymujesz bezpośredni numer telefonu kierowcy do logistyki dostawy.",
+      "items": [
+        "Fizyczna dostawa wymaga koordynacji głosowej w czasie rzeczywistym (ETA, trasa, punkt rozładunku)",
+        "Standard branżowy dla wszystkich licencjonowanych brokerów FMCSA"
+      ]
+    },
+    "benefits": {
+      "title": "Dlaczego ten model działa lepiej",
+      "items": [
+        "Pisemny ślad audytu dla każdej decyzji",
+        "Dokładność dokumentów — bez nieporozumień",
+        "Łatwiejsza koordynacja wielu pojazdów i ładunków",
+        "Szybsza odpowiedź — bez phone tag i czekania"
+      ]
+    }
+  }
 }

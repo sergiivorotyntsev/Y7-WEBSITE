@@ -8,20 +8,54 @@
   "processKicker": "Process",
   "processTitle": "How We Work",
   "steps": [
-    { "num": 1, "title": "Receive Order", "desc": "Customer submits vehicle details, pickup and delivery locations." },
-    { "num": 2, "title": "Vet & Assign Carrier", "desc": "We match your load with a verified, insured carrier through Central Dispatch." },
-    { "num": 3, "title": "Monitor Transit", "desc": "Status updates and notifications from pickup to delivery." },
-    { "num": 4, "title": "Deliver & Document", "desc": "Signed BOL, condition reports, and delivery confirmation on file." }
+    {
+      "num": 1,
+      "title": "Receive Order",
+      "desc": "Customer submits vehicle details, pickup and delivery locations."
+    },
+    {
+      "num": 2,
+      "title": "Vet & Assign Carrier",
+      "desc": "We match your load with a verified, insured carrier through Central Dispatch."
+    },
+    {
+      "num": 3,
+      "title": "Monitor Transit",
+      "desc": "Status updates and notifications from pickup to delivery."
+    },
+    {
+      "num": 4,
+      "title": "Deliver & Document",
+      "desc": "Signed BOL, condition reports, and delivery confirmation on file."
+    }
   ],
   "valuesKicker": "Our Values",
   "valuesTitle": "What sets Y7 apart",
   "whyPoints": [
-    { "title": "Licensed Broker", "desc": "FMCSA-registered auto transport broker with active MC and USDOT authority." },
-    { "title": "Verified Carriers", "desc": "Every carrier is vetted for insurance, safety record, and operating authority." },
-    { "title": "Transparent Pricing", "desc": "Upfront quotes with no hidden fees. Price locked once you confirm." },
-    { "title": "Shipment Status Updates", "desc": "Portal and Telegram notifications so you know your shipment status at every stage." },
-    { "title": "Multilingual Support", "desc": "We communicate in English, Russian, Polish, and Ukrainian." },
-    { "title": "Automated Updates", "desc": "Email and Telegram notifications at every stage of transport." }
+    {
+      "title": "Licensed Broker",
+      "desc": "FMCSA-registered auto transport broker with active MC and USDOT authority."
+    },
+    {
+      "title": "Verified Carriers",
+      "desc": "Every carrier is vetted for insurance, safety record, and operating authority."
+    },
+    {
+      "title": "Transparent Pricing",
+      "desc": "Upfront quotes with no hidden fees. Price locked once you confirm."
+    },
+    {
+      "title": "Shipment Status Updates",
+      "desc": "Portal and Telegram notifications so you know your shipment status at every stage."
+    },
+    {
+      "title": "Multilingual Support",
+      "desc": "We communicate in English, Russian, Polish, and Ukrainian."
+    },
+    {
+      "title": "Automated Updates",
+      "desc": "Email and Telegram notifications at every stage of transport."
+    }
   ],
   "commitmentsKicker": "Promises",
   "commitmentsTitle": "Our Commitments",
@@ -41,5 +75,37 @@
   "contactTitle": "Contact",
   "contactEmailLabel": "Email:",
   "contactTelegramLabel": "Telegram:",
-  "contactPortalLabel": "Customer Portal:"
+  "contactPortalLabel": "Customer Portal:",
+  "comms": {
+    "kicker": "Communication Model",
+    "title": "How Y7 Communicates",
+    "lead": "Y7 operates on a two-channel model: digital-first customer support, and phone-enabled last-mile delivery coordination. Here is why.",
+    "support": {
+      "title": "Customer Support: Digital-First",
+      "desc": "All interactions with Y7 staff happen through written channels with a full audit trail.",
+      "items": [
+        "Client Portal — orders, documents, status, messages",
+        "Telegram Bot — instant status, quick quotes",
+        "Email — contracts, invoices, formal communication",
+        "SMS — status notifications (TCPA-compliant)"
+      ]
+    },
+    "delivery": {
+      "title": "Delivery Coordination: Driver Contact",
+      "desc": "When your carrier is assigned, you receive the driver's direct phone number for delivery logistics.",
+      "items": [
+        "Physical delivery needs real-time voice coordination (ETA, directions, unload point)",
+        "Industry standard for all FMCSA-licensed brokers"
+      ]
+    },
+    "benefits": {
+      "title": "Why this model works better",
+      "items": [
+        "Written audit trail for every decision",
+        "Document accuracy — no miscommunication",
+        "Easier multi-vehicle and multi-load coordination",
+        "Faster response — no phone tag, no waiting on hold"
+      ]
+    }
+  }
 }
