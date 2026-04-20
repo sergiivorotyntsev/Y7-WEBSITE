@@ -186,7 +186,7 @@ const orderingSteps = [
   {
     num: 2,
     title: 'Potwierdzenie zlecenia po wygranej licytacji',
-    desc: 'Po wygraniu licytacji przesy\u0142asz nam potwierdzenie z Copart lub IAAI. Rejestrujemy auto w systemie dispatch.y7agency.com i przypisujemy do transportu l\u0105dowego. Otrzymujesz dost\u0119p do portalu klienta, gdzie mo\u017cesz \u015bledzi\u0107 status na ka\u017cdym etapie.',
+    desc: 'Po wygraniu licytacji przesy\u0142asz nam potwierdzenie z Copart lub IAAI. Rejestrujemy auto w naszym systemie i przypisujemy do transportu l\u0105dowego. Otrzymujesz dost\u0119p do portalu klienta, gdzie mo\u017cesz \u015bledzi\u0107 status na ka\u017cdym etapie.',
   },
   {
     num: 3,
