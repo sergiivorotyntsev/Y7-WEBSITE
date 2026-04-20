@@ -171,7 +171,8 @@ export default function OpenCarShipping() {
           and tension to anchor points on the trailer. The straps never contact the
           body, bumpers, or drivetrain. Older chain-and-hook tie-downs are no longer
           the industry standard and should be avoided on any shipment — if your
-          assigned carrier arrives with chains-on-axles equipment, call us.
+          assigned carrier arrives with chains-on-axles equipment, flag it to
+          dispatch via the portal or Telegram before loading.
         </p>
         <h3 style={subhead}>The 12–24 hour pickup call</h3>
         <p style={muted}>
