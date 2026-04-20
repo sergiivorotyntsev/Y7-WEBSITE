@@ -47,11 +47,41 @@
   font-family: var(--font-sans, system-ui);
   font-size: 0.88rem;
   color: var(--text-muted, #888780);
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
   align-items: center;
+}
+
+.authorBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px 18px;
+  margin: 0 0 28px;
+  background: var(--bg-muted, #EFECE6);
+  border-left: 3px solid var(--accent, #993C1D);
+  border-radius: var(--radius-sm, 6px);
+  font-family: var(--font-sans, system-ui);
+}
+
+.authorName {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+}
+
+.authorRole {
+  font-size: 0.82rem;
+  color: var(--text-muted, #888780);
+}
+
+.authorCredential {
+  font-size: 0.78rem;
+  color: var(--text-muted, #888780);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  letter-spacing: 0.02em;
 }
 
 .divider {

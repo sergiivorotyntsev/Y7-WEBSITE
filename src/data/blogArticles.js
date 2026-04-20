@@ -12,6 +12,26 @@ export const CATEGORIES = {
   exporter: { label: 'For Exporters',      color: '#8C5020' },
 };
 
+const FOUNDER_AUTHOR = {
+  name: 'Sergii Vorotyntsev',
+  role: 'Founder & Licensed FMCSA Broker',
+  credential: 'MC #1741537',
+};
+
+const TEAM_AUTHOR = {
+  name: 'Y7 Dispatch Team',
+  role: 'Dispatch Operations',
+  credential: 'Licensed FMCSA Broker MC #1741537',
+};
+
+// Categories where founder attribution carries E-E-A-T weight
+// (regulatory/compliance/insurance/broker expertise).
+const FOUNDER_CATEGORIES = new Set(['fmcsa', 'insurance', 'broker']);
+
+export function authorFor(category) {
+  return FOUNDER_CATEGORIES.has(category) ? FOUNDER_AUTHOR : TEAM_AUTHOR;
+}
+
 const articles = [
   {
     slug: 'copart-iaa-manheim-comparison',

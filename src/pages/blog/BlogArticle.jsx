@@ -1,7 +1,7 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
 import BreadcrumbSchema from '../../components/BreadcrumbSchema';
-import articles, { CATEGORIES } from '../../data/blogArticles';
+import articles, { CATEGORIES, authorFor } from '../../data/blogArticles';
 import BANNER_MAP from './BlogBanners';
 import ShareButtons from '../../components/ShareButtons';
 import { colors, fonts } from '../../theme';
@@ -143,6 +143,26 @@ export default function BlogArticle() {
     .filter(a => a.category === article.category && a.slug !== slug)
     .slice(0, 3);
 
+  const author = authorFor(article.category);
+  const authorIsPerson = author.name !== 'Y7 Dispatch Team';
+
+  const authorSchema = authorIsPerson
+    ? {
+        '@type': 'Person',
+        name: author.name,
+        jobTitle: author.role,
+        affiliation: {
+          '@type': 'Organization',
+          name: 'Y7 Logistics',
+          url: 'https://www.y7agency.com',
+        },
+      }
+    : {
+        '@type': 'Organization',
+        name: author.name,
+        url: 'https://www.y7agency.com',
+      };
+
   const blogPostingSchema = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -150,8 +170,16 @@ export default function BlogArticle() {
     description: article.metaDescription,
     datePublished: article.dateISO,
     dateModified: article.dateISO,
-    author: { '@type': 'Organization', name: 'Y7 Logistics', url: 'https://www.y7agency.com' },
-    publisher: { '@type': 'Organization', name: 'Y7 Consulting Inc.', url: 'https://www.y7agency.com' },
+    author: authorSchema,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Y7 Consulting Inc.',
+      url: 'https://www.y7agency.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.y7agency.com/y7-logo-512.png',
+      },
+    },
     mainEntityOfPage: `https://www.y7agency.com/blog/${slug}`,
   });
 
@@ -165,7 +193,7 @@ export default function BlogArticle() {
         ogType="article"
         ogImage="https://www.y7agency.com/og-blog.svg"
         articlePublishedTime={article.dateISO}
-        articleAuthor="Y7 Logistics"
+        articleAuthor={author.name}
         articleSection={cat.label}
       />
       <BreadcrumbSchema items={[
@@ -194,8 +222,12 @@ export default function BlogArticle() {
           <span>{article.date}</span>
           <span>&middot;</span>
           <span>{article.readTime}</span>
-          <span>&middot;</span>
-          <span>Y7 Dispatch Team</span>
+        </div>
+
+        <div className={styles.authorBlock}>
+          <span className={styles.authorName}>{author.name}</span>
+          <span className={styles.authorRole}>{author.role}</span>
+          <span className={styles.authorCredential}>{author.credential}</span>
         </div>
 
         <ShareButtons
