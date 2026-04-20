@@ -1,4 +1,5 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import PageMeta from '../../components/PageMeta';
 import BreadcrumbSchema from '../../components/BreadcrumbSchema';
 import articles, { CATEGORIES, authorFor } from '../../data/blogArticles';
@@ -130,6 +131,7 @@ const RELATED_SERVICES = {
 const theme = { text: colors.text, accent: colors.accent, success: colors.success, dark: colors.dark, bg: colors.bg, fonts };
 
 export default function BlogArticle() {
+  const { t } = useTranslation();
   const { slug } = useParams();
   const article = articles.find(a => a.slug === slug);
 
@@ -268,6 +270,18 @@ export default function BlogArticle() {
             </ul>
           </div>
         )}
+
+        <div className={styles.articleCta}>
+          <p className={styles.articleCtaQuestion}>{t('blog.articleCta.question')}</p>
+          <div className={styles.articleCtaButtons}>
+            <Link to="/quote" className={styles.articleCtaPrimary}>
+              {t('blog.articleCta.quote')}
+            </Link>
+            <Link to="/portal/login" className={styles.articleCtaSecondary}>
+              {t('blog.articleCta.portal')}
+            </Link>
+          </div>
+        </div>
 
         <Link to="/blog" className={styles.backLink}>
           &larr; Back to Blog

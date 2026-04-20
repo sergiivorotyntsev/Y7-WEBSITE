@@ -221,5 +221,22 @@
     "fmcsa": "Verify FMCSA",
     "broker": "Verify Broker",
     "cd": "Central Dispatch Profile"
+  },
+  "blog": {
+    "clusters": {
+      "title": "Browse by role",
+      "dealers": "For Dealers",
+      "dealersDesc": "Auction pickup, volume pricing, Copart/IAA/Manheim operations",
+      "exporters": "For Exporters",
+      "exportersDesc": "Auction-to-port logistics, documentation, destination planning",
+      "broker": "Broker Insights",
+      "brokerDesc": "FMCSA compliance, insurance, industry operations",
+      "articleCount": "articles"
+    },
+    "articleCta": {
+      "question": "Need transport coordination for your next shipment?",
+      "quote": "Get a Quote",
+      "portal": "Open Portal"
+    }
   }
 }

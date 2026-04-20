@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import PageMeta from '../../components/PageMeta';
 import BreadcrumbSchema from '../../components/BreadcrumbSchema';
 import articles, { CATEGORIES } from '../../data/blogArticles';
@@ -30,8 +31,10 @@ const collectionSchema = JSON.stringify({
 });
 
 export default function BlogIndex() {
+  const { t } = useTranslation();
   const [filter, setFilter] = useState('all');
   const filtered = filter === 'all' ? articles : articles.filter(a => a.category === filter);
+  const countFor = (cat) => articles.filter(a => a.category === cat).length;
 
   return (
     <div>
@@ -66,6 +69,34 @@ export default function BlogIndex() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Clusters — browse by audience role */}
+      <section className={styles.clusters}>
+        <h2 className={styles.clustersTitle}>{t('blog.clusters.title')}</h2>
+        <div className={styles.clusterGrid}>
+          <button type="button" onClick={() => setFilter('dealer')} className={styles.clusterCard}>
+            <h3 className={styles.clusterCardTitle}>{t('blog.clusters.dealers')}</h3>
+            <p className={styles.clusterCardDesc}>{t('blog.clusters.dealersDesc')}</p>
+            <span className={styles.clusterCount}>
+              {countFor('dealer')} {t('blog.clusters.articleCount')}
+            </span>
+          </button>
+          <button type="button" onClick={() => setFilter('exporter')} className={styles.clusterCard}>
+            <h3 className={styles.clusterCardTitle}>{t('blog.clusters.exporters')}</h3>
+            <p className={styles.clusterCardDesc}>{t('blog.clusters.exportersDesc')}</p>
+            <span className={styles.clusterCount}>
+              {countFor('exporter')} {t('blog.clusters.articleCount')}
+            </span>
+          </button>
+          <button type="button" onClick={() => setFilter('broker')} className={styles.clusterCard}>
+            <h3 className={styles.clusterCardTitle}>{t('blog.clusters.broker')}</h3>
+            <p className={styles.clusterCardDesc}>{t('blog.clusters.brokerDesc')}</p>
+            <span className={styles.clusterCount}>
+              {countFor('broker')} {t('blog.clusters.articleCount')}
+            </span>
+          </button>
         </div>
       </section>
 

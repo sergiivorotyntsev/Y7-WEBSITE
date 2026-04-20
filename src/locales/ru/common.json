@@ -221,5 +221,22 @@
     "fmcsa": "Проверить FMCSA",
     "broker": "Проверить брокера",
     "cd": "Профиль Central Dispatch"
+  },
+  "blog": {
+    "clusters": {
+      "title": "По роли",
+      "dealers": "Дилерам",
+      "dealersDesc": "Забор с аукционов, оптовые цены, работа с Copart/IAA/Manheim",
+      "exporters": "Экспортёрам",
+      "exportersDesc": "Логистика аукцион-порт, документы, планирование назначения",
+      "broker": "Брокерские материалы",
+      "brokerDesc": "FMCSA-compliance, страхование, операционная работа",
+      "articleCount": "статей"
+    },
+    "articleCta": {
+      "question": "Нужна координация перевозки для следующей отправки?",
+      "quote": "Получить расчёт",
+      "portal": "Открыть портал"
+    }
   }
 }

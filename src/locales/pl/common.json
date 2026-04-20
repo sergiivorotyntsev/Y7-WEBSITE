@@ -221,5 +221,22 @@
     "fmcsa": "Zweryfikuj FMCSA",
     "broker": "Zweryfikuj brokera",
     "cd": "Profil Central Dispatch"
+  },
+  "blog": {
+    "clusters": {
+      "title": "Według roli",
+      "dealers": "Dla dealerów",
+      "dealersDesc": "Odbiór z aukcji, ceny hurtowe, operacje Copart/IAA/Manheim",
+      "exporters": "Dla eksporterów",
+      "exportersDesc": "Logistyka aukcja-port, dokumentacja, planowanie celu",
+      "broker": "Materiały brokerskie",
+      "brokerDesc": "Zgodność z FMCSA, ubezpieczenia, operacje branżowe",
+      "articleCount": "artykułów"
+    },
+    "articleCta": {
+      "question": "Potrzebujesz koordynacji transportu dla następnej przesyłki?",
+      "quote": "Uzyskaj wycenę",
+      "portal": "Otwórz portal"
+    }
   }
 }

@@ -312,3 +312,88 @@
   text-align: center;
   padding: 60px 0;
 }
+
+/* ====================================================================
+   P3-CLARITY-T06: cluster cards
+   ==================================================================== */
+
+.clusters {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: clamp(32px, 5vh, 48px) 24px 8px;
+}
+
+.clustersTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 16px;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+.clusterGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+@media (max-width: 720px) {
+  .clusterGrid { grid-template-columns: 1fr; }
+}
+
+.clusterCard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px;
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-lg, 12px);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: border-color 200ms ease, transform 150ms ease, box-shadow 200ms ease;
+}
+
+@media (hover: hover) {
+  .clusterCard:hover {
+    border-color: var(--accent, #993C1D);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+}
+
+.clusterCard:focus-visible {
+  outline: none;
+  border-color: var(--accent, #993C1D);
+  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+}
+
+.clusterCardTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.clusterCardDesc {
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  color: var(--text-muted, #888780);
+  margin: 0;
+  line-height: 1.55;
+}
+
+.clusterCount {
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+}
