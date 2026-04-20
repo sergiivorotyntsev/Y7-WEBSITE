@@ -69,7 +69,7 @@
     },
     "policy": {
       "title": "Preferred channels for fastest response",
-      "body": "Y7 customer support is digital-first. The fastest path for existing customers is the Client Portal or Telegram bot (24/7). For new inquiries, this form works — we'll respond via email within one business day."
+      "body": "Y7 customer support is digital-first. For active shipments and new orders, use the Client Portal or Telegram bot — this is always the fastest path. Use this form or info@y7agency.com for general inquiries, partnership questions, or non-order support. We respond within one business day."
     },
     "phoneHelp": "Optional — we use this for delivery coordination when your carrier is assigned.",
     "emailHelp": "Required if no phone — we will send our response here."
