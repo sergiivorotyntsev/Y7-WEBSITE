@@ -53,13 +53,16 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
     pickup_zip: urlParams?.get('pickup_zip') || '',
     pickup_location_type: 'Residence',
     pickup_requires_twic: false,
-    delivery_zip: '', delivery_location_type: 'Residence',
+    delivery_zip: urlParams?.get('delivery_zip') || '',
+    delivery_location_type: 'Residence',
     delivery_requires_twic: false,
     transport_type: 'open',
     is_inoperable: false,
     pickup_date_type: 'asap',
     preferred_pickup_date: '',
-    name: '', phone: '', email: '',
+    name: '',
+    phone: urlParams?.get('phone') || '',
+    email: urlParams?.get('email') || '',
     sms_consent: false, notes: '',
   });
   const [noVinMode, setNoVinMode] = useState(false);

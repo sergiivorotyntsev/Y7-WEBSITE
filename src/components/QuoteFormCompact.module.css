@@ -1,0 +1,84 @@
+.wrap {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 36px);
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-xl, 16px);
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
+}
+
+.title {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  color: var(--text-muted, #888780);
+  margin: 0 0 20px;
+  line-height: 1.6;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 480px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.error {
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  color: var(--accent, #993C1D);
+  padding: 10px 14px;
+  background: #FFF0EC;
+  border-radius: var(--radius-md, 8px);
+  border-left: 3px solid var(--accent, #993C1D);
+}
+
+.submit {
+  width: 100% !important;
+  padding: 14px !important;
+  font-size: 14px !important;
+  margin-top: 4px;
+}
+
+.fullFormNote {
+  margin-top: 16px;
+  font-family: var(--font-sans, system-ui);
+  font-size: 12.5px;
+  color: var(--text-muted, #888780);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.fullFormLink {
+  color: var(--accent, #993C1D);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 150ms ease-out;
+}
+
+.fullFormLink:hover,
+.fullFormLink:focus-visible {
+  border-bottom-color: var(--accent, #993C1D);
+  outline: none;
+}

@@ -6,7 +6,7 @@ import HreflangTags from '../components/HreflangTags';
 import { API_URL } from '../config';
 import ScrollReveal from '../components/ScrollReveal';
 import TrustBar from '../components/TrustBar';
-import QuoteForm from '../components/QuoteForm';
+import QuoteFormCompact from '../components/QuoteFormCompact';
 import AudienceCards from '../components/AudienceCards';
 import PortPills from '../components/PortPills';
 import CoverageMap from '../components/CoverageMap';
@@ -142,7 +142,7 @@ export default function Home() {
             <p className={styles.quoteSectionSubtitle}>{t('quoteSection.subtitle')}</p>
           </div>
         </ScrollReveal>
-        <QuoteForm compact hideHeader />
+        <QuoteFormCompact />
         <div className={styles.trustBadgesRow}>
           <TrustBadges layout="horizontal" variant="compact" />
         </div>

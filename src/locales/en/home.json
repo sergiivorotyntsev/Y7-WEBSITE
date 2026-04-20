@@ -123,5 +123,20 @@
   "coverage": {
     "kicker": "Coverage",
     "title": "Where We Ship"
+  },
+  "quickQuote": {
+    "title": "Get a free quote in 30 seconds",
+    "subtitle": "Enter your pickup and delivery ZIP codes. We respond within 1 hour during business hours.",
+    "pickupZip": "Pickup ZIP",
+    "deliveryZip": "Delivery ZIP",
+    "contactLabel": "Email or phone",
+    "contactPlaceholder": "you@example.com or (555) 555-5555",
+    "submit": "Get My Quote",
+    "needDetailed": "Need a detailed quote?",
+    "useFull": "Use full quote form →",
+    "errZipPickup": "Enter a valid 5-digit pickup ZIP.",
+    "errZipDelivery": "Enter a valid 5-digit delivery ZIP.",
+    "errContact": "Enter an email or phone so we can get back to you.",
+    "errContactFormat": "Use a valid email or a 10-digit phone number."
   }
 }

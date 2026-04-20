@@ -123,5 +123,20 @@
   "coverage": {
     "kicker": "Zasięg",
     "title": "Dokąd dostarczamy"
+  },
+  "quickQuote": {
+    "title": "Uzyskaj bezpłatną wycenę w 30 sekund",
+    "subtitle": "Wpisz kody pocztowe odbioru i dostawy. Odezwiemy się z wyceną w ciągu godziny w godzinach pracy.",
+    "pickupZip": "Kod pocztowy odbioru",
+    "deliveryZip": "Kod pocztowy dostawy",
+    "contactLabel": "Email lub telefon",
+    "contactPlaceholder": "ty@example.com lub (555) 555-5555",
+    "submit": "Uzyskaj wycenę",
+    "needDetailed": "Potrzebujesz szczegółowej wyceny?",
+    "useFull": "Użyj pełnego formularza →",
+    "errZipPickup": "Wprowadź prawidłowy 5-cyfrowy kod pocztowy odbioru.",
+    "errZipDelivery": "Wprowadź prawidłowy 5-cyfrowy kod pocztowy dostawy.",
+    "errContact": "Podaj email lub telefon, abyśmy mogli się skontaktować.",
+    "errContactFormat": "Użyj prawidłowego email lub 10-cyfrowego numeru telefonu."
   }
 }
