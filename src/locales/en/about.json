@@ -86,8 +86,9 @@
       "items": [
         "Client Portal — orders, documents, status, messages",
         "Telegram Bot — instant status, quick quotes",
-        "Email — contracts, invoices, formal communication",
-        "SMS — status notifications (TCPA-compliant)"
+        "Email — info@y7agency.com for inquiries and non-order questions (contracts and invoices are delivered via portal)",
+        "SMS — status notifications (TCPA-compliant)",
+        "All orders, modifications, and document access happen through the Client Portal"
       ]
     },
     "delivery": {

@@ -86,8 +86,9 @@
       "items": [
         "Portal klienta — zlecenia, dokumenty, statusy, wiadomości",
         "Bot Telegram — natychmiastowe statusy, szybkie wyceny",
-        "Email — umowy, faktury, oficjalna korespondencja",
-        "SMS — powiadomienia o statusie (zgodnie z TCPA)"
+        "Email — info@y7agency.com dla zapytań i pytań niezwiązanych ze zleceniem (umowy i faktury są dostarczane przez portal)",
+        "SMS — powiadomienia o statusie (zgodnie z TCPA)",
+        "Wszystkie zlecenia, zmiany i dostęp do dokumentów — przez Portal klienta"
       ]
     },
     "delivery": {
