@@ -216,7 +216,7 @@ const processSteps = [
   {
     num: 2,
     title: 'Виграш лоту та підтвердження',
-    desc: 'Після виграшу надсилаєте нам підтвердження з Copart або IAAI. Ми реєструємо авто в нашій системі dispatch.y7agency.com. Ви отримуєте доступ до клієнтського порталу, де бачите статус на кожному етапі.',
+    desc: 'Після виграшу надсилаєте нам підтвердження з Copart або IAAI. Ми реєструємо авто в нашій системі і видаємо вам доступ до клієнтського порталу, де ви бачите статус на кожному етапі.',
   },
   {
     num: 3,
@@ -1122,14 +1122,12 @@ function UkraineHome() {
             >
               Портал клієнта
             </p>
-            <a
-              href="https://dispatch.y7agency.com"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/portal/login"
               style={{ color: colors.accent, textDecoration: 'underline' }}
             >
-              dispatch.y7agency.com
-            </a>
+              Клієнтський портал
+            </Link>
           </div>
         </div>
       </section>
