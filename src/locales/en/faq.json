@@ -11,7 +11,7 @@
         },
         {
           "q": "How long does shipping take?",
-          "a": "1\u20133 days for routes under 500 miles, 3\u20137 days coast-to-coast. Times are estimates \u2014 weather, traffic, and carrier availability can affect transit."
+          "a": "1–3 days for routes under 500 miles, 3–7 days coast-to-coast. Times are estimates — weather, traffic, and carrier availability can affect transit."
         },
         {
           "q": "What information do I need to get a quote?",
@@ -32,7 +32,7 @@
         },
         {
           "q": "Are there hidden fees?",
-          "a": "No. Your quote includes everything. Inoperable vehicles may have an additional $100\u2013300 fee disclosed upfront."
+          "a": "No. Your quote includes everything. Inoperable vehicles may have an additional $100–300 fee disclosed upfront."
         },
         {
           "q": "What payment methods do you accept?",
@@ -57,11 +57,11 @@
         },
         {
           "q": "What if my car is damaged?",
-          "a": "Note any new damage on the BOL at delivery. File a claim within 24 hours with photos. We help coordinate with the carrier\u2019s insurance."
+          "a": "Note any new damage on the BOL at delivery. File a claim within 24 hours with photos. We help coordinate with the carrier’s insurance."
         },
         {
           "q": "What is a Bill of Lading (BOL)?",
-          "a": "A legal document recording your vehicle\u2019s condition at pickup and delivery. Always inspect and sign it carefully."
+          "a": "A legal document recording your vehicle’s condition at pickup and delivery. Always inspect and sign it carefully."
         }
       ]
     },
@@ -100,6 +100,23 @@
         {
           "q": "Can I get a dedicated dispatcher?",
           "a": "Yes, for volume accounts (10+ vehicles/month). One point of contact for all your shipments."
+        }
+      ]
+    },
+    {
+      "name": "Communication & Documents",
+      "items": [
+        {
+          "q": "How do I contact Y7 if I do not use phone calls?",
+          "a": "Y7 customer support is digital-first. You can reach us through the Client Portal, Telegram bot (@y7dispatch_bot), or email (info@y7agency.com for new inquiries, dispatch@y7agency.com for active shipments). Every request is logged in writing, documents are trackable, and multi-order coordination is easy. Existing customers have 24/7 access via the portal and Telegram bot for shipment-related urgent matters."
+        },
+        {
+          "q": "How does the driver coordinate delivery with me?",
+          "a": "After your carrier is assigned, the driver's direct phone number appears in your portal. The driver will call you 1-4 hours before pickup and delivery to confirm timing, directions, and unload point. This is standard practice for all auto transport — physical delivery logistics require real-time voice coordination that can't happen through text alone."
+        },
+        {
+          "q": "How do I receive documents like the Bill of Lading?",
+          "a": "All documents are handled digitally. The BOL is signed at pickup and delivery (paper or e-signature depending on carrier), then uploaded to your portal within 24 hours. Photos of the vehicle's condition at both touchpoints are attached. Invoices, receipts, and insurance proof are emailed and also stored in your portal for permanent access."
         }
       ]
     }

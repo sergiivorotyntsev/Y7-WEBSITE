@@ -102,6 +102,23 @@
           "a": "Tak, dla klient\u00f3w hurtowych (10+ pojazd\u00f3w miesi\u0119cznie). Jeden punkt kontaktowy dla wszystkich wysy\u0142ek."
         }
       ]
+    },
+    {
+      "name": "Komunikacja i dokumenty",
+      "items": [
+        {
+          "q": "Jak skontaktowa\u0107 si\u0119 z Y7, je\u015bli nie korzystam z po\u0142\u0105cze\u0144 telefonicznych?",
+          "a": "Wsparcie klienta Y7 dzia\u0142a w trybie digital-first. Mo\u017cna si\u0119 z nami skontaktowa\u0107 przez Portal klienta, bota Telegram (@y7dispatch_bot) lub email (info@y7agency.com dla nowych zapyta\u0144, dispatch@y7agency.com dla aktywnych przesy\u0142ek). Ka\u017cde zapytanie jest rejestrowane pisemnie, dokumenty s\u0105 \u015bledzone, koordynacja wielu zlece\u0144 jest \u0142atwa. Obecni klienci maj\u0105 dost\u0119p 24/7 przez portal i bota Telegram w pilnych sprawach zwi\u0105zanych z transportem."
+        },
+        {
+          "q": "Jak kierowca koordynuje ze mn\u0105 dostaw\u0119?",
+          "a": "Po przydzieleniu przewo\u017anika bezpo\u015bredni numer telefonu kierowcy pojawia si\u0119 w Twoim portalu. Kierowca zadzwoni 1\u20134 godziny przed odbiorem i dostaw\u0105, aby potwierdzi\u0107 czas, tras\u0119 i punkt roz\u0142adunku. To standardowa praktyka w ca\u0142ej bran\u017cy \u2014 fizyczna logistyka dostawy wymaga koordynacji g\u0142osowej w czasie rzeczywistym, kt\u00f3rej nie da si\u0119 zast\u0105pi\u0107 tekstem."
+        },
+        {
+          "q": "Jak otrzymam dokumenty, np. list przewozowy (BOL)?",
+          "a": "Wszystkie dokumenty s\u0105 obs\u0142ugiwane cyfrowo. BOL jest podpisywany przy odbiorze i dostawie (papierowy lub podpis elektroniczny, zale\u017cnie od przewo\u017anika), a nast\u0119pnie w ci\u0105gu 24 godzin przesy\u0142any do Twojego portalu. Do\u0142\u0105czone s\u0105 zdj\u0119cia stanu pojazdu z obu punkt\u00f3w. Faktury, paragony i polisy ubezpieczeniowe s\u0105 wysy\u0142ane e-mailem i tak\u017ce przechowywane w portalu dla sta\u0142ego dost\u0119pu."
+        }
+      ]
     }
   ]
 }
