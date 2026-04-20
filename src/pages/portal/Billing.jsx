@@ -217,7 +217,7 @@ export default function Billing() {
         <div style={{ fontWeight: 600, color: colors.text, marginBottom: '6px' }}>How to Pay</div>
         Please remit payment via ACH or wire transfer to the bank account on file.
         Payment is due by the date on each invoice to ensure uninterrupted carrier payments.
-        For questions, contact dispatch@y7agency.com or @y7dispatch_bot on Telegram.
+        For questions, contact info@y7agency.com or @y7dispatch_bot on Telegram.
       </div>
     </div>
   );
