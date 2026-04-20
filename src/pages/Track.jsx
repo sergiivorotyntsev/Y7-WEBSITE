@@ -157,8 +157,11 @@ export default function Track() {
         </div>
       )}
 
-      {/* Fallback cards: portal / Telegram / email dispatch */}
+      {/* Fallback cards: portal / Telegram / email info */}
       <div className={styles.fallbackSection}>
+        <div className={styles.orderNote}>
+          <p>{t('track.orderNote')}</p>
+        </div>
         <h2 className={styles.fallbackHeading}>{t('track.fallbackHeading')}</h2>
         <div className={styles.fallbackGrid}>
           <a href="https://dispatch.y7agency.com" target="_blank" rel="noopener noreferrer" className={styles.fallbackCard}>
