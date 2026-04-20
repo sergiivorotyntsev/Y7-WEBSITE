@@ -107,7 +107,7 @@ const orderingSteps = [
   },
   {
     title: 'Підтвердження виграшу',
-    desc: 'Після виграшу лоту реєструємо авто в dispatch.y7agency.com.',
+    desc: 'Після виграшу лоту реєструємо авто в нашій системі та видаємо доступ до клієнтського порталу.',
   },
   {
     title: 'Забір з майданчика',
@@ -136,7 +136,7 @@ const orderingStepsLong = [
   {
     num: 2,
     title: 'Підтвердження після виграшу лоту',
-    desc: 'Після виграшу надсилаєте нам підтвердження з Copart або IAAI. Ми реєструємо авто в нашій системі dispatch.y7agency.com і призначаємо до транспорту. Ви отримуєте доступ до клієнтського порталу, де бачите статус на кожному етапі.',
+    desc: 'Після виграшу надсилаєте нам підтвердження з Copart або IAAI. Ми реєструємо авто в нашій системі та призначаємо до транспорту. Ви отримуєте доступ до клієнтського порталу, де бачите статус на кожному етапі.',
   },
   {
     num: 3,
@@ -832,10 +832,8 @@ function UkraineShipMyCar() {
             >
               Портал клієнта
             </div>
-            <a
-              href="https://dispatch.y7agency.com"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/portal/login"
               style={{
                 color: colors.accent,
                 textDecoration: 'underline',
@@ -843,8 +841,8 @@ function UkraineShipMyCar() {
                 fontSize: '14px',
               }}
             >
-              dispatch.y7agency.com
-            </a>
+              Клієнтський портал
+            </Link>
           </div>
         </div>
       </section>
