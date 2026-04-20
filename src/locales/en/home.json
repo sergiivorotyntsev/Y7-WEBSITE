@@ -44,7 +44,7 @@
     "kicker": "YOUR ADVANTAGE",
     "title": "Your Complete Transport Solution",
     "quoteAnywhereTitle": "Quote Anywhere, Anytime",
-    "quoteAnywhereDesc": "Get a quote from your phone, desktop, or Telegram bot. No calls needed.",
+    "quoteAnywhereDesc": "Get a quote from your phone, desktop, or Telegram bot. Y7 support is digital-first — no sales calls, no phone tag.",
     "realTimeTitle": "Real-Time Communication",
     "realTimeDesc": "Track progress via Telegram, email, or customer portal. Updates at every stage.",
     "transparentTitle": "Transparent Pricing",
@@ -54,7 +54,7 @@
     "verifiedTitle": "Verified Carriers Only",
     "verifiedDesc": "Every carrier checked through Central Dispatch. FMCSA authority and insurance verified.",
     "documentationTitle": "Documentation Handled",
-    "documentationDesc": "BOL at pickup and delivery. Photo documentation. Carrier phone number provided."
+    "documentationDesc": "BOL at pickup and delivery. Photo documentation. Driver contact details shared via portal for delivery coordination."
   },
   "howItWorks": {
     "title": "How It Works",
@@ -87,7 +87,7 @@
     "transparentTitle": "Transparent Pricing",
     "transparentDesc": "No hidden fees. Carrier rate + service fee. What you see is what you pay.",
     "statusTitle": "Shipment Status Updates",
-    "statusDesc": "Monitor your shipment via portal, email, SMS, or Telegram. Carrier phone number provided after dispatch.",
+    "statusDesc": "Monitor your shipment via portal, email, SMS, or Telegram. For delivery coordination, driver contact details appear in your portal after dispatch.",
     "multilingualTitle": "Multilingual Support",
     "multilingualDesc": "EN, RU, PL, UA — we speak your language. Global exporter network.",
     "fastTitle": "Fast Dispatch Response",

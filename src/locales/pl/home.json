@@ -44,7 +44,7 @@
     "kicker": "TWOJA PRZEWAGA",
     "title": "Kompletne rozwiązanie transportowe",
     "quoteAnywhereTitle": "Wycena w każdej chwili",
-    "quoteAnywhereDesc": "Wycena z telefonu, komputera lub przez Telegram. Bez dzwonienia.",
+    "quoteAnywhereDesc": "Uzyskaj wycenę z telefonu, komputera lub bota Telegram. Wsparcie Y7 działa w trybie digital-first — bez telefonów sprzedażowych.",
     "realTimeTitle": "Komunikacja w czasie rzeczywistym",
     "realTimeDesc": "Śledź status przez Telegram, email lub panel klienta. Aktualizacje na każdym etapie.",
     "transparentTitle": "Przejrzyste ceny",
@@ -54,7 +54,7 @@
     "verifiedTitle": "Tylko zweryfikowani przewoźnicy",
     "verifiedDesc": "Każdy przewoźnik sprawdzony przez Central Dispatch. Licencja FMCSA i ubezpieczenie potwierdzone.",
     "documentationTitle": "Dokumenty pod kontrolą",
-    "documentationDesc": "List przewozowy przy odbiorze i dostawie. Dokumentacja fotograficzna. Numer telefonu kierowcy."
+    "documentationDesc": "BOL przy odbiorze i dostawie. Dokumentacja zdjęciowa. Dane kontaktowe kierowcy do koordynacji dostawy — w portalu."
   },
   "howItWorks": {
     "title": "Jak to działa",
@@ -87,7 +87,7 @@
     "transparentTitle": "Transparentne ceny",
     "transparentDesc": "Bez ukrytych opłat. Stawka przewoźnika + opłata serwisowa. Cena widoczna = cena końcowa.",
     "statusTitle": "Aktualizacje statusu",
-    "statusDesc": "Śledź przesyłkę przez portal, email, SMS lub Telegram. Telefon przewoźnika — po przydzieleniu.",
+    "statusDesc": "Śledź przesyłkę przez portal, email, SMS lub Telegram. Dla koordynacji dostawy dane kontaktowe kierowcy pojawią się w portalu po przydzieleniu.",
     "multilingualTitle": "Wsparcie wielojęzyczne",
     "multilingualDesc": "EN, RU, PL, UA — mówimy w Twoim języku. Globalna sieć eksporterów.",
     "fastTitle": "Szybka odpowiedź dyspozytora",
