@@ -164,12 +164,12 @@ export default function Track() {
         </div>
         <h2 className={styles.fallbackHeading}>{t('track.fallbackHeading')}</h2>
         <div className={styles.fallbackGrid}>
-          <a href="https://dispatch.y7agency.com" target="_blank" rel="noopener noreferrer" className={styles.fallbackCard}>
+          <Link to="/portal/login" className={styles.fallbackCard}>
             <span className={styles.fallbackIcon}><PortalIcon size={22} /></span>
             <h3 className={styles.fallbackTitle}>{t('track.portalCard.title')}</h3>
             <p className={styles.fallbackDesc}>{t('track.portalCard.desc')}</p>
             <span className={styles.fallbackCta}>{t('track.portalCard.cta')} &rarr;</span>
-          </a>
+          </Link>
           <a href="https://t.me/y7dispatch_bot" target="_blank" rel="noopener noreferrer" className={styles.fallbackCard}>
             <span className={styles.fallbackIcon}><TelegramIcon size={22} /></span>
             <h3 className={styles.fallbackTitle}>{t('track.telegramCard.title')}</h3>

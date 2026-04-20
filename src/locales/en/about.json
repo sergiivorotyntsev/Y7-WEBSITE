@@ -108,5 +108,6 @@
         "Faster response — no phone tag, no waiting on hold"
       ]
     }
-  }
+  },
+  "contactPortalLinkLabel": "Client Portal"
 }

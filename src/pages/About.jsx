@@ -1,4 +1,5 @@
 import { useTranslation, Trans } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { ScalesIcon, VerifiedIcon, EyeIcon, MapPinIcon, GlobeIcon, BellIcon, ShieldIcon, PortalIcon, TruckIcon } from '../components/icons';
@@ -203,14 +204,9 @@ export default function About() {
             </p>
             <p className={styles.bodyText}>
               <strong className={styles.bodyStrong}>{t('contactPortalLabel')}</strong>{' '}
-              <a
-                href="https://dispatch.y7agency.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.accentLink}
-              >
-                dispatch.y7agency.com
-              </a>
+              <Link to="/portal/login" className={styles.accentLink}>
+                {t('contactPortalLinkLabel')}
+              </Link>
             </p>
           </div>
         </div>
