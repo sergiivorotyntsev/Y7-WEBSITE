@@ -51,7 +51,22 @@
     "sending": "Отправка...",
     "submit": "Отправить",
     "successTitle": "Сообщение отправлено!",
-    "successMsg": "Мы свяжемся с вами в течение 24 часов."
+    "successMsg": "Мы свяжемся с вами в течение 24 часов.",
+    "hours": {
+      "title": "Часы работы",
+      "monFri": "Понедельник – Пятница",
+      "sat": "Суббота",
+      "sun": "Воскресенье",
+      "closed": "Выходной",
+      "emergencyNote": "По срочным вопросам в пути действующие клиенты могут связаться с диспетчером через портал или Telegram 24/7."
+    },
+    "address": {
+      "title": "Юридический адрес",
+      "companyLine": "Y7 Consulting Inc",
+      "dbaLine": "DBA Y7 Logistics",
+      "cityLine": "Newton, MA 02458",
+      "countryLine": "США"
+    }
   },
   "track": {
     "kicker": "Статус перевозки",
@@ -176,5 +191,11 @@
     "ru": "RU",
     "pl": "PL",
     "uk": "UA"
+  },
+  "verify": {
+    "title": "Проверьте наши документы",
+    "fmcsa": "Проверить FMCSA",
+    "broker": "Проверить брокера",
+    "cd": "Профиль Central Dispatch"
   }
 }

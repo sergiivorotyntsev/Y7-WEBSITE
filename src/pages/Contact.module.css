@@ -157,6 +157,50 @@
   line-height: 1.7;
 }
 
+.trustBlock {
+  margin-top: 16px;
+  padding: 16px 20px;
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-md, 8px);
+}
+
+.trustHeading {
+  font-family: var(--font-sans, system-ui);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted, #888780);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 10px;
+}
+
+.trustLine {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  color: var(--text, #2C2C2A);
+  margin: 0 0 4px;
+  line-height: 1.6;
+}
+
+.trustNote {
+  font-family: var(--font-sans, system-ui);
+  font-size: 12px;
+  color: var(--text-muted, #888780);
+  margin: 10px 0 0;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.addressLines {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  font-style: normal;
+  color: var(--text, #2C2C2A);
+  line-height: 1.7;
+  margin: 0;
+}
+
 /* =====================================================================
    RIGHT COLUMN — form
    ===================================================================== */

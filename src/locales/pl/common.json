@@ -51,7 +51,22 @@
     "sending": "Wysyłanie...",
     "submit": "Wyślij",
     "successTitle": "Wiadomość wysłana!",
-    "successMsg": "Odezwiemy się do Ciebie w ciągu 24 godzin."
+    "successMsg": "Odezwiemy się do Ciebie w ciągu 24 godzin.",
+    "hours": {
+      "title": "Godziny pracy",
+      "monFri": "Poniedziałek – Piątek",
+      "sat": "Sobota",
+      "sun": "Niedziela",
+      "closed": "Zamknięte",
+      "emergencyNote": "W pilnych sprawach w trakcie transportu obecni klienci mogą skontaktować się z dyspozytorem przez portal lub Telegram 24/7."
+    },
+    "address": {
+      "title": "Siedziba",
+      "companyLine": "Y7 Consulting Inc",
+      "dbaLine": "d/b/a Y7 Logistics",
+      "cityLine": "Newton, MA 02458",
+      "countryLine": "Stany Zjednoczone"
+    }
   },
   "track": {
     "kicker": "Status transportu",
@@ -176,5 +191,11 @@
     "ru": "RU",
     "pl": "PL",
     "uk": "UA"
+  },
+  "verify": {
+    "title": "Zweryfikuj nasze dane",
+    "fmcsa": "Zweryfikuj FMCSA",
+    "broker": "Zweryfikuj brokera",
+    "cd": "Profil Central Dispatch"
   }
 }

@@ -5,6 +5,7 @@ import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { EmailIcon, TelegramIcon, PortalIcon, CheckIcon } from '../components/icons';
 import { apiPost } from '../hooks/useApi';
 import PhoneInput, { getCleanPhone, isValidPhone } from '../components/PhoneInput';
+import VerificationStrip from '../components/VerificationStrip';
 import styles from './Contact.module.css';
 import btn from '../styles/buttons.module.css';
 import forms from '../styles/forms.module.css';
@@ -91,9 +92,25 @@ export default function Contact() {
               </div>
             </a>
           ))}
+          <div className={styles.trustBlock}>
+            <h3 className={styles.trustHeading}>{t('contact.hours.title')}</h3>
+            <p className={styles.trustLine}>{t('contact.hours.monFri')}: 8:00 AM – 8:00 PM ET</p>
+            <p className={styles.trustLine}>{t('contact.hours.sat')}: 9:00 AM – 5:00 PM ET</p>
+            <p className={styles.trustLine}>{t('contact.hours.sun')}: {t('contact.hours.closed')}</p>
+            <p className={styles.trustNote}>{t('contact.hours.emergencyNote')}</p>
+          </div>
+
+          <div className={styles.trustBlock}>
+            <h3 className={styles.trustHeading}>{t('contact.address.title')}</h3>
+            <address className={styles.addressLines}>
+              {t('contact.address.companyLine')}<br />
+              {t('contact.address.dbaLine')}<br />
+              {t('contact.address.cityLine')}<br />
+              {t('contact.address.countryLine')}
+            </address>
+          </div>
+
           <div className={styles.legal}>
-            {t('contact.legalDba')}<br />
-            {t('contact.legalLocation')}<br />
             USDOT #4427359 &middot; MC #1741537
           </div>
         </div>
@@ -160,6 +177,8 @@ export default function Contact() {
           )}
         </div>
       </div>
+
+      <VerificationStrip />
     </div>
   );
 }

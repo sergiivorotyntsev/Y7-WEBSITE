@@ -51,7 +51,22 @@
     "sending": "Sending...",
     "submit": "Send Message",
     "successTitle": "Message Sent!",
-    "successMsg": "We'll get back to you within 24 hours."
+    "successMsg": "We'll get back to you within 24 hours.",
+    "hours": {
+      "title": "Business Hours",
+      "monFri": "Monday – Friday",
+      "sat": "Saturday",
+      "sun": "Sunday",
+      "closed": "Closed",
+      "emergencyNote": "For urgent in-transit matters, existing customers can reach dispatch via the portal or Telegram 24/7."
+    },
+    "address": {
+      "title": "Registered Office",
+      "companyLine": "Y7 Consulting Inc",
+      "dbaLine": "d/b/a Y7 Logistics",
+      "cityLine": "Newton, MA 02458",
+      "countryLine": "United States"
+    }
   },
   "track": {
     "kicker": "Shipment Status",
@@ -176,5 +191,11 @@
     "ru": "RU",
     "pl": "PL",
     "uk": "UA"
+  },
+  "verify": {
+    "title": "Verify Our Credentials",
+    "fmcsa": "Verify FMCSA",
+    "broker": "Verify Broker",
+    "cd": "Central Dispatch Profile"
   }
 }

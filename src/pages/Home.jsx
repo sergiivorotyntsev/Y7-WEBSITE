@@ -19,6 +19,7 @@ import WhyY7 from '../components/WhyY7';
 import TrustSection from '../components/TrustSection';
 import HeroRouteVisual from '../components/HeroRouteVisual';
 import HeroSeal from '../components/HeroSeal';
+import VerificationStrip from '../components/VerificationStrip';
 import styles from './Home.module.css';
 import btn from '../styles/buttons.module.css';
 
@@ -162,6 +163,9 @@ export default function Home() {
         </div>
         <PortPills />
       </ScrollReveal>
+
+      {/* 11. Verification Strip — FMCSA, broker, Central Dispatch external links */}
+      <VerificationStrip />
     </div>
   );
 }
