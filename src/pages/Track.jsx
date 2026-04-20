@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
-import { SearchIcon, QuestionIcon } from '../components/icons';
+import { SearchIcon, QuestionIcon, PortalIcon, TelegramIcon, EmailIcon } from '../components/icons';
 import { apiGet } from '../hooks/useApi';
 import { STATUS_PIPELINE, STATUS_LABELS } from '../utils/orderStatus';
 import { trackEvent } from '../utils/trackEvent';
@@ -52,6 +52,11 @@ export default function Track() {
         <span className={styles.kicker}>&#9670; {t('track.kicker')}</span>
         <h1 className={styles.title}>{t('track.h1')}</h1>
         <p className={styles.subtitle}>{t('track.subtitle')}</p>
+      </div>
+
+      <div className={styles.explanationBlock}>
+        <p className={styles.explanation}>{t('track.explanation')}</p>
+        <p className={styles.fastestPath}>{t('track.fastestPath')}</p>
       </div>
 
       <form onSubmit={handleSearch} className={styles.form}>
@@ -151,6 +156,31 @@ export default function Track() {
           <Link to="/portal/login" className={styles.helpLink}>Log In</Link>
         </div>
       )}
+
+      {/* Fallback cards: portal / Telegram / email dispatch */}
+      <div className={styles.fallbackSection}>
+        <h2 className={styles.fallbackHeading}>{t('track.fallbackHeading')}</h2>
+        <div className={styles.fallbackGrid}>
+          <a href="https://dispatch.y7agency.com" target="_blank" rel="noopener noreferrer" className={styles.fallbackCard}>
+            <span className={styles.fallbackIcon}><PortalIcon size={22} /></span>
+            <h3 className={styles.fallbackTitle}>{t('track.portalCard.title')}</h3>
+            <p className={styles.fallbackDesc}>{t('track.portalCard.desc')}</p>
+            <span className={styles.fallbackCta}>{t('track.portalCard.cta')} &rarr;</span>
+          </a>
+          <a href="https://t.me/y7dispatch_bot" target="_blank" rel="noopener noreferrer" className={styles.fallbackCard}>
+            <span className={styles.fallbackIcon}><TelegramIcon size={22} /></span>
+            <h3 className={styles.fallbackTitle}>{t('track.telegramCard.title')}</h3>
+            <p className={styles.fallbackDesc}>{t('track.telegramCard.desc')}</p>
+            <span className={styles.fallbackCta}>{t('track.telegramCard.cta')} &rarr;</span>
+          </a>
+          <a href="mailto:dispatch@y7agency.com" className={styles.fallbackCard}>
+            <span className={styles.fallbackIcon}><EmailIcon size={22} /></span>
+            <h3 className={styles.fallbackTitle}>{t('track.emailCard.title')}</h3>
+            <p className={styles.fallbackDesc}>{t('track.emailCard.desc')}</p>
+            <span className={styles.fallbackCta}>{t('track.emailCard.cta')} &rarr;</span>
+          </a>
+        </div>
+      </div>
     </div>
   );
 }

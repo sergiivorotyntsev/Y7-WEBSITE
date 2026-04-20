@@ -323,3 +323,123 @@
 .helpLink:focus-visible {
   box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
 }
+
+/* ====================================================================
+   P3-CLARITY-T04: explanation block + fallback cards
+   ==================================================================== */
+
+.explanationBlock {
+  max-width: 640px;
+  margin: 0 auto 24px;
+  padding: 16px 20px;
+  text-align: center;
+  background: var(--bg-muted, #EFECE6);
+  border-radius: var(--radius-md, 8px);
+}
+
+.explanation {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  color: var(--text, #2C2C2A);
+  line-height: 1.65;
+  margin: 0 0 6px;
+}
+
+.fastestPath {
+  font-family: var(--font-sans, system-ui);
+  font-size: 12px;
+  color: var(--text-muted, #888780);
+  margin: 0;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.fallbackSection {
+  max-width: 900px;
+  margin: clamp(40px, 6vh, 56px) auto 0;
+  padding: 0 16px;
+}
+
+.fallbackHeading {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  color: var(--text, #2C2C2A);
+  margin: 0 0 16px;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+.fallbackGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+@media (max-width: 720px) {
+  .fallbackGrid { grid-template-columns: 1fr; }
+}
+
+.fallbackCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 20px;
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-lg, 12px);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 200ms ease, transform 150ms ease, box-shadow 200ms ease;
+}
+
+@media (hover: hover) {
+  .fallbackCard:hover {
+    border-color: var(--accent, #993C1D);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+}
+
+.fallbackCard:focus-visible {
+  outline: none;
+  border-color: var(--accent, #993C1D);
+  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+}
+
+.fallbackIcon {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md, 8px);
+  background: rgba(153, 60, 29, 0.10);
+  color: var(--accent, #993C1D);
+}
+
+.fallbackTitle {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text, #2C2C2A);
+  margin: 4px 0 0;
+  letter-spacing: -0.01em;
+}
+
+.fallbackDesc {
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  color: var(--text-muted, #888780);
+  margin: 0;
+  line-height: 1.55;
+}
+
+.fallbackCta {
+  font-family: var(--font-sans, system-ui);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent, #993C1D);
+  margin-top: auto;
+  padding-top: 4px;
+}

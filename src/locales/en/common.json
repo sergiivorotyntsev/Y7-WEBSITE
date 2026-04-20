@@ -74,7 +74,25 @@
     "subtitle": "Enter your reference number, VIN, or tracking code to check shipment status.",
     "searchPlaceholder": "WEB-00042, VIN, or Load ID...",
     "currentLabel": "Current",
-    "helpLink": "Get a Quote"
+    "helpLink": "Get a Quote",
+    "explanation": "Y7 uses digital tracking — every update is logged in writing, visible in your portal, and searchable.",
+    "fastestPath": "Fastest updates: Portal login or Telegram bot",
+    "fallbackHeading": "Already a customer? Use one of these:",
+    "portalCard": {
+      "title": "Client Portal",
+      "desc": "Full shipment history, documents, messages",
+      "cta": "Open Portal"
+    },
+    "telegramCard": {
+      "title": "Telegram Bot",
+      "desc": "Instant status with @y7dispatch_bot",
+      "cta": "Open Telegram"
+    },
+    "emailCard": {
+      "title": "Email Dispatch",
+      "desc": "Include your reference number",
+      "cta": "Email dispatch@"
+    }
   },
   "quote": {
     "h1": "Get a Free Quote",

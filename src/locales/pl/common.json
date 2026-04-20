@@ -74,7 +74,25 @@
     "subtitle": "Wprowadź numer referencyjny, VIN lub kod śledzenia, aby sprawdzić status.",
     "searchPlaceholder": "WEB-00042, VIN lub Load ID...",
     "currentLabel": "Aktualny",
-    "helpLink": "Uzyskaj wycenę"
+    "helpLink": "Uzyskaj wycenę",
+    "explanation": "Y7 używa cyfrowego śledzenia — każda aktualizacja jest zapisywana pisemnie, widoczna w portalu i przeszukiwalna.",
+    "fastestPath": "Najszybsze aktualizacje: Portal lub bot Telegram",
+    "fallbackHeading": "Już klient? Skorzystaj z jednego z kanałów:",
+    "portalCard": {
+      "title": "Portal klienta",
+      "desc": "Pełna historia przesyłki, dokumenty, wiadomości",
+      "cta": "Otwórz portal"
+    },
+    "telegramCard": {
+      "title": "Bot Telegram",
+      "desc": "Natychmiastowy status przez @y7dispatch_bot",
+      "cta": "Otwórz Telegram"
+    },
+    "emailCard": {
+      "title": "Email do dispatchera",
+      "desc": "Dodaj numer referencyjny",
+      "cta": "Email dispatch@"
+    }
   },
   "quote": {
     "h1": "Uzyskaj darmową wycenę",
