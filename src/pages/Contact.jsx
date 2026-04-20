@@ -73,6 +73,11 @@ export default function Contact() {
         <p className={styles.subtitle}>{t('contact.subtitle')}</p>
       </div>
 
+      <div className={styles.policyBlock}>
+        <h3 className={styles.policyTitle}>{t('contact.policy.title')}</h3>
+        <p className={styles.policyBody}>{t('contact.policy.body')}</p>
+      </div>
+
       <div className={styles.layout}>
         {/* Left column — contact info */}
         <div className={styles.infoColumn}>
@@ -139,7 +144,10 @@ export default function Contact() {
               </div>
               <div className={styles.formRow}>
                 <div className={forms.inputGroup}>
-                  <label className={forms.label}>{t('contact.labelEmail')}</label>
+                  <label className={forms.label}>
+                    {t('contact.labelEmail')}
+                    <span className={styles.fieldHelp}>{t('contact.emailHelp')}</span>
+                  </label>
                   <input
                     type="email"
                     className={forms.input}
@@ -148,7 +156,10 @@ export default function Contact() {
                   />
                 </div>
                 <div className={forms.inputGroup}>
-                  <label className={forms.label}>{t('contact.labelPhone')}</label>
+                  <label className={forms.label}>
+                    {t('contact.labelPhone')}
+                    <span className={styles.fieldHelp}>{t('contact.phoneHelp')}</span>
+                  </label>
                   <PhoneInput
                     className={forms.input}
                     value={form.phone}

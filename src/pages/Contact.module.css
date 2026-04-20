@@ -310,3 +310,46 @@
   line-height: 1.7;
   margin: 0;
 }
+
+/* ====================================================================
+   P3-CLARITY-T05: policy block + field help microcopy
+   ==================================================================== */
+
+.policyBlock {
+  max-width: 780px;
+  margin: 0 auto clamp(32px, 4vh, 48px);
+  padding: 18px 22px;
+  background: var(--bg-muted, #EFECE6);
+  border-left: 3px solid var(--accent, #993C1D);
+  border-radius: var(--radius-md, 8px);
+}
+
+.policyTitle {
+  font-family: var(--font-sans, system-ui);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent, #993C1D);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 6px;
+}
+
+.policyBody {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  color: var(--text, #2C2C2A);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.fieldHelp {
+  display: block;
+  font-family: var(--font-sans, system-ui);
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--text-muted, #888780);
+  margin-top: 2px;
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.4;
+}
