@@ -314,10 +314,31 @@ async function prerender() {
   for (const route of PUBLIC_ROUTES) {
     const page = await browser.newPage();
 
-    // Block unnecessary resources during prerender
+    // Block unnecessary resources during prerender.
+    // Two classes of blocks:
+    //   1) image/media/font — not needed to snapshot HTML
+    //   2) external tracking scripts — gtag.js, FB pixel, etc. These are
+    //      gated by useEffect+consent at runtime and never actually fire
+    //      during prerender, but if the script tag is injected the request
+    //      can hang and prevent networkidle from ever being reached
+    //      (observed on /privacy, /terms, /accessibility in Docker).
+    const TRACKER_DOMAINS = [
+      'googletagmanager.com',
+      'google-analytics.com',
+      'googleadservices.com',
+      'doubleclick.net',
+      'facebook.com',
+      'facebook.net',
+      'fbcdn.net',
+    ];
     await page.setRequestInterception(true);
     page.on('request', (req) => {
+      const url = req.url();
       const type = req.resourceType();
+      if (TRACKER_DOMAINS.some((d) => url.includes(d))) {
+        req.abort();
+        return;
+      }
       if (['image', 'media', 'font'].includes(type)) {
         req.abort();
       } else {
@@ -327,9 +348,11 @@ async function prerender() {
 
     try {
       await page.goto(`http://localhost:${PORT}${route}`, {
-        waitUntil: 'networkidle0',
-        timeout: 30000,
+        waitUntil: 'domcontentloaded',
+        timeout: 60000,
       });
+      // Give React a moment to hydrate and render
+      await new Promise((resolve) => setTimeout(resolve, 800));
 
       // Wait for the prerender-ready event or a max of 5s.
       // This signals that App.jsx has mounted, but the lazy-loaded route
