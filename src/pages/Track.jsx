@@ -173,7 +173,7 @@ export default function Track() {
             <p className={styles.fallbackDesc}>{t('track.telegramCard.desc')}</p>
             <span className={styles.fallbackCta}>{t('track.telegramCard.cta')} &rarr;</span>
           </a>
-          <a href="mailto:dispatch@y7agency.com" className={styles.fallbackCard}>
+          <a href="mailto:info@y7agency.com" className={styles.fallbackCard}>
             <span className={styles.fallbackIcon}><EmailIcon size={22} /></span>
             <h3 className={styles.fallbackTitle}>{t('track.emailCard.title')}</h3>
             <p className={styles.fallbackDesc}>{t('track.emailCard.desc')}</p>

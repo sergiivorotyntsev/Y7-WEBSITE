@@ -95,10 +95,11 @@
       "cta": "Otwórz Telegram"
     },
     "emailCard": {
-      "title": "Email do dispatchera",
-      "desc": "Dodaj numer referencyjny",
-      "cta": "Email dispatch@"
-    }
+      "title": "Pytanie o wcześniejsze zlecenie?",
+      "desc": "Tylko zapytania niezwiązane ze śledzeniem. Aktywne przesyłki — przez portal lub Telegram dla szybszej odpowiedzi.",
+      "cta": "Napisz na info@y7agency.com"
+    },
+    "orderNote": "Wszystkie nowe zlecenia i zmiany przesyłek są obsługiwane przez Portal klienta. Email i Telegram służą do pytań i sprawdzania statusu, nie do składania lub zmieniania zleceń."
   },
   "quote": {
     "h1": "Uzyskaj darmową wycenę",

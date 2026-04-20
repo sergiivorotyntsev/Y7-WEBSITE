@@ -95,10 +95,11 @@
       "cta": "Open Telegram"
     },
     "emailCard": {
-      "title": "Email Dispatch",
-      "desc": "Include your reference number",
-      "cta": "Email dispatch@"
-    }
+      "title": "Question about a past order?",
+      "desc": "For non-tracking inquiries only. Active shipments → use portal or Telegram for fastest response.",
+      "cta": "Email info@y7agency.com"
+    },
+    "orderNote": "All new orders and shipment changes are handled through the Client Portal. Email and Telegram are for questions and status checks, not for submitting or modifying orders."
   },
   "quote": {
     "h1": "Get a Free Quote",
