@@ -170,7 +170,7 @@ export default function OpenVsEnclosed() {
       {/* Insurance */}
       <h2 style={h2Style}>Insurance Coverage</h2>
       <p style={pStyle}>
-        Both open and enclosed carriers are required to carry cargo insurance. The minimum coverage requirements set by the FMCSA apply equally to both transport types. Carriers in the Y7 Logistics network carry minimum cargo insurance of $100,000 per vehicle, regardless of whether they operate open or enclosed equipment.
+        Both open and enclosed carriers in the Y7 Logistics network are required to maintain cargo insurance — typically $100,000 to $250,000 per vehicle for open carriers and $250,000 to $500,000 for enclosed transport. This is our network verification requirement, not an FMCSA regulation for non-household-goods motor carriers. We confirm active coverage through Central Dispatch before dispatching any load, regardless of whether the carrier operates open or enclosed equipment.
       </p>
       <p style={pStyle}>
         If you are shipping a vehicle worth more than the carrier's standard coverage limit, additional insurance can be arranged through your broker. This is more common with enclosed shipments of high-value vehicles. Always confirm the carrier's insurance coverage with your broker before the vehicle is loaded, and ensure the Bill of Lading accurately documents the vehicle's pre-transport condition.

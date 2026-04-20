@@ -16,7 +16,7 @@
     },
     "insurance": {
       "title": "Ubezpieczenie i roszczenia",
-      "body": "Przewoźnik utrzymuje ubezpieczenie cargo zgodnie z wymogami przepisów FMCSA (minimum 100 000 USD za pojedynczy pojazd, 250 000 USD łącznie dla transportu zamkniętego). Y7 utrzymuje gwarancję brokerską (75 000 USD BMC-84) zgodnie z wymogami FMCSA. Dealer jest odpowiedzialny za utrzymanie własnego ubezpieczenia komercyjnego obejmującego pojazdy będące w posiadaniu dealera. Roszczenia z tytułu uszkodzenia ładunku muszą być zgłaszane bezpośrednio do przewoźnika w ciągu 9 miesięcy od dostawy zgodnie z Carmack Amendment."
+      "body": "Przewoźnik utrzymuje ubezpieczenie cargo zgodne ze standardami branżowymi i wymaganiami weryfikacji sieci Y7 (minimum 100 000 USD za pojedynczy pojazd, 250 000 USD łącznie dla transportu zamkniętego). Y7 utrzymuje gwarancję brokerską (75 000 USD BMC-84) zgodnie z wymogami FMCSA. Dealer jest odpowiedzialny za utrzymanie własnego ubezpieczenia komercyjnego obejmującego pojazdy będące w posiadaniu dealera. Roszczenia z tytułu uszkodzenia ładunku muszą być zgłaszane bezpośrednio do przewoźnika w ciągu 9 miesięcy od dostawy zgodnie z Carmack Amendment."
     },
     "cancellation": {
       "title": "Polityka anulowania",
