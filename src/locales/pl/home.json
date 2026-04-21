@@ -3,7 +3,7 @@
     "title": "Transport samochodów na terenie całych USA",
     "tagline": "My przewozimy samochody.",
     "taglineAccent": "Ty idziesz do przodu.",
-    "description": "Licencjonowany i ubezpieczony broker łączący Państwa ze sprawdzonymi przewoźnikami we wszystkich 50 stanach. Odbiory z aukcji, wymiana dealerska, dostawy do portów i przeprowadzki prywatne."
+    "description": "Licencjonowany broker FMCSA łączący Państwa ze sprawdzonymi, ubezpieczonymi przewoźnikami we wszystkich 50 stanach. Odbiory z aukcji, wymiana dealerska, dostawy do portów i przeprowadzki prywatne."
   },
   "trust": {
     "experience": "10+",
@@ -80,8 +80,8 @@
   "whyY7": {
     "kicker": "Dlaczego Y7",
     "title": "Dlaczego klienci nas wybierają",
-    "licensedTitle": "Licencja i ubezpieczenie",
-    "licensedDesc": "USDOT #4427359, MC #1741537. W pełni licencjonowany broker transportowy.",
+    "licensedTitle": "Licencjonowany FMCSA",
+    "licensedDesc": "USDOT #4427359, MC #1741537. Licencjonowany broker transportowy z gwarancją BMC-84 na $75,000.",
     "verifiedTitle": "Zweryfikowany Central Dispatch",
     "verifiedDesc": "90% naszych zleceń przez CD. Zweryfikowany broker z wysokimi ocenami.",
     "transparentTitle": "Transparentne ceny",
