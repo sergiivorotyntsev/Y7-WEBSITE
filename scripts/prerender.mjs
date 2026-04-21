@@ -140,6 +140,8 @@ const PUBLIC_ROUTES = [
   '/contact',
   '/faq',
   '/about',
+  '/careers',
+  '/careers/apply',
   '/dealer-quote',
   '/privacy',
   '/terms',
