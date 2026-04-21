@@ -1,4 +1,5 @@
-/* AudienceCards — three premium segment cards with audience tones. */
+/* AudienceCards — three premium segment cards with audience tones.
+   Redesigned: icon + tag inline (top row), trust stat micro-line, enriched hover. */
 
 .grid {
   display: grid;
@@ -15,45 +16,12 @@
 
 @media (max-width: 560px) {
   .grid { grid-template-columns: 1fr; gap: 16px; }
-
-  /* Mobile: icon on the left, content on the right */
-  .card {
-    display: grid;
-    grid-template-columns: 56px 1fr;
-    grid-template-areas:
-      "icon tag"
-      "icon title"
-      "icon desc"
-      "icon cta";
-    gap: 4px 16px;
-    padding: 22px 20px;
-    align-items: start;
-  }
-  .iconWrap {
-    grid-area: icon;
-    width: 56px;
-    height: 56px;
-    align-self: start;
-  }
-  .tag { grid-area: tag; margin-top: 0; }
-  .title {
-    grid-area: title;
-    font-size: 1.2rem;
-    margin-top: 2px;
-  }
-  .desc {
-    grid-area: desc;
-    font-size: 14px;
-    margin-top: 6px;
-  }
-  .cta { grid-area: cta; margin-top: 8px; }
 }
 
 /* =====================================================================
    TONE PALETTE
    ---------------------------------------------------------------------
    Each tone drives the icon gradient, hover tint, and accent ink.
-   Colors chosen to harmonize with the coral brand without competing:
      coral (individuals)  #993C1D -> warm primary
      teal  (dealers)      #14648C -> cool professional
      amber (exporters)    #8C5020 -> rich international/shipping
@@ -90,30 +58,30 @@
 }
 
 /* =====================================================================
-   CARD
+   CARD SHELL
    ===================================================================== */
 
 .card {
   background: var(--bg-card, #fff);
   border: 1px solid var(--border, #e5e0d8);
   border-radius: var(--radius-xl, 18px);
-  padding: 36px 28px 30px;
+  padding: 28px 26px 24px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
   cursor: pointer;
   outline: none;
   text-align: left;
   position: relative;
   overflow: hidden;
   transition:
-    transform 250ms cubic-bezier(0.2, 0.7, 0.2, 1),
-    box-shadow 250ms ease-out,
-    border-color 250ms ease-out,
-    background-color 250ms ease-out;
+    transform 280ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 280ms ease-out,
+    border-color 280ms ease-out,
+    background-color 280ms ease-out;
 }
 
-/* Accent top band — reveals on hover/focus, colored by tone */
+/* Accent top band — reveals on hover/focus */
 .card::before {
   content: '';
   position: absolute;
@@ -124,28 +92,28 @@
   background: var(--tone-ink);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 260ms ease-out;
+  transition: transform 280ms ease-out;
 }
 
-/* Radial halo in the top-left corner, colored by tone — subtle premium touch */
+/* Radial halo in the top-right corner (moved from top-left to avoid icon zone) */
 .card::after {
   content: '';
   position: absolute;
-  top: -80px;
-  left: -80px;
-  width: 220px;
-  height: 220px;
+  top: -90px;
+  right: -90px;
+  width: 240px;
+  height: 240px;
   border-radius: 50%;
   background: radial-gradient(circle at center, var(--tone-tint-mid), transparent 65%);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 300ms ease-out;
+  transition: opacity 320ms ease-out;
 }
 
 @media (hover: hover) {
   .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.03), 0 14px 32px rgba(0,0,0,0.10);
+    transform: translateY(-6px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03), 0 18px 40px rgba(0,0,0,0.10);
     border-color: var(--tone-ink);
     background-color: var(--tone-tint-soft);
   }
@@ -160,7 +128,7 @@
 .card:focus-visible::before { transform: scaleX(1); }
 .card:focus-visible::after  { opacity: 1; }
 
-/* Entrance animation */
+/* Entrance animation (preserved) */
 @media (prefers-reduced-motion: no-preference) {
   .card {
     opacity: 0;
@@ -170,17 +138,28 @@
 }
 
 @keyframes audienceIn {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 /* =====================================================================
-   ICON — 64px circle with tone gradient, inner ring, hover intensify
+   TOP ROW — icon + tag inline
+   ===================================================================== */
+
+.topRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 6px;
+}
+
+/* =====================================================================
+   ICON — 56px circle with tone gradient, inner ring, hover intensify
    ===================================================================== */
 
 .iconWrap {
-  width: 64px;
-  height: 64px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--tone-grad-a), var(--tone-grad-b));
   display: flex;
@@ -190,7 +169,7 @@
     0 1px 2px rgba(0,0,0,0.06),
     0 6px 16px var(--tone-tint-mid),
     inset 0 0 0 3px rgba(255,255,255,0.18);
-  transition: transform 250ms cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 250ms ease-out;
+  transition: transform 280ms cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 280ms ease-out;
   flex-shrink: 0;
 }
 
@@ -203,58 +182,114 @@
 
 @media (hover: hover) {
   .card:hover .iconWrap {
-    transform: scale(1.05);
+    transform: scale(1.06) rotate(-2deg);
     box-shadow:
       0 2px 4px rgba(0,0,0,0.08),
-      0 10px 24px var(--tone-tint-deep),
-      inset 0 0 0 3px rgba(255,255,255,0.24);
+      0 12px 28px var(--tone-tint-deep),
+      inset 0 0 0 3px rgba(255,255,255,0.26);
   }
 }
 
 /* =====================================================================
-   TAG — small uppercase audience badge
+   TAG — pill with tone accent, sits beside icon
    ===================================================================== */
 
 .tag {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   font-family: var(--font-sans, system-ui);
-  font-size: 10px;
+  font-size: 10.5px;
   font-weight: 700;
   color: var(--tone-ink);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: 4px;
+  padding: 6px 12px 6px 10px;
+  border-radius: 20px;
   background: var(--tone-tint-soft);
-  align-self: flex-start;
-  margin-top: 2px;
+  border: 1px solid var(--tone-tint-mid);
+  flex-shrink: 0;
+  position: relative;
+  transition: background-color 240ms ease-out, border-color 240ms ease-out, transform 240ms ease-out;
+}
+
+/* Tag leading dot */
+.tag::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--tone-ink);
+  margin-right: 7px;
+  flex-shrink: 0;
+}
+
+@media (hover: hover) {
+  .card:hover .tag {
+    background: var(--tone-tint-mid);
+    border-color: var(--tone-ink);
+    transform: translateX(2px);
+  }
 }
 
 /* =====================================================================
-   TEXT
+   TITLE + DESC
    ===================================================================== */
 
 .title {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: 1.45rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--text, #2C2C2A);
   letter-spacing: -0.02em;
   line-height: 1.2;
-  margin: 0;
+  margin: 10px 0 0 0;
 }
 
 .desc {
   font-family: var(--font-sans, system-ui);
   font-size: 14.5px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #6C6A62);
   line-height: 1.7;
-  flex: 1;
   margin: 0;
+  flex: 1;
 }
 
 /* =====================================================================
-   CTA — tone-colored text link with animated underline
+   STAT ROW — trust micro-line with dot + divider
+   ===================================================================== */
+
+.statRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 14px;
+  margin-top: 2px;
+  border-top: 1px dashed rgba(153, 60, 29, 0.18);
+}
+
+.tone_teal .statRow  { border-top-color: rgba(20, 100, 140, 0.18); }
+.tone_amber .statRow { border-top-color: rgba(140, 80, 32, 0.18); }
+
+.statDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--tone-ink);
+  flex-shrink: 0;
+}
+
+.stat {
+  font-family: var(--font-sans, system-ui);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--tone-ink);
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+}
+
+/* =====================================================================
+   CTA — tone-colored with animated underline & arrow
    ===================================================================== */
 
 .cta {
@@ -285,7 +320,7 @@
   background: var(--tone-ink);
   transform: scaleX(0.2);
   transform-origin: left center;
-  transition: transform 260ms ease-out;
+  transition: transform 280ms ease-out;
 }
 
 @media (hover: hover) {
@@ -312,12 +347,48 @@
 .ctaArrow {
   display: inline-block;
   margin-left: 4px;
-  transition: transform 150ms ease-out;
+  transition: transform 180ms ease-out;
 }
 
 @media (hover: hover) {
   .card:hover .ctaArrow,
   .cta:hover .ctaArrow {
-    transform: translateX(4px);
+    transform: translateX(5px);
+  }
+}
+
+/* =====================================================================
+   MOBILE (< 560px) — icon+tag top row, then content stack
+   ===================================================================== */
+
+@media (max-width: 560px) {
+  .card {
+    padding: 22px 20px 20px;
+  }
+  .topRow {
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+  .iconWrap {
+    width: 48px;
+    height: 48px;
+  }
+  .iconInner svg {
+    width: 28px;
+    height: 28px;
+  }
+  .tag {
+    font-size: 10px;
+    padding: 5px 10px 5px 9px;
+  }
+  .title {
+    font-size: 1.25rem;
+    margin-top: 6px;
+  }
+  .desc {
+    font-size: 14px;
+  }
+  .stat {
+    font-size: 12px;
   }
 }
