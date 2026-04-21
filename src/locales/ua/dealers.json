@@ -1,261 +1,461 @@
 {
-  "title": "Перевезення автомобілів для дилерів",
-  "subtitle": "Ми беремо логістику на себе, щоб ви могли зосередитися на продажах. Від забору з аукціонів до обміну між дилерами — Y7 перевозить ваш товар надійно та вчасно.",
-  "benefits": [
-    {
-      "title": "Оптові ціни",
-      "desc": "Конкурентні тарифи для дилерів із великими обсягами. Чим більше відправляєте — тим більше заощаджуєте."
-    },
-    {
-      "title": "Забір з аукціонів",
-      "desc": "Відправлення у той самий день з аукціонів Copart, IAA, Manheim та ADESA. Координація gate pass включена."
-    },
-    {
-      "title": "Обмін між дилерами",
-      "desc": "Швидке перевезення між автосалонами. Один контакт для всіх ваших обмінів."
-    },
-    {
-      "title": "Персональний диспетчер",
-      "desc": "Ваш особистий координатор, який знає ваші маршрути, терміни та уподобання."
-    },
-    {
-      "title": "Інтеграція з Central Dispatch",
-      "desc": "90% наших вантажів проходять через Central Dispatch. Оновлення статусу та відстеження перевізника в реальному часі."
-    },
-    {
-      "title": "Гнучка оплата",
-      "desc": "Умови Net-15, ACH та виставлення рахунків, розроблені для дилерських операцій."
-    }
-  ],
-  "pricing": {
-    "title": "Моделі ціноутворення",
-    "models": [
+  "title": "Ваш відділ диспетчингу на аутсорсі",
+  "subtitle": "Y7 веде логістику перевезень для автодилерів по США. Думайте про нас як про свій відділ диспетчингу — без зарплати $90k, соцпакета й відпусток. Фіксована плата за авто, повний операційний відділ включений.",
+  "hero": {
+    "kicker": "ДЛЯ АВТОДИЛЕРІВ",
+    "trust1": "Ліцензований і bonded FMCSA-брокер · MC #1741537",
+    "trust2": "90% замовлень через Central Dispatch",
+    "trust3": "Фікс. плата диспетчингу · Тижневі інвойси · ACH"
+  },
+  "problem": {
+    "kicker": "ПРОБЛЕМА ДИЛЕРСЬКОЇ ЛОГІСТИКИ",
+    "title": "Внутрішній диспетчер дорогий. Універсальний брокер не масштабується з вашими операціями.",
+    "intro": "Середній дилер стикається з хибним вибором: найняти внутрішнього диспетчера ($55-75k зарплата + соцпакет + ПЗ + навчання + відпустки ≈ $90k реальна річна вартість) або ганятися за котируваннями 5 різних брокерів на кожне перевезення. Жодне не працює довгостроково.",
+    "points": [
       {
-        "title": "Оплата перевізнику через брокера",
-        "desc": "Y7 бере на себе всі розрахунки з перевізником. Вища комісія за сервіс, але жодних клопотів — вам не потрібно розбиратися з оплатою перевізнику, суперечками щодо BOL чи координацією COD."
+        "title": "Внутрішній диспетчер",
+        "negative": "Фіксовані $90k/рік навіть у слабкі місяці. Одна людина, один набір зв'язків, ризик відпустки."
       },
       {
-        "title": "Пряма оплата перевізнику (COD)",
-        "desc": "Дилер оплачує перевізнику при доставці. Нижча комісія за сервіс, але ви самі перевіряєте BOL та здійснюєте оплату. Найкращий варіант для досвідчених дилерів із приймальним персоналом."
-      }
-    ],
-    "volumeTitle": "Знижки за обсяг",
-    "popularBadge": "Найпопулярніший",
-    "colVolume": "Обсяг",
-    "colTier": "Рівень",
-    "colDiscount": "Знижка",
-    "colPerk": "Бонус",
-    "tiers": [
-      {
-        "volume": "1-5",
-        "label": "автомобілів/місяць",
-        "discount": "Стандартні ціни",
-        "perk": "Повний сервіс, без мінімуму"
+        "title": "Універсальний транспортний брокер",
+        "negative": "Голос кол-центру, нема дилерського workflow, нема консолідованих інвойсів, нема архівації BOL, нема допомоги з претензіями."
       },
       {
-        "volume": "6-15",
-        "label": "автомобілів/місяць",
-        "discount": "Знижка 10% на сервісний збір",
-        "perk": "Пріоритетна черга диспетчеризації"
-      },
-      {
-        "volume": "16-30",
-        "label": "автомобілів/місяць",
-        "discount": "Знижка 15%",
-        "perk": "Призначення персонального диспетчера"
-      },
-      {
-        "volume": "30+",
-        "label": "автомобілів/місяць",
-        "discount": "Індивідуальний контракт",
-        "perk": "Зв'яжіться з нами для розрахунку"
+        "title": "Відділ диспетчингу Y7",
+        "positive": "Платіть фіксовану плату за авто. Виділена команда, дилерський портал, тижневий білінг, архів BOL, координація претензій. Масштабуйтеся вгору/вниз без найму та звільнень."
       }
     ]
   },
-  "ctaTitle": "Готові оптимізувати перевезення?",
-  "ctaSubtitle": "Отримайте розрахунок за кілька хвилин. Ми відповімо протягом 1 години.",
-  "ctaButton": "Розрахунок для дилерів",
-  "hero": {
-    "kicker": "ДЛЯ ДИЛЕРІВ",
-    "trust1": "Net-15 розрахунки",
-    "trust2": "Персональний диспетчер",
-    "trust3": "Гуртові ціни від 6 авто/міс."
+  "capabilities": {
+    "kicker": "ЩО ВИ ОТРИМУЄТЕ",
+    "title": "Що робить відділ диспетчингу",
+    "subtitle": "Y7 надає кожну можливість внутрішнього диспетчера — за частку фіксованої вартості",
+    "items": [
+      {
+        "title": "Carrier sourcing & vetting",
+        "desc": "Access to 100+ vetted carriers through Central Dispatch. MC number, insurance, and safety score verified before every dispatch."
+      },
+      {
+        "title": "Rate negotiation",
+        "desc": "We negotiate carrier rates on your behalf. You see the final lane price, not a negotiation game."
+      },
+      {
+        "title": "Gate pass & buyer letter coordination",
+        "desc": "Copart Transporter App, IAA buyer letters, Manheim wholesale release — we handle the paperwork per auction type."
+      },
+      {
+        "title": "Real-time tracking",
+        "desc": "Every shipment visible in your portal with ETA, carrier contact, BOL status. Telegram alerts at key milestones."
+      },
+      {
+        "title": "BOL documentation & archival",
+        "desc": "Every Bill of Lading, condition photo, and delivery confirmation archived. DMS-ready exports for your accounting."
+      },
+      {
+        "title": "Damage claims coordination",
+        "desc": "If damage is documented, we pull the archive and file with carrier insurance. You don't chase paperwork."
+      },
+      {
+        "title": "Consolidated weekly billing",
+        "desc": "One invoice every Friday covering all moves. Net-15 terms for established dealers. ACH supported."
+      },
+      {
+        "title": "Multi-language team",
+        "desc": "English, Russian, Polish, Ukrainian. Useful for dealerships with Eastern European importer partners or bilingual teams."
+      }
+    ]
   },
-  "crosslinks": {
-    "title": "Більше для дилерів",
-    "deepDive": "Гайд дилерського транспорту",
-    "quote": "Запит дилерської ціни",
-    "exporters": "Для експортерів"
-  },
-  "timeline": {
-    "kicker": "ЯК МИ ПРАЦЮЄМО З ДИЛЕРАМИ",
-    "title": "Від відкриття рахунку до першої доставки — менше 10 днів",
+  "workflow": {
+    "kicker": "HOW IT WORKS",
+    "title": "How It Works — Day by Day",
+    "subtitle": "The actual operational rhythm after your dealer account is active",
     "steps": [
       {
-        "day": "День 1",
-        "title": "Відкриття рахунку",
-        "desc": "Надішліть дилерську ліцензію + W-9. Онбордінг того ж дня — без очікування кредитної перевірки."
+        "day": "Day 1",
+        "title": "Account setup",
+        "desc": "Broker-Shipper Agreement signed digitally. Portal access activated. Saved pickup locations imported. Payment option selected (COD or prepay)."
       },
       {
-        "day": "День 2",
-        "title": "Персональний прайс",
-        "desc": "Будуємо персоналізований rate card за вашими маршрутами та місячним обсягом — протягом 24 годин."
+        "day": "Day 2-3",
+        "title": "First load posted",
+        "desc": "Submit transport requests through portal, Telegram, or email. Posted to Central Dispatch within 30 minutes. Quote with realistic lane timeline returned within 4-6 hours."
       },
       {
-        "day": "День 3-4",
-        "title": "Перше завантаження",
-        "desc": "Надсилаєте VIN + лоти. Публікація на Central Dispatch протягом 30 хвилин."
+        "day": "Day 4-5",
+        "title": "First pickups",
+        "desc": "Vetted carriers assigned. Auction gate passes or IAA buyer letters arranged. Driver contact delivered to dealer operations team via Telegram."
       },
       {
-        "day": "День 5-7",
-        "title": "Перший забір",
-        "desc": "Перевірені перевізники призначені, gate pass оформлений, контакти водія через Telegram."
+        "day": "Day 6-10",
+        "title": "First delivery + invoice",
+        "desc": "Vehicles delivered to your lot. BOL photos pushed to your portal. First Friday invoice goes out. Reconciliation against prepay balance or Net-15 terms."
       },
       {
-        "day": "День 8-10",
-        "title": "Перша доставка + інвойс",
-        "desc": "Авто доставлене, фото BOL у порталі, перший п'ятничний інвойс за графіком."
+        "day": "Week 2+",
+        "title": "Operational rhythm",
+        "desc": "Regular dispatch cadence. Repeat lanes recognized. Portal becomes primary workflow surface. Multi-user access activated for finance + dispatch + sales teams."
       }
     ]
   },
-  "volumeTable": {
-    "kicker": "ОПТОВІ ТАРИФИ",
-    "title": "Знижки залежать від місячного обсягу",
-    "headerVolume": "Завантажень на місяць",
-    "headerTier": "Рівень",
-    "headerDiscount": "Знижка",
-    "headerPerk": "Переваги",
-    "rows": [
+  "paymentOptions": {
+    "kicker": "ВАРІАНТИ ОПЛАТИ",
+    "title": "Два способи оплати — обидва з фіксованою платою",
+    "subtitle": "Однакова плата за диспетчинг у будь-якому разі. Вибір — хто виписує чек перевізнику.",
+    "options": [
       {
-        "volume": "1-4",
-        "tier": "Стандарт",
-        "discount": "Базовий тариф",
-        "perk": "Запити на забір у той самий день"
+        "name": "Пряма оплата перевізнику (COD)",
+        "tag": "Hands-on дилери",
+        "desc": "Дилер сплачує перевізнику напряму при доставці. Y7 виставляє лише плату за диспетчинг.",
+        "features": [
+          "Lower total cost (no carrier payment processing)",
+          "Dealer controls BOL inspection at door",
+          "Requires dock staff or pickup coordinator",
+          "Best for dealers with established receiving operations",
+          "Weekly Y7 invoice covers dispatch fees only"
+        ]
       },
       {
-        "volume": "5-9",
-        "tier": "Активний",
-        "discount": "5%",
-        "perk": "Пріоритетна відправка, виділений email"
-      },
-      {
-        "volume": "10-19",
-        "tier": "Оптовий",
-        "discount": "10%",
-        "perk": "Персональний диспетчер, Telegram-бот"
-      },
-      {
-        "volume": "20+",
-        "tier": "Корпоративний",
-        "discount": "15%",
-        "perk": "Індивідуальний rate card, щотижневий дзвінок"
+        "name": "Передплата через Y7",
+        "tag": "Hands-off дилери",
+        "desc": "Дилер поповнює баланс Y7. Y7 сплачує перевізникам. Тижнева звірка по балансу.",
+        "features": [
+          "Zero carrier payment hassle",
+          "Y7 handles BOL disputes and edge cases",
+          "Single weekly invoice with reconciliation",
+          "Best for dealers prioritizing operational simplicity",
+          "Balance top-up via ACH or check",
+          "Dispatch fee bundled in weekly invoice"
+        ]
       }
     ],
-    "footnote": "Обсяг вимірюється ковзним по 30 днях. Рівень перераховується щомісяця; довгострокових зобов'язань немає."
+    "note": "Обидва варіанти включають повний функціонал відділу диспетчингу. Спосіб оплати не змінює рівень сервісу."
   },
-  "dealerFeatures": {
-    "kicker": "ЩО ОТРИМУЮТЬ ДИЛЕРИ",
-    "title": "Під операційну реальність автосалону",
-    "items": [
+  "portal": {
+    "kicker": "DEALER PORTAL",
+    "title": "Your Operations Dashboard",
+    "subtitle": "Role-based access for dispatch, finance, and sales teams",
+    "features": [
       {
-        "title": "Портал",
-        "desc": "Дашборд зі статусами у реальному часі, фото BOL та історією інвойсів."
+        "label": "Unified load board",
+        "desc": "All active shipments in one view — status, ETA, carrier name, BOL photo link. Sortable by pickup date, lane, status."
       },
       {
-        "title": "Щотижневий інвойс",
-        "desc": "Один інвойс у п'ятницю на всі завантаження тижня."
+        "label": "Saved pickup locations",
+        "desc": "Your auction yards, trade partners, wholesale sources. One-click dispatch to repeat locations."
       },
       {
-        "title": "Telegram-статус-бот",
-        "desc": "Push-сповіщення про забір/доставку на телефон диспетчера."
+        "label": "Document vault",
+        "desc": "Every BOL, photo inspection, condition report, and invoice archived. DMS-ready CSV/PDF export on demand."
       },
       {
-        "title": "Персональний диспетчер",
-        "desc": "Конкретна людина, яка знає ваші маршрути та перевізників."
+        "label": "Multi-user access",
+        "desc": "Finance team sees billing only. Dispatch team sees active loads. Sales team sees delivery ETAs for customer updates."
       },
       {
-        "title": "Пріоритет на аукціонах",
-        "desc": "Gate pass протягом 2 годин; забір у той самий або наступний день."
+        "label": "Telegram alerts",
+        "desc": "Dispatched, picked-up, delivered notifications to operations team in real-time. Configurable per user."
       },
       {
-        "title": "Гнучкі платежі",
-        "desc": "Net-15 для затверджених рахунків; оплата ACH або Zelle."
+        "label": "Weekly reporting",
+        "desc": "Friday summary: vehicles moved, total spend, lane breakdown, carrier performance. Exportable for accounting reconciliation."
       }
     ]
   },
-  "trustSignals": {
-    "kicker": "ПЕРЕВІРКА",
-    "title": "Документи, не маркетинг",
-    "items": [
+  "auctions": {
+    "kicker": "AUCTION COVERAGE",
+    "title": "We Pick Up from Every Major US Auction Network",
+    "subtitle": "Full gate pass and buyer letter workflow per auction type",
+    "list": [
       {
-        "label": "Ліцензія брокера FMCSA",
-        "value": "MC #1741537",
-        "link": "https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=1741537",
-        "linkLabel": "Перевірити на SAFER"
+        "name": "Copart",
+        "coverage": "200+ yards nationwide",
+        "feature": "Gate pass PIN + Transporter App coordination",
+        "link": "/copart-shipping"
       },
       {
-        "label": "USDOT номер",
-        "value": "4427359",
-        "link": "",
-        "linkLabel": ""
+        "name": "IAAI",
+        "coverage": "200+ locations",
+        "feature": "Buyer letter + authorized carrier setup",
+        "link": "/iaai-transport"
       },
       {
-        "label": "Брокер Central Dispatch",
-        "value": "Підтверджено",
-        "link": "https://www.centraldispatch.com",
-        "linkLabel": "Central Dispatch"
+        "name": "Manheim",
+        "coverage": "80+ regional auctions",
+        "feature": "Wholesale dealer lot coordination",
+        "link": "/manheim-transport"
       },
       {
-        "label": "Брокерське забезпечення",
-        "value": "BMC-84 ($75,000)",
-        "link": "",
-        "linkLabel": ""
+        "name": "ADESA",
+        "coverage": "60+ wholesale locations",
+        "feature": "Dealer-to-dealer trade moves",
+        "link": "/auction-car-shipping"
       }
     ]
   },
-  "dealerFaq": {
-    "kicker": "FAQ ДИЛЕРА",
-    "title": "Найчастіші питання дилерів",
+  "useCases": {
+    "kicker": "WHAT WE RUN DAILY",
+    "title": "Five Dealer Scenarios, Every Week",
+    "cases": [
+      {
+        "title": "Auction pickup to dealer lot",
+        "desc": "Your buyer wins at Copart Dallas Monday. You need the vehicle at your Houston lot by Friday. Gate pass coordinated, carrier dispatched, BOL documented, delivered on schedule."
+      },
+      {
+        "title": "Dealer-to-dealer trade",
+        "desc": "You've traded a Tahoe for an F-150 with another dealer three states away. We handle both legs as a single coordinated move."
+      },
+      {
+        "title": "Customer delivery from dealer lot",
+        "desc": "Customer bought a vehicle remotely. You need it delivered to their driveway in another state. Full BOL documentation, insurance-covered carrier, status updates throughout."
+      },
+      {
+        "title": "Multi-vehicle consolidated pickup",
+        "desc": "Five vehicles won at the same Copart yard. One carrier, one pickup event, consolidated cost. We route to maximize carrier efficiency and minimize per-vehicle spend."
+      },
+      {
+        "title": "Off-lease / trade-in relocation",
+        "desc": "Moving trade-ins from your dealership to a wholesale auction for disposal. Regular recurring lane, simplified workflow via portal."
+      }
+    ]
+  },
+  "billing": {
+    "kicker": "BILLING & ACCOUNTING",
+    "title": "Built for Dealer Accounting",
+    "intro": "Weekly rhythm. Clean reconciliation. DMS-ready exports.",
+    "features": [
+      {
+        "label": "Friday consolidated invoice",
+        "desc": "One invoice per week covering all shipments. Invoice number format: INV-{year}-{dealer-id}-{seq}."
+      },
+      {
+        "label": "Net-15 terms available",
+        "desc": "New dealers start COD for 4-6 weeks. Clean volume history triggers upgrade eligibility."
+      },
+      {
+        "label": "ACH + check supported",
+        "desc": "No wire transfer fees. Auto-pay available via stored ACH."
+      },
+      {
+        "label": "Monthly summary report",
+        "desc": "First business day of each month. Vehicles moved, total spend, lane breakdown, carrier performance."
+      },
+      {
+        "label": "DMS-ready CSV export",
+        "desc": "Flat CSV format that reconciles cleanly with most dealer management systems."
+      },
+      {
+        "label": "Audit trail",
+        "desc": "Every dispatch, every BOL, every invoice, timestamped and archived. Pull historical records any time."
+      }
+    ]
+  },
+  "whenThingsFail": {
+    "kicker": "OPERATIONAL HONESTY",
+    "title": "When a Carrier Flakes — Here's What You Get",
+    "intro": "Auto transport has failure modes. Here's our recovery playbook. We don't hide this — this is what makes us a real dispatch department, not a quote-aggregator.",
+    "scenarios": [
+      {
+        "situation": "Carrier no-show at pickup",
+        "response": "Redispatch within 24h. You're not charged for the original booking. Incident logged for carrier rating. You get a Telegram alert before the dock operations notice anything wrong."
+      },
+      {
+        "situation": "Delivery delay beyond ETA",
+        "response": "Real-time status in portal + proactive Telegram alert. We contact the driver, you don't. Revised ETA communicated immediately to your sales team if customer delivery is affected."
+      },
+      {
+        "situation": "Damage documented at delivery",
+        "response": "We pull BOL photos and condition reports from our archive. File claim with carrier insurance within 24 hours. Track resolution. You don't chase the paperwork."
+      },
+      {
+        "situation": "Wrong vehicle picked up",
+        "response": "Driver VIN verification at yard prevents most cases. If it happens, redispatch at no additional cost. One confirmed pickup per booking guaranteed."
+      },
+      {
+        "situation": "Carrier payment dispute (COD model)",
+        "response": "We mediate. We know the carriers. Most disputes resolved same-day via our existing relationship with the carrier."
+      },
+      {
+        "situation": "Lost BOL / missing documentation",
+        "response": "Our archive is the backup. Every document is photographed and stored within 24 hours of delivery. We regenerate what you need."
+      }
+    ]
+  },
+  "whoWeServe": {
+    "kicker": "DEALER SEGMENTS",
+    "title": "Dealerships We Run Dispatch For",
+    "segments": [
+      {
+        "name": "Independent used-car dealers",
+        "desc": "5-30 vehicles/month from auctions, local trades, wholesale buys. Our core segment."
+      },
+      {
+        "name": "Franchise dealers",
+        "desc": "New-vehicle relocation between stores, trade-ins to wholesale, off-lease returns to auction. Multi-location coordination."
+      },
+      {
+        "name": "Exporter-dealers",
+        "desc": "Buy US → ship overseas. Y7 inland leg + DaytonaCargo ocean freight via sister company. End-to-end through one account team."
+      },
+      {
+        "name": "Rebuilders",
+        "desc": "Salvage-title focused operations. Copart/IAA pickups with winch-loading expertise. We know the yards that ship salvage clean."
+      },
+      {
+        "name": "Auction-only dealers",
+        "desc": "Wholesale operations moving inventory between regional auctions. Multi-stop routing for maximum carrier efficiency."
+      }
+    ]
+  },
+  "howDifferent": {
+    "kicker": "HOW WE'RE DIFFERENT",
+    "title": "Y7 vs Internal Dispatcher vs Generic Broker",
+    "subtitle": "The real comparison for a dealer deciding between options",
+    "headers": {
+      "feature": "Feature",
+      "internal": "Internal Dispatcher",
+      "broker": "Generic Broker",
+      "y7": "Y7 Dispatch Department"
+    },
+    "rows": [
+      {
+        "feature": "Upfront cost",
+        "internal": "$55-75k salary + $15-20k benefits + software + training",
+        "broker": "$0 — quote per move",
+        "y7": "$0 — flat dispatch fee per vehicle"
+      },
+      {
+        "feature": "Carrier network",
+        "internal": "Whatever relationships that person builds",
+        "broker": "Their own network",
+        "y7": "Central Dispatch (100+ vetted carriers) + direct relationships"
+      },
+      {
+        "feature": "Scalability",
+        "internal": "Fixed cost even in slow months. One vacation risks operations.",
+        "broker": "Call each time, no relationship continuity",
+        "y7": "Pay per vehicle. Scale up or down without hiring/firing."
+      },
+      {
+        "feature": "BOL documentation",
+        "internal": "Manual — whatever system they set up",
+        "broker": "Their system, not yours",
+        "y7": "Portal archive + DMS-ready exports"
+      },
+      {
+        "feature": "Claims handling",
+        "internal": "Your dispatcher chases carrier insurance",
+        "broker": "Often hands off to you",
+        "y7": "We coordinate from archive + carrier relationship"
+      },
+      {
+        "feature": "Multi-language support",
+        "internal": "Depends on hire",
+        "broker": "Rare",
+        "y7": "EN / RU / PL / UA on team"
+      },
+      {
+        "feature": "Weekly reporting",
+        "internal": "Set up yourself",
+        "broker": "Usually not offered",
+        "y7": "Automatic — Friday summary, monthly report, DMS export"
+      }
+    ]
+  },
+  "faqs": {
+    "kicker": "QUESTIONS DEALERS ASK",
+    "title": "Dealer FAQ",
     "items": [
       {
-        "q": "Як швидко можна відправити забір з аукціону?",
-        "a": "У робочі години Copart або IAAI публікується на Central Dispatch протягом 30 хвилин. Manheim додає крок gate pass (зазвичай 4-24 год). Перевізники приймають завантаження через 2-6 годин на популярних маршрутах; забір first-available зазвичай 48-72 години."
+        "q": "How is this different from hiring an internal dispatcher?",
+        "a": "An internal dispatcher is a fixed ~$90k/year cost regardless of volume. You also carry software licensing, training, and vacation coverage risk. Y7 charges a flat dispatch fee per vehicle — scales with your actual volume, zero fixed cost, zero staffing risk. The capabilities are the same: carrier sourcing, rate negotiation, gate pass coordination, BOL documentation, claims handling."
       },
       {
-        "q": "Працюєте з Copart + IAAI + Manheim з одного рахунку?",
-        "a": "Так. Один дилерський рахунок покриває всі платформи. Дайте номер лота і buyer ID — ми візьмемо на себе gate pass, перевірку оплати і відправку перевізника одним процесом."
+        "q": "What's the dispatch fee?",
+        "a": "Flat per-vehicle fee based on your typical lane mix. Request a dealer account review and we'll give you the number up front — no tiered games, no surprise surcharges. Same fee whether you do 5 vehicles a month or 50."
       },
       {
-        "q": "Як працює щотижневий інвойс?",
-        "a": "Кожну п'ятницю о 9:00 ET закриваємо тиждень, рахуємо підсумкові суми і надсилаємо один PDF-інвойс з розбивкою. Оплата net-15 через ACH або Zelle. Net-30 доступний після 90 днів чистої історії платежів."
+        "q": "Do I pay carriers directly or does Y7?",
+        "a": "Your choice. Option 1: pay carriers directly at delivery (COD) — you control BOL inspection at door, Y7 bills dispatch fee only. Option 2: prepay Y7, we pay carriers, weekly reconciliation against balance. Both cost the same in total."
       },
       {
-        "q": "Що, якщо перевізник пошкодив авто?",
-        "a": "Претензія подається до страхової перевізника (cargo зазвичай $100,000-$250,000 для відкритих, $250,000-$500,000 для закритих). Ми надішлемо COI і контакти. Y7 — брокер, не carrier, тому прямої відповідальності за вантаж не несе, але активно супроводжує справу."
+        "q": "What's the minimum volume?",
+        "a": "None. We onboard single-vehicle pickups and scale with you. The flat fee model makes small-volume dealers economically viable from day one."
       },
       {
-        "q": "Можна відстежувати завантаження у реальному часі?",
-        "a": "Так. Дилерський портал зі статусами pickup/in-transit/delivered плюс Telegram-бот з push-сповіщеннями. Фото BOL автоматично."
+        "q": "How fast can you dispatch a carrier?",
+        "a": "Depends on lane. Popular corridors (major metros) typically dispatch within 24-48 hours. Rural yards or unusual pairings may take 3-5 days. We tell you the realistic timeline when we quote, not after you commit. Post to Central Dispatch within 30 minutes of your request."
       },
       {
-        "q": "Робите дилер-трейди між салонами?",
-        "a": "Регулярно. Дилер-трейд — друга причина звернень після аукціонів. Одиночні або мультимашинні обміни, синхронізовані вікна pickup/drop-off і персональний диспетчер."
+        "q": "Can I have multiple users on one dealer account?",
+        "a": "Yes. Invite finance, dispatch, and sales managers with role-based permissions. Finance sees billing. Dispatch sees active loads. Sales sees delivery ETAs for customer updates."
       },
       {
-        "q": "Яка політика скасування?",
-        "a": "Безкоштовно до моменту прийняття завантаження перевізником. Після — правила перевізника (зазвичай $100-$200 dry-run fee, якщо водій уже виїхав)."
+        "q": "What about Copart gate passes and IAA buyer letters?",
+        "a": "Included in every auction pickup. We handle Copart gate pass PIN coordination via their Transporter App, and IAA buyer letter setup per authorized carrier. Part of the dispatch department service."
       },
       {
-        "q": "Працюєте з непрацюючими аукціонними авто?",
-        "a": "Так. Доплата $100-$300 за inop над базовим тарифом — точна сума залежить від того, чи вистачає звичайної лебідки (дешевше), чи потрібен форкліфт (дорожче)."
+        "q": "Do you integrate with my DMS?",
+        "a": "Not via direct API yet. We provide exportable monthly summaries in CSV and PDF that reconcile cleanly with most DMS platforms. Full API integration is on our roadmap."
       },
       {
-        "q": "А експорт через порт?",
-        "a": "Координуємо auction-to-port для дилерів, які продають на експорт. Gate pass, warehouse drop і передача BOL агенту — ми закриваємо наземну ділянку, агент — митниця і судно."
+        "q": "What happens if a carrier damages my vehicle?",
+        "a": "Carrier cargo insurance applies (Y7 is a broker, we don't carry cargo insurance — that's the carrier's role per FMCSA structure). We coordinate the claim: pull BOL photos and condition reports from our archive, file with carrier insurance within 24 hours, track resolution. You don't chase paperwork — that's the dispatch department doing its job."
       },
       {
-        "q": "Як отримати rate card?",
-        "a": "Надішліть дилерську ліцензію, маршрути і плановий місячний обсяг. Будуємо персоналізований rate card протягом 24 годин."
+        "q": "Do you handle dealer-to-dealer trades?",
+        "a": "Yes. Dealer trades are a core use case. Often simpler than auction pickups because both ends have dock staff and predictable hours. One coordinated move, one BOL, one invoice line."
+      },
+      {
+        "q": "Do you handle customer deliveries from dealer lots?",
+        "a": "Yes. Customer remote purchase → driveway delivery. Full BOL documentation, insured carrier, status updates throughout. Common for franchise dealers and online-first operations."
+      },
+      {
+        "q": "Is there a long-term contract?",
+        "a": "Simple Broker-Shipper Agreement. Pay-as-you-go with weekly billing. No long-term lockup, no minimum spend, no cancellation fees. Onboard for one trade, scale to full volume, or dial back — all the same account."
+      },
+      {
+        "q": "Who do I talk to when something urgent comes up?",
+        "a": "Existing customers reach dispatch via portal or Telegram bot (@y7dispatch_bot) 24/7 for active shipment matters. For new inquiries and account setup, info@y7agency.com responds within one business day."
+      }
+    ]
+  },
+  "ctaTitle": "Готові вивести диспетчинг на аутсорс?",
+  "ctaSubtitle": "Розкажіть про обсяги, маршрути й варіант оплати. Ми оцінимо engagement і назвемо фіксовану плату заздалегідь.",
+  "ctaButton": "Замовити огляд дилерського акаунту",
+  "crosslinks": {
+    "title": "Related for Dealers",
+    "items": [
+      {
+        "label": "Deep-dive dealer transport guide",
+        "to": "/dealer-auto-transport"
+      },
+      {
+        "label": "Copart shipping for dealers",
+        "to": "/copart-shipping"
+      },
+      {
+        "label": "IAA auction transport",
+        "to": "/iaai-transport"
+      },
+      {
+        "label": "Manheim transport",
+        "to": "/manheim-transport"
+      },
+      {
+        "label": "All auction car shipping",
+        "to": "/auction-car-shipping"
+      },
+      {
+        "label": "For exporters",
+        "to": "/exporters"
+      },
+      {
+        "label": "Request dealer quote",
+        "to": "/dealer-quote"
+      },
+      {
+        "label": "State-to-state transport",
+        "to": "/state-to-state-car-shipping"
       }
     ]
   }

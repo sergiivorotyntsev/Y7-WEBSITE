@@ -1,262 +1,202 @@
 {
-  "title": "Auto Transport for Dealers",
-  "subtitle": "We handle the logistics so you can focus on selling. From auction pickups to dealer trades, Y7 moves your inventory reliably and on time.",
-  "benefits": [
-    {
-      "title": "Volume Pricing",
-      "desc": "Competitive rates for high-volume dealer accounts. The more you ship, the more you save."
-    },
-    {
-      "title": "Auction Pickups",
-      "desc": "Same-day dispatch from Copart, IAA, Manheim, and ADESA. Gate pass coordination included."
-    },
-    {
-      "title": "Dealer-to-Dealer Trades",
-      "desc": "Fast transport between dealerships. One point of contact for all your trade moves."
-    },
-    {
-      "title": "Dedicated Dispatch",
-      "desc": "Your own dispatch coordinator who knows your routes, your timeline, and your preferences."
-    },
-    {
-      "title": "Central Dispatch Integration",
-      "desc": "90% of our loads go through Central Dispatch. Status updates at every stage via portal."
-    },
-    {
-      "title": "Flexible Payment",
-      "desc": "Net-15 terms, ACH, and invoice-based billing designed for dealer operations."
-    }
-  ],
-  "pricing": {
-    "title": "Pricing Models",
-    "models": [
-      {
-        "title": "Broker-Paid Carrier",
-        "desc": "Y7 handles all carrier payments. Higher service fee but zero hassle — you never deal with carrier payment logistics, BOL disputes, or COD coordination."
-      },
-      {
-        "title": "Direct Carrier Payment (COD)",
-        "desc": "Dealer pays carrier at delivery. Lower service fee but you handle BOL inspection and payment at the door. Best for experienced dealers with dock staff."
-      }
-    ],
-    "volumeTitle": "Volume Discount Tiers",
-    "popularBadge": "Most Popular",
-    "colVolume": "Volume",
-    "colTier": "Tier",
-    "colDiscount": "Discount",
-    "colPerk": "Perk",
-    "tiers": [
-      {
-        "volume": "1-5",
-        "label": "vehicles/month",
-        "discount": "Standard pricing",
-        "perk": "Full service, no minimum"
-      },
-      {
-        "volume": "6-15",
-        "label": "vehicles/month",
-        "discount": "10% service fee discount",
-        "perk": "Priority dispatch queue"
-      },
-      {
-        "volume": "16-30",
-        "label": "vehicles/month",
-        "discount": "15% discount",
-        "perk": "Dedicated dispatcher assigned"
-      },
-      {
-        "volume": "30+",
-        "label": "vehicles/month",
-        "discount": "Custom contract",
-        "perk": "Contact us for pricing"
-      }
-    ]
-  },
-  "ctaTitle": "Ready to streamline your transport?",
-  "ctaSubtitle": "Get a quote in minutes. We'll respond within 1 hour.",
-  "ctaButton": "Get a Dealer Quote",
+  "title": "Your Outsourced Dispatch Department",
+  "subtitle": "Y7 runs vehicle logistics for auto dealerships across the US. Think of us as your dispatch department — without the $90k salary, benefits, or vacation coverage. Flat fee per vehicle, full operational department included.",
   "hero": {
-    "kicker": "FOR DEALERS",
-    "trust1": "Net-15 billing",
-    "trust2": "Dedicated dispatcher",
-    "trust3": "Volume rates from 6+ loads/mo"
+    "kicker": "FOR AUTO DEALERSHIPS",
+    "trust1": "Licensed & Bonded FMCSA Broker · MC #1741537",
+    "trust2": "90% loads via Central Dispatch",
+    "trust3": "Flat dispatch fee · Weekly invoices · ACH"
   },
-  "crosslinks": {
-    "title": "More for dealers",
-    "deepDive": "Dealer auto transport guide",
-    "quote": "Request dealer quote",
-    "exporters": "For exporters"
-  },
-  "timeline": {
-    "kicker": "HOW WE WORK WITH DEALERS",
-    "title": "From account open to first load dispatched in under 10 days",
-    "steps": [
-      {
-        "day": "Day 1",
-        "title": "Account setup",
-        "desc": "Email your dealer license + W-9. Same-day onboarding — no credit-check delay."
-      },
-      {
-        "day": "Day 2",
-        "title": "Rate card built",
-        "desc": "We pull your typical lanes + monthly volume and issue a personalized rate sheet within 24 hours."
-      },
-      {
-        "day": "Day 3-4",
-        "title": "First load posted",
-        "desc": "Send VINs + pickup lots. We post to Central Dispatch within 30 minutes of your request."
-      },
-      {
-        "day": "Day 5-7",
-        "title": "First pickups",
-        "desc": "Vetted carriers assigned; auction gate passes arranged; driver contact info delivered via Telegram."
-      },
-      {
-        "day": "Day 8-10",
-        "title": "First delivery + invoice",
-        "desc": "Vehicle delivered to your lot, BOL photos pushed to the portal, first Friday invoice goes out on schedule."
-      }
+  "problem": {
+    "kicker": "THE DEALER LOGISTICS PROBLEM",
+    "title": "Internal dispatch is expensive. Generic brokers don't scale with your operation.",
+    "intro": "Mid-size dealerships face a false choice: hire an internal dispatcher ($55-75k salary + benefits + software + training + vacation coverage ≈ $90k true annual cost) or chase quotes from five different brokers on every move. Neither works long-term.",
+    "points": [
+      { "title": "Internal dispatcher", "negative": "Fixed $90k/year cost even in slow months. One person, one set of relationships, one vacation risk." },
+      { "title": "Generic transport broker", "negative": "Call-center voice, no dealer-specific workflow, no consolidated invoicing, no BOL archival, no claims help." },
+      { "title": "Y7 dispatch department", "positive": "Pay per-vehicle flat fee. Dedicated team, dealer-specific portal, weekly billing, BOL archival, claims coordination. Scale up or down without hiring or firing." }
     ]
   },
-  "volumeTable": {
-    "kicker": "VOLUME PRICING",
-    "title": "Rate tiers scale with your monthly volume",
-    "headerVolume": "Monthly loads",
-    "headerTier": "Tier",
-    "headerDiscount": "Discount",
-    "headerPerk": "Perk",
-    "rows": [
+  "capabilities": {
+    "kicker": "WHAT YOU GET",
+    "title": "What a Dispatch Department Does",
+    "subtitle": "Y7 delivers every capability of an internal dispatcher — for a fraction of the fixed cost",
+    "items": [
+      { "title": "Carrier sourcing & vetting", "desc": "Access to 100+ vetted carriers through Central Dispatch. MC number, insurance, and safety score verified before every dispatch." },
+      { "title": "Rate negotiation", "desc": "We negotiate carrier rates on your behalf. You see the final lane price, not a negotiation game." },
+      { "title": "Gate pass & buyer letter coordination", "desc": "Copart Transporter App, IAA buyer letters, Manheim wholesale release — we handle the paperwork per auction type." },
+      { "title": "Real-time tracking", "desc": "Every shipment visible in your portal with ETA, carrier contact, BOL status. Telegram alerts at key milestones." },
+      { "title": "BOL documentation & archival", "desc": "Every Bill of Lading, condition photo, and delivery confirmation archived. DMS-ready exports for your accounting." },
+      { "title": "Damage claims coordination", "desc": "If damage is documented, we pull the archive and file with carrier insurance. You don't chase paperwork." },
+      { "title": "Consolidated weekly billing", "desc": "One invoice every Friday covering all moves. Net-15 terms for established dealers. ACH supported." },
+      { "title": "Multi-language team", "desc": "English, Russian, Polish, Ukrainian. Useful for dealerships with Eastern European importer partners or bilingual teams." }
+    ]
+  },
+  "workflow": {
+    "kicker": "HOW IT WORKS",
+    "title": "How It Works — Day by Day",
+    "subtitle": "The actual operational rhythm after your dealer account is active",
+    "steps": [
+      { "day": "Day 1", "title": "Account setup", "desc": "Broker-Shipper Agreement signed digitally. Portal access activated. Saved pickup locations imported. Payment option selected (COD or prepay)." },
+      { "day": "Day 2-3", "title": "First load posted", "desc": "Submit transport requests through portal, Telegram, or email. Posted to Central Dispatch within 30 minutes. Quote with realistic lane timeline returned within 4-6 hours." },
+      { "day": "Day 4-5", "title": "First pickups", "desc": "Vetted carriers assigned. Auction gate passes or IAA buyer letters arranged. Driver contact delivered to dealer operations team via Telegram." },
+      { "day": "Day 6-10", "title": "First delivery + invoice", "desc": "Vehicles delivered to your lot. BOL photos pushed to your portal. First Friday invoice goes out. Reconciliation against prepay balance or Net-15 terms." },
+      { "day": "Week 2+", "title": "Operational rhythm", "desc": "Regular dispatch cadence. Repeat lanes recognized. Portal becomes primary workflow surface. Multi-user access activated for finance + dispatch + sales teams." }
+    ]
+  },
+  "paymentOptions": {
+    "kicker": "PAYMENT OPTIONS",
+    "title": "Two Ways to Pay — Both Flat Fee",
+    "subtitle": "Same dispatch fee either way. Choice is about who writes the check to the carrier.",
+    "options": [
       {
-        "volume": "1-4",
-        "tier": "Standard",
-        "discount": "Base rate",
-        "perk": "Same-day pickup requests"
+        "name": "Direct Carrier Payment (COD)",
+        "tag": "Hands-on dealers",
+        "desc": "Dealer pays carrier directly at delivery. Y7 bills flat dispatch fee only.",
+        "features": [
+          "Lower total cost (no carrier payment processing)",
+          "Dealer controls BOL inspection at door",
+          "Requires dock staff or pickup coordinator",
+          "Best for dealers with established receiving operations",
+          "Weekly Y7 invoice covers dispatch fees only"
+        ]
       },
       {
-        "volume": "5-9",
-        "tier": "Active",
-        "discount": "5%",
-        "perk": "Priority dispatch, dedicated email"
-      },
-      {
-        "volume": "10-19",
-        "tier": "Volume",
-        "discount": "10%",
-        "perk": "Dedicated dispatcher, Telegram bot"
-      },
-      {
-        "volume": "20+",
-        "tier": "Enterprise",
-        "discount": "15%",
-        "perk": "Custom rate card, weekly strategy call"
+        "name": "Prepay Through Y7",
+        "tag": "Hands-off dealers",
+        "desc": "Dealer funds a Y7 prepay balance. Y7 pays carriers. Weekly reconciliation against balance.",
+        "features": [
+          "Zero carrier payment hassle",
+          "Y7 handles BOL disputes and edge cases",
+          "Single weekly invoice with reconciliation",
+          "Best for dealers prioritizing operational simplicity",
+          "Balance top-up via ACH or check",
+          "Dispatch fee bundled in weekly invoice"
+        ]
       }
     ],
-    "footnote": "Volume measured on a rolling 30-day basis. Tiers recalculate monthly; no long-term commitment required."
+    "note": "Both options include the full outsourced dispatch department capabilities. Payment flow does not change the service level."
   },
-  "dealerFeatures": {
-    "kicker": "WHAT DEALERS GET",
-    "title": "Built for the operational reality of a dealership",
-    "items": [
-      {
-        "title": "Portal access",
-        "desc": "Dashboard with live status, BOL photos, and invoice history."
-      },
-      {
-        "title": "Weekly consolidated invoice",
-        "desc": "Single Friday invoice for the week's loads. No per-vehicle bill chaos."
-      },
-      {
-        "title": "Telegram status bot",
-        "desc": "Real-time pickup/delivery notifications to your dispatcher's phone."
-      },
-      {
-        "title": "Dedicated dispatcher",
-        "desc": "Named person who knows your routes, your cars, and your preferred carriers."
-      },
-      {
-        "title": "Priority auction pickup",
-        "desc": "Gate pass coordination within 2 hours; same-day or next-day pickup when possible."
-      },
-      {
-        "title": "Flexible billing",
-        "desc": "Net-15 terms on approved dealer accounts; ACH or Zelle accepted."
-      }
+  "portal": {
+    "kicker": "DEALER PORTAL",
+    "title": "Your Operations Dashboard",
+    "subtitle": "Role-based access for dispatch, finance, and sales teams",
+    "features": [
+      { "label": "Unified load board", "desc": "All active shipments in one view — status, ETA, carrier name, BOL photo link. Sortable by pickup date, lane, status." },
+      { "label": "Saved pickup locations", "desc": "Your auction yards, trade partners, wholesale sources. One-click dispatch to repeat locations." },
+      { "label": "Document vault", "desc": "Every BOL, photo inspection, condition report, and invoice archived. DMS-ready CSV/PDF export on demand." },
+      { "label": "Multi-user access", "desc": "Finance team sees billing only. Dispatch team sees active loads. Sales team sees delivery ETAs for customer updates." },
+      { "label": "Telegram alerts", "desc": "Dispatched, picked-up, delivered notifications to operations team in real-time. Configurable per user." },
+      { "label": "Weekly reporting", "desc": "Friday summary: vehicles moved, total spend, lane breakdown, carrier performance. Exportable for accounting reconciliation." }
     ]
   },
-  "trustSignals": {
-    "kicker": "TRUST SIGNALS",
-    "title": "Compliance, not marketing claims",
-    "items": [
-      {
-        "label": "FMCSA broker authority",
-        "value": "MC #1741537",
-        "link": "https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=MC_MX&query_string=1741537",
-        "linkLabel": "Verify on SAFER"
-      },
-      {
-        "label": "USDOT number",
-        "value": "4427359",
-        "link": "",
-        "linkLabel": ""
-      },
-      {
-        "label": "Central Dispatch broker",
-        "value": "Verified",
-        "link": "https://www.centraldispatch.com",
-        "linkLabel": "Central Dispatch"
-      },
-      {
-        "label": "Broker bond",
-        "value": "BMC-84 ($75,000)",
-        "link": "",
-        "linkLabel": ""
-      }
+  "auctions": {
+    "kicker": "AUCTION COVERAGE",
+    "title": "We Pick Up from Every Major US Auction Network",
+    "subtitle": "Full gate pass and buyer letter workflow per auction type",
+    "list": [
+      { "name": "Copart", "coverage": "200+ yards nationwide", "feature": "Gate pass PIN + Transporter App coordination", "link": "/copart-shipping" },
+      { "name": "IAAI", "coverage": "200+ locations", "feature": "Buyer letter + authorized carrier setup", "link": "/iaai-transport" },
+      { "name": "Manheim", "coverage": "80+ regional auctions", "feature": "Wholesale dealer lot coordination", "link": "/manheim-transport" },
+      { "name": "ADESA", "coverage": "60+ wholesale locations", "feature": "Dealer-to-dealer trade moves", "link": "/auction-car-shipping" }
     ]
   },
-  "dealerFaq": {
-    "kicker": "DEALER FAQ",
-    "title": "Questions dealers actually ask",
+  "useCases": {
+    "kicker": "WHAT WE RUN DAILY",
+    "title": "Five Dealer Scenarios, Every Week",
+    "cases": [
+      { "title": "Auction pickup to dealer lot", "desc": "Your buyer wins at Copart Dallas Monday. You need the vehicle at your Houston lot by Friday. Gate pass coordinated, carrier dispatched, BOL documented, delivered on schedule." },
+      { "title": "Dealer-to-dealer trade", "desc": "You've traded a Tahoe for an F-150 with another dealer three states away. We handle both legs as a single coordinated move." },
+      { "title": "Customer delivery from dealer lot", "desc": "Customer bought a vehicle remotely. You need it delivered to their driveway in another state. Full BOL documentation, insurance-covered carrier, status updates throughout." },
+      { "title": "Multi-vehicle consolidated pickup", "desc": "Five vehicles won at the same Copart yard. One carrier, one pickup event, consolidated cost. We route to maximize carrier efficiency and minimize per-vehicle spend." },
+      { "title": "Off-lease / trade-in relocation", "desc": "Moving trade-ins from your dealership to a wholesale auction for disposal. Regular recurring lane, simplified workflow via portal." }
+    ]
+  },
+  "billing": {
+    "kicker": "BILLING & ACCOUNTING",
+    "title": "Built for Dealer Accounting",
+    "intro": "Weekly rhythm. Clean reconciliation. DMS-ready exports.",
+    "features": [
+      { "label": "Friday consolidated invoice", "desc": "One invoice per week covering all shipments. Invoice number format: INV-{year}-{dealer-id}-{seq}." },
+      { "label": "Net-15 terms available", "desc": "New dealers start COD for 4-6 weeks. Clean volume history triggers upgrade eligibility." },
+      { "label": "ACH + check supported", "desc": "No wire transfer fees. Auto-pay available via stored ACH." },
+      { "label": "Monthly summary report", "desc": "First business day of each month. Vehicles moved, total spend, lane breakdown, carrier performance." },
+      { "label": "DMS-ready CSV export", "desc": "Flat CSV format that reconciles cleanly with most dealer management systems." },
+      { "label": "Audit trail", "desc": "Every dispatch, every BOL, every invoice, timestamped and archived. Pull historical records any time." }
+    ]
+  },
+  "whenThingsFail": {
+    "kicker": "OPERATIONAL HONESTY",
+    "title": "When a Carrier Flakes — Here's What You Get",
+    "intro": "Auto transport has failure modes. Here's our recovery playbook. We don't hide this — this is what makes us a real dispatch department, not a quote-aggregator.",
+    "scenarios": [
+      { "situation": "Carrier no-show at pickup", "response": "Redispatch within 24h. You're not charged for the original booking. Incident logged for carrier rating. You get a Telegram alert before the dock operations notice anything wrong." },
+      { "situation": "Delivery delay beyond ETA", "response": "Real-time status in portal + proactive Telegram alert. We contact the driver, you don't. Revised ETA communicated immediately to your sales team if customer delivery is affected." },
+      { "situation": "Damage documented at delivery", "response": "We pull BOL photos and condition reports from our archive. File claim with carrier insurance within 24 hours. Track resolution. You don't chase the paperwork." },
+      { "situation": "Wrong vehicle picked up", "response": "Driver VIN verification at yard prevents most cases. If it happens, redispatch at no additional cost. One confirmed pickup per booking guaranteed." },
+      { "situation": "Carrier payment dispute (COD model)", "response": "We mediate. We know the carriers. Most disputes resolved same-day via our existing relationship with the carrier." },
+      { "situation": "Lost BOL / missing documentation", "response": "Our archive is the backup. Every document is photographed and stored within 24 hours of delivery. We regenerate what you need." }
+    ]
+  },
+  "whoWeServe": {
+    "kicker": "DEALER SEGMENTS",
+    "title": "Dealerships We Run Dispatch For",
+    "segments": [
+      { "name": "Independent used-car dealers", "desc": "5-30 vehicles/month from auctions, local trades, wholesale buys. Our core segment." },
+      { "name": "Franchise dealers", "desc": "New-vehicle relocation between stores, trade-ins to wholesale, off-lease returns to auction. Multi-location coordination." },
+      { "name": "Exporter-dealers", "desc": "Buy US → ship overseas. Y7 inland leg + DaytonaCargo ocean freight via sister company. End-to-end through one account team." },
+      { "name": "Rebuilders", "desc": "Salvage-title focused operations. Copart/IAA pickups with winch-loading expertise. We know the yards that ship salvage clean." },
+      { "name": "Auction-only dealers", "desc": "Wholesale operations moving inventory between regional auctions. Multi-stop routing for maximum carrier efficiency." }
+    ]
+  },
+  "howDifferent": {
+    "kicker": "HOW WE'RE DIFFERENT",
+    "title": "Y7 vs Internal Dispatcher vs Generic Broker",
+    "subtitle": "The real comparison for a dealer deciding between options",
+    "headers": { "feature": "Feature", "internal": "Internal Dispatcher", "broker": "Generic Broker", "y7": "Y7 Dispatch Department" },
+    "rows": [
+      { "feature": "Upfront cost", "internal": "$55-75k salary + $15-20k benefits + software + training", "broker": "$0 — quote per move", "y7": "$0 — flat dispatch fee per vehicle" },
+      { "feature": "Carrier network", "internal": "Whatever relationships that person builds", "broker": "Their own network", "y7": "Central Dispatch (100+ vetted carriers) + direct relationships" },
+      { "feature": "Scalability", "internal": "Fixed cost even in slow months. One vacation risks operations.", "broker": "Call each time, no relationship continuity", "y7": "Pay per vehicle. Scale up or down without hiring/firing." },
+      { "feature": "BOL documentation", "internal": "Manual — whatever system they set up", "broker": "Their system, not yours", "y7": "Portal archive + DMS-ready exports" },
+      { "feature": "Claims handling", "internal": "Your dispatcher chases carrier insurance", "broker": "Often hands off to you", "y7": "We coordinate from archive + carrier relationship" },
+      { "feature": "Multi-language support", "internal": "Depends on hire", "broker": "Rare", "y7": "EN / RU / PL / UA on team" },
+      { "feature": "Weekly reporting", "internal": "Set up yourself", "broker": "Usually not offered", "y7": "Automatic — Friday summary, monthly report, DMS export" }
+    ]
+  },
+  "faqs": {
+    "kicker": "QUESTIONS DEALERS ASK",
+    "title": "Dealer FAQ",
     "items": [
-      {
-        "q": "How fast can you dispatch an auction pickup?",
-        "a": "Inside business hours, a Copart or IAAI pickup is posted to Central Dispatch within 30 minutes. Manheim adds a gate-pass step (usually 4-24 hours). Carriers typically accept within 2-6 hours on common lanes; a first-available pickup usually happens inside 48-72 hours."
-      },
-      {
-        "q": "Do you handle Copart + IAAI + Manheim from one account?",
-        "a": "Yes. One dealer account works for every major platform. Share the lot number and buyer ID; we handle the gate pass, payment-status check with the auction, and carrier dispatch under a single workflow."
-      },
-      {
-        "q": "How does weekly consolidated invoicing work?",
-        "a": "Every Friday at 9 AM ET we close the week's loads, calculate consolidated totals, and email a single PDF invoice with each load itemized. Due net-15 via ACH or Zelle. Net-30 available on approved accounts after 90 days of clean payment history."
-      },
-      {
-        "q": "What happens when a carrier damages a vehicle?",
-        "a": "You file a claim with the carrier's insurance (cargo coverage is typically $100,000-$250,000 for open trailers, $250,000-$500,000 for enclosed). We pull the carrier's COI and connect you with their adjuster. Y7 does not take direct liability for cargo — we're a licensed broker, not a motor carrier — but we absolutely stay in the loop and advocate for fast resolution."
-      },
-      {
-        "q": "Can I track loads in real time?",
-        "a": "Yes — dedicated dealer portal with pickup/in-transit/delivered status, plus a Telegram bot that pushes notifications to your dispatcher's phone. BOL photos at pickup and delivery are attached automatically."
-      },
-      {
-        "q": "Do you ship dealer trades between lots?",
-        "a": "Regularly. Dealer trade moves are our second-largest dealer use case after auction pickup. Single-vehicle or multi-vehicle swaps between rooftops, coordinated timing, and a dedicated dispatcher to sync pickup and drop-off windows."
-      },
-      {
-        "q": "What's your cancellation policy?",
-        "a": "Free cancellation any time before the carrier accepts the load. Once accepted, the carrier's rules apply (typically $100-$200 dry-run fee if the driver has already dispatched to the pickup location). We flag this in the Telegram feed the moment acceptance happens so you can cancel cleanly."
-      },
-      {
-        "q": "Can you handle non-running auction vehicles?",
-        "a": "Yes. Plan on a $100-$300 inoperable surcharge above the base rate — actual amount depends on whether a standard winch works (cheaper) or the vehicle needs forklift loading (more). Disclose this honestly at quote time so the right carrier is dispatched; mis-disclosed inop at pickup is the #1 cause of surprise fees."
-      },
-      {
-        "q": "What about port delivery for your export flips?",
-        "a": "We coordinate auction-to-port for dealers selling into the export channel. Gate pass, warehouse drop, and BOL handoff to the freight forwarder — we do the domestic leg; your forwarder handles customs and ocean booking."
-      },
-      {
-        "q": "How do I get a rate card?",
-        "a": "Email us your dealer license + the lanes and monthly volume you're planning. We build a personalized rate card within 24 hours. Pricing reflects your actual volume and lane mix, not a published retail rate."
-      }
+      { "q": "How is this different from hiring an internal dispatcher?", "a": "An internal dispatcher is a fixed ~$90k/year cost regardless of volume. You also carry software licensing, training, and vacation coverage risk. Y7 charges a flat dispatch fee per vehicle — scales with your actual volume, zero fixed cost, zero staffing risk. The capabilities are the same: carrier sourcing, rate negotiation, gate pass coordination, BOL documentation, claims handling." },
+      { "q": "What's the dispatch fee?", "a": "Flat per-vehicle fee based on your typical lane mix. Request a dealer account review and we'll give you the number up front — no tiered games, no surprise surcharges. Same fee whether you do 5 vehicles a month or 50." },
+      { "q": "Do I pay carriers directly or does Y7?", "a": "Your choice. Option 1: pay carriers directly at delivery (COD) — you control BOL inspection at door, Y7 bills dispatch fee only. Option 2: prepay Y7, we pay carriers, weekly reconciliation against balance. Both cost the same in total." },
+      { "q": "What's the minimum volume?", "a": "None. We onboard single-vehicle pickups and scale with you. The flat fee model makes small-volume dealers economically viable from day one." },
+      { "q": "How fast can you dispatch a carrier?", "a": "Depends on lane. Popular corridors (major metros) typically dispatch within 24-48 hours. Rural yards or unusual pairings may take 3-5 days. We tell you the realistic timeline when we quote, not after you commit. Post to Central Dispatch within 30 minutes of your request." },
+      { "q": "Can I have multiple users on one dealer account?", "a": "Yes. Invite finance, dispatch, and sales managers with role-based permissions. Finance sees billing. Dispatch sees active loads. Sales sees delivery ETAs for customer updates." },
+      { "q": "What about Copart gate passes and IAA buyer letters?", "a": "Included in every auction pickup. We handle Copart gate pass PIN coordination via their Transporter App, and IAA buyer letter setup per authorized carrier. Part of the dispatch department service." },
+      { "q": "Do you integrate with my DMS?", "a": "Not via direct API yet. We provide exportable monthly summaries in CSV and PDF that reconcile cleanly with most DMS platforms. Full API integration is on our roadmap." },
+      { "q": "What happens if a carrier damages my vehicle?", "a": "Carrier cargo insurance applies (Y7 is a broker, we don't carry cargo insurance — that's the carrier's role per FMCSA structure). We coordinate the claim: pull BOL photos and condition reports from our archive, file with carrier insurance within 24 hours, track resolution. You don't chase paperwork — that's the dispatch department doing its job." },
+      { "q": "Do you handle dealer-to-dealer trades?", "a": "Yes. Dealer trades are a core use case. Often simpler than auction pickups because both ends have dock staff and predictable hours. One coordinated move, one BOL, one invoice line." },
+      { "q": "Do you handle customer deliveries from dealer lots?", "a": "Yes. Customer remote purchase → driveway delivery. Full BOL documentation, insured carrier, status updates throughout. Common for franchise dealers and online-first operations." },
+      { "q": "Is there a long-term contract?", "a": "Simple Broker-Shipper Agreement. Pay-as-you-go with weekly billing. No long-term lockup, no minimum spend, no cancellation fees. Onboard for one trade, scale to full volume, or dial back — all the same account." },
+      { "q": "Who do I talk to when something urgent comes up?", "a": "Existing customers reach dispatch via portal or Telegram bot (@y7dispatch_bot) 24/7 for active shipment matters. For new inquiries and account setup, info@y7agency.com responds within one business day." }
+    ]
+  },
+  "ctaTitle": "Ready to outsource dealer dispatch?",
+  "ctaSubtitle": "Talk to us about volume, lanes, and payment options. We'll scope the engagement and give you the flat fee up front.",
+  "ctaButton": "Request Dealer Account Review",
+  "crosslinks": {
+    "title": "Related for Dealers",
+    "items": [
+      { "label": "Deep-dive dealer transport guide", "to": "/dealer-auto-transport" },
+      { "label": "Copart shipping for dealers", "to": "/copart-shipping" },
+      { "label": "IAA auction transport", "to": "/iaai-transport" },
+      { "label": "Manheim transport", "to": "/manheim-transport" },
+      { "label": "All auction car shipping", "to": "/auction-car-shipping" },
+      { "label": "For exporters", "to": "/exporters" },
+      { "label": "Request dealer quote", "to": "/dealer-quote" },
+      { "label": "State-to-state transport", "to": "/state-to-state-car-shipping" }
     ]
   }
 }
