@@ -20,6 +20,7 @@ export default function VerificationStrip() {
       <a href={CD_URL} target="_blank" rel="noopener noreferrer" className={styles.link}>
         {t('verify.cd')} &rarr;
       </a>
+      <div className={styles.caption}>{t('verify.bondCaption')}</div>
     </div>
   );
 }

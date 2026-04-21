@@ -118,9 +118,9 @@
     "shipMyCarTitle": "Ship My Car — Nationwide Auto Transport | Door to Door",
     "shipMyCarDescription": "Door-to-door car shipping across all 50 states. Open and enclosed transport, real-time tracking, FMCSA-vetted carriers. Licensed broker MC #1741537. Free instant quote.",
     "aboutTitle": "About Y7 Logistics",
-    "aboutDescription": "Licensed FMCSA auto transport broker based in Newton, Massachusetts. MC #1741537, USDOT #4427359. Vetted carriers, transparent flat-fee pricing, 24h quotes.",
+    "aboutDescription": "Licensed & bonded FMCSA auto transport broker based in Newton, MA. MC #1741537, USDOT #4427359, $75,000 BMC-84 surety bond. Verified carriers, transparent fixed pricing.",
     "contactTitle": "Contact Us",
-    "contactDescription": "Contact Y7 Logistics for vehicle transport. Email info@y7agency.com, Telegram, customer portal. Newton, MA. Licensed FMCSA broker, responses within 1 hour.",
+    "contactDescription": "Contact Y7 Logistics for vehicle transport. Email info@y7agency.com, Telegram, customer portal. 1007 Chestnut St, Newton MA. Licensed & bonded FMCSA broker, responses within 1 hour.",
     "faqTitle": "Frequently Asked Questions",
     "faqDescription": "Answers about auto transport pricing, transit times, insurance, auction pickup (IAAI/Copart/Manheim), enclosed trailers, and US port delivery by Y7 Logistics.",
     "quoteTitle": "Get a Free Quote",
@@ -222,7 +222,8 @@
     "title": "Verify Our Credentials",
     "fmcsa": "Verify FMCSA",
     "broker": "Verify Broker",
-    "cd": "Central Dispatch Profile"
+    "cd": "Central Dispatch Profile",
+    "bondCaption": "BMC-84 Surety Bond: $75,000 · Broker Authority: ACTIVE"
   },
   "blog": {
     "clusters": {

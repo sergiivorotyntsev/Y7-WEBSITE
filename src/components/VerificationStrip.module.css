@@ -40,3 +40,13 @@
     display: none;
   }
 }
+
+.caption {
+  flex-basis: 100%;
+  text-align: center;
+  margin-top: 6px;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11.5px;
+  color: var(--text-muted, #888780);
+  letter-spacing: 0.02em;
+}

@@ -222,7 +222,8 @@
     "title": "Zweryfikuj nasze dane",
     "fmcsa": "Zweryfikuj FMCSA",
     "broker": "Zweryfikuj brokera",
-    "cd": "Profil Central Dispatch"
+    "cd": "Profil Central Dispatch",
+    "bondCaption": "Gwarancja BMC-84: $75 000 · Status licencji brokerskiej: AKTYWNY"
   },
   "blog": {
     "clusters": {

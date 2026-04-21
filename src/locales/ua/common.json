@@ -222,7 +222,8 @@
     "title": "Перевірте наші документи",
     "fmcsa": "Перевірити FMCSA",
     "broker": "Перевірити брокера",
-    "cd": "Профіль Central Dispatch"
+    "cd": "Профіль Central Dispatch",
+    "bondCaption": "Застава BMC-84: $75 000 · Статус брокерської ліцензії: АКТИВНИЙ"
   },
   "blog": {
     "clusters": {

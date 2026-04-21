@@ -222,7 +222,8 @@
     "title": "Проверьте наши документы",
     "fmcsa": "Проверить FMCSA",
     "broker": "Проверить брокера",
-    "cd": "Профиль Central Dispatch"
+    "cd": "Профиль Central Dispatch",
+    "bondCaption": "Залог BMC-84: $75 000 · Статус брокерской лицензии: АКТИВНЫЙ"
   },
   "blog": {
     "clusters": {
