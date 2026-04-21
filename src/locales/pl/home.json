@@ -22,11 +22,14 @@
     "exportersDesc": "Z dowolnej aukcji do dowolnego portu USA. Koordynacja gate pass i dostawa do magazynu.",
     "shipMyCarTitle": "Wyślij mój samochód",
     "shipMyCarDesc": "Od drzwi do drzwi w całych USA. Transport otwarty lub zamknięty z aktualizacjami statusu na każdym etapie.",
+    "shipMyCarStat": "50 stanów · Licencjonowany broker FMCSA",
     "shipMyCarTag": "OSOBY PRYWATNE",
     "shipMyCarCta": "Otrzymaj wycenę",
     "dealersTag": "DILERZY",
+    "dealersStat": "Stała opłata za auto · Net-15",
     "dealersCta": "Zobacz cennik",
     "exportersTag": "EKSPORTERZY",
+    "exportersStat": "Wszystkie duże porty USA · Ready-to-container",
     "exportersCta": "Usługi dla eksporterów"
   },
   "ports": {
