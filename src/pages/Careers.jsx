@@ -75,7 +75,7 @@ const BOUNDARIES = [
 
 const FAQS = [
   { q: 'What\'s the minimum volume you expect from carriers?', a: 'No minimum. Owner-operators running a single truck, small fleets, and larger operations are all welcome. The fit depends on your lanes matching our load mix, not on volume.' },
-  { q: 'How fast do you pay after delivery?', a: 'Net-15 from clean delivery as the standard (BOL received, no open damage claim). Zelle same-day on confirmed clean deliveries where possible. Every load\'s pay status is visible in the carrier portal Payment Day dashboard.' },
+  { q: 'How fast do you pay after delivery?', a: '15 days from clean delivery as the standard (BOL received, no open damage claim). Zelle same-day on confirmed clean deliveries where possible. Every load\'s pay status is visible in the carrier portal Payment Day dashboard.' },
   { q: 'Do I need to use Central Dispatch or can I work direct?', a: 'Both. About 90% of our loads post on Central Dispatch — that\'s where most of our carrier discovery happens. Carriers we\'ve worked with before get direct offers on repeat lanes without the CD listing step.' },
   { q: 'What if I have a claim or damage dispute?', a: 'Documented damage on the delivery BOL is the starting point. Y7 pulls pickup-side photos from the dispatch archive and files with your cargo insurer. We coordinate; the claim is carrier-insurance-backed.' },
   { q: 'How do you verify my insurance?', a: 'COI upload at application; we verify limits and policy effective dates. Ongoing: COI expiry tracked in the documents tab with 30-day and 7-day reminders. Lapsed coverage = no new dispatch until re-uploaded.' },
@@ -243,7 +243,7 @@ export default function Careers() {
           <h2 className={styles.h2}>Payment terms, transparently</h2>
           <div className={styles.payGrid}>
             <div className={styles.payCard}>
-              <h3 className={styles.payCardTitle}>Net-15 standard</h3>
+              <h3 className={styles.payCardTitle}>15-day payment standard</h3>
               <p className={styles.payCardDesc}>Clean delivery (BOL received, no open damage claim) triggers the 15-day clock. Same-day Zelle where possible.</p>
             </div>
             <div className={styles.payCard}>
