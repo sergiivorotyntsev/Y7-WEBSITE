@@ -37,6 +37,9 @@ const ENGLISH_ONLY = [
   // Legal / utility
   '/dealer-quote', '/privacy', '/terms', '/accessibility',
 
+  // Carrier recruiting
+  '/careers', '/careers/apply',
+
   // SEO service pages
   '/car-shipping-cost', '/enclosed-car-shipping', '/auction-car-shipping',
   '/copart-shipping', '/iaai-transport', '/manheim-transport',

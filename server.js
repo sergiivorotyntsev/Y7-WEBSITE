@@ -32,7 +32,8 @@ const LEGACY_REDIRECTS = [
   // Legacy Wix URLs (still indexed by Google) — server-side 301 so crawlers follow.
   // NOTE: /blog redirect removed — blog section now active (BLOG sprint April 2026)
   { from: '/global-sourcing',         to: '/services' },
-  { from: '/careers',                 to: '/' },
+  // CAREERS-T05: /careers converted from legacy redirect to a React page
+  // (carrier recruiting funnel). Removed redirect so SPA handles it.
   { from: '/privacy-policy',          to: '/privacy' },
   { from: '/terms-and-conditions',    to: '/terms' },
   { from: '/accessibility-statement', to: '/accessibility' },

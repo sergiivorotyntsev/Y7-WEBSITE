@@ -8,6 +8,8 @@ import LoadingSpinner from './components/LoadingSpinner';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import PromoLanding from './pages/PromoLanding';
+import Careers from './pages/Careers';
+import CareerApplication from './pages/CareerApplication';
 import { colors } from './theme';
 
 function lazyWithRetry(importFn) {
@@ -133,6 +135,8 @@ export default function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/about" element={<About />} />
+            <Route path="/careers" element={<Careers />} />
+            <Route path="/careers/apply" element={<CareerApplication />} />
             {/* Locale-prefixed translations (SAME components, LocaleDetector
                 flips i18n.language from URL prefix). These are the hreflang
                 equivalents of their English counterparts. */}
