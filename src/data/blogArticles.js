@@ -34,6 +34,30 @@ export function authorFor(category) {
 
 const articles = [
   {
+    slug: 'copart-storage-fees-real-cost-2026',
+    category: 'broker',
+    date: 'April 20, 2026',
+    dateISO: '2026-04-20',
+    readTime: '8 min read',
+    title: 'Copart Storage Fees: The Real Cost in 2026 (and How to Stop Being Surprised by Them)',
+    excerpt: 'Watched this happen a hundred times — Friday win, Monday shock, $80-100 in storage fees nobody budgeted. The honest mechanics of Copart storage fees, why no broker can make them disappear, and the one pre-bid habit that saves you every time.',
+    tags: ['Copart', 'Storage Fees', 'Auction', 'Pricing'],
+    metaTitle: 'Copart Storage Fees Explained — How They Really Work in 2026',
+    metaDescription: 'Honest guide to Copart storage fees: $20-40/day by yard type, business-day counting rules, why brokers cannot guarantee free-window pickup, and the pre-bid quote that defends against surprise fees.',
+  },
+  {
+    slug: 'copart-for-international-buyers-complete-guide',
+    category: 'exporter',
+    date: 'April 20, 2026',
+    dateISO: '2026-04-20',
+    readTime: '10 min read',
+    title: 'Buying from Copart Abroad: The Complete Export Playbook',
+    excerpt: 'International buyers dominate Copart volume for one reason: rebuilder economics. The 7-step journey from auction win to destination port, container vs RoRo, timeline realities by region, and a full cost example from NJ to Odesa.',
+    tags: ['Copart', 'Export', 'International', 'Container', 'RoRo'],
+    metaTitle: 'Copart International Shipping — Full Auction-to-Port Export Playbook',
+    metaDescription: 'How international buyers ship from Copart end-to-end: document flow, container vs RoRo decision, 6-11 week timelines by region, cost breakdown Copart NJ to Odesa, common mistakes.',
+  },
+  {
     slug: 'copart-iaa-manheim-comparison',
     category: 'dealer',
     date: 'April 19, 2026',

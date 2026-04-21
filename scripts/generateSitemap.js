@@ -84,6 +84,8 @@ const ENGLISH_ONLY = [
   '/blog/winter-auto-transport-pricing',
   '/blog/bill-of-lading-pickup-delivery-guide',
   '/blog/port-specific-export-newark-houston-savannah',
+  '/blog/copart-storage-fees-real-cost-2026',
+  '/blog/copart-for-international-buyers-complete-guide',
 ];
 
 // ---------------------------------------------------------------------------

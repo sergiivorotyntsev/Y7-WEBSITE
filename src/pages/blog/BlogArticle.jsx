@@ -25,6 +25,8 @@ import NonRunningVehicleShipping from './articles/NonRunningVehicleShipping';
 import WinterAutoTransportPricing from './articles/WinterAutoTransportPricing';
 import BillOfLadingPickupDelivery from './articles/BillOfLadingPickupDelivery';
 import PortExportNewarkHoustonSavannah from './articles/PortExportNewarkHoustonSavannah';
+import CopartStorageFeesRealCost from './articles/CopartStorageFeesRealCost';
+import CopartInternationalBuyersGuide from './articles/CopartInternationalBuyersGuide';
 
 const ARTICLE_COMPONENTS = {
   'carrier-who-vanished': CarrierWhoVanished,
@@ -43,6 +45,8 @@ const ARTICLE_COMPONENTS = {
   'winter-auto-transport-pricing': WinterAutoTransportPricing,
   'bill-of-lading-pickup-delivery-guide': BillOfLadingPickupDelivery,
   'port-specific-export-newark-houston-savannah': PortExportNewarkHoustonSavannah,
+  'copart-storage-fees-real-cost-2026': CopartStorageFeesRealCost,
+  'copart-for-international-buyers-complete-guide': CopartInternationalBuyersGuide,
 };
 
 const RELATED_SERVICES = {
