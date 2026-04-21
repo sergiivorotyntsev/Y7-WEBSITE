@@ -206,6 +206,8 @@ const PUBLIC_ROUTES = [
   '/blog/winter-auto-transport-pricing',
   '/blog/bill-of-lading-pickup-delivery-guide',
   '/blog/port-specific-export-newark-houston-savannah',
+  '/blog/copart-storage-fees-real-cost-2026',
+  '/blog/copart-for-international-buyers-complete-guide',
   // Locale-prefixed translations of the 10 translatable pages.
   // Each is the SAME React component as its English counterpart with
   // i18n.language flipped by LocaleDetector from the URL prefix.
