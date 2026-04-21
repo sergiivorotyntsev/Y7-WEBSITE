@@ -46,7 +46,7 @@ const PolandCopart = () => {
         "name": "Jak długo mam czas na odbiór auta z placu Copart po wygranej?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Copart daje 3 dni bezpłatnego przechowania po wygranej licytacji i zaksięgowaniu płatności. Po tym terminie naliczane są opłaty storage — zazwyczaj 20-40 USD dziennie, zależnie od lokalizacji placu. Nieodebrane auto po 30 dniach może wrócić na aukcję. Y7 Logistics odbiera auta z placów Copart w ciągu 1-5 dni od zapłaty, co w praktyce eliminuje ryzyko storage fees."
+          "text": "Copart daje 3 dni bezpłatnego przechowania po wygranej licytacji i zaksięgowaniu płatności. Po tym terminie naliczane są opłaty storage — zazwyczaj 20-40 USD dziennie, zależnie od lokalizacji placu. Nieodebrane auto po 30 dniach może wrócić na aukcję. Opłaty storage są ustalane przez Copart, nie przez brokera — Y7 pomaga planować i stara się dyspozycjonować przewoźnika tak szybko, jak pozwalają warunki rynkowe, ale nie możemy zagwarantować odbioru w oknie bezpłatnym. Najlepsza obrona to wycena transportu przed licytacją."
         }
       },
       {
@@ -724,8 +724,11 @@ const PolandCopart = () => {
               licencji dealerskiej — dostęp do wszystkich lotów, niższe buyer fees.
             </li>
             <li style={{ marginBottom: '0.75rem' }}>
-              <strong>Y7 Logistics odbiera auto</strong> z placu Copart w ciągu 1-5 dni od wygranej 
-              i transportuje do portu załadunku. Otrzymujesz dokumentację transportową i tracking.
+              <strong>Y7 Logistics dysponuje przewoźnikiem</strong> do odbioru z placu Copart —
+              cel to 1-5 dni od wygranej, gdy warunki rynkowe na to pozwalają. Opłaty storage
+              pozostają między Tobą a Copart; my pomagamy planować i działamy jak najszybciej,
+              ale nie gwarantujemy odbioru w oknie bezpłatnym. Otrzymujesz dokumentację
+              transportową i tracking.
             </li>
             <li style={{ marginBottom: '0.75rem' }}>
               <strong>DaytonaCargo organizuje fracht</strong> — kontener lub RoRo do Gdyni 
