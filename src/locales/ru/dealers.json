@@ -57,7 +57,7 @@
       },
       {
         "title": "Consolidated weekly billing",
-        "desc": "One invoice every Friday covering all moves. Net-15 terms for established dealers. ACH supported."
+        "desc": "One invoice every Friday covering all moves. ACH or Zelle payments to carriers executed from your prepaid balance."
       },
       {
         "title": "Multi-language team",
@@ -88,7 +88,7 @@
       {
         "day": "Day 6-10",
         "title": "First delivery + invoice",
-        "desc": "Vehicles delivered to your lot. BOL photos pushed to your portal. First Friday invoice goes out. Reconciliation against prepay balance or Net-15 terms."
+        "desc": "Vehicles delivered to your lot. BOL photos pushed to your portal. First Friday invoice goes out. Reconciliation against your prepaid working-capital balance."
       },
       {
         "day": "Week 2+",
@@ -228,8 +228,8 @@
         "desc": "One invoice per week covering all shipments. Invoice number format: INV-{year}-{dealer-id}-{seq}."
       },
       {
-        "label": "Net-15 terms available",
-        "desc": "New dealers start COD for 4-6 weeks. Clean volume history triggers upgrade eligibility."
+        "label": "Weekly statement + reconciliation",
+        "desc": "Every Friday: complete transaction log — carrier, amount, method, date, running balance against your prepaid working capital."
       },
       {
         "label": "ACH + check supported",

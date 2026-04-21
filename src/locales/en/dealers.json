@@ -28,7 +28,7 @@
       { "title": "Real-time tracking", "desc": "Every shipment visible in your portal with ETA, carrier contact, BOL status. Telegram alerts at key milestones." },
       { "title": "BOL documentation & archival", "desc": "Every Bill of Lading, condition photo, and delivery confirmation archived. DMS-ready exports for your accounting." },
       { "title": "Damage claims coordination", "desc": "If damage is documented, we pull the archive and file with carrier insurance. You don't chase paperwork." },
-      { "title": "Consolidated weekly billing", "desc": "One invoice every Friday covering all moves. Net-15 terms for established dealers. ACH supported." },
+      { "title": "Consolidated weekly billing", "desc": "One invoice every Friday covering all moves. ACH or Zelle payments to carriers executed from your prepaid balance." },
       { "title": "Multi-language team", "desc": "English, Russian, Polish, Ukrainian. Useful for dealerships with Eastern European importer partners or bilingual teams." }
     ]
   },
@@ -40,7 +40,7 @@
       { "day": "Day 1", "title": "Account setup", "desc": "Broker-Shipper Agreement signed digitally. Portal access activated. Saved pickup locations imported. Payment option selected (COD or prepay)." },
       { "day": "Day 2-3", "title": "First load posted", "desc": "Submit transport requests through portal, Telegram, or email. Posted to Central Dispatch within 30 minutes. Quote with realistic lane timeline returned within 4-6 hours." },
       { "day": "Day 4-5", "title": "First pickups", "desc": "Vetted carriers assigned. Auction gate passes or IAA buyer letters arranged. Driver contact delivered to dealer operations team via Telegram." },
-      { "day": "Day 6-10", "title": "First delivery + invoice", "desc": "Vehicles delivered to your lot. BOL photos pushed to your portal. First Friday invoice goes out. Reconciliation against prepay balance or Net-15 terms." },
+      { "day": "Day 6-10", "title": "First delivery + invoice", "desc": "Vehicles delivered to your lot. BOL photos pushed to your portal. First Friday invoice goes out. Reconciliation against your prepaid working-capital balance." },
       { "day": "Week 2+", "title": "Operational rhythm", "desc": "Regular dispatch cadence. Repeat lanes recognized. Portal becomes primary workflow surface. Multi-user access activated for finance + dispatch + sales teams." }
     ]
   },
@@ -118,7 +118,7 @@
     "intro": "Weekly rhythm. Clean reconciliation. DMS-ready exports.",
     "features": [
       { "label": "Friday consolidated invoice", "desc": "One invoice per week covering all shipments. Invoice number format: INV-{year}-{dealer-id}-{seq}." },
-      { "label": "Net-15 terms available", "desc": "New dealers start COD for 4-6 weeks. Clean volume history triggers upgrade eligibility." },
+      { "label": "Weekly statement + reconciliation", "desc": "Every Friday: complete transaction log — carrier, amount, method, date, running balance against your prepaid working capital." },
       { "label": "ACH + check supported", "desc": "No wire transfer fees. Auto-pay available via stored ACH." },
       { "label": "Monthly summary report", "desc": "First business day of each month. Vehicles moved, total spend, lane breakdown, carrier performance." },
       { "label": "DMS-ready CSV export", "desc": "Flat CSV format that reconciles cleanly with most dealer management systems." },
