@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { PersonalCarIcon, DealerTradeIcon, GlobeRouteIcon } from './icons';
 import styles from './AudienceCards.module.css';
 
-function Card({ tag, title, desc, cta, to, icon, index, tone }) {
+function Card({ tag, title, desc, stat, cta, to, icon, index, tone }) {
   const navigate = useNavigate();
 
   const handleKey = (e) => {
@@ -23,12 +23,21 @@ function Card({ tag, title, desc, cta, to, icon, index, tone }) {
       tabIndex={0}
       aria-label={`${title} — ${cta}`}
     >
-      <div className={styles.iconWrap}>
-        <div className={styles.iconInner}>{icon}</div>
+      <div className={styles.topRow}>
+        <div className={styles.iconWrap}>
+          <div className={styles.iconInner}>{icon}</div>
+        </div>
+        <span className={styles.tag}>{tag}</span>
       </div>
-      <span className={styles.tag}>{tag}</span>
+
       <h3 className={styles.title}>{title}</h3>
       <p className={styles.desc}>{desc}</p>
+
+      <div className={styles.statRow}>
+        <span className={styles.statDot} aria-hidden="true" />
+        <span className={styles.stat}>{stat}</span>
+      </div>
+
       <button
         onClick={e => { e.stopPropagation(); navigate(to); }}
         className={styles.cta}
@@ -47,27 +56,30 @@ export default function AudienceCards() {
       tag: t('audience.shipMyCarTag'),
       title: t('audience.shipMyCarTitle'),
       desc: t('audience.shipMyCarDesc'),
+      stat: t('audience.shipMyCarStat'),
       cta: t('audience.shipMyCarCta'),
       to: '/ship-my-car',
-      icon: <PersonalCarIcon size={40} color="#ffffff" />,
+      icon: <PersonalCarIcon size={36} color="#ffffff" />,
       tone: 'coral',
     },
     {
       tag: t('audience.dealersTag'),
       title: t('audience.dealersTitle'),
       desc: t('audience.dealersDesc'),
+      stat: t('audience.dealersStat'),
       cta: t('audience.dealersCta'),
       to: '/dealers',
-      icon: <DealerTradeIcon size={40} color="#ffffff" />,
+      icon: <DealerTradeIcon size={36} color="#ffffff" />,
       tone: 'teal',
     },
     {
       tag: t('audience.exportersTag'),
       title: t('audience.exportersTitle'),
       desc: t('audience.exportersDesc'),
+      stat: t('audience.exportersStat'),
       cta: t('audience.exportersCta'),
       to: '/exporters',
-      icon: <GlobeRouteIcon size={40} color="#ffffff" />,
+      icon: <GlobeRouteIcon size={36} color="#ffffff" />,
       tone: 'amber',
     },
   ];
