@@ -110,6 +110,7 @@ export default function Contact() {
             <address className={styles.addressLines}>
               {t('contact.address.companyLine')}<br />
               {t('contact.address.dbaLine')}<br />
+              {t('contact.address.streetLine')}<br />
               {t('contact.address.cityLine')}<br />
               {t('contact.address.countryLine')}
             </address>

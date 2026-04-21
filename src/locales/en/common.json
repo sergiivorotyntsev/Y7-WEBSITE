@@ -64,8 +64,9 @@
       "title": "Registered Office",
       "companyLine": "Y7 Consulting Inc",
       "dbaLine": "d/b/a Y7 Logistics",
-      "cityLine": "Newton, MA 02458",
-      "countryLine": "United States"
+      "cityLine": "Newton, MA 02464",
+      "countryLine": "United States",
+      "streetLine": "1007 Chestnut St"
     },
     "policy": {
       "title": "Preferred channels for fastest response",

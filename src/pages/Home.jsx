@@ -41,7 +41,7 @@ export default function Home() {
     "@type": "MovingCompany",
     "name": "Y7 Logistics",
     "url": "https://www.y7agency.com",
-    "address": { "@type": "PostalAddress", "addressLocality": "Newton", "addressRegion": "MA", "addressCountry": "US" },
+    "address": { "@type": "PostalAddress", "streetAddress": "1007 Chestnut St", "addressLocality": "Newton", "addressRegion": "MA", "postalCode": "02464", "addressCountry": "US" },
     ...(aggregate && aggregate.total_count >= 5 ? {
       "aggregateRating": {
         "@type": "AggregateRating",

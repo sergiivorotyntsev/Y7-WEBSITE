@@ -2,13 +2,11 @@
   "version": "v2.0",
   "effectiveDate": "2026-04-19",
   "title": "Terms of Service",
-  "intro": "Welcome to Y7 Logistics, operated by Y7 Consulting Inc. (\"Y7\", \"we\", \"us\"), a Massachusetts corporation with principal offices in Newton, Massachusetts, United States. These Terms of Service (\"Terms\") govern Customer's access to and use of Y7's website (y7agency.com), customer portal, Telegram bot, and related services (collectively, the \"Services\"). Y7 Consulting Inc. is a licensed property broker regulated by the Federal Motor Carrier Safety Administration (USDOT Number 4427359, Motor Carrier Number 1741537).",
-
+  "intro": "Welcome to Y7 Logistics, operated by Y7 Consulting Inc. (\"Y7\", \"we\", \"us\"), a Massachusetts corporation with principal offices at 1007 Chestnut St, Newton, Massachusetts 02464, United States. These Terms of Service (\"Terms\") govern Customer's access to and use of Y7's website (y7agency.com), customer portal, Telegram bot, and related services (collectively, the \"Services\"). Y7 Consulting Inc. is a licensed property broker regulated by the Federal Motor Carrier Safety Administration (USDOT Number 4427359, Motor Carrier Number 1741537).",
   "section1": {
     "title": "1. Acceptance of Terms",
     "body": "By accessing or using the Services, Customer agrees to be bound by these Terms and by Y7's Privacy Policy, which is incorporated by reference. If Customer does not agree to these Terms, Customer must not use the Services. These Terms constitute a legally binding agreement between Customer and Y7. Customer represents that Customer is at least 18 years of age and has the legal capacity to enter into this agreement."
   },
-
   "section2": {
     "title": "2. Description of Services",
     "body": "Y7 provides vehicle transportation brokerage services. Y7 arranges for the transportation of motor vehicles by connecting Customers with licensed motor carriers in Y7's network. Y7 is a BROKER, not a motor carrier; Y7 does not operate vehicles or employ drivers. All transportation is performed by independent motor carriers. Y7 also provides supporting services including online quote requests, payment processing via third-party providers (Stripe), customer portal access, shipment tracking notifications, and customer support.",
@@ -21,7 +19,6 @@
       "Dispute mediation between Customer and carrier"
     ]
   },
-
   "section3": {
     "title": "3. User Accounts and Registration",
     "body": "Certain features of the Services require Customer to create an account or provide identifying information. Customer agrees to:",
@@ -33,12 +30,10 @@
       "Not create an account using false information, a pseudonym, or on behalf of another person without express written authorization."
     ]
   },
-
   "section4": {
     "title": "4. Service Fees and Payment",
     "body": "Y7 charges dispatch fees for its brokerage services as detailed in the Broker-Shipper Transportation Agreement. Standard (COD) service fee is $50.00 USD. Full Service fee is $65.00 USD plus carrier transportation cost. Payment is processed by Stripe, Inc., a third-party payment processor. Customer's payment information is handled in accordance with Stripe's privacy policy and PCI-DSS standards. Y7 does not store full credit card numbers. Cancellation and refund terms are specified in the Broker-Shipper Transportation Agreement and are incorporated by reference."
   },
-
   "section5": {
     "title": "5. Acceptable Use and Prohibited Conduct",
     "body": "Customer agrees not to:",
@@ -55,7 +50,6 @@
       "Submit quote requests in bad faith (without genuine intent to transport a vehicle) or in a manner that places excessive load on Y7's systems."
     ]
   },
-
   "section6": {
     "title": "6. Intellectual Property Rights",
     "body": "All content on the Services, including text, graphics, logos, images, software, audio, video, and the compilation thereof (\"Y7 Content\"), is the exclusive property of Y7 Consulting Inc. or its licensors and is protected by United States and international copyright, trademark, and other intellectual property laws.",
@@ -66,22 +60,18 @@
       "d": "User Content: To the extent Customer submits any content to the Services (such as notes, feedback, or communications), Customer grants Y7 a worldwide, royalty-free, non-exclusive license to use such content for the purpose of providing and improving the Services."
     }
   },
-
   "section7": {
     "title": "7. Third-Party Services and Links",
     "body": "The Services may integrate with or link to third-party services, including but not limited to Stripe (payment processing), Microsoft 365 (email), Telegram (messaging), Central Dispatch (carrier marketplace), and QuickBooks (invoicing). Use of third-party services is governed by those services' own terms and privacy policies. Y7 is not responsible for the content, policies, or practices of third-party services. Customer's interactions with third-party services are at Customer's own risk."
   },
-
   "section8": {
     "title": "8. Disclaimer of Warranties",
     "body": "THE SERVICES ARE PROVIDED \"AS IS\" AND \"AS AVAILABLE\" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. TO THE FULLEST EXTENT PERMITTED BY LAW, Y7 DISCLAIMS ALL WARRANTIES, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, AND ANY WARRANTIES ARISING OUT OF COURSE OF DEALING OR USAGE OF TRADE. Y7 DOES NOT WARRANT THAT THE SERVICES WILL BE UNINTERRUPTED, TIMELY, SECURE, OR ERROR-FREE, OR THAT DEFECTS WILL BE CORRECTED.\n\nY7 does not guarantee specific pickup times, delivery times, or carrier availability. Transportation timelines are estimates based on carrier information and are subject to change due to weather, traffic, mechanical issues, and other factors beyond Y7's control.\n\nSOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF CERTAIN WARRANTIES, SO SOME OF THE ABOVE EXCLUSIONS MAY NOT APPLY TO CUSTOMER."
   },
-
   "section9": {
     "title": "9. Limitation of Liability",
     "body": "TO THE FULLEST EXTENT PERMITTED BY LAW, Y7'S TOTAL LIABILITY TO CUSTOMER FOR ALL CLAIMS ARISING OUT OF OR RELATED TO THE SERVICES OR THESE TERMS SHALL NOT EXCEED THE GREATER OF (A) THE DISPATCH FEE PAID BY CUSTOMER FOR THE SPECIFIC SHIPMENT AT ISSUE, OR (B) ONE HUNDRED DOLLARS ($100 USD).\n\nIN NO EVENT SHALL Y7 BE LIABLE FOR INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, INCLUDING LOST PROFITS, LOST DATA, LOST BUSINESS OPPORTUNITIES, OR LOSS OF USE, ARISING OUT OF OR RELATED TO THE SERVICES OR THESE TERMS, EVEN IF Y7 HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.\n\nTHESE LIMITATIONS APPLY WHETHER THE CLAIM IS BASED IN CONTRACT, TORT (INCLUDING NEGLIGENCE), STATUTE, OR ANY OTHER LEGAL THEORY.\n\nNothing in these Terms shall limit Y7's liability for fraud, willful misconduct, gross negligence, or any liability that cannot be limited under applicable law (including consumer-protection law in certain jurisdictions).\n\nSOME JURISDICTIONS DO NOT ALLOW THE LIMITATION OR EXCLUSION OF LIABILITY FOR INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THE ABOVE LIMITATIONS MAY NOT APPLY TO CUSTOMER."
   },
-
   "section10": {
     "title": "10. Indemnification",
     "body": "Customer agrees to indemnify, defend, and hold harmless Y7 Consulting Inc., its officers, directors, employees, agents, and affiliates from and against any and all claims, damages, losses, liabilities, costs, and expenses (including reasonable attorneys' fees) arising out of or related to:",
@@ -94,17 +84,14 @@
       "Any dispute between Customer and a third party arising from Customer's use of the Services."
     ]
   },
-
   "section11": {
     "title": "11. Termination",
     "body": "Y7 may suspend or terminate Customer's access to the Services at any time, with or without cause and with or without notice, including but not limited to if Y7 believes Customer has violated these Terms. Customer may stop using the Services at any time. Termination does not affect obligations accrued prior to termination, including payment obligations for shipments in progress. Sections 5 (Acceptable Use), 6 (Intellectual Property), 8 (Disclaimer), 9 (Limitation of Liability), 10 (Indemnification), 13 (Dispute Resolution), 14 (Governing Law), and 15 (Miscellaneous) survive termination."
   },
-
   "section12": {
     "title": "12. Notices and Electronic Communications",
-    "body": "Customer consents to receive all notices, agreements, and communications from Y7 electronically (via email, in-portal messages, Telegram, or SMS where opted in). Notices from Customer to Y7 should be sent to info@y7agency.com. Y7 may provide notice by email, by posting on the website, or by any other means reasonably calculated to reach Customer."
+    "body": "Y7 Consulting Inc.\nRegistered in the Commonwealth of Massachusetts\n1007 Chestnut St, Newton, MA 02464, USA\nFMCSA USDOT 4427359 | MC 1741537\n\nGeneral: info@y7agency.com\nLegal: legal@y7agency.com\nPrivacy: privacy@y7agency.com\nArbitration opt-out: arbitration-optout@y7agency.com\nWeb: https://www.y7agency.com\nTelegram: @y7dispatch_bot"
   },
-
   "section13": {
     "title": "13. Dispute Resolution and Arbitration",
     "body": "Disputes between Customer and Y7 shall be resolved as follows:",
@@ -117,12 +104,10 @@
       "Arbitration Opt-Out: Customer may opt out of the arbitration agreement (but not the class-action waiver or jury-trial waiver) by sending written notice to arbitration-optout@y7agency.com within 30 days of first accepting these Terms."
     ]
   },
-
   "section14": {
     "title": "14. Governing Law",
     "body": "These Terms are governed by the laws of the Commonwealth of Massachusetts, without regard to its conflict-of-laws provisions. For any matter not subject to arbitration, Customer and Y7 submit to the exclusive jurisdiction of the state and federal courts located in Middlesex County, Massachusetts."
   },
-
   "section15": {
     "title": "15. Miscellaneous",
     "subsections": {
@@ -135,7 +120,6 @@
       "g": "Language: These Terms are drafted in English. Translations into other languages (Polish, Ukrainian, Russian) are provided for convenience; in case of conflict, the English version controls."
     }
   },
-
   "section16": {
     "title": "16. Contact",
     "body": "Y7 Consulting Inc.\nRegistered in the Commonwealth of Massachusetts\nFMCSA USDOT 4427359 | MC 1741537\n\nGeneral: info@y7agency.com\nLegal: legal@y7agency.com\nPrivacy: privacy@y7agency.com\nArbitration opt-out: arbitration-optout@y7agency.com\nWeb: https://www.y7agency.com\nTelegram: @y7dispatch_bot"

@@ -98,27 +98,20 @@ jobs:
           fi
           echo "OK: no telephone JSON-LD field"
 
-      - name: Check for street address (1007 Chestnut)
+      - name: Check FMCSA filing address not exposed (6 Harding / Natick / 01760)
+        # Policy flip: office address 1007 Chestnut St, Newton MA 02464 is now
+        # the canonical public-facing address (LEGAL-ACCURACY sprint). The
+        # FMCSA filing address (6 Harding Rd, Natick MA 01760) stays off the
+        # public site — it is the registered agent address, not our office.
         run: |
-          if grep -rn "1007 Chestnut" \
+          if grep -rn -e "6 Harding" -e "Natick" -e "01760" \
               --include="*.jsx" --include="*.js" --include="*.ts" --include="*.tsx" \
               --include="*.html" --include="*.json" --include="*.md" --include="*.txt" \
               --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist .; then
-            echo "::error::Found '1007 Chestnut' street address. Replace with 'Newton, MA, USA'."
+            echo "::error::FMCSA filing address (6 Harding Rd / Natick / 01760) must not appear on the public site. Use the office address 1007 Chestnut St, Newton MA 02464."
             exit 1
           fi
-          echo "OK: no street address"
-
-      - name: Check for old ZIP code (02464)
-        run: |
-          if grep -rn "02464" \
-              --include="*.jsx" --include="*.js" --include="*.ts" --include="*.tsx" \
-              --include="*.html" --include="*.json" --include="*.md" --include="*.txt" \
-              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist .; then
-            echo "::error::Found ZIP code 02464. Address is now 'Newton, MA, USA' without ZIP."
-            exit 1
-          fi
-          echo "OK: no ZIP code 02464"
+          echo "OK: FMCSA filing address not exposed"
 
       - name: Check sitemap for broken /en/ hreflang
         run: |
