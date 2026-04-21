@@ -238,6 +238,7 @@ export default function Dealers() {
           <div className={styles.crosslinksRow}>
             <Link to="/dealer-auto-transport" className={styles.crosslink}>{t('crosslinks.deepDive')} &rarr;</Link>
             <Link to="/dealer-quote" className={styles.crosslink}>{t('crosslinks.quote')} &rarr;</Link>
+            <Link to="/copart-shipping" className={styles.crosslink}>Copart multi-vehicle &rarr;</Link>
             <Link to="/exporters" className={styles.crosslink}>{t('crosslinks.exporters')} &rarr;</Link>
           </div>
         </div>

@@ -231,6 +231,7 @@ export default function ShipMyCar() {
         <div className={styles.crosslinksRow}>
           <Link to="/quote" className={styles.crosslink}>{t('crosslinks.quote')} &rarr;</Link>
           <Link to="/track" className={styles.crosslink}>{t('crosslinks.track')} &rarr;</Link>
+          <Link to="/copart-shipping" className={styles.crosslink}>Buying at auction? Copart guide &rarr;</Link>
           <Link to="/faq" className={styles.crosslink}>{t('crosslinks.faq')} &rarr;</Link>
         </div>
       </section>

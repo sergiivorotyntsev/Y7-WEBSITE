@@ -327,6 +327,8 @@ export default function Exporters() {
         <div className={styles.crosslinksRow}>
           <Link to="/door-to-port-auto-transport" className={styles.crosslink}>{t('crosslinks.deepDive')} &rarr;</Link>
           <Link to="/auction-to-port-transport" className={styles.crosslink}>{t('crosslinks.auction')} &rarr;</Link>
+          <Link to="/copart-shipping" className={styles.crosslink}>Copart shipping &rarr;</Link>
+          <Link to="/copart-international-shipping" className={styles.crosslink}>Copart export &rarr;</Link>
           <Link to="/dealers" className={styles.crosslink}>{t('crosslinks.dealers')} &rarr;</Link>
         </div>
       </div>
