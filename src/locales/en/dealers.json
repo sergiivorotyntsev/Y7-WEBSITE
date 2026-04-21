@@ -115,11 +115,13 @@
   "billing": {
     "kicker": "BILLING & ACCOUNTING",
     "title": "Built for Dealer Accounting",
-    "intro": "Weekly rhythm. Clean reconciliation. DMS-ready exports.",
+    "intro": "Accounts Payable service for your dealer operation. Weekly rhythm. Clean reconciliation. No credit extension — your prepaid working capital funds every carrier payment.",
     "features": [
       { "label": "Friday consolidated invoice", "desc": "One invoice per week covering all shipments. Invoice number format: INV-{year}-{dealer-id}-{seq}." },
       { "label": "Weekly statement + reconciliation", "desc": "Every Friday: complete transaction log — carrier, amount, method, date, running balance against your prepaid working capital." },
+      { "label": "Carrier payment execution", "desc": "We collect and verify each carrier's ACH routing, Zelle handle, and W9, then execute payments on your behalf. Encrypted at rest, linked to each carrier record." },
       { "label": "ACH + check supported", "desc": "No wire transfer fees. Auto-pay available via stored ACH." },
+      { "label": "Year-end 1099-NEC issuance", "desc": "We issue 1099-NEC forms to carriers you paid through Y7 (subject to IRS threshold rules). Annual service fee applies — invoiced separately in January." },
       { "label": "Monthly summary report", "desc": "First business day of each month. Vehicles moved, total spend, lane breakdown, carrier performance." },
       { "label": "DMS-ready CSV export", "desc": "Flat CSV format that reconciles cleanly with most dealer management systems." },
       { "label": "Audit trail", "desc": "Every dispatch, every BOL, every invoice, timestamped and archived. Pull historical records any time." }
