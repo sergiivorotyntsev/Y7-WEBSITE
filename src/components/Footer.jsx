@@ -114,6 +114,7 @@ export default function Footer() {
             <Link to="/terms" className={styles.link}>{t('footer.terms')}</Link>
             <Link to="/accessibility" className={styles.link}>{t('footer.accessibility')}</Link>
             <Link to="/privacy#sms" className={styles.link}>{t('footer.smsTerms')}</Link>
+            <Link to="/careers" className={styles.link}>{t('footer.careers')}</Link>
           </div>
         </div>
 
