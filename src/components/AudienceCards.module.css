@@ -191,25 +191,27 @@
 }
 
 /* =====================================================================
-   TAG — pill with tone accent, sits beside icon
+   TAG — full-width audience bar filling the space right of icon
    ===================================================================== */
 
 .tag {
-  display: inline-flex;
+  flex: 1 1 auto;
+  min-height: 42px;
+  display: flex;
   align-items: center;
+  justify-content: flex-start;
   font-family: var(--font-sans, system-ui);
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 700;
   color: var(--tone-ink);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  padding: 6px 12px 6px 10px;
-  border-radius: 20px;
+  padding: 0 16px;
+  border-radius: 24px;
   background: var(--tone-tint-soft);
   border: 1px solid var(--tone-tint-mid);
-  flex-shrink: 0;
   position: relative;
-  transition: background-color 240ms ease-out, border-color 240ms ease-out, transform 240ms ease-out;
+  transition: background-color 240ms ease-out, border-color 240ms ease-out;
 }
 
 /* Tag leading dot */
@@ -220,7 +222,7 @@
   height: 6px;
   border-radius: 50%;
   background: var(--tone-ink);
-  margin-right: 7px;
+  margin-right: 10px;
   flex-shrink: 0;
 }
 
@@ -228,7 +230,6 @@
   .card:hover .tag {
     background: var(--tone-tint-mid);
     border-color: var(--tone-ink);
-    transform: translateX(2px);
   }
 }
 
@@ -379,7 +380,12 @@
   }
   .tag {
     font-size: 10px;
-    padding: 5px 10px 5px 9px;
+    padding: 0 12px;
+    min-height: 38px;
+    letter-spacing: 0.12em;
+  }
+  .tag::before {
+    margin-right: 8px;
   }
   .title {
     font-size: 1.25rem;
