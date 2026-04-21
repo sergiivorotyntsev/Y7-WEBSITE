@@ -178,6 +178,9 @@ const PUBLIC_ROUTES = [
   '/how-to-ship-a-car-bought-at-auction',
   '/open-vs-enclosed-auto-transport',
   '/what-is-a-bill-of-lading',
+  '/copart-storage-fees',
+  '/copart-gate-pass-guide',
+  '/copart-international-shipping',
   // Port pages
   '/ports/newark',
   '/ports/houston',

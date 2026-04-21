@@ -62,6 +62,9 @@ const ElectricVehiclePortDelivery = lazyWithRetry(() => import('./pages/seo/Elec
 const HowToShipAuctionCar = lazyWithRetry(() => import('./pages/seo/guides/HowToShipAuctionCar'));
 const OpenVsEnclosed = lazyWithRetry(() => import('./pages/seo/guides/OpenVsEnclosed'));
 const BillOfLading = lazyWithRetry(() => import('./pages/seo/guides/BillOfLading'));
+const CopartStorageFees = lazyWithRetry(() => import('./pages/seo/guides/CopartStorageFees'));
+const CopartGatePassGuide = lazyWithRetry(() => import('./pages/seo/guides/CopartGatePassGuide'));
+const CopartInternationalShipping = lazyWithRetry(() => import('./pages/seo/guides/CopartInternationalShipping'));
 const ReviewSubmit = lazyWithRetry(() => import('./pages/ReviewSubmit'));
 const Login = lazyWithRetry(() => import('./pages/portal/Login'));
 const MagicLogin = lazyWithRetry(() => import('./pages/MagicLogin'));
@@ -191,6 +194,9 @@ export default function App() {
             <Route path="/how-to-ship-a-car-bought-at-auction" element={<HowToShipAuctionCar />} />
             <Route path="/open-vs-enclosed-auto-transport" element={<OpenVsEnclosed />} />
             <Route path="/what-is-a-bill-of-lading" element={<BillOfLading />} />
+            <Route path="/copart-storage-fees" element={<CopartStorageFees />} />
+            <Route path="/copart-gate-pass-guide" element={<CopartGatePassGuide />} />
+            <Route path="/copart-international-shipping" element={<CopartInternationalShipping />} />
             <Route path="/quote" element={<Quote />} />
             <Route path="/:lang/quote" element={<Quote />} />
             <Route path="/:lang/quote/:action/:orderId" element={<QuoteAction />} />

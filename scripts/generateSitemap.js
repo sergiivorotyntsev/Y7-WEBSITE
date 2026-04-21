@@ -60,6 +60,7 @@ const ENGLISH_ONLY = [
   // Guide pages
   '/how-to-ship-a-car-bought-at-auction', '/open-vs-enclosed-auto-transport',
   '/what-is-a-bill-of-lading',
+  '/copart-storage-fees', '/copart-gate-pass-guide', '/copart-international-shipping',
 
   // Ports
   '/ports/newark', '/ports/houston', '/ports/savannah',
