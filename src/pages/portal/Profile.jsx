@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { CheckIcon } from '../../components/icons';
 import AccountTypeModal from '../../components/AccountTypeModal';
 import Toast from '../../components/Toast';
+import OnboardingBanner from '../../components/OnboardingBanner';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles } from '../../theme';
 
@@ -165,6 +166,7 @@ export default function Profile() {
 
   return (
     <div style={{ maxWidth: '600px', margin: '0 auto', padding: '40px 24px 80px' }}>
+      <OnboardingBanner />
       <Link to="/portal/dashboard" style={{
         fontFamily: fonts.sans,
         fontSize: '13px',

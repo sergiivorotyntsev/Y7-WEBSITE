@@ -4,6 +4,7 @@ import PageMeta from '../../components/PageMeta';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles } from '../../theme';
 import PhoneInput from '../../components/PhoneInput';
+import OnboardingBanner from '../../components/OnboardingBanner';
 
 const inputStyle = {
   fontFamily: fonts.sans,
@@ -376,6 +377,7 @@ export default function NewOrder() {
   return (
     <div style={{ maxWidth: '600px', margin: '0 auto', padding: '40px 24px 80px' }}>
       <PageMeta title="New Transport Order" />
+      <OnboardingBanner />
       <Link to="/portal/dashboard" style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.accent, display: 'inline-block', marginBottom: '20px' }}>&larr; Back to Dashboard</Link>
       <h1 style={{ fontFamily: fonts.serif, fontSize: '28px', fontWeight: 700, color: colors.text, marginBottom: '8px' }}>New Transport Order</h1>
       <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, marginBottom: '6px' }}>

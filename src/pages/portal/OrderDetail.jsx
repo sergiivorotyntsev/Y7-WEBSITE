@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useSearchParams, Link, useNavigate } from 'react-router-dom';
 import { CheckIcon } from '../../components/icons';
+import OnboardingBanner from '../../components/OnboardingBanner';
 import { portalFetch } from '../../hooks/useAuth';
 import { colors, fonts } from '../../theme';
 import { STATUS_LABELS, STATUS_PIPELINE } from '../../utils/orderStatus';
@@ -243,6 +244,7 @@ export default function OrderDetail() {
 
   return (
     <div style={{ maxWidth: '700px', margin: '0 auto', padding: '40px 24px 80px' }}>
+      <OnboardingBanner />
       {/* Back link */}
       <Link to="/portal/dashboard" style={{
         fontFamily: fonts.sans,
