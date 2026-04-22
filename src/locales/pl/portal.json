@@ -1,0 +1,79 @@
+{
+  "onboarding": {
+    "title": "Dokończ konfigurację konta",
+    "subtitle": "Krótki kreator. Klasyfikacja i podpisana umowa zapisywane są jednocześnie.",
+    "loading": "Ładowanie...",
+    "back": "Wstecz",
+    "signing": "Podpisywanie...",
+    "errorTemplate": "Nie udało się pobrać metadanych umowy. Spróbuj ponownie.",
+    "errorSign": "Podpisanie nie powiodło się. Spróbuj ponownie.",
+    "step1": {
+      "label": "Typ konta",
+      "title": "Który opis najlepiej do Ciebie pasuje?",
+      "subtitle": "Wybierz opcję odpowiadającą Twojemu przypadkowi. Dealerzy i eksporterzy mają osobne umowy."
+    },
+    "step2": {
+      "label": "Umowa",
+      "title": "Przeczytaj i podpisz",
+      "subtitle": "Przewiń do końca umowy, zaznacz wszystkie pola i podpisz."
+    },
+    "step3": {
+      "label": "Gotowe",
+      "title": "Wszystko gotowe"
+    },
+    "type": {
+      "individual": {
+        "title": "Osobiste auto",
+        "description": "Jeden pojazd, transport prywatny",
+        "benefit1": "Wycena pojedynczego pojazdu, od drzwi do drzwi",
+        "benefit2": "Płatność przewoźnikowi przy dostawie (COD)",
+        "benefit3": "$50 COD lub $65 Full Service"
+      },
+      "auction_buyer": {
+        "title": "Kupujący z aukcji",
+        "description": "Copart, IAA, Manheim lub podobne",
+        "benefit1": "Presety dla aukcji",
+        "benefit2": "Przesłanie gate-pass i dekodowanie VIN",
+        "benefit3": "$50 COD lub $65 Full Service"
+      },
+      "dealer": {
+        "title": "Dealer samochodowy",
+        "description": "Licencjonowany dealer, transport inventory i trades",
+        "benefit1": "Transport hurtowy i zapisane adresy",
+        "benefit2": "Dedykowana umowa dealerska",
+        "benefit3": "$50 COD / $65 Full Service (usługa AP dostępna osobno)"
+      },
+      "exporter": {
+        "title": "Eksporter",
+        "description": "Porty USA, magazyny lub terminale kontenerowe",
+        "benefit1": "Zapisane adresy portów i magazynów",
+        "benefit2": "Dostawa pod kontener",
+        "benefit3": "$50 COD lub $65 Full Service"
+      }
+    },
+    "agreement": {
+      "readGuard": "Przewiń umowę do końca, aby kontynuować.",
+      "draftBanner": "Projekt umowy — do oceny.",
+      "checkbox_bol": "Rozumiem zasady listu przewozowego (BOL) i wymagania dotyczące oględzin.",
+      "checkbox_payment": "Rozumiem strukturę opłat dyspozytora i warunki płatności.",
+      "checkbox_broker_liability": "Rozumiem rolę brokera i ograniczenia odpowiedzialności.",
+      "checkbox_cancellation": "Rozumiem politykę anulowania i zwrotu.",
+      "signatureLabel": "Twoje pełne imię i nazwisko",
+      "signaturePlaceholder": "np. Jan Kowalski",
+      "submitButton": "Podpisz umowę"
+    },
+    "welcome": {
+      "greeting": "Witamy",
+      "greetingNamed": "Witamy, {{name}}",
+      "accountActive": "Twoje konto {{type}} jest aktywne.",
+      "emailConfirmation": "Kopia podpisanej umowy została wysłana na Twój e-mail.",
+      "ctaCreateOrder": "Złóż pierwszą wycenę",
+      "ctaDashboard": "Przejdź do panelu"
+    },
+    "banner": {
+      "messageClassify": "Dokończ konfigurację konta, aby zacząć składać zapytania.",
+      "messageAgreement": "Umowa nie jest jeszcze podpisana. Dokończ konfigurację, aby tworzyć zlecenia.",
+      "cta": "Dokończ konfigurację"
+    }
+  }
+}

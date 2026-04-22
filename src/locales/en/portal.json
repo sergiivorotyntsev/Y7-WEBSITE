@@ -1,0 +1,79 @@
+{
+  "onboarding": {
+    "title": "Complete your account setup",
+    "subtitle": "One short wizard. Your classification and signed agreement are saved together in a single step.",
+    "loading": "Loading...",
+    "back": "Back",
+    "signing": "Signing...",
+    "errorTemplate": "Could not load agreement metadata. Please try again.",
+    "errorSign": "Sign failed. Please try again.",
+    "step1": {
+      "label": "Account type",
+      "title": "Which best describes you?",
+      "subtitle": "Pick the option that matches your shipping use case. Dealers and exporters each have their own agreement."
+    },
+    "step2": {
+      "label": "Agreement",
+      "title": "Review and sign",
+      "subtitle": "Scroll to the end of the agreement, then check all boxes and sign."
+    },
+    "step3": {
+      "label": "Done",
+      "title": "You're all set"
+    },
+    "type": {
+      "individual": {
+        "title": "Ship My Car",
+        "description": "Single vehicle, personal shipment",
+        "benefit1": "One-vehicle door-to-door quote",
+        "benefit2": "Pay carrier on delivery (COD)",
+        "benefit3": "$50 COD or $65 Full Service fee"
+      },
+      "auction_buyer": {
+        "title": "Auction Buyer",
+        "description": "Copart, IAA, Manheim, or similar",
+        "benefit1": "Auction origin presets",
+        "benefit2": "Gate-pass upload + VIN decode",
+        "benefit3": "$50 COD or $65 Full Service fee"
+      },
+      "dealer": {
+        "title": "Auto Dealer",
+        "description": "Licensed dealer moving inventory or trades",
+        "benefit1": "Volume shipping and saved locations",
+        "benefit2": "Dedicated dealer agreement",
+        "benefit3": "$50 COD / $65 Full Service (AP service available separately)"
+      },
+      "exporter": {
+        "title": "Exporter",
+        "description": "US ports, warehouses, or container staging",
+        "benefit1": "Saved port and warehouse addresses",
+        "benefit2": "Container-ready delivery",
+        "benefit3": "$50 COD or $65 Full Service fee"
+      }
+    },
+    "agreement": {
+      "readGuard": "Please scroll to the end of the agreement to continue.",
+      "draftBanner": "Draft agreement — for evaluation.",
+      "checkbox_bol": "I understand the Bill of Lading and inspection requirements.",
+      "checkbox_payment": "I understand the dispatch fee structure and payment terms.",
+      "checkbox_broker_liability": "I understand the broker's role and liability limitations.",
+      "checkbox_cancellation": "I understand the cancellation policy and refund terms.",
+      "signatureLabel": "Your full legal name",
+      "signaturePlaceholder": "e.g. John Smith",
+      "submitButton": "Sign agreement"
+    },
+    "welcome": {
+      "greeting": "Welcome",
+      "greetingNamed": "Welcome, {{name}}",
+      "accountActive": "Your {{type}} account is active.",
+      "emailConfirmation": "A copy of the signed agreement is on its way to your email.",
+      "ctaCreateOrder": "Submit your first quote",
+      "ctaDashboard": "Go to dashboard"
+    },
+    "banner": {
+      "messageClassify": "Finish your account setup to start submitting quotes.",
+      "messageAgreement": "Your agreement is not yet signed. Finish setup to unlock order creation.",
+      "cta": "Complete setup"
+    }
+  }
+}
