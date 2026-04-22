@@ -117,6 +117,10 @@ export function AuthProvider({ children }) {
             bank_auth_signed: !!data.bank_auth_signed,
             billing_blocked: !!data.billing_blocked,
             has_locations: !!data.has_locations,
+            email: data.email || null,
+            email_bouncing: !!data.email_bouncing,
+            email_bouncing_since: data.email_bouncing_since || null,
+            last_email_bounce_reason: data.last_email_bounce_reason || null,
           });
           return;
         }

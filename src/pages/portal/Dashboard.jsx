@@ -7,6 +7,7 @@ import { ClipboardIcon, MapPinIcon, ProfileIcon, TelegramIcon, EmailIcon } from 
 // wizard. Keep AccountSetupBanner for residual setup prompts (locations,
 // bank_auth) but the classify / agreement items now route to the wizard.
 import AccountSetupBanner from '../../components/AccountSetupBanner';
+import BouncingEmailBanner from '../../components/recovery/BouncingEmailBanner';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles, keyframes } from '../../theme';
 import { STATUS_COLORS, getStatusBadge } from '../../utils/orderStatus';
@@ -259,6 +260,7 @@ export default function Dashboard() {
         </button>
       </div>
 
+      <BouncingEmailBanner />
       <AccountSetupBanner />
 
       {/* Stat cards */}
