@@ -534,6 +534,7 @@ function AgreementStep({ user, customerType, onBack, onSigned }) {
 
   useEffect(() => {
     let alive = true;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLoadState('loading');
     setErrorMsg(null);
     (async () => {
