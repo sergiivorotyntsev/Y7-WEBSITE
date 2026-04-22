@@ -78,6 +78,7 @@ const NewOrder = lazyWithRetry(() => import('./pages/portal/NewOrder'));
 const Billing = lazyWithRetry(() => import('./pages/portal/Billing'));
 const LocationSetup = lazyWithRetry(() => import('./pages/portal/LocationSetup'));
 const Locations = lazyWithRetry(() => import('./pages/portal/Locations'));
+const Onboarding = lazyWithRetry(() => import('./pages/portal/Onboarding'));
 // Intl placeholder pages
 const PolandHome = lazyWithRetry(() => import('./pages/intl/PolandHome'));
 const PolandCopart = lazyWithRetry(() => import('./pages/intl/PolandCopart'));
@@ -223,6 +224,9 @@ export default function App() {
             <Route path="/portal/locations/setup" element={<ProtectedRoute><LocationSetup /></ProtectedRoute>} />
             <Route path="/portal/locations" element={<ProtectedRoute><Locations /></ProtectedRoute>} />
             <Route path="/portal/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+            {/* ONBOARD-T08: unified classify-and-sign wizard — replaces
+                AccountTypeModal + separate /agreement page flow. */}
+            <Route path="/portal/onboarding" element={<ProtectedRoute><Onboarding /></ProtectedRoute>} />
             {/* UNIQUE international landing pages — descriptive native slugs,
                 unique content, NOT hreflang equivalents of English pages */}
             <Route path="/pl/transport-z-usa" element={<PolandHome />} />
