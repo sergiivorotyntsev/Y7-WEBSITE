@@ -10,12 +10,18 @@ export default function AccountSetupBanner() {
 
   const items = [];
 
-  if (!user.customer_type || user.customer_type === 'unknown') {
+  // ONBOARD-T12: classification + agreement signing are now driven by
+  // the unified onboarding wizard. The banner still exists as a safety
+  // net on pages the redirects don't cover (or while the user deep-links
+  // to an unrelated portal page mid-setup).
+  if (!user.customer_type
+      || user.customer_type === 'unknown'
+      || user.customer_type === 'shipper') {
     items.push({
       id: 'classify',
       title: 'Complete Account Classification',
       description: 'Tell us about your business to get started.',
-      action: () => navigate('/portal/dashboard?classify=1'),
+      action: () => navigate('/portal/onboarding'),
       actionLabel: 'Classify Now',
     });
   }
@@ -31,7 +37,10 @@ export default function AccountSetupBanner() {
     });
   }
 
-  if (user.customer_type && user.customer_type !== 'unknown' && !user.agreement_signed) {
+  if (user.customer_type
+      && user.customer_type !== 'unknown'
+      && user.customer_type !== 'shipper'
+      && !user.agreement_signed) {
     const typeLabel = {
       dealer: 'Dealer Transport Agreement',
       individual: 'Transport Service Agreement',
@@ -43,10 +52,9 @@ export default function AccountSetupBanner() {
       id: 'agreement',
       title: `Sign ${typeLabel}`,
       description: 'Required to create transport orders.',
-      action: () => {
-        const t = user.customer_type === 'dealer' ? 'dealer' : 'shipper';
-        navigate(`/agreement?customer_id=${user.id}&type=${t}`);
-      },
+      // ONBOARD-T12: signing happens in the unified wizard at Step 2;
+      // the wizard picks up the already-set customer_type from /me.
+      action: () => navigate('/portal/onboarding'),
       actionLabel: 'Sign Now',
     });
   }

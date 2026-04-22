@@ -3,7 +3,9 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
 import Toast from '../../components/Toast';
 import { ClipboardIcon, MapPinIcon, ProfileIcon, TelegramIcon, EmailIcon } from '../../components/icons';
-import AccountTypeModal from '../../components/AccountTypeModal';
+// ONBOARD-T12: AccountTypeModal replaced by the unified /portal/onboarding
+// wizard. Keep AccountSetupBanner for residual setup prompts (locations,
+// bank_auth) but the classify / agreement items now route to the wizard.
 import AccountSetupBanner from '../../components/AccountSetupBanner';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles, keyframes } from '../../theme';
@@ -105,7 +107,7 @@ function BillingSummary() {
 }
 
 export default function Dashboard() {
-  const { user, checkAuth } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [orders, setOrders] = useState([]);
@@ -113,10 +115,6 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [toastMsg, setToastMsg] = useState(null);
-  // SPRINT-E-T3: classification modal — shown on first visit when
-  // user.customer_type === 'unknown', or when redirected from a 403
-  // classification_required response (?classify=1 query param).
-  const [showClassifyModal, setShowClassifyModal] = useState(false);
 
   // Toast from agreement signing redirect — guard ensures setState only
   // fires once per matching toast param.
@@ -141,27 +139,29 @@ export default function Dashboard() {
       .finally(() => setLoading(false));
   }, []);
 
-  // Show modal when needed: unknown type OR ?classify=1 redirect target
+  // ONBOARD-T12: redirect to the unified onboarding wizard whenever the
+  // user is not fully set up. Covers the two legacy entry points that
+  // used to trigger the AccountTypeModal:
+  //   - first visit where customer_type === 'unknown' (or legacy 'shipper')
+  //   - 403 classification_required / agreement_required from
+  //     require_active_customer (now its URLs also point at /portal/onboarding)
+  // Leftover ?classify=1 / ?classify=edit query params from older links
+  // are treated as explicit onboarding triggers too.
   useEffect(() => {
     if (!user) return;
     const params = new URLSearchParams(window.location.search);
-    if (user.customer_type === 'unknown' || params.get('classify') === '1') {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setShowClassifyModal(true);
+    const classifyParam = params.get('classify');
+    const needsClassification = !user.customer_type
+      || user.customer_type === 'unknown'
+      || user.customer_type === 'shipper';
+    const needsAgreement = user.customer_type
+      && user.customer_type !== 'unknown'
+      && user.customer_type !== 'shipper'
+      && !user.agreement_signed;
+    if (needsClassification || needsAgreement || classifyParam) {
+      navigate('/portal/onboarding', { replace: true });
     }
-  }, [user]);
-
-  async function handleClassifyComplete() {
-    setShowClassifyModal(false);
-    // Refresh user from /me so the new customer_type propagates
-    await checkAuth();
-    // Drop the ?classify=1 param so a refresh doesn't re-open the modal
-    if (window.location.search.includes('classify=1')) {
-      const url = new URL(window.location.href);
-      url.searchParams.delete('classify');
-      window.history.replaceState({}, '', url.toString());
-    }
-  }
+  }, [user, navigate]);
 
   const active = (summary?.pending || 0) + (summary?.quoted || 0) + (summary?.confirmed || 0);
   const inTransit = (summary?.dispatched || 0);
@@ -173,10 +173,6 @@ export default function Dashboard() {
       <PageMeta title="My Dashboard" description="Your active orders, shipment tracking, account management." path="/portal/dashboard" />
       {toastMsg && <Toast message={toastMsg} onDismiss={() => setToastMsg(null)} />}
       <style>{keyframes}</style>
-
-      {showClassifyModal && (
-        <AccountTypeModal onComplete={handleClassifyComplete} />
-      )}
 
       {loading && (
         <div style={{ marginBottom: '40px' }}>
