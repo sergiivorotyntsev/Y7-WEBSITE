@@ -1,29 +1,28 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, radii, spacing } from '../../theme';
 
 /**
- * Onboarding (ONBOARD-T08)
+ * Onboarding (WIZARD-REDESIGN T05+T06+T07)
  *
- * Unified 3-step wizard that replaces the old AccountTypeModal + separate
- * /agreement page flow. Mounted at /portal/onboarding (ProtectedRoute).
- *
- * Step 1 — Choose account type (AccountTypeStep, ONBOARD-T09)
- * Step 2 — Review + sign agreement (AgreementStep, ONBOARD-T10)
- * Step 3 — Welcome (WelcomeStep, ONBOARD-T11)
+ * 4-step wizard:
+ *   Step 1 - Profile          (NEW; pre-fills from user.contact_name)
+ *   Step 2 - Account type
+ *   Step 3 - Agreement        (rebuilt; progressive disclosure per checkbox group)
+ *   Step 4 - Welcome
  *
  * Starting step is derived from the authenticated user:
- *   - fully onboarded (type != unknown && agreement_signed) → redirect to
- *     /portal/dashboard (safety, should not normally land here)
- *   - classified but agreement not signed → Step 2 with type preserved
- *     (covers legacy dealer re-sign)
- *   - unclassified or legacy 'shipper' → Step 1
+ *   - fully onboarded (classified + agreement_signed) -> /portal/dashboard
+ *   - classified, !agreement_signed, profile_complete -> Step 3
+ *   - profile_complete but unclassified                 -> Step 2
+ *   - anything else                                     -> Step 1 (Profile)
  *
- * All 3 steps share this container and hit the atomic backend endpoint
- *   POST /api/portal/onboarding/classify-and-sign
- * via portalFetch so classification + signed agreement land in a single
- * DB transaction.
+ * The agreement step pulls /api/public/agreement-template?v3=true so it can
+ * render real bundle content per customer_type. Non-EN non-dealer combos
+ * get a 409 locale_version_mismatch from the backend; we surface a banner
+ * with a "Switch to English" CTA.
  */
 
 const TYPE_LABELS = {
@@ -33,11 +32,11 @@ const TYPE_LABELS = {
   exporter: 'Exporter',
 };
 
-const TEMPLATE_MAP = {
-  individual: { key: 'individual_v1.0.md', version: 'v1.0' },
-  auction_buyer: { key: 'individual_v1.0.md', version: 'v1.0' },
-  dealer: { key: 'dealer_agreement_v0.1_DRAFT.md', version: 'v1.0' },
-  exporter: { key: 'exporter_v1.0.md', version: 'v1.0' },
+const TEMPLATE_KEY_BY_TYPE = {
+  individual: 'individual_v1.0.md',
+  auction_buyer: 'individual_v1.0.md',
+  dealer: 'dealer_agreement_v0.1_DRAFT.md',
+  exporter: 'exporter_v1.0.md',
 };
 
 const TYPES = [
@@ -87,6 +86,29 @@ const TYPES = [
   },
 ];
 
+const LOCALE_BLOCK_COPY = {
+  en: {
+    title: 'Agreement available in English only',
+    body: 'The current Y7 Logistics agreement (v2.0) is only available in English. Switch the interface language to English to continue, or contact support if you need a localized copy.',
+    cta: 'Switch to English',
+  },
+  ru: {
+    title: 'Договор доступен только на английском',
+    body: 'Договор v2.0 доступен только на английском. Переключите язык интерфейса на English, чтобы продолжить, или свяжитесь с поддержкой.',
+    cta: 'Переключить на English',
+  },
+  pl: {
+    title: 'Umowa dostępna tylko po angielsku',
+    body: 'Umowa v2.0 dostępna tylko po angielsku. Przełącz interfejs na English, aby kontynuować.',
+    cta: 'Przełącz na English',
+  },
+  ua: {
+    title: 'Договір доступний лише англійською',
+    body: 'Договір v2.0 доступний лише англійською. Переключіть інтерфейс на English, щоб продовжити.',
+    cta: 'Переключити на English',
+  },
+};
+
 
 export default function Onboarding() {
   const { user, checkAuth, loading } = useAuth();
@@ -96,10 +118,8 @@ export default function Onboarding() {
   const [selectedType, setSelectedType] = useState(null);
 
   // One-time derivation of the starting step from the authenticated user's
-  // classification state. After initial setStep the wizard transitions are
-  // driven by user interaction, not user state — this effect is a
-  // legitimate initializer, not an ongoing sync, hence the block-wide
-  // suppression below (matches the useAuth.jsx pattern for the same rule).
+  // classification + profile state. After initial setStep the wizard
+  // transitions are driven by user interaction.
   /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (loading) return;
@@ -114,8 +134,11 @@ export default function Onboarding() {
       navigate('/portal/dashboard', { replace: true });
       return;
     }
-    if (isClassified && !user.agreement_signed) {
+    const profileComplete = !!user.profile_complete;
+    if (isClassified && !user.agreement_signed && profileComplete) {
       setSelectedType(user.customer_type);
+      setStep(3);
+    } else if (!isClassified && profileComplete) {
       setStep(2);
     } else {
       setStep(1);
@@ -139,27 +162,37 @@ export default function Onboarding() {
         <Header step={step} />
 
         {step === 1 && (
-          <AccountTypeStep
-            onSelected={(id) => {
-              setSelectedType(id);
+          <ProfileStep
+            user={user}
+            onCompleted={async () => {
+              await checkAuth();
               setStep(2);
             }}
           />
         )}
-        {step === 2 && selectedType && (
-          <AgreementStep
-            customerType={selectedType}
-            onBack={() => setStep(1)}
-            onSigned={async () => {
-              await checkAuth();
+        {step === 2 && (
+          <AccountTypeStep
+            onSelected={(id) => {
+              setSelectedType(id);
               setStep(3);
             }}
           />
         )}
-        {step === 3 && (
+        {step === 3 && selectedType && (
+          <AgreementStep
+            user={user}
+            customerType={selectedType}
+            onBack={() => setStep(2)}
+            onSigned={async () => {
+              await checkAuth();
+              setStep(4);
+            }}
+          />
+        )}
+        {step === 4 && (
           <WelcomeStep
             customerType={selectedType}
-            name={user?.name}
+            name={user?.contact_name || user?.name}
             onComplete={(action) => {
               if (action === 'create_order') navigate('/portal/new-order');
               else navigate('/portal/dashboard');
@@ -173,8 +206,15 @@ export default function Onboarding() {
 
 
 // ---------------------------------------------------------------------------
-// Header with step indicator
+// Header with 4-step indicator (T07)
 // ---------------------------------------------------------------------------
+
+const STEP_LABELS = {
+  1: 'Profile',
+  2: 'Account type',
+  3: 'Review and sign',
+  4: 'Complete',
+};
 
 function Header({ step }) {
   return (
@@ -189,14 +229,14 @@ function Header({ step }) {
         fontFamily: fonts.sans, fontSize: 14, color: colors.textMuted,
         margin: 0, marginBottom: spacing.md, lineHeight: 1.5,
       }}>
-        One short wizard. Your classification and signed agreement are
-        saved together in a single step.
+        Tell us who you are, pick your account type, and sign the
+        transport agreement. About two minutes.
       </p>
       <div style={{
-        display: 'flex', alignItems: 'center',
+        display: 'flex', alignItems: 'center', flexWrap: 'wrap',
         gap: spacing.xs, marginBottom: spacing.sm,
       }}>
-        {[1, 2, 3].map((n, i) => (
+        {[1, 2, 3, 4].map((n, i) => (
           <div key={n} style={{
             display: 'flex', alignItems: 'center', flex: '0 0 auto',
           }}>
@@ -210,9 +250,9 @@ function Header({ step }) {
             }}>
               {n}
             </div>
-            {i < 2 && (
+            {i < 3 && (
               <div style={{
-                width: 40, height: 2,
+                width: 32, height: 2,
                 background: step > n ? colors.accent : colors.border,
                 margin: `0 ${spacing.xs}px`,
               }} />
@@ -223,9 +263,7 @@ function Header({ step }) {
           marginLeft: spacing.sm,
           fontFamily: fonts.sans, fontSize: 12, color: colors.textMuted,
         }}>
-          {step === 1 && 'Choose account type'}
-          {step === 2 && 'Review and sign agreement'}
-          {step === 3 && "You're all set"}
+          {STEP_LABELS[step]}
         </div>
       </div>
     </div>
@@ -234,7 +272,181 @@ function Header({ step }) {
 
 
 // ---------------------------------------------------------------------------
-// Step 1 — AccountTypeStep (ONBOARD-T09)
+// Step 1 - ProfileStep (T05)
+// ---------------------------------------------------------------------------
+
+function ProfileStep({ user, onCompleted }) {
+  const [form, setForm] = useState({
+    contact_name: user?.contact_name || user?.name || '',
+    phone: user?.phone || '',
+    company_name: user?.company_name || '',
+    delivery_address: user?.delivery_address || '',
+    delivery_city: user?.delivery_city || '',
+    delivery_state: user?.delivery_state || '',
+    delivery_zip: user?.delivery_zip || '',
+  });
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState(null);
+
+  const canSubmit =
+    form.contact_name.trim().length >= 2 &&
+    form.phone.trim().length >= 5 &&
+    form.delivery_city.trim().length >= 2 &&
+    form.delivery_state.trim().length >= 2 &&
+    form.delivery_zip.trim().length >= 3;
+
+  function set(field, value) {
+    setForm(prev => ({ ...prev, [field]: value }));
+  }
+
+  async function handleSubmit(e) {
+    e?.preventDefault?.();
+    setError(null);
+    setSaving(true);
+    try {
+      const res = await portalFetch('/api/portal/onboarding/update-profile', {
+        method: 'POST',
+        body: JSON.stringify(form),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        onCompleted();
+        return;
+      }
+      const detail = data?.detail || data;
+      const code = detail?.error;
+      if (code === 'phone_in_use') {
+        setError('That phone number is already on another Y7 account. Please use a different number.');
+      } else if (code === 'phone_invalid') {
+        setError('Phone number is not valid. Use international format, e.g. +1 555 555 1212.');
+      } else {
+        setError(detail?.message || detail?.error || 'Could not save profile');
+      }
+    } catch (err) {
+      setError(err?.message || 'Network error');
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <h2 style={stepTitleStyle}>Tell us about yourself</h2>
+      <p style={stepSubtitleStyle}>
+        We use this on your dispatch orders and on the agreement you'll
+        sign in the next step.
+      </p>
+
+      {error && <div style={errorBoxStyle}>{error}</div>}
+
+      <Field
+        label="Your full legal name"
+        value={form.contact_name}
+        onChange={v => set('contact_name', v)}
+        placeholder="e.g. John Smith"
+        required
+        autoFocus
+      />
+      <Field
+        label="Phone number"
+        type="tel"
+        value={form.phone}
+        onChange={v => set('phone', v)}
+        placeholder="+1 555 555 1212"
+        required
+      />
+      <Field
+        label="Company name (optional)"
+        value={form.company_name}
+        onChange={v => set('company_name', v)}
+      />
+
+      <h3 style={subSectionTitleStyle}>Primary delivery address</h3>
+      <Field
+        label="Street address (optional)"
+        value={form.delivery_address}
+        onChange={v => set('delivery_address', v)}
+      />
+      <Field
+        label="City"
+        value={form.delivery_city}
+        onChange={v => set('delivery_city', v)}
+        required
+      />
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: spacing.md }}>
+        <Field
+          label="State"
+          value={form.delivery_state}
+          onChange={v => set('delivery_state', v)}
+          placeholder="CA"
+          required
+          maxLength={2}
+        />
+        <Field
+          label="ZIP"
+          value={form.delivery_zip}
+          onChange={v => set('delivery_zip', v)}
+          placeholder="90001"
+          required
+          maxLength={10}
+        />
+      </div>
+
+      <div style={{
+        display: 'flex', justifyContent: 'flex-end',
+        marginTop: spacing.lg, gap: spacing.sm,
+      }}>
+        <button
+          type="submit"
+          disabled={!canSubmit || saving}
+          style={{
+            ...primaryBtnStyle,
+            background: canSubmit && !saving ? colors.accent : colors.bgMuted,
+            color: canSubmit && !saving ? '#fff' : colors.textMuted,
+            cursor: canSubmit && !saving ? 'pointer' : 'not-allowed',
+          }}
+        >
+          {saving ? 'Saving...' : 'Continue'}
+        </button>
+      </div>
+    </form>
+  );
+}
+
+
+function Field({ label, value, onChange, placeholder, required, type = 'text', autoFocus, maxLength }) {
+  return (
+    <div style={{ marginBottom: spacing.md }}>
+      <label style={{
+        display: 'block', fontFamily: fonts.sans, fontSize: 13,
+        fontWeight: 600, color: colors.text, marginBottom: spacing.xs,
+      }}>
+        {label}{required ? ' *' : ''}
+      </label>
+      <input
+        type={type}
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        placeholder={placeholder}
+        autoFocus={autoFocus}
+        maxLength={maxLength}
+        style={{
+          width: '100%', padding: '10px 12px',
+          fontSize: 14, fontFamily: fonts.sans,
+          border: `1px solid ${colors.borderInput}`,
+          borderRadius: radii.md,
+          background: colors.bgCard,
+          color: colors.text,
+          boxSizing: 'border-box',
+        }}
+      />
+    </div>
+  );
+}
+
+
+// ---------------------------------------------------------------------------
+// Step 2 - AccountTypeStep
 // ---------------------------------------------------------------------------
 
 function AccountTypeStep({ onSelected }) {
@@ -299,90 +511,159 @@ function AccountTypeStep({ onSelected }) {
 
 
 // ---------------------------------------------------------------------------
-// Step 2 — AgreementStep (ONBOARD-T10)
+// Step 3 - AgreementStep (T06)
+//
+// Fetches /api/public/agreement-template?v3=true and renders one card
+// per checkbox group with progressive disclosure: each card shows the
+// sections that the checkbox covers + the checkbox itself; subsequent
+// cards stay locked until the previous box is checked. The signer name
+// is pulled from user.contact_name (read-only).
 // ---------------------------------------------------------------------------
 
-function AgreementStep({ customerType, onBack, onSigned }) {
-  const [meta, setMeta] = useState(null);
-  const [fetchError, setFetchError] = useState(null);
-  const [checks, setChecks] = useState({
-    bol: false, payment: false, broker_liability: false, cancellation: false,
-  });
-  const [signature, setSignature] = useState('');
-  const [readToEnd, setReadToEnd] = useState(false);
+function AgreementStep({ user, customerType, onBack, onSigned }) {
+  const { i18n } = useTranslation();
+  const lang = (i18n.language || 'en').slice(0, 2).toLowerCase();
+  const effectiveLang = ['en', 'ru', 'pl', 'ua'].includes(lang) ? lang : 'en';
+
+  const [template, setTemplate] = useState(null);
+  const [loadState, setLoadState] = useState('loading'); // 'loading' | 'ok' | 'locale_blocked' | 'error'
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [checked, setChecked] = useState({}); // checkbox id -> bool
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(null);
 
-  // Load metadata (draft warning, version) from existing public endpoint.
   useEffect(() => {
     let alive = true;
-    async function load() {
+    setLoadState('loading');
+    setErrorMsg(null);
+    (async () => {
       try {
         const r = await fetch(
-          `/api/public/agreement-template?type=${encodeURIComponent(customerType)}`
+          `/api/public/agreement-template?type=${encodeURIComponent(customerType)}&lang=${encodeURIComponent(effectiveLang)}&v3=true`
         );
-        if (!r.ok) throw new Error('Template metadata unavailable');
+        if (r.status === 409) {
+          if (alive) setLoadState('locale_blocked');
+          return;
+        }
+        if (!r.ok) {
+          if (alive) {
+            setErrorMsg(`Could not load agreement (HTTP ${r.status})`);
+            setLoadState('error');
+          }
+          return;
+        }
         const data = await r.json();
-        if (alive) setMeta(data);
+        if (alive) {
+          setTemplate(data);
+          setLoadState('ok');
+          setChecked({});
+        }
       } catch (e) {
-        if (alive) setFetchError(e.message || 'Load failed');
+        if (alive) {
+          setErrorMsg(e?.message || 'Network error');
+          setLoadState('error');
+        }
       }
-    }
-    load();
+    })();
     return () => { alive = false; };
-  }, [customerType]);
+  }, [customerType, effectiveLang]);
 
-  const template = TEMPLATE_MAP[customerType];
-
-  // Scroll-to-bottom read guard.
-  function handleScroll(e) {
-    const el = e.currentTarget;
-    if (el.scrollTop + el.clientHeight >= el.scrollHeight - 24) {
-      setReadToEnd(true);
+  // Section lookup by id for fast rendering inside each checkbox card.
+  const sectionsById = useMemo(() => {
+    const map = {};
+    if (template?.sections) {
+      for (const s of template.sections) map[s.id] = s;
     }
+    return map;
+  }, [template]);
+
+  function handleSwitchToEnglish() {
+    try {
+      i18n.changeLanguage('en');
+      window.localStorage?.setItem('y7_lang', 'en');
+    } catch { /* storage unavailable - just changeLanguage runtime */ }
   }
 
-  const allChecked = Object.values(checks).every(Boolean);
-  const canSubmit = readToEnd && allChecked
-    && signature.trim().length >= 2 && !submitting;
+  if (loadState === 'loading') {
+    return (
+      <div>
+        <h2 style={stepTitleStyle}>Review and sign — {TYPE_LABELS[customerType]}</h2>
+        <p style={{ ...stepSubtitleStyle, marginTop: spacing.md }}>Loading agreement...</p>
+      </div>
+    );
+  }
+
+  if (loadState === 'locale_blocked') {
+    const copy = LOCALE_BLOCK_COPY[effectiveLang] || LOCALE_BLOCK_COPY.en;
+    return (
+      <div>
+        <h2 style={stepTitleStyle}>{copy.title}</h2>
+        <p style={stepSubtitleStyle}>{copy.body}</p>
+        <div style={{ display: 'flex', gap: spacing.sm, marginTop: spacing.md }}>
+          <button type="button" onClick={onBack} style={secondaryBtnStyle}>Back</button>
+          <button type="button" onClick={handleSwitchToEnglish} style={primaryBtnStyle}>
+            {copy.cta}
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (loadState === 'error' || !template) {
+    return (
+      <div>
+        <h2 style={stepTitleStyle}>Review and sign — {TYPE_LABELS[customerType]}</h2>
+        <div style={errorBoxStyle}>{errorMsg || 'Unable to load agreement.'}</div>
+        <div style={{ display: 'flex', gap: spacing.sm, marginTop: spacing.md }}>
+          <button type="button" onClick={onBack} style={secondaryBtnStyle}>Back</button>
+        </div>
+      </div>
+    );
+  }
+
+  const allChecked = template.checkboxes.every(cb => !!checked[cb.id]);
+  const profileName = user?.contact_name || user?.name || '';
 
   async function handleSubmit() {
-    if (!canSubmit) return;
+    if (!allChecked || submitting) return;
     setSubmitting(true);
     setSubmitError(null);
-
-    // Capture the HTML we actually rendered so the audit record stores
-    // exactly what the customer saw when they signed.
-    const docEl = document.getElementById('onboarding-agreement-body');
-    const html_snapshot = docEl ? docEl.innerHTML : '';
-
     try {
       const res = await portalFetch('/api/portal/onboarding/classify-and-sign', {
         method: 'POST',
         body: JSON.stringify({
           customer_type: customerType,
-          agreement_template_key: template.key,
+          agreement_template_key: TEMPLATE_KEY_BY_TYPE[customerType],
           agreement_version: template.version,
-          signature_name: signature.trim(),
-          checkbox_bol: checks.bol,
-          checkbox_payment: checks.payment,
-          checkbox_broker_liability: checks.broker_liability,
-          checkbox_cancellation: checks.cancellation,
-          html_snapshot,
-          language: 'en',
+          // No signature_name — backend pulls it from customer.contact_name.
+          section_acknowledgements: template.checkboxes.flatMap(cb =>
+            cb.covers_sections.map(sid => ({
+              section_id: sid,
+              checked: !!checked[cb.id],
+            }))
+          ),
+          html_snapshot: template.full_html,
+          language: template.lang,
           signed_channel: 'web',
+          bundle_shape: template.bundle_shape,
         }),
       });
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        const err = body?.detail?.error || body?.error || 'Sign failed';
-        throw new Error(
-          typeof err === 'string' ? err : JSON.stringify(err)
-        );
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        onSigned();
+        return;
       }
-      onSigned();
+      const detail = data?.detail || data;
+      const code = detail?.error;
+      if (code === 'profile_incomplete') {
+        setSubmitError('Please go back and complete your profile before signing.');
+      } else if (code === 'signer_name_mismatch') {
+        setSubmitError(`Signature name must match your profile (${detail.expected || profileName}).`);
+      } else {
+        setSubmitError(detail?.message || code || 'Sign failed');
+      }
     } catch (e) {
-      setSubmitError(e.message || 'Sign failed');
+      setSubmitError(e?.message || 'Network error');
     } finally {
       setSubmitting(false);
     }
@@ -394,14 +675,12 @@ function AgreementStep({ customerType, onBack, onSigned }) {
         Review and sign — {TYPE_LABELS[customerType]}
       </h2>
       <p style={stepSubtitleStyle}>
-        Scroll to the end of the agreement, then check all boxes and sign.
+        Read each section, then check the box at the bottom of each card to
+        confirm your understanding. You'll sign as{' '}
+        <strong>{profileName || 'your profile name'}</strong>.
       </p>
 
-      {fetchError && (
-        <div style={errorBoxStyle}>{fetchError}</div>
-      )}
-
-      {meta?.is_draft && meta?.draft_warning && (
+      {template.is_draft && template.draft_warning && (
         <div style={{
           padding: spacing.md, background: '#FFFBEB',
           border: '1px solid #F59E0B', borderRadius: radii.md,
@@ -409,96 +688,78 @@ function AgreementStep({ customerType, onBack, onSigned }) {
           marginBottom: spacing.md,
         }}>
           <strong>Draft agreement — for evaluation.</strong>{' '}
-          {meta.draft_warning}
+          {template.draft_warning}
         </div>
       )}
 
-      <div
-        id="onboarding-agreement-body"
-        onScroll={handleScroll}
-        style={{
-          maxHeight: 360, overflowY: 'auto',
-          background: colors.bgInput, border: `1px solid ${colors.border}`,
-          borderRadius: radii.md, padding: spacing.md,
-          fontSize: 13, lineHeight: 1.65, color: colors.text,
-          marginBottom: spacing.md,
-        }}
-      >
-        <AgreementBody customerType={customerType} />
-      </div>
+      {template.checkboxes.map((cb, idx) => {
+        const prev = template.checkboxes[idx - 1];
+        const isUnlocked = idx === 0 || !!checked[prev?.id];
+        const isChecked = !!checked[cb.id];
+        const coverSections = cb.covers_sections
+          .map(id => sectionsById[id])
+          .filter(Boolean);
 
-      {!readToEnd && (
-        <div style={{
-          padding: spacing.sm + 'px ' + spacing.md + 'px',
-          background: '#FFFBEB', border: '1px solid #F59E0B',
-          borderRadius: radii.md, fontSize: 13, color: '#92400E',
-          marginBottom: spacing.md,
+        if (!isUnlocked) {
+          return (
+            <LockedCard
+              key={cb.id}
+              number={idx + 1}
+              title={coverSections[0]?.title || 'Section locked'}
+            />
+          );
+        }
+
+        return (
+          <section key={cb.id} style={sectionCardStyle}>
+            {coverSections.map(s => (
+              <div key={s.id} style={{ marginBottom: spacing.md }}>
+                <h3 style={sectionHeadingStyle}>
+                  {s.number}. {s.title}
+                </h3>
+                <div
+                  style={sectionBodyStyle}
+                  dangerouslySetInnerHTML={{ __html: s.html }}
+                />
+              </div>
+            ))}
+
+            <label style={{
+              display: 'flex', alignItems: 'flex-start', gap: spacing.sm,
+              padding: spacing.sm,
+              borderTop: `1px solid ${colors.border}`,
+              marginTop: spacing.md, paddingTop: spacing.md,
+              cursor: 'pointer',
+              fontFamily: fonts.sans, fontSize: 13, color: colors.text,
+              lineHeight: 1.5,
+            }}>
+              <input
+                type="checkbox"
+                checked={isChecked}
+                onChange={(e) => setChecked({ ...checked, [cb.id]: e.target.checked })}
+                style={{ marginTop: 2 }}
+              />
+              <span><strong>{cb.label}</strong></span>
+            </label>
+          </section>
+        );
+      })}
+
+      <div style={signerBlockStyle}>
+        <h3 style={{ ...sectionHeadingStyle, marginTop: 0 }}>Your signature</h3>
+        <p style={{ margin: 0, fontFamily: fonts.sans, fontSize: 14, color: colors.text }}>
+          I, <strong>{profileName}</strong>, agree to the terms above.
+        </p>
+        <p style={{
+          margin: `${spacing.xs}px 0 0`, fontFamily: fonts.sans,
+          fontSize: 12, color: colors.textMuted,
         }}>
-          Please scroll to the end of the agreement to continue.
-        </div>
-      )}
-
-      <div style={{
-        display: 'flex', flexDirection: 'column', gap: spacing.sm,
-        marginBottom: spacing.md,
-      }}>
-        <Checkbox
-          id="cb-bol"
-          disabled={!readToEnd}
-          checked={checks.bol}
-          onChange={(v) => setChecks({ ...checks, bol: v })}
-          label="I understand the Bill of Lading and inspection requirements."
-        />
-        <Checkbox
-          id="cb-payment"
-          disabled={!readToEnd}
-          checked={checks.payment}
-          onChange={(v) => setChecks({ ...checks, payment: v })}
-          label="I understand the dispatch fee structure and payment terms."
-        />
-        <Checkbox
-          id="cb-broker"
-          disabled={!readToEnd}
-          checked={checks.broker_liability}
-          onChange={(v) => setChecks({ ...checks, broker_liability: v })}
-          label="I understand the broker's role and liability limitations."
-        />
-        <Checkbox
-          id="cb-cancel"
-          disabled={!readToEnd}
-          checked={checks.cancellation}
-          onChange={(v) => setChecks({ ...checks, cancellation: v })}
-          label="I understand the cancellation policy and refund terms."
-        />
+          Signed on {new Date().toLocaleDateString()}. To change the
+          name on this signature, update your profile.
+        </p>
       </div>
 
-      <label style={{
-        display: 'block', fontFamily: fonts.sans, fontSize: 13,
-        fontWeight: 600, color: colors.text, marginBottom: spacing.xs,
-      }}>
-        Your full legal name
-      </label>
-      <input
-        type="text"
-        value={signature}
-        onChange={(e) => setSignature(e.target.value)}
-        disabled={!allChecked}
-        maxLength={200}
-        placeholder="e.g. John Smith"
-        style={{
-          width: '100%', padding: '10px 12px',
-          fontSize: 14, fontFamily: fonts.sans,
-          border: `1px solid ${colors.borderInput}`,
-          borderRadius: radii.md,
-          background: allChecked ? colors.bgCard : colors.bgMuted,
-          color: colors.text,
-          boxSizing: 'border-box',
-        }}
-      />
-
-      {submitError && (
-        <div style={errorBoxStyle}>{submitError}</div>
-      )}
+      {submitError && <div style={errorBoxStyle}>{submitError}</div>}
 
       <div style={{
         display: 'flex', justifyContent: 'space-between',
@@ -515,12 +776,12 @@ function AgreementStep({ customerType, onBack, onSigned }) {
         <button
           type="button"
           onClick={handleSubmit}
-          disabled={!canSubmit}
+          disabled={!allChecked || submitting}
           style={{
             ...primaryBtnStyle,
-            background: canSubmit ? colors.accent : colors.bgMuted,
-            color: canSubmit ? '#fff' : colors.textMuted,
-            cursor: canSubmit ? 'pointer' : 'not-allowed',
+            background: allChecked && !submitting ? colors.accent : colors.bgMuted,
+            color: allChecked && !submitting ? '#fff' : colors.textMuted,
+            cursor: allChecked && !submitting ? 'pointer' : 'not-allowed',
           }}
         >
           {submitting ? 'Signing...' : 'Sign agreement'}
@@ -531,129 +792,30 @@ function AgreementStep({ customerType, onBack, onSigned }) {
 }
 
 
-function Checkbox({ id, disabled, checked, onChange, label }) {
+function LockedCard({ number, title }) {
   return (
-    <label
-      htmlFor={id}
-      style={{
-        display: 'flex', alignItems: 'flex-start', gap: spacing.sm,
-        padding: spacing.sm, borderRadius: radii.md,
-        background: disabled ? 'transparent' : '#FAFAF7',
-        cursor: disabled ? 'default' : 'pointer',
-        fontFamily: fonts.sans, fontSize: 13, color: colors.text,
-        lineHeight: 1.5,
-        opacity: disabled ? 0.55 : 1,
-      }}
-    >
-      <input
-        id={id}
-        type="checkbox"
-        disabled={disabled}
-        checked={checked}
-        onChange={(e) => onChange(e.target.checked)}
-        style={{ marginTop: 2 }}
-      />
-      <span>{label}</span>
-    </label>
-  );
-}
-
-
-// Inline agreement copy per customer_type. Matches the outline used by
-// the existing Agreement.jsx locale bundles; we keep the content short
-// and focused on the four consent points the checkboxes reference.
-function AgreementBody({ customerType }) {
-  const common = (
-    <>
-      <p><strong>Y7 Logistics service agreement — summary</strong></p>
-      <p>This agreement governs your use of Y7 Logistics dispatch
-      services. Full legal terms are preserved in the signed copy
-      emailed to you after submission.</p>
-
-      <h4>1. Bill of Lading and inspection</h4>
-      <p>A Bill of Lading (BOL) is issued at pickup by the carrier and
-      signed at both pickup and delivery. Any pre-existing damage should
-      be documented on the BOL; damage not noted on the BOL is presumed
-      to have occurred during transit.</p>
-
-      <h4>2. Dispatch fee structure</h4>
-      <p>Dispatch fees are a flat service fee to Y7 Logistics for
-      arranging transport. Two options:</p>
-      <ul>
-        <li><strong>$50 COD</strong> — you pay the carrier directly at
-        delivery for transport; the $50 Y7 fee is billed separately.</li>
-        <li><strong>$65 Full Service</strong> — Y7 pays the carrier on
-        your behalf; the combined fee is billed to you.</li>
-      </ul>
-
-      <h4>3. Broker role and liability</h4>
-      <p>Y7 Logistics (Y7 Consulting Inc, DBA Y7 Logistics, USDOT
-      #4427359, MC #1741537) is a licensed property broker. Y7 arranges
-      transportation with FMCSA-authorized motor carriers; Y7 does not
-      itself transport vehicles. Carrier cargo insurance (minimum
-      $100,000) is the primary loss coverage for transport damage.</p>
-
-      <h4>4. Cancellation policy</h4>
-      <p>You may cancel a dispatched order at any time before a carrier
-      is assigned at no charge. After carrier assignment, cancellation
-      may be subject to a carrier dry-run fee if the carrier has already
-      begun routing. Refunds of any overpaid amounts are returned to the
-      original payment method within 5-10 business days.</p>
-    </>
-  );
-
-  const typeSpecific = {
-    dealer: (
-      <>
-        <h4>5. Dealer-specific terms</h4>
-        <p>As a licensed auto dealer, you confirm that vehicles tendered
-        for shipment are lawfully in your inventory or assignment. The
-        Carrier Payment Service (AP service with weekly statements and
-        1099-NEC issuance) is available as a separate opt-in product
-        with its own fee schedule.</p>
-      </>
-    ),
-    auction_buyer: (
-      <>
-        <h4>5. Auction-origin terms</h4>
-        <p>For Copart / IAA / Manheim pickups, you are responsible for
-        providing the gate pass or release code before dispatch. Storage
-        fees accruing at the auction while release documentation is
-        pending are your responsibility.</p>
-      </>
-    ),
-    exporter: (
-      <>
-        <h4>5. Exporter terms</h4>
-        <p>Vehicles delivered to US ports or container terminals follow
-        the specific delivery protocols of the receiving facility.
-        International forwarding (ocean freight, customs) is handled by
-        your forwarder, not Y7.</p>
-      </>
-    ),
-    individual: (
-      <>
-        <h4>5. Personal shipment</h4>
-        <p>You confirm the vehicle is your personal property or is being
-        shipped on behalf of a household member with their consent.</p>
-      </>
-    ),
-  };
-
-  return (
-    <>
-      {common}
-      {typeSpecific[customerType] || typeSpecific.individual}
-      <p style={{ marginTop: 16, fontStyle: 'italic', color: colors.textMuted }}>
-        Scrolling past this line unlocks the consent checkboxes below.
+    <div style={{
+      ...sectionCardStyle,
+      opacity: 0.55,
+      background: colors.bgMuted,
+    }}>
+      <h3 style={{ ...sectionHeadingStyle, color: colors.textMuted }}>
+        {number}. {title}
+        <span style={{ marginLeft: spacing.sm, fontSize: 13 }}>(locked)</span>
+      </h3>
+      <p style={{
+        margin: 0, fontFamily: fonts.sans, fontSize: 13,
+        color: colors.textMuted,
+      }}>
+        Confirm the previous section to unlock this one.
       </p>
-    </>
+    </div>
   );
 }
 
 
 // ---------------------------------------------------------------------------
-// Step 3 — WelcomeStep (ONBOARD-T11)
+// Step 4 - WelcomeStep
 // ---------------------------------------------------------------------------
 
 function WelcomeStep({ customerType, name, onComplete }) {
@@ -731,7 +893,7 @@ const wrapStyle = {
 
 const cardStyle = {
   width: '100%',
-  maxWidth: 720,
+  maxWidth: 760,
   background: colors.bgCard,
   borderRadius: radii.xl,
   padding: spacing.xl,
@@ -746,6 +908,37 @@ const stepTitleStyle = {
 const stepSubtitleStyle = {
   fontFamily: fonts.sans, fontSize: 13, color: colors.textMuted,
   margin: 0, marginBottom: 16, lineHeight: 1.5,
+};
+
+const subSectionTitleStyle = {
+  fontFamily: fonts.serif, fontSize: 16, color: colors.text,
+  margin: `${spacing.lg}px 0 ${spacing.sm}px`,
+};
+
+const sectionCardStyle = {
+  border: `1px solid ${colors.border}`,
+  borderRadius: radii.md,
+  padding: spacing.md,
+  marginBottom: spacing.md,
+  background: colors.bgCard,
+};
+
+const sectionHeadingStyle = {
+  fontFamily: fonts.serif, fontSize: 15, fontWeight: 700,
+  color: colors.text, margin: `0 0 ${spacing.sm}px 0`,
+};
+
+const sectionBodyStyle = {
+  fontFamily: fonts.sans, fontSize: 13, color: colors.text,
+  lineHeight: 1.65,
+};
+
+const signerBlockStyle = {
+  marginTop: spacing.lg,
+  padding: spacing.md,
+  background: '#F8F4EE',
+  border: `1px solid ${colors.border}`,
+  borderRadius: radii.md,
 };
 
 const primaryBtnStyle = {
