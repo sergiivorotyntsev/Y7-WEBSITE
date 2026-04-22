@@ -4,6 +4,7 @@ import PageMeta from '../../components/PageMeta';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import SmsConsent from '../../components/SmsConsent';
 import PhoneInput, { getCleanPhone, isValidPhone } from '../../components/PhoneInput';
+import EmailInputWithCheck from '../../components/EmailInputWithCheck';
 import { colors, fonts, button as btnStyles } from '../../theme';
 import { trackEvent } from '../../utils/trackEvent';
 
@@ -245,10 +246,13 @@ export default function Login() {
       {step === 'email' && (
         <form onSubmit={handleEmailSubmit}>
           <div style={{ marginBottom: '20px' }}>
-            <label style={labelStyle}>Email Address</label>
-            <input
-              type="email" value={email} onChange={e => setEmail(e.target.value)}
-              placeholder="you@company.com" style={inputStyle} autoFocus
+            <EmailInputWithCheck
+              id="login-email"
+              label="Email Address"
+              value={email}
+              onChange={setEmail}
+              autoFocus
+              required
             />
           </div>
           <button type="submit" disabled={loading} style={{
