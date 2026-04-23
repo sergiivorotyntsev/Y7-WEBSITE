@@ -1,59 +1,57 @@
 /* eslint-disable react-refresh/only-export-components */
-// PhoneInput exports the component plus getCleanPhone/isValidPhone helpers
-// used by QuoteForm and DealerQuote; dev-only HMR warning safe to suppress.
 import { useState } from 'react';
+import {
+  parsePhoneNumberFromString,
+  AsYouType,
+  getCountryCallingCode,
+} from 'libphonenumber-js';
 
-// Strip every non-digit char — the input stores raw digits internally
-// and renders the masked form on screen.
-function stripPhone(value) {
-  return String(value || '').replace(/\D/g, '');
+const COUNTRIES = [
+  { code: 'US', flag: '\u{1F1FA}\u{1F1F8}', label: 'US' },
+  { code: 'CA', flag: '\u{1F1E8}\u{1F1E6}', label: 'CA' },
+  { code: 'PL', flag: '\u{1F1F5}\u{1F1F1}', label: 'PL' },
+  { code: 'UA', flag: '\u{1F1FA}\u{1F1E6}', label: 'UA' },
+  { code: 'RU', flag: '\u{1F1F7}\u{1F1FA}', label: 'RU' },
+  { code: 'GB', flag: '\u{1F1EC}\u{1F1E7}', label: 'UK' },
+  { code: 'DE', flag: '\u{1F1E9}\u{1F1EA}', label: 'DE' },
+];
+
+function stripNonDigits(v) {
+  return String(v || '').replace(/\D/g, '');
 }
 
-// Format a US 10-digit number as "(555) 123-4567" progressively.
-function formatUSPhone(digits) {
-  if (digits.length === 0) return '';
-  if (digits.length <= 3) return `(${digits}`;
-  if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
-  return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
-}
-
-// Accepts either a raw user string or already-stripped digits and returns
-// the E.164 string we send to the backend. "+1" is prepended when the
-// number looks US-shaped; everything else passes through as +<digits>.
 export function getCleanPhone(value) {
-  const d = stripPhone(value);
-  if (!d) return '';
-  if (d.length === 10) return `+1${d}`;
-  if (d.length === 11 && d.startsWith('1')) return `+${d}`;
-  if (d.startsWith('1') && d.length > 11) return `+${d}`;
-  return `+${d}`;
+  if (!value) return '';
+  const s = String(value).trim();
+  if (!s) return '';
+  if (s.startsWith('+')) {
+    const parsed = parsePhoneNumberFromString(s);
+    if (parsed && parsed.isValid()) return parsed.format('E.164');
+    return s;
+  }
+  const digits = stripNonDigits(s);
+  if (!digits) return '';
+  const parsed = parsePhoneNumberFromString(digits, 'US');
+  if (parsed && parsed.isValid()) return parsed.format('E.164');
+  if (digits.length === 10) return `+1${digits}`;
+  if (digits.length === 11 && digits.startsWith('1')) return `+${digits}`;
+  return `+${digits}`;
 }
 
-// Treat 10-digit or 11-digit-starting-with-1 as valid US; otherwise allow
-// anything 8+ digits as a best-effort international entry. Empty is also
-// valid so callers can leave the phone optional.
 export function isValidPhone(value) {
-  const d = stripPhone(value);
-  if (d.length === 0) return true;
-  if (d.length === 10) return true;
-  if (d.length === 11 && d.startsWith('1')) return true;
-  return d.length >= 8 && d.length <= 15;
+  if (!value) return true;
+  const s = String(value).trim();
+  if (!s) return true;
+  if (s.startsWith('+')) {
+    const parsed = parsePhoneNumberFromString(s);
+    return parsed ? parsed.isValid() : false;
+  }
+  const digits = stripNonDigits(s);
+  if (!digits) return true;
+  const parsed = parsePhoneNumberFromString(digits, 'US');
+  return parsed ? parsed.isValid() : false;
 }
 
-/**
- * Masked phone input. Stores raw digits in the parent state, renders
- * the "(555) 123-4567" mask on screen, surfaces a red error message on
- * blur if the value is set but invalid.
- *
- * Props:
- *   value       — raw digit string held by the parent ("" or "5551234567")
- *   onChange    — called with the new raw digit string on every keystroke
- *   required    — marks the <input> required for native validation
- *   error       — optional override message; takes precedence over local state
- *   className   — passed through to <input> (CSS-module-friendly)
- *   style       — passed through to <input> (inline-style-friendly)
- *   ...props    — e.g. id, name, aria-*, disabled, placeholder
- */
 export default function PhoneInput({
   value,
   onChange,
@@ -61,59 +59,133 @@ export default function PhoneInput({
   error,
   className,
   style,
-  placeholder = '(555) 123-4567',
+  placeholder,
+  defaultCountry = 'US',
+  onValidChange,
   ...props
 }) {
+  const [country, setCountry] = useState(defaultCountry);
   const [focused, setFocused] = useState(false);
   const [touched, setTouched] = useState(false);
 
-  const digits = stripPhone(value);
-  const valid = isValidPhone(digits);
-  const showError = Boolean(error) || (touched && !focused && !valid);
-  const errorMsg = error || 'Please enter a valid 10-digit phone number';
+  const callingCode = `+${getCountryCallingCode(country)}`;
+  const countryEntry = COUNTRIES.find(c => c.code === country) || COUNTRIES[0];
+
+  const rawDigits = stripNonDigits(value);
+
+  const formatter = new AsYouType(country);
+  const formatted = rawDigits ? formatter.input(rawDigits) : '';
+
+  const parsed = rawDigits
+    ? parsePhoneNumberFromString(rawDigits, country)
+    : null;
+  const isValid = parsed ? parsed.isValid() : false;
+
+  const showError = Boolean(error) || (touched && !focused && rawDigits.length > 0 && !isValid);
+  const errorMsg = error || 'Enter a valid phone number';
+
+  function handleChange(e) {
+    const input = e.target.value;
+    const digits = stripNonDigits(input);
+    const capped = digits.slice(0, 15);
+
+    const p = capped ? parsePhoneNumberFromString(capped, country) : null;
+    const valid = p ? p.isValid() : false;
+
+    if (valid) {
+      onChange?.(p.format('E.164'));
+    } else {
+      onChange?.(capped);
+    }
+    onValidChange?.(valid);
+  }
+
+  function handleCountryChange(e) {
+    const newCountry = e.target.value;
+    setCountry(newCountry);
+
+    if (rawDigits) {
+      const p = parsePhoneNumberFromString(rawDigits, newCountry);
+      const valid = p ? p.isValid() : false;
+      if (valid) {
+        onChange?.(p.format('E.164'));
+      } else {
+        onChange?.(rawDigits);
+      }
+      onValidChange?.(valid);
+    }
+  }
 
   const displayValue = (() => {
-    // "+1 (555) 123-4567" for 11-digit US, plain mask otherwise
-    if (digits.length === 11 && digits.startsWith('1')) {
-      return `+1 ${formatUSPhone(digits.slice(1))}`;
+    if (!rawDigits) return '';
+    if (isValid && parsed) {
+      return parsed.formatNational();
     }
-    // Long international strings render with a single leading +
-    if (digits.length > 11) {
-      return `+${digits}`;
-    }
-    return formatUSPhone(digits);
+    return formatted || rawDigits;
   })();
-
-  const handleChange = (e) => {
-    const next = stripPhone(e.target.value);
-    // Cap at 15 digits (max E.164) so users cannot paste novels.
-    const capped = next.slice(0, 15);
-    onChange?.(capped);
-  };
 
   const mergedStyle = showError
     ? { ...style, borderColor: '#d32f2f' }
-    : style;
+    : isValid && rawDigits
+      ? { ...style, borderColor: '#0F6E56' }
+      : style;
 
   return (
     <div>
-      <input
-        type="tel"
-        inputMode="tel"
-        autoComplete="tel"
-        value={displayValue}
-        onChange={handleChange}
-        onFocus={() => setFocused(true)}
-        onBlur={() => {
-          setFocused(false);
-          setTouched(true);
-        }}
-        placeholder={placeholder}
-        required={required}
-        className={className}
-        style={mergedStyle}
-        {...props}
-      />
+      <div style={{
+        display: 'flex',
+        gap: 0,
+        alignItems: 'stretch',
+      }}>
+        <select
+          value={country}
+          onChange={handleCountryChange}
+          aria-label="Country code"
+          style={{
+            fontFamily: 'system-ui, -apple-system, sans-serif',
+            fontSize: '14px',
+            padding: '8px 4px 8px 8px',
+            border: `1px solid ${showError ? '#d32f2f' : isValid && rawDigits ? '#0F6E56' : '#ddd'}`,
+            borderRight: 'none',
+            borderRadius: '8px 0 0 8px',
+            background: '#F7F5F0',
+            color: '#2C2C2A',
+            cursor: 'pointer',
+            outline: 'none',
+            minWidth: 0,
+            width: 'auto',
+            appearance: 'none',
+            WebkitAppearance: 'none',
+            textAlign: 'center',
+            lineHeight: 1.4,
+          }}
+        >
+          {COUNTRIES.map(c => (
+            <option key={c.code} value={c.code}>
+              {c.flag} +{getCountryCallingCode(c.code)}
+            </option>
+          ))}
+        </select>
+        <input
+          type="tel"
+          inputMode="tel"
+          autoComplete="tel"
+          value={displayValue}
+          onChange={handleChange}
+          onFocus={() => setFocused(true)}
+          onBlur={() => { setFocused(false); setTouched(true); }}
+          placeholder={placeholder || (country === 'US' ? '(555) 123-4567' : `${callingCode} ...`)}
+          required={required}
+          className={className}
+          style={{
+            ...mergedStyle,
+            borderRadius: '0 8px 8px 0',
+            flex: 1,
+            minWidth: 0,
+          }}
+          {...props}
+        />
+      </div>
       {showError && (
         <div
           role="alert"
@@ -125,6 +197,16 @@ export default function PhoneInput({
           }}
         >
           {errorMsg}
+        </div>
+      )}
+      {!showError && isValid && rawDigits.length > 0 && (
+        <div style={{
+          color: '#0F6E56',
+          fontSize: '12px',
+          marginTop: '4px',
+          fontFamily: 'inherit',
+        }}>
+          {countryEntry.flag} {callingCode} {parsed.formatNational()}
         </div>
       )}
     </div>
