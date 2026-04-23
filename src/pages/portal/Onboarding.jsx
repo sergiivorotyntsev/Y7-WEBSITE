@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, radii, spacing } from '../../theme';
+import PhoneInput, { isValidPhone } from '../../components/PhoneInput';
 
 /**
  * Onboarding (WIZARD-REDESIGN T05+T06+T07)
@@ -288,9 +289,11 @@ function ProfileStep({ user, onCompleted }) {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(null);
 
+  const [phoneValid, setPhoneValid] = useState(() => isValidPhone(form.phone));
+
   const canSubmit =
     form.contact_name.trim().length >= 2 &&
-    form.phone.trim().length >= 5 &&
+    form.phone.length > 0 && phoneValid &&
     form.delivery_city.trim().length >= 2 &&
     form.delivery_state.trim().length >= 2 &&
     form.delivery_zip.trim().length >= 3;
@@ -347,14 +350,29 @@ function ProfileStep({ user, onCompleted }) {
         required
         autoFocus
       />
-      <Field
-        label="Phone number"
-        type="tel"
-        value={form.phone}
-        onChange={v => set('phone', v)}
-        placeholder="+1 555 555 1212"
-        required
-      />
+      <div style={{ marginBottom: spacing.md }}>
+        <label style={{
+          display: 'block', fontFamily: fonts.sans, fontSize: 13,
+          fontWeight: 600, color: colors.text, marginBottom: spacing.xs,
+        }}>
+          Phone number *
+        </label>
+        <PhoneInput
+          value={form.phone}
+          onChange={v => set('phone', v)}
+          onValidChange={setPhoneValid}
+          required
+          style={{
+            width: '100%', padding: '10px 12px',
+            fontSize: 14, fontFamily: fonts.sans,
+            border: `1px solid ${colors.borderInput}`,
+            borderRadius: radii.md,
+            background: colors.bgCard,
+            color: colors.text,
+            boxSizing: 'border-box',
+          }}
+        />
+      </div>
       <Field
         label="Company name (optional)"
         value={form.company_name}
