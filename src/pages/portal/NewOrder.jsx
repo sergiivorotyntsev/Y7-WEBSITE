@@ -217,6 +217,25 @@ export default function NewOrder() {
   const [deliveryManual, setDeliveryManual] = useState({ ...EMPTY_MANUAL });
 
   const [notes, setNotes] = useState('');
+
+  // Auction fields (auction_buyer + dealer inbound)
+  const isAuctionBuyer = user?.customer_type === 'auction_buyer';
+  const showAuctionFields = isAuctionBuyer || (isDealer && direction === 'inbound');
+  const [auctionTypes, setAuctionTypes] = useState([]);
+  const [auctionTypeId, setAuctionTypeId] = useState('');
+  const [gatePassPin, setGatePassPin] = useState('');
+
+  useEffect(() => {
+    if (!showAuctionFields) return;
+    portalFetch('/api/auction-types/')
+      .then(r => r.ok ? r.json() : { items: [] })
+      .then(data => setAuctionTypes((data.items || []).filter(t => t.is_active && t.is_base)))
+      .catch(() => {});
+  }, [showAuctionFields]);
+
+  const selectedAuction = auctionTypes.find(t => String(t.id) === auctionTypeId);
+  const auctionRequiresPin = selectedAuction && ['COPART', 'IAA'].includes(selectedAuction.code);
+
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(null);
@@ -301,6 +320,15 @@ export default function NewOrder() {
       return;
     }
 
+    if (isAuctionBuyer && !auctionTypeId) {
+      setError('Please select the auction site.');
+      return;
+    }
+    if (auctionRequiresPin && !gatePassPin.trim()) {
+      setError('Gate Pass PIN is required for Copart/IAA orders.');
+      return;
+    }
+
     setSubmitting(true);
     try {
       const body = {
@@ -334,6 +362,10 @@ export default function NewOrder() {
         if (deliveryManual.contact_name) body.delivery_contact_name = deliveryManual.contact_name;
         if (deliveryManual.contact_phone) body.delivery_contact_phone = deliveryManual.contact_phone;
       }
+
+      // Auction fields
+      if (auctionTypeId) body.auction_type_id = parseInt(auctionTypeId);
+      if (gatePassPin.trim()) body.gate_pass_pin = gatePassPin.trim();
 
       const res = await portalFetch('/api/portal/data/orders', {
         method: 'POST',
@@ -484,6 +516,41 @@ export default function NewOrder() {
             <ManualAddressFields fields={deliveryManual} onChange={handleDeliveryManualChange} />
           )}
         </div>
+
+        {/* Auction fields */}
+        {showAuctionFields && (
+          <div style={{ marginBottom: '24px', padding: '16px', background: '#F9FAFB', borderRadius: '8px', border: '1px solid #E5E7EB' }}>
+            <div style={{ ...labelStyle, fontWeight: 600, marginBottom: '12px' }}>Auction Information</div>
+            <div style={{ marginBottom: '12px' }}>
+              <label style={labelStyle}>Auction Site {isAuctionBuyer ? '*' : ''}</label>
+              <select
+                style={inputStyle}
+                value={auctionTypeId}
+                onChange={e => { setAuctionTypeId(e.target.value); setGatePassPin(''); }}
+              >
+                <option value="">Select auction site...</option>
+                {auctionTypes.map(t => (
+                  <option key={t.id} value={t.id}>{t.name}</option>
+                ))}
+              </select>
+            </div>
+            {auctionTypeId && (auctionRequiresPin || selectedAuction?.code === 'MANHEIM') && (
+              <div>
+                <label style={labelStyle}>
+                  Gate Pass PIN {auctionRequiresPin ? '*' : '(if available)'}
+                </label>
+                <input
+                  style={inputStyle}
+                  type="text"
+                  value={gatePassPin}
+                  onChange={e => setGatePassPin(e.target.value)}
+                  placeholder={auctionRequiresPin ? 'Required for pickup' : 'Optional'}
+                  maxLength={50}
+                />
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Notes */}
         <div style={{ marginBottom: '24px' }}>
