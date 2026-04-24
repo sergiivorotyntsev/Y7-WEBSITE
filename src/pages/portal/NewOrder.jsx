@@ -197,6 +197,22 @@ export default function NewOrder() {
       .catch(() => {});
   }, [isWarehouseUser]);
 
+  // Auction types (warehouse users only)
+  const [auctionTypes, setAuctionTypes] = useState([]);
+  const [auctionTypeId, setAuctionTypeId] = useState(null);
+  const [gatePassPin, setGatePassPin] = useState('');
+  useEffect(() => {
+    if (!isWarehouseUser) return;
+    portalFetch('/api/portal/data/auction-types')
+      .then(r => r.ok ? r.json() : [])
+      .then(setAuctionTypes)
+      .catch(() => {});
+  }, [isWarehouseUser]);
+
+  const selectedAuction = auctionTypes.find(a => a.id === auctionTypeId);
+  const auctionCode = selectedAuction?.code || '';
+  const needsPin = ['COPART', 'IAA'].includes(auctionCode);
+
   // Direction (dealer only)
   const [direction, setDirection] = useState('inbound');
 
@@ -331,6 +347,7 @@ export default function NewOrder() {
 
     setSubmitting(true);
     try {
+      const submissionType = isWarehouseUser ? 'direct_submit' : 'quote_request';
       const body = {
         vin: vinClean || 'TBD',
         vehicle_year: vehicleYear.trim() || undefined,
@@ -339,6 +356,9 @@ export default function NewOrder() {
         pickup_zip: pZip,
         delivery_zip: dZip,
         notes: notes.trim() || undefined,
+        submission_type: submissionType,
+        auction_type_id: auctionTypeId || undefined,
+        gate_pass_pin: gatePassPin.trim() || undefined,
       };
 
       // Pickup side
@@ -443,6 +463,29 @@ export default function NewOrder() {
                 </button>
               ))}
             </div>
+          </div>
+        )}
+
+        {/* Auction type + gate pass (warehouse users only) */}
+        {isWarehouseUser && auctionTypes.length > 0 && (
+          <div style={sectionStyle}>
+            <div style={sectionTitle}>Auction</div>
+            <div style={{ marginBottom: needsPin ? 12 : 0 }}>
+              <label style={labelStyle}>Auction Source *</label>
+              <select style={selectStyle} value={auctionTypeId || ''} onChange={e => setAuctionTypeId(Number(e.target.value) || null)}>
+                <option value="">Select auction...</option>
+                {auctionTypes.filter(a => !a.code.startsWith('TEST')).map(a => (
+                  <option key={a.id} value={a.id}>{a.name}</option>
+                ))}
+              </select>
+            </div>
+            {needsPin && (
+              <div>
+                <label style={labelStyle}>Gate Pass PIN *</label>
+                <input style={inputStyle} value={gatePassPin} onChange={e => setGatePassPin(e.target.value)} placeholder="e.g. 46F3" maxLength={20} />
+                <div style={hintStyle}>Required for {auctionCode} auctions.</div>
+              </div>
+            )}
           </div>
         )}
 
