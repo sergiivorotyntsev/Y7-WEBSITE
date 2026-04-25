@@ -286,6 +286,7 @@ function ProfileStep({ user, onCompleted }) {
     delivery_state: user?.delivery_state || '',
     delivery_zip: user?.delivery_zip || '',
   });
+  const [smsConsent, setSmsConsent] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(null);
 
@@ -309,7 +310,7 @@ function ProfileStep({ user, onCompleted }) {
     try {
       const res = await portalFetch('/api/portal/onboarding/update-profile', {
         method: 'POST',
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, sms_consent: smsConsent }),
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.ok) {
@@ -408,6 +409,32 @@ function ProfileStep({ user, onCompleted }) {
           required
           maxLength={10}
         />
+      </div>
+
+      <div style={{
+        marginTop: spacing.lg, padding: spacing.md,
+        background: colors.bgMuted, borderRadius: radii.md,
+      }}>
+        <label style={{
+          display: 'flex', alignItems: 'flex-start', gap: spacing.sm,
+          cursor: 'pointer', fontFamily: fonts.sans,
+        }}>
+          <input
+            type="checkbox"
+            checked={smsConsent}
+            onChange={e => setSmsConsent(e.target.checked)}
+            style={{ marginTop: 4, width: 16, height: 16, flexShrink: 0 }}
+          />
+          <div>
+            <div style={{ fontSize: 13, fontWeight: 600, color: colors.text, marginBottom: 4 }}>
+              Get text updates about your shipment
+            </div>
+            <div style={{ fontSize: 12, color: colors.textMuted, lineHeight: 1.5 }}>
+              Y7 Logistics will text you when a carrier is assigned.
+              Reply STOP to opt out anytime. Msg &amp; data rates may apply.
+            </div>
+          </div>
+        </label>
       </div>
 
       <div style={{
