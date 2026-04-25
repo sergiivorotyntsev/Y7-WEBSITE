@@ -489,6 +489,72 @@ export default function OrderDetail() {
         )}
       </InfoCard>
 
+      {/* Driver info card (dispatched orders) */}
+      {order.status === 'dispatched' && order.driver_name && (
+        <InfoCard title="YOUR DRIVER">
+          <div style={{ fontFamily: fonts.sans, fontSize: '15px', fontWeight: 600, color: colors.text }}>
+            {order.driver_name}
+          </div>
+          {order.driver_phone && (
+            <a href={`tel:${order.driver_phone}`} style={{
+              display: 'inline-block', marginTop: '6px',
+              fontFamily: fonts.sans, fontSize: '14px', fontWeight: 600,
+              color: colors.accent, textDecoration: 'none',
+            }}>
+              {order.driver_phone}
+            </a>
+          )}
+          {order.estimated_delivery_date && (
+            <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted, marginTop: '10px' }}>
+              Planned delivery: {fmtDate(order.estimated_delivery_date) || order.estimated_delivery_date}
+            </div>
+          )}
+          {order.carrier_name && (
+            <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textHint, marginTop: '4px' }}>
+              Carrier: {order.carrier_name}{order.carrier_mc ? ` (MC ${order.carrier_mc})` : ''}
+            </div>
+          )}
+        </InfoCard>
+      )}
+
+      {/* Status history timeline */}
+      {order.status_history && order.status_history.length > 0 && (
+        <InfoCard title="ORDER HISTORY">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            {order.status_history.map((entry, idx) => (
+              <div key={entry.id} style={{
+                borderLeft: `3px solid ${idx === 0 ? colors.accent : colors.border}`,
+                paddingLeft: '12px', paddingTop: '2px', paddingBottom: '2px',
+              }}>
+                <div style={{ fontFamily: fonts.sans, fontSize: '14px', fontWeight: 600, color: colors.text }}>
+                  {entry.to_status === 'dispatched' ? 'Carrier assigned' :
+                   entry.to_status === 'listed' ? 'Sourcing new carrier' :
+                   entry.to_status === 'completed' ? 'Delivered' :
+                   entry.to_status === 'cancelled' ? 'Cancelled' :
+                   entry.to_status}
+                </div>
+                <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginTop: '2px' }}>
+                  {fmtDate(entry.created_at)}
+                </div>
+                {entry.cancellation_reason && (
+                  <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: '#B8851F', marginTop: '4px' }}>
+                    {entry.cancellation_reason === 'carrier_refused' ? 'Carrier became unavailable' :
+                     entry.cancellation_reason === 'carrier_broke_down' ? 'Carrier mechanical issue' :
+                     entry.cancellation_reason === 'no_show' ? 'Carrier did not arrive' :
+                     entry.cancellation_reason}
+                  </div>
+                )}
+                {entry.carrier_name_at_transition && (
+                  <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textHint, marginTop: '2px' }}>
+                    Carrier: {entry.carrier_name_at_transition}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </InfoCard>
+      )}
+
       {/* Dispatch Details Status */}
       {['confirmed', 'dispatched'].includes(order.status) && (
         <div style={{
