@@ -108,7 +108,7 @@ function BillingSummary() {
 }
 
 export default function Dashboard() {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [orders, setOrders] = useState([]);
@@ -149,6 +149,7 @@ export default function Dashboard() {
   // Leftover ?classify=1 / ?classify=edit query params from older links
   // are treated as explicit onboarding triggers too.
   useEffect(() => {
+    if (authLoading) return;
     if (!user) return;
     const params = new URLSearchParams(window.location.search);
     const classifyParam = params.get('classify');
@@ -162,7 +163,7 @@ export default function Dashboard() {
     if (needsClassification || needsAgreement || classifyParam) {
       navigate('/portal/onboarding', { replace: true });
     }
-  }, [user, navigate]);
+  }, [user, authLoading, navigate]);
 
   const active = (summary?.pending || 0) + (summary?.quoted || 0) + (summary?.confirmed || 0);
   const inTransit = (summary?.dispatched || 0);
