@@ -114,6 +114,9 @@ export default function Profile() {
   const [message, setMessage] = useState(null);
   const [showTypeModal, setShowTypeModal] = useState(false);
   const [reSignToast, setReSignToast] = useState(null);
+  const [smsEnabled, setSmsEnabled] = useState(
+    user?.notification_preferences?.sms_enabled ?? false
+  );
 
   useEffect(() => {
     portalFetch('/api/portal/data/profile')
@@ -391,6 +394,51 @@ export default function Profile() {
               </span>
             )}
           </div>
+        </div>
+
+        {/* Text message notifications */}
+        <div style={{ paddingTop: '12px', borderTop: `1px solid ${colors.border}` }}>
+          <div style={{ ...labelStyle, marginBottom: '8px' }}>Text Message Notifications</div>
+          <label style={{
+            display: 'flex', alignItems: 'center', gap: '8px',
+            cursor: 'pointer', fontFamily: fonts.sans, fontSize: '14px',
+            color: colors.text,
+          }}>
+            <input
+              type="checkbox"
+              checked={smsEnabled}
+              onChange={async (e) => {
+                const newVal = e.target.checked;
+                setSmsEnabled(newVal);
+                try {
+                  const res = await portalFetch('/api/portal/data/notification-preferences', {
+                    method: 'PUT',
+                    body: JSON.stringify({ sms_enabled: newVal }),
+                  });
+                  if (res.ok) {
+                    setMessage({ type: 'success', text: newVal ? 'SMS notifications enabled' : 'SMS notifications disabled' });
+                    checkAuth();
+                  } else {
+                    setSmsEnabled(!newVal);
+                    setMessage({ type: 'error', text: 'Failed to update preference' });
+                  }
+                } catch {
+                  setSmsEnabled(!newVal);
+                  setMessage({ type: 'error', text: 'Network error' });
+                }
+              }}
+              style={{ width: 18, height: 18, flexShrink: 0 }}
+            />
+            Get text updates when carrier is assigned
+          </label>
+          {smsEnabled && (
+            <div style={{
+              fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted,
+              marginTop: '6px', paddingLeft: '26px', lineHeight: 1.5,
+            }}>
+              Reply STOP to any Y7 message to opt out at any time. Msg &amp; data rates may apply.
+            </div>
+          )}
         </div>
 
         <button type="submit" disabled={saving} style={{
