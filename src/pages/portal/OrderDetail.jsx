@@ -490,7 +490,7 @@ export default function OrderDetail() {
       </InfoCard>
 
       {/* Driver info card (dispatched orders) */}
-      {order.status === 'dispatched' && order.driver_name && (
+      {['dispatched', 'completed'].includes(order.status) && order.driver_name && (
         <InfoCard title="YOUR DRIVER">
           <div style={{ fontFamily: fonts.sans, fontSize: '15px', fontWeight: 600, color: colors.text }}>
             {order.driver_name}
