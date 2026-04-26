@@ -15,7 +15,7 @@ import { colors, fonts } from '../theme';
  * load the `quote` namespace. Earlier versions used the default namespace
  * which silently failed to resolve and rendered the raw key on prod.
  */
-export default function SmsConsent({ checked, onChange, showError = false }) {
+export default function SmsConsent({ checked, onChange, showError = false, optional = false }) {
   const { t } = useTranslation('quote');
 
   return (
@@ -30,7 +30,7 @@ export default function SmsConsent({ checked, onChange, showError = false }) {
           type="checkbox"
           checked={checked}
           onChange={e => onChange(e.target.checked)}
-          aria-required="true"
+          aria-required={optional ? 'false' : 'true'}
           aria-invalid={showError && !checked ? 'true' : 'false'}
           style={{
             marginTop: '3px',

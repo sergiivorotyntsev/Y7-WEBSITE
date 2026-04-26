@@ -130,8 +130,8 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
   // Step 2: both ZIPs must be >= 5 chars
   const showStep2 = form.pickup_zip.trim().length >= 5 && form.delivery_zip.trim().length >= 5;
 
-  // Step 3: button active when name + valid email + sms_consent (QUOTE-P0 TCPA gate)
-  const canSubmit = !!(form.name.trim() && form.email.trim() && form.email.includes('@') && form.sms_consent);
+  // Step 3: button active when name + valid email
+  const canSubmit = !!(form.name.trim() && form.email.trim() && form.email.includes('@'));
 
   // Measure step2 inner height for smooth animation on every render because
   // the collapsed height depends on which fields are currently mounted.
@@ -621,7 +621,8 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
             <SmsConsent
               checked={form.sms_consent}
               onChange={v => set('sms_consent', v)}
-              showError={submitAttempted}
+              showError={false}
+              optional
             />
             <p className={styles.legal}>
               {t('sms.footnote')}
