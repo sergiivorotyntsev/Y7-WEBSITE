@@ -527,11 +527,7 @@ export default function OrderDetail() {
                 paddingLeft: '12px', paddingTop: '2px', paddingBottom: '2px',
               }}>
                 <div style={{ fontFamily: fonts.sans, fontSize: '14px', fontWeight: 600, color: colors.text }}>
-                  {entry.to_status === 'dispatched' ? 'Carrier assigned' :
-                   entry.to_status === 'listed' ? 'Sourcing new carrier' :
-                   entry.to_status === 'completed' ? 'Delivered' :
-                   entry.to_status === 'cancelled' ? 'Cancelled' :
-                   entry.to_status}
+                  {STATUS_LABELS[entry.to_status] || entry.to_status}
                 </div>
                 <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginTop: '2px' }}>
                   {fmtDate(entry.created_at)}
