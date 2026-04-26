@@ -58,6 +58,13 @@ export const STATUS_COLORS = {
   [ORDER_STATUS.CANCELLED]: '#adb5bd',
 };
 
+export const CANCELLATION_REASON_LABELS = {
+  carrier_refused: 'Carrier became unavailable',
+  carrier_broke_down: 'Carrier mechanical issue',
+  no_show: 'Carrier did not arrive',
+  other: 'Other reason',
+};
+
 /** Ordered list of statuses for timeline progression */
 export const STATUS_PIPELINE = [
   ORDER_STATUS.PENDING,

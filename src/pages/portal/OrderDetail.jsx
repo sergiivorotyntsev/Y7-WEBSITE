@@ -5,7 +5,7 @@ import OnboardingBanner from '../../components/OnboardingBanner';
 import BouncingEmailBanner from '../../components/recovery/BouncingEmailBanner';
 import { portalFetch } from '../../hooks/useAuth';
 import { colors, fonts } from '../../theme';
-import { STATUS_LABELS, STATUS_PIPELINE } from '../../utils/orderStatus';
+import { STATUS_LABELS, STATUS_PIPELINE, CANCELLATION_REASON_LABELS } from '../../utils/orderStatus';
 
 const TIMELINE_STEPS = [
   { key: 'pending', label: STATUS_LABELS.pending, field: 'created_at' },
@@ -534,10 +534,7 @@ export default function OrderDetail() {
                 </div>
                 {entry.cancellation_reason && (
                   <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: '#B8851F', marginTop: '4px' }}>
-                    {entry.cancellation_reason === 'carrier_refused' ? 'Carrier became unavailable' :
-                     entry.cancellation_reason === 'carrier_broke_down' ? 'Carrier mechanical issue' :
-                     entry.cancellation_reason === 'no_show' ? 'Carrier did not arrive' :
-                     entry.cancellation_reason}
+                    {CANCELLATION_REASON_LABELS[entry.cancellation_reason] || entry.cancellation_reason}
                   </div>
                 )}
                 {entry.carrier_name_at_transition && (
