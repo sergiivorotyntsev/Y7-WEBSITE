@@ -287,8 +287,16 @@ function ProfileStep({ user, onCompleted }) {
     delivery_zip: user?.delivery_zip || '',
   });
   const [smsConsent, setSmsConsent] = useState(false);
+  const [consentText, setConsentText] = useState('');
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch('/api/portal/data/sms-consent-text')
+      .then(r => r.ok ? r.json() : { text: '' })
+      .then(data => setConsentText(data.text || ''))
+      .catch(() => {});
+  }, []);
 
   const [phoneValid, setPhoneValid] = useState(() => isValidPhone(form.phone));
 
@@ -430,8 +438,7 @@ function ProfileStep({ user, onCompleted }) {
               Get text updates about your shipment
             </div>
             <div style={{ fontSize: 12, color: colors.textMuted, lineHeight: 1.5 }}>
-              Y7 Logistics will text you when a carrier is assigned.
-              Reply STOP to opt out anytime. Msg &amp; data rates may apply.
+              {consentText || 'Y7 Logistics will text you about your shipment. Reply STOP to opt out. Msg & data rates may apply.'}
             </div>
           </div>
         </label>
