@@ -7,8 +7,11 @@ export async function apiPost(path, body) {
     body: JSON.stringify(body),
   });
   if (!res.ok) {
-    const err = await res.json().catch(() => ({ detail: res.statusText }));
-    throw new Error(err.detail || 'Request failed');
+    const data = await res.json().catch(() => ({ detail: res.statusText }));
+    const err = new Error(data.detail || data.errors?.[0] || 'Request failed');
+    err.status = res.status;
+    err.body = data;
+    throw err;
   }
   return res.json();
 }

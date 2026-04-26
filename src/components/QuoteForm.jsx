@@ -71,6 +71,7 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
   const [error, setError] = useState(null);
   const [submitAttempted, setSubmitAttempted] = useState(false);
   const [touched, setTouched] = useState({});
+  const [serverFieldErrors, setServerFieldErrors] = useState({});
   // P1-TECH-T04: progressive disclosure. Minimum fields visible by default;
   // vehicle-condition, pickup-date preference, and free-form notes live behind
   // an "Add details" toggle to lower B2C mobile friction (21 → ~12 fields
@@ -91,7 +92,9 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
   const fieldErrors = {
     vin: !noVinMode && touched.vin && form.vin && !vinRegex.test(form.vin.trim().toUpperCase())
       ? 'VIN must be 17 characters (A-H, J-N, P, R-Z, 0-9)' : null,
-    email: touched.email && form.email && !form.email.includes('@') ? 'Enter a valid email' : null,
+    email: serverFieldErrors.email
+      ? serverFieldErrors.email
+      : (touched.email && form.email && !form.email.includes('@') ? 'Enter a valid email' : null),
     pickup_zip: touched.pickup_zip && form.pickup_zip && form.pickup_zip.trim().length > 0 && form.pickup_zip.trim().length < 5
       ? 'ZIP must be 5 digits' : null,
     delivery_zip: touched.delivery_zip && form.delivery_zip && form.delivery_zip.trim().length > 0 && form.delivery_zip.trim().length < 5
@@ -213,7 +216,13 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
       setSuccess(res);
       trackEvent('quote_submit', { has_vin: !noVinMode, transport_type: form.transport_type });
     } catch (err) {
-      setError(err.message || 'Something went wrong');
+      const fe = err.body?.field_errors;
+      if (fe?.email) {
+        setServerFieldErrors({ email: fe.email });
+        setError(null);
+      } else {
+        setError(err.message || 'Something went wrong');
+      }
     } finally {
       setSubmitting(false);
     }
@@ -552,12 +561,41 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
               <label className={styles.label}>{t('form.email')}</label>
               <input
                 value={form.email}
-                onChange={e => set('email', e.target.value)}
+                onChange={e => {
+                  set('email', e.target.value);
+                  if (serverFieldErrors.email) setServerFieldErrors({});
+                }}
                 onBlur={() => markTouched('email')}
                 type="email"
                 className={fieldErrors.email ? styles.inputError : styles.input}
               />
-              {fieldErrors.email && <div className={styles.errorText}>{fieldErrors.email}</div>}
+              {fieldErrors.email && (
+                <div className={styles.errorText}>
+                  {typeof fieldErrors.email === 'string'
+                    ? fieldErrors.email
+                    : fieldErrors.email.message}
+                  {fieldErrors.email?.suggestion && (
+                    <>
+                      {' '}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const local = form.email.split('@')[0];
+                          set('email', `${local}@${fieldErrors.email.suggestion}`);
+                          setServerFieldErrors({});
+                        }}
+                        style={{
+                          background: 'none', border: 'none',
+                          color: 'inherit', textDecoration: 'underline',
+                          cursor: 'pointer', padding: 0, font: 'inherit',
+                        }}
+                      >
+                        Use this
+                      </button>
+                    </>
+                  )}
+                </div>
+              )}
             </div>
           </div>
 
