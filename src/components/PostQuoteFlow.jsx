@@ -21,7 +21,7 @@ export default function PostQuoteFlow({ quoteResult, formData }) {
   const name = formData?.name || '';
   const email = formData?.email || '';
   const phone = formData?.phone || '';
-  const reference = quoteResult?.reference || '';
+  const reference = quoteResult?.load_id || quoteResult?.reference || '';
 
   // Auto-register + send code
   async function startRegistration() {
