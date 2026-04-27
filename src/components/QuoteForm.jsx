@@ -130,8 +130,12 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
   // Step 2: both ZIPs must be >= 5 chars
   const showStep2 = form.pickup_zip.trim().length >= 5 && form.delivery_zip.trim().length >= 5;
 
-  // Step 3: button active when name + valid email
-  const canSubmit = !!(form.name.trim() && form.email.trim() && form.email.includes('@'));
+  // Step 3: button active when name + valid email + valid phone
+  const canSubmit = !!(
+    form.name.trim() &&
+    form.email.trim() && form.email.includes('@') &&
+    form.phone.trim() && isValidPhone(form.phone)
+  );
 
   // Measure step2 inner height for smooth animation on every render because
   // the collapsed height depends on which fields are currently mounted.
@@ -554,8 +558,13 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
           {/* Phone + Email */}
           <div className={styles.row}>
             <div className={styles.field}>
-              <label className={styles.label}>{t('form.phone')}</label>
+              <label className={styles.label}>
+                {t('form.phone')} <span style={{ color: '#DC2626' }}>*</span>
+              </label>
               <PhoneInput value={form.phone} onChange={v => set('phone', v)} className={styles.input} />
+              {form.phone && !isValidPhone(form.phone) && (
+                <div className={styles.errorText}>Please enter a valid 10-digit phone number</div>
+              )}
             </div>
             <div className={styles.field}>
               <label className={styles.label}>{t('form.email')}</label>
