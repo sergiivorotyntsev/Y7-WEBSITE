@@ -23,7 +23,7 @@ const inputErrorStyle = {
 
 const labelStyle = {
   fontFamily: fonts.sans,
-  fontSize: '12px',
+  fontSize: '16px',
   fontWeight: 600,
   color: colors.text,
   textTransform: 'uppercase',
@@ -34,7 +34,7 @@ const labelStyle = {
 
 const errorStyle = {
   fontFamily: fonts.sans,
-  fontSize: '13px',
+  fontSize: '16px',
   color: colors.accent,
   marginTop: '6px',
 };
@@ -49,7 +49,7 @@ const suggestionWrapStyle = {
 };
 
 const suggestionTextStyle = {
-  fontSize: '13px',
+  fontSize: '16px',
   color: colors.text,
   lineHeight: 1.5,
 };
@@ -63,7 +63,7 @@ const suggestionActionsStyle = {
 
 const acceptBtnStyle = {
   fontFamily: fonts.sans,
-  fontSize: '12px',
+  fontSize: '16px',
   fontWeight: 600,
   padding: '6px 12px',
   borderRadius: '6px',
@@ -75,7 +75,7 @@ const acceptBtnStyle = {
 
 const dismissBtnStyle = {
   fontFamily: fonts.sans,
-  fontSize: '12px',
+  fontSize: '16px',
   fontWeight: 500,
   padding: '6px 12px',
   borderRadius: '6px',

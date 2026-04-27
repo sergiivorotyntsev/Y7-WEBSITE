@@ -143,7 +143,7 @@ export default function PhoneInput({
           aria-label="Country code"
           style={{
             fontFamily: 'system-ui, -apple-system, sans-serif',
-            fontSize: '14px',
+            fontSize: '16px',
             padding: '8px 4px 8px 8px',
             border: `1px solid ${showError ? '#d32f2f' : isValid && rawDigits ? '#0F6E56' : '#ddd'}`,
             borderRight: 'none',
@@ -191,7 +191,7 @@ export default function PhoneInput({
           role="alert"
           style={{
             color: '#d32f2f',
-            fontSize: '12px',
+            fontSize: '16px',
             marginTop: '4px',
             fontFamily: 'inherit',
           }}
@@ -202,7 +202,7 @@ export default function PhoneInput({
       {!showError && isValid && rawDigits.length > 0 && (
         <div style={{
           color: '#0F6E56',
-          fontSize: '12px',
+          fontSize: '16px',
           marginTop: '4px',
           fontFamily: 'inherit',
         }}>
