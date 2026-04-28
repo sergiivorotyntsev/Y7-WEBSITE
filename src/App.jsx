@@ -67,6 +67,8 @@ const BillOfLading = lazyWithRetry(() => import('./pages/seo/guides/BillOfLading
 const CopartStorageFees = lazyWithRetry(() => import('./pages/seo/guides/CopartStorageFees'));
 const CopartGatePassGuide = lazyWithRetry(() => import('./pages/seo/guides/CopartGatePassGuide'));
 const CopartInternationalShipping = lazyWithRetry(() => import('./pages/seo/guides/CopartInternationalShipping'));
+const QuoteVerified = lazyWithRetry(() => import('./pages/QuoteVerified'));
+const QuoteVerificationFailed = lazyWithRetry(() => import('./pages/QuoteVerificationFailed'));
 const ReviewSubmit = lazyWithRetry(() => import('./pages/ReviewSubmit'));
 const Login = lazyWithRetry(() => import('./pages/portal/Login'));
 const MagicLogin = lazyWithRetry(() => import('./pages/MagicLogin'));
@@ -203,6 +205,8 @@ export default function App() {
             <Route path="/copart-gate-pass-guide" element={<CopartGatePassGuide />} />
             <Route path="/copart-international-shipping" element={<CopartInternationalShipping />} />
             <Route path="/quote" element={<Quote />} />
+            <Route path="/quote-verified" element={<QuoteVerified />} />
+            <Route path="/quote-verification-failed" element={<QuoteVerificationFailed />} />
             <Route path="/:lang/quote" element={<Quote />} />
             <Route path="/:lang/quote/:action/:orderId" element={<QuoteAction />} />
             <Route path="/:lang/agreement/:orderId" element={<Agreement />} />

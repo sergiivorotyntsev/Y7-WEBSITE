@@ -136,6 +136,8 @@ const PUBLIC_ROUTES = [
   '/exporters',
   '/ship-my-car',
   '/quote',
+  '/quote-verified',
+  '/quote-verification-failed',
   '/track',
   '/contact',
   '/faq',

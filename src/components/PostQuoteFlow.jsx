@@ -137,6 +137,79 @@ export default function PostQuoteFlow({ quoteResult, formData }) {
         )}
       </div>
 
+      {/* T11: Email Verification Banner — informational, conditional */}
+      {quoteResult?.email_verification_required && (
+        <div style={{
+          background: '#FFF8E1',
+          border: '1px solid #E8DFD3',
+          borderLeft: `4px solid ${colors.accent}`,
+          borderRadius: '12px',
+          padding: '20px 24px',
+          marginBottom: '24px',
+          display: 'flex',
+          gap: '16px',
+          alignItems: 'flex-start',
+        }}>
+          <div style={{
+            fontSize: '24px',
+            lineHeight: 1,
+            flexShrink: 0,
+          }}>
+            📧
+          </div>
+          <div style={{ flex: 1 }}>
+            <h4 style={{
+              fontFamily: fonts.serif,
+              fontSize: '16px',
+              fontWeight: 700,
+              color: colors.text,
+              margin: 0,
+              marginBottom: '6px',
+            }}>
+              Check your inbox
+            </h4>
+            <p style={{
+              fontFamily: fonts.sans,
+              fontSize: '13px',
+              color: colors.textMuted,
+              lineHeight: 1.5,
+              margin: '6px 0 12px 0',
+            }}>
+              We sent a verification link to{' '}
+              <strong style={{ color: colors.text }}>
+                {quoteResult.email || email}
+              </strong>
+              . Click it to confirm your email and help us prioritize your quote response.
+            </p>
+            <a
+              href={
+                (quoteResult.email || email)?.includes('@gmail.com')
+                  ? 'https://mail.google.com/'
+                  : (quoteResult.email || email)?.match(/@(outlook|hotmail|live)\./)
+                  ? 'https://outlook.live.com/'
+                  : (quoteResult.email || email)?.includes('@yahoo.com')
+                  ? 'https://mail.yahoo.com/'
+                  : `mailto:${quoteResult.email || email}`
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: fonts.sans,
+                fontSize: '12px',
+                fontWeight: 600,
+                color: colors.accent,
+                textDecoration: 'none',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '4px',
+              }}
+            >
+              Open inbox →
+            </a>
+          </div>
+        </div>
+      )}
+
       {/* What happens next — timeline */}
       <div style={{
         background: colors.bgCard,
