@@ -186,16 +186,12 @@ export default function Login() {
       });
       const data = await res.json();
       if (res.ok && data.status === 'ok') {
-        login(data.session_token, { id: data.customer_id, name: data.customer_name });
+        login(data.session_token, data);
         trackEvent('portal_login', { method: 'email_code' });
-        try {
-          const profileRes = await portalFetch('/api/portal/data/profile');
-          const profile = await profileRes.json();
-          if (!profile.delivery_city && !profile.delivery_address) {
-            navigate('/portal/profile', { replace: true, state: { incomplete: true } });
-            return;
-          }
-        } catch { /* proceed to dashboard */ }
+        if (!data.delivery_city && !data.delivery_address) {
+          navigate('/portal/profile', { replace: true, state: { incomplete: true } });
+          return;
+        }
         navigate('/portal/dashboard', { replace: true });
       } else {
         setError(data.detail || 'Invalid or expired code');

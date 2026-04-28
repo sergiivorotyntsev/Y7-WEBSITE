@@ -96,6 +96,35 @@ export async function portalFetch(path, options = {}) {
   return res;
 }
 
+function _normalizeUser(data) {
+  if (!data) return null;
+  return {
+    id: data.customer_id || data.id,
+    name: data.customer_name || data.name || data.contact_name,
+    customer_type: data.customer_type || 'unknown',
+    billing_mode: data.billing_mode || 'per_delivery',
+    agreement_signed: !!data.agreement_signed,
+    agreement_signed_at: data.agreement_signed_at || null,
+    deposit_balance_cents: data.deposit_balance_cents || 0,
+    bank_auth_signed: !!data.bank_auth_signed,
+    billing_blocked: !!data.billing_blocked,
+    has_locations: !!data.has_locations,
+    email: data.email || null,
+    email_bouncing: !!data.email_bouncing,
+    email_bouncing_since: data.email_bouncing_since || null,
+    last_email_bounce_reason: data.last_email_bounce_reason || null,
+    contact_name: data.contact_name || null,
+    phone: data.phone || null,
+    company_name: data.company_name || null,
+    delivery_address: data.delivery_address || null,
+    delivery_city: data.delivery_city || null,
+    delivery_state: data.delivery_state || null,
+    delivery_zip: data.delivery_zip || null,
+    sms_consent: !!data.sms_consent,
+    email_verified: !!data.email_verified,
+  };
+}
+
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -106,34 +135,16 @@ export function AuthProvider({ children }) {
       if (res.ok) {
         const data = await res.json();
         if (data.authenticated) {
-          setUser({
-            id: data.customer_id,
-            name: data.customer_name,
-            customer_type: data.customer_type || 'unknown',
-            billing_mode: data.billing_mode || 'per_delivery',
-            agreement_signed: !!data.agreement_signed,
-            agreement_signed_at: data.agreement_signed_at || null,
-            deposit_balance_cents: data.deposit_balance_cents || 0,
-            bank_auth_signed: !!data.bank_auth_signed,
-            billing_blocked: !!data.billing_blocked,
-            has_locations: !!data.has_locations,
-            email: data.email || null,
-            email_bouncing: !!data.email_bouncing,
-            email_bouncing_since: data.email_bouncing_since || null,
-            last_email_bounce_reason: data.last_email_bounce_reason || null,
-          });
+          setUser(_normalizeUser(data));
           return;
         }
       }
     } catch {
       // Network error — not authenticated
     }
-    // 401 or other non-ok: silently set user to null
     setUser(null);
   }, []);
 
-  // Auth probe runs once on mount; setLoading(false) is the intended
-  // one-time initialization after we learn auth state.
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     checkAuth().finally(() => setLoading(false));
@@ -141,7 +152,7 @@ export function AuthProvider({ children }) {
 
   const login = useCallback((sessionToken, userData) => {
     setSessionToken(sessionToken);
-    setUser(userData);
+    setUser(_normalizeUser(userData));
   }, []);
 
   const logout = useCallback(async () => {
