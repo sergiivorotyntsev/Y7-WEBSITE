@@ -8,6 +8,7 @@ import VehicleSilhouette from './VehicleSilhouette';
 import PostQuoteFlow from './PostQuoteFlow';
 import PhoneInput, { getCleanPhone, isValidPhone } from './PhoneInput';
 import { trackEvent } from '../utils/trackEvent';
+import { useEmailCheck } from '../hooks/useEmailCheck';
 import styles from './QuoteForm.module.css';
 import btn from '../styles/buttons.module.css';
 
@@ -66,6 +67,7 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
     email: urlParams?.get('email') || '',
     sms_consent: false, notes: '',
   });
+  const emailCheck = useEmailCheck(form.email);
   const [noVinMode, setNoVinMode] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(null);
@@ -575,8 +577,9 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
                   set('email', e.target.value);
                   if (serverFieldErrors.email) setServerFieldErrors({});
                 }}
-                onBlur={() => markTouched('email')}
+                onBlur={() => { markTouched('email'); emailCheck.onBlur(); }}
                 type="email"
+                autoComplete="email"
                 className={fieldErrors.email ? styles.inputError : styles.input}
               />
               {fieldErrors.email && (
@@ -604,6 +607,24 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
                       </button>
                     </>
                   )}
+                </div>
+              )}
+              {emailCheck.isChecking && (
+                <div style={{ fontSize: '0.85rem', color: '#6B7280', marginTop: 4 }}>Checking…</div>
+              )}
+              {emailCheck.status === 'duplicate' && (
+                <div role="status" style={{ fontSize: '0.85rem', color: '#B45309', marginTop: 4 }}>
+                  {emailCheck.message}{' '}
+                  <a href="/portal/login" style={{ color: '#7C2D12', textDecoration: 'underline' }}>Log in</a>
+                </div>
+              )}
+              {emailCheck.status === 'typo_suggestion' && emailCheck.suggestion && (
+                <div role="status" style={{ fontSize: '0.85rem', color: '#1D4ED8', marginTop: 4 }}>
+                  Did you mean{' '}
+                  <button type="button" onClick={() => set('email', emailCheck.suggestion)}
+                    style={{ background: 'none', border: 'none', color: '#1D4ED8', textDecoration: 'underline', cursor: 'pointer', padding: 0, fontSize: 'inherit' }}>
+                    {emailCheck.suggestion}
+                  </button>?
                 </div>
               )}
             </div>
