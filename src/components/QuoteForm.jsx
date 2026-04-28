@@ -133,8 +133,14 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
   // Step 2: both ZIPs must be >= 5 chars
   const showStep2 = form.pickup_zip.trim().length >= 5 && form.delivery_zip.trim().length >= 5;
 
-  // Step 3: button active when name + valid email + valid phone
+  // Step 3: button active when vehicle ID + contact + route all valid.
+  const _vinTrim = (form.vin || '').trim().toUpperCase();
+  const _hasValidVin = _vinTrim.length === 17 && /^[A-HJ-NPR-Z0-9]{17}$/.test(_vinTrim);
+  const _yearTrim = String(form.vehicle_year || '').trim();
+  const _hasYMM = /^\d{4}$/.test(_yearTrim) && (form.vehicle_make || '').trim() && (form.vehicle_model || '').trim();
+  const _hasVehicleId = noVinMode ? !!_hasYMM : !!(_hasValidVin || _hasYMM);
   const canSubmit = !!(
+    _hasVehicleId &&
     form.name.trim() &&
     form.email.trim() && form.email.includes('@') &&
     form.phone.trim() && isValidPhone(form.phone)
@@ -256,6 +262,9 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
       {!noVinMode ? (
         <div className={styles.field}>
           <label className={styles.label}>{t('form.vin')}</label>
+          <p style={{ fontSize: '12px', color: '#888', margin: '4px 0 8px 0' }}>
+            Required: provide a 17-character VIN or click &ldquo;I don&rsquo;t have a VIN&rdquo; below to enter Year/Make/Model.
+          </p>
           <div className={styles.vinRow}>
             <input
               value={form.vin}

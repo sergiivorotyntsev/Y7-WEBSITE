@@ -100,6 +100,32 @@ export default function PhoneInput({
     onValidChange?.(valid);
   }
 
+  function handleKeyDown(e) {
+    if (e.key !== 'Backspace') return;
+    if (!rawDigits) return;
+
+    const target = e.target;
+    if (target.selectionStart !== target.selectionEnd) return;
+
+    const trimmed = rawDigits.slice(0, -1);
+    e.preventDefault();
+
+    if (!trimmed) {
+      onChange?.('');
+      onValidChange?.(false);
+      return;
+    }
+
+    const p = parsePhoneNumberFromString(trimmed, country);
+    const valid = p ? p.isValid() : false;
+    if (valid) {
+      onChange?.(p.format('E.164'));
+    } else {
+      onChange?.(trimmed);
+    }
+    onValidChange?.(valid);
+  }
+
   function handleCountryChange(e) {
     const newCountry = e.target.value;
     setCountry(newCountry);
@@ -172,6 +198,7 @@ export default function PhoneInput({
           autoComplete="tel"
           value={displayValue}
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
           onFocus={() => setFocused(true)}
           onBlur={() => { setFocused(false); setTouched(true); }}
           placeholder={placeholder || (country === 'US' ? '(555) 123-4567' : `${callingCode} ...`)}
