@@ -1,13 +1,15 @@
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import { colors, fonts, button as btnStyles } from '../theme';
 import { CheckIcon } from '../components/icons';
 
 export default function QuoteVerified() {
+  const { t } = useTranslation('quote');
   return (
     <>
       <Helmet>
-        <title>Email Verified — Y7 Logistics</title>
+        <title>{t('verification.verified.pageTitle')}</title>
         <meta name="robots" content="noindex" />
       </Helmet>
       <div style={{
@@ -41,7 +43,7 @@ export default function QuoteVerified() {
             color: colors.text,
             marginBottom: '12px',
           }}>
-            Email verified
+            {t('verification.verified.heading')}
           </h1>
           <p style={{
             fontFamily: fonts.sans,
@@ -50,8 +52,7 @@ export default function QuoteVerified() {
             lineHeight: 1.6,
             marginBottom: '32px',
           }}>
-            Thanks for confirming your email. Our dispatcher will respond
-            to your quote request within 1 business hour.
+            {t('verification.verified.body')}
           </p>
           <div style={{
             display: 'flex',
@@ -65,7 +66,7 @@ export default function QuoteVerified() {
               fontSize: '13px',
               textDecoration: 'none',
             }}>
-              Sign in to track
+              {t('verification.verified.ctaSignIn')}
             </Link>
             <Link to="/" style={{
               ...btnStyles.secondary,
@@ -73,7 +74,7 @@ export default function QuoteVerified() {
               fontSize: '13px',
               textDecoration: 'none',
             }}>
-              Back to home
+              {t('verification.verified.ctaHome')}
             </Link>
           </div>
         </div>

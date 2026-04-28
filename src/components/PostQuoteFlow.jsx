@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import { useAuth, portalFetch } from '../hooks/useAuth';
 import { colors, fonts, button as btnStyles } from '../theme';
 import { TelegramIcon, CheckIcon } from './icons';
@@ -206,7 +206,7 @@ export default function PostQuoteFlow({ quoteResult, formData }) {
               margin: 0,
               marginBottom: '6px',
             }}>
-              Check your inbox
+              {t('verification.banner.title')}
             </h4>
             <p style={{
               fontFamily: fonts.sans,
@@ -215,11 +215,12 @@ export default function PostQuoteFlow({ quoteResult, formData }) {
               lineHeight: 1.5,
               margin: '6px 0 12px 0',
             }}>
-              We sent a verification link to{' '}
-              <strong style={{ color: colors.text }}>
-                {quoteResult.email || email}
-              </strong>
-              . Click it to confirm your email and help us prioritize your quote response.
+              <Trans
+                i18nKey="verification.banner.body"
+                ns="quote"
+                values={{ email: quoteResult.email || email }}
+                components={{ strong: <strong style={{ color: colors.text }} /> }}
+              />
             </p>
             <a
               href={
@@ -244,7 +245,7 @@ export default function PostQuoteFlow({ quoteResult, formData }) {
                 gap: '4px',
               }}
             >
-              Open inbox →
+              {t('verification.banner.openInbox')}
             </a>
           </div>
         </div>

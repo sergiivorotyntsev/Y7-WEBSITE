@@ -99,6 +99,48 @@
     "reference": "Your reference number:",
     "track": "Track via Telegram"
   },
+  "verification": {
+    "banner": {
+      "title": "Check your inbox",
+      "body": "We sent a verification link to <strong>{{email}}</strong>. Click it to confirm your email and help us prioritize your quote response.",
+      "openInbox": "Open inbox →"
+    },
+    "verified": {
+      "pageTitle": "Email Verified — Y7 Logistics",
+      "heading": "Email verified",
+      "body": "Thanks for confirming your email. Our dispatcher will respond to your quote request within 1 business hour.",
+      "ctaSignIn": "Sign in to track",
+      "ctaHome": "Back to home"
+    },
+    "failed": {
+      "pageTitle": "Verification Failed — Y7 Logistics",
+      "ctaSignIn": "Sign in",
+      "ctaNewQuote": "Get a new quote",
+      "ctaContact": "Contact us",
+      "reasons": {
+        "invalid_token": {
+          "title": "Verification link invalid",
+          "body": "This verification link is not recognized. It may have been mistyped or already used. If you submitted a quote recently, please check for a fresh email or contact us."
+        },
+        "expired_token": {
+          "title": "Verification link expired",
+          "body": "Verification links are valid for 7 days. Please submit a new quote request and we will send a fresh verification link."
+        },
+        "already_verified": {
+          "title": "Already verified",
+          "body": "This email has already been verified. You can sign in to track your quote."
+        },
+        "order_not_found": {
+          "title": "Quote not found",
+          "body": "We could not find a quote associated with this verification link. If you submitted a quote recently, please contact us."
+        },
+        "default": {
+          "title": "Verification failed",
+          "body": "We could not verify your email at this time. Please try again or contact support."
+        }
+      }
+    }
+  },
   "errors": {
     "nameRequired": "Name is required",
     "emailRequired": "Valid email address is required",

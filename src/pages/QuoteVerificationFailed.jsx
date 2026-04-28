@@ -1,39 +1,24 @@
 import { Link, useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import { colors, fonts, button as btnStyles } from '../theme';
 
-const REASON_MESSAGES = {
-  invalid_token: {
-    title: 'Verification link invalid',
-    body: 'This verification link is not recognized. It may have been mistyped or already used. If you submitted a quote recently, please check for a fresh email or contact us.',
-  },
-  expired_token: {
-    title: 'Verification link expired',
-    body: 'Verification links are valid for 7 days. Please submit a new quote request and we will send a fresh verification link.',
-  },
-  already_verified: {
-    title: 'Already verified',
-    body: 'This email has already been verified. You can sign in to track your quote.',
-  },
-  order_not_found: {
-    title: 'Quote not found',
-    body: 'We could not find a quote associated with this verification link. If you submitted a quote recently, please contact us.',
-  },
-  default: {
-    title: 'Verification failed',
-    body: 'We could not verify your email at this time. Please try again or contact support.',
-  },
-};
+const VALID_REASONS = ['invalid_token', 'expired_token', 'already_verified', 'order_not_found', 'default'];
 
 export default function QuoteVerificationFailed() {
+  const { t } = useTranslation('quote');
   const [searchParams] = useSearchParams();
-  const reason = searchParams.get('reason') || 'default';
-  const message = REASON_MESSAGES[reason] || REASON_MESSAGES.default;
+  const rawReason = searchParams.get('reason') || 'default';
+  const reason = VALID_REASONS.includes(rawReason) ? rawReason : 'default';
+  const message = {
+    title: t(`verification.failed.reasons.${reason}.title`),
+    body: t(`verification.failed.reasons.${reason}.body`),
+  };
 
   return (
     <>
       <Helmet>
-        <title>Verification Failed — Y7 Logistics</title>
+        <title>{t('verification.failed.pageTitle')}</title>
         <meta name="robots" content="noindex" />
       </Helmet>
       <div style={{
@@ -92,7 +77,7 @@ export default function QuoteVerificationFailed() {
                 fontSize: '13px',
                 textDecoration: 'none',
               }}>
-                Sign in
+                {t('verification.failed.ctaSignIn')}
               </Link>
             ) : (
               <Link to="/ship-my-car" style={{
@@ -101,7 +86,7 @@ export default function QuoteVerificationFailed() {
                 fontSize: '13px',
                 textDecoration: 'none',
               }}>
-                Get a new quote
+                {t('verification.failed.ctaNewQuote')}
               </Link>
             )}
             <Link to="/contact" style={{
@@ -110,7 +95,7 @@ export default function QuoteVerificationFailed() {
               fontSize: '13px',
               textDecoration: 'none',
             }}>
-              Contact us
+              {t('verification.failed.ctaContact')}
             </Link>
           </div>
         </div>

@@ -99,6 +99,48 @@
     "reference": "Numer referencyjny:",
     "track": "Śledź przez Telegram"
   },
+  "verification": {
+    "banner": {
+      "title": "Sprawdź skrzynkę",
+      "body": "Wysłaliśmy link weryfikacyjny na <strong>{{email}}</strong>. Kliknij, aby zweryfikować swój adres email — pomoże nam to szybciej przygotować Twoją wycenę.",
+      "openInbox": "Otwórz pocztę →"
+    },
+    "verified": {
+      "pageTitle": "Email zweryfikowany — Y7 Logistics",
+      "heading": "Email zweryfikowany",
+      "body": "Dziękujemy za potwierdzenie adresu email. Nasz dyspozytor odpowie na Twoje zapytanie w ciągu 1 godziny roboczej.",
+      "ctaSignIn": "Zaloguj się",
+      "ctaHome": "Strona główna"
+    },
+    "failed": {
+      "pageTitle": "Weryfikacja nieudana — Y7 Logistics",
+      "ctaSignIn": "Zaloguj się",
+      "ctaNewQuote": "Uzyskaj nową wycenę",
+      "ctaContact": "Skontaktuj się z nami",
+      "reasons": {
+        "invalid_token": {
+          "title": "Nieprawidłowy link",
+          "body": "Ten link weryfikacyjny nie został rozpoznany. Mógł zostać wpisany błędnie lub już użyty. Jeśli niedawno wysłałeś zapytanie — sprawdź nowy email lub skontaktuj się z nami."
+        },
+        "expired_token": {
+          "title": "Link wygasł",
+          "body": "Linki weryfikacyjne są ważne przez 7 dni. Wyślij nowe zapytanie — prześlemy świeży link weryfikacyjny."
+        },
+        "already_verified": {
+          "title": "Już zweryfikowano",
+          "body": "Ten adres email został już zweryfikowany. Możesz się zalogować, aby śledzić swoje zapytanie."
+        },
+        "order_not_found": {
+          "title": "Nie znaleziono zapytania",
+          "body": "Nie znaleźliśmy zapytania powiązanego z tym linkiem. Jeśli niedawno wysłałeś zapytanie — skontaktuj się z nami."
+        },
+        "default": {
+          "title": "Weryfikacja nieudana",
+          "body": "Nie mogliśmy zweryfikować Twojego adresu email. Spróbuj ponownie lub skontaktuj się z pomocą techniczną."
+        }
+      }
+    }
+  },
   "errors": {
     "nameRequired": "Imię i nazwisko jest wymagane",
     "emailRequired": "Wymagany jest prawidłowy adres email",
