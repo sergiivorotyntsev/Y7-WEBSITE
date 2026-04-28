@@ -1,8 +1,8 @@
-/* Footer — 5-column layout, compliance visible, link hover states. */
+/* Footer — 5-column layout, dark theme, compliance visible. */
 
 .footer {
-  background: var(--bg-muted, #EFECE6);
-  border-top: 1px solid var(--border, #e5e0d8);
+  background: var(--text, #2C2C2A);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding: 48px 24px 32px;
 }
 
@@ -29,14 +29,14 @@
   font-family: var(--font-serif, Georgia, serif);
   font-size: 22px;
   font-weight: 700;
-  color: var(--text, #2C2C2A);
+  color: var(--bg, #F7F5F0);
   margin-bottom: 12px;
 }
 
 .tagline {
   font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #888780);
+  color: rgba(247, 245, 240, 0.6);
   line-height: 1.6;
   margin-bottom: 12px;
 }
@@ -44,7 +44,7 @@
 .addressLine {
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
-  color: var(--text-muted, #888780);
+  color: rgba(247, 245, 240, 0.5);
   line-height: 1.6;
   margin-bottom: 8px;
 }
@@ -52,7 +52,7 @@
 .legalIds {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 12px;
-  color: var(--text-muted, #888780);
+  color: rgba(247, 245, 240, 0.4);
   line-height: 1.8;
 }
 
@@ -65,7 +65,7 @@
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
   font-weight: 600;
-  color: var(--text, #2C2C2A);
+  color: rgba(247, 245, 240, 0.5);
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 16px;
@@ -75,7 +75,7 @@
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
   font-weight: 600;
-  color: var(--text-muted, #888780);
+  color: rgba(247, 245, 240, 0.4);
   text-transform: uppercase;
   letter-spacing: 0.8px;
   margin-top: 20px;
@@ -89,13 +89,13 @@
 }
 
 /* =====================================================================
-   LINK — muted, hover to accent with subtle slide
+   LINK — muted warm-white, hover to full warm-white
    ===================================================================== */
 
 .link {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #888780);
+  color: rgba(247, 245, 240, 0.7);
   text-decoration: none;
   transition: color var(--transition-fast, 150ms ease-out), transform var(--transition-fast, 150ms ease-out);
   outline: none;
@@ -107,14 +107,14 @@
 
 @media (hover: hover) {
   .link:hover {
-    color: var(--accent, #993C1D);
+    color: var(--bg, #F7F5F0);
     transform: translateX(2px);
   }
 }
 
 .link:focus-visible {
-  color: var(--accent, #993C1D);
-  box-shadow: 0 0 0 2px var(--bg-muted, #EFECE6), 0 0 0 4px var(--accent, #993C1D);
+  color: var(--bg, #F7F5F0);
+  box-shadow: 0 0 0 2px var(--text, #2C2C2A), 0 0 0 4px var(--bg, #F7F5F0);
 }
 
 /* =====================================================================
@@ -124,14 +124,14 @@
 .familyBlock {
   margin-top: 24px;
   padding-top: 16px;
-  border-top: 1px solid var(--border, #e5e0d8);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .familyHeading {
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
   font-weight: 600;
-  color: var(--text-muted, #888780);
+  color: rgba(247, 245, 240, 0.4);
   text-transform: uppercase;
   letter-spacing: 0.8px;
   margin-bottom: 10px;
@@ -155,20 +155,20 @@
 }
 
 .familyLink:focus-visible {
-  box-shadow: 0 0 0 2px var(--bg-muted, #EFECE6), 0 0 0 4px var(--accent, #993C1D);
+  box-shadow: 0 0 0 2px var(--text, #2C2C2A), 0 0 0 4px var(--bg, #F7F5F0);
 }
 
 .familyName {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
   font-weight: 600;
-  color: var(--accent, #993C1D);
+  color: rgba(247, 245, 240, 0.8);
 }
 
 .familyDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
-  color: var(--text-muted, #888780);
+  color: rgba(247, 245, 240, 0.5);
 }
 
 /* =====================================================================
@@ -190,7 +190,7 @@
   max-width: 1200px;
   margin: 40px auto 0;
   padding-top: 20px;
-  border-top: 1px solid var(--border, #e5e0d8);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -207,7 +207,7 @@
 .bottomLink {
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
-  color: var(--text-muted, #888780);
+  color: rgba(247, 245, 240, 0.5);
   text-decoration: none;
   transition: color var(--transition-fast, 150ms ease-out);
   outline: none;
@@ -216,13 +216,13 @@
 
 @media (hover: hover) {
   .bottomLink:hover {
-    color: var(--accent, #993C1D);
+    color: var(--bg, #F7F5F0);
   }
 }
 
 .bottomLink:focus-visible {
-  color: var(--accent, #993C1D);
-  box-shadow: 0 0 0 2px var(--bg-muted, #EFECE6), 0 0 0 4px var(--accent, #993C1D);
+  color: var(--bg, #F7F5F0);
+  box-shadow: 0 0 0 2px var(--text, #2C2C2A), 0 0 0 4px var(--bg, #F7F5F0);
 }
 
 .bottomRight {
@@ -235,7 +235,7 @@
 .copyright {
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
-  color: var(--text-hint, #999);
+  color: rgba(247, 245, 240, 0.3);
 }
 
 /* =====================================================================
@@ -249,7 +249,7 @@
 }
 
 .socialIcon {
-  color: var(--text-muted, #888780);
+  color: rgba(247, 245, 240, 0.5);
   transition: color var(--transition-fast, 150ms ease-out);
   display: inline-flex;
   align-items: center;
@@ -262,13 +262,28 @@
 
 @media (hover: hover) {
   .socialIcon:hover {
-    color: var(--accent, #993C1D);
+    color: var(--bg, #F7F5F0);
   }
 }
 
 .socialIcon:focus-visible {
-  color: var(--accent, #993C1D);
-  box-shadow: 0 0 0 2px var(--bg-muted, #EFECE6), 0 0 0 4px var(--accent, #993C1D);
+  color: var(--bg, #F7F5F0);
+  box-shadow: 0 0 0 2px var(--text, #2C2C2A), 0 0 0 4px var(--bg, #F7F5F0);
+}
+
+/* =====================================================================
+   LANGUAGE SWITCHER — dark-theme overrides via scoped CSS vars
+   ===================================================================== */
+
+.langSwitcherWrap {
+  --bg: var(--text, #2C2C2A);
+  --bg-card: rgba(255, 255, 255, 0.1);
+  --bg-muted: rgba(255, 255, 255, 0.06);
+  --text: var(--bg, #F7F5F0);
+  --text-muted: rgba(247, 245, 240, 0.6);
+  --accent: var(--bg, #F7F5F0);
+  --accent-hover: rgba(247, 245, 240, 0.8);
+  --border: rgba(255, 255, 255, 0.12);
 }
 
 @media (max-width: 768px) {

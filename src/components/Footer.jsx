@@ -157,7 +157,9 @@ export default function Footer() {
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M21.35 11.1h-9.18v2.93h5.27c-.5 2.4-2.55 3.7-5.27 3.7-3.18 0-5.77-2.59-5.77-5.77s2.59-5.77 5.77-5.77c1.36 0 2.6.48 3.57 1.27l2.2-2.2C16.46 3.7 14.4 3 12.17 3c-5 0-9 4-9 9s4 9 9 9c4.5 0 8.5-3.3 8.5-9 0-.5-.05-1-.13-1.4z"/></svg>
             </a>
           </div>
-          <LanguageSwitcher />
+          <div className={styles.langSwitcherWrap}>
+            <LanguageSwitcher />
+          </div>
           <div className={styles.copyright}>&copy; {t('footer.copyright')}</div>
         </div>
       </div>
