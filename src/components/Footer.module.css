@@ -1,4 +1,4 @@
-/* Footer — columns, link hover states, focus-visible. */
+/* Footer — 5-column layout, compliance visible, link hover states. */
 
 .footer {
   background: var(--bg-muted, #EFECE6);
@@ -10,8 +10,19 @@
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
   gap: 40px;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.brandCol {
+  min-width: 0;
 }
 
 .brandTitle {
@@ -22,16 +33,20 @@
   margin-bottom: 12px;
 }
 
-.brandDot {
-  color: var(--accent, #993C1D);
-}
-
 .tagline {
   font-family: var(--font-sans, system-ui);
   font-size: 14px;
   color: var(--text-muted, #888780);
   line-height: 1.6;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
+}
+
+.addressLine {
+  font-family: var(--font-sans, system-ui);
+  font-size: 12px;
+  color: var(--text-muted, #888780);
+  line-height: 1.6;
+  margin-bottom: 8px;
 }
 
 .legalIds {
@@ -39,6 +54,11 @@
   font-size: 12px;
   color: var(--text-muted, #888780);
   line-height: 1.8;
+}
+
+.bondLine {
+  margin-top: 4px;
+  font-weight: 600;
 }
 
 .colHeading {
@@ -49,6 +69,17 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 16px;
+}
+
+.subHeading {
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted, #888780);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-top: 20px;
+  margin-bottom: 12px;
 }
 
 .colLinks {
@@ -86,10 +117,69 @@
   box-shadow: 0 0 0 2px var(--bg-muted, #EFECE6), 0 0 0 4px var(--accent, #993C1D);
 }
 
-.linkStatic {
+/* =====================================================================
+   FAMILY OF COMPANIES
+   ===================================================================== */
+
+.familyBlock {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border, #e5e0d8);
+}
+
+.familyHeading {
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted, #888780);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 10px;
+}
+
+.familyLink {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-decoration: none;
+  transition: opacity var(--transition-fast, 150ms ease-out);
+  outline: none;
+  border-radius: 4px;
+  padding: 2px 0;
+}
+
+@media (hover: hover) {
+  .familyLink:hover {
+    opacity: 0.8;
+  }
+}
+
+.familyLink:focus-visible {
+  box-shadow: 0 0 0 2px var(--bg-muted, #EFECE6), 0 0 0 4px var(--accent, #993C1D);
+}
+
+.familyName {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
+  font-weight: 600;
+  color: var(--accent, #993C1D);
+}
+
+.familyDesc {
+  font-family: var(--font-sans, system-ui);
+  font-size: 12px;
   color: var(--text-muted, #888780);
+}
+
+/* =====================================================================
+   CONTACT BLOCK (inside Company column)
+   ===================================================================== */
+
+.contactBlock {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 /* =====================================================================
@@ -101,38 +191,52 @@
   margin: 40px auto 0;
   padding-top: 20px;
   border-top: 1px solid var(--border, #e5e0d8);
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.bottomLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.bottomLink {
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
-  color: var(--text-hint, #999);
-}
-
-.intlLine {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 12px 24px;
-  text-align: center;
-  font-family: var(--font-sans, system-ui);
-  font-size: 13px;
   color: var(--text-muted, #888780);
-}
-
-.intlLink {
-  color: var(--accent, #993C1D);
   text-decoration: none;
-  font-weight: 600;
   transition: color var(--transition-fast, 150ms ease-out);
   outline: none;
   border-radius: 2px;
 }
 
 @media (hover: hover) {
-  .intlLink:hover {
-    color: var(--accent-hover, #7A3017);
-    text-decoration: underline;
+  .bottomLink:hover {
+    color: var(--accent, #993C1D);
   }
 }
 
-.intlLink:focus-visible {
+.bottomLink:focus-visible {
+  color: var(--accent, #993C1D);
   box-shadow: 0 0 0 2px var(--bg-muted, #EFECE6), 0 0 0 4px var(--accent, #993C1D);
+}
+
+.copyright {
+  font-family: var(--font-sans, system-ui);
+  font-size: 12px;
+  color: var(--text-hint, #999);
+}
+
+@media (max-width: 768px) {
+  .bottomBar {
+    flex-direction: column;
+    text-align: center;
+  }
+  .bottomLinks {
+    justify-content: center;
+  }
 }
