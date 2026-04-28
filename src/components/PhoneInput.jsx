@@ -199,16 +199,6 @@ export default function PhoneInput({
           {errorMsg}
         </div>
       )}
-      {!showError && isValid && rawDigits.length > 0 && (
-        <div style={{
-          color: '#0F6E56',
-          fontSize: '16px',
-          marginTop: '4px',
-          fontFamily: 'inherit',
-        }}>
-          {countryEntry.flag} {callingCode} {parsed.formatNational()}
-        </div>
-      )}
     </div>
   );
 }

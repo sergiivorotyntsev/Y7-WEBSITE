@@ -28,6 +28,7 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
 
   const { decode, loading: vinLoading, error: vinError, result: vinResult } = useVinDecode();
   const step2Ref = useRef(null);
+  const errorRef = useRef(null);
   const [step2Height, setStep2Height] = useState(0);
 
   // Pre-fill from URL params (e.g. resubmit after decline: ?vin=...&pickup_zip=...)
@@ -188,7 +189,7 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
         'Please provide either a 17-character VIN, or fill in Year + Make + Model. ' +
         'We cannot quote without knowing which vehicle to transport.'
       );
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => errorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 0);
       return;
     }
 
@@ -567,7 +568,7 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
               )}
             </div>
             <div className={styles.field}>
-              <label className={styles.label}>{t('form.email')}</label>
+              <label className={styles.label}>{t('form.email')} <span style={{ color: '#DC2626' }}>*</span></label>
               <input
                 value={form.email}
                 onChange={e => {
@@ -642,7 +643,7 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
 
       {/* ── STEP 3: Error + Submit ── */}
 
-      {error && <div className={styles.errorAlert}>{error}</div>}
+      {error && <div ref={errorRef} className={styles.errorAlert} role="alert">{error}</div>}
 
       <button
         type="submit"
