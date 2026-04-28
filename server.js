@@ -144,6 +144,29 @@ try {
 
 function isKnownPath(reqPath) {
   const p = reqPath.replace(/\/$/, '') || '/';
+
+  // PORTAL-LAZY-FIX: SPA-only routes (auth-gated or parameterized).
+  // These are valid React Router paths that are intentionally excluded
+  // from prerendering because they require runtime auth state or
+  // dynamic params that cannot be resolved at build time. Without this
+  // whitelist, OVERNIGHT-T01 strict 404 handler returns 404 on direct
+  // URL access (bookmarks, email links, copy-paste, social shares),
+  // breaking deep-linking for authenticated users.
+  //
+  // Strip optional lang prefix (pl/ua/ru) before namespace check so
+  // localized variants like /pl/agreement/:id are also recognized.
+  const normalized = p.replace(/^\/(pl|ua|ru)/, '') || '/';
+  const SPA_NAMESPACES = ['/portal', '/agreement', '/promo', '/review'];
+  if (SPA_NAMESPACES.some(prefix =>
+      normalized === prefix || normalized.startsWith(prefix + '/'))) {
+    return true;
+  }
+
+  // /:lang/quote/:action/:orderId — parameterized localized quote action.
+  // Only matches the action+orderId form, NOT bare /:lang/quote
+  // (the latter is in PUBLIC_ROUTES and prerendered).
+  if (/^\/(pl|ua|ru)\/quote\/[^/]+\/[^/]+$/.test(p)) return true;
+
   if (VALID_ROUTES.has(p) || VALID_ROUTES.has(p + '/')) return true;
   // Filesystem check for any prerendered directory (covers edge cases).
   if (existsSync(path.join(DIST_DIR, p, 'index.html'))) return true;
