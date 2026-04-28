@@ -135,7 +135,7 @@ export default function Login() {
       });
       const data = await res.json();
       if (res.ok && data.ok) {
-        login(data.session_token, { id: data.customer.id, name: data.customer.name });
+        login(data.session_token, data.customer);
         try {
           const profileRes = await portalFetch('/api/portal/data/profile');
           const profile = await profileRes.json();

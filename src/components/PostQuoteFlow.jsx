@@ -16,6 +16,11 @@ export default function PostQuoteFlow({ quoteResult, formData }) {
   // eslint-disable-next-line no-unused-vars
   const [codeSent, setCodeSent] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  // T13C: state machine fields for register-verify-email/code two-step flow.
+  // pendingId: returned by /register-verify-email, passed back to /register-verify-code.
+  // pendingFlow: 'register' = new account creation, 'login_otp' = existing customer fallback.
+  const [pendingId, setPendingId] = useState(null);
+  const [pendingFlow, setPendingFlow] = useState(null); // 'register' | 'login_otp' | null
   const codeRefs = useRef([]);
 
   const name = formData?.name || '';
@@ -23,13 +28,15 @@ export default function PostQuoteFlow({ quoteResult, formData }) {
   const phone = formData?.phone || '';
   const reference = quoteResult?.load_id || quoteResult?.reference || '';
 
-  // Auto-register + send code
+  // T13C: Two-step register-verify flow.
+  // Step 1: POST /register-verify-email validates email + sends OTP.
+  // Step 2 (later, in verifyCode): POST /register-verify-code creates customer + session.
+  // 409 fallback: existing email → POST /request-code (login OTP), reuse 'code' step.
   async function startRegistration() {
     setCodeLoading(true);
     setCodeError(null);
     try {
-      // Try to register (may already exist)
-      const regRes = await portalFetch('/api/portal/auth/web-register', {
+      const regRes = await portalFetch('/api/portal/auth/register-verify-email', {
         method: 'POST',
         body: JSON.stringify({
           contact_name: name,
@@ -38,25 +45,37 @@ export default function PostQuoteFlow({ quoteResult, formData }) {
           company_name: '',
         }),
       });
-      if (regRes.ok) {
-        const data = await regRes.json();
-        login(data.session_token, { id: data.customer.id, name: data.customer.name });
-        setStep('done');
-        setCodeLoading(false);
+      const data = await regRes.json().catch(() => ({}));
+
+      if (regRes.ok && data.ok) {
+        // New email — OTP sent, advance to code step in 'register' flow.
+        setPendingId(data.pending_id);
+        setPendingFlow('register');
+        setCodeSent(true);
+        setStep('code');
         return;
       }
-      // If 409 (already exists), send login code instead
-      if (regRes.status === 409) {
+
+      // 409 — email already registered. Fall back to login OTP flow.
+      if (regRes.status === 409 && data.error === 'email_already_registered') {
         await portalFetch('/api/portal/auth/request-code', {
           method: 'POST',
           body: JSON.stringify({ email }),
         });
+        setPendingFlow('login_otp');
         setCodeSent(true);
         setStep('code');
-      } else {
-        const err = await regRes.json().catch(() => ({}));
-        setCodeError(err.detail || 'Registration failed');
+        return;
       }
+
+      // 409 — phone collision (different account).
+      if (regRes.status === 409 && data.error === 'phone_already_registered') {
+        setCodeError(data.message || 'Phone number is already in use by another account.');
+        return;
+      }
+
+      // Other errors (validation failures, rate limits, server errors).
+      setCodeError(data.detail || data.message || 'Registration failed');
     } catch (err) {
       setCodeError(err.message || 'Network error');
     } finally {
@@ -89,20 +108,41 @@ export default function PostQuoteFlow({ quoteResult, formData }) {
     }
   }
 
+  // T13C: Branched verification — 'register' uses /register-verify-code (with pending_id),
+  // 'login_otp' uses /verify-code (existing customer login pattern).
   async function verifyCode(fullCode) {
     setCodeLoading(true);
     setCodeError(null);
     try {
-      const res = await portalFetch('/api/portal/auth/verify-code', {
-        method: 'POST',
-        body: JSON.stringify({ code: fullCode }),
-      });
+      let res;
+      if (pendingFlow === 'register') {
+        res = await portalFetch('/api/portal/auth/register-verify-code', {
+          method: 'POST',
+          body: JSON.stringify({
+            pending_id: pendingId,
+            otp_code: fullCode,
+          }),
+        });
+      } else {
+        // pendingFlow === 'login_otp' — existing customer flow.
+        res = await portalFetch('/api/portal/auth/verify-code', {
+          method: 'POST',
+          body: JSON.stringify({ code: fullCode }),
+        });
+      }
+
       const data = await res.json();
-      if (res.ok && data.status === 'ok') {
-        login(data.session_token, { id: data.customer_id, name: data.customer_name });
+
+      if (res.ok && (data.status === 'ok' || data.ok)) {
+        // T13C: Bug 3 fix — pass full data to login() (not minimal {id, name}).
+        login(data.session_token, data);
         setStep('done');
       } else {
-        setCodeError(data.detail || 'Invalid code');
+        let errorMsg = data.detail || data.message || 'Invalid code';
+        if (data.attempts_remaining !== undefined) {
+          errorMsg += ` (${data.attempts_remaining} attempts remaining)`;
+        }
+        setCodeError(errorMsg);
         setCode(['', '', '', '', '', '']);
         codeRefs.current[0]?.focus();
       }
