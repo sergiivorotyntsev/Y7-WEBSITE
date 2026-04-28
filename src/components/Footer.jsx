@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { trackEvent } from '../utils/trackEvent';
 import TrustBadges from './TrustBadges';
 import AnimatedLogo from './AnimatedLogo';
+import LanguageSwitcher from './LanguageSwitcher';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -135,7 +136,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom bar */}
+      {/* Social + Bottom bar */}
       <div className={styles.bottomBar}>
         <div className={styles.bottomLinks}>
           <Link to="/privacy" className={styles.bottomLink}>{t('footer.privacy')}</Link>
@@ -143,7 +144,22 @@ export default function Footer() {
           <Link to="/accessibility" className={styles.bottomLink}>{t('footer.accessibility')}</Link>
           <Link to="/privacy#sms" className={styles.bottomLink}>{t('footer.smsTerms')}</Link>
         </div>
-        <div className={styles.copyright}>&copy; {t('footer.copyright')}</div>
+        <div className={styles.bottomRight}>
+          {/* TODO: replace href="#" with real URLs when Y7 social profiles are live */}
+          <div className={styles.socialLinks} aria-label={t('footer.socialHeading')}>
+            <a href="#" aria-label={t('footer.socialFacebook')} rel="noopener noreferrer" className={styles.socialIcon}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>
+            </a>
+            <a href="#" aria-label={t('footer.socialInstagram')} rel="noopener noreferrer" className={styles.socialIcon}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.15-3.22 1.66-4.77 4.92-4.92 1.27-.05 1.65-.07 4.85-.07zm0 5.84c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6.59c-1.43 0-2.59-1.16-2.59-2.59s1.16-2.59 2.59-2.59 2.59 1.16 2.59 2.59-1.16 2.59-2.59 2.59z"/></svg>
+            </a>
+            <a href="#" aria-label={t('footer.socialGoogleBusiness')} rel="noopener noreferrer" className={styles.socialIcon}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M21.35 11.1h-9.18v2.93h5.27c-.5 2.4-2.55 3.7-5.27 3.7-3.18 0-5.77-2.59-5.77-5.77s2.59-5.77 5.77-5.77c1.36 0 2.6.48 3.57 1.27l2.2-2.2C16.46 3.7 14.4 3 12.17 3c-5 0-9 4-9 9s4 9 9 9c4.5 0 8.5-3.3 8.5-9 0-.5-.05-1-.13-1.4z"/></svg>
+            </a>
+          </div>
+          <LanguageSwitcher />
+          <div className={styles.copyright}>&copy; {t('footer.copyright')}</div>
+        </div>
       </div>
     </footer>
   );
