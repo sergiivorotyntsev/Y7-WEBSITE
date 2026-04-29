@@ -1,4 +1,23 @@
 {
+  "login": {
+    "heading": "Увійти в кабінет",
+    "emailLabel": "Електронна пошта",
+    "emailPlaceholder": "you@company.com",
+    "submitButton": "Надіслати код",
+    "submitting": "Надсилання...",
+    "codeHeading": "Введіть код підтвердження",
+    "codeSent": "Ми надіслали 6-значний код на <strong>{{email}}</strong>.",
+    "codeLabel": "Код підтвердження",
+    "verifyButton": "Підтвердити",
+    "verifying": "Перевірка...",
+    "differentEmail": "Інший email",
+    "newToY7": "Вперше в Y7?",
+    "getQuote": "Отримати розрахунок",
+    "registerHeading": "Створіть акаунт",
+    "registerSub": "Акаунт для {{email}} не знайдено. Заповніть дані нижче.",
+    "registerButton": "Створити акаунт",
+    "registering": "Створення..."
+  },
   "onboarding": {
     "title": "Завершіть налаштування акаунту",
     "subtitle": "Короткий майстер. Тип акаунту та підписана угода зберігаються одночасно.",

@@ -1,4 +1,23 @@
 {
+  "login": {
+    "heading": "Zaloguj się do portalu",
+    "emailLabel": "Adres email",
+    "emailPlaceholder": "you@company.com",
+    "submitButton": "Wyślij kod",
+    "submitting": "Wysyłanie...",
+    "codeHeading": "Wprowadź kod weryfikacyjny",
+    "codeSent": "Wysłaliśmy 6-cyfrowy kod na <strong>{{email}}</strong>.",
+    "codeLabel": "Kod weryfikacyjny",
+    "verifyButton": "Zweryfikuj",
+    "verifying": "Weryfikacja...",
+    "differentEmail": "Inny email",
+    "newToY7": "Pierwszy raz w Y7?",
+    "getQuote": "Otrzymaj wycenę",
+    "registerHeading": "Utwórz konto",
+    "registerSub": "Nie znaleziono konta dla {{email}}. Wypełnij dane poniżej.",
+    "registerButton": "Utwórz konto",
+    "registering": "Tworzenie..."
+  },
   "onboarding": {
     "title": "Dokończ konfigurację konta",
     "subtitle": "Krótki kreator. Klasyfikacja i podpisana umowa zapisywane są jednocześnie.",

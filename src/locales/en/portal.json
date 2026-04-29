@@ -1,4 +1,23 @@
 {
+  "login": {
+    "heading": "Sign in to your portal",
+    "emailLabel": "Email address",
+    "emailPlaceholder": "you@company.com",
+    "submitButton": "Send code",
+    "submitting": "Sending...",
+    "codeHeading": "Enter verification code",
+    "codeSent": "We sent a 6-digit code to <strong>{{email}}</strong>.",
+    "codeLabel": "Verification code",
+    "verifyButton": "Verify",
+    "verifying": "Verifying...",
+    "differentEmail": "Use a different email",
+    "newToY7": "New to Y7?",
+    "getQuote": "Get a quote",
+    "registerHeading": "Create your account",
+    "registerSub": "No account found for {{email}}. Fill in your details below.",
+    "registerButton": "Create account",
+    "registering": "Creating..."
+  },
   "onboarding": {
     "title": "Complete your account setup",
     "subtitle": "One short wizard. Your classification and signed agreement are saved together in a single step.",

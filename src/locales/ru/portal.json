@@ -1,4 +1,23 @@
 {
+  "login": {
+    "heading": "Войти в личный кабинет",
+    "emailLabel": "Электронная почта",
+    "emailPlaceholder": "you@company.com",
+    "submitButton": "Отправить код",
+    "submitting": "Отправка...",
+    "codeHeading": "Введите код подтверждения",
+    "codeSent": "Мы отправили 6-значный код на <strong>{{email}}</strong>.",
+    "codeLabel": "Код подтверждения",
+    "verifyButton": "Подтвердить",
+    "verifying": "Проверка...",
+    "differentEmail": "Другой email",
+    "newToY7": "Впервые в Y7?",
+    "getQuote": "Получить расчёт",
+    "registerHeading": "Создайте аккаунт",
+    "registerSub": "Аккаунт для {{email}} не найден. Заполните данные ниже.",
+    "registerButton": "Создать аккаунт",
+    "registering": "Создание..."
+  },
   "onboarding": {
     "title": "Завершите настройку аккаунта",
     "subtitle": "Короткий мастер. Тип аккаунта и подписанный договор сохраняются за один шаг.",
