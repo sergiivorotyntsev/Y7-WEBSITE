@@ -1,6 +1,9 @@
 /* Exporters — hero, value callout, fee table, process, port cards, request form. */
 
 .wrap {
+  --bg-warm-accent: #FFF8F5;
+  --bg-error-soft: #FFF0EC;
+  --text-on-accent: #fff;
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 0 80px;
@@ -145,7 +148,7 @@
    ===================================================================== */
 
 .valueCallout {
-  background: #FFF8F5;
+  background: var(--bg-warm-accent, #FFF8F5);
   border-left: 4px solid var(--accent, #993C1D);
   border-radius: 0 var(--radius-lg, 12px) var(--radius-lg, 12px) 0;
   padding: 24px 28px;
@@ -204,7 +207,7 @@
 
 @media (hover: hover) {
   .feeRow:hover {
-    background-color: #FFF8F5;
+    background-color: var(--bg-warm-accent, #FFF8F5);
   }
 }
 
@@ -234,7 +237,7 @@
   font-size: 12px;
   font-weight: 600;
   color: var(--accent, #993C1D);
-  background: #FFF8F5;
+  background: var(--bg-warm-accent, #FFF8F5);
   padding: 4px 12px;
   border-radius: var(--radius-pill, 20px);
   white-space: nowrap;
@@ -277,7 +280,7 @@
   height: 40px;
   border-radius: 50%;
   background: var(--accent, #993C1D);
-  color: #fff;
+  color: var(--text-on-accent, #fff);
   font-family: var(--font-serif, Georgia, serif);
   font-size: 18px;
   font-weight: 700;
@@ -466,7 +469,7 @@
   font-size: 13px;
   color: var(--accent, #993C1D);
   padding: 10px 14px;
-  background: #FFF0EC;
+  background: var(--bg-error-soft, #FFF0EC);
   border-radius: var(--radius-md, 8px);
   border-left: 3px solid var(--accent, #993C1D);
 }
@@ -507,7 +510,7 @@
 .docsCheck {
   display: inline-flex; align-items: center; justify-content: center;
   width: 26px; height: 26px; border-radius: 50%;
-  background: var(--accent, #993C1D); color: #fff;
+  background: var(--accent, #993C1D); color: var(--text-on-accent, #fff);
   font-weight: 700; font-size: 14px;
 }
 .docsTitle { display: block; font-family: var(--font-serif, Georgia, serif); font-size: 1rem; color: var(--text, #2C2C2A); margin-bottom: 4px; }
