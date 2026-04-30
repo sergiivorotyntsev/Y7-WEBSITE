@@ -100,7 +100,15 @@
     "notes": "Додаткові примітки",
     "notesPlaceholder": "Типи автомобілів, регіони забору, особливі вимоги...",
     "submit": "Запитати тарифи",
-    "submitting": "Надсилання..."
+    "submitting": "Надсилання...",
+    "portsPlaceholder": "Newark, Houston...",
+    "volumeSelect": "Виберіть...",
+    "errors": {
+      "contactNameRequired": "Потрібна контактна особа",
+      "emailRequired": "Потрібна електронна пошта",
+      "invalidPhone": "Введіть коректний номер телефону або залиште поле пустим.",
+      "submitFailed": "Щось пішло не так"
+    }
   },
   "formSuccess": {
     "title": "Запит отримано!",
@@ -116,7 +124,10 @@
     "title": "Більше для експортерів",
     "deepDive": "Гайд door-to-port",
     "auction": "З аукціону в порт",
-    "dealers": "Для дилерів"
+    "dealers": "Для дилерів",
+    "viewPortDetails": "Дивитись деталі порту →",
+    "copartShipping": "Транспорт з Copart →",
+    "copartExport": "Експорт з Copart →"
   },
   "exportDocs": {
     "kicker": "ЕКСПОРТНІ ДОКУМЕНТИ",

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import MoneyPageSchema from '../components/MoneyPageSchema';
+import FaqPageSchema from '../components/FaqPageSchema';
 import ContextualCTA from '../components/ContextualCTA';
 import { CheckIcon } from '../components/icons';
 import { apiPost } from '../hooks/useApi';
@@ -42,10 +43,10 @@ export default function Exporters() {
   async function handleSubmit(e) {
     e.preventDefault();
     setError(null);
-    if (!form.contact_name.trim()) { setError('Contact name is required'); return; }
-    if (!form.email.trim()) { setError('Email is required'); return; }
+    if (!form.contact_name.trim()) { setError(t('form.errors.contactNameRequired')); return; }
+    if (!form.email.trim()) { setError(t('form.errors.emailRequired')); return; }
     if (form.phone && !isValidPhone(form.phone)) {
-      setError('Please enter a valid 10-digit phone number, or leave it blank.');
+      setError(t('form.errors.invalidPhone'));
       return;
     }
 
@@ -66,7 +67,7 @@ export default function Exporters() {
       });
       setSuccess(true);
     } catch (err) {
-      setError(err.message || 'Something went wrong');
+      setError(err.message || t('form.errors.submitFailed'));
     } finally {
       setSubmitting(false);
     }
@@ -85,6 +86,7 @@ export default function Exporters() {
     <div className={styles.wrap}>
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Exporters',url:'/exporters'}]} />
       <MoneyPageSchema pageType="exporters" />
+      <FaqPageSchema pageUrl="https://www.y7agency.com/exporters" items={faqItems} />
       <PageMeta title={tCommon('meta.exportersTitle')} description={tCommon('meta.exportersDescription')} path="/exporters" />
 
       {/* Hero */}
@@ -155,7 +157,7 @@ export default function Exporters() {
               <div className={styles.portCard}>
                 <div className={styles.portName}>{port.name}</div>
                 <div className={styles.portDesc}>{port.desc}</div>
-                {portSlug && <div className={styles.portCta}>View port details &rarr;</div>}
+                {portSlug && <div className={styles.portCta}>{t('crosslinks.viewPortDetails')}</div>}
               </div>
             );
             return portSlug ? (
@@ -207,7 +209,7 @@ export default function Exporters() {
                 <div className={forms.inputGroup}>
                   <label className={forms.label}>{t('form.monthlyVolume')}</label>
                   <select className={forms.select} value={form.monthly_volume} onChange={e => set('monthly_volume', e.target.value)}>
-                    <option value="">Select...</option>
+                    <option value="">{t('form.volumeSelect')}</option>
                     {Array.isArray(volumes) && volumes.map(v => (
                       <option key={v} value={v}>{v}</option>
                     ))}
@@ -219,7 +221,7 @@ export default function Exporters() {
                     className={forms.input}
                     value={form.preferred_ports}
                     onChange={e => set('preferred_ports', e.target.value)}
-                    placeholder="Newark, Houston..."
+                    placeholder={t('form.portsPlaceholder')}
                   />
                 </div>
               </div>
@@ -327,8 +329,8 @@ export default function Exporters() {
         <div className={styles.crosslinksRow}>
           <Link to="/door-to-port-auto-transport" className={styles.crosslink}>{t('crosslinks.deepDive')} &rarr;</Link>
           <Link to="/auction-to-port-transport" className={styles.crosslink}>{t('crosslinks.auction')} &rarr;</Link>
-          <Link to="/copart-shipping" className={styles.crosslink}>Copart shipping &rarr;</Link>
-          <Link to="/copart-international-shipping" className={styles.crosslink}>Copart export &rarr;</Link>
+          <Link to="/copart-shipping" className={styles.crosslink}>{t('crosslinks.copartShipping')}</Link>
+          <Link to="/copart-international-shipping" className={styles.crosslink}>{t('crosslinks.copartExport')}</Link>
           <Link to="/dealers" className={styles.crosslink}>{t('crosslinks.dealers')} &rarr;</Link>
         </div>
       </div>

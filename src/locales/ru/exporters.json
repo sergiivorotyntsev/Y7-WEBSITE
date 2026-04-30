@@ -100,7 +100,15 @@
     "notes": "Дополнительные примечания",
     "notesPlaceholder": "Типы автомобилей, регионы забора, особые требования...",
     "submit": "Запросить тарифы",
-    "submitting": "Отправка..."
+    "submitting": "Отправка...",
+    "portsPlaceholder": "Newark, Houston...",
+    "volumeSelect": "Выберите...",
+    "errors": {
+      "contactNameRequired": "Требуется контактное лицо",
+      "emailRequired": "Требуется email",
+      "invalidPhone": "Введите корректный номер телефона или оставьте поле пустым.",
+      "submitFailed": "Что-то пошло не так"
+    }
   },
   "formSuccess": {
     "title": "Запрос получен!",
@@ -116,7 +124,10 @@
     "title": "Больше для экспортеров",
     "deepDive": "Гайд door-to-port",
     "auction": "С аукциона в порт",
-    "dealers": "Для дилеров"
+    "dealers": "Для дилеров",
+    "viewPortDetails": "Подробнее о порте →",
+    "copartShipping": "Транспорт с Copart →",
+    "copartExport": "Экспорт с Copart →"
   },
   "exportDocs": {
     "kicker": "ЭКСПОРТНЫЕ ДОКУМЕНТЫ",

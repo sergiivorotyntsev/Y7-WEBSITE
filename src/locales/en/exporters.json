@@ -100,7 +100,15 @@
     "notes": "Additional Notes",
     "notesPlaceholder": "Vehicle types, pickup regions, special requirements...",
     "submit": "Request Service Rates",
-    "submitting": "Submitting..."
+    "submitting": "Submitting...",
+    "portsPlaceholder": "Newark, Houston...",
+    "volumeSelect": "Select...",
+    "errors": {
+      "contactNameRequired": "Contact name is required",
+      "emailRequired": "Email is required",
+      "invalidPhone": "Please enter a valid 10-digit phone number, or leave it blank.",
+      "submitFailed": "Something went wrong"
+    }
   },
   "formSuccess": {
     "title": "Request Received!",
@@ -116,7 +124,10 @@
     "title": "More for exporters",
     "deepDive": "Door-to-port guide",
     "auction": "Auction to port transport",
-    "dealers": "For dealers"
+    "dealers": "For dealers",
+    "viewPortDetails": "View port details →",
+    "copartShipping": "Copart shipping →",
+    "copartExport": "Copart export →"
   },
   "exportDocs": {
     "kicker": "EXPORT DOCUMENTS",

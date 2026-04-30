@@ -100,7 +100,15 @@
     "notes": "Dodatkowe uwagi",
     "notesPlaceholder": "Typy pojazdów, regiony odbioru, specjalne wymagania...",
     "submit": "Zapytaj o stawki",
-    "submitting": "Wysyłanie..."
+    "submitting": "Wysyłanie...",
+    "portsPlaceholder": "Newark, Houston...",
+    "volumeSelect": "Wybierz...",
+    "errors": {
+      "contactNameRequired": "Wymagana jest osoba kontaktowa",
+      "emailRequired": "Wymagany jest email",
+      "invalidPhone": "Wprowadź poprawny numer telefonu lub pozostaw to pole puste.",
+      "submitFailed": "Coś poszło nie tak"
+    }
   },
   "formSuccess": {
     "title": "Zapytanie otrzymane!",
@@ -116,7 +124,10 @@
     "title": "Więcej dla eksporterów",
     "deepDive": "Przewodnik door-to-port",
     "auction": "Z aukcji do portu",
-    "dealers": "Dla dilerów"
+    "dealers": "Dla dilerów",
+    "viewPortDetails": "Zobacz szczegóły portu →",
+    "copartShipping": "Transport z Copart →",
+    "copartExport": "Eksport z Copart →"
   },
   "exportDocs": {
     "kicker": "DOKUMENTY EKSPORTOWE",
