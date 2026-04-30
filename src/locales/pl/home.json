@@ -1,4 +1,4 @@
-{
+﻿{
   "hero": {
     "title": "Transport samochodów na terenie całych USA",
     "tagline": "My przewozimy samochody.",
@@ -117,7 +117,8 @@
     "whoWeServe": "Nasze usługi",
     "coverage": "Zasięg",
     "testimonials": "Opinie",
-    "requestQuote": "Zapytaj o wycenę"
+    "requestQuote": "Zapytaj o wycenę",
+    "whoWeServeHeading": "Transport dla każdego kupującego"
   },
   "quoteSection": {
     "title": "Otrzymaj darmową wycenę",

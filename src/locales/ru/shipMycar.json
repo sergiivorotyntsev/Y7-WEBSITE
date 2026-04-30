@@ -52,7 +52,8 @@
     "coverageKicker": "Покрытие",
     "insuranceTitle": "Страхование во время перевозки",
     "atDeliveryKicker": "При доставке",
-    "faqKicker": "Частые вопросы"
+    "faqKicker": "Частые вопросы",
+    "stepsHeading": "Как это работает"
   },
   "quoteTitle": "Получите бесплатный расчёт",
   "quoteSubtitle": "Без обязательств. Отвечаем в течение часа.",

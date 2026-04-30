@@ -1,4 +1,4 @@
-{
+﻿{
   "title": "Transport auta między stanami USA — od drzwi do drzwi",
   "subtitle": "Przeprowadzka do innego stanu? Kupiłeś auto w innym stanie lub na aukcji? Znajdujemy sprawdzonych przewoźników z licencją FMCSA, którzy bezpiecznie i terminowo dostarczą Twój pojazd z aktualizacjami statusu na każdym etapie.",
   "steps": [
@@ -52,7 +52,8 @@
     "coverageKicker": "Pokrycie",
     "insuranceTitle": "Ubezpieczenie podczas transportu",
     "atDeliveryKicker": "Przy dostawie",
-    "faqKicker": "Często zadawane"
+    "faqKicker": "Często zadawane",
+    "stepsHeading": "Jak to działa"
   },
   "quoteTitle": "Otrzymaj darmową wycenę",
   "quoteSubtitle": "Bez zobowiązań. Odpowiadamy w ciągu godziny.",

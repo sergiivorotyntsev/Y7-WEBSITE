@@ -67,6 +67,7 @@ export default function ShipMyCar() {
 
       {/* Steps */}
       <section className={styles.stepsSection}>
+        <h2 className={styles.sectionHeading}>{t('sections.stepsHeading')}</h2>
         <div className={styles.steps}>
           {Array.isArray(steps) && steps.map((step, i) => (
             <div key={i} className={styles.step}>

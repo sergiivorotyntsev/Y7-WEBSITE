@@ -41,7 +41,7 @@ export default function ContextualCTA({ variant = 'card', to, intlKey, tone = 'c
   return (
     <aside className={`${styles.card} ${styles[`tone_${tone}`]}`}>
       <div className={styles.cardBody}>
-        <h3 className={styles.cardTitle}>{title}</h3>
+        <h2 className={styles.cardTitle}>{title}</h2>
         <p className={styles.cardText}>{body}</p>
       </div>
       <Link to={target} className={styles.cardCta}>

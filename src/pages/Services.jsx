@@ -84,6 +84,7 @@ export default function Services() {
       </section>
 
       <div className={styles.bodyWrap}>
+        <h2 className={styles.sectionHeading}>{t('gridHeading')}</h2>
         <div className={styles.grid}>
           {Array.isArray(list) && list.map((item, i) => (
             <div key={i} className={styles.card} style={{ '--i': i }}>

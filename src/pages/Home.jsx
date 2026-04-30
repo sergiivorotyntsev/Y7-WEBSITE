@@ -103,6 +103,7 @@ export default function Home() {
       <ScrollReveal style={{ padding: 'clamp(60px, 8vh, 100px) 24px clamp(30px, 4vh, 60px)' }}>
         <div className={styles.sectionHeader}>
           <span className={styles.sectionMicro}>&#9670; {t('sections.whoWeServe')}</span>
+          <h2 className={styles.sectionTitle}>{t('sections.whoWeServeHeading')}</h2>
         </div>
         <AudienceCards />
       </ScrollReveal>
