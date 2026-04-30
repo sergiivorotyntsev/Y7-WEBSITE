@@ -10,6 +10,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
 import LanguageSwitcher from '../../components/LanguageSwitcher';
+import ContextualCTA from '../../components/ContextualCTA';
 import { colors, fonts } from '../../theme';
 import styles from './PolandHome.module.css';
 import HeroRouteVisual from '../../components/HeroRouteVisual';
@@ -1112,6 +1113,8 @@ const PolandHome = () => {
             </div>
           </div>
         </section>
+
+        <ContextualCTA variant="card" to="/exporters" intlKey="exporters" tone="amber" />
 
         {/* Final CTA */}
         <section style={{

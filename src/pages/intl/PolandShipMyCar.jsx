@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
+import ContextualCTA from '../../components/ContextualCTA';
 import { colors, fonts } from '../../theme';
 import styles from './PolandShipMyCar.module.css';
 
@@ -894,6 +895,8 @@ function PolandShipMyCar() {
           ))}
         </div>
       </section>
+
+      <ContextualCTA variant="card" to="/exporters" intlKey="exporters" tone="amber" />
 
       {/* ================================================================== */}
       {/* SECTION 9 — Dark CTA                                               */}

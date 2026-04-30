@@ -305,6 +305,7 @@ const diasporaUseCases = [
 const relatedLinks = [
   { label: 'Замовити перевезення', to: '/ua/ship-my-car' },
   { label: 'Головна (Україна)', to: '/ua' },
+  { label: 'Експорт авто з США', to: '/ua/exporters' },
   { label: 'Copart Shipping (EN)', to: '/copart-shipping' },
   { label: 'Auction Shipping (EN)', to: '/auction-car-shipping' },
 ];

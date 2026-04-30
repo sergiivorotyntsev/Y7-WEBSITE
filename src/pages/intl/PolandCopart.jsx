@@ -9,6 +9,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
+import ContextualCTA from '../../components/ContextualCTA';
 import { colors, fonts } from '../../theme';
 import styles from './PolandCopart.module.css';
 
@@ -1050,6 +1051,8 @@ const PolandCopart = () => {
             </div>
           </div>
         </section>
+
+        <ContextualCTA variant="card" to="/exporters" intlKey="exporters" tone="amber" />
 
         {/* CTA */}
         <section style={{
