@@ -157,7 +157,7 @@ export default function CopartShipping() {
         },
         {
           '@type': 'Offer',
-          itemOffered: { '@type': 'Service', name: 'Auction-to-Port Export', description: 'Copart pickup to warehouse to ocean freight for international buyers' },
+          itemOffered: { '@type': 'Service', name: 'Auction-to-Port Export', description: 'Copart pickup and inland transport to your freight forwarder warehouse, prepared for ocean freight by international buyers' },
         },
       ],
     },

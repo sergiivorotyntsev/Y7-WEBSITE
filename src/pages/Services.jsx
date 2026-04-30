@@ -25,7 +25,7 @@ const evPages = [
   { to: '/tesla-car-shipping', title: 'Tesla Shipping', desc: 'Specialized transport for Model S, 3, X, Y, and Cybertruck. Air suspension, transport mode, stainless steel handling expertise.' },
   { to: '/ev-auto-transport', title: 'Electric Vehicle Transport', desc: 'Nationwide EV shipping for Tesla, Rivian, Lucid, Ford Lightning, Porsche Taycan, Hummer EV, and more.' },
   { to: '/cybertruck-shipping', title: 'Cybertruck Shipping', desc: 'Heavy-duty carriers for the 6,600 lb Cybertruck. Stainless steel safe handling, enclosed options available.' },
-  { to: '/electric-vehicle-port-delivery', title: 'EV Port Delivery', desc: 'Ship EVs from US auctions and dealers to export ports. Battery safety compliance, international shipping coordination.' },
+  { to: '/electric-vehicle-port-delivery', title: 'EV Port Delivery', desc: 'Ship EVs from US auctions and dealers to export ports. Battery safety compliance, coordination with your freight forwarder for international shipping.' },
 ];
 
 const locationPages = [
@@ -40,7 +40,7 @@ const locationPages = [
 const routePages = [
   { to: '/massachusetts-to-florida-car-shipping',   title: 'Massachusetts → Florida', desc: 'The #1 snowbird corridor. $750\u2013$1,050 open trailer, 5\u20137 days transit. Peak season Oct\u2013Jan.' },
   { to: '/new-jersey-to-florida-car-shipping',     title: 'New Jersey → Florida',    desc: 'Dealer trades and snowbird traffic. $600\u2013$900 range, 4\u20136 days transit. High volume corridor.' },
-  { to: '/texas-to-newark-port-auto-transport',    title: 'Texas → Port Newark',     desc: 'Long-haul export corridor. Houston and Dallas to Port Newark for international shipping.' },
+  { to: '/texas-to-newark-port-auto-transport',    title: 'Texas → Port Newark',     desc: 'Long-haul export corridor. Houston and Dallas to Port Newark, where your freight forwarder takes over for international shipping.' },
   { to: '/chicago-to-port-newark-car-shipping',    title: 'Chicago → Port Newark',   desc: 'Midwest export lane. Dealer trade and auction-to-port combined loads.' },
   { to: '/auction-to-port-transport',              title: 'Auction → Port',          desc: 'Copart and IAAI purchase → export port delivery. Gate pass coordination, flatbed for inoperables.' },
 ];

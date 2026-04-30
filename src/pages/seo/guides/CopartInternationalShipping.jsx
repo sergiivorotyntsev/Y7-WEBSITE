@@ -15,7 +15,7 @@ export default function CopartInternationalShipping() {
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '60px 24px 80px' }}>
       <PageMeta
-        title="Copart International Shipping — Auction to Any Destination Port Worldwide"
+        title="Copart International Shipping — US Auction to Forwarder Warehouse, Then Worldwide"
         description="End-to-end Copart export: auction win through ocean freight to destination port. Container vs RoRo, typical timelines, cost breakdown, and the Y7 + DaytonaCargo workflow."
         path="/copart-international-shipping"
       />
