@@ -27,7 +27,7 @@ export default function Layout() {
       <ScrollToTop />
       <style>{keyframes}</style>
       <Header />
-      <main id="main" key={location.pathname} style={{ animation: 'fadeUp 300ms ease' }}>
+      <main id="main" key={location.pathname} style={{ animation: 'mainSlideUp 240ms ease-out' }}>
         <ErrorBoundary location={location.pathname}>
           <Outlet />
         </ErrorBoundary>
