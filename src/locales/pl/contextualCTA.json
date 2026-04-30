@@ -8,7 +8,7 @@
     },
     "exporters": {
       "title": "Potrzebujesz dostawy do portu?",
-      "body": "Jeśli końcem trasy jest fracht morski, prowadzimy logistykę kompleksowo: gate pass, magazyn, koordynacja przewoźników przez porty Newark, Houston, Savannah, Baltimore, LA, Jacksonville.",
+      "body": "Jeśli końcowym celem jest fracht morski, prowadzimy US odcinek z aukcji do portu — gate pass, dostawa do magazynu, zarządzanie przewoźnikami przez porty Newark, Houston, Savannah, Baltimore, LA i Jacksonville. Twój spedytor (lub nasza siostrzana firma DaytonaCargo) zajmuje się rezerwacją frachtu morskiego.",
       "cta": "Usługi eksportowe",
       "linkLabel": "eksport Y7"
     },
