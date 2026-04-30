@@ -172,7 +172,7 @@ export default function Exporters() {
       </div>
 
       {/* Request Form */}
-      <div className={styles.formBlock}>
+      <div id="exporter-form" className={styles.formBlock}>
         {success ? (
           <div className={styles.successBlock}>
             <div className={styles.successIcon}><CheckIcon size={16} /></div>
@@ -322,6 +322,13 @@ export default function Exporters() {
           </div>
         </section>
       )}
+
+      {/* Mid-page CTA: post-FAQ anchor scroll back to form */}
+      <div className={styles.midCta}>
+        <a href="#exporter-form" className={styles.midCtaButton}>
+          {t('midCta')}
+        </a>
+      </div>
 
       {/* Cross-links */}
       <div className={styles.crosslinks}>

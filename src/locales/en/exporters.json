@@ -242,5 +242,6 @@
         "a": "Cost-plus transparent. You see the carrier rate from Central Dispatch, and we add a $50 flat dispatch fee per vehicle. No hidden markup, no mystery percentage. Optional: we can pay the carrier on your behalf for a +$10 payment processing fee per load (you reimburse carrier cost + $10), so you don't manage carrier transfers yourself."
       }
     ]
-  }
+  },
+  "midCta": "Ready to ship? Get your rates above."
 }
