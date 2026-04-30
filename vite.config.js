@@ -1,6 +1,18 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
+// Chunks loaded via React.lazy() — downloaded on-demand when user navigates
+// to that route, NOT preloaded on initial HTML. Mirrors manualChunks names.
+const LAZY_ROUTE_CHUNKS = [
+  'portal',
+  'intl',
+  'blog-articles',
+  'seo-guide',
+  'seo-service',
+  'seo-location',
+  'seo-route',
+];
+
 // P1-TECH-T02: code-split the bundle via rollup manualChunks.
 // Approach:
 //   - function form of manualChunks, so we don't have to enumerate every
@@ -12,6 +24,17 @@ export default defineConfig({
   plugins: [react()],
   build: {
     chunkSizeWarningLimit: 600,
+    modulePreload: {
+      polyfill: true,
+      resolveDependencies: (_filename, deps) => {
+        return deps.filter(dep => {
+          const isLazy = LAZY_ROUTE_CHUNKS.some(name =>
+            dep.includes(`/${name}-`) || dep.endsWith(`/${name}.js`)
+          );
+          return !isLazy;
+        });
+      },
+    },
     rollupOptions: {
       output: {
         manualChunks(id) {
