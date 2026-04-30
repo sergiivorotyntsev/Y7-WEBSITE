@@ -724,6 +724,41 @@
 }
 
 /* ===================================================================
+   MID-PAGE CTA (post-comparison reminder)
+   =================================================================== */
+.midCta {
+  margin: clamp(40px, 6vh, 80px) auto;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.midCtaButton {
+  display: inline-block;
+  padding: 14px 32px;
+  background: var(--accent, #993C1D);
+  color: var(--bg, #F7F5F0);
+  text-decoration: none;
+  font-family: Georgia, serif;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid var(--accent, #993C1D);
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.midCtaButton:hover {
+  background: var(--accent-hover, #7A3017);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 600px) {
+  .midCtaButton {
+    padding: 12px 24px;
+    font-size: 15px;
+  }
+}
+
+/* ===================================================================
    CTA STRIP
    =================================================================== */
 .ctaStrip {

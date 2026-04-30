@@ -345,6 +345,13 @@ export default function Dealers() {
         </div>
       </section>
 
+      {/* Mid-page CTA: post-comparison conviction moment */}
+      <div className={styles.midCta}>
+        <Link to="/dealer-quote" className={styles.midCtaButton}>
+          {t('ctaButton')}
+        </Link>
+      </div>
+
       {/* FAQ */}
       <section ref={faqRef} className={`${styles.section} ${styles.fadeSection}`}>
         <div className={styles.inner}>
