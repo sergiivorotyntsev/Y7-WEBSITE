@@ -262,8 +262,8 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
       {!noVinMode ? (
         <div className={styles.field}>
           <label className={styles.label}>{t('form.vin')}</label>
-          <p style={{ fontSize: '12px', color: '#888', margin: '4px 0 8px 0' }}>
-            Required: provide a 17-character VIN or click &ldquo;I don&rsquo;t have a VIN&rdquo; below to enter Year/Make/Model.
+          <p style={{ fontSize: '12px', color: 'var(--text-muted, #706E68)', margin: '4px 0 8px 0' }}>
+            {t('form.vinHint')}
           </p>
           <div className={styles.vinRow}>
             <input
@@ -563,7 +563,7 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
 
           {/* Name */}
           <div className={styles.field}>
-            <label className={styles.label}>{t('form.name')}</label>
+            <label className={styles.label}>{t('form.name')} <span className={styles.required}>*</span></label>
             <input value={form.name} onChange={e => set('name', e.target.value)} className={styles.input} />
           </div>
 
@@ -682,6 +682,9 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
       >
         {submitting ? t('form.submitting') : t('form.submit')}
       </button>
+      {!canSubmit && !submitting && (
+        <p className={styles.submitHelper}>{t('form.submitHelper')}</p>
+      )}
 
       {/* Trust badges */}
       <div className={styles.trustRow}>

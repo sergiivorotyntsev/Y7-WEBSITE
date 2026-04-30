@@ -39,7 +39,6 @@ export default function ShipMyCar() {
   const seasonalNotes = t('seasonalNotes', { returnObjects: true });
   const pricingRows = pricingTiers && pricingTiers.rows ? pricingTiers.rows : [];
   const seasonalItems = seasonalNotes && seasonalNotes.items ? seasonalNotes.items : [];
-  // eslint-disable-next-line no-unused-vars
   const prepItems = prepList && prepList.items ? prepList.items : (Array.isArray(prepList) ? prepList : []);
 
   return (
@@ -146,7 +145,7 @@ export default function ShipMyCar() {
       <section className={styles.narrow}>
         <h2 className={styles.sectionHeading}>{t('sections.prepHeading')}</h2>
         <ul className={styles.checkList}>
-          {Array.isArray(prepList) && prepList.map((item, i) => (
+          {prepItems.map((item, i) => (
             <li key={i} className={styles.checkItem}>{item}</li>
           ))}
         </ul>

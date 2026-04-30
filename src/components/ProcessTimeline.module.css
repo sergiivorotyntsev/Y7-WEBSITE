@@ -43,7 +43,7 @@
 .subtitle {
   font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.6;
   margin: 0;
 }
@@ -133,7 +133,7 @@
 .desc {
   font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.65;
   margin: 0;
   max-width: 48ch;

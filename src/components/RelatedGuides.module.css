@@ -92,7 +92,7 @@
 .linkDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 0.9rem;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.6;
   margin-top: 8px;
 }

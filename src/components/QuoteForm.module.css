@@ -211,7 +211,7 @@
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
   font-weight: 700;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   text-transform: uppercase;
   letter-spacing: 0.14em;
   margin-bottom: 8px;
@@ -265,7 +265,7 @@
 .hint {
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   margin-top: 4px;
   line-height: 1.5;
 }
@@ -401,7 +401,7 @@
 .legal {
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.6;
   text-align: center;
   margin: 0;
@@ -450,7 +450,7 @@
   gap: 6px;
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   letter-spacing: 0.04em;
 }
 
@@ -508,4 +508,17 @@
 .advancedToggle:focus-visible {
   outline: 2px solid var(--accent, #993C1D);
   outline-offset: 2px;
+}
+
+.required {
+  color: var(--accent, #993C1D);
+  margin-left: 2px;
+  font-weight: 600;
+}
+
+.submitHelper {
+  font-size: 13px;
+  color: var(--text-muted, #706E68);
+  margin-top: 8px;
+  text-align: center;
 }

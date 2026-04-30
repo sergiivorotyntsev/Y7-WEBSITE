@@ -11,7 +11,7 @@
 .label {
   font-size: 0.78rem;
   font-weight: 600;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-family: var(--font-sans, system-ui);

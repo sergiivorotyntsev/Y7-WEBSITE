@@ -46,6 +46,8 @@
     "almostThere": "Prawie gotowe! Podaj dane kontaktowe.",
     "submit": "Otrzymaj wycenę",
     "submitting": "Wysyłanie...",
+    "submitHelper": "Wypełnij wszystkie wymagane pola, aby aktywować przycisk",
+    "vinHint": "Wpisz 17-znakowy VIN lub kliknij \"Nie mam VIN\" poniżej, aby podać Rok/Markę/Model.",
     "pickup": "Odbiór",
     "delivery": "Dostawa",
     "zip": "ZIP",

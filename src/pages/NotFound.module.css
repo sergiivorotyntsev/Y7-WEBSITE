@@ -50,7 +50,7 @@
 .subtitle {
   font-family: var(--font-sans, system-ui);
   font-size: clamp(0.95rem, 2.6vw, 1.1rem);
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.65;
   max-width: 640px;
   margin: 0 auto 56px;
@@ -141,7 +141,7 @@
 .cardDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.6;
   margin: 0;
 }
@@ -151,7 +151,7 @@
   right: 22px;
   bottom: 20px;
   font-size: 18px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   transition: transform 200ms ease-out, color 200ms ease-out;
 }
 

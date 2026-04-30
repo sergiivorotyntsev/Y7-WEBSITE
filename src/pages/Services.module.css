@@ -103,7 +103,7 @@
 .sectionLede {
   font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   text-align: center;
   margin: 0 auto 32px;
   line-height: 1.7;
@@ -230,7 +230,7 @@
 .cardDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.7;
   flex: 1;
   margin: 0;
@@ -300,7 +300,7 @@
 .linkDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.6;
   flex: 1;
   margin: 0;

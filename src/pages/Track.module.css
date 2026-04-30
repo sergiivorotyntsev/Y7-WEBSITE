@@ -47,7 +47,7 @@
 .subtitle {
   font-family: var(--font-sans, system-ui);
   font-size: 14.5px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.7;
   margin: 0 auto;
   max-width: 480px;
@@ -130,13 +130,13 @@
 
 .errorIcon {
   margin-bottom: 16px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
 }
 
 .errorMsg {
   font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.7;
   margin: 0 0 24px;
 }
@@ -178,7 +178,7 @@
 .vin {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 12px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   margin: 0 0 24px;
   letter-spacing: 0.03em;
 }
@@ -281,7 +281,7 @@
   padding: 16px 18px;
   font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.9;
 }
 
@@ -298,7 +298,7 @@
   text-align: center;
   font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   margin-top: 24px;
   line-height: 1.7;
 }
@@ -348,7 +348,7 @@
 .fastestPath {
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   margin: 0;
   font-weight: 600;
   text-transform: uppercase;
@@ -430,7 +430,7 @@
 .fallbackDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   margin: 0;
   line-height: 1.55;
 }

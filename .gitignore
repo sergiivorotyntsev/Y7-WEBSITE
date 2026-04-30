@@ -30,3 +30,9 @@ audit-screenshots/
 audit-results.json
 build.log
 tmp/
+
+# Impeccable skill brand context (local only)
+.impeccable.md
+
+# Claude Code session scratchpad (local only)
+.claude/scratchpad.md

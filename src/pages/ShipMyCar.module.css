@@ -42,7 +42,7 @@
 .subtitle {
   font-family: var(--font-sans, system-ui);
   font-size: clamp(0.95rem, 3.2vw, 1.1rem);
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.65;
   max-width: 620px;
   margin: 0 auto;
@@ -88,7 +88,7 @@
   gap: 8px 14px;
   font-family: var(--font-sans, system-ui);
   font-size: 12.5px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
 }
 .heroTrustItem {
   display: inline-flex;
@@ -165,7 +165,7 @@
 .stepDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.65;
   margin: 0;
 }
@@ -193,7 +193,7 @@
 .bodyText {
   font-family: var(--font-sans, system-ui);
   font-size: 14.5px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.8;
   margin: 0;
 }
@@ -209,7 +209,7 @@
 .checkItem {
   font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.7;
 }
 
@@ -248,7 +248,7 @@
 .calloutText {
   font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.75;
   margin: 0;
 }
@@ -286,7 +286,7 @@
 .quoteSubtitle {
   font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   text-align: center;
   margin: 0 0 28px;
   line-height: 1.7;
@@ -344,7 +344,7 @@
 
 @media (hover: hover) {
   .faqItem:hover {
-    border-color: var(--text-muted, #888780);
+    border-color: var(--text-muted, #706E68);
   }
 }
 
@@ -400,7 +400,7 @@
   padding: 0 24px 20px;
   font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.75;
   margin: 0;
 }
@@ -465,13 +465,13 @@
 .pricingTable td {
   padding: 14px 16px;
   border-top: 1px solid var(--border, #e5e0d8);
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
 }
 .pricingRangeCell { font-family: var(--font-serif, Georgia, serif); font-weight: 700; color: var(--text, #2C2C2A); }
 .pricingNote {
   margin-top: 12px;
   font-family: var(--font-sans, system-ui);
-  font-size: 12.5px; color: var(--text-muted, #888780);
+  font-size: 12.5px; color: var(--text-muted, #706E68);
   font-style: italic; line-height: 1.55;
 }
 
@@ -489,7 +489,7 @@
 }
 .seasonalNote {
   font-family: var(--font-sans, system-ui);
-  font-size: 13.5px; color: var(--text-muted, #888780);
+  font-size: 13.5px; color: var(--text-muted, #706E68);
   line-height: 1.6;
 }
 
@@ -582,7 +582,7 @@
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
   font-weight: 700;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   margin-bottom: 16px;

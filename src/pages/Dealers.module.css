@@ -78,7 +78,7 @@
 .sectionSub {
   font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.7;
   max-width: 720px;
   margin: 0 0 28px;
@@ -122,7 +122,7 @@
 .heroSubtitle {
   font-family: var(--font-sans, system-ui);
   font-size: clamp(1rem, 1.6vw, 1.15rem);
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.7;
   max-width: 720px;
   margin: 0 auto 28px;
@@ -134,7 +134,7 @@
   gap: 8px 24px;
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   margin-bottom: 28px;
 }
 .heroTrustItem { white-space: nowrap; }
@@ -264,7 +264,7 @@
 .capDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.65;
   margin: 0;
 }
@@ -325,7 +325,7 @@
 .timelineDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.6;
   margin: 0;
 }
@@ -372,7 +372,7 @@
 .payDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 14.5px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.65;
   margin: 0;
 }
@@ -400,7 +400,7 @@
 .payNote {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   font-style: italic;
   margin-top: 18px;
   max-width: 680px;
@@ -433,7 +433,7 @@
 .portalDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.65;
   margin: 0;
 }
@@ -484,7 +484,7 @@
 .auctionFeature {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.55;
   margin: 4px 0 0;
 }
@@ -532,7 +532,7 @@
 .caseDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.65;
   margin: 0;
 }
@@ -564,7 +564,7 @@
 .billDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.65;
   margin: 0;
 }
@@ -595,7 +595,7 @@
 .failResponse {
   font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.65;
   margin: 0;
 }
@@ -626,7 +626,7 @@
 .segDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.6;
   margin: 0;
 }
@@ -658,7 +658,7 @@
 .compareTable td {
   padding: 14px 16px;
   border-bottom: 1px solid var(--border, #e5e0d8);
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.55;
   vertical-align: top;
 }
@@ -717,7 +717,7 @@
 .faqAnswer {
   font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.75;
   padding: 0 20px 20px;
   margin: 0;
@@ -776,7 +776,7 @@
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
   font-weight: 700;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin: 0 0 18px;

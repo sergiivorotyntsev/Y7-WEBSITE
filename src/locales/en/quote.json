@@ -46,6 +46,8 @@
     "almostThere": "Almost there! Tell us how to reach you.",
     "submit": "Get My Quote",
     "submitting": "Submitting...",
+    "submitHelper": "Fill in all required fields to enable submit",
+    "vinHint": "Enter a 17-character VIN, or click “I don’t have a VIN” below to enter Year/Make/Model.",
     "pickup": "Pickup",
     "delivery": "Delivery",
     "zip": "ZIP",

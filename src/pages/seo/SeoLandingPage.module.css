@@ -9,12 +9,12 @@
 .breadcrumb {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   margin-bottom: 24px;
 }
 
 .crumbLink {
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   text-decoration: none;
   outline: none;
   padding: 2px 4px;
@@ -51,7 +51,7 @@
 .intro {
   font-family: var(--font-sans, system-ui);
   font-size: 16px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.7;
   margin: 0 0 48px;
 }
@@ -84,7 +84,7 @@
 .listItem {
   font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.7;
 }
 
@@ -130,7 +130,7 @@
 .stepDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.7;
 }
 
@@ -189,7 +189,7 @@
 
 @media (hover: hover) {
   .faq:hover {
-    border-color: var(--text-muted, #888780);
+    border-color: var(--text-muted, #706E68);
   }
 }
 
@@ -245,7 +245,7 @@
   padding: 0 24px 18px;
   font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.75;
   margin: 0;
 }

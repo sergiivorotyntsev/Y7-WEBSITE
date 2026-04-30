@@ -137,7 +137,7 @@
 .itemDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.65;
   margin: 0;
 }

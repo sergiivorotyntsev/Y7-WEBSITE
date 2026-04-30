@@ -22,7 +22,7 @@
   font-size: 11.5px;
   font-family: var(--font-sans, system-ui);
   font-weight: 500;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   letter-spacing: 0.08em;
   border-radius: var(--radius-pill, 20px);
   outline: none;
@@ -97,7 +97,7 @@
 
 .mobileCaret {
   font-size: 9px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
 }
 
 .mobilePanel {

@@ -65,7 +65,7 @@
 .subtitle {
   font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.7;
   margin: 0 auto;
   max-width: 520px;
@@ -241,7 +241,7 @@
   gap: 6px;
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   letter-spacing: 0.04em;
 }
 
@@ -284,7 +284,7 @@
 .successRef {
   font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.7;
   margin: 0 0 8px;
 }
@@ -298,7 +298,7 @@
 .successMsg {
   font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.7;
   margin: 0 0 28px;
   max-width: 480px;

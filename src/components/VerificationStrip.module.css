@@ -9,7 +9,7 @@
   padding: 20px 24px;
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
 }
 
 .link {
@@ -47,6 +47,6 @@
   margin-top: 6px;
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 11.5px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   letter-spacing: 0.02em;
 }

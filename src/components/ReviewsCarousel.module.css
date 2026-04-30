@@ -19,7 +19,7 @@
 .aggregate {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   margin: 0 0 20px;
 }
 
@@ -109,14 +109,14 @@
   padding: 3px 10px;
   border-radius: var(--radius-pill, 20px);
   background: var(--bg-muted, #EFECE6);
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   letter-spacing: 0.02em;
 }
 
 .verified {
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   margin-top: 10px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -150,8 +150,8 @@
 
 @media (hover: hover) {
   .dot:hover:not(.dotActive) {
-    border-color: var(--text-muted, #888780);
-    background: var(--text-muted, #888780);
+    border-color: var(--text-muted, #706E68);
+    background: var(--text-muted, #706E68);
   }
 }
 

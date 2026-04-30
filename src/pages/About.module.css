@@ -115,7 +115,7 @@
 .bodyText {
   font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.8;
 }
 
@@ -193,7 +193,7 @@
 .stepDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.6;
   margin: 0;
 }
@@ -252,7 +252,7 @@
 .whyDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.6;
   margin: 0;
 }
@@ -269,7 +269,7 @@
 .commitment {
   font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.7;
   margin-bottom: 8px;
 }
@@ -419,7 +419,7 @@
 .commsCardDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.7;
   margin: 0;
 }
@@ -447,7 +447,7 @@
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
   font-weight: 700;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin: 0 0 14px;

@@ -4,7 +4,7 @@ export const colors = {
   bgMuted: '#EFECE6',
   bgInput: '#F7F5F0',
   text: '#2C2C2A',
-  textMuted: '#888780',
+  textMuted: '#706E68',
   textHint: '#999',
   accent: '#993C1D',
   accentHover: '#7A3017',

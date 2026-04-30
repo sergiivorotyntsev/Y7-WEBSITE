@@ -43,7 +43,7 @@
 .subtitle {
   font-family: var(--font-sans, system-ui);
   font-size: clamp(1rem, 1.4vw, 1.1rem);
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   margin: 0 0 6px;
   line-height: 1.6;
 }
@@ -51,7 +51,7 @@
 .location {
   font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   margin: 0 0 20px;
 }
 
@@ -65,7 +65,7 @@
 .credBadge {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 11px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   background: var(--bg-muted, #EFECE6);
   padding: 5px 14px;
   border-radius: var(--radius-pill, 20px);
@@ -114,7 +114,7 @@
 .bodyText {
   font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.8;
   margin: 0;
 }
@@ -220,7 +220,7 @@
 .routeTo {
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
 }
 
 .routeDays {
@@ -241,7 +241,7 @@
 .docsList {
   font-family: var(--font-sans, system-ui);
   font-size: 14.5px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.8;
   padding-left: 20px;
   margin: 0;
@@ -318,7 +318,7 @@
 .companyDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.6;
   margin: 0 0 8px;
 }
@@ -326,7 +326,7 @@
 .companyIds {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 12px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
 }
 
 /* =====================================================================
@@ -351,7 +351,7 @@
 .notFoundMsg {
   font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   margin: 0 0 32px;
   line-height: 1.6;
 }

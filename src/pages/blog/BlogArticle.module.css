@@ -46,7 +46,7 @@
 .meta {
   font-family: var(--font-sans, system-ui);
   font-size: 0.88rem;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   margin-bottom: 16px;
   display: flex;
   gap: 12px;
@@ -74,12 +74,12 @@
 
 .authorRole {
   font-size: 0.82rem;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
 }
 
 .authorCredential {
   font-size: 0.78rem;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   letter-spacing: 0.02em;
 }
@@ -107,7 +107,7 @@
 .tag {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 0.75rem;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   background: var(--bg-muted, #EFECE6);
   padding: 4px 12px;
   border-radius: var(--radius-md, 8px);
@@ -220,7 +220,7 @@
 .relatedCardMeta {
   font-family: var(--font-sans, system-ui);
   font-size: 0.78rem;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
 }
 
 .relatedServicesBlock {

@@ -55,7 +55,7 @@
 .heroStatLabel {
   font-family: var(--font-sans, system-ui);
   font-size: 0.75rem;
-  color: #888780;
+  color: #706E68;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-top: 2px;
@@ -95,7 +95,7 @@
   border-radius: 0;
   border: none;
   background: transparent;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   cursor: pointer;
   outline: none;
   transition:
@@ -263,7 +263,7 @@
 .metaText {
   font-family: var(--font-sans, system-ui);
   font-size: 0.78rem;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
 }
 
 .cardTitle {
@@ -279,7 +279,7 @@
 .cardExcerpt {
   font-family: var(--font-sans, system-ui);
   font-size: 0.88rem;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.7;
   flex: 1;
   margin: 0 0 16px;
@@ -294,7 +294,7 @@
 .tag {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 0.7rem;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   background: var(--bg-muted, #EFECE6);
   padding: 2px 8px;
   border-radius: 6px;
@@ -308,7 +308,7 @@
 .empty {
   font-family: var(--font-sans, system-ui);
   font-size: 1rem;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   text-align: center;
   padding: 60px 0;
 }
@@ -383,7 +383,7 @@
 .clusterCardDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   margin: 0;
   line-height: 1.55;
 }

@@ -232,6 +232,6 @@ export function Section({ title, children }) {
 export const listItemStyle = {
   fontFamily: "system-ui, -apple-system, sans-serif",
   fontSize: '14px',
-  color: '#888780',
+  color: '#706E68',
   lineHeight: 1.7,
 };

@@ -81,7 +81,7 @@
 .feature {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.7;
   padding-left: 22px;
   position: relative;

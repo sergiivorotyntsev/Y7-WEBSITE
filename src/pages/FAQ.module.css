@@ -39,7 +39,7 @@
 .subtitle {
   font-family: var(--font-sans, system-ui);
   font-size: clamp(0.95rem, 1.4vw, 1.1rem);
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   margin: 0 auto;
   line-height: 1.7;
   max-width: 560px;
@@ -87,7 +87,7 @@
 
 @media (hover: hover) {
   .category:hover:not(.categoryOpen) {
-    border-color: var(--text-muted, #888780);
+    border-color: var(--text-muted, #706E68);
   }
 }
 
@@ -215,7 +215,7 @@
 .qaAnswer {
   font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #888780);
+  color: var(--text-muted, #706E68);
   line-height: 1.75;
   padding: 0 0 18px;
   margin: 0;
