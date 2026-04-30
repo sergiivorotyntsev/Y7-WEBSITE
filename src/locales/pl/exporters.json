@@ -27,7 +27,7 @@
       },
       {
         "service": "Kontrakty ilościowe",
-        "desc": "Indywidualny cennik dla eksporterów wysyłających 10+ pojazdów/miesiąc. Dedykowany dyspozytor, priorytetowe ogłoszenie, miesięczne fakturowanie.",
+        "desc": "Dla eksporterów wysyłających 10+ pojazdów/miesiąc: dedykowany dispatcher, priorytetowy listing CD, miesięczne zbiorcze fakturowanie i indywidualne wsparcie dla operacji o dużym wolumenie.",
         "note": "Skontaktuj się z nami"
       }
     ]
@@ -228,7 +228,7 @@
       },
       {
         "q": "Jaki model cenowy?",
-        "a": "Cost-plus, przejrzysty. Widzisz stawkę przewoźnika z Central Dispatch plus stałą opłatę serwisową ($150-$250 w zależności od złożoności trasy i pracy z gate pass). Dla stałych eksporterów budujemy indywidualny rate card."
+        "a": "Cost-plus, przejrzysty. Widzisz stawkę przewoźnika z Central Dispatch, plus dodajemy stałą opłatę dispatch $50 za pojazd. Bez ukrytych marży, bez tajemniczych procentów. Opcjonalnie: możemy zapłacić przewoźnikowi w Twoim imieniu za dodatkową opłatę za obsługę płatności $10 za zlecenie (zwracasz koszt przewoźnika + $10), żebyś nie zarządzał przelewami do przewoźników samodzielnie."
       }
     ]
   }

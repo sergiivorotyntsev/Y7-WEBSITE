@@ -30,7 +30,7 @@ const PAGE_SPEC = {
     url: '/exporters',
     audienceType: 'Business',
     audienceName: 'Vehicle Exporters and International Buyers',
-    priceRange: '$150-$250',
+    priceRange: '$50',
     offers: [
       { name: 'Auction to Port Delivery', desc: 'Copart / IAA / Manheim lot to any major US export port' },
       { name: 'Gate Pass Coordination', desc: 'Title release, gate pass purchase, and storage management' },

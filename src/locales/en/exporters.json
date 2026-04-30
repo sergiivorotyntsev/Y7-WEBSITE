@@ -27,7 +27,7 @@
       },
       {
         "service": "Volume Contracts",
-        "desc": "Custom rate card for exporters shipping 10+ vehicles/month. Dedicated dispatcher, priority listing, monthly invoicing.",
+        "desc": "For exporters shipping 10+ vehicles/month: dedicated dispatcher, priority CD listing, monthly consolidated invoicing, and tailored support for your high-volume operation.",
         "note": "Contact us"
       }
     ]
@@ -228,7 +228,7 @@
       },
       {
         "q": "What's your pricing model?",
-        "a": "Cost-plus transparent. You see the carrier rate from Central Dispatch plus a flat service fee ($150-$250 depending on lane complexity and gate pass work). No hidden markup, no mystery percentage. For recurring exporter accounts we can build a custom rate card based on your typical auction → port pairs."
+        "a": "Cost-plus transparent. You see the carrier rate from Central Dispatch, and we add a $50 flat dispatch fee per vehicle. No hidden markup, no mystery percentage. Optional: we can pay the carrier on your behalf for a +$10 payment processing fee per load (you reimburse carrier cost + $10), so you don't manage carrier transfers yourself."
       }
     ]
   }
