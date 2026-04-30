@@ -146,6 +146,14 @@ export function AuthProvider({ children }) {
   }, []);
 
   useEffect(() => {
+    // Skip cross-origin /auth/me check when there's no stored session token.
+    // Unauthenticated visitors on public pages would get a CORS-blocked fetch
+    // that logs a red console error (browser-level, uncatchable by JS).
+    // With no token the response is always "not authenticated" anyway.
+    if (!_sessionToken) {
+      setLoading(false);
+      return;
+    }
     // eslint-disable-next-line react-hooks/set-state-in-effect
     checkAuth().finally(() => setLoading(false));
   }, [checkAuth]);
