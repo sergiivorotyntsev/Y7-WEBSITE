@@ -92,8 +92,8 @@ const RussiaHome = lazyWithRetry(() => import('./pages/intl/RussiaHome'));
 const RussiaCopart = lazyWithRetry(() => import('./pages/intl/RussiaCopart'));
 const RussiaShipMyCar = lazyWithRetry(() => import('./pages/intl/RussiaShipMyCar'));
 // Blog — static imports for prerender compatibility
-import BlogIndex from './pages/blog/BlogIndex';
-import BlogArticle from './pages/blog/BlogArticle';
+const BlogIndex = lazyWithRetry(() => import('./pages/blog/BlogIndex'));
+const BlogArticle = lazyWithRetry(() => import('./pages/blog/BlogArticle'));
 
 const skipHidden = {
   position: 'absolute', left: '-9999px', top: 'auto',
