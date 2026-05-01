@@ -171,7 +171,7 @@ export default function LoginCard({
             marginBottom: '28px',
             lineHeight: 1.5,
           }}>
-            {t('login.registerSub', { email })}
+            {t('login.registerSub')}
           </p>
         )}
 
@@ -248,57 +248,6 @@ export default function LoginCard({
             }}>
               {loading ? t('login.signingIn') : t('login.signInButton')}
             </button>
-            {/* HOTFIX-LOGIN-UX: post-failed-login CTAs. Only shown when the
-                error is the wrong-credentials message — gives the user a
-                deliberate next step instead of the prior auto-fallback to
-                OTP. Three distinct purposes: Sign in (form submit) /
-                Forgot password (button above) / Sign up (here + footer). */}
-            {error && error === t('login.invalidCredentials') && (
-              <p style={{
-                fontFamily: fonts.sans,
-                fontSize: '13px',
-                color: C.textMuted,
-                textAlign: 'center',
-                marginTop: '14px',
-                marginBottom: 0,
-              }}>
-                <button
-                  type="button"
-                  onClick={onClickForgotPassword}
-                  style={{
-                    fontFamily: fonts.sans,
-                    fontSize: '13px',
-                    fontWeight: 600,
-                    color: C.accent,
-                    background: 'transparent',
-                    border: 'none',
-                    padding: 0,
-                    cursor: 'pointer',
-                    textDecoration: 'underline',
-                  }}
-                >
-                  {t('login.forgotPassword')}
-                </button>
-                {' · '}
-                <button
-                  type="button"
-                  onClick={onClickSignUp}
-                  style={{
-                    fontFamily: fonts.sans,
-                    fontSize: '13px',
-                    fontWeight: 600,
-                    color: C.accent,
-                    background: 'transparent',
-                    border: 'none',
-                    padding: 0,
-                    cursor: 'pointer',
-                    textDecoration: 'underline',
-                  }}
-                >
-                  {t('login.signUp')}
-                </button>
-              </p>
-            )}
           </form>
         )}
 
@@ -465,11 +414,18 @@ export default function LoginCard({
             flexDirection: 'column',
             gap: '14px',
           }}>
-            <div style={{
-              fontFamily: fonts.sans, fontSize: '13px', color: C.textMuted,
-              background: C.bgInput, padding: '10px 14px', borderRadius: '8px',
-            }}>
-              Email: <strong>{email}</strong>
+            <div>
+              <label style={labelStyle} htmlFor="reg-email">{t('login.emailLabel')}</label>
+              <input
+                id="reg-email"
+                type="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                placeholder={t('login.emailPlaceholder')}
+                required
+                autoComplete="email"
+                style={inputStyle}
+              />
             </div>
             <div>
               <label style={labelStyle} htmlFor="reg-name">Full Name *</label>
