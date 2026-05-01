@@ -261,12 +261,13 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
       {/* VIN or manual vehicle entry */}
       {!noVinMode ? (
         <div className={styles.field}>
-          <label className={styles.label}>{t('form.vin')}</label>
+          <label htmlFor="quote-vin" className={styles.label}>{t('form.vin')}</label>
           <p style={{ fontSize: '12px', color: 'var(--text-muted, #706E68)', margin: '4px 0 8px 0' }}>
             {t('form.vinHint')}
           </p>
           <div className={styles.vinRow}>
             <input
+              id="quote-vin"
               value={form.vin}
               onChange={e => set('vin', e.target.value.toUpperCase())}
               onBlur={() => markTouched('vin')}
@@ -319,8 +320,8 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
           </button>
           <div className={styles.row3}>
             <div className={styles.field}>
-              <label className={styles.label}>{t('form.year')}</label>
-              <select value={form.vehicle_year} onChange={e => set('vehicle_year', e.target.value)} className={styles.selectLg}>
+              <label htmlFor="quote-year" className={styles.label}>{t('form.year')}</label>
+              <select id="quote-year" value={form.vehicle_year} onChange={e => set('vehicle_year', e.target.value)} className={styles.selectLg}>
                 <option value="">{t('form.vehicleYear')}</option>
                 {Array.from({ length: 28 }, (_, i) => 2027 - i).map(y => (
                   <option key={y} value={y}>{y}</option>
@@ -328,12 +329,12 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
               </select>
             </div>
             <div className={styles.field}>
-              <label className={styles.label}>{t('form.make')}</label>
-              <input value={form.vehicle_make} onChange={e => set('vehicle_make', e.target.value)} placeholder={t('placeholders.make')} className={styles.inputLg} />
+              <label htmlFor="quote-make" className={styles.label}>{t('form.make')}</label>
+              <input id="quote-make" value={form.vehicle_make} onChange={e => set('vehicle_make', e.target.value)} placeholder={t('placeholders.make')} className={styles.inputLg} />
             </div>
             <div className={styles.field}>
-              <label className={styles.label}>{t('form.model')}</label>
-              <input value={form.vehicle_model} onChange={e => set('vehicle_model', e.target.value)} placeholder={t('placeholders.model')} className={styles.inputLg} />
+              <label htmlFor="quote-model" className={styles.label}>{t('form.model')}</label>
+              <input id="quote-model" value={form.vehicle_model} onChange={e => set('vehicle_model', e.target.value)} placeholder={t('placeholders.model')} className={styles.inputLg} />
             </div>
           </div>
         </div>
@@ -343,8 +344,9 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
       {!noVinMode && vinResult && (
         <div className={styles.row3Even}>
           <div className={styles.field}>
-            <label className={styles.label}>{t('form.vehicleYear')}</label>
+            <label htmlFor="quote-vehicle-year" className={styles.label}>{t('form.vehicleYear')}</label>
             <input
+              id="quote-vehicle-year"
               value={form.vehicle_year}
               onChange={e => set('vehicle_year', e.target.value.replace(/\D/g, '').slice(0, 4))}
               inputMode="numeric"
@@ -354,12 +356,12 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
             />
           </div>
           <div className={styles.field}>
-            <label className={styles.label}>{t('form.vehicleMake')}</label>
-            <input value={form.vehicle_make} onChange={e => set('vehicle_make', e.target.value)} className={styles.input} />
+            <label htmlFor="quote-vehicle-make" className={styles.label}>{t('form.vehicleMake')}</label>
+            <input id="quote-vehicle-make" value={form.vehicle_make} onChange={e => set('vehicle_make', e.target.value)} className={styles.input} />
           </div>
           <div className={styles.field}>
-            <label className={styles.label}>{t('form.vehicleModel')}</label>
-            <input value={form.vehicle_model} onChange={e => set('vehicle_model', e.target.value)} className={styles.input} />
+            <label htmlFor="quote-vehicle-model" className={styles.label}>{t('form.vehicleModel')}</label>
+            <input id="quote-vehicle-model" value={form.vehicle_model} onChange={e => set('vehicle_model', e.target.value)} className={styles.input} />
           </div>
         </div>
       )}
@@ -369,8 +371,9 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
         <div className={styles.sectionLabel}>{t('form.pickup')}</div>
         <div className={styles.row}>
           <div className={styles.field}>
-            <label className={styles.label}>{t('form.zip')}</label>
+            <label htmlFor="quote-pickup-zip" className={styles.label}>{t('form.zip')}</label>
             <input
+              id="quote-pickup-zip"
               value={form.pickup_zip}
               onChange={e => set('pickup_zip', e.target.value)}
               onBlur={() => markTouched('pickup_zip')}
@@ -381,8 +384,9 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
             {fieldErrors.pickup_zip && <div className={styles.errorText}>{fieldErrors.pickup_zip}</div>}
           </div>
           <div className={styles.field}>
-            <label className={styles.label}>{t('form.locationType')}</label>
+            <label htmlFor="quote-pickup-location" className={styles.label}>{t('form.locationType')}</label>
             <select
+              id="quote-pickup-location"
               value={form.pickup_location_type}
               onChange={e => set('pickup_location_type', e.target.value)}
               className={styles.select}
@@ -411,8 +415,9 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
         <div className={styles.sectionLabel}>{t('form.delivery')}</div>
         <div className={styles.row}>
           <div className={styles.field}>
-            <label className={styles.label}>{t('form.zip')}</label>
+            <label htmlFor="quote-delivery-zip" className={styles.label}>{t('form.zip')}</label>
             <input
+              id="quote-delivery-zip"
               value={form.delivery_zip}
               onChange={e => set('delivery_zip', e.target.value)}
               onBlur={() => markTouched('delivery_zip')}
@@ -423,8 +428,9 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
             {fieldErrors.delivery_zip && <div className={styles.errorText}>{fieldErrors.delivery_zip}</div>}
           </div>
           <div className={styles.field}>
-            <label className={styles.label}>{t('form.locationType')}</label>
+            <label htmlFor="quote-delivery-location" className={styles.label}>{t('form.locationType')}</label>
             <select
+              id="quote-delivery-location"
               value={form.delivery_location_type}
               onChange={e => set('delivery_location_type', e.target.value)}
               className={styles.select}
@@ -563,24 +569,25 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
 
           {/* Name */}
           <div className={styles.field}>
-            <label className={styles.label}>{t('form.name')} <span className={styles.required}>*</span></label>
-            <input value={form.name} onChange={e => set('name', e.target.value)} className={styles.input} />
+            <label htmlFor="quote-name" className={styles.label}>{t('form.name')} <span className={styles.required}>*</span></label>
+            <input id="quote-name" value={form.name} onChange={e => set('name', e.target.value)} className={styles.input} />
           </div>
 
           {/* Phone + Email */}
           <div className={styles.row}>
             <div className={styles.field}>
-              <label className={styles.label}>
+              <label htmlFor="quote-phone" className={styles.label}>
                 {t('form.phone')} <span style={{ color: '#DC2626' }}>*</span>
               </label>
-              <PhoneInput value={form.phone} onChange={v => set('phone', v)} className={styles.input} />
+              <PhoneInput id="quote-phone" value={form.phone} onChange={v => set('phone', v)} className={styles.input} />
               {form.phone && !isValidPhone(form.phone) && (
                 <div className={styles.errorText}>Please enter a valid 10-digit phone number</div>
               )}
             </div>
             <div className={styles.field}>
-              <label className={styles.label}>{t('form.email')} <span style={{ color: '#DC2626' }}>*</span></label>
+              <label htmlFor="quote-email" className={styles.label}>{t('form.email')} <span style={{ color: '#DC2626' }}>*</span></label>
               <input
+                id="quote-email"
                 value={form.email}
                 onChange={e => {
                   set('email', e.target.value);
@@ -643,8 +650,9 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
               "Add details" — P1-TECH-T04) */}
           {!compact && showAdvanced && (
             <div className={styles.field}>
-              <label className={styles.label}>{t('form.notes')}</label>
+              <label htmlFor="quote-notes" className={styles.label}>{t('form.notes')}</label>
               <textarea
+                id="quote-notes"
                 value={form.notes}
                 onChange={e => set('notes', e.target.value)}
                 placeholder={t('form.notesPlaceholder')}

@@ -22,8 +22,10 @@ export default function TrustSection() {
       margin: '0 auto',
       padding: '0 24px',
     }}>
-      <div
+      <button
+        type="button"
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
         style={{
           display: 'flex',
           alignItems: 'center',
@@ -32,6 +34,12 @@ export default function TrustSection() {
           cursor: 'pointer',
           padding: '20px 0',
           userSelect: 'none',
+          border: 'none',
+          background: 'none',
+          font: 'inherit',
+          color: 'inherit',
+          textAlign: 'inherit',
+          width: '100%',
         }}
       >
         <ShieldIcon size={22} />
@@ -52,7 +60,7 @@ export default function TrustSection() {
         }}>
           {open ? `${t('trustSection.hide')} \u25B4` : `${t('trustSection.learnMore')} \u25BE`}
         </span>
-      </div>
+      </button>
 
       <div style={{
         maxHeight: open ? '800px' : '0',

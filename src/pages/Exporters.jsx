@@ -187,28 +187,28 @@ export default function Exporters() {
             <form onSubmit={handleSubmit} className={styles.form}>
               <div className={styles.formRow}>
                 <div className={forms.inputGroup}>
-                  <label className={forms.label}>{t('form.companyName')}</label>
-                  <input className={forms.input} value={form.company_name} onChange={e => set('company_name', e.target.value)} />
+                  <label htmlFor="exporter-company" className={forms.label}>{t('form.companyName')}</label>
+                  <input id="exporter-company" className={forms.input} value={form.company_name} onChange={e => set('company_name', e.target.value)} />
                 </div>
                 <div className={forms.inputGroup}>
-                  <label className={forms.label}>{t('form.contactName')} *</label>
-                  <input className={forms.input} value={form.contact_name} onChange={e => set('contact_name', e.target.value)} />
-                </div>
-              </div>
-              <div className={styles.formRow}>
-                <div className={forms.inputGroup}>
-                  <label className={forms.label}>{t('form.email')} *</label>
-                  <input type="email" className={forms.input} value={form.email} onChange={e => set('email', e.target.value)} />
-                </div>
-                <div className={forms.inputGroup}>
-                  <label className={forms.label}>{t('form.phone')}</label>
-                  <PhoneInput className={forms.input} value={form.phone} onChange={v => set('phone', v)} />
+                  <label htmlFor="exporter-name" className={forms.label}>{t('form.contactName')} *</label>
+                  <input id="exporter-name" className={forms.input} value={form.contact_name} onChange={e => set('contact_name', e.target.value)} />
                 </div>
               </div>
               <div className={styles.formRow}>
                 <div className={forms.inputGroup}>
-                  <label className={forms.label}>{t('form.monthlyVolume')}</label>
-                  <select className={forms.select} value={form.monthly_volume} onChange={e => set('monthly_volume', e.target.value)}>
+                  <label htmlFor="exporter-email" className={forms.label}>{t('form.email')} *</label>
+                  <input id="exporter-email" type="email" className={forms.input} value={form.email} onChange={e => set('email', e.target.value)} />
+                </div>
+                <div className={forms.inputGroup}>
+                  <label htmlFor="exporter-phone" className={forms.label}>{t('form.phone')}</label>
+                  <PhoneInput id="exporter-phone" className={forms.input} value={form.phone} onChange={v => set('phone', v)} />
+                </div>
+              </div>
+              <div className={styles.formRow}>
+                <div className={forms.inputGroup}>
+                  <label htmlFor="exporter-volume" className={forms.label}>{t('form.monthlyVolume')}</label>
+                  <select id="exporter-volume" className={forms.select} value={form.monthly_volume} onChange={e => set('monthly_volume', e.target.value)}>
                     <option value="">{t('form.volumeSelect')}</option>
                     {Array.isArray(volumes) && volumes.map(v => (
                       <option key={v} value={v}>{v}</option>
@@ -216,8 +216,9 @@ export default function Exporters() {
                   </select>
                 </div>
                 <div className={forms.inputGroup}>
-                  <label className={forms.label}>{t('form.preferredPorts')}</label>
+                  <label htmlFor="exporter-port" className={forms.label}>{t('form.preferredPorts')}</label>
                   <input
+                    id="exporter-port"
                     className={forms.input}
                     value={form.preferred_ports}
                     onChange={e => set('preferred_ports', e.target.value)}
@@ -226,8 +227,9 @@ export default function Exporters() {
                 </div>
               </div>
               <div className={forms.inputGroup}>
-                <label className={forms.label}>{t('form.vins')}</label>
+                <label htmlFor="exporter-vins" className={forms.label}>{t('form.vins')}</label>
                 <textarea
+                  id="exporter-vins"
                   className={`${forms.textarea} ${styles.vinTextarea}`}
                   value={form.vins}
                   onChange={e => set('vins', e.target.value)}
@@ -236,8 +238,9 @@ export default function Exporters() {
                 />
               </div>
               <div className={forms.inputGroup}>
-                <label className={forms.label}>{t('form.notes')}</label>
+                <label htmlFor="exporter-notes" className={forms.label}>{t('form.notes')}</label>
                 <textarea
+                  id="exporter-notes"
                   className={forms.textarea}
                   value={form.notes}
                   onChange={e => set('notes', e.target.value)}
