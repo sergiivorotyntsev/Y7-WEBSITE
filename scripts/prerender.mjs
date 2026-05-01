@@ -13,7 +13,25 @@ import { fileURLToPath } from 'url';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const DIST = join(__dirname, '..', 'dist');
-const PORT = Number(process.env.PRERENDER_PORT) || 4567;
+// PRERENDER-OPT: port=0 lets the OS assign an available port. Eliminates
+// the EADDRINUSE collision that hit the Apr 30 retry deploy when the prior
+// process held 4567 across the redeploy. Explicit override still possible
+// via PRERENDER_PORT for local debugging.
+const PORT = parseInt(process.env.PRERENDER_PORT || '0', 10);
+
+// PRERENDER-OPT: skip blog article routes from prerender loop.
+// /blog (index) stays prerendered for SEO discovery; /blog/{slug} articles
+// render client-side via the BLOG-LAZY (ae40fed) lazyWithRetry SPA fallback.
+// PUBLIC_ROUTES below stays the full list — it's the source for
+// dist/valid-routes.json which the runtime express server uses to decide
+// 200 vs 404. Skipping prerender ≠ removing the route.
+const SKIP_PATTERNS = [
+  /^\/blog\/[^/]+$/, // /blog/{article-slug} — articles only, NOT the /blog index
+];
+
+function shouldSkip(route) {
+  return SKIP_PATTERNS.some((pattern) => pattern.test(route));
+}
 
 /**
  * Deduplicate head tags in prerendered HTML.
@@ -290,7 +308,8 @@ function startServer(indexHtmlBuffer) {
     });
 
     server.listen(PORT, () => {
-      console.log(`Prerender server running on http://localhost:${PORT}`);
+      const actualPort = server.address().port;
+      console.log(`Prerender server running on http://localhost:${actualPort}`);
       resolve(server);
     });
   });
@@ -310,6 +329,17 @@ async function prerender() {
   const cleanIndexHtml = readFileSync(join(DIST, 'index.html'));
 
   const server = await startServer(cleanIndexHtml);
+  const actualPort = server.address().port;
+  const baseUrl = `http://localhost:${actualPort}`;
+  console.log(`Prerender base URL: ${baseUrl}`);
+
+  // PRERENDER-OPT: log skipped routes for visibility
+  const skipped = PUBLIC_ROUTES.filter(shouldSkip);
+  console.log(`[prerender] skipping ${skipped.length} blog article routes:`);
+  skipped.forEach((r) => console.log(`  - ${r}`));
+
+  const ROUTES_TO_PRERENDER = PUBLIC_ROUTES.filter((r) => !shouldSkip(r));
+  console.log(`[prerender] ${ROUTES_TO_PRERENDER.length} routes will be prerendered`);
 
   const browser = await puppeteer.launch({
     headless: true,
@@ -320,7 +350,7 @@ async function prerender() {
   let success = 0;
   let failed = 0;
 
-  for (const route of PUBLIC_ROUTES) {
+  for (const route of ROUTES_TO_PRERENDER) {
     const page = await browser.newPage();
 
     // Block unnecessary resources during prerender.
@@ -356,7 +386,7 @@ async function prerender() {
     });
 
     try {
-      await page.goto(`http://localhost:${PORT}${route}`, {
+      await page.goto(`${baseUrl}${route}`, {
         waitUntil: 'domcontentloaded',
         timeout: 60000,
       });
@@ -431,12 +461,14 @@ async function prerender() {
   }
 
   await browser.close();
-  server.close();
 
   // OVERNIGHT-T01: emit valid-routes.json so the express server can return
   // a proper 404 status on unknown paths instead of serving index.html.
   // Also copy /404/index.html to /404.html at the dist root so the server
   // can sendFile it as the not-found response body.
+  // PRERENDER-OPT: emit FULL PUBLIC_ROUTES (incl. skipped blog articles)
+  // so the runtime server still recognizes them and serves SPA fallback
+  // instead of 404. Skipping prerender ≠ removing the route.
   try {
     writeFileSync(
       join(DIST, 'valid-routes.json'),
@@ -455,9 +487,22 @@ async function prerender() {
   const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
   console.log(`\nPrerender complete: ${success} OK, ${failed} failed (${elapsed}s)`);
 
-  if (failed > 0) {
-    process.exit(1);
-  }
+  // PRERENDER-OPT: explicit awaited shutdown + process.exit. Ensures the
+  // OS port handle is released before Node exits, eliminating the latent
+  // EADDRINUSE on subsequent retry deploys (Apr 30 16f5083 incident).
+  await new Promise((resolve, reject) => {
+    server.close((err) => {
+      if (err) {
+        console.error('Server close error:', err);
+        reject(err);
+      } else {
+        console.log('Prerender server closed cleanly');
+        resolve();
+      }
+    });
+  });
+
+  process.exit(failed > 0 ? 1 : 0);
 }
 
 prerender();
