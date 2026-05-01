@@ -93,6 +93,21 @@ export default function LoginCard({
   onBackToEmail,
   onSubmitRegister,
   codeRefs,
+  // STRIPE-LOGIN-PHASE2-A2: password auth props
+  password,
+  setPassword,
+  onSubmitLogin,
+  onClickForgotPassword,
+  newPassword,
+  setNewPassword,
+  confirmPassword,
+  setConfirmPassword,
+  forgotCodeArr,
+  onForgotCodeChange,
+  onForgotCodeKeyDown,
+  forgotCodeRefs,
+  onSubmitResetPassword,
+  onBackToEmailFromForgot,
 }) {
   return (
     <div style={{
@@ -121,7 +136,15 @@ export default function LoginCard({
           marginBottom: '8px',
           marginTop: 0,
         }}>
-          {step === 'code' ? t('login.codeHeading') : step === 'register' ? t('login.registerHeading') : t('login.heading')}
+          {step === 'code'
+            ? t('login.codeHeading')
+            : step === 'register'
+            ? t('login.registerHeading')
+            : step === 'forgot_code'
+            ? t('login.forgotCodeHeading')
+            : step === 'reset_password'
+            ? t('login.resetPasswordHeading')
+            : t('login.heading')}
         </h1>
 
         {step === 'code' && (
@@ -170,8 +193,8 @@ export default function LoginCard({
         )}
 
         {step === 'email' && (
-          <form onSubmit={onSubmitEmail}>
-            <div style={{ marginBottom: '20px' }}>
+          <form onSubmit={onSubmitLogin}>
+            <div style={{ marginBottom: '16px' }}>
               <EmailInputWithCheck
                 id="login-email"
                 label={t('login.emailLabel')}
@@ -181,11 +204,162 @@ export default function LoginCard({
                 required
               />
             </div>
+            {/* PHASE2-A2: optional password input. Not marked `required` —
+                empty submit triggers /login then auto-fallback to /start (OTP),
+                same UX as legacy customers without password_hash. */}
+            <div style={{ marginBottom: '8px' }}>
+              <label style={labelStyle} htmlFor="login-password">
+                {t('login.passwordLabel')}
+              </label>
+              <input
+                id="login-password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder={t('login.passwordPlaceholder')}
+                autoComplete="current-password"
+                style={inputStyle}
+              />
+            </div>
+            <div style={{ textAlign: 'right', marginBottom: '20px' }}>
+              <button
+                type="button"
+                onClick={onClickForgotPassword}
+                style={{
+                  fontFamily: fonts.sans,
+                  fontSize: '12px',
+                  fontWeight: 600,
+                  color: C.textMuted,
+                  background: 'transparent',
+                  border: 'none',
+                  padding: 0,
+                  cursor: 'pointer',
+                  textDecoration: 'underline',
+                }}
+              >
+                {t('login.forgotPassword')}
+              </button>
+            </div>
             <button type="submit" disabled={loading} style={{
               ...primaryBtn,
               opacity: loading ? 0.6 : 1,
             }}>
               {loading ? t('login.submitting') : t('login.submitButton')}
+            </button>
+          </form>
+        )}
+
+        {step === 'forgot_code' && (
+          <div>
+            <p style={{
+              fontFamily: fonts.sans,
+              fontSize: '14px',
+              color: C.textMuted,
+              textAlign: 'center',
+              marginBottom: '24px',
+              lineHeight: 1.5,
+            }}>
+              <Trans
+                i18nKey="login.forgotCodeSent"
+                ns="portal"
+                values={{ email }}
+                components={{ strong: <strong style={{ color: C.text }} /> }}
+              />
+            </p>
+            <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginBottom: '20px' }}>
+              {forgotCodeArr.map((digit, i) => (
+                <input
+                  key={i}
+                  ref={(el) => { forgotCodeRefs.current[i] = el; }}
+                  type="text"
+                  inputMode="numeric"
+                  maxLength={1}
+                  value={digit}
+                  onChange={(e) => onForgotCodeChange(i, e.target.value)}
+                  onKeyDown={(e) => onForgotCodeKeyDown(i, e)}
+                  autoFocus={i === 0}
+                  aria-label={`${t('login.codeLabel')} digit ${i + 1}`}
+                  style={{
+                    width: '48px',
+                    height: '56px',
+                    textAlign: 'center',
+                    fontFamily: fonts.mono,
+                    fontSize: '24px',
+                    fontWeight: 700,
+                    borderRadius: '10px',
+                    border: `2px solid ${digit ? C.accent : C.borderInput}`,
+                    background: C.bgCard,
+                    color: C.text,
+                    outline: 'none',
+                  }}
+                />
+              ))}
+            </div>
+            <button type="button" onClick={onBackToEmailFromForgot} style={{ ...secondaryBtn, marginTop: '8px' }}>
+              {t('login.backToLogin')}
+            </button>
+          </div>
+        )}
+
+        {step === 'reset_password' && (
+          <form onSubmit={onSubmitResetPassword}>
+            <p style={{
+              fontFamily: fonts.sans,
+              fontSize: '14px',
+              color: C.textMuted,
+              textAlign: 'center',
+              marginBottom: '20px',
+              lineHeight: 1.5,
+            }}>
+              {t('login.resetPasswordSub')}
+            </p>
+            <div style={{ marginBottom: '14px' }}>
+              <label style={labelStyle} htmlFor="login-new-password">
+                {t('login.newPasswordLabel')}
+              </label>
+              <input
+                id="login-new-password"
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                autoComplete="new-password"
+                minLength={8}
+                required
+                autoFocus
+                style={inputStyle}
+              />
+            </div>
+            <div style={{ marginBottom: '8px' }}>
+              <label style={labelStyle} htmlFor="login-confirm-password">
+                {t('login.confirmPasswordLabel')}
+              </label>
+              <input
+                id="login-confirm-password"
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                autoComplete="new-password"
+                minLength={8}
+                required
+                style={inputStyle}
+              />
+            </div>
+            <p style={{
+              fontFamily: fonts.sans,
+              fontSize: '11px',
+              color: C.textMuted,
+              margin: '0 0 18px',
+            }}>
+              {t('login.passwordRequirements')}
+            </p>
+            <button type="submit" disabled={loading} style={{
+              ...primaryBtn,
+              opacity: loading ? 0.6 : 1,
+            }}>
+              {loading ? t('login.resetting') : t('login.resetButton')}
+            </button>
+            <button type="button" onClick={onBackToEmailFromForgot} style={{ ...secondaryBtn, marginTop: '8px' }}>
+              {t('login.backToLogin')}
             </button>
           </form>
         )}

@@ -11,6 +11,9 @@ export default function Login() {
   const navigate = useNavigate();
   const { t } = useTranslation('portal');
   const { user, login } = useAuth();
+  // STRIPE-LOGIN-PHASE2-A2: state machine extended with two new steps
+  // ('forgot_code' and 'reset_password') for the password reset flow.
+  // Existing 'email' / 'code' / 'register' steps are preserved.
   const [step, setStep] = useState('email');
   const [email, setEmail] = useState('');
   const [code, setCode] = useState(['', '', '', '', '', '']);
@@ -22,6 +25,12 @@ export default function Login() {
     delivery_address: '', delivery_city: '', delivery_state: '', delivery_zip: '',
     sms_consent: false,
   });
+  // Phase 2 password auth state
+  const [password, setPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [forgotCodeArr, setForgotCodeArr] = useState(['', '', '', '', '', '']);
+  const forgotCodeRefs = useRef([]);
 
   const loginRef = useRef(login);
   const navigateRef = useRef(navigate);
@@ -64,6 +73,174 @@ export default function Login() {
     } finally {
       setLoading(false);
     }
+  }
+
+  // STRIPE-LOGIN-PHASE2-A2: primary email-step submit. Tries password login;
+  // on 401 (any cause: wrong password, no password set, unknown email) auto-
+  // falls back to /start so legacy customers without password_hash transition
+  // into the OTP code flow transparently. Anti-enumeration: same UX path for
+  // every 401 cause.
+  async function handleLoginSubmit(e) {
+    e.preventDefault();
+    setError(null);
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail || !trimmedEmail.includes('@')) {
+      setError(t('login.enterEmailFirst'));
+      return;
+    }
+    setLoading(true);
+    try {
+      // Empty password short-circuits to OTP — no point round-tripping a
+      // login that's guaranteed 401. Calls /start directly.
+      if (password.length > 0) {
+        const loginRes = await portalFetch('/api/portal/auth/login', {
+          method: 'POST',
+          body: JSON.stringify({ email: trimmedEmail, password }),
+        });
+        if (loginRes.ok) {
+          const data = await loginRes.json();
+          login(data.session_token, data);
+          trackEvent('portal_login', { method: 'password' });
+          setPassword('');
+          if (!data.delivery_city && !data.delivery_address) {
+            navigate('/portal/profile', { replace: true, state: { incomplete: true } });
+            return;
+          }
+          navigate('/portal/dashboard', { replace: true });
+          return;
+        }
+        // 401 falls through to /start auto-fallback. Other statuses (429,
+        // 5xx) handled below as "could not send code".
+        if (loginRes.status !== 401) {
+          setError(t('login.unknownError'));
+          return;
+        }
+      }
+      // Auto-fallback to OTP flow
+      const startRes = await portalFetch('/api/portal/auth/start', {
+        method: 'POST',
+        body: JSON.stringify({ email: trimmedEmail }),
+      });
+      const startData = await startRes.json();
+      if (!startRes.ok) {
+        setError(startData.detail || t('login.startFailed'));
+        return;
+      }
+      setPassword('');
+      if (startData.action === 'code_sent') {
+        setStep('code');
+      } else if (startData.action === 'register') {
+        setStep('register');
+      }
+    } catch (err) {
+      setError(err.message || t('login.networkError'));
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function handleForgotPassword(e) {
+    e.preventDefault();
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail || !trimmedEmail.includes('@')) {
+      setError(t('login.enterEmailFirst'));
+      return;
+    }
+    setError(null);
+    setLoading(true);
+    try {
+      // Backend always returns 200 (anti-enumeration); we don't branch on body.
+      await portalFetch('/api/portal/auth/forgot-password', {
+        method: 'POST',
+        body: JSON.stringify({ email: trimmedEmail }),
+      });
+      setForgotCodeArr(['', '', '', '', '', '']);
+      setNewPassword('');
+      setConfirmPassword('');
+      setStep('forgot_code');
+    } catch (err) {
+      setError(err.message || t('login.networkError'));
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function handleForgotCodeChange(i, val) {
+    if (val.length > 1) val = val.slice(-1);
+    if (val && !/^\d$/.test(val)) return;
+    const next = [...forgotCodeArr];
+    next[i] = val;
+    setForgotCodeArr(next);
+    if (val && i < 5) {
+      forgotCodeRefs.current[i + 1]?.focus();
+    }
+    if (val && i === 5 && next.every((d) => d)) {
+      // All 6 digits entered — transition to password-set step. POST waits
+      // until the user submits the new password (single round-trip).
+      setStep('reset_password');
+    }
+  }
+
+  function handleForgotCodeKeyDown(i, e) {
+    if (e.key === 'Backspace' && !forgotCodeArr[i] && i > 0) {
+      forgotCodeRefs.current[i - 1]?.focus();
+    }
+  }
+
+  async function handleResetPasswordSubmit(e) {
+    e.preventDefault();
+    setError(null);
+    if (newPassword.length < 8) {
+      setError(t('login.passwordTooShort'));
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      setError(t('login.passwordsMismatch'));
+      return;
+    }
+    setLoading(true);
+    try {
+      const otpCode = forgotCodeArr.join('');
+      const res = await portalFetch('/api/portal/auth/reset-password', {
+        method: 'POST',
+        body: JSON.stringify({
+          email: email.trim(),
+          otp_code: otpCode,
+          new_password: newPassword,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok) {
+        login(data.session_token, data);
+        trackEvent('portal_login', { method: 'password_reset' });
+        setNewPassword('');
+        setConfirmPassword('');
+        setForgotCodeArr(['', '', '', '', '', '']);
+        if (!data.delivery_city && !data.delivery_address) {
+          navigate('/portal/profile', { replace: true, state: { incomplete: true } });
+          return;
+        }
+        navigate('/portal/dashboard', { replace: true });
+        return;
+      }
+      if (res.status === 400) {
+        setError(data.error || t('login.resetFailed'));
+        return;
+      }
+      setError(t('login.unknownError'));
+    } catch (err) {
+      setError(err.message || t('login.networkError'));
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function handleBackToEmailFromForgot() {
+    setStep('email');
+    setForgotCodeArr(['', '', '', '', '', '']);
+    setNewPassword('');
+    setConfirmPassword('');
+    setError(null);
   }
 
   async function handleRegisterSubmit(e) {
@@ -180,6 +357,20 @@ export default function Login() {
         onBackToEmail={handleBackToEmail}
         onSubmitRegister={handleRegisterSubmit}
         codeRefs={codeRefs}
+        password={password}
+        setPassword={setPassword}
+        onSubmitLogin={handleLoginSubmit}
+        onClickForgotPassword={handleForgotPassword}
+        newPassword={newPassword}
+        setNewPassword={setNewPassword}
+        confirmPassword={confirmPassword}
+        setConfirmPassword={setConfirmPassword}
+        forgotCodeArr={forgotCodeArr}
+        onForgotCodeChange={handleForgotCodeChange}
+        onForgotCodeKeyDown={handleForgotCodeKeyDown}
+        forgotCodeRefs={forgotCodeRefs}
+        onSubmitResetPassword={handleResetPasswordSubmit}
+        onBackToEmailFromForgot={handleBackToEmailFromForgot}
       />
     </>
   );
