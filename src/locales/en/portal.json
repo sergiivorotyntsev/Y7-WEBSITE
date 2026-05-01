@@ -36,7 +36,12 @@
     "enterEmailFirst": "Please enter your email first",
     "startFailed": "Could not send code. Please try again.",
     "networkError": "Network error. Please check your connection.",
-    "unknownError": "Something went wrong. Please try again."
+    "unknownError": "Something went wrong. Please try again.",
+    "signInButton": "Sign in",
+    "signingIn": "Signing in...",
+    "signUp": "Sign up",
+    "invalidCredentials": "Wrong email or password.",
+    "passwordRequired": "Please enter your password."
   },
   "onboarding": {
     "title": "Complete your account setup",

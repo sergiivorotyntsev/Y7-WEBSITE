@@ -36,7 +36,12 @@
     "enterEmailFirst": "Сначала введите email",
     "startFailed": "Не удалось отправить код. Попробуйте ещё раз.",
     "networkError": "Ошибка сети. Проверьте подключение.",
-    "unknownError": "Что-то пошло не так. Попробуйте ещё раз."
+    "unknownError": "Что-то пошло не так. Попробуйте ещё раз.",
+    "signInButton": "Войти",
+    "signingIn": "Вход...",
+    "signUp": "Зарегистрироваться",
+    "invalidCredentials": "Неверный email или пароль.",
+    "passwordRequired": "Введите пароль."
   },
   "onboarding": {
     "title": "Завершите настройку аккаунта",

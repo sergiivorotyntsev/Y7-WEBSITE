@@ -108,6 +108,8 @@ export default function LoginCard({
   forgotCodeRefs,
   onSubmitResetPassword,
   onBackToEmailFromForgot,
+  // HOTFIX-LOGIN-UX: explicit "Sign up" CTA (footer + post-error)
+  onClickSignUp,
 }) {
   return (
     <div style={{
@@ -244,8 +246,59 @@ export default function LoginCard({
               ...primaryBtn,
               opacity: loading ? 0.6 : 1,
             }}>
-              {loading ? t('login.submitting') : t('login.submitButton')}
+              {loading ? t('login.signingIn') : t('login.signInButton')}
             </button>
+            {/* HOTFIX-LOGIN-UX: post-failed-login CTAs. Only shown when the
+                error is the wrong-credentials message — gives the user a
+                deliberate next step instead of the prior auto-fallback to
+                OTP. Three distinct purposes: Sign in (form submit) /
+                Forgot password (button above) / Sign up (here + footer). */}
+            {error && error === t('login.invalidCredentials') && (
+              <p style={{
+                fontFamily: fonts.sans,
+                fontSize: '13px',
+                color: C.textMuted,
+                textAlign: 'center',
+                marginTop: '14px',
+                marginBottom: 0,
+              }}>
+                <button
+                  type="button"
+                  onClick={onClickForgotPassword}
+                  style={{
+                    fontFamily: fonts.sans,
+                    fontSize: '13px',
+                    fontWeight: 600,
+                    color: C.accent,
+                    background: 'transparent',
+                    border: 'none',
+                    padding: 0,
+                    cursor: 'pointer',
+                    textDecoration: 'underline',
+                  }}
+                >
+                  {t('login.forgotPassword')}
+                </button>
+                {' · '}
+                <button
+                  type="button"
+                  onClick={onClickSignUp}
+                  style={{
+                    fontFamily: fonts.sans,
+                    fontSize: '13px',
+                    fontWeight: 600,
+                    color: C.accent,
+                    background: 'transparent',
+                    border: 'none',
+                    padding: 0,
+                    cursor: 'pointer',
+                    textDecoration: 'underline',
+                  }}
+                >
+                  {t('login.signUp')}
+                </button>
+              </p>
+            )}
           </form>
         )}
 
@@ -487,6 +540,23 @@ export default function LoginCard({
           marginTop: '24px',
         }}>
           {t('login.newToY7')}{' '}
+          {/* HOTFIX-LOGIN-UX: always-visible "Sign up" affordance alongside
+              the existing "Get a quote" link. Direct register-step
+              transition via onClickSignUp — no server roundtrip. */}
+          <button type="button" onClick={onClickSignUp} style={{
+            fontFamily: fonts.sans,
+            fontSize: '13px',
+            fontWeight: 700,
+            color: C.accent,
+            background: 'transparent',
+            border: 'none',
+            padding: 0,
+            cursor: 'pointer',
+            textDecoration: 'none',
+          }}>
+            {t('login.signUp')}
+          </button>
+          {' · '}
           <Link to="/ship-my-car" style={{
             fontFamily: fonts.sans,
             fontSize: '13px',

@@ -75,11 +75,12 @@ export default function Login() {
     }
   }
 
-  // STRIPE-LOGIN-PHASE2-A2: primary email-step submit. Tries password login;
-  // on 401 (any cause: wrong password, no password set, unknown email) auto-
-  // falls back to /start so legacy customers without password_hash transition
-  // into the OTP code flow transparently. Anti-enumeration: same UX path for
-  // every 401 cause.
+  // HOTFIX-LOGIN-UX: primary email-step submit. Calls /login with email +
+  // password. On 401 the user sees an explicit error + CTAs (Forgot password
+  // / Sign up). NO auto-fallback to /start — the prior fallback leaked
+  // customer existence by routing unknown emails into the OTP path while
+  // wrong-password stayed there too. Empty password short-circuits with a
+  // local message instead of round-tripping a guaranteed-401 to the server.
   async function handleLoginSubmit(e) {
     e.preventDefault();
     setError(null);
@@ -88,55 +89,48 @@ export default function Login() {
       setError(t('login.enterEmailFirst'));
       return;
     }
+    if (!password) {
+      setError(t('login.passwordRequired'));
+      return;
+    }
     setLoading(true);
     try {
-      // Empty password short-circuits to OTP — no point round-tripping a
-      // login that's guaranteed 401. Calls /start directly.
-      if (password.length > 0) {
-        const loginRes = await portalFetch('/api/portal/auth/login', {
-          method: 'POST',
-          body: JSON.stringify({ email: trimmedEmail, password }),
-        });
-        if (loginRes.ok) {
-          const data = await loginRes.json();
-          login(data.session_token, data);
-          trackEvent('portal_login', { method: 'password' });
-          setPassword('');
-          if (!data.delivery_city && !data.delivery_address) {
-            navigate('/portal/profile', { replace: true, state: { incomplete: true } });
-            return;
-          }
-          navigate('/portal/dashboard', { replace: true });
-          return;
-        }
-        // 401 falls through to /start auto-fallback. Other statuses (429,
-        // 5xx) handled below as "could not send code".
-        if (loginRes.status !== 401) {
-          setError(t('login.unknownError'));
-          return;
-        }
-      }
-      // Auto-fallback to OTP flow
-      const startRes = await portalFetch('/api/portal/auth/start', {
+      const loginRes = await portalFetch('/api/portal/auth/login', {
         method: 'POST',
-        body: JSON.stringify({ email: trimmedEmail }),
+        body: JSON.stringify({ email: trimmedEmail, password }),
       });
-      const startData = await startRes.json();
-      if (!startRes.ok) {
-        setError(startData.detail || t('login.startFailed'));
+      if (loginRes.ok) {
+        const data = await loginRes.json();
+        login(data.session_token, data);
+        trackEvent('portal_login', { method: 'password' });
+        setPassword('');
+        if (!data.delivery_city && !data.delivery_address) {
+          navigate('/portal/profile', { replace: true, state: { incomplete: true } });
+          return;
+        }
+        navigate('/portal/dashboard', { replace: true });
         return;
       }
-      setPassword('');
-      if (startData.action === 'code_sent') {
-        setStep('code');
-      } else if (startData.action === 'register') {
-        setStep('register');
+      if (loginRes.status === 401) {
+        setError(t('login.invalidCredentials'));
+        return;
       }
+      setError(t('login.unknownError'));
     } catch (err) {
       setError(err.message || t('login.networkError'));
     } finally {
       setLoading(false);
     }
+  }
+
+  // HOTFIX-LOGIN-UX: direct register-step transition. No server roundtrip —
+  // the user explicitly chose 'Sign up' from the login screen, so we move
+  // them straight to the register form. Email is preserved so they don't
+  // re-type. Anti-enumeration: this transition is user-initiated, never
+  // server-driven (the /start endpoint no longer signals 'register').
+  function handleClickSignUp() {
+    setStep('register');
+    setError(null);
   }
 
   async function handleForgotPassword(e) {
@@ -371,6 +365,7 @@ export default function Login() {
         forgotCodeRefs={forgotCodeRefs}
         onSubmitResetPassword={handleResetPasswordSubmit}
         onBackToEmailFromForgot={handleBackToEmailFromForgot}
+        onClickSignUp={handleClickSignUp}
       />
     </>
   );

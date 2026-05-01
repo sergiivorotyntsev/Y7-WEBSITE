@@ -36,7 +36,12 @@
     "enterEmailFirst": "Спочатку введіть email",
     "startFailed": "Не вдалося надіслати код. Спробуйте ще раз.",
     "networkError": "Помилка мережі. Перевірте з'єднання.",
-    "unknownError": "Щось пішло не так. Спробуйте ще раз."
+    "unknownError": "Щось пішло не так. Спробуйте ще раз.",
+    "signInButton": "Увійти",
+    "signingIn": "Вхід...",
+    "signUp": "Зареєструватися",
+    "invalidCredentials": "Невірний email або пароль.",
+    "passwordRequired": "Введіть пароль."
   },
   "onboarding": {
     "title": "Завершіть налаштування акаунту",

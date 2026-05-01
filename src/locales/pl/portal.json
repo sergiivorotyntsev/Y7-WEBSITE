@@ -36,7 +36,12 @@
     "enterEmailFirst": "Najpierw wpisz email",
     "startFailed": "Nie udało się wysłać kodu. Spróbuj ponownie.",
     "networkError": "Błąd sieci. Sprawdź połączenie.",
-    "unknownError": "Coś poszło nie tak. Spróbuj ponownie."
+    "unknownError": "Coś poszło nie tak. Spróbuj ponownie.",
+    "signInButton": "Zaloguj się",
+    "signingIn": "Logowanie...",
+    "signUp": "Zarejestruj się",
+    "invalidCredentials": "Nieprawidłowy email lub hasło.",
+    "passwordRequired": "Wprowadź hasło."
   },
   "onboarding": {
     "title": "Dokończ konfigurację konta",
