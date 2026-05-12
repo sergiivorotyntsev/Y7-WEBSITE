@@ -149,5 +149,9 @@
     "contactRequired": "Wymagany jest telefon lub email",
     "pickupRequired": "Kod ZIP odbioru jest wymagany (min. 5 znaków)",
     "deliveryRequired": "Kod ZIP dostawy jest wymagany (min. 5 znaków)"
+  },
+  "emailTypo": {
+    "prompt": "Czy chodziło Ci o",
+    "cta": "Użyj tego"
   }
 }

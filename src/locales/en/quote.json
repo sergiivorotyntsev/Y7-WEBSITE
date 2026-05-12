@@ -149,5 +149,9 @@
     "contactRequired": "Phone or email is required",
     "pickupRequired": "Pickup ZIP is required (min 5 characters)",
     "deliveryRequired": "Delivery ZIP is required (min 5 characters)"
+  },
+  "emailTypo": {
+    "prompt": "Did you mean",
+    "cta": "Use this"
   }
 }
