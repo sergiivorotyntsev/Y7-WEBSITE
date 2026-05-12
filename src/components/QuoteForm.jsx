@@ -1,12 +1,16 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
 import { useVinDecode } from '../hooks/useVinDecode';
 import { apiPost } from '../hooks/useApi';
+import { useZipLookup } from '../hooks/useZipLookup';
 import SmsConsent from './SmsConsent';
 import RouteEstimator from './RouteEstimator';
 import VehicleSilhouette from './VehicleSilhouette';
 import PostQuoteFlow from './PostQuoteFlow';
 import PhoneInput, { getCleanPhone, isValidPhone } from './PhoneInput';
+import ZipCityPreview from './ZipCityPreview';
+import EmailTypoBanner from './EmailTypoBanner';
 import { trackEvent } from '../utils/trackEvent';
 import { useEmailCheck } from '../hooks/useEmailCheck';
 import styles from './QuoteForm.module.css';
@@ -68,6 +72,8 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
     sms_consent: false, notes: '',
   });
   const emailCheck = useEmailCheck(form.email);
+  const pickupZipLookup = useZipLookup(form.pickup_zip);
+  const deliveryZipLookup = useZipLookup(form.delivery_zip);
   const [noVinMode, setNoVinMode] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(null);
@@ -382,6 +388,12 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
               className={fieldErrors.pickup_zip ? styles.inputError : styles.input}
             />
             {fieldErrors.pickup_zip && <div className={styles.errorText}>{fieldErrors.pickup_zip}</div>}
+            <ZipCityPreview
+              status={pickupZipLookup.status}
+              city={pickupZipLookup.city}
+              stateAbbr={pickupZipLookup.stateAbbr}
+              label="Pickup location"
+            />
           </div>
           <div className={styles.field}>
             <label htmlFor="quote-pickup-location" className={styles.label}>{t('form.locationType')}</label>
@@ -426,6 +438,12 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
               className={fieldErrors.delivery_zip ? styles.inputError : styles.input}
             />
             {fieldErrors.delivery_zip && <div className={styles.errorText}>{fieldErrors.delivery_zip}</div>}
+            <ZipCityPreview
+              status={deliveryZipLookup.status}
+              city={deliveryZipLookup.city}
+              stateAbbr={deliveryZipLookup.stateAbbr}
+              label="Delivery location"
+            />
           </div>
           <div className={styles.field}>
             <label htmlFor="quote-delivery-location" className={styles.label}>{t('form.locationType')}</label>
@@ -556,13 +574,17 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
       {/* Route Estimator (appears when both ZIPs filled) */}
       <RouteEstimator pickupZip={form.pickup_zip} deliveryZip={form.delivery_zip} />
 
-      {/* ── STEP 2: Contact (animated reveal) ── */}
-      <div
+      {/* ── STEP 2: Contact (animated reveal — framer-motion Q1-T09) ── */}
+      <motion.div
         className={styles.step2}
-        style={{
-          maxHeight: showStep2 ? `${step2Height + 20}px` : '0px',
+        initial={false}
+        animate={{
+          maxHeight: showStep2 ? step2Height + 20 : 0,
           opacity: showStep2 ? 1 : 0,
         }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        style={{ overflow: 'hidden' }}
+        aria-hidden={!showStep2}
       >
         <div ref={step2Ref} className={styles.step2Content}>
           <div className={styles.step2Kicker}>{t('form.almostThere')}</div>
@@ -634,15 +656,11 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
                   <a href="/portal/login" style={{ color: '#7C2D12', textDecoration: 'underline' }}>Log in</a>
                 </div>
               )}
-              {emailCheck.status === 'typo_suggestion' && emailCheck.suggestion && (
-                <div role="status" style={{ fontSize: '0.85rem', color: '#1D4ED8', marginTop: 4 }}>
-                  Did you mean{' '}
-                  <button type="button" onClick={() => set('email', emailCheck.suggestion)}
-                    style={{ background: 'none', border: 'none', color: '#1D4ED8', textDecoration: 'underline', cursor: 'pointer', padding: 0, fontSize: 'inherit' }}>
-                    {emailCheck.suggestion}
-                  </button>?
-                </div>
-              )}
+              <EmailTypoBanner
+                visible={emailCheck.status === 'typo_suggestion'}
+                suggestion={emailCheck.suggestion}
+                onAccept={() => set('email', emailCheck.suggestion)}
+              />
             </div>
           </div>
 
@@ -677,7 +695,7 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
             </p>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* ── STEP 3: Error + Submit ── */}
 
