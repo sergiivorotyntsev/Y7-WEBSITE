@@ -153,5 +153,10 @@
   "emailTypo": {
     "prompt": "Did you mean",
     "cta": "Use this"
+  },
+  "emailRecognized": {
+    "prompt": "Welcome back! Your quote will be linked to your account.",
+    "loginCta": "Log in",
+    "toTrack": "to track all your shipments."
   }
 }

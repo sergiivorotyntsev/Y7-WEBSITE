@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useVinDecode } from '../hooks/useVinDecode';
 import { apiPost } from '../hooks/useApi';
 import { useZipLookup } from '../hooks/useZipLookup';
@@ -650,12 +650,39 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
               {emailCheck.isChecking && (
                 <div style={{ fontSize: '0.85rem', color: '#6B7280', marginTop: 4 }}>Checking…</div>
               )}
-              {emailCheck.status === 'duplicate' && (
-                <div role="status" style={{ fontSize: '0.85rem', color: '#B45309', marginTop: 4 }}>
-                  {emailCheck.message}{' '}
-                  <a href="/portal/login" style={{ color: '#7C2D12', textDecoration: 'underline' }}>Log in</a>
-                </div>
-              )}
+              <AnimatePresence>
+                {emailCheck.status === 'duplicate' && (
+                  <motion.div
+                    key="email-recognized"
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -4 }}
+                    transition={{ duration: 0.2 }}
+                    role="status"
+                    style={{
+                      marginTop: 6,
+                      fontFamily: 'inherit',
+                      fontSize: 13,
+                      color: '#1E6F46',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 6,
+                    }}
+                  >
+                    <span style={{ fontSize: 14 }} aria-hidden="true">✓</span>
+                    <span>
+                      {t('emailRecognized.prompt')}{' '}
+                      <a
+                        href={`/portal/login?email=${encodeURIComponent(form.email)}`}
+                        style={{ color: '#A0411F', fontWeight: 600, textDecoration: 'underline' }}
+                      >
+                        {t('emailRecognized.loginCta')}
+                      </a>{' '}
+                      {t('emailRecognized.toTrack')}
+                    </span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
               <EmailTypoBanner
                 visible={emailCheck.status === 'typo_suggestion'}
                 suggestion={emailCheck.suggestion}

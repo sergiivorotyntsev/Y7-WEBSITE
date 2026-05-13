@@ -153,5 +153,10 @@
   "emailTypo": {
     "prompt": "Czy chodziło Ci o",
     "cta": "Użyj tego"
+  },
+  "emailRecognized": {
+    "prompt": "Witaj ponownie! Wycena zostanie przypisana do Twojego konta.",
+    "loginCta": "Zaloguj się",
+    "toTrack": "aby śledzić wszystkie swoje transporty."
   }
 }
