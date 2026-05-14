@@ -158,5 +158,9 @@
     "prompt": "Witaj ponownie! Wycena zostanie przypisana do Twojego konta.",
     "loginCta": "Zaloguj się",
     "toTrack": "aby śledzić wszystkie swoje transporty."
+  },
+  "consent": {
+    "terms": "Akceptuję <1>Warunki użytkowania</1> oraz <3>Politykę prywatności</3>",
+    "termsRequired": "Zaakceptuj Warunki i Politykę prywatności, aby kontynuować"
   }
 }

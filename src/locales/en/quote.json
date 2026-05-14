@@ -158,5 +158,9 @@
     "prompt": "Welcome back! Your quote will be linked to your account.",
     "loginCta": "Log in",
     "toTrack": "to track all your shipments."
+  },
+  "consent": {
+    "terms": "I agree to the <1>Terms of Service</1> and <3>Privacy Policy</3>",
+    "termsRequired": "Please agree to the Terms of Service and Privacy Policy to continue"
   }
 }

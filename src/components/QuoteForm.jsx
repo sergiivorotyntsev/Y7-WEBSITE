@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useVinDecode } from '../hooks/useVinDecode';
 import { apiPost } from '../hooks/useApi';
@@ -69,7 +69,7 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
     name: '',
     phone: urlParams?.get('phone') || '',
     email: urlParams?.get('email') || '',
-    sms_consent: false, notes: '',
+    sms_consent: false, termsAccepted: false, notes: '',
   });
   const emailCheck = useEmailCheck(form.email);
   const pickupZipLookup = useZipLookup(form.pickup_zip);
@@ -79,6 +79,7 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
   const [submitAttempted, setSubmitAttempted] = useState(false);
+  const [termsError, setTermsError] = useState(false);
   const [touched, setTouched] = useState({});
   const [serverFieldErrors, setServerFieldErrors] = useState({});
   // P1-TECH-T04: progressive disclosure. Minimum fields visible by default;
@@ -181,6 +182,14 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (!form.termsAccepted) {
+      setTermsError(true);
+      document.querySelector('input[type="checkbox"][aria-required="true"]')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    setTermsError(false);
+
     setError(null);
     setSubmitAttempted(true);  // reveals SmsConsent error banner if consent missing
 
@@ -717,9 +726,58 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
               showError={false}
               optional
             />
-            <p className={styles.legal}>
-              {t('sms.footnote')}
-            </p>
+            <div style={{ marginTop: 16, marginBottom: 12 }}>
+              <label style={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: 8,
+                cursor: 'pointer',
+                fontSize: 13,
+                color: '#2C2C2A',
+              }}>
+                <input
+                  type="checkbox"
+                  checked={form.termsAccepted}
+                  onChange={(e) => {
+                    set('termsAccepted', e.target.checked);
+                    if (e.target.checked) setTermsError(false);
+                  }}
+                  style={{
+                    marginTop: 3,
+                    width: 16,
+                    height: 16,
+                    accentColor: '#993C1D',
+                    flexShrink: 0,
+                  }}
+                  aria-required="true"
+                  aria-describedby={termsError ? "terms-error" : undefined}
+                />
+                <span>
+                  <Trans i18nKey="consent.terms" t={t}>
+                    I agree to the <a href="/terms" target="_blank" rel="noopener noreferrer" style={{ color: '#993C1D', textDecoration: 'underline' }}>Terms of Service</a> and <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: '#993C1D', textDecoration: 'underline' }}>Privacy Policy</a>
+                  </Trans>
+                  <span style={{ color: '#DC2626', marginLeft: 4 }} aria-hidden="true">*</span>
+                </span>
+              </label>
+
+              {termsError && (
+                <motion.div
+                  id="terms-error"
+                  initial={{ opacity: 0, y: -4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
+                  role="alert"
+                  style={{
+                    marginTop: 6,
+                    marginLeft: 24,
+                    fontSize: 12,
+                    color: '#DC2626',
+                  }}
+                >
+                  {t('consent.termsRequired')}
+                </motion.div>
+              )}
+            </div>
           </div>
         </div>
       </motion.div>
