@@ -8,6 +8,7 @@ import SmsConsent from './SmsConsent';
 import RouteEstimator from './RouteEstimator';
 import VehicleSilhouette from './VehicleSilhouette';
 import PostQuoteFlow from './PostQuoteFlow';
+import QuoteOtpStep from './QuoteOtpStep';
 import PhoneInput, { getCleanPhone, isValidPhone } from './PhoneInput';
 import ZipCityPreview from './ZipCityPreview';
 import EmailTypoBanner from './EmailTypoBanner';
@@ -76,7 +77,13 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
   const deliveryZipLookup = useZipLookup(form.delivery_zip);
   const [noVinMode, setNoVinMode] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [success, setSuccess] = useState(null);
+  // Q2-T09: 3-state machine for OTP flow. 'form' is the initial step; on
+  // /quote/start success we transition to 'otp', and on /quote/verify success
+  // we transition to 'success' (rendering PostQuoteFlow). Replaces the
+  // pre-Q2 single `success` state which was rendered as PostQuoteFlow directly.
+  const [currentStep, setCurrentStep] = useState('form');
+  const [otpState, setOtpState] = useState(null);
+  const [submitResult, setSubmitResult] = useState(null);
   const [error, setError] = useState(null);
   const [submitAttempted, setSubmitAttempted] = useState(false);
   const [termsError, setTermsError] = useState(false);
@@ -240,8 +247,17 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
         lang: i18n.language || 'en',
         ...utm,  // QUOTE-P2 T09: utm_source, utm_medium, utm_campaign, utm_term, utm_content, gclid, fbclid
       };
-      const res = await apiPost('/api/public/quote', payload);
-      setSuccess(res);
+      const res = await apiPost('/api/public/quote/start', payload);
+      // Q2-T09: /quote/start creates a quote_pending row + emails an OTP.
+      // We do NOT create customer_orders here — that happens in /quote/verify
+      // after the user enters the correct OTP (ADR-009-v2 mandatory email verify).
+      setOtpState({
+        pending_id: res.pending_id,
+        email: res.email,
+        expires_at: res.expires_at,
+        attempts_remaining: res.attempts_remaining ?? 5,
+      });
+      setCurrentStep('otp');
       trackEvent('quote_submit', { has_vin: !noVinMode, transport_type: form.transport_type });
     } catch (err) {
       const fe = err.body?.field_errors;
@@ -256,8 +272,32 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
     }
   }
 
-  if (success) {
-    return <PostQuoteFlow quoteResult={success} formData={form} />;
+  // Q2-T09: state-machine routing. 'otp' renders QuoteOtpStep (T10 fills it in
+  // with the premium 6-digit UI); 'success' renders PostQuoteFlow (T11 rewrites
+  // it with new vs returning customer branching).
+  if (currentStep === 'success' && submitResult) {
+    return <PostQuoteFlow quoteResult={submitResult} formData={form} />;
+  }
+
+  if (currentStep === 'otp' && otpState) {
+    return (
+      <QuoteOtpStep
+        pendingId={otpState.pending_id}
+        email={otpState.email}
+        expiresAt={otpState.expires_at}
+        attemptsRemaining={otpState.attempts_remaining}
+        onSuccess={(result) => {
+          setSubmitResult(result);
+          setCurrentStep('success');
+        }}
+        onCancel={() => {
+          // "Edit email" — back to form, preserve form data so user can
+          // correct the typo and re-submit.
+          setCurrentStep('form');
+          setOtpState(null);
+        }}
+      />
+    );
   }
 
   return (
