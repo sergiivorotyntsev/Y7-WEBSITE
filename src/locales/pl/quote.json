@@ -98,8 +98,36 @@
   "success": {
     "title": "Zapytanie otrzymane!",
     "message": "Wyślemy wycenę w ciągu 1 godziny na podany adres email.",
-    "reference": "Numer referencyjny:",
+    "reference": "Numer referencyjny: {{ref}}",
+    "confirmation": "Potwierdzenie wysłane na {{email}}",
     "track": "Śledź przez Telegram"
+  },
+  "returning": {
+    "title": "Witaj ponownie, {{name}}!",
+    "fallbackName": "",
+    "subtitle": "Ta wycena jest powiązana z Twoim kontem.",
+    "viewQuote": "Otwórz wycenę",
+    "dashboard": "Do panelu"
+  },
+  "newCustomer": {
+    "title": "Śledź tę i przyszłe wyceny",
+    "subtitle": "Załóż konto, aby zobaczyć wycenę, kontaktować się z dyspozytorem i śledzić dostawę w czasie rzeczywistym.",
+    "createPassword": "Utwórz hasło",
+    "skipForNow": "Pomiń"
+  },
+  "timeline": {
+    "title": "Co dalej",
+    "review": "Rozpatrzenie",
+    "reviewDesc": "Dyspozytor rozpatrzy Twój wniosek",
+    "quote": "Wycena wysłana",
+    "quoteDesc": "Cenę otrzymasz na email",
+    "confirm": "Potwierdzenie",
+    "confirmDesc": "Potwierdź wycenę, aby kontynuować",
+    "carrier": "Przewoźnik przypisany",
+    "carrierDesc": "Dobierzemy zweryfikowanego przewoźnika",
+    "delivered": "Pojazd dostarczony",
+    "deliveredDesc": "Bezpieczna dostawa z dokumentami",
+    "hours": "Godziny pracy: Pn–Pt 9:00–18:00 EST. Odpowiedź w ciągu ~1 godziny w godzinach pracy."
   },
   "verification": {
     "banner": {

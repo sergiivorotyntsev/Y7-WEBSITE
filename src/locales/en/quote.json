@@ -98,8 +98,36 @@
   "success": {
     "title": "Quote Request Received!",
     "message": "We'll send your quote within 1 hour via email.",
-    "reference": "Your reference number:",
+    "reference": "Reference: {{ref}}",
+    "confirmation": "Confirmation sent to {{email}}",
     "track": "Track via Telegram"
+  },
+  "returning": {
+    "title": "Welcome back, {{name}}!",
+    "fallbackName": "there",
+    "subtitle": "This quote is linked to your account.",
+    "viewQuote": "View This Quote",
+    "dashboard": "Go to Dashboard"
+  },
+  "newCustomer": {
+    "title": "Track this and future quotes",
+    "subtitle": "Create your account to view this quote, communicate with our dispatcher, and track delivery in real-time.",
+    "createPassword": "Create Password",
+    "skipForNow": "Skip for now"
+  },
+  "timeline": {
+    "title": "What happens next",
+    "review": "Review",
+    "reviewDesc": "Our dispatcher reviews your request",
+    "quote": "Quote sent",
+    "quoteDesc": "You'll receive pricing via email",
+    "confirm": "You confirm",
+    "confirmDesc": "Accept the quote to proceed",
+    "carrier": "Carrier assigned",
+    "carrierDesc": "We match a verified carrier",
+    "delivered": "Vehicle delivered",
+    "deliveredDesc": "Safe delivery with documentation",
+    "hours": "Business hours: Mon–Fri 9am–6pm EST. Response time within ~1 hour during business hours."
   },
   "verification": {
     "banner": {

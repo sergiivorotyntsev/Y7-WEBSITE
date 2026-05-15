@@ -17,7 +17,7 @@ import { useEmailCheck } from '../hooks/useEmailCheck';
 import styles from './QuoteForm.module.css';
 import btn from '../styles/buttons.module.css';
 
-export default function QuoteForm({ compact = false, hideHeader = false }) {
+export default function QuoteForm({ compact = false, hideHeader = false, onStepChange }) {
   const { t, i18n } = useTranslation('quote');
 
   // QUOTE-P1 T04: CD-native CamelCase values (same set for pickup + delivery)
@@ -81,7 +81,13 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
   // /quote/start success we transition to 'otp', and on /quote/verify success
   // we transition to 'success' (rendering PostQuoteFlow). Replaces the
   // pre-Q2 single `success` state which was rendered as PostQuoteFlow directly.
+  // Q2-T11: onStepChange callback surfaces transitions to the parent route
+  // (Quote.jsx) so it can hide its h1/ProcessTimeline chrome when the form
+  // reaches 'success'.
   const [currentStep, setCurrentStep] = useState('form');
+  useEffect(() => {
+    onStepChange?.(currentStep);
+  }, [currentStep, onStepChange]);
   const [otpState, setOtpState] = useState(null);
   const [submitResult, setSubmitResult] = useState(null);
   const [error, setError] = useState(null);
@@ -278,6 +284,8 @@ export default function QuoteForm({ compact = false, hideHeader = false }) {
   if (currentStep === 'success' && submitResult) {
     return <PostQuoteFlow quoteResult={submitResult} formData={form} />;
   }
+  // Q2-T11: when the OTP step is active, the parent route hides its h1/
+  // ProcessTimeline chrome via onStepChange so the OTP card stands alone.
 
   if (currentStep === 'otp' && otpState) {
     return (
