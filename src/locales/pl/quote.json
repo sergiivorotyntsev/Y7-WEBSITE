@@ -162,5 +162,22 @@
   "consent": {
     "terms": "Akceptuję <1>Warunki użytkowania</1> oraz <3>Politykę prywatności</3>",
     "termsRequired": "Zaakceptuj Warunki i Politykę prywatności, aby kontynuować"
+  },
+  "otp": {
+    "title": "Zweryfikuj swój email",
+    "subtitle": "Wysłaliśmy 6-cyfrowy kod na",
+    "digitLabel": "Cyfra {{n}}",
+    "verifying": "Weryfikujemy…",
+    "wrongCode": "Nieprawidłowy kod. Pozostało prób: {{count}}.",
+    "exhausted": "Zbyt wiele nieprawidłowych prób. Powrót do formularza…",
+    "expired": "Kod wygasł. Poproś o nową wycenę.",
+    "notFound": "Ta sesja weryfikacji jest już nieważna. Rozpocznij ponownie.",
+    "rateLimited": "Zbyt wiele prób. Poczekaj kilka minut i spróbuj ponownie.",
+    "error": "Nie udało się zweryfikować kodu. Spróbuj ponownie.",
+    "networkError": "Problem z połączeniem. Spróbuj ponownie.",
+    "expiresIn": "Kod wygaśnie za {{time}}",
+    "resendCountdown": "Możesz poprosić o nowy kod za {{n}}s",
+    "resend": "Wyślij kod ponownie",
+    "editEmail": "Zmień adres email"
   }
 }

@@ -162,5 +162,22 @@
   "consent": {
     "terms": "I agree to the <1>Terms of Service</1> and <3>Privacy Policy</3>",
     "termsRequired": "Please agree to the Terms of Service and Privacy Policy to continue"
+  },
+  "otp": {
+    "title": "Verify your email",
+    "subtitle": "We sent a 6-digit code to",
+    "digitLabel": "Digit {{n}}",
+    "verifying": "Verifying…",
+    "wrongCode": "Incorrect code. {{count}} attempt(s) remaining.",
+    "exhausted": "Too many incorrect attempts. Returning to the form…",
+    "expired": "This code has expired. Please request a new quote.",
+    "notFound": "This verification session is no longer valid. Please start over.",
+    "rateLimited": "Too many attempts. Please wait a few minutes and try again.",
+    "error": "Could not verify code. Please try again.",
+    "networkError": "Connection issue. Please try again.",
+    "expiresIn": "Code expires in {{time}}",
+    "resendCountdown": "You can request a new code in {{n}}s",
+    "resend": "Resend code",
+    "editEmail": "Edit email address"
   }
 }
