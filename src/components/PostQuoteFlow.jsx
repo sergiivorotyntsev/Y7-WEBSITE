@@ -11,7 +11,9 @@
 //
 // Branch comes from result.customer_status:
 //   - "returning" → Welcome back + [View This Quote] [Go to Dashboard]
-//     "View This Quote" deep-links to /portal/orders/{load_id} (verified 200).
+//     "View This Quote" deep-links to /portal/order/{order_id} — singular
+//     path, numeric PK (Q2-T11-FIX: pre-fix used /portal/orders/{load_id}
+//     which fell through to the catch-all 404 and would 422 the backend).
 //   - "new" (default)     → [Create Password] [Skip for now]
 //     "Create Password" preserves email + reference via query params so the
 //     register form can pre-fill them.
@@ -88,7 +90,7 @@ const CARD_SUBTITLE = {
  * PostQuoteFlow — success state after OTP verification.
  *
  * Branches:
- *   - quoteResult.customer_status === 'returning': Welcome back, deep link to /portal/orders/{load_id}
+ *   - quoteResult.customer_status === 'returning': Welcome back, deep link to /portal/order/{order_id}
  *   - quoteResult.customer_status === 'new' (or anything else, defensively): Create Password CTA
  *
  * Props:
@@ -119,7 +121,7 @@ export default function PostQuoteFlow({ quoteResult, formData }) {
       <SuccessCard reference={reference} email={formData?.email} />
       {isReturning ? (
         <ReturningCustomerCard
-          loadId={quoteResult.load_id}
+          orderId={quoteResult.order_id}
           name={formData?.name}
           dashboardUrl={quoteResult.dashboard_url}
         />
@@ -183,9 +185,13 @@ function SuccessCard({ reference, email }) {
   );
 }
 
-function ReturningCustomerCard({ loadId, name, dashboardUrl }) {
+function ReturningCustomerCard({ orderId, name, dashboardUrl }) {
   const { t } = useTranslation('quote');
-  const orderUrl = loadId ? `/portal/orders/${loadId}` : '/portal/dashboard';
+  // Q2-T11-FIX: route is /portal/order/:id (singular) and OrderDetail.jsx
+  // forwards :id to /api/portal/data/orders/{order_id} which strictly types
+  // order_id: int (portal_data.py:361). Use numeric order_id from the
+  // /quote/verify response, NOT the load_id string.
+  const orderUrl = orderId ? `/portal/order/${orderId}` : '/portal/dashboard';
   const dashUrl = dashboardUrl || '/portal/dashboard';
   const firstName = (name || '').trim().split(/\s+/)[0] || t('returning.fallbackName');
 
@@ -198,12 +204,12 @@ function ReturningCustomerCard({ loadId, name, dashboardUrl }) {
         {t('returning.subtitle')}
       </p>
       <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
-        {loadId && (
+        {orderId && (
           <a href={orderUrl} style={PRIMARY_BTN}>
             {t('returning.viewQuote')}
           </a>
         )}
-        <a href={dashUrl} style={loadId ? SECONDARY_LINK_BTN : PRIMARY_BTN}>
+        <a href={dashUrl} style={orderId ? SECONDARY_LINK_BTN : PRIMARY_BTN}>
           {t('returning.dashboard')}
         </a>
       </div>
