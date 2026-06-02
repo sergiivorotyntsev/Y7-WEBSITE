@@ -239,6 +239,8 @@ export default function NewOrder() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(null);
+  // T04b: duplicate-route advisory dialog ({ matches, category, primary, pZip, dZip } | null)
+  const [dupDialog, setDupDialog] = useState(null);
 
   // Auto-select default warehouse when warehouses load
   useEffect(() => {
@@ -329,6 +331,43 @@ export default function NewOrder() {
       return;
     }
 
+    // T04b: non-blocking duplicate-route advisory. A failed/empty check NEVER blocks submit.
+    try {
+      let pCity = '', pState = '', dCity = '', dState = '';
+      if (pickupIsWarehouse && !pickupOverride && pickupWarehouseId) {
+        const w = warehouses.find(x => x.id === pickupWarehouseId);
+        pCity = w?.city || ''; pState = w?.state || '';
+      } else { pCity = pickupManual.city || ''; pState = pickupManual.state || ''; }
+      if (deliveryIsWarehouse && !deliveryOverride && deliveryWarehouseId) {
+        const w = warehouses.find(x => x.id === deliveryWarehouseId);
+        dCity = w?.city || ''; dState = w?.state || '';
+      } else { dCity = deliveryManual.city || ''; dState = deliveryManual.state || ''; }
+
+      const qs = new URLSearchParams({
+        pickup_zip: pZip, delivery_zip: dZip,
+        pickup_city: pCity, pickup_state: pState,
+        delivery_city: dCity, delivery_state: dState,
+      });
+      const checkRes = await portalFetch(`/api/portal/data/route-check?${qs.toString()}`);
+      if (checkRes.ok) {
+        const checkData = await checkRes.json().catch(() => ({}));
+        const matches = checkData?.matches || [];
+        if (matches.length > 0) {
+          const ACTIVE = ['pending', 'quoted', 'confirmed', 'dispatched'];
+          const category = matches.some(m => ACTIVE.includes(m.status)) ? 'active' : 'past';
+          const primary = matches.find(m => ACTIVE.includes(m.status)) || matches[0];
+          setDupDialog({ matches, category, primary, pZip, dZip });
+          return;
+        }
+      }
+    } catch {
+      /* advisory only — ignore and proceed to submit */
+    }
+
+    await submitOrder(pZip, dZip);
+  }
+
+  async function submitOrder(pZip, dZip) {
     setSubmitting(true);
     try {
       const submissionType = isWarehouseUser ? 'direct_submit' : 'quote_request';
@@ -584,6 +623,37 @@ export default function NewOrder() {
           {submitting ? 'Submitting...' : 'Submit Order'}
         </button>
       </form>
+
+      {/* T04b: non-blocking duplicate-route advisory dialog */}
+      {dupDialog && (
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(20,20,20,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', zIndex: 1000 }}>
+          <div style={{ background: colors.bgCard, border: `1px solid ${colors.border}`, borderRadius: '16px', padding: '28px 24px', width: '100%', maxWidth: '440px', fontFamily: fonts.sans }}>
+            <h3 style={{ fontFamily: fonts.serif, fontSize: '18px', color: colors.text, margin: '0 0 10px' }}>
+              {dupDialog.category === 'active' ? 'Possible duplicate request' : 'Similar past request'}
+            </h3>
+            <p style={{ fontSize: '14px', color: colors.textMuted, lineHeight: 1.5, margin: '0 0 20px' }}>
+              {(() => {
+                const ref = dupDialog.primary.web_reference || `#${dupDialog.primary.id}`;
+                const status = dupDialog.primary.status;
+                return dupDialog.category === 'active'
+                  ? `You already have an active request for this route (${ref}, ${status}).`
+                  : `You have a past request for this route (${ref}, ${status}).`;
+              })()}
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <button type="button" onClick={() => { const d = dupDialog; setDupDialog(null); submitOrder(d.pZip, d.dZip); }} style={{ ...btnStyles.accent, width: '100%' }}>
+                {dupDialog.category === 'active' ? 'Submit anyway' : 'Re-submit as new'}
+              </button>
+              <button type="button" onClick={() => navigate(`/portal/orders/${dupDialog.primary.id}`)} style={{ ...btnStyles.secondary, width: '100%' }}>
+                View existing
+              </button>
+              <button type="button" onClick={() => setDupDialog(null)} style={{ ...btnStyles.secondary, width: '100%', border: 'none', color: colors.textMuted }}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
