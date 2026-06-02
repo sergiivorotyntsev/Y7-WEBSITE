@@ -43,6 +43,7 @@ export default function DealerQuote() {
   const [form, setForm] = useState({
     dealership_name: '', contact_name: '', email: '', phone: '',
     address: '', city: '', state: '', zip: '',
+    registration_state: '', has_dealer_license: '',
     monthly_volume: '', primary_routes: '', pricing_model: '',
     services: [], referral_source: '', notes: '', sms_consent: false,
   });
@@ -93,6 +94,14 @@ export default function DealerQuote() {
       setError('Please enter a valid 10-digit phone number.');
       return;
     }
+    if (!form.registration_state) {
+      setError('Please select the state where your company is registered.');
+      return;
+    }
+    if (!form.has_dealer_license) {
+      setError('Please tell us whether you hold an active dealer license.');
+      return;
+    }
     if (!form.sms_consent) {
       setError('You must agree to receive SMS notifications to submit.');
       return;
@@ -103,6 +112,8 @@ export default function DealerQuote() {
       const res = await apiPost('/api/public/dealer-inquiry', {
         ...form,
         phone: getCleanPhone(form.phone),
+        // store the license radio as a real boolean for the API
+        has_dealer_license: form.has_dealer_license === 'yes',
         // sms_consent_timestamp removed (QUOTE-P0 T12) — server is authoritative
         sms_consent_page_url: window.location.href,
         sms_consent_page: window.location.href,
@@ -185,6 +196,27 @@ export default function DealerQuote() {
               <label className={qForm.label}>Email *</label>
               <input className={qForm.input} type="email" value={form.email} onChange={e => set('email', e.target.value)} placeholder="john@abcmotors.com" />
             </div>
+            <div className={styles.row}>
+              <label className={qForm.label}>Do you hold an active dealer license? *</label>
+              <div className={styles.radioGroup}>
+                {[
+                  { value: 'yes', label: 'Yes' },
+                  { value: 'no', label: 'No' },
+                ].map(opt => (
+                  <label key={opt.value} className={styles.radioLabel}>
+                    <input
+                      type="radio"
+                      name="has_dealer_license"
+                      value={opt.value}
+                      checked={form.has_dealer_license === opt.value}
+                      onChange={() => set('has_dealer_license', opt.value)}
+                      className={styles.radioInput}
+                    />
+                    {opt.label}
+                  </label>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Address */}
@@ -210,6 +242,13 @@ export default function DealerQuote() {
                 <label className={qForm.label}>ZIP</label>
                 <input className={qForm.input} value={form.zip} onChange={e => set('zip', e.target.value)} placeholder="77001" maxLength={5} />
               </div>
+            </div>
+            <div className={styles.row}>
+              <label className={qForm.label}>State where your company is registered *</label>
+              <select className={qForm.select} value={form.registration_state} onChange={e => set('registration_state', e.target.value)}>
+                <option value="">--</option>
+                {US_STATES.map(s => <option key={s} value={s}>{s}</option>)}
+              </select>
             </div>
           </div>
 
