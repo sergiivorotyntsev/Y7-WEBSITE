@@ -47,14 +47,18 @@ export default function QuoteAction() {
         </h2>
         {isConfirm && (
           <div style={{ marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'center' }}>
-            {/* CONFIRM-DECOUPLE (ADR-A): confirm = price acceptance only. The heading
-                (API message) already says "create your account and complete onboarding
-                within 48 hours". Route to registration; do NOT imply the order is
-                already moving (it dispatches later, after onboarding + payment). */}
+            {/* CONFIRM-DECOUPLE (ADR-A): confirm = price acceptance only — route to
+                onboarding, not "order moving". The SIGNING STEP stays in the flow as a
+                legal shield (agreement text is attorney-reviewed separately). */}
             <Link to="/portal/register" style={{
               ...btnStyles.accent, display: 'inline-block', textDecoration: 'none', padding: '12px 24px', fontSize: '13px',
             }}>
               Create Your Account
+            </Link>
+            <Link to={`/agreement/${orderId}`} style={{
+              fontFamily: fonts.sans, fontSize: '13px', color: colors.accent, textDecoration: 'none',
+            }}>
+              Sign Transport Agreement
             </Link>
           </div>
         )}
