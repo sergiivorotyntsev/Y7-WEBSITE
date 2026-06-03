@@ -6,6 +6,7 @@ import { colors, fonts, button as btnStyles } from '../../theme';
 import PhoneInput from '../../components/PhoneInput';
 import OnboardingBanner from '../../components/OnboardingBanner';
 import BouncingEmailBanner from '../../components/recovery/BouncingEmailBanner';
+import VerificationBanner from '../../components/VerificationBanner';
 
 const inputStyle = {
   fontFamily: fonts.sans,
@@ -422,7 +423,14 @@ export default function NewOrder() {
       } else {
         const data = await res.json().catch(() => ({}));
         const detail = data?.detail;
-        setError(typeof detail === 'string' ? detail : 'Failed to submit order. Please try again.');
+        // DEALER-LIFECYCLE-G1: backend gates (company_verification_required,
+        // trial_quotes_exhausted, …) return a structured dict detail. Render its
+        // human-readable message instead of swallowing it as a generic error.
+        if (detail && typeof detail === 'object') {
+          setError(detail.detail || 'This action is not available for your account yet.');
+        } else {
+          setError(typeof detail === 'string' ? detail : 'Failed to submit order. Please try again.');
+        }
       }
     } catch {
       setError('Network error. Please check your connection and try again.');
@@ -455,6 +463,7 @@ export default function NewOrder() {
       <PageMeta title="New Transport Order" />
       <BouncingEmailBanner />
       <OnboardingBanner />
+      <VerificationBanner />
       <Link to="/portal/dashboard" style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.accent, display: 'inline-block', marginBottom: '20px' }}>&larr; Back to Dashboard</Link>
       <h1 style={{ fontFamily: fonts.serif, fontSize: '28px', fontWeight: 700, color: colors.text, marginBottom: '8px' }}>New Transport Order</h1>
       <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, marginBottom: '6px' }}>

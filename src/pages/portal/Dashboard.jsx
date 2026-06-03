@@ -8,6 +8,7 @@ import { ClipboardIcon, MapPinIcon, ProfileIcon, TelegramIcon, EmailIcon } from 
 // bank_auth) but the classify / agreement items now route to the wizard.
 import AccountSetupBanner from '../../components/AccountSetupBanner';
 import BouncingEmailBanner from '../../components/recovery/BouncingEmailBanner';
+import VerificationBanner from '../../components/VerificationBanner';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles, keyframes } from '../../theme';
 import { STATUS_COLORS, getStatusBadge } from '../../utils/orderStatus';
@@ -263,6 +264,7 @@ export default function Dashboard() {
 
       <BouncingEmailBanner />
       <AccountSetupBanner />
+      <VerificationBanner />
 
       {/* Stat cards */}
       <div style={{
