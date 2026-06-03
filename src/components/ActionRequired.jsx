@@ -33,6 +33,21 @@ const CONFIGS = {
     message: "You don't have access to this page.",
     action: { label: 'Go to Dashboard', to: '/portal/dashboard' },
   },
+  // DEALER-LIFECYCLE-G1: structured 403 codes from the dealer-verification gate
+  // and the trial-quote limit. Used when a page chooses to render a full-page
+  // block; the persistent VerificationBanner (from /me) is the primary cue.
+  company_verification_required: {
+    icon: <ShieldIcon size={48} />,
+    title: 'Company Verification Required',
+    message: 'Your company must be verified before you can submit transport orders. You can still request quotes while we review your account.',
+    action: { label: 'Go to Dashboard', to: '/portal/dashboard' },
+  },
+  trial_quotes_exhausted: {
+    icon: <ShieldIcon size={48} />,
+    title: 'Trial Quotes Used',
+    message: 'You have used all of your trial quotes. Complete your company verification to request more.',
+    action: { label: 'Go to Dashboard', to: '/portal/dashboard' },
+  },
 };
 
 export default function ActionRequired({ type, message: customMessage }) {

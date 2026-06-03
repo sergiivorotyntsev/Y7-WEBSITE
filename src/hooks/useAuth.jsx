@@ -88,6 +88,14 @@ export async function portalFetch(path, options = {}) {
         window.location.href = detail.agreement_url;
         return res;
       }
+      // DEALER-LIFECYCLE-G1: dealer verification / trial-quote states have no
+      // recovery URL to hard-redirect into — they are rendered in-page (the
+      // VerificationBanner sourced from /me, plus the structured-detail message
+      // in NewOrder). Recognise them here so they are handled deliberately
+      // rather than swallowed as a generic 403; surface to the caller untouched.
+      if (errorCode === 'company_verification_required' || errorCode === 'trial_quotes_exhausted') {
+        return res;
+      }
       // account_inactive and unrecognised 403s fall through unchanged.
     } catch {
       // body wasn't JSON or clone failed — let the caller handle it
@@ -122,6 +130,15 @@ function _normalizeUser(data) {
     delivery_zip: data.delivery_zip || null,
     sms_consent: !!data.sms_consent,
     email_verified: !!data.email_verified,
+    // DEALER-LIFECYCLE-G1: company-verification lifecycle + trial-quote budget.
+    // Null for non-dealers (no verification UI / no cap). trial_quotes_remaining
+    // is null when the cap is lifted (verified) — see VerificationBanner.
+    company_verification_status: data.company_verification_status || null,
+    company_verification_note: data.company_verification_note || null,
+    trial_quotes_remaining:
+      typeof data.trial_quotes_remaining === 'number' ? data.trial_quotes_remaining : null,
+    trial_quote_limit:
+      typeof data.trial_quote_limit === 'number' ? data.trial_quote_limit : 3,
   };
 }
 
