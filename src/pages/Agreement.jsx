@@ -274,6 +274,8 @@ export default function Agreement() {
   const [signerName, setSignerName] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+  // ESIGN-MECHANICS: discrete UETA electronic-consent, unticked by default.
+  const [eConsent, setEConsent] = useState(false);
   // Template metadata for the dealer DRAFT flow — drives the banner and
   // the agreement_version we send back when signing. Shipper flow leaves
   // this null so nothing renders and the backend uses its default version.
@@ -360,7 +362,7 @@ export default function Agreement() {
   }, [readSections, sections]);
 
   const allChecked = checks.every(Boolean);
-  const canSign = allChecked && signerName.trim().length >= 2;
+  const canSign = allChecked && eConsent && signerName.trim().length >= 2;
 
   function toggleCheck(i) {
     setChecks(prev => prev.map((v, j) => j === i ? !v : v));
@@ -378,6 +380,7 @@ export default function Agreement() {
         user_agent: navigator.userAgent,
         lang: i18n.language || 'en',
         agreement_type: getAgreementType(user?.customer_type),
+        e_consent: eConsent,
       };
       // Send the version that the user actually saw — recorded on the
       // customer_agreements row. If the template fetch failed earlier we
@@ -598,6 +601,37 @@ export default function Agreement() {
           </label>
         ))}
       </div>
+
+      {/* ESIGN-MECHANICS: discrete UETA electronic-consent — unticked by default,
+          required (folded into canSign) to enable the Sign button. */}
+      <label style={{
+        display: 'flex',
+        gap: '10px',
+        alignItems: 'flex-start',
+        cursor: 'pointer',
+        marginBottom: '28px',
+      }}>
+        <input
+          type="checkbox"
+          checked={eConsent}
+          onChange={e => setEConsent(e.target.checked)}
+          style={{
+            marginTop: '3px',
+            width: '18px',
+            height: '18px',
+            accentColor: colors.success,
+            flexShrink: 0,
+          }}
+        />
+        <span style={{
+          fontFamily: fonts.sans,
+          fontSize: '13px',
+          color: colors.text,
+          lineHeight: 1.5,
+        }}>
+          I agree to conduct business electronically and to sign this agreement electronically.
+        </span>
+      </label>
 
       {/* Signature block */}
       <div style={{

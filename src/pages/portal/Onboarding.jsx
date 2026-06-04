@@ -583,6 +583,8 @@ function AgreementStep({ user, customerType, onBack, onSigned }) {
   const [checked, setChecked] = useState({}); // checkbox id -> bool
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(null);
+  // ESIGN-MECHANICS: discrete UETA electronic-consent, unticked by default.
+  const [eConsent, setEConsent] = useState(false);
 
   useEffect(() => {
     let alive = true;
@@ -675,10 +677,11 @@ function AgreementStep({ user, customerType, onBack, onSigned }) {
   }
 
   const allChecked = template.checkboxes.every(cb => !!checked[cb.id]);
+  const canSign = allChecked && eConsent;
   const profileName = user?.contact_name || user?.name || '';
 
   async function handleSubmit() {
-    if (!allChecked || submitting) return;
+    if (!canSign || submitting) return;
     setSubmitting(true);
     setSubmitError(null);
     try {
@@ -699,6 +702,7 @@ function AgreementStep({ user, customerType, onBack, onSigned }) {
           language: template.lang,
           signed_channel: 'web',
           bundle_shape: template.bundle_shape,
+          e_consent: eConsent,
         }),
       });
       const data = await res.json().catch(() => ({}));
@@ -798,6 +802,27 @@ function AgreementStep({ user, customerType, onBack, onSigned }) {
         );
       })}
 
+      {/* ESIGN-MECHANICS: discrete UETA electronic-consent — unticked by default,
+          required to enable Sign. */}
+      <label style={{
+        display: 'flex', alignItems: 'flex-start', gap: spacing.sm,
+        marginTop: spacing.md, paddingTop: spacing.md,
+        borderTop: `1px solid ${colors.border}`,
+        cursor: 'pointer', fontFamily: fonts.sans, fontSize: 13,
+        color: colors.text, lineHeight: 1.5,
+      }}>
+        <input
+          type="checkbox"
+          checked={eConsent}
+          onChange={(e) => setEConsent(e.target.checked)}
+          style={{ marginTop: 2 }}
+        />
+        <span>
+          I agree to conduct business electronically and to sign this agreement
+          electronically.
+        </span>
+      </label>
+
       <div style={signerBlockStyle}>
         <h3 style={{ ...sectionHeadingStyle, marginTop: 0 }}>Your signature</h3>
         <p style={{ margin: 0, fontFamily: fonts.sans, fontSize: 14, color: colors.text }}>
@@ -829,12 +854,12 @@ function AgreementStep({ user, customerType, onBack, onSigned }) {
         <button
           type="button"
           onClick={handleSubmit}
-          disabled={!allChecked || submitting}
+          disabled={!canSign || submitting}
           style={{
             ...primaryBtnStyle,
-            background: allChecked && !submitting ? colors.accent : colors.bgMuted,
-            color: allChecked && !submitting ? '#fff' : colors.textMuted,
-            cursor: allChecked && !submitting ? 'pointer' : 'not-allowed',
+            background: canSign && !submitting ? colors.accent : colors.bgMuted,
+            color: canSign && !submitting ? '#fff' : colors.textMuted,
+            cursor: canSign && !submitting ? 'pointer' : 'not-allowed',
           }}
         >
           {submitting ? 'Signing...' : 'Sign agreement'}
