@@ -47,18 +47,31 @@ export default function QuoteAction() {
         </h2>
         {isConfirm && (
           <div style={{ marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'center' }}>
-            {/* CONFIRM-DECOUPLE (ADR-A): confirm = price acceptance only — route to
-                onboarding, not "order moving". The SIGNING STEP stays in the flow as a
-                legal shield (agreement text is attorney-reviewed separately). */}
-            <Link to="/portal/register" style={{
-              ...btnStyles.accent, display: 'inline-block', textDecoration: 'none', padding: '12px 24px', fontSize: '13px',
-            }}>
-              Create Your Account
-            </Link>
+            {/* CONFIRM-ONBOARD (ADR-A Sprint 3): the confirm landing IS the start of
+                onboarding. Continue straight into the portal wizard via the short-lived
+                signin token the confirm endpoint mints (-> /portal/magic -> session ->
+                wizard). The agreement-signing CTA stays in the flow (legal shield). The
+                48h onboarding deadline is carried in result.message above. */}
+            {result.order_ref && (
+              <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted, margin: 0 }}>
+                Reference: <strong>{result.order_ref}</strong>
+              </p>
+            )}
+            {result.signin_token ? (
+              <Link to={`/portal/magic/${result.signin_token}`} style={{
+                ...btnStyles.accent, display: 'inline-block', textDecoration: 'none', padding: '12px 24px', fontSize: '13px',
+              }}>
+                Continue to onboarding
+              </Link>
+            ) : (
+              <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted, maxWidth: '380px', margin: 0, lineHeight: 1.5 }}>
+                Check your email for the sign-in link to create your account and complete onboarding.
+              </p>
+            )}
             <Link to={`/agreement/${orderId}`} style={{
               fontFamily: fonts.sans, fontSize: '13px', color: colors.accent, textDecoration: 'none',
             }}>
-              Sign Transport Agreement
+              Sign Brokerage Agreement
             </Link>
           </div>
         )}
@@ -71,6 +84,29 @@ export default function QuoteAction() {
             </Link>
           </div>
         )}
+      </div>
+    );
+  }
+
+  // CONFIRM-ONBOARD: re-visit / stale-link fallback. After a successful confirm the
+  // quote_action_token is cleared, so re-loading the confirm link 403s. Don't dead-end
+  // the customer on a retry button — point them at the durable welcome-email sign-in link.
+  if (isConfirm && error) {
+    return (
+      <div style={{ maxWidth: '500px', margin: '0 auto', padding: '80px 24px', textAlign: 'center' }}>
+        <h2 style={{ fontFamily: fonts.serif, fontSize: '22px', color: colors.text, marginBottom: '12px' }}>
+          This confirmation link is no longer active
+        </h2>
+        <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.accent, marginBottom: '16px' }}>{error}</p>
+        <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, lineHeight: 1.6, marginBottom: '20px', maxWidth: '380px', marginLeft: 'auto', marginRight: 'auto' }}>
+          If you've already confirmed your quote, use the sign-in link in your welcome email
+          to create your account and complete onboarding within 48 hours. Otherwise, request a new quote.
+        </p>
+        <Link to="/ship-my-car" style={{
+          ...btnStyles.secondary, display: 'inline-block', textDecoration: 'none', padding: '12px 24px', fontSize: '13px',
+        }}>
+          Request a New Quote
+        </Link>
       </div>
     );
   }
