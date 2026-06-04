@@ -3,8 +3,9 @@ import { useParams, useSearchParams, Link, useNavigate } from 'react-router-dom'
 import { CheckIcon } from '../../components/icons';
 import OnboardingBanner from '../../components/OnboardingBanner';
 import BouncingEmailBanner from '../../components/recovery/BouncingEmailBanner';
-import { portalFetch } from '../../hooks/useAuth';
+import { portalFetch, useAuth } from '../../hooks/useAuth';
 import { colors, fonts } from '../../theme';
+import { API_URL } from '../../config';
 import { STATUS_LABELS, STATUS_PIPELINE, CANCELLATION_REASON_LABELS } from '../../utils/orderStatus';
 
 const TIMELINE_STEPS = [
@@ -73,9 +74,175 @@ function InfoRow({ label, value, mono }) {
   );
 }
 
+// OWNERSHIP-PROOF (ADR-A Sprint 4): individual / auction_buyer proof of ownership.
+const OWNERSHIP_DOC_TYPES = [
+  { value: 'title', label: 'Vehicle Title' },
+  { value: 'registration', label: 'Registration' },
+  { value: 'bill_of_sale', label: 'Bill of Sale' },
+  { value: 'auction_invoice', label: 'Auction Invoice / Buyer Receipt' },
+];
+
+function ownershipTypeLabel(v) {
+  const m = OWNERSHIP_DOC_TYPES.find((t) => t.value === v);
+  return m ? m.label : v;
+}
+
+function OwnershipProofCard({ orderId, status, docType, note, submittedAt, onUpdated }) {
+  const [selType, setSelType] = useState(docType || 'title');
+  const [file, setFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [err, setErr] = useState(null);
+  const [replacing, setReplacing] = useState(false);
+
+  const st = status || 'none';
+  const showForm = st === 'none' || st === 'rejected' || (st === 'pending' && replacing);
+
+  const selectStyle = {
+    width: '100%',
+    padding: '10px 12px',
+    border: `1px solid ${colors.borderInput}`,
+    borderRadius: '8px',
+    fontSize: '16px', // >=16px avoids iOS zoom
+    fontFamily: fonts.sans,
+    background: colors.bgInput,
+    color: colors.text,
+    boxSizing: 'border-box',
+  };
+  const uploadBtnStyle = (disabled) => ({
+    padding: '8px 18px',
+    background: colors.accent,
+    color: '#fff',
+    border: 'none',
+    borderRadius: '20px',
+    fontSize: '12px',
+    fontWeight: 600,
+    textTransform: 'uppercase',
+    letterSpacing: '0.5px',
+    fontFamily: fonts.sans,
+    cursor: disabled ? 'not-allowed' : 'pointer',
+    opacity: disabled ? 0.6 : 1,
+  });
+
+  const upload = async () => {
+    if (!file) { setErr('Choose a file first.'); return; }
+    setUploading(true);
+    setErr(null);
+    try {
+      const fd = new FormData();
+      fd.append('type', selType);
+      fd.append('file', file);
+      // Raw fetch — portalFetch forces Content-Type: application/json, which breaks FormData.
+      const r = await fetch(`${API_URL}/api/portal/data/orders/${orderId}/ownership-proof`, {
+        method: 'POST',
+        credentials: 'include',
+        body: fd,
+      });
+      if (r.ok) {
+        setFile(null);
+        setReplacing(false);
+        if (onUpdated) onUpdated();
+      } else {
+        const e = await r.json().catch(() => ({}));
+        setErr(e.detail || 'Upload failed. Please try again.');
+      }
+    } catch {
+      setErr('Upload failed. Please try again.');
+    }
+    setUploading(false);
+  };
+
+  return (
+    <InfoCard title="Ownership Proof">
+      {st === 'approved' && (
+        <div style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.success, fontWeight: 500 }}>
+          <CheckIcon size={16} /> Ownership verified{docType ? ` (${ownershipTypeLabel(docType)})` : ''}
+        </div>
+      )}
+
+      {st === 'pending' && !replacing && (
+        <div>
+          <div style={{ fontFamily: fonts.sans, fontSize: '14px', color: '#B8851F', fontWeight: 500 }}>
+            Under review{docType ? ` — ${ownershipTypeLabel(docType)}` : ''}
+          </div>
+          {submittedAt && (
+            <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginTop: '2px' }}>
+              Submitted {fmtDate(submittedAt) || submittedAt}
+            </div>
+          )}
+          <button
+            type="button"
+            onClick={() => setReplacing(true)}
+            style={{
+              background: 'none', border: 'none', padding: 0, marginTop: '8px',
+              fontFamily: fonts.sans, fontSize: '12px', color: colors.accent,
+              textDecoration: 'underline', cursor: 'pointer',
+            }}
+          >
+            Replace document
+          </button>
+        </div>
+      )}
+
+      {st === 'rejected' && (
+        <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.accent, marginBottom: '10px', lineHeight: 1.5 }}>
+          Your document wasn&apos;t accepted{note ? `: ${note}` : '.'} Please upload a new one.
+        </div>
+      )}
+
+      {st === 'none' && (
+        <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted, marginBottom: '12px', lineHeight: 1.5 }}>
+          To move your shipment forward, upload one document showing you own or are authorized
+          to ship this vehicle.
+        </p>
+      )}
+
+      {showForm && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <select value={selType} onChange={(e) => setSelType(e.target.value)} style={selectStyle}>
+            {OWNERSHIP_DOC_TYPES.map((t) => (
+              <option key={t.value} value={t.value}>{t.label}</option>
+            ))}
+          </select>
+          <input
+            type="file"
+            accept=".pdf,.jpg,.jpeg,.png,.heic,.webp"
+            onChange={(e) => { setFile(e.target.files[0]); setErr(null); }}
+            style={{ ...selectStyle, padding: '8px 12px' }}
+          />
+          {err && (
+            <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.accent }}>{err}</div>
+          )}
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+            <button type="button" onClick={upload} disabled={uploading || !file} style={uploadBtnStyle(uploading || !file)}>
+              {uploading ? 'Uploading...' : 'Upload document'}
+            </button>
+            {st === 'pending' && replacing && (
+              <button
+                type="button"
+                onClick={() => { setReplacing(false); setFile(null); setErr(null); }}
+                style={{
+                  padding: '8px 16px', background: 'transparent', color: colors.textMuted,
+                  border: `1px solid ${colors.border}`, borderRadius: '20px', fontSize: '12px',
+                  fontWeight: 600, fontFamily: fonts.sans, cursor: 'pointer',
+                }}
+              >
+                Cancel
+              </button>
+            )}
+          </div>
+          <div style={{ fontFamily: fonts.sans, fontSize: '11px', color: colors.textHint }}>
+            PDF or photo (JPG, PNG, HEIC, WebP), up to 15&nbsp;MB.
+          </div>
+        </div>
+      )}
+    </InfoCard>
+  );
+}
+
 export default function OrderDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [searchParams] = useSearchParams();
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -488,6 +655,19 @@ export default function OrderDetail() {
           </div>
         )}
       </InfoCard>
+
+      {/* Ownership proof — individual / auction_buyer only, once the price is accepted. */}
+      {['individual', 'auction_buyer'].includes(user?.customer_type)
+        && ['confirmed', 'dispatched'].includes(order.status) && (
+        <OwnershipProofCard
+          orderId={id}
+          status={order.ownership_proof_status}
+          docType={order.ownership_proof_type}
+          note={order.ownership_proof_note}
+          submittedAt={order.ownership_proof_submitted_at}
+          onUpdated={fetchOrder}
+        />
+      )}
 
       {/* Driver info card (dispatched orders) */}
       {['dispatched', 'completed'].includes(order.status) && order.driver_name && (

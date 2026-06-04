@@ -171,6 +171,14 @@ export default function Dashboard() {
   const delivered = (summary?.delivered || 0) + (summary?.completed || 0);
   const total = summary?.total || 0;
 
+  // OWNERSHIP-PROOF (ADR-A Sprint 4): nudge individual / auction_buyer customers to
+  // verify ownership on a price-accepted order that still needs it (none / rejected).
+  // The order detail page hosts the actual upload card; this is the post-wizard prompt.
+  const ownershipProofOrder = ['individual', 'auction_buyer'].includes(user?.customer_type)
+    ? orders.find((o) => ['confirmed', 'dispatched'].includes(o.status)
+        && ['none', 'rejected'].includes(o.ownership_proof_status || 'none'))
+    : null;
+
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '40px 24px 80px' }}>
       <PageMeta title="My Dashboard" description="Your active orders, shipment tracking, account management." path="/portal/dashboard" />
@@ -206,6 +214,26 @@ export default function Dashboard() {
         }}>
           {error}
         </div>
+      )}
+
+      {ownershipProofOrder && (
+        <Link
+          to={`/portal/order/${ownershipProofOrder.id}`}
+          style={{
+            display: 'block', textDecoration: 'none', marginBottom: '20px',
+            background: '#FFF8E1', border: '1px solid #F9A825', borderRadius: '12px',
+            padding: '14px 18px',
+          }}
+        >
+          <div style={{ fontFamily: fonts.sans, fontSize: '14px', fontWeight: 600, color: '#8a6d1b' }}>
+            Verify vehicle ownership to keep your shipment moving &rarr;
+          </div>
+          <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: '#8a6d1b', marginTop: '2px' }}>
+            Upload your title, registration, bill of sale, or auction invoice for{' '}
+            {[ownershipProofOrder.vehicle_year, ownershipProofOrder.vehicle_make, ownershipProofOrder.vehicle_model]
+              .filter(Boolean).join(' ') || 'your vehicle'}.
+          </div>
+        </Link>
       )}
 
       {/* Header */}
