@@ -82,19 +82,25 @@ app.get(/^\/ru-us(\/.*)?$/, (req, res) => {
 });
 
 // ---------------------------------------------------------------------------
-// Cache headers (mirrors old serve.json policy)
+// Cache headers (WEB-CACHE-RESILIENCE-T01)
 // ---------------------------------------------------------------------------
-// - HTML: no cache (prerendered pages may update between deploys)
-// - JS/CSS/fonts: immutable 1 year (vite adds content hashes)
-// - Images: 1 week
+// - HTML: no-cache => store but ALWAYS revalidate (ETag -> cheap 304). A browser
+//   can never run a STALE index.html against a newer asset set — the root cause
+//   of the 2026-06-05 chunk-load reload-loop incident. (We use `no-cache` rather
+//   than `no-store` so the cheap ETag 304 still applies; revalidation is mandatory
+//   either way, so it is never served stale.)
+// - JS/CSS/fonts: immutable 1 year — vite content-hashes every filename, so a new
+//   build yields new names; safe to cache by contract (browser AND Cloudflare).
+// - Other static site-chrome (favicon, og images, robots.txt, sitemap.xml): modest
+//   1h — they change occasionally. Content photos are hashed and live in /assets/.
 app.use((req, res, next) => {
   const url = req.url.split('?')[0];
   if (url.endsWith('.html') || url === '/' || !path.extname(url)) {
-    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Cache-Control', 'no-cache');
   } else if (/\.(js|css|woff|woff2)$/.test(url)) {
     res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-  } else if (/\.(svg|jpg|jpeg|png|webp|avif|ico)$/.test(url)) {
-    res.setHeader('Cache-Control', 'public, max-age=604800');
+  } else if (/\.(svg|jpg|jpeg|png|webp|avif|ico|txt|xml)$/.test(url)) {
+    res.setHeader('Cache-Control', 'public, max-age=3600');
   }
   next();
 });
@@ -108,7 +114,7 @@ app.use((req, res, next) => {
   if ((req.method !== 'GET' && req.method !== 'HEAD') || path.extname(req.path) || req.path.endsWith('/')) return next();
   const indexPath = path.join(DIST_DIR, req.path, 'index.html');
   if (existsSync(indexPath)) {
-    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Cache-Control', 'no-cache');
     return res.sendFile(indexPath);
   }
   next();
