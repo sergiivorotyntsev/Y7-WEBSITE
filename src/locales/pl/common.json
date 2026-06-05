@@ -1,4 +1,8 @@
 {
+  "errors": {
+    "chunkLoadFailed": "Nie udało się załadować tej strony. Odśwież ją lub spróbuj ponownie za chwilę.",
+    "refresh": "Odśwież"
+  },
   "nav": {
     "home": "Strona główna",
     "services": "Usługi",
