@@ -455,8 +455,9 @@ export default function DaytonaCargoPage() {
     const KF = {
       rotY: [[0, -1.00], [0.15, -1.00], [0.45, -0.92], [0.7, -0.74], [1, -0.50]],
       rotX: [[0, 0.32], [0.5, 0.36], [1, 0.30]],
-      camZ: [[0, 5.5], [0.13, 5.5], [0.24, 4.6], [0.85, 4.4], [1, 3.8]],
-      camY: [[0, 0.02], [0.13, 0.02], [0.24, 0.12], [1, 0.10]],
+      // camZ is built per-frame from a responsive heroZ (closer on desktop so the
+      // hero globe matches its mid-page size). See frame().
+      camY: [[0, 0.10], [0.13, 0.10], [0.24, 0.12], [1, 0.10]],
       groupX: [[0, 0.35], [0.13, 0.35], [0.22, -0.9], [0.82, -0.9], [0.93, 0], [1, 0]],
     };
 
@@ -498,13 +499,14 @@ export default function DaytonaCargoPage() {
       const prog = scrollProgress();
       smooth += (prog - smooth) * 0.07;
       const p = smooth;
-      const isDesktop = window.innerWidth > 880;
+      const desktop = window.innerWidth > 880;
+      const heroZ = desktop ? 4.35 : 5.2;
 
-      const gx = isDesktop ? kf(p, KF.groupX) : 0;
+      const gx = desktop ? kf(p, KF.groupX) : 0;
       globe.rotation.y = kf(p, KF.rotY);
       globe.rotation.x = kf(p, KF.rotX);
       globe.position.x = gx;
-      camera.position.set(0, kf(p, KF.camY), kf(p, KF.camZ));
+      camera.position.set(0, kf(p, KF.camY), kf(p, [[0, heroZ], [0.13, heroZ], [0.5, 4.45], [0.85, 4.4], [1, 3.8]]));
       camera.lookAt(gx, 0, 0);
 
       // sun / day-night
