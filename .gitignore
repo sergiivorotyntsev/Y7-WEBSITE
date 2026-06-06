@@ -36,3 +36,6 @@ tmp/
 
 # Claude Code session scratchpad (local only)
 .claude/scratchpad.md
+
+# DaytonaCargo landmask source polygons (250KB, regenerable via generate-landmask.mjs)
+scripts/world.geo.json
