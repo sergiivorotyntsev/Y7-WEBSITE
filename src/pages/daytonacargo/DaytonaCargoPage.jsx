@@ -359,18 +359,23 @@ export default function DaytonaCargoPage() {
     disposables.push(termGeo, termMat);
 
     // ---- atmosphere (BackSide additive fresnel) ----
+    // Tightened + day-aware: on the cream day background the additive glow used
+    // to render as a wide pale-blue donut. amp damps it to a thin cool rim in
+    // daylight (full glow only at night). Radius pulled in to R*1.10 and the
+    // fresnel exponent raised so the rim never exceeds ~6% of globe radius.
     const atmMat = new THREE.ShaderMaterial({
+      uniforms: { amp: { value: 1 } },
       transparent: true, side: THREE.BackSide, blending: THREE.AdditiveBlending, depthWrite: false,
       vertexShader: `
         varying vec3 vN; varying vec3 vP;
         void main(){ vN = normalize(normalMatrix * normal); vec4 mv = modelViewMatrix * vec4(position,1.0); vP = mv.xyz; gl_Position = projectionMatrix * mv; }
       `,
       fragmentShader: `
-        varying vec3 vN; varying vec3 vP;
-        void main(){ vec3 v = normalize(-vP); float f = pow(1.0 - abs(dot(vN, v)), 2.5); vec3 col = vec3(0.18, 0.45, 0.95); gl_FragColor = vec4(col * f, f * 0.9); }
+        uniform float amp; varying vec3 vN; varying vec3 vP;
+        void main(){ vec3 v = normalize(-vP); float i = pow(1.0 - abs(dot(vN, v)), 5.0); vec3 c = vec3(0.18, 0.45, 0.95); gl_FragColor = vec4(c, 1.0) * i * amp * 0.5; }
       `,
     });
-    const atmGeo = new THREE.SphereGeometry(R * 1.28, 48, 32);
+    const atmGeo = new THREE.SphereGeometry(R * 1.10, 48, 32);
     const atm = new THREE.Mesh(atmGeo, atmMat);
     globe.add(atm);
     disposables.push(atmGeo, atmMat);
@@ -506,6 +511,9 @@ export default function DaytonaCargoPage() {
       termMat.uniforms.sunDir.value.copy(sd);
       const dayF = 0.5 - 0.5 * Math.cos(ang);
       starMat.opacity = (1 - dayF) * 0.6;
+      // Damp the atmosphere glow in daylight: full at night, barely-there cool
+      // rim by day (kills the pale-blue donut over the cream background).
+      atmMat.uniforms.amp.value = 0.18 + 0.82 * (1 - dayF);
       if (dayF < 0.42 && !nightActive) { nightActive = true; page.classList.add(styles.night); }
       else if (dayF > 0.58 && nightActive) { nightActive = false; page.classList.remove(styles.night); }
 
