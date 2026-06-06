@@ -709,15 +709,16 @@ export default function DaytonaCargoPage() {
             <p className={styles.footnote}>{FOOTNOTE}</p>
           </article>
 
-          {/* Leg 02 — land haul */}
+          {/* Leg 02 — own brokerage runs the land leg */}
           <article className={styles.card} data-card>
-            <div className={styles.cardTag}><span>LEG 02 &middot; LAND HAUL</span><i>&#9670;</i></div>
-            <h2 className={styles.cardH2}>Auction yard to port</h2>
+            <div className={styles.cardTag}><span>LEG 02 &middot; YARD &rarr; PORT</span><i>OWN US BROKERAGE</i></div>
+            <h2 className={styles.cardH2}>Our own brokerage runs the land leg.</h2>
             <p className={styles.cardBody}>
-              The short land leg from the auction yard to the export terminal is where
-              generalist chains lose and damage cars. Industry pages cite loss on this leg
-              near <strong>2.5%</strong>. Daytona targets a fraction of that with dedicated
-              yard-to-port carriers.
+              The haul from the auction yard to the port is not handed to a random dispatcher.
+              It is administered by our affiliated FMCSA licensed &amp; bonded brokerage,
+              <strong> Y7 Logistics (MC #1741537)</strong>, through a vetted network of
+              <strong> ~500 carriers</strong>, assigned by lane and rated by performance.
+              Shorter hauls to the nearest of four ports, accountable drivers.
             </p>
             <div className={styles.vs}>
               <div className={`${styles.vsCell} ${styles.them}`}>
@@ -729,7 +730,7 @@ export default function DaytonaCargoPage() {
                 <div className={styles.vsNum}><b>0.8%*</b></div>
               </div>
             </div>
-            <span className={styles.chip}>METRIC 02 &middot; LAND-LEG LOSS RATE</span>
+            <span className={styles.chip}>METRIC 02 &middot; OWN NETWORK &middot; ~500 CARRIERS</span>
             <p className={styles.footnote}>{FOOTNOTE}</p>
           </article>
 
