@@ -790,8 +790,102 @@ export default function DaytonaCargoPage() {
           </article>
         </section>
 
+        {/* ---- THE DECISION PACK ---- */}
+        <section className={styles.decision}>
+          <div className={styles.dpInner}>
+            <div className={styles.dpHead}>
+              <div className={styles.dpKicker}>FOR THE DECISION-MAKER</div>
+              <h2 className={styles.dpH2}>The decision pack.</h2>
+              <p className={styles.dpSub}>The facts you would ask for on a call, on one screen.</p>
+            </div>
+
+            <div className={styles.dpGrid}>
+              {/* Card 1 — Lanes & Ports */}
+              <article className={styles.card} data-card>
+                <div className={styles.dpTitle}>&#9670; LANES &amp; PORTS</div>
+                <table className={styles.dpTable}>
+                  <thead>
+                    <tr><th>Origin</th><th>Lane</th><th>Transit**</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Savannah, GA</td><td>North Atlantic &rarr; Channel</td><td><b>6&ndash;8 wk*</b></td></tr>
+                    <tr><td>Newark, NJ</td><td>North Atlantic &rarr; Channel</td><td><b>6&ndash;8 wk*</b></td></tr>
+                    <tr><td>Houston, TX</td><td>Gulf &rarr; Florida Straits &rarr; Atlantic</td><td><b>7&ndash;9 wk*</b></td></tr>
+                    <tr><td>Los Angeles, CA</td><td>Pacific &rarr; Panama Canal &rarr; Atlantic</td><td><b>9&ndash;11 wk*</b></td></tr>
+                  </tbody>
+                </table>
+                <div className={styles.dpTableFoot}>
+                  Pure ocean time New York &rarr; Rotterdam is 18&ndash;20 days. The rest is the chain.
+                </div>
+              </article>
+
+              {/* Card 2 — What's in the quote */}
+              <article className={styles.card} data-card>
+                <div className={styles.dpTitle}>&#9670; WHAT&apos;S IN THE QUOTE</div>
+                <ul className={styles.dpCheck}>
+                  <li>auction bidding &amp; a single buy fee</li>
+                  <li>Carfax / AutoCheck before every bid</li>
+                  <li>yard photos before the haul</li>
+                  <li>land haul via our own ~500-carrier network</li>
+                  <li>container loading with a photo report</li>
+                  <li>ocean freight, insurance options stated</li>
+                  <li>export documents &amp; title handling</li>
+                  <li>EV surcharge declared upfront (+$150)</li>
+                </ul>
+              </article>
+
+              {/* Card 3 — Titles, honestly */}
+              <article className={styles.card} data-card>
+                <div className={styles.dpTitle}>&#9670; TITLES, HONESTLY</div>
+                <p className={styles.dpText}>
+                  Transit starts when the title is in hand. Auction policies allow sellers up to
+                  30 days to deliver a title (e.g. Manheim), and lien titles take longer to
+                  release. No operator can compress that stage; anyone promising otherwise is
+                  hiding it in the fine print. We flag title status before you bid and chase the
+                  document daily after.
+                </p>
+              </article>
+
+              {/* Card 4 — You see everything */}
+              <article className={styles.card} data-card>
+                <div className={styles.dpTitle}>&#9670; YOU SEE EVERYTHING</div>
+                <p className={styles.dpText}>
+                  One panel for your whole fleet in transit: status, documents and photo
+                  checkpoints per VIN, yard, loading, container, quay. No
+                  &ldquo;call us for an update&rdquo;.
+                </p>
+              </article>
+
+              {/* Card 5 — Who you are dealing with */}
+              <article className={styles.card} data-card>
+                <div className={styles.dpTitle}>&#9670; WHO YOU ARE DEALING WITH</div>
+                <p className={styles.dpText}>
+                  <strong>DaytonaCargo LLC</strong>, Dover, DE, USA. Land leg administered by our
+                  affiliated FMCSA licensed &amp; bonded brokerage <strong>Y7 Logistics
+                  (MC #1741537)</strong>. EN / PL / RU team. Rotterdam-first clearing through
+                  established port partners.
+                </p>
+              </article>
+
+              {/* Card 6 — Wholesale terms */}
+              <article className={styles.card} data-card>
+                <div className={styles.dpTitle}>&#9670; WHOLESALE TERMS</div>
+                <p className={styles.dpText}>
+                  Individual terms by monthly volume, one itemized invoice per vehicle,
+                  consolidation pricing for 2&ndash;3 units per container. Start with a
+                  no-commitment 3-VIN comparative quote, returned within 24 hours.
+                </p>
+                <a className={styles.dpCta} href="#daytona-quote">REQUEST A 3-VIN QUOTE &rarr;</a>
+              </article>
+            </div>
+
+            <div className={styles.dpFootnotes}>{FOOTNOTE}</div>
+            <div className={styles.dpFootnotes}>{FOOTNOTE2}</div>
+          </div>
+        </section>
+
         {/* ---- ARRIVAL ---- */}
-        <section className={styles.arrival}>
+        <section className={styles.arrival} id="daytona-quote">
           <div className={styles.arrivalKicker}>LEG 05 &middot; ROTTERDAM QUAY &middot; 51.95&deg;N 4.14&deg;E</div>
           <h2 className={styles.arrivalH2}>Arrived. Now compare.</h2>
           <div className={styles.totals}>
