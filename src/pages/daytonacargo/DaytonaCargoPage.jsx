@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import * as THREE from 'three';
 import { apiPost } from '../../hooks/useApi';
 import landmaskB64 from './landmask.b64.txt?raw';
 import styles from './DaytonaCargo.module.css';
@@ -71,6 +70,16 @@ export default function DaytonaCargoPage() {
     page.classList.add(styles.night);
 
     let disposed = false;
+    let teardown = null;
+
+    // Load three only on this route (plain dynamic import — NOT React.lazy, so
+    // prerender still renders the full DOM synchronously). Keeps the ~150KB
+    // gzip globe library out of the site-wide bundle.
+    import('three')
+      .then((THREE) => { if (!disposed) teardown = buildScene(THREE); })
+      .catch(() => { if (!disposed) page.classList.add(styles.noWebgl); });
+
+    function buildScene(THREE) {
     let raf = 0;
     const disposables = [];
     let observer = null;
@@ -81,11 +90,11 @@ export default function DaytonaCargoPage() {
       renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
     } catch {
       page.classList.add(styles.noWebgl);
-      return undefined;
+      return null;
     }
     if (!renderer) {
       page.classList.add(styles.noWebgl);
-      return undefined;
+      return null;
     }
 
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
@@ -586,14 +595,19 @@ export default function DaytonaCargoPage() {
     }, { threshold: 0.2 });
     cards.forEach((c) => observer.observe(c));
 
-    // ---- cleanup ----
+    // ---- cleanup (returned from buildScene; run by the effect teardown) ----
     return () => {
-      disposed = true;
       window.cancelAnimationFrame(raf);
       window.removeEventListener('resize', onResize);
       if (observer) observer.disconnect();
       disposables.forEach((d) => { if (d && d.dispose) d.dispose(); });
       renderer.dispose();
+    };
+    } // end buildScene
+
+    return () => {
+      disposed = true;
+      if (teardown) teardown();
     };
   }, []);
 
