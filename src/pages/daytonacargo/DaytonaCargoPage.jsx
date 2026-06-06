@@ -22,6 +22,8 @@ const BASE = 'https://www.y7agency.com';
 const MAILTO = 'mailto:kontakt@daytonacargo.com?subject=3-VIN%20quote%20request';
 const FOOTNOTE =
   '* market averages from published importer pricing, Feb–Apr 2026; Daytona values are pre-launch targets pending verified operations data.';
+const FOOTNOTE2 =
+  '** transit counted from title-in-hand to Rotterdam quay; excludes auction document processing. Auction policies allow sellers up to 30 days to deliver a title (e.g. Manheim), lien titles take longer. No operator can compress that stage.';
 
 export default function DaytonaCargoPage() {
   const pageRef = useRef(null);
@@ -744,15 +746,16 @@ export default function DaytonaCargoPage() {
             <div className={styles.vs}>
               <div className={`${styles.vsCell} ${styles.them}`}>
                 <div className={styles.vsLabel}>Market typical</div>
-                <div className={styles.vsNum}>8&ndash;10 wk*</div>
+                <div className={styles.vsNum}>8&ndash;10 wk**</div>
               </div>
               <div className={`${styles.vsCell} ${styles.us}`}>
                 <div className={styles.vsLabel}>Daytona (Savannah)</div>
-                <div className={styles.vsNum}><b>6&ndash;8 wk*</b></div>
+                <div className={styles.vsNum}><b>6&ndash;8 wk**</b></div>
               </div>
             </div>
             <span className={styles.chip}>METRIC 03 &middot; YARD-TO-QUAY TIME</span>
             <p className={styles.footnote}>{FOOTNOTE}</p>
+            <p className={styles.footnote}>{FOOTNOTE2}</p>
           </article>
 
           {/* Leg 04 — consolidation */}
@@ -848,6 +851,7 @@ export default function DaytonaCargoPage() {
           <div><b>DaytonaCargo LLC</b> &middot; 8 The Green, Dover, DE 19901</div>
           <div>In cooperation with <b>Y7 Logistics</b></div>
           <div className={styles.footerFoot}>{FOOTNOTE}</div>
+          <div className={styles.footerFoot}>{FOOTNOTE2}</div>
         </footer>
       </main>
     </div>
