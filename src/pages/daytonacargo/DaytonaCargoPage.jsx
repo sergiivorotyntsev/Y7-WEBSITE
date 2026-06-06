@@ -413,25 +413,24 @@ export default function DaytonaCargoPage() {
       ports.forEach((pt) => {
         const accent = pt.us ? '#FF6B1A' : '#36DDF2';
         const cv = document.createElement('canvas');
-        cv.width = 512; cv.height = 140;
+        cv.width = 520; cv.height = 92;
         const ctx = cv.getContext('2d');
+        // Name only; coordinates dropped (they cluttered the dense US ports).
+        ctx.font = '700 44px "JetBrains Mono", monospace';
+        const nameWidth = ctx.measureText(pt.name).width;
         ctx.fillStyle = 'rgba(7,13,26,0.58)';
-        roundRect(ctx, 6, 6, 500, 128, 18); ctx.fill();
+        roundRect(ctx, 0, 10, nameWidth + 46, 64, 14); ctx.fill();
         ctx.fillStyle = accent;
-        roundRect(ctx, 6, 6, 10, 128, 5); ctx.fill();
-        ctx.textBaseline = 'middle';
+        roundRect(ctx, 12, 25, 8, 34, 3); ctx.fill();
+        ctx.textBaseline = 'top';
         ctx.fillStyle = '#F3F6FB';
-        ctx.font = '600 46px "JetBrains Mono", monospace';
-        ctx.fillText(pt.name, 38, 52);
-        ctx.fillStyle = '#9DB0CC';
-        ctx.font = '400 28px "JetBrains Mono", monospace';
-        ctx.fillText(pt.coords, 38, 98);
+        ctx.fillText(pt.name, 32, 24);
         const tex = new THREE.CanvasTexture(cv);
         tex.minFilter = THREE.LinearFilter;
         const mat = new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false, depthTest: false, opacity: 0 });
         const sp = new THREE.Sprite(mat);
-        sp.scale.set(0.46, 0.123, 1);
-        sp.center.set(0.16, 0);
+        sp.scale.set(0.40, 0.071, 1);
+        sp.center.set(0.14, 0);
         const lp = ll(pt.lat, pt.lon, 1).normalize().multiplyScalar(pt.alt);
         sp.position.copy(lp);
         sp.renderOrder = 5;
