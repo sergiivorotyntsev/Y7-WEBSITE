@@ -7,6 +7,7 @@
 import { writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { PORT_SLUGS } from '../src/pages/ports/portData.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT_FILE = join(__dirname, '..', 'public', 'sitemap.xml');
@@ -29,6 +30,16 @@ const TRANSLATABLE_PATHS = [
   { en: '/track',     ua: '/ua/track',    pl: '/pl/track',    ru: '/ru/track' },
   { en: '/quote',     ua: '/ua/quote',    pl: '/pl/quote',    ru: '/ru/quote' },
 ];
+
+// Localized port pages (SEO-P2B): 1:1 translations of each English port page
+// in all four languages. Built from PORT_SLUGS so the list can't drift from the
+// port data or the prerendered routes.
+const PORT_GROUPS = PORT_SLUGS.map((s) => ({
+  en: `/ports/${s}`,
+  ua: `/ua/ports/${s}`,
+  pl: `/pl/ports/${s}`,
+  ru: `/ru/ports/${s}`,
+}));
 
 // ---------------------------------------------------------------------------
 // English-only pages (no locale variants) — flat URL entries, no alternates.
@@ -64,10 +75,6 @@ const ENGLISH_ONLY = [
   '/how-to-ship-a-car-bought-at-auction', '/open-vs-enclosed-auto-transport',
   '/what-is-a-bill-of-lading',
   '/copart-storage-fees', '/copart-gate-pass-guide', '/copart-international-shipping',
-
-  // Ports
-  '/ports/newark', '/ports/houston', '/ports/savannah',
-  '/ports/los-angeles', '/ports/baltimore', '/ports/jacksonville',
 
   // Blog
   '/blog',
@@ -179,6 +186,16 @@ for (const group of TRANSLATABLE_PATHS) {
   sections.push(translatedUrlBlock(group.ru, group));
 }
 
+// 1b. Localized port pages — same reciprocal-hreflang treatment as above.
+sections.push('');
+sections.push('  <!-- Translated port pages: reciprocal hreflang alternates on every URL -->');
+for (const group of PORT_GROUPS) {
+  sections.push(translatedUrlBlock(group.en, group));
+  sections.push(translatedUrlBlock(group.ua, group));
+  sections.push(translatedUrlBlock(group.pl, group));
+  sections.push(translatedUrlBlock(group.ru, group));
+}
+
 // 2. English-only pages
 sections.push('');
 sections.push('  <!-- English-only pages (no locale variants) -->');
@@ -211,4 +228,5 @@ const alt = (xml.match(/xhtml:link/g) || []).length;
 console.log(`[generateSitemap] wrote ${OUT_FILE}`);
 console.log(`  Total <url> entries: ${total}`);
 console.log(`  Total xhtml:link alternates: ${alt}`);
-console.log(`  Translated URL groups: ${TRANSLATABLE_PATHS.length} (× 4 locales × 5 alternates = ${TRANSLATABLE_PATHS.length * 4 * 5})`);
+const groupCount = TRANSLATABLE_PATHS.length + PORT_GROUPS.length;
+console.log(`  Translated URL groups: ${groupCount} (× 4 locales × 5 alternates = ${groupCount * 4 * 5})`);
