@@ -22,7 +22,7 @@ function detectLocale(pathname) {
  * Hreflang is intentionally NOT handled here — HreflangTags auto-mounts in
  * Layout for every translatable path.
  */
-export default function PageMeta({ title, description, path = '', schema, ogType, ogImage, articlePublishedTime, articleAuthor, articleSection }) {
+export default function PageMeta({ title, description, path = '', schema, ogType, ogImage, articlePublishedTime, articleAuthor, articleSection, noindex = false }) {
   const location = useLocation();
   const pathname = location?.pathname || path || '/';
   const locale = detectLocale(pathname);
@@ -62,6 +62,7 @@ export default function PageMeta({ title, description, path = '', schema, ogType
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:image" content={ogImage || `${BASE}/og-image.svg`} />
       <link rel="canonical" href={canonical} />
+      {noindex && <meta name="robots" content="noindex, follow" />}
       {schema && <script type="application/ld+json">{schema}</script>}
     </Helmet>
   );
