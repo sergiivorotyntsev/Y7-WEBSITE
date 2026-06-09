@@ -37,6 +37,7 @@ import processTimelineRu from './locales/ru/processTimeline.json';
 import notFoundRu from './locales/ru/notFound.json';
 import contextualCTARu from './locales/ru/contextualCTA.json';
 import portalRu from './locales/ru/portal.json';
+import portsRu from './locales/ru/ports.json';
 
 // Polish
 import commonPl from './locales/pl/common.json';
@@ -54,6 +55,7 @@ import processTimelinePl from './locales/pl/processTimeline.json';
 import notFoundPl from './locales/pl/notFound.json';
 import contextualCTAPl from './locales/pl/contextualCTA.json';
 import portalPl from './locales/pl/portal.json';
+import portsPl from './locales/pl/ports.json';
 
 // Ukrainian
 import commonUa from './locales/ua/common.json';
@@ -71,6 +73,7 @@ import processTimelineUa from './locales/ua/processTimeline.json';
 import notFoundUa from './locales/ua/notFound.json';
 import contextualCTAUa from './locales/ua/contextualCTA.json';
 import portalUa from './locales/ua/portal.json';
+import portsUa from './locales/ua/ports.json';
 
 const resources = {
   en: {
@@ -81,17 +84,17 @@ const resources = {
   ru: {
     common: commonRu, home: homeRu, quote: quoteRu, services: servicesRu,
     dealers: dealersRu, exporters: exportersRu, shipMycar: shipMycarRu, agreement: agreementRu, agreement_dealer: agreementDealerRu, about: aboutRu, faq: faqRu, processTimeline: processTimelineRu,
-    terms: termsEn, privacy: privacyEn, notFound: notFoundRu, contextualCTA: contextualCTARu, portal: portalRu, ports: portsEn,
+    terms: termsEn, privacy: privacyEn, notFound: notFoundRu, contextualCTA: contextualCTARu, portal: portalRu, ports: portsRu,
   },
   pl: {
     common: commonPl, home: homePl, quote: quotePl, services: servicesPl,
     dealers: dealersPl, exporters: exportersPl, shipMycar: shipMycarPl, agreement: agreementPl, agreement_dealer: agreementDealerPl, about: aboutPl, faq: faqPl, processTimeline: processTimelinePl,
-    terms: termsEn, privacy: privacyEn, notFound: notFoundPl, contextualCTA: contextualCTAPl, portal: portalPl, ports: portsEn,
+    terms: termsEn, privacy: privacyEn, notFound: notFoundPl, contextualCTA: contextualCTAPl, portal: portalPl, ports: portsPl,
   },
   ua: {
     common: commonUa, home: homeUa, quote: quoteUa, services: servicesUa,
     dealers: dealersUa, exporters: exportersUa, shipMycar: shipMycarUa, agreement: agreementUa, agreement_dealer: agreementDealerUa, about: aboutUa, faq: faqUa, processTimeline: processTimelineUa,
-    terms: termsEn, privacy: privacyEn, notFound: notFoundUa, contextualCTA: contextualCTAUa, portal: portalUa, ports: portsEn,
+    terms: termsEn, privacy: privacyEn, notFound: notFoundUa, contextualCTA: contextualCTAUa, portal: portalUa, ports: portsUa,
   },
 };
 
