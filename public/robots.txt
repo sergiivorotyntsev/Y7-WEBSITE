@@ -27,9 +27,13 @@ Allow: /
 User-agent: Googlebot-Image
 Allow: /
 
-# Block Google AI training (does NOT affect Google Search)
+# Google-Extended (Gemini / Vertex AI training) — INTENTIONALLY OPENED (compromise-(b))
 User-agent: Google-Extended
-Disallow: /
+Allow: /
+Disallow: /portal/
+Disallow: /agreement
+Disallow: /api/
+Disallow: /review/
 
 # ── Bing / Yahoo / DuckDuckGo ────────────────────────────────
 User-agent: Bingbot
@@ -65,36 +69,67 @@ User-agent: Applebot
 Allow: /
 Allow: /assets/
 
-# ── AI Training Bots (BLOCK — content not for model training) ─
+# ── AI Training Bots — INTENTIONALLY OPENED (compromise-(b)) ──
+# y7agency.com WANTS presence in future model weights; these training crawlers
+# get the SAME private-path exclusions as the global * block. Junk/parasite
+# scrapers below stay blocked. Reversible anytime if a crawler misbehaves.
 # OpenAI training crawler
 User-agent: GPTBot
-Disallow: /
+Allow: /
+Disallow: /portal/
+Disallow: /agreement
+Disallow: /api/
+Disallow: /review/
 
 # Anthropic training crawler
 User-agent: anthropic-ai
-Disallow: /
+Allow: /
+Disallow: /portal/
+Disallow: /agreement
+Disallow: /api/
+Disallow: /review/
 User-agent: ClaudeBot
-Disallow: /
+Allow: /
+Disallow: /portal/
+Disallow: /agreement
+Disallow: /api/
+Disallow: /review/
 
 # Common Crawl (used for training many AI models)
 User-agent: CCBot
-Disallow: /
+Allow: /
+Disallow: /portal/
+Disallow: /agreement
+Disallow: /api/
+Disallow: /review/
 
-# ByteDance / TikTok crawler
+# ByteDance / TikTok crawler — KEPT BLOCKED (junk/parasite scraper)
 User-agent: Bytespider
 Disallow: /
 
 # Meta / Facebook training
 User-agent: FacebookBot
-Disallow: /
+Allow: /
+Disallow: /portal/
+Disallow: /agreement
+Disallow: /api/
+Disallow: /review/
 
 # Amazon AI
 User-agent: Amazonbot
-Disallow: /
+Allow: /
+Disallow: /portal/
+Disallow: /agreement
+Disallow: /api/
+Disallow: /review/
 
 # Cohere AI
 User-agent: cohere-ai
-Disallow: /
+Allow: /
+Disallow: /portal/
+Disallow: /agreement
+Disallow: /api/
+Disallow: /review/
 
 # ── Known low-value / aggressive scrapers ─────────────────────
 User-agent: AhrefsBot
