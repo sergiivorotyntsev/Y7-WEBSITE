@@ -1,4 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import PageMeta from '../../components/PageMeta';
 import BreadcrumbSchema from '../../components/BreadcrumbSchema';
 import AuctionToPortWorkflow from '../../components/AuctionToPortWorkflow';
@@ -47,17 +48,18 @@ const RELATED_BY_PORT = {
 
 export default function PortPage() {
   const { slug } = useParams();
+  const { t } = useTranslation('ports');
   const port = PORTS[slug];
 
   if (!port) {
     return (
       <div className={styles.notFound}>
-        <h1 className={styles.notFoundTitle}>Port Not Found</h1>
+        <h1 className={styles.notFoundTitle}>{t('labels.notFoundTitle')}</h1>
         <p className={styles.notFoundMsg}>
-          The port page you are looking for does not exist.
+          {t('labels.notFoundMsg')}
         </p>
         <Link to="/exporters" className={`${btn.btnPrimary} ${styles.notFoundBtn}`}>
-          View All Ports
+          {t('labels.notFoundCta')}
         </Link>
       </div>
     );
@@ -66,10 +68,9 @@ export default function PortPage() {
   return (
     <div className={styles.wrap}>
       <PageMeta
-        title={port.metaTitle}
-        description={port.metaDesc}
+        title={t(`${slug}.metaTitle`)}
+        description={t(`${slug}.metaDesc`)}
         path={`/ports/${slug}`}
-        i18n
       />
       <BreadcrumbSchema items={[
         { name: 'Home', url: '/' },
@@ -80,7 +81,7 @@ export default function PortPage() {
 
       {/* Hero */}
       <section className={styles.hero}>
-        <span className={styles.heroKicker}>&#9670; Port Delivery</span>
+        <span className={styles.heroKicker}>&#9670; {t('labels.heroKicker')}</span>
         <h1 className={styles.title}>{port.name}</h1>
         <p className={styles.subtitle}>{port.fullName}</p>
         <p className={styles.location}>{port.city}, {port.state} {port.zip}</p>
@@ -94,55 +95,47 @@ export default function PortPage() {
         {/* About */}
         <section className={styles.section}>
           <div className={styles.sectionHeader}>
-            <span className={styles.sectionMicro}>Overview</span>
-            <h2 className={styles.sectionTitle}>About This Port</h2>
+            <span className={styles.sectionMicro}>{t('labels.overviewMicro')}</span>
+            <h2 className={styles.sectionTitle}>{t('labels.aboutPort')}</h2>
           </div>
           <p className={styles.bodyText}>
-            {port.description} Y7 Logistics provides door-to-port auto transport to {port.name} with
-            verified carriers. Whether you are shipping a single vehicle or managing bulk export
-            operations, we coordinate pickup from any US location and deliver directly to the terminal.
+            {t(`${slug}.description`)} {t('labels.aboutBody', { name: port.name })}
           </p>
         </section>
 
         {/* Address & Gate Hours */}
-        {(port.address || port.gateHours) && (
-          <section className={styles.section}>
-            <div className={styles.sectionHeader}>
-              <span className={styles.sectionMicro}>Terminal</span>
-              <h2 className={styles.sectionTitle}>Address &amp; Gate Hours</h2>
-            </div>
-            <div className={styles.infoCard}>
-              {port.address && (
-                <>
-                  <div className={styles.infoLabel}>Terminal Address</div>
-                  <div className={styles.infoValue}>{port.address}</div>
-                </>
-              )}
-              {port.gateHours && (
-                <>
-                  <div className={styles.infoLabel}>Gate Hours</div>
-                  <div className={styles.infoValue}>{port.gateHours}</div>
-                </>
-              )}
-            </div>
-          </section>
-        )}
+        <section className={styles.section}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionMicro}>{t('labels.terminalMicro')}</span>
+            <h2 className={styles.sectionTitle}>{t('labels.addressGateHours')}</h2>
+          </div>
+          <div className={styles.infoCard}>
+            {port.address && (
+              <>
+                <div className={styles.infoLabel}>{t('labels.terminalAddress')}</div>
+                <div className={styles.infoValue}>{port.address}</div>
+              </>
+            )}
+            <div className={styles.infoLabel}>{t('labels.gateHours')}</div>
+            <div className={styles.infoValue}>{t(`${slug}.gateHours`)}</div>
+          </div>
+        </section>
 
         {/* Popular Routes */}
         <section className={styles.section}>
           <div className={styles.sectionHeader}>
-            <span className={styles.sectionMicro}>Transit Times</span>
-            <h2 className={styles.sectionTitle}>Popular Routes to {port.name}</h2>
+            <span className={styles.sectionMicro}>{t('labels.transitTimesMicro')}</span>
+            <h2 className={styles.sectionTitle}>{t('labels.popularRoutes', { name: port.name })}</h2>
           </div>
           <div className={styles.routesGrid}>
             {port.routes.map((route, i) => (
               <div key={i} className={styles.routeCard} style={{ '--i': i }}>
                 <div>
                   <div className={styles.routeFrom}>{route.from}</div>
-                  <div className={styles.routeTo}>to {port.city}, {port.state}</div>
+                  <div className={styles.routeTo}>{t('labels.routeTo')} {port.city}, {port.state}</div>
                 </div>
                 <div className={styles.routeDays}>
-                  {route.days} {route.days === '1' ? 'day' : 'days'}
+                  {route.days} {route.days === '1' ? t('labels.day') : t('labels.days')}
                 </div>
               </div>
             ))}
@@ -152,12 +145,12 @@ export default function PortPage() {
         {/* Documents */}
         <section className={styles.section}>
           <div className={styles.sectionHeader}>
-            <span className={styles.sectionMicro}>Paperwork</span>
-            <h2 className={styles.sectionTitle}>Documents Required</h2>
+            <span className={styles.sectionMicro}>{t('labels.paperworkMicro')}</span>
+            <h2 className={styles.sectionTitle}>{t('labels.documentsRequired')}</h2>
           </div>
           <div className={styles.infoCardMuted}>
             <ul className={styles.docsList}>
-              {port.documents.map((doc, i) => (
+              {t(`${slug}.documents`, { returnObjects: true }).map((doc, i) => (
                 <li key={i}>{doc}</li>
               ))}
             </ul>
@@ -165,26 +158,22 @@ export default function PortPage() {
         </section>
 
         {/* Storage Info */}
-        {port.storageInfo && (
-          <section className={styles.section}>
-            <div className={styles.sectionHeader}>
-              <span className={styles.sectionMicro}>Timing</span>
-              <h2 className={styles.sectionTitle}>Storage &amp; Demurrage</h2>
-            </div>
-            <p className={styles.bodyText}>{port.storageInfo}</p>
-          </section>
-        )}
+        <section className={styles.section}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionMicro}>{t('labels.timingMicro')}</span>
+            <h2 className={styles.sectionTitle}>{t('labels.storageDemurrage')}</h2>
+          </div>
+          <p className={styles.bodyText}>{t(`${slug}.storageInfo`)}</p>
+        </section>
 
         {/* Shipping Destinations */}
         <section className={styles.section}>
           <div className={styles.sectionHeader}>
-            <span className={styles.sectionMicro}>Export Routes</span>
-            <h2 className={styles.sectionTitle}>Shipping Destinations</h2>
+            <span className={styles.sectionMicro}>{t('labels.exportRoutesMicro')}</span>
+            <h2 className={styles.sectionTitle}>{t('labels.shippingDestinations')}</h2>
           </div>
           <p className={styles.bodyText}>
-            Vehicles delivered to {port.name} are shipped to {port.destinations}. Ocean carriers
-            at this terminal handle both Roll-on/Roll-off (RoRo) and containerized vehicle shipments.
-            Contact us for guidance on which shipping method works best for your destination.
+            {t('labels.destinationsBody', { name: port.name, destinations: t(`${slug}.destinations`) })}
           </p>
         </section>
 
@@ -192,24 +181,22 @@ export default function PortPage() {
         <AuctionToPortWorkflow />
 
         {/* Tips */}
-        {port.tips && (
-          <section className={styles.section}>
-            <div className={styles.sectionHeader}>
-              <span className={styles.sectionMicro}>Pro Tips</span>
-              <h2 className={styles.sectionTitle}>Tips for {port.name}</h2>
-            </div>
-            <div className={styles.infoCard}>
-              <p className={styles.bodyText}>{port.tips}</p>
-            </div>
-          </section>
-        )}
+        <section className={styles.section}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionMicro}>{t('labels.proTipsMicro')}</span>
+            <h2 className={styles.sectionTitle}>{t('labels.tipsFor', { name: port.name })}</h2>
+          </div>
+          <div className={styles.infoCard}>
+            <p className={styles.bodyText}>{t(`${slug}.tips`)}</p>
+          </div>
+        </section>
 
         {/* Related Services */}
         {RELATED_BY_PORT[slug] && (
           <section className={styles.section}>
             <div className={styles.sectionHeader}>
-              <span className={styles.sectionMicro}>Related</span>
-              <h2 className={styles.sectionTitle}>Related Services</h2>
+              <span className={styles.sectionMicro}>{t('labels.relatedMicro')}</span>
+              <h2 className={styles.sectionTitle}>{t('labels.relatedServices')}</h2>
             </div>
             <ul className={styles.relatedList}>
               {RELATED_BY_PORT[slug].map((link, i) => (
@@ -225,22 +212,22 @@ export default function PortPage() {
 
         {/* CTA */}
         <div className={styles.ctaCard}>
-          <h2 className={styles.ctaTitle}>Get a Port Delivery Quote</h2>
+          <h2 className={styles.ctaTitle}>{t('labels.ctaTitle')}</h2>
           <p className={styles.ctaSubtitle}>
-            Door-to-port transport to {port.name}. Transparent pricing, verified carriers.
+            {t('labels.ctaSubtitle', { name: port.name })}
           </p>
           <Link
             to={`/?delivery_zip=${port.zip}#quote-section`}
             className={`${btn.btn} ${styles.ctaBtn}`}
           >
-            Get Port Delivery Quote
+            {t('labels.ctaButton')}
           </Link>
         </div>
 
         {/* Company footer */}
         <div className={styles.companyFooter}>
           <p className={styles.companyName}>Y7 Logistics LLC</p>
-          <p className={styles.companyDesc}>Licensed auto transport broker serving all US ports.</p>
+          <p className={styles.companyDesc}>{t('labels.companyDesc')}</p>
           <div className={styles.companyIds}>USDOT #4427359 &middot; MC #1741537</div>
         </div>
       </div>
