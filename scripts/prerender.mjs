@@ -10,6 +10,7 @@ import { createServer } from 'http';
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join, extname } from 'path';
 import { fileURLToPath } from 'url';
+import { PORT_SLUGS } from '../src/pages/ports/portData.js';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const DIST = join(__dirname, '..', 'dist');
@@ -245,6 +246,9 @@ const PUBLIC_ROUTES = [
     `/${lang}/about`,
     `/${lang}/quote`,
   ]),
+  // SEO-P2B: localized port pages — same PortPage component with i18n flipped
+  // by the URL prefix. Slugs come from PORT_SLUGS (single source of truth).
+  ...['ua', 'pl', 'ru'].flatMap((lang) => PORT_SLUGS.map((s) => `/${lang}/ports/${s}`)),
   // Unique intl landing pages — distinct content, distinct slugs.
   '/pl/transport-z-usa',
   '/pl/transport-z-aukcji',
