@@ -78,3 +78,9 @@ export const PORTS = {
     ],
   },
 };
+
+// Single source of truth for the port slugs. Derived from PORTS so the list
+// can never drift from the data. Consumed by isTranslatable (localePaths.js),
+// the prerender route list, and the sitemap generator. portData.js has no
+// React/asset imports, so it is safe to import from plain Node build scripts.
+export const PORT_SLUGS = Object.keys(PORTS);

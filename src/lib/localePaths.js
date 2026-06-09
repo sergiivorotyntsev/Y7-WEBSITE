@@ -7,8 +7,14 @@
 // Scheme: EN = root (no prefix), PL = /pl, UA = /ua, RU = /ru. UA uses the
 // country-style 'ua' segment, NOT the ISO-639 'uk'.
 
+import { PORT_SLUGS } from '../pages/ports/portData.js';
+
 export const SUPPORTED_LOCALES = ['en', 'pl', 'ua', 'ru'];
 export const LOCALIZED_PREFIXES = ['pl', 'ua', 'ru'];
+
+// Valid port slugs, as a Set for O(1) membership. /ports/<slug> is translatable
+// only for these exact slugs, so hreflang/switcher never advertise a 404.
+const PORT_SLUG_SET = new Set(PORT_SLUGS);
 
 // Paths that exist in all four languages as same-content translations.
 // Must stay in sync with the prerendered localized routes (scripts/prerender.mjs
@@ -35,9 +41,13 @@ export function stripLocale(pathname) {
   return { locale: m[1], basePath: m[2] || '/' };
 }
 
-/** True when the locale-free base path has same-content translations. */
+/** True when the locale-free base path has same-content translations. Covers
+ *  the fixed translatable set plus any valid /ports/<slug> page (exact-slug
+ *  match only — a nonexistent /ports/zzz is NOT translatable). */
 export function isTranslatable(basePath) {
-  return TRANSLATABLE_PATHS.has(basePath);
+  if (TRANSLATABLE_PATHS.has(basePath)) return true;
+  const m = basePath.match(/^\/ports\/([^/]+)$/);
+  return m ? PORT_SLUG_SET.has(m[1]) : false;
 }
 
 /**
