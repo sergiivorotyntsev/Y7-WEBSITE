@@ -1,0 +1,125 @@
+{
+  "labels": {
+    "heroKicker": "Dostawa do portu",
+    "overviewMicro": "Przegląd",
+    "aboutPort": "O porcie",
+    "aboutBody": "Y7 Logistics realizuje transport aut do portu — {{name}} — ze zweryfikowanymi przewoźnikami. Niezależnie od tego, czy wysyłasz pojedynczy pojazd, czy obsługujesz eksport w większej skali, organizujemy odbiór z dowolnej lokalizacji w USA i dostawę bezpośrednio do terminalu.",
+    "terminalMicro": "Terminal",
+    "addressGateHours": "Adres i godziny pracy terminalu",
+    "terminalAddress": "Adres terminalu",
+    "gateHours": "Godziny pracy terminalu",
+    "transitTimesMicro": "Czas transportu",
+    "popularRoutes": "Popularne trasy — {{name}}",
+    "routeTo": "do",
+    "day": "dzień",
+    "days": "dni",
+    "paperworkMicro": "Dokumenty",
+    "documentsRequired": "Wymagane dokumenty",
+    "timingMicro": "Terminy",
+    "storageDemurrage": "Magazynowanie i demurrage",
+    "exportRoutesMicro": "Trasy eksportowe",
+    "shippingDestinations": "Kierunki wysyłki morskiej",
+    "destinationsBody": "Pojazdy dostarczone do {{name}} są wysyłane na kierunki: {{destinations}}. Linie żeglugowe na tym terminalu obsługują zarówno wysyłki Roll-on/Roll-off (Ro-Ro), jak i kontenerowe. Skontaktuj się z nami po wskazówki, która metoda wysyłki będzie najlepsza dla Twojego kierunku.",
+    "proTipsMicro": "Wskazówki",
+    "tipsFor": "Wskazówki — {{name}}",
+    "relatedMicro": "Powiązane",
+    "relatedServices": "Powiązane usługi",
+    "ctaTitle": "Uzyskaj wycenę dostawy do portu",
+    "ctaSubtitle": "Transport do portu — {{name}}. Przejrzyste ceny, zweryfikowani przewoźnicy.",
+    "ctaButton": "Uzyskaj wycenę",
+    "companyDesc": "Licencjonowany broker transportu samochodowego obsługujący wszystkie porty w USA.",
+    "notFoundTitle": "Nie znaleziono portu",
+    "notFoundMsg": "Strona portu, której szukasz, nie istnieje.",
+    "notFoundCta": "Zobacz wszystkie porty"
+  },
+  "newark": {
+    "metaTitle": "Transport auta do portu Newark, NJ",
+    "metaDesc": "Transport aut do terminalu Port Newark-Elizabeth. Dostawa z aukcji i dowolnej lokalizacji w USA do portu. Licencjonowany broker, zweryfikowani przewoźnicy.",
+    "description": "Największy port eksportu samochodów na Wschodnim Wybrzeżu. Terminal Port Newark-Elizabeth obsługuje wysyłki Ro-Ro i kontenerowe do Europy, Afryki i na Bliski Wschód. Przez terminal przechodzą tysiące pojazdów miesięcznie, co czyni go główną bramą eksportową dla północno-wschodnich stanów USA. Przy tak dużym wolumenie kluczowa jest koordynacja z operatorami terminalu, aby uniknąć opóźnień i opłat magazynowych. Y7 Logistics ma wypracowane relacje z obsługą terminalu, co zapewnia sprawne przyjęcie pojazdu.",
+    "gateHours": "pon.–pt. 7:00–16:00. Dostawa wyłącznie po wcześniejszym umówieniu. W szczycie sezonu zarezerwuj zapas czasu – terminy szybko się zapełniają.",
+    "storageInfo": "Okres bezpłatny zależy od linii żeglugowej, zwykle 4–5 dni. Po jego upływie naliczane są opłaty demurrage, których wysokość zależy od przewoźnika. Dokładne stawki potwierdzi Twój agent frachtu morskiego.",
+    "tips": "Ograniczona liczba miejsc dla lawet – przewoźnicy muszą rezerwować okno dostawy z wyprzedzeniem. Port o dużym wolumenie, więc w szczycie sezonu możliwe są okresowe opóźnienia. Najbliższe place Copart: Englishtown (NJ), Hillsborough (NJ).",
+    "documents": [
+      "Title pojazdu lub dokumenty eksportowe",
+      "Gate pass (jeśli auto z aukcji)",
+      "Zlecenie dostawy do portu (delivery order)",
+      "Formularze zgodności EPA/DOT (przy imporcie)"
+    ],
+    "destinations": "Europa, Afryka Zachodnia, Bliski Wschód, Ameryka Południowa"
+  },
+  "houston": {
+    "metaTitle": "Transport auta do portu Houston, TX",
+    "metaDesc": "Transport aut do Portu Houston – największego portu eksportu pojazdów w USA. Dostawa do portu ze zweryfikowanymi przewoźnikami.",
+    "description": "Największy port eksportu samochodów w USA pod względem wolumenu. Obsługuje wysyłki Ro-Ro i kontenerowe do Afryki, na Bliski Wschód oraz do Ameryki Środkowej i Południowej. Terminale Barbours Cut i Bayport razem przeładowują więcej eksportowanych pojazdów niż jakikolwiek inny port w USA, z bezpośrednimi połączeniami morskimi do ponad 200 kierunków na świecie. Port oferuje załadunek zarówno Ro-Ro, jak i kontenerowy, dając eksporterom elastyczność zależnie od kierunku. Centralne położenie na wybrzeżu Zatoki Meksykańskiej sprawia, że jest idealny dla aut z Teksasu, Środkowego Zachodu i południa USA.",
+    "gateHours": "pon.–pt. 7:00–17:00. Sobota wyłącznie po umówieniu. Zalecamy rezerwację okna na bramie, aby uniknąć długiego oczekiwania.",
+    "storageInfo": "Stawki magazynowe zależą od operatora terminalu, zwykle 5–15 USD/dzień po upływie okresu bezpłatnego. Stawki za kontener różnią się od Ro-Ro – potwierdź je u swojego agenta frachtu.",
+    "tips": "Teksas ma ogromną liczbę placów Copart/IAA – wiele transportów z aukcji do portu startuje właśnie tutaj. Upały w miesiącach letnich mogą wpływać na harmonogram i dostępność kierowców. Najbliższe place Copart: Houston South, Houston, Dallas.",
+    "documents": [
+      "Title pojazdu lub umowa kupna (Bill of Sale)",
+      "Gate pass (jeśli auto z aukcji)",
+      "Dokumenty eksportowe",
+      "Formularze zwolnienia celnego / brokerskie"
+    ],
+    "destinations": "Afryka Zachodnia, Bliski Wschód, Ameryka Środkowa, Ameryka Południowa"
+  },
+  "savannah": {
+    "metaTitle": "Transport auta do portu Savannah, GA",
+    "metaDesc": "Transport aut do Portu Savannah – hub eksportu na południowym wschodzie USA. Konkurencyjne stawki do Europy i Afryki.",
+    "description": "Duży port na południowym wschodzie USA z konkurencyjnymi stawkami na kierunki europejskie i afrykańskie. Szybko rosnący hub eksportu pojazdów. Garden City Terminal to jeden z najszybciej rozwijających się terminali kontenerowych w USA, a jego możliwości obsługi pojazdów znacząco wzrosły w ostatnich latach. Port oferuje konkurencyjne stawki frachtu morskiego, zwłaszcza na kierunki europejskie, a mniejszy poziom zatłoczenia przekłada się na szybszą obsługę. Położenie na południowym wschodzie zapewnia dogodny dojazd z Florydy, obu Karolin i całego południa USA.",
+    "gateHours": "pon.–pt. 8:00–16:30. Brak obsługi bramy w weekendy dla dostaw pojazdów. Zaplanuj przyjazd wcześnie rano, aby przyspieszyć obsługę.",
+    "storageInfo": "Obowiązują stawki kontenerowej stacji przeładunkowej (CFS). Opłaty magazynowe są zwykle niższe niż w Newark czy Houston. Aktualne taryfy potwierdzi Georgia Ports Authority.",
+    "tips": "Rosnący port z konkurencyjnymi stawkami frachtu do Europy i Afryki. Znacznie mniejsze zatłoczenie niż w Newark czy Houston – dobry wybór dla eksporterów ceniących szybką obsługę. Dobry na eksport do Europy dzięki bezpośrednim połączeniom Ro-Ro.",
+    "documents": [
+      "Title pojazdu",
+      "Gate pass (jeśli auto z aukcji)",
+      "Instrukcje przyjęcia w porcie",
+      "Dokumenty eksportowe"
+    ],
+    "destinations": "Europa, Afryka Zachodnia, Afryka Wschodnia"
+  },
+  "los-angeles": {
+    "metaTitle": "Transport auta do portu Los Angeles, CA",
+    "metaDesc": "Transport aut do Portu Los Angeles – brama na Pacyfik, eksport do Azji i Australii. Dostawa z aukcji i lokalizacji do portu.",
+    "description": "Brama na Pacyfik dla wysyłek pojazdów do Azji, Australii i Oceanii. Największy port kontenerowy na półkuli zachodniej. Port Los Angeles wraz z sąsiednim Long Beach tworzą najbardziej ruchliwy kompleks portowy obu Ameryk i obsługują znaczny wolumen eksportu pojazdów na kierunki regionu Pacyfiku. Przewoźnicy dostarczający auta do tego portu muszą spełniać wymogi emisyjne CARB (California Air Resources Board), które ograniczają wjazd starszych ciężarówek z silnikiem Diesla na teren portu. Ze względu na duży ruch kontenerowy niezbędne są wcześniejsze planowanie i rezerwacja terminów.",
+    "gateHours": "pon.–pt. 7:00–17:00. Wszystkie dostawy pojazdów wyłącznie po umówieniu. W szczycie sezonu rezerwacja tego samego dnia jest praktycznie niedostępna.",
+    "storageInfo": "Magazynowanie na terminalu to 10–25 USD/dzień po upływie okresu bezpłatnego. Okres bezpłatny to zwykle 3–4 dni, zależnie od linii żeglugowej. Przy większych partiach zalecamy korzystanie z magazynu w pobliżu portu.",
+    "tips": "Rygorystyczne wymogi CARB (California Air Resources Board) dla przewoźników wjeżdżających na teren portu – starsze ciężarówki mogą nie zostać wpuszczone. Częste są wydłużone czasy oczekiwania, zwłaszcza w szczycie sezonu kontenerowego. Do przygotowania aut przed dostawą do terminalu warto korzystać z magazynów w pobliżu portu.",
+    "documents": [
+      "Title pojazdu",
+      "Umowa kupna (Bill of Sale)",
+      "Dokumenty celne",
+      "Zgodność EPA/DOT (przy imporcie)"
+    ],
+    "destinations": "Azja, Australia, Nowa Zelandia, wyspy Pacyfiku"
+  },
+  "baltimore": {
+    "metaTitle": "Transport auta do portu Baltimore, MD",
+    "metaDesc": "Transport aut do terminalu Dundalk w Porcie Baltimore – czołowy port Ro-Ro na eksport do Europy. Licencjonowany broker.",
+    "description": "Czołowy terminal Ro-Ro na Wschodnim Wybrzeżu dla pojazdów płynących do Europy. Dundalk Marine Terminal należy do najważniejszych portów obsługujących pojazdy w USA. Baltimore od dawna jest uznawany za wiodący port Ro-Ro, z infrastrukturą stworzoną pod sprawny przeładunek i załadunek aut. Port obsługuje ruch zarówno importowy, jak i eksportowy, ze szczególnie mocnymi połączeniami na kierunki europejskie i śródziemnomorskie. Strategiczne położenie w regionie Mid-Atlantic zapewnia dogodny dojazd z aglomeracji Waszyngtonu, Wirginii i Pensylwanii, a mniejsze zatłoczenie niż w Newark czyni go coraz popularniejszym wyborem eksporterów.",
+    "gateHours": "pon.–pt. 7:00–16:00. Brak wjazdu w weekendy dla standardowych dostaw pojazdów. Rezerwacja terminu na terminalu zalecana, choć nie zawsze wymagana.",
+    "storageInfo": "Stawki magazynowe zależą od operatora terminalu. Dundalk Marine Terminal oferuje konkurencyjne stawki za postój aut Ro-Ro. Aktualne taryfy potwierdzisz bezpośrednio na terminalu.",
+    "tips": "Czołowy port Ro-Ro – doskonały na kierunki europejskie dzięki częstym, bezpośrednim rejsom. Mniejsze zatłoczenie niż w Newark, więc to preferowana alternatywa dla eksporterów z regionu Mid-Atlantic. Bliskość placów aukcyjnych w DC/VA, w tym lokalizacji Copart i IAA w Wirginii i Maryland.",
+    "documents": [
+      "Title pojazdu",
+      "Gate pass (jeśli auto z aukcji)",
+      "Zlecenie dostawy do portu (delivery order)",
+      "Dokumenty eksportowe"
+    ],
+    "destinations": "Europa, basen Morza Śródziemnego, Bliski Wschód"
+  },
+  "jacksonville": {
+    "metaTitle": "Transport auta do portu Jacksonville, FL",
+    "metaDesc": "Transport aut do JAXPORT (Jacksonville) – brama na Karaiby i do Ameryki Południowej. Dostawa do portu.",
+    "description": "Brama na Karaiby i do Ameryki Południowej. Specjalizuje się w wysyłkach Ro-Ro pojazdów płynących do Ameryki Środkowej i na wyspy. JAXPORT Blount Island Marine Terminal to jeden z czołowych portów obsługujących pojazdy na południowym wschodzie USA, z bezpośrednimi połączeniami morskimi na Karaiby oraz do Ameryki Środkowej i Południowej. Port korzysta z ogromnego rynku aut używanych na Florydzie i bliskości licznych placów Copart i IAA, co czyni go pierwszym wyborem eksporterów kupujących na aukcjach i wysyłających na kierunki karaibskie i latynoamerykańskie. Czas obsługi jest zwykle krótszy niż w większych portach, takich jak Houston czy Newark.",
+    "gateHours": "pon.–pt. 8:00–16:30. Brak wjazdu w weekendy dla dostaw pojazdów. Dla najszybszej obsługi zalecamy przyjazd wczesnym rankiem.",
+    "storageInfo": "Obowiązują standardowe stawki magazynowe JAXPORT. Są konkurencyjne w porównaniu z większymi portami. Aktualne taryfy i okresy bezpłatne potwierdzi obsługa terminalu JAXPORT.",
+    "tips": "Najlepszy port na wysyłki na Karaiby i do Ameryki Środkowej dzięki częstym, bezpośrednim rejsom. Floryda ma bardzo wysoki wolumen aukcyjny – w pobliżu jest wiele placów Copart i IAA, więc transport z aukcji do portu jest szybki i tani. Krótkie czasy obsługi w porównaniu z bardziej obciążonymi portami.",
+    "documents": [
+      "Title pojazdu lub umowa kupna (Bill of Sale)",
+      "Gate pass (jeśli auto z aukcji)",
+      "Instrukcje dostawy JAXPORT",
+      "Dokumenty eksportowe"
+    ],
+    "destinations": "Karaiby, Ameryka Środkowa, Ameryka Południowa"
+  }
+}
