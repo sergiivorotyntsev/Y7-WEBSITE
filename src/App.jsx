@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useParams } from 'react-router-dom';
+import { isValidLocale } from './lib/localePaths';
 import { AuthProvider } from './hooks/useAuth';
 import Analytics from './components/Analytics';
 import Layout from './components/Layout';
@@ -107,6 +108,20 @@ const skipVisible = {
   fontFamily: 'system-ui, sans-serif',
 };
 
+/**
+ * LangGuard — for routes whose :lang segment is a free param
+ * (/:lang/ports/:slug, /:lang/dealer-quote, /:lang/quote, ...). React Router
+ * matches ANY value for :lang, so without this an invalid locale code like
+ * /en/ports/houston or /uk/quote would render a real page in-SPA. Render the
+ * 404 view when the segment is not a real localized prefix (pl|ua|ru); the
+ * server already returns HTTP 404 for these paths.
+ */
+function LangGuard({ children }) {
+  const { lang } = useParams();
+  if (!isValidLocale(lang)) return <NotFound />;
+  return children;
+}
+
 export default function App() {
   useEffect(() => {
     document.__PRERENDER_READY = true;
@@ -162,9 +177,9 @@ export default function App() {
             <Route path="/agreement" element={<ProtectedRoute><Agreement /></ProtectedRoute>} />
             <Route path="/agreement/:orderId" element={<Agreement />} />
             <Route path="/ports/:slug" element={<PortPage />} />
-            <Route path="/:lang/ports/:slug" element={<PortPage />} />
+            <Route path="/:lang/ports/:slug" element={<LangGuard><PortPage /></LangGuard>} />
             <Route path="/dealer-quote" element={<DealerQuote />} />
-            <Route path="/:lang/dealer-quote" element={<DealerQuote />} />
+            <Route path="/:lang/dealer-quote" element={<LangGuard><DealerQuote /></LangGuard>} />
             {/* SEO landing pages */}
             <Route path="/car-shipping-cost" element={<CarShippingCost />} />
             <Route path="/enclosed-car-shipping" element={<EnclosedCarShipping />} />
@@ -207,9 +222,9 @@ export default function App() {
             <Route path="/quote" element={<Quote />} />
             <Route path="/quote-verified" element={<QuoteVerified />} />
             <Route path="/quote-verification-failed" element={<QuoteVerificationFailed />} />
-            <Route path="/:lang/quote" element={<Quote />} />
-            <Route path="/:lang/quote/:action/:orderId" element={<QuoteAction />} />
-            <Route path="/:lang/agreement/:orderId" element={<Agreement />} />
+            <Route path="/:lang/quote" element={<LangGuard><Quote /></LangGuard>} />
+            <Route path="/:lang/quote/:action/:orderId" element={<LangGuard><QuoteAction /></LangGuard>} />
+            <Route path="/:lang/agreement/:orderId" element={<LangGuard><Agreement /></LangGuard>} />
             {/* Blog */}
             <Route path="/blog" element={<BlogIndex />} />
             <Route path="/blog/:slug" element={<BlogArticle />} />
