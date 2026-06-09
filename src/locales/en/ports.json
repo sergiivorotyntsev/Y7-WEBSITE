@@ -1,0 +1,125 @@
+{
+  "labels": {
+    "heroKicker": "Port Delivery",
+    "overviewMicro": "Overview",
+    "aboutPort": "About This Port",
+    "aboutBody": "Y7 Logistics provides door-to-port auto transport to {{name}} with verified carriers. Whether you are shipping a single vehicle or managing bulk export operations, we coordinate pickup from any US location and deliver directly to the terminal.",
+    "terminalMicro": "Terminal",
+    "addressGateHours": "Address & Gate Hours",
+    "terminalAddress": "Terminal Address",
+    "gateHours": "Gate Hours",
+    "transitTimesMicro": "Transit Times",
+    "popularRoutes": "Popular Routes to {{name}}",
+    "routeTo": "to",
+    "day": "day",
+    "days": "days",
+    "paperworkMicro": "Paperwork",
+    "documentsRequired": "Documents Required",
+    "timingMicro": "Timing",
+    "storageDemurrage": "Storage & Demurrage",
+    "exportRoutesMicro": "Export Routes",
+    "shippingDestinations": "Shipping Destinations",
+    "destinationsBody": "Vehicles delivered to {{name}} are shipped to {{destinations}}. Ocean carriers at this terminal handle both Roll-on/Roll-off (RoRo) and containerized vehicle shipments. Contact us for guidance on which shipping method works best for your destination.",
+    "proTipsMicro": "Pro Tips",
+    "tipsFor": "Tips for {{name}}",
+    "relatedMicro": "Related",
+    "relatedServices": "Related Services",
+    "ctaTitle": "Get a Port Delivery Quote",
+    "ctaSubtitle": "Door-to-port transport to {{name}}. Transparent pricing, verified carriers.",
+    "ctaButton": "Get Port Delivery Quote",
+    "companyDesc": "Licensed auto transport broker serving all US ports.",
+    "notFoundTitle": "Port Not Found",
+    "notFoundMsg": "The port page you are looking for does not exist.",
+    "notFoundCta": "View All Ports"
+  },
+  "newark": {
+    "metaTitle": "Auto Transport to Port Newark, NJ",
+    "metaDesc": "Vehicle shipping to Port Newark-Elizabeth Marine Terminal. Door-to-port auto transport for export. Licensed broker, verified carriers.",
+    "description": "The largest port on the East Coast for vehicle exports. Port Newark-Elizabeth Marine Terminal handles RoRo and container shipments to Europe, Africa, and the Middle East. The terminal processes thousands of vehicles monthly, making it the primary gateway for exporters in the Northeastern US. Due to its high volume, coordination with terminal operators is critical to avoid delays and storage fees. Y7 Logistics has established relationships with terminal staff to ensure smooth vehicle intake.",
+    "gateHours": "Mon-Fri 7AM-4PM. Appointment required for delivery. Allow extra time during peak season as scheduling slots fill quickly.",
+    "storageInfo": "Free period varies by shipping line, typically 4-5 days. Demurrage charges apply after free time expires and vary by carrier. Contact your ocean freight provider for exact rates.",
+    "tips": "Limited parking for car carriers — carriers must schedule delivery windows in advance. High volume port, so expect occasional delays during peak shipping months. Nearest Copart yards: Englishtown NJ, Hillsborough NJ.",
+    "documents": [
+      "Vehicle title or export documentation",
+      "Gate pass (if from auction)",
+      "Port delivery order",
+      "EPA/DOT compliance forms (for imports)"
+    ],
+    "destinations": "Europe, West Africa, Middle East, South America"
+  },
+  "houston": {
+    "metaTitle": "Auto Transport to Port of Houston, TX",
+    "metaDesc": "Vehicle shipping to Port of Houston. Largest US vehicle export port. Door-to-port auto transport with verified carriers.",
+    "description": "The top US port for vehicle exports by volume. Handles RoRo and container shipments to Africa, the Middle East, Central and South America. Barbours Cut and Bayport terminals together process more vehicle exports than any other US port, with direct ocean service to over 200 global destinations. The port offers both RoRo and container loading options, giving exporters flexibility based on destination requirements. Its central Gulf Coast location makes it ideal for vehicles originating from Texas, the Midwest, and the Southern US.",
+    "gateHours": "Mon-Fri 7AM-5PM. Saturday by appointment only. Gate appointments are recommended to avoid extended wait times.",
+    "storageInfo": "Warehouse rates vary by terminal operator, typically $5-15/day after the free storage period ends. Container storage rates differ from RoRo — confirm with your freight forwarder.",
+    "tips": "Texas has a massive Copart/IAA presence — many auction-to-port moves originate here. Hot weather during summer months can affect scheduling and driver availability. Nearest Copart yards: Houston South, Houston, Dallas.",
+    "documents": [
+      "Vehicle title or bill of sale",
+      "Gate pass (if from auction)",
+      "Export documentation",
+      "Customs/broker release forms"
+    ],
+    "destinations": "West Africa, Middle East, Central America, South America"
+  },
+  "savannah": {
+    "metaTitle": "Auto Transport to Port of Savannah, GA",
+    "metaDesc": "Vehicle shipping to Port of Savannah. Southeast hub for auto export. Competitive rates to Europe and Africa.",
+    "description": "Major Southeast port with competitive rates for European and African destinations. Fast-growing vehicle export hub. Garden City Terminal is one of the fastest-growing container terminals in the US, and its vehicle handling capabilities have expanded significantly in recent years. The port offers competitive ocean freight rates, particularly for European destinations, and its lower congestion levels translate to faster processing times. Its Southeast location provides efficient access from Florida, the Carolinas, and the broader Southern US.",
+    "gateHours": "Mon-Fri 8AM-4:30PM. No weekend gate hours for vehicle deliveries. Plan arrivals early in the day for best turnaround.",
+    "storageInfo": "Container freight station rates apply. Storage fees are generally lower than Newark or Houston. Contact Georgia Ports Authority for current rate schedules.",
+    "tips": "Growing port with competitive ocean freight rates to Europe and Africa. Significantly less congestion than Newark or Houston, making it a smart choice for exporters seeking faster turnaround. Good for European exports with direct RoRo service.",
+    "documents": [
+      "Vehicle title",
+      "Gate pass (if from auction)",
+      "Port receiving instructions",
+      "Export documentation"
+    ],
+    "destinations": "Europe, West Africa, East Africa"
+  },
+  "los-angeles": {
+    "metaTitle": "Auto Transport to Port of Los Angeles, CA",
+    "metaDesc": "Vehicle shipping to Port of Los Angeles. Pacific gateway for auto export to Asia, Australia. Door-to-port transport.",
+    "description": "Pacific gateway for vehicle shipments to Asia, Australia, and Oceania. Largest container port in the Western Hemisphere. The Port of Los Angeles and adjacent Port of Long Beach together form the busiest port complex in the Americas, handling a significant volume of vehicle exports to Pacific Rim destinations. Carriers delivering vehicles to this port must comply with California Air Resources Board (CARB) emissions requirements, which restricts older diesel trucks from entering the port area. Planning and advance scheduling are essential due to the high volume of container traffic.",
+    "gateHours": "Mon-Fri 7AM-5PM. Appointment required for all vehicle deliveries. Same-day gate appointments are rarely available during peak periods.",
+    "storageInfo": "Terminal storage ranges from $10-25/day after the free period expires. Free time is typically 3-4 days depending on the shipping line. Warehouse staging near the port is recommended for bulk shipments.",
+    "tips": "Strict CARB (California Air Resources Board) compliance requirements for carriers entering the port area — older trucks may be denied entry. Extended wait times are common, especially during peak container season. Use warehouses near the port for staging vehicles before terminal delivery.",
+    "documents": [
+      "Vehicle title",
+      "Bill of sale",
+      "Customs documentation",
+      "EPA/DOT compliance (imports)"
+    ],
+    "destinations": "Asia, Australia, New Zealand, Pacific Islands"
+  },
+  "baltimore": {
+    "metaTitle": "Auto Transport to Port of Baltimore, MD",
+    "metaDesc": "Vehicle shipping to Port of Baltimore Dundalk Terminal. Top RoRo port for European vehicle export. Licensed broker.",
+    "description": "Premier East Coast RoRo terminal for vehicles heading to Europe. Dundalk Marine Terminal is one of the top vehicle-handling ports in the US. Baltimore has long been recognized as a leading RoRo port, with purpose-built facilities for efficient vehicle processing and loading. The port handles both import and export vehicle traffic, with particularly strong service to European and Mediterranean destinations. Its strategic Mid-Atlantic location provides easy access from the Washington DC metro area, Virginia, and Pennsylvania, and its lower congestion compared to Newark makes it an increasingly popular choice for exporters.",
+    "gateHours": "Mon-Fri 7AM-4PM. No weekend gate access for standard vehicle deliveries. Terminal appointments recommended but not always required.",
+    "storageInfo": "Storage rates vary by terminal operator. Dundalk Marine Terminal offers competitive rates for RoRo staging. Contact the terminal directly for current fee schedules.",
+    "tips": "Premier RoRo port — excellent for European destinations with frequent direct sailings. Less congestion than Newark, making it a preferred alternative for Mid-Atlantic exporters. Close proximity to DC/VA auction yards including Copart and IAA locations in Virginia and Maryland.",
+    "documents": [
+      "Vehicle title",
+      "Gate pass (if from auction)",
+      "Port delivery order",
+      "Export documentation"
+    ],
+    "destinations": "Europe, Mediterranean, Middle East"
+  },
+  "jacksonville": {
+    "metaTitle": "Auto Transport to Port of Jacksonville, FL",
+    "metaDesc": "Vehicle shipping to JAXPORT Jacksonville. Caribbean and South America gateway. Door-to-port auto transport.",
+    "description": "Gateway to the Caribbean and South America. Specializes in RoRo shipments for vehicles heading to Central America and the islands. JAXPORT Blount Island Marine Terminal is one of the top vehicle-handling ports in the Southeastern US, with direct ocean service to the Caribbean, Central America, and South America. The port benefits from Florida's massive used vehicle market and proximity to numerous Copart and IAA auction locations, making it the go-to port for exporters buying at auction and shipping to Caribbean and Latin American destinations. Turnaround times are generally faster than at larger ports like Houston or Newark.",
+    "gateHours": "Mon-Fri 8AM-4:30PM. No weekend gate access for vehicle deliveries. Early morning arrivals recommended for fastest processing.",
+    "storageInfo": "JAXPORT standard storage rates apply. Rates are competitive compared to larger ports. Contact JAXPORT terminal operations for current fee schedules and free time allowances.",
+    "tips": "Best port for Caribbean and Central America shipments with frequent direct sailings. Florida has extremely high auction volume — many Copart and IAA yards are located nearby, making auction-to-port moves fast and affordable. Quick turnaround times compared to busier ports.",
+    "documents": [
+      "Vehicle title or bill of sale",
+      "Gate pass (if from auction)",
+      "JAXPORT delivery instructions",
+      "Export documentation"
+    ],
+    "destinations": "Caribbean, Central America, South America"
+  }
+}

@@ -19,6 +19,7 @@ import privacyEn from './locales/en/privacy.json';
 import notFoundEn from './locales/en/notFound.json';
 import contextualCTAEn from './locales/en/contextualCTA.json';
 import portalEn from './locales/en/portal.json';
+import portsEn from './locales/en/ports.json';
 
 // Russian
 import commonRu from './locales/ru/common.json';
@@ -75,22 +76,22 @@ const resources = {
   en: {
     common: commonEn, home: homeEn, quote: quoteEn, services: servicesEn,
     dealers: dealersEn, exporters: exportersEn, shipMycar: shipMycarEn, agreement: agreementEn, agreement_dealer: agreementDealerEn, about: aboutEn, faq: faqEn, processTimeline: processTimelineEn,
-    terms: termsEn, privacy: privacyEn, notFound: notFoundEn, contextualCTA: contextualCTAEn, portal: portalEn,
+    terms: termsEn, privacy: privacyEn, notFound: notFoundEn, contextualCTA: contextualCTAEn, portal: portalEn, ports: portsEn,
   },
   ru: {
     common: commonRu, home: homeRu, quote: quoteRu, services: servicesRu,
     dealers: dealersRu, exporters: exportersRu, shipMycar: shipMycarRu, agreement: agreementRu, agreement_dealer: agreementDealerRu, about: aboutRu, faq: faqRu, processTimeline: processTimelineRu,
-    terms: termsEn, privacy: privacyEn, notFound: notFoundRu, contextualCTA: contextualCTARu, portal: portalRu,
+    terms: termsEn, privacy: privacyEn, notFound: notFoundRu, contextualCTA: contextualCTARu, portal: portalRu, ports: portsEn,
   },
   pl: {
     common: commonPl, home: homePl, quote: quotePl, services: servicesPl,
     dealers: dealersPl, exporters: exportersPl, shipMycar: shipMycarPl, agreement: agreementPl, agreement_dealer: agreementDealerPl, about: aboutPl, faq: faqPl, processTimeline: processTimelinePl,
-    terms: termsEn, privacy: privacyEn, notFound: notFoundPl, contextualCTA: contextualCTAPl, portal: portalPl,
+    terms: termsEn, privacy: privacyEn, notFound: notFoundPl, contextualCTA: contextualCTAPl, portal: portalPl, ports: portsEn,
   },
   ua: {
     common: commonUa, home: homeUa, quote: quoteUa, services: servicesUa,
     dealers: dealersUa, exporters: exportersUa, shipMycar: shipMycarUa, agreement: agreementUa, agreement_dealer: agreementDealerUa, about: aboutUa, faq: faqUa, processTimeline: processTimelineUa,
-    terms: termsEn, privacy: privacyEn, notFound: notFoundUa, contextualCTA: contextualCTAUa, portal: portalUa,
+    terms: termsEn, privacy: privacyEn, notFound: notFoundUa, contextualCTA: contextualCTAUa, portal: portalUa, ports: portsEn,
   },
 };
 
