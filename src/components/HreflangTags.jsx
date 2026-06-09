@@ -1,19 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
+import { stripLocale, isTranslatable } from '../lib/localePaths';
 
 const BASE = 'https://www.y7agency.com';
-
-// Paths that exist in all four languages as same-content translations.
-const TRANSLATABLE_PATHS = new Set([
-  '/', '/services', '/dealers', '/exporters', '/ship-my-car',
-  '/about', '/contact', '/faq', '/quote', '/track',
-]);
-
-function stripLocalePrefix(pathname) {
-  const m = pathname.match(/^\/(ua|pl|ru)(\/.*)?$/);
-  if (!m) return pathname;
-  return m[2] || '/';
-}
 
 /**
  * HreflangTags — auto-detects current path, strips locale prefix, emits
@@ -26,9 +15,9 @@ function stripLocalePrefix(pathname) {
  */
 export default function HreflangTags() {
   const { pathname } = useLocation();
-  const basePath = stripLocalePrefix(pathname);
+  const { basePath } = stripLocale(pathname);
 
-  if (!TRANSLATABLE_PATHS.has(basePath)) return null;
+  if (!isTranslatable(basePath)) return null;
 
   const suffix = basePath === '/' ? '' : basePath;
   const enUrl = `${BASE}${basePath}`;
