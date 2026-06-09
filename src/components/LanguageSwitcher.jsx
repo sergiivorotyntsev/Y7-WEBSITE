@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { trackEvent } from '../utils/trackEvent';
+import { stripLocale, localizedHref } from '../lib/localePaths';
 import styles from './LanguageSwitcher.module.css';
 
 const langs = [
@@ -11,34 +12,11 @@ const langs = [
   { code: 'ru', label: 'RU' },
 ];
 
-const LOCALE_PREFIX = /^\/(ua|pl|ru)(\/.*)?$/;
-
-// Unique intl landing pages that exist only in their own language.
-// If a visitor is on one of these and switches to a different language,
-// we fall back to the locale root (or / for EN) instead of trying to
-// prefix-swap into a 404.
-const UNIQUE_INTL_PATHS = new Set([
-  '/ua/import-z-usa', '/ua/copart-ta-iaai', '/ua/dostavka-avto-z-usa',
-  '/pl/transport-z-usa', '/pl/transport-z-aukcji', '/pl/wysylka-auta-z-usa',
-  '/ru/dostavka-avto-iz-usa', '/ru/copart-i-iaai', '/ru/perevozka-avto',
-]);
-
-function currentLocale(pathname) {
-  const m = pathname.match(LOCALE_PREFIX);
-  return m ? m[1] : 'en';
-}
-
-function basePath(pathname) {
-  const m = pathname.match(LOCALE_PREFIX);
-  if (!m) return pathname;
-  return m[2] || '/';
-}
-
 export default function LanguageSwitcher() {
   const { i18n } = useTranslation();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const current = currentLocale(pathname);
+  const current = stripLocale(pathname).locale;
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
@@ -47,16 +25,9 @@ export default function LanguageSwitcher() {
     trackEvent('language_switch', { language: code });
     try { localStorage.setItem('y7_lang', code); } catch { /* storage unavailable — ignore */ }
 
-    // If on a unique intl page, drop to that locale's Home for the target.
-    const onUnique = UNIQUE_INTL_PATHS.has(pathname);
-    const base = onUnique ? '/' : basePath(pathname);
-
-    let target;
-    if (code === 'en') {
-      target = base;
-    } else {
-      target = base === '/' ? `/${code}` : `/${code}${base}`;
-    }
+    // Shared helper guarantees we never link to a non-existent localized URL:
+    // non-translatable pages fall back to the target locale's home.
+    const target = localizedHref(code, pathname);
 
     i18n.changeLanguage(code);
     navigate(target);
