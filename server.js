@@ -82,6 +82,19 @@ app.get(/^\/ru-us(\/.*)?$/, (req, res) => {
 });
 
 // ---------------------------------------------------------------------------
+// HOTFIX-CONFIRM404-T02: /en/ quote-action links from already-sent emails.
+// English lives at root ('en' is not a locale prefix), but every quote email
+// sent before this fix carries /en/quote/confirm/{id}?token=... — redirect to
+// the canonical unprefixed form (302: the /en/ form is not a page of its own,
+// and we don't want the temporary mapping cached permanently). Query string
+// (the confirm token) is preserved.
+// ---------------------------------------------------------------------------
+app.get(/^\/en\/(quote\/[^/]+\/[^/]+)$/, (req, res) => {
+  const qs = req.url.includes('?') ? req.url.substring(req.url.indexOf('?')) : '';
+  res.redirect(302, '/' + req.params[0] + qs);
+});
+
+// ---------------------------------------------------------------------------
 // Cache headers (WEB-CACHE-RESILIENCE-T01)
 // ---------------------------------------------------------------------------
 // - HTML: no-cache => store but ALWAYS revalidate (ETag -> cheap 304). A browser
@@ -168,10 +181,11 @@ function isKnownPath(reqPath) {
     return true;
   }
 
-  // /:lang/quote/:action/:orderId — parameterized localized quote action.
-  // Only matches the action+orderId form, NOT bare /:lang/quote
-  // (the latter is in PUBLIC_ROUTES and prerendered).
-  if (/^\/(pl|ua|ru)\/quote\/[^/]+\/[^/]+$/.test(p)) return true;
+  // [/:lang]/quote/:action/:orderId — parameterized quote action, localized OR
+  // unprefixed English (HOTFIX-CONFIRM404-T02: quote emails link the unprefixed
+  // form; /en/ arrives here only if the 302 above is bypassed). Only matches the
+  // action+orderId form, NOT bare /quote or /:lang/quote (prerendered).
+  if (/^\/((pl|ua|ru)\/)?quote\/[^/]+\/[^/]+$/.test(p)) return true;
 
   if (VALID_ROUTES.has(p) || VALID_ROUTES.has(p + '/')) return true;
   // Filesystem check for any prerendered directory (covers edge cases).

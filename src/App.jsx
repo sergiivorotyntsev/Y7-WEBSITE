@@ -223,6 +223,10 @@ export default function App() {
             <Route path="/quote-verified" element={<QuoteVerified />} />
             <Route path="/quote-verification-failed" element={<QuoteVerificationFailed />} />
             <Route path="/:lang/quote" element={<LangGuard><Quote /></LangGuard>} />
+            {/* HOTFIX-CONFIRM404-T02: canonical English quote-action route lives at
+                root (emails link /quote/confirm/{id}?token=...; the server 302s the
+                legacy /en/ form here). */}
+            <Route path="/quote/:action/:orderId" element={<QuoteAction />} />
             <Route path="/:lang/quote/:action/:orderId" element={<LangGuard><QuoteAction /></LangGuard>} />
             <Route path="/:lang/agreement/:orderId" element={<LangGuard><Agreement /></LangGuard>} />
             {/* Blog */}
