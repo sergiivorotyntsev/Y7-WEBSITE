@@ -232,13 +232,14 @@ export default function Dashboard() {
             padding: '14px 18px',
           }}
         >
-          <div style={{ fontFamily: fonts.sans, fontSize: '14px', fontWeight: 600, color: '#8a6d1b' }}>
-            Verify vehicle ownership to keep your shipment moving &rarr;
+          {/* CAP-S1-W03: strengthened copy/visibility — still soft (not a hard gate). */}
+          <div style={{ fontFamily: fonts.sans, fontSize: '14px', fontWeight: 700, color: '#8a6d1b' }}>
+            &#128196; Verify vehicle ownership to speed up dispatch &rarr;
           </div>
           <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: '#8a6d1b', marginTop: '2px' }}>
             Upload your title, registration, bill of sale, or auction invoice for{' '}
             {[ownershipProofOrder.vehicle_year, ownershipProofOrder.vehicle_make, ownershipProofOrder.vehicle_model]
-              .filter(Boolean).join(' ') || 'your vehicle'}.
+              .filter(Boolean).join(' ') || 'your vehicle'}. It isn&rsquo;t required to submit, but it lets us dispatch as soon as your carrier is set.
           </div>
         </Link>
       )}
