@@ -179,6 +179,13 @@ export default function Dashboard() {
         && ['none', 'rejected'].includes(o.ownership_proof_status || 'none'))
     : null;
 
+  // CAP-S1-W02: nudge individual/auction_buyer to add the COD delivery contact
+  // (who pays the driver) on a confirmed order that is still missing it.
+  const deliveryContactOrder = ['individual', 'auction_buyer'].includes(user?.customer_type)
+    ? orders.find((o) => o.status === 'confirmed' && o.service_tier === 'cod'
+        && !(o.delivery_contact_phone && String(o.delivery_contact_phone).trim()))
+    : null;
+
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '40px 24px 80px' }}>
       <PageMeta title="My Dashboard" description="Your active orders, shipment tracking, account management." path="/portal/dashboard" />
@@ -231,6 +238,27 @@ export default function Dashboard() {
           <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: '#8a6d1b', marginTop: '2px' }}>
             Upload your title, registration, bill of sale, or auction invoice for{' '}
             {[ownershipProofOrder.vehicle_year, ownershipProofOrder.vehicle_make, ownershipProofOrder.vehicle_model]
+              .filter(Boolean).join(' ') || 'your vehicle'}.
+          </div>
+        </Link>
+      )}
+
+      {/* CAP-S1-W02: COD delivery-contact nudge */}
+      {deliveryContactOrder && (
+        <Link
+          to={`/portal/order/${deliveryContactOrder.id}/dispatch-details`}
+          style={{
+            display: 'block', textDecoration: 'none', marginBottom: '20px',
+            background: '#FFF8E1', border: '1px solid #F9A825', borderRadius: '12px',
+            padding: '14px 18px',
+          }}
+        >
+          <div style={{ fontFamily: fonts.sans, fontSize: '14px', fontWeight: 600, color: '#8a6d1b' }}>
+            Add a delivery contact for your COD shipment &rarr;
+          </div>
+          <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: '#8a6d1b', marginTop: '2px' }}>
+            For COD orders we need the name and phone of whoever pays the driver at delivery for{' '}
+            {[deliveryContactOrder.vehicle_year, deliveryContactOrder.vehicle_make, deliveryContactOrder.vehicle_model]
               .filter(Boolean).join(' ') || 'your vehicle'}.
           </div>
         </Link>

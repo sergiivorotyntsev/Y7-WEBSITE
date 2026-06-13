@@ -88,6 +88,9 @@ export default function DispatchDetails() {
 
   const set = (key) => (e) => setForm(f => ({ ...f, [key]: e.target.value }));
 
+  // CAP-S1-W02: for COD orders the delivery contact (who pays the driver) is required.
+  const isCod = order?.service_tier === 'cod';
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -97,6 +100,13 @@ export default function DispatchDetails() {
     if (!form.pickup_contact_phone.trim()) { setError('Pickup contact phone is required'); return; }
     if (!isValidPhone(form.pickup_contact_phone)) {
       setError('Please enter a valid 10-digit pickup phone number.'); return;
+    }
+    // CAP-S1-W02: COD delivery-contact requirement (mirrors backend 422).
+    if (isCod && !form.delivery_contact_name.trim()) {
+      setError('For COD orders, the delivery contact name is required — this is the person who pays the driver.'); return;
+    }
+    if (isCod && !form.delivery_contact_phone.trim()) {
+      setError('For COD orders, the delivery contact phone is required — this is the person who pays the driver.'); return;
     }
     if (form.delivery_contact_phone && !isValidPhone(form.delivery_contact_phone)) {
       setError('Please enter a valid 10-digit delivery phone number, or leave it blank.'); return;
@@ -131,7 +141,10 @@ export default function DispatchDetails() {
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        throw new Error(data.detail || 'Failed to save');
+        // CAP-S1-W02: the COD 422 returns a structured detail object.
+        const d = data?.detail;
+        const msg = d && typeof d === 'object' ? (d.message || d.error || 'Failed to save') : (d || 'Failed to save');
+        throw new Error(msg);
       }
       setSuccess(true);
       setTimeout(() => navigate(`/portal/order/${id}?dispatch_saved=1`), 1500);
@@ -349,14 +362,19 @@ export default function DispatchDetails() {
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', ...rowStyle }}>
             <div>
-              <label style={labelStyle}>Contact Name</label>
+              <label style={labelStyle}>Contact Name {isCod ? '*' : ''}</label>
               <input style={inputStyle} value={form.delivery_contact_name} onChange={set('delivery_contact_name')} placeholder="Receiving person" />
             </div>
             <div>
-              <label style={labelStyle}>Contact Phone</label>
+              <label style={labelStyle}>Contact Phone {isCod ? '*' : ''}</label>
               <PhoneInput style={inputStyle} value={form.delivery_contact_phone} onChange={v => setForm(f => ({ ...f, delivery_contact_phone: v }))} />
             </div>
           </div>
+          {isCod && (
+            <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginTop: '6px' }}>
+              For COD, this is the person who pays the driver — required.
+            </div>
+          )}
         </div>
 
         {/* Special Instructions */}
