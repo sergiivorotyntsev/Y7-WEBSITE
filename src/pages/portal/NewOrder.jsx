@@ -237,9 +237,26 @@ export default function NewOrder() {
   const selectedAuction = auctionTypes.find(t => String(t.id) === auctionTypeId);
   const auctionRequiresPin = selectedAuction && ['COPART', 'IAA'].includes(selectedAuction.code);
 
+  // CAP-S1-W01: customer-chosen service tier. Only individual + auction_buyer
+  // pay Y7 directly and choose a tier; dealers/exporters never see this.
+  // Fee amounts come from the backend fee-schedule — never hardcoded.
+  const showTierSelector = ['individual', 'auction_buyer'].includes(user?.customer_type);
+  const [serviceTier, setServiceTier] = useState('cod');
+  const [feeSchedule, setFeeSchedule] = useState(null);
+  useEffect(() => {
+    if (!showTierSelector) return;
+    portalFetch('/api/portal/data/fee-schedule')
+      .then(r => (r.ok ? r.json() : null))
+      .then(data => { if (data) setFeeSchedule(data); })
+      .catch(() => {});
+  }, [showTierSelector]);
+  const fmtFee = (cents) => (typeof cents === 'number' ? `$${(cents / 100).toFixed(0)}` : '…');
+
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(null);
+  // CAP-S1-W04: enriched dealer-gate 403 payload -> friendly "under review" screen.
+  const [gateBlock, setGateBlock] = useState(null);
   // T04b: duplicate-route advisory dialog ({ matches, category, primary, pZip, dZip } | null)
   const [dupDialog, setDupDialog] = useState(null);
 
@@ -383,6 +400,9 @@ export default function NewOrder() {
         submission_type: submissionType,
         auction_type_id: auctionTypeId || undefined,
         gate_pass_pin: gatePassPin.trim() || undefined,
+        // CAP-S1-W01: only individual/auction_buyer send a tier; backend ignores
+        // it for other types regardless.
+        service_tier: showTierSelector ? serviceTier : undefined,
       };
 
       // Pickup side
@@ -427,7 +447,13 @@ export default function NewOrder() {
         // trial_quotes_exhausted, …) return a structured dict detail. Render its
         // human-readable message instead of swallowing it as a generic error.
         if (detail && typeof detail === 'object') {
-          setError(detail.detail || 'This action is not available for your account yet.');
+          // CAP-S1-W04: the two dealer-verification gates get a friendly full
+          // "under review" screen (enriched payload), not a bare inline error.
+          if (detail.error === 'company_verification_required' || detail.error === 'trial_quotes_exhausted') {
+            setGateBlock(detail);
+          } else {
+            setError(detail.detail || detail.message || 'This action is not available for your account yet.');
+          }
         } else {
           setError(typeof detail === 'string' ? detail : 'Failed to submit order. Please try again.');
         }
@@ -439,6 +465,34 @@ export default function NewOrder() {
     }
   }
 
+  if (gateBlock) {
+    // CAP-S1-W04: pinned copy (no time/SLA promises); CTA to Contact us.
+    const isTrial = gateBlock.error === 'trial_quotes_exhausted';
+    const heading = isTrial
+      ? "You've reached your trial quote limit"
+      : 'Your dealer account is being verified';
+    const bodyText = isTrial
+      ? 'Your account has used its trial quote requests pending verification. Once our team verifies your dealership, you can submit without limits — we’ll be in touch.'
+      : 'Thanks for registering as a dealer. Before you can submit orders directly, our team verifies your dealership details. We’ll email you as soon as your account is approved.';
+    return (
+      <div style={{ maxWidth: '600px', margin: '0 auto', padding: '40px 24px 80px' }}>
+        <PageMeta title={heading} />
+        <div style={{
+          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+          minHeight: '50vh', padding: '40px 24px', textAlign: 'center',
+        }}>
+          <div style={{ fontSize: '44px', marginBottom: '16px' }}>&#128737;</div>
+          <h1 style={{ fontFamily: fonts.serif, fontSize: '24px', fontWeight: 700, color: colors.text, marginBottom: '12px' }}>{heading}</h1>
+          <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, maxWidth: '420px', lineHeight: 1.6, marginBottom: '28px' }}>{bodyText}</p>
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link to="/contact" style={{ ...btnStyles.accent, textDecoration: 'none' }}>Contact us</Link>
+            <button onClick={() => navigate('/portal/dashboard')} style={btnStyles.secondary}>Go to Dashboard</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (success) {
     return (
       <div style={{ maxWidth: '600px', margin: '0 auto', padding: '40px 24px 80px' }}>
@@ -446,9 +500,26 @@ export default function NewOrder() {
         <div style={{ textAlign: 'center', padding: '60px 0', animation: 'fadeUp 0.4s ease-out' }}>
           <div style={{ fontSize: '48px', marginBottom: '16px' }}>&#10003;</div>
           <h1 style={{ fontFamily: fonts.serif, fontSize: '24px', fontWeight: 700, color: colors.text, marginBottom: '12px' }}>Order Submitted</h1>
-          <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, lineHeight: 1.6, marginBottom: '32px' }}>
+          <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, lineHeight: 1.6, marginBottom: showTierSelector ? '20px' : '32px' }}>
             Your transport request has been received. Our dispatcher will review it and send you a quote shortly.
           </p>
+          {/* CAP-S1-W03: ownership-proof prompt (individual/auction_buyer). Soft — speeds dispatch, not a hard block. */}
+          {showTierSelector && success.orderId && (
+            <div style={{
+              textAlign: 'left', maxWidth: '440px', margin: '0 auto 28px',
+              background: '#FFF8E1', border: '1px solid #F9A825', borderRadius: '12px', padding: '14px 18px',
+            }}>
+              <div style={{ fontFamily: fonts.sans, fontSize: '14px', fontWeight: 600, color: '#8a6d1b', marginBottom: 4 }}>
+                Speed up dispatch — upload proof of ownership
+              </div>
+              <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: '#8a6d1b', lineHeight: 1.5, marginBottom: 10 }}>
+                Add your title, registration, bill of sale, or auction invoice now so we can dispatch as soon as the carrier is set.
+              </div>
+              <Link to={`/portal/order/${success.orderId}`} style={{ ...btnStyles.accent, textDecoration: 'none', display: 'inline-block', padding: '8px 16px', fontSize: '13px' }}>
+                Upload ownership proof
+              </Link>
+            </div>
+          )}
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
             <button onClick={() => navigate('/portal/dashboard')} style={btnStyles.accent}>Go to Dashboard</button>
             <button onClick={() => { setSuccess(null); setVin(''); setVehicleYear(''); setVehicleMake(''); setVehicleModel(''); setPickupManual({ ...EMPTY_MANUAL }); setDeliveryManual({ ...EMPTY_MANUAL }); setNotes(''); }} style={btnStyles.secondary}>Submit Another</button>
@@ -568,6 +639,53 @@ export default function NewOrder() {
             <ManualAddressFields fields={deliveryManual} onChange={handleDeliveryManualChange} />
           )}
         </div>
+
+        {/* CAP-S1-W01: service tier (individual + auction_buyer only) */}
+        {showTierSelector && (
+          <div style={sectionStyle}>
+            <div style={sectionTitle}>How should the carrier be paid?</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {[
+                {
+                  value: 'cod',
+                  title: `COD — pay the driver at delivery (Y7 dispatch fee: ${fmtFee(feeSchedule?.cod_fee_cents)})`,
+                  desc: "You pay the carrier directly when your vehicle arrives and is inspected. Choose this if you'll be available at delivery.",
+                },
+                {
+                  value: 'full_service',
+                  title: `Full service — Y7 handles carrier payment (dispatch fee: ${fmtFee(feeSchedule?.full_service_fee_cents)})`,
+                  desc: "We pay the carrier and bill you the carrier's rate plus a single dispatch fee. Choose this if you can't be at delivery to pay.",
+                },
+              ].map(opt => {
+                const selected = serviceTier === opt.value;
+                return (
+                  <label key={opt.value} style={{
+                    display: 'flex', gap: 10, alignItems: 'flex-start', cursor: 'pointer',
+                    padding: '12px 14px', borderRadius: 8,
+                    border: `1px solid ${selected ? colors.accent : colors.border}`,
+                    background: selected ? '#FFF7F4' : colors.bgCard,
+                  }}>
+                    <input
+                      type="radio"
+                      name="service_tier"
+                      value={opt.value}
+                      checked={selected}
+                      onChange={() => setServiceTier(opt.value)}
+                      style={{ marginTop: 3, width: 18, height: 18, flexShrink: 0, accentColor: colors.accent }}
+                    />
+                    <span>
+                      <span style={{ display: 'block', fontFamily: fonts.sans, fontSize: 14, fontWeight: 600, color: colors.text }}>{opt.title}</span>
+                      <span style={{ display: 'block', fontFamily: fonts.sans, fontSize: 12, color: colors.textMuted, marginTop: 2, lineHeight: 1.5 }}>{opt.desc}</span>
+                    </span>
+                  </label>
+                );
+              })}
+            </div>
+            <div style={{ ...hintStyle, marginTop: 10 }}>
+              This is Y7's dispatch fee only — the carrier's transport rate is quoted separately.
+            </div>
+          </div>
+        )}
 
         {/* Auction fields */}
         {showAuctionFields && (
