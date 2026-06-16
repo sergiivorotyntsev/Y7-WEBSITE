@@ -156,6 +156,10 @@ export default function PhoneInput({
       ? { ...style, borderColor: '#0F6E56' }
       : style;
 
+  // REGC-S13-W07d: country-select border color (computed once; used as per-side
+  // longhands below to avoid a border/borderRight shorthand-conflict warning).
+  const selBorderColor = showError ? '#d32f2f' : isValid && rawDigits ? '#0F6E56' : '#ddd';
+
   return (
     <div>
       <div style={{
@@ -171,7 +175,11 @@ export default function PhoneInput({
             fontFamily: 'system-ui, -apple-system, sans-serif',
             fontSize: '16px',
             padding: '8px 4px 8px 8px',
-            border: `1px solid ${showError ? '#d32f2f' : isValid && rawDigits ? '#0F6E56' : '#ddd'}`,
+            // REGC-S13-W07d: per-side longhands (no `border` shorthand) so React
+            // doesn't warn about a border/borderRight shorthand-vs-longhand conflict.
+            borderTop: `1px solid ${selBorderColor}`,
+            borderBottom: `1px solid ${selBorderColor}`,
+            borderLeft: `1px solid ${selBorderColor}`,
             borderRight: 'none',
             borderRadius: '8px 0 0 8px',
             background: '#F7F5F0',
