@@ -131,6 +131,10 @@ export default function Onboarding() {
     const isClassified = user.customer_type
       && user.customer_type !== 'unknown'
       && user.customer_type !== 'shipper';
+    // REGC-S13-W04: type is now chosen during registration. Remember it so a
+    // classified user never gets re-asked the type step (step 2); only
+    // unknown-type entrants (magic-link / quote-confirm) still see it.
+    if (isClassified) setSelectedType(user.customer_type);
     if (isClassified && user.agreement_signed) {
       navigate('/portal/dashboard', { replace: true });
       return;
@@ -167,7 +171,11 @@ export default function Onboarding() {
             user={user}
             onCompleted={async () => {
               await checkAuth();
-              setStep(2);
+              // REGC-S13-W04: skip the type step when already classified.
+              const classified = user.customer_type
+                && user.customer_type !== 'unknown'
+                && user.customer_type !== 'shipper';
+              setStep(classified ? 3 : 2);
             }}
           />
         )}
