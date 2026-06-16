@@ -607,41 +607,40 @@ export default function LoginCard({
       </div>
 
       {step === 'email' && (
-        <p style={{
-          fontFamily: fonts.sans,
-          fontSize: '13px',
-          color: C.textMuted,
-          textAlign: 'center',
-          marginTop: '24px',
-        }}>
-          {t('login.newToY7')}{' '}
-          {/* HOTFIX-LOGIN-UX: always-visible "Sign up" affordance alongside
-              the existing "Get a quote" link. Direct register-step
-              transition via onClickSignUp — no server roundtrip. */}
+        <div style={{ textAlign: 'center', marginTop: '24px' }}>
+          <p style={{
+            fontFamily: fonts.sans, fontSize: '13px', color: C.textMuted, margin: '0 0 10px',
+          }}>
+            {t('login.newToY7')}
+          </p>
+          {/* REGC-S13-W07c: prominent, button-like registration CTA. Was a faint
+              inline text link ("кнопка для регистрации еле заметна"); now a
+              bordered accent button so the create-account path is clearly visible.
+              Still onClickSignUp — direct register-step transition, no roundtrip. */}
           <button type="button" onClick={onClickSignUp} style={{
             fontFamily: fonts.sans,
-            fontSize: '13px',
+            fontSize: '14px',
             fontWeight: 700,
             color: C.accent,
             background: 'transparent',
-            border: 'none',
-            padding: 0,
+            border: `1.5px solid ${C.accent}`,
+            borderRadius: '8px',
+            padding: '11px 24px',
             cursor: 'pointer',
-            textDecoration: 'none',
+            display: 'inline-block',
           }}>
             {t('login.signUp')}
           </button>
-          {' · '}
-          <Link to="/ship-my-car" style={{
-            fontFamily: fonts.sans,
-            fontSize: '13px',
-            fontWeight: 700,
-            color: C.accent,
-            textDecoration: 'none',
+          <p style={{
+            fontFamily: fonts.sans, fontSize: '12px', color: C.textMuted, margin: '12px 0 0',
           }}>
-            {t('login.getQuote')} →
-          </Link>
-        </p>
+            <Link to="/ship-my-car" style={{
+              fontFamily: fonts.sans, fontWeight: 600, color: C.accent, textDecoration: 'none',
+            }}>
+              {t('login.getQuote')} →
+            </Link>
+          </p>
+        </div>
       )}
     </div>
   );
