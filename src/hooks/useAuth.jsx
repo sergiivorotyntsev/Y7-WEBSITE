@@ -152,14 +152,19 @@ export function AuthProvider({ children }) {
       if (res.ok) {
         const data = await res.json();
         if (data.authenticated) {
-          setUser(_normalizeUser(data));
-          return;
+          // REGC-S13-W07a: return the fresh normalized user so post-action
+          // routing (e.g. Onboarding step decisions) uses resolved data rather
+          // than a stale closure. Void-ignoring callers are unaffected.
+          const u = _normalizeUser(data);
+          setUser(u);
+          return u;
         }
       }
     } catch {
       // Network error — not authenticated
     }
     setUser(null);
+    return null;
   }, []);
 
   useEffect(() => {

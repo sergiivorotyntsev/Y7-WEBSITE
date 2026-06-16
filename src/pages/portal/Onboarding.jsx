@@ -111,6 +111,24 @@ const LOCALE_BLOCK_COPY = {
 };
 
 
+// REGC-S13-W07a: type-agnostic onboarding routing helpers. These apply
+// uniformly to EVERY classified customer_type (individual, auction_buyer,
+// dealer, exporter) — the skip-completed-steps logic is not individual-only.
+const isClassifiedType = (t) => !!t && t !== 'unknown' && t !== 'shipper';
+// Profile completeness derived from REAL fields (useAuth._normalizeUser never
+// sets profile_complete, so that flag is unusable). Mirrors ProfileStep's
+// required fields (contact_name, phone, delivery city/state/zip).
+const profileLooksComplete = (u) =>
+  !!(u && u.contact_name && u.phone && u.delivery_city && u.delivery_state && u.delivery_zip);
+// First onboarding step the user still needs: 1 Profile, 2 Account-Type,
+// 3 Agreement, 4 done (fully onboarded). Same for all customer types.
+const firstIncompleteStep = (u) => {
+  if (!profileLooksComplete(u)) return 1;
+  if (!isClassifiedType(u.customer_type)) return 2;
+  if (!u.agreement_signed) return 3;
+  return 4;
+};
+
 export default function Onboarding() {
   const { user, checkAuth, loading } = useAuth();
   const navigate = useNavigate();
@@ -140,30 +158,22 @@ export default function Onboarding() {
       navigate('/portal/login', { replace: true });
       return;
     }
-    // REGC-S13-W06: derive the starting step exactly once. Re-running on later
-    // `user` ref changes (every checkAuth) is what caused the loop.
+    // REGC-S13-W06/W07a: derive the starting step exactly once (run-once guard
+    // avoids the re-fire loop). `loading` gates this until /me has resolved, so
+    // `user` here is the RESOLVED user — the route below uses real fields, not
+    // the never-set profile_complete flag, and so reacts to the true type.
     if (derivedStartRef.current) return;
     derivedStartRef.current = true;
-    const isClassified = user.customer_type
-      && user.customer_type !== 'unknown'
-      && user.customer_type !== 'shipper';
-    // REGC-S13-W04: type is now chosen during registration. Remember it so a
-    // classified user never gets re-asked the type step (step 2); only
-    // unknown-type entrants (magic-link / quote-confirm) still see it.
-    if (isClassified) setSelectedType(user.customer_type);
-    if (isClassified && user.agreement_signed) {
+    // REGC-S13-W07a: route to the first genuinely-incomplete step, for ANY
+    // classified type — a classified user with a complete profile skips both
+    // Profile and Account-Type and lands on Agreement.
+    if (isClassifiedType(user.customer_type)) setSelectedType(user.customer_type);
+    const target = firstIncompleteStep(user);
+    if (target === 4) {
       navigate('/portal/dashboard', { replace: true });
       return;
     }
-    const profileComplete = !!user.profile_complete;
-    if (isClassified && !user.agreement_signed && profileComplete) {
-      setSelectedType(user.customer_type);
-      setStep(3);
-    } else if (!isClassified && profileComplete) {
-      setStep(2);
-    } else {
-      setStep(1);
-    }
+    setStep(target);
   }, [user, loading, navigate]);
   /* eslint-enable react-hooks/set-state-in-effect */
 
@@ -201,12 +211,16 @@ export default function Onboarding() {
           <ProfileStep
             user={user}
             onCompleted={async () => {
-              await checkAuth();
-              // REGC-S13-W04: skip the type step when already classified.
-              const classified = user.customer_type
-                && user.customer_type !== 'unknown'
-                && user.customer_type !== 'shipper';
-              setStep(classified ? 3 : 2);
+              // REGC-S13-W07a: route from the FRESH user (checkAuth now returns
+              // it), not a stale closure — works for every classified type.
+              const fresh = (await checkAuth()) || user;
+              if (isClassifiedType(fresh?.customer_type)) setSelectedType(fresh.customer_type);
+              const target = firstIncompleteStep(fresh);
+              if (target === 4) {
+                navigate('/portal/dashboard', { replace: true });
+                return;
+              }
+              setStep(target);
             }}
           />
         )}
