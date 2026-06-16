@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react';
-import { Routes, Route, Navigate, useParams } from 'react-router-dom';
+import { Routes, Route, Navigate, useParams, useLocation } from 'react-router-dom';
 import { isValidLocale } from './lib/localePaths';
 import { AuthProvider } from './hooks/useAuth';
 import Analytics from './components/Analytics';
@@ -122,6 +122,18 @@ function LangGuard({ children }) {
   return children;
 }
 
+/**
+ * RegisterRedirect — /portal/register is a public, link-shared signup URL
+ * (e.g. PostQuoteFlow's post-quote "create account" CTA appends ?email=…&ref=…).
+ * The registration UI lives on /portal/login, so we redirect there — but
+ * S4-SMALL-W03 PRESERVES the query string so email/ref aren't dropped on the
+ * way; Login.jsx reads ?email to prefill the signup email.
+ */
+function RegisterRedirect() {
+  const location = useLocation();
+  return <Navigate to={{ pathname: '/portal/login', search: location.search }} replace />;
+}
+
 export default function App() {
   useEffect(() => {
     document.__PRERENDER_READY = true;
@@ -234,7 +246,7 @@ export default function App() {
             <Route path="/blog/:slug" element={<BlogArticle />} />
             {/* Portal auth — unified login/register */}
             <Route path="/portal/login" element={<Login />} />
-            <Route path="/portal/register" element={<Navigate to="/portal/login" replace />} />
+            <Route path="/portal/register" element={<RegisterRedirect />} />
             {/* Magic-link landing — single-use token from dealer welcome email.
                 Dynamic route, intentionally not prerendered. */}
             <Route path="/portal/magic/:token" element={<MagicLogin />} />

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import PageMeta from '../../components/PageMeta';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
@@ -10,13 +10,21 @@ import RegisterOtpStep from '../../components/RegisterOtpStep';
 
 export default function Login() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { t } = useTranslation('portal');
   const { user, login } = useAuth();
   // STRIPE-LOGIN-PHASE2-A2: state machine extended with two new steps
   // ('forgot_code' and 'reset_password') for the password reset flow.
   // Existing 'email' / 'code' / 'register' steps are preserved.
   const [step, setStep] = useState('email');
-  const [email, setEmail] = useState('');
+  // S4-SMALL-W03: a /portal/register?email=…&ref=… link (e.g. PostQuoteFlow's
+  // post-quote "create account" CTA) is redirected here with its query string
+  // preserved (App.jsx RegisterRedirect). Seed the email from ?email once so the
+  // customer doesn't retype it before signing in / resetting a password /
+  // signing up. We do NOT auto-advance into the register form: a post-quote
+  // "new" customer already has a customers row, so register-verify-email would
+  // 409 — the email screen lets them log in or reset instead.
+  const [email, setEmail] = useState(() => searchParams.get('email') || '');
   const [code, setCode] = useState(['', '', '', '', '', '']);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
