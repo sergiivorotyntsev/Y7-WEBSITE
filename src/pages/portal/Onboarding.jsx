@@ -345,8 +345,11 @@ function ProfileStep({ user, onCompleted }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/api/portal/data/sms-consent-text')
-      .then(r => r.ok ? r.json() : { text: '' })
+    // REGC-S13-W07b: portalFetch so it reaches the API origin (was a raw
+    // relative fetch hitting the SPA origin). Stays tolerant — a non-JSON body
+    // degrades to empty consent text rather than throwing.
+    portalFetch('/api/portal/data/sms-consent-text')
+      .then(r => (r.ok && (r.headers.get('content-type') || '').includes('application/json')) ? r.json() : { text: '' })
       .then(data => setConsentText(data.text || ''))
       .catch(() => {});
   }, []);
@@ -646,7 +649,10 @@ function AgreementStep({ user, customerType, onBack, onSigned }) {
     setErrorMsg(null);
     (async () => {
       try {
-        const r = await fetch(
+        // REGC-S13-W07b: go through portalFetch so the call hits the API origin
+        // (API_URL), not the SPA origin. A raw relative fetch returned the SPA
+        // index.html → "Unexpected token '<'" on JSON.parse. Path/query unchanged.
+        const r = await portalFetch(
           `/api/public/agreement-template?type=${encodeURIComponent(customerType)}&lang=${encodeURIComponent(effectiveLang)}&v3=true`
         );
         if (r.status === 409) {
@@ -656,6 +662,16 @@ function AgreementStep({ user, customerType, onBack, onSigned }) {
         if (!r.ok) {
           if (alive) {
             setErrorMsg(`Could not load agreement (HTTP ${r.status})`);
+            setLoadState('error');
+          }
+          return;
+        }
+        // REGC-S13-W07b: guard against an HTML (SPA-fallback) body reaching
+        // JSON.parse — surface a clean error instead of "Unexpected token '<'".
+        const contentType = r.headers.get('content-type') || '';
+        if (!contentType.includes('application/json')) {
+          if (alive) {
+            setErrorMsg("Couldn't load the agreement — please try again.");
             setLoadState('error');
           }
           return;
