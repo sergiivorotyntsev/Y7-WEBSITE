@@ -166,6 +166,21 @@ export default function Onboarding() {
       <div style={cardStyle}>
         <Header step={step} />
 
+        {/* REGC-S13-W05: light, non-blocking dealer pending-verification note
+            (pinned copy). The full order-submit "under review" screen is parked
+            CAP-S1 work — this is just a reassuring indication post-signup. */}
+        {user?.customer_type === 'dealer' && !user?.agreement_signed && (
+          <div style={{
+            fontFamily: fonts.sans, fontSize: 13, color: '#0F6E56',
+            background: '#F0FAF6', border: '1px solid #0F6E56',
+            borderRadius: 8, padding: '10px 12px', marginBottom: 16, lineHeight: 1.5,
+          }}>
+            Dealer accounts require verification before you can place orders directly.
+            You can finish setting up your account now — our team will review your
+            dealership and email you once you&rsquo;re approved.
+          </div>
+        )}
+
         {step === 1 && (
           <ProfileStep
             user={user}
