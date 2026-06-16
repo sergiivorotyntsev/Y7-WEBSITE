@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
@@ -117,6 +117,18 @@ export default function Onboarding() {
 
   const [step, setStep] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
+  // REGC-S13-W06: the starting-step derivation must run ONCE. Without this
+  // guard the effect re-fires on every `user` reference change — and
+  // useAuth._normalizeUser returns a NEW object on every checkAuth() (and never
+  // sets profile_complete, so profileComplete is always false) — so after
+  // Continue → onCompleted's checkAuth() the effect re-ran and forced
+  // setStep(1), fighting onCompleted's setStep(3). That step thrash
+  // remounted ProfileStep↔AgreementStep, producing the infinite
+  // update-profile/me/agreement-template/sms-consent-text request loop. The
+  // guard makes the derivation one-time; thereafter the wizard advances only
+  // via user interaction (onCompleted/onSelected/onSigned). W04's skip is
+  // preserved — the once-run derivation still sets selectedType + initial step.
+  const derivedStartRef = useRef(false);
 
   // One-time derivation of the starting step from the authenticated user's
   // classification + profile state. After initial setStep the wizard
@@ -128,6 +140,10 @@ export default function Onboarding() {
       navigate('/portal/login', { replace: true });
       return;
     }
+    // REGC-S13-W06: derive the starting step exactly once. Re-running on later
+    // `user` ref changes (every checkAuth) is what caused the loop.
+    if (derivedStartRef.current) return;
+    derivedStartRef.current = true;
     const isClassified = user.customer_type
       && user.customer_type !== 'unknown'
       && user.customer_type !== 'shipper';
