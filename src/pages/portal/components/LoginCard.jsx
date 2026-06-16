@@ -548,8 +548,11 @@ export default function LoginCard({
               <input id="reg-name" value={reg.contact_name} onChange={e => setRegField('contact_name', e.target.value)} style={inputStyle} autoFocus />
             </div>
             <div>
-              <label style={labelStyle} htmlFor="reg-company">Company Name (optional)</label>
-              <input id="reg-company" value={reg.company_name} onChange={e => setRegField('company_name', e.target.value)} placeholder="Leave empty for private customers" style={inputStyle} />
+              {/* REGC-S13-W03: company required for dealer/exporter, optional otherwise. */}
+              <label style={labelStyle} htmlFor="reg-company">
+                {['dealer', 'exporter'].includes(regType) ? 'Company Name *' : 'Company Name (optional)'}
+              </label>
+              <input id="reg-company" value={reg.company_name} onChange={e => setRegField('company_name', e.target.value)} placeholder={['dealer', 'exporter'].includes(regType) ? 'Your dealership / company' : 'Leave empty for private customers'} style={inputStyle} />
             </div>
             <div>
               <label style={labelStyle}>Phone</label>

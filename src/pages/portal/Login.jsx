@@ -6,6 +6,7 @@ import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { getCleanPhone, isValidPhone } from '../../components/PhoneInput';
 import { trackEvent } from '../../utils/trackEvent';
 import LoginCard from './components/LoginCard';
+import RegisterOtpStep from '../../components/RegisterOtpStep';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -256,44 +257,65 @@ export default function Login() {
     setError(null);
   }
 
+  // REGC-S13-W03: OTP-first signup. Profile submit now POSTs
+  // register-verify-email (NOT web-register) with the chosen customer_type +
+  // sms_consent; on success we transition to the RegisterOtpStep. The customer
+  // row is created only after the OTP is confirmed (register-verify-code).
   async function handleRegisterSubmit(e) {
     e.preventDefault();
     setError(null);
     if (!reg.contact_name.trim()) { setError('Full name is required'); return; }
+    if (['dealer', 'exporter'].includes(regType) && !reg.company_name.trim()) {
+      setError('Company name is required for dealer and exporter accounts.');
+      return;
+    }
     if (reg.phone && !isValidPhone(reg.phone)) {
       setError('Please enter a valid 10-digit phone number, or leave it blank.');
       return;
     }
     setLoading(true);
     try {
-      const res = await portalFetch('/api/portal/auth/web-register', {
+      const res = await portalFetch('/api/portal/auth/register-verify-email', {
         method: 'POST',
         body: JSON.stringify({
           ...reg,
           email: email.trim(),
           phone: reg.phone ? getCleanPhone(reg.phone) : '',
+          customer_type: regType || undefined,
         }),
       });
-      const data = await res.json();
-      if (res.ok && data.ok) {
-        login(data.session_token, data.customer);
-        try {
-          const profileRes = await portalFetch('/api/portal/data/profile');
-          const profile = await profileRes.json();
-          if (!profile.delivery_city && !profile.delivery_address) {
-            navigate('/portal/profile', { replace: true, state: { incomplete: true } });
-            return;
-          }
-        } catch { /* proceed to dashboard */ }
-        navigate('/portal/dashboard', { replace: true });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok && data.pending_id) {
+        setPendingId(data.pending_id);
+        setStep('reg_otp');
       } else {
-        setError(data.detail || data.error || 'Registration failed');
+        const detail = data?.detail;
+        if (detail && typeof detail === 'object') {
+          setError(detail.message || detail.detail || detail.error || 'Could not start verification.');
+        } else {
+          setError(detail || data.error || 'Could not start verification.');
+        }
       }
     } catch (err) {
       setError(err.message || 'Network error');
     } finally {
       setLoading(false);
     }
+  }
+
+  // REGC-S13-W03: RegisterOtpStep success → session established by the backend
+  // (session_token + cookie). Land on Dashboard, which routes to Onboarding
+  // (agreement; the type step is skipped since customer_type is now set).
+  function handleRegisterOtpSuccess(data) {
+    login(data.session_token, data);
+    trackEvent('portal_register', { method: 'otp', customer_type: regType || 'unknown' });
+    navigate('/portal/dashboard', { replace: true });
+  }
+
+  function handleRegisterOtpCancel() {
+    setPendingId(null);
+    setStep('register');
+    setError(null);
   }
 
   function handleCodeChange(i, val) {
@@ -388,6 +410,16 @@ export default function Login() {
         regType={regType}
         onSelectType={handleSelectType}
         onTypeContinue={handleTypeContinue}
+        otpStep={
+          step === 'reg_otp' ? (
+            <RegisterOtpStep
+              pendingId={pendingId}
+              email={email}
+              onSuccess={handleRegisterOtpSuccess}
+              onCancel={handleRegisterOtpCancel}
+            />
+          ) : null
+        }
       />
     </>
   );
