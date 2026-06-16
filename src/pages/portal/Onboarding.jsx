@@ -116,10 +116,13 @@ const LOCALE_BLOCK_COPY = {
 // dealer, exporter) — the skip-completed-steps logic is not individual-only.
 const isClassifiedType = (t) => !!t && t !== 'unknown' && t !== 'shipper';
 // Profile completeness derived from REAL fields (useAuth._normalizeUser never
-// sets profile_complete, so that flag is unusable). Mirrors ProfileStep's
-// required fields (contact_name, phone, delivery city/state/zip).
+// sets profile_complete, so that flag is unusable). S4-SMALL-W01 (§3 Option 2):
+// the gate is now contact_name + phone only — the delivery address is no longer
+// required to enter onboarding (it's collected per-order at order time), so a
+// registrant who skipped the optional address lands on Agreement, not Profile.
+// Mirrors the relaxed ProfileStep.canSubmit + update-profile backend.
 const profileLooksComplete = (u) =>
-  !!(u && u.contact_name && u.phone && u.delivery_city && u.delivery_state && u.delivery_zip);
+  !!(u && u.contact_name && u.phone);
 // First onboarding step the user still needs: 1 Profile, 2 Account-Type,
 // 3 Agreement, 4 done (fully onboarded). Same for all customer types.
 const firstIncompleteStep = (u) => {
@@ -356,12 +359,11 @@ function ProfileStep({ user, onCompleted }) {
 
   const [phoneValid, setPhoneValid] = useState(() => isValidPhone(form.phone));
 
+  // S4-SMALL-W01 (§3 Option 2): address is optional — only contact_name + phone
+  // gate the Profile step, matching the relaxed update-profile backend.
   const canSubmit =
     form.contact_name.trim().length >= 2 &&
-    form.phone.length > 0 && phoneValid &&
-    form.delivery_city.trim().length >= 2 &&
-    form.delivery_state.trim().length >= 2 &&
-    form.delivery_zip.trim().length >= 3;
+    form.phone.length > 0 && phoneValid;
 
   function set(field, value) {
     setForm(prev => ({ ...prev, [field]: value }));
@@ -444,9 +446,11 @@ function ProfileStep({ user, onCompleted }) {
         onChange={v => set('company_name', v)}
       />
 
-      <h3 style={subSectionTitleStyle}>Primary delivery address</h3>
+      {/* S4-SMALL-W01 (§3 Option 2): the whole delivery-address block is now
+          optional here — collected per-order at order time. No required markers. */}
+      <h3 style={subSectionTitleStyle}>Primary delivery address (optional)</h3>
       <Field
-        label="Street address (optional)"
+        label="Street address"
         value={form.delivery_address}
         onChange={v => set('delivery_address', v)}
       />
@@ -454,7 +458,6 @@ function ProfileStep({ user, onCompleted }) {
         label="City"
         value={form.delivery_city}
         onChange={v => set('delivery_city', v)}
-        required
       />
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: spacing.md }}>
         <Field
@@ -462,7 +465,6 @@ function ProfileStep({ user, onCompleted }) {
           value={form.delivery_state}
           onChange={v => set('delivery_state', v)}
           placeholder="CA"
-          required
           maxLength={2}
         />
         <Field
@@ -470,7 +472,6 @@ function ProfileStep({ user, onCompleted }) {
           value={form.delivery_zip}
           onChange={v => set('delivery_zip', v)}
           placeholder="90001"
-          required
           maxLength={10}
         />
       </div>
