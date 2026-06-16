@@ -303,13 +303,20 @@ export default function Login() {
     }
   }
 
-  // REGC-S13-W03: RegisterOtpStep success → session established by the backend
-  // (session_token + cookie). Land on Dashboard, which routes to Onboarding
-  // (agreement; the type step is skipped since customer_type is now set).
+  // REGC-S13-W03 / S4-SMALL-W02: RegisterOtpStep success → session established
+  // by the backend (session_token + cookie) AND applied synchronously by the
+  // login() call below — it sets the in-memory token + normalized `user`
+  // (which carries customer_type, contact_name, phone, agreement_signed=false
+  // from the register-verify-code response) BEFORE we navigate. So go STRAIGHT
+  // to the onboarding wizard instead of bouncing through /portal/dashboard:
+  // the ProtectedRoute on /portal/onboarding sees `user` immediately (no
+  // re-fetch, no bounce-to-login), and firstIncompleteStep lands the classified
+  // registrant on Agreement (type step skipped, profile pre-filled). This
+  // removes the visible dashboard flash — the "two disjoint pieces" feeling.
   function handleRegisterOtpSuccess(data) {
     login(data.session_token, data);
     trackEvent('portal_register', { method: 'otp', customer_type: regType || 'unknown' });
-    navigate('/portal/dashboard', { replace: true });
+    navigate('/portal/onboarding', { replace: true });
   }
 
   function handleRegisterOtpCancel() {
