@@ -25,6 +25,11 @@ export default function Login() {
     delivery_address: '', delivery_city: '', delivery_state: '', delivery_zip: '',
     sms_consent: false,
   });
+  // REGC-S13-W01/W03: OTP-first signup with an account-type step.
+  // regType: chosen customer_type ('' until selected); pendingId: from
+  // register-verify-email, consumed by the RegisterOtpStep.
+  const [regType, setRegType] = useState('');
+  const [pendingId, setPendingId] = useState(null);
   // Phase 2 password auth state
   const [password, setPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -129,8 +134,22 @@ export default function Login() {
   // re-type. Anti-enumeration: this transition is user-initiated, never
   // server-driven (the /start endpoint no longer signals 'register').
   function handleClickSignUp() {
-    setStep('register');
+    // REGC-S13-W01: signup now starts with the account-type step.
+    setStep('reg_type');
     setError(null);
+  }
+
+  // REGC-S13-W01: account-type selection. Choosing a card sets the type;
+  // Continue advances to the profile step. Dealer shows a pending note inline.
+  function handleSelectType(typeId) {
+    setRegType(typeId);
+    setError(null);
+  }
+
+  function handleTypeContinue() {
+    if (!regType) { setError('Please choose an account type to continue.'); return; }
+    setError(null);
+    setStep('register');
   }
 
   async function handleForgotPassword(e) {
@@ -366,6 +385,9 @@ export default function Login() {
         onSubmitResetPassword={handleResetPasswordSubmit}
         onBackToEmailFromForgot={handleBackToEmailFromForgot}
         onClickSignUp={handleClickSignUp}
+        regType={regType}
+        onSelectType={handleSelectType}
+        onTypeContinue={handleTypeContinue}
       />
     </>
   );

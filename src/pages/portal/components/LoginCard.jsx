@@ -77,6 +77,61 @@ const secondaryBtn = {
   cursor: 'pointer',
 };
 
+// REGC-S13-W01: account-type cards lifted verbatim from Onboarding.jsx:43-88
+// (title + description + 3 benefits + tone). Dealer is now SHOWN at signup.
+const REG_TYPES = [
+  {
+    id: 'individual',
+    title: 'Ship My Car',
+    description: 'Single vehicle, personal shipment',
+    benefits: [
+      'One-vehicle web quote, door-to-door',
+      'Pay carrier directly on delivery (COD)',
+      '$50 COD or $65 Full Service fee',
+    ],
+    tone: { border: '#993C1D', bg: '#FFF8F5' },
+  },
+  {
+    id: 'auction_buyer',
+    title: 'Auction Buyer',
+    description: 'Copart, IAA, Manheim, or similar',
+    benefits: [
+      'Auction presets (Copart / IAA / Manheim)',
+      'Gate-pass upload + VIN decode',
+      '$50 COD or $65 Full Service fee',
+    ],
+    tone: { border: '#B8851F', bg: '#FFFBF0' },
+  },
+  {
+    id: 'dealer',
+    title: 'Auto Dealer',
+    description: 'Licensed dealer moving inventory / trades',
+    benefits: [
+      'Volume shipping + saved locations',
+      'Dedicated dealer agreement',
+      '$50 COD / $65 Full Service (AP service available separately)',
+    ],
+    tone: { border: '#0F6E56', bg: '#F0FAF6' },
+  },
+  {
+    id: 'exporter',
+    title: 'Exporter',
+    description: 'Shipping to US ports, warehouses, or containers',
+    benefits: [
+      'Saved port + warehouse addresses',
+      'Container-ready delivery',
+      '$50 COD or $65 Full Service fee',
+    ],
+    tone: { border: '#14648C', bg: '#F0F6FA' },
+  },
+];
+
+// REGC-S13-W01: pinned dealer pending note (verbatim — no time/SLA promises).
+const DEALER_PENDING_NOTE =
+  'Dealer accounts require verification before you can place orders directly. ' +
+  "You can finish setting up your account now — our team will review your " +
+  "dealership and email you once you're approved.";
+
 export default function LoginCard({
   t,
   step,
@@ -110,6 +165,12 @@ export default function LoginCard({
   onBackToEmailFromForgot,
   // HOTFIX-LOGIN-UX: explicit "Sign up" CTA (footer + post-error)
   onClickSignUp,
+  // REGC-S13-W01: account-type step
+  regType,
+  onSelectType,
+  onTypeContinue,
+  // REGC-S13-W02/W03: OTP step renders RegisterOtpStep (passed as a node)
+  otpStep,
 }) {
   return (
     <div style={{
@@ -140,6 +201,10 @@ export default function LoginCard({
         }}>
           {step === 'code'
             ? t('login.codeHeading')
+            : step === 'reg_type'
+            ? 'Choose your account type'
+            : step === 'reg_otp'
+            ? 'Verify your email'
             : step === 'register'
             ? t('login.registerHeading')
             : step === 'forgot_code'
@@ -406,6 +471,57 @@ export default function LoginCard({
               {t('login.differentEmail')}
             </button>
           </div>
+        )}
+
+        {step === 'reg_type' && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            {REG_TYPES.map((tp) => {
+              const selected = regType === tp.id;
+              return (
+                <button
+                  key={tp.id}
+                  type="button"
+                  onClick={() => onSelectType(tp.id)}
+                  style={{
+                    textAlign: 'left',
+                    border: `2px solid ${selected ? tp.tone.border : C.border}`,
+                    background: selected ? tp.tone.bg : C.bgCard,
+                    borderRadius: '12px',
+                    padding: '14px 16px',
+                    cursor: 'pointer',
+                    width: '100%',
+                  }}
+                >
+                  <div style={{ fontFamily: fonts.sans, fontSize: '15px', fontWeight: 700, color: C.text }}>{tp.title}</div>
+                  <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: C.textMuted, marginTop: '2px' }}>{tp.description}</div>
+                  <ul style={{ margin: '8px 0 0', paddingLeft: '18px' }}>
+                    {tp.benefits.map((b, i) => (
+                      <li key={i} style={{ fontFamily: fonts.sans, fontSize: '12px', color: C.textMuted, lineHeight: 1.5 }}>{b}</li>
+                    ))}
+                  </ul>
+                </button>
+              );
+            })}
+            {regType === 'dealer' && (
+              <div style={{
+                fontFamily: fonts.sans, fontSize: '12px', color: '#0F6E56',
+                background: '#F0FAF6', border: '1px solid #0F6E56',
+                borderRadius: '8px', padding: '10px 12px', lineHeight: 1.5,
+              }}>
+                {DEALER_PENDING_NOTE}
+              </div>
+            )}
+            <button type="button" onClick={onTypeContinue} disabled={loading} style={{ ...primaryBtn, opacity: loading ? 0.6 : 1, marginTop: '4px' }}>
+              Continue
+            </button>
+            <button type="button" onClick={onBackToEmail} style={secondaryBtn}>
+              {t('login.backToLogin')}
+            </button>
+          </div>
+        )}
+
+        {step === 'reg_otp' && (
+          <div>{otpStep}</div>
         )}
 
         {step === 'register' && (
