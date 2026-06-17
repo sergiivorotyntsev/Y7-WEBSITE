@@ -93,6 +93,11 @@ const UkraineShipMyCar = lazyWithRetry(() => import('./pages/intl/UkraineShipMyC
 const RussiaHome = lazyWithRetry(() => import('./pages/intl/RussiaHome'));
 const RussiaCopart = lazyWithRetry(() => import('./pages/intl/RussiaCopart'));
 const RussiaShipMyCar = lazyWithRetry(() => import('./pages/intl/RussiaShipMyCar'));
+// Localized auction-savings flagships (AS-T02) — unique intl pages, native
+// slugs, self-canonical, NOT hreflang twins of /auction-transport-savings.
+const RuAuctionSavings = lazyWithRetry(() => import('./pages/intl/RuAuctionSavings'));
+const UaAuctionSavings = lazyWithRetry(() => import('./pages/intl/UaAuctionSavings'));
+const PlAuctionSavings = lazyWithRetry(() => import('./pages/intl/PlAuctionSavings'));
 // Blog — static imports for prerender compatibility
 const BlogIndex = lazyWithRetry(() => import('./pages/blog/BlogIndex'));
 const BlogArticle = lazyWithRetry(() => import('./pages/blog/BlogArticle'));
@@ -275,6 +280,11 @@ export default function App() {
             <Route path="/ru/dostavka-avto-iz-usa" element={<RussiaHome />} />
             <Route path="/ru/copart-i-iaai" element={<RussiaCopart />} />
             <Route path="/ru/perevozka-avto" element={<RussiaShipMyCar />} />
+            {/* Localized auction-savings flagships (AS-T02) — native slugs,
+                self-canonical, distinct per-audience content (not translations). */}
+            <Route path="/ru/ekonomiya-na-dostavke-s-aukciona" element={<RuAuctionSavings />} />
+            <Route path="/ua/ekonomiia-na-dostavtsi-z-auktsionu" element={<UaAuctionSavings />} />
+            <Route path="/pl/tani-transport-z-aukcji" element={<PlAuctionSavings />} />
             {/* Legacy SPA redirects: the old /ua /pl /ru pointed at the
                 unique pages above. They now point to the translated Home.
                 The old copart-shipping slug redirects to the new unique slug.

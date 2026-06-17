@@ -260,6 +260,10 @@ const PUBLIC_ROUTES = [
   '/ru/dostavka-avto-iz-usa',
   '/ru/copart-i-iaai',
   '/ru/perevozka-avto',
+  // AS-T02: localized auction-savings flagships — native slugs, self-canonical.
+  '/ru/ekonomiya-na-dostavke-s-aukciona',
+  '/ua/ekonomiia-na-dostavtsi-z-auktsionu',
+  '/pl/tani-transport-z-aukcji',
   // OVERNIGHT-T01: /404 prerendered separately; emitted as dist/404.html by server
   '/404',
 ];

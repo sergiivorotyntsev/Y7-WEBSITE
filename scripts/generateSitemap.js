@@ -107,6 +107,10 @@ const UNIQUE_INTL_PATHS = [
   '/ua/import-z-usa', '/ua/copart-ta-iaai', '/ua/dostavka-avto-z-usa',
   '/pl/transport-z-usa', '/pl/transport-z-aukcji', '/pl/wysylka-auta-z-usa',
   '/ru/dostavka-avto-iz-usa', '/ru/copart-i-iaai', '/ru/perevozka-avto',
+  // AS-T02: localized auction-savings flagships (native slugs, distinct content)
+  '/ru/ekonomiya-na-dostavke-s-aukciona',
+  '/ua/ekonomiia-na-dostavtsi-z-auktsionu',
+  '/pl/tani-transport-z-aukcji',
 ];
 
 // ---------------------------------------------------------------------------
