@@ -90,18 +90,18 @@
   },
   "section12": {
     "title": "12. Notices and Electronic Communications",
-    "body": "Y7 Consulting Inc.\nRegistered in the Commonwealth of Massachusetts\n1007 Chestnut St, Newton, MA 02464, USA\nFMCSA USDOT 4427359 | MC 1741537\n\nGeneral: info@y7agency.com\nLegal: legal@y7agency.com\nPrivacy: privacy@y7agency.com\nArbitration opt-out: arbitration-optout@y7agency.com\nWeb: https://www.y7agency.com\nTelegram: @y7dispatch_bot"
+    "body": "Y7 Consulting Inc.\nRegistered in the Commonwealth of Massachusetts\n1007 Chestnut St, Newton, MA 02464, USA\nFMCSA USDOT 4427359 | MC 1741537\n\nGeneral: info@y7agency.com\nLegal: info@y7agency.com\nPrivacy: info@y7agency.com\nArbitration opt-out: info@y7agency.com\nWeb: https://www.y7agency.com\nTelegram: @y7dispatch_bot"
   },
   "section13": {
     "title": "13. Dispute Resolution and Arbitration",
     "body": "Disputes between Customer and Y7 shall be resolved as follows:",
     "bullets": [
-      "Informal Resolution: Before filing any formal claim, Customer and Y7 agree to attempt in good faith to resolve the dispute through direct communication for a period of at least 30 days. Contact Y7 at legal@y7agency.com to initiate.",
+      "Informal Resolution: Before filing any formal claim, Customer and Y7 agree to attempt in good faith to resolve the dispute through direct communication for a period of at least 30 days. Contact Y7 at info@y7agency.com to initiate.",
       "Arbitration: If informal resolution fails, disputes shall be resolved by binding arbitration administered by the American Arbitration Association (AAA) under its Consumer Arbitration Rules. Arbitration shall take place in Middlesex County, Massachusetts, unless the parties agree otherwise. The arbitrator's decision shall be final and binding. Each party shall bear its own costs and attorneys' fees, except as may be awarded by the arbitrator.",
       "Exception — Chapter 93A: Customer may pursue claims under Massachusetts General Laws Chapter 93A (the Massachusetts Consumer Protection Act) in Massachusetts state or federal court, provided Customer has first sent a Chapter 93A demand letter as required by M.G.L. c. 93A § 9(3).",
       "Class Action Waiver: CUSTOMER AND Y7 AGREE THAT DISPUTES MUST BE BROUGHT INDIVIDUALLY AND NOT AS A CLASS ACTION, COLLECTIVE ACTION, OR REPRESENTATIVE ACTION.",
       "Jury Trial Waiver: CUSTOMER AND Y7 WAIVE ANY RIGHT TO A JURY TRIAL FOR DISPUTES SUBJECT TO ARBITRATION.",
-      "Arbitration Opt-Out: Customer may opt out of the arbitration agreement (but not the class-action waiver or jury-trial waiver) by sending written notice to arbitration-optout@y7agency.com within 30 days of first accepting these Terms."
+      "Arbitration Opt-Out: Customer may opt out of the arbitration agreement (but not the class-action waiver or jury-trial waiver) by sending written notice to info@y7agency.com within 30 days of first accepting these Terms."
     ]
   },
   "section14": {
@@ -122,6 +122,6 @@
   },
   "section16": {
     "title": "16. Contact",
-    "body": "Y7 Consulting Inc.\nRegistered in the Commonwealth of Massachusetts\nFMCSA USDOT 4427359 | MC 1741537\n\nGeneral: info@y7agency.com\nLegal: legal@y7agency.com\nPrivacy: privacy@y7agency.com\nArbitration opt-out: arbitration-optout@y7agency.com\nWeb: https://www.y7agency.com\nTelegram: @y7dispatch_bot"
+    "body": "Y7 Consulting Inc.\nRegistered in the Commonwealth of Massachusetts\nFMCSA USDOT 4427359 | MC 1741537\n\nGeneral: info@y7agency.com\nLegal: info@y7agency.com\nPrivacy: info@y7agency.com\nArbitration opt-out: info@y7agency.com\nWeb: https://www.y7agency.com\nTelegram: @y7dispatch_bot"
   }
 }

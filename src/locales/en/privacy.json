@@ -5,7 +5,7 @@
   "intro": "This Privacy Policy describes how Y7 Consulting Inc. (\"Y7\", \"we\", \"us\", or \"our\") collects, uses, shares, retains, and protects personal information about Customers and visitors to Y7's services. Y7 is committed to protecting Customer privacy and complying with applicable data-protection laws, including the General Data Protection Regulation (Regulation (EU) 2016/679, \"GDPR\"), the Massachusetts Standards for the Protection of Personal Information of Residents of the Commonwealth (201 CMR 17.00), the California Consumer Privacy Act of 2018 as amended by the California Privacy Rights Act (\"CCPA/CPRA\"), and the Telephone Consumer Protection Act (47 U.S.C. § 227, \"TCPA\").",
   "section1": {
     "title": "1. Controller and Contact Information",
-    "body": "For purposes of GDPR Article 4(7) and equivalent laws, the data controller is:\n\nY7 Consulting Inc.\nA Massachusetts corporation\nPrincipal place of business: 1007 Chestnut St, Newton, Massachusetts 02464, United States\nFMCSA USDOT Number 4427359 | Motor Carrier Number 1741537\n\nFor privacy inquiries, data-subject requests, or to contact our Data Protection Officer:\nEmail: privacy@y7agency.com\nGeneral: info@y7agency.com\nWeb: https://www.y7agency.com\n\nY7 has not appointed a GDPR representative in the EU or UK because Y7's processing of EU/UK resident data is incidental to the provision of cross-border transportation brokerage services requested by the data subject. EU/UK residents may contact privacy@y7agency.com in English and we will respond within the timelines required by applicable law."
+    "body": "For purposes of GDPR Article 4(7) and equivalent laws, the data controller is:\n\nY7 Consulting Inc.\nA Massachusetts corporation\nPrincipal place of business: 1007 Chestnut St, Newton, Massachusetts 02464, United States\nFMCSA USDOT Number 4427359 | Motor Carrier Number 1741537\n\nFor privacy inquiries, data-subject requests, or to contact our Data Protection Officer:\nEmail: info@y7agency.com\nGeneral: info@y7agency.com\nWeb: https://www.y7agency.com\n\nY7 has not appointed a GDPR representative in the EU or UK because Y7's processing of EU/UK resident data is incidental to the provision of cross-border transportation brokerage services requested by the data subject. EU/UK residents may contact info@y7agency.com in English and we will respond within the timelines required by applicable law."
   },
   "section2": {
     "title": "2. Scope",
@@ -64,7 +64,7 @@
   "section7": {
     "title": "7. Automated Decision-Making and Profiling",
     "body": "Y7 uses automated risk-scoring to flag potentially fraudulent or high-risk quote requests (e.g., anomalous VIN patterns, mismatches between customer-provided identity and payment card, IP-reputation red flags). This scoring may contribute to a human reviewer's decision to decline or hold an order. No solely-automated decision producing legal or similarly significant effects is made; a human Y7 operator reviews any decision to decline service.",
-    "rights": "Under GDPR Article 22, Customers have the right not to be subject to a decision based solely on automated processing. To request human review of any decision affecting Customer's order, email privacy@y7agency.com with the subject \"Automated Decision Review\" and include the order reference number."
+    "rights": "Under GDPR Article 22, Customers have the right not to be subject to a decision based solely on automated processing. To request human review of any decision affecting Customer's order, email info@y7agency.com with the subject \"Automated Decision Review\" and include the order reference number."
   },
   "section8": {
     "title": "8. Recipients and Third-Party Sharing",
@@ -92,7 +92,7 @@
       "Supplementary measures: encryption in transit (TLS 1.2 or higher) and at rest (AES-256 for sensitive fields), access controls limiting data access to authorized Y7 personnel with a need-to-know, and regular security assessments.",
       "Derogations (Art. 49): for transfers necessary to perform Customer's transportation contract, Y7 relies on Art. 49(1)(b). For transfers based on Customer's explicit informed consent (e.g., optional marketing subscriptions), Y7 relies on Art. 49(1)(a)."
     ],
-    "footer": "Customers may request a copy of the applicable SCCs and a summary of the transfer impact assessment by emailing privacy@y7agency.com."
+    "footer": "Customers may request a copy of the applicable SCCs and a summary of the transfer impact assessment by emailing info@y7agency.com."
   },
   "section10": {
     "title": "10. Retention Schedule",
@@ -126,7 +126,7 @@
   },
   "section12": {
     "title": "12. How to Exercise Your Rights",
-    "body": "To exercise any of the rights described in Section 11, email privacy@y7agency.com with the subject \"Privacy Request\" and describe the request. For identity verification, Y7 may ask Customer to confirm recent order details or verify access to the email address on file. Y7 will respond within 30 days (as required by GDPR Art. 12(3); CCPA allows up to 45 days with one 45-day extension). If Customer's request is complex or numerous, Y7 may extend by an additional 60 days with written notice of the reasons for delay. Y7 does not charge a fee for responding to rights requests, except where requests are manifestly unfounded or excessive (in which case Y7 may charge a reasonable administrative fee or refuse the request, as permitted by law)."
+    "body": "To exercise any of the rights described in Section 11, email info@y7agency.com with the subject \"Privacy Request\" and describe the request. For identity verification, Y7 may ask Customer to confirm recent order details or verify access to the email address on file. Y7 will respond within 30 days (as required by GDPR Art. 12(3); CCPA allows up to 45 days with one 45-day extension). If Customer's request is complex or numerous, Y7 may extend by an additional 60 days with written notice of the reasons for delay. Y7 does not charge a fee for responding to rights requests, except where requests are manifestly unfounded or excessive (in which case Y7 may charge a reasonable administrative fee or refuse the request, as permitted by law)."
   },
   "section13": {
     "title": "13. Security Measures",
@@ -156,7 +156,7 @@
   },
   "section15": {
     "title": "15. Children's Privacy",
-    "body": "Y7's services are not directed to individuals under 18, and Y7 does not knowingly collect personal information from children. If Y7 discovers that it has collected personal information from a child under 18, Y7 will delete the information promptly. A parent or guardian who believes their child has submitted personal information to Y7 should contact privacy@y7agency.com to request deletion."
+    "body": "Y7's services are not directed to individuals under 18, and Y7 does not knowingly collect personal information from children. If Y7 discovers that it has collected personal information from a child under 18, Y7 will delete the information promptly. A parent or guardian who believes their child has submitted personal information to Y7 should contact info@y7agency.com to request deletion."
   },
   "section16": {
     "title": "16. California Residents (CCPA/CPRA)",
@@ -170,7 +170,7 @@
       "Right to non-discrimination for exercising CCPA rights.",
       "Right to designate an authorized agent to submit CCPA requests. Identity verification of both the agent and the consumer is required."
     ],
-    "footer": "California residents under 16 may not have their personal information sold without affirmative consent (and under 13 without parental consent); since Y7 does not sell personal information, this does not apply to Y7's processing. To exercise CCPA rights, email privacy@y7agency.com."
+    "footer": "California residents under 16 may not have their personal information sold without affirmative consent (and under 13 without parental consent); since Y7 does not sell personal information, this does not apply to Y7's processing. To exercise CCPA rights, email info@y7agency.com."
   },
   "section17": {
     "title": "17. Updates to This Privacy Policy",
@@ -178,6 +178,6 @@
   },
   "section18": {
     "title": "18. Contact",
-    "body": "Y7 Consulting Inc.\nRegistered in the Commonwealth of Massachusetts\nFMCSA USDOT 4427359 | MC 1741537\n\nData Protection Officer / Privacy inquiries: privacy@y7agency.com\nGeneral: info@y7agency.com\nLegal: legal@y7agency.com\nArbitration opt-out: arbitration-optout@y7agency.com\nWeb: https://www.y7agency.com\nTelegram: @y7dispatch_bot\n\nEffective date: 2026-04-19. Version: v2.0."
+    "body": "Y7 Consulting Inc.\nRegistered in the Commonwealth of Massachusetts\nFMCSA USDOT 4427359 | MC 1741537\n\nData Protection Officer / Privacy inquiries: info@y7agency.com\nGeneral: info@y7agency.com\nLegal: info@y7agency.com\nArbitration opt-out: info@y7agency.com\nWeb: https://www.y7agency.com\nTelegram: @y7dispatch_bot\n\nEffective date: 2026-04-19. Version: v2.0."
   }
 }
