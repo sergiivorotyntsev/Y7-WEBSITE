@@ -12,6 +12,8 @@ import VerificationBanner from '../../components/VerificationBanner';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles, keyframes } from '../../theme';
 import { STATUS_COLORS, getStatusBadge } from '../../utils/orderStatus';
+// DEALER-DASH-S1-T03: dealers/exporters get the three-block dashboard home.
+import DealerDashboard from './DealerDashboard';
 
 const TOAST_MESSAGES = {
   agreement_signed: 'Dealer Agreement Signed Successfully',
@@ -131,6 +133,14 @@ export default function Dashboard() {
   }, [searchParams, setSearchParams]);
 
   useEffect(() => {
+    // DEALER-DASH-S1-T03: dealers/exporters render <DealerDashboard/>, which
+    // fetches its own loads (limit=0 + filter/sort). Skip the individual
+    // recent-orders fetch for them; wait for auth so customer_type is known.
+    if (authLoading) return;
+    if (['dealer', 'exporter'].includes(user?.customer_type)) {
+      setLoading(false);
+      return;
+    }
     portalFetch('/api/portal/data/orders?limit=10')
       .then(r => r.json())
       .then(data => {
@@ -139,7 +149,7 @@ export default function Dashboard() {
       })
       .catch(() => setError('Failed to load orders. Please try refreshing the page.'))
       .finally(() => setLoading(false));
-  }, []);
+  }, [authLoading, user?.customer_type]);
 
   // ONBOARD-T12: redirect to the unified onboarding wizard whenever the
   // user is not fully set up. Covers the two legacy entry points that
@@ -185,6 +195,13 @@ export default function Dashboard() {
     ? orders.find((o) => o.status === 'confirmed' && o.service_tier === 'cod'
         && !(o.delivery_contact_phone && String(o.delivery_contact_phone).trim()))
     : null;
+
+  // DEALER-DASH-S1-T03: dealer/exporter HOME = the three-block dashboard.
+  // All hooks above run unconditionally; the onboarding-redirect effect still
+  // sends unverified/unsigned dealers to /portal/onboarding before this shows.
+  if (['dealer', 'exporter'].includes(user?.customer_type)) {
+    return <DealerDashboard user={user} />;
+  }
 
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '40px 24px 80px' }}>
