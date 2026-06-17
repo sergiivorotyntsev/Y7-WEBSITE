@@ -193,6 +193,7 @@
       "carShippingCost": "Car Shipping Cost",
       "enclosedCarShipping": "Enclosed Car Shipping",
       "auctionCarShipping": "Auction Car Shipping",
+      "auctionTransportSavings": "Auction Transport Savings",
       "copartShipping": "Copart Shipping",
       "doorToPort": "Door-to-Port Transport",
       "dealerAutoTransport": "Dealer Auto Transport",

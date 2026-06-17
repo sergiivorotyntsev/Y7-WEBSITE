@@ -36,6 +36,7 @@ export default function Footer() {
             <Link to="/car-shipping-cost" className={styles.link}>{t('footer.serviceLinks.carShippingCost')}</Link>
             <Link to="/enclosed-car-shipping" className={styles.link}>{t('footer.serviceLinks.enclosedCarShipping')}</Link>
             <Link to="/auction-car-shipping" className={styles.link}>{t('footer.serviceLinks.auctionCarShipping')}</Link>
+            <Link to="/auction-transport-savings" className={styles.link}>{t('footer.serviceLinks.auctionTransportSavings')}</Link>
             <Link to="/copart-shipping" className={styles.link}>{t('footer.serviceLinks.copartShipping')}</Link>
             <Link to="/door-to-port-auto-transport" className={styles.link}>{t('footer.serviceLinks.doorToPort')}</Link>
             <Link to="/dealer-auto-transport" className={styles.link}>{t('footer.serviceLinks.dealerAutoTransport')}</Link>

@@ -53,6 +53,7 @@ const ENGLISH_ONLY = [
 
   // SEO service pages
   '/car-shipping-cost', '/enclosed-car-shipping', '/auction-car-shipping',
+  '/auction-transport-savings',
   '/copart-shipping', '/iaai-transport', '/manheim-transport',
   '/door-to-port-auto-transport', '/dealer-auto-transport',
   '/salvage-car-shipping', '/open-car-shipping', '/state-to-state-car-shipping',

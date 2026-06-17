@@ -171,6 +171,7 @@ const PUBLIC_ROUTES = [
   '/car-shipping-cost',
   '/enclosed-car-shipping',
   '/auction-car-shipping',
+  '/auction-transport-savings',
   '/copart-shipping',
   '/iaai-transport',
   '/manheim-transport',

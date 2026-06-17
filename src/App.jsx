@@ -39,6 +39,7 @@ const PortPage = lazyWithRetry(() => import('./pages/ports/PortPage'));
 const CarShippingCost = lazyWithRetry(() => import('./pages/seo/CarShippingCost'));
 const EnclosedCarShipping = lazyWithRetry(() => import('./pages/seo/EnclosedCarShipping'));
 const AuctionCarShipping = lazyWithRetry(() => import('./pages/seo/AuctionCarShipping'));
+const AuctionTransportSavings = lazyWithRetry(() => import('./pages/seo/AuctionTransportSavings'));
 const CopartShipping = lazyWithRetry(() => import('./pages/seo/CopartShipping'));
 const IaaiTransport = lazyWithRetry(() => import('./pages/seo/IaaiTransport'));
 const ManheimTransport = lazyWithRetry(() => import('./pages/seo/ManheimTransport'));
@@ -196,6 +197,7 @@ export default function App() {
             <Route path="/car-shipping-cost" element={<CarShippingCost />} />
             <Route path="/enclosed-car-shipping" element={<EnclosedCarShipping />} />
             <Route path="/auction-car-shipping" element={<AuctionCarShipping />} />
+            <Route path="/auction-transport-savings" element={<AuctionTransportSavings />} />
             <Route path="/copart-shipping" element={<CopartShipping />} />
             <Route path="/iaai-transport" element={<IaaiTransport />} />
             <Route path="/manheim-transport" element={<ManheimTransport />} />
