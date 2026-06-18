@@ -7,6 +7,16 @@ import { getCleanPhone, isValidPhone } from '../../components/PhoneInput';
 import { trackEvent } from '../../utils/trackEvent';
 import LoginCard from './components/LoginCard';
 import RegisterOtpStep from '../../components/RegisterOtpStep';
+import { colors, fonts, button as btnStyles, keyframes, radii, shadows } from '../../theme';
+
+// PHASE1-RECOVERY: mask an email for the recovery screen (e.g. d••••@gmail.com).
+// Pure + module-level (prerender-safe).
+function maskEmail(addr) {
+  if (!addr || !addr.includes('@')) return addr || '';
+  const [local, domain] = addr.split('@');
+  const head = local.slice(0, 1) || '';
+  return `${head}••••@${domain}`;
+}
 
 export default function Login() {
   const navigate = useNavigate();
@@ -45,6 +55,8 @@ export default function Login() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [forgotCodeArr, setForgotCodeArr] = useState(['', '', '', '', '', '']);
   const forgotCodeRefs = useRef([]);
+  // PHASE1-RECOVERY: 'idle' | 'sending' | 'sent' for the resend-signin control.
+  const [resendState, setResendState] = useState('idle');
 
   const loginRef = useRef(login);
   const navigateRef = useRef(navigate);
@@ -298,7 +310,15 @@ export default function Login() {
         setStep('reg_otp');
       } else {
         const detail = data?.detail;
-        if (detail && typeof detail === 'object') {
+        const errCode = detail && typeof detail === 'object' ? detail.error : null;
+        // PHASE1-RECOVERY: an already-registered email is NOT an error. The
+        // customer (often a passwordless intake/inquiry dealer) already has an
+        // account — route to the friendly recovery screen and email a fresh
+        // sign-in link, instead of a red dead-end. This also neutralizes the
+        // prior enumeration-flavored "already registered" message.
+        if (res.status === 409 && errCode === 'email_already_registered') {
+          triggerRecovery();
+        } else if (detail && typeof detail === 'object') {
           setError(detail.message || detail.detail || detail.error || 'Could not start verification.');
         } else {
           setError(detail || data.error || 'Could not start verification.');
@@ -309,6 +329,29 @@ export default function Login() {
     } finally {
       setLoading(false);
     }
+  }
+
+  // PHASE1-RECOVERY: email the existing account a fresh passwordless sign-in
+  // link. Always treated as success (the backend is enumeration-safe / neutral).
+  async function sendSigninLink() {
+    setResendState('sending');
+    try {
+      await portalFetch('/api/portal/auth/resend-signin', {
+        method: 'POST',
+        body: JSON.stringify({ email: email.trim() }),
+      });
+    } catch {
+      // Neutral by design — we still show "sent" so we never leak existence.
+    }
+    setResendState('sent');
+    trackEvent('portal_recovery_link_sent', { method: 'resend_signin' });
+  }
+
+  function triggerRecovery() {
+    setError(null);
+    setResendState('sending');
+    setStep('recovery');
+    sendSigninLink();
   }
 
   // REGC-S13-W03 / S4-SMALL-W02: RegisterOtpStep success → session established
@@ -386,6 +429,110 @@ export default function Login() {
     setStep('email');
     setCode(['', '', '', '', '', '']);
     setError(null);
+  }
+
+  // PHASE1-RECOVERY: premium recovery screen — shown when a self-registering
+  // email already has an account. Helps the passwordless intake/inquiry dealer
+  // (magic link) without confusing a password user (clear "sign in" path).
+  if (step === 'recovery') {
+    const masked = maskEmail(email);
+    return (
+      <>
+        <PageMeta title="Check your email" description="We've emailed your sign-in link." path="/portal/login" />
+        <style>{keyframes}</style>
+        <div style={{
+          minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: '40px 20px',
+          background: `radial-gradient(1100px 480px at 50% -8%, ${colors.bgMuted} 0%, transparent 62%), linear-gradient(160deg, #faf8f4 0%, #ffffff 70%)`,
+          animation: 'fadeIn 400ms ease',
+        }}>
+          <div style={{
+            width: '100%', maxWidth: 460, background: colors.bgCard,
+            border: `1px solid ${colors.border}`, borderRadius: radii.xl,
+            boxShadow: (shadows && shadows.lg) || '0 20px 50px rgba(0,0,0,0.10)',
+            padding: '40px 32px', textAlign: 'center',
+            animation: 'fadeUp 500ms ease both',
+          }}>
+            <div style={{
+              width: 64, height: 64, margin: '0 auto 20px', borderRadius: '50%',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              background: `linear-gradient(135deg, ${colors.accent}, ${colors.accentHover})`,
+              boxShadow: `0 10px 24px ${colors.accent}40`,
+              animation: 'bounceIn 600ms ease both',
+            }}>
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="2" />
+                <path d="m3 7 9 6 9-6" />
+              </svg>
+            </div>
+
+            <h1 style={{ fontFamily: fonts.serif, fontSize: 24, fontWeight: 700, color: colors.text, margin: '0 0 10px' }}>
+              You already started with Y7
+            </h1>
+            <p style={{ fontFamily: fonts.sans, fontSize: 15, lineHeight: 1.6, color: colors.textMuted, margin: '0 0 4px' }}>
+              We&rsquo;ve emailed your sign-in link to
+            </p>
+            <p style={{ fontFamily: fonts.mono, fontSize: 15, fontWeight: 600, color: colors.text, margin: '0 0 18px' }}>
+              {masked}
+            </p>
+            <p style={{ fontFamily: fonts.sans, fontSize: 14, lineHeight: 1.6, color: colors.textMuted, margin: '0 0 22px' }}>
+              Click the link to jump straight back into your account &mdash; no password needed. It&rsquo;s valid for 24 hours.
+            </p>
+
+            {resendState === 'sent' ? (
+              <div style={{
+                fontFamily: fonts.sans, fontSize: 13, color: colors.accent, fontWeight: 600,
+                marginBottom: 18, animation: 'popUp 300ms ease both',
+              }}>
+                &#10003; Link sent &mdash; check your inbox (and spam).
+              </div>
+            ) : (
+              <div style={{
+                fontFamily: fonts.sans, fontSize: 13, color: colors.textMuted,
+                marginBottom: 18, animation: 'pulse 1.2s ease infinite',
+              }}>
+                Sending your link&hellip;
+              </div>
+            )}
+
+            <button
+              type="button"
+              onClick={sendSigninLink}
+              disabled={resendState === 'sending'}
+              style={{ ...btnStyles.accent, width: '100%', marginBottom: 12, opacity: resendState === 'sending' ? 0.7 : 1, cursor: resendState === 'sending' ? 'default' : 'pointer' }}
+            >
+              {resendState === 'sending' ? 'Sending…' : 'Resend sign-in link'}
+            </button>
+
+            <button
+              type="button"
+              onClick={() => { setResendState('idle'); setError(null); setStep('email'); }}
+              style={{
+                width: '100%', background: 'transparent', border: `1px solid ${colors.border}`,
+                borderRadius: radii.md, padding: '11px 16px', fontFamily: fonts.sans,
+                fontSize: 14, fontWeight: 600, color: colors.text, cursor: 'pointer',
+                transition: 'border-color 150ms ease',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = colors.accent; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = colors.border; }}
+            >
+              Sign in with a password instead
+            </button>
+
+            <button
+              type="button"
+              onClick={() => { setResendState('idle'); setError(null); setStep('email'); }}
+              style={{
+                marginTop: 16, background: 'none', border: 'none', cursor: 'pointer',
+                fontFamily: fonts.sans, fontSize: 13, color: colors.textMuted, textDecoration: 'underline',
+              }}
+            >
+              Use a different email
+            </button>
+          </div>
+        </div>
+      </>
+    );
   }
 
   return (
