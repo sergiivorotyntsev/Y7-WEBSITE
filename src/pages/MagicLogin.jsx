@@ -49,7 +49,14 @@ export default function MagicLogin() {
       return;
     }
 
-    let cancelled = false;
+    // C1 FIX (NIGHT-FIX): a single-use magic token is consumed exactly once
+    // (guarded by consumedRef above). The previous `cancelled` flag — set by the
+    // StrictMode/React-19 cleanup of the first dev double-invoke — aborted the ONLY
+    // in-flight consume before login()/navigate(), permanently stalling on
+    // "Signing you in…" in dev (and burning the token). Since the fetch is already
+    // single-shot, we must NOT let the cleanup cancel its success handling. No
+    // cancelled guard: on success we log in + navigate; navigate/setState after an
+    // unmount are benign no-ops.
     (async () => {
       try {
         const res = await fetch(`${API_URL}/api/public/magic/consume`, {
@@ -58,7 +65,6 @@ export default function MagicLogin() {
           body: JSON.stringify({ token }),
         });
         const data = await res.json().catch(() => ({}));
-        if (cancelled) return;
         if (res.ok && data.ok && data.session_token) {
           login(data.session_token, data.user);
           trackEvent('portal_login', { method: 'magic_link' });
@@ -74,15 +80,10 @@ export default function MagicLogin() {
         setStatus('error');
         setErrorMessage(data.detail || data.error || null);
       } catch {
-        if (cancelled) return;
         setStatus('error');
         setErrorMessage('Network error. Please check your connection and try again.');
       }
     })();
-
-    return () => {
-      cancelled = true;
-    };
   }, [token, login, navigate]);
 
   if (status === 'loading') {
