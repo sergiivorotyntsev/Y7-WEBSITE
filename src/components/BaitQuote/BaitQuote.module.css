@@ -193,10 +193,13 @@
 @keyframes y7dash { to { stroke-dashoffset: -24; } }
 @keyframes y7glow { 0%, 100% { box-shadow: 0 8px 30px rgba(29, 158, 117, 0.40); } 50% { box-shadow: 0 8px 44px rgba(84, 224, 176, 0.62); } }
 
-/* Mobile: the Y7-vs-broker comparison stacks under ~520px */
+/* Mobile: stack the comparison AND the control rows under ~520px so the segmented
+   controls (esp. "Pickup truck") and the city selects each get full width. */
 @media (max-width: 520px) {
   .wrap { padding: 22px 18px 20px; border-radius: 20px; }
   .grid { grid-template-columns: 1fr; }
+  .controls, .controls2 { flex-direction: column; gap: 12px; }
+  .arrow { display: none; } /* the horizontal → reads wrong between vertically stacked selects */
 }
 
 @media (prefers-reduced-motion: reduce) {
