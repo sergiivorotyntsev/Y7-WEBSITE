@@ -21,6 +21,12 @@
   /* Status */
   --success: #0F6E56;
   --success-bg: #E1F5EE;
+  /* PHASE5A-MAGNET: --success-derived green family + dark "spotlight" surface for the
+     bait-quote band. The deep green IS --success; these extend it for gradients and the
+     dark spotlight treatment so the magnet is theme-driven, not hardcoded brand hex. */
+  --success-mid: #1D9E75;
+  --success-bright: #54E0B0;
+  --spotlight-bg: #081813;
 
   /* Borders */
   --border: #e5e0d8;

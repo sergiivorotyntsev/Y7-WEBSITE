@@ -11,6 +11,10 @@ export const colors = {
   dark: '#2C2C2A',
   success: '#0F6E56',
   successBg: '#E1F5EE',
+  // PHASE5A-MAGNET: --success-derived green family + dark spotlight surface (mirrors variables.css)
+  successMid: '#1D9E75',
+  successBright: '#54E0B0',
+  spotlightBg: '#081813',
   border: '#e5e0d8',
   borderInput: '#ddd',
   blogPurple: '#5B3C96',
