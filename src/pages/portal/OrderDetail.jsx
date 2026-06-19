@@ -441,6 +441,28 @@ export default function OrderDetail() {
         </p>
       )}
 
+      {/* PHASE4B-REPRICE: a revised quote awaits the dealer's re-confirmation. The
+          re-accept link lives in the updated-quote email (token-gated), so the portal
+          surfaces the prompt and the updated price. */}
+      {order.status === 'quoted' && order.requires_reprice && (
+        <div style={{
+          background: 'linear-gradient(135deg, #FBE5DE 0%, #F7EDE8 100%)',
+          border: `1px solid ${colors.accent}`, borderRadius: '12px',
+          padding: '16px 18px', marginBottom: '24px',
+        }}>
+          <div style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 700, color: colors.accent, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '6px' }}>
+            Needs your re-confirmation
+          </div>
+          <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.text, lineHeight: 1.6, margin: 0 }}>
+            The carrier price came in above your original quote, so we sent an updated quote
+            {order.quote_price_min != null && order.quote_price_max != null
+              ? <> of <strong>${order.quote_price_min}–${order.quote_price_max}</strong></>
+              : null}.
+            Check your email and tap <strong>Accept Updated Price</strong> to keep your shipment moving.
+          </p>
+        </div>
+      )}
+
       {/* Status Timeline */}
       <div style={{
         background: colors.bgCard,

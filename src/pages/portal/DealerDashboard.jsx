@@ -149,6 +149,17 @@ function LoadRow({ order, expanded, onToggle }) {
           }}>
             {u.label}
           </span>
+          {/* PHASE4B-REPRICE: a revised quote needs the dealer's re-confirmation. */}
+          {order.status === 'quoted' && order.requires_reprice && (
+            <div style={{
+              fontFamily: fonts.sans, fontSize: '10px', fontWeight: 700, color: '#fff',
+              background: 'linear-gradient(135deg, #B0461F 0%, #993C1D 100%)',
+              padding: '2px 8px', borderRadius: '10px', textTransform: 'uppercase',
+              letterSpacing: '0.5px', marginTop: '4px', display: 'inline-block',
+            }}>
+              Needs your re-confirmation
+            </div>
+          )}
           {transport && (
             <div style={{ fontFamily: fonts.mono, fontSize: '13px', fontWeight: 600, color: colors.text, marginTop: '4px' }}>
               {transport}
