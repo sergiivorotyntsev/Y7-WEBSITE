@@ -7,6 +7,7 @@ import { API_URL } from '../config';
 import ScrollReveal from '../components/ScrollReveal';
 import TrustBar from '../components/TrustBar';
 import QuoteFormCompact from '../components/QuoteFormCompact';
+import BaitQuote from '../components/BaitQuote/BaitQuote';
 import AudienceCards from '../components/AudienceCards';
 import PortPills from '../components/PortPills';
 import CoverageMap from '../components/CoverageMap';
@@ -94,6 +95,17 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* 1b. Bait-quote magnet — instant transparent estimate, directly below the hero.
+          PHASE5A-MAGNET. English-only for now (see PHASE5A_MAGNET_REPORT). Not wrapped in
+          ScrollReveal: it's above the fold, so it shows immediately (its own CSS entrance
+          motion handles the reveal). Both CTAs target the quote form (scrollToQuote). */}
+      <section style={{ padding: 'clamp(60px, 8vh, 100px) 24px' }}>
+        <div className={styles.sectionHeader}>
+          <span className={styles.sectionMicro}>&#9670; Instant dealer estimate</span>
+        </div>
+        <BaitQuote onPrimaryCta={scrollToQuote} onSecondaryCta={scrollToQuote} />
       </section>
 
       {/* External reviews strip (visible when env vars set) */}
