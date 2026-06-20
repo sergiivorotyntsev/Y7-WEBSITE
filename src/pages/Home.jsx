@@ -8,6 +8,7 @@ import ScrollReveal from '../components/ScrollReveal';
 import TrustBar from '../components/TrustBar';
 import QuoteFormCompact from '../components/QuoteFormCompact';
 import BaitQuote from '../components/BaitQuote/BaitQuote';
+import Reveal from '../components/Reveal/Reveal';
 import AudienceCards from '../components/AudienceCards';
 import PortPills from '../components/PortPills';
 import CoverageMap from '../components/CoverageMap';
@@ -72,7 +73,7 @@ export default function Home() {
           <div className={styles.heroVisual} aria-hidden="true">
             <HeroRouteVisual />
           </div>
-          <div className={styles.heroText}>
+          <Reveal className={styles.heroText}>
             <span className={styles.heroKicker}>&#9670; {t('hero.title')}</span>
             <h1 className={styles.heroTitle}>
               {t('hero.tagline')}{' '}
@@ -93,7 +94,7 @@ export default function Home() {
                 {tCommon('nav.track')}
               </button>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 

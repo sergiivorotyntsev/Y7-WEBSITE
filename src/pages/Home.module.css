@@ -92,6 +92,19 @@
   max-width: 320px;
 }
 
+/* PHASE5B-HOME: elevate the primary CTA to the magnet's language — brand-rust
+   gradient + glow + hover lift (keeps the rust identity; the magnet's CTA *style*). */
+.heroCtaPrimary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover)) !important;
+  box-shadow: 0 6px 20px var(--accent-glow);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), filter var(--transition-normal);
+}
+.heroCtaPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px var(--accent-glow);
+  filter: brightness(1.04);
+}
+
 @media (max-width: 520px) {
   .heroCtas {
     flex-direction: column;
