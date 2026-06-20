@@ -48,7 +48,14 @@ export const shadows = {
   md: '0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06)',
   lg: '0 4px 12px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08)',
   xl: '0 8px 24px rgba(0,0,0,0.06), 0 16px 48px rgba(0,0,0,0.12)',
+  // PHASE5B-HOME: premium card elevation (mirrors variables.css)
+  card: '0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07)',
+  cardHover: '0 2px 6px rgba(44,44,42,0.06), 0 16px 40px rgba(44,44,42,0.12)',
 };
+
+// PHASE5B-HOME: --success-derived hover glow + SSR-safe reveal timing (mirrors variables.css)
+export const successGlow = 'rgba(15, 110, 86, 0.18)';
+export const reveal = { duration: '600ms', distance: '16px' };
 
 export const radii = { sm: 4, md: 8, lg: 12, xl: 16, pill: 20, round: '50%' };
 

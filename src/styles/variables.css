@@ -54,4 +54,13 @@
   --transition-fast: 150ms ease-out;
   --transition-normal: 250ms ease-out;
   --transition-slow: 400ms ease-out;
+
+  /* PHASE5B-HOME: premium-elevation + reveal tokens (derived from existing brand
+     tokens; no new brand hex). Card depth for the light-base sections, a --success
+     hover glow, and the SSR-safe entrance-reveal timing. */
+  --shadow-card: 0 1px 2px rgba(44, 44, 42, 0.04), 0 6px 20px rgba(44, 44, 42, 0.07);
+  --shadow-card-hover: 0 2px 6px rgba(44, 44, 42, 0.06), 0 16px 40px rgba(44, 44, 42, 0.12);
+  --success-glow: rgba(15, 110, 86, 0.18);
+  --reveal-duration: 600ms;
+  --reveal-distance: 16px;
 }

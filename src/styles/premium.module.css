@@ -1,0 +1,71 @@
+/* PHASE5B-HOME — shared premium primitives, reused by the Home sections in T03 so the
+   redesign is consistent (not ad-hoc per section). Import as `import p from
+   '../../styles/premium.module.css'` and apply the classes. All colors come from the
+   --success token family / brand tokens — no hardcoded brand hex. Light-base elevation
+   per the approved "A" direction; .spotlight is the selective dark band (stats / final CTA). */
+
+/* Premium light card */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+}
+
+/* Hover lift — pair with .card on interactive cards */
+.lift {
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal),
+    border-color var(--transition-normal);
+}
+.lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--success);
+}
+
+/* --success gradient border (echoes the magnet's Y7 card). Wrap content in
+   .gradientBorder > .gradientInner. */
+.gradientBorder {
+  border-radius: var(--radius-xl);
+  padding: 1.5px;
+  background: linear-gradient(140deg, var(--success-bright), var(--success-mid) 55%, var(--success));
+  box-shadow: var(--shadow-card);
+}
+.gradientInner {
+  background: var(--bg-card);
+  border-radius: calc(var(--radius-xl) - 1.5px);
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Selective dark "spotlight" band — for the stats bar and the final quote CTA, so the
+   page rhymes with the magnet. Sections set their own on-dark text colors. */
+.spotlight {
+  position: relative;
+  overflow: hidden;
+  color: #eafff6;
+  background: radial-gradient(120% 140% at 12% 0%, #0d2a22 0%, var(--spotlight-bg) 46%, #050f0c 100%);
+  border: 1px solid rgba(125, 210, 180, 0.14);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+}
+
+/* Typography helpers */
+.kicker {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+.kickerOnDark { color: var(--success-bright); }
+.heading {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.mono { font-family: var(--font-mono); }

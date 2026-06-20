@@ -3,7 +3,7 @@
     "title": "Nationwide Auto Transport",
     "tagline": "We move cars.",
     "taglineAccent": "You move forward.",
-    "description": "Licensed FMCSA broker connecting you with vetted, insured carriers across all 50 states. Auction pickups, dealer trades, port deliveries, and private relocations."
+    "description": "Licensed FMCSA broker connecting you with vetted carriers across all 50 states. Auction pickups, dealer trades, port deliveries, and private relocations."
   },
   "trust": {
     "experience": "10+",
@@ -73,7 +73,7 @@
       "signDesc": "Quick digital signature on our transport agreement. Review terms, check boxes, type your name.",
       "signStat": "~2 min",
       "carrierTitle": "Carrier Assigned",
-      "carrierDesc": "We match your load with a vetted, insured carrier from our network. You get carrier name and phone.",
+      "carrierDesc": "We match your load with a vetted carrier from our network. You get carrier name and phone.",
       "carrierStat": "100+ carriers",
       "deliveredTitle": "Vehicle Delivered",
       "deliveredDesc": "Follow your shipment status via portal. Inspect on arrival, sign BOL, and you are done.",

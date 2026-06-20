@@ -1,0 +1,20 @@
+/* PHASE5B-HOME — SSR-safe reveal. Base = visible (opacity 1): prerender/no-JS shows
+   the content. The entrance animation runs only once JS adds .in on scroll-into-view
+   (the element is still entering from below, so it reads as a reveal, not a flash on
+   already-visible content). Reduced-motion: no animation, stays visible. */
+.reveal {
+  opacity: 1;
+}
+
+.in {
+  animation: revealUp var(--reveal-duration, 600ms) ease both;
+}
+
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(var(--reveal-distance, 16px)); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .in { animation: none; }
+}
