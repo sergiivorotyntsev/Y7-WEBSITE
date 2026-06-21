@@ -27,34 +27,19 @@
      amber (exporters)    #8C5020 -> rich international/shipping
    ===================================================================== */
 
-.tone_coral {
-  --tone-ink:        #993C1D;
-  --tone-ink-dark:   #7A3017;
-  --tone-tint-soft:  rgba(153, 60, 29, 0.06);
-  --tone-tint-mid:   rgba(153, 60, 29, 0.14);
-  --tone-tint-deep:  rgba(153, 60, 29, 0.22);
-  --tone-grad-a:     #B14825;
-  --tone-grad-b:     #7A3017;
-}
-
-.tone_teal {
-  --tone-ink:        #14648C;
-  --tone-ink-dark:   #0D4A6B;
-  --tone-tint-soft:  rgba(20, 100, 140, 0.06);
-  --tone-tint-mid:   rgba(20, 100, 140, 0.14);
-  --tone-tint-deep:  rgba(20, 100, 140, 0.22);
-  --tone-grad-a:     #1B7AAB;
-  --tone-grad-b:     #0D4A6B;
-}
-
+/* PHASE5B-HOME (Variant 2): green leads. All three audience tones repoint to the
+   --success family so the cards read as one green premium system (icon chips, top-bar,
+   CTA links). Tone class names kept (JSX untouched); only the color values change. */
+.tone_coral,
+.tone_teal,
 .tone_amber {
-  --tone-ink:        #8C5020;
-  --tone-ink-dark:   #6B3D18;
-  --tone-tint-soft:  rgba(140, 80, 32, 0.06);
-  --tone-tint-mid:   rgba(140, 80, 32, 0.14);
-  --tone-tint-deep:  rgba(140, 80, 32, 0.22);
-  --tone-grad-a:     #AF6B33;
-  --tone-grad-b:     #6B3D18;
+  --tone-ink:        var(--success, #0F6E56);
+  --tone-ink-dark:   #0B5946;
+  --tone-tint-soft:  rgba(15, 110, 86, 0.06);
+  --tone-tint-mid:   rgba(15, 110, 86, 0.14);
+  --tone-tint-deep:  rgba(15, 110, 86, 0.22);
+  --tone-grad-a:     var(--success-mid, #1D9E75);
+  --tone-grad-b:     var(--success, #0F6E56);
 }
 
 /* =====================================================================
@@ -81,7 +66,7 @@
     background-color 280ms ease-out;
 }
 
-/* Accent top band — reveals on hover/focus */
+/* PHASE5B-HOME (Variant 2): persistent green top-bar (was hover-reveal). */
 .card::before {
   content: '';
   position: absolute;
@@ -89,8 +74,8 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: var(--tone-ink);
-  transform: scaleX(0);
+  background: linear-gradient(90deg, var(--success-mid, #1D9E75), var(--success, #0F6E56));
+  transform: scaleX(1);
   transform-origin: left;
   transition: transform 280ms ease-out;
 }
@@ -266,11 +251,8 @@
   gap: 10px;
   padding-top: 14px;
   margin-top: 2px;
-  border-top: 1px dashed rgba(153, 60, 29, 0.18);
+  border-top: 1px dashed rgba(15, 110, 86, 0.18);
 }
-
-.tone_teal .statRow  { border-top-color: rgba(20, 100, 140, 0.18); }
-.tone_amber .statRow { border-top-color: rgba(140, 80, 32, 0.18); }
 
 .statDot {
   width: 6px;
