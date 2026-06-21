@@ -261,7 +261,7 @@
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
   font-weight: 700;
-  color: var(--accent, #993C1D);
+  color: var(--success, #0F6E56); /* PHASE5B-HOME (Variant 2): green leads non-hero kickers */
   text-transform: uppercase;
   letter-spacing: 0.14em;
   margin-bottom: 12px;
@@ -286,9 +286,11 @@
    QUOTE SECTION
    ===================================================================== */
 
+/* PHASE5B-HOME: the final quote CTA is the second selective dark "spotlight" band
+   (bookends the magnet). The white QuoteFormCompact card sits on top, readable. */
 .quoteSection {
   padding: clamp(60px, 8vh, 100px) 24px;
-  background: var(--bg-muted, #EFECE6);
+  background: radial-gradient(120% 130% at 50% 0%, #0d2a22 0%, var(--spotlight-bg, #081813) 50%, #050f0c 100%);
 }
 
 .quoteSectionHeader {
@@ -301,7 +303,7 @@
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
   font-weight: 700;
-  color: var(--accent, #993C1D);
+  color: var(--success-bright, #54E0B0); /* PHASE5B-HOME: on-dark spotlight */
   text-transform: uppercase;
   letter-spacing: 0.14em;
   margin: 0 0 12px;
@@ -311,7 +313,7 @@
   font-family: var(--font-serif, Georgia, serif);
   font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 700;
-  color: var(--text, #2C2C2A);
+  color: #eafff6; /* PHASE5B-HOME: on-dark spotlight */
   margin: 0 0 10px;
   letter-spacing: -0.02em;
   line-height: 1.15;
@@ -320,7 +322,7 @@
 .quoteSectionSubtitle {
   font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: var(--text-muted, #706E68);
+  color: #9fc4b8; /* PHASE5B-HOME: on-dark spotlight */
   margin: 0;
   line-height: 1.7;
   max-width: 520px;

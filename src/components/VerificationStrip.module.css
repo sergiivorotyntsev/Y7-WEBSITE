@@ -22,8 +22,8 @@
 
 .link:hover,
 .link:focus-visible {
-  color: var(--accent, #993C1D);
-  border-bottom-color: var(--accent, #993C1D);
+  color: var(--success, #0F6E56);
+  border-bottom-color: var(--success, #0F6E56);
   outline: none;
 }
 

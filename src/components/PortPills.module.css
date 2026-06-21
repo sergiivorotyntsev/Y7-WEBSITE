@@ -39,7 +39,7 @@
 @media (hover: hover) {
   .pill:hover {
     background: var(--bg-muted, #EFECE6);
-    border-color: var(--accent, #993C1D);
+    border-color: var(--success, #0F6E56);
     transform: translateY(-1px);
   }
 }

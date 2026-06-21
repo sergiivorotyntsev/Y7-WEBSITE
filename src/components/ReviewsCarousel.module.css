@@ -55,7 +55,7 @@
   font-family: var(--font-serif, Georgia, serif);
   font-size: 6rem;
   line-height: 1;
-  color: var(--accent, #993C1D);
+  color: var(--success, #0F6E56);
   opacity: 0.18;
   pointer-events: none;
 }
@@ -156,12 +156,12 @@
 }
 
 .dot:focus-visible {
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--success, #0F6E56);
 }
 
 .dotActive {
   width: 22px;
   border-radius: var(--radius-pill, 20px);
-  background: var(--accent, #993C1D);
-  border-color: var(--accent, #993C1D);
+  background: var(--success, #0F6E56);
+  border-color: var(--success, #0F6E56);
 }
