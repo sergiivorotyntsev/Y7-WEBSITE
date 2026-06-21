@@ -128,8 +128,8 @@
    Scoped to .heroCtaPrimary; the shared btnAccent is untouched. */
 .heroCtaPrimary {
   background: linear-gradient(135deg,
-    var(--accent, #993C1D) 0%, var(--accent-hover, #7A3017) 28%,
-    var(--success-mid, #1D9E75) 72%, var(--success, #0F6E56) 100%) !important;
+    var(--accent, #993C1D) 0%, var(--accent-hover, #7A3017) 45%,
+    var(--success-mid, #1D9E75) 55%, var(--success, #0F6E56) 100%) !important;
   background-size: 220% 100% !important;
   background-position: 0% center !important;
   box-shadow: 0 6px 20px var(--accent-glow);
