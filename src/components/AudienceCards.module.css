@@ -232,6 +232,27 @@
   margin: 10px 0 0 0;
 }
 
+/* PHASE5C-BLEND: black→rust title gradient — reintroduces rust into the green-led
+   cards so they read rust+green (uses --accent directly; --tone-ink is green here).
+   Solid --text base (fallback); deepens toward rust on card hover. Text stays in DOM. */
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .title {
+    background: linear-gradient(115deg,
+      var(--text, #2C2C2A) 0%, var(--text, #2C2C2A) 48%, var(--accent, #993C1D) 100%);
+    background-size: 170% auto;
+    background-position: 0% center;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    transition: background-position 320ms ease-out;
+  }
+  .card:hover .title,
+  .card:focus-visible .title {
+    background-position: 100% center;
+  }
+}
+
 .desc {
   font-family: var(--font-sans, system-ui);
   font-size: 14.5px;

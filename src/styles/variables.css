@@ -63,4 +63,8 @@
   --success-glow: rgba(15, 110, 86, 0.18);
   --reveal-duration: 600ms;
   --reveal-distance: 16px;
+
+  /* PHASE5C-BLEND: rust↔green connective tissue. Gradient stops reuse --accent (rust)
+     + --success family; only the sweep duration is a new (non-color) derived token. */
+  --blend-sweep: 6s;
 }
