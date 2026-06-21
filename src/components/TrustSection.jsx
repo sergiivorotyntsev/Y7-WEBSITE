@@ -54,7 +54,7 @@ export default function TrustSection() {
         <span style={{
           fontFamily: fonts.sans,
           fontSize: '13px',
-          color: colors.accent,
+          color: colors.success, /* PHASE5B-HOME (Variant 2): green leads */
           fontWeight: 600,
           transition: 'transform 200ms',
         }}>
@@ -68,7 +68,7 @@ export default function TrustSection() {
         transition: 'max-height 400ms ease',
       }}>
         <div style={{
-          borderLeft: `3px solid ${colors.accent}`,
+          borderLeft: `3px solid ${colors.success}`,
           padding: '24px 24px 24px 28px',
           marginBottom: '32px',
           display: 'grid',

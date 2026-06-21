@@ -10,7 +10,7 @@
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
   font-weight: 700;
-  color: var(--accent, #993C1D);
+  color: var(--success, #0F6E56);
   text-transform: uppercase;
   letter-spacing: 0.14em;
   margin-bottom: 12px;
@@ -97,14 +97,14 @@
 
 @media (hover: hover) {
   .item:hover {
-    background-color: rgba(153, 60, 29, 0.04);
+    background-color: rgba(15, 110, 86, 0.04);
   }
   .item:hover .iconWrap {
     transform: translateY(-2px);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.08), 0 8px 20px rgba(153, 60, 29, 0.28);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08), 0 8px 20px rgba(15, 110, 86, 0.28);
   }
   .item:hover .itemTitle {
-    color: var(--accent, #993C1D);
+    color: var(--success, #0F6E56);
   }
 }
 
@@ -115,9 +115,9 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #B14825, #7A3017);
+  background: linear-gradient(135deg, var(--success-mid, #1D9E75), var(--success, #0F6E56));
   color: #ffffff;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(153, 60, 29, 0.18);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(15, 110, 86, 0.18);
   margin-bottom: 16px;
   transition:
     transform var(--transition-normal, 250ms ease-out),
