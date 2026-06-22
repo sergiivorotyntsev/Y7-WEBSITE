@@ -58,20 +58,30 @@
   padding: 14px !important;
   font-size: 14px !important;
   margin-top: 4px;
-  /* PHASE5C-BLEND: rust at rest, fill slides rust→green on hover (scoped to this
-     Home-only form button; shared btnAccent untouched). */
-  background: linear-gradient(135deg,
-    var(--accent, #993C1D) 0%, var(--accent-hover, #7A3017) 45%,
-    var(--success-mid, #1D9E75) 55%, var(--success, #0F6E56) 100%) !important;
-  background-size: 220% 100% !important;
-  background-position: 0% center !important;
-  transition: background-position var(--transition-slow), transform var(--transition-normal), box-shadow var(--transition-normal);
+  /* PHASE5D variant D: rust button; --success underline sweeps in on hover + lift. */
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+.submit::after {
+  content: '';
+  position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
+  background: var(--success-bright, #54E0B0);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--transition-slow);
 }
 .submit:hover,
 .submit:focus-visible {
-  background-position: 100% center !important;
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px var(--success-glow);
+  box-shadow: 0 12px 30px var(--accent-glow);
+}
+.submit:hover::after,
+.submit:focus-visible::after {
+  transform: scaleX(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .submit::after { transition: none; }
 }
 
 .fullFormNote {
