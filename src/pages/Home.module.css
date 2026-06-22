@@ -123,35 +123,19 @@
   max-width: 320px;
 }
 
-/* PHASE5B + PHASE5D variant D: brand-rust button; on hover a --success underline sweeps
-   in (left→right scaleX) + lift. (Replaces the 5C rust→green fill flip.) Scoped to
+/* PHASE5B + PHASE5E variant C: brand-rust button; on hover it brightens slightly + lifts
+   (no underline, no hue change). (Replaces the 5D --success underline sweep.) Scoped to
    .heroCtaPrimary; shared btnAccent untouched. */
 .heroCtaPrimary {
   background: linear-gradient(135deg, var(--accent, #993C1D), var(--accent-hover, #7A3017)) !important;
   box-shadow: 0 6px 20px var(--accent-glow);
-  position: relative;
-  overflow: hidden;
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-}
-.heroCtaPrimary::after {
-  content: '';
-  position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
-  background: var(--success-bright, #54E0B0);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform var(--transition-slow);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), filter var(--transition-normal);
 }
 .heroCtaPrimary:hover,
 .heroCtaPrimary:focus-visible {
   transform: translateY(-2px);
   box-shadow: 0 12px 30px var(--accent-glow);
-}
-.heroCtaPrimary:hover::after,
-.heroCtaPrimary:focus-visible::after {
-  transform: scaleX(1);
-}
-@media (prefers-reduced-motion: reduce) {
-  .heroCtaPrimary::after { transition: none; }
+  filter: brightness(1.1) saturate(1.05);
 }
 
 @media (max-width: 520px) {

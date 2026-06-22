@@ -183,31 +183,18 @@
   }
 }
 
-/* PHASE5D variant D: the rust GET A QUOTE (header + mobile) gets the --success underline
-   sweep on hover (matches .heroCtaPrimary / .submit). btnAccent base untouched. */
+/* PHASE5E variant C: the rust GET A QUOTE (header + mobile) brightens slightly + lifts on
+   hover (no underline; matches .heroCtaPrimary / .submit). btnAccent base untouched. */
 .headerCta,
 .mobileCta {
-  position: relative;
-  overflow: hidden;
+  transition: transform var(--transition-normal, 250ms ease-out), filter var(--transition-normal, 250ms ease-out);
 }
-.headerCta::after,
-.mobileCta::after {
-  content: '';
-  position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
-  background: var(--success-bright, #54E0B0);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform var(--transition-slow, 400ms ease-out);
-}
-.headerCta:hover::after,
-.headerCta:focus-visible::after,
-.mobileCta:hover::after,
-.mobileCta:focus-visible::after {
-  transform: scaleX(1);
-}
-@media (prefers-reduced-motion: reduce) {
-  .headerCta::after,
-  .mobileCta::after { transition: none; }
+.headerCta:hover,
+.headerCta:focus-visible,
+.mobileCta:hover,
+.mobileCta:focus-visible {
+  transform: translateY(-2px);
+  filter: brightness(1.1) saturate(1.05);
 }
 
 /* =====================================================================
