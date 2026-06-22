@@ -6,6 +6,11 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  /* PHASE5D: the AnimatedLogo reads --color-text / --color-accent (defaulting dark/rust).
+     Override them on the dark header → light wordmark + --success-bright dot. These vars
+     inherit only into the header; the Footer's logo keeps its defaults. */
+  --color-text: #eafff6;
+  --color-accent: var(--success-bright, #54E0B0);
 }
 
 .inner {
