@@ -16,8 +16,6 @@ const Svg = (p) => (
 );
 const ArrowRight = (p) => <Svg {...p}><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></Svg>;
 const ShieldCheck = (p) => <Svg {...p}><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></Svg>;
-const TrendingDown = (p) => <Svg {...p}><path d="M16 17h6v-6" /><path d="m22 17-8.5-8.5-5 5L2 7" /></Svg>;
-const EyeOff = (p) => <Svg {...p}><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68" /><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61" /><line x1="2" x2="22" y1="2" y2="22" /></Svg>;
 const Truck = (p) => <Svg {...p}><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" /><path d="M15 18H9" /><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14" /><circle cx="17" cy="18" r="2" /><circle cx="7" cy="18" r="2" /></Svg>;
 const Lock = (p) => <Svg {...p}><rect width="18" height="11" x="3" y="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></Svg>;
 const ChevronDown = (p) => <Svg {...p}><path d="m6 9 6 6 6-6" /></Svg>;
@@ -33,6 +31,12 @@ const METROS = {
 };
 const VEHICLES = { Sedan: 1.0, SUV: 1.13, 'Pickup truck': 1.25 };
 const TRANSPORT = { Open: 1.0, Enclosed: 1.4 };
+
+// PHASE5D: competitor reference premiums over the Y7 total (flat — deliberately a smaller
+// % of the total on long routes, matching the real market). Rendered only as ~$ranges,
+// never as a formula/percentage. Trivially adjustable here.
+const BROKER_PREMIUM = 115;
+const AUCTION_PREMIUM = 175;
 
 function haversine([la1, lo1], [la2, lo2]) {
   const R = 3958.8, t = (d) => (d * Math.PI) / 180;
@@ -126,13 +130,15 @@ export default function BaitQuote({ onPrimaryCta, onSecondaryCta }) {
     const fee = 50;
     const yourLo = cLo + fee, yourHi = cHi + fee;
     const yourMid = (yourLo + yourHi) / 2;
-    const brokerExtra = Math.max(100, Math.round((mid * 0.2) / 10) * 10);
-    const brokerTotal = Math.round((yourMid + brokerExtra) / 10) * 10;
-    return { miles, cLo, cHi, fee, yourLo, yourHi, brokerTotal, savings: brokerExtra, pct: Math.round((brokerExtra / mid) * 100) };
+    // PHASE5D: competitor reference ranges — Y7 total + a flat premium, shown ONLY as
+    // ~$ranges (±$25, rounded to $25). No percentage, no breakdown, no "save" claim.
+    const r25 = (n) => Math.round(n / 25) * 25;
+    const brokerLo = r25(yourMid + BROKER_PREMIUM - 25), brokerHi = r25(yourMid + BROKER_PREMIUM + 25);
+    const auctionLo = r25(yourMid + AUCTION_PREMIUM - 25), auctionHi = r25(yourMid + AUCTION_PREMIUM + 25);
+    return { miles, cLo, cHi, fee, yourLo, yourHi, brokerLo, brokerHi, auctionLo, auctionHi };
   }, [from, to, vehicle, transport]);
 
   const animTotal = useCountUp(calc.yourHi);
-  const animBroker = useCountUp(calc.brokerTotal);
   const sameCity = from === to;
   const cta = onPrimaryCta || (() => {});
   const cta2 = onSecondaryCta || cta;
@@ -175,49 +181,46 @@ export default function BaitQuote({ onPrimaryCta, onSecondaryCta }) {
                 <span className={s.metaText}>~{calc.miles.toLocaleString()} mi · {transport.toLowerCase()}</span>
               </div>
 
-              <div className={`${s.grid} ${s.rise} ${s.d3}`}>
-                <div className={s.y7card}>
-                  <div className={s.y7cardInner}>
-                    <div className={s.cardHead}>
-                      <div className={`${s.iconBox} ${s.iconBoxY7}`}><Truck size={15} style={{ color: '#04150f' }} /></div>
-                      <span className={s.cardHeadY7}>Y7 — what you actually pay</span>
-                    </div>
-                    <Row k="Carrier transport" sub="live market rate · paid to the carrier" v={`${money(calc.cLo)}–${money(calc.cHi)}`} />
-                    <div className={s.hair} />
-                    <Row k="Y7 dealer fee" sub="flat · our only earning · never hidden" v={money(calc.fee)} accent />
-                    <div className={s.hairStrong} />
-                    <div className={s.totalRow}>
-                      <span className={s.totalLabel}>Your total</span>
-                      <span className={s.totalVal}>{money(calc.yourLo)}–<span className={s.totalValHi}>{money(animTotal)}</span></span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className={s.brokerCard}>
+              <div className={`${s.y7card} ${s.rise} ${s.d3}`}>
+                <div className={s.y7cardInner}>
                   <div className={s.cardHead}>
-                    <div className={`${s.iconBox} ${s.iconBoxBroker}`}><EyeOff size={15} style={{ color: '#6f8b82' }} /></div>
-                    <span className={s.cardHeadBroker}>Typical broker</span>
+                    <div className={`${s.iconBox} ${s.iconBoxY7}`}><Truck size={15} style={{ color: '#04150f' }} /></div>
+                    <span className={s.cardHeadY7}>Y7 — what you actually pay</span>
                   </div>
-                  <Row k="Carrier transport" sub="bundled — you can't see it" v="hidden" muted />
-                  <div className={s.hairBroker} />
-                  <Row k="Their markup" sub={`+${money(calc.savings)} (${calc.pct}%) baked in`} v="hidden" muted />
-                  <div className={s.hairBrokerStrong} />
+                  <Row k="Carrier transport" sub="live market rate · paid to the carrier" v={`${money(calc.cLo)}–${money(calc.cHi)}`} />
+                  <div className={s.hair} />
+                  <Row k="Y7 dealer fee" sub="flat · our only earning · never hidden" v={money(calc.fee)} accent />
+                  <div className={s.hairStrong} />
                   <div className={s.totalRow}>
-                    <span className={s.totalLabelBroker}>One price</span>
-                    <span className={s.totalValBroker}>~{money(animBroker)}</span>
+                    <span className={s.totalLabel}>Your total</span>
+                    <span className={s.totalVal}>{money(calc.yourLo)}–<span className={s.totalValHi}>{money(animTotal)}</span></span>
                   </div>
                 </div>
               </div>
 
-              <div className={`${s.savings} ${s.rise} ${s.d4}`}>
-                <div className={s.savingsShine} aria-hidden="true" />
-                <TrendingDown size={19} style={{ color: 'var(--success-bright)', position: 'relative' }} />
-                <span className={s.savingsText}>You save {money(calc.savings)}+ vs a typical broker</span>
+              {/* PHASE5D: honest three-tier ladder — the other ways to ship, approximate,
+                  ascending, ~$ranges only (no %, no breakdown, no "save" claim). */}
+              <div className={`${s.otherWays} ${s.rise} ${s.d4}`}>
+                <div className={s.otherWaysHead}>Other ways to ship the same car — typically</div>
+                <div className={s.otherRow}>
+                  <div className={s.otherInfo}>
+                    <div className={s.otherLabel}>Another broker</div>
+                    <div className={s.otherSub}>one bundled price — the markup is hidden inside it</div>
+                  </div>
+                  <div className={s.otherPrice}>~{money(calc.brokerLo)}–{money(calc.brokerHi)}</div>
+                </div>
+                <div className={s.otherRow}>
+                  <div className={s.otherInfo}>
+                    <div className={s.otherLabel}>Ordering through the auction</div>
+                    <div className={s.otherSub}>the auction's transport desk adds the most</div>
+                  </div>
+                  <div className={s.otherPrice}>~{money(calc.auctionLo)}–{money(calc.auctionHi)}</div>
+                </div>
               </div>
 
               <div className={`${s.disclaimer} ${s.rise} ${s.d5}`}>
                 <ShieldCheck size={15} style={{ color: 'var(--success-bright)', flexShrink: 0, marginTop: 1 }} />
-                <span>You pay the carrier directly at delivery. Y7 earns the flat fee for finding and managing them — nothing on the transport. Brokers typically add at least $100, or 20%, whichever is greater.</span>
+                <span>You pay the carrier directly at delivery. Y7 earns the flat fee for finding and managing them — nothing on the transport. Through another broker or the auction's own desk, the price is bundled, so you can't see what the carrier actually charges.</span>
               </div>
 
               <div className={`${s.ctas} ${s.rise} ${s.d6}`}>

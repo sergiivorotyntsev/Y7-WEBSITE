@@ -158,17 +158,27 @@
 
 .brokerCard { border-radius: 18px; padding: 18px 17px; background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.06); }
 
-.savings {
-  margin-top: 14px; border-radius: 14px; padding: 13px 18px; display: flex; align-items: center;
-  justify-content: center; gap: 10px; overflow: hidden; position: relative;
-  background: linear-gradient(110deg, rgba(84, 224, 176, 0.14), rgba(29, 158, 117, 0.10));
-  border: 1px solid rgba(84, 224, 176, 0.28);
+/* PHASE5D: "Other ways to ship" approximate ladder — neutral on-dark rows (kept dimmer
+   than the green Y7 total above, so Y7's itemized price stays the hero). */
+.otherWays {
+  margin-top: 16px; border-radius: 14px; padding: 14px 16px 6px;
+  background: var(--surface); border: 1px solid var(--hairline-soft);
 }
-.savingsShine {
-  position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.14) 50%, transparent 70%);
-  background-size: 200% 100%; animation: y7shimmer 3.2s linear infinite; pointer-events: none;
+.otherWaysHead {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--c-dim); margin-bottom: 6px;
 }
-.savingsText { position: relative; font-size: 15.5px; font-weight: 600; color: #bdf5e0; }
+.otherRow {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 14px;
+  padding: 10px 0; border-top: 1px solid var(--hairline-soft);
+}
+.otherInfo { min-width: 0; }
+.otherLabel { font-size: 14px; font-weight: 600; color: var(--c-soft); }
+.otherSub { margin: 2px 0 0; font-size: 11.5px; color: var(--c-faint); line-height: 1.45; }
+.otherPrice {
+  font-family: var(--font-mono); font-size: 16px; font-weight: 600; color: var(--c-muted);
+  white-space: nowrap; flex-shrink: 0;
+}
 
 .disclaimer { margin-top: 12px; display: flex; gap: 10px; align-items: flex-start; font-size: 12.5px; line-height: 1.55; color: #8aa79d; }
 
