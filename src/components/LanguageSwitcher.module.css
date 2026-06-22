@@ -9,7 +9,7 @@
   gap: 0;
   align-items: center;
   padding: 2px;
-  background: rgba(44, 44, 42, 0.04);
+  background: rgba(255, 255, 255, 0.06);
   border-radius: var(--radius-pill, 20px);
 }
 
@@ -22,7 +22,7 @@
   font-size: 11.5px;
   font-family: var(--font-sans, system-ui);
   font-weight: 500;
-  color: var(--text-muted, #706E68);
+  color: rgba(234, 255, 246, 0.6);
   letter-spacing: 0.08em;
   border-radius: var(--radius-pill, 20px);
   outline: none;
@@ -33,27 +33,27 @@
 
 @media (hover: hover) {
   .btn:hover:not(.btnActive) {
-    color: var(--text, #2C2C2A);
-    background-color: rgba(44, 44, 42, 0.06);
+    color: #eafff6;
+    background-color: rgba(255, 255, 255, 0.10);
   }
 }
 
 .btn:focus-visible {
-  color: var(--accent, #993C1D);
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 3px var(--accent, #993C1D);
+  color: var(--success-bright, #54E0B0);
+  box-shadow: 0 0 0 2px var(--spotlight-bg, #081813), 0 0 0 3px var(--success-bright, #54E0B0);
 }
 
 .btnActive {
   composes: btn;
-  color: var(--accent, #993C1D);
+  color: var(--success-bright, #54E0B0);
   font-weight: 700;
-  background-color: var(--bg-card, #fff);
+  background-color: var(--spotlight-bg, #081813);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
 }
 
 @media (hover: hover) {
   .btnActive:hover {
-    color: var(--accent-hover, #7A3017);
+    color: var(--success, #0F6E56);
   }
 }
 
@@ -67,15 +67,15 @@
 }
 
 .mobileBtn {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
+  background: var(--spotlight-bg, #081813);
+  border: 1px solid rgba(125, 210, 180, 0.16);
   border-radius: var(--radius-md, 8px);
   cursor: pointer;
   padding: 7px 12px;
   font-size: 12px;
   font-family: var(--font-sans, system-ui);
   font-weight: 600;
-  color: var(--text, #2C2C2A);
+  color: #eafff6;
   letter-spacing: 0.05em;
   display: inline-flex;
   align-items: center;
@@ -87,17 +87,17 @@
 
 @media (hover: hover) {
   .mobileBtn:hover {
-    border-color: var(--accent, #993C1D);
+    border-color: var(--success-bright, #54E0B0);
   }
 }
 
 .mobileBtn:focus-visible {
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+  box-shadow: 0 0 0 2px var(--spotlight-bg, #081813), 0 0 0 4px var(--success-bright, #54E0B0);
 }
 
 .mobileCaret {
   font-size: 9px;
-  color: var(--text-muted, #706E68);
+  color: rgba(234, 255, 246, 0.6);
 }
 
 .mobilePanel {
@@ -105,8 +105,8 @@
   top: 100%;
   right: 0;
   margin-top: 6px;
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
+  background: var(--spotlight-bg, #081813);
+  border: 1px solid rgba(125, 210, 180, 0.16);
   border-radius: var(--radius-lg, 12px);
   box-shadow: var(--shadow-lg, 0 4px 12px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08));
   z-index: 200;
@@ -132,7 +132,7 @@
   font-size: 13px;
   font-family: var(--font-sans, system-ui);
   font-weight: 500;
-  color: var(--text, #2C2C2A);
+  color: #eafff6;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -145,18 +145,18 @@
 @media (hover: hover) {
   .mobileItem:hover {
     background-color: var(--bg-muted, #EFECE6);
-    color: var(--accent, #993C1D);
+    color: var(--success-bright, #54E0B0);
   }
 }
 
 .mobileItem:focus-visible {
   background-color: var(--bg-muted, #EFECE6);
-  box-shadow: inset 0 0 0 2px var(--accent, #993C1D);
+  box-shadow: inset 0 0 0 2px var(--success-bright, #54E0B0);
 }
 
 .mobileItemActive {
   composes: mobileItem;
-  color: var(--accent, #993C1D);
+  color: var(--success-bright, #54E0B0);
   font-weight: 700;
   background-color: rgba(153, 60, 29, 0.08);
 }
