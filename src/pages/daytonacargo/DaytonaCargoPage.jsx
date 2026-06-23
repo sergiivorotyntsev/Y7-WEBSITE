@@ -857,7 +857,7 @@ export default function DaytonaCargoPage() {
               <article className={styles.card} data-card>
                 <div className={styles.dpTitle}>&#9670; WHO YOU ARE DEALING WITH</div>
                 <p className={styles.dpText}>
-                  <strong>DaytonaCargo</strong>, Dover, DE, USA. The land leg is run by our
+                  <strong>DaytonaCargo Corp</strong>, Dover, DE, USA. The land leg is run by our
                   own US brokerage with a vetted ~500-carrier network. EN / PL / RU team.
                   Rotterdam-first clearing through established port partners.
                 </p>
@@ -939,7 +939,7 @@ export default function DaytonaCargoPage() {
 
         {/* ---- FOOTER ---- */}
         <footer className={styles.footer}>
-          <div><b>DaytonaCargo</b> &middot; 8 The Green, Dover, DE 19901</div>
+          <div><b>DaytonaCargo Corp</b> &middot; Dover, DE</div>
           <div className={styles.footerFoot}>{FOOTNOTE}</div>
           <div className={styles.footerFoot}>{FOOTNOTE2}</div>
         </footer>
