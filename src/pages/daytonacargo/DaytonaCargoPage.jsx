@@ -418,7 +418,7 @@ export default function DaytonaCargoPage() {
         // Name only; coordinates dropped (they cluttered the dense US ports).
         ctx.font = '700 44px "JetBrains Mono", monospace';
         const nameWidth = ctx.measureText(pt.name).width;
-        ctx.fillStyle = 'rgba(7,13,26,0.58)';
+        ctx.fillStyle = 'rgba(7,13,26,0.74)';
         roundRect(ctx, 0, 10, nameWidth + 46, 64, 14); ctx.fill();
         ctx.fillStyle = accent;
         roundRect(ctx, 12, 25, 8, 34, 3); ctx.fill();
@@ -505,7 +505,12 @@ export default function DaytonaCargoPage() {
       globe.rotation.y = kf(p, KF.rotY);
       globe.rotation.x = kf(p, KF.rotX);
       globe.position.x = gx;
-      camera.position.set(0, kf(p, KF.camY), kf(p, [[0, heroZ], [0.13, heroZ], [0.5, 4.45], [0.85, 4.4], [1, 3.8]]));
+      // camZ keyframes are responsive: on mobile keep the globe slightly pulled
+      // back through the middle legs so the left-hand US ports stay on screen.
+      const camZKF = desktop
+        ? [[0, heroZ], [0.13, heroZ], [0.5, 4.45], [0.85, 4.4], [1, 3.8]]
+        : [[0, 5.2], [0.13, 5.2], [0.5, 5.0], [0.85, 4.9], [1, 4.5]];
+      camera.position.set(0, kf(p, KF.camY), kf(p, camZKF));
       camera.lookAt(gx, 0, 0);
 
       // sun / day-night
@@ -548,7 +553,7 @@ export default function DaytonaCargoPage() {
         const fadeOut = 1 - smoothstep(0.80, 0.96, p);
         for (const lb of labels) {
           lb.sp.getWorldPosition(tmpV);
-          const o = smoothstep(0.10, 0.42, tmpV.z) * fadeOut;
+          const o = smoothstep(-0.10, 0.20, tmpV.z) * fadeOut;
           lb.mat.opacity = o;
           lb.lineMat.opacity = o * 0.6;
         }
