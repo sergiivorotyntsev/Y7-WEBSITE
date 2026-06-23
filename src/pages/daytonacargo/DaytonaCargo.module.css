@@ -436,7 +436,7 @@
 }
 .contactLine a { color: #36DDF2; text-decoration: none; }
 
-/* inline 3-VIN form */
+/* inline quote form */
 .quoteForm {
   max-width: 460px;
   margin: 0 auto;
@@ -444,6 +444,13 @@
   flex-direction: column;
   gap: 12px;
   text-align: left;
+}
+.fieldLabel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: rgba(243, 246, 251, 0.72);
+  margin-bottom: -4px;
 }
 .field {
   width: 100%;
