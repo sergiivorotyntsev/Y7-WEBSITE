@@ -480,7 +480,7 @@ export default function DaytonaCargoPage() {
       [0.28, 'LEG 01 · THE AUCTION'],
       [0.46, 'LEG 02 · LAND HAUL'],
       [0.64, 'LEG 03 · THE OCEAN'],
-      [0.82, 'LEG 04 · CONSOLIDATION'],
+      [0.82, 'LEG 04 · RELIABILITY'],
       [1.01, 'LEG 05 · ROTTERDAM QUAY'],
     ];
     function legName(p) {
@@ -745,7 +745,7 @@ export default function DaytonaCargoPage() {
             <p className={styles.cardBody}>
               Most of the wait is not the crossing. Pure ocean time New York &rarr; Rotterdam is
               only <strong>18&ndash;20 days</strong>. Everything else is the chain: yard
-              clearance, consolidation, and booking. Daytona compresses the chain on the
+              clearance, container loading, and booking. Daytona compresses the chain on the
               Savannah lane.
             </p>
             <div className={styles.vs}>
@@ -763,33 +763,26 @@ export default function DaytonaCargoPage() {
             <p className={styles.footnote}>{FOOTNOTE2}</p>
           </article>
 
-          {/* Leg 04 — consolidation */}
+          {/* Leg 04 — on-time reliability */}
           <article className={styles.card} data-card>
-            <div className={styles.cardTag}><span>LEG 04 &middot; CONSOLIDATION</span><i>&#9670;</i></div>
-            <h2 className={styles.cardH2}>Share the box, split the cost</h2>
+            <div className={styles.cardTag}><span>Leg 04 &middot; Reliability</span><i>VERIFIABLE</i></div>
+            <h2 className={styles.cardH2}>On time, or you hear it first.</h2>
             <p className={styles.cardBody}>
-              A 40ft container holds up to three cars. Consolidating turns the ocean leg from
-              a fixed cost into a shared one: per-unit price drops with every vehicle you add
-              to the box.
+              The market advertises a window, four weeks in the ad and three months in
+              reality, and never publishes how often it actually hits. We commit to a window
+              per lane and report how often we hold it, audited on request.
             </p>
-            <div className={styles.bars}>
-              <div className={styles.bar}>
-                <span>1 car</span>
-                <div className={styles.barTrack}><div className={styles.barFill} style={{ '--fill': '8%' }} /></div>
-                <span className={styles.barVal}>$<b className={styles.cnt} data-to="1540" data-div="1">0</b>*</span>
+            <div className={styles.vs}>
+              <div className={`${styles.vsCell} ${styles.them}`}>
+                <div className={styles.vsLabel}>Published on-time rate</div>
+                <div className={styles.vsNum}>not published</div>
               </div>
-              <div className={styles.bar}>
-                <span>2 cars</span>
-                <div className={styles.barTrack}><div className={styles.barFill} style={{ '--fill': '24%' }} /></div>
-                <span className={styles.barVal}>$<b className={styles.cnt} data-to="1260" data-div="1">0</b>* <i style={{ color: 'var(--amber)' }}>(&minus;18%)</i></span>
-              </div>
-              <div className={styles.bar}>
-                <span>3 cars</span>
-                <div className={styles.barTrack}><div className={styles.barFill} style={{ '--fill': '33%' }} /></div>
-                <span className={styles.barVal}>$<b className={styles.cnt} data-to="1120" data-div="1">0</b>* <i style={{ color: 'var(--amber)' }}>(&minus;27%)</i></span>
+              <div className={`${styles.vsCell} ${styles.us}`}>
+                <div className={styles.vsLabel}>Daytona, target</div>
+                <div className={styles.vsNum}><b>95%*</b></div>
               </div>
             </div>
-            <span className={styles.chip}>METRIC 04 &middot; PER-UNIT OCEAN COST</span>
+            <span className={styles.chip}>METRIC 04 &middot; ON-TIME RATE</span>
             <p className={styles.footnote}>{FOOTNOTE}</p>
           </article>
         </section>
@@ -875,8 +868,8 @@ export default function DaytonaCargoPage() {
                 <div className={styles.dpTitle}>&#9670; WHOLESALE TERMS</div>
                 <p className={styles.dpText}>
                   Individual terms by monthly volume, one itemized invoice per vehicle,
-                  consolidation pricing for 2&ndash;3 units per container. Start with a
-                  no-commitment 3-VIN comparative quote, returned within 24 hours.
+                  volume-based pricing as you scale. Start with a no-commitment 3-VIN
+                  comparative quote, returned within 24 hours.
                 </p>
                 <a className={styles.dpCta} href="#daytona-quote">REQUEST A 3-VIN QUOTE &rarr;</a>
               </article>

@@ -348,45 +348,6 @@
   opacity: 0.78;
 }
 
-/* Leg 04 mini bar chart */
-.bars {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 18px;
-}
-.bar {
-  display: grid;
-  grid-template-columns: 64px 1fr auto;
-  align-items: center;
-  gap: 12px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--muted);
-}
-.barTrack {
-  position: relative;
-  height: 12px;
-  border-radius: 7px;
-  background: rgba(127, 127, 127, 0.12);
-  overflow: hidden;
-}
-.barFill {
-  position: absolute;
-  inset: 0 100% 0 0;
-  border-radius: 7px;
-  background: linear-gradient(90deg, var(--amber), #ff9255);
-  transition: right 1.1s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.card.in .barFill { right: var(--fill, 30%); }
-.barVal {
-  font-family: 'Saira', sans-serif;
-  font-weight: 800;
-  font-size: 16px;
-  color: var(--ink);
-}
-
 /* ---- ARRIVAL ---- */
 .arrival {
   position: relative;
