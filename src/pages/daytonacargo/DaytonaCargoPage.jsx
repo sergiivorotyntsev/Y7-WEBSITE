@@ -888,11 +888,13 @@ export default function DaytonaCargoPage() {
             <span className={styles.totalThem}>$2,850*</span>
             <span className={styles.totalUs}>$2,420*</span>
           </div>
+          <div className={styles.totalsNote}>Savannah lane, comparable sedan*</div>
           <p className={styles.arrivalLead}>
-            All-in, the typical generalist chain runs about <strong>$2,850*</strong> per
-            vehicle to Rotterdam. Daytona&apos;s itemized chain targets <strong>$2,420*</strong>:
-            same Atlantic, fewer hands on the wheel. Send us your shipment and we will return a
-            line-by-line comparable.
+            On the Savannah lane, the typical generalist chain runs about <strong>$2,850*</strong>
+            per vehicle to Rotterdam, all in. Our itemized chain targets <strong>$2,420*</strong>
+            on the same lane: same Atlantic, fewer hands on the wheel. Gulf (Houston) and West
+            Coast (Los Angeles via Panama) lanes price higher. Send us your shipment and we will
+            return a line-by-line comparable.
           </p>
 
           {status === 'ok' ? (

@@ -387,9 +387,17 @@
   display: inline-flex;
   align-items: baseline;
   gap: 20px;
-  margin-bottom: 24px;
+  margin-bottom: 8px;
   font-family: 'Saira', sans-serif;
   font-weight: 800;
+}
+.totalsNote {
+  margin: 0 0 26px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(243, 246, 251, 0.62);
 }
 .totalThem {
   font-size: clamp(30px, 5vw, 46px);
