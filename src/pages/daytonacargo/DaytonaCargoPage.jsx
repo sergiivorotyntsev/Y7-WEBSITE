@@ -33,7 +33,7 @@ export default function DaytonaCargoPage() {
   const nmTotalRef = useRef(null);
   const pctRef = useRef(null);
 
-  const [form, setForm] = useState({ company: '', email: '', vins: '' });
+  const [form, setForm] = useState({ company: '', email: '', details: '' });
   const [status, setStatus] = useState('idle'); // idle | sending | ok | err
   const [errMsg, setErrMsg] = useState('');
 
@@ -46,14 +46,14 @@ export default function DaytonaCargoPage() {
     setErrMsg('');
     if (!form.company.trim()) { setErrMsg('Company name is required.'); return; }
     if (!form.email.trim()) { setErrMsg('Email is required.'); return; }
-    if (!form.vins.trim()) { setErrMsg('Add at least one VIN.'); return; }
     setStatus('sending');
     try {
+      const details = form.details.trim();
       await apiPost('/api/public/contact', {
         name: form.company.trim(),
         email: form.email.trim(),
         phone: '',
-        message: `DaytonaCargo 3-VIN quote request\n\nVINs:\n${form.vins.trim()}`,
+        message: `DaytonaCargo quote request${details ? `\n\nShipment:\n${details}` : ''}`,
       });
       setStatus('ok');
     } catch (err) {
@@ -456,7 +456,7 @@ export default function DaytonaCargoPage() {
       // camZ is built per-frame from a responsive heroZ (closer on desktop so the
       // hero globe matches its mid-page size). See frame().
       camY: [[0, 0.10], [0.13, 0.10], [0.24, 0.12], [1, 0.10]],
-      groupX: [[0, 0.35], [0.13, 0.35], [0.22, -0.9], [0.82, -0.9], [0.93, 0], [1, 0]],
+      groupX: [[0, 0.35], [0.13, 0.35], [0.22, -0.6], [0.82, -0.6], [0.93, 0], [1, 0]],
     };
 
     // ---- scroll state ----
@@ -632,14 +632,14 @@ export default function DaytonaCargoPage() {
         <title>DaytonaCargo — US Auctions to Rotterdam, One Chain</title>
         <meta
           name="description"
-          content="Vehicle shipping from US auctions to Rotterdam as one itemized chain: bidding, land haul, ocean freight, paperwork. Send 3 VINs - get a comparable quote in 24h."
+          content="Vehicle shipping from US auctions to Rotterdam as one itemized chain: bidding, land haul, ocean freight, paperwork. Send us your shipment and get an itemized quote in 24h."
         />
         <link rel="canonical" href={`${BASE}/daytonacargo`} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="DaytonaCargo — US Auctions to Rotterdam, One Chain" />
         <meta
           property="og:description"
-          content="US auctions to Rotterdam as one itemized chain. Send 3 VINs, get a comparable quote in 24h."
+          content="US auctions to Rotterdam as one itemized chain. Send us your shipment and get an itemized quote in 24h."
         />
         <meta property="og:url" content={`${BASE}/daytonacargo`} />
       </Helmet>
@@ -868,10 +868,10 @@ export default function DaytonaCargoPage() {
                 <div className={styles.dpTitle}>&#9670; WHOLESALE TERMS</div>
                 <p className={styles.dpText}>
                   Individual terms by monthly volume, one itemized invoice per vehicle,
-                  volume-based pricing as you scale. Start with a no-commitment 3-VIN
-                  comparative quote, returned within 24 hours.
+                  volume-based pricing as you scale. Start with a no-commitment comparative
+                  quote, returned within 24 hours.
                 </p>
-                <a className={styles.dpCta} href="#daytona-quote">REQUEST A 3-VIN QUOTE &rarr;</a>
+                <a className={styles.dpCta} href="#daytona-quote">REQUEST A QUOTE &rarr; 24H</a>
               </article>
             </div>
 
@@ -888,11 +888,13 @@ export default function DaytonaCargoPage() {
             <span className={styles.totalThem}>$2,850*</span>
             <span className={styles.totalUs}>$2,420*</span>
           </div>
+          <div className={styles.totalsNote}>Savannah lane, comparable sedan*</div>
           <p className={styles.arrivalLead}>
-            All-in, the typical generalist chain runs about <strong>$2,850*</strong> per
-            vehicle to Rotterdam. Daytona&apos;s itemized chain targets <strong>$2,420*</strong>:
-            same Atlantic, fewer hands on the wheel. Send three VINs and we will return a
-            line-by-line comparable.
+            On the Savannah lane, the typical generalist chain runs about <strong>$2,850*</strong>
+            per vehicle to Rotterdam, all in. Our itemized chain targets <strong>$2,420*</strong>
+            on the same lane: same Atlantic, fewer hands on the wheel. Gulf (Houston) and West
+            Coast (Los Angeles via Panama) lanes price higher. Send us your shipment and we will
+            return a line-by-line comparable.
           </p>
 
           {status === 'ok' ? (
@@ -915,16 +917,17 @@ export default function DaytonaCargoPage() {
                 onChange={(e) => setField('email', e.target.value)}
                 autoComplete="email"
               />
+              <label className={styles.fieldLabel}>What are you shipping? (vehicles, auction, destination)</label>
               <textarea
                 className={styles.field}
-                placeholder="Up to 3 VINs, one per line"
-                value={form.vins}
-                onChange={(e) => setField('vins', e.target.value)}
+                placeholder="Tell us about your shipment (optional)"
+                value={form.details}
+                onChange={(e) => setField('details', e.target.value)}
                 rows={3}
               />
               {errMsg && <div className={styles.formErr}>{errMsg}</div>}
               <button className={styles.cta} type="submit" disabled={status === 'sending'}>
-                {status === 'sending' ? 'SENDING…' : 'REQUEST THE 3-VIN QUOTE → 24H'}
+                {status === 'sending' ? 'SENDING…' : 'REQUEST A QUOTE → 24H'}
               </button>
               <div className={styles.formNote}>
                 You will get an instant confirmation, and a comparable quote within 24h.
