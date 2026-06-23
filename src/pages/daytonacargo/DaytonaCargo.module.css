@@ -225,7 +225,9 @@
   position: relative;
   width: 560px;
   max-width: calc(100% - 52px);
-  margin: 0 26px 0 auto;
+  /* Pull the rail inward from the right edge on wide screens so the cards sit
+     closer to center (instead of glued to the edge with the globe pushed left). */
+  margin: 0 clamp(24px, 6vw, 120px) 0 auto;
   padding: 4vh 0 8vh;
   display: flex;
   flex-direction: column;

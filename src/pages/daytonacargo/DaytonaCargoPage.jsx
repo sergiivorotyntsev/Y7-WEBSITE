@@ -456,7 +456,7 @@ export default function DaytonaCargoPage() {
       // camZ is built per-frame from a responsive heroZ (closer on desktop so the
       // hero globe matches its mid-page size). See frame().
       camY: [[0, 0.10], [0.13, 0.10], [0.24, 0.12], [1, 0.10]],
-      groupX: [[0, 0.35], [0.13, 0.35], [0.22, -0.9], [0.82, -0.9], [0.93, 0], [1, 0]],
+      groupX: [[0, 0.35], [0.13, 0.35], [0.22, -0.6], [0.82, -0.6], [0.93, 0], [1, 0]],
     };
 
     // ---- scroll state ----
