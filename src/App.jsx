@@ -11,6 +11,9 @@ import NotFound from './pages/NotFound';
 import PromoLanding from './pages/PromoLanding';
 import Careers from './pages/Careers';
 import CareerApplication from './pages/CareerApplication';
+// DaytonaCargo campaign LP — static import (no React.lazy: keeps Puppeteer
+// prerender working). Bare route below, outside Layout: it brings its own chrome.
+import DaytonaCargoPage from './pages/daytonacargo/DaytonaCargoPage';
 import { colors } from './theme';
 
 function lazyWithRetry(importFn) {
@@ -155,6 +158,9 @@ export default function App() {
       <div style={{ background: colors.bg, minHeight: '100vh' }}>
         <Suspense fallback={<LoadingSpinner />}>
         <Routes>
+          {/* Bare standalone campaign LP — no global Header/Footer chrome.
+              Sibling of the Layout route so it renders its own fixed canvas + HUD. */}
+          <Route path="/daytonacargo" element={<DaytonaCargoPage />} />
           <Route element={<Layout />}>
             {/* English (default, no prefix) */}
             <Route path="/" element={<Home />} />

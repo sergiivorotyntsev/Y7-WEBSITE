@@ -164,6 +164,8 @@ const PUBLIC_ROUTES = [
   '/careers',
   '/careers/apply',
   '/dealer-quote',
+  // DaytonaCargo sister-company campaign LP (standalone, own chrome)
+  '/daytonacargo',
   '/privacy',
   '/terms',
   '/accessibility',

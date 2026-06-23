@@ -17,6 +17,9 @@ export default defineConfig({
         manualChunks(id) {
           // node_modules split into focused vendor bundles
           if (id.includes('node_modules')) {
+            // three.js — its own chunk so it stays lazy (only the DaytonaCargo
+            // LP dynamic-imports it; never loaded on other pages).
+            if (id.includes('node_modules/three')) return 'three';
             if (id.includes('react-router')) return 'react-router';
             if (id.includes('react-helmet-async')) return 'helmet';
             if (id.includes('i18next')) return 'i18n';
