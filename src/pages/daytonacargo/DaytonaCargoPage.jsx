@@ -5,8 +5,8 @@ import landmaskB64 from './landmask.b64.txt?raw';
 import styles from './DaytonaCargo.module.css';
 
 /**
- * DaytonaCargoPage — scroll-driven "voyage" landing for DaytonaCargo LLC
- * (Y7 sister company, US auctions -> Rotterdam vehicle shipping).
+ * DaytonaCargoPage — scroll-driven "voyage" landing for DaytonaCargo
+ * (US auctions -> Rotterdam vehicle shipping).
  *
  * A fixed Three.js globe (real continents from a build-time landmask, 4 US
  * ports + Rotterdam, ocean lanes, a scroll-scrubbed ship, a day/night
@@ -19,7 +19,6 @@ import styles from './DaytonaCargo.module.css';
  */
 
 const BASE = 'https://www.y7agency.com';
-const MAILTO = 'mailto:kontakt@daytonacargo.com?subject=3-VIN%20quote%20request';
 const FOOTNOTE =
   '* market averages from published importer pricing, Feb–Apr 2026; Daytona values are pre-launch targets pending verified operations data.';
 const FOOTNOTE2 =
@@ -59,7 +58,7 @@ export default function DaytonaCargoPage() {
       setStatus('ok');
     } catch (err) {
       setStatus('err');
-      setErrMsg(err?.message || 'Could not send. Email kontakt@daytonacargo.com instead.');
+      setErrMsg(err?.message || 'Could not send. Please try again in a moment.');
     }
   }
 
@@ -721,9 +720,8 @@ export default function DaytonaCargoPage() {
             <h2 className={styles.cardH2}>Our own brokerage runs the land leg.</h2>
             <p className={styles.cardBody}>
               The haul from the auction yard to the port is not handed to a random dispatcher.
-              It is administered by our affiliated FMCSA licensed &amp; bonded brokerage,
-              <strong> Y7 Logistics (MC #1741537)</strong>, through a vetted network of
-              <strong> ~500 carriers</strong>, assigned by lane and rated by performance.
+              It is run by our own US brokerage, through a vetted network of
+              <strong>~500 carriers</strong>, assigned by lane and rated by performance.
               Shorter hauls to the nearest of four ports, accountable drivers.
             </p>
             <div className={styles.vs}>
@@ -866,10 +864,9 @@ export default function DaytonaCargoPage() {
               <article className={styles.card} data-card>
                 <div className={styles.dpTitle}>&#9670; WHO YOU ARE DEALING WITH</div>
                 <p className={styles.dpText}>
-                  <strong>DaytonaCargo LLC</strong>, Dover, DE, USA. Land leg administered by our
-                  affiliated FMCSA licensed &amp; bonded brokerage <strong>Y7 Logistics
-                  (MC #1741537)</strong>. EN / PL / RU team. Rotterdam-first clearing through
-                  established port partners.
+                  <strong>DaytonaCargo</strong>, Dover, DE, USA. The land leg is run by our
+                  own US brokerage with a vetted ~500-carrier network. EN / PL / RU team.
+                  Rotterdam-first clearing through established port partners.
                 </p>
               </article>
 
@@ -937,20 +934,19 @@ export default function DaytonaCargoPage() {
                 {status === 'sending' ? 'SENDING…' : 'REQUEST THE 3-VIN QUOTE → 24H'}
               </button>
               <div className={styles.formNote}>
-                Prefer email? Write <a href={MAILTO}>kontakt@daytonacargo.com</a> directly.
+                You will get an instant confirmation, and a comparable quote within 24h.
               </div>
             </form>
           )}
 
           <div className={styles.contactLine}>
-            DaytonaCargo LLC &middot; <a href={MAILTO}>kontakt@daytonacargo.com</a>
+            DaytonaCargo &middot; US auctions to Rotterdam, one chain
           </div>
         </section>
 
         {/* ---- FOOTER ---- */}
         <footer className={styles.footer}>
-          <div><b>DaytonaCargo LLC</b> &middot; 8 The Green, Dover, DE 19901</div>
-          <div>In cooperation with <b>Y7 Logistics</b></div>
+          <div><b>DaytonaCargo</b> &middot; 8 The Green, Dover, DE 19901</div>
           <div className={styles.footerFoot}>{FOOTNOTE}</div>
           <div className={styles.footerFoot}>{FOOTNOTE2}</div>
         </footer>
