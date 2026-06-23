@@ -14,6 +14,9 @@
   --card-border: rgba(20, 26, 36, 0.10);
   --line: rgba(20, 26, 36, 0.16);
   --muted: rgba(20, 26, 36, 0.58);
+  /* Footnote/fine-print token: stronger than --muted so it clears 4.5:1 in both
+     themes (LP5-T04b). */
+  --foot: rgba(20, 26, 36, 0.74);
   --hud-bg: linear-gradient(180deg, rgba(241, 236, 225, 0.86), rgba(241, 236, 225, 0.42));
 
   position: relative;
@@ -36,7 +39,18 @@
   --card-border: rgba(243, 246, 251, 0.12);
   --line: rgba(243, 246, 251, 0.18);
   --muted: rgba(243, 246, 251, 0.62);
+  --foot: rgba(243, 246, 251, 0.82);
   --hud-bg: linear-gradient(180deg, rgba(5, 9, 18, 0.88), rgba(5, 9, 18, 0.40));
+}
+
+/* Theme flip (LP5-T04b): crossfade token-driven text in lockstep with the 1.1s
+   background transition so no word, bold span, or footnote blends mid-flip.
+   (amber is constant across themes, so amber-only text is omitted.) */
+.hudBrand span, .hudRight, .hudRight b, .heroPill, .scrollCue,
+.cardBody, .cardBody strong, .briefStat, .cardTag, .vsLabel, .vsNum,
+.footnote, .dpSub, .dpText, .dpText strong, .dpTable th, .dpTable td,
+.dpTableFoot, .dpCheck li, .dpFootnotes, .footer b, .footerFoot {
+  transition: color 1.1s ease;
 }
 
 /* ---- fixed scene layers ---- */
@@ -346,8 +360,7 @@
   font-size: 9.5px;
   line-height: 1.5;
   letter-spacing: 0.01em;
-  color: var(--muted);
-  opacity: 0.78;
+  color: var(--foot);
 }
 
 /* ---- ARRIVAL ---- */
@@ -505,10 +518,10 @@ textarea.field { resize: vertical; min-height: 92px; }
   line-height: 1.7;
   color: var(--muted);
   background: var(--hud-bg);
-  transition: background 1.1s ease, border-color 1.1s ease;
+  transition: background 1.1s ease, border-color 1.1s ease, color 1.1s ease;
 }
 .footer b { color: var(--ink); font-weight: 700; }
-.footerFoot { margin-top: 14px; opacity: 0.7; font-size: 9.5px; }
+.footerFoot { margin-top: 14px; font-size: 9.5px; color: var(--foot); }
 
 /* ---- DECISION PACK ---- */
 .decision {
@@ -655,8 +668,7 @@ textarea.field { resize: vertical; min-height: 92px; }
   font-size: 9.5px;
   line-height: 1.55;
   letter-spacing: 0.01em;
-  color: var(--muted);
-  opacity: 0.8;
+  color: var(--foot);
 }
 .dpFootnotes + .dpFootnotes { margin-top: 6px; }
 
