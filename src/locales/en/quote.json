@@ -112,7 +112,7 @@
   "newCustomer": {
     "title": "Track this and future quotes",
     "subtitle": "Create your account to view this quote, communicate with our dispatcher, and track delivery in real-time.",
-    "createPassword": "Create Password",
+    "createPassword": "Create account",
     "skipForNow": "Skip for now"
   },
   "timeline": {

@@ -839,7 +839,7 @@ function AgreementStep({ user, customerType, onBack, onSigned }) {
           return (
             <LockedCard
               key={cb.id}
-              number={idx + 1}
+              number={coverSections[0]?.number ?? idx + 1}
               title={coverSections[0]?.title || 'Section locked'}
             />
           );
@@ -956,7 +956,7 @@ function LockedCard({ number, title }) {
       background: colors.bgMuted,
     }}>
       <h3 style={{ ...sectionHeadingStyle, color: colors.textMuted }}>
-        {number}. {title}
+        {number}. {title}{' '}
         <span style={{ marginLeft: spacing.sm, fontSize: 13 }}>(locked)</span>
       </h3>
       <p style={{
