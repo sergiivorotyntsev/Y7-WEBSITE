@@ -455,7 +455,16 @@ export default function NewOrder() {
             setError(detail.detail || detail.message || 'This action is not available for your account yet.');
           }
         } else {
-          setError(typeof detail === 'string' ? detail : 'Failed to submit order. Please try again.');
+          // FX-2: never surface a raw backend validation string (e.g.
+          // "auction_type_id required for direct_submit"). Map anything that
+          // looks technical to a friendly message.
+          const raw = typeof detail === 'string' ? detail : '';
+          const looksTechnical = /_id\b|direct_submit|null|undefined|traceback|exception/i.test(raw);
+          setError(
+            raw && !looksTechnical
+              ? raw
+              : 'Something needs attention before we can submit this order. Please review the form and try again.'
+          );
         }
       }
     } catch {
@@ -463,6 +472,42 @@ export default function NewOrder() {
     } finally {
       setSubmitting(false);
     }
+  }
+
+  // FX-2: gate pending/unverified dealers & exporters UP FRONT — direct
+  // orders require a verified company. Don't let them fill the entire form
+  // only to be blocked server-side. Trial quotes stay available via the
+  // public quote flow; direct orders open once the account is approved.
+  const _vstatus = user?.company_verification_status;
+  const _needsVerification =
+    ['dealer', 'exporter'].includes(user?.customer_type) &&
+    _vstatus &&
+    _vstatus !== 'verified';
+  if (_needsVerification && !success) {
+    const rejected = _vstatus === 'rejected';
+    const heading = rejected
+      ? 'Your dealer account was not approved'
+      : 'Your dealer account is being verified';
+    const bodyText = rejected
+      ? 'Your application was not approved. Please contact us if you would like to discuss next steps.'
+      : "Before you can submit orders directly, our team verifies your dealership details. You can still request a quote in the meantime — direct orders open as soon as you're approved.";
+    return (
+      <div style={{ maxWidth: '600px', margin: '0 auto', padding: '40px 24px 80px' }}>
+        <PageMeta title={heading} />
+        <div style={{
+          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+          minHeight: '50vh', padding: '40px 24px', textAlign: 'center',
+        }}>
+          <div style={{ fontSize: '44px', marginBottom: '16px' }}>&#128737;</div>
+          <h1 style={{ fontFamily: fonts.serif, fontSize: '24px', fontWeight: 700, color: colors.text, marginBottom: '12px' }}>{heading}</h1>
+          <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, maxWidth: '440px', lineHeight: 1.6, marginBottom: '28px' }}>{bodyText}</p>
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link to="/portal/application" style={{ ...btnStyles.accent, textDecoration: 'none' }}>View your application</Link>
+            <button onClick={() => navigate('/portal/dashboard')} style={btnStyles.secondary}>Go to Dashboard</button>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   if (gateBlock) {
