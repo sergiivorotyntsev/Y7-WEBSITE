@@ -209,7 +209,7 @@ export default function PhoneInput({
           onKeyDown={handleKeyDown}
           onFocus={() => setFocused(true)}
           onBlur={() => { setFocused(false); setTouched(true); }}
-          placeholder={placeholder || (country === 'US' ? '(555) 123-4567' : `${callingCode} ...`)}
+          placeholder={placeholder || (country === 'US' ? '(555) 234-5678' : `${callingCode} ...`)}
           required={required}
           className={className}
           style={{
