@@ -4,6 +4,9 @@ import PageMeta from '../../components/PageMeta';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 // eslint-disable-next-line no-unused-vars
 import { colors, fonts, button as btnStyles } from '../../theme';
+import { API_URL } from '../../config';
+
+const isoDate = (d) => d.toISOString().slice(0, 10);
 
 function fmt(cents) {
   if (cents == null) return '$0.00';
@@ -25,6 +28,9 @@ export default function Billing() {
   const [data, setData] = useState(null);
   const [invoices, setInvoices] = useState(null);
   const [loading, setLoading] = useState(true);
+  const now = new Date();
+  const [from, setFrom] = useState(isoDate(new Date(now.getFullYear(), now.getMonth(), 1)));
+  const [to, setTo] = useState(isoDate(now));
 
   useEffect(() => {
     // EXP-F6: revised money model — show only Y7 service-fee invoices + the
@@ -130,6 +136,42 @@ export default function Billing() {
               </div>
             );
           })}
+      </div>
+
+      {/* EXP-G1: cost-breakdown report — self-serve, scoped to this account */}
+      <div style={{
+        marginTop: '32px', padding: '16px 20px',
+        background: colors.bgCard, border: `1px solid ${colors.border}`, borderRadius: '12px',
+      }}>
+        <h2 style={{ fontFamily: fonts.serif, fontSize: '18px', fontWeight: 700, color: colors.text, marginBottom: '4px' }}>
+          Cost-breakdown report
+        </h2>
+        <p style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginBottom: '12px', lineHeight: 1.5 }}>
+          Per-load carrier, storage, dry-run and Y7-fee breakdown for a period —
+          funding-account costs and Y7 service fees are shown separately.
+        </p>
+        <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'flex-end' }}>
+          <label style={{ fontFamily: fonts.sans, fontSize: '11px', color: colors.textMuted }}>
+            From<br />
+            <input type="date" value={from} onChange={e => setFrom(e.target.value)}
+              style={{ fontFamily: fonts.sans, fontSize: '16px', padding: '8px 10px', borderRadius: '8px', border: `1px solid ${colors.border}`, background: colors.bgInput, color: colors.text }} />
+          </label>
+          <label style={{ fontFamily: fonts.sans, fontSize: '11px', color: colors.textMuted }}>
+            To<br />
+            <input type="date" value={to} onChange={e => setTo(e.target.value)}
+              style={{ fontFamily: fonts.sans, fontSize: '16px', padding: '8px 10px', borderRadius: '8px', border: `1px solid ${colors.border}`, background: colors.bgInput, color: colors.text }} />
+          </label>
+          <a href={`${API_URL}/api/portal/billing/cost-report?date_from=${from}&date_to=${to}&format=xlsx`}
+            target="_blank" rel="noopener noreferrer"
+            style={{ ...btnStyles.accent, padding: '9px 16px', fontSize: '13px', textDecoration: 'none', display: 'inline-block' }}>
+            Download Excel
+          </a>
+          <a href={`${API_URL}/api/portal/billing/cost-report?date_from=${from}&date_to=${to}&format=pdf`}
+            target="_blank" rel="noopener noreferrer"
+            style={{ ...btnStyles.secondary, padding: '9px 16px', fontSize: '13px', textDecoration: 'none', display: 'inline-block', border: `1px solid ${colors.border}` }}>
+            Download PDF
+          </a>
+        </div>
       </div>
 
       {/* Payment instructions */}
