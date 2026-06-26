@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
+import VerificationBanner from '../../components/VerificationBanner';
 import { portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles, keyframes } from '../../theme';
 import { UNIFIED_STAGES, mapUnifiedStage } from '../../utils/loadStatus';
@@ -235,6 +236,11 @@ export default function DealerDashboard({ user }) {
         </div>
         <button onClick={() => navigate('/portal/new-order')} style={btnStyles.accent}>New Order</button>
       </div>
+
+      {/* FX-3: dealers/exporters render this dashboard (not the individual one
+          that previously held the banner), so the under-review / trial-quote
+          status must surface here too. Self-suppresses when verified. */}
+      <VerificationBanner />
 
       {/* Loads */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', alignItems: 'start' }}>
