@@ -21,6 +21,8 @@ import { colors, fonts, radii, spacing } from '../theme';
 
 const STATE_STYLES = {
   unverified: { bg: '#FFF8F0', border: colors.accent, badge: 'Under review', badgeBg: colors.accent },
+  // AQ-3: pending_review is the canonical "applied, awaiting Y7" state.
+  pending_review: { bg: '#FFF8F0', border: colors.accent, badge: 'Under review', badgeBg: colors.accent },
   needs_details: { bg: '#FEF6E6', border: '#B8860B', badge: 'Action needed', badgeBg: '#B8860B' },
   rejected: { bg: '#FDECEA', border: '#B91C1C', badge: 'Not approved', badgeBg: '#B91C1C' },
 };
@@ -43,14 +45,14 @@ export default function VerificationBanner() {
   let body;
   if (status === 'needs_details') {
     heading = 'We need a little more to verify your company';
-    body = note || 'Please contact us so we can continue your verification.';
+    body = note || 'Please update your application so we can continue your verification.';
   } else if (status === 'rejected') {
     heading = 'Your company verification was not approved';
     body = note || 'Please contact us if you would like to discuss next steps.';
   } else {
     heading = 'Your company is under review';
     body =
-      'You can request a limited number of trial quotes now. Transport orders open once Y7 approves your company.';
+      'You can request a limited number of trial quotes now. Direct transport orders open once Y7 activates your account.';
   }
 
   // Counter is for dealers still in the trial window (not rejected). null
@@ -109,8 +111,15 @@ export default function VerificationBanner() {
 
       {status === 'needs_details' && (
         <p style={{ fontFamily: fonts.sans, fontSize: 12, color: colors.textMuted, lineHeight: 1.5, margin: '8px 0 0' }}>
-          Reply to the email we sent you with the requested information, or{' '}
+          <Link to="/portal/application" style={{ color: colors.accent, fontWeight: 600 }}>Update your application</Link>{' '}
+          with the requested information, or{' '}
           <Link to="/contact" style={{ color: colors.accent }}>contact us</Link>.
+        </p>
+      )}
+
+      {(status === 'pending_review' || status === 'unverified') && (
+        <p style={{ fontFamily: fonts.sans, fontSize: 12, color: colors.textMuted, lineHeight: 1.5, margin: '8px 0 0' }}>
+          <Link to="/portal/application" style={{ color: colors.accent, fontWeight: 600 }}>View your application</Link>
         </p>
       )}
 

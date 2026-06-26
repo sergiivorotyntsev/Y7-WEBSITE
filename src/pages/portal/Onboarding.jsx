@@ -250,8 +250,13 @@ export default function Onboarding() {
           <WelcomeStep
             customerType={selectedType}
             name={user?.contact_name || user?.name}
+            pendingReview={
+              ['dealer', 'exporter'].includes(selectedType) &&
+              user?.company_verification_status !== 'verified'
+            }
             onComplete={(action) => {
               if (action === 'create_order') navigate('/portal/new-order');
+              else if (action === 'application') navigate('/portal/application');
               else navigate('/portal/dashboard');
             }}
           />
@@ -966,60 +971,97 @@ function LockedCard({ number, title }) {
 // Step 4 - WelcomeStep
 // ---------------------------------------------------------------------------
 
-function WelcomeStep({ customerType, name, onComplete }) {
+function WelcomeStep({ customerType, name, pendingReview, onComplete }) {
+  // AQ-3: honest copy. A dealer/exporter registration is an APPLICATION, not an
+  // instant active account — do NOT claim "your account is active" while the
+  // backend has them pending_review + trial-capped + gated. Show the truth and
+  // route them to complete their application.
+  const label = TYPE_LABELS[customerType] || customerType;
   return (
     <div style={{ textAlign: 'center', padding: spacing.md + 'px 0' }}>
       <div style={{
         width: 72, height: 72, borderRadius: '50%',
-        background: colors.successBg, color: colors.success,
+        background: pendingReview ? colors.bgMuted : colors.successBg,
+        color: pendingReview ? colors.text : colors.success,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         margin: '0 auto ' + spacing.md + 'px',
       }}>
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-          <path d="M5 12l5 5L20 7" stroke="currentColor" strokeWidth="3"
-                strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+        {pendingReview ? (
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
+            <path d="M12 7v5l3 2" stroke="currentColor" strokeWidth="2"
+                  strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        ) : (
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+            <path d="M5 12l5 5L20 7" stroke="currentColor" strokeWidth="3"
+                  strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        )}
       </div>
       <h2 style={{
         fontFamily: fonts.serif, fontSize: 24, color: colors.text,
         margin: 0, marginBottom: spacing.xs,
       }}>
-        Welcome{name ? `, ${name}` : ''}.
+        {pendingReview ? 'Application submitted' : `Welcome${name ? `, ${name}` : ''}.`}
       </h2>
-      <p style={{
-        fontFamily: fonts.sans, fontSize: 15, color: colors.textMuted,
-        margin: 0, marginBottom: spacing.md,
-      }}>
-        Your <strong>{TYPE_LABELS[customerType] || customerType}</strong>{' '}
-        account is active.
-      </p>
-      <p style={{
-        fontFamily: fonts.sans, fontSize: 13, color: colors.textMuted,
-        background: colors.bgMuted, padding: spacing.sm + 'px ' + spacing.md + 'px',
-        borderRadius: radii.md, display: 'inline-block',
-        marginBottom: spacing.lg,
-      }}>
-        A copy of the signed agreement is on its way to your email.
-      </p>
-      <div style={{
-        display: 'flex', gap: spacing.sm, justifyContent: 'center',
-        flexWrap: 'wrap',
-      }}>
-        <button
-          type="button"
-          onClick={() => onComplete('create_order')}
-          style={primaryBtnStyle}
-        >
-          Submit your first quote
-        </button>
-        <button
-          type="button"
-          onClick={() => onComplete('dashboard')}
-          style={secondaryBtnStyle}
-        >
-          Go to dashboard
-        </button>
-      </div>
+      {pendingReview ? (
+        <>
+          <p style={{
+            fontFamily: fonts.sans, fontSize: 15, color: colors.textMuted,
+            margin: 0, marginBottom: spacing.md,
+          }}>
+            Thanks{name ? `, ${name}` : ''}. We'll review your <strong>{label}</strong>{' '}
+            details and set up a call to activate your account.
+          </p>
+          <p style={{
+            fontFamily: fonts.sans, fontSize: 13, color: colors.textMuted,
+            background: colors.bgMuted, padding: spacing.sm + 'px ' + spacing.md + 'px',
+            borderRadius: radii.md, display: 'inline-block',
+            marginBottom: spacing.lg,
+          }}>
+            Meanwhile you can request up to <strong>3 quotes</strong>. Direct orders open
+            once Y7 activates your account.
+          </p>
+          <div style={{
+            display: 'flex', gap: spacing.sm, justifyContent: 'center', flexWrap: 'wrap',
+          }}>
+            <button type="button" onClick={() => onComplete('application')} style={primaryBtnStyle}>
+              Complete your application
+            </button>
+            <button type="button" onClick={() => onComplete('create_order')} style={secondaryBtnStyle}>
+              Request a quote
+            </button>
+          </div>
+        </>
+      ) : (
+        <>
+          <p style={{
+            fontFamily: fonts.sans, fontSize: 15, color: colors.textMuted,
+            margin: 0, marginBottom: spacing.md,
+          }}>
+            Your <strong>{label}</strong> account is active.
+          </p>
+          <p style={{
+            fontFamily: fonts.sans, fontSize: 13, color: colors.textMuted,
+            background: colors.bgMuted, padding: spacing.sm + 'px ' + spacing.md + 'px',
+            borderRadius: radii.md, display: 'inline-block',
+            marginBottom: spacing.lg,
+          }}>
+            A copy of the signed agreement is on its way to your email.
+          </p>
+          <div style={{
+            display: 'flex', gap: spacing.sm, justifyContent: 'center', flexWrap: 'wrap',
+          }}>
+            <button type="button" onClick={() => onComplete('create_order')} style={primaryBtnStyle}>
+              Submit your first quote
+            </button>
+            <button type="button" onClick={() => onComplete('dashboard')} style={secondaryBtnStyle}>
+              Go to dashboard
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 }

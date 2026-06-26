@@ -9,9 +9,10 @@ import { colors, fonts } from '../theme';
  * customer_type is 'unknown', either on dashboard mount or when redirected
  * from a 403 classification_required response (which appends ?classify=1).
  *
- * Persists via PATCH /api/portal/data/customer-type. The dealer card is
- * intentionally non-selectable: dealers must apply via the dealer-inquiry
- * form on /dealers, not self-promote through this modal.
+ * Persists via PATCH /api/portal/data/customer-type. AQ-3: ONE account-type rule
+ * — choosing dealer/exporter here is an application (the backend sets
+ * pending_review), not a hard reject. After the type change the dealer/exporter
+ * re-signs and completes their application; powers stay gated on activation.
  */
 
 const TYPE_LABELS = {
@@ -56,11 +57,10 @@ const TYPES = [
   {
     id: 'dealer',
     title: 'Licensed Dealer',
-    description: 'I run a dealership (requires separate application)',
-    disabled: true,
-    note: 'Dealers must apply via the Dealers page',
+    description: 'I run a dealership (application + verification required)',
+    note: 'Activation requires a short review and call with Y7',
     benefits: [
-      'Prepay billing & weekly invoicing',
+      'Per-delivery billing & weekly invoicing',
       'Saved locations & dedicated dispatch',
       'Dealer-specific transport agreement',
     ],
@@ -69,17 +69,15 @@ const TYPES = [
 
 export default function AccountTypeModal({ onComplete, mode = 'initial', currentType, onClose }) {
   const isEdit = mode === 'edit';
-  const editTypes = TYPES.filter(t => t.id !== 'dealer');
+  // AQ-3: one rule — dealer/exporter are selectable here too (they enter the
+  // pending-application flow), so the edit list is no longer filtered.
+  const editTypes = TYPES;
   const [selected, setSelected] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
 
   async function handleSubmit() {
     if (!selected || submitting) return;
-    if (selected === 'dealer') {
-      window.location.href = '/dealers';
-      return;
-    }
     setSubmitting(true);
     setError(null);
     try {
@@ -288,8 +286,8 @@ export default function AccountTypeModal({ onComplete, mode = 'initial', current
         >
           {submitting
             ? 'Saving...'
-            : selected === 'dealer'
-              ? 'Go to Dealer Application'
+            : ['dealer', 'exporter'].includes(selected)
+              ? 'Apply for activation'
               : 'Continue'}
         </button>
 
