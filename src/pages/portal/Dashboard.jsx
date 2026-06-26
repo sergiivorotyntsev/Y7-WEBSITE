@@ -410,8 +410,9 @@ export default function Dashboard() {
             const pickup = [order.pickup_city, order.pickup_zip].filter(Boolean).join(' ');
             const delivery = [order.delivery_city, order.delivery_zip].filter(Boolean).join(' ');
             const route = [pickup, delivery].filter(Boolean).join(' \u2192 ');
-            // Load ID falls back through web_reference to numeric id
-            const loadId = order.load_id || order.web_reference || `#${order.id}`;
+            // NUM-2: display load_id as the single reference (web_reference no
+            // longer shown); fall back to the numeric id only if load_id is absent.
+            const loadId = order.load_id || `#${order.id}`;
             const createdDate = order.created_at
               ? new Date(order.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
               : null;

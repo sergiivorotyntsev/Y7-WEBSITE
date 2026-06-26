@@ -83,7 +83,7 @@ function LoadRow({ order, expanded, onToggle }) {
   const pickup = [order.pickup_city, order.pickup_zip].filter(Boolean).join(' ');
   const delivery = [order.delivery_city, order.delivery_zip].filter(Boolean).join(' ');
   const route = [pickup, delivery].filter(Boolean).join(' → ');
-  const loadId = order.load_id || order.web_reference || `#${order.id}`;
+  const loadId = order.load_id || `#${order.id}`; // NUM-2: display load_id only (not web_reference)
   const u = mapUnifiedStage(order);
 
   // S1-T01 contract: final_price ?? quote range. Endpoint already returns
