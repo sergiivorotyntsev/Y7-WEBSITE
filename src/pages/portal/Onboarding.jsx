@@ -812,17 +812,10 @@ function AgreementStep({ user, customerType, onBack, onSigned }) {
         <strong>{profileName || 'your profile name'}</strong>.
       </p>
 
-      {template.is_draft && template.draft_warning && (
-        <div style={{
-          padding: spacing.md, background: '#FFFBEB',
-          border: '1px solid #F59E0B', borderRadius: radii.md,
-          fontSize: 13, color: '#7C2D12',
-          marginBottom: spacing.md,
-        }}>
-          <strong>Draft agreement — for evaluation.</strong>{' '}
-          {template.draft_warning}
-        </div>
-      )}
+      {/* FX-1: the client-facing draft/evaluation banner is intentionally
+          removed — this is a binding, operative agreement. Any version/draft
+          marker is kept internal-only (backend `version` field), never shown
+          to the signer. */}
 
       {template.checkboxes.map((cb, idx) => {
         const prev = template.checkboxes[idx - 1];
