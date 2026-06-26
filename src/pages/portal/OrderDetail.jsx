@@ -572,9 +572,18 @@ export default function OrderDetail() {
       </InfoCard>
 
       {/* Payment */}
-      {(price || paymentData?.payment) && (
+      {(price || order.dispatched_price != null || paymentData?.payment) && (
         <InfoCard title="Payment">
-          {price && <InfoRow label="Transport fee" value={price} mono />}
+          {/* EXP-D4: once the operator records the real CD-dispatched carrier price,
+              it IS the transport line (honest passthrough); otherwise show the
+              quote/final transport price. The Y7 service fee is ALWAYS a separate
+              line — never folded in, never the carrier-offer/listed price. */}
+          {order.dispatched_price != null
+            ? <InfoRow label="Transport (carrier)" value={`$${order.dispatched_price.toFixed(2)}`} mono />
+            : (price && <InfoRow label="Transport fee" value={price} mono />)}
+          {order.service_fee_cents != null && order.service_fee_cents > 0 && (
+            <InfoRow label="Y7 service fee" value={`$${(order.service_fee_cents / 100).toFixed(2)}`} mono />
+          )}
           {order.payment_responsibility && <InfoRow label="Payment method" value={order.payment_responsibility === 'broker' ? 'Prepaid to Y7' : 'COD at delivery'} />}
 
           {paymentData?.payment && (
