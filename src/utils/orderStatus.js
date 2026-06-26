@@ -77,6 +77,23 @@ export const STATUS_PIPELINE = [
   ORDER_STATUS.COMPLETED,
 ];
 
+// EXP-T1: no-quote pipeline for direct_submit (dealer/exporter) orders — the two
+// quote steps are dropped entirely and "pending" reads as "Request Received".
+export const NO_QUOTE_PIPELINE = [
+  ORDER_STATUS.PENDING,
+  ORDER_STATUS.CONFIRMED,
+  ORDER_STATUS.DISPATCHED,
+  ORDER_STATUS.PICKED_UP,
+  ORDER_STATUS.IN_TRANSIT,
+  ORDER_STATUS.DELIVERED,
+  ORDER_STATUS.COMPLETED,
+];
+
+export const NO_QUOTE_LABELS = {
+  ...STATUS_LABELS,
+  [ORDER_STATUS.PENDING]: 'Request Received',
+};
+
 /**
  * Returns a styled badge object { label, color, backgroundColor } for a given status.
  * @param {string} status - raw status string from the API

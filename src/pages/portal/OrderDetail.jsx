@@ -6,7 +6,7 @@ import BouncingEmailBanner from '../../components/recovery/BouncingEmailBanner';
 import { portalFetch, useAuth } from '../../hooks/useAuth';
 import { colors, fonts } from '../../theme';
 import { API_URL } from '../../config';
-import { STATUS_LABELS, STATUS_PIPELINE, CANCELLATION_REASON_LABELS } from '../../utils/orderStatus';
+import { STATUS_LABELS, STATUS_PIPELINE, NO_QUOTE_LABELS, CANCELLATION_REASON_LABELS } from '../../utils/orderStatus';
 
 const TIMELINE_STEPS = [
   { key: 'pending', label: STATUS_LABELS.pending, field: 'created_at' },
@@ -16,6 +16,17 @@ const TIMELINE_STEPS = [
   { key: 'picked_up', label: STATUS_LABELS.picked_up, field: null },
   { key: 'in_transit', label: STATUS_LABELS.in_transit, field: null },
   { key: 'delivered', label: STATUS_LABELS.delivered, field: null },
+];
+
+// EXP-T1: no-quote tracker for direct_submit (dealer/exporter) orders — the two
+// quote steps are dropped; "pending" reads "Request Received".
+const NO_QUOTE_STEPS = [
+  { key: 'pending', label: NO_QUOTE_LABELS.pending, field: 'created_at' },
+  { key: 'confirmed', label: NO_QUOTE_LABELS.confirmed, field: 'confirmed_at' },
+  { key: 'dispatched', label: NO_QUOTE_LABELS.dispatched, field: null },
+  { key: 'picked_up', label: NO_QUOTE_LABELS.picked_up, field: null },
+  { key: 'in_transit', label: NO_QUOTE_LABELS.in_transit, field: null },
+  { key: 'delivered', label: NO_QUOTE_LABELS.delivered, field: null },
 ];
 
 const STATUS_ORDER = STATUS_PIPELINE;
@@ -390,6 +401,10 @@ export default function OrderDetail() {
   }
 
   const vehicle = [order.vehicle_year, order.vehicle_make, order.vehicle_model].filter(Boolean).join(' ') || 'Vehicle TBD';
+  // EXP-T1: dealer/exporter direct_submit orders have no quote — use the no-quote
+  // tracker (no "Quote Requested"/"Quote Sent" steps).
+  const noQuote = order.submission_type === 'direct_submit';
+  const steps = noQuote ? NO_QUOTE_STEPS : TIMELINE_STEPS;
   const currentStatusIdx = STATUS_ORDER.indexOf(order.status);
 
   function isStepDone(stepKey) {
@@ -471,7 +486,7 @@ export default function OrderDetail() {
         padding: '24px',
         marginBottom: '24px',
       }}>
-        {TIMELINE_STEPS.map((step, i) => {
+        {steps.map((step, i) => {
           const done = isStepDone(step.key);
           const isCurrent = step.key === order.status;
           const date = getStepDate(step);
@@ -480,7 +495,7 @@ export default function OrderDetail() {
             <div key={step.key} style={{
               display: 'flex',
               gap: '16px',
-              minHeight: i < TIMELINE_STEPS.length - 1 ? '52px' : 'auto',
+              minHeight: i < steps.length - 1 ? '52px' : 'auto',
             }}>
               {/* Dot + line */}
               <div style={{
@@ -499,7 +514,7 @@ export default function OrderDetail() {
                   flexShrink: 0,
                   marginTop: '3px',
                 }} />
-                {i < TIMELINE_STEPS.length - 1 && (
+                {i < steps.length - 1 && (
                   <div style={{
                     width: '2px',
                     flex: 1,
@@ -572,7 +587,7 @@ export default function OrderDetail() {
       </InfoCard>
 
       {/* Payment */}
-      {(price || order.dispatched_price != null || paymentData?.payment) && (
+      {(price || order.dispatched_price != null || order.service_fee_cents != null || paymentData?.payment) && (
         <InfoCard title="Payment">
           {/* EXP-D4: once the operator records the real CD-dispatched carrier price,
               it IS the transport line (honest passthrough); otherwise show the
