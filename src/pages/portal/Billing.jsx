@@ -19,33 +19,23 @@ const STATUS_STYLES = {
   cancelled: { bg: '#F3F4F6', color: '#9CA3AF' },
 };
 
-const TX_LABELS = {
-  deposit: 'Deposit',
-  carrier_payment: 'Carrier Payment',
-  service_fee: 'Service Fee',
-  adjustment_credit: 'Credit',
-  adjustment_debit: 'Debit',
-  refund: 'Refund',
-};
-
 export default function Billing() {
   // eslint-disable-next-line no-unused-vars
   const { user } = useAuth();
   const [data, setData] = useState(null);
   const [invoices, setInvoices] = useState(null);
-  const [transactions, setTransactions] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [tab, setTab] = useState('invoices');
 
   useEffect(() => {
+    // EXP-F6: revised money model — show only Y7 service-fee invoices + the
+    // outstanding-fee total. The off-app funding account (transport/storage/
+    // dry-run) is NOT tracked, so no balance card and no ledger transactions.
     Promise.all([
       portalFetch('/api/portal/billing/summary').then(r => r.json()),
       portalFetch('/api/portal/billing/invoices').then(r => r.json()),
-      portalFetch('/api/portal/billing/transactions?limit=30').then(r => r.json()),
-    ]).then(([summary, invs, txs]) => {
+    ]).then(([summary, invs]) => {
       setData(summary);
       setInvoices(invs.invoices || []);
-      setTransactions(txs.transactions || []);
       setLoading(false);
     }).catch(() => setLoading(false));
   }, []);
@@ -63,18 +53,6 @@ export default function Billing() {
     );
   }
 
-  const tabStyle = (active) => ({
-    padding: '8px 20px',
-    fontSize: '13px',
-    fontFamily: fonts.sans,
-    fontWeight: 600,
-    cursor: 'pointer',
-    border: 'none',
-    borderBottom: active ? `2px solid ${colors.accent}` : '2px solid transparent',
-    background: 'none',
-    color: active ? colors.text : colors.textMuted,
-  });
-
   return (
     <div style={{ maxWidth: '700px', margin: '0 auto', padding: '40px 24px 80px' }}>
       <PageMeta title="Billing & Invoices" />
@@ -90,48 +68,31 @@ export default function Billing() {
         Billing & Invoices
       </h1>
 
-      {/* Balance card */}
+      {/* EXP-F6: outstanding Y7 service fees (unpaid invoices) — the only summary
+          number. No funding-account balance; that account is off-app. */}
       <div style={{
-        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         background: colors.bgCard, border: `1px solid ${colors.border}`, borderRadius: '12px',
         padding: '20px 24px', marginBottom: '24px',
       }}>
-        <div>
-          <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-            Current Balance
-          </div>
-          <div style={{
-            fontFamily: fonts.serif, fontSize: '32px', fontWeight: 700,
-            color: (data.balance_cents || 0) < 0 ? '#DC2626' : '#059669',
-          }}>
-            {fmt(data.balance_cents)}
-          </div>
+        <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+          Outstanding Y7 service fees
         </div>
-        <div style={{ textAlign: 'right' }}>
-          <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted }}>
-            {data.billing_mode === 'prepay_manual_invoice' ? 'Prepay — Invoice' : 'Pay per Delivery'}
-          </div>
-          {data.is_blocked && (
-            <div style={{
-              marginTop: '6px', padding: '4px 10px', borderRadius: '12px',
-              background: '#FEE2E2', color: '#991B1B',
-              fontSize: '11px', fontWeight: 600, fontFamily: fonts.sans,
-            }}>
-              New orders paused
-            </div>
-          )}
+        <div style={{
+          fontFamily: fonts.serif, fontSize: '32px', fontWeight: 700,
+          color: (data.outstanding_fees_cents || 0) > 0 ? '#993C1D' : '#059669',
+        }}>
+          {fmt(data.outstanding_fees_cents)}
+        </div>
+        <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginTop: '4px', lineHeight: 1.5 }}>
+          Y7 invoices bill the Y7 service fee only. Transport, storage, and other
+          costs are paid from your funding account.
         </div>
       </div>
 
-      {/* Tabs */}
-      <div style={{ borderBottom: `1px solid ${colors.border}`, marginBottom: '20px' }}>
-        <button style={tabStyle(tab === 'invoices')} onClick={() => setTab('invoices')}>Invoices</button>
-        <button style={tabStyle(tab === 'transactions')} onClick={() => setTab('transactions')}>Transactions</button>
-      </div>
-
-      {/* Invoices tab */}
-      {tab === 'invoices' && (
-        <div>
+      <h2 style={{ fontFamily: fonts.serif, fontSize: '18px', fontWeight: 700, color: colors.text, marginBottom: '12px' }}>
+        Invoices
+      </h2>
+      <div>
           {invoices.length === 0 ? (
             <p style={{ fontFamily: fonts.sans, color: colors.textMuted, fontSize: '13px', textAlign: 'center', padding: '32px 0' }}>
               No invoices yet.
@@ -169,44 +130,7 @@ export default function Billing() {
               </div>
             );
           })}
-        </div>
-      )}
-
-      {/* Transactions tab */}
-      {tab === 'transactions' && (
-        <div>
-          {transactions.length === 0 ? (
-            <p style={{ fontFamily: fonts.sans, color: colors.textMuted, fontSize: '13px', textAlign: 'center', padding: '32px 0' }}>
-              No transactions yet.
-            </p>
-          ) : transactions.map(tx => (
-            <div key={tx.id} style={{
-              display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-              padding: '12px 16px', borderBottom: `1px solid ${colors.border}`,
-            }}>
-              <div>
-                <div style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600 }}>
-                  {TX_LABELS[tx.transaction_type] || tx.transaction_type}
-                </div>
-                <div style={{ fontFamily: fonts.sans, fontSize: '11px', color: colors.textMuted }}>
-                  {tx.description}
-                </div>
-              </div>
-              <div style={{ textAlign: 'right' }}>
-                <div style={{
-                  fontFamily: fonts.sans, fontSize: '14px', fontWeight: 700,
-                  color: tx.amount_cents >= 0 ? '#059669' : '#DC2626',
-                }}>
-                  {tx.amount_cents >= 0 ? '+' : ''}{fmt(tx.amount_cents)}
-                </div>
-                <div style={{ fontFamily: fonts.sans, fontSize: '10px', color: colors.textMuted }}>
-                  Bal: {fmt(tx.balance_after_cents)}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+      </div>
 
       {/* Payment instructions */}
       <div style={{
@@ -215,9 +139,10 @@ export default function Billing() {
         fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, lineHeight: 1.6,
       }}>
         <div style={{ fontWeight: 600, color: colors.text, marginBottom: '6px' }}>How to Pay</div>
-        Please remit payment via ACH or wire transfer to the bank account on file.
-        Payment is due by the date on each invoice to ensure uninterrupted carrier payments.
-        For questions, contact info@y7agency.com or @y7dispatch_bot on Telegram.
+        These invoices cover the Y7 service fee only. Please remit payment by the
+        date on each invoice via ACH or wire transfer to the Y7 account on file.
+        Transport, storage, and other carrier costs are funded separately from your
+        funding account. For questions, contact info@y7agency.com or @y7dispatch_bot on Telegram.
       </div>
     </div>
   );
