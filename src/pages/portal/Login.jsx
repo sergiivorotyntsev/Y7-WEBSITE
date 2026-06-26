@@ -57,6 +57,10 @@ export default function Login() {
   const forgotCodeRefs = useRef([]);
   // PHASE1-RECOVERY: 'idle' | 'sending' | 'sent' for the resend-signin control.
   const [resendState, setResendState] = useState('idle');
+  // FX-4: true when the existing account is quote-origin (passwordless, created
+  // by an anonymous quote) — drives welcoming "finish setting up" recovery copy
+  // instead of the misleading "you already started" message.
+  const [recoveryQuoteOrigin, setRecoveryQuoteOrigin] = useState(false);
 
   const loginRef = useRef(login);
   const navigateRef = useRef(navigate);
@@ -317,7 +321,7 @@ export default function Login() {
         // sign-in link, instead of a red dead-end. This also neutralizes the
         // prior enumeration-flavored "already registered" message.
         if (res.status === 409 && errCode === 'email_already_registered') {
-          triggerRecovery();
+          triggerRecovery(detail.quote_origin === true);
         } else if (detail && typeof detail === 'object') {
           setError(detail.message || detail.detail || detail.error || 'Could not start verification.');
         } else {
@@ -347,8 +351,9 @@ export default function Login() {
     trackEvent('portal_recovery_link_sent', { method: 'resend_signin' });
   }
 
-  function triggerRecovery() {
+  function triggerRecovery(quoteOrigin = false) {
     setError(null);
+    setRecoveryQuoteOrigin(quoteOrigin === true);
     setResendState('sending');
     setStep('recovery');
     sendSigninLink();
@@ -467,10 +472,12 @@ export default function Login() {
             </div>
 
             <h1 style={{ fontFamily: fonts.serif, fontSize: 24, fontWeight: 700, color: colors.text, margin: '0 0 10px' }}>
-              You already started with Y7
+              {recoveryQuoteOrigin ? 'Welcome — let’s finish setting up' : 'You already started with Y7'}
             </h1>
             <p style={{ fontFamily: fonts.sans, fontSize: 15, lineHeight: 1.6, color: colors.textMuted, margin: '0 0 4px' }}>
-              We&rsquo;ve emailed your sign-in link to
+              {recoveryQuoteOrigin
+                ? 'We found your earlier quote. We’ve emailed a sign-in link to'
+                : 'We’ve emailed your sign-in link to'}
             </p>
             <p style={{ fontFamily: fonts.mono, fontSize: 15, fontWeight: 600, color: colors.text, margin: '0 0 18px' }}>
               {masked}
