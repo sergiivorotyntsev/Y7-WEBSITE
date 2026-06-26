@@ -501,7 +501,9 @@ export default function NewOrder() {
           <div style={{ fontSize: '48px', marginBottom: '16px' }}>&#10003;</div>
           <h1 style={{ fontFamily: fonts.serif, fontSize: '24px', fontWeight: 700, color: colors.text, marginBottom: '12px' }}>Order Submitted</h1>
           <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, lineHeight: 1.6, marginBottom: showTierSelector ? '20px' : '32px' }}>
-            Your transport request has been received. Our dispatcher will review it and send you a quote shortly.
+            {isWarehouseUser
+              ? "Request received. We'll source the best-priced carrier; your transport price will appear here once it's set."
+              : 'Your transport request has been received. Our dispatcher will review it and send you a quote shortly.'}
           </p>
           {/* CAP-S1-W03: ownership-proof prompt (individual/auction_buyer). Soft — speeds dispatch, not a hard block. */}
           {showTierSelector && success.orderId && (
@@ -538,7 +540,9 @@ export default function NewOrder() {
       <Link to="/portal/dashboard" style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.accent, display: 'inline-block', marginBottom: '20px' }}>&larr; Back to Dashboard</Link>
       <h1 style={{ fontFamily: fonts.serif, fontSize: '28px', fontWeight: 700, color: colors.text, marginBottom: '8px' }}>New Transport Order</h1>
       <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, marginBottom: '6px' }}>
-        Submit a transport request. We'll review it and send you a quote.
+        {isWarehouseUser
+          ? "Submit your vehicle. We'll source the best-priced carrier — your transport price will appear here once it's set."
+          : "Submit a transport request. We'll review it and send you a quote."}
       </p>
       <p style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginBottom: '24px' }}>
         Contact info from your profile will be used.{' '}
