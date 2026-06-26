@@ -5,12 +5,14 @@ import { portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles, keyframes } from '../../theme';
 import { UNIFIED_STAGES, mapUnifiedStage } from '../../utils/loadStatus';
 
-// DEALER-DASH-S1-T03 — Dealer/Exporter HOME: three-block dashboard.
-// Block 1 (Loads) is populated; Blocks 2 (Money) and 3 (Documents) are clean
-// "coming" placeholders this slice (S2/S3). Reuses the existing portal data
-// endpoint (DEALER-DASH-S1-T02 sort/order/limit params). Display-only price
-// contract (S1-T01): transport price = final_price ?? quote range; Y7 fee =
-// service_fee_cents as a SEPARATE line; never listed_price / dispatch price.
+// DEALER-DASH-S1-T03 — Dealer/Exporter HOME: loads dashboard.
+// Block 1 (Loads) is the live surface. The former Money/Documents "coming
+// soon" placeholders were removed (EXP-P1): no placeholder stands in for a
+// real feature. The live Money summary lands with the billing work (Phase 4),
+// where the exporter billing gate is also opened. Reuses the existing portal
+// data endpoint (DEALER-DASH-S1-T02 sort/order/limit params). Display-only
+// price contract (S1-T01): transport price = final_price ?? quote range; Y7
+// fee = service_fee_cents as a SEPARATE line; never listed_price / dispatch.
 
 const STATUS_FILTERS = [
   { value: 'all', label: 'All loads' },
@@ -45,28 +47,6 @@ const inputStyle = {
   background: colors.bgInput || '#fff',
   color: colors.text,
 };
-
-function ComingBlock({ title, body, cta }) {
-  return (
-    <div style={{
-      background: colors.bgCard,
-      border: `1px dashed ${colors.border}`,
-      borderRadius: '12px',
-      padding: '20px',
-    }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-        <h3 style={{ fontFamily: fonts.serif, fontSize: '16px', fontWeight: 700, color: colors.text }}>{title}</h3>
-        <span style={{
-          fontFamily: fonts.sans, fontSize: '10px', fontWeight: 700, color: colors.textMuted,
-          background: colors.bgMuted, padding: '2px 8px', borderRadius: '8px',
-          textTransform: 'uppercase', letterSpacing: '0.5px',
-        }}>Coming soon</span>
-      </div>
-      <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted, lineHeight: 1.5 }}>{body}</p>
-      {cta}
-    </div>
-  );
-}
 
 function UnifiedProgress({ stageIndex, terminal, label }) {
   if (terminal) {
@@ -256,10 +236,9 @@ export default function DealerDashboard({ user }) {
         <button onClick={() => navigate('/portal/new-order')} style={btnStyles.accent}>New Order</button>
       </div>
 
-      {/* Three-block grid */}
+      {/* Loads */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', alignItems: 'start' }}>
 
-        {/* BLOCK 1 — LOADS (populated) */}
         <div style={{ gridColumn: '1 / -1' }}>
           <h2 style={{ fontFamily: fonts.serif, fontSize: '20px', fontWeight: 700, color: colors.text, marginBottom: '12px' }}>
             Your Loads
@@ -321,25 +300,6 @@ export default function DealerDashboard({ user }) {
             </div>
           )}
         </div>
-
-        {/* BLOCK 2 — MONEY (placeholder) */}
-        <ComingBlock
-          title="Money"
-          body={isExporter
-            ? 'Per-load transport cost, your Y7 service fees, and balance. Exporter billing terms are being finalized.'
-            : 'Per-load transport cost and Y7 service fee, what you owe Y7, the current weekly invoice, and payment history — all in one place.'}
-          cta={!isExporter ? (
-            <Link to="/portal/billing" style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.accent, textDecoration: 'none' }}>
-              View current billing &rarr;
-            </Link>
-          ) : null}
-        />
-
-        {/* BLOCK 3 — DOCUMENTS (placeholder) */}
-        <ComingBlock
-          title="Documents"
-          body="Per-load document checklist — what's required (gate pass, etc.), what's uploaded, what's missing, and review status."
-        />
       </div>
     </div>
   );
