@@ -330,6 +330,11 @@ export default function Locations() {
         )}
       </div>
 
+      <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, lineHeight: 1.6, marginBottom: '24px' }}>
+        Register every warehouse you deliver to. Y7 routes each shipment to the most
+        cost-effective one — we'll confirm hours and appointment details with you.
+      </p>
+
       {toast && (
         <div style={{
           fontFamily: fonts.sans, fontSize: '13px', color: '#065F46',
@@ -427,6 +432,11 @@ export default function Locations() {
                     Hours: {loc.business_hours}
                   </div>
                 )}
+                {/* EXP-B5: appointment policy is Y7-confirmed; shown read-only. */}
+                <div style={{ fontFamily: fonts.sans, fontSize: '12px', marginBottom: '4px', color: loc.appointment_required ? '#B45309' : colors.textMuted }}>
+                  Appointment: {loc.appointment_required ? 'Required' : 'Not required'}
+                  {loc.appointment_required && loc.appointment_instructions ? ` — ${loc.appointment_instructions}` : ''}
+                </div>
                 {loc.delivery_instructions && (
                   <div style={{
                     fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted,
