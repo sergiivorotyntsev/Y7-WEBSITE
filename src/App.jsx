@@ -85,6 +85,7 @@ const NewOrder = lazyWithRetry(() => import('./pages/portal/NewOrder'));
 const Billing = lazyWithRetry(() => import('./pages/portal/Billing'));
 const LocationSetup = lazyWithRetry(() => import('./pages/portal/LocationSetup'));
 const Locations = lazyWithRetry(() => import('./pages/portal/Locations'));
+const DealerApplication = lazyWithRetry(() => import('./pages/portal/DealerApplication'));
 const Onboarding = lazyWithRetry(() => import('./pages/portal/Onboarding'));
 // Intl placeholder pages
 const PolandHome = lazyWithRetry(() => import('./pages/intl/PolandHome'));
@@ -266,6 +267,7 @@ export default function App() {
             <Route path="/portal/billing" element={<ProtectedRoute><Billing /></ProtectedRoute>} />
             <Route path="/portal/locations/setup" element={<ProtectedRoute><LocationSetup /></ProtectedRoute>} />
             <Route path="/portal/locations" element={<ProtectedRoute><Locations /></ProtectedRoute>} />
+            <Route path="/portal/application" element={<ProtectedRoute><DealerApplication /></ProtectedRoute>} />
             <Route path="/portal/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             {/* ONBOARD-T08: unified classify-and-sign wizard — replaces
                 AccountTypeModal + separate /agreement page flow. */}
