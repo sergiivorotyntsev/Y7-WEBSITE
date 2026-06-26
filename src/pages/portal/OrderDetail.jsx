@@ -250,6 +250,170 @@ function OwnershipProofCard({ orderId, status, docType, note, submittedAt, onUpd
   );
 }
 
+// DOC-2 / DOC-5 / DOC-7: cabinet document intake — upload an auction doc to
+// auto-fill the order (VIN / vehicle / value / pickup), confirm, and apply; or
+// attach a doc as proof only (no reading) for graphic scans / odd gate passes.
+function DocIntakeCard({ orderId, onUpdated }) {
+  const [file, setFile] = useState(null);
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState(null);
+  const [fields, setFields] = useState(null); // confirm fields after extract
+  const [done, setDone] = useState(null);
+
+  const inputStyle = {
+    width: '100%', padding: '8px 10px', border: `1px solid ${colors.borderInput}`,
+    borderRadius: '8px', fontSize: '16px', fontFamily: fonts.sans,
+    background: colors.bgInput, color: colors.text, boxSizing: 'border-box', marginTop: '2px',
+  };
+  const btn = (disabled, secondary) => ({
+    padding: '8px 16px', background: secondary ? 'transparent' : colors.accent,
+    color: secondary ? colors.accent : '#fff', border: secondary ? `1px solid ${colors.accent}` : 'none',
+    borderRadius: '20px', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase',
+    letterSpacing: '0.5px', fontFamily: fonts.sans, cursor: disabled ? 'not-allowed' : 'pointer',
+    opacity: disabled ? 0.6 : 1,
+  });
+  const lbl = { fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, fontWeight: 600 };
+
+  const post = async (path, fd) => {
+    // Raw fetch — portalFetch forces JSON which breaks FormData.
+    const r = await fetch(`${API_URL}/api/portal/data/orders/${orderId}${path}`, {
+      method: 'POST', credentials: 'include', body: fd,
+    });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(j.detail || 'Upload failed. Please try again.');
+    return j;
+  };
+
+  const extract = async () => {
+    if (!file) { setErr('Choose a document first.'); return; }
+    setBusy(true); setErr(null); setDone(null);
+    try {
+      const fd = new FormData(); fd.append('file', file);
+      const j = await post('/documents/extract', fd);
+      const ex = j.extracted || {};
+      if (!ex.vin && !ex.vehicle_value_cents && !ex.pickup_address) {
+        // No text layer / nothing read — it's stored as proof; tell the dealer.
+        setDone('Document attached. We couldn’t read it automatically — please enter the details by hand.');
+        setFile(null);
+      } else {
+        setFields({
+          vin: ex.vin || '', vehicle_year: ex.vehicle_year || '',
+          vehicle_make: ex.vehicle_make || '', vehicle_model: ex.vehicle_model || '',
+          vehicle_value_cents: ex.vehicle_value_cents || null,
+          vehicle_value_dollars: ex.vehicle_value_dollars != null ? String(ex.vehicle_value_dollars) : '',
+          pickup_address: ex.pickup_address || '', pickup_city: ex.pickup_city || '',
+          pickup_state: ex.pickup_state || '', pickup_zip: ex.pickup_zip || '',
+        });
+      }
+    } catch (e) { setErr(e.message); }
+    setBusy(false);
+  };
+
+  const attachProof = async () => {
+    if (!file) { setErr('Choose a document first.'); return; }
+    setBusy(true); setErr(null); setDone(null);
+    try {
+      const fd = new FormData(); fd.append('file', file); fd.append('role', 'proof');
+      await post('/documents', fd);
+      setDone('Document attached as proof.'); setFile(null);
+      if (onUpdated) onUpdated();
+    } catch (e) { setErr(e.message); }
+    setBusy(false);
+  };
+
+  const applyConfirm = async () => {
+    setBusy(true); setErr(null);
+    try {
+      const dollars = parseFloat(fields.vehicle_value_dollars);
+      const body = {
+        vin: fields.vin || null,
+        vehicle_year: fields.vehicle_year ? parseInt(fields.vehicle_year, 10) : null,
+        vehicle_make: fields.vehicle_make || null, vehicle_model: fields.vehicle_model || null,
+        vehicle_value_cents: Number.isFinite(dollars) ? Math.round(dollars * 100) : fields.vehicle_value_cents,
+        pickup_address: fields.pickup_address || null, pickup_city: fields.pickup_city || null,
+        pickup_state: fields.pickup_state || null, pickup_zip: fields.pickup_zip || null,
+      };
+      const r = await fetch(`${API_URL}/api/portal/data/orders/${orderId}/apply-extraction`, {
+        method: 'POST', credentials: 'include',
+        headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+      });
+      if (!r.ok) { const j = await r.json().catch(() => ({})); throw new Error(j.detail || 'Could not apply.'); }
+      setFields(null); setFile(null); setDone('Order updated from your document.');
+      if (onUpdated) onUpdated();
+    } catch (e) { setErr(e.message); }
+    setBusy(false);
+  };
+
+  const setF = (k, v) => setFields((p) => ({ ...p, [k]: v }));
+  const row2 = { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' };
+
+  return (
+    <InfoCard title="Upload auction document">
+      {!fields && (
+        <div>
+          <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted, lineHeight: 1.5, margin: '0 0 12px' }}>
+            Upload your auction document and we’ll read the VIN, vehicle, value, and pickup —
+            no need to type the VIN by hand. Or attach it as proof only.
+          </p>
+          <input
+            type="file" accept=".pdf,.jpg,.jpeg,.png,.heic,.webp"
+            onChange={(e) => { setFile(e.target.files?.[0] || null); setErr(null); setDone(null); }}
+            style={{ ...inputStyle, padding: '8px' }}
+          />
+          <div style={{ display: 'flex', gap: '10px', marginTop: '12px', flexWrap: 'wrap' }}>
+            <button type="button" onClick={extract} disabled={busy || !file} style={btn(busy || !file)}>
+              {busy ? 'Reading…' : 'Read & auto-fill'}
+            </button>
+            <button type="button" onClick={attachProof} disabled={busy || !file} style={btn(busy || !file, true)}>
+              Attach as proof only
+            </button>
+          </div>
+        </div>
+      )}
+
+      {fields && (
+        <div>
+          <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.text, lineHeight: 1.5, margin: '0 0 12px' }}>
+            We read your document — review and confirm. <strong>You don’t need to type the VIN.</strong>
+          </p>
+          <div style={{ marginBottom: '10px' }}>
+            <span style={lbl}>VIN</span>
+            <input style={inputStyle} value={fields.vin} onChange={(e) => setF('vin', e.target.value)} />
+          </div>
+          <div style={row2}>
+            <div><span style={lbl}>Year</span><input style={inputStyle} value={fields.vehicle_year} onChange={(e) => setF('vehicle_year', e.target.value)} /></div>
+            <div><span style={lbl}>Vehicle value (USD)</span><input style={inputStyle} value={fields.vehicle_value_dollars} onChange={(e) => setF('vehicle_value_dollars', e.target.value)} placeholder="e.g. 9900" /></div>
+          </div>
+          <div style={{ ...row2, marginTop: '10px' }}>
+            <div><span style={lbl}>Make</span><input style={inputStyle} value={fields.vehicle_make} onChange={(e) => setF('vehicle_make', e.target.value)} /></div>
+            <div><span style={lbl}>Model</span><input style={inputStyle} value={fields.vehicle_model} onChange={(e) => setF('vehicle_model', e.target.value)} /></div>
+          </div>
+          <div style={{ marginTop: '10px' }}>
+            <span style={lbl}>Pickup address</span>
+            <input style={inputStyle} value={fields.pickup_address} onChange={(e) => setF('pickup_address', e.target.value)} />
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '10px', marginTop: '10px' }}>
+            <div><span style={lbl}>City</span><input style={inputStyle} value={fields.pickup_city} onChange={(e) => setF('pickup_city', e.target.value)} /></div>
+            <div><span style={lbl}>State</span><input style={inputStyle} value={fields.pickup_state} onChange={(e) => setF('pickup_state', e.target.value)} /></div>
+            <div><span style={lbl}>ZIP</span><input style={inputStyle} value={fields.pickup_zip} onChange={(e) => setF('pickup_zip', e.target.value)} /></div>
+          </div>
+          <div style={{ display: 'flex', gap: '10px', marginTop: '14px', flexWrap: 'wrap' }}>
+            <button type="button" onClick={applyConfirm} disabled={busy} style={btn(busy)}>
+              {busy ? 'Saving…' : 'Confirm & apply'}
+            </button>
+            <button type="button" onClick={() => { setFields(null); setDone(null); }} disabled={busy} style={btn(busy, true)}>
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
+
+      {done && <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.success, marginTop: '12px' }}>{done}</div>}
+      {err && <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: '#B91C1C', marginTop: '12px' }}>{err}</div>}
+    </InfoCard>
+  );
+}
+
 export default function OrderDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -719,6 +883,12 @@ export default function OrderDetail() {
           </div>
         )}
       </InfoCard>
+
+      {/* DOC-2/5/7: cabinet auction-document intake — dealers/exporters/auction
+          buyers upload an auction doc to auto-fill VIN/value/pickup (or attach proof). */}
+      {['dealer', 'exporter', 'auction_buyer'].includes(user?.customer_type) && (
+        <DocIntakeCard orderId={id} onUpdated={fetchOrder} />
+      )}
 
       {/* Ownership proof — individual / auction_buyer only, once the price is accepted. */}
       {['individual', 'auction_buyer'].includes(user?.customer_type)
