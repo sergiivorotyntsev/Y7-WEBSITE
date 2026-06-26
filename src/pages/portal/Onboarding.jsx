@@ -431,7 +431,7 @@ function ProfileStep({ user, onCompleted }) {
           required
           style={{
             width: '100%', padding: '10px 12px',
-            fontSize: 14, fontFamily: fonts.sans,
+            fontSize: 16, fontFamily: fonts.sans, // >=16px avoids iOS focus-zoom
             border: `1px solid ${colors.borderInput}`,
             borderRadius: radii.md,
             background: colors.bgCard,
@@ -541,7 +541,7 @@ function Field({ label, value, onChange, placeholder, required, type = 'text', a
         maxLength={maxLength}
         style={{
           width: '100%', padding: '10px 12px',
-          fontSize: 14, fontFamily: fonts.sans,
+          fontSize: 16, fontFamily: fonts.sans, // >=16px avoids iOS focus-zoom
           border: `1px solid ${colors.borderInput}`,
           borderRadius: radii.md,
           background: colors.bgCard,
