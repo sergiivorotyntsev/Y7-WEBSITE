@@ -85,6 +85,12 @@ export function mapUnifiedStage(order) {
   if (cs === 'pending') return stage('submitted');
   if (cs === 'quoted') return stage('quoted');
   if (cs === 'confirmed') return stage('confirmed');
+  if (cs === 'listed') return stage('listed');
+  // EXP-D3: customer_orders.status now advances through the real delivery legs
+  // (mirrored synchronously from the dispatch finishers), so map them directly.
+  if (cs === 'picked_up') return stage('picked_up');
+  if (cs === 'in_transit') return stage('in_transit');
+  if (cs === 'delivered') return stage('delivered');
   if (cs === 'completed') return stage('delivered');
   if (cs === 'dispatched') {
     // Prefer the precise dispatch status when the API provides it.
