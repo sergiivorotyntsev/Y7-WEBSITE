@@ -551,6 +551,24 @@ export default function OrderDetail() {
         <InfoRow label="From" value={[order.pickup_city, order.pickup_state, order.pickup_zip].filter(Boolean).join(', ') || order.pickup_zip} />
         {order.pickup_location_type && <InfoRow label="Type" value={order.pickup_location_type} />}
         <InfoRow label="To" value={[order.delivery_city, order.delivery_state, order.delivery_zip].filter(Boolean).join(', ') || order.delivery_zip} />
+        {/* EXP-B5: Y7-assigned destination warehouse + appointment info (read-only). */}
+        {order.destination_warehouse && (
+          <>
+            <InfoRow
+              label="Destination"
+              value={[order.destination_warehouse.label, order.destination_warehouse.city, order.destination_warehouse.state].filter(Boolean).join(' · ')}
+            />
+            {order.destination_warehouse.business_hours && (
+              <InfoRow label="Hours" value={order.destination_warehouse.business_hours} />
+            )}
+            <InfoRow
+              label="Appointment"
+              value={order.destination_warehouse.appointment_required
+                ? `Required${order.destination_warehouse.appointment_instructions ? ` — ${order.destination_warehouse.appointment_instructions}` : ''}`
+                : 'Not required'}
+            />
+          </>
+        )}
       </InfoCard>
 
       {/* Payment */}
