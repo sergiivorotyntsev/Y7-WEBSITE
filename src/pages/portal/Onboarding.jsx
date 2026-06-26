@@ -72,6 +72,7 @@ const TYPES = [
       'Dedicated dealer agreement',
       '$50 COD / $65 Full Service (AP service available separately)',
     ],
+    note: 'Requires a short verification — apply now, we review and set up a call to activate.',
     tone: { border: '#0F6E56', bg: '#F0FAF6' },
   },
   {
@@ -83,6 +84,7 @@ const TYPES = [
       'Container-ready delivery',
       '$50 COD or $65 Full Service fee',
     ],
+    note: 'Requires a short verification — apply now, we review and set up a call to activate.',
     tone: { border: '#14648C', bg: '#F0F6FA' },
   },
 ];
@@ -616,6 +618,14 @@ function AccountTypeStep({ onSelected }) {
             }}>
               {t.benefits.map((b, i) => <li key={i}>{b}</li>)}
             </ul>
+            {t.note && (
+              <div style={{
+                marginTop: spacing.sm, fontSize: 12, fontWeight: 600,
+                color: t.tone.border, lineHeight: 1.5,
+              }}>
+                {t.note}
+              </div>
+            )}
           </button>
         ))}
       </div>

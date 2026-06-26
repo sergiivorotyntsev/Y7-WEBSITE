@@ -126,11 +126,13 @@ const REG_TYPES = [
   },
 ];
 
-// REGC-S13-W01: pinned dealer pending note (verbatim — no time/SLA promises).
+// REGC-S13-W01 / FX-6: pinned pending note (verbatim — no time/SLA promises).
+// Shown for BOTH dealer and exporter so the verification requirement is set
+// before signup, matching the application -> review -> activate reality.
 const DEALER_PENDING_NOTE =
-  'Dealer accounts require verification before you can place orders directly. ' +
-  "You can finish setting up your account now — our team will review your " +
-  "dealership and email you once you're approved.";
+  'Dealer and exporter accounts require a short verification before you can ' +
+  'place orders directly. You can finish setting up your account now — our ' +
+  "team will review your business and set up a call to activate you.";
 
 export default function LoginCard({
   t,
@@ -502,7 +504,7 @@ export default function LoginCard({
                 </button>
               );
             })}
-            {regType === 'dealer' && (
+            {(regType === 'dealer' || regType === 'exporter') && (
               <div style={{
                 fontFamily: fonts.sans, fontSize: '12px', color: '#0F6E56',
                 background: '#F0FAF6', border: '1px solid #0F6E56',
