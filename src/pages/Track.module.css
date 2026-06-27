@@ -89,7 +89,7 @@
 }
 
 .searchInput::placeholder {
-  color: var(--text-hint, #999);
+  color: var(--text-muted, #706E68);
   font-style: italic;
 }
 
@@ -125,7 +125,7 @@
   border-radius: var(--radius-xl, 16px);
   padding: 40px 28px;
   text-align: center;
-  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.04));
+  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
 }
 
 .errorIcon {
@@ -149,8 +149,9 @@
 }
 
 .errorBtn {
-  padding: 10px 22px !important;
+  padding: 11px 22px !important;
   font-size: 12px !important;
+  min-height: 44px;
   text-decoration: none;
 }
 
@@ -163,7 +164,7 @@
   border: 1px solid var(--border, #e5e0d8);
   border-radius: var(--radius-xl, 16px);
   padding: clamp(24px, 4vw, 32px);
-  box-shadow: var(--shadow-md, 0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06));
+  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
 }
 
 .vehicle {
@@ -252,7 +253,7 @@
 .timelineLabel {
   font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
-  color: var(--text-hint, #999);
+  color: var(--text-muted, #706E68);
 }
 
 .timelineLabelDone {
@@ -355,8 +356,9 @@
   letter-spacing: 0.08em;
 }
 
+/* A-spine: unified to the page column width (was 900, wider than the 720 wrap). */
 .fallbackSection {
-  max-width: 900px;
+  max-width: 720px;
   margin: clamp(40px, 6vh, 56px) auto 0;
   padding: 0 16px;
 }
@@ -388,6 +390,7 @@
   background: var(--bg-card, #fff);
   border: 1px solid var(--border, #e5e0d8);
   border-radius: var(--radius-lg, 12px);
+  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
   text-decoration: none;
   color: inherit;
   transition: border-color 200ms ease, transform 150ms ease, box-shadow 200ms ease;
@@ -395,9 +398,9 @@
 
 @media (hover: hover) {
   .fallbackCard:hover {
-    border-color: var(--accent, #993C1D);
-    transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.06);
+    border-color: var(--success, #0F6E56);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card-hover, 0 2px 6px rgba(44,44,42,0.06), 0 16px 40px rgba(44,44,42,0.12));
   }
 }
 
@@ -445,12 +448,13 @@
 }
 
 /* P3-FIX-T02: explicit "orders go through portal" policy note */
+/* A-spine: full border (was a banned accent side-stripe); width unified to 720. */
 .orderNote {
-  max-width: 760px;
+  max-width: 720px;
   margin: 0 auto 28px;
   padding: 14px 20px;
   background: var(--bg-card, #fff);
-  border-left: 3px solid var(--accent, #993C1D);
+  border: 1px solid var(--border, #e5e0d8);
   border-radius: var(--radius-md, 8px);
   font-family: var(--font-sans, system-ui);
   font-size: 13.5px;

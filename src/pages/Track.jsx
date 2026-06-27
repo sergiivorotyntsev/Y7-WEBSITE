@@ -64,19 +64,23 @@ export default function Track() {
           value={code}
           onChange={e => setCode(e.target.value)}
           placeholder={t('track.searchPlaceholder')}
+          aria-label={t('track.searchPlaceholder')}
           className={styles.searchInput}
         />
         <button
           type="submit"
           disabled={loading}
+          aria-busy={loading}
           className={`${btn.btnAccent} ${styles.submitBtn}`}
         >
           {loading ? '...' : 'Track'}
         </button>
       </form>
 
+      {/* a11y: live region announces the async result / error to screen readers */}
+      <div aria-live="polite">
       {error && (
-        <div className={styles.errorCard}>
+        <div className={styles.errorCard} role="alert">
           <div className={styles.errorIcon}><QuestionIcon size={44} /></div>
           <p className={styles.errorMsg}>
             {error === 'Shipment not found' ? 'No shipment found with that code. Please check and try again.' : error}
@@ -113,7 +117,7 @@ export default function Track() {
               const labelClass = done ? styles.timelineLabelDone : styles.timelineLabel;
 
               return (
-                <div key={s} className={isLast ? styles.timelineRowLast : styles.timelineRow}>
+                <div key={s} className={isLast ? styles.timelineRowLast : styles.timelineRow} aria-current={isCurrent ? 'step' : undefined}>
                   <div className={styles.timelineDotWrap}>
                     <div className={dotClass} />
                     {!isLast && (
@@ -146,6 +150,7 @@ export default function Track() {
           </div>
         </div>
       )}
+      </div>
 
       {/* Help text */}
       {!result && !error && !loading && (
