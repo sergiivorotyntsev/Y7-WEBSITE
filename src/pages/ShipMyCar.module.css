@@ -67,6 +67,11 @@
   box-shadow: 0 2px 6px rgba(153, 60, 29, 0.18), 0 8px 22px rgba(153, 60, 29, 0.14);
   transition: transform 200ms ease-out, box-shadow 200ms ease-out, background-color 200ms ease-out;
 }
+/* A-spine: :focus-visible standard (was missing). */
+.heroCta:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+}
 @media (hover: hover) {
   .heroCta:hover {
     background: var(--accent-hover, #7A3017);
@@ -124,7 +129,7 @@
 
 @media (hover: hover) {
   .step:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
   }
   .step:hover .stepNum {
     background: var(--accent, #993C1D);
@@ -182,7 +187,7 @@
 
 .sectionHeading {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 700;
   color: var(--text, #2C2C2A);
   margin: 0 0 14px;
@@ -217,10 +222,12 @@
    CALLOUT BOXES (insurance, BOL)
    ===================================================================== */
 
+/* A-spine: retire the peach + banned side-stripe; clean elevated card. */
 .callout {
-  background: linear-gradient(135deg, #FFF8F5 0%, rgba(153, 60, 29, 0.03) 100%);
-  border-left: 4px solid var(--accent, #993C1D);
-  border-radius: 0 var(--radius-lg, 12px) var(--radius-lg, 12px) 0;
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-lg, 12px);
+  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
   padding: 24px 28px;
   position: relative;
 }
@@ -230,7 +237,7 @@
   font-family: var(--font-sans, system-ui);
   font-size: 10px;
   font-weight: 700;
-  color: var(--accent, #993C1D);
+  color: var(--success, #0F6E56);
   text-transform: uppercase;
   letter-spacing: 0.14em;
   margin-bottom: 10px;
@@ -274,7 +281,7 @@
 
 .quoteTitle {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 700;
   color: var(--text, #2C2C2A);
   text-align: center;
@@ -312,7 +319,7 @@
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
   font-weight: 700;
-  color: var(--accent, #993C1D);
+  color: var(--success, #0F6E56);
   text-transform: uppercase;
   letter-spacing: 0.14em;
   margin-bottom: 10px;
@@ -320,7 +327,7 @@
 
 .faqTitle {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 700;
   color: var(--text, #2C2C2A);
   margin: 0;
@@ -338,6 +345,7 @@
   background: var(--bg-card, #fff);
   border: 1px solid var(--border, #e5e0d8);
   border-radius: var(--radius-lg, 12px);
+  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
   overflow: hidden;
   transition: border-color var(--transition-normal, 250ms ease-out), box-shadow var(--transition-normal, 250ms ease-out);
 }
@@ -422,7 +430,7 @@
 
 .pricingSection,
 .seasonalSection {
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto;
   padding: clamp(32px, 5vh, 48px) 24px;
 }
@@ -432,13 +440,13 @@
   display: inline-block;
   font-family: var(--font-sans, system-ui);
   font-size: 11px; font-weight: 700;
-  color: var(--accent, #993C1D);
+  color: var(--success, #0F6E56);
   letter-spacing: 0.14em; text-transform: uppercase;
   margin-bottom: 8px;
 }
 .pricingTitle {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 700;
   color: var(--text, #2C2C2A);
   letter-spacing: -0.02em;
@@ -449,6 +457,7 @@
   overflow-x: auto;
   border: 1px solid var(--border, #e5e0d8);
   border-radius: var(--radius-lg, 12px);
+  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
 }
 .pricingTable {
   width: 100%; border-collapse: collapse;
@@ -467,7 +476,8 @@
   border-top: 1px solid var(--border, #e5e0d8);
   color: var(--text-muted, #706E68);
 }
-.pricingRangeCell { font-family: var(--font-serif, Georgia, serif); font-weight: 700; color: var(--text, #2C2C2A); }
+/* A-spine: pricing figures in JetBrains Mono (tabular numerics). */
+.pricingRangeCell { font-family: var(--font-mono, 'JetBrains Mono', monospace); font-weight: 600; color: var(--text, #2C2C2A); }
 .pricingNote {
   margin-top: 12px;
   font-family: var(--font-sans, system-ui);
@@ -481,6 +491,7 @@
   background: var(--bg-card, #fff);
   border: 1px solid var(--border, #e5e0d8);
   border-radius: var(--radius-lg, 12px);
+  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
   display: flex; flex-direction: column; gap: 4px;
 }
 .seasonalPeriod {
@@ -497,12 +508,14 @@
    FINAL CTA STRIP — full-bleed coral gradient
    ===================================================================== */
 
+/* A-spine: the final CTA is the page's dark spotlight moment (was a coral slab
+   with the undocumented #5F2412). Sienna seal button is the lone accent. */
 .finalCta {
   margin-top: clamp(60px, 8vh, 96px);
   padding: clamp(56px, 8vh, 80px) 24px;
-  background: linear-gradient(135deg, #993C1D 0%, #7A3017 60%, #5F2412 100%);
+  background: radial-gradient(120% 130% at 50% 0%, #0d2a22 0%, var(--spotlight-bg, #081813) 50%, #050f0c 100%);
   text-align: center;
-  color: #fff;
+  color: #eafff6;
   position: relative;
   overflow: hidden;
 }
@@ -518,9 +531,9 @@
 
 .finalCtaTitle {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.6rem, 3.2vw, 2.25rem);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 700;
-  color: #fff;
+  color: #eafff6;
   letter-spacing: -0.02em;
   line-height: 1.15;
   margin: 0 0 12px;
@@ -530,7 +543,7 @@
 .finalCtaSubtitle {
   font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: rgba(255, 255, 255, 0.82);
+  color: #9fc4b8;
   line-height: 1.65;
   margin: 0 auto 28px;
   max-width: 520px;
@@ -542,17 +555,22 @@
   align-items: center;
   gap: 8px;
   padding: 15px 32px;
-  background: #fff;
-  color: var(--accent, #993C1D);
+  background: linear-gradient(135deg, var(--accent, #993C1D), var(--accent-hover, #7A3017));
+  color: #fff;
   font-family: var(--font-sans, system-ui);
   font-size: 14.5px;
   font-weight: 700;
   letter-spacing: 0.02em;
   text-decoration: none;
   border-radius: 999px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
-  transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+  outline: none;
+  box-shadow: 0 6px 20px var(--accent-glow, rgba(153, 60, 29, 0.15));
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out, filter 200ms ease-out;
   position: relative;
+}
+/* A-spine: :focus-visible standard ring on the dark stage. */
+.finalCtaButton:focus-visible {
+  box-shadow: 0 0 0 2px var(--spotlight-bg, #081813), 0 0 0 4px var(--success-bright, #54E0B0);
 }
 .finalCtaButton span {
   display: inline-block;
@@ -609,4 +627,10 @@
     color: var(--accent-hover, #7A3017);
     border-bottom-color: var(--accent-hover, #7A3017);
   }
+}
+/* A-spine: :focus-visible standard (was missing on inline crosslinks). */
+.crosslink:focus-visible {
+  outline: 2px solid var(--accent, #993C1D);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
