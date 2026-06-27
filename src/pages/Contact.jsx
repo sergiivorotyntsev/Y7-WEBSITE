@@ -16,17 +16,25 @@ export default function Contact() {
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
+  // B: field-level errors, populated only after an invalid submit (never at rest).
+  const [fieldErrors, setFieldErrors] = useState({});
 
-  function set(f, v) { setForm(prev => ({ ...prev, [f]: v })); }
+  function set(f, v) {
+    setForm(prev => ({ ...prev, [f]: v }));
+    setFieldErrors(prev => (prev[f] ? { ...prev, [f]: undefined } : prev));
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
     setError(null);
-    if (!form.name.trim()) { setError('Name is required'); return; }
-    if (!form.email.trim() && !form.phone.trim()) { setError('Email or phone required'); return; }
-    if (!form.message.trim()) { setError('Message is required'); return; }
-    if (form.phone && !isValidPhone(form.phone)) {
-      setError('Please enter a valid 10-digit phone number, or leave it blank.');
+    const fe = {};
+    if (!form.name.trim()) fe.name = 'Name is required';
+    if (!form.email.trim() && !form.phone.trim()) fe.email = 'Email or phone required';
+    if (!form.message.trim()) fe.message = 'Message is required';
+    if (form.phone && !isValidPhone(form.phone)) fe.phone = 'Please enter a valid 10-digit phone number, or leave it blank.';
+    setFieldErrors(fe);
+    if (Object.keys(fe).length > 0) {
+      setError(fe.name || fe.email || fe.message || fe.phone);
       return;
     }
     setSubmitting(true);
@@ -136,48 +144,59 @@ export default function Contact() {
                 <p className={styles.formSubtitle}>{t('contact.formSubtitle')}</p>
               </div>
               <div className={forms.inputGroup}>
-                <label className={forms.label}>{t('contact.labelName')}</label>
+                <label htmlFor="contact-name" className={forms.label}>{t('contact.labelName')}</label>
                 <input
-                  className={forms.input}
+                  id="contact-name"
+                  className={`${forms.input} ${fieldErrors.name ? styles.fieldError : ''}`}
                   value={form.name}
                   onChange={e => set('name', e.target.value)}
+                  aria-invalid={fieldErrors.name ? 'true' : undefined}
                 />
+                {fieldErrors.name && <span className={styles.fieldErrorMsg}>{fieldErrors.name}</span>}
               </div>
               <div className={styles.formRow}>
                 <div className={forms.inputGroup}>
-                  <label className={forms.label}>
+                  <label htmlFor="contact-email" className={forms.label}>
                     {t('contact.labelEmail')}
                     <span className={styles.fieldHelp}>{t('contact.emailHelp')}</span>
                   </label>
                   <input
+                    id="contact-email"
                     type="email"
-                    className={forms.input}
+                    className={`${forms.input} ${fieldErrors.email ? styles.fieldError : ''}`}
                     value={form.email}
                     onChange={e => set('email', e.target.value)}
+                    aria-invalid={fieldErrors.email ? 'true' : undefined}
                   />
+                  {fieldErrors.email && <span className={styles.fieldErrorMsg}>{fieldErrors.email}</span>}
                 </div>
                 <div className={forms.inputGroup}>
-                  <label className={forms.label}>
+                  <label htmlFor="contact-phone" className={forms.label}>
                     {t('contact.labelPhone')}
                     <span className={styles.fieldHelp}>{t('contact.phoneHelp')}</span>
                   </label>
                   <PhoneInput
-                    className={forms.input}
+                    id="contact-phone"
+                    className={`${forms.input} ${fieldErrors.phone ? styles.fieldError : ''}`}
                     value={form.phone}
                     onChange={v => set('phone', v)}
                   />
+                  {fieldErrors.phone && <span className={styles.fieldErrorMsg}>{fieldErrors.phone}</span>}
                 </div>
               </div>
               <div className={forms.inputGroup}>
-                <label className={forms.label}>{t('contact.labelMessage')}</label>
+                <label htmlFor="contact-message" className={forms.label}>{t('contact.labelMessage')}</label>
                 <textarea
-                  className={forms.textarea}
+                  id="contact-message"
+                  className={`${forms.textarea} ${fieldErrors.message ? styles.fieldError : ''}`}
                   value={form.message}
                   onChange={e => set('message', e.target.value)}
                   rows={5}
+                  aria-invalid={fieldErrors.message ? 'true' : undefined}
                 />
+                {fieldErrors.message && <span className={styles.fieldErrorMsg}>{fieldErrors.message}</span>}
               </div>
-              {error && <div className={styles.errorAlert}>{error}</div>}
+              {error && <div className={styles.errorAlert} role="alert">{error}</div>}
               <button
                 type="submit"
                 disabled={submitting}

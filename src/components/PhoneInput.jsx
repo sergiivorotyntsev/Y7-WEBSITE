@@ -69,7 +69,6 @@ export default function PhoneInput({
   const [touched, setTouched] = useState(false);
 
   const callingCode = `+${getCountryCallingCode(country)}`;
-  const countryEntry = COUNTRIES.find(c => c.code === country) || COUNTRIES[0];
 
   const rawDigits = stripNonDigits(value);
 
@@ -151,14 +150,14 @@ export default function PhoneInput({
   })();
 
   const mergedStyle = showError
-    ? { ...style, borderColor: '#d32f2f' }
+    ? { ...style, borderColor: '#C0392B' }
     : isValid && rawDigits
       ? { ...style, borderColor: '#0F6E56' }
       : style;
 
   // REGC-S13-W07d: country-select border color (computed once; used as per-side
   // longhands below to avoid a border/borderRight shorthand-conflict warning).
-  const selBorderColor = showError ? '#d32f2f' : isValid && rawDigits ? '#0F6E56' : '#ddd';
+  const selBorderColor = showError ? '#C0392B' : isValid && rawDigits ? '#0F6E56' : '#ddd';
 
   return (
     <div>
@@ -225,7 +224,7 @@ export default function PhoneInput({
         <div
           role="alert"
           style={{
-            color: '#d32f2f',
+            color: '#C0392B',
             fontSize: '16px',
             marginTop: '4px',
             fontFamily: 'inherit',
