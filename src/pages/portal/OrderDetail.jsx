@@ -434,6 +434,8 @@ export default function OrderDetail() {
   const [promoCode, setPromoCode] = useState('');
   const [promoMsg, setPromoMsg] = useState(null);
   const [promoLoading, setPromoLoading] = useState(false);
+  const [sentLoading, setSentLoading] = useState(false);
+  const [sentError, setSentError] = useState(null);
   const dispatchSaved = searchParams.get('dispatch_saved') === '1';
   const justPaid = searchParams.get('paid') === '1';
 
@@ -499,6 +501,21 @@ export default function OrderDetail() {
       setPromoMsg({ ok: false, text: 'Failed to validate promo' });
     } finally {
       setPromoLoading(false);
+    }
+  };
+
+  const handlePaymentSent = async () => {
+    setSentLoading(true);
+    setSentError(null);
+    try {
+      const res = await portalFetch(`/api/portal/orders/${id}/payment-sent`, { method: 'POST' });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || 'Could not record your confirmation');
+      fetchPayment();
+    } catch (err) {
+      setSentError(err.message || 'Could not record your confirmation. Please try again.');
+    } finally {
+      setSentLoading(false);
     }
   };
 
@@ -783,6 +800,41 @@ export default function OrderDetail() {
 
               {paymentData.payment.status === 'pending' && ['quoted', 'confirmed'].includes(order.status) && (
                 <div style={{ marginTop: '14px' }}>
+                  {paymentData.payment.details_sent_at && (
+                    <div style={{ marginBottom: '16px', padding: '14px', background: '#F5F7FB', border: `1px solid ${colors.border}`, borderRadius: '10px' }}>
+                      <div style={{ fontSize: '13px', fontWeight: 700, color: colors.brand || '#1F3864', marginBottom: '8px' }}>
+                        Pay by Zelle
+                      </div>
+                      <InfoRow label="Send to" value="dispatch@y7agency.com" mono />
+                      <InfoRow label="Amount" value={`$${(paymentData.payment.total_charge_cents / 100).toFixed(2)}`} mono />
+                      <div style={{ fontSize: '12px', color: colors.textMuted, margin: '8px 0 12px', lineHeight: 1.5 }}>
+                        This is the Y7 service fee (prepaid). The carrier transport price is paid separately to the driver at delivery.
+                      </div>
+                      {paymentData.payment.reported_sent_at ? (
+                        <div style={{ fontSize: '13px', color: colors.success, fontWeight: 600, lineHeight: 1.5 }}>
+                          ✓ Thanks — we’re verifying your payment and will dispatch your vehicle shortly.
+                        </div>
+                      ) : (
+                        <>
+                          <button
+                            onClick={handlePaymentSent}
+                            disabled={sentLoading}
+                            style={{
+                              width: '100%', padding: '12px 18px', border: 'none', borderRadius: '10px',
+                              background: colors.brand || '#1F3864', color: '#fff',
+                              fontFamily: fonts.sans, fontSize: '14px', fontWeight: 600,
+                              cursor: sentLoading ? 'not-allowed' : 'pointer', opacity: sentLoading ? 0.6 : 1,
+                            }}
+                          >
+                            {sentLoading ? 'Sending...' : 'I sent the payment'}
+                          </button>
+                          {sentError && (
+                            <div style={{ marginTop: '8px', fontSize: '12px', color: colors.accent }}>{sentError}</div>
+                          )}
+                        </>
+                      )}
+                    </div>
+                  )}
                   {!paymentData.payment.promo_code && (
                     <div style={{ marginBottom: '12px' }}>
                       <label style={{ fontSize: '11px', fontWeight: 600, color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '4px', display: 'block' }}>
