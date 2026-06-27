@@ -238,6 +238,19 @@
   min-height: 52px;
 }
 
+/* Locked state (submit is gated on TCPA SMS consent): a deliberate neutral-muted
+   "inactive" fill instead of a faded-sienna, so it reads as intentionally locked,
+   not washed-out/broken. Scoped to this form's submit only; no shared-class edit. */
+.submitBtn:disabled,
+.submitBtn[disabled] {
+  background: var(--bg-muted, #EFECE6) !important;
+  color: var(--text-muted, #706E68) !important;
+  border-color: var(--border-input, #ddd) !important;
+  opacity: 1 !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+}
+
 .trustRow {
   display: flex;
   justify-content: center;
