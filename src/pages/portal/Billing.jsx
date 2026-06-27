@@ -74,8 +74,37 @@ export default function Billing() {
         Billing & Invoices
       </h1>
 
-      {/* EXP-F6: outstanding Y7 service fees (unpaid invoices) — the only summary
-          number. No funding-account balance; that account is off-app. */}
+      {/* AR-5: balance owed (from the dealer ledger). balance_cents is signed —
+          negative = the dealer owes Y7; positive = credit on account. */}
+      {(() => {
+        const bal = data.balance_cents || 0;
+        const owed = bal < 0 ? -bal : 0;
+        const credit = bal > 0 ? bal : 0;
+        return (
+          <div style={{
+            background: colors.bgCard, border: `1px solid ${colors.border}`, borderRadius: '12px',
+            padding: '20px 24px', marginBottom: '16px',
+          }}>
+            <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              {credit > 0 ? 'Credit on account' : 'Balance owed'}
+            </div>
+            <div style={{
+              fontFamily: fonts.serif, fontSize: '32px', fontWeight: 700,
+              color: owed > 0 ? '#993C1D' : '#059669',
+            }}>
+              {fmt(credit > 0 ? credit : owed)}
+            </div>
+            <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginTop: '4px', lineHeight: 1.5 }}>
+              {owed > 0
+                ? 'Y7 service fees accrued on completed orders, less payments received.'
+                : 'You have no outstanding Y7 service-fee balance.'}
+            </div>
+          </div>
+        );
+      })()}
+
+      {/* EXP-F6: outstanding Y7 service fees (unpaid invoices). No funding-account
+          balance; that account is off-app. */}
       <div style={{
         background: colors.bgCard, border: `1px solid ${colors.border}`, borderRadius: '12px',
         padding: '20px 24px', marginBottom: '24px',
@@ -137,6 +166,45 @@ export default function Billing() {
             );
           })}
       </div>
+
+      {/* AR-5: account activity — the dealer ledger (charges + payments). */}
+      {data.recent_transactions && data.recent_transactions.length > 0 && (
+        <div style={{ marginTop: '32px' }}>
+          <h2 style={{ fontFamily: fonts.serif, fontSize: '18px', fontWeight: 700, color: colors.text, marginBottom: '12px' }}>
+            Account activity
+          </h2>
+          {data.recent_transactions.map(tx => {
+            const credit = (tx.amount_cents || 0) >= 0;
+            const label = {
+              service_fee: 'Y7 service fee',
+              deposit: 'Payment received',
+              carrier_payment: 'Carrier payment',
+              adjustment_credit: 'Credit adjustment',
+              adjustment_debit: 'Debit adjustment',
+              refund: 'Refund',
+            }[tx.transaction_type] || tx.transaction_type;
+            return (
+              <div key={tx.id} style={{
+                display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                padding: '12px 16px', borderBottom: `1px solid ${colors.border}`,
+              }}>
+                <div>
+                  <div style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600, color: colors.text }}>{label}</div>
+                  <div style={{ fontFamily: fonts.sans, fontSize: '11px', color: colors.textMuted }}>
+                    {tx.description || ''}{tx.created_at ? ` · ${String(tx.created_at).slice(0, 10)}` : ''}
+                  </div>
+                </div>
+                <span style={{
+                  fontFamily: fonts.sans, fontSize: '14px', fontWeight: 700,
+                  color: credit ? '#059669' : '#993C1D',
+                }}>
+                  {credit ? '+' : '−'}{fmt(Math.abs(tx.amount_cents || 0))}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      )}
 
       {/* EXP-G1: cost-breakdown report — self-serve, scoped to this account */}
       <div style={{
