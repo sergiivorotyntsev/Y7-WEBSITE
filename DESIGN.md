@@ -187,7 +187,7 @@ A warm-paper neutral base with a single high-conviction accent, expressing the R
 
 **The No-True-Black Rule.** Type and dark surfaces are never #000. Pressroom Ink (#2C2C2A) is the warmest near-black we use. Anything cooler reads as a different brand.
 
-**The Status-Only Color Rule.** Bonded Pine and Cite Red exist only to express system state (success / error / verified). They never appear as decorative accents, dividers, or category tags. PRODUCT.md's "operational honesty" is enforced here: status colors mean status, not vibe.
+**The Status-Only Color Rule.** Cite Red exists only to express system state (error). Bonded Pine carries success / verified state **and** one deliberate editorial role: the non-hero section kicker (see the Kicker–Headline Pair Rule). That single structural use is the only place green is not a status signal; everywhere else green still means status, never vibe. Neither color appears as a decorative wash, divider, or category tag. PRODUCT.md's "operational honesty" is enforced here: status colors mean status, the pine kicker means "section eyebrow", nothing means vibe.
 
 ## 3. Typography
 
@@ -204,13 +204,13 @@ A warm-paper neutral base with a single high-conviction accent, expressing the R
 - **Title** (system-ui 600, 16px, line-height 1.4): card titles, list item titles, in-card subheadings. Sans by intent — keeps the serif/sans contrast clean between section and contents.
 - **Body** (system-ui 400, 14.5px, line-height 1.7): standard reading copy.
 - **Body Long** (system-ui 400, 16px, line-height 1.7): long-form blog and guide articles. Cap line length at 65–75ch via `narrowColumn` (max-width 720px).
-- **Label / Kicker** (system-ui 700, 11px, uppercase, tracking 0.14em): the editorial eyebrow. Almost always paired with `◆` and burnt-sienna fill. Marks the section topic; complements the headline.
+- **Label / Kicker** (system-ui 700, 11px, uppercase, tracking 0.14em): the editorial eyebrow, paired with `◆`. Two-color system: the single page-hero kicker is **Burnt Sienna** (the seal); every non-hero section kicker is **Bonded Pine** green. Marks the section topic; complements the headline. (See the Kicker–Headline Pair Rule and the Status-Only Color Rule for why the section eyebrow is green.)
 - **Micro** (system-ui 600, 12px, tracking 0.02em): form labels, fine print, hint copy. Smaller than the kicker; never uppercase.
 - **Mono** (JetBrains Mono 500, 13px): credentials, IDs, dollar figures in dispatch sheets, BOL numbers. Operational paperwork rendered as type.
 
 ### Named Rules
 
-**The Kicker–Headline Pair Rule.** Section headers are always a Label kicker (uppercase, sienna, with `◆`) directly above a serif Headline. Never a serif kicker, never a body-cased kicker, never an emoji. The pair is the trade-publication signature.
+**The Kicker–Headline Pair Rule.** Section headers are always a Label kicker (uppercase, with `◆`) directly above a serif Headline. Never a serif kicker, never a body-cased kicker, never an emoji. The pair is the trade-publication signature. **Kicker color (the two-color editorial system):** the one page-hero kicker is Burnt Sienna; every non-hero section kicker is Bonded Pine green. This is deliberate, not decorative drift: leading every section eyebrow in sienna on a long page would blow the One Seal Rule, so the sienna seal is reserved for the hero kicker plus the primary CTA and focus glows, and the recurring section eyebrow carries the calmer pine. On dark surfaces (dark hero, spotlight bands) the kicker brightens to the on-dark pine tint rather than sienna, for contrast.
 
 **The No Decorative Type Rule.** Never gradient text. Never text shadows. Never letter-spaced display copy beyond the tightening described above. Emphasis comes from weight (400 → 700) and scale (≥1.25 ratio between steps), nothing else.
 
@@ -286,7 +286,7 @@ Two variants. Always centered, always paired with kicker + display.
 
 ### Section Header
 
-Kicker + serif title + optional sans lede. Centered. Margin-bottom clamps responsively. The kicker is always uppercase 11px with 0.14em tracking, sienna fill, optionally prefixed with `◆`. The title is Headline-tier serif. The lede caps at 620px width.
+Kicker + serif title + optional sans lede. Centered. Margin-bottom clamps responsively. The kicker is always uppercase 11px with 0.14em tracking, Bonded Pine green fill (the page-hero kicker is the lone Burnt Sienna exception), optionally prefixed with `◆`. The title is Headline-tier serif. The lede caps at 620px width.
 
 ### Audience Cards (signature pattern)
 

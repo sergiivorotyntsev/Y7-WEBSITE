@@ -1,7 +1,7 @@
 /* Services — hub page with compact dark hero + card grid + CTA strip. */
 
 .wrap {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 0 80px;
 }
@@ -26,7 +26,7 @@
   right: -10%;
   width: 520px;
   height: 520px;
-  background: radial-gradient(circle, rgba(153, 60, 29, 0.18) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--accent-glow, rgba(153, 60, 29, 0.15)) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -62,7 +62,8 @@
 .subtitle {
   font-family: var(--font-sans, system-ui);
   font-size: clamp(0.95rem, 1.4vw, 1.1rem);
-  color: rgba(247, 245, 240, 0.7);
+  /* A-spine fix: lift muted-on-dark subtitle contrast (was 0.7, read too faint). */
+  color: rgba(247, 245, 240, 0.85);
   text-align: center;
   line-height: 1.7;
   margin: 0 auto;
@@ -75,13 +76,14 @@
 
 .sectionHeading {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  /* A-spine: one Headline ramp, matched to Home's .sectionTitle. */
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 700;
   color: var(--text, #2C2C2A);
   text-align: center;
   margin: 0 0 8px;
   letter-spacing: -0.02em;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 .sectionMicro {
@@ -89,7 +91,9 @@
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
   font-weight: 700;
-  color: var(--accent, #993C1D);
+  /* A-spine (Option G): non-hero section kickers lead in Bonded Pine green;
+     the lone sienna kicker is the dark hero above. */
+  color: var(--success, #0F6E56);
   text-transform: uppercase;
   letter-spacing: 0.14em;
   margin: 0 0 10px;
@@ -114,30 +118,34 @@
    CTA STRIP
    ===================================================================== */
 
+/* A-spine: the closing CTA is the page's single dark spotlight moment (replaces the
+   solid-sienna slab). Same deep-green spotlight recipe Home uses; the sienna seal
+   button is the lone accent on the dark stage. */
 .ctaStrip {
   margin-top: clamp(56px, 8vh, 80px);
-  background: linear-gradient(135deg, var(--accent, #993C1D) 0%, var(--accent-hover, #7A3017) 100%);
+  background: radial-gradient(120% 130% at 50% 0%, #0d2a22 0%, var(--spotlight-bg, #081813) 50%, #050f0c 100%);
+  border: 1px solid rgba(125, 210, 180, 0.14);
   border-radius: var(--radius-xl, 16px);
-  padding: clamp(36px, 6vh, 56px) clamp(24px, 4vw, 48px);
+  padding: clamp(40px, 7vh, 64px) clamp(24px, 4vw, 48px);
   text-align: center;
-  color: #fff;
-  box-shadow: 0 12px 32px rgba(153, 60, 29, 0.18);
+  color: #eafff6;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
 }
 
 .ctaTitle {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 700;
-  color: #fff;
+  color: #eafff6;
   margin: 0 0 10px;
   letter-spacing: -0.02em;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 .ctaSubtitle {
   font-family: var(--font-sans, system-ui);
-  font-size: 14.5px;
-  color: rgba(255, 255, 255, 0.82);
+  font-size: 15px;
+  color: #9fc4b8;
   margin: 0 0 24px;
   line-height: 1.7;
   max-width: 520px;
@@ -146,17 +154,18 @@
 }
 
 .ctaBtnLight {
-  background: #fff !important;
-  color: var(--accent, #993C1D) !important;
+  background: linear-gradient(135deg, var(--accent, #993C1D), var(--accent-hover, #7A3017)) !important;
+  color: #fff !important;
   padding: 14px 32px !important;
   font-size: 13px !important;
+  box-shadow: 0 6px 20px var(--accent-glow, rgba(153, 60, 29, 0.15));
 }
 
 @media (hover: hover) {
   .ctaBtnLight:hover {
-    background: var(--bg, #F7F5F0) !important;
-    color: var(--accent-hover, #7A3017) !important;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px var(--accent-glow, rgba(153, 60, 29, 0.15));
+    filter: brightness(1.08) saturate(1.05);
   }
 }
 
@@ -186,6 +195,7 @@
   background: var(--bg-card, #fff);
   border: 1px solid var(--border, #e5e0d8);
   border-radius: var(--radius-xl, 16px);
+  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
   padding: 28px 24px;
   display: flex;
   flex-direction: column;
@@ -213,8 +223,8 @@
 @media (hover: hover) {
   .card:hover {
     transform: translateY(-3px);
-    box-shadow: var(--shadow-lg, 0 4px 12px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08));
-    border-color: var(--accent, #993C1D);
+    box-shadow: var(--shadow-card-hover, 0 2px 6px rgba(44,44,42,0.06), 0 16px 40px rgba(44,44,42,0.12));
+    border-color: var(--success, #0F6E56);
   }
 }
 
@@ -244,6 +254,7 @@
   background: var(--bg-card, #fff);
   border: 1px solid var(--border, #e5e0d8);
   border-radius: var(--radius-xl, 16px);
+  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
   padding: 24px 20px;
   display: flex;
   flex-direction: column;
@@ -275,8 +286,8 @@
 @media (hover: hover) {
   .linkCard:hover {
     transform: translateY(-3px);
-    box-shadow: var(--shadow-lg, 0 4px 12px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08));
-    border-color: var(--accent, #993C1D);
+    box-shadow: var(--shadow-card-hover, 0 2px 6px rgba(44,44,42,0.06), 0 16px 40px rgba(44,44,42,0.12));
+    border-color: var(--success, #0F6E56);
   }
   .linkCard:hover::before {
     transform: scaleX(1);
