@@ -43,7 +43,7 @@ export default function SmsConsent({ checked, onChange, showError = false, optio
         <span style={{
           fontFamily: fonts.sans,
           fontSize: '12px',
-          color: colors.textPrimary || '#1f2937',
+          color: colors.text,
           lineHeight: 1.5,
         }}>
           {t('sms.checkboxLabel')}
@@ -56,10 +56,10 @@ export default function SmsConsent({ checked, onChange, showError = false, optio
           style={{
             marginTop: '8px',
             padding: '8px 12px',
-            background: '#fef2f2',
-            border: '1px solid #b91c1c',
+            background: 'rgba(192, 57, 43, 0.07)',
+            border: '1px solid #C0392B',
             borderRadius: '4px',
-            color: '#b91c1c',
+            color: '#C0392B',
             fontSize: '12px',
             fontFamily: fonts.sans,
             lineHeight: 1.4,

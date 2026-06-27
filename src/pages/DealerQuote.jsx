@@ -51,6 +51,8 @@ export default function DealerQuote() {
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
   const [submitAttempted, setSubmitAttempted] = useState(false);
+  // B: field-level errors, populated only after an invalid submit (never at rest).
+  const [fieldErrors, setFieldErrors] = useState({});
 
   useEffect(() => {
     if (searchParams.get('prefill') !== '1') return;
@@ -71,6 +73,7 @@ export default function DealerQuote() {
 
   function set(field, value) {
     setForm(prev => ({ ...prev, [field]: value }));
+    setFieldErrors(prev => (prev[field] ? { ...prev, [field]: undefined } : prev));
   }
 
   function toggleService(key) {
@@ -86,20 +89,18 @@ export default function DealerQuote() {
     e.preventDefault();
     setError(null);
     setSubmitAttempted(true);  // reveals SmsConsent error banner if consent missing
-    if (!form.dealership_name.trim()) { setError('Dealership name is required'); return; }
-    if (!form.contact_name.trim()) { setError('Contact person is required'); return; }
-    if (!form.email.trim()) { setError('Email is required'); return; }
-    if (!form.phone.trim()) { setError('Phone is required'); return; }
-    if (!isValidPhone(form.phone)) {
-      setError('Please enter a valid 10-digit phone number.');
-      return;
-    }
-    if (!form.registration_state) {
-      setError('Please select the state where your company is registered.');
-      return;
-    }
-    if (!form.has_dealer_license) {
-      setError('Please tell us whether you hold an active dealer license.');
+    // B: validate all fields, surface per-field errors + a summary alert.
+    const fe = {};
+    if (!form.dealership_name.trim()) fe.dealership_name = 'Dealership name is required';
+    if (!form.contact_name.trim()) fe.contact_name = 'Contact person is required';
+    if (!form.email.trim()) fe.email = 'Email is required';
+    if (!form.phone.trim()) fe.phone = 'Phone is required';
+    else if (!isValidPhone(form.phone)) fe.phone = 'Please enter a valid 10-digit phone number.';
+    if (!form.registration_state) fe.registration_state = 'Please select the state where your company is registered.';
+    if (!form.has_dealer_license) fe.has_dealer_license = 'Please tell us whether you hold an active dealer license.';
+    setFieldErrors(fe);
+    if (Object.keys(fe).length > 0) {
+      setError(fe.dealership_name || fe.contact_name || fe.email || fe.phone || fe.registration_state || fe.has_dealer_license);
       return;
     }
     if (!form.sms_consent) {
@@ -179,22 +180,26 @@ export default function DealerQuote() {
           <div className={styles.section} style={{ '--i': 0 }}>
             <div className={styles.sectionTitle}>Business Information</div>
             <div className={styles.row}>
-              <label className={qForm.label}>Dealership Name *</label>
-              <input className={qForm.input} value={form.dealership_name} onChange={e => set('dealership_name', e.target.value)} placeholder="ABC Motors" />
+              <label htmlFor="dq-dealership" className={qForm.label}>Dealership Name *</label>
+              <input id="dq-dealership" className={`${qForm.input} ${fieldErrors.dealership_name ? styles.fieldError : ''}`} value={form.dealership_name} onChange={e => set('dealership_name', e.target.value)} placeholder="ABC Motors" aria-invalid={fieldErrors.dealership_name ? 'true' : undefined} />
+              {fieldErrors.dealership_name && <span className={styles.fieldErrorMsg}>{fieldErrors.dealership_name}</span>}
             </div>
             <div className={styles.row2}>
               <div>
-                <label className={qForm.label}>Contact Person *</label>
-                <input className={qForm.input} value={form.contact_name} onChange={e => set('contact_name', e.target.value)} placeholder="John Smith" />
+                <label htmlFor="dq-contact" className={qForm.label}>Contact Person *</label>
+                <input id="dq-contact" className={`${qForm.input} ${fieldErrors.contact_name ? styles.fieldError : ''}`} value={form.contact_name} onChange={e => set('contact_name', e.target.value)} placeholder="John Smith" aria-invalid={fieldErrors.contact_name ? 'true' : undefined} />
+                {fieldErrors.contact_name && <span className={styles.fieldErrorMsg}>{fieldErrors.contact_name}</span>}
               </div>
               <div>
-                <label className={qForm.label}>Phone *</label>
-                <PhoneInput className={qForm.input} value={form.phone} onChange={v => set('phone', v)} required />
+                <label htmlFor="dq-phone" className={qForm.label}>Phone *</label>
+                <PhoneInput id="dq-phone" className={`${qForm.input} ${fieldErrors.phone ? styles.fieldError : ''}`} value={form.phone} onChange={v => set('phone', v)} required />
+                {fieldErrors.phone && <span className={styles.fieldErrorMsg}>{fieldErrors.phone}</span>}
               </div>
             </div>
             <div className={styles.row}>
-              <label className={qForm.label}>Email *</label>
-              <input className={qForm.input} type="email" value={form.email} onChange={e => set('email', e.target.value)} placeholder="john@abcmotors.com" />
+              <label htmlFor="dq-email" className={qForm.label}>Email *</label>
+              <input id="dq-email" className={`${qForm.input} ${fieldErrors.email ? styles.fieldError : ''}`} type="email" value={form.email} onChange={e => set('email', e.target.value)} placeholder="john@abcmotors.com" aria-invalid={fieldErrors.email ? 'true' : undefined} />
+              {fieldErrors.email && <span className={styles.fieldErrorMsg}>{fieldErrors.email}</span>}
             </div>
             <div className={styles.row}>
               <label className={qForm.label}>Do you hold an active dealer license? *</label>
@@ -216,6 +221,7 @@ export default function DealerQuote() {
                   </label>
                 ))}
               </div>
+              {fieldErrors.has_dealer_license && <span className={styles.fieldErrorMsg}>{fieldErrors.has_dealer_license}</span>}
             </div>
           </div>
 
@@ -223,32 +229,33 @@ export default function DealerQuote() {
           <div className={styles.section} style={{ '--i': 1 }}>
             <div className={styles.sectionTitle}>Dealership Address</div>
             <div className={styles.row}>
-              <label className={qForm.label}>Street</label>
-              <input className={qForm.input} value={form.address} onChange={e => set('address', e.target.value)} placeholder="123 Auto Drive" />
+              <label htmlFor="dq-address" className={qForm.label}>Street</label>
+              <input id="dq-address" className={qForm.input} value={form.address} onChange={e => set('address', e.target.value)} placeholder="123 Auto Drive" />
             </div>
             <div className={styles.row3}>
               <div>
-                <label className={qForm.label}>City</label>
-                <input className={qForm.input} value={form.city} onChange={e => set('city', e.target.value)} placeholder="Houston" />
+                <label htmlFor="dq-city" className={qForm.label}>City</label>
+                <input id="dq-city" className={qForm.input} value={form.city} onChange={e => set('city', e.target.value)} placeholder="Houston" />
               </div>
               <div>
-                <label className={qForm.label}>State</label>
-                <select className={qForm.select} value={form.state} onChange={e => set('state', e.target.value)}>
+                <label htmlFor="dq-state" className={qForm.label}>State</label>
+                <select id="dq-state" className={qForm.select} value={form.state} onChange={e => set('state', e.target.value)}>
                   <option value="">--</option>
                   {US_STATES.map(s => <option key={s} value={s}>{s}</option>)}
                 </select>
               </div>
               <div>
-                <label className={qForm.label}>ZIP</label>
-                <input className={qForm.input} value={form.zip} onChange={e => set('zip', e.target.value)} placeholder="77001" maxLength={5} />
+                <label htmlFor="dq-zip" className={qForm.label}>ZIP</label>
+                <input id="dq-zip" className={qForm.input} value={form.zip} onChange={e => set('zip', e.target.value)} placeholder="77001" maxLength={5} />
               </div>
             </div>
             <div className={styles.row}>
-              <label className={qForm.label}>State where your company is registered *</label>
-              <select className={qForm.select} value={form.registration_state} onChange={e => set('registration_state', e.target.value)}>
+              <label htmlFor="dq-reg-state" className={qForm.label}>State where your company is registered *</label>
+              <select id="dq-reg-state" className={`${qForm.select} ${fieldErrors.registration_state ? styles.fieldError : ''}`} value={form.registration_state} onChange={e => set('registration_state', e.target.value)} aria-invalid={fieldErrors.registration_state ? 'true' : undefined}>
                 <option value="">--</option>
                 {US_STATES.map(s => <option key={s} value={s}>{s}</option>)}
               </select>
+              {fieldErrors.registration_state && <span className={styles.fieldErrorMsg}>{fieldErrors.registration_state}</span>}
             </div>
           </div>
 
@@ -257,23 +264,24 @@ export default function DealerQuote() {
             <div className={styles.sectionTitle}>Transportation Needs</div>
             <div className={styles.row2}>
               <div>
-                <label className={qForm.label}>Monthly Volume</label>
-                <select className={qForm.select} value={form.monthly_volume} onChange={e => set('monthly_volume', e.target.value)}>
+                <label htmlFor="dq-volume" className={qForm.label}>Monthly Volume</label>
+                <select id="dq-volume" className={qForm.select} value={form.monthly_volume} onChange={e => set('monthly_volume', e.target.value)}>
                   <option value="">Select...</option>
                   {VOLUMES.map(v => <option key={v} value={v}>{v} vehicles</option>)}
                 </select>
               </div>
               <div>
-                <label className={qForm.label}>How did you hear about us</label>
-                <select className={qForm.select} value={form.referral_source} onChange={e => set('referral_source', e.target.value)}>
+                <label htmlFor="dq-referral" className={qForm.label}>How did you hear about us</label>
+                <select id="dq-referral" className={qForm.select} value={form.referral_source} onChange={e => set('referral_source', e.target.value)}>
                   <option value="">Select...</option>
                   {REFERRAL_SOURCES.map(s => <option key={s} value={s}>{s}</option>)}
                 </select>
               </div>
             </div>
             <div className={styles.row}>
-              <label className={qForm.label}>Primary Routes</label>
+              <label htmlFor="dq-routes" className={qForm.label}>Primary Routes</label>
               <textarea
+                id="dq-routes"
                 className={qForm.textarea}
                 value={form.primary_routes}
                 onChange={e => set('primary_routes', e.target.value)}
@@ -330,6 +338,7 @@ export default function DealerQuote() {
               value={form.notes}
               onChange={e => set('notes', e.target.value)}
               placeholder="Anything else you'd like us to know about your business needs..."
+              aria-label="Additional information"
               rows={3}
             />
           </div>
@@ -343,7 +352,7 @@ export default function DealerQuote() {
             />
           </div>
 
-          {error && <div className={styles.errorAlert}>{error}</div>}
+          {error && <div className={styles.errorAlert} role="alert">{error}</div>}
 
           <button
             type="submit"
