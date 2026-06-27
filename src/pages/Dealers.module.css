@@ -10,7 +10,7 @@
 }
 
 .inner {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 clamp(16px, 4vw, 32px);
 }
@@ -40,7 +40,8 @@
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
   font-weight: 700;
-  color: var(--accent, #993C1D);
+  /* A-spine (Option G): non-hero section kickers lead in Bonded Pine green. */
+  color: var(--success, #0F6E56);
   text-transform: uppercase;
   letter-spacing: 0.14em;
   margin-bottom: 12px;
@@ -50,14 +51,15 @@
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
   font-weight: 700;
-  color: #E8A577;
+  /* A-spine: on the dark band the kicker brightens to the on-dark pine tint. */
+  color: var(--success-bright, #54E0B0);
   text-transform: uppercase;
   letter-spacing: 0.14em;
   margin-bottom: 12px;
 }
 .h2 {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.55rem, 3vw, 2.1rem);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 700;
   color: var(--text, #2C2C2A);
   line-height: 1.15;
@@ -67,7 +69,7 @@
 }
 .h2Inverse {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.55rem, 3vw, 2.1rem);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 700;
   color: #F7F5F0;
   line-height: 1.15;
@@ -150,15 +152,16 @@
 /* ===================================================================
    PROBLEM (dark, visual break)
    =================================================================== */
+/* A-spine: tokenized dark band (was hardcoded #1f1f1d/#2c2c2a + warm-gray text). */
 .problem {
-  background: linear-gradient(180deg, #1f1f1d 0%, #2c2c2a 100%);
-  color: #F7F5F0;
+  background: var(--text, #2C2C2A);
+  color: var(--bg, #F7F5F0);
   padding: clamp(60px, 9vh, 96px) 0;
 }
 .problemIntro {
   font-family: var(--font-sans, system-ui);
   font-size: 16px;
-  color: #d9d4c8;
+  color: rgba(247, 245, 240, 0.78);
   line-height: 1.75;
   max-width: 780px;
   margin: 0 0 36px;
@@ -181,26 +184,27 @@
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
+/* Positive (the Y7 outcome) card reads in pine green, not peach. */
 .problemCardPositive {
-  background: linear-gradient(135deg, rgba(153, 60, 29, 0.22), rgba(153, 60, 29, 0.08));
-  border: 1px solid rgba(232, 165, 119, 0.32);
+  background: linear-gradient(135deg, rgba(15, 110, 86, 0.28), rgba(15, 110, 86, 0.08));
+  border: 1px solid rgba(84, 224, 176, 0.30);
 }
 .problemCardTitle {
   font-family: var(--font-serif, Georgia, serif);
   font-size: 1.1rem;
   font-weight: 700;
-  color: #F7F5F0;
+  color: var(--bg, #F7F5F0);
   margin: 0 0 10px;
   letter-spacing: -0.01em;
 }
 .problemCardDesc {
   font-size: 14px;
-  color: #c7c2b5;
+  color: rgba(247, 245, 240, 0.66);
   line-height: 1.65;
   margin: 0;
 }
 .problemCardPositive .problemCardDesc {
-  color: #e9d9ca;
+  color: rgba(247, 245, 240, 0.82);
 }
 
 /* ===================================================================
@@ -236,13 +240,14 @@
   background: var(--bg-card, #fff);
   border: 1px solid var(--border, #e5e0d8);
   border-radius: 12px;
+  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
   transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
 }
 @media (hover: hover) {
   .capCard:hover {
     transform: translateY(-3px);
-    border-color: var(--accent, #993C1D);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    border-color: var(--success, #0F6E56);
+    box-shadow: var(--shadow-card-hover, 0 2px 6px rgba(44,44,42,0.06), 0 16px 40px rgba(44,44,42,0.12));
   }
 }
 .capNum {
@@ -299,6 +304,7 @@
   background: var(--bg-card, #fff);
   border: 1px solid var(--border, #e5e0d8);
   border-radius: 12px;
+  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
   padding: 20px 18px;
   position: relative;
   z-index: 1;
@@ -344,6 +350,7 @@
   background: var(--bg-card, #fff);
   border: 1px solid var(--border, #e5e0d8);
   border-radius: 16px;
+  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -421,6 +428,7 @@
   background: var(--bg-card, #fff);
   border: 1px solid var(--border, #e5e0d8);
   border-radius: 12px;
+  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
 }
 .portalLabel {
   font-family: var(--font-serif, Georgia, serif);
@@ -453,8 +461,10 @@
   background: var(--bg-card, #fff);
   border: 1px solid var(--border, #e5e0d8);
   border-radius: 12px;
+  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
   text-decoration: none;
   color: inherit;
+  outline: none;
   transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
   display: flex;
   flex-direction: column;
@@ -463,9 +473,14 @@
 @media (hover: hover) {
   .auctionCard:hover {
     transform: translateY(-3px);
-    border-color: var(--accent, #993C1D);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    border-color: var(--success, #0F6E56);
+    box-shadow: var(--shadow-card-hover, 0 2px 6px rgba(44,44,42,0.06), 0 16px 40px rgba(44,44,42,0.12));
   }
+}
+/* A-spine: :focus-visible standard (was missing on this Link card). */
+.auctionCard:focus-visible {
+  border-color: var(--accent, #993C1D);
+  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
 }
 .auctionName {
   font-family: var(--font-serif, Georgia, serif);
@@ -512,6 +527,7 @@
   background: var(--bg-card, #fff);
   border: 1px solid var(--border, #e5e0d8);
   border-radius: 12px;
+  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
 }
 .caseNum {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
@@ -552,6 +568,7 @@
   background: var(--bg-card, #fff);
   border: 1px solid var(--border, #e5e0d8);
   border-radius: 12px;
+  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
 }
 .billLabel {
   font-family: var(--font-serif, Georgia, serif);
@@ -578,11 +595,13 @@
   gap: 16px;
 }
 @media (max-width: 720px) { .failGrid { grid-template-columns: 1fr; } }
+/* A-spine: full border (was a banned accent side-stripe) + token elevation. */
 .failCard {
   padding: 22px;
   background: var(--bg-card, #fff);
-  border-left: 3px solid var(--accent, #993C1D);
-  border-radius: 8px;
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: 12px;
+  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
 }
 .failSituation {
   font-family: var(--font-serif, Georgia, serif);
@@ -708,6 +727,12 @@
   letter-spacing: -0.01em;
 }
 .faqSummary::-webkit-details-marker { display: none; }
+/* A-spine: :focus-visible standard. */
+.faqSummary:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--accent, #993C1D);
+  border-radius: 10px;
+}
 .faqChevron {
   font-size: 14px;
   color: var(--accent, #993C1D);
@@ -741,14 +766,20 @@
   font-family: Georgia, serif;
   font-size: 16px;
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: var(--radius-md, 8px);
   border: 1px solid var(--accent, #993C1D);
-  transition: background-color 150ms ease, transform 150ms ease;
+  outline: none;
+  transition: background-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
 }
 
 .midCtaButton:hover {
   background: var(--accent-hover, #7A3017);
   transform: translateY(-1px);
+}
+
+/* A-spine: :focus-visible standard (was missing). */
+.midCtaButton:focus-visible {
+  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
 }
 
 @media (max-width: 600px) {
@@ -761,10 +792,12 @@
 /* ===================================================================
    CTA STRIP
    =================================================================== */
+/* A-spine: the closing CTA is the page's final dark spotlight moment (was a
+   solid-sienna slab). Sienna seal button is the lone accent on the dark stage. */
 .ctaStrip {
   padding: clamp(60px, 9vh, 90px) 0;
-  background: var(--accent, #993C1D);
-  color: #fff;
+  background: radial-gradient(120% 130% at 50% 0%, #0d2a22 0%, var(--spotlight-bg, #081813) 50%, #050f0c 100%);
+  color: #eafff6;
   text-align: center;
 }
 .ctaStrip .inner {
@@ -774,30 +807,34 @@
   font-family: var(--font-serif, Georgia, serif);
   font-size: clamp(1.6rem, 3vw, 2.2rem);
   font-weight: 700;
-  color: #fff;
+  color: #eafff6;
   margin: 0 0 14px;
   letter-spacing: -0.02em;
 }
 .ctaSubtitle {
   font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: rgba(255, 255, 255, 0.88);
+  color: #9fc4b8;
   line-height: 1.7;
   margin: 0 auto 24px;
   max-width: 640px;
 }
 .ctaBtn {
-  background: #fff !important;
-  color: var(--accent, #993C1D) !important;
+  background: linear-gradient(135deg, var(--accent, #993C1D), var(--accent-hover, #7A3017)) !important;
+  color: #fff !important;
   font-weight: 700 !important;
   padding: 14px 28px !important;
   font-size: 15px !important;
   border-radius: 24px !important;
+  box-shadow: 0 6px 20px var(--accent-glow, rgba(153, 60, 29, 0.15));
 }
-.ctaBtn:hover,
+.ctaBtn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08) saturate(1.05);
+}
 .ctaBtn:focus-visible {
-  background: #f7f5f0 !important;
   outline: none;
+  box-shadow: 0 0 0 2px var(--spotlight-bg, #081813), 0 0 0 4px var(--success-bright, #54E0B0);
 }
 
 /* ===================================================================
