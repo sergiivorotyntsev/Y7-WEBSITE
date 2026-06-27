@@ -1,10 +1,7 @@
 /* Exporters — hero, value callout, fee table, process, port cards, request form. */
 
 .wrap {
-  --bg-warm-accent: #FFF8F5;
-  --bg-error-soft: #FFF0EC;
-  --text-on-accent: #fff;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 0 80px;
 }
@@ -87,14 +84,20 @@
   font-family: Georgia, serif;
   font-size: 16px;
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: var(--radius-md, 8px);
   border: 1px solid var(--accent, #993C1D);
-  transition: background-color 150ms ease, transform 150ms ease;
+  outline: none;
+  transition: background-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
 }
 
 .midCtaButton:hover {
   background: var(--accent-hover, #7A3017);
   transform: translateY(-1px);
+}
+
+/* A-spine: :focus-visible standard ring (was missing). */
+.midCtaButton:focus-visible {
+  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
 }
 
 @media (max-width: 600px) {
@@ -143,8 +146,15 @@
   }
 }
 
+/* A-spine: :focus-visible standard (was missing on inline crosslinks). */
+.crosslink:focus-visible {
+  outline: 2px solid var(--accent, #993C1D);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 .body {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -159,7 +169,8 @@
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
   font-weight: 700;
-  color: var(--accent, #993C1D);
+  /* A-spine (Option G): non-hero section kickers lead in Bonded Pine green. */
+  color: var(--success, #0F6E56);
   text-transform: uppercase;
   letter-spacing: 0.14em;
   margin: 0 0 10px;
@@ -167,23 +178,26 @@
 
 .sectionHeading {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  /* A-spine: one Headline ramp, matched to Home's .sectionTitle. */
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 700;
   color: var(--text, #2C2C2A);
   text-align: center;
   margin: 0;
   letter-spacing: -0.02em;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 /* =====================================================================
    VALUE CALLOUT
    ===================================================================== */
 
+/* A-spine: retire the off-palette peach + banned side-stripe; clean elevated card. */
 .valueCallout {
-  background: var(--bg-warm-accent, #FFF8F5);
-  border-left: 4px solid var(--accent, #993C1D);
-  border-radius: 0 var(--radius-lg, 12px) var(--radius-lg, 12px) 0;
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-lg, 12px);
+  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
   padding: 24px 28px;
   margin-bottom: 40px;
 }
@@ -233,14 +247,14 @@
 }
 
 .feeRow:nth-child(even) {
-  background: rgba(247, 245, 240, 0.4);
+  background: var(--bg, #F7F5F0);
 }
 
 .feeRow:last-child { border-bottom: none; }
 
 @media (hover: hover) {
   .feeRow:hover {
-    background-color: var(--bg-warm-accent, #FFF8F5);
+    background-color: var(--bg-muted, #EFECE6);
   }
 }
 
@@ -270,7 +284,7 @@
   font-size: 12px;
   font-weight: 600;
   color: var(--accent, #993C1D);
-  background: var(--bg-warm-accent, #FFF8F5);
+  background: var(--bg-muted, #EFECE6);
   padding: 4px 12px;
   border-radius: var(--radius-pill, 20px);
   white-space: nowrap;
@@ -290,12 +304,14 @@
 
 .howTitle {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: 22px;
+  /* A-spine: one Headline ramp. */
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 700;
   color: var(--text, #2C2C2A);
   margin: 0 0 24px;
   text-align: center;
   letter-spacing: -0.02em;
+  line-height: 1.15;
 }
 
 .stepsGrid {
@@ -349,12 +365,14 @@
 
 .portsTitle {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: 22px;
+  /* A-spine: one Headline ramp. */
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 700;
   color: var(--text, #2C2C2A);
   text-align: center;
   margin: 0 0 20px;
   letter-spacing: -0.02em;
+  line-height: 1.15;
 }
 
 .portsGrid {
@@ -372,7 +390,7 @@
   color: inherit;
   display: block;
   outline: none;
-  border-radius: 10px;
+  border-radius: var(--radius-lg, 12px);
 }
 
 .portLink:focus-visible {
@@ -382,8 +400,9 @@
 .portCard {
   background: var(--bg-card, #fff);
   border: 1px solid var(--border, #e5e0d8);
-  border-radius: 10px;
-  padding: 16px 20px;
+  border-radius: var(--radius-lg, 12px);
+  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
+  padding: 16px 18px 14px;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -396,17 +415,32 @@
 @media (hover: hover) {
   .portLink:hover .portCard,
   .portCard:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md, 0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06));
-    border-color: var(--accent, #993C1D);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card-hover, 0 2px 6px rgba(44,44,42,0.06), 0 16px 40px rgba(44,44,42,0.12));
+    border-color: var(--success, #0F6E56);
   }
+}
+
+/* C: port-pill head — green pin + mono port code */
+.portTop { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.portPin {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--success, #0F6E56); flex: none;
+  box-shadow: 0 0 0 3px var(--success-bg, #E1F5EE);
+}
+.portCode {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent, #993C1D);
+  margin-left: auto;
 }
 
 .portName {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
-  color: var(--accent, #993C1D);
+  color: var(--text, #2C2C2A);
   margin-bottom: 4px;
   letter-spacing: -0.01em;
 }
@@ -431,9 +465,12 @@
    FORM
    ===================================================================== */
 
+/* B: token card elevation (was a flat muted panel). */
 .formBlock {
-  background: var(--bg-muted, #EFECE6);
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e0d8);
   border-radius: var(--radius-xl, 16px);
+  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
   padding: 40px 32px;
 }
 
@@ -462,12 +499,14 @@
 
 .formTitle {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: 22px;
+  /* A-spine: one Headline ramp. */
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 700;
   color: var(--text, #2C2C2A);
   text-align: center;
   margin: 0 0 8px;
   letter-spacing: -0.02em;
+  line-height: 1.15;
 }
 
 .formSubtitle {
@@ -497,14 +536,15 @@
   .formRow { grid-template-columns: 1fr; }
 }
 
+/* B: one error language — Cite-Red, full border (no side-stripe). */
 .errorAlert {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--accent, #993C1D);
+  color: #C0392B;
   padding: 10px 14px;
-  background: var(--bg-error-soft, #FFF0EC);
+  background: rgba(192, 57, 43, 0.07);
   border-radius: var(--radius-md, 8px);
-  border-left: 3px solid var(--accent, #993C1D);
+  border: 1px solid rgba(192, 57, 43, 0.35);
 }
 
 .submitBtn {
@@ -539,6 +579,7 @@
   background: var(--bg-card, #fff);
   border: 1px solid var(--border, #e5e0d8);
   border-radius: var(--radius-lg, 12px);
+  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
 }
 .docsCheck {
   display: inline-flex; align-items: center; justify-content: center;
@@ -553,16 +594,43 @@
   display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 14px;
 }
+/* C: flag-free destination rows — mono country-code badge + route + notes */
 .destItem {
   padding: 14px 16px;
   background: var(--bg-card, #fff);
   border: 1px solid var(--border, #e5e0d8);
   border-radius: var(--radius-lg, 12px);
-  display: flex; flex-direction: column; gap: 4px;
+  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
+  display: flex; align-items: center; gap: 14px;
+  transition: border-color var(--transition-normal, 250ms ease-out), box-shadow var(--transition-normal, 250ms ease-out);
 }
+@media (hover: hover) {
+  .destItem:hover {
+    border-color: var(--success, #0F6E56);
+    box-shadow: var(--shadow-card-hover, 0 2px 6px rgba(44,44,42,0.06), 0 16px 40px rgba(44,44,42,0.12));
+  }
+}
+.destBadge {
+  flex: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 30px;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 14px; font-weight: 600; letter-spacing: 0.04em;
+  color: var(--text, #2C2C2A);
+  background: var(--bg-muted, #EFECE6);
+  border: 1px solid var(--border, #e5e0d8);
+  border-radius: var(--radius-sm, 4px);
+}
+.destBody { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.destRoute { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.destFrom {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted, #706E68);
+}
+.destArrow { font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 12px; color: var(--success, #0F6E56); }
 .destCountry {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: 1.05rem; font-weight: 700; color: var(--text, #2C2C2A);
+  font-size: 1.05rem; font-weight: 700; color: var(--text, #2C2C2A); letter-spacing: -0.01em;
 }
 .destNotes {
   font-family: var(--font-sans, system-ui);
@@ -582,10 +650,15 @@
   list-style: none; padding: 16px 20px; cursor: pointer;
   display: flex; justify-content: space-between; gap: 12px;
   font-family: var(--font-sans, system-ui);
-  font-size: 14.5px; font-weight: 600;
+  font-size: 15px; font-weight: 600;
   color: var(--text, #2C2C2A); outline: none;
 }
 .faqSummary::-webkit-details-marker { display: none; }
+/* A-spine: :focus-visible standard (was outline:none with no replacement). */
+.faqSummary:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--accent, #993C1D);
+  border-radius: var(--radius-lg, 12px);
+}
 .faqChevron { color: var(--accent, #993C1D); font-size: 14px; transition: transform 200ms ease-out; }
 .faqItem[open] .faqChevron { transform: rotate(180deg); }
 .faqAnswer {
@@ -593,3 +666,88 @@
   font-family: var(--font-sans, system-ui);
   font-size: 14px; color: var(--text-muted, #706E68); line-height: 1.7; margin: 0;
 }
+
+/* =====================================================================
+   C — Logistics-Forward motif on the ports section: route rail + the
+   number-anchors as the page's mid-page dark spotlight band. Restyles
+   existing facts only (port/destination counts, on-page USDOT/BMC-84).
+   ===================================================================== */
+
+.routeRail {
+  position: relative;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+  max-width: 760px; margin: 0 auto 24px;
+  padding: 8px 4px 4px;
+}
+.routeSvg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.routeTrack {
+  stroke: var(--text-muted, #706E68); stroke-width: 1.5; stroke-dasharray: 4 6;
+  stroke-linecap: round; fill: none; opacity: 0.5;
+}
+.routeGlow {
+  stroke: var(--accent, #993C1D); stroke-width: 2; stroke-linecap: round; fill: none;
+  opacity: 0.9; stroke-dasharray: 680; stroke-dashoffset: 680;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .routeGlow { animation: expRouteDraw 2.8s ease-out 0.3s forwards; }
+}
+@keyframes expRouteDraw { to { stroke-dashoffset: 0; } }
+.routeNode { position: relative; z-index: 1; text-align: center; }
+.routeDot {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--bg-card, #fff); border: 2px solid var(--accent, #993C1D);
+  margin: 0 auto 8px;
+}
+.routeDotMid { border-color: var(--success, #0F6E56); }
+.routeLabel {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted, #706E68); white-space: nowrap;
+}
+.routeSub { font-family: var(--font-sans, system-ui); font-size: 11px; color: var(--text, #2C2C2A); font-weight: 600; margin-top: 2px; }
+
+/* Number-anchors = the mid-page dark spotlight band (Home recipe). */
+.anchorsBand {
+  position: relative; overflow: hidden;
+  margin: 0 auto 28px; padding: clamp(24px, 4vh, 36px) 24px;
+  border-radius: var(--radius-xl, 16px);
+  color: #eafff6;
+  background: radial-gradient(120% 140% at 12% 0%, #0d2a22 0%, var(--spotlight-bg, #081813) 46%, #050f0c 100%);
+  border: 1px solid rgba(125, 210, 180, 0.14);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+}
+.anchorsRow {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 20px 44px; text-align: center;
+}
+.anchor { min-width: 96px; }
+.anchorNum {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: clamp(1.3rem, 3vw, 1.7rem); font-weight: 600;
+  color: var(--success-bright, #54E0B0); letter-spacing: -0.01em; margin: 0;
+}
+.anchorLabel {
+  font-family: var(--font-sans, system-ui); font-size: 11px; letter-spacing: 0.06em;
+  text-transform: uppercase; color: #9fc4b8; margin: 2px 0 0;
+}
+
+/* =====================================================================
+   B — form discipline: keyboard focus ring + field-level error state
+   ===================================================================== */
+.form input:focus-visible,
+.form select:focus-visible,
+.form textarea:focus-visible {
+  border-color: var(--accent, #993C1D);
+  box-shadow: 0 0 0 2px var(--bg-card, #fff), 0 0 0 4px var(--accent-glow, rgba(153, 60, 29, 0.15));
+}
+.fieldError {
+  border-color: #C0392B !important;
+}
+.fieldError:focus-visible {
+  box-shadow: 0 0 0 2px var(--bg-card, #fff), 0 0 0 4px rgba(192, 57, 43, 0.22) !important;
+}
+.fieldErrorMsg {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--font-sans, system-ui);
+  font-size: 12px; font-weight: 500; color: #C0392B;
+  margin-top: 4px;
+}
+.fieldErrorMsg svg { flex: none; }

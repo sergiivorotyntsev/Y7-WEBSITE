@@ -13,6 +13,38 @@ import styles from './Exporters.module.css';
 import btn from '../styles/buttons.module.css';
 import forms from '../styles/forms.module.css';
 
+// C motif helpers. City substring -> /ports/{slug} + mono port code; the exporters
+// i18n names ports "Newark, NJ" / "Houston, TX", so match on the city.
+const PORTS = [
+  ['Newark', 'newark', 'NWK'],
+  ['Houston', 'houston', 'HOU'],
+  ['Savannah', 'savannah', 'SAV'],
+  ['Los Angeles', 'los-angeles', 'LAX'],
+  ['Baltimore', 'baltimore', 'BAL'],
+  ['Jacksonville', 'jacksonville', 'JAX'],
+];
+function portMeta(name = '') {
+  const hit = PORTS.find(([city]) => name.includes(city));
+  return hit ? { slug: hit[1], code: hit[2] } : { slug: null, code: name.replace(/[^A-Za-z]/g, '').slice(0, 3).toUpperCase() || 'US' };
+}
+
+// Country name substring -> ISO-2 mono badge (no SVG flags). Falls back to the
+// first two letters. Restyles an existing destination, never invents one.
+const COUNTRY_CODES = [
+  ['ukrain', 'UA'], ['poland', 'PL'], ['polsk', 'PL'], ['lithuan', 'LT'], ['latvi', 'LV'],
+  ['eston', 'EE'], ['georgia', 'GE'], ['armenia', 'AM'], ['kazakh', 'KZ'], ['azerbaij', 'AZ'],
+  ['german', 'DE'], ['netherl', 'NL'], ['belgi', 'BE'], ['finland', 'FI'], ['emirat', 'AE'],
+  ['uae', 'AE'], ['dubai', 'AE'], ['russia', 'RU'], ['romania', 'RO'], ['bulgar', 'BG'],
+  ['czech', 'CZ'], ['slovak', 'SK'], ['turkey', 'TR'], ['nigeria', 'NG'], ['ghana', 'GH'],
+  ['kenya', 'KE'], ['saudi', 'SA'], ['cyprus', 'CY'], ['domin', 'DO'], ['moldova', 'MD'],
+  ['chile', 'CL'], ['mexico', 'MX'], ['canada', 'CA'], ['egypt', 'EG'], ['jordan', 'JO'],
+];
+function countryCode(country = '') {
+  const c = country.toLowerCase();
+  const hit = COUNTRY_CODES.find(([k]) => c.includes(k));
+  return hit ? hit[1] : (country.replace(/[^A-Za-z]/g, '').slice(0, 2).toUpperCase() || 'XX');
+}
+
 export default function Exporters() {
   const { t } = useTranslation('exporters');
   const { t: tCommon } = useTranslation('common');
@@ -35,18 +67,25 @@ export default function Exporters() {
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
+  // B: field-level errors, populated only after an invalid submit (never at rest).
+  const [fieldErrors, setFieldErrors] = useState({});
 
   function set(field, value) {
     setForm(prev => ({ ...prev, [field]: value }));
+    setFieldErrors(prev => (prev[field] ? { ...prev, [field]: undefined } : prev));
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
     setError(null);
-    if (!form.contact_name.trim()) { setError(t('form.errors.contactNameRequired')); return; }
-    if (!form.email.trim()) { setError(t('form.errors.emailRequired')); return; }
-    if (form.phone && !isValidPhone(form.phone)) {
-      setError(t('form.errors.invalidPhone'));
+    // B: validate all fields, surface per-field errors after submit + a summary alert.
+    const fe = {};
+    if (!form.contact_name.trim()) fe.contact_name = t('form.errors.contactNameRequired');
+    if (!form.email.trim()) fe.email = t('form.errors.emailRequired');
+    if (form.phone && !isValidPhone(form.phone)) fe.phone = t('form.errors.invalidPhone');
+    setFieldErrors(fe);
+    if (Object.keys(fe).length > 0) {
+      setError(fe.contact_name || fe.email || fe.phone);
       return;
     }
 
@@ -73,14 +112,7 @@ export default function Exporters() {
     }
   }
 
-  const slugMap = {
-    'Port Newark': 'newark',
-    'Port of Houston': 'houston',
-    'Port of Savannah': 'savannah',
-    'Port of Los Angeles': 'los-angeles',
-    'Port of Baltimore': 'baltimore',
-    'JAXPORT': 'jacksonville',
-  };
+  const portCount = Array.isArray(portList) ? portList.length : 0;
 
   return (
     <div className={styles.wrap}>
@@ -147,21 +179,74 @@ export default function Exporters() {
         </div>
       </div>
 
-      {/* Port Coverage */}
+      {/* Port Coverage — C motif: route rail + number anchors + port-pills */}
       <div className={styles.portsBlock}>
         <h2 className={styles.portsTitle}>{t('ports.title')}</h2>
+
+        {/* Route rail: auction/dealer -> US export port -> destination */}
+        <div className={styles.routeRail}>
+          <svg className={styles.routeSvg} viewBox="0 0 760 60" preserveAspectRatio="none" aria-hidden="true">
+            <path className={styles.routeTrack} d="M40 15 H720" />
+            <path className={styles.routeGlow} d="M40 15 H720" />
+          </svg>
+          <div className={styles.routeNode}>
+            <div className={styles.routeDot} />
+            <div className={styles.routeLabel}>Auction / Dealer</div>
+          </div>
+          <div className={styles.routeNode}>
+            <div className={`${styles.routeDot} ${styles.routeDotMid}`} />
+            <div className={styles.routeLabel}>US Export Port</div>
+            {portCount > 0 && <div className={styles.routeSub}>{portCount} ports</div>}
+          </div>
+          <div className={styles.routeNode}>
+            <div className={styles.routeDot} />
+            <div className={styles.routeLabel}>Destination</div>
+          </div>
+        </div>
+
+        {/* Number anchors = the page's mid-page dark spotlight band. Restyles facts
+            already on the page: port/destination counts + footer USDOT/BMC-84. */}
+        <div className={styles.anchorsBand}>
+          <div className={styles.anchorsRow}>
+            {portCount > 0 && (
+              <div className={styles.anchor}>
+                <p className={styles.anchorNum}>{portCount}</p>
+                <p className={styles.anchorLabel}>US export ports</p>
+              </div>
+            )}
+            {destItems.length > 0 && (
+              <div className={styles.anchor}>
+                <p className={styles.anchorNum}>{destItems.length}</p>
+                <p className={styles.anchorLabel}>destinations</p>
+              </div>
+            )}
+            <div className={styles.anchor}>
+              <p className={styles.anchorNum}>$75K</p>
+              <p className={styles.anchorLabel}>BMC-84 bond</p>
+            </div>
+            <div className={styles.anchor}>
+              <p className={styles.anchorNum}>#4427359</p>
+              <p className={styles.anchorLabel}>USDOT</p>
+            </div>
+          </div>
+        </div>
+
         <div className={styles.portsGrid}>
           {Array.isArray(portList) && portList.map((port, i) => {
-            const portSlug = Object.entries(slugMap).find(([key]) => port.name?.includes(key))?.[1];
+            const { slug, code } = portMeta(port.name);
             const card = (
               <div className={styles.portCard}>
+                <div className={styles.portTop}>
+                  <span className={styles.portPin} aria-hidden="true" />
+                  <span className={styles.portCode}>{code}</span>
+                </div>
                 <div className={styles.portName}>{port.name}</div>
                 <div className={styles.portDesc}>{port.desc}</div>
-                {portSlug && <div className={styles.portCta}>{t('crosslinks.viewPortDetails')}</div>}
+                {slug && <div className={styles.portCta}>{t('crosslinks.viewPortDetails')}</div>}
               </div>
             );
-            return portSlug ? (
-              <Link key={i} to={`/ports/${portSlug}`} className={styles.portLink}>
+            return slug ? (
+              <Link key={i} to={`/ports/${slug}`} className={styles.portLink}>
                 {card}
               </Link>
             ) : (
@@ -192,17 +277,20 @@ export default function Exporters() {
                 </div>
                 <div className={forms.inputGroup}>
                   <label htmlFor="exporter-name" className={forms.label}>{t('form.contactName')} *</label>
-                  <input id="exporter-name" className={forms.input} value={form.contact_name} onChange={e => set('contact_name', e.target.value)} />
+                  <input id="exporter-name" className={`${forms.input} ${fieldErrors.contact_name ? styles.fieldError : ''}`} value={form.contact_name} onChange={e => set('contact_name', e.target.value)} aria-invalid={fieldErrors.contact_name ? 'true' : undefined} />
+                  {fieldErrors.contact_name && <span className={styles.fieldErrorMsg}>{fieldErrors.contact_name}</span>}
                 </div>
               </div>
               <div className={styles.formRow}>
                 <div className={forms.inputGroup}>
                   <label htmlFor="exporter-email" className={forms.label}>{t('form.email')} *</label>
-                  <input id="exporter-email" type="email" className={forms.input} value={form.email} onChange={e => set('email', e.target.value)} />
+                  <input id="exporter-email" type="email" className={`${forms.input} ${fieldErrors.email ? styles.fieldError : ''}`} value={form.email} onChange={e => set('email', e.target.value)} aria-invalid={fieldErrors.email ? 'true' : undefined} />
+                  {fieldErrors.email && <span className={styles.fieldErrorMsg}>{fieldErrors.email}</span>}
                 </div>
                 <div className={forms.inputGroup}>
                   <label htmlFor="exporter-phone" className={forms.label}>{t('form.phone')}</label>
-                  <PhoneInput id="exporter-phone" className={forms.input} value={form.phone} onChange={v => set('phone', v)} />
+                  <PhoneInput id="exporter-phone" className={`${forms.input} ${fieldErrors.phone ? styles.fieldError : ''}`} value={form.phone} onChange={v => set('phone', v)} />
+                  {fieldErrors.phone && <span className={styles.fieldErrorMsg}>{fieldErrors.phone}</span>}
                 </div>
               </div>
               <div className={styles.formRow}>
@@ -249,7 +337,7 @@ export default function Exporters() {
                 />
               </div>
 
-              {error && <div className={styles.errorAlert}>{error}</div>}
+              {error && <div className={styles.errorAlert} role="alert">{error}</div>}
 
               <button
                 type="submit"
@@ -294,8 +382,15 @@ export default function Exporters() {
           <div className={styles.destinationsGrid}>
             {destItems.map((item, i) => (
               <div key={i} className={styles.destItem}>
-                <span className={styles.destCountry}>{item.country}</span>
-                <span className={styles.destNotes}>{item.notes}</span>
+                <span className={styles.destBadge} aria-hidden="true">{countryCode(item.country)}</span>
+                <div className={styles.destBody}>
+                  <span className={styles.destRoute}>
+                    <span className={styles.destFrom}>US Port</span>
+                    <span className={styles.destArrow} aria-hidden="true">&rarr;</span>
+                    <span className={styles.destCountry}>{item.country}</span>
+                  </span>
+                  <span className={styles.destNotes}>{item.notes}</span>
+                </div>
               </div>
             ))}
           </div>
