@@ -637,6 +637,20 @@ export default function OrderDetail() {
         </p>
       )}
 
+      {/* ORD-INV-4: billing lifecycle for dealer/exporter orders (separate from
+          the shipment status timeline below). Pending is the default and hidden. */}
+      {['dealer', 'exporter'].includes(user?.customer_type) && ['invoiced', 'closed'].includes(order.billing_status) && (
+        <span style={{
+          display: 'inline-block', marginBottom: '20px',
+          padding: '4px 12px', borderRadius: '10px', fontSize: '12px', fontWeight: 600,
+          fontFamily: fonts.sans,
+          color: order.billing_status === 'closed' ? '#065F46' : '#92400e',
+          background: order.billing_status === 'closed' ? '#D1FAE5' : '#FEF3C7',
+        }}>
+          {order.billing_status === 'closed' ? 'Closed — paid' : 'Invoiced — awaiting payment'}
+        </span>
+      )}
+
       {/* PHASE4B-REPRICE: a revised quote awaits the dealer's re-confirmation. The
           re-accept link lives in the updated-quote email (token-gated), so the portal
           surfaces the prompt and the updated price. */}
