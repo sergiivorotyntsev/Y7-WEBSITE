@@ -392,6 +392,17 @@ async function prerender() {
         req.abort();
         return;
       }
+      // FIX-JUMP-T01: block the dispatch public API during prerender so on-mount
+      // fetch('/api/public/...') calls never complete here. Components then bake
+      // their deterministic pre-fetch initial state (LiveActivityFeed -> null,
+      // ReviewsCarousel -> static testimonials), which is exactly what the client
+      // renders first. That makes the createRoot() re-render a visual no-op and
+      // kills the homepage "reload/jump" + CLS. Live site fetches /api/public/
+      // normally; this abort is Puppeteer-only.
+      if (url.includes('/api/public/')) {
+        req.abort();
+        return;
+      }
       if (['image', 'media', 'font'].includes(type)) {
         req.abort();
       } else {
