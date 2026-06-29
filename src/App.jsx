@@ -150,6 +150,17 @@ export default function App() {
     document.dispatchEvent(new Event('prerender-ready'));
   }, []);
 
+  // FIX-JUMP-T03: drop the `preboot` freeze AFTER React commits the createRoot
+  // DOM, so the hero animations start once on the final tree instead of restarting
+  // at the ~1s re-render (the visible jump). Runs post-commit (effect), and is
+  // skipped under Puppeteer (navigator.webdriver) so the class STAYS in the
+  // prerendered snapshot — otherwise this same effect would strip it during
+  // prerender and the static paint would no longer be frozen.
+  useEffect(() => {
+    if (typeof navigator !== 'undefined' && navigator.webdriver) return;
+    document.body.classList.remove('preboot');
+  }, []);
+
   return (
     <AuthProvider>
       <Analytics />
