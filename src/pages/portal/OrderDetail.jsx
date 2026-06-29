@@ -38,6 +38,19 @@ function fmtDate(d) {
   });
 }
 
+// 2B-5: the customer sees planned delivery as a ±2-day window, never an exact
+// guaranteed date — the planned date is an estimate. The value is a date-only
+// ISO string; parse the Y-M-D parts in LOCAL time to avoid a UTC off-by-one.
+function fmtDeliveryWindow(d) {
+  if (!d) return null;
+  const s = String(d).slice(0, 10);
+  const m = s.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  const date = m ? new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3])) : new Date(d);
+  if (isNaN(date.getTime())) return null;
+  const label = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  return `${label} (±2 days)`;
+}
+
 function InfoCard({ title, children }) {
   return (
     <div style={{
@@ -986,7 +999,7 @@ export default function OrderDetail() {
           )}
           {order.estimated_delivery_date && (
             <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted, marginTop: '10px' }}>
-              Planned delivery: {fmtDate(order.estimated_delivery_date) || order.estimated_delivery_date}
+              Est. delivery: {fmtDeliveryWindow(order.estimated_delivery_date) || order.estimated_delivery_date}
             </div>
           )}
           {order.carrier_name && (
