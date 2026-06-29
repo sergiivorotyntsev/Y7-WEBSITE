@@ -23,6 +23,26 @@ const PORT = process.env.PORT || 3000;
 const DIST_DIR = path.join(__dirname, 'dist');
 
 // ---------------------------------------------------------------------------
+// Security headers (SEC-H01) — first middleware, so every response (pages,
+// assets, 301 redirects, 404s) carries them. Cloudflare currently sets none.
+// ---------------------------------------------------------------------------
+// - nosniff / X-Frame-Options: SAMEORIGIN / Referrer-Policy / HSTS on all responses.
+// - HSTS: NO preload (hard to reverse); includeSubDomains is safe — www.y7agency.com
+//   has no child subdomains (HSTS scopes to the setting host's subtree, not siblings).
+// - Permissions-Policy omits `payment`: no Stripe/PaymentRequest on the marketing
+//   site today, and we don't want to block a future customer-payment integration.
+// - A full CSP is deferred (a missed source breaks the SPA); X-Frame-Options covers
+//   clickjacking until a Report-Only CSP is rolled out later.
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+  res.setHeader('Permissions-Policy', 'geolocation=(), camera=(), microphone=()');
+  next();
+});
+
+// ---------------------------------------------------------------------------
 // Legacy diaspora redirects (9 rules, all 301 permanent)
 // ---------------------------------------------------------------------------
 // Order matters: exact root matches first, then wildcard sub-path matches.
