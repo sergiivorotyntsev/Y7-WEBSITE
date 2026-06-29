@@ -82,6 +82,20 @@ app.get(/^\/ru-us(\/.*)?$/, (req, res) => {
 });
 
 // ---------------------------------------------------------------------------
+// SEO-FND-T03: retire the legacy Ukrainian /uk/ prefix.
+// The canonical Ukrainian prefix is now /ua/ (country-style segment). Old /uk/*
+// URLs (e.g. /uk/about) are still indexed by Google and currently dead-end as
+// 404s. Single-hop 301 /uk -> /ua and /uk/* -> /ua/* recovers their link equity
+// and impressions; the /ua equivalent exists for the translatable pages, and any
+// non-existent tail lands as a normal 404 (single hop, no chain). Query string
+// preserved for parity with the diaspora rules above.
+app.get(/^\/uk(\/.*)?$/, (req, res) => {
+  const suffix = req.params[0] || '';
+  const qs = req.url.includes('?') ? req.url.substring(req.url.indexOf('?')) : '';
+  res.redirect(301, '/ua' + suffix + qs);
+});
+
+// ---------------------------------------------------------------------------
 // HOTFIX-CONFIRM404-T02: /en/ quote-action links from already-sent emails.
 // English lives at root ('en' is not a locale prefix), but every quote email
 // sent before this fix carries /en/quote/confirm/{id}?token=... — redirect to
@@ -195,6 +209,16 @@ function isKnownPath(reqPath) {
 
 app.get(/.*/, (req, res) => {
   if (isKnownPath(req.path)) {
+    // SEO-FND-T01: never serve the generic SPA shell (Home's <head>) to a route
+    // that has its OWN prerendered HTML. The directory middleware above already
+    // serves dist/<path>/index.html when present; this is defense-in-depth so a
+    // prerendered page (e.g. /blog/:slug) can never fall through to Home's
+    // index.html and inherit its canonical=/ + Home <title>.
+    const ownIndex = path.join(DIST_DIR, req.path, 'index.html');
+    if (!path.extname(req.path) && existsSync(ownIndex)) {
+      res.setHeader('Cache-Control', 'no-cache');
+      return res.sendFile(ownIndex);
+    }
     res.sendFile(path.join(DIST_DIR, 'index.html'));
     return;
   }
