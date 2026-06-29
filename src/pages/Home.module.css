@@ -249,21 +249,6 @@
   letter-spacing: 0.1em;
 }
 
-.routeCar {
-  fill: var(--accent, #993C1D);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .routeCar {
-    animation: routeCarMove 8s ease-in-out infinite;
-  }
-}
-
-@keyframes routeCarMove {
-  0% { transform: translateX(0); }
-  50% { transform: translateX(220px); }
-  100% { transform: translateX(0); }
-}
 
 /* =====================================================================
    SECTION RHYTHM — alternating backgrounds + consistent spacing

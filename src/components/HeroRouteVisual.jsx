@@ -25,13 +25,6 @@ export default function HeroRouteVisual() {
         d="M 40 200 Q 100 80 170 140 T 300 80 T 400 60"
       />
 
-      {/* Stylized car — small, premium silhouette */}
-      <g className={styles.routeCar} transform="translate(60 188)">
-        <path d="M -14 0 L -11 -6 L 11 -6 L 14 0 L 14 4 L 11 4 L 11 2 L -11 2 L -11 4 L -14 4 Z" />
-        <circle cx="-8" cy="4" r="2" fill="#2C2C2A" />
-        <circle cx="8" cy="4" r="2" fill="#2C2C2A" />
-      </g>
-
       {/* 4 city dots */}
       <circle className={styles.routeDot} cx="40" cy="200" r="6" />
       <circle className={styles.routeDot} cx="170" cy="140" r="6" />
