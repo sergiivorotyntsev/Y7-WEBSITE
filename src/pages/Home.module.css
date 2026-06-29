@@ -217,6 +217,14 @@
   fill: var(--bg-card, #fff);
   stroke: var(--accent, #993C1D);
   stroke-width: 2;
+  /* CWV-T05: pulse via compositor-friendly transform:scale + opacity instead of
+     animating the SVG `r` attribute (which forces layout/paint every frame on an
+     infinite animation). transform-box:fill-box + center origin scales each dot in
+     place; non-scaling-stroke keeps the 2px ring constant so it looks identical to
+     the old r:6->8 pulse. base r stays 6 in the markup. */
+  transform-box: fill-box;
+  transform-origin: center;
+  vector-effect: non-scaling-stroke;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -229,8 +237,8 @@
 }
 
 @keyframes routeDotPulse {
-  0%, 100% { r: 6; opacity: 1; }
-  50% { r: 8; opacity: 0.7; }
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3333); opacity: 0.7; }
 }
 
 .routeLabel {
