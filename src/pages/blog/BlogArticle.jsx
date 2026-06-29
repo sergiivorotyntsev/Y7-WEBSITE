@@ -49,6 +49,16 @@ const ARTICLE_COMPONENTS = {
   'copart-for-international-buyers-complete-guide': CopartInternationalBuyersGuide,
 };
 
+// SEO-FND-T04: articles that are off-topic for the auto-transport audience get
+// noindex,follow — they dilute the site-wide quality ratio for Google but keep
+// passing internal link equity (follow). Kept live and linkable for humans; just
+// excluded from the index and from the sitemap (see scripts/generateSitemap.js).
+// 'outbox-pattern-dispatch' is a software-engineering article on an auto-transport
+// site (approved by Sergii). Add slugs here only after explicit review.
+const NOINDEX_SLUGS = new Set([
+  'outbox-pattern-dispatch',
+]);
+
 const RELATED_SERVICES = {
   'dealer-auction-pickup-guide': [
     { to: '/auction-car-shipping',   label: 'Auction car shipping' },
@@ -201,6 +211,7 @@ export default function BlogArticle() {
         articlePublishedTime={article.dateISO}
         articleAuthor={author.name}
         articleSection={cat.label}
+        noindex={NOINDEX_SLUGS.has(slug)}
       />
       <BreadcrumbSchema items={[
         { name: 'Home', url: '/' },
