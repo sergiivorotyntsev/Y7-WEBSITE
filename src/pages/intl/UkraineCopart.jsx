@@ -333,7 +333,7 @@ function UkraineCopart() {
           name="keywords"
           content="Copart Україна, пригін авто з Copart, авто з аукціону США, IAAI пригін, биті авто з США, розмитнення Copart, Y7 Logistics"
         />
-        <link rel="canonical" href="https://www.y7agency.com/ua/copart-shipping" />
+        <link rel="canonical" href="https://www.y7agency.com/ua/copart-ta-iaai" />
         <meta property="og:title" content="Copart — пригін авто з аукціону в Україну" />
         <meta
           property="og:description"

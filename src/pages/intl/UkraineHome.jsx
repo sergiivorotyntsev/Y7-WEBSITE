@@ -386,7 +386,7 @@ function UkraineHome() {
           name="keywords"
           content="пригін авто з США, авто з Америки в Україну, Copart Україна, IAAI пригін, доставка авто з США, розмитнення авто, Y7 Logistics"
         />
-        <link rel="canonical" href="https://www.y7agency.com/ua" />
+        <link rel="canonical" href="https://www.y7agency.com/ua/import-z-usa" />
         <meta property="og:title" content="Пригін авто з США в Україну — Y7 Logistics" />
         <meta
           property="og:description"

@@ -104,7 +104,7 @@ const PolandHome = () => {
         <meta property="og:url" content="https://www.y7agency.com/pl" />
         <meta property="og:locale" content="pl_PL" />
         <html lang="pl" />
-        <link rel="canonical" href="https://www.y7agency.com/pl" />
+        <link rel="canonical" href="https://www.y7agency.com/pl/transport-z-usa" />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>

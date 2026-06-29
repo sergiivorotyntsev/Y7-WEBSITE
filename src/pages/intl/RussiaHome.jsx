@@ -281,7 +281,7 @@ function RussiaHome() {
         <html lang="ru" />
         <title>Перевозка автомобилей по США — Y7 Logistics</title>
         <meta name="description" content="Y7 Logistics (MC #1741537) — перевозка авто по всем 50 штатам. Доставка с Copart и IAAI, до порта, дилерские маршруты. Русскоязычная поддержка." />
-        <link rel="canonical" href="https://www.y7agency.com/ru" />
+        <link rel="canonical" href="https://www.y7agency.com/ru/dostavka-avto-iz-usa" />
         <meta property="og:title" content="Перевозка автомобилей по США — Y7 Logistics" />
         <meta property="og:description" content="Лицензированный брокер FMCSA. 100+ перевозчиков, все 50 штатов. Русскоязычная поддержка." />
         <meta property="og:url" content="https://www.y7agency.com/ru" />

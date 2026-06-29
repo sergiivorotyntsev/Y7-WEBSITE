@@ -112,7 +112,7 @@ const PolandCopart = () => {
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://www.y7agency.com/pl/copart-shipping" />
         <html lang="pl" />
-        <link rel="canonical" href="https://www.y7agency.com/pl/copart-shipping" />
+        <link rel="canonical" href="https://www.y7agency.com/pl/transport-z-aukcji" />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
       </Helmet>

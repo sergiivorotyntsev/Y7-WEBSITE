@@ -202,7 +202,7 @@ function RussiaShipMyCar() {
         <html lang="ru" />
         <title>Заказать перевозку авто по США — Y7 Logistics</title>
         <meta name="description" content="Закажите перевозку авто по США: от аукциона до двери, между городами, до порта. Расчёт за минуты, фиксированная цена. MC #1741537." />
-        <link rel="canonical" href="https://www.y7agency.com/ru/ship-my-car" />
+        <link rel="canonical" href="https://www.y7agency.com/ru/perevozka-avto" />
         <meta property="og:title" content="Заказать перевозку автомобиля — Y7 Logistics" />
         <meta property="og:description" content="Расчёт стоимости за минуты. Фиксированная цена, все 50 штатов. MC #1741537." />
         <meta property="og:url" content="https://www.y7agency.com/ru/ship-my-car" />

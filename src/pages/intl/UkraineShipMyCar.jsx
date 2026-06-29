@@ -221,7 +221,7 @@ function UkraineShipMyCar() {
           name="keywords"
           content="замовити пригін авто з США, пригін з Copart в Україну, транспорт авто США Україна, Copart замовлення, IAAI пригін, Y7 Logistics"
         />
-        <link rel="canonical" href="https://www.y7agency.com/ua/ship-my-car" />
+        <link rel="canonical" href="https://www.y7agency.com/ua/dostavka-avto-z-usa" />
         <meta property="og:title" content="Замовити пригін авто з США в Україну — Y7 Logistics" />
         <meta
           property="og:description"

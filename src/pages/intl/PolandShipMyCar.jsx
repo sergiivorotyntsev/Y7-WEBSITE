@@ -249,7 +249,7 @@ function PolandShipMyCar() {
           name="keywords"
           content="zam\u00f3w transport auta z USA, sprowadzenie auta z Copart, transport samochodu USA Polska, transport aut mi\u0119dzy stanami, Polonia USA transport, Y7 Logistics, DaytonaCargo"
         />
-        <link rel="canonical" href="https://www.y7agency.com/pl/ship-my-car" />
+        <link rel="canonical" href="https://www.y7agency.com/pl/wysylka-auta-z-usa" />
         <meta property="og:title" content="Zam\u00f3w transport auta z USA \u2014 Y7 \u00d7 DaytonaCargo" />
         <meta
           property="og:description"
