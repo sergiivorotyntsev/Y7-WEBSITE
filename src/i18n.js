@@ -100,20 +100,25 @@ const resources = {
 
 const SUPPORTED = ['en', 'pl', 'ua', 'ru'];
 
-function detectInitialLang() {
+// HYDRATE-T01: derive the initial language from the URL prefix, synchronously,
+// so the client's FIRST render matches the prerendered HTML (which is localized
+// per /ua,/pl,/ru). Identical in Puppeteer and the browser since both read
+// window.location.pathname. Non-prefixed paths stay 'en' — matching the prerender
+// AND LocaleDetector (which already forces '/'→'en' post-mount). Browser-language /
+// stored-preference auto-switch is deliberately NOT applied on first render (would
+// mismatch the EN prerender and is bad for SEO/analytics); LocaleDetector still
+// handles client-side locale navigation. This replaces the old localStorage→
+// navigator.language detection, which caused a non-EN-browser first render to
+// diverge from the EN prerender.
+function localeFromPath() {
   if (typeof window === 'undefined') return 'en';
-  try {
-    const stored = window.localStorage?.getItem('y7_lang');
-    if (stored && SUPPORTED.includes(stored)) return stored;
-  } catch { /* storage unavailable — fall through to nav detection */ }
-  const nav = (typeof navigator !== 'undefined' && navigator.language) ? navigator.language.slice(0, 2).toLowerCase() : 'en';
-  if (nav === 'uk') return 'ua';
-  return SUPPORTED.includes(nav) ? nav : 'en';
+  const m = window.location.pathname.match(/^\/(ua|pl|ru)(\/|$)/);
+  return m ? m[1] : 'en';
 }
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: detectInitialLang(),
+  lng: localeFromPath(),
   fallbackLng: 'en',
   supportedLngs: SUPPORTED,
   defaultNS: 'common',
