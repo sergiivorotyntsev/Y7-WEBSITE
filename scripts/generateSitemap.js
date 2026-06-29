@@ -4,15 +4,154 @@
 // version (including itself). Per Google's hreflang rules:
 // https://developers.google.com/search/docs/specialty/international/localized-versions
 
-import { writeFileSync } from 'fs';
+import { writeFileSync, readFileSync, existsSync } from 'fs';
+import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { PORT_SLUGS } from '../src/pages/ports/portData.js';
+import articles from '../src/data/blogArticles.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT_FILE = join(__dirname, '..', 'public', 'sitemap.xml');
+const REPO_ROOT = join(__dirname, '..');
 const BASE = 'https://www.y7agency.com';
-const TODAY = new Date().toISOString().slice(0, 10);
+
+// ---------------------------------------------------------------------------
+// SEO-FND-T05: real per-URL <lastmod> (replaces the perpetually-"today" stamp,
+// which Google learns to ignore). Strategy:
+//   - Blog articles: the SSOT dateISO from blogArticles.js (real publish/update).
+//   - Every other URL: the git commit date of its backing source file.
+// Git is NOT available in the Docker build (alpine, no git) and `prebuild` runs
+// there, so resolved dates are persisted to a committed manifest
+// (scripts/sitemap-lastmod.json): local runs populate it from git, the Docker
+// build reads it back. BUILD_DATE is the last-resort fallback for brand-new URLs.
+// ---------------------------------------------------------------------------
+const BUILD_DATE = new Date().toISOString().slice(0, 10);
+const MANIFEST_FILE = join(__dirname, 'sitemap-lastmod.json');
+
+let manifest = {};
+try {
+  if (existsSync(MANIFEST_FILE)) manifest = JSON.parse(readFileSync(MANIFEST_FILE, 'utf-8'));
+} catch {
+  manifest = {};
+}
+
+let GIT_OK = false;
+try {
+  execSync('git rev-parse --is-inside-work-tree', { cwd: REPO_ROOT, stdio: ['ignore', 'pipe', 'ignore'] });
+  GIT_OK = true;
+} catch {
+  GIT_OK = false;
+}
+
+function gitDate(relFile) {
+  try {
+    const out = execSync(`git log -1 --format=%cs -- "${relFile}"`, {
+      cwd: REPO_ROOT,
+      encoding: 'utf-8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    }).trim();
+    return /^\d{4}-\d{2}-\d{2}$/.test(out) ? out : null;
+  } catch {
+    return null;
+  }
+}
+
+// URL -> backing source file. Locale-prefixed translatable pages share the
+// English component, so they resolve via their locale-stripped base path.
+const PAGE_SOURCE = {
+  '/': 'src/pages/Home.jsx',
+  '/services': 'src/pages/Services.jsx',
+  '/dealers': 'src/pages/Dealers.jsx',
+  '/exporters': 'src/pages/Exporters.jsx',
+  '/ship-my-car': 'src/pages/ShipMyCar.jsx',
+  '/about': 'src/pages/About.jsx',
+  '/contact': 'src/pages/Contact.jsx',
+  '/faq': 'src/pages/FAQ.jsx',
+  '/track': 'src/pages/Track.jsx',
+  '/quote': 'src/pages/Quote.jsx',
+  '/dealer-quote': 'src/pages/DealerQuote.jsx',
+  '/privacy': 'src/pages/PrivacyPolicy.jsx',
+  '/terms': 'src/pages/Terms.jsx',
+  '/accessibility': 'src/pages/Accessibility.jsx',
+  '/careers': 'src/pages/Careers.jsx',
+  '/careers/apply': 'src/pages/CareerApplication.jsx',
+  '/car-shipping-cost': 'src/pages/seo/CarShippingCost.jsx',
+  '/enclosed-car-shipping': 'src/pages/seo/EnclosedCarShipping.jsx',
+  '/auction-car-shipping': 'src/pages/seo/AuctionCarShipping.jsx',
+  '/auction-transport-savings': 'src/pages/seo/AuctionTransportSavings.jsx',
+  '/copart-shipping': 'src/pages/seo/CopartShipping.jsx',
+  '/iaai-transport': 'src/pages/seo/IaaiTransport.jsx',
+  '/manheim-transport': 'src/pages/seo/ManheimTransport.jsx',
+  '/door-to-port-auto-transport': 'src/pages/seo/DoorToPort.jsx',
+  '/dealer-auto-transport': 'src/pages/seo/DealerAutoTransport.jsx',
+  '/salvage-car-shipping': 'src/pages/seo/SalvageCarShipping.jsx',
+  '/open-car-shipping': 'src/pages/seo/OpenCarShipping.jsx',
+  '/state-to-state-car-shipping': 'src/pages/seo/StateToState.jsx',
+  '/massachusetts-car-shipping': 'src/pages/seo/locations/MassachusettsCarShipping.jsx',
+  '/boston-car-shipping': 'src/pages/seo/locations/BostonCarShipping.jsx',
+  '/newton-auto-transport': 'src/pages/seo/locations/NewtonAutoTransport.jsx',
+  '/florida-car-shipping': 'src/pages/seo/locations/FloridaCarShipping.jsx',
+  '/new-jersey-auto-transport': 'src/pages/seo/locations/NewJerseyAutoTransport.jsx',
+  '/texas-auto-transport': 'src/pages/seo/locations/TexasAutoTransport.jsx',
+  '/massachusetts-to-florida-car-shipping': 'src/pages/seo/routes/MassachusettsToFlorida.jsx',
+  '/new-jersey-to-florida-car-shipping': 'src/pages/seo/routes/NewJerseyToFlorida.jsx',
+  '/texas-to-newark-port-auto-transport': 'src/pages/seo/routes/TexasToNewark.jsx',
+  '/chicago-to-port-newark-car-shipping': 'src/pages/seo/routes/ChicagoToNewark.jsx',
+  '/auction-to-port-transport': 'src/pages/seo/routes/AuctionToPort.jsx',
+  '/tesla-car-shipping': 'src/pages/seo/TeslaCarShipping.jsx',
+  '/ev-auto-transport': 'src/pages/seo/EVAutoTransport.jsx',
+  '/cybertruck-shipping': 'src/pages/seo/CybertruckShipping.jsx',
+  '/electric-vehicle-port-delivery': 'src/pages/seo/ElectricVehiclePortDelivery.jsx',
+  '/how-to-ship-a-car-bought-at-auction': 'src/pages/seo/guides/HowToShipAuctionCar.jsx',
+  '/open-vs-enclosed-auto-transport': 'src/pages/seo/guides/OpenVsEnclosed.jsx',
+  '/what-is-a-bill-of-lading': 'src/pages/seo/guides/BillOfLading.jsx',
+  '/copart-storage-fees': 'src/pages/seo/guides/CopartStorageFees.jsx',
+  '/copart-gate-pass-guide': 'src/pages/seo/guides/CopartGatePassGuide.jsx',
+  '/copart-international-shipping': 'src/pages/seo/guides/CopartInternationalShipping.jsx',
+  '/blog': 'src/pages/blog/BlogIndex.jsx',
+  // Unique intl landing pages (distinct content, own components).
+  '/pl/transport-z-usa': 'src/pages/intl/PolandHome.jsx',
+  '/pl/transport-z-aukcji': 'src/pages/intl/PolandCopart.jsx',
+  '/pl/wysylka-auta-z-usa': 'src/pages/intl/PolandShipMyCar.jsx',
+  '/ua/import-z-usa': 'src/pages/intl/UkraineHome.jsx',
+  '/ua/copart-ta-iaai': 'src/pages/intl/UkraineCopart.jsx',
+  '/ua/dostavka-avto-z-usa': 'src/pages/intl/UkraineShipMyCar.jsx',
+  '/ru/dostavka-avto-iz-usa': 'src/pages/intl/RussiaHome.jsx',
+  '/ru/copart-i-iaai': 'src/pages/intl/RussiaCopart.jsx',
+  '/ru/perevozka-avto': 'src/pages/intl/RussiaShipMyCar.jsx',
+};
+
+const blogBySlug = new Map(articles.map((a) => [a.slug, a]));
+
+function lastmodFor(path) {
+  // Blog articles — real per-article date from the data SSOT.
+  const blog = path.match(/^\/blog\/(.+)$/);
+  if (blog) {
+    const a = blogBySlug.get(blog[1]);
+    if (a?.dateISO) return a.dateISO;
+  }
+  // Resolve the backing source file (ports share portData.js; locale variants
+  // share their English component).
+  let file;
+  if (/^(\/(ua|pl|ru))?\/ports\//.test(path)) {
+    file = 'src/pages/ports/portData.js';
+  } else {
+    const base = path.replace(/^\/(ua|pl|ru)(?=\/|$)/, '') || '/';
+    file = PAGE_SOURCE[path] || PAGE_SOURCE[base];
+  }
+
+  if (GIT_OK && file) {
+    const d = gitDate(file);
+    if (d) {
+      manifest[path] = d;
+      return d;
+    }
+  }
+  if (manifest[path]) return manifest[path];
+  manifest[path] = BUILD_DATE;
+  return BUILD_DATE;
+}
 
 // ---------------------------------------------------------------------------
 // Translatable paths — each entry has the English-plus-3-locale slug mapping.
@@ -82,7 +221,9 @@ const ENGLISH_ONLY = [
   '/blog/carrier-who-vanished',
   '/blog/carrier-coi-verification-guide',
   '/blog/fmcsa-2026-new-rules',
-  '/blog/outbox-pattern-dispatch',
+  // SEO-FND-T04: /blog/outbox-pattern-dispatch is noindex,follow (off-topic
+  // software-engineering article) — excluded from the sitemap so it only lists
+  // indexable URLs. The route still prerenders + serves, just with noindex.
   '/blog/dealer-auction-pickup-guide',
   '/blog/exporter-documentation-checklist',
   '/blog/fmcsa-broker-recordkeeping-2026',
@@ -153,7 +294,7 @@ function translatedUrlBlock(loc, group) {
   return [
     '  <url>',
     `    <loc>${BASE}${loc}</loc>`,
-    `    <lastmod>${TODAY}</lastmod>`,
+    `    <lastmod>${lastmodFor(loc)}</lastmod>`,
     `    <changefreq>${changefreq}</changefreq>`,
     `    <priority>${priority}</priority>`,
     buildAlternates(group),
@@ -166,7 +307,7 @@ function flatUrlBlock(path) {
   return [
     '  <url>',
     `    <loc>${BASE}${path}</loc>`,
-    `    <lastmod>${TODAY}</lastmod>`,
+    `    <lastmod>${lastmodFor(path)}</lastmod>`,
     `    <changefreq>${changefreq}</changefreq>`,
     `    <priority>${priority}</priority>`,
     '  </url>',
@@ -224,10 +365,17 @@ const xml = [
 
 writeFileSync(OUT_FILE, xml, 'utf-8');
 
+// SEO-FND-T05: persist resolved per-URL dates so the git-less Docker build can
+// read them back (sorted keys for stable, review-friendly diffs).
+const sortedManifest = Object.fromEntries(Object.keys(manifest).sort().map((k) => [k, manifest[k]]));
+writeFileSync(MANIFEST_FILE, JSON.stringify(sortedManifest, null, 2) + '\n', 'utf-8');
+
 const total = (xml.match(/<url>/g) || []).length;
 const alt = (xml.match(/xhtml:link/g) || []).length;
 console.log(`[generateSitemap] wrote ${OUT_FILE}`);
 console.log(`  Total <url> entries: ${total}`);
 console.log(`  Total xhtml:link alternates: ${alt}`);
+console.log(`  lastmod source: ${GIT_OK ? 'git commit dates' : 'manifest/build-date fallback (no git)'}`);
+console.log(`  Manifest entries: ${Object.keys(sortedManifest).length} -> ${MANIFEST_FILE}`);
 const groupCount = TRANSLATABLE_PATHS.length + PORT_GROUPS.length;
 console.log(`  Translated URL groups: ${groupCount} (× 4 locales × 5 alternates = ${groupCount * 4 * 5})`);
