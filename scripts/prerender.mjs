@@ -20,15 +20,16 @@ const DIST = join(__dirname, '..', 'dist');
 // via PRERENDER_PORT for local debugging.
 const PORT = parseInt(process.env.PRERENDER_PORT || '0', 10);
 
-// PRERENDER-OPT: skip blog article routes from prerender loop.
-// /blog (index) stays prerendered for SEO discovery; /blog/{slug} articles
-// render client-side via the BLOG-LAZY (ae40fed) lazyWithRetry SPA fallback.
-// PUBLIC_ROUTES below stays the full list — it's the source for
-// dist/valid-routes.json which the runtime express server uses to decide
-// 200 vs 404. Skipping prerender ≠ removing the route.
-const SKIP_PATTERNS = [
-  /^\/blog\/[^/]+$/, // /blog/{article-slug} — articles only, NOT the /blog index
-];
+// SEO-FND-T01: blog articles are now prerendered. They were previously skipped
+// (BLOG-LAZY, ae40fed) back when article bodies were React.lazy and snapshotted
+// empty. Article components are now STATIC imports (see BlogArticle.jsx :11-29),
+// so every /blog/{slug} prerenders its real content + self-referencing canonical
+// and per-article <title>/description. Skipping them caused the runtime server to
+// fall through to Home's dist/index.html as SPA fallback, giving all 18 articles
+// canonical=/ + Home's <title> (mass "duplicate of homepage" deindexing).
+// SKIP_PATTERNS kept (empty) so the skip mechanism stays available for any future
+// auth-only/parameterized route without re-plumbing the loop.
+const SKIP_PATTERNS = [];
 
 function shouldSkip(route) {
   return SKIP_PATTERNS.some((pattern) => pattern.test(route));
@@ -95,6 +96,12 @@ function deduplicateHead(html) {
     /<meta\s+name="twitter:description"[^>]*\/?>/gi,
     /<meta\s+name="twitter:image"[^>]*\/?>/gi,
     /<meta\s+name="prerender-status"[^>]*\/?>/gi,
+    // SEO-FND-T04: when a page emits its own robots (e.g. noindex,follow via
+    // PageMeta), Helmet appends it AFTER the index.html template's default
+    // "index, follow". Keep the LAST (page) one so noindex pages ship a single,
+    // unambiguous directive instead of two conflicting robots metas. Pages with
+    // no page-level robots keep the template default untouched (single match).
+    /<meta\s+name="robots"[^>]*\/?>/gi,
   ];
 
   let newHeadInner = headInner;
@@ -436,6 +443,32 @@ async function prerender() {
           check();
         });
       });
+
+      // SEO-FND-T01: guard against snapshotting the SPA shell's (Home's) <head>.
+      // Wait until react-helmet has applied THIS route's canonical — i.e. the
+      // canonical pathname equals the route we navigated to (not '/'). Without
+      // this, a slow lazy route chunk could let us snapshot before PageMeta runs,
+      // baking Home's canonical=/ and <title> into the page (the original blog
+      // bug). Non-fatal on timeout; the post-build canonical audit is the gate.
+      await page.evaluate((expectedPath) => {
+        return new Promise((resolve) => {
+          const TIMEOUT_MS = 5000;
+          const startedAt = Date.now();
+          const want = expectedPath.replace(/\/$/, '') || '/';
+          const norm = (u) => {
+            try { return new URL(u).pathname.replace(/\/$/, '') || '/'; } catch { return ''; }
+          };
+          const check = () => {
+            const link = document.querySelector('link[rel="canonical"]');
+            if ((link && norm(link.href) === want) || Date.now() - startedAt > TIMEOUT_MS) {
+              resolve();
+              return;
+            }
+            requestAnimationFrame(check);
+          };
+          check();
+        });
+      }, route);
 
       let html = await page.content();
 
