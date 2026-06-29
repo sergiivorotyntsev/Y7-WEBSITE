@@ -12,6 +12,17 @@ export default defineConfig({
   plugins: [react()],
   build: {
     chunkSizeWarningLimit: 600,
+    // CWV-T02: stop emitting speculative <link rel="modulepreload"> for heavy,
+    // non-home async route chunks (portal/intl/blog-articles/seo-*). Vite/Rolldown
+    // was preloading ~1 MB of route JS into every page's <head>. resolveDependencies
+    // is called for the entry HTML and each dynamic import; we drop the heavy
+    // route chunks from preload lists while keeping shared vendors (react/i18n/
+    // helmet) preloaded. Does not affect actual on-demand loading when a route is
+    // visited — only removes the wasteful up-front hints.
+    modulePreload: {
+      resolveDependencies: (_filename, deps) =>
+        deps.filter((d) => !/(?:^|\/)(portal|intl|blog-articles|seo-(?:service|location|route|guide))-/.test(d)),
+    },
     rollupOptions: {
       output: {
         manualChunks(id) {
@@ -27,21 +38,19 @@ export default defineConfig({
             return 'vendor';
           }
 
-          // Blog article bodies — only loaded when viewing /blog/:slug
+          // CWV-T03: blog article BODIES are leaf content (statically imported by
+          // the lazy BlogArticle page for prerender; never reachable from the entry),
+          // so grouping them is safe and keeps them out of the BlogArticle chunk.
           if (id.includes('/src/pages/blog/articles/')) return 'blog-articles';
 
-          // Portal pages — only loaded for authenticated users
-          if (id.includes('/src/pages/portal/')) return 'portal';
-
-          // SEO landing pages — grouped by category for shared-chunk benefits
-          // when a visitor browses similar topics.
-          if (id.includes('/src/pages/seo/locations/')) return 'seo-location';
-          if (id.includes('/src/pages/seo/routes/')) return 'seo-route';
-          if (id.includes('/src/pages/seo/guides/')) return 'seo-guide';
-          if (id.includes('/src/pages/seo/')) return 'seo-service';
-
-          // Intl landing pages — one chunk per locale
-          if (id.includes('/src/pages/intl/')) return 'intl';
+          // NOTE: the former page-category grouping (portal/seo/intl/'chrome') was
+          // removed. Forcing route pages into named chunks made Rolldown absorb
+          // SHARED components (e.g. LanguageSwitcher, imported by both the global
+          // Header and the intl pages) INTO a route chunk, turning that whole route
+          // (intl: 9 pages, 305 KiB JS + 49 KiB CSS) into a synchronous dependency
+          // of EVERY page — render-blocking on home. Letting Rolldown auto-split the
+          // remaining app code hoists shared modules to a common chunk and keeps
+          // route-only code in per-route async chunks, so nothing leaks onto home.
         },
       },
     },

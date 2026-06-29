@@ -11,9 +11,10 @@ import NotFound from './pages/NotFound';
 import PromoLanding from './pages/PromoLanding';
 import Careers from './pages/Careers';
 import CareerApplication from './pages/CareerApplication';
-// DaytonaCargo campaign LP — static import (no React.lazy: keeps Puppeteer
-// prerender working). Bare route below, outside Layout: it brings its own chrome.
-import DaytonaCargoPage from './pages/daytonacargo/DaytonaCargoPage';
+// DaytonaCargo campaign LP is lazy-loaded (see lazyWithRetry block below) so its
+// module.css @import (4 display fonts) and three.js (~580 KiB) stay OFF the global
+// critical path — they load only on /daytonacargo. Safe to lazy now: the generic
+// prerender canonical-wait (SEO-FOUNDATION) waits for content before snapshot.
 import { colors } from './theme';
 
 function lazyWithRetry(importFn) {
@@ -100,6 +101,10 @@ const RussiaShipMyCar = lazyWithRetry(() => import('./pages/intl/RussiaShipMyCar
 // Blog — static imports for prerender compatibility
 const BlogIndex = lazyWithRetry(() => import('./pages/blog/BlogIndex'));
 const BlogArticle = lazyWithRetry(() => import('./pages/blog/BlogArticle'));
+
+// CWV-T02: DaytonaCargo LP — lazy so three.js + its 4 display-font @import load
+// only on /daytonacargo, not on every page's critical path.
+const DaytonaCargoPage = lazyWithRetry(() => import('./pages/daytonacargo/DaytonaCargoPage'));
 
 const skipHidden = {
   position: 'absolute', left: '-9999px', top: 'auto',
