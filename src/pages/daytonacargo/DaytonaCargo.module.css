@@ -2,7 +2,12 @@
    Theme keys entirely off the `.night` class on the page root div
    (never document.body). Day/night transitions are 1.1s. */
 
-@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@800;900&family=Saira:wght@600;800&family=Hanken+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap');
+/* CWV-T04: route-scoped @import — loads ONLY on /daytonacargo (lazy chunk since
+   CWV-T02), never on the global critical path. Display fonts (Saira/Saira Condensed/
+   Hanken Grotesk) stay here; /daytonacargo has ~0 SEO traffic so self-hosting them
+   isn't worth it. JetBrains Mono dropped from this list — it is now self-hosted
+   globally (see src/styles/variables.css) and applies here via --font-mono. */
+@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@800;900&family=Saira:wght@600;800&family=Hanken+Grotesk:wght@400;600;700&display=swap');
 
 .page {
   /* DAY (default) */
