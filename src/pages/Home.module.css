@@ -265,6 +265,20 @@
   100% { transform: translateX(0); }
 }
 
+/* FIX-JUMP-T02: freeze the hero animations during the pre-JS static phase.
+   The prerendered HTML ships with `<body class="preboot">`; under that ancestor
+   the four hero animations are disabled so the static paint sits at frame 0
+   (route line hidden, sweep at 0%, dots at base scale). main.jsx/App removes the
+   class after React commits the createRoot DOM, so each animation plays exactly
+   once on the final DOM instead of restarting at the ~1s re-render (the jump).
+   :global(.preboot) stays literal; the trailing class stays hashed, so it matches. */
+:global(.preboot) .heroAccent,
+:global(.preboot) .routeTrackGlow,
+:global(.preboot) .routeDot,
+:global(.preboot) .routeCar {
+  animation: none !important;
+}
+
 /* =====================================================================
    SECTION RHYTHM — alternating backgrounds + consistent spacing
    ===================================================================== */
