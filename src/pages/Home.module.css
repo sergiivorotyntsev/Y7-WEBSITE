@@ -199,18 +199,14 @@
   stroke-linecap: round;
   fill: none;
   opacity: 0.85;
+  /* JUMP-2B: render the route line in its FINAL drawn state at rest (dashoffset 0),
+     not the hidden frame. The first-load draw-on (routeTrackDraw) was removed: with
+     createRoot re-creating #root on bundle execution, a one-shot draw restarts at
+     frame 0 and snaps the drawn line back to empty once the FCP->mount gap widened
+     (CWV sprint pulled FCP earlier). Statically drawn = nothing to restart = no snap,
+     and the hero is never empty. dasharray kept (harmless). */
   stroke-dasharray: 520;
-  stroke-dashoffset: 520;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .routeTrackGlow {
-    animation: routeTrackDraw 3.5s ease-out 0.4s forwards;
-  }
-}
-
-@keyframes routeTrackDraw {
-  to { stroke-dashoffset: 0; }
+  stroke-dashoffset: 0;
 }
 
 .routeDot {
