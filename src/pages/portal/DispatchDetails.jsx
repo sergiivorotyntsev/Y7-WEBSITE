@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { CheckIcon } from '../../components/icons';
-import { portalFetch } from '../../hooks/useAuth';
+import { portalFetch, authHeader, clearSessionOn401 } from '../../hooks/useAuth';
 import { colors, fonts, button } from '../../theme';
 import { API_URL } from '../../config';
 import PhoneInput, { getCleanPhone, isValidPhone } from '../../components/PhoneInput';
@@ -290,13 +290,23 @@ export default function DispatchDetails() {
                     const fd = new FormData();
                     fd.append('file', gatePassFile);
                     // Raw fetch — portalFetch always sets Content-Type: application/json which breaks FormData
+                    // WA-T01: attach the Bearer header (same token as the JSON
+                    // requests) so the gate-pass upload authenticates when the
+                    // cross-site cookie is blocked (iOS Safari).
                     const r = await fetch(`${API_URL}/api/portal/data/orders/${id}/gate-pass`, {
                       method: 'POST',
                       credentials: 'include',
+                      headers: authHeader(),
                       body: fd,
                     });
+                    clearSessionOn401(r.status);
                     if (r.ok) { setUploadDone(true); setGatePassFile(null); }
-                    else { const e = await r.json().catch(() => ({})); setError(e.detail || 'Upload failed'); }
+                    else {
+                      const e = await r.json().catch(() => ({}));
+                      setError(e.detail || (r.status === 401
+                        ? 'Your session expired. Please refresh the page and sign in again.'
+                        : 'Upload failed'));
+                    }
                   } catch { setError('Upload failed'); }
                   setUploading(false);
                 }}

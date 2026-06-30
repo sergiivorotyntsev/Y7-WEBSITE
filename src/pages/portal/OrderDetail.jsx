@@ -3,7 +3,7 @@ import { useParams, useSearchParams, Link, useNavigate } from 'react-router-dom'
 import { CheckIcon } from '../../components/icons';
 import OnboardingBanner from '../../components/OnboardingBanner';
 import BouncingEmailBanner from '../../components/recovery/BouncingEmailBanner';
-import { portalFetch, useAuth } from '../../hooks/useAuth';
+import { portalFetch, useAuth, authHeader, clearSessionOn401 } from '../../hooks/useAuth';
 import { colors, fonts } from '../../theme';
 import { API_URL } from '../../config';
 import { STATUS_LABELS, STATUS_PIPELINE, NO_QUOTE_LABELS, CANCELLATION_REASON_LABELS } from '../../utils/orderStatus';
@@ -156,18 +156,24 @@ function OwnershipProofCard({ orderId, status, docType, note, submittedAt, onUpd
       fd.append('type', selType);
       fd.append('file', file);
       // Raw fetch — portalFetch forces Content-Type: application/json, which breaks FormData.
+      // WA-T01: send the Bearer header (same token as the JSON requests) so the
+      // upload still authenticates on phones where the cross-site cookie is blocked.
       const r = await fetch(`${API_URL}/api/portal/data/orders/${orderId}/ownership-proof`, {
         method: 'POST',
         credentials: 'include',
+        headers: authHeader(),
         body: fd,
       });
+      clearSessionOn401(r.status);
       if (r.ok) {
         setFile(null);
         setReplacing(false);
         if (onUpdated) onUpdated();
       } else {
         const e = await r.json().catch(() => ({}));
-        setErr(e.detail || 'Upload failed. Please try again.');
+        setErr(e.detail || (r.status === 401
+          ? 'Your session expired. Please refresh the page and sign in again.'
+          : 'Upload failed. Please try again.'));
       }
     } catch {
       setErr('Upload failed. Please try again.');
@@ -289,11 +295,18 @@ function DocIntakeCard({ orderId, onUpdated }) {
 
   const post = async (path, fd) => {
     // Raw fetch — portalFetch forces JSON which breaks FormData.
+    // WA-T01: attach the Bearer header (same token as the JSON requests) so the
+    // upload authenticates when the cross-site cookie is blocked (iOS Safari).
     const r = await fetch(`${API_URL}/api/portal/data/orders/${orderId}${path}`, {
-      method: 'POST', credentials: 'include', body: fd,
+      method: 'POST', credentials: 'include', headers: authHeader(), body: fd,
     });
+    clearSessionOn401(r.status);
     const j = await r.json().catch(() => ({}));
-    if (!r.ok) throw new Error(j.detail || 'Upload failed. Please try again.');
+    if (!r.ok) {
+      throw new Error(j.detail || (r.status === 401
+        ? 'Your session expired. Please refresh the page and sign in again.'
+        : 'Upload failed. Please try again.'));
+    }
     return j;
   };
 
@@ -346,11 +359,18 @@ function DocIntakeCard({ orderId, onUpdated }) {
         pickup_address: fields.pickup_address || null, pickup_city: fields.pickup_city || null,
         pickup_state: fields.pickup_state || null, pickup_zip: fields.pickup_zip || null,
       };
-      const r = await fetch(`${API_URL}/api/portal/data/orders/${orderId}/apply-extraction`, {
-        method: 'POST', credentials: 'include',
+      // WA-T01: this is a JSON request, so it can use portalFetch directly —
+      // which attaches the Bearer token and centralises 401/403 handling.
+      const r = await portalFetch(`/api/portal/data/orders/${orderId}/apply-extraction`, {
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
       });
-      if (!r.ok) { const j = await r.json().catch(() => ({})); throw new Error(j.detail || 'Could not apply.'); }
+      if (!r.ok) {
+        const j = await r.json().catch(() => ({}));
+        throw new Error(j.detail || (r.status === 401
+          ? 'Your session expired. Please refresh the page and sign in again.'
+          : 'Could not apply.'));
+      }
       setFields(null); setFile(null); setDone('Order updated from your document.');
       if (onUpdated) onUpdated();
     } catch (e) { setErr(e.message); }
