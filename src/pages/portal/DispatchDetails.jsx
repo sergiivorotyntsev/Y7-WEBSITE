@@ -111,6 +111,16 @@ export default function DispatchDetails() {
     if (form.delivery_contact_phone && !isValidPhone(form.delivery_contact_phone)) {
       setError('Please enter a valid 10-digit delivery phone number, or leave it blank.'); return;
     }
+    // WA-T02 (interim): an "Other" delivery type has no recognised location, so
+    // require a street address OR a note in Special Instructions — otherwise it
+    // reaches dispatch with nowhere to deliver. Mirrors the Wave-1 server gate;
+    // superseded by the saved-locations directory wave.
+    if (form.delivery_location_type === 'Other'
+        && !form.delivery_full_address.trim()
+        && !form.special_instructions.trim()) {
+      setError('For an "Other" delivery location, add a street address or a note in Special Instructions so we can route the carrier.');
+      return;
+    }
     if (!form.pickup_business_hours.trim()) { setError('Pickup business hours are required'); return; }
     if (!form.pickup_city.trim() && !form.pickup_zip.trim()) { setError('Pickup city or ZIP is required'); return; }
 
