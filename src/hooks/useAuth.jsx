@@ -59,6 +59,23 @@ function authHeaders() {
   return headers;
 }
 
+// WA-T01: Bearer header for RAW multipart uploads. portalFetch can't be used
+// for FormData (it forces Content-Type: application/json, which strips the
+// multipart boundary), so those fetches were going out cookie-only — and on
+// phones where the cross-site cookie is blocked (iOS Safari ITP, 3rd-party
+// cookie blocking) that means no credential at all → silent 401, the bug the
+// customer hit. This returns the SAME Bearer the JSON requests use (same
+// _sessionToken source) WITHOUT a Content-Type, so the boundary is preserved.
+export function authHeader() {
+  return _sessionToken ? { Authorization: `Bearer ${_sessionToken}` } : {};
+}
+
+// WA-T01: mirror portalFetch's 401 token-clear for the raw upload paths so a
+// stale token doesn't persist after the server rejects it.
+export function clearSessionOn401(status) {
+  if (status === 401) setSessionToken(null);
+}
+
 export async function portalFetch(path, options = {}) {
   const res = await fetch(`${API_URL}${path}`, {
     credentials: 'include',

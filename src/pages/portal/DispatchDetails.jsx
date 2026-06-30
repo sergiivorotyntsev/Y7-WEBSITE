@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { CheckIcon } from '../../components/icons';
-import { portalFetch } from '../../hooks/useAuth';
+import { portalFetch, authHeader, clearSessionOn401 } from '../../hooks/useAuth';
 import { colors, fonts, button } from '../../theme';
 import { API_URL } from '../../config';
 import PhoneInput, { getCleanPhone, isValidPhone } from '../../components/PhoneInput';
@@ -110,6 +110,16 @@ export default function DispatchDetails() {
     }
     if (form.delivery_contact_phone && !isValidPhone(form.delivery_contact_phone)) {
       setError('Please enter a valid 10-digit delivery phone number, or leave it blank.'); return;
+    }
+    // WA-T02 (interim): an "Other" delivery type has no recognised location, so
+    // require a street address OR a note in Special Instructions — otherwise it
+    // reaches dispatch with nowhere to deliver. Mirrors the Wave-1 server gate;
+    // superseded by the saved-locations directory wave.
+    if (form.delivery_location_type === 'Other'
+        && !form.delivery_full_address.trim()
+        && !form.special_instructions.trim()) {
+      setError('For an "Other" delivery location, add a street address or a note in Special Instructions so we can route the carrier.');
+      return;
     }
     if (!form.pickup_business_hours.trim()) { setError('Pickup business hours are required'); return; }
     if (!form.pickup_city.trim() && !form.pickup_zip.trim()) { setError('Pickup city or ZIP is required'); return; }
@@ -279,7 +289,8 @@ export default function DispatchDetails() {
               type="file"
               accept=".pdf,.jpg,.jpeg,.png"
               onChange={(e) => { setGatePassFile(e.target.files[0]); setUploadDone(false); }}
-              style={{ ...inputStyle, padding: '8px 12px' }}
+              // WA-T03: taller padding keeps the native picker an easy tap target on iOS.
+              style={{ ...inputStyle, padding: '11px 12px' }}
             />
             {gatePassFile && !uploadDone && (
               <button
@@ -290,21 +301,33 @@ export default function DispatchDetails() {
                     const fd = new FormData();
                     fd.append('file', gatePassFile);
                     // Raw fetch — portalFetch always sets Content-Type: application/json which breaks FormData
+                    // WA-T01: attach the Bearer header (same token as the JSON
+                    // requests) so the gate-pass upload authenticates when the
+                    // cross-site cookie is blocked (iOS Safari).
                     const r = await fetch(`${API_URL}/api/portal/data/orders/${id}/gate-pass`, {
                       method: 'POST',
                       credentials: 'include',
+                      headers: authHeader(),
                       body: fd,
                     });
+                    clearSessionOn401(r.status);
                     if (r.ok) { setUploadDone(true); setGatePassFile(null); }
-                    else { const e = await r.json().catch(() => ({})); setError(e.detail || 'Upload failed'); }
+                    else {
+                      const e = await r.json().catch(() => ({}));
+                      setError(e.detail || (r.status === 401
+                        ? 'Your session expired. Please refresh the page and sign in again.'
+                        : 'Upload failed'));
+                    }
                   } catch { setError('Upload failed'); }
                   setUploading(false);
                 }}
                 disabled={uploading}
                 style={{
-                  marginTop: '8px', padding: '8px 18px',
+                  // WA-T03: minHeight 44px iOS tap target; inline-flex centres the label.
+                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                  minHeight: '44px', marginTop: '8px', padding: '8px 20px',
                   background: colors.accent, color: '#fff',
-                  border: 'none', borderRadius: '20px',
+                  border: 'none', borderRadius: '22px',
                   fontSize: '12px', fontWeight: 600, cursor: uploading ? 'not-allowed' : 'pointer',
                   fontFamily: fonts.sans, textTransform: 'uppercase', letterSpacing: '0.5px',
                   opacity: uploading ? 0.7 : 1,

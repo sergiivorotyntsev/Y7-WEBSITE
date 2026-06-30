@@ -3,7 +3,7 @@ import { useParams, useSearchParams, Link, useNavigate } from 'react-router-dom'
 import { CheckIcon } from '../../components/icons';
 import OnboardingBanner from '../../components/OnboardingBanner';
 import BouncingEmailBanner from '../../components/recovery/BouncingEmailBanner';
-import { portalFetch, useAuth } from '../../hooks/useAuth';
+import { portalFetch, useAuth, authHeader, clearSessionOn401 } from '../../hooks/useAuth';
 import { colors, fonts } from '../../theme';
 import { API_URL } from '../../config';
 import { STATUS_LABELS, STATUS_PIPELINE, NO_QUOTE_LABELS, CANCELLATION_REASON_LABELS } from '../../utils/orderStatus';
@@ -133,11 +133,17 @@ function OwnershipProofCard({ orderId, status, docType, note, submittedAt, onUpd
     boxSizing: 'border-box',
   };
   const uploadBtnStyle = (disabled) => ({
-    padding: '8px 18px',
+    // WA-T03: minHeight 44px = iOS minimum tap target; inline-flex centres the
+    // label now that the button is taller than its text.
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: '44px',
+    padding: '8px 20px',
     background: colors.accent,
     color: '#fff',
     border: 'none',
-    borderRadius: '20px',
+    borderRadius: '22px',
     fontSize: '12px',
     fontWeight: 600,
     textTransform: 'uppercase',
@@ -156,18 +162,24 @@ function OwnershipProofCard({ orderId, status, docType, note, submittedAt, onUpd
       fd.append('type', selType);
       fd.append('file', file);
       // Raw fetch — portalFetch forces Content-Type: application/json, which breaks FormData.
+      // WA-T01: send the Bearer header (same token as the JSON requests) so the
+      // upload still authenticates on phones where the cross-site cookie is blocked.
       const r = await fetch(`${API_URL}/api/portal/data/orders/${orderId}/ownership-proof`, {
         method: 'POST',
         credentials: 'include',
+        headers: authHeader(),
         body: fd,
       });
+      clearSessionOn401(r.status);
       if (r.ok) {
         setFile(null);
         setReplacing(false);
         if (onUpdated) onUpdated();
       } else {
         const e = await r.json().catch(() => ({}));
-        setErr(e.detail || 'Upload failed. Please try again.');
+        setErr(e.detail || (r.status === 401
+          ? 'Your session expired. Please refresh the page and sign in again.'
+          : 'Upload failed. Please try again.'));
       }
     } catch {
       setErr('Upload failed. Please try again.');
@@ -197,8 +209,10 @@ function OwnershipProofCard({ orderId, status, docType, note, submittedAt, onUpd
             type="button"
             onClick={() => setReplacing(true)}
             style={{
-              background: 'none', border: 'none', padding: 0, marginTop: '8px',
-              fontFamily: fonts.sans, fontSize: '12px', color: colors.accent,
+              // WA-T03: padded hit area so the text link is a comfortable tap on a phone.
+              display: 'inline-flex', alignItems: 'center', minHeight: '44px',
+              background: 'none', border: 'none', padding: '4px 0', marginTop: '4px',
+              fontFamily: fonts.sans, fontSize: '13px', color: colors.accent,
               textDecoration: 'underline', cursor: 'pointer',
             }}
           >
@@ -231,7 +245,8 @@ function OwnershipProofCard({ orderId, status, docType, note, submittedAt, onUpd
             type="file"
             accept=".pdf,.jpg,.jpeg,.png,.heic,.webp"
             onChange={(e) => { setFile(e.target.files[0]); setErr(null); }}
-            style={{ ...selectStyle, padding: '8px 12px' }}
+            // WA-T03: taller padding keeps the native picker an easy tap target on iOS.
+            style={{ ...selectStyle, padding: '11px 12px' }}
           />
           {err && (
             <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.accent }}>{err}</div>
@@ -245,8 +260,9 @@ function OwnershipProofCard({ orderId, status, docType, note, submittedAt, onUpd
                 type="button"
                 onClick={() => { setReplacing(false); setFile(null); setErr(null); }}
                 style={{
-                  padding: '8px 16px', background: 'transparent', color: colors.textMuted,
-                  border: `1px solid ${colors.border}`, borderRadius: '20px', fontSize: '12px',
+                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                  minHeight: '44px', padding: '8px 18px', background: 'transparent', color: colors.textMuted,
+                  border: `1px solid ${colors.border}`, borderRadius: '22px', fontSize: '12px',
                   fontWeight: 600, fontFamily: fonts.sans, cursor: 'pointer',
                 }}
               >
@@ -279,9 +295,11 @@ function DocIntakeCard({ orderId, onUpdated }) {
     background: colors.bgInput, color: colors.text, boxSizing: 'border-box', marginTop: '2px',
   };
   const btn = (disabled, secondary) => ({
-    padding: '8px 16px', background: secondary ? 'transparent' : colors.accent,
+    // WA-T03: minHeight 44px iOS tap target; inline-flex centres the label.
+    display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minHeight: '44px',
+    padding: '8px 18px', background: secondary ? 'transparent' : colors.accent,
     color: secondary ? colors.accent : '#fff', border: secondary ? `1px solid ${colors.accent}` : 'none',
-    borderRadius: '20px', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase',
+    borderRadius: '22px', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase',
     letterSpacing: '0.5px', fontFamily: fonts.sans, cursor: disabled ? 'not-allowed' : 'pointer',
     opacity: disabled ? 0.6 : 1,
   });
@@ -289,11 +307,18 @@ function DocIntakeCard({ orderId, onUpdated }) {
 
   const post = async (path, fd) => {
     // Raw fetch — portalFetch forces JSON which breaks FormData.
+    // WA-T01: attach the Bearer header (same token as the JSON requests) so the
+    // upload authenticates when the cross-site cookie is blocked (iOS Safari).
     const r = await fetch(`${API_URL}/api/portal/data/orders/${orderId}${path}`, {
-      method: 'POST', credentials: 'include', body: fd,
+      method: 'POST', credentials: 'include', headers: authHeader(), body: fd,
     });
+    clearSessionOn401(r.status);
     const j = await r.json().catch(() => ({}));
-    if (!r.ok) throw new Error(j.detail || 'Upload failed. Please try again.');
+    if (!r.ok) {
+      throw new Error(j.detail || (r.status === 401
+        ? 'Your session expired. Please refresh the page and sign in again.'
+        : 'Upload failed. Please try again.'));
+    }
     return j;
   };
 
@@ -346,11 +371,18 @@ function DocIntakeCard({ orderId, onUpdated }) {
         pickup_address: fields.pickup_address || null, pickup_city: fields.pickup_city || null,
         pickup_state: fields.pickup_state || null, pickup_zip: fields.pickup_zip || null,
       };
-      const r = await fetch(`${API_URL}/api/portal/data/orders/${orderId}/apply-extraction`, {
-        method: 'POST', credentials: 'include',
+      // WA-T01: this is a JSON request, so it can use portalFetch directly —
+      // which attaches the Bearer token and centralises 401/403 handling.
+      const r = await portalFetch(`/api/portal/data/orders/${orderId}/apply-extraction`, {
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
       });
-      if (!r.ok) { const j = await r.json().catch(() => ({})); throw new Error(j.detail || 'Could not apply.'); }
+      if (!r.ok) {
+        const j = await r.json().catch(() => ({}));
+        throw new Error(j.detail || (r.status === 401
+          ? 'Your session expired. Please refresh the page and sign in again.'
+          : 'Could not apply.'));
+      }
       setFields(null); setFile(null); setDone('Order updated from your document.');
       if (onUpdated) onUpdated();
     } catch (e) { setErr(e.message); }
@@ -371,7 +403,8 @@ function DocIntakeCard({ orderId, onUpdated }) {
           <input
             type="file" accept=".pdf,.jpg,.jpeg,.png,.heic,.webp"
             onChange={(e) => { setFile(e.target.files?.[0] || null); setErr(null); setDone(null); }}
-            style={{ ...inputStyle, padding: '8px' }}
+            // WA-T03: taller padding keeps the native picker an easy tap target on iOS.
+            style={{ ...inputStyle, padding: '11px 10px' }}
           />
           <div style={{ display: 'flex', gap: '10px', marginTop: '12px', flexWrap: 'wrap' }}>
             <button type="button" onClick={extract} disabled={busy || !file} style={btn(busy || !file)}>
