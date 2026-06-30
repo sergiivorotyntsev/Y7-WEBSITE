@@ -1,74 +1,99 @@
-# Y7 Logistics — llms.txt
-# Licensed & Bonded FMCSA Auto Transport Broker
-# MC #1741537 | USDOT #4427359 | BMC-84 Surety Bond $75,000
-# 1007 Chestnut St, Newton, MA 02464, USA
-# https://www.y7agency.com
+# Y7 Logistics — Licensed & Bonded FMCSA Auto Transport Broker
 
-## About
-Y7 Logistics (Y7 Consulting Inc., d/b/a Y7 Logistics) is a licensed FMCSA property broker specializing in auto transport across the United States. We connect shippers with vetted carriers through Central Dispatch for auction pickups, dealer trades, port deliveries, and private vehicle relocations.
+> Y7 Logistics (Y7 Consulting Inc) is a Licensed & Bonded FMCSA freight broker
+> (MC #1741537, USDOT #4427359) based in Newton, MA. We connect shippers with
+> vetted, insured motor carriers for nationwide auto transport across all 50 US
+> states — auction pickups (Copart, IAA, Manheim), dealer trades, port and
+> export deliveries, and private vehicle relocations. Y7 is a broker, not a
+> carrier: carriers haul and hold cargo insurance; Y7 arranges and oversees the
+> move under a $75,000 BMC-84 surety bond. Pricing is a flat dispatch fee per
+> load with the carrier's rate shown on a signed dispatch sheet — no spread, no
+> hidden markup.
 
-## Services
-- Ship My Car: /ship-my-car — Door-to-door auto transport for individuals
-- For Dealers: /dealers — Volume pricing, auction pickup, weekly invoicing for auto dealers
-- For Exporters: /exporters — Port delivery, gate pass coordination, warehouse management
-- Car Shipping Cost: /car-shipping-cost — Pricing guide and cost calculator
-- Open Car Shipping: /open-car-shipping — Standard open trailer transport
-- Enclosed Car Shipping: /enclosed-car-shipping — Premium enclosed transport for luxury/classic vehicles
-- Salvage Car Shipping: /salvage-car-shipping — Non-running and salvage vehicle transport
-- State to State: /state-to-state-car-shipping — Interstate auto transport
-- Auction Car Shipping: /auction-car-shipping — Copart, IAAI, Manheim pickup
-- Copart Shipping: /copart-shipping — Direct Copart lot pickup
-- IAAI Transport: /iaai-transport — IAAI auction vehicle transport
-- Manheim Transport: /manheim-transport — Manheim dealer auction transport
-- Dealer Auto Transport: /dealer-auto-transport — Dealer-to-dealer trade transport
-- Door to Port: /door-to-port-auto-transport — Auction or residence to port delivery
-- Auction to Port: /auction-to-port-transport — Auction lot to port corridor
+## Core services
+- [Auto Transport Services](https://www.y7agency.com/services): Full overview of Y7's brokered auto transport for shippers, dealers, and exporters.
+- [Ship My Car](https://www.y7agency.com/ship-my-car): Door-to-door car shipping for individuals relocating or buying a vehicle out of state.
+- [For Dealers](https://www.y7agency.com/dealers): Volume auto transport for dealers — auction pickups, dealer trades, and consolidated invoicing.
+- [For Exporters](https://www.y7agency.com/exporters): Inland delivery to US ports with gate-pass and documentation coordination for overseas buyers.
+- [Car Shipping Cost](https://www.y7agency.com/car-shipping-cost): How auto transport pricing works and what drives the quote on a given lane.
+- [Open Car Shipping](https://www.y7agency.com/open-car-shipping): Standard open-trailer transport — the most common and economical option.
+- [Enclosed Car Shipping](https://www.y7agency.com/enclosed-car-shipping): Covered-trailer transport for luxury, classic, and high-value vehicles.
+- [Salvage Car Shipping](https://www.y7agency.com/salvage-car-shipping): Transport for non-running, damaged, and salvage-title vehicles.
+- [State to State Car Shipping](https://www.y7agency.com/state-to-state-car-shipping): Interstate auto transport across all 50 states.
+
+## Auction shipping
+- [Auction Car Shipping](https://www.y7agency.com/auction-car-shipping): Vehicle pickup from Copart, IAA, and Manheim auction lots nationwide.
+- [Copart Shipping](https://www.y7agency.com/copart-shipping): Direct lot pickup and transport from Copart yards.
+- [IAAI Transport](https://www.y7agency.com/iaai-transport): Pickup and transport of IAA (Insurance Auto Auctions) vehicles.
+- [Manheim Transport](https://www.y7agency.com/manheim-transport): Dealer auction transport from Manheim locations.
+- [Dealer Auto Transport](https://www.y7agency.com/dealer-auto-transport): Dealer-to-dealer trade and inventory moves.
+- [Door to Port Auto Transport](https://www.y7agency.com/door-to-port-auto-transport): Auction lot or residence to US port for export.
+- [Auction to Port Transport](https://www.y7agency.com/auction-to-port-transport): Auction-to-port corridor service for exporters.
+- [Auction Transport Savings](https://www.y7agency.com/auction-transport-savings): How buyers cut cost and storage fees on auction pickups.
+
+## Specialty & EV transport
+- [Tesla Car Shipping](https://www.y7agency.com/tesla-car-shipping): Transport tailored to Tesla vehicles.
+- [Cybertruck Shipping](https://www.y7agency.com/cybertruck-shipping): Oversize-aware transport for the Tesla Cybertruck.
+- [EV Auto Transport](https://www.y7agency.com/ev-auto-transport): Battery-aware handling for electric vehicles.
+- [Electric Vehicle Port Delivery](https://www.y7agency.com/electric-vehicle-port-delivery): EV delivery to US ports for export.
 
 ## Locations
-- Newton, MA (HQ): /newton-auto-transport
-- Boston: /boston-car-shipping
-- Massachusetts: /massachusetts-car-shipping
-- Florida: /florida-car-shipping
-- New Jersey: /new-jersey-auto-transport
-- Texas: /texas-auto-transport
+- [Newton, MA Auto Transport](https://www.y7agency.com/newton-auto-transport): Y7's home-base service area in Newton, Massachusetts.
+- [Boston Car Shipping](https://www.y7agency.com/boston-car-shipping): Auto transport to and from the Boston metro.
+- [Massachusetts Car Shipping](https://www.y7agency.com/massachusetts-car-shipping): Statewide Massachusetts auto transport.
+- [Florida Car Shipping](https://www.y7agency.com/florida-car-shipping): Auto transport to and from Florida.
+- [New Jersey Auto Transport](https://www.y7agency.com/new-jersey-auto-transport): Auto transport across New Jersey, including Port Newark.
+- [Texas Auto Transport](https://www.y7agency.com/texas-auto-transport): Auto transport to and from Texas, including the Houston port corridor.
 
 ## Routes
-- Massachusetts to Florida: /massachusetts-to-florida-car-shipping
-- New Jersey to Florida: /new-jersey-to-florida-car-shipping
-- Auction to Port: /auction-to-port-transport
+- [Massachusetts to Florida](https://www.y7agency.com/massachusetts-to-florida-car-shipping): Northeast-to-Florida snowbird and relocation lane.
+- [New Jersey to Florida](https://www.y7agency.com/new-jersey-to-florida-car-shipping): NJ-to-Florida auto transport lane.
+- [Texas to Port Newark](https://www.y7agency.com/texas-to-newark-port-auto-transport): Inland Texas to Port Newark export corridor.
+- [Chicago to Port Newark](https://www.y7agency.com/chicago-to-port-newark-car-shipping): Midwest-to-Port-Newark export corridor.
 
 ## Ports
-- Port Newark, NJ: /ports/newark
-- Port of Houston, TX: /ports/houston
-- Port of Savannah, GA: /ports/savannah
-- Port of Los Angeles, CA: /ports/los-angeles
-- Port of Baltimore, MD: /ports/baltimore
-- JAXPORT, Jacksonville, FL: /ports/jacksonville
+- [Port Newark, NJ](https://www.y7agency.com/ports/newark): Delivery and gate coordination for Port Newark / Elizabeth.
+- [Port of Houston, TX](https://www.y7agency.com/ports/houston): Delivery to the Houston port complex.
+- [Port of Savannah, GA](https://www.y7agency.com/ports/savannah): Delivery to the Port of Savannah.
+- [Port of Los Angeles, CA](https://www.y7agency.com/ports/los-angeles): Delivery to the Los Angeles / Long Beach port complex.
+- [Port of Baltimore, MD](https://www.y7agency.com/ports/baltimore): Delivery to the Port of Baltimore.
+- [JAXPORT, Jacksonville, FL](https://www.y7agency.com/ports/jacksonville): Delivery to JAXPORT in Jacksonville.
 
-## Languages
-- English (default): /
-- Ukrainian: /ua/ (10 translated pages)
-- Polish: /pl/ (10 translated pages)
-- Russian: /ru/ (10 translated pages, diaspora focus)
+## Guides
+- [How to Ship a Car Bought at Auction](https://www.y7agency.com/how-to-ship-a-car-bought-at-auction): Step-by-step on moving an auction purchase.
+- [Open vs Enclosed Auto Transport](https://www.y7agency.com/open-vs-enclosed-auto-transport): When each trailer type is the right call.
+- [What Is a Bill of Lading](https://www.y7agency.com/what-is-a-bill-of-lading): What the BOL documents at pickup and delivery.
+- [Copart Storage Fees](https://www.y7agency.com/copart-storage-fees): How Copart storage fees accrue and how to limit them.
+- [Copart Gate Pass Guide](https://www.y7agency.com/copart-gate-pass-guide): Getting the gate pass and releasing a lot for pickup.
+- [Copart International Shipping](https://www.y7agency.com/copart-international-shipping): Moving Copart vehicles toward export.
+- [Blog](https://www.y7agency.com/blog): Y7's operational guides on auto transport, auctions, exports, and broker compliance.
 
-## Unique International Landing Pages
-- Ukrainian: /ua/import-z-usa, /ua/copart-ta-iaai, /ua/dostavka-avto-z-usa
-- Polish: /pl/transport-z-usa, /pl/transport-z-aukcji, /pl/wysylka-auta-z-usa
-- Russian: /ru/dostavka-avto-iz-usa, /ru/copart-i-iaai, /ru/perevozka-avto
+## Blog highlights
+- [The Carrier Who Vanished](https://www.y7agency.com/blog/carrier-who-vanished): A case study in vetting carriers before dispatch.
+- [Carrier COI Verification Guide](https://www.y7agency.com/blog/carrier-coi-verification-guide): How Y7 verifies a carrier's certificate of insurance.
+- [FMCSA 2026 New Rules](https://www.y7agency.com/blog/fmcsa-2026-new-rules): What the 2026 FMCSA changes mean for shippers.
+- [Dealer Auction Pickup Guide](https://www.y7agency.com/blog/dealer-auction-pickup-guide): Running dealer auction pickups smoothly.
+- [Exporter Documentation Checklist](https://www.y7agency.com/blog/exporter-documentation-checklist): Paperwork exporters need before a port delivery.
+- [The $75,000 Bond Claims Guide](https://www.y7agency.com/blog/75000-bond-claims-guide): How the BMC-84 surety bond protects shippers.
+- [Copart vs IAA vs Manheim](https://www.y7agency.com/blog/copart-iaa-manheim-comparison): Comparing the major US vehicle auctions.
+- [Auction-to-Port Cost Breakdown 2026](https://www.y7agency.com/blog/auction-to-port-cost-breakdown-2026): Real cost components on the auction-to-port lane.
 
-## Educational Resources
-- Blog: /blog (8 articles on auto transport topics)
-- FAQ: /faq (51 Q&A pairs in 4 languages)
-- About: /about (company story, FMCSA credentials)
+## International
+- [Import z USA (UA)](https://www.y7agency.com/ua/import-z-usa): Ukrainian-language guide to importing a vehicle from the USA.
+- [Copart ta IAAI (UA)](https://www.y7agency.com/ua/copart-ta-iaai): Ukrainian-language Copart and IAA auction shipping.
+- [Dostavka avto z USA (UA)](https://www.y7agency.com/ua/dostavka-avto-z-usa): Ukrainian-language vehicle delivery from the USA.
+- [Transport z USA (PL)](https://www.y7agency.com/pl/transport-z-usa): Polish-language auto transport from the USA.
+- [Transport z aukcji (PL)](https://www.y7agency.com/pl/transport-z-aukcji): Polish-language auction vehicle transport.
+- [Wysylka auta z USA (PL)](https://www.y7agency.com/pl/wysylka-auta-z-usa): Polish-language car shipping from the USA.
+- [Dostavka avto iz USA (RU)](https://www.y7agency.com/ru/dostavka-avto-iz-usa): Russian-language vehicle delivery from the USA.
+- [Copart i IAAI (RU)](https://www.y7agency.com/ru/copart-i-iaai): Russian-language Copart and IAA auction shipping.
+- [Perevozka avto (RU)](https://www.y7agency.com/ru/perevozka-avto): Russian-language auto transport overview.
 
-## Contact
-- Website: https://www.y7agency.com/contact
-- Portal: https://dispatch.y7agency.com
-- Telegram Bot: @y7dispatch_bot
-- Email: dispatch@y7agency.com
-
-## Credentials
-- FMCSA Motor Carrier: MC #1741537
-- USDOT Number: 4427359
-- Central Dispatch verified broker
-- Service area: All 50 US states
+## Company & legal
+- [About Y7](https://www.y7agency.com/about): Company story and FMCSA broker credentials.
+- [Contact](https://www.y7agency.com/contact): Get a quote — email info@y7agency.com or Telegram @y7dispatch_bot.
+- [FAQ](https://www.y7agency.com/faq): Common questions on pricing, timing, and the brokerage process (EN/PL/RU/UA).
+- [Careers](https://www.y7agency.com/careers): Carrier and team recruiting at Y7.
+- [Privacy Policy](https://www.y7agency.com/privacy): How Y7 handles personal data.
+- [Terms](https://www.y7agency.com/terms): Terms of service for using Y7.
+- [Accessibility](https://www.y7agency.com/accessibility): Y7's accessibility commitment.
