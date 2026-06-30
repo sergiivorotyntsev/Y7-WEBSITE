@@ -133,11 +133,17 @@ function OwnershipProofCard({ orderId, status, docType, note, submittedAt, onUpd
     boxSizing: 'border-box',
   };
   const uploadBtnStyle = (disabled) => ({
-    padding: '8px 18px',
+    // WA-T03: minHeight 44px = iOS minimum tap target; inline-flex centres the
+    // label now that the button is taller than its text.
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: '44px',
+    padding: '8px 20px',
     background: colors.accent,
     color: '#fff',
     border: 'none',
-    borderRadius: '20px',
+    borderRadius: '22px',
     fontSize: '12px',
     fontWeight: 600,
     textTransform: 'uppercase',
@@ -203,8 +209,10 @@ function OwnershipProofCard({ orderId, status, docType, note, submittedAt, onUpd
             type="button"
             onClick={() => setReplacing(true)}
             style={{
-              background: 'none', border: 'none', padding: 0, marginTop: '8px',
-              fontFamily: fonts.sans, fontSize: '12px', color: colors.accent,
+              // WA-T03: padded hit area so the text link is a comfortable tap on a phone.
+              display: 'inline-flex', alignItems: 'center', minHeight: '44px',
+              background: 'none', border: 'none', padding: '4px 0', marginTop: '4px',
+              fontFamily: fonts.sans, fontSize: '13px', color: colors.accent,
               textDecoration: 'underline', cursor: 'pointer',
             }}
           >
@@ -237,7 +245,8 @@ function OwnershipProofCard({ orderId, status, docType, note, submittedAt, onUpd
             type="file"
             accept=".pdf,.jpg,.jpeg,.png,.heic,.webp"
             onChange={(e) => { setFile(e.target.files[0]); setErr(null); }}
-            style={{ ...selectStyle, padding: '8px 12px' }}
+            // WA-T03: taller padding keeps the native picker an easy tap target on iOS.
+            style={{ ...selectStyle, padding: '11px 12px' }}
           />
           {err && (
             <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.accent }}>{err}</div>
@@ -251,8 +260,9 @@ function OwnershipProofCard({ orderId, status, docType, note, submittedAt, onUpd
                 type="button"
                 onClick={() => { setReplacing(false); setFile(null); setErr(null); }}
                 style={{
-                  padding: '8px 16px', background: 'transparent', color: colors.textMuted,
-                  border: `1px solid ${colors.border}`, borderRadius: '20px', fontSize: '12px',
+                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                  minHeight: '44px', padding: '8px 18px', background: 'transparent', color: colors.textMuted,
+                  border: `1px solid ${colors.border}`, borderRadius: '22px', fontSize: '12px',
                   fontWeight: 600, fontFamily: fonts.sans, cursor: 'pointer',
                 }}
               >
@@ -285,9 +295,11 @@ function DocIntakeCard({ orderId, onUpdated }) {
     background: colors.bgInput, color: colors.text, boxSizing: 'border-box', marginTop: '2px',
   };
   const btn = (disabled, secondary) => ({
-    padding: '8px 16px', background: secondary ? 'transparent' : colors.accent,
+    // WA-T03: minHeight 44px iOS tap target; inline-flex centres the label.
+    display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minHeight: '44px',
+    padding: '8px 18px', background: secondary ? 'transparent' : colors.accent,
     color: secondary ? colors.accent : '#fff', border: secondary ? `1px solid ${colors.accent}` : 'none',
-    borderRadius: '20px', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase',
+    borderRadius: '22px', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase',
     letterSpacing: '0.5px', fontFamily: fonts.sans, cursor: disabled ? 'not-allowed' : 'pointer',
     opacity: disabled ? 0.6 : 1,
   });
@@ -391,7 +403,8 @@ function DocIntakeCard({ orderId, onUpdated }) {
           <input
             type="file" accept=".pdf,.jpg,.jpeg,.png,.heic,.webp"
             onChange={(e) => { setFile(e.target.files?.[0] || null); setErr(null); setDone(null); }}
-            style={{ ...inputStyle, padding: '8px' }}
+            // WA-T03: taller padding keeps the native picker an easy tap target on iOS.
+            style={{ ...inputStyle, padding: '11px 10px' }}
           />
           <div style={{ display: 'flex', gap: '10px', marginTop: '12px', flexWrap: 'wrap' }}>
             <button type="button" onClick={extract} disabled={busy || !file} style={btn(busy || !file)}>

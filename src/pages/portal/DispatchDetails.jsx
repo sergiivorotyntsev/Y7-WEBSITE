@@ -289,7 +289,8 @@ export default function DispatchDetails() {
               type="file"
               accept=".pdf,.jpg,.jpeg,.png"
               onChange={(e) => { setGatePassFile(e.target.files[0]); setUploadDone(false); }}
-              style={{ ...inputStyle, padding: '8px 12px' }}
+              // WA-T03: taller padding keeps the native picker an easy tap target on iOS.
+              style={{ ...inputStyle, padding: '11px 12px' }}
             />
             {gatePassFile && !uploadDone && (
               <button
@@ -322,9 +323,11 @@ export default function DispatchDetails() {
                 }}
                 disabled={uploading}
                 style={{
-                  marginTop: '8px', padding: '8px 18px',
+                  // WA-T03: minHeight 44px iOS tap target; inline-flex centres the label.
+                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                  minHeight: '44px', marginTop: '8px', padding: '8px 20px',
                   background: colors.accent, color: '#fff',
-                  border: 'none', borderRadius: '20px',
+                  border: 'none', borderRadius: '22px',
                   fontSize: '12px', fontWeight: 600, cursor: uploading ? 'not-allowed' : 'pointer',
                   fontFamily: fonts.sans, textTransform: 'uppercase', letterSpacing: '0.5px',
                   opacity: uploading ? 0.7 : 1,
