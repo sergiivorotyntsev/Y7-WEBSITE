@@ -34,6 +34,10 @@ export default function DispatchDetails() {
   const [gatePassFile, setGatePassFile] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [uploadDone, setUploadDone] = useState(false);
+  // W2D-T02: saved delivery locations for the one-click picker (manual = fallback).
+  const [savedLocations, setSavedLocations] = useState([]);
+  const [deliveryWarehouseId, setDeliveryWarehouseId] = useState(null);
+  const [deliveryManual, setDeliveryManual] = useState(false);
 
   const [form, setForm] = useState({
     pickup_full_address: '',
@@ -87,6 +91,50 @@ export default function DispatchDetails() {
   }, [id]);
 
   const set = (key) => (e) => setForm(f => ({ ...f, [key]: e.target.value }));
+
+  // Fill the delivery fields from a saved location. location_type is intentionally NOT
+  // set here (saved-location type values diverge — Phase 0 §3); the chosen id rides
+  // along as delivery_warehouse_id so the server snapshots canonically.
+  const applyDeliveryLocation = (wh) => {
+    if (!wh) return;
+    setForm(f => ({
+      ...f,
+      delivery_full_address: wh.address || '',
+      delivery_city: wh.city || '',
+      delivery_state: wh.state || '',
+      delivery_zip: wh.zip_code || '',
+      delivery_contact_name: wh.contact_name || f.delivery_contact_name,
+      delivery_contact_phone: wh.contact_phone || f.delivery_contact_phone,
+    }));
+  };
+  const onPickDelivery = (val) => {
+    if (val === 'manual') { setDeliveryManual(true); setDeliveryWarehouseId(null); return; }
+    const id = Number(val) || null;
+    setDeliveryManual(false);
+    setDeliveryWarehouseId(id);
+    applyDeliveryLocation(savedLocations.find(w => w.id === id));
+  };
+  // A manual edit of any delivery field detaches the saved-location link so the server
+  // keeps the typed value instead of re-snapshotting the warehouse over it.
+  const setDelivery = (key) => (e) => {
+    setForm(f => ({ ...f, [key]: e.target.value }));
+    setDeliveryWarehouseId(null);
+    setDeliveryManual(true);
+  };
+
+  // W2D-T02: load saved delivery locations; 403 (type not eligible) or any error ->
+  // no picker, manual entry only. Auto-select the default so the field is one-click.
+  useEffect(() => {
+    portalFetch('/api/portal/locations')
+      .then(r => (r.ok ? r.json() : { items: [] }))
+      .then(data => {
+        const locs = (data.items || []).filter(w => ['delivery', 'both'].includes(w.usage_role));
+        setSavedLocations(locs);
+        const def = locs.find(w => w.is_default);
+        if (def) { setDeliveryWarehouseId(def.id); applyDeliveryLocation(def); }
+      })
+      .catch(() => setSavedLocations([]));
+  }, []);
 
   // CAP-S1-W02: for COD orders the delivery contact (who pays the driver) is required.
   const isCod = order?.service_tier === 'cod';
@@ -147,6 +195,8 @@ export default function DispatchDetails() {
           delivery_contact_name: form.delivery_contact_name || null,
           delivery_contact_phone: form.delivery_contact_phone ? getCleanPhone(form.delivery_contact_phone) : null,
           special_instructions: form.special_instructions || null,
+          // W2D-T02: link the chosen saved location so the server snapshots it (canonical).
+          delivery_warehouse_id: deliveryManual ? null : (deliveryWarehouseId || null),
         }),
       });
       if (!res.ok) {
@@ -353,26 +403,49 @@ export default function DispatchDetails() {
             Delivery Location
           </div>
 
+          {/* W2D-T02: one-click saved-location picker (manual entry stays as fallback). */}
+          {savedLocations.length > 0 && (
+            <div style={rowStyle}>
+              <label style={labelStyle}>Saved location</label>
+              <select
+                style={{ ...inputStyle, background: colors.bgInput }}
+                value={deliveryManual ? 'manual' : (deliveryWarehouseId || '')}
+                onChange={e => onPickDelivery(e.target.value)}
+              >
+                <option value="">Select a saved location...</option>
+                {savedLocations.map(w => (
+                  <option key={w.id} value={w.id}>{(w.label || w.name)} — {w.city}, {w.state}</option>
+                ))}
+                <option value="manual">Enter a different address…</option>
+              </select>
+              {deliveryWarehouseId && !deliveryManual && (
+                <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginTop: '6px' }}>
+                  Using your saved location. Edit any field below to enter a different address.
+                </div>
+              )}
+            </div>
+          )}
+
           <div style={rowStyle}>
             <label style={labelStyle}>Street Address</label>
-            <input style={inputStyle} value={form.delivery_full_address} onChange={set('delivery_full_address')} placeholder="456 Oak Ave" />
+            <input style={inputStyle} value={form.delivery_full_address} onChange={setDelivery('delivery_full_address')} placeholder="456 Oak Ave" />
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '10px', ...rowStyle }}>
             <div>
               <label style={labelStyle}>City</label>
-              <input style={inputStyle} value={form.delivery_city} onChange={set('delivery_city')} placeholder="Miami" />
+              <input style={inputStyle} value={form.delivery_city} onChange={setDelivery('delivery_city')} placeholder="Miami" />
             </div>
             <div>
               <label style={labelStyle}>State</label>
-              <select style={{ ...inputStyle, background: colors.bgInput }} value={form.delivery_state} onChange={set('delivery_state')}>
+              <select style={{ ...inputStyle, background: colors.bgInput }} value={form.delivery_state} onChange={setDelivery('delivery_state')}>
                 <option value="">--</option>
                 {US_STATES.map(s => <option key={s} value={s}>{s}</option>)}
               </select>
             </div>
             <div>
               <label style={labelStyle}>ZIP</label>
-              <input style={inputStyle} value={form.delivery_zip} onChange={set('delivery_zip')} placeholder="33101" maxLength={5} />
+              <input style={inputStyle} value={form.delivery_zip} onChange={setDelivery('delivery_zip')} placeholder="33101" maxLength={5} />
             </div>
           </div>
 
@@ -386,11 +459,11 @@ export default function DispatchDetails() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', ...rowStyle }}>
             <div>
               <label style={labelStyle}>Contact Name {isCod ? '*' : ''}</label>
-              <input style={inputStyle} value={form.delivery_contact_name} onChange={set('delivery_contact_name')} placeholder="Receiving person" />
+              <input style={inputStyle} value={form.delivery_contact_name} onChange={setDelivery('delivery_contact_name')} placeholder="Receiving person" />
             </div>
             <div>
               <label style={labelStyle}>Contact Phone {isCod ? '*' : ''}</label>
-              <PhoneInput style={inputStyle} value={form.delivery_contact_phone} onChange={v => setForm(f => ({ ...f, delivery_contact_phone: v }))} />
+              <PhoneInput style={inputStyle} value={form.delivery_contact_phone} onChange={v => { setForm(f => ({ ...f, delivery_contact_phone: v })); setDeliveryWarehouseId(null); setDeliveryManual(true); }} />
             </div>
           </div>
           {isCod && (
