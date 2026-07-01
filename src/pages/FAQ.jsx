@@ -6,7 +6,13 @@ import { ChevronRightIcon } from '../components/icons';
 import styles from './FAQ.module.css';
 
 // One FAQPage JSON-LD block, derived directly from the visible categories/items
-// so the markup text always matches what renders on the page.
+// so the markup text always matches what renders on the page (Google requires
+// markup to match visible content; a mismatch is a structured-data quality risk).
+//
+// NOTE ON VALUE: this schema no longer earns Google's FAQ rich-result dropdown —
+// Google fully deprecated that SERP feature on 2026-05-07. It is kept because it
+// still helps Bing (which parses FAQPage), AI answer engines (ChatGPT / Perplexity
+// / Google AI Overviews) that consume clean Q&A, and general machine-readability.
 function buildJsonLd(categories) {
   const entities = [];
   categories.forEach(cat => {
