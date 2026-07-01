@@ -1,122 +1,186 @@
 {
   "title": "Frequently Asked Questions",
-  "subtitle": "Everything you need to know about shipping your vehicle with Y7 Logistics.",
+  "subtitle": "Straight answers about how Y7 Logistics ships vehicles: broker basics, insurance, flat-fee pricing, auctions, and exports.",
+  "lastUpdated": "June 2026",
+  "navLabel": "On this page",
+  "tldr": "Y7 Logistics is a licensed and bonded FMCSA auto transport broker (MC #1741537, USDOT #4427359) based in Newton, Massachusetts. Y7 arranges car shipping across all 50 states and to major US export ports by matching your vehicle with vetted, insured carriers through Central Dispatch, for a single flat dispatch fee with no transport markup. As a broker, Y7 does not haul or insure vehicles itself; the carriers it books carry the cargo insurance, verified before every dispatch.",
   "categories": [
     {
-      "name": "Getting Started",
+      "id": "general",
+      "name": "General Questions",
+      "kicker": "Start Here",
       "items": [
         {
-          "q": "How does auto transport work?",
-          "a": "We match you with licensed, insured carriers through Central Dispatch. You request a quote, we find the best carrier, they pick up and deliver your vehicle door-to-door."
+          "q": "Is Y7 a broker or a carrier?",
+          "a": "Y7 Logistics is a licensed and bonded FMCSA freight broker (MC #1741537, USDOT #4427359), not a carrier. That means Y7 arranges your transport by matching your vehicle with vetted, insured carriers through Central Dispatch rather than owning the trucks that haul it. Brokers are regulated under 49 CFR Part 371 and, unlike carriers, do not carry the vehicle themselves. Y7 also holds a $75,000 BMC-84 surety bond as federal law requires. Working with a broker matters because a good one vets the carrier's active insurance and safety record before your car is ever loaded."
         },
         {
-          "q": "How long does shipping take?",
-          "a": "1–3 days for routes under 500 miles, 3–7 days coast-to-coast. Times are estimates — weather, traffic, and carrier availability can affect transit."
+          "q": "Who insures my vehicle during transport, Y7 or the carrier?",
+          "a": "The carrier hauling your vehicle carries the cargo insurance, not Y7. As a licensed FMCSA broker, Y7 does not insure cargo; instead it verifies each carrier's active certificate of insurance (COI) through Central Dispatch before dispatch and books only carriers with valid coverage, typically $100,000 to $250,000 or more. If your vehicle is damaged in transit, the claim is filed against the carrier's cargo policy, so always note any new damage on the Bill of Lading at delivery to document it. See how we walk personal-car shippers through this on our ship my car page.",
+          "links": [{ "text": "ship my car page", "href": "/ship-my-car" }]
         },
         {
-          "q": "What information do I need to get a quote?",
-          "a": "Vehicle year/make/model or VIN, pickup and delivery cities, and your preferred dates. For auction vehicles, the lot number helps too."
+          "q": "How does Y7's flat fee work, and why is it cheaper than the auction's transport desk?",
+          "a": "You pay Y7 a single flat dispatch fee, typically $40 to $60 per vehicle, and nothing more; the carrier's rate is paid separately and shown to you at cost. Y7 adds no spread and no hidden markup on the transport itself, which is the core difference from an auction's in-house transport desk, where the carrier rate is usually bundled with an undisclosed margin. With Y7 you see the carrier's actual rate on a signed dispatch sheet, so the price is fully itemized rather than a single padded number. That transparency is why brokered dispatch often costs less than the auction's bundled quote for the same lane; compare the math on our auction transport savings breakdown.",
+          "links": [{ "text": "auction transport savings breakdown", "href": "/auction-transport-savings" }]
         },
         {
-          "q": "Do I need to be present for pickup/delivery?",
-          "a": "Someone 18+ must be present to inspect the vehicle and sign the Bill of Lading (BOL) at both pickup and delivery."
-        }
-      ]
-    },
-    {
-      "name": "Pricing & Payment",
-      "items": [
+          "q": "How do I get a quote, and how fast?",
+          "a": "Request a quote through Y7's online form, the client portal, or the Telegram bot (@y7dispatch_bot), and you'll typically receive a firm price the same business day. To quote accurately, Y7 needs the vehicle's year, make, and model (or VIN), the pickup and delivery locations, and your preferred dates; for auction vehicles, the lot number helps too. Quotes reflect real current carrier rates on your lane, not a padded placeholder, and there's no obligation or charge to get one."
+        },
+        {
+          "q": "When and how do I pay?",
+          "a": "You pay Y7's flat dispatch fee up front to book, then pay the carrier's rate separately, most often as cash or certified funds on delivery (COD), or prepaid through Y7 with a signed dispatch sheet showing the carrier's actual rate. Y7 accepts Zelle, ACH, and bank transfer for the dispatch fee. There is never a transport markup baked into what you pay the carrier, and you'll always know both numbers before your vehicle is dispatched."
+        },
+        {
+          "q": "How do I track my shipment?",
+          "a": "Track your shipment through Y7's client portal, the Telegram bot (@y7dispatch_bot), or email and SMS updates at every milestone, from carrier assignment to delivery. Once a carrier is assigned, the driver's direct phone number appears in your portal for real-time coordination. Every update and document is logged in writing, so nothing important lives only in a phone call, and existing customers have round-the-clock access for shipment-related questions."
+        },
+        {
+          "q": "How long does auto transport take?",
+          "a": "Most vehicles deliver in 1 to 8 days depending on distance: roughly 1 to 3 days for routes under 500 miles and 3 to 7 days coast to coast across the lower 48 states. Transit time depends on the lane, the season, and carrier availability, and Y7 gives you an honest estimate rather than a best-case promise. Weather and federal hours-of-service rules can shift timing by a day. For state-to-state specifics, see our state to state car shipping guide.",
+          "links": [{ "text": "state to state car shipping guide", "href": "/state-to-state-car-shipping" }]
+        },
+        {
+          "q": "What areas do you cover?",
+          "a": "Y7 arranges vehicle transport across all 50 US states and to major US export ports, including Newark, Houston, Savannah, Baltimore, Los Angeles, and Jacksonville. Coverage includes door-to-door residential and dealer pickups, all major auctions (Copart, IAAI, Manheim), and auction-to-port export runs. Because Y7 books from the national Central Dispatch carrier network, capacity isn't limited to one region. Popular lanes include Texas auto transport, Florida car shipping, and Massachusetts car shipping.",
+          "links": [
+            { "text": "Texas auto transport", "href": "/texas-auto-transport" },
+            { "text": "Florida car shipping", "href": "/florida-car-shipping" },
+            { "text": "Massachusetts car shipping", "href": "/massachusetts-car-shipping" }
+          ]
+        },
+        {
+          "q": "How do I receive my documents, and how does the driver coordinate delivery?",
+          "a": "All your documents, the Bill of Lading (BOL), invoices, receipts, and carrier insurance proof, are handled digitally and stored in your Y7 client portal within 24 hours of each milestone. The BOL is signed at both pickup and delivery, with condition photos attached at each touchpoint. For the physical handoff, the assigned driver calls you 1 to 4 hours before pickup and delivery to confirm timing and the unload point, which is why a reachable phone number is required. Learn what to check on the Bill of Lading before you sign.",
+          "links": [{ "text": "Bill of Lading before you sign", "href": "/what-is-a-bill-of-lading" }]
+        },
         {
           "q": "How much does it cost to ship a car?",
-          "a": "Prices depend on distance, vehicle size, transport type (open vs enclosed), and market conditions. Request a quote for an accurate estimate."
+          "a": "Car shipping cost depends on distance, vehicle size, open versus enclosed transport, and current market conditions on your lane, plus Y7's flat dispatch fee. For a full breakdown of what drives the price and how to time it, see our car shipping cost guide.",
+          "links": [{ "text": "car shipping cost guide", "href": "/car-shipping-cost" }]
         },
         {
           "q": "Are there hidden fees?",
-          "a": "No. Your quote includes everything. Inoperable vehicles may have an additional $100–300 fee disclosed upfront."
+          "a": "No. Y7's quote is itemized: the carrier's actual rate plus a flat dispatch fee, with no transport markup, and any inoperable-vehicle surcharge disclosed up front. See exactly what's included, and what isn't, on our car shipping cost breakdown.",
+          "links": [{ "text": "car shipping cost breakdown", "href": "/car-shipping-cost" }]
         },
         {
-          "q": "What payment methods do you accept?",
-          "a": "Zelle, bank transfer, ACH for prepayment. Cash or certified funds to the carrier for COD at delivery."
+          "q": "Should I choose open or enclosed transport?",
+          "a": "Open transport is the affordable default that safely carries most vehicles, while enclosed transport adds weather and road protection for high-value, classic, or low-clearance cars. Our open vs enclosed guide walks through when the extra cost is worth it.",
+          "links": [{ "text": "open vs enclosed guide", "href": "/open-vs-enclosed-auto-transport" }]
         },
         {
-          "q": "Do you require a deposit?",
-          "a": "Depends on the payment method. Prepaid orders are paid in full before dispatch. COD orders may require a booking deposit."
+          "q": "Can you ship a non-running or salvage vehicle?",
+          "a": "Yes. Y7 books carriers equipped with winches for non-running, salvage, and auction vehicles, usually for a modest additional fee disclosed in your quote. See requirements and pricing on our salvage car shipping page, or read the full non-running vehicle playbook.",
+          "links": [
+            { "text": "salvage car shipping page", "href": "/salvage-car-shipping" },
+            { "text": "non-running vehicle playbook", "href": "/blog/non-running-vehicle-shipping-playbook" }
+          ]
+        },
+        {
+          "q": "Do you pick up from Copart, IAAI, and Manheim?",
+          "a": "Yes. Y7 handles gate passes, lot releases, and buyer paperwork for pickups from Copart, IAAI, Manheim, and other major auctions nationwide. See lane-specific details for Copart shipping, IAAI transport, and Manheim transport.",
+          "links": [
+            { "text": "Copart shipping", "href": "/copart-shipping" },
+            { "text": "IAAI transport", "href": "/iaai-transport" },
+            { "text": "Manheim transport", "href": "/manheim-transport" }
+          ]
         }
       ]
     },
     {
-      "name": "During Transport",
+      "id": "dealers",
+      "name": "For Dealers",
+      "kicker": "B2B Transport",
       "items": [
         {
-          "q": "How do I track my vehicle?",
-          "a": "Through our customer portal, Telegram bot (@y7dispatch_bot), or email updates at every stage."
+          "q": "What's the dealer dispatch fee, and do I pay carriers directly?",
+          "a": "Dealers pay Y7 a flat dispatch fee per vehicle with no transport markup, and can pay carriers directly on delivery (COD) or route payment through Y7 with a signed dispatch sheet showing the carrier's actual rate. See volume pricing and payment terms on our dealer transport page.",
+          "links": [{ "text": "dealer transport page", "href": "/dealers" }]
         },
         {
-          "q": "What insurance coverage is included?",
-          "a": "Every carrier in our network carries a minimum of $100,000 in cargo insurance — most carry $250,000 or more. This is a Y7 verification requirement; we confirm active coverage through Central Dispatch before assigning any load."
+          "q": "Is there a minimum volume or a long-term contract?",
+          "a": "No long-term contract and no rigid minimum, though dealers and exporters moving 10 or more vehicles a month unlock custom pricing and a dedicated dispatcher. Details are on our dealers page.",
+          "links": [{ "text": "dealers page", "href": "/dealers" }]
         },
         {
-          "q": "What if my car is damaged?",
-          "a": "Note any new damage on the BOL at delivery. File a claim within 24 hours with photos. We help coordinate with the carrier’s insurance."
+          "q": "How fast can you dispatch a carrier from an auction?",
+          "a": "Y7 typically assigns a vetted carrier within hours on active lanes, prioritizing pickup inside the auction's free storage window to avoid fees. See how dealer auction dispatch works on our dealer auto transport page.",
+          "links": [{ "text": "dealer auto transport page", "href": "/dealer-auto-transport" }]
         },
         {
-          "q": "What is a Bill of Lading (BOL)?",
-          "a": "A legal document recording your vehicle’s condition at pickup and delivery. Always inspect and sign it carefully."
+          "q": "Do you handle Copart gate passes and IAA buyer letters for dealers?",
+          "a": "Yes. Y7 manages Copart gate passes, IAA buyer letters, and lot releases as part of dealer dispatch, so your team doesn't chase paperwork. See the dealers overview, or the step-by-step Copart gate pass guide.",
+          "links": [
+            { "text": "dealers overview", "href": "/dealers" },
+            { "text": "Copart gate pass guide", "href": "/copart-gate-pass-guide" }
+          ]
+        },
+        {
+          "q": "Can I put multiple users on one dealer account?",
+          "a": "Yes. Dealer accounts support multiple users with shared order visibility, so your buyers and back office see the same real-time status. Learn more on our dealers page.",
+          "links": [{ "text": "dealers page", "href": "/dealers" }]
+        },
+        {
+          "q": "Do you handle dealer-to-dealer trades and deliveries to our customers?",
+          "a": "Yes. Y7 moves dealer-to-dealer trades and delivers vehicles directly from your lot to retail customers, door to door. See options on our dealer auto transport page.",
+          "links": [{ "text": "dealer auto transport page", "href": "/dealer-auto-transport" }]
+        },
+        {
+          "q": "Do you offer recurring or volume pricing from Manheim and other auctions?",
+          "a": "Yes. Y7 sets up recurring transport and volume pricing from Manheim, ADESA, ACV, and other auctions for high-frequency dealers. See lane details on our Manheim transport page.",
+          "links": [{ "text": "Manheim transport page", "href": "/manheim-transport" }]
         }
       ]
     },
     {
-      "name": "Auctions & Ports",
+      "id": "exporters",
+      "name": "For Exporters",
+      "kicker": "International",
       "items": [
         {
-          "q": "Do you pick up from IAAI, Copart, Manheim?",
-          "a": "Yes. We handle gate passes, lot releases, and all auction paperwork."
+          "q": "How fast do you move a vehicle from auction to port?",
+          "a": "Y7 prioritizes auction-to-port runs to hit vessel cut-offs, typically dispatching within the auction's free storage window and coordinating directly with port warehouses. See timelines on our exporters page and the auction-to-port transport guide.",
+          "links": [
+            { "text": "exporters page", "href": "/exporters" },
+            { "text": "auction-to-port transport guide", "href": "/auction-to-port-transport" }
+          ]
         },
         {
-          "q": "What is a gate pass?",
-          "a": "A document from the auction authorizing vehicle release. You can upload it through our portal or Telegram bot."
+          "q": "Do you handle both the domestic leg and ocean freight?",
+          "a": "Y7 arranges the domestic auction-to-port leg and coordinates with your freight forwarder for the ocean leg, keeping the handoff clean so nothing stalls dockside. Details are on our exporters page.",
+          "links": [{ "text": "exporters page", "href": "/exporters" }]
         },
         {
-          "q": "Which US ports do you deliver to?",
-          "a": "Newark NJ, Houston TX, Savannah GA, Baltimore MD, Los Angeles CA, Jacksonville FL, and more."
+          "q": "Container or RoRo, which do you handle?",
+          "a": "Y7 delivers export vehicles for both containerized and RoRo (roll-on/roll-off) shipping, staged to your forwarder's booking. See how the container-versus-RoRo decision affects your timeline in our Copart international shipping guide.",
+          "links": [{ "text": "Copart international shipping guide", "href": "/copart-international-shipping" }]
         },
         {
-          "q": "What documents are needed for port delivery?",
-          "a": "Title or export documentation, gate pass (if from auction), and any port-specific release forms."
-        }
-      ]
-    },
-    {
-      "name": "For Dealers & Exporters",
-      "items": [
-        {
-          "q": "Do you offer volume discounts?",
-          "a": "Yes. Dealers and exporters shipping 10+ vehicles/month qualify for custom pricing with a dedicated dispatcher."
+          "q": "Which US ports do you cover for export?",
+          "a": "Y7 delivers to major US export ports including Newark, Houston, Savannah, Baltimore, Los Angeles, and Jacksonville. See port-by-port details on our door-to-port transport page.",
+          "links": [{ "text": "door-to-port transport page", "href": "/door-to-port-auto-transport" }]
         },
         {
-          "q": "What is your transparent pricing model?",
-          "a": "For exporters: carrier rate at cost + our flat service fee. No markups on transport."
+          "q": "What documents do I need, and how do I avoid missing a vessel?",
+          "a": "Missing a vessel usually comes down to a late title, gate pass, or dock receipt, not the trucking. Our exporter documentation checklist lays out exactly what to have ready and when, so the auction-to-port handoff stays on schedule.",
+          "links": [{ "text": "exporter documentation checklist", "href": "/blog/exporter-documentation-checklist" }]
         },
         {
-          "q": "Can I get a dedicated dispatcher?",
-          "a": "Yes, for volume accounts (10+ vehicles/month). One point of contact for all your shipments."
-        }
-      ]
-    },
-    {
-      "name": "Communication & Documents",
-      "items": [
-        {
-          "q": "How do I contact Y7 if I do not use phone calls?",
-          "a": "Y7 customer support is digital-first. You can reach us through the Client Portal, Telegram bot (@y7dispatch_bot), or email info@y7agency.com for new inquiries and non-order questions (active shipments: use the portal or Telegram for fastest response — orders and changes are not handled by email). Every request is logged in writing, documents are trackable, and multi-order coordination is easy. Existing customers have 24/7 access via the portal and Telegram bot for shipment-related urgent matters."
+          "q": "Can you hold a vehicle if the vessel isn't ready or the gate pass is delayed?",
+          "a": "Yes. Y7 can stage or briefly hold a vehicle when a vessel slips or a gate pass is delayed, then re-time the port delivery to your booking. See how we handle export exceptions on our exporters page.",
+          "links": [{ "text": "exporters page", "href": "/exporters" }]
         },
         {
-          "q": "How does the driver coordinate delivery with me?",
-          "a": "After your carrier is assigned, the driver's direct phone number appears in your portal. The driver will call you 1-4 hours before pickup and delivery to confirm timing, directions, and unload point. This is standard practice for all auto transport — physical delivery logistics require real-time voice coordination that can't happen through text alone."
+          "q": "Can you ship internationally from Copart?",
+          "a": "Yes. Y7 moves Copart purchases from the yard to your chosen US export port, handling gate passes and lot releases along the way. See the full process in our Copart international shipping guide.",
+          "links": [{ "text": "Copart international shipping guide", "href": "/copart-international-shipping" }]
         },
         {
-          "q": "How do I receive documents like the Bill of Lading?",
-          "a": "All documents are handled digitally. The BOL is signed at pickup and delivery (paper or e-signature depending on carrier), then uploaded to your portal within 24 hours. Photos of the vehicle's condition at both touchpoints are attached. Invoices, receipts, and insurance proof are emailed and also stored in your portal for permanent access."
+          "q": "Can you export a Tesla or EV through a US port?",
+          "a": "Yes. Y7 delivers EVs and Teslas to US export ports with the battery charge level and handling steps that carriers and forwarders require. See specifics on our electric vehicle port delivery page.",
+          "links": [{ "text": "electric vehicle port delivery page", "href": "/electric-vehicle-port-delivery" }]
         }
       ]
     }
