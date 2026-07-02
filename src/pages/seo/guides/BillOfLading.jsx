@@ -192,6 +192,7 @@ export default function BillOfLading() {
         </h3>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
           {[
+            { label: 'BOL Checks at Pickup & Delivery', to: '/blog/bill-of-lading-pickup-delivery-guide' },
             { label: 'How to Ship an Auction Car', to: '/how-to-ship-a-car-bought-at-auction' },
             { label: 'Open vs Enclosed Transport', to: '/open-vs-enclosed-auto-transport' },
             { label: 'Car Shipping Cost', to: '/car-shipping-cost' },

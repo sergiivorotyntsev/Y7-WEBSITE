@@ -228,6 +228,7 @@ export default function CopartStorageFees() {
 
       <h2 style={h2Style}>Related</h2>
       <ul style={pStyle}>
+        <li style={liStyle}><Link to="/blog/copart-storage-fees-real-cost-2026" style={linkStyle}>The 2026 deep-dive: what storage fees really cost buyers</Link></li>
         <li style={liStyle}><Link to="/copart-shipping" style={linkStyle}>Copart shipping main page</Link></li>
         <li style={liStyle}><Link to="/copart-gate-pass-guide" style={linkStyle}>Copart gate pass guide</Link></li>
         <li style={liStyle}><Link to="/copart-international-shipping" style={linkStyle}>Copart international shipping</Link></li>

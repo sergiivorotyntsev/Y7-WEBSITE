@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SeoLandingPage, { Section } from './SeoLandingPage';
 import { colors, fonts } from '../../theme';
 
@@ -116,8 +117,9 @@ export default function ManheimTransport() {
         </p>
         <p style={p}>
           The bigger advantage is flexibility. Ready Logistics handles Manheim vehicles only.
-          If you also buy from Copart, IAA, or directly from other dealers, you now have
-          multiple transport vendors to manage. With Y7, one broker handles every pickup
+          If you also buy from Copart, IAA, or directly from other dealers (see how the three
+          platforms <Link to="/blog/copart-iaa-manheim-comparison" style={{ color: colors.accent }}>compare for transport</Link>),
+          you now have multiple transport vendors to manage. With Y7, one broker handles every pickup
           regardless of source — Manheim, Copart, IAA, dealer trades, or private purchases.
           One point of contact, one invoice, one relationship.
         </p>

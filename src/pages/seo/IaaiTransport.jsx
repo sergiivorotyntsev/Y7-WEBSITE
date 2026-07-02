@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SeoLandingPage, { Section } from './SeoLandingPage';
 import { colors, fonts } from '../../theme';
 
@@ -155,7 +156,8 @@ export default function IaaiTransport() {
         <p style={p}>
           Working with an independent broker like Y7 Logistics means your transport is priced
           competitively against the open carrier market. We can combine loads — if you have one
-          vehicle at IAA and another at Copart in the same state, a single carrier can grab both.
+          vehicle at IAA and another at Copart in the same state, a single carrier can grab both
+          (deciding between platforms? See our <Link to="/blog/copart-iaa-manheim-comparison" style={{ color: colors.accent }}>Copart vs IAA vs Manheim comparison</Link>).
           We also provide a single point of contact for all your auction transport, regardless of
           which platform you buy from.
         </p>
