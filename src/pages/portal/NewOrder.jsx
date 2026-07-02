@@ -195,8 +195,14 @@ export default function NewOrder() {
   const navigate = useNavigate();
 
   const isDealer = user?.customer_type === 'dealer';
+  const isExporter = user?.customer_type === 'exporter';
   const isWarehouseUser = WAREHOUSE_ELIGIBLE.includes(user?.customer_type);
   const isDirectSubmitter = DIRECT_SUBMIT_ELIGIBLE.includes(user?.customer_type);
+  // EXP1-T01: exporter delivery is Y7-ASSIGNED after document review — the form
+  // collects NO delivery (no picker, no manual fields, no delivery ZIP). Y7
+  // picks the destination from their registered warehouses; the assignment
+  // snapshot fills the order (EXPORTER_CABINET_PHASE0_FINDINGS §1).
+  const deliveryAssignedByY7 = isExporter;
 
   // Warehouses
   const [warehouses, setWarehouses] = useState([]);
@@ -229,9 +235,12 @@ export default function NewOrder() {
 
   const [notes, setNotes] = useState('');
 
-  // Auction fields (auction_buyer + dealer inbound)
+  // Auction fields (auction_buyer + dealer inbound + exporter). EXP1-T01: the
+  // backend requires auction_type_id for every direct_submit
+  // (portal_data.py:412) and exporter pickups are auctions — hiding the block
+  // made every exporter submit a guaranteed 400.
   const isAuctionBuyer = user?.customer_type === 'auction_buyer';
-  const showAuctionFields = isAuctionBuyer || (isDealer && direction === 'inbound');
+  const showAuctionFields = isAuctionBuyer || isExporter || (isDealer && direction === 'inbound');
   const [auctionTypes, setAuctionTypes] = useState([]);
   const [auctionTypeId, setAuctionTypeId] = useState('');
   const [gatePassPin, setGatePassPin] = useState('');
@@ -296,7 +305,11 @@ export default function NewOrder() {
 
   // Determine which side is warehouse-driven vs manual
   let pickupIsWarehouse, deliveryIsWarehouse;
-  if (isDealer) {
+  if (deliveryAssignedByY7) {
+    // EXP1-T01: exporter — pickup is manual/extracted, delivery not collected.
+    pickupIsWarehouse = false;
+    deliveryIsWarehouse = false;
+  } else if (isDealer) {
     pickupIsWarehouse = direction === 'outbound';
     deliveryIsWarehouse = direction === 'inbound';
   } else if (isWarehouseUser) {
@@ -345,12 +358,15 @@ export default function NewOrder() {
       setError('Pickup ZIP must be exactly 5 digits.');
       return;
     }
-    if (!dZip || !ZIP_RE.test(dZip)) {
+    // EXP1-T01: no delivery ZIP for exporter — Y7 assigns the destination.
+    if (!deliveryAssignedByY7 && (!dZip || !ZIP_RE.test(dZip))) {
       setError('Delivery ZIP must be exactly 5 digits.');
       return;
     }
 
-    if (isAuctionBuyer && !auctionTypeId) {
+    // EXP1-T01: exporter must pick the auction site too — the backend requires
+    // auction_type_id for direct_submit.
+    if ((isAuctionBuyer || isExporter) && !auctionTypeId) {
       setError('Please select the auction site.');
       return;
     }
@@ -428,15 +444,19 @@ export default function NewOrder() {
         if (pickupManual.contact_phone) body.pickup_contact_phone = pickupManual.contact_phone;
       }
 
-      // Delivery side
-      if (deliveryIsWarehouse && !deliveryOverride && deliveryWarehouseId) {
-        body.delivery_warehouse_id = deliveryWarehouseId;
-      } else {
-        if (deliveryManual.address) body.delivery_address = deliveryManual.address;
-        if (deliveryManual.city) body.delivery_city = deliveryManual.city;
-        if (deliveryManual.state) body.delivery_state = deliveryManual.state;
-        if (deliveryManual.contact_name) body.delivery_contact_name = deliveryManual.contact_name;
-        if (deliveryManual.contact_phone) body.delivery_contact_phone = deliveryManual.contact_phone;
+      // Delivery side — EXP1-T01: exporters send NO delivery fields at all
+      // (strict-empty; the intake gate also skips server-side auto-fill, so
+      // delivery appears only when Y7 assigns it).
+      if (!deliveryAssignedByY7) {
+        if (deliveryIsWarehouse && !deliveryOverride && deliveryWarehouseId) {
+          body.delivery_warehouse_id = deliveryWarehouseId;
+        } else {
+          if (deliveryManual.address) body.delivery_address = deliveryManual.address;
+          if (deliveryManual.city) body.delivery_city = deliveryManual.city;
+          if (deliveryManual.state) body.delivery_state = deliveryManual.state;
+          if (deliveryManual.contact_name) body.delivery_contact_name = deliveryManual.contact_name;
+          if (deliveryManual.contact_phone) body.delivery_contact_phone = deliveryManual.contact_phone;
+        }
       }
 
       // Auction fields
@@ -451,6 +471,13 @@ export default function NewOrder() {
 
       if (res.ok) {
         const data = await res.json();
+        // EXP1-T01 (Q6): exporters go STRAIGHT to document upload — uploading
+        // the auction documents IS the next step of their flow (doc-first
+        // model); OrderDetail scrolls to + highlights the intake card.
+        if (deliveryAssignedByY7) {
+          navigate(`/portal/order/${data.order_id}?upload=1`, { replace: true });
+          return;
+        }
         setSuccess({ orderId: data.order_id, loadId: data.load_id });
       } else {
         const data = await res.json().catch(() => ({}));
@@ -599,10 +626,13 @@ export default function NewOrder() {
       <Link to="/portal/dashboard" style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.accent, display: 'inline-block', marginBottom: '20px' }}>&larr; Back to Dashboard</Link>
       <h1 style={{ fontFamily: fonts.serif, fontSize: '28px', fontWeight: 700, color: colors.text, marginBottom: '8px' }}>New Transport Order</h1>
       <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, marginBottom: '6px' }}>
-        {/* WBF-T01: submission-flow copy — keyed on the direct-submit set. */}
-        {isDirectSubmitter
-          ? "Submit your vehicle. We'll source the best-priced carrier — your transport price will appear here once it's set."
-          : "Submit a transport request. We'll review it and send you a quote."}
+        {/* WBF-T01: submission-flow copy — keyed on the direct-submit set.
+            EXP1-T01: exporter gets doc-first wording (Y7 assigns delivery). */}
+        {isExporter
+          ? 'Submit your vehicle and upload the auction documents. Y7 will review and assign the destination warehouse.'
+          : isDirectSubmitter
+            ? "Submit your vehicle. We'll source the best-priced carrier — your transport price will appear here once it's set."
+            : "Submit a transport request. We'll review it and send you a quote."}
       </p>
       <p style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginBottom: '24px' }}>
         Contact info from your profile will be used.{' '}
@@ -688,7 +718,19 @@ export default function NewOrder() {
           <div style={sectionTitle}>
             Delivery {deliveryIsWarehouse ? '(to your location)' : ''}
           </div>
-          {deliveryIsWarehouse ? (
+          {deliveryAssignedByY7 ? (
+            /* EXP1-T01: exporter — no delivery entry; quiet info panel reusing
+               the input-box tokens. */
+            <div style={{
+              padding: '12px 14px', background: colors.bgInput, borderRadius: 8,
+              border: `1px solid ${colors.border}`, fontFamily: fonts.sans,
+              fontSize: 13, color: colors.text, lineHeight: 1.6,
+            }}>
+              Y7 will review your documents and assign the optimal destination
+              warehouse from your registered locations. You&rsquo;ll see the
+              delivery details on this order once it&rsquo;s set.
+            </div>
+          ) : deliveryIsWarehouse ? (
             <WarehouseSection
               warehouses={deliveryWarehouses}
               selectedId={deliveryWarehouseId}

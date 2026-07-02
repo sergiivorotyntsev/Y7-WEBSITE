@@ -341,6 +341,10 @@ function DocIntakeCard({ orderId, onUpdated }) {
           vehicle_value_dollars: ex.vehicle_value_dollars != null ? String(ex.vehicle_value_dollars) : '',
           pickup_address: ex.pickup_address || '', pickup_city: ex.pickup_city || '',
           pickup_state: ex.pickup_state || '', pickup_zip: ex.pickup_zip || '',
+          // EXP1-T04: lot/stock + buyer # now flow from the extractor to the
+          // order (apply-extraction persists them; the operator reads them in
+          // the admin Vehicle section for CD manual entry).
+          lot_number: ex.vehicle_lot || '', buyer_number: ex.buyer_id || '',
         });
       }
     } catch (e) { setErr(e.message); }
@@ -370,6 +374,8 @@ function DocIntakeCard({ orderId, onUpdated }) {
         vehicle_value_cents: Number.isFinite(dollars) ? Math.round(dollars * 100) : fields.vehicle_value_cents,
         pickup_address: fields.pickup_address || null, pickup_city: fields.pickup_city || null,
         pickup_state: fields.pickup_state || null, pickup_zip: fields.pickup_zip || null,
+        // EXP1-T04: persist lot/buyer (W2D-T01 columns get their writer).
+        lot_number: fields.lot_number || null, buyer_number: fields.buyer_number || null,
       };
       // WA-T01: this is a JSON request, so it can use portalFetch directly —
       // which attaches the Bearer token and centralises 401/403 handling.
@@ -443,6 +449,11 @@ function DocIntakeCard({ orderId, onUpdated }) {
             <div><span style={lbl}>State</span><input style={inputStyle} value={fields.pickup_state} onChange={(e) => setF('pickup_state', e.target.value)} /></div>
             <div><span style={lbl}>ZIP</span><input style={inputStyle} value={fields.pickup_zip} onChange={(e) => setF('pickup_zip', e.target.value)} /></div>
           </div>
+          {/* EXP1-T04: lot/stock + buyer # — read from the document, editable here. */}
+          <div style={{ ...row2, marginTop: '10px' }}>
+            <div><span style={lbl}>Lot / Stock #</span><input style={inputStyle} value={fields.lot_number} onChange={(e) => setF('lot_number', e.target.value)} /></div>
+            <div><span style={lbl}>Buyer #</span><input style={inputStyle} value={fields.buyer_number} onChange={(e) => setF('buyer_number', e.target.value)} /></div>
+          </div>
           <div style={{ display: 'flex', gap: '10px', marginTop: '14px', flexWrap: 'wrap' }}>
             <button type="button" onClick={applyConfirm} disabled={busy} style={btn(busy)}>
               {busy ? 'Saving…' : 'Confirm & apply'}
@@ -484,6 +495,9 @@ export default function OrderDetail() {
   const [sentError, setSentError] = useState(null);
   const dispatchSaved = searchParams.get('dispatch_saved') === '1';
   const justPaid = searchParams.get('paid') === '1';
+  // EXP1-T01 (Q6): NewOrder redirects exporters here with ?upload=1 so document
+  // upload is the immediate next action — scroll to + highlight the intake card.
+  const uploadFocus = searchParams.get('upload') === '1';
 
   const fetchOrder = () => {
     setLoading(true);
@@ -509,6 +523,13 @@ export default function OrderDetail() {
     fetchPayment();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+
+  // EXP1-T01 (Q6): once the page has rendered, bring the doc-intake card into
+  // view for ?upload=1 arrivals (post-create exporter flow).
+  useEffect(() => {
+    if (!uploadFocus || loading) return;
+    document.getElementById('doc-intake')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [uploadFocus, loading]);
 
   // One-shot mount effect — handle justPaid query param and pick up any
   // stashed promo code from localStorage.
@@ -999,7 +1020,17 @@ export default function OrderDetail() {
       {/* DOC-2/5/7: cabinet auction-document intake — dealers/exporters/auction
           buyers upload an auction doc to auto-fill VIN/value/pickup (or attach proof). */}
       {['dealer', 'exporter', 'auction_buyer'].includes(user?.customer_type) && (
-        <DocIntakeCard orderId={id} onUpdated={fetchOrder} />
+        <div
+          id="doc-intake"
+          style={uploadFocus ? {
+            scrollMarginTop: 12,
+            border: `2px solid ${colors.accent}`,
+            borderRadius: 14,
+            padding: 2,
+          } : undefined}
+        >
+          <DocIntakeCard orderId={id} onUpdated={fetchOrder} />
+        </div>
       )}
 
       {/* Ownership proof — individual / auction_buyer only, once the price is accepted. */}
