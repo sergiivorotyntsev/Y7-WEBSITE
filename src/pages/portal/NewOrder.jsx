@@ -486,9 +486,15 @@ export default function NewOrder() {
         // trial_quotes_exhausted, …) return a structured dict detail. Render its
         // human-readable message instead of swallowing it as a generic error.
         if (detail && typeof detail === 'object') {
-          // CAP-S1-W04: the two dealer-verification gates get a friendly full
+          // CAP-S1-W04: the dealer-verification gates get a friendly full
           // "under review" screen (enriched payload), not a bare inline error.
-          if (detail.error === 'company_verification_required' || detail.error === 'trial_quotes_exhausted') {
+          // EXP2: locations_required (the exporter backstop 403) joins them —
+          // a full panel with a CTA to register warehouses beats inline text.
+          if (
+            detail.error === 'company_verification_required'
+            || detail.error === 'trial_quotes_exhausted'
+            || detail.error === 'locations_required'
+          ) {
             setGateBlock(detail);
           } else {
             setError(detail.detail || detail.message || 'This action is not available for your account yet.');
@@ -549,15 +555,52 @@ export default function NewOrder() {
     );
   }
 
+  // EXP2-T04: exporter pre-check — the model requires a complete warehouse
+  // directory before the first order (Y7 assigns delivery from it). The
+  // backend locations_required 403 is the backstop; this panel is the UX.
+  // Strict === false: fail open when the backend doesn't send the flag.
+  if (isExporter && user?.has_delivery_locations === false && !success) {
+    return (
+      <div style={{ maxWidth: '600px', margin: '0 auto', padding: '40px 24px 80px' }}>
+        <PageMeta title="Register your export warehouses" />
+        <div style={{
+          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+          minHeight: '50vh', padding: '40px 24px', textAlign: 'center',
+        }}>
+          <div style={{ fontSize: '44px', marginBottom: '16px' }}>&#127981;</div>
+          <h1 style={{ fontFamily: fonts.serif, fontSize: '24px', fontWeight: 700, color: colors.text, marginBottom: '12px' }}>
+            Register your export warehouses first
+          </h1>
+          <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, maxWidth: '440px', lineHeight: 1.6, marginBottom: '28px' }}>
+            Y7 assigns each shipment to the optimal warehouse from your saved
+            locations — add every export warehouse you have a contract with,
+            then come back to place your first order.
+          </p>
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link to="/portal/locations" style={{ ...btnStyles.accent, textDecoration: 'none' }}>Add your warehouses</Link>
+            <button onClick={() => navigate('/portal/dashboard')} style={btnStyles.secondary}>Go to Dashboard</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (gateBlock) {
     // CAP-S1-W04: pinned copy (no time/SLA promises); CTA to Contact us.
+    // EXP2: locations_required variant — CTA to register warehouses instead.
     const isTrial = gateBlock.error === 'trial_quotes_exhausted';
-    const heading = isTrial
-      ? "You've reached your trial quote limit"
-      : 'Your dealer account is being verified';
-    const bodyText = isTrial
-      ? 'Your account has used its trial quote requests pending verification. Once our team verifies your dealership, you can submit without limits — we’ll be in touch.'
-      : 'Thanks for registering as a dealer. Before you can submit orders directly, our team verifies your dealership details. We’ll email you as soon as your account is approved.';
+    const isLocations = gateBlock.error === 'locations_required';
+    const heading = isLocations
+      ? 'Register your export warehouses first'
+      : isTrial
+        ? "You've reached your trial quote limit"
+        : 'Your dealer account is being verified';
+    const bodyText = isLocations
+      ? (gateBlock.message
+        || 'Y7 assigns each shipment to the optimal warehouse from your saved locations — add every export warehouse you have a contract with, then come back to place your order.')
+      : isTrial
+        ? 'Your account has used its trial quote requests pending verification. Once our team verifies your dealership, you can submit without limits — we’ll be in touch.'
+        : 'Thanks for registering as a dealer. Before you can submit orders directly, our team verifies your dealership details. We’ll email you as soon as your account is approved.';
     return (
       <div style={{ maxWidth: '600px', margin: '0 auto', padding: '40px 24px 80px' }}>
         <PageMeta title={heading} />
@@ -565,11 +608,16 @@ export default function NewOrder() {
           display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
           minHeight: '50vh', padding: '40px 24px', textAlign: 'center',
         }}>
-          <div style={{ fontSize: '44px', marginBottom: '16px' }}>&#128737;</div>
+          <div style={{ fontSize: '44px', marginBottom: '16px' }}>{isLocations ? <>&#127981;</> : <>&#128737;</>}</div>
           <h1 style={{ fontFamily: fonts.serif, fontSize: '24px', fontWeight: 700, color: colors.text, marginBottom: '12px' }}>{heading}</h1>
           <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, maxWidth: '420px', lineHeight: 1.6, marginBottom: '28px' }}>{bodyText}</p>
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/contact" style={{ ...btnStyles.accent, textDecoration: 'none' }}>Contact us</Link>
+            {/* EXP2 review: same destination as the pre-check panel — the model
+                is multi-warehouse; LocationSetup is single-location, redirects
+                away at >=1, and lacks the port field. One destination, one task. */}
+            {isLocations
+              ? <Link to="/portal/locations" style={{ ...btnStyles.accent, textDecoration: 'none' }}>Add your warehouses</Link>
+              : <Link to="/contact" style={{ ...btnStyles.accent, textDecoration: 'none' }}>Contact us</Link>}
             <button onClick={() => navigate('/portal/dashboard')} style={btnStyles.secondary}>Go to Dashboard</button>
           </div>
         </div>
