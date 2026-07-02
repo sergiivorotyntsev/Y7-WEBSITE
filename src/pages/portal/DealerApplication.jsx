@@ -38,7 +38,7 @@ const FIELDS = [
 const EMPTY = FIELDS.reduce((a, f) => ({ ...a, [f.key]: '' }), {});
 
 export default function DealerApplication() {
-  const { user, checkAuth } = useAuth();
+  const { checkAuth } = useAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);

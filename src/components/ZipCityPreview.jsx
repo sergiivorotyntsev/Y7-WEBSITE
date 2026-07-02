@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { colors, fonts } from '../theme';
 
 /**
@@ -34,7 +34,7 @@ export default function ZipCityPreview({ status, city, stateAbbr, label }) {
     <div style={{ minHeight: 22, marginTop: 4 }} aria-live="polite">
       <AnimatePresence mode="wait">
         {content && (
-          <motion.span
+          <Motion.span
             key={`${status}-${content}`}
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
@@ -53,7 +53,7 @@ export default function ZipCityPreview({ status, city, stateAbbr, label }) {
             aria-label={label ? `${label}: ${content}` : content}
           >
             {content}
-          </motion.span>
+          </Motion.span>
         )}
       </AnimatePresence>
     </div>

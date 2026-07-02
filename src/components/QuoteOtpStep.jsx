@@ -26,7 +26,7 @@
 // err.body is reliable.
 
 import { useState, useEffect, useRef } from 'react';
-import { motion, useAnimationControls } from 'framer-motion';
+import { motion as Motion, useAnimationControls } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { colors, fonts } from '../theme';
 import { apiPost } from '../hooks/useApi';
@@ -271,7 +271,7 @@ export default function QuoteOtpStep({
   };
 
   return (
-    <motion.div
+    <Motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
@@ -314,7 +314,7 @@ export default function QuoteOtpStep({
         <strong style={{ color: colors.text, fontWeight: 600 }}>{email}</strong>
       </p>
 
-      <motion.div
+      <Motion.div
         animate={shakeControls}
         style={{
           display: 'flex',
@@ -357,7 +357,7 @@ export default function QuoteOtpStep({
             }}
           />
         ))}
-      </motion.div>
+      </Motion.div>
 
       {/* Status row: error takes precedence over expiry countdown. Reserve
           space so layout doesn't shift between states. */}
@@ -439,6 +439,6 @@ export default function QuoteOtpStep({
           {t('otp.editEmail')}
         </button>
       </div>
-    </motion.div>
+    </Motion.div>
   );
 }

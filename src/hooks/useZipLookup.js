@@ -42,7 +42,7 @@ export function useZipLookup(zip) {
         } else {
           setState({ status: 'invalid', city: null, stateAbbr: null });
         }
-      } catch (e) {
+      } catch {
         setState({ status: 'error', city: null, stateAbbr: null });
       }
     }, 400);

@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { fonts } from '../theme';
 
@@ -11,7 +11,7 @@ export default function EmailTypoBanner({ visible, suggestion, onAccept }) {
   return (
     <AnimatePresence>
       {visible && suggestion && (
-        <motion.div
+        <Motion.div
           key={`typo-${suggestion}`}
           initial={{ opacity: 0, height: 0, marginTop: 0 }}
           animate={{ opacity: 1, height: 'auto', marginTop: 6 }}
@@ -54,7 +54,7 @@ export default function EmailTypoBanner({ visible, suggestion, onAccept }) {
           >
             {t('emailTypo.cta')}
           </button>
-        </motion.div>
+        </Motion.div>
       )}
     </AnimatePresence>
   );

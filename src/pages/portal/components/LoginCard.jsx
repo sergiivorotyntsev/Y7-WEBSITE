@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Trans } from 'react-i18next';
 import SmsConsent from '../../../components/SmsConsent';
@@ -144,7 +143,6 @@ export default function LoginCard({
   error,
   reg,
   setRegField,
-  onSubmitEmail,
   onCodeChange,
   onCodeKeyDown,
   onBackToEmail,

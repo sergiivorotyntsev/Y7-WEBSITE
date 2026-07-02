@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { useVinDecode } from '../hooks/useVinDecode';
 import { apiPost } from '../hooks/useApi';
 import { useZipLookup } from '../hooks/useZipLookup';
@@ -91,7 +91,6 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
   const [otpState, setOtpState] = useState(null);
   const [submitResult, setSubmitResult] = useState(null);
   const [error, setError] = useState(null);
-  const [submitAttempted, setSubmitAttempted] = useState(false);
   const [termsError, setTermsError] = useState(false);
   const [touched, setTouched] = useState({});
   const [serverFieldErrors, setServerFieldErrors] = useState({});
@@ -204,7 +203,6 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
     setTermsError(false);
 
     setError(null);
-    setSubmitAttempted(true);  // reveals SmsConsent error banner if consent missing
 
     // VIN format check (if user typed something in VIN mode)
     const vinRegex = /^[A-HJ-NPR-Z0-9]{17}$/;
@@ -632,7 +630,7 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
       <RouteEstimator pickupZip={form.pickup_zip} deliveryZip={form.delivery_zip} />
 
       {/* ── STEP 2: Contact (animated reveal — framer-motion Q1-T09) ── */}
-      <motion.div
+      <Motion.div
         className={styles.step2}
         initial={false}
         animate={{
@@ -709,7 +707,7 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
               )}
               <AnimatePresence>
                 {emailCheck.status === 'duplicate' && (
-                  <motion.div
+                  <Motion.div
                     key="email-recognized"
                     initial={{ opacity: 0, y: -4 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -737,7 +735,7 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
                       </a>{' '}
                       {t('emailRecognized.toTrack')}
                     </span>
-                  </motion.div>
+                  </Motion.div>
                 )}
               </AnimatePresence>
               <EmailTypoBanner
@@ -809,7 +807,7 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
               </label>
 
               {termsError && (
-                <motion.div
+                <Motion.div
                   id="terms-error"
                   initial={{ opacity: 0, y: -4 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -823,12 +821,12 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
                   }}
                 >
                   {t('consent.termsRequired')}
-                </motion.div>
+                </Motion.div>
               )}
             </div>
           </div>
         </div>
-      </motion.div>
+      </Motion.div>
 
       {/* ── STEP 3: Error + Submit ── */}
 

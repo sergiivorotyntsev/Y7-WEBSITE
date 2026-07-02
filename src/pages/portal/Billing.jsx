@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
-// eslint-disable-next-line no-unused-vars
 import { colors, fonts, button as btnStyles } from '../../theme';
 import { API_URL } from '../../config';
 

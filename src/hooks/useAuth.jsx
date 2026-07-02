@@ -193,7 +193,6 @@ export function AuthProvider({ children }) {
       setLoading(false);
       return;
     }
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     checkAuth().finally(() => setLoading(false));
   }, [checkAuth]);
 

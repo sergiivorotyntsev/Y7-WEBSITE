@@ -21,7 +21,7 @@
 // Visual rhythm matches QuoteOtpStep (T10): framer-motion fade+slide-up
 // entry, theme.js tokens only (no Tailwind), 12px radii, 24px card padding.
 
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { colors, fonts } from '../theme';
 
@@ -104,7 +104,7 @@ export default function PostQuoteFlow({ quoteResult, formData }) {
   const reference = quoteResult.reference || quoteResult.load_id || '';
 
   return (
-    <motion.div
+    <Motion.div
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, ease: 'easeOut' }}
@@ -129,7 +129,7 @@ export default function PostQuoteFlow({ quoteResult, formData }) {
         <NewCustomerCard email={formData?.email} reference={reference} />
       )}
       <TimelineCard />
-    </motion.div>
+    </Motion.div>
   );
 }
 

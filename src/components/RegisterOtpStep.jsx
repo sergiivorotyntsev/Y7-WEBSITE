@@ -24,7 +24,7 @@
 //   429 → "Too many attempts" (string detail)
 
 import { useState, useEffect, useRef } from 'react';
-import { motion, useAnimationControls } from 'framer-motion';
+import { motion as Motion, useAnimationControls } from 'framer-motion';
 import { colors, fonts } from '../theme';
 import { portalFetch } from '../hooks/useAuth';
 
@@ -158,7 +158,7 @@ export default function RegisterOtpStep({ pendingId, email, onSuccess, onCancel 
   };
 
   return (
-    <motion.div
+    <Motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
@@ -169,7 +169,7 @@ export default function RegisterOtpStep({ pendingId, email, onSuccess, onCancel 
         <strong style={{ color: colors.text, fontWeight: 600 }}>{email}</strong>
       </p>
 
-      <motion.div
+      <Motion.div
         animate={shakeControls}
         style={{ display: 'flex', justifyContent: 'center', gap: 10, marginBottom: 20 }}
         onPaste={handlePaste}
@@ -199,7 +199,7 @@ export default function RegisterOtpStep({ pendingId, email, onSuccess, onCancel 
             }}
           />
         ))}
-      </motion.div>
+      </Motion.div>
 
       <div style={{ minHeight: 22, marginBottom: 14 }}>
         {error ? (
@@ -219,6 +219,6 @@ export default function RegisterOtpStep({ pendingId, email, onSuccess, onCancel 
       >
         Edit details or resend code
       </button>
-    </motion.div>
+    </Motion.div>
   );
 }

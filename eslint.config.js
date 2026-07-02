@@ -26,11 +26,24 @@ export default defineConfig([
     },
     rules: {
       // Ignore unused args/vars prefixed with underscore (convention for
-      // intentionally-unused parameters like callback signatures).
+      // intentionally-unused parameters like callback signatures). Capitalized
+      // names are ignored in both positions because core no-unused-vars cannot
+      // see JSX element usage (<Tag />, <Motion.div />) — components must be
+      // capitalized, so the pattern covers them (same reason framer-motion is
+      // imported as `motion as Motion`).
       'no-unused-vars': ['error', {
         varsIgnorePattern: '^[A-Z_]',
-        argsIgnorePattern: '^_',
+        argsIgnorePattern: '^_|^[A-Z]',
       }],
+      // react-hooks v6 "compiler" advisory rules (2026-07): they flag real
+      // but non-breaking perf patterns (sync setState in effects, ref writes
+      // during render) across the existing portal auth/payment flows.
+      // Refactoring those flows needs tests first, so keep the signals
+      // visible as warnings without failing the build. Revisit when the
+      // portal gets test coverage.
+      'react-hooks/set-state-in-effect': 'warn',
+      'react-hooks/refs': 'warn',
+      'react-hooks/preserve-manual-memoization': 'warn',
     },
   },
 
