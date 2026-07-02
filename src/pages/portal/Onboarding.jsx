@@ -4,15 +4,18 @@ import { useTranslation } from 'react-i18next';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, radii, spacing } from '../../theme';
 import PhoneInput, { isValidPhone } from '../../components/PhoneInput';
+import { LocationsManager } from './Locations'; // EXP2-T02: embedded warehouse step
 
 /**
  * Onboarding (WIZARD-REDESIGN T05+T06+T07)
  *
- * 4-step wizard:
- *   Step 1 - Profile          (NEW; pre-fills from user.contact_name)
- *   Step 2 - Account type
- *   Step 3 - Agreement        (rebuilt; progressive disclosure per checkbox group)
- *   Step 4 - Welcome
+ * Steps (derived array, EXP2-T01/T02):
+ *   profile    (pre-fills from user.contact_name)
+ *   type       (account type)
+ *   agreement  (progressive disclosure per checkbox group)
+ *   locations  (EXPORTER ONLY, after agreement: register export warehouses —
+ *               mandatory, >=1 delivery-capable to continue)
+ *   welcome
  *
  * Starting step is derived from the authenticated user:
  *   - fully onboarded (classified + agreement_signed) -> /portal/dashboard
@@ -136,17 +139,34 @@ const profileLooksComplete = (u) =>
 // can never desync branch numbers vs labels vs dots — the REGC-S13-W06
 // step-thrash class dies here. The run-once derivation guard below is
 // preserved verbatim in semantics.
-const stepsFor = () => ['profile', 'type', 'agreement', 'welcome'];
+//
+// EXP2-T02: the exporter warehouse step sits AFTER agreement (Sergii-approved
+// position change: the type is only PERSISTED server-side by classify-and-sign,
+// so the step's portal_locations calls would 403 before that). `currentStep`
+// keeps the step in the array while the user is ON it, so the indicator can't
+// desync when has_delivery_locations flips mid-step.
+const needsWarehouses = (customerType, user) =>
+  customerType === 'exporter' && !user?.has_delivery_locations;
+const stepsFor = (customerType, user, currentStep = null) => [
+  'profile',
+  'type',
+  'agreement',
+  ...(needsWarehouses(customerType, user) || currentStep === 'locations' ? ['locations'] : []),
+  'welcome',
+];
 // Next step after `key` in `steps` (transitions never hardcode a target
 // that could be renumbered by an inserted step).
 const nextStep = (steps, key) => steps[steps.indexOf(key) + 1];
 
 // First onboarding step the user still needs (a step KEY, or 'done').
-// Same predicate order for all customer types.
+// Same predicate order for all customer types; the warehouse step applies
+// only to exporters with no delivery-capable location (so a legacy exporter
+// re-entering the wizard lands straight on it).
 const firstIncompleteStep = (u) => {
   if (!profileLooksComplete(u)) return 'profile';
   if (!isClassifiedType(u.customer_type)) return 'type';
   if (!u.agreement_signed) return 'agreement';
+  if (needsWarehouses(u.customer_type, u)) return 'locations';
   return 'done';
 };
 
@@ -210,7 +230,7 @@ export default function Onboarding() {
 
   // EXP2-T01: the single source of step order. Derived per render — cheap,
   // and never read inside an effect, so it cannot re-trigger derivation.
-  const steps = stepsFor(selectedType || user?.customer_type, user);
+  const steps = stepsFor(selectedType || user?.customer_type, user, step);
 
   return (
     <div style={wrapStyle}>
@@ -269,6 +289,17 @@ export default function Onboarding() {
             }}
           />
         )}
+        {step === 'locations' && (
+          <LocationsStep
+            onContinue={async () => {
+              // Refresh /me so has_delivery_locations is true downstream
+              // (NewOrder pre-check, future wizard entries). One-time guard
+              // means this cannot re-trigger the start derivation.
+              await checkAuth();
+              setStep(nextStep(steps, 'locations'));
+            }}
+          />
+        )}
         {step === 'welcome' && (
           <WelcomeStep
             customerType={selectedType}
@@ -300,8 +331,57 @@ const STEP_LABELS = {
   profile: 'Profile',
   type: 'Account type',
   agreement: 'Review and sign',
+  locations: 'Export warehouses', // EXP2-T02 (exporter only)
   welcome: 'Complete',
 };
+
+// ---------------------------------------------------------------------------
+// EXP2-T02 — LocationsStep (exporter only): register every export warehouse.
+// Embeds the shared LocationsManager (same form/CRUD as /portal/locations,
+// port dropdown included); Continue unlocks at >=1 delivery-capable location.
+// ---------------------------------------------------------------------------
+
+function LocationsStep({ onContinue }) {
+  const [locations, setLocations] = useState([]);
+  const [advancing, setAdvancing] = useState(false);
+  const deliveryCapable = locations.filter(
+    l => !l.deactivated_at && ['delivery', 'both'].includes(l.usage_role)
+  ).length;
+  const canContinue = deliveryCapable >= 1;
+
+  return (
+    <div>
+      <h2 style={stepTitleStyle}>Register your export warehouses</h2>
+      <p style={stepSubtitleStyle}>
+        Add every export warehouse you have a contract with — address, contact,
+        hours, special instructions, and the departure port. Y7 assigns each
+        shipment to the optimal one, so your directory must be complete before
+        your first order. You can add more later under Saved Locations.
+      </p>
+      <LocationsManager onLocationsChange={setLocations} />
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: spacing.md }}>
+        <button
+          type="button"
+          disabled={!canContinue || advancing}
+          onClick={async () => {
+            if (!canContinue || advancing) return;
+            setAdvancing(true);
+            try { await onContinue(); } finally { setAdvancing(false); }
+          }}
+          style={{
+            ...primaryBtnStyle,
+            opacity: !canContinue || advancing ? 0.5 : 1,
+            cursor: !canContinue || advancing ? 'not-allowed' : 'pointer',
+          }}
+        >
+          {canContinue
+            ? (advancing ? 'Continuing…' : `Continue (${deliveryCapable} warehouse${deliveryCapable === 1 ? '' : 's'})`)
+            : 'Add at least one delivery warehouse to continue'}
+        </button>
+      </div>
+    </div>
+  );
+}
 
 function Header({ steps, step }) {
   const current = steps.indexOf(step);

@@ -1,6 +1,8 @@
+// EXP2-T02: Locations intentionally co-exports LocationsManager (the embeddable
+// form+list+CRUD used by the onboarding warehouse step) alongside the page.
 import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { portalFetch } from '../../hooks/useAuth';
+import { portalFetch, useAuth } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles } from '../../theme';
 import PhoneInput from '../../components/PhoneInput';
 
@@ -93,9 +95,10 @@ const EMPTY_FORM = {
   label: '', location_type: 'business', usage_role: 'delivery',
   address: '', city: '', state: '', zip_code: '',
   contact_name: '', contact_phone: '', business_hours: '', delivery_instructions: '',
+  port_code: '', // EXP2-T03: departure port (exporter; optional dropdown)
 };
 
-function LocationForm({ initial, onSubmit, onCancel, submitting }) {
+function LocationForm({ initial, onSubmit, onCancel, submitting, ports }) {
   const [form, setForm] = useState(initial || EMPTY_FORM);
   const [error, setError] = useState(null);
 
@@ -178,6 +181,19 @@ function LocationForm({ initial, onSubmit, onCancel, submitting }) {
         <label style={labelStyle}>Business Hours</label>
         <input style={inputStyle} value={form.business_hours} onChange={e => set('business_hours', e.target.value)} placeholder="Mon-Fri 9am-5pm" />
       </div>
+      {/* EXP2-T03: departure port — dropdown of Y7's known ports only (never
+          free text); optional. Rendered when the caller supplies the ports
+          list (exporter accounts). Drives the landed-cost ranking Y7 uses to
+          assign each shipment. */}
+      {Array.isArray(ports) && ports.length > 0 && (
+        <div>
+          <label style={labelStyle}>Departure Port (optional)</label>
+          <select style={selectStyle} value={form.port_code || ''} onChange={e => set('port_code', e.target.value)}>
+            <option value="">— Not set —</option>
+            {ports.map(p => <option key={p.code} value={p.code}>{p.label}</option>)}
+          </select>
+        </div>
+      )}
       <div>
         <label style={labelStyle}>Delivery Instructions</label>
         <textarea
@@ -211,22 +227,43 @@ function LocationForm({ initial, onSubmit, onCancel, submitting }) {
   );
 }
 
-export default function Locations() {
+// EXP2-T02: the embeddable warehouse manager — form + list + CRUD, no page
+// chrome. The /portal/locations page wraps it (behavior identical); the
+// onboarding warehouse step embeds it and reads the live list via
+// onLocationsChange for its delivery-capable Continue gate.
+export function LocationsManager({ heading = null, description = null, onLocationsChange }) {
+  const { user } = useAuth();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showAdd, setShowAdd] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [toast, setToast] = useState(null);
+  // EXP2-T03: known departure ports for the exporter form dropdown.
+  const [ports, setPorts] = useState(null);
 
   const fetchLocations = useCallback(() => {
     portalFetch('/api/portal/locations')
       .then(r => r.ok ? r.json() : { items: [] })
-      .then(data => { setItems(data.items || []); setLoading(false); })
+      .then(data => {
+        const list = data.items || [];
+        setItems(list);
+        setLoading(false);
+        if (onLocationsChange) onLocationsChange(list);
+      })
       .catch(() => setLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => { fetchLocations(); }, [fetchLocations]);
+
+  useEffect(() => {
+    if (user?.customer_type !== 'exporter') return;
+    portalFetch('/api/portal/locations/ports')
+      .then(r => (r.ok ? r.json() : { ports: [] }))
+      .then(d => setPorts(d.ports || []))
+      .catch(() => {});
+  }, [user?.customer_type]);
 
   useEffect(() => {
     if (!toast) return;
@@ -309,18 +346,9 @@ export default function Locations() {
   }
 
   return (
-    <div style={{ maxWidth: '700px', margin: '0 auto', padding: '40px 24px 80px' }}>
-      <Link to="/portal/dashboard" style={{
-        fontFamily: fonts.sans, fontSize: '13px', color: colors.accent,
-        display: 'inline-block', marginBottom: '20px', textDecoration: 'none',
-      }}>
-        &larr; Back to Dashboard
-      </Link>
-
+    <>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-        <h1 style={{ fontFamily: fonts.serif, fontSize: '28px', fontWeight: 700, color: colors.text, margin: 0 }}>
-          Saved Locations
-        </h1>
+        {heading}
         {!showAdd && (
           <button onClick={() => { setShowAdd(true); setEditingId(null); }} style={{
             ...btnStyles.accent, padding: '10px 20px', fontSize: '13px',
@@ -330,10 +358,7 @@ export default function Locations() {
         )}
       </div>
 
-      <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, lineHeight: 1.6, marginBottom: '24px' }}>
-        Register every warehouse you deliver to. Y7 routes each shipment to the most
-        cost-effective one — we'll confirm hours and appointment details with you.
-      </p>
+      {description}
 
       {toast && (
         <div style={{
@@ -350,6 +375,7 @@ export default function Locations() {
           onSubmit={handleAdd}
           onCancel={() => setShowAdd(false)}
           submitting={submitting}
+          ports={ports}
         />
       )}
 
@@ -386,10 +412,12 @@ export default function Locations() {
                   contact_phone: loc.contact_phone || '',
                   business_hours: loc.business_hours || '',
                   delivery_instructions: loc.delivery_instructions || '',
+                  port_code: loc.port_code || '',
                 }}
                 onSubmit={form => handleUpdate(loc.id, form)}
                 onCancel={() => setEditingId(null)}
                 submitting={submitting}
+                ports={ports}
               />
             ) : (
               <div key={loc.id} style={{
@@ -430,6 +458,12 @@ export default function Locations() {
                 {loc.business_hours && (
                   <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginBottom: '4px' }}>
                     Hours: {loc.business_hours}
+                  </div>
+                )}
+                {/* EXP2-T03: departure port (drives Y7's landed-cost ranking). */}
+                {loc.port_code && (
+                  <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginBottom: '4px' }}>
+                    Port: {loc.port_code.replace(/_/g, ' ')}
                   </div>
                 )}
                 {/* EXP-B5: appointment policy is Y7-confirmed; shown read-only. */}
@@ -476,6 +510,34 @@ export default function Locations() {
           ))}
         </div>
       )}
+    </>
+  );
+}
+
+// The /portal/locations page — a thin wrapper around LocationsManager
+// (EXP2-T02 extraction; behavior identical to the pre-refactor page).
+export default function Locations() {
+  return (
+    <div style={{ maxWidth: '700px', margin: '0 auto', padding: '40px 24px 80px' }}>
+      <Link to="/portal/dashboard" style={{
+        fontFamily: fonts.sans, fontSize: '13px', color: colors.accent,
+        display: 'inline-block', marginBottom: '20px', textDecoration: 'none',
+      }}>
+        &larr; Back to Dashboard
+      </Link>
+      <LocationsManager
+        heading={(
+          <h1 style={{ fontFamily: fonts.serif, fontSize: '28px', fontWeight: 700, color: colors.text, margin: 0 }}>
+            Saved Locations
+          </h1>
+        )}
+        description={(
+          <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, lineHeight: 1.6, marginBottom: '24px' }}>
+            Register every warehouse you deliver to. Y7 routes each shipment to the most
+            cost-effective one — we&rsquo;ll confirm hours and appointment details with you.
+          </p>
+        )}
+      />
     </div>
   );
 }

@@ -134,6 +134,11 @@ function _normalizeUser(data) {
     bank_auth_signed: !!data.bank_auth_signed,
     billing_blocked: !!data.billing_blocked,
     has_locations: !!data.has_locations,
+    // EXP2-T03: delivery-capable locations only (usage_role delivery/both) —
+    // the wizard's warehouse-step gate + NewOrder's exporter pre-check.
+    // Tri-state: null when the backend doesn't send it (callers fail open).
+    has_delivery_locations:
+      data.has_delivery_locations !== undefined ? !!data.has_delivery_locations : null,
     email: data.email || null,
     email_bouncing: !!data.email_bouncing,
     email_bouncing_since: data.email_bouncing_since || null,
