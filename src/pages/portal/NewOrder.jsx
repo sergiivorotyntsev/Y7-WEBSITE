@@ -8,6 +8,11 @@ import OnboardingBanner from '../../components/OnboardingBanner';
 import BouncingEmailBanner from '../../components/recovery/BouncingEmailBanner';
 import VerificationBanner from '../../components/VerificationBanner';
 
+// WAF-T01: pickup-availability window [today .. +30 days], computed once at
+// module load (not during render — react-hooks purity).
+const pickupDateMin = new Date().toISOString().split('T')[0];
+const pickupDateMax = new Date(Date.now() + 30 * 86400000).toISOString().split('T')[0];
+
 const inputStyle = {
   fontFamily: fonts.sans,
   fontSize: '16px',
@@ -253,6 +258,8 @@ export default function NewOrder() {
   const [auctionTypes, setAuctionTypes] = useState([]);
   const [auctionTypeId, setAuctionTypeId] = useState('');
   const [gatePassPin, setGatePassPin] = useState('');
+  // WAF-T01: optional "available for pickup" date (empty = available now).
+  const [preferredPickupDate, setPreferredPickupDate] = useState('');
   // W2P-T03: dry-run liability consent (one-off manual pickup only).
   const [dryRunConsent, setDryRunConsent] = useState(false);
 
@@ -465,6 +472,10 @@ export default function NewOrder() {
         // CAP-S1-W01: only individual/auction_buyer send a tier; backend ignores
         // it for other types regardless.
         service_tier: showTierSelector ? serviceTier : undefined,
+        // WAF-T01: direct-submitters (dealer/exporter) state availability here —
+        // it's their only surface. quote_request types (individual/auction_buyer)
+        // are asked later in Dispatch Details, when they know the date.
+        preferred_pickup_date: (isDirectSubmitter && preferredPickupDate) || undefined,
       };
 
       // Pickup side
@@ -842,6 +853,25 @@ export default function NewOrder() {
                 the carrier&rsquo;s dry-run fee</strong>.
               </span>
             </label>
+          )}
+          {/* WAF-T01: optional availability date — direct-submitters (dealer/
+              exporter) state it here; quote_request types are asked in Dispatch
+              Details later. Empty = available now. Window [today .. +30 days]. */}
+          {isDirectSubmitter && (
+            <div style={{ marginTop: 12 }}>
+              <label style={labelStyle}>When is the vehicle available for pickup?</label>
+              <input
+                type="date"
+                value={preferredPickupDate}
+                onChange={e => setPreferredPickupDate(e.target.value)}
+                min={pickupDateMin}
+                max={pickupDateMax}
+                style={{ ...inputStyle, width: 'auto' }}
+              />
+              <div style={{ fontFamily: fonts.sans, fontSize: 12, color: colors.textMuted, marginTop: 4 }}>
+                Leave empty if it&rsquo;s available now.
+              </div>
+            </div>
           )}
         </div>
 

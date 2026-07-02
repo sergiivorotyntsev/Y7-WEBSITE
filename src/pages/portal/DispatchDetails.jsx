@@ -12,6 +12,11 @@ const US_STATES = [
   'SD','TN','TX','UT','VT','VA','WA','WV','WI','WY','DC',
 ];
 
+// WAF-T01: pickup-availability window [today .. +30 days], computed once at
+// module load (not during render — keeps the react-hooks purity rule happy).
+const pickupDateMin = new Date().toISOString().split('T')[0];
+const pickupDateMax = new Date(Date.now() + 30 * 86400000).toISOString().split('T')[0];
+
 const LOCATION_TYPES = [
   { value: '', label: 'Select...' },
   { value: 'Business', label: 'Business' },
@@ -48,6 +53,7 @@ export default function DispatchDetails() {
     pickup_contact_name: '',
     pickup_contact_phone: '',
     pickup_business_hours: '',
+    preferred_pickup_date: '',  // WAF-T01: optional availability date
     gate_pass: '',
     delivery_full_address: '',
     delivery_city: '',
@@ -74,6 +80,7 @@ export default function DispatchDetails() {
           pickup_contact_name: data.pickup_contact_name || data.customer_contact_name || '',
           pickup_contact_phone: data.pickup_contact_phone || data.customer_contact_phone || '',
           pickup_business_hours: data.pickup_business_hours || '',
+          preferred_pickup_date: (data.preferred_pickup_date && String(data.preferred_pickup_date).slice(0, 10)) || '',  // WAF-T01
           gate_pass: data.gate_pass || '',
           // Pre-fill delivery from order (auto-filled from profile at creation)
           delivery_full_address: data.delivery_address || '',
@@ -186,6 +193,7 @@ export default function DispatchDetails() {
           pickup_contact_name: form.pickup_contact_name,
           pickup_contact_phone: getCleanPhone(form.pickup_contact_phone),
           pickup_business_hours: form.pickup_business_hours,
+          preferred_pickup_date: form.preferred_pickup_date || null,  // WAF-T01
           gate_pass: form.gate_pass || null,
           delivery_full_address: form.delivery_full_address || null,
           delivery_city: form.delivery_city || null,
@@ -326,6 +334,22 @@ export default function DispatchDetails() {
           <div style={rowStyle}>
             <label style={labelStyle}>Business Hours *</label>
             <input style={inputStyle} value={form.pickup_business_hours} onChange={set('pickup_business_hours')} placeholder="Mon-Fri 8am-5pm" />
+          </div>
+
+          {/* WAF-T01: optional availability date (empty = available now). */}
+          <div style={rowStyle}>
+            <label style={labelStyle}>When is the vehicle available for pickup?</label>
+            <input
+              type="date"
+              style={{ ...inputStyle, width: 'auto' }}
+              value={form.preferred_pickup_date}
+              onChange={set('preferred_pickup_date')}
+              min={pickupDateMin}
+              max={pickupDateMax}
+            />
+            <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginTop: 4 }}>
+              Leave empty if it&rsquo;s available now.
+            </div>
           </div>
 
           <div style={rowStyle}>
