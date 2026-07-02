@@ -129,13 +129,25 @@ const isClassifiedType = (t) => !!t && t !== 'unknown' && t !== 'shipper';
 // Mirrors the relaxed ProfileStep.canSubmit + update-profile backend.
 const profileLooksComplete = (u) =>
   !!(u && u.contact_name && u.phone);
-// First onboarding step the user still needs: 1 Profile, 2 Account-Type,
-// 3 Agreement, 4 done (fully onboarded). Same for all customer types.
+
+// EXP2-T01: the wizard is a DERIVED STEPS ARRAY, not numeric literals.
+// Every consumer (render branches, labels, dots, connector, transitions,
+// firstIncompleteStep) keys off THIS array, so inserting a conditional step
+// can never desync branch numbers vs labels vs dots — the REGC-S13-W06
+// step-thrash class dies here. The run-once derivation guard below is
+// preserved verbatim in semantics.
+const stepsFor = () => ['profile', 'type', 'agreement', 'welcome'];
+// Next step after `key` in `steps` (transitions never hardcode a target
+// that could be renumbered by an inserted step).
+const nextStep = (steps, key) => steps[steps.indexOf(key) + 1];
+
+// First onboarding step the user still needs (a step KEY, or 'done').
+// Same predicate order for all customer types.
 const firstIncompleteStep = (u) => {
-  if (!profileLooksComplete(u)) return 1;
-  if (!isClassifiedType(u.customer_type)) return 2;
-  if (!u.agreement_signed) return 3;
-  return 4;
+  if (!profileLooksComplete(u)) return 'profile';
+  if (!isClassifiedType(u.customer_type)) return 'type';
+  if (!u.agreement_signed) return 'agreement';
+  return 'done';
 };
 
 export default function Onboarding() {
@@ -178,7 +190,7 @@ export default function Onboarding() {
     // Profile and Account-Type and lands on Agreement.
     if (isClassifiedType(user.customer_type)) setSelectedType(user.customer_type);
     const target = firstIncompleteStep(user);
-    if (target === 4) {
+    if (target === 'done') {
       navigate('/portal/dashboard', { replace: true });
       return;
     }
@@ -196,10 +208,14 @@ export default function Onboarding() {
     );
   }
 
+  // EXP2-T01: the single source of step order. Derived per render — cheap,
+  // and never read inside an effect, so it cannot re-trigger derivation.
+  const steps = stepsFor(selectedType || user?.customer_type, user);
+
   return (
     <div style={wrapStyle}>
       <div style={cardStyle}>
-        <Header step={step} />
+        <Header steps={steps} step={step} />
 
         {/* REGC-S13-W05: light, non-blocking dealer pending-verification note
             (pinned copy). The full order-submit "under review" screen is parked
@@ -216,7 +232,7 @@ export default function Onboarding() {
           </div>
         )}
 
-        {step === 1 && (
+        {step === 'profile' && (
           <ProfileStep
             user={user}
             onCompleted={async () => {
@@ -225,7 +241,7 @@ export default function Onboarding() {
               const fresh = (await checkAuth()) || user;
               if (isClassifiedType(fresh?.customer_type)) setSelectedType(fresh.customer_type);
               const target = firstIncompleteStep(fresh);
-              if (target === 4) {
+              if (target === 'done') {
                 navigate('/portal/dashboard', { replace: true });
                 return;
               }
@@ -233,26 +249,27 @@ export default function Onboarding() {
             }}
           />
         )}
-        {step === 2 && (
+        {step === 'type' && (
           <AccountTypeStep
             onSelected={(id) => {
               setSelectedType(id);
-              setStep(3);
+              // EXP2-T01: transition by array lookup, never a hardcoded target.
+              setStep(nextStep(stepsFor(id, user), 'type'));
             }}
           />
         )}
-        {step === 3 && selectedType && (
+        {step === 'agreement' && selectedType && (
           <AgreementStep
             user={user}
             customerType={selectedType}
-            onBack={() => setStep(2)}
+            onBack={() => setStep('type')}
             onSigned={async () => {
-              await checkAuth();
-              setStep(4);
+              const fresh = (await checkAuth()) || user;
+              setStep(nextStep(stepsFor(selectedType, fresh), 'agreement'));
             }}
           />
         )}
-        {step === 4 && (
+        {step === 'welcome' && (
           <WelcomeStep
             customerType={selectedType}
             name={user?.contact_name || user?.name}
@@ -277,14 +294,17 @@ export default function Onboarding() {
 // Header with 4-step indicator (T07)
 // ---------------------------------------------------------------------------
 
+// EXP2-T01: labels keyed by step KEY — dots/connector/numbers derive from the
+// steps array itself, so an inserted step can never desync the indicator.
 const STEP_LABELS = {
-  1: 'Profile',
-  2: 'Account type',
-  3: 'Review and sign',
-  4: 'Complete',
+  profile: 'Profile',
+  type: 'Account type',
+  agreement: 'Review and sign',
+  welcome: 'Complete',
 };
 
-function Header({ step }) {
+function Header({ steps, step }) {
+  const current = steps.indexOf(step);
   return (
     <div style={{ marginBottom: spacing.lg }}>
       <h1 style={{
@@ -304,24 +324,24 @@ function Header({ step }) {
         display: 'flex', alignItems: 'center', flexWrap: 'wrap',
         gap: spacing.xs, marginBottom: spacing.sm,
       }}>
-        {[1, 2, 3, 4].map((n, i) => (
-          <div key={n} style={{
+        {steps.map((key, i) => (
+          <div key={key} style={{
             display: 'flex', alignItems: 'center', flex: '0 0 auto',
           }}>
             <div style={{
               width: 28, height: 28, borderRadius: '50%',
-              border: `2px solid ${step >= n ? colors.accent : colors.border}`,
-              background: step >= n ? colors.accent : 'transparent',
-              color: step >= n ? '#fff' : colors.textMuted,
+              border: `2px solid ${current >= i ? colors.accent : colors.border}`,
+              background: current >= i ? colors.accent : 'transparent',
+              color: current >= i ? '#fff' : colors.textMuted,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontFamily: fonts.sans, fontSize: 13, fontWeight: 600,
             }}>
-              {n}
+              {i + 1}
             </div>
-            {i < 3 && (
+            {i < steps.length - 1 && (
               <div style={{
                 width: 32, height: 2,
-                background: step > n ? colors.accent : colors.border,
+                background: current > i ? colors.accent : colors.border,
                 margin: `0 ${spacing.xs}px`,
               }} />
             )}
