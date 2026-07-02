@@ -103,17 +103,11 @@ export default function Footer() {
           </div>
 
           <div className={styles.familyBlock}>
-            <div className={styles.familyHeading}>{t('footer.familyOfCompaniesHeading')}</div>
-            <a
-              href="https://daytonacargo.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.familyLink}
-              onClick={() => trackEvent('daytona_cargo_click', { location: 'footer' })}
-            >
-              <span className={styles.familyName}>{t('footer.daytonaCargoName')}</span>
-              <span className={styles.familyDesc}>{t('footer.daytonaCargoDesc')}</span>
-            </a>
+            <div className={styles.familyHeading}>{t('footer.fullCycleHeading')}</div>
+            <div className={styles.familyLink}>
+              <span className={styles.familyName}>{t('footer.fullCycleName')}</span>
+              <span className={styles.familyDesc}>{t('footer.fullCycleDesc')}</span>
+            </div>
           </div>
 
           <div className={styles.contactBlock}>

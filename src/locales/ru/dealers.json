@@ -301,8 +301,8 @@
         "desc": "New-vehicle relocation between stores, trade-ins to wholesale, off-lease returns to auction. Multi-location coordination."
       },
       {
-        "name": "Exporter-dealers",
-        "desc": "Buy US → ship overseas. Y7 inland leg + DaytonaCargo ocean freight via sister company. End-to-end through one account team."
+        "name": "Дилеры-экспортёры",
+        "desc": "Покупка в США → отправка за рубеж. Y7 ведёт наземное плечо и организует морской фрахт через аффилированную компанию с дилерской лицензией. Весь цикл через одну команду."
       },
       {
         "name": "Rebuilders",

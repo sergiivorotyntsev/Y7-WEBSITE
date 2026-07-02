@@ -136,11 +136,19 @@ jobs:
 
       - name: Check for DaytonaCargo in Ukrainian pages
         run: |
-          if grep -rn "DaytonaCargo" src/pages/intl/Ukraine* 2>/dev/null; then
-            echo "::error::Found DaytonaCargo in Ukrainian pages. Ukrainian content is Y7-centric (no sister-company mentions)."
+          if grep -rn "DaytonaCargo" src/pages/intl/Ukraine* src/locales/ua/ 2>/dev/null; then
+            echo "::error::Found DaytonaCargo in Ukrainian pages or ua locale strings. Ukrainian content is Y7-centric (no sister-company mentions)."
             exit 1
           fi
           echo "OK: Ukrainian pages are Y7-centric"
+
+      - name: Check for external daytonacargo.com links site-wide
+        run: |
+          if grep -rn 'href="https://daytonacargo' src/ --include="*.jsx" --include="*.json" 2>/dev/null; then
+            echo "::error::Found external daytonacargo.com link. Ocean freight is presented as Y7 full-cycle capability via an affiliated company — no external links (SEOAI-T01)."
+            exit 1
+          fi
+          echo "OK: no external daytonacargo.com links"
 
       - name: Check sitemap fake intl URLs
         run: |

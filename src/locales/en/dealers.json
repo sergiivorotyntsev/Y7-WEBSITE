@@ -146,7 +146,7 @@
     "segments": [
       { "name": "Independent used-car dealers", "desc": "5-30 vehicles/month from auctions, local trades, wholesale buys. Our core segment." },
       { "name": "Franchise dealers", "desc": "New-vehicle relocation between stores, trade-ins to wholesale, off-lease returns to auction. Multi-location coordination." },
-      { "name": "Exporter-dealers", "desc": "Buy US → ship overseas. Y7 inland leg + DaytonaCargo ocean freight via sister company. End-to-end through one account team." },
+      { "name": "Exporter-dealers", "desc": "Buy US → ship overseas. Y7 runs the inland leg and arranges ocean freight via an affiliated company with a dealer license. End-to-end through one account team." },
       { "name": "Rebuilders", "desc": "Salvage-title focused operations. Copart/IAA pickups with winch-loading expertise. We know the yards that ship salvage clean." },
       { "name": "Auction-only dealers", "desc": "Wholesale operations moving inventory between regional auctions. Multi-stop routing for maximum carrier efficiency." }
     ]

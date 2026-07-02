@@ -646,15 +646,13 @@ function PolandShipMyCar() {
 
           <div className={styles.liftCard} style={cardStyle}>
             <p style={{ fontFamily: fonts.sans, fontWeight: 600, marginBottom: '0.5rem' }}>
-              DaytonaCargo (PL)
+              Obsługa po polsku
             </p>
             <a
-              href="https://daytonacargo.com/pl"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:info@y7agency.com"
               style={{ color: accentColor, textDecoration: 'underline' }}
             >
-              daytonacargo.com/pl
+              info@y7agency.com
             </a>
           </div>
         </div>

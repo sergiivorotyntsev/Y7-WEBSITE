@@ -358,13 +358,11 @@ const PolandHome = () => {
                 fontFamily: fonts.sans
               }}>
                 <a
-                  href="https://daytonacargo.com/pl"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="mailto:info@y7agency.com"
                   className={`${styles.underlineGrow} ${styles.focusRing}`}
                   style={{ color: colors.accent }}
                 >
-                  daytonacargo.com/pl →
+                  info@y7agency.com — obsługa po polsku →
                 </a>
               </p>
             </div>
@@ -1172,9 +1170,7 @@ const PolandHome = () => {
                 Telegram — szybka wycena
               </a>
               <a
-                href="https://daytonacargo.com/pl"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:info@y7agency.com"
                 className={`${styles.subtleLift} ${styles.focusRing}`}
                 style={{
                   background: 'transparent',
@@ -1188,7 +1184,7 @@ const PolandHome = () => {
                   fontFamily: fonts.sans
                 }}
               >
-                DaytonaCargo.com/pl
+                Email — wycena po polsku
               </a>
             </div>
           </div>

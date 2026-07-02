@@ -16,7 +16,7 @@ export default function CopartInternationalShipping() {
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '60px 24px 80px' }}>
       <PageMeta
         title="Copart International Shipping — US Auction to Forwarder Warehouse, Then Worldwide"
-        description="End-to-end Copart export: auction win through ocean freight to destination port. Container vs RoRo, typical timelines, cost breakdown, and the Y7 + DaytonaCargo workflow."
+        description="End-to-end Copart export: auction win through ocean freight to destination port. Container vs RoRo, typical timelines, cost breakdown, and the Y7 full-cycle workflow."
         path="/copart-international-shipping"
       />
       <BreadcrumbSchema items={[
@@ -41,7 +41,7 @@ export default function CopartInternationalShipping() {
         A large share of Copart inventory is bought by international rebuilders, exporters, and
         private buyers in Europe, the Middle East, Africa, and Latin America. The domestic
         transport is only the first leg. This guide covers the full journey from auction win
-        to destination port, the Y7 + DaytonaCargo workflow we use to handle it end-to-end,
+        to destination port, the Y7 full-cycle workflow we use to handle it end-to-end,
         and the cost and timeline realities to plan around.
       </p>
 
@@ -71,8 +71,8 @@ export default function CopartInternationalShipping() {
         <li style={liStyle}><strong>4. Warehouse consolidation</strong> — if container shipping,
           the vehicle is prepped, drained of most fluids, and loaded with other vehicles for the
           same destination.</li>
-        <li style={liStyle}><strong>5. Ocean freight booking</strong> — DaytonaCargo books
-          container or RoRo space on the next sailing to the destination port.</li>
+        <li style={liStyle}><strong>5. Ocean freight booking</strong> — our affiliated export
+          company books container or RoRo space on the next sailing to the destination port.</li>
         <li style={liStyle}><strong>6. Ocean transit</strong> — 15-45 days depending on destination.</li>
         <li style={liStyle}><strong>7. Destination port clearance</strong> — customs, port fees,
           and delivery handoff per the destination country&apos;s process. Buyer&apos;s side.</li>
@@ -231,10 +231,10 @@ export default function CopartInternationalShipping() {
           monthly sailings, not weekly. Missing one adds 3 weeks.</li>
       </ul>
 
-      <h2 style={h2Style}>How Y7 + DaytonaCargo handle end-to-end</h2>
+      <h2 style={h2Style}>How Y7 handles it end-to-end</h2>
       <p style={pStyle}>
-        Y7 is the licensed FMCSA domestic broker (MC #1741537). DaytonaCargo is a specialized
-        export partner handling warehouse consolidation and ocean freight. You get a single
+        Y7 is the licensed FMCSA domestic broker (MC #1741537). An affiliated company with a
+        dealer license handles warehouse consolidation and ocean freight. You get a single
         point of contact through the Y7 client portal for the whole chain — domestic dispatch
         status, warehouse intake confirmation, ocean booking, and destination port handoff
         are all surfaced in one place.

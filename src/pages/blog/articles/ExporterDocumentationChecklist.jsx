@@ -126,7 +126,7 @@ export default function ExporterDocumentationChecklist({ theme }) {
       <p style={{ marginBottom: 18, fontSize: '1.02rem', lineHeight: 1.8, color: theme.text }}>
         Getting the vehicle from the auction lot to the port is where inland transport and ocean freight
         intersect. Y7 Logistics (MC #1741537, USDOT #4427359) handles the auction-to-port ground leg, coordinating
-        with our ocean freight partners including DaytonaCargo for the vessel booking and overseas delivery.
+        with our ocean freight partners for the vessel booking and overseas delivery.
         This split — specialized inland broker plus dedicated freight forwarder — gives you focused expertise
         on each segment rather than a generalist handling both.
       </p>

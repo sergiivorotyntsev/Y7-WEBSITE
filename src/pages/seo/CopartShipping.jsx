@@ -88,7 +88,7 @@ const FAQS = [
   },
   {
     q: 'Can Y7 ship from Copart internationally?',
-    a: 'Yes. We handle the domestic leg (Copart yard → warehouse or port) and partner with DaytonaCargo for the ocean-freight leg to destinations worldwide. Common routes: Copart → Port Newark → Odesa, Gdańsk, Hamburg, Poti, Klaipeda, Jebel Ali, Lagos, Iquique. Typical end-to-end timeline is 6-11 weeks from Copart win to destination port.',
+    a: 'Yes. We handle the domestic leg (Copart yard → warehouse or port) and arrange the ocean-freight leg through an affiliated company with a dealer license to destinations worldwide. Common routes: Copart → Port Newark → Odesa, Gdańsk, Hamburg, Poti, Klaipeda, Jebel Ali, Lagos, Iquique. Typical end-to-end timeline is 6-11 weeks from Copart win to destination port.',
   },
   {
     q: 'How quickly can you dispatch a carrier to Copart?',
@@ -454,7 +454,8 @@ export default function CopartShipping() {
         <p style={p}>
           A large share of Copart inventory is bought by international rebuilders and exporters.
           Y7 handles the full domestic leg — Copart yard to consolidation warehouse or direct to
-          port — and partners with DaytonaCargo for the ocean-freight leg. Common destinations:
+          port — and arranges the ocean-freight leg via an affiliated company with a dealer
+          license. Common destinations:
           Ukraine (Odesa), Poland (Gdańsk), Germany (Hamburg), Georgia (Poti), Lithuania
           (Klaipeda), Kazakhstan, UAE (Jebel Ali), Chile (Iquique), Nigeria (Lagos).
         </p>

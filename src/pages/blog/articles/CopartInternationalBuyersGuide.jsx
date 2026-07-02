@@ -45,8 +45,8 @@ export default function CopartInternationalBuyersGuide({ theme }) {
         <li><strong>Warehouse consolidation.</strong> If shipping by container, the vehicle is
           prepped (fluids drained to acceptable levels), documented with photos, and loaded
           with other vehicles bound for the same destination.</li>
-        <li><strong>Ocean freight booking.</strong> DaytonaCargo books container or RoRo space
-          on the next sailing to the destination port.</li>
+        <li><strong>Ocean freight booking.</strong> Our affiliated export company books container
+          or RoRo space on the next sailing to the destination port.</li>
         <li><strong>Ocean transit.</strong> 15-45 days depending on destination. Mediterranean
           and North Europe are the shortest; Latin America and the Pacific Rim the longest.</li>
         <li><strong>Destination port clearance.</strong> Customs, port fees, any local
@@ -136,12 +136,12 @@ export default function CopartInternationalBuyersGuide({ theme }) {
           almost always cheaper per-vehicle.</li>
       </ul>
 
-      <h2 style={h2}>How Y7 and DaytonaCargo handle this end-to-end</h2>
+      <h2 style={h2}>How Y7 handles this end-to-end</h2>
 
       <p style={p}>
         Y7 Logistics is the licensed FMCSA domestic broker (MC #1741537) handling Copart-
-        yard-to-warehouse or Copart-yard-to-port transport. DaytonaCargo is the export
-        partner handling warehouse consolidation and ocean freight booking. The buyer gets
+        yard-to-warehouse or Copart-yard-to-port transport. An affiliated company with a
+        dealer license handles warehouse consolidation and ocean freight booking. The buyer gets
         a single point of contact through the Y7 client portal that covers the entire chain:
         domestic dispatch status, warehouse intake confirmation, ocean booking reference,
         and destination port handoff all flow into one timeline.
