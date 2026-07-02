@@ -125,6 +125,14 @@
   }
 }
 
+/* CWV2-T03: the static prerendered page already played this entrance; the
+   client createRoot rebuild must not replay it (html.app-remounted is set in
+   main.jsx before render, never during prerender). */
+:global(html.app-remounted) .card {
+  animation: none;
+  opacity: 1;
+}
+
 @keyframes audienceIn {
   from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }

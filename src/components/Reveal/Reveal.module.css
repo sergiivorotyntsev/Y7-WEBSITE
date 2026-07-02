@@ -10,6 +10,12 @@
   animation: revealUp var(--reveal-duration, 600ms) ease both;
 }
 
+/* CWV2-T03: element was already visible when the client rebuild mounted —
+   the static page played the entrance; don't replay it. */
+.noAnim {
+  animation: none !important;
+}
+
 @keyframes revealUp {
   from { opacity: 0; transform: translateY(var(--reveal-distance, 16px)); }
   to { opacity: 1; transform: translateY(0); }
