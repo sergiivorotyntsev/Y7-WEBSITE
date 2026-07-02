@@ -155,8 +155,10 @@ export default function CopartStorageFeesRealCost({ theme }) {
         Storage fees are what they are. They exist because Copart needs to clear inventory and
         can&apos;t let cars park forever for free. Understanding them is the whole job. If
         you want to run the math on a specific lot before you bid, hit the{' '}
-        <Link to="/quote" style={link}>quote form</Link> or see the full{' '}
-        <Link to="/copart-storage-fees" style={link}>Copart storage fees guide</Link>.
+        <Link to="/quote" style={link}>quote form</Link>, see the full{' '}
+        <Link to="/copart-storage-fees" style={link}>Copart storage fees guide</Link>, or check
+        where the rest of the budget goes in the{' '}
+        <Link to="/auction-transport-savings" style={link}>auction transport savings breakdown</Link>.
       </p>
     </article>
   );

@@ -7,6 +7,8 @@ import btn from '../styles/buttons.module.css';
 
 const servicePages = [
   { to: '/ship-my-car', title: 'Ship My Car', desc: 'Door-to-door auto transport for individuals. Open or enclosed carriers, status updates at every stage.' },
+  { to: '/dealers', title: 'For Dealers', desc: 'Outsourced dispatch for dealerships: auction pickups, dealer trades, flat per-vehicle fee, weekly invoicing.' },
+  { to: '/exporters', title: 'For Exporters', desc: 'Auction-to-port logistics: gate passes, warehouse drops, and carrier management at all six major export ports.' },
   { to: '/car-shipping-cost', title: 'Car Shipping Cost', desc: 'Understand pricing factors and get a transparent quote with no hidden fees.' },
   { to: '/enclosed-car-shipping', title: 'Enclosed Car Shipping', desc: 'Premium covered transport for luxury, classic, and high-value vehicles.' },
   { to: '/auction-car-shipping', title: 'Auction Car Shipping', desc: 'Pickup from Copart, IAAI, Manheim, and independent auctions nationwide.' },

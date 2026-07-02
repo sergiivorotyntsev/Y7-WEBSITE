@@ -169,7 +169,8 @@ export default function AuctionToPortCostBreakdown2026({ theme }) {
         metric correlates more strongly with margin preservation than any other. See <Link to="/exporters" style={{ color: theme.accent, fontWeight: 600 }}>
         the Y7 exporter services page</Link> for the full gate-pass + warehouse-drop workflow we run on
         behalf of export clients, or the <Link to="/auction-to-port-transport" style={{ color: theme.accent, fontWeight: 600 }}>
-        auction-to-port page</Link> for route-specific pricing detail.
+        auction-to-port page</Link> for route-specific pricing detail. The <Link to="/auction-transport-savings" style={{ color: theme.accent, fontWeight: 600 }}>
+        auction transport savings breakdown</Link> shows where each of those buckets can be trimmed.
       </p>
 
       <p style={{ marginBottom: 18, fontSize: '1.02rem', lineHeight: 1.8, color: theme.text }}>

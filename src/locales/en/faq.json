@@ -107,7 +107,10 @@
         {
           "q": "How fast can you dispatch a carrier from an auction?",
           "a": "Y7 typically assigns a vetted carrier within hours on active lanes, prioritizing pickup inside the auction's free storage window to avoid fees. See how dealer auction dispatch works on our dealer auto transport page.",
-          "links": [{ "text": "dealer auto transport page", "href": "/dealer-auto-transport" }]
+          "links": [
+            { "text": "free storage window", "href": "/copart-storage-fees" },
+            { "text": "dealer auto transport page", "href": "/dealer-auto-transport" }
+          ]
         },
         {
           "q": "Do you handle Copart gate passes and IAA buyer letters for dealers?",

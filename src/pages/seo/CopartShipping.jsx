@@ -178,6 +178,11 @@ export default function CopartShipping() {
       secondaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
       heading="Copart Shipping — Vehicle Transport from Copart Auctions"
       intro="Copart is the largest online vehicle auction in the US. Y7 Logistics is a licensed FMCSA broker (MC #1741537) specializing in Copart pickups nationwide — clean title, salvage, or non-running. We cannot prevent storage fees (those are between you and Copart), but we can help you plan around them with realistic pre-bid quoting and fast dispatch when market conditions cooperate."
+      tldr={{
+        kicker: 'Copart shipping, in brief',
+        ariaLabel: 'Copart shipping, in brief',
+        text: 'Y7 Logistics is a licensed and bonded FMCSA broker (MC #1741537, USDOT #4427359) shipping vehicles from all 200+ US Copart yards: clean-title, salvage, or non-running. Short-haul transport starts around $400, winch loading for non-runners adds $75-150, and dispatch typically lands within 24-48 hours of gate-pass issuance; export buyers get yard-to-port delivery with warehouse consolidation.',
+      }}
       whenNeeded={[
         'Won a vehicle on Copart.com',
         'Need transport from any Copart yard',
@@ -375,7 +380,8 @@ export default function CopartShipping() {
         <p style={p}>
           Variance drivers: fuel, season, yard remoteness, lane popularity, vehicle size. The
           winch fee for non-running vehicles is $75-$150. A quote a broker shaves below these
-          ranges is usually one that will not actually dispatch.
+          ranges is usually one that will not actually dispatch. Buying at auction regularly?
+          See where the fees actually go in our <Link to="/auction-transport-savings" style={{ color: colors.accent }}>auction transport savings breakdown</Link>.
         </p>
       </Section>
 
@@ -505,7 +511,9 @@ export default function CopartShipping() {
         </table>
         <p style={p}>
           Buyers shipping from both auctions benefit from a broker who handles both so you
-          don&apos;t re-learn the process each time.
+          don&apos;t re-learn the process each time. Choosing between platforms? Our{' '}
+          <Link to="/blog/copart-iaa-manheim-comparison" style={linkStyle}>Copart vs IAA vs Manheim comparison</Link>{' '}
+          breaks down which auction fits which use case.
         </p>
       </Section>
 
@@ -518,7 +526,8 @@ export default function CopartShipping() {
         <p style={p}>
           The Y7 dealer workflow: portal with saved buyer numbers, yard preferences, and
           delivery locations; weekly or monthly billing consolidated into one invoice; one
-          dispatcher handling the full pipeline. See <Link to="/dealers" style={linkStyle}>dealers</Link>.
+          dispatcher handling the full pipeline. See <Link to="/dealers" style={linkStyle}>dealers</Link>{' '}
+          and the step-by-step <Link to="/blog/dealer-auction-pickup-guide" style={linkStyle}>dealer auction pickup guide</Link>.
         </p>
       </Section>
 

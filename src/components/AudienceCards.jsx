@@ -1,26 +1,17 @@
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { PersonalCarIcon, DealerTradeIcon, GlobeRouteIcon } from './icons';
 import styles from './AudienceCards.module.css';
 
+// SEOAI-T04: cards are real <Link> anchors (was div[role=link] + onClick),
+// so Home passes crawlable equity to the three audience money pages. The CTA
+// is a styled <span> — nested interactive elements are invalid inside <a>.
 function Card({ tag, title, desc, stat, cta, to, icon, index, tone }) {
-  const navigate = useNavigate();
-
-  const handleKey = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      navigate(to);
-    }
-  };
-
   return (
-    <div
+    <Link
+      to={to}
       className={`${styles.card} ${styles[`tone_${tone}`]}`}
       style={{ '--i': index }}
-      onClick={() => navigate(to)}
-      onKeyDown={handleKey}
-      role="link"
-      tabIndex={0}
       aria-label={`${title} — ${cta}`}
     >
       <div className={styles.topRow}>
@@ -38,13 +29,10 @@ function Card({ tag, title, desc, stat, cta, to, icon, index, tone }) {
         <span className={styles.stat}>{stat}</span>
       </div>
 
-      <button
-        onClick={e => { e.stopPropagation(); navigate(to); }}
-        className={styles.cta}
-      >
+      <span className={styles.cta}>
         {cta} <span className={styles.ctaArrow}>&rarr;</span>
-      </button>
-    </div>
+      </span>
+    </Link>
   );
 }
 

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
+import EntityTldr from '../components/EntityTldr';
 import styles from './Dealers.module.css';
 import btn from '../styles/buttons.module.css';
 
@@ -33,9 +34,14 @@ function useInViewFade() {
 }
 
 export default function Dealers() {
-  const { t } = useTranslation('dealers');
+  const { t, i18n } = useTranslation('dealers');
   const { t: tCommon } = useTranslation('common');
   const navigate = useNavigate();
+
+  // SEOAI-T04: EN-only extractable answer block. Read from the active locale
+  // bundle directly (not t(), which falls back to English) so ru/pl/ua render
+  // nothing until parity translations land — same gating as /faq's TL;DR.
+  const tldr = i18n.getResource(i18n.language, 'dealers', 'tldr') || '';
 
   const problemPoints = t('problem.points', { returnObjects: true }) || [];
   const capabilities = t('capabilities.items', { returnObjects: true }) || [];
@@ -123,6 +129,8 @@ export default function Dealers() {
           </div>
         </div>
       </section>
+
+      <EntityTldr kicker="Dealers, in brief" ariaLabel="Y7 for dealers, in brief" text={tldr} />
 
       {/* Problem */}
       <section ref={problemRef} className={`${styles.problem} ${styles.fadeSection}`}>

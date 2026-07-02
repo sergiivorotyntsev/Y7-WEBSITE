@@ -15,6 +15,11 @@ export default function AuctionToPort() {
       secondaryCTA={{ intlKey: 'dealers', to: '/dealers', tone: 'teal' }}
       heading="Auction to Port Transport — Direct from Auction to Export Port"
       intro="Auction-to-port is the defining workflow of the vehicle export business. You win a car at Copart, IAAI, or Manheim; it needs to be on a vessel within days; the clock is running on auction storage fees on one end and vessel cut-off on the other; and somewhere between the two, a gate pass has to be on file at the terminal or the whole chain breaks. Y7 Logistics (MC #1741537 / USDOT #4427359) is the licensed FMCSA broker that handles the domestic leg — from auction pickup to port warehouse — and hands the vehicle to your freight forwarder ready for vessel loading."
+      tldr={{
+        kicker: 'Auction to port, in brief',
+        ariaLabel: 'Auction-to-port transport, in brief',
+        text: 'Auction-to-port transport is the domestic leg of vehicle export: Y7 Logistics (MC #1741537, USDOT #4427359) picks up from 200+ Copart, 170+ IAA, and 80+ Manheim locations and delivers to consolidation warehouses at the six major US export ports. Short regional runs typically cost $150-650, long hauls $0.40-0.70 per mile, and dispatch is timed to the auction’s 3-5 day free-storage window.',
+      }}
       whenNeeded={[
         'Exporter buying auction vehicles for overseas markets',
         'Shipping Copart, IAAI, or Manheim purchases directly to port',

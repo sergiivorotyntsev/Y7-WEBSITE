@@ -104,6 +104,7 @@ export default function CarShippingCost() {
         { label: 'Open Car Shipping', to: '/open-car-shipping' },
         { label: 'State-to-State', to: '/state-to-state-car-shipping' },
         { label: 'Open vs Enclosed Guide', to: '/open-vs-enclosed-auto-transport' },
+        { label: 'Auction Transport Savings', to: '/auction-transport-savings' },
         { label: 'Get a Quote', to: '/quote' },
       ]}
     >

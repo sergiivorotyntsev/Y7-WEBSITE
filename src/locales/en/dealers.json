@@ -1,6 +1,7 @@
 {
   "title": "Your Outsourced Dispatch Department",
   "subtitle": "Y7 runs vehicle logistics for auto dealerships across the US. Think of us as your dispatch department — without the $90k salary, benefits, or vacation coverage. Flat fee per vehicle, full operational department included.",
+  "tldr": "Y7 Logistics is a licensed and bonded FMCSA broker (MC #1741537, USDOT #4427359) that runs outsourced dispatch for US auto dealerships: Copart, IAA, and Manheim pickups, dealer trades, and off-lease moves for a flat per-vehicle dispatch fee with weekly consolidated invoicing. Roughly 90% of loads are sourced through Central Dispatch from a vetted carrier network, replacing a $90k-a-year internal dispatcher with a predictable per-vehicle line item.",
   "hero": {
     "kicker": "FOR AUTO DEALERSHIPS",
     "trust1": "Licensed & Bonded FMCSA Broker · MC #1741537",
@@ -193,6 +194,9 @@
     "items": [
       { "label": "Deep-dive dealer transport guide", "to": "/dealer-auto-transport" },
       { "label": "Copart shipping for dealers", "to": "/copart-shipping" },
+      { "label": "Dealer auction pickup playbook", "to": "/blog/dealer-auction-pickup-guide" },
+      { "label": "Copart storage fees guide", "to": "/copart-storage-fees" },
+      { "label": "Copart gate pass guide", "to": "/copart-gate-pass-guide" },
       { "label": "IAA auction transport", "to": "/iaai-transport" },
       { "label": "Manheim transport", "to": "/manheim-transport" },
       { "label": "All auction car shipping", "to": "/auction-car-shipping" },

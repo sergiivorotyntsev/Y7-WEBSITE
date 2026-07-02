@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
+import EntityTldr from '../components/EntityTldr';
 import MoneyPageSchema from '../components/MoneyPageSchema';
 import FaqPageSchema from '../components/FaqPageSchema';
 import ContextualCTA from '../components/ContextualCTA';
@@ -46,8 +47,12 @@ function countryCode(country = '') {
 }
 
 export default function Exporters() {
-  const { t } = useTranslation('exporters');
+  const { t, i18n } = useTranslation('exporters');
   const { t: tCommon } = useTranslation('common');
+
+  // SEOAI-T04: EN-only extractable answer block, gated like /faq's TL;DR so
+  // ru/pl/ua render nothing until parity translations land.
+  const tldr = i18n.getResource(i18n.language, 'exporters', 'tldr') || '';
   const steps = t('steps', { returnObjects: true });
   const fees = t('fees.items', { returnObjects: true });
   const valuePoints = t('value.points', { returnObjects: true });
@@ -136,6 +141,8 @@ export default function Exporters() {
       </section>
 
       <div className={styles.body}>
+      <EntityTldr kicker="Exporters, in brief" ariaLabel="Y7 for exporters, in brief" text={tldr} />
+
       {/* Value proposition */}
       <div className={styles.valueCallout}>
         <h2 className={styles.valueTitle}>{t('value.title')}</h2>

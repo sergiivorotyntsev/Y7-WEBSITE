@@ -4,6 +4,7 @@
 // dev-only HMR warning safe to suppress.
 import { Link } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
+import EntityTldr from '../../components/EntityTldr';
 import ContextualCTA from '../../components/ContextualCTA';
 import RelatedGuides from '../../components/RelatedGuides';
 import { RELATED_GUIDES } from '../../data/relatedGuides';
@@ -53,6 +54,9 @@ export default function SeoLandingPage({
   //          tone: 'coral'|'teal'|'amber' }. primaryCTA appears after intro,
   // secondaryCTA appears before the generic "Ready to get started?" block.
   primaryCTA = null, secondaryCTA = null,
+  // SEOAI-T04: optional front-loaded extractable answer block ({ kicker, text }),
+  // rendered right after the intro. EN-only by construction on these pages.
+  tldr = null,
 }) {
   const schemas = [];
 
@@ -106,6 +110,8 @@ export default function SeoLandingPage({
 
         <h1 className={styles.title}>{heading}</h1>
         <p className={styles.intro}>{intro}</p>
+
+        {tldr && <EntityTldr kicker={tldr.kicker} text={tldr.text} ariaLabel={tldr.ariaLabel} />}
 
         {primaryCTA && (
           <ContextualCTA

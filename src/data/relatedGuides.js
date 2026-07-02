@@ -20,7 +20,7 @@ export const RELATED_GUIDES = {
   '/copart-shipping': [
     { to: '/iaai-transport',        title: 'IAA Auction Transport',     description: 'Pickup from IAA salvage auction yards nationwide.' },
     { to: '/manheim-transport',     title: 'Manheim Auction Transport', description: 'Dealer auction shipping with contract pricing.' },
-    { to: '/auction-car-shipping',  title: 'Auction Car Shipping',      description: 'General auction pickup from any US auction.' },
+    { to: '/auction-transport-savings', title: 'Auction Transport Savings', description: 'Where auction shipping fees actually go, and how to cut them.' },
     { to: '/how-to-ship-a-car-bought-at-auction', title: 'Auction Buyer Guide', description: 'Step-by-step from winning bid to delivery.' },
   ],
   '/iaai-transport': [
@@ -37,7 +37,7 @@ export const RELATED_GUIDES = {
   ],
   '/auction-car-shipping': [
     { to: '/copart-shipping',       title: 'Copart Shipping',           description: 'Vehicle transport from Copart auctions.' },
-    { to: '/iaai-transport',        title: 'IAA Auction Transport',     description: 'Pickup from IAA salvage auction yards.' },
+    { to: '/auction-transport-savings', title: 'Auction Transport Savings', description: 'Where auction shipping fees actually go, and how to cut them.' },
     { to: '/manheim-transport',     title: 'Manheim Auction Transport', description: 'Dealer auction shipping with contract pricing.' },
     { to: '/auction-to-port-transport', title: 'Auction to Port',       description: 'Auction pickup straight to a US export port.' },
   ],
@@ -45,7 +45,16 @@ export const RELATED_GUIDES = {
     { to: '/copart-shipping',       title: 'Copart Shipping',           description: 'Vehicle transport from Copart auctions.' },
     { to: '/iaai-transport',        title: 'IAA Auction Transport',     description: 'Pickup from IAA salvage auction yards.' },
     { to: '/door-to-port-auto-transport', title: 'Door-to-Port Auto Transport', description: 'Vehicle delivery to major US export ports.' },
-    { to: '/auction-car-shipping',  title: 'Auction Car Shipping',      description: 'General auction pickup nationwide.' },
+    { to: '/auction-transport-savings', title: 'Auction Transport Savings', description: 'Where auction shipping fees actually go, and how to cut them.' },
+  ],
+
+  // SEOAI-T04: orphan rescue — savings page gets its own cluster so it both
+  // receives and passes internal equity (it renders via SeoLandingPage).
+  '/auction-transport-savings': [
+    { to: '/auction-car-shipping',  title: 'Auction Car Shipping',      description: 'General auction pickup from any US auction.' },
+    { to: '/copart-shipping',       title: 'Copart Shipping',           description: 'Vehicle transport from Copart auctions.' },
+    { to: '/car-shipping-cost',     title: 'Car Shipping Cost',         description: 'How auto transport pricing works.' },
+    { to: '/how-to-ship-a-car-bought-at-auction', title: 'Auction Buyer Guide', description: 'Step-by-step from winning bid to delivery.' },
   ],
 
   // ─── EV cluster ────────────────────────────────────────────────────────
