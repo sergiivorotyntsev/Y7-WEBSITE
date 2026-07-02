@@ -78,11 +78,15 @@ const TYPES = [
   {
     id: 'exporter',
     title: 'Exporter',
-    description: 'Shipping to US ports, warehouses, or containers',
+    // EXP1-T05: state the actual exporter model so the dealer-vs-exporter
+    // choice is unambiguous at registration. The old card promised a COD/Full
+    // Service fee choice exporters never get (tier is individual/auction_buyer
+    // only — portal_data.py:448) and said nothing about Y7-assigned delivery.
+    description: 'Export via US ports — Y7 assigns the destination warehouse',
     benefits: [
-      'Saved port + warehouse addresses',
-      'Container-ready delivery',
-      '$50 COD or $65 Full Service fee',
+      'Register your export warehouses once',
+      'Per order: just upload the auction documents',
+      'Y7 picks the optimal warehouse and dispatches',
     ],
     note: 'Requires a short verification — apply now, we review and set up a call to activate.',
     tone: { border: '#14648C', bg: '#F0F6FA' },
