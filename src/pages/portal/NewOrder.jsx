@@ -240,10 +240,21 @@ export default function NewOrder() {
   // (portal_data.py:412) and exporter pickups are auctions — hiding the block
   // made every exporter submit a guaranteed 400.
   const isAuctionBuyer = user?.customer_type === 'auction_buyer';
-  const showAuctionFields = isAuctionBuyer || isExporter || (isDealer && direction === 'inbound');
+  // W2P-T02: the pickup SOURCE. Auction buyers + dealer-inbound choose between
+  // an auction pickup (auction fields + document-first) and a one-off address
+  // (manual + dry-run disclaimer). Exporter is FIXED auction (EXP-1 model,
+  // byte-identical UI); dealer-outbound pickup is their saved location (the
+  // manual override there IS the one-off branch); individual keeps the plain
+  // manual quote form untouched.
+  const pickupSourceSelectable = isAuctionBuyer || (isDealer && direction === 'inbound');
+  const [pickupSource, setPickupSource] = useState('auction');
+  const pickupIsAuction = isExporter || (pickupSourceSelectable && pickupSource === 'auction');
+  const showAuctionFields = pickupIsAuction;
   const [auctionTypes, setAuctionTypes] = useState([]);
   const [auctionTypeId, setAuctionTypeId] = useState('');
   const [gatePassPin, setGatePassPin] = useState('');
+  // W2P-T03: dry-run liability consent (one-off manual pickup only).
+  const [dryRunConsent, setDryRunConsent] = useState(false);
 
   useEffect(() => {
     if (!showAuctionFields) return;
@@ -323,6 +334,15 @@ export default function NewOrder() {
   const pickupWarehouses = warehouses.filter(w => ['pickup', 'both'].includes(w.usage_role));
   const deliveryWarehouses = warehouses.filter(w => ['delivery', 'both'].includes(w.usage_role));
 
+  // W2P-T03: a ONE-OFF manually typed pickup — not an auction, not a saved
+  // directory address. Dealer-outbound reaches it via the "use a different
+  // location" override (or having no saved pickup location); the selector
+  // types reach it via the "Other address" source. Individual/exporter never.
+  const pickupIsOneOff =
+    !pickupIsAuction
+    && (isDealer || isAuctionBuyer)
+    && (pickupIsWarehouse ? (pickupOverride || !pickupWarehouseId) : true);
+
   function handlePickupManualChange(field, value) { setPickupManual(prev => ({ ...prev, [field]: value })); }
   function handleDeliveryManualChange(field, value) { setDeliveryManual(prev => ({ ...prev, [field]: value })); }
 
@@ -364,14 +384,21 @@ export default function NewOrder() {
       return;
     }
 
-    // EXP1-T01: exporter must pick the auction site too — the backend requires
-    // auction_type_id for direct_submit.
-    if ((isAuctionBuyer || isExporter) && !auctionTypeId) {
+    // W2P-T02: an AUCTION pickup requires the auction site for every type
+    // (the backend requirement is now conditional on the pickup being an
+    // auction — dealer-inbound included).
+    if (pickupIsAuction && !auctionTypeId) {
       setError('Please select the auction site.');
       return;
     }
-    if (auctionRequiresPin && !gatePassPin.trim()) {
+    if (pickupIsAuction && auctionRequiresPin && !gatePassPin.trim()) {
       setError('Gate Pass PIN is required for Copart/IAA orders.');
+      return;
+    }
+    // W2P-T03: HARD BLOCK — a one-off manually typed pickup cannot submit
+    // without the dry-run liability consent.
+    if (pickupIsOneOff && !dryRunConsent) {
+      setError('Please confirm you accept dry-run liability for the manually entered pickup address.');
       return;
     }
 
@@ -426,8 +453,15 @@ export default function NewOrder() {
         delivery_zip: dZip,
         notes: notes.trim() || undefined,
         submission_type: submissionType,
-        auction_type_id: auctionTypeId || undefined,
-        gate_pass_pin: gatePassPin.trim() || undefined,
+        // W2P-T02: auction credentials ride ONLY when the pickup IS an auction
+        // (a stale site selection from a switched-away source must not flip
+        // the server's auction signal); the explicit pickup_location_type is
+        // the locked backend signal.
+        auction_type_id: (pickupIsAuction && auctionTypeId) || undefined,
+        gate_pass_pin: (pickupIsAuction && gatePassPin.trim()) || undefined,
+        pickup_location_type: pickupIsAuction ? 'Auction' : undefined,
+        // W2P-T03: dry-run liability consent (one-off manual pickup only).
+        pickup_disclaimer_accepted: pickupIsOneOff ? dryRunConsent : undefined,
         // CAP-S1-W01: only individual/auction_buyer send a tier; backend ignores
         // it for other types regardless.
         service_tier: showTierSelector ? serviceTier : undefined,
@@ -459,9 +493,8 @@ export default function NewOrder() {
         }
       }
 
-      // Auction fields
-      if (auctionTypeId) body.auction_type_id = parseInt(auctionTypeId);
-      if (gatePassPin.trim()) body.gate_pass_pin = gatePassPin.trim();
+      // Auction fields — numeric id, only on the auction branch (W2P-T02).
+      if (pickupIsAuction && auctionTypeId) body.auction_type_id = parseInt(auctionTypeId);
 
       const res = await portalFetch('/api/portal/data/orders', {
         method: 'POST',
@@ -471,10 +504,11 @@ export default function NewOrder() {
 
       if (res.ok) {
         const data = await res.json();
-        // EXP1-T01 (Q6): exporters go STRAIGHT to document upload — uploading
-        // the auction documents IS the next step of their flow (doc-first
-        // model); OrderDetail scrolls to + highlights the intake card.
-        if (deliveryAssignedByY7) {
+        // EXP1-T01 (Q6) + W2P-T02: document-first flows go STRAIGHT to upload —
+        // exporters always; dealers/auction buyers when the pickup is an
+        // AUCTION (the document is mandatory: extraction fills pickup +
+        // lot/buyer). OrderDetail scrolls to + highlights the intake card.
+        if (deliveryAssignedByY7 || pickupIsAuction) {
           navigate(`/portal/order/${data.order_id}?upload=1`, { replace: true });
           return;
         }
@@ -745,6 +779,26 @@ export default function NewOrder() {
           <div style={sectionTitle}>
             Pickup {pickupIsWarehouse ? '(from your location)' : ''}
           </div>
+          {/* W2P-T02: pickup source — Auction vs one-off address (dealer-inbound
+              + auction buyer). Reuses the direction-toggle button pattern. */}
+          {pickupSourceSelectable && (
+            <div style={{ display: 'flex', gap: 0, borderRadius: 8, overflow: 'hidden', border: `1px solid ${colors.border}`, marginBottom: 12 }}>
+              {[
+                { value: 'auction', label: 'Auction pickup', desc: 'Copart, IAA, Manheim…' },
+                { value: 'oneoff', label: 'Other address', desc: 'Residence / business' },
+              ].map(opt => (
+                <button key={opt.value} type="button" onClick={() => setPickupSource(opt.value)} style={{
+                  flex: 1, padding: '12px 16px', border: 'none', cursor: 'pointer',
+                  fontFamily: fonts.sans, textAlign: 'center',
+                  background: pickupSource === opt.value ? colors.accent : colors.bgCard,
+                  color: pickupSource === opt.value ? '#fff' : colors.text,
+                }}>
+                  <div style={{ fontWeight: 600, fontSize: 14 }}>{opt.label}</div>
+                  <div style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>{opt.desc}</div>
+                </button>
+              ))}
+            </div>
+          )}
           {pickupIsWarehouse ? (
             <WarehouseSection
               warehouses={pickupWarehouses}
@@ -758,6 +812,36 @@ export default function NewOrder() {
             />
           ) : (
             <ManualAddressFields fields={pickupManual} onChange={handlePickupManualChange} />
+          )}
+          {/* W2P-T02: document-first messaging for auction pickups (exporter has
+              its own EXP-1 flow copy — same redirect, no duplicate hint). */}
+          {pickupIsAuction && !isExporter && (
+            <div style={{ ...hintStyle, marginTop: 10 }}>
+              Auction pickups are document-first: right after submitting you&rsquo;ll
+              upload the auction document and we&rsquo;ll read the exact pickup
+              address, lot and buyer number from it.
+            </div>
+          )}
+          {/* W2P-T03: the dry-run liability consent — HARD BLOCK on the one-off
+              manual branch only. */}
+          {pickupIsOneOff && (
+            <label style={{
+              display: 'flex', gap: 10, alignItems: 'flex-start', marginTop: 12,
+              padding: '12px 14px', background: '#FFF7ED', border: '1px solid #B45309',
+              borderRadius: 8, cursor: 'pointer',
+            }}>
+              <input
+                type="checkbox"
+                checked={dryRunConsent}
+                onChange={e => setDryRunConsent(e.target.checked)}
+                style={{ marginTop: 3, width: 18, height: 18, flexShrink: 0, accentColor: colors.accent }}
+              />
+              <span style={{ fontFamily: fonts.sans, fontSize: 13, color: '#7C2D12', lineHeight: 1.5 }}>
+                I confirm this pickup address is correct. If the carrier cannot
+                pick up because the address is wrong, <strong>I am responsible for
+                the carrier&rsquo;s dry-run fee</strong>.
+              </span>
+            </label>
           )}
         </div>
 
