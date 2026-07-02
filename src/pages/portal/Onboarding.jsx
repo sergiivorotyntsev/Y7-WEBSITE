@@ -291,6 +291,10 @@ export default function Onboarding() {
         )}
         {step === 'locations' && (
           <LocationsStep
+            // ACF-T03: the warehouse step only exists for exporters, but the
+            // auth context may not have flipped to 'exporter' yet — pass the type
+            // the wizard already holds so the Departure Port dropdown renders.
+            customerType={selectedType || user?.customer_type}
             onContinue={async () => {
               // Refresh /me so has_delivery_locations is true downstream
               // (NewOrder pre-check, future wizard entries). One-time guard
@@ -341,7 +345,7 @@ const STEP_LABELS = {
 // port dropdown included); Continue unlocks at >=1 delivery-capable location.
 // ---------------------------------------------------------------------------
 
-function LocationsStep({ onContinue }) {
+function LocationsStep({ onContinue, customerType = null }) {
   const [locations, setLocations] = useState([]);
   const [advancing, setAdvancing] = useState(false);
   const deliveryCapable = locations.filter(
@@ -358,7 +362,7 @@ function LocationsStep({ onContinue }) {
         shipment to the optimal one, so your directory must be complete before
         your first order. You can add more later under Saved Locations.
       </p>
-      <LocationsManager onLocationsChange={setLocations} />
+      <LocationsManager onLocationsChange={setLocations} customerType={customerType} />
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: spacing.md }}>
         <button
           type="button"

@@ -231,8 +231,16 @@ function LocationForm({ initial, onSubmit, onCancel, submitting, ports }) {
 // chrome. The /portal/locations page wraps it (behavior identical); the
 // onboarding warehouse step embeds it and reads the live list via
 // onLocationsChange for its delivery-capable Continue gate.
-export function LocationsManager({ heading = null, description = null, onLocationsChange }) {
+export function LocationsManager({ heading = null, description = null, onLocationsChange, customerType = null }) {
   const { user } = useAuth();
+  // ACF-T03: the onboarding wizard reaches the warehouse step as soon as the
+  // user picks "Exporter" (local selectedType), but the auth-context
+  // user.customer_type only flips after classify-and-sign — so gating the ports
+  // fetch on user.customer_type alone left the Departure Port dropdown missing
+  // inside the wizard. Let the caller pass the type it already knows; the
+  // standalone /portal/locations page passes nothing and falls back to context,
+  // so its behavior is unchanged.
+  const effectiveType = customerType || user?.customer_type;
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showAdd, setShowAdd] = useState(false);
@@ -258,12 +266,12 @@ export function LocationsManager({ heading = null, description = null, onLocatio
   useEffect(() => { fetchLocations(); }, [fetchLocations]);
 
   useEffect(() => {
-    if (user?.customer_type !== 'exporter') return;
+    if (effectiveType !== 'exporter') return;
     portalFetch('/api/portal/locations/ports')
       .then(r => (r.ok ? r.json() : { ports: [] }))
       .then(d => setPorts(d.ports || []))
       .catch(() => {});
-  }, [user?.customer_type]);
+  }, [effectiveType]);
 
   useEffect(() => {
     if (!toast) return;
