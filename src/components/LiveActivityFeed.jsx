@@ -33,7 +33,13 @@ export default function LiveActivityFeed() {
     return () => clearInterval(timerRef.current);
   }, [events]);
 
-  if (events.length === 0) return null;
+  // CWV2-T04: the wrapper ALWAYS renders at its settled height. The feed is
+  // client-fetch-only (prerender aborts /api/public), so returning null here
+  // made the whole block pop in after the fetch and shift every section
+  // below it. The prerendered HTML now bakes the same reserved box; with no
+  // data it reads as quiet inter-section spacing (no skeleton theater, no
+  // fake events).
+  const hasEvents = events.length > 0;
 
   return (
     <div style={{
@@ -41,7 +47,10 @@ export default function LiveActivityFeed() {
       margin: '0 auto',
       padding: '20px 24px',
       textAlign: 'center',
+      minHeight: '98px',
+      boxSizing: 'border-box',
     }}>
+      {hasEvents && (<>
       {/* LIVE indicator */}
       <div style={{
         display: 'inline-flex',
@@ -90,6 +99,7 @@ export default function LiveActivityFeed() {
           </div>
         ))}
       </div>
+      </>)}
     </div>
   );
 }
