@@ -9,7 +9,7 @@ import puppeteer from 'puppeteer';
 import { createServer } from 'http';
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join, extname } from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 import { PORT_SLUGS } from '../src/pages/ports/portData.js';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
@@ -153,6 +153,133 @@ function deduplicateHead(html) {
 
   const newHeadFull = headFull.replace(headInner, newHeadInner);
   return html.replace(headFull, newHeadFull);
+}
+
+/**
+ * CWV2-T01 — critical CSS extraction from Chrome coverage.
+ *
+ * Coverage ranges for rules inside @media/@supports blocks cover ONLY the
+ * inner rule text; slicing them naively would drop the media prelude and
+ * apply mobile rules everywhere. This walks the stylesheet once, maps every
+ * conditional at-rule block ([start, bodyStart, end] + prelude), and re-wraps
+ * extracted slices under their original prelude.
+ *
+ * @keyframes and @font-face are appended WHOLESALE: coverage never marks
+ * keyframes as used, but the prerendered HTML carries entrance/pulse
+ * animations that must run from the first styled paint.
+ */
+export function extractCriticalCss(cssText, ranges) {
+  // Map conditional at-rule blocks (brace-matched).
+  const atBlocks = [];
+  const atRe = /@(media|supports|container)[^{};]*\{/g;
+  let m;
+  while ((m = atRe.exec(cssText)) !== null) {
+    const bodyStart = m.index + m[0].length;
+    let depth = 1;
+    let i = bodyStart;
+    while (i < cssText.length && depth > 0) {
+      const ch = cssText[i];
+      if (ch === '{') depth++;
+      else if (ch === '}') depth--;
+      i++;
+    }
+    atBlocks.push({
+      start: m.index,
+      bodyStart,
+      end: i, // index just past the closing brace
+      prelude: cssText.slice(m.index, bodyStart - 1).trim(),
+    });
+    atRe.lastIndex = bodyStart;
+  }
+
+  // A used range for a rule inside @media can START inside the PRELUDE
+  // (Chrome anchors it right after the "@media" keyword), so containment
+  // must cover [start, end), not just the body. Prelude text itself is
+  // never sliced — the group wrapper re-adds it.
+  const blockFor = (pos) =>
+    atBlocks.find((b) => pos >= b.start && pos < b.end - 1) || null;
+
+  // Split ranges so none crosses an at-block boundary, then group by prelude.
+  const groups = new Map(); // prelude ('' = top level) -> [css text]
+  const push = (prelude, text) => {
+    if (!text.trim()) return;
+    if (!groups.has(prelude)) groups.set(prelude, []);
+    groups.get(prelude).push(text);
+  };
+  for (const r of ranges) {
+    let cursor = r.start;
+    while (cursor < r.end) {
+      const blk = blockFor(cursor);
+      let next;
+      if (blk) {
+        const sliceStart = Math.max(cursor, blk.bodyStart);
+        const sliceEnd = Math.min(r.end, blk.end - 1);
+        if (sliceEnd > sliceStart) push(blk.prelude, cssText.slice(sliceStart, sliceEnd));
+        if (r.end >= blk.end - 1) {
+          next = blk.end; // consumed to the block's closing brace — skip past it
+        } else {
+          next = Math.max(r.end, sliceStart); // ended inside body (or prelude-only)
+        }
+        next = Math.max(next, cursor + 1);
+      } else {
+        // top level — stop at the next at-block start inside the range;
+        // the block itself is handled by the next loop iteration (grouped
+        // under its prelude).
+        const nextBlk = atBlocks.find((b) => b.start > cursor && b.start < r.end);
+        const sliceEnd = nextBlk ? Math.min(r.end, nextBlk.start) : r.end;
+        push('', cssText.slice(cursor, sliceEnd));
+        next = Math.max(sliceEnd, cursor + 1);
+      }
+      cursor = next;
+    }
+  }
+
+  let out = (groups.get('') || []).join('\n');
+  for (const [prelude, parts] of groups) {
+    if (!prelude) continue;
+    out += `\n${prelude}{${parts.join('\n')}}`;
+  }
+
+  // Whole @keyframes + @font-face, brace-matched.
+  const wholesaleRe = /@(?:-webkit-)?(?:keyframes|font-face)[^{]*\{/g;
+  while ((m = wholesaleRe.exec(cssText)) !== null) {
+    let depth = 1;
+    let i = m.index + m[0].length;
+    while (i < cssText.length && depth > 0) {
+      if (cssText[i] === '{') depth++;
+      else if (cssText[i] === '}') depth--;
+      i++;
+    }
+    out += '\n' + cssText.slice(m.index, i);
+    wholesaleRe.lastIndex = i;
+  }
+
+  // Safety net: Chrome occasionally merges ranges across an at-block edge,
+  // which can leave an unbalanced brace and silently eat later rules.
+  const opens = (out.match(/\{/g) || []).length;
+  const closes = (out.match(/\}/g) || []).length;
+  if (opens > closes) out += '}'.repeat(opens - closes);
+  return out;
+}
+
+/**
+ * CWV2-T01 — swap the render-blocking stylesheet link in a snapshot for
+ * inline critical CSS + an async full-sheet load (preload/onload swap with a
+ * <noscript> fallback). The SPA-fallback template keeps its blocking link
+ * (portal routes are not PSI surfaces), and the prerender pass itself always
+ * loads the full sheet — only the WRITTEN snapshot changes.
+ */
+function inlineCriticalCss(html, criticalCss, cssHref) {
+  const linkRe = new RegExp(
+    `<link[^>]*rel="stylesheet"[^>]*href="${cssHref.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"[^>]*>`,
+    'i'
+  );
+  if (!linkRe.test(html)) return null;
+  const replacement =
+    `<style data-critical="true">${criticalCss}</style>` +
+    `<link rel="preload" href="${cssHref}" as="style" onload="this.onload=null;this.rel='stylesheet'">` +
+    `<noscript><link rel="stylesheet" href="${cssHref}"></noscript>`;
+  return html.replace(linkRe, replacement);
 }
 
 const PUBLIC_ROUTES = [
@@ -411,6 +538,13 @@ async function prerender() {
     });
 
     try {
+      // CWV2-T01: mobile-first viewport + CSS coverage. Coverage accumulates
+      // per stylesheet across the page session; we resize to desktop before
+      // the snapshot so BOTH breakpoints' matched rules land in the critical
+      // set (extracting one viewport only would FOUC the other).
+      await page.setViewport({ width: 390, height: 844 });
+      await page.coverage.startCSSCoverage();
+
       await page.goto(`${baseUrl}${route}`, {
         waitUntil: 'domcontentloaded',
         timeout: 60000,
@@ -481,12 +615,35 @@ async function prerender() {
         });
       }, route);
 
+      // CWV2-T01: flip to desktop so desktop-only rules also register as
+      // used, give styles two frames to recompute, then read coverage.
+      await page.setViewport({ width: 1366, height: 900 });
+      await page.evaluate(
+        () => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)))
+      );
+      const cssCoverage = await page.coverage.stopCSSCoverage();
+
       let html = await page.content();
 
       // Deduplicate head tags before writing. See deduplicateHead() above
       // for the full rationale; runs before the prerender-status injection
       // so the status meta is always positioned right before </head>.
       html = deduplicateHead(html);
+
+      // CWV2-T01: inline the page's used CSS, load the full sheet async.
+      const appCss = cssCoverage.find((c) => /\/assets\/index-[^/]*\.css/.test(c.url));
+      if (appCss) {
+        const cssHref = new URL(appCss.url).pathname;
+        const critical = extractCriticalCss(appCss.text, appCss.ranges);
+        const swapped = inlineCriticalCss(html, critical, cssHref);
+        if (swapped) {
+          html = swapped;
+        } else {
+          console.warn(`  [warn] ${route}: stylesheet link not found for critical-CSS swap`);
+        }
+      } else {
+        console.warn(`  [warn] ${route}: no coverage entry for the app stylesheet`);
+      }
 
       // Add prerender indicator meta tag
       html = html.replace(
@@ -556,4 +713,8 @@ async function prerender() {
   process.exit(failed > 0 ? 1 : 0);
 }
 
-prerender();
+// CWV2-T01: allow `import { extractCriticalCss } from './prerender.mjs'`
+// (tests/debug) without kicking off a full prerender run.
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  prerender();
+}
