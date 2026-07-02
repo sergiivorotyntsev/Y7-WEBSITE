@@ -56,41 +56,15 @@
   word-break: break-word;
 }
 
-/* PHASE5C-BLEND: the slogan accent meets both brand colors — rust→green shimmer.
-   Solid rust base (fallback, never invisible); the animated gradient only applies
-   where background-clip:text is supported; reduced-motion → static gradient. */
+/* CWV2-T02: the PHASE5C-BLEND animated gradient-text shimmer is gone for two
+   independent reasons: gradient text is an absolute ban in DESIGN.md
+   (anti-reference #4), and animating background-position repainted the hero
+   every frame (PageSpeed "non-composited animation" flag). Solid Burnt
+   Sienna italic is the Trade Bulletin voice. */
 .heroAccent {
   color: var(--accent, #993C1D);
   font-style: italic;
   font-weight: 400;
-}
-
-@supports ((background-clip: text) or (-webkit-background-clip: text)) {
-  .heroAccent {
-    background: linear-gradient(
-      100deg,
-      var(--accent, #993C1D) 0%,
-      var(--accent, #993C1D) 22%,
-      var(--success-mid, #1D9E75) 52%,
-      var(--success, #0F6E56) 74%,
-      var(--accent, #993C1D) 100%
-    );
-    background-size: 220% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    animation: heroSloganSweep var(--blend-sweep, 6s) linear infinite;
-  }
-}
-
-@keyframes heroSloganSweep {
-  from { background-position: 0% center; }
-  to { background-position: 220% center; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .heroAccent { animation: none; }
 }
 
 .heroDesc {
