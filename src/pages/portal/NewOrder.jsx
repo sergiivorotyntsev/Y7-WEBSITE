@@ -180,13 +180,23 @@ function ManualAddressFields({ fields, onChange }) {
 
 const EMPTY_MANUAL = { zip: '', address: '', city: '', state: '', contact_name: '', contact_phone: '' };
 
+// WBF-T01: two distinct eligibility sets — do not conflate them.
+// WAREHOUSE_ELIGIBLE drives the saved-locations UI (directory fetch, S1 default
+// auto-select, deliver-to-warehouse affordances) and KEEPS auction_buyer.
+// DIRECT_SUBMIT_ELIGIBLE drives submission_type routing and must mirror the
+// backend gate (dealer_verification.DIRECT_SUBMIT_TYPES = dealer/exporter):
+// auction_buyer submits as quote_request — the backend 403s their direct_submit.
+const WAREHOUSE_ELIGIBLE = ['dealer', 'exporter', 'auction_buyer'];
+const DIRECT_SUBMIT_ELIGIBLE = ['dealer', 'exporter'];
+
 // ─── Main component ──────────────────────────────────────────────
 export default function NewOrder() {
   const { user } = useAuth();
   const navigate = useNavigate();
 
   const isDealer = user?.customer_type === 'dealer';
-  const isWarehouseUser = ['dealer', 'exporter', 'auction_buyer'].includes(user?.customer_type);
+  const isWarehouseUser = WAREHOUSE_ELIGIBLE.includes(user?.customer_type);
+  const isDirectSubmitter = DIRECT_SUBMIT_ELIGIBLE.includes(user?.customer_type);
 
   // Warehouses
   const [warehouses, setWarehouses] = useState([]);
@@ -388,7 +398,9 @@ export default function NewOrder() {
   async function submitOrder(pZip, dZip) {
     setSubmitting(true);
     try {
-      const submissionType = isWarehouseUser ? 'direct_submit' : 'quote_request';
+      // WBF-T01: routing keys on DIRECT_SUBMIT_ELIGIBLE, not warehouse
+      // eligibility — auction_buyer keeps the warehouse UI but goes quote flow.
+      const submissionType = isDirectSubmitter ? 'direct_submit' : 'quote_request';
       const body = {
         vin: vinClean || 'TBD',
         vehicle_year: vehicleYear.trim() || undefined,
@@ -546,7 +558,9 @@ export default function NewOrder() {
           <div style={{ fontSize: '48px', marginBottom: '16px' }}>&#10003;</div>
           <h1 style={{ fontFamily: fonts.serif, fontSize: '24px', fontWeight: 700, color: colors.text, marginBottom: '12px' }}>Order Submitted</h1>
           <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, lineHeight: 1.6, marginBottom: showTierSelector ? '20px' : '32px' }}>
-            {isWarehouseUser
+            {/* WBF-T01: copy describes the post-submit flow (direct vs quote),
+                so it keys on the submission set — auction_buyer gets the quote wording. */}
+            {isDirectSubmitter
               ? "Request received. We'll source the best-priced carrier; your transport price will appear here once it's set."
               : 'Your transport request has been received. Our dispatcher will review it and send you a quote shortly.'}
           </p>
@@ -585,7 +599,8 @@ export default function NewOrder() {
       <Link to="/portal/dashboard" style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.accent, display: 'inline-block', marginBottom: '20px' }}>&larr; Back to Dashboard</Link>
       <h1 style={{ fontFamily: fonts.serif, fontSize: '28px', fontWeight: 700, color: colors.text, marginBottom: '8px' }}>New Transport Order</h1>
       <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, marginBottom: '6px' }}>
-        {isWarehouseUser
+        {/* WBF-T01: submission-flow copy — keyed on the direct-submit set. */}
+        {isDirectSubmitter
           ? "Submit your vehicle. We'll source the best-priced carrier — your transport price will appear here once it's set."
           : "Submit a transport request. We'll review it and send you a quote."}
       </p>
