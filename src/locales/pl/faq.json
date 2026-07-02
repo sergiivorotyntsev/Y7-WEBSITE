@@ -1,122 +1,189 @@
 {
-  "title": "Najcz\u0119\u015bciej zadawane pytania",
-  "subtitle": "Wszystko, co musisz wiedzie\u0107 o transporcie pojazdu z Y7 Logistics.",
+  "title": "Najczęściej zadawane pytania",
+  "subtitle": "Konkretne odpowiedzi o tym, jak Y7 Logistics organizuje transport pojazdów: podstawy pracy brokera, ubezpieczenie, ceny w modelu stałej opłaty, aukcje i eksport.",
+  "lastUpdated": "Czerwiec 2026",
+  "navLabel": "Na tej stronie",
+  "tldr": "Y7 Logistics to licencjonowany broker transportu aut z gwarancją (bondem) FMCSA (MC #1741537, USDOT #4427359) z siedzibą w Newton w stanie Massachusetts. Y7 organizuje transport aut we wszystkich 50 stanach oraz do głównych portów eksportowych USA, dobierając Twój pojazd do zweryfikowanych, ubezpieczonych przewoźników przez Central Dispatch, za jedną stałą opłatę dyspozytury i bez narzutu na transport. Jako broker Y7 sam nie przewozi ani nie ubezpiecza pojazdów; ubezpieczenie cargo mają przewoźnicy, których rezerwuje, weryfikowane przed każdym zleceniem.",
   "categories": [
     {
-      "name": "Pierwsze kroki",
+      "id": "general",
+      "name": "Pytania ogólne",
+      "kicker": "Zacznij tutaj",
       "items": [
         {
-          "q": "Jak dzia\u0142a transport samochod\u00f3w?",
-          "a": "Dobieramy licencjonowanych i ubezpieczonych przewo\u017anik\u00f3w przez Central Dispatch. Sk\u0142adasz zapytanie o wycen\u0119, my znajdujemy najlepszego przewo\u017anika, a oni odbieraj\u0105 i dostarczaj\u0105 Tw\u00f3j pojazd od drzwi do drzwi."
+          "q": "Czy Y7 jest brokerem czy przewoźnikiem?",
+          "a": "Y7 Logistics to licencjonowany broker frachtu z gwarancją (bondem) FMCSA (MC #1741537, USDOT #4427359), a nie przewoźnik. Oznacza to, że Y7 organizuje Twój transport, dobierając pojazd do zweryfikowanych, ubezpieczonych przewoźników przez Central Dispatch, zamiast posiadać ciężarówki, które go wiozą. Brokerzy są regulowani przez 49 CFR Part 371 i, w odróżnieniu od przewoźników, sami nie przewożą pojazdu. Y7 posiada też gwarancję (bond) BMC-84 na $75 000, jak wymaga prawo federalne. Współpraca z brokerem ma znaczenie, bo dobry broker sprawdza aktywne ubezpieczenie i historię bezpieczeństwa przewoźnika, zanim Twoje auto w ogóle zostanie załadowane."
         },
         {
-          "q": "Jak d\u0142ugo trwa wysy\u0142ka?",
-          "a": "1\u20133 dni dla tras poni\u017cej 500 mil, 3\u20137 dni przez ca\u0142y kraj. Czasy s\u0105 szacunkowe \u2014 pogoda, ruch drogowy i dost\u0119pno\u015b\u0107 przewo\u017anik\u00f3w mog\u0105 wp\u0142ywa\u0107 na czas tranzytu."
+          "q": "Kto ubezpiecza mój pojazd podczas transportu — Y7 czy przewoźnik?",
+          "a": "Ubezpieczenie cargo ma przewoźnik wiozący Twój pojazd, nie Y7. Jako licencjonowany broker FMCSA Y7 nie ubezpiecza ładunku; zamiast tego przed każdym zleceniem weryfikuje aktywny certyfikat ubezpieczenia (COI) każdego przewoźnika przez Central Dispatch i rezerwuje wyłącznie przewoźników z ważną polisą, zwykle od $100 000 do $250 000 lub więcej. Jeśli Twój pojazd zostanie uszkodzony w transporcie, roszczenie zgłasza się z polisy cargo przewoźnika, dlatego zawsze odnotuj każde nowe uszkodzenie w liście przewozowym (BOL) przy dostawie, aby je udokumentować. Zobacz, jak przeprowadzamy przez to osoby prywatne na naszej stronie transportu Twojego auta.",
+          "links": [{ "text": "stronie transportu Twojego auta", "href": "/pl/wysylka-auta-z-usa" }]
         },
         {
-          "q": "Jakie informacje s\u0105 potrzebne do wyceny?",
-          "a": "Rok/marka/model pojazdu lub VIN, miasta odbioru i dostawy oraz preferowane daty. Dla pojazd\u00f3w z aukcji pomocny jest numer lotu."
+          "q": "Jak działa stała opłata Y7 i dlaczego jest tańsza niż dział transportu aukcji?",
+          "a": "Płacisz Y7 jedną stałą opłatę dyspozytury, zwykle od $40 do $60 za pojazd, i nic więcej; stawkę przewoźnika płacisz osobno i widzisz ją po kosztach. Y7 nie dolicza żadnej marży ani ukrytego narzutu do samego transportu, co jest kluczową różnicą względem wewnętrznego działu transportu aukcji, gdzie stawka przewoźnika jest zwykle zawinięta w nieujawnioną marżę. Z Y7 widzisz rzeczywistą stawkę przewoźnika na podpisanym dispatch sheet, więc cena jest w pełni rozpisana, a nie jedną zawyżoną kwotą. Ta przejrzystość sprawia, że zlecenie przez brokera często kosztuje mniej niż pakietowa wycena aukcji za tę samą trasę; porównaj wyliczenia w naszym rozbiciu oszczędności na transporcie z aukcji.",
+          "links": [{ "text": "rozbiciu oszczędności na transporcie z aukcji", "href": "/auction-transport-savings" }]
         },
         {
-          "q": "Czy musz\u0119 by\u0107 obecny przy odbiorze/dostawie?",
-          "a": "Osoba pe\u0142noletnia (18+) musi by\u0107 obecna, aby sprawdzi\u0107 pojazd i podpisa\u0107 list przewozowy (BOL) przy odbiorze i dostawie."
+          "q": "Jak i jak szybko otrzymam wycenę?",
+          "a": "Poproś o wycenę przez formularz online Y7, portal klienta lub bota Telegram (@y7dispatch_bot), a zwykle otrzymasz wiążącą cenę tego samego dnia roboczego. Aby dokładnie wycenić, Y7 potrzebuje roku, marki i modelu pojazdu (lub VIN), miejsc odbioru i dostawy oraz preferowanych dat; przy pojazdach z aukcji pomaga też numer lotu. Wyceny odzwierciedlają realne, aktualne stawki przewoźników na Twojej trasie, a nie zawyżony placeholder, a samo uzyskanie wyceny jest bez zobowiązań i bezpłatne."
+        },
+        {
+          "q": "Kiedy i jak płacę?",
+          "a": "Stałą opłatę dyspozytury Y7 płacisz z góry, aby zarezerwować, a stawkę przewoźnika płacisz osobno — najczęściej gotówką lub certyfikowanymi środkami przy dostawie (COD) albo z góry przez Y7 na podstawie podpisanego dispatch sheet pokazującego rzeczywistą stawkę przewoźnika. Y7 przyjmuje Zelle, ACH i przelew bankowy na opłatę dyspozytury. W tym, co płacisz przewoźnikowi, nigdy nie ma wbudowanego narzutu na transport, a oba te numery poznasz zawsze przed wysłaniem pojazdu do realizacji."
+        },
+        {
+          "q": "Jak śledzić moją przesyłkę?",
+          "a": "Śledź swoją przesyłkę przez portal klienta Y7, bota Telegram (@y7dispatch_bot) albo aktualizacje e-mail i SMS na każdym etapie — od przydzielenia przewoźnika po dostawę. Gdy przewoźnik zostanie przydzielony, w Twoim portalu pojawia się bezpośredni numer telefonu kierowcy do koordynacji na bieżąco. Każda aktualizacja i dokument są rejestrowane pisemnie, więc nic ważnego nie zostaje wyłącznie w rozmowie telefonicznej, a obecni klienci mają całodobowy dostęp w sprawach dotyczących przesyłki."
+        },
+        {
+          "q": "Jak długo trwa transport auta?",
+          "a": "Większość pojazdów dociera w 1 do 8 dni w zależności od odległości: około 1 do 3 dni na trasach poniżej 500 mil i 3 do 7 dni z wybrzeża na wybrzeże przez 48 kontynentalnych stanów. Czas tranzytu zależy od trasy, pory roku i dostępności przewoźników, a Y7 daje Ci uczciwy szacunek, a nie obietnicę w najlepszym wariancie. Pogoda i federalne przepisy o czasie pracy kierowców (hours-of-service) mogą przesunąć terminy o dzień. Szczegóły dla tras między stanami znajdziesz w naszym przewodniku po transporcie aut między stanami.",
+          "links": [{ "text": "przewodniku po transporcie aut między stanami", "href": "/state-to-state-car-shipping" }]
+        },
+        {
+          "q": "Jakie obszary obsługujecie?",
+          "a": "Y7 organizuje transport pojazdów we wszystkich 50 stanach USA oraz do głównych portów eksportowych USA, w tym Newark, Houston, Savannah, Baltimore, Los Angeles i Jacksonville. Obsługa obejmuje odbiory od drzwi do drzwi — z adresów prywatnych i od dealerów — wszystkie główne aukcje (Copart, IAAI, Manheim) oraz przewozy z aukcji do portu na eksport. Ponieważ Y7 rezerwuje przewoźników z ogólnokrajowej sieci Central Dispatch, przepustowość nie jest ograniczona do jednego regionu. Popularne trasy to transport aut Texas, wysyłka aut Florida i wysyłka aut Massachusetts.",
+          "links": [
+            { "text": "transport aut Texas", "href": "/texas-auto-transport" },
+            { "text": "wysyłka aut Florida", "href": "/florida-car-shipping" },
+            { "text": "wysyłka aut Massachusetts", "href": "/massachusetts-car-shipping" }
+          ]
+        },
+        {
+          "q": "Jak otrzymam dokumenty i jak kierowca koordynuje dostawę?",
+          "a": "Wszystkie Twoje dokumenty — list przewozowy (BOL), faktury, paragony i dowód ubezpieczenia przewoźnika — są obsługiwane cyfrowo i przechowywane w Twoim portalu klienta Y7 w ciągu 24 godzin od każdego etapu. BOL jest podpisywany zarówno przy odbiorze, jak i przy dostawie, ze zdjęciami stanu pojazdu dołączanymi w każdym punkcie. Przy fizycznym przekazaniu przydzielony kierowca dzwoni do Ciebie 1 do 4 godzin przed odbiorem i dostawą, aby potwierdzić czas i miejsce rozładunku — dlatego wymagany jest osiągalny numer telefonu. Dowiedz się, co sprawdzić w liście przewozowym (BOL), zanim go podpiszesz.",
+          "links": [{ "text": "co sprawdzić w liście przewozowym (BOL)", "href": "/what-is-a-bill-of-lading" }]
+        },
+        {
+          "q": "Ile kosztuje transport auta?",
+          "a": "Koszt transportu auta zależy od odległości, rozmiaru pojazdu, transportu otwartego lub zamkniętego i aktualnych warunków rynkowych na Twojej trasie, plus stała opłata dyspozytury Y7. Pełne rozbicie tego, co wpływa na cenę i jak dobrać moment, znajdziesz w naszym przewodniku po kosztach transportu auta.",
+          "links": [{ "text": "przewodniku po kosztach transportu auta", "href": "/car-shipping-cost" }]
+        },
+        {
+          "q": "Czy są ukryte opłaty?",
+          "a": "Nie. Wycena Y7 jest rozpisana pozycjami: rzeczywista stawka przewoźnika plus stała opłata dyspozytury, bez narzutu na transport, a wszelka dopłata za pojazd niesprawny jest ujawniana z góry. Zobacz dokładnie, co jest wliczone, a co nie, w naszym rozbiciu kosztów transportu auta.",
+          "links": [{ "text": "rozbiciu kosztów transportu auta", "href": "/car-shipping-cost" }]
+        },
+        {
+          "q": "Wybrać transport otwarty czy zamknięty?",
+          "a": "Transport otwarty to przystępny domyślny wybór, który bezpiecznie przewozi większość pojazdów, natomiast transport zamknięty dodaje ochronę przed pogodą i warunkami na drodze dla aut o dużej wartości, klasycznych lub o niskim prześwicie. Nasz przewodnik: otwarty czy zamknięty pokazuje, kiedy dodatkowy koszt jest tego wart.",
+          "links": [{ "text": "przewodnik: otwarty czy zamknięty", "href": "/open-vs-enclosed-auto-transport" }]
+        },
+        {
+          "q": "Czy możecie przewieźć pojazd niesprawny lub salvage?",
+          "a": "Tak. Y7 rezerwuje przewoźników wyposażonych w wyciągarki do pojazdów niesprawnych, salvage i aukcyjnych, zwykle za niewielką dodatkową opłatą ujawnianą w wycenie. Wymagania i ceny znajdziesz na naszej stronie transportu aut salvage albo przeczytaj pełny poradnik o transporcie pojazdów niesprawnych.",
+          "links": [
+            { "text": "stronie transportu aut salvage", "href": "/salvage-car-shipping" },
+            { "text": "poradnik o transporcie pojazdów niesprawnych", "href": "/blog/non-running-vehicle-shipping-playbook" }
+          ]
+        },
+        {
+          "q": "Czy odbieracie z Copart, IAAI i Manheim?",
+          "a": "Tak. Y7 zajmuje się przepustkami (gate pass), zwolnieniami lotów i dokumentacją kupującego przy odbiorach z Copart, IAAI, Manheim i innych głównych aukcji w całym kraju. Zobacz szczegóły dla konkretnych tras: transport z Copart, transport z IAAI i transport z Manheim.",
+          "links": [
+            { "text": "transport z Copart", "href": "/pl/transport-z-aukcji" },
+            { "text": "transport z IAAI", "href": "/iaai-transport" },
+            { "text": "transport z Manheim", "href": "/manheim-transport" }
+          ]
         }
       ]
     },
     {
-      "name": "Ceny i p\u0142atno\u015bci",
+      "id": "dealers",
+      "name": "Dla dealerów",
+      "kicker": "Transport B2B",
       "items": [
         {
-          "q": "Ile kosztuje transport samochodu?",
-          "a": "Cena zale\u017cy od odleg\u0142o\u015bci, rozmiaru pojazdu, typu transportu (otwarty vs zamkni\u0119ty) i warunk\u00f3w rynkowych. Poprosi o wycen\u0119, aby uzyska\u0107 dok\u0142adny szacunek."
+          "q": "Ile wynosi opłata dyspozytury dla dealera i czy płacę przewoźnikom bezpośrednio?",
+          "a": "Dealerzy płacą Y7 stałą opłatę dyspozytury za pojazd bez narzutu na transport i mogą płacić przewoźnikom bezpośrednio przy dostawie (COD) albo kierować płatność przez Y7 na podstawie podpisanego dispatch sheet pokazującego rzeczywistą stawkę przewoźnika. Ceny wolumenowe i warunki płatności znajdziesz na naszej stronie transportu dla dealerów.",
+          "links": [{ "text": "stronie transportu dla dealerów", "href": "/dealers" }]
         },
         {
-          "q": "Czy s\u0105 ukryte op\u0142aty?",
-          "a": "Nie. Twoja wycena zawiera wszystko. Pojazdy niesprawne mog\u0105 mie\u0107 dodatkow\u0105 op\u0142at\u0119 $100\u2013300, o kt\u00f3rej informujemy z g\u00f3ry."
+          "q": "Czy jest minimalny wolumen lub umowa długoterminowa?",
+          "a": "Nie ma umowy długoterminowej ani sztywnego minimum, choć dealerzy i eksporterzy przewożący 10 lub więcej pojazdów miesięcznie odblokowują indywidualne ceny i dedykowanego dyspozytora. Szczegóły są na naszej stronie dla dealerów.",
+          "links": [{ "text": "stronie dla dealerów", "href": "/dealers" }]
         },
         {
-          "q": "Jakie metody p\u0142atno\u015bci akceptujecie?",
-          "a": "Zelle, przelew bankowy, ACH na przedp\u0142at\u0119. Got\u00f3wka lub certyfikowane fundusze dla przewo\u017anika przy dostawie (COD)."
+          "q": "Jak szybko możecie zlecić przewoźnika z aukcji?",
+          "a": "Y7 zwykle przydziela zweryfikowanego przewoźnika w ciągu kilku godzin na aktywnych trasach, priorytetowo traktując odbiór w oknie bezpłatnego przechowywania aukcji, aby uniknąć opłat. Zobacz, jak działa dyspozycja z aukcji dla dealerów, na naszej stronie transportu aut dla dealerów.",
+          "links": [
+            { "text": "oknie bezpłatnego przechowywania", "href": "/copart-storage-fees" },
+            { "text": "stronie transportu aut dla dealerów", "href": "/dealer-auto-transport" }
+          ]
         },
         {
-          "q": "Czy wymagacie zaliczki?",
-          "a": "Zale\u017cy od metody p\u0142atno\u015bci. Zam\u00f3wienia przedp\u0142acone s\u0105 op\u0142acane w ca\u0142o\u015bci przed wysy\u0142k\u0105. Zam\u00f3wienia COD mog\u0105 wymaga\u0107 zaliczki rezerwacyjnej."
+          "q": "Czy obsługujecie gate passy Copart i buyer letters IAA dla dealerów?",
+          "a": "Tak. Y7 zarządza przepustkami (gate pass) Copart, buyer letters IAA i zwolnieniami lotów w ramach dyspozycji dla dealerów, więc Twój zespół nie musi gonić za papierami. Zobacz przegląd dla dealerów albo krok po kroku nasz przewodnik po gate pass Copart.",
+          "links": [
+            { "text": "przegląd dla dealerów", "href": "/dealers" },
+            { "text": "przewodnik po gate pass Copart", "href": "/copart-gate-pass-guide" }
+          ]
+        },
+        {
+          "q": "Czy mogę dodać wielu użytkowników do jednego konta dealerskiego?",
+          "a": "Tak. Konta dealerskie obsługują wielu użytkowników ze wspólnym wglądem w zamówienia, więc Twoi kupujący i zaplecze widzą ten sam status na bieżąco. Dowiedz się więcej na naszej stronie dla dealerów.",
+          "links": [{ "text": "stronie dla dealerów", "href": "/dealers" }]
+        },
+        {
+          "q": "Czy obsługujecie wymiany dealer-dealer i dostawy do naszych klientów?",
+          "a": "Tak. Y7 przewozi wymiany dealer-dealer i dostarcza pojazdy bezpośrednio z Twojego placu do klientów detalicznych, od drzwi do drzwi. Zobacz opcje na naszej stronie transportu aut dla dealerów.",
+          "links": [{ "text": "stronie transportu aut dla dealerów", "href": "/dealer-auto-transport" }]
+        },
+        {
+          "q": "Czy oferujecie ceny cykliczne lub wolumenowe z Manheim i innych aukcji?",
+          "a": "Tak. Y7 ustawia cykliczny transport i ceny wolumenowe z Manheim, ADESA, ACV i innych aukcji dla dealerów o wysokiej częstotliwości. Szczegóły tras znajdziesz na naszej stronie transportu z Manheim.",
+          "links": [{ "text": "stronie transportu z Manheim", "href": "/manheim-transport" }]
         }
       ]
     },
     {
-      "name": "Podczas transportu",
+      "id": "exporters",
+      "name": "Dla eksporterów",
+      "kicker": "Transport międzynarodowy",
       "items": [
         {
-          "q": "Jak \u015bledzi\u0107 m\u00f3j pojazd?",
-          "a": "Przez nasz portal klienta, bota Telegram (@y7dispatch_bot) lub powiadomienia e-mail na ka\u017cdym etapie."
+          "q": "Jak szybko przewozicie pojazd z aukcji do portu?",
+          "a": "Y7 priorytetowo traktuje przewozy z aukcji do portu, aby zdążyć przed cut-offem statku, zwykle zlecając odbiór w oknie bezpłatnego przechowywania aukcji i koordynując bezpośrednio z magazynami portowymi. Terminy zobaczysz na naszej stronie dla eksporterów oraz w przewodniku po transporcie z aukcji do portu.",
+          "links": [
+            { "text": "stronie dla eksporterów", "href": "/exporters" },
+            { "text": "przewodniku po transporcie z aukcji do portu", "href": "/auction-to-port-transport" }
+          ]
         },
         {
-          "q": "Jakie ubezpieczenie jest w\u0142\u0105czone?",
-          "a": "Ka\u017cdy przewo\u017anik w naszej sieci ma minimum $100 000 ubezpieczenia cargo \u2014 wi\u0119kszo\u015b\u0107 $250 000 lub wi\u0119cej. To wymaganie weryfikacji Y7; potwierdzamy aktywne ubezpieczenie przez Central Dispatch przed przydzieleniem zlecenia."
+          "q": "Czy obsługujecie zarówno odcinek krajowy, jak i fracht morski?",
+          "a": "Y7 organizuje krajowy odcinek z aukcji do portu i koordynuje z Twoim spedytorem odcinek morski, dbając o czyste przekazanie, aby nic nie utknęło przy nabrzeżu. Szczegóły są na naszej stronie dla eksporterów.",
+          "links": [{ "text": "stronie dla eksporterów", "href": "/exporters" }]
         },
         {
-          "q": "Co je\u015bli m\u00f3j samoch\u00f3d zostanie uszkodzony?",
-          "a": "Zanotuj wszelkie nowe uszkodzenia w BOL przy dostawie. Z\u0142\u00f3\u017c reklamacj\u0119 w ci\u0105gu 24 godzin ze zdj\u0119ciami. Pomagamy koordynowa\u0107 z ubezpieczeniem przewo\u017anika."
+          "q": "Kontener czy RoRo — co obsługujecie?",
+          "a": "Y7 dostarcza pojazdy na eksport zarówno w transporcie kontenerowym, jak i RoRo (roll-on/roll-off), przygotowane pod rezerwację Twojego spedytora. Zobacz, jak wybór kontener czy RoRo wpływa na Twój harmonogram, w naszym przewodniku po międzynarodowej wysyłce z Copart.",
+          "links": [{ "text": "przewodniku po międzynarodowej wysyłce z Copart", "href": "/copart-international-shipping" }]
         },
         {
-          "q": "Co to jest list przewozowy (BOL)?",
-          "a": "Dokument prawny rejestruj\u0105cy stan pojazdu przy odbiorze i dostawie. Zawsze dok\u0142adnie go sprawd\u017a i podpisz."
-        }
-      ]
-    },
-    {
-      "name": "Aukcje i porty",
-      "items": [
-        {
-          "q": "Czy odbieracie z IAAI, Copart, Manheim?",
-          "a": "Tak. Zajmujemy si\u0119 przepustkami, zwolnieniami lot\u00f3w i ca\u0142\u0105 dokumentacj\u0105 aukcyjn\u0105."
+          "q": "Które porty w USA obsługujecie przy eksporcie?",
+          "a": "Y7 dostarcza do głównych portów eksportowych USA, w tym Newark, Houston, Savannah, Baltimore, Los Angeles i Jacksonville. Szczegóły port po porcie znajdziesz na naszej stronie transportu od drzwi do portu.",
+          "links": [{ "text": "stronie transportu od drzwi do portu", "href": "/door-to-port-auto-transport" }]
         },
         {
-          "q": "Co to jest gate pass?",
-          "a": "Dokument z aukcji upowa\u017cniaj\u0105cy do wydania pojazdu. Mo\u017cesz go przes\u0142a\u0107 przez nasz portal lub bota Telegram."
+          "q": "Jakich dokumentów potrzebuję i jak nie przegapić statku?",
+          "a": "Przegapienie statku zwykle wynika ze spóźnionego tytułu (title), gate pass lub dock receipt, a nie z samego transportu. Nasza lista dokumentów dla eksportera pokazuje dokładnie, co i kiedy mieć przygotowane, aby przekazanie z aukcji do portu trzymało się harmonogramu.",
+          "links": [{ "text": "lista dokumentów dla eksportera", "href": "/blog/exporter-documentation-checklist" }]
         },
         {
-          "q": "Do kt\u00f3rych port\u00f3w w USA dostarczacie?",
-          "a": "Newark NJ, Houston TX, Savannah GA, Baltimore MD, Los Angeles CA, Jacksonville FL i inne."
+          "q": "Czy możecie przetrzymać pojazd, jeśli statek nie jest gotowy lub gate pass się opóźnia?",
+          "a": "Tak. Y7 może przygotować lub krótko przetrzymać pojazd, gdy statek się przesunie lub gate pass się opóźni, a następnie ponownie dopasować dostawę do portu do Twojej rezerwacji. Zobacz, jak obsługujemy wyjątki eksportowe, na naszej stronie dla eksporterów.",
+          "links": [{ "text": "stronie dla eksporterów", "href": "/exporters" }]
         },
         {
-          "q": "Jakie dokumenty s\u0105 potrzebne do dostawy do portu?",
-          "a": "Tytu\u0142 w\u0142asno\u015bci lub dokumenty eksportowe, gate pass (je\u015bli z aukcji) oraz wszelkie formularze specyficzne dla portu."
-        }
-      ]
-    },
-    {
-      "name": "Dla dealer\u00f3w i eksporter\u00f3w",
-      "items": [
-        {
-          "q": "Czy oferujecie zni\u017cki ilo\u015bciowe?",
-          "a": "Tak. Dealerzy i eksporterzy wysy\u0142aj\u0105cy 10+ pojazd\u00f3w miesi\u0119cznie kwalifikuj\u0105 si\u0119 do indywidualnych cen z dedykowanym dyspozytorem."
+          "q": "Czy możecie wysyłać międzynarodowo z Copart?",
+          "a": "Tak. Y7 przewozi zakupy z Copart z placu do wybranego przez Ciebie portu eksportowego w USA, obsługując po drodze przepustki (gate pass) i zwolnienia lotów. Cały proces zobaczysz w naszym przewodniku po międzynarodowej wysyłce z Copart.",
+          "links": [{ "text": "przewodniku po międzynarodowej wysyłce z Copart", "href": "/copart-international-shipping" }]
         },
         {
-          "q": "Jaki jest Wasz przejrzysty model cenowy?",
-          "a": "Dla eksporter\u00f3w: stawka przewo\u017anika po kosztach + nasza sta\u0142a op\u0142ata serwisowa. \u017badnych narzut\u00f3w na transport."
-        },
-        {
-          "q": "Czy mog\u0119 mie\u0107 dedykowanego dyspozytora?",
-          "a": "Tak, dla klient\u00f3w hurtowych (10+ pojazd\u00f3w miesi\u0119cznie). Jeden punkt kontaktowy dla wszystkich wysy\u0142ek."
-        }
-      ]
-    },
-    {
-      "name": "Komunikacja i dokumenty",
-      "items": [
-        {
-          "q": "Jak skontaktowa\u0107 si\u0119 z Y7, je\u015bli nie korzystam z po\u0142\u0105cze\u0144 telefonicznych?",
-          "a": "Wsparcie klienta Y7 dzia\u0142a w trybie digital-first. Mo\u017cna si\u0119 z nami skontaktowa\u0107 przez Portal klienta, bota Telegram (@y7dispatch_bot) lub email info@y7agency.com dla nowych zapyta\u0144 i pyta\u0144 niezwi\u0105zanych ze zleceniem (aktywne przesy\u0142ki \u2014 przez portal lub Telegram dla szybszej odpowiedzi; sk\u0142adanie i zmiana zlece\u0144 nie odbywa si\u0119 mailem). Ka\u017cde zapytanie jest rejestrowane pisemnie, dokumenty s\u0105 \u015bledzone, koordynacja wielu zlece\u0144 jest \u0142atwa. Obecni klienci maj\u0105 dost\u0119p 24/7 przez portal i bota Telegram w pilnych sprawach zwi\u0105zanych z transportem."
-        },
-        {
-          "q": "Jak kierowca koordynuje ze mn\u0105 dostaw\u0119?",
-          "a": "Po przydzieleniu przewo\u017anika bezpo\u015bredni numer telefonu kierowcy pojawia si\u0119 w Twoim portalu. Kierowca zadzwoni 1\u20134 godziny przed odbiorem i dostaw\u0105, aby potwierdzi\u0107 czas, tras\u0119 i punkt roz\u0142adunku. To standardowa praktyka w ca\u0142ej bran\u017cy \u2014 fizyczna logistyka dostawy wymaga koordynacji g\u0142osowej w czasie rzeczywistym, kt\u00f3rej nie da si\u0119 zast\u0105pi\u0107 tekstem."
-        },
-        {
-          "q": "Jak otrzymam dokumenty, np. list przewozowy (BOL)?",
-          "a": "Wszystkie dokumenty s\u0105 obs\u0142ugiwane cyfrowo. BOL jest podpisywany przy odbiorze i dostawie (papierowy lub podpis elektroniczny, zale\u017cnie od przewo\u017anika), a nast\u0119pnie w ci\u0105gu 24 godzin przesy\u0142any do Twojego portalu. Do\u0142\u0105czone s\u0105 zdj\u0119cia stanu pojazdu z obu punkt\u00f3w. Faktury, paragony i polisy ubezpieczeniowe s\u0105 wysy\u0142ane e-mailem i tak\u017ce przechowywane w portalu dla sta\u0142ego dost\u0119pu."
+          "q": "Czy możecie wyeksportować Teslę lub elektryka przez port w USA?",
+          "a": "Tak. Y7 dostarcza elektryki i Tesle do portów eksportowych USA z poziomem naładowania baterii i krokami obsługi, których wymagają przewoźnicy i spedytorzy. Szczegóły znajdziesz na naszej stronie dostawy elektryków do portu.",
+          "links": [{ "text": "stronie dostawy elektryków do portu", "href": "/electric-vehicle-port-delivery" }]
         }
       ]
     }
