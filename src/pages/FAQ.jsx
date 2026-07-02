@@ -99,6 +99,12 @@ export default function FAQ() {
   const tldr = i18n.getResource(lng, 'faq', 'tldr') || '';
   const lastUpdated = i18n.getResource(lng, 'faq', 'lastUpdated') || '';
   const navLabel = i18n.getResource(lng, 'faq', 'navLabel') || '';
+  // I18N-T06: chrome strings around the locale-gated blocks — localized keys
+  // with EN literals as fallback so EN needs no new keys.
+  const heroKicker = i18n.getResource(lng, 'faq', 'heroKicker') || 'Help Center';
+  const lastUpdatedLabel = i18n.getResource(lng, 'faq', 'lastUpdatedLabel') || 'Last updated:';
+  const tldrKicker = i18n.getResource(lng, 'faq', 'tldrKicker') || 'Who is Y7';
+  const tldrAriaLabel = i18n.getResource(lng, 'faq', 'tldrAriaLabel') || 'About Y7 Logistics';
 
   return (
     <div className={styles.wrap}>
@@ -117,18 +123,18 @@ export default function FAQ() {
       )}
 
       <section className={styles.hero}>
-        <span className={styles.kicker}>&#9670; Help Center</span>
+        <span className={styles.kicker}>&#9670; {heroKicker}</span>
         <h1 className={styles.title}>{t('title')}</h1>
         <p className={styles.subtitle}>{t('subtitle')}</p>
         {lastUpdated && (
-          <p className={styles.updated}>Last updated: {lastUpdated}</p>
+          <p className={styles.updated}>{lastUpdatedLabel} {lastUpdated}</p>
         )}
       </section>
 
       <div className={styles.body}>
         {tldr && (
-          <aside className={styles.tldr} aria-label="About Y7 Logistics">
-            <span className={styles.tldrKicker}>&#9670; Who is Y7</span>
+          <aside className={styles.tldr} aria-label={tldrAriaLabel}>
+            <span className={styles.tldrKicker}>&#9670; {tldrKicker}</span>
             <p className={styles.tldrText}>{tldr}</p>
           </aside>
         )}
