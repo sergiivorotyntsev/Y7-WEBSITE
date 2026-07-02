@@ -3,26 +3,50 @@ import { Trans } from 'react-i18next';
 import SmsConsent from '../../../components/SmsConsent';
 import PhoneInput from '../../../components/PhoneInput';
 import EmailInputWithCheck from '../../../components/EmailInputWithCheck';
+import AnimatedLogo from '../../../components/AnimatedLogo';
 
+// LOGIN-TB: Trade Bulletin alignment. The previous constants declared
+// Playfair Display / DM Sans / DM Mono — none of which the portal loads —
+// and off-token colors. These are the site's actual tokens (DESIGN.md):
+// Georgia serif, system sans, self-hosted JetBrains Mono, Newsprint Cream,
+// Pressroom Ink, Burnt Sienna.
 const fonts = {
-  serif: "'Playfair Display', Georgia, serif",
-  sans: "'DM Sans', system-ui, sans-serif",
-  mono: "'DM Mono', monospace",
+  serif: "Georgia, 'Times New Roman', serif",
+  sans: "system-ui, -apple-system, 'Segoe UI', sans-serif",
+  mono: "'JetBrains Mono', Consolas, monospace",
 };
 
 const C = {
-  bgPage: '#FAF6EF',
+  bgPage: '#F7F5F0',
   bgCard: '#FFFFFF',
-  bgInput: '#FAF6EF',
-  border: '#E8DFD3',
-  borderInput: '#E8DFD3',
-  borderFocused: '#A0411F',
-  text: '#1A1612',
-  textMuted: '#5B5226',
-  accent: '#A0411F',
-  accentHover: '#8A3819',
-  accentText: '#F5EFE6',
-  errorBg: '#FFF0EC',
+  bgInput: '#F7F5F0',
+  border: '#E5E0D8',
+  borderInput: '#D9D2C6',
+  borderFocused: '#993C1D',
+  text: '#2C2C2A',
+  textMuted: '#706E68',
+  accent: '#993C1D',
+  accentHover: '#7E3118',
+  accentText: '#F7F5F0',
+  errorBg: '#FBEDE8',
+  errorBorder: '#E8C7B8',
+  // masthead panel (dark, like the site header/footer)
+  ink: '#232220',
+  inkText: '#F7F5F0',
+  inkMuted: 'rgba(247, 245, 240, 0.62)',
+  inkRule: 'rgba(247, 245, 240, 0.14)',
+  accentOnInk: '#E08960',
+};
+
+const kickerStyle = {
+  fontFamily: fonts.sans,
+  fontSize: '10.5px',
+  fontWeight: 700,
+  color: C.accent,
+  textTransform: 'uppercase',
+  letterSpacing: '0.14em',
+  display: 'block',
+  marginBottom: '8px',
 };
 
 const labelStyle = {
@@ -172,39 +196,122 @@ export default function LoginCard({
   // REGC-S13-W02/W03: OTP step renders RegisterOtpStep (passed as a node)
   otpStep,
 }) {
+  // LOGIN-TB: tracked-caps kicker above the serif heading — the Trade
+  // Bulletin section-header signature, step-aware.
+  const stepKicker =
+    step === 'code' ? t('login.kickerCode')
+    : step === 'reg_type' ? t('login.kickerType')
+    : step === 'reg_otp' ? t('login.kickerOtp')
+    : step === 'register' ? t('login.kickerRegister')
+    : step === 'forgot_code' || step === 'reset_password' ? t('login.kickerReset')
+    : t('login.kickerSignIn');
+
   return (
-    <div style={{
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '40px 16px',
-      background: 'radial-gradient(ellipse at 30% 30%, #FAF6EF 0%, #F5EFE6 100%)',
-    }}>
+    <div className="y7lp">
+      <style>{`
+        /* 64px = global site header height (Header.module.css) — without the
+           offset the masthead credentials sit one header-height below the fold. */
+        .y7lp { min-height: calc(100vh - 64px); display: grid; grid-template-columns: 1fr; background: ${C.bgPage}; }
+        .y7lp-mast { display: none; }
+        .y7lp-main { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 34px 16px 40px; position: relative; }
+        .y7lp-back { position: absolute; top: 16px; right: 20px; font-family: ${fonts.sans}; font-size: 12.5px; color: ${C.textMuted}; text-decoration: none; }
+        .y7lp-back:hover { color: ${C.text}; }
+        .y7lp-brandbar { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; --color-text: ${C.text}; --color-accent: ${C.accent}; }
+        .y7lp-creds { margin-top: 26px; text-align: center; }
+        @media (min-width: 960px) {
+          .y7lp { grid-template-columns: minmax(360px, 430px) 1fr; }
+          .y7lp-mast {
+            display: flex; flex-direction: column; justify-content: space-between;
+            background: ${C.ink}; padding: 42px 44px 34px;
+            --color-text: ${C.inkText}; --color-accent: ${C.accentOnInk};
+          }
+          .y7lp-brandbar { display: none; }
+          .y7lp-creds { display: none; }
+        }
+      `}</style>
+
+      <aside className="y7lp-mast">
+        <div>
+          <AnimatedLogo size={30} to="/" />
+          <span style={{
+            fontFamily: fonts.sans, fontSize: '10.5px', fontWeight: 700,
+            color: C.accentOnInk, textTransform: 'uppercase', letterSpacing: '0.16em',
+            display: 'block', margin: '40px 0 12px',
+          }}>
+            &#9670; {t('login.brandKicker')}
+          </span>
+          <h2 style={{
+            fontFamily: fonts.serif, fontSize: '27px', fontWeight: 700, lineHeight: 1.25,
+            color: C.inkText, margin: '0 0 28px', maxWidth: '300px',
+          }}>
+            {t('login.brandTitle')}
+          </h2>
+          <div>
+            {[t('login.brandFeat1'), t('login.brandFeat2'), t('login.brandFeat3')].map((feat, i) => (
+              <div key={i} style={{
+                display: 'flex', alignItems: 'baseline', gap: '14px',
+                padding: '11px 0',
+                borderTop: `1px solid ${C.inkRule}`,
+              }}>
+                <span style={{ fontFamily: fonts.mono, fontSize: '11px', color: C.inkMuted }}>
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <span style={{ fontFamily: fonts.sans, fontSize: '14px', color: C.inkText, opacity: 0.92 }}>
+                  {feat}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div style={{ borderTop: `1px solid ${C.inkRule}`, paddingTop: '16px' }}>
+          <div style={{ fontFamily: fonts.sans, fontSize: '12.5px', fontWeight: 600, color: C.inkText, opacity: 0.9 }}>
+            {t('login.brandCreds')}
+          </div>
+          <div style={{ fontFamily: fonts.mono, fontSize: '11px', color: C.inkMuted, marginTop: '5px', letterSpacing: '0.02em' }}>
+            MC #1741537 &middot; USDOT #4427359 &middot; $75K BMC-84
+          </div>
+        </div>
+      </aside>
+
+      <main className="y7lp-main">
+        <Link className="y7lp-back" to="/">&larr; y7agency.com</Link>
+
+        <div className="y7lp-brandbar">
+          <AnimatedLogo size={26} to="/" />
+          <span style={{
+            fontFamily: fonts.sans, fontSize: '10.5px', fontWeight: 700,
+            color: C.textMuted, textTransform: 'uppercase', letterSpacing: '0.16em',
+          }}>
+            {t('login.brandKicker')}
+          </span>
+        </div>
+
       <div style={{
         width: '440px',
         maxWidth: '92vw',
-        padding: '40px 36px',
-        borderRadius: '16px',
+        padding: '36px 36px 34px',
+        borderRadius: '12px',
         background: C.bgCard,
-        boxShadow: '0 4px 24px rgba(26, 22, 18, 0.08)',
+        border: `1px solid ${C.border}`,
+        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 28px rgba(44, 44, 42, 0.07)',
       }}>
+        <span style={kickerStyle}>&#9670; {stepKicker}</span>
         <h1 style={{
           fontFamily: fonts.serif,
-          fontSize: '24px',
+          fontSize: '25px',
           fontWeight: 700,
           color: C.text,
-          textAlign: 'center',
-          marginBottom: '8px',
+          textAlign: 'left',
+          lineHeight: 1.25,
+          marginBottom: '10px',
           marginTop: 0,
         }}>
           {step === 'code'
             ? t('login.codeHeading')
             : step === 'reg_type'
-            ? 'Choose your account type'
+            ? t('login.typeHeading')
             : step === 'reg_otp'
-            ? 'Verify your email'
+            ? t('login.otpHeading')
             : step === 'register'
             ? t('login.registerHeading')
             : step === 'forgot_code'
@@ -219,9 +326,9 @@ export default function LoginCard({
             fontFamily: fonts.sans,
             fontSize: '14px',
             color: C.textMuted,
-            textAlign: 'center',
-            marginBottom: '28px',
-            lineHeight: 1.5,
+            textAlign: 'left',
+            marginBottom: '26px',
+            lineHeight: 1.55,
           }}>
             <Trans i18nKey="login.codeSent" ns="portal" values={{ email }} components={{ strong: <strong style={{ color: C.text }} /> }} />
           </p>
@@ -232,16 +339,16 @@ export default function LoginCard({
             fontFamily: fonts.sans,
             fontSize: '14px',
             color: C.textMuted,
-            textAlign: 'center',
-            marginBottom: '28px',
-            lineHeight: 1.5,
+            textAlign: 'left',
+            marginBottom: '26px',
+            lineHeight: 1.55,
           }}>
             {t('login.registerSub')}
           </p>
         )}
 
         {step === 'email' && (
-          <div style={{ height: '20px' }} />
+          <div style={{ height: '12px' }} />
         )}
 
         {error && (
@@ -251,9 +358,10 @@ export default function LoginCard({
             color: C.accent,
             padding: '10px 14px',
             background: C.errorBg,
+            border: `1px solid ${C.errorBorder}`,
             borderRadius: '8px',
             marginBottom: '20px',
-            textAlign: 'center',
+            textAlign: 'left',
           }}>
             {error}
           </div>
@@ -642,6 +750,18 @@ export default function LoginCard({
           </p>
         </div>
       )}
+
+      {/* LOGIN-TB: credentials line for narrow viewports (the masthead
+          carries it on desktop). */}
+      <div className="y7lp-creds">
+        <div style={{ fontFamily: fonts.sans, fontSize: '12px', fontWeight: 600, color: C.textMuted }}>
+          {t('login.brandCreds')}
+        </div>
+        <div style={{ fontFamily: fonts.mono, fontSize: '10.5px', color: C.textMuted, marginTop: '4px', opacity: 0.85 }}>
+          MC #1741537 &middot; USDOT #4427359 &middot; $75K BMC-84
+        </div>
+      </div>
+      </main>
     </div>
   );
 }
