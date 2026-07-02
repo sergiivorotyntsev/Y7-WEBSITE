@@ -58,7 +58,7 @@ export default function Services() {
         "@context": "https://schema.org",
         "@type": "Service",
         "serviceType": "Auto Transport Brokerage",
-        "provider": {"@type": "MovingCompany", "name": "Y7 Logistics"},
+        "provider": {"@id": "https://www.y7agency.com/#organization"},
         "areaServed": "United States",
         "hasOfferCatalog": {
           "@type": "OfferCatalog",

@@ -91,11 +91,7 @@ const serviceSchema = {
   '@type': 'Service',
   name: 'Перевозка автомобилей с Copart и IAAI',
   serviceType: 'Автоперевозки с аукционов',
-  provider: {
-    '@type': 'Organization',
-    name: 'Y7 Logistics',
-    url: 'https://www.y7agency.com',
-  },
+  provider: { '@id': 'https://www.y7agency.com/#organization' },
   areaServed: {
     '@type': 'Country',
     name: 'United States',

@@ -109,8 +109,9 @@ export default function Careers() {
     employmentType: 'CONTRACTOR',
     hiringOrganization: {
       '@type': 'Organization',
+      '@id': 'https://www.y7agency.com/#organization',
       name: 'Y7 Logistics',
-      sameAs: 'https://www.y7agency.com',
+      url: 'https://www.y7agency.com',
     },
     jobLocation: {
       '@type': 'Place',

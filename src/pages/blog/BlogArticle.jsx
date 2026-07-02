@@ -169,6 +169,7 @@ export default function BlogArticle() {
         jobTitle: author.role,
         affiliation: {
           '@type': 'Organization',
+          '@id': 'https://www.y7agency.com/#organization',
           name: 'Y7 Logistics',
           url: 'https://www.y7agency.com',
         },
@@ -189,7 +190,8 @@ export default function BlogArticle() {
     author: authorSchema,
     publisher: {
       '@type': 'Organization',
-      name: 'Y7 Consulting Inc.',
+      '@id': 'https://www.y7agency.com/#organization',
+      name: 'Y7 Logistics',
       url: 'https://www.y7agency.com',
       logo: {
         '@type': 'ImageObject',

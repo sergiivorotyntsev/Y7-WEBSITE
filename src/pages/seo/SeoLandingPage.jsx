@@ -83,12 +83,8 @@ export default function SeoLandingPage({
     '@type': 'Service',
     name: heading,
     description: meta.description,
-    provider: {
-      '@type': 'Organization',
-      name: 'Y7 Logistics',
-      url: 'https://www.y7agency.com',
-      areaServed: { '@type': 'Country', name: 'United States' },
-    },
+    provider: { '@id': 'https://www.y7agency.com/#organization' },
+    areaServed: { '@type': 'Country', name: 'United States' },
     url: `https://www.y7agency.com${meta.path}`,
   });
 

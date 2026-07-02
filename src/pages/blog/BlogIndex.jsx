@@ -25,7 +25,8 @@ const collectionSchema = JSON.stringify({
   url: 'https://www.y7agency.com/blog',
   publisher: {
     '@type': 'Organization',
-    name: 'Y7 Consulting Inc.',
+    '@id': 'https://www.y7agency.com/#organization',
+    name: 'Y7 Logistics',
     url: 'https://www.y7agency.com',
   },
 });

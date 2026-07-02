@@ -81,16 +81,7 @@ const PolandCopart = () => {
     "@context": "https://schema.org",
     "@type": "Service",
     "serviceType": "Copart Car Import Service",
-    "provider": {
-      "@type": "Organization",
-      "name": "Y7 Logistics",
-      "url": "https://www.y7agency.com",
-      "identifier": {
-        "@type": "PropertyValue",
-        "propertyID": "FMCSA MC",
-        "value": "1741537"
-      }
-    },
+    "provider": { "@id": "https://www.y7agency.com/#organization" },
     "areaServed": {
       "@type": "Country",
       "name": "United States"

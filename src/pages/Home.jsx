@@ -1,9 +1,7 @@
-import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import HreflangTags from '../components/HreflangTags';
-import { API_URL } from '../config';
 import ScrollReveal from '../components/ScrollReveal';
 import TrustBar from '../components/TrustBar';
 import QuoteFormCompact from '../components/QuoteFormCompact';
@@ -29,32 +27,6 @@ export default function Home() {
   const { t } = useTranslation('home');
   const { t: tCommon } = useTranslation();
   const navigate = useNavigate();
-  const [aggregate, setAggregate] = useState(null);
-
-  useEffect(() => {
-    fetch(`${API_URL}/api/public/reviews?limit=1`)
-      .then(r => r.ok ? r.json() : null)
-      .then(data => { if (data?.aggregate) setAggregate(data.aggregate); })
-      .catch(() => {});
-  }, []);
-
-  const schemaData = {
-    "@context": "https://schema.org",
-    "@type": "MovingCompany",
-    "name": "Y7 Logistics",
-    "url": "https://www.y7agency.com",
-    "address": { "@type": "PostalAddress", "streetAddress": "1007 Chestnut St", "addressLocality": "Newton", "addressRegion": "MA", "postalCode": "02464", "addressCountry": "US" },
-    ...(aggregate && aggregate.total_count >= 5 ? {
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": aggregate.average_rating,
-        "reviewCount": aggregate.total_count,
-        "bestRating": 5,
-        "worstRating": 1,
-      }
-    } : {}),
-  };
-
   const scrollToQuote = () => {
     const el = document.getElementById('quote-section');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -64,7 +36,10 @@ export default function Home() {
     <div>
       <PageMeta description={tCommon('meta.homeDescription')} path="/" />
       <HreflangTags currentPath="" hasPolishVersion hasUkrainianVersion hasRussianVersion />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
+      {/* SEOAI-T02: the canonical LocalBusiness #organization node ships in the
+          index.html template on every page — no per-page Organization duplicates,
+          and no aggregateRating (self-serving stars are policy-ineligible for a
+          broker; see the sprint's no-ratings invariant). */}
 
       {/* 1. Hero — centered with subtle route visual background */}
       <section className={styles.hero}>

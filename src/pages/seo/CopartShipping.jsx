@@ -127,19 +127,7 @@ export default function CopartShipping() {
     serviceType: 'Auto Auction Transport',
     name: 'Copart Vehicle Shipping',
     description: 'FMCSA-licensed transport from all 200+ Copart auction locations nationwide. Gate pass coordination, salvage and non-running vehicle handling, export-to-port delivery.',
-    provider: {
-      '@type': 'MovingCompany',
-      name: 'Y7 Logistics',
-      url: 'https://www.y7agency.com',
-      identifier: [
-        { '@type': 'PropertyValue', propertyID: 'FMCSA-MC', value: '1741537' },
-        { '@type': 'PropertyValue', propertyID: 'USDOT', value: '4427359' },
-      ],
-      sameAs: [
-        'https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=USDOT&query_string=4427359',
-        'https://www.centraldispatch.com/',
-      ],
-    },
+    provider: { '@id': 'https://www.y7agency.com/#organization' },
     areaServed: { '@type': 'Country', name: 'United States' },
     hasOfferCatalog: {
       '@type': 'OfferCatalog',

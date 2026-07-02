@@ -58,15 +58,7 @@ export default function Dealers() {
     serviceType: 'Outsourced Dispatch Department',
     name: 'Dealer Auto Transport Dispatch Service',
     description: 'Outsourced dispatch department for auto dealerships. Flat per-vehicle fee covers carrier sourcing, rate negotiation, gate pass coordination, BOL documentation, claims handling, and weekly billing. Alternative to internal dispatcher hire.',
-    provider: {
-      '@type': 'MovingCompany',
-      name: 'Y7 Logistics',
-      url: 'https://www.y7agency.com',
-      identifier: [
-        { '@type': 'PropertyValue', propertyID: 'FMCSA-MC', value: '1741537' },
-        { '@type': 'PropertyValue', propertyID: 'USDOT', value: '4427359' },
-      ],
-    },
+    provider: { '@id': 'https://www.y7agency.com/#organization' },
     areaServed: { '@type': 'Country', name: 'United States' },
     audience: { '@type': 'BusinessAudience', audienceType: 'Auto Dealerships' },
     hasOfferCatalog: {

@@ -60,19 +60,9 @@ export default function Contact() {
   return (
     <div className={styles.wrap}>
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Contact',url:'/contact'}]} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Y7 Logistics",
-        "url": "https://www.y7agency.com",
-        "contactPoint": [{
-          "@type": "ContactPoint",
-          "email": "info@y7agency.com",
-          "contactType": "customer service",
-          "availableLanguage": ["English","Russian","Polish","Ukrainian"],
-          "areaServed": "US"
-        }]
-      }) }} />
+      {/* SEOAI-T02: contactPoint already lives on the canonical #organization
+          node in the index.html template — a second bare Organization here
+          forked the entity graph. */}
       <PageMeta title={t('meta.contactTitle')} description={t('meta.contactDescription')} path="/contact" />
 
       <div className={styles.header}>
