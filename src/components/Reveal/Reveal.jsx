@@ -30,9 +30,16 @@ export default function Reveal({ children, as: Tag = 'div', delay = 0, className
     if (!el || typeof IntersectionObserver === 'undefined') return;
     // window.__Y7_STATIC_SHOWN (set in main.jsx before render) — true only
     // when this render is a client rebuild OVER a prerendered page, i.e. the
-    // entrance has already been shown statically. False during the prerender
-    // pass itself (empty SPA template), so snapshots keep the animated .in.
-    if (window.__Y7_STATIC_SHOWN) {
+    // entrance has already been shown statically.
+    // window.__Y7_PRERENDER (injected by scripts/prerender.mjs) — true only
+    // during the prerender pass. PSIFIX-T05: snapshots now ALSO take the
+    // instant path, so above-fold content is baked at rest (in + noAnim).
+    // The old animated .in in the snapshot meant the hero's static paint
+    // never registered as LCP (text painting mid-animation), pushing LCP to
+    // the post-hydration repaint (~JS download + hydrate). At-rest snapshots
+    // register LCP at the true first paint, and the hydration repaint is
+    // pixel-identical so no larger LCP entry can re-fire.
+    if (window.__Y7_STATIC_SHOWN || window.__Y7_PRERENDER) {
       const r = el.getBoundingClientRect();
       if (r.top < window.innerHeight && r.bottom > 0) {
         setInstant(true);
@@ -42,7 +49,14 @@ export default function Reveal({ children, as: Tag = 'div', delay = 0, className
     }
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) { setInView(true); io.disconnect(); }
+        if (entry.isIntersecting) {
+          // PSIFIX-T05: during the prerender pass anything that scrolls/resizes
+          // into view (e.g. the desktop-viewport flip) also bakes at rest, so
+          // no snapshot ever carries a mid-flight entrance animation.
+          if (window.__Y7_PRERENDER) setInstant(true);
+          setInView(true);
+          io.disconnect();
+        }
       },
       { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
     );

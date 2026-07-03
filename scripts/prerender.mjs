@@ -494,6 +494,18 @@ async function prerender() {
   for (const route of ROUTES_TO_PRERENDER) {
     const page = await browser.newPage();
 
+    // PSIFIX-T05: mark the prerender pass for Reveal.jsx. Above-fold Reveals
+    // snap to their resting classes (in + noAnim) in the SNAPSHOT, so the
+    // static first paint shows the hero at rest and pixel-identical to the
+    // post-hydration repaint — the browser then never records a later/larger
+    // LCP entry at hydration time (the CWV2 entrance animation kept the H1's
+    // static paint from ever registering as LCP; PSI's 4.1s LCP was hydration
+    // time). Deliberately NOT navigator.webdriver: PSI/Lighthouse run with
+    // webdriver=true and must take the same code path as real users.
+    await page.evaluateOnNewDocument(() => {
+      window.__Y7_PRERENDER = true;
+    });
+
     // Block unnecessary resources during prerender.
     // Two classes of blocks:
     //   1) image/media/font — not needed to snapshot HTML
