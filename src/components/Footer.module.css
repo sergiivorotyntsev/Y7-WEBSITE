@@ -1,4 +1,10 @@
-/* Footer — 5-column layout, dark theme, compliance visible. */
+/* Footer — 5-column layout, dark theme, compliance visible.
+   PSIFIX-T02: muted warm-white tiers lifted for WCAG AA on the #2C2C2A panel.
+   All body text here is 11-14px, so every tier must clear 4.5:1:
+     alpha 0.52 -> 4.66:1 (copyright)          was 0.3 -> 2.51:1 FAIL
+     alpha 0.55 -> 5.05:1 (legal IDs, subheads) was 0.4 -> 3.35:1 FAIL
+     alpha 0.60 -> 5.68:1 (links, headings)     was 0.5 -> 4.44:1 FAIL
+   The three-step muted hierarchy is preserved; base color unchanged. */
 
 .footer {
   background: var(--text, #2C2C2A);
@@ -44,7 +50,7 @@
 .addressLine {
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
-  color: rgba(247, 245, 240, 0.5);
+  color: rgba(247, 245, 240, 0.6);
   line-height: 1.6;
   margin-bottom: 8px;
 }
@@ -52,7 +58,7 @@
 .legalIds {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 12px;
-  color: rgba(247, 245, 240, 0.4);
+  color: rgba(247, 245, 240, 0.55);
   line-height: 1.8;
 }
 
@@ -65,7 +71,7 @@
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
   font-weight: 600;
-  color: rgba(247, 245, 240, 0.5);
+  color: rgba(247, 245, 240, 0.6);
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 16px;
@@ -75,7 +81,7 @@
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
   font-weight: 600;
-  color: rgba(247, 245, 240, 0.4);
+  color: rgba(247, 245, 240, 0.55);
   text-transform: uppercase;
   letter-spacing: 0.8px;
   margin-top: 20px;
@@ -131,7 +137,7 @@
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
   font-weight: 600;
-  color: rgba(247, 245, 240, 0.4);
+  color: rgba(247, 245, 240, 0.55);
   text-transform: uppercase;
   letter-spacing: 0.8px;
   margin-bottom: 10px;
@@ -168,7 +174,7 @@
 .familyDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
-  color: rgba(247, 245, 240, 0.5);
+  color: rgba(247, 245, 240, 0.6);
 }
 
 /* =====================================================================
@@ -207,7 +213,7 @@
 .bottomLink {
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
-  color: rgba(247, 245, 240, 0.5);
+  color: rgba(247, 245, 240, 0.6);
   text-decoration: none;
   transition: color var(--transition-fast, 150ms ease-out);
   outline: none;
@@ -235,7 +241,7 @@
 .copyright {
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
-  color: rgba(247, 245, 240, 0.3);
+  color: rgba(247, 245, 240, 0.52);
 }
 
 /* =====================================================================
@@ -249,7 +255,7 @@
 }
 
 .socialIcon {
-  color: rgba(247, 245, 240, 0.5);
+  color: rgba(247, 245, 240, 0.6);
   transition: color var(--transition-fast, 150ms ease-out);
   display: inline-flex;
   align-items: center;
