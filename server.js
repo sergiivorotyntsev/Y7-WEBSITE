@@ -136,17 +136,26 @@ app.get(/^\/en\/(quote\/[^/]+\/[^/]+)$/, (req, res) => {
 //   of the 2026-06-05 chunk-load reload-loop incident. (We use `no-cache` rather
 //   than `no-store` so the cheap ETag 304 still applies; revalidation is mandatory
 //   either way, so it is never served stale.)
-// - JS/CSS/fonts: immutable 1 year — vite content-hashes every filename, so a new
-//   build yields new names; safe to cache by contract (browser AND Cloudflare).
-// - Other static site-chrome (favicon, og images, robots.txt, sitemap.xml): modest
-//   1h — they change occasionally. Content photos are hashed and live in /assets/.
+// - Everything under /assets/ is content-hashed by vite — images included — so
+//   it is immutable by contract: 1 year (PSIFIX-T04; previously only js/css/
+//   fonts got the long TTL and hashed images fell into the 1h bucket).
+// - JS/CSS/fonts outside /assets/ (e.g. /fonts/*): same immutable 1 year —
+//   the font files are versioned by filename and effectively never change.
+// - Root static site-chrome (favicon, og images): 14 days (PSIFIX-T04; was 1h,
+//   flagged by PSI "efficient cache lifetimes"). NOTE: Cloudflare's "Browser
+//   Cache TTL" currently floors/overrides origin values (favicon served with
+//   max-age=14400 while origin said 3600) — it must be set to "Respect
+//   Existing Headers" in the CF dashboard for this header to reach browsers.
+// - robots.txt / sitemap.xml: crawler-facing, keep the fresh-ish 1h.
 app.use((req, res, next) => {
   const url = req.url.split('?')[0];
   if (url.endsWith('.html') || url === '/' || !path.extname(url)) {
     res.setHeader('Cache-Control', 'no-cache');
-  } else if (/\.(js|css|woff|woff2)$/.test(url)) {
+  } else if (url.startsWith('/assets/') || /\.(js|css|woff|woff2)$/.test(url)) {
     res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-  } else if (/\.(svg|jpg|jpeg|png|webp|avif|ico|txt|xml)$/.test(url)) {
+  } else if (/\.(svg|jpg|jpeg|png|webp|avif|ico)$/.test(url)) {
+    res.setHeader('Cache-Control', 'public, max-age=1209600');
+  } else if (/\.(txt|xml)$/.test(url)) {
     res.setHeader('Cache-Control', 'public, max-age=3600');
   }
   next();
