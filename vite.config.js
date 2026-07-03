@@ -25,33 +25,50 @@ export default defineConfig({
     },
     rollupOptions: {
       output: {
-        manualChunks(id) {
-          // node_modules split into focused vendor bundles
-          if (id.includes('node_modules')) {
+        // PSIFIX-T01: manualChunks -> advancedChunks. Under Vite 8/Rolldown the
+        // function-form manualChunks group RECURSIVELY captures a matched module's
+        // dependencies (rolldown manual-code-splitting semantics), so the forced
+        // 'blog-articles' group swallowed react-router + react/jsx-runtime — no
+        // react-router chunk was emitted and the ENTRY statically imported
+        // blog-articles-*.js (63 KiB gz, ~90% article prose) on every page.
+        // Explicit groups with priorities fix it: a higher-priority group claims
+        // its modules FIRST and "modules of that group will be removed from other
+        // groups" (rolldown docs), so every node_modules dependency is captured
+        // by a vendor group (priority >= 20) before blog-articles (10) can
+        // recursively swallow it. The article bodies import only react +
+        // react-router-dom, both covered.
+        advancedChunks: {
+          groups: [
             // three.js — its own chunk so it stays lazy (only the DaytonaCargo
             // LP dynamic-imports it; never loaded on other pages).
-            if (id.includes('node_modules/three')) return 'three';
-            if (id.includes('react-router')) return 'react-router';
-            if (id.includes('react-helmet-async')) return 'helmet';
-            if (id.includes('i18next')) return 'i18n';
-            if (id.includes('react') || id.includes('scheduler')) return 'react-vendor';
-            return 'vendor';
-          }
-
-          // CWV-T03: blog article BODIES are leaf content (statically imported by
-          // the lazy BlogArticle page for prerender; never reachable from the entry),
-          // so grouping them is safe and keeps them out of the BlogArticle chunk.
-          if (id.includes('/src/pages/blog/articles/')) return 'blog-articles';
-
-          // NOTE: the former page-category grouping (portal/seo/intl/'chrome') was
-          // removed. Forcing route pages into named chunks made Rolldown absorb
-          // SHARED components (e.g. LanguageSwitcher, imported by both the global
-          // Header and the intl pages) INTO a route chunk, turning that whole route
-          // (intl: 9 pages, 305 KiB JS + 49 KiB CSS) into a synchronous dependency
-          // of EVERY page — render-blocking on home. Letting Rolldown auto-split the
-          // remaining app code hoists shared modules to a common chunk and keeps
-          // route-only code in per-route async chunks, so nothing leaks onto home.
+            { name: 'three', test: /node_modules[\\/]three[\\/]/, priority: 50 },
+            // react-router before react-vendor: 'react-router(-dom)' also matches
+            // the react-vendor test, priority breaks the tie the same way the old
+            // if-order did.
+            { name: 'react-router', test: /node_modules[\\/]react-router/, priority: 45 },
+            { name: 'helmet', test: /node_modules[\\/]react-helmet-async[\\/]/, priority: 44 },
+            { name: 'i18n', test: /i18next/, priority: 43 },
+            { name: 'react-vendor', test: /node_modules[\\/](?:react|react-dom|scheduler)[\\/]/, priority: 42 },
+            { name: 'vendor', test: /node_modules[\\/]/, priority: 20 },
+            // CWV-T03: blog article BODIES are leaf content (statically imported by
+            // the lazy BlogArticle page for prerender; never reachable from the
+            // entry), grouped so they stay out of the BlogArticle chunk.
+            {
+              name: 'blog-articles',
+              test: /[\\/]src[\\/]pages[\\/]blog[\\/]articles[\\/]/,
+              priority: 10,
+            },
+          ],
         },
+
+        // NOTE: the former page-category grouping (portal/seo/intl/'chrome') was
+        // removed. Forcing route pages into named chunks made Rolldown absorb
+        // SHARED components (e.g. LanguageSwitcher, imported by both the global
+        // Header and the intl pages) INTO a route chunk, turning that whole route
+        // (intl: 9 pages, 305 KiB JS + 49 KiB CSS) into a synchronous dependency
+        // of EVERY page — render-blocking on home. Letting Rolldown auto-split the
+        // remaining app code hoists shared modules to a common chunk and keeps
+        // route-only code in per-route async chunks, so nothing leaks onto home.
       },
     },
   },
