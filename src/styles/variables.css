@@ -96,3 +96,19 @@
      + --success family; only the sweep duration is a new (non-color) derived token. */
   --blend-sweep: 6s;
 }
+
+/* CLSFIX-T01: the document must never grow a horizontal scrollbar. In the
+   inline-critical-CSS window (before the deferred full stylesheet applies)
+   unconstrained decorative elements (hero blobs) overflow the right edge; the
+   transient horizontal scrollbar shrinks the layout viewport by ~15px, so the
+   bottom-fixed cookie banner pins higher and then SHIFTS down when the full
+   stylesheet lands and the scrollbar vanishes (PSI blamed the banner for the
+   whole 0.255 CLS). The fully-styled site has zero horizontal overflow, so
+   this is behavior-neutral at rest. `clip` avoids creating a scroll container
+   (keeps position:sticky intact); `hidden` is the older-browser fallback.
+   This rule always applies, so Chrome coverage carries it into the critical
+   block on every prerendered page. */
+html {
+  overflow-x: hidden;
+  overflow-x: clip;
+}
