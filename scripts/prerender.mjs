@@ -263,6 +263,201 @@ export function extractCriticalCss(cssText, ranges) {
 }
 
 /**
+ * PSIFIX-T03 — above-the-fold post-filter for the extracted critical CSS.
+ *
+ * Chrome coverage marks a rule "used" when it matches ANYWHERE on the fully
+ * rendered page, so footer / mid-page / reviews rules ride along in the
+ * inline critical block (8.9 KB gz on '/'). splitCriticalCss() parses the
+ * extractCriticalCss() output back into rules; the page then classifies each
+ * selector at BOTH breakpoints and assembleCriticalCss() keeps a rule unless
+ * every element it matches sits below the fold. Fail-open in every ambiguous
+ * case:
+ *   - selector matches nothing (JS-toggled states like .open/.in)  -> KEEP
+ *   - selector fails to parse after pseudo-stripping               -> KEEP
+ *   - element inside <header> (early-interaction menus, hidden)    -> KEEP
+ *   - nested at-rule the parser treats as opaque                   -> KEEP
+ * @keyframes are then filtered to animation names referenced by surviving
+ * rules; @font-face is always kept.
+ */
+export function splitCriticalCss(cssText) {
+  const items = []; // {kind:'rule',selector,text} | {kind:'group',prelude,rules:[...]} |
+                    // {kind:'keyframes',name,text} | {kind:'raw',text}
+  const parseRules = (text) => {
+    const rules = [];
+    let depth = 0, start = 0;
+    for (let i = 0; i < text.length; i++) {
+      if (text[i] === '{') depth++;
+      else if (text[i] === '}') {
+        depth--;
+        if (depth === 0) {
+          const chunk = text.slice(start, i + 1).trim();
+          if (chunk) {
+            const brace = chunk.indexOf('{');
+            rules.push({ selector: chunk.slice(0, brace).trim(), text: chunk });
+          }
+          start = i + 1;
+        }
+      }
+    }
+    return rules;
+  };
+  let depth = 0, start = 0;
+  for (let i = 0; i < cssText.length; i++) {
+    if (cssText[i] === '{') depth++;
+    else if (cssText[i] === '}') {
+      depth--;
+      if (depth === 0) {
+        const chunk = cssText.slice(start, i + 1).trim();
+        start = i + 1;
+        if (!chunk) continue;
+        const brace = chunk.indexOf('{');
+        const head = chunk.slice(0, brace).trim();
+        if (/^@(?:-webkit-)?keyframes/.test(head)) {
+          const name = (head.match(/keyframes\s+(\S+)/) || [])[1] || '';
+          items.push({ kind: 'keyframes', name, text: chunk });
+        } else if (/^@font-face/.test(head)) {
+          items.push({ kind: 'raw', text: chunk });
+        } else if (/^@(?:media|supports|container)/.test(head)) {
+          items.push({
+            kind: 'group',
+            prelude: head,
+            rules: parseRules(chunk.slice(brace + 1, chunk.lastIndexOf('}'))),
+          });
+        } else if (head.startsWith('@')) {
+          items.push({ kind: 'raw', text: chunk }); // @page etc. — opaque, keep
+        } else {
+          items.push({ kind: 'rule', selector: head, text: chunk });
+        }
+      }
+    }
+  }
+  return items;
+}
+
+export function assembleCriticalCss(items, keepSelector) {
+  const out = [];
+  const survivingText = [];
+  for (const it of items) {
+    if (it.kind === 'rule') {
+      // a rule inside a group parser can itself be an opaque at-rule — keep those
+      if (it.selector.startsWith('@') || keepSelector(it.selector)) {
+        out.push(it.text);
+        survivingText.push(it.text);
+      }
+    } else if (it.kind === 'group') {
+      const kept = it.rules.filter(
+        (r) => r.selector.startsWith('@') || keepSelector(r.selector)
+      );
+      if (kept.length) {
+        out.push(`${it.prelude}{${kept.map((r) => r.text).join('\n')}}`);
+        survivingText.push(...kept.map((r) => r.text));
+      }
+    } else if (it.kind === 'raw') {
+      out.push(it.text);
+    }
+  }
+  // Keyframes: keep only names referenced by surviving declarations.
+  const referenced = new Set();
+  const animRe = /(?:^|[;{])\s*(?:-webkit-)?animation(?:-name)?\s*:([^;}]*)/g;
+  for (const text of survivingText) {
+    let m;
+    while ((m = animRe.exec(text)) !== null) {
+      for (const tok of m[1].split(/[\s,]+/)) {
+        if (/^[A-Za-z_][\w-]*$/.test(tok)) referenced.add(tok);
+      }
+    }
+  }
+  for (const it of items) {
+    if (it.kind === 'keyframes' && referenced.has(it.name)) out.push(it.text);
+  }
+  return out.join('\n');
+}
+
+// Runs inside the page: classify each selector as 'above' (some matched
+// element intersects the viewport or is fixed/sticky or lives in <header>),
+// 'below' (matches only out-of-viewport elements), 'none' (matches nothing),
+// or 'keep' (unparseable — fail open). Interaction pseudos and pseudo-elements
+// are stripped before matching.
+const CLASSIFY_SELECTORS_FN = (selectors) =>
+  selectors.map((sel) => {
+    try {
+      const header = document.querySelector('header');
+      let sawMatch = false;
+      for (let part of sel.split(',')) {
+        part = part
+          .replace(/::[a-zA-Z-]+(\([^)]*\))?/g, '')
+          .replace(
+            /:(hover|focus-visible|focus-within|focus|active|visited|disabled|checked|target)(\([^)]*\))?/g,
+            ''
+          )
+          .trim();
+        if (!part) return 'keep';
+        let els;
+        try {
+          els = document.querySelectorAll(part);
+        } catch {
+          return 'keep';
+        }
+        if (!els.length) continue;
+        sawMatch = true;
+        for (const el of els) {
+          if (header && header.contains(el)) return 'above';
+          const cs = getComputedStyle(el);
+          if (cs.position === 'fixed' || cs.position === 'sticky') return 'above';
+          const r = el.getBoundingClientRect();
+          if (
+            r.top < window.innerHeight * 1.2 &&
+            r.bottom > -50 &&
+            (r.width > 0 || r.height > 0)
+          ) {
+            return 'above';
+          }
+        }
+      }
+      return sawMatch ? 'below' : 'none';
+    } catch {
+      return 'keep';
+    }
+  });
+
+/**
+ * PSIFIX-T03 — trim the extracted critical CSS to the true above-the-fold
+ * set. Classifies every selector at the CURRENT (desktop) viewport and again
+ * at the mobile viewport, then drops only rules that matched real elements
+ * and never intersected either viewport. Leaves the page at the mobile
+ * viewport (the snapshot HTML is already captured by the caller).
+ */
+async function trimCriticalCssInPage(page, criticalCss) {
+  const items = splitCriticalCss(criticalCss);
+  const selectors = [];
+  for (const it of items) {
+    if (it.kind === 'rule') selectors.push(it.selector);
+    else if (it.kind === 'group') for (const r of it.rules) selectors.push(r.selector);
+  }
+  if (!selectors.length) return criticalCss;
+
+  const desktop = await page.evaluate(CLASSIFY_SELECTORS_FN, selectors);
+  await page.setViewport({ width: 390, height: 844 });
+  await page.evaluate(
+    () => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)))
+  );
+  const mobile = await page.evaluate(CLASSIFY_SELECTORS_FN, selectors);
+
+  const verdict = new Map();
+  selectors.forEach((s, i) => {
+    // keep unless BOTH breakpoints agree the selector matches only
+    // below-the-fold elements (or matches nothing at one and below at the other)
+    const d = desktop[i];
+    const m = mobile[i];
+    const drop = d !== 'above' && m !== 'above' && d !== 'keep' && m !== 'keep' &&
+      (d === 'below' || m === 'below');
+    if (!verdict.has(s)) verdict.set(s, !drop);
+    else verdict.set(s, verdict.get(s) || !drop); // duplicate selector: keep if ANY instance kept
+  });
+  return assembleCriticalCss(items, (sel) => verdict.get(sel) !== false);
+}
+
+/**
  * CWV2-T01 — swap the render-blocking stylesheet link in a snapshot for
  * inline critical CSS + an async full-sheet load (preload/onload swap with a
  * <noscript> fallback). The SPA-fallback template keeps its blocking link
@@ -646,7 +841,21 @@ async function prerender() {
       const appCss = cssCoverage.find((c) => /\/assets\/index-[^/]*\.css/.test(c.url));
       if (appCss) {
         const cssHref = new URL(appCss.url).pathname;
-        const critical = extractCriticalCss(appCss.text, appCss.ranges);
+        let critical = extractCriticalCss(appCss.text, appCss.ranges);
+        // PSIFIX-T03: drop rules whose matched elements all sit below the fold
+        // in BOTH breakpoints (coverage sweeps in whole-page rules). Fail-open:
+        // any error keeps the untrimmed set.
+        try {
+          const before = critical.length;
+          critical = await trimCriticalCssInPage(page, critical);
+          if (route === '/') {
+            console.log(
+              `  [critical] ${route}: ${before} -> ${critical.length} chars after viewport trim`
+            );
+          }
+        } catch (err) {
+          console.warn(`  [warn] ${route}: critical-CSS trim skipped (${err.message})`);
+        }
         const swapped = inlineCriticalCss(html, critical, cssHref);
         if (swapped) {
           html = swapped;
