@@ -5,6 +5,7 @@ import { portalFetch, authHeader, clearSessionOn401 } from '../../hooks/useAuth'
 import { colors, fonts, button } from '../../theme';
 import { API_URL } from '../../config';
 import PhoneInput, { getCleanPhone, isValidPhone } from '../../components/PhoneInput';
+import { GENERIC_RELEASE_DOC_TERM } from '../../utils/releaseDocTerm';
 
 const US_STATES = [
   'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD',
@@ -299,7 +300,7 @@ export default function DispatchDetails() {
             other pickups get the functional question; a recorded No collapses
             to a confirmation line. Terminology is auction-aware (server map). */}
         {(() => {
-          const term = order?.release_doc_term || 'release document (Gate Pass / Vehicle Release / Pickup Slip) or PIN';
+          const term = order?.release_doc_term || GENERIC_RELEASE_DOC_TERM;  // W7U-T03: shared constant
           const docOnFile = uploadDone || !!(order?.gate_pass_document_id || order?.gate_pass_file_name || order?.gate_pass_filename);
           const needed = order?.pickup_is_auction || releaseDocAnswer === true;
           const answerReleaseDoc = async (required) => {

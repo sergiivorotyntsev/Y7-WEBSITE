@@ -6,6 +6,7 @@ import BouncingEmailBanner from '../../components/recovery/BouncingEmailBanner';
 import { portalFetch, useAuth, authHeader, clearSessionOn401 } from '../../hooks/useAuth';
 import { colors, fonts } from '../../theme';
 import { API_URL } from '../../config';
+import { releaseDocShortTerm } from '../../utils/releaseDocTerm';
 import { STATUS_LABELS, STATUS_PIPELINE, NO_QUOTE_LABELS, CANCELLATION_REASON_LABELS } from '../../utils/orderStatus';
 
 const TIMELINE_STEPS = [
@@ -1012,14 +1013,15 @@ export default function OrderDetail() {
         </InfoCard>
       )}
 
-      {/* Gate Pass Status */}
-      <InfoCard title="Gate Pass">
+      {/* Gate Pass Status — W7U-T03: auction-aware term (Manheim "Vehicle
+          Release", ACV "Pickup Slip"; generic when the site is unknown). */}
+      <InfoCard title={releaseDocShortTerm(order.auction_type_code)}>
         {order.gate_pass_file_name ? (
           <div style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.success }}>
             <CheckIcon size={16} /> {order.gate_pass_file_name}
           </div>
         ) : order.gate_pass ? (
-          <InfoRow label="Gate Pass #" value={order.gate_pass} />
+          <InfoRow label={`${releaseDocShortTerm(order.auction_type_code)} #`} value={order.gate_pass} />
         ) : (
           <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textHint, fontStyle: 'italic' }}>
             Not uploaded

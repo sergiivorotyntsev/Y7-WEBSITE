@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
+import { releaseDocShortTerm } from '../../utils/releaseDocTerm';
 import { colors, fonts, button as btnStyles } from '../../theme';
 import PhoneInput from '../../components/PhoneInput';
 import OnboardingBanner from '../../components/OnboardingBanner';
@@ -431,7 +432,7 @@ export default function NewOrder() {
       return;
     }
     if (pickupIsAuction && auctionRequiresPin && !gatePassPin.trim()) {
-      setError('Gate Pass PIN is required for Copart/IAA orders.');
+      setError(`${releaseDocShortTerm(selectedAuction?.code)} is required for ${selectedAuction?.name || 'this auction'} pickups.`);
       return;
     }
     // W2P-T03: HARD BLOCK — a one-off manually typed pickup cannot submit
@@ -1060,8 +1061,10 @@ export default function NewOrder() {
             </div>
             {auctionTypeId && (auctionRequiresPin || selectedAuction?.code === 'MANHEIM') && (
               <div>
+                {/* W7U-T03: auction-aware term — Manheim says "Vehicle Release",
+                    not Copart's "Gate Pass PIN". */}
                 <label style={labelStyle}>
-                  Gate Pass PIN {auctionRequiresPin ? '*' : '(if available)'}
+                  {releaseDocShortTerm(selectedAuction?.code)} {auctionRequiresPin ? '*' : '(if available)'}
                 </label>
                 <input
                   style={inputStyle}
