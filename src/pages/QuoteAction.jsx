@@ -77,6 +77,18 @@ export default function QuoteAction() {
                 Reference: <strong>{result.order_ref}</strong>
               </p>
             )}
+            {/* W7D-T04: auction pickup — the release document is needed NOW;
+                the request email is already on its way (auction-aware term). */}
+            {result.release_doc?.needed && (
+              <p style={{
+                fontFamily: fonts.sans, fontSize: '13px', color: '#8a6d1b',
+                background: '#FFF8E1', border: '1px solid #F9A825', borderRadius: '10px',
+                padding: '10px 16px', maxWidth: '400px', margin: 0, lineHeight: 1.5,
+              }}>
+                Next step: upload your <strong>{result.release_doc.term}</strong> —
+                we&rsquo;ve emailed you a link. The carrier can&rsquo;t pick up without it.
+              </p>
+            )}
             {result.signin_token ? (
               <Link to={`/portal/magic/${result.signin_token}`} style={{
                 ...btnStyles.accent, display: 'inline-block', textDecoration: 'none', padding: '12px 24px', fontSize: '13px',

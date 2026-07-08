@@ -39,6 +39,10 @@ export default function DispatchDetails() {
   const [gatePassFile, setGatePassFile] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [uploadDone, setUploadDone] = useState(false);
+  // W7D-T04: the functional release-doc question — null = not answered yet,
+  // true/false = recorded answer (auction pickups are auto-true server-side).
+  const [releaseDocAnswer, setReleaseDocAnswer] = useState(null);
+  const [answerBusy, setAnswerBusy] = useState(false);
   // W2D-T02: saved delivery locations for the one-click picker (manual = fallback).
   const [savedLocations, setSavedLocations] = useState([]);
   const [deliveryWarehouseId, setDeliveryWarehouseId] = useState(null);
@@ -71,6 +75,12 @@ export default function DispatchDetails() {
       .then(r => r.json())
       .then(data => {
         setOrder(data);
+        // W7D-T04: recorded answer (true/false) or null = ask the question.
+        setReleaseDocAnswer(
+          data.pickup_release_doc_required === true ? true
+            : data.pickup_release_doc_required === false ? false
+              : null,
+        );
         // Pre-fill pickup from order if available
         setForm(f => ({
           ...f,
@@ -284,6 +294,151 @@ export default function DispatchDetails() {
       </p>
 
       <form onSubmit={handleSubmit}>
+        {/* W7D-T04: release-document block — FIRST, right after acceptance.
+            Auction pickups (or a recorded Yes) get the upload/PIN block;
+            other pickups get the functional question; a recorded No collapses
+            to a confirmation line. Terminology is auction-aware (server map). */}
+        {(() => {
+          const term = order?.release_doc_term || 'release document (Gate Pass / Vehicle Release / Pickup Slip) or PIN';
+          const docOnFile = uploadDone || !!(order?.gate_pass_document_id || order?.gate_pass_file_name || order?.gate_pass_filename);
+          const needed = order?.pickup_is_auction || releaseDocAnswer === true;
+          const answerReleaseDoc = async (required) => {
+            setAnswerBusy(true);
+            try {
+              const r = await portalFetch(`/api/portal/data/orders/${id}/release-doc-answer`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ required }),
+              });
+              const data = await r.json().catch(() => ({}));
+              if (!r.ok) throw new Error(data.detail || 'Could not save your answer');
+              setReleaseDocAnswer(data.required);
+            } catch (e) { setError(e.message || 'Could not save your answer'); }
+            setAnswerBusy(false);
+          };
+          return (
+            <div style={{
+              background: colors.bgCard, borderRadius: '12px', padding: '20px', marginBottom: '16px',
+              border: needed && !docOnFile ? `2px solid ${colors.accent}` : `1px solid ${colors.border}`,
+            }}>
+              <div style={{ fontFamily: fonts.sans, fontSize: '11px', fontWeight: 600, color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '14px' }}>
+                Pickup Release Document
+              </div>
+
+              {docOnFile ? (
+                <div style={{ fontSize: '13px', color: colors.success, fontFamily: fonts.sans }}>
+                  <CheckIcon size={14} /> Release document on file
+                  {order?.gate_pass_file_name || order?.gate_pass_filename ? ` — ${order.gate_pass_file_name || order.gate_pass_filename}` : ''}
+                </div>
+              ) : needed ? (
+                <>
+                  <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.text, margin: '0 0 12px' }}>
+                    The carrier needs your <strong>{term}</strong> to pick up the vehicle.
+                    Upload the document or enter the PIN below.
+                  </p>
+                  <div style={rowStyle}>
+                    <label style={labelStyle}>{term} #</label>
+                    <input style={inputStyle} value={form.gate_pass} onChange={set('gate_pass')} placeholder="Enter the number / PIN if you have one" />
+                  </div>
+                  <div style={rowStyle}>
+                    <label style={labelStyle}>Document file (PDF or photo)</label>
+                    <input
+                      type="file"
+                      accept=".pdf,.jpg,.jpeg,.png"
+                      onChange={(e) => { setGatePassFile(e.target.files[0]); setUploadDone(false); }}
+                      // WA-T03: taller padding keeps the native picker an easy tap target on iOS.
+                      style={{ ...inputStyle, padding: '11px 12px' }}
+                    />
+                    {gatePassFile && !uploadDone && (
+                      <button
+                        type="button"
+                        onClick={async () => {
+                          setUploading(true);
+                          try {
+                            const fd = new FormData();
+                            fd.append('file', gatePassFile);
+                            // Raw fetch — portalFetch always sets Content-Type: application/json which breaks FormData
+                            // WA-T01: attach the Bearer header (same token as the JSON
+                            // requests) so the gate-pass upload authenticates when the
+                            // cross-site cookie is blocked (iOS Safari).
+                            const r = await fetch(`${API_URL}/api/portal/data/orders/${id}/gate-pass`, {
+                              method: 'POST',
+                              credentials: 'include',
+                              headers: authHeader(),
+                              body: fd,
+                            });
+                            clearSessionOn401(r.status);
+                            if (r.ok) { setUploadDone(true); setGatePassFile(null); }
+                            else {
+                              const e = await r.json().catch(() => ({}));
+                              setError(e.detail || (r.status === 401
+                                ? 'Your session expired. Please refresh the page and sign in again.'
+                                : 'Upload failed'));
+                            }
+                          } catch { setError('Upload failed'); }
+                          setUploading(false);
+                        }}
+                        disabled={uploading}
+                        style={{
+                          // WA-T03: minHeight 44px iOS tap target; inline-flex centres the label.
+                          display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                          minHeight: '44px', marginTop: '8px', padding: '8px 20px',
+                          background: colors.accent, color: '#fff',
+                          border: 'none', borderRadius: '22px',
+                          fontSize: '12px', fontWeight: 600, cursor: uploading ? 'not-allowed' : 'pointer',
+                          fontFamily: fonts.sans, textTransform: 'uppercase', letterSpacing: '0.5px',
+                          opacity: uploading ? 0.7 : 1,
+                        }}
+                      >
+                        {uploading ? 'Uploading...' : 'Upload Document'}
+                      </button>
+                    )}
+                    {uploadDone && (
+                      <div style={{ marginTop: '6px', fontSize: '13px', color: colors.success, fontFamily: fonts.sans }}>
+                        <CheckIcon size={14} /> Document uploaded
+                      </div>
+                    )}
+                  </div>
+                </>
+              ) : releaseDocAnswer === false ? (
+                <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted }}>
+                  You confirmed no document or PIN is needed at the pickup location.
+                </div>
+              ) : (
+                <>
+                  <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.text, margin: '0 0 12px' }}>
+                    Does the driver need any document or PIN to be released the
+                    vehicle at the pickup location? (For example a gate pass,
+                    vehicle release, or pickup slip from an auction or dealer.)
+                  </p>
+                  <div style={{ display: 'flex', gap: '10px' }}>
+                    <button type="button" disabled={answerBusy} onClick={() => answerReleaseDoc(true)} style={{
+                      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                      minHeight: '44px', padding: '8px 24px',
+                      background: colors.accent, color: '#fff', border: 'none', borderRadius: '22px',
+                      fontSize: '12px', fontWeight: 600, cursor: answerBusy ? 'not-allowed' : 'pointer',
+                      fontFamily: fonts.sans, textTransform: 'uppercase', letterSpacing: '0.5px',
+                      opacity: answerBusy ? 0.7 : 1,
+                    }}>
+                      Yes — a document is needed
+                    </button>
+                    <button type="button" disabled={answerBusy} onClick={() => answerReleaseDoc(false)} style={{
+                      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                      minHeight: '44px', padding: '8px 24px',
+                      background: 'transparent', color: colors.text, border: `1px solid ${colors.border}`, borderRadius: '22px',
+                      fontSize: '12px', fontWeight: 600, cursor: answerBusy ? 'not-allowed' : 'pointer',
+                      fontFamily: fonts.sans, textTransform: 'uppercase', letterSpacing: '0.5px',
+                      opacity: answerBusy ? 0.7 : 1,
+                    }}>
+                      No
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          );
+        })()}
+
         {/* Pickup Address Section */}
         <div style={{
           background: colors.bgCard, border: `1px solid ${colors.border}`, borderRadius: '12px',
@@ -362,70 +517,6 @@ export default function DispatchDetails() {
             </div>
           </div>
 
-          <div style={rowStyle}>
-            <label style={labelStyle}>Gate Pass Number</label>
-            <input style={inputStyle} value={form.gate_pass} onChange={set('gate_pass')} placeholder="If picking up from auction, enter gate pass #" />
-          </div>
-
-          <div style={rowStyle}>
-            <label style={labelStyle}>Gate Pass File (PDF or Photo)</label>
-            <input
-              type="file"
-              accept=".pdf,.jpg,.jpeg,.png"
-              onChange={(e) => { setGatePassFile(e.target.files[0]); setUploadDone(false); }}
-              // WA-T03: taller padding keeps the native picker an easy tap target on iOS.
-              style={{ ...inputStyle, padding: '11px 12px' }}
-            />
-            {gatePassFile && !uploadDone && (
-              <button
-                type="button"
-                onClick={async () => {
-                  setUploading(true);
-                  try {
-                    const fd = new FormData();
-                    fd.append('file', gatePassFile);
-                    // Raw fetch — portalFetch always sets Content-Type: application/json which breaks FormData
-                    // WA-T01: attach the Bearer header (same token as the JSON
-                    // requests) so the gate-pass upload authenticates when the
-                    // cross-site cookie is blocked (iOS Safari).
-                    const r = await fetch(`${API_URL}/api/portal/data/orders/${id}/gate-pass`, {
-                      method: 'POST',
-                      credentials: 'include',
-                      headers: authHeader(),
-                      body: fd,
-                    });
-                    clearSessionOn401(r.status);
-                    if (r.ok) { setUploadDone(true); setGatePassFile(null); }
-                    else {
-                      const e = await r.json().catch(() => ({}));
-                      setError(e.detail || (r.status === 401
-                        ? 'Your session expired. Please refresh the page and sign in again.'
-                        : 'Upload failed'));
-                    }
-                  } catch { setError('Upload failed'); }
-                  setUploading(false);
-                }}
-                disabled={uploading}
-                style={{
-                  // WA-T03: minHeight 44px iOS tap target; inline-flex centres the label.
-                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                  minHeight: '44px', marginTop: '8px', padding: '8px 20px',
-                  background: colors.accent, color: '#fff',
-                  border: 'none', borderRadius: '22px',
-                  fontSize: '12px', fontWeight: 600, cursor: uploading ? 'not-allowed' : 'pointer',
-                  fontFamily: fonts.sans, textTransform: 'uppercase', letterSpacing: '0.5px',
-                  opacity: uploading ? 0.7 : 1,
-                }}
-              >
-                {uploading ? 'Uploading...' : 'Upload Gate Pass'}
-              </button>
-            )}
-            {uploadDone && (
-              <div style={{ marginTop: '6px', fontSize: '13px', color: colors.success, fontFamily: fonts.sans }}>
-                <CheckIcon size={14} /> Gate pass uploaded
-              </div>
-            )}
-          </div>
         </div>
 
         {/* Delivery Section */}
