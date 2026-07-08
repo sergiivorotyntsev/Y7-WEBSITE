@@ -50,6 +50,7 @@ export default function DispatchDetails() {
     pickup_state: '',
     pickup_zip: '',
     pickup_location_type: '',
+    pickup_location_name: '',  // W7D-T02: business/facility name at the pickup
     pickup_contact_name: '',
     pickup_contact_phone: '',
     pickup_business_hours: '',
@@ -77,6 +78,7 @@ export default function DispatchDetails() {
           pickup_state: data.pickup_state || '',
           pickup_zip: data.pickup_zip || '',
           pickup_location_type: data.pickup_location_type || '',
+          pickup_location_name: data.pickup_location_name || '',  // W7D-T02
           pickup_contact_name: data.pickup_contact_name || data.customer_contact_name || '',
           pickup_contact_phone: data.pickup_contact_phone || data.customer_contact_phone || '',
           pickup_business_hours: data.pickup_business_hours || '',
@@ -190,6 +192,7 @@ export default function DispatchDetails() {
           pickup_state: form.pickup_state || null,
           pickup_zip: form.pickup_zip || null,
           pickup_location_type: form.pickup_location_type || null,
+          pickup_location_name: form.pickup_location_name || null,  // W7D-T02
           pickup_contact_name: form.pickup_contact_name,
           pickup_contact_phone: getCleanPhone(form.pickup_contact_phone),
           pickup_business_hours: form.pickup_business_hours,
@@ -318,6 +321,13 @@ export default function DispatchDetails() {
             <select style={{ ...inputStyle, background: colors.bgInput }} value={form.pickup_location_type} onChange={set('pickup_location_type')}>
               {LOCATION_TYPES.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
             </select>
+          </div>
+
+          {/* W7D-T02: driver-facing business name — goes on the carrier's
+              pickup order (otherwise they only see the contact person). */}
+          <div style={rowStyle}>
+            <label style={labelStyle}>Business / location name (if any)</label>
+            <input style={inputStyle} value={form.pickup_location_name} onChange={set('pickup_location_name')} placeholder="e.g. ABC Auto Sales" maxLength={200} />
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', ...rowStyle }}>

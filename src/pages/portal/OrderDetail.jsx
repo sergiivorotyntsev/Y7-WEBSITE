@@ -341,6 +341,9 @@ function DocIntakeCard({ orderId, onUpdated }) {
           vehicle_value_dollars: ex.vehicle_value_dollars != null ? String(ex.vehicle_value_dollars) : '',
           pickup_address: ex.pickup_address || '', pickup_city: ex.pickup_city || '',
           pickup_state: ex.pickup_state || '', pickup_zip: ex.pickup_zip || '',
+          // W7D-T02: the extractor's business/facility name ("COPART - MIAMI")
+          // persists to pickup_location_name -> the CD listing's locationName.
+          pickup_location_name: ex.pickup_name || '',
           // EXP1-T04: lot/stock + buyer # now flow from the extractor to the
           // order (apply-extraction persists them; the operator reads them in
           // the admin Vehicle section for CD manual entry).
@@ -374,6 +377,8 @@ function DocIntakeCard({ orderId, onUpdated }) {
         vehicle_value_cents: Number.isFinite(dollars) ? Math.round(dollars * 100) : fields.vehicle_value_cents,
         pickup_address: fields.pickup_address || null, pickup_city: fields.pickup_city || null,
         pickup_state: fields.pickup_state || null, pickup_zip: fields.pickup_zip || null,
+        // W7D-T02: persist the document's business/facility name.
+        pickup_location_name: fields.pickup_location_name || null,
         // EXP1-T04: persist lot/buyer (W2D-T01 columns get their writer).
         lot_number: fields.lot_number || null, buyer_number: fields.buyer_number || null,
       };
@@ -439,6 +444,11 @@ function DocIntakeCard({ orderId, onUpdated }) {
           <div style={{ ...row2, marginTop: '10px' }}>
             <div><span style={lbl}>Make</span><input style={inputStyle} value={fields.vehicle_make} onChange={(e) => setF('vehicle_make', e.target.value)} /></div>
             <div><span style={lbl}>Model</span><input style={inputStyle} value={fields.vehicle_model} onChange={(e) => setF('vehicle_model', e.target.value)} /></div>
+          </div>
+          {/* W7D-T02: the document's business/facility name, editable before apply. */}
+          <div style={{ marginTop: '10px' }}>
+            <span style={lbl}>Pickup location name</span>
+            <input style={inputStyle} value={fields.pickup_location_name} onChange={(e) => setF('pickup_location_name', e.target.value)} placeholder="e.g. COPART - MIAMI SOUTH" />
           </div>
           <div style={{ marginTop: '10px' }}>
             <span style={lbl}>Pickup address</span>

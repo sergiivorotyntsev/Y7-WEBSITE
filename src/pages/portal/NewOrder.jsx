@@ -82,11 +82,11 @@ const US_STATES = [
 ];
 
 // ─── Warehouse dropdown + preview card ───────────────────────────
-function WarehouseSection({ warehouses, selectedId, onSelect, overrideActive, onToggleOverride, label, manualFields, onManualChange }) {
+function WarehouseSection({ warehouses, selectedId, onSelect, overrideActive, onToggleOverride, label, manualFields, onManualChange, showLocationName }) {
   if (warehouses.length === 0) {
     return (
       <div>
-        <ManualAddressFields fields={manualFields} onChange={onManualChange} />
+        <ManualAddressFields fields={manualFields} onChange={onManualChange} showLocationName={showLocationName} />
         <div style={{ ...hintStyle, marginTop: 8 }}>
           <Link to="/portal/locations" style={{ color: colors.accent, fontSize: 12 }}>Add a saved location</Link> to speed up future orders.
         </div>
@@ -97,7 +97,7 @@ function WarehouseSection({ warehouses, selectedId, onSelect, overrideActive, on
   if (overrideActive) {
     return (
       <div>
-        <ManualAddressFields fields={manualFields} onChange={onManualChange} />
+        <ManualAddressFields fields={manualFields} onChange={onManualChange} showLocationName={showLocationName} />
         <button type="button" onClick={onToggleOverride} style={{
           background: 'none', border: 'none', color: colors.accent,
           fontSize: 12, fontFamily: fonts.sans, cursor: 'pointer', padding: '4px 0', marginTop: 4,
@@ -145,9 +145,17 @@ function WarehouseSection({ warehouses, selectedId, onSelect, overrideActive, on
 }
 
 // ─── Manual address entry fields ─────────────────────────────────
-function ManualAddressFields({ fields, onChange }) {
+function ManualAddressFields({ fields, onChange, showLocationName }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+      {/* W7D-T02: driver-facing business name — feeds the CD listing's pickup
+          location name (otherwise the carrier only sees the contact person). */}
+      {showLocationName && (
+        <div>
+          <label style={labelStyle}>Business / location name (if any)</label>
+          <input style={inputStyle} value={fields.location_name || ''} onChange={e => onChange('location_name', e.target.value)} placeholder="e.g. ABC Auto Sales" maxLength={200} />
+        </div>
+      )}
       <div>
         <label style={labelStyle}>ZIP *</label>
         <input style={inputStyle} value={fields.zip} onChange={e => onChange('zip', e.target.value.replace(/\D/g, '').slice(0, 5))} placeholder="e.g. 02466" inputMode="numeric" maxLength={5} />
@@ -183,7 +191,7 @@ function ManualAddressFields({ fields, onChange }) {
   );
 }
 
-const EMPTY_MANUAL = { zip: '', address: '', city: '', state: '', contact_name: '', contact_phone: '' };
+const EMPTY_MANUAL = { zip: '', address: '', city: '', state: '', contact_name: '', contact_phone: '', location_name: '' };
 
 // WBF-T01: two distinct eligibility sets — do not conflate them.
 // WAREHOUSE_ELIGIBLE drives the saved-locations UI (directory fetch, S1 default
@@ -487,6 +495,8 @@ export default function NewOrder() {
         if (pickupManual.state) body.pickup_state = pickupManual.state;
         if (pickupManual.contact_name) body.pickup_contact_name = pickupManual.contact_name;
         if (pickupManual.contact_phone) body.pickup_contact_phone = pickupManual.contact_phone;
+        // W7D-T02: driver-facing business name -> CD pickup locationName.
+        if (pickupManual.location_name) body.pickup_location_name = pickupManual.location_name.trim();
       }
 
       // Delivery side — EXP1-T01: exporters send NO delivery fields at all
@@ -820,9 +830,10 @@ export default function NewOrder() {
               label="Pick up from"
               manualFields={pickupManual}
               onManualChange={handlePickupManualChange}
+              showLocationName
             />
           ) : (
-            <ManualAddressFields fields={pickupManual} onChange={handlePickupManualChange} />
+            <ManualAddressFields fields={pickupManual} onChange={handlePickupManualChange} showLocationName />
           )}
           {/* W2P-T02: document-first messaging for auction pickups (exporter has
               its own EXP-1 flow copy — same redirect, no duplicate hint). */}
