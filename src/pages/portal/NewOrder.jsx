@@ -719,20 +719,25 @@ export default function NewOrder() {
               ? "Request received. We'll source the best-priced carrier; your transport price will appear here once it's set."
               : 'Your transport request has been received. Our dispatcher will review it and send you a quote shortly.'}
           </p>
-          {/* CAP-S1-W03: ownership-proof prompt (individual/auction_buyer). Soft — speeds dispatch, not a hard block. */}
+          {/* CAP-S1-W03: ownership-proof prompt (individual/auction_buyer). Soft — speeds dispatch, not a hard block.
+              W7U-T05: benefit-first copy — the document does TWO jobs: we read
+              it and fill the pickup details, and it doubles as ownership proof. */}
           {showTierSelector && success.orderId && (
             <div style={{
               textAlign: 'left', maxWidth: '440px', margin: '0 auto 28px',
               background: '#FFF8E1', border: '1px solid #F9A825', borderRadius: '12px', padding: '14px 18px',
             }}>
               <div style={{ fontFamily: fonts.sans, fontSize: '14px', fontWeight: 600, color: '#8a6d1b', marginBottom: 4 }}>
-                Speed up dispatch — upload proof of ownership
+                Have the purchase paperwork? Upload it — we&rsquo;ll do the typing.
               </div>
               <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: '#8a6d1b', lineHeight: 1.5, marginBottom: 10 }}>
-                Add your title, registration, bill of sale, or auction invoice now so we can dispatch as soon as the carrier is set.
+                Snap or attach your bill of sale, auction invoice, or title and we
+                read the pickup details off it — location name, address, lot and
+                buyer numbers — so you don&rsquo;t retype them. It also counts as
+                your proof of ownership, which we need before dispatch anyway.
               </div>
               <Link to={`/portal/order/${success.orderId}`} style={{ ...btnStyles.accent, textDecoration: 'none', display: 'inline-block', padding: '8px 16px', fontSize: '13px' }}>
-                Upload ownership proof
+                Upload the document
               </Link>
             </div>
           )}
