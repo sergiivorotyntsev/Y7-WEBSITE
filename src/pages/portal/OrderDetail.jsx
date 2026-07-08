@@ -331,8 +331,23 @@ function DocIntakeCard({ orderId, onUpdated }) {
       const j = await post('/documents/extract', fd);
       const ex = j.extracted || {};
       if (!ex.vin && !ex.vehicle_value_cents && !ex.pickup_address) {
-        // No text layer / nothing read — it's stored as proof; tell the dealer.
-        setDone('Document attached. We couldn’t read it automatically — please enter the details by hand.');
+        // WPF-T02 (audit A-2): the failure message used to be copy with no
+        // destination. The document is stored as proof; now the SAME editable
+        // confirm form opens with blank fields — the manual-entry path is the
+        // form itself, and "Confirm & apply" persists whatever the customer
+        // types. Photo/scan uploads (no text layer) and unreadable PDFs both
+        // land here.
+        setDone(
+          j.extract_error === 'no_text_layer'
+            ? 'Document attached as proof. Photos can’t be read automatically — enter the details below and we’ll apply them.'
+            : 'Document attached. We couldn’t read it automatically — enter the details below and we’ll apply them.'
+        );
+        setFields({
+          vin: '', vehicle_year: '', vehicle_make: '', vehicle_model: '',
+          vehicle_value_cents: null, vehicle_value_dollars: '',
+          pickup_address: '', pickup_city: '', pickup_state: '', pickup_zip: '',
+          pickup_location_name: '', lot_number: '', buyer_number: '',
+        });
         setFile(null);
       } else {
         setFields({
@@ -1055,9 +1070,12 @@ export default function OrderDetail() {
         )}
       </InfoCard>
 
-      {/* DOC-2/5/7: cabinet auction-document intake — dealers/exporters/auction
-          buyers upload an auction doc to auto-fill VIN/value/pickup (or attach proof). */}
-      {['dealer', 'exporter', 'auction_buyer'].includes(user?.customer_type) && (
+      {/* DOC-2/5/7: cabinet auction-document intake — upload an auction doc to
+          auto-fill VIN/value/pickup (or attach proof).
+          WPF-T02 (audit A-1): individuals included — W7U already routes them
+          here (?upload=1 + the success banner), but the card never rendered,
+          leaving both entry points dead-ends. Same conditions as auction_buyer. */}
+      {['dealer', 'exporter', 'auction_buyer', 'individual'].includes(user?.customer_type) && (
         <div
           id="doc-intake"
           style={uploadFocus ? {
