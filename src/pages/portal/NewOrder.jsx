@@ -209,6 +209,8 @@ export default function NewOrder() {
 
   const isDealer = user?.customer_type === 'dealer';
   const isExporter = user?.customer_type === 'exporter';
+  // W7U-T04 (0707 §3): individuals get the pickup-source toggle too.
+  const isIndividual = user?.customer_type === 'individual';
   const isWarehouseUser = WAREHOUSE_ELIGIBLE.includes(user?.customer_type);
   const isDirectSubmitter = DIRECT_SUBMIT_ELIGIBLE.includes(user?.customer_type);
   // EXP1-T01: exporter delivery is Y7-ASSIGNED after document review — the form
@@ -264,8 +266,16 @@ export default function NewOrder() {
   // byte-identical UI); dealer-outbound pickup is their saved location (the
   // manual override there IS the one-off branch); individual keeps the plain
   // manual quote form untouched.
-  const pickupSourceSelectable = isAuctionBuyer || (isDealer && direction === 'inbound');
+  // W7U-T04: individual joins the toggle (0707's customer had no way to say
+  // "this is an auction pickup" — parity with auction_buyer, approved Q1-A).
+  const pickupSourceSelectable = isAuctionBuyer || isIndividual || (isDealer && direction === 'inbound');
   const [pickupSource, setPickupSource] = useState('auction');
+  // W7U-T04: individuals default to "Other address" — their common case is a
+  // one-off residence/dealership pickup, and defaulting into the auction
+  // document-first redirect would skip the post-submit success screen.
+  useEffect(() => {
+    if (user?.customer_type === 'individual') setPickupSource('oneoff');
+  }, [user?.customer_type]);
   const pickupIsAuction = isExporter || (pickupSourceSelectable && pickupSource === 'auction');
   const showAuctionFields = pickupIsAuction;
   const [auctionTypes, setAuctionTypes] = useState([]);
@@ -357,10 +367,13 @@ export default function NewOrder() {
   // W2P-T03: a ONE-OFF manually typed pickup — not an auction, not a saved
   // directory address. Dealer-outbound reaches it via the "use a different
   // location" override (or having no saved pickup location); the selector
-  // types reach it via the "Other address" source. Individual/exporter never.
+  // types reach it via the "Other address" source. Exporter never.
+  // W7U-T04: individual joins — their manual pickup carries the same dry-run
+  // liability, so the consent now covers them (parity with auction_buyer;
+  // FLAGGED: adds one required checkbox to the individual flow).
   const pickupIsOneOff =
     !pickupIsAuction
-    && (isDealer || isAuctionBuyer)
+    && (isDealer || isAuctionBuyer || isIndividual)
     && (pickupIsWarehouse ? (pickupOverride || !pickupWarehouseId) : true);
 
   function handlePickupManualChange(field, value) { setPickupManual(prev => ({ ...prev, [field]: value })); }
@@ -1028,7 +1041,7 @@ export default function NewOrder() {
           <div style={{ marginBottom: '24px', padding: '16px', background: '#F9FAFB', borderRadius: '8px', border: '1px solid #E5E7EB' }}>
             <div style={{ ...labelStyle, fontWeight: 600, marginBottom: '12px' }}>Auction Information</div>
             <div style={{ marginBottom: '12px' }}>
-              <label style={labelStyle}>Auction Site {isAuctionBuyer ? '*' : ''}</label>
+              <label style={labelStyle}>Auction Site {(isAuctionBuyer || isIndividual) ? '*' : ''}</label>
               <select
                 style={inputStyle}
                 value={auctionTypeId}
