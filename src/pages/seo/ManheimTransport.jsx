@@ -23,6 +23,11 @@ export default function ManheimTransport() {
       secondaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
       heading="Manheim Transport — Dealer Auction Vehicle Shipping"
       intro="Manheim is the world's largest wholesale vehicle auction marketplace, serving licensed dealers exclusively. Y7 Logistics provides reliable transport from Manheim locations with competitive pricing for dealers who ship regularly."
+      tldr={{
+        kicker: 'Manheim transport, in brief',
+        ariaLabel: 'Manheim transport, in brief',
+        text: 'Manheim is a dealer-license-only wholesale marketplace, so its 70+ US locations move overwhelmingly running, clean-title inventory. Y7 Logistics, a licensed and bonded FMCSA broker (MC #1741537, USDOT #4427359), prices Manheim lanes against the live carrier market instead of Ready Logistics\' posted rates, typically $50-$150 less per vehicle on high-volume routes, and consolidates Manheim, Copart, and IAA pickups into one dispatch workflow with volume rate tiers for recurring dealer lanes.',
+      }}
       whenNeeded={[
         'Dealer purchasing inventory at Manheim',
         'Buying from Manheim online (OVE/Simulcast)',
@@ -68,6 +73,18 @@ export default function ManheimTransport() {
         {
           q: 'Do you transport from Manheim to other auctions?',
           a: 'Yes, inter-auction and dealer-to-dealer transport is available. We handle logistics between any combination of auctions and dealerships.',
+        },
+        {
+          q: 'Do I need a dealer license to buy or ship from Manheim?',
+          a: 'To buy, yes: Manheim restricts registration to licensed dealers, so private buyers and most exporters need a dealer partner. Shipping is simpler: once a vehicle is purchased, Y7 coordinates transport for the buying account whether the purchase happened in-lane, on OVE, or via Simulcast. We handle release coordination with the Manheim location either way.',
+        },
+        {
+          q: 'How does vehicle release work at Manheim?',
+          a: 'Release at Manheim is coordinated with the specific auction location rather than through an automated pass. A vehicle bought at a Tuesday sale may not be release-ready until Wednesday or Thursday depending on that location\'s title processing, and some locations require pickup coordination directly with auction staff. We track sale days and release timelines at the Manheim locations our dealer clients buy from, and dispatch only when the vehicle is actually available.',
+        },
+        {
+          q: 'Can you ship OVE and Simulcast purchases like in-lane buys?',
+          a: 'Yes. OVE and Simulcast purchases ship exactly like in-lane buys on our end: you send the purchase confirmation and delivery address, we quote the lane against the live carrier market, dispatch a verified carrier, and coordinate release with the Manheim location remotely. Buying from a facility 1,500 miles away changes nothing about the process.',
         },
       ]}
       ctaLabel="Get Dealer Pricing"
