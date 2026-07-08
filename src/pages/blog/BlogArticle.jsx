@@ -137,6 +137,7 @@ const RELATED_SERVICES = {
   ],
   'port-specific-export-newark-houston-savannah': [
     { to: '/exporters', label: 'Export services' },
+    { to: '/door-to-port-auto-transport', label: 'Door-to-port transport' },
     { to: '/ports/newark', label: 'Port Newark' },
     { to: '/ports/houston', label: 'Port Houston' },
   ],

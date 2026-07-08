@@ -5,9 +5,9 @@ export default function SalvageCarShipping() {
   return (
     <SeoLandingPage
       meta={{
-        title: 'Salvage Car Shipping — Non-Running Vehicle Transport | Y7 Logistics',
+        title: 'Salvage Car Shipping — Copart & IAAI Total-Loss Transport | Y7 Logistics',
         description:
-          'Salvage and non-running vehicle transport from Copart, IAAI, and home addresses. Winch and forklift loading. Licensed FMCSA broker. Free quote in 1 hour.',
+          'Salvage-title and total-loss vehicle transport from Copart, IAAI, and home addresses. Winch and forklift loading, condition-matched carriers. Licensed FMCSA broker, free quote in 1 hour.',
         path: '/salvage-car-shipping',
       }}
       primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
@@ -81,6 +81,7 @@ export default function SalvageCarShipping() {
         { label: 'Auction Car Shipping', to: '/auction-car-shipping' },
         { label: 'IAAI Transport', to: '/iaai-transport' },
         { label: 'Auction to Port Transport', to: '/auction-to-port-transport' },
+        { label: 'How to Ship a Non-Running Vehicle', to: '/blog/non-running-vehicle-shipping-playbook' },
       ]}
     >
       <Section title="What Salvage & Non-Running Shipping Involves">

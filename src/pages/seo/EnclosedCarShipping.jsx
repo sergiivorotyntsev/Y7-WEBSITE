@@ -82,6 +82,7 @@ export default function EnclosedCarShipping() {
         { label: 'Tesla Car Shipping', to: '/tesla-car-shipping' },
         { label: 'Car Shipping Cost', to: '/car-shipping-cost' },
         { label: 'Ship My Car', to: '/ship-my-car' },
+        { label: 'When to Skip Enclosed (Guide)', to: '/blog/enclosed-transport-when-to-skip' },
       ]}
     >
       <Section title="What Enclosed Transport Actually Is">

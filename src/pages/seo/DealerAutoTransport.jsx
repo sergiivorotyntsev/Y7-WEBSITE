@@ -86,6 +86,7 @@ export default function DealerAutoTransport() {
         { label: 'Manheim Transport', to: '/manheim-transport' },
         { label: 'IAA Transport', to: '/iaai-transport' },
         { label: 'Port Delivery', to: '/door-to-port-auto-transport' },
+        { label: 'Auction Pickup Playbook', to: '/blog/dealer-auction-pickup-guide' },
         { label: 'Get a Quote', to: '/quote' },
       ]}
     >

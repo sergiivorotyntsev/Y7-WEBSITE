@@ -210,8 +210,8 @@ const articles = [
     title: 'Stop Losing Money on Auction Pickup: A Dealer\'s Guide to Faster Transport',
     excerpt: 'Gate pass gaps, inoperable surprises, and storage fees eating your margin. Here is how dealers can cut transport costs and speed up the auction-to-lot pipeline.',
     tags: ['Dealers', 'Copart', 'IAAI', 'Gate Pass', 'Storage'],
-    metaTitle: 'Dealer Auction Pickup Guide',
-    metaDescription: 'How auto dealers can reduce auction pickup costs, avoid storage fees, and speed up Copart/IAAI transport with smarter dispatch.',
+    metaTitle: 'How Dealers Cut Auction Pickup Costs & Storage Fees (2026)',
+    metaDescription: 'A dealer\'s playbook for faster Copart and IAAI auction pickup: gate-pass timing, storage-fee avoidance, and inoperable-vehicle dispatch that protects margin.',
   },
   {
     slug: 'exporter-documentation-checklist',

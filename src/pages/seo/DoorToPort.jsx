@@ -86,6 +86,7 @@ export default function DoorToPort() {
         { label: 'Port Jacksonville', to: '/ports/jacksonville' },
         { label: 'Auction to Port', to: '/auction-to-port-transport' },
         { label: 'Auction Shipping', to: '/auction-car-shipping' },
+        { label: 'Newark vs Houston vs Savannah', to: '/blog/port-specific-export-newark-houston-savannah' },
         { label: 'For Exporters', to: '/exporters' },
         { label: 'Get a Quote', to: '/quote' },
       ]}
