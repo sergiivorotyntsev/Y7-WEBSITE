@@ -235,6 +235,11 @@ export default function NewOrder() {
   const [vehicleYear, setVehicleYear] = useState('');
   const [vehicleMake, setVehicleMake] = useState('');
   const [vehicleModel, setVehicleModel] = useState('');
+  // W7U-T02: customer-visible CD body type. Auto-suggested from the VIN decode
+  // on blur, always editable — mirrors the admin rule "never a silent SEDAN".
+  const [vehicleType, setVehicleType] = useState('');
+  const [vinDecoding, setVinDecoding] = useState(false);
+  const [vinDecodeNote, setVinDecodeNote] = useState('');
 
   // Warehouse selections
   const [pickupWarehouseId, setPickupWarehouseId] = useState(null);
@@ -373,6 +378,12 @@ export default function NewOrder() {
       setError('Please enter the VIN or at least the vehicle make.');
       return;
     }
+    // W7U-T02: direct-submit orders go straight to fulfillment — the body type
+    // must be confirmed (quote flows stay prompted-but-optional, no new block).
+    if (isDirectSubmitter && !vehicleType) {
+      setError('Please select the vehicle type.');
+      return;
+    }
 
     // Determine ZIPs
     let pZip, dZip;
@@ -464,6 +475,7 @@ export default function NewOrder() {
         vehicle_year: vehicleYear.trim() || undefined,
         vehicle_make: vehicleMake.trim() || undefined,
         vehicle_model: vehicleModel.trim() || undefined,
+        vehicle_type: vehicleType || undefined,  // W7U-T02
         pickup_zip: pZip,
         delivery_zip: dZip,
         notes: notes.trim() || undefined,
@@ -713,7 +725,7 @@ export default function NewOrder() {
           )}
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
             <button onClick={() => navigate('/portal/dashboard')} style={btnStyles.accent}>Go to Dashboard</button>
-            <button onClick={() => { setSuccess(null); setVin(''); setVehicleYear(''); setVehicleMake(''); setVehicleModel(''); setPickupManual({ ...EMPTY_MANUAL }); setDeliveryManual({ ...EMPTY_MANUAL }); setNotes(''); }} style={btnStyles.secondary}>Submit Another</button>
+            <button onClick={() => { setSuccess(null); setVin(''); setVehicleYear(''); setVehicleMake(''); setVehicleModel(''); setVehicleType(''); setVinDecodeNote(''); setPickupManual({ ...EMPTY_MANUAL }); setDeliveryManual({ ...EMPTY_MANUAL }); setNotes(''); }} style={btnStyles.secondary}>Submit Another</button>
           </div>
         </div>
       </div>
@@ -769,10 +781,55 @@ export default function NewOrder() {
         {/* Vehicle */}
         <div style={sectionStyle}>
           <div style={sectionTitle}>Vehicle</div>
-          <div style={{ marginBottom: showVehicleDetails ? 12 : 0 }}>
+          <div style={{ marginBottom: 12 }}>
             <label style={labelStyle}>VIN Number</label>
-            <input style={inputStyle} value={vin} onChange={e => setVin(e.target.value)} placeholder="Enter 17-character VIN or leave blank" maxLength={17} />
-            <div style={hintStyle}>Optional. If unknown, enter vehicle details below.</div>
+            <input
+              style={inputStyle}
+              value={vin}
+              onChange={e => setVin(e.target.value)}
+              onBlur={async () => {
+                // W7U-T02: decode on blur — fills year/make/model (if empty)
+                // and suggests the visible body type. Best-effort: failures
+                // leave the form untouched.
+                const v = vin.trim().toUpperCase();
+                if (!VIN_RE.test(v)) return;
+                setVinDecoding(true); setVinDecodeNote('');
+                try {
+                  const r = await portalFetch(`/api/portal/data/decode-vin?vin=${encodeURIComponent(v)}`);
+                  const d = await r.json();
+                  if (r.ok && d.ok) {
+                    if (d.vehicle_year && !vehicleYear.trim()) setVehicleYear(String(d.vehicle_year));
+                    if (d.vehicle_make && !vehicleMake.trim()) setVehicleMake(d.vehicle_make);
+                    if (d.vehicle_model && !vehicleModel.trim()) setVehicleModel(d.vehicle_model);
+                    if (d.vehicle_type) {
+                      setVehicleType(d.vehicle_type);
+                      setVinDecodeNote(`Detected from VIN — please confirm the body type below.`);
+                    } else {
+                      setVinDecodeNote('VIN decoded — please pick the body type below.');
+                    }
+                  }
+                } catch { /* silent — decode is a convenience */ }
+                setVinDecoding(false);
+              }}
+              placeholder="Enter 17-character VIN or leave blank"
+              maxLength={17}
+            />
+            <div style={hintStyle}>
+              {vinDecoding ? 'Decoding VIN…' : (vinDecodeNote || 'Optional. If unknown, enter vehicle details below.')}
+            </div>
+          </div>
+          {/* W7U-T02: visible, editable body type (never silently defaulted).
+              Required for direct-submit forms; optional on quote forms. */}
+          <div style={{ marginBottom: 12 }}>
+            <label style={labelStyle}>Vehicle type {isDirectSubmitter ? '*' : '(helps carriers quote right)'}</label>
+            <select style={selectStyle} value={vehicleType} onChange={e => setVehicleType(e.target.value)}>
+              <option value="">Select...</option>
+              <option value="sedan">Sedan / Coupe / Hatchback</option>
+              <option value="suv">SUV / Crossover</option>
+              <option value="truck">Pickup / Truck</option>
+              <option value="van">Van / Minivan</option>
+              <option value="motorcycle">Motorcycle</option>
+            </select>
           </div>
           {showVehicleDetails && (
             <div>
