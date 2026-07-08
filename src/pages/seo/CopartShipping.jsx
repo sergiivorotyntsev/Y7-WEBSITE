@@ -118,6 +118,10 @@ const FAQS = [
     q: 'Should I use Copart\'s in-house Transporter App or a broker?',
     a: 'Both work. In-house is fine for simple, high-volume lanes with clean-title drivable vehicles. A broker is worth it when: you want a pre-bid quote (so you do not discover shipping cost after winning), you need non-running handling, you are shipping internationally, you are dealing with a remote yard, or you want a single point of contact for multiple yards. Broker pools also reach carriers who are not on Copart\'s app.',
   },
+  {
+    q: 'How does the Copart buyer fee schedule work in 2026?',
+    a: 'Copart buyer fees are tiered by sale price on Copart\'s published fee schedule, and they stack: the tiered buyer fee, an internet bid fee ($25-$149 depending on sale price), a $95 gate fee per vehicle ($65 for motorcycles, ATVs, and boats), and a $15 environmental fee. Payment is due within 3 business days including sale day; a $50 late fee applies after that, and storage starts once the free window closes. On a $12,000 purchase, total add-ons commonly run $600-$1,100, roughly 5-9% of the hammer price. Fees change, so verify current amounts on Copart\'s official member-fees page. Transport is the one cost you control: quote it before you bid.',
+  },
 ];
 
 export default function CopartShipping() {

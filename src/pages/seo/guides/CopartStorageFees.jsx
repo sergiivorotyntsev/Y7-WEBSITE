@@ -51,6 +51,30 @@ const noteStyle = {
 
 const linkStyle = { color: colors.accent, textDecoration: 'none', fontWeight: 600, borderBottom: `1px solid ${colors.accent}` };
 
+// Hand-rolled FAQPage schema source (guide pages have no SeoLandingPage faqs generator).
+// The visible Q&A blocks below render from these exact constants, so the schema always
+// mirrors visible text 1:1. Keep question wording stable: both target ranked GSC queries.
+const SNIPPET_FAQS = [
+  {
+    q: 'How much are Copart storage fees per day?',
+    a: 'Copart storage fees typically run $20 to $40 per day, set by each yard: roughly $20-$25 at rural yards, $25-$35 at most suburban locations, and $35-$40 and up at high-volume urban yards like LA, Miami, and Newark. Most yards give a three-business-day free window after payment clears; once it expires, storage accrues every calendar day. Y7 Logistics, a licensed and bonded FMCSA broker (MC #1741537), quotes transport before you bid so storage risk is priced into your bid ceiling.',
+  },
+  {
+    q: 'Does Copart charge storage fees on weekends?',
+    a: 'Yes. Once the free window has expired, Copart charges storage for every calendar day, weekends and holidays included. Weekends only pause the count while the free window is still running, because the free window counts business days. A Friday free-window expiry followed by a Monday pickup adds two weekend days of storage at the yard’s daily rate. Saturday pickup is possible at some yards, but loading usually stops earlier than the posted closing time and Sundays are closed, so tell us on the quote if a Saturday pickup matters.',
+  },
+];
+
+const snippetFaqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: SNIPPET_FAQS.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+});
+
 const tableStyle = { width: '100%', borderCollapse: 'collapse', fontFamily: fonts.sans, fontSize: '14px', margin: '12px 0 24px' };
 const thStyle = { textAlign: 'left', padding: '10px 12px', borderBottom: `2px solid ${colors.border}`, background: colors.bgMuted, fontWeight: 700, color: colors.text };
 const tdStyle = { padding: '10px 12px', borderBottom: `1px solid ${colors.border}`, color: colors.textMuted };
@@ -68,6 +92,8 @@ export default function CopartStorageFees() {
         { name: 'Copart Shipping', url: '/copart-shipping' },
         { name: 'Storage Fees Guide', url: '/copart-storage-fees' },
       ]} />
+      {/* Hand-rolled FAQPage (approved CONT-T01): mirrors the visible SNIPPET_FAQS blocks 1:1 */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: snippetFaqSchema }} />
 
       <nav aria-label="Breadcrumb" style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted, marginBottom: '24px' }}>
         <Link to="/" style={{ color: colors.textMuted }}>Home</Link>
@@ -96,6 +122,9 @@ export default function CopartStorageFees() {
         honest broker will tell you the same.
       </div>
 
+      <h2 style={h2Style}>{SNIPPET_FAQS[0].q}</h2>
+      <p style={pStyle}>{SNIPPET_FAQS[0].a}</p>
+
       <h2 style={h2Style}>How the free window actually works</h2>
       <p style={pStyle}>
         Most Copart yards give a three-business-day free window after payment clears. Two
@@ -111,6 +140,9 @@ export default function CopartStorageFees() {
           the free window has expired. Friday win → Tuesday gate pass → Friday free-window end
           → Monday pickup = two days of storage fees accrued over the weekend.</li>
       </ul>
+
+      <h2 style={h2Style}>{SNIPPET_FAQS[1].q}</h2>
+      <p style={pStyle}>{SNIPPET_FAQS[1].a}</p>
 
       <h2 style={h2Style}>Fee schedule by yard type</h2>
       <p style={pStyle}>

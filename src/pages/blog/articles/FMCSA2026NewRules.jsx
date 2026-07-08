@@ -13,6 +13,22 @@ export default function FMCSA2026NewRules({ theme }) {
       </p>
 
       <h2 style={{ fontFamily: theme.fonts.serif, fontSize: 'clamp(1.2rem, 2.5vw, 1.4rem)', fontWeight: 700, color: theme.text, margin: '36px 0 16px' }}>
+        What Are the FMCSA Freight Broker Authority Requirements in 2026?
+      </h2>
+
+      <p style={{ marginBottom: 18, fontSize: '1.02rem', lineHeight: 1.8, color: theme.text }}>
+        To hold active broker authority in 2026 you need FMCSA operating authority (an MC number)
+        plus a USDOT number, a surety bond or trust of at least{' '}
+        <strong style={{ color: theme.accent }}>$75,000</strong> (a BMC-84 bond or BMC-85 trust),
+        a BOC-3 process-agent filing, and identity proofing through the Unified Registration
+        System. Authority becomes active only after the bond and BOC-3 are on file with the FMCSA.
+        The January 16, 2026 rules added two obligations on top: a drawn-down bond must be
+        replenished within 7 days, and BMC-85 trustees must now be banks or traditional trust
+        institutions. Y7 Logistics operates under MC #1741537 and USDOT #4427359 with a BMC-84
+        surety bond.
+      </p>
+
+      <h2 style={{ fontFamily: theme.fonts.serif, fontSize: 'clamp(1.2rem, 2.5vw, 1.4rem)', fontWeight: 700, color: theme.text, margin: '36px 0 16px' }}>
         Bond Replenishment: 30 Days Became 7
       </h2>
 

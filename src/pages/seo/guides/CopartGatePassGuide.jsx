@@ -54,6 +54,17 @@ export default function CopartGatePassGuide() {
         no exceptions, no arguing, no supervisor override.
       </p>
 
+      <h2 style={h2Style}>How much is the Copart gate fee in 2026?</h2>
+      <p style={pStyle}>
+        The Copart gate fee is <strong>$95 per vehicle</strong> for standard cars, trucks, SUVs,
+        and vans, and <strong>$65</strong> for motorcycles, ATVs, and boats, per Copart&apos;s
+        published fee schedule. It applies to every purchase and cannot be waived. It is separate
+        from the $15 environmental fee, and separate from storage: payment is due within 3
+        business days including sale day, a $50 late fee applies after that, and storage starts
+        accruing once the free window closes. Fees change; verify the current amount on
+        Copart&apos;s official member-fees page before you bid.
+      </p>
+
       <h2 style={h2Style}>When the gate pass issues</h2>
       <p style={pStyle}>
         The gate pass does not appear when you pay. It appears when your payment <em>clears</em>.

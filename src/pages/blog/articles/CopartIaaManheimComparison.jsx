@@ -13,6 +13,18 @@ export default function CopartIaaManheimComparison({ theme }) {
         fees that never show up in the advertised sale price.
       </p>
 
+      <div style={{ borderLeft: `4px solid ${theme.accent}`, padding: '16px 24px', margin: '24px 0', background: 'rgba(153,60,29,0.04)', borderRadius: '0 10px 10px 0' }}>
+        <div style={{ fontWeight: 700, color: theme.accent, marginBottom: 8, fontSize: '0.85rem', letterSpacing: 0.5, textTransform: 'uppercase' }}>Copart vs Manheim vs IAA, in short</div>
+        <p style={{ margin: 0, fontSize: '0.95rem', lineHeight: 1.7, color: theme.text }}>
+          Copart is an open online salvage auction: insurance total-loss inventory, automated
+          gate-pass release, a three-business-day free storage window, then $15&ndash;$40 per day.
+          Manheim is a dealer-license-only wholesale network: clean-title trade-ins and off-lease
+          stock, with less standardized vehicle release. IAA runs Copart&apos;s playbook with
+          different insurer relationships. Across all three, buyer add-ons beyond the hammer price
+          commonly total $600&ndash;$1,100, about 5&ndash;9% on a $12,000 purchase.
+        </p>
+      </div>
+
       <h2 style={{ fontFamily: theme.fonts.serif, fontSize: 'clamp(1.2rem, 2.5vw, 1.4rem)', fontWeight: 700, color: theme.text, margin: '36px 0 16px' }}>
         Copart: The Salvage Giant Everyone Already Knows
       </h2>
@@ -67,8 +79,20 @@ export default function CopartIaaManheimComparison({ theme }) {
       </div>
 
       <h2 style={{ fontFamily: theme.fonts.serif, fontSize: 'clamp(1.2rem, 2.5vw, 1.4rem)', fontWeight: 700, color: theme.text, margin: '36px 0 16px' }}>
-        Manheim: A Different Business Entirely
+        What Is the Difference Between IAA and Copart for Salvage Buyers?
       </h2>
+
+      <p style={{ marginBottom: 18, fontSize: '1.02rem', lineHeight: 1.8, color: theme.text }}>
+        For a salvage buyer the practical differences come down to three things. Inventory: both
+        sell insurance total-loss vehicles, but each holds exclusive consignment relationships
+        with different insurers, so the same profile of car often appears on only one platform.
+        Release: IAA gate passes typically issue same-day once payment clears, while Copart&apos;s
+        automated release follows payment clearing with a clearer buyer dashboard. Fees: IAA tends
+        to charge slightly higher internet-bidding fees but lower transportation facilitation
+        fees, so the all-in difference depends on the exact sale price. First-time salvage buyers
+        usually find Copart&apos;s standardized process easier to learn; experienced buyers
+        monitor both and bid wherever the all-in cost lands lower.
+      </p>
 
       <p style={{ marginBottom: 18, fontSize: '1.02rem', lineHeight: 1.8, color: theme.text }}>
         Manheim is not a salvage auction. It is the largest dealer-to-dealer wholesale auction network in
