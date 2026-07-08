@@ -297,6 +297,18 @@
   align-self: stretch;
 }
 
+/* W7U-T01: the mobile auth button — pairs with .loginBtn (light text on the
+   dark menu) but scaled up from the desktop 10px pill to a full-width 48px
+   tap target directly under GET A QUOTE. */
+.mobileLoginBtn {
+  font-size: 14px !important;
+  min-height: 48px;
+  align-self: stretch;
+  margin-top: -4px;
+  margin-bottom: 4px;
+  padding: 10px 20px !important;
+}
+
 /* =====================================================================
    MOBILE SECTION TOGGLE (Services, Resources)
    ===================================================================== */

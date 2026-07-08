@@ -195,6 +195,27 @@ export default function Header() {
             {t('cta.getQuote')}
           </button>
 
+          {/* W7U-T01 (0707 finding 1): LOG IN was the LAST menu item — below the
+              language switcher, dark-on-dark (missing the .loginBtn contrast
+              class), below the fold. The two primary actions now sit together
+              at the top; .mobileLoginBtn scales the desktop .loginBtn styling
+              to a tappable full-width pill. */}
+          {user ? (
+            <button
+              onClick={async () => { await logout(); navigate('/'); setMenuOpen(false); }}
+              className={`${btn.btnSecondary} ${styles.loginBtn} ${styles.mobileLoginBtn}`}
+            >
+              {t('auth.logOut')}
+            </button>
+          ) : (
+            <button
+              onClick={() => { navigate('/portal/login'); setMenuOpen(false); }}
+              className={`${btn.btnSecondary} ${styles.loginBtn} ${styles.mobileLoginBtn}`}
+            >
+              {t('auth.logIn')}
+            </button>
+          )}
+
           <Link
             to={homeHref}
             className={`${styles.mobileNavLink} ${homeActive ? styles.mobileNavLinkActive : ''}`}
@@ -312,25 +333,9 @@ export default function Header() {
             {t('nav.contact')}
           </Link>
 
+          {/* W7U-T01: the auth button moved to the top of the menu. */}
           <div className={styles.mobileFooter}>
             <LanguageSwitcher />
-            {user ? (
-              <button
-                onClick={async () => { await logout(); navigate('/'); setMenuOpen(false); }}
-                className={btn.btnSecondary}
-                style={{ marginTop: '12px', padding: '10px 20px' }}
-              >
-                {t('auth.logOut')}
-              </button>
-            ) : (
-              <button
-                onClick={() => { navigate('/portal/login'); setMenuOpen(false); }}
-                className={btn.btnSecondary}
-                style={{ marginTop: '12px', padding: '10px 20px' }}
-              >
-                {t('auth.logIn')}
-              </button>
-            )}
           </div>
         </div>
       )}
