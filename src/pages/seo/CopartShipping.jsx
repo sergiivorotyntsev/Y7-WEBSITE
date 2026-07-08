@@ -161,16 +161,8 @@ export default function CopartShipping() {
     ],
   });
 
-  const faqSchema = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: FAQS.map((f) => ({
-      '@type': 'Question',
-      name: f.q,
-      acceptedAnswer: { '@type': 'Answer', text: f.a },
-    })),
-  });
-
+  // CONT-T07: hand-rolled FAQPage removed — SeoLandingPage already auto-generates
+  // FAQPage from the faqs={FAQS} prop; emitting both produced a duplicate block.
   return (
     <SeoLandingPage
       meta={{
@@ -237,7 +229,6 @@ export default function CopartShipping() {
       <HreflangTags currentPath="/copart-shipping" hasPolishVersion hasUkrainianVersion hasRussianVersion />
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serviceSchema }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqSchema }} />
 
       <Section title="The Copart Purchase-to-Pickup Process">
         <p style={p}>

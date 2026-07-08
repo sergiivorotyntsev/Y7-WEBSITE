@@ -95,7 +95,7 @@ export default function AuctionTransportSavings() {
           "The auction's in-house transport quote includes its own margin. Y7 is an FMCSA broker that dispatches the same carriers directly — dealers pay the real market rate. Copart, IAA, Manheim, ADESA, ACV.",
         path: '/auction-transport-savings',
       }}
-      heading="Auction Car Transport — Without the Auction's Markup"
+      heading="What You Save Shipping Auction Cars Broker-Direct"
       intro="When you win at Copart, IAA, Manheim, ADESA or ACV, the in-house transport quote you're offered includes the carrier's rate plus the auction's own margin. Y7 Logistics is an FMCSA-licensed auto transport broker (MC#1741537, Newton MA) that dispatches those same carriers directly — so dealers pay the real market rate, with a flat $50 dispatch fee and no markup hidden inside the rate."
       secondaryCTA={{ intlKey: 'dealers', to: '/dealers', tone: 'teal' }}
       faqs={[

@@ -14,7 +14,7 @@ export default function AuctionCarShipping() {
   return (
     <SeoLandingPage
       meta={{
-        title: 'Auction Car Shipping',
+        title: 'Auction Car Shipping — Copart, IAAI & Manheim Pickup',
         description:
           'Ship vehicles from Copart, IAAI, Manheim, and other US auto auctions. Gate pass coordination, storage fee prevention. Licensed broker Y7 Logistics.',
         path: '/auction-car-shipping',
@@ -81,6 +81,7 @@ export default function AuctionCarShipping() {
         { label: 'Copart Shipping', to: '/copart-shipping' },
         { label: 'IAA Transport', to: '/iaai-transport' },
         { label: 'Manheim Transport', to: '/manheim-transport' },
+        { label: 'Auction Transport Savings', to: '/auction-transport-savings' },
         { label: 'Auction to Port', to: '/auction-to-port-transport' },
         { label: 'Salvage Car Shipping', to: '/salvage-car-shipping' },
         { label: 'Port Delivery', to: '/door-to-port-auto-transport' },
