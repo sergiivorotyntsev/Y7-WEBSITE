@@ -66,7 +66,9 @@ export default function CopartIaaManheimComparison({ theme }) {
         practice. Storage windows are comparable. The buyer-fee schedule differs in small but meaningful
         ways — IAA tends to charge slightly higher "internet bidding" fees but lower transportation
         facilitation fees, so the net per-vehicle cost depends on the exact sale price and whether you
-        use their transport network (you should not; broker your own).
+        use their transport network (you should not; broker your own — our{' '}
+        <Link to="/iaai-transport" style={{ color: theme.accent, fontWeight: 600 }}>IAA transport
+        service</Link> covers the release-request workflow in detail).
       </p>
 
       <div style={{ background: 'linear-gradient(135deg, rgba(15,110,86,0.06), rgba(15,110,86,0.02))', border: '1px solid rgba(15,110,86,0.15)', borderRadius: 12, padding: '20px 24px', margin: '24px 0' }}>

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import SeoLandingPage, { Section } from './SeoLandingPage';
+import { tableWrap, table, th, td } from './_enrichedStyles';
 import { colors, fonts } from '../../theme';
 
 const p = {
@@ -23,6 +24,11 @@ export default function IaaiTransport() {
       secondaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
       heading="IAA Transport — Ship Your Vehicle from IAA Auctions"
       intro="IAA (formerly Insurance Auto Auctions) is one of the largest salvage vehicle auction platforms. Y7 Logistics picks up from IAA yards across the US with efficient gate pass coordination."
+      tldr={{
+        kicker: 'IAA transport, in brief',
+        ariaLabel: 'IAA transport, in brief',
+        text: 'Y7 Logistics is a licensed and bonded FMCSA broker (MC #1741537, USDOT #4427359) shipping vehicles from IAA yards nationwide. IAA release works differently from Copart: you request it through your IAA buyer portal (typically processed within one business day) and the release document is a buyer letter naming the carrier. The free storage window is about two to three business days, then $15-$50 per day. Most IAA vehicles are non-running, so winch loading is the norm; you pay Y7 a flat $40-$60 dispatch fee and the carrier rate separately.',
+      }}
       whenNeeded={[
         'Won a vehicle at IAA online auction',
         'Purchased insurance salvage vehicle',
@@ -69,6 +75,18 @@ export default function IaaiTransport() {
           q: 'What areas do you cover for IAA pickup?',
           a: 'All IAA locations in the continental United States. No matter which IAA yard your vehicle is at, we can arrange transport.',
         },
+        {
+          q: 'How is the IAA gate pass different from Copart\'s?',
+          a: 'Two differences. At Copart the gate pass generates automatically once payment clears; at IAA you must actively request release through your buyer portal, which IAA typically processes within one business day. And IAA\'s release document is a buyer letter naming the authorized carrier, so the driver\'s ID must match it at the gate. When you book with Y7 we flag the request step immediately so you do not lose storage days waiting for a pass that was never requested.',
+        },
+        {
+          q: 'Are more IAA vehicles non-running than at Copart?',
+          a: 'Yes. IAA inventory is overwhelmingly insurance total-loss claims, so the share of non-running vehicles is significantly higher than at Copart. Winch loading is the norm rather than the exception, and loading a non-runner takes 20-30 minutes at the yard instead of five. Tell us about missing wheels, flat tires, or heavy undercarriage damage when booking so the right equipment is dispatched the first time.',
+        },
+        {
+          q: 'How much is IAA storage and how long is the free window?',
+          a: 'IAA typically gives two to three business days of free storage after payment clears, then charges $15-$50 per day depending on the yard. Storage fees are between you and IAA; no broker can waive them. What we do is treat the free window as a hard dispatch priority and quote your lane before you bid, so storage risk is priced into your bid instead of discovered after you win.',
+        },
       ]}
       ctaLabel="Get a Quote"
       ctaTo="/quote"
@@ -110,6 +128,64 @@ export default function IaaiTransport() {
           When you book transport through Y7 Logistics, we walk you through this process. If you
           have not requested your gate pass yet, we flag it immediately so you do not lose days
           without realizing it.
+        </p>
+      </Section>
+
+      <Section title="IAA vs Copart: What Actually Differs for Transport">
+        <p style={p}>
+          Buyers searching &quot;IAAI vs Copart&quot; usually want the fee-and-inventory comparison,
+          which lives in our{' '}
+          <Link to="/blog/copart-iaa-manheim-comparison" style={{ color: colors.accent }}>
+          Copart vs IAA vs Manheim guide</Link>. For transport specifically, the differences are
+          operational, and they change how fast your vehicle leaves the yard:
+        </p>
+        <div style={tableWrap}>
+          <table style={table}>
+            <thead>
+              <tr>
+                <th style={th}>Factor</th>
+                <th style={th}>IAA</th>
+                <th style={th}>Copart</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style={td}>Release authorization</td>
+                <td style={td}>Buyer letter naming the carrier, requested via the buyer portal</td>
+                <td style={td}>Gate pass PIN, generated automatically</td>
+              </tr>
+              <tr>
+                <td style={td}>When release issues</td>
+                <td style={td}>~1 business day after you request it</td>
+                <td style={td}>Once payment clears, no request needed</td>
+              </tr>
+              <tr>
+                <td style={td}>Free storage window</td>
+                <td style={td}>~2-3 business days after payment clears</td>
+                <td style={td}>~3 business days after payment clears</td>
+              </tr>
+              <tr>
+                <td style={td}>Storage after the window</td>
+                <td style={td}>$15-$50 per day by yard</td>
+                <td style={td}>$20-$40 per day by yard</td>
+              </tr>
+              <tr>
+                <td style={td}>Non-running share</td>
+                <td style={td}>Higher; winch loading is the norm</td>
+                <td style={td}>Lower; more run-and-drive lots</td>
+              </tr>
+              <tr>
+                <td style={td}>Carrier check-in</td>
+                <td style={td}>Driver ID must match the buyer letter</td>
+                <td style={td}>Transporter App or manual check-in</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style={p}>
+          The practical takeaway: IAA pickups run about one day behind Copart pickups on average,
+          entirely because of the manual release request. A broker who handles both platforms
+          builds that day into the dispatch plan instead of discovering it at the gate.
         </p>
       </Section>
 

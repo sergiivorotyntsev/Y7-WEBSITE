@@ -103,6 +103,7 @@ const RELATED_SERVICES = {
   'copart-iaa-manheim-comparison': [
     { to: '/dealers', label: 'Dealer program' },
     { to: '/copart-shipping', label: 'Copart shipping' },
+    { to: '/iaai-transport', label: 'IAA transport' },
     { to: '/manheim-transport', label: 'Manheim transport' },
   ],
   'auction-to-port-cost-breakdown-2026': [
