@@ -125,14 +125,14 @@ jobs:
           fi
           echo "OK: no /en/ in sitemap"
 
-      - name: Check sitemap URL count (must be 58)
+      - name: Check sitemap URL count (must be 133)
         run: |
           COUNT=$(grep -c "<loc>" public/sitemap.xml || echo 0)
-          if [ "$COUNT" -ne 58 ]; then
-            echo "::error::Sitemap has $COUNT URLs, expected 58. If you intentionally added/removed pages, update this check."
+          if [ "$COUNT" -ne 133 ]; then
+            echo "::error::Sitemap has $COUNT URLs, expected 133. If you intentionally added/removed pages, update this check."
             exit 1
           fi
-          echo "OK: sitemap has 58 URLs"
+          echo "OK: sitemap has 133 URLs"
 
       - name: Check for DaytonaCargo in Ukrainian pages
         run: |
@@ -178,20 +178,20 @@ jobs:
       - name: Build and verify prerender count
         run: |
           npm run build 2>&1 | tee build.log
-          if ! grep -q "58 OK, 0 failed" build.log; then
-            echo "::error::Build did not report '58 OK, 0 failed'. Check build.log output above."
+          if ! grep -q "138 OK, 0 failed" build.log; then
+            echo "::error::Build did not report '138 OK, 0 failed'. Check build.log output above."
             exit 1
           fi
-          echo "OK: build complete with 58 OK, 0 failed"
+          echo "OK: build complete with 138 OK, 0 failed"
 
       - name: Verify dist sitemap matches public sitemap
         run: |
           DIST_COUNT=$(grep -c "<loc>" dist/sitemap.xml || echo 0)
-          if [ "$DIST_COUNT" -ne 58 ]; then
-            echo "::error::dist/sitemap.xml has $DIST_COUNT URLs, expected 58"
+          if [ "$DIST_COUNT" -ne 133 ]; then
+            echo "::error::dist/sitemap.xml has $DIST_COUNT URLs, expected 133"
             exit 1
           fi
-          echo "OK: dist/sitemap.xml has 58 URLs"
+          echo "OK: dist/sitemap.xml has 133 URLs"
 
       - name: Verify dist contains intl pages
         run: |

@@ -524,6 +524,9 @@ const PUBLIC_ROUTES = [
   '/texas-to-newark-port-auto-transport',
   '/chicago-to-port-newark-car-shipping',
   '/auction-to-port-transport',
+  '/atlanta-to-savannah-port-auto-transport',
+  '/dallas-to-port-houston-auto-transport',
+  '/florida-to-jacksonville-port-car-shipping',
   // EV/Tesla pages
   '/tesla-car-shipping',
   '/ev-auto-transport',

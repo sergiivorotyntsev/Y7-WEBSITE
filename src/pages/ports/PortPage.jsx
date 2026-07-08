@@ -15,12 +15,14 @@ const RELATED_BY_PORT = {
     { to: '/door-to-port-auto-transport', label: 'Door-to-port transport overview' },
   ],
   houston: [
+    { to: '/dallas-to-port-houston-auto-transport', label: 'Dallas to Port Houston corridor' },
     { to: '/texas-auto-transport', label: 'Texas auto transport services' },
     { to: '/texas-to-newark-port-auto-transport', label: 'TX to Port Newark corridor' },
     { to: '/auction-to-port-transport', label: 'Auction-to-port shipping workflow' },
     { to: '/door-to-port-auto-transport', label: 'Door-to-port transport overview' },
   ],
   savannah: [
+    { to: '/atlanta-to-savannah-port-auto-transport', label: 'Atlanta to Savannah port corridor' },
     { to: '/florida-car-shipping', label: 'Florida car shipping services' },
     { to: '/auction-to-port-transport', label: 'Auction-to-port shipping workflow' },
     { to: '/door-to-port-auto-transport', label: 'Door-to-port transport overview' },
@@ -39,6 +41,7 @@ const RELATED_BY_PORT = {
     { to: '/new-jersey-auto-transport', label: 'New Jersey auto transport' },
   ],
   jacksonville: [
+    { to: '/florida-to-jacksonville-port-car-shipping', label: 'Florida auctions to JAXPORT corridor' },
     { to: '/florida-car-shipping', label: 'Florida car shipping services' },
     { to: '/massachusetts-to-florida-car-shipping', label: 'Massachusetts to Florida corridor' },
     { to: '/new-jersey-to-florida-car-shipping', label: 'New Jersey to Florida corridor' },

@@ -63,6 +63,9 @@ const NewJerseyToFlorida = lazyWithRetry(() => import('./pages/seo/routes/NewJer
 const TexasToNewark = lazyWithRetry(() => import('./pages/seo/routes/TexasToNewark'));
 const ChicagoToNewark = lazyWithRetry(() => import('./pages/seo/routes/ChicagoToNewark'));
 const AuctionToPort = lazyWithRetry(() => import('./pages/seo/routes/AuctionToPort'));
+const AtlantaToSavannah = lazyWithRetry(() => import('./pages/seo/routes/AtlantaToSavannah'));
+const DallasToHouston = lazyWithRetry(() => import('./pages/seo/routes/DallasToHouston'));
+const FloridaToJacksonville = lazyWithRetry(() => import('./pages/seo/routes/FloridaToJacksonville'));
 const TeslaCarShipping = lazyWithRetry(() => import('./pages/seo/TeslaCarShipping'));
 const EVAutoTransport = lazyWithRetry(() => import('./pages/seo/EVAutoTransport'));
 const CybertruckShipping = lazyWithRetry(() => import('./pages/seo/CybertruckShipping'));
@@ -231,6 +234,9 @@ export default function App() {
             <Route path="/texas-to-newark-port-auto-transport" element={<TexasToNewark />} />
             <Route path="/chicago-to-port-newark-car-shipping" element={<ChicagoToNewark />} />
             <Route path="/auction-to-port-transport" element={<AuctionToPort />} />
+            <Route path="/atlanta-to-savannah-port-auto-transport" element={<AtlantaToSavannah />} />
+            <Route path="/dallas-to-port-houston-auto-transport" element={<DallasToHouston />} />
+            <Route path="/florida-to-jacksonville-port-car-shipping" element={<FloridaToJacksonville />} />
             {/* EV/Tesla pages */}
             <Route path="/tesla-car-shipping" element={<TeslaCarShipping />} />
             <Route path="/ev-auto-transport" element={<EVAutoTransport />} />

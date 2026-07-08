@@ -99,6 +99,9 @@ const PAGE_SOURCE = {
   '/texas-to-newark-port-auto-transport': 'src/pages/seo/routes/TexasToNewark.jsx',
   '/chicago-to-port-newark-car-shipping': 'src/pages/seo/routes/ChicagoToNewark.jsx',
   '/auction-to-port-transport': 'src/pages/seo/routes/AuctionToPort.jsx',
+  '/atlanta-to-savannah-port-auto-transport': 'src/pages/seo/routes/AtlantaToSavannah.jsx',
+  '/dallas-to-port-houston-auto-transport': 'src/pages/seo/routes/DallasToHouston.jsx',
+  '/florida-to-jacksonville-port-car-shipping': 'src/pages/seo/routes/FloridaToJacksonville.jsx',
   '/tesla-car-shipping': 'src/pages/seo/TeslaCarShipping.jsx',
   '/ev-auto-transport': 'src/pages/seo/EVAutoTransport.jsx',
   '/cybertruck-shipping': 'src/pages/seo/CybertruckShipping.jsx',
@@ -206,6 +209,8 @@ const ENGLISH_ONLY = [
   '/massachusetts-to-florida-car-shipping', '/new-jersey-to-florida-car-shipping',
   '/texas-to-newark-port-auto-transport', '/chicago-to-port-newark-car-shipping',
   '/auction-to-port-transport',
+  '/atlanta-to-savannah-port-auto-transport', '/dallas-to-port-houston-auto-transport',
+  '/florida-to-jacksonville-port-car-shipping',
 
   // EV / Tesla
   '/tesla-car-shipping', '/ev-auto-transport', '/cybertruck-shipping',
