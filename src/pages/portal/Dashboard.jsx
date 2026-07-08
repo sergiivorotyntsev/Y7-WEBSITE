@@ -9,6 +9,7 @@ import { ClipboardIcon, MapPinIcon, ProfileIcon, TelegramIcon, EmailIcon } from 
 import AccountSetupBanner from '../../components/AccountSetupBanner';
 import BouncingEmailBanner from '../../components/recovery/BouncingEmailBanner';
 import VerificationBanner from '../../components/VerificationBanner';
+import LegacyTypeReprompt from '../../components/LegacyTypeReprompt';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, button as btnStyles, keyframes } from '../../theme';
 import { STATUS_COLORS, getStatusBadge } from '../../utils/orderStatus';
@@ -339,6 +340,8 @@ export default function Dashboard() {
       <BouncingEmailBanner />
       <AccountSetupBanner />
       <VerificationBanner />
+      {/* WAP-T03: one-time type reprompt for migrated-default individuals. */}
+      <LegacyTypeReprompt />
 
       {/* Stat cards */}
       <div style={{

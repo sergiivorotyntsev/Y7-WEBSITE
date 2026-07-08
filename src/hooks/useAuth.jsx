@@ -127,6 +127,10 @@ function _normalizeUser(data) {
     id: data.customer_id || data.id,
     name: data.customer_name || data.name || data.contact_name,
     customer_type: data.customer_type || 'unknown',
+    // WAP-T02/T03: pricing model drives the terms shown on cards/quote
+    // surfaces; the reprompt flag is the one-time migrated-default card.
+    pricing_model: data.pricing_model || 'legacy',
+    show_legacy_type_reprompt: !!data.show_legacy_type_reprompt,
     billing_mode: data.billing_mode || 'per_delivery',
     agreement_signed: !!data.agreement_signed,
     agreement_signed_at: data.agreement_signed_at || null,
