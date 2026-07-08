@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { portalFetch } from '../hooks/useAuth';
+import { portalFetch, useAuth } from '../hooks/useAuth';
 import { colors, fonts } from '../theme';
 
 /**
@@ -23,25 +23,24 @@ const TYPE_LABELS = {
   unknown: 'Not Classified',
 };
 
+// WAP-T02 (Sergii 2026-07-08): Auction Buyer MERGED into Individual — one card
+// covers personal and auction purchases. The terms line is dynamic per the
+// viewer's pricing model (new customers see the ind_2026 formula; legacy
+// customers keep the wording they signed up under).
+const individualTermsBenefit = (pricingModel) =>
+  pricingModel === 'ind_2026'
+    ? 'Broker fee: $75 minimum or 10% of carrier price · carrier paid COD at pickup/delivery'
+    : 'Pay on delivery (COD)';
+
 const TYPES = [
   {
     id: 'individual',
     title: 'Individual',
-    description: "I'm shipping my own vehicle (private, not for resale)",
+    description: "I'm shipping my own vehicle — personal or auction purchase",
     benefits: [
       'Single-vehicle web quote form',
-      'Pay on delivery (COD)',
+      'Auction pickups (Copart/IAA/Manheim): VIN decode, gate-pass upload, document auto-fill',
       'Portal tracking & email updates',
-    ],
-  },
-  {
-    id: 'auction_buyer',
-    title: 'Auction Buyer',
-    description: 'I buy from Copart, IAA, Manheim, or other auctions',
-    benefits: [
-      'Auction-origin presets (Copart/IAA/Manheim)',
-      'VIN decode & gate pass upload',
-      'Saved pickup locations',
     ],
   },
   {
@@ -68,6 +67,7 @@ const TYPES = [
 ];
 
 export default function AccountTypeModal({ onComplete, mode = 'initial', currentType, onClose }) {
+  const { user } = useAuth();
   const isEdit = mode === 'edit';
   // AQ-3: one rule — dealer/exporter are selectable here too (they enter the
   // pending-application flow), so the edit list is no longer filtered.
@@ -234,7 +234,10 @@ export default function AccountTypeModal({ onComplete, mode = 'initial', current
                   color: colors.textMuted,
                   lineHeight: 1.6,
                 }}>
-                  {type.benefits.map((b, i) => (
+                  {(type.id === 'individual'
+                    ? [...type.benefits, individualTermsBenefit(user?.pricing_model)]
+                    : type.benefits
+                  ).map((b, i) => (
                     <li key={i}>{b}</li>
                   ))}
                 </ul>

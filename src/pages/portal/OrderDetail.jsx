@@ -869,8 +869,34 @@ export default function OrderDetail() {
           {order.dispatched_price != null
             ? <InfoRow label="Transport (carrier)" value={`$${order.dispatched_price.toFixed(2)}`} mono />
             : (price && <InfoRow label="Transport fee" value={price} mono />)}
-          {order.service_fee_cents != null && order.service_fee_cents > 0 && (
-            <InfoRow label="Y7 service fee" value={`$${(order.service_fee_cents / 100).toFixed(2)}`} mono />
+          {/* WAP-T02: new-model orders show the formula range until the fee is
+              fixed from the real carrier price; the COD condition is contract
+              text. Legacy orders render exactly as before. */}
+          {order.pricing_model === 'ind_2026' ? (
+            <>
+              <InfoRow
+                label="Broker service fee"
+                value={
+                  order.fee_fixed_at
+                    ? `$${(order.service_fee_cents / 100).toFixed(2)} — final`
+                    : order.fee_range_min_cents != null
+                      ? (order.fee_range_min_cents === order.fee_range_max_cents
+                          ? `$${(order.fee_range_min_cents / 100).toFixed(0)}`
+                          : `$${(order.fee_range_min_cents / 100).toFixed(0)}–$${(order.fee_range_max_cents / 100).toFixed(0)}`)
+                        + ' — final set at carrier assignment'
+                      : '$75 minimum or 10% of carrier price'
+                }
+                mono
+              />
+              <p style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, lineHeight: 1.5, margin: '6px 0 0' }}>
+                Broker fee is the greater of $75 or 10% of the carrier price. The
+                carrier is paid COD by you (or your designee) at pickup or delivery.
+              </p>
+            </>
+          ) : (
+            order.service_fee_cents != null && order.service_fee_cents > 0 && (
+              <InfoRow label="Y7 service fee" value={`$${(order.service_fee_cents / 100).toFixed(2)}`} mono />
+            )
           )}
           {order.payment_responsibility && <InfoRow label="Payment method" value={order.payment_responsibility === 'broker' ? 'Prepaid to Y7' : 'COD at delivery'} />}
 

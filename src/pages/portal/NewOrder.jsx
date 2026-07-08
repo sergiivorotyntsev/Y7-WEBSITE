@@ -301,7 +301,12 @@ export default function NewOrder() {
   // CAP-S1-W01: customer-chosen service tier. Only individual + auction_buyer
   // pay Y7 directly and choose a tier; dealers/exporters never see this.
   // Fee amounts come from the backend fee-schedule — never hardcoded.
-  const showTierSelector = ['individual', 'auction_buyer'].includes(user?.customer_type);
+  // WAP-T02: the $50/$65 tier does NOT apply to new-model customers
+  // (pricing_model='ind_2026' — fee is max($75, 10% of carrier price)); they
+  // see the formula terms instead of the tier choice.
+  const isInd2026 = user?.pricing_model === 'ind_2026';
+  const showTierSelector = ['individual', 'auction_buyer'].includes(user?.customer_type) && !isInd2026;
+  const showInd2026Terms = ['individual', 'auction_buyer'].includes(user?.customer_type) && isInd2026;
   const [serviceTier, setServiceTier] = useState('cod');
   const [feeSchedule, setFeeSchedule] = useState(null);
   useEffect(() => {
@@ -994,6 +999,25 @@ export default function NewOrder() {
             <ManualAddressFields fields={deliveryManual} onChange={handleDeliveryManualChange} />
           )}
         </div>
+
+        {/* WAP-T02: new-model customers see their contract terms up front —
+            no tier choice (the fee is the formula, and payment is always COD). */}
+        {showInd2026Terms && (
+          <div style={sectionStyle}>
+            <div style={sectionTitle}>How payment works</div>
+            <div style={{ fontFamily: fonts.sans, fontSize: 13, color: colors.text, lineHeight: 1.6, background: colors.bgCard, border: `1px solid ${colors.border}`, borderRadius: 8, padding: '12px 16px' }}>
+              <div style={{ marginBottom: 6 }}>
+                <strong>Broker service fee:</strong> $75 minimum or 10% of the carrier
+                price — you&rsquo;ll see the exact range on your quote; the final amount
+                is set when your carrier is assigned.
+              </div>
+              <div>
+                <strong>Carrier payment:</strong> you (or your designee) pay the carrier
+                COD at pickup or at delivery.
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* CAP-S1-W01: service tier (individual + auction_buyer only) */}
         {showTierSelector && (

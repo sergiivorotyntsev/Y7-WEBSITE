@@ -43,28 +43,33 @@ const TEMPLATE_KEY_BY_TYPE = {
   exporter: 'exporter_v1.0.md',
 };
 
+// WAP-T02 (Sergii 2026-07-08): the Auction Buyer card MERGED into Ship My Car —
+// one card covers personal and auction purchases (existing auction_buyer
+// accounts keep working; new signups classify as individual). The fee line is
+// dynamic: new-model customers (pricing_model='ind_2026') see the formula
+// terms; legacy customers keep the $50/$65 wording they signed up under.
+const individualFeeBenefits = (pricingModel) =>
+  pricingModel === 'ind_2026'
+    ? [
+        'Broker fee: $75 minimum or 10% of carrier price',
+        'Carrier paid COD at pickup/delivery',
+      ]
+    : [
+        'Pay carrier directly on delivery (COD)',
+        '$50 COD or $65 Full Service fee',
+      ];
+
 const TYPES = [
   {
     id: 'individual',
     title: 'Ship My Car',
-    description: 'Single vehicle, personal shipment',
+    description: 'Personal or auction purchase — single vehicles',
     benefits: [
       'One-vehicle web quote, door-to-door',
-      'Pay carrier directly on delivery (COD)',
-      '$50 COD or $65 Full Service fee',
+      'Auction pickups (Copart / IAA / Manheim) with document auto-fill',
+      // fee benefits appended per pricing model at render time
     ],
     tone: { border: '#993C1D', bg: '#FFF8F5' },
-  },
-  {
-    id: 'auction_buyer',
-    title: 'Auction Buyer',
-    description: 'Copart, IAA, Manheim, or similar',
-    benefits: [
-      'Auction presets (Copart / IAA / Manheim)',
-      'Gate-pass upload + VIN decode',
-      '$50 COD or $65 Full Service fee',
-    ],
-    tone: { border: '#B8851F', bg: '#FFFBF0' },
   },
   {
     id: 'dealer',
@@ -675,6 +680,11 @@ function Field({ label, value, onChange, placeholder, required, type = 'text', a
 
 function AccountTypeStep({ onSelected }) {
   const [focused, setFocused] = useState(null);
+  const { user } = useAuth();
+  const cardBenefits = (t) =>
+    t.id === 'individual'
+      ? [...t.benefits, ...individualFeeBenefits(user?.pricing_model)]
+      : t.benefits;
   return (
     <div>
       <h2 style={stepTitleStyle}>Which best describes you?</h2>
@@ -724,7 +734,7 @@ function AccountTypeStep({ onSelected }) {
               margin: 0, padding: '0 0 0 16px', fontSize: 12,
               color: colors.textMuted, lineHeight: 1.7,
             }}>
-              {t.benefits.map((b, i) => <li key={i}>{b}</li>)}
+              {cardBenefits(t).map((b, i) => <li key={i}>{b}</li>)}
             </ul>
             {t.note && (
               <div style={{
