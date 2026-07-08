@@ -1,5 +1,7 @@
-import SeoLandingPage from '../SeoLandingPage';
+import { Link } from 'react-router-dom';
+import SeoLandingPage, { Section } from '../SeoLandingPage';
 import PricingRange from '../../../components/PricingRange';
+import { prose, muted, subhead } from '../_enrichedStyles';
 
 export default function ChicagoToNewark() {
   return (
@@ -57,6 +59,10 @@ export default function ChicagoToNewark() {
           q: 'Can I combine multiple vehicles on this route?',
           a: 'Yes. Multi-vehicle shipments from Chicago to Port Newark are common for exporters and often come with per-unit savings.',
         },
+        {
+          q: 'Can you take a Copart or IAA purchase straight from the Chicagoland yard to Port Newark?',
+          a: 'Yes, that is the core use of this corridor. We confirm your auction release is active before dispatch, the carrier picks up at the yard, and the vehicle is delivered to your Port Newark warehouse with a signed BOL. Auction free-storage windows typically run 3-5 days after payment, so we schedule the pickup inside that window whenever the lane allows and time delivery to your forwarder\'s vessel booking.',
+        },
       ]}
       related={[
         { label: 'Port Newark', to: '/ports/newark' },
@@ -73,8 +79,46 @@ export default function ChicagoToNewark() {
         enclosedLow={1150}
         enclosedHigh={1650}
         distance={800}
-        typicalTransitDays="2-4"
+        typicalTransitDays="3-4"
       />
+
+      <Section title="Why This Corridor Is an Export Lane First">
+        <p style={prose}>
+          Most traffic on the Chicago-to-Newark lane is not household relocation, it is export
+          flow: vehicles bought at Midwest auctions moving to the New York/New Jersey port
+          complex, the busiest vehicle-export gateway in the country. Copart and IAA both run
+          multiple Chicagoland yards, and the winning bidders are frequently exporters whose
+          real destination is a Port Newark or Elizabeth warehouse, not a driveway.
+        </p>
+        <p style={muted}>
+          That changes how the lane should be dispatched. An export shipment has a vessel
+          booking behind it, an auction free-storage window in front of it (typically 3-5 days
+          after payment), and a port warehouse that logs condition on arrival. We build the
+          schedule backward from the forwarder&apos;s vessel date: pickup inside the free
+          window, 3-4 business days on the I-80/I-76 corridor, delivery timed so the vehicle
+          does not sit at the port warehouse accruing storage weeks before loading. The full
+          workflow, gate passes on both ends included, is documented on our{' '}
+          <Link to="/auction-to-port-transport">auction-to-port transport page</Link>.
+        </p>
+      </Section>
+
+      <Section title="Chicagoland Auction Pickup Mechanics">
+        <h3 style={subhead}>Release before dispatch</h3>
+        <p style={muted}>
+          Copart generates its gate pass automatically once payment clears; IAA requires you to
+          request release through the buyer portal, which typically processes within one
+          business day. We verify the release is active before a carrier is assigned, because a
+          driver turned away at a Chicagoland yard costs a day on the vessel schedule.
+        </p>
+        <h3 style={subhead}>Consolidation is the price lever</h3>
+        <p style={muted}>
+          Exporters buying several units across Chicago-area yards in the same sale week can
+          consolidate them onto one carrier for the Newark run. Per-unit cost drops and the
+          paperwork arrives as one package: one dispatch, one BOL trail, one delivery window at
+          the port warehouse. Tell us the full list of lots at quote time and we route the
+          pickup order around each yard&apos;s release status.
+        </p>
+      </Section>
     </SeoLandingPage>
   );
 }

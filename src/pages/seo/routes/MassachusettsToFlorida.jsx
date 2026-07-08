@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SeoLandingPage, { Section } from '../SeoLandingPage';
 import PricingRange from '../../../components/PricingRange';
 import { prose, muted, subhead, tableWrap, table, th, td } from '../_enrichedStyles';
@@ -177,6 +178,27 @@ export default function MassachusettsToFlorida() {
           weather threatens the I-95 lane, or when their backhaul pattern pulls through the
           Appalachian corridor. For MA-to-FL pricing the two paths are essentially
           interchangeable from the customer\u2019s standpoint.
+        </p>
+      </Section>
+
+      <Section title="Auction Pickups on the MA to FL Corridor">
+        <p style={prose}>
+          A steady share of southbound MA-to-FL traffic starts at an auction yard rather than a
+          driveway: Copart Lowell and West Warren, IAA East Taunton and Freetown, and Manheim
+          New England in Derry, NH all feed vehicles onto this corridor \u2014 rebuilders and
+          dealers moving inventory to Florida&apos;s hotter used-car market, and exporters
+          staging vehicles toward{' '}
+          <Link to="/florida-car-shipping">Florida</Link> ports like JAXPORT, the East
+          Coast&apos;s largest vehicle-export gateway.
+        </p>
+        <p style={muted}>
+          Auction pickups on this lane carry the usual release mechanics (gate pass or buyer
+          letter verified before dispatch, free-storage window as the pickup deadline) plus the
+          snowbird seasonality above: a salvage unit dispatched southbound in November competes
+          for the same trailer space as the season&apos;s snowbird sedans. If you buy at a
+          Massachusetts yard with a Florida destination, quote before you bid; the{' '}
+          <Link to="/auction-car-shipping">auction car shipping page</Link> covers the workflow
+          per platform.
         </p>
       </Section>
 

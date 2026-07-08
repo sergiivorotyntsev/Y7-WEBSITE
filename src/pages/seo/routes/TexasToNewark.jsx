@@ -1,5 +1,7 @@
-import SeoLandingPage from '../SeoLandingPage';
+import { Link } from 'react-router-dom';
+import SeoLandingPage, { Section } from '../SeoLandingPage';
 import PricingRange from '../../../components/PricingRange';
+import { prose, muted, subhead } from '../_enrichedStyles';
 
 export default function TexasToNewark() {
   return (
@@ -61,6 +63,10 @@ export default function TexasToNewark() {
           q: 'Can you deliver multiple vehicles to the same port warehouse?',
           a: 'Yes. We regularly consolidate multiple auction purchases for delivery to the same Newark port warehouse. Multi-vehicle shipments often qualify for better per-unit pricing.',
         },
+        {
+          q: 'Should my Texas auction purchase ship to Port Newark or Port Houston?',
+          a: 'It depends on the destination and your freight forwarder. Port Houston is the short run from Texas auctions (Copart Dallas to Houston is roughly 250 miles at $300-$500) and dominates Gulf, Central and South America, and Middle East corridors. Newark is the long run (~1,700 miles, $950-$1,450) but serves destinations and vessel schedules Houston does not, and many forwarders consolidate there. We quote both lanes so you can compare the all-in math before committing.',
+        },
       ]}
       related={[
         { label: 'Texas Auto Transport', to: '/texas-auto-transport' },
@@ -79,6 +85,45 @@ export default function TexasToNewark() {
         distance={1650}
         typicalTransitDays="4-6"
       />
+
+      <Section title="Texas Auction Yards Feeding This Corridor">
+        <p style={prose}>
+          Texas holds some of the highest-volume Copart and IAA locations in the country,
+          clustered around Dallas, Houston, and San Antonio. For exporters, that concentration
+          is the whole point of the lane: multiple wins across DFW and Houston-area yards in
+          one sale week can ride to Port Newark as a single consolidated load instead of three
+          separate bookings.
+        </p>
+        <p style={muted}>
+          The dispatch mechanics mirror any auction pickup: we verify the release is active
+          before assigning a carrier (Copart&apos;s gate pass generates once payment clears;
+          IAA release must be requested through the buyer portal and typically processes within
+          one business day), the free-storage window (typically 3-5 days after payment) sets
+          the pickup deadline, and the vessel booking at the Newark end sets the delivery
+          window. The complete workflow is on our{' '}
+          <Link to="/auction-to-port-transport">auction-to-port transport page</Link>.
+        </p>
+      </Section>
+
+      <Section title="Newark vs Houston: Choosing the Port from Texas">
+        <h3 style={subhead}>When Houston wins</h3>
+        <p style={muted}>
+          For Gulf, Central and South America, and Middle East destinations, the short
+          Dallas-to-Houston run (roughly 250 miles, $300-$500, 1-2 days) is usually the smarter
+          leg; see the{' '}
+          <Link to="/dallas-to-port-houston-auto-transport">Dallas to Port Houston route</Link>{' '}
+          for that corridor.
+        </p>
+        <h3 style={subhead}>When Newark wins</h3>
+        <p style={muted}>
+          Newark earns the 1,700-mile run when the destination, vessel cadence, or your
+          forwarder&apos;s consolidation warehouse lives in the NY/NJ port complex. A forwarder
+          with an established Newark operation and weekly consolidations can beat the
+          theoretically cheaper port on the all-in math. Our{' '}
+          <Link to="/blog/port-specific-export-newark-houston-savannah">Newark vs Houston vs
+          Savannah comparison</Link> walks through the decision in detail.
+        </p>
+      </Section>
     </SeoLandingPage>
   );
 }

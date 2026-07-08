@@ -106,6 +106,15 @@ export default function NewJerseyToFlorida() {
           this lane can run 15–25% below the equivalent individual-customer rate for the same
           vehicle.
         </p>
+        <p style={muted}>
+          The auction side of the corridor runs on the same rhythm. New Jersey&apos;s wholesale
+          sources — Copart Somerville, IAA Jersey City, Manheim New Jersey in Bordentown — feed
+          Florida-bound dealer loads weekly, and the release mechanics (gate pass or buyer
+          letter verified before dispatch, free-storage window as the pickup deadline) fold
+          into the same consolidated southbound runs. Buying at a NJ yard with a Florida rooftop
+          as the destination is one of the cheaper per-unit moves on the East Coast when the
+          load consolidates.
+        </p>
       </Section>
 
       <Section title="Pricing and Transit">

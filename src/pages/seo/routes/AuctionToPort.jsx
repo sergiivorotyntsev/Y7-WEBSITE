@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SeoLandingPage, { Section } from '../SeoLandingPage';
 import PricingRange from '../../../components/PricingRange';
 import { prose, muted, subhead, tableWrap, table, th, td } from '../_enrichedStyles';
@@ -81,6 +82,7 @@ export default function AuctionToPort() {
         { label: 'IAAI Transport', to: '/iaai-transport' },
         { label: 'Door to Port', to: '/door-to-port-auto-transport' },
         { label: 'Auction Car Shipping', to: '/auction-car-shipping' },
+        { label: 'Cost Breakdown Guide (2026)', to: '/blog/auction-to-port-cost-breakdown-2026' },
       ]}
     >
       <PricingRange
@@ -182,7 +184,8 @@ export default function AuctionToPort() {
         <p style={muted}>
           ~250 miles, 1–2 day transit, $300–$500 per vehicle. The default corridor for
           Latin-America-bound exports out of Texas auctions. High carrier frequency keeps this
-          lane well-priced and reliable.
+          lane well-priced and reliable. Full corridor detail:{' '}
+          <Link to="/dallas-to-port-houston-auto-transport">Dallas to Port Houston</Link>.
         </p>
         <h3 style={subhead}>IAAI Northeast &rarr; Port Newark</h3>
         <p style={muted}>
@@ -195,13 +198,21 @@ export default function AuctionToPort() {
         <p style={muted}>
           Copart has a dense footprint in Florida, and JAXPORT is the natural export hub for
           the state. Intra-Florida runs are 100–350 miles at minimum-load floors ($250–$500
-          typical).
+          typical). Full corridor detail:{' '}
+          <Link to="/florida-to-jacksonville-port-car-shipping">Florida to JAXPORT</Link>.
         </p>
         <h3 style={subhead}>Manheim California &rarr; Port of Los Angeles</h3>
         <p style={muted}>
           Manheim runs large dealer auctions in Southern California; Port of LA is the largest
           West Coast export terminal. Runs are 30–150 miles in the LA basin and price on
           minimum-load floors similar to the Newark lane.
+        </p>
+        <h3 style={subhead}>Manheim Atlanta &rarr; Port of Savannah</h3>
+        <p style={muted}>
+          ~250 miles, 1–2 day transit, $400–$650 per vehicle. The Southeast&apos;s auction hub
+          feeding its export gateway, increasingly the natural routing for Europe-bound
+          vehicles from Southeast origins. Full corridor detail:{' '}
+          <Link to="/atlanta-to-savannah-port-auto-transport">Atlanta to Savannah</Link>.
         </p>
       </Section>
 
@@ -219,6 +230,12 @@ export default function AuctionToPort() {
           vessel sailing date rather than weeks ahead. Domestic transit itself is usually 1–5
           days depending on corridor; we build the schedule around the forwarder\u2019s vessel
           booking, not the other way around.
+        </p>
+        <p style={muted}>
+          For the full line-item math behind these windows, including gate pass, storage, and
+          warehouse fees on a real shipment, see the{' '}
+          <Link to="/blog/auction-to-port-cost-breakdown-2026">2026 auction-to-port cost
+          breakdown guide</Link>.
         </p>
       </Section>
 
