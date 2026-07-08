@@ -14,13 +14,18 @@ const MAX_V2_SECTIONS = 20;
 // with optional bullets/tiers) or the legacy v1.1 shape (sections.service,
 // sections.bol, ...). Returning null for a shape means the namespace hasn't
 // loaded yet; an empty array means loaded but nothing to show.
-function buildSections(bundle) {
+function buildSections(bundle, pricingModel = 'legacy') {
   if (!bundle || typeof bundle !== 'object') return [];
   // v2.0 shape
   if (bundle.section1 && typeof bundle.section1 === 'object') {
     const out = [];
     for (let i = 1; i <= MAX_V2_SECTIONS; i++) {
-      const sec = bundle[`section${i}`];
+      // WPF-T01: new-model signers (pricing_model='ind_2026') get the variant
+      // fee schedule — MUST mirror the server render (same swap in
+      // services/agreement_renderer.py) or the signed hash cross-check drifts.
+      const sec = (i === 2 && pricingModel === 'ind_2026' && bundle.section2_ind2026)
+        ? bundle.section2_ind2026
+        : bundle[`section${i}`];
       if (!sec || typeof sec !== 'object' || !sec.title) break;
       out.push({
         id: `s${i}`,
@@ -307,10 +312,14 @@ export default function Agreement() {
   // sign flow.
   useEffect(() => {
     const tplType = getAgreementType(user?.customer_type);
-    apiGet(`/api/public/agreement-template?type=${tplType}`)
+    // WPF-T01: in order mode pass the order id so the backend can resolve the
+    // signer's pricing model (anonymous quote-email signers have no session).
+    const orderParam = !isCustomerLevel && orderId && /^\d+$/.test(String(orderId))
+      ? `&order_id=${orderId}` : '';
+    apiGet(`/api/public/agreement-template?type=${tplType}${orderParam}`)
       .then(setTemplate)
       .catch(() => setTemplate(null));
-  }, [user?.customer_type]);
+  }, [user?.customer_type, isCustomerLevel, orderId]);
 
   // Check if already signed, fetch order for legacy mode
   useEffect(() => {
@@ -337,7 +346,11 @@ export default function Agreement() {
       .catch(() => { setError(t('errors.orderNotFound')); setLoading(false); });
   }, [orderId, t, isCustomerLevel, resolvedCustomerId]);
 
-  const sections = buildSections(agreementBundle);
+  // WPF-T01: the fee-schedule variant for new-model signers. Authed users
+  // carry pricing_model on /me; anonymous order-mode signers get it resolved
+  // by the template endpoint via order_id. Default: legacy (today's text).
+  const pricingModel = user?.pricing_model || template?.pricing_model || 'legacy';
+  const sections = buildSections(agreementBundle, pricingModel);
 
   // Scroll tracking
   const handleScroll = useCallback(() => {
@@ -455,12 +468,17 @@ export default function Agreement() {
 
   const checkboxLabels = [
     t('checkboxes.bol'),
-    t('checkboxes.payment'),
+    // WPF-T01: the payment acknowledgment mirrors the §2 variant.
+    (pricingModel === 'ind_2026' && agreementBundle.checkboxes_ind2026?.payment)
+      ? agreementBundle.checkboxes_ind2026.payment
+      : t('checkboxes.payment'),
     t('checkboxes.broker'),
     t('checkboxes.cancellation'),
   ];
 
-  const agreementVersion = agreementBundle.version || '';
+  const agreementVersion = (pricingModel === 'ind_2026' && agreementBundle.version_ind2026)
+    ? agreementBundle.version_ind2026
+    : (agreementBundle.version || '');
   const agreementEffective = agreementBundle.effectiveDate || '';
   const agreementIntro = agreementBundle.intro || '';
 

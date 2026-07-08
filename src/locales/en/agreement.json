@@ -21,6 +21,22 @@
     "feeIncludes": "The dispatch fee covers: carrier sourcing, quote negotiation, dispatch coordination, shipment monitoring, and customer support throughout the transportation process. The fee does NOT include the underlying carrier transportation cost, fuel surcharges, toll fees, storage fees, or any ancillary charges imposed by the carrier."
   },
 
+  "section2_ind2026": {
+    "title": "2. Service Fee Schedule",
+    "body": "Y7 charges a non-refundable broker service fee for brokerage services, calculated as follows:",
+    "tiers": [
+      "Broker Service Fee: the GREATER of $75.00 USD or 10% (ten percent) of the carrier transport price. At the time of quoting, Y7 discloses the fee as a range computed from the quoted carrier price range; the final fee amount is fixed when a carrier is assigned, based on the actual carrier transport price.",
+      "Carrier Payment (COD): the carrier transport price is paid by Customer (or Customer's designated recipient) DIRECTLY to the assigned motor carrier — in cash or certified funds — at pickup or at delivery, as agreed with the carrier. Y7 does not collect the carrier transport price. The broker service fee is paid to Y7 separately."
+    ],
+    "feeIncludes": "The broker service fee covers: carrier sourcing, quote negotiation, dispatch coordination, shipment monitoring, and customer support throughout the transportation process. The fee does NOT include the underlying carrier transportation cost, fuel surcharges, toll fees, storage fees, or any ancillary charges imposed by the carrier."
+  },
+
+  "checkboxes_ind2026": {
+    "payment": "I understand the broker service fee (the greater of $75.00 USD or 10% of the carrier transport price, disclosed as a range on my quote and fixed when my carrier is assigned), the payment terms, and my obligation to pay the carrier directly (COD) at pickup or at delivery."
+  },
+
+  "version_ind2026": "v2.1",
+
   "section3": {
     "title": "3. Cancellation and Refund Policy",
     "body": "Customer may cancel a confirmed order subject to the following terms:",
