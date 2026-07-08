@@ -346,10 +346,12 @@ export default function Agreement() {
       .catch(() => { setError(t('errors.orderNotFound')); setLoading(false); });
   }, [orderId, t, isCustomerLevel, resolvedCustomerId]);
 
-  // WPF-T01: the fee-schedule variant for new-model signers. Authed users
-  // carry pricing_model on /me; anonymous order-mode signers get it resolved
-  // by the template endpoint via order_id. Default: legacy (today's text).
-  const pricingModel = user?.pricing_model || template?.pricing_model || 'legacy';
+  // WPF-T01: the fee-schedule variant for new-model signers. Precedence
+  // matters: in ORDER mode the template endpoint resolves the model through
+  // the ORDER'S customer — exactly what sign_agreement will hash — so it must
+  // win over the viewing session's own model. Customer-level mode falls back
+  // to /me. Default: legacy (today's text).
+  const pricingModel = template?.pricing_model || user?.pricing_model || 'legacy';
   const sections = buildSections(agreementBundle, pricingModel);
 
   // Scroll tracking
