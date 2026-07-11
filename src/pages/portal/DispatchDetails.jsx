@@ -85,6 +85,10 @@ export default function DispatchDetails() {
         // Pre-fill pickup from order if available
         setForm(f => ({
           ...f,
+          // WRI-T01: pre-fill the pickup street like delivery (:below) always
+          // did — a street typed at order creation used to vanish from this
+          // form (the server kept it via COALESCE, but the customer saw blank).
+          pickup_full_address: data.pickup_address || '',
           pickup_city: data.pickup_city || '',
           pickup_state: data.pickup_state || '',
           pickup_zip: data.pickup_zip || '',
@@ -191,6 +195,13 @@ export default function DispatchDetails() {
     }
     if (!form.pickup_business_hours.trim()) { setError('Pickup business hours are required'); return; }
     if (!form.pickup_city.trim() && !form.pickup_zip.trim()) { setError('Pickup city or ZIP is required'); return; }
+    // WRI-T01: a manual (non-auction) pickup can't dispatch a carrier to
+    // "City, ST" — the street is required at this step. Auction pickups get
+    // the address from the auction; matches the server's 422 backstop.
+    if (!(order?.pickup_is_auction || form.pickup_location_type === 'Auction')
+        && !form.pickup_full_address.trim()) {
+      setError('Pickup street address is required — the carrier needs the exact pickup location.'); return;
+    }
 
     setSaving(true);
     try {
@@ -450,7 +461,11 @@ export default function DispatchDetails() {
           </div>
 
           <div style={rowStyle}>
-            <label style={labelStyle}>Street Address</label>
+            {/* WRI-T01: required for manual (non-auction) pickups — the carrier
+                needs the exact pickup location, not just the city. */}
+            <label style={labelStyle}>
+              Street Address{(order?.pickup_is_auction || form.pickup_location_type === 'Auction') ? '' : ' *'}
+            </label>
             <input style={inputStyle} value={form.pickup_full_address} onChange={set('pickup_full_address')} placeholder="123 Main St" />
           </div>
 
