@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { API_URL } from '../config';
 import { colors, fonts, button as btnStyles } from '../theme';
@@ -27,7 +27,13 @@ import { trackEvent } from '../utils/trackEvent';
 export default function MagicLogin() {
   const { token } = useParams();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { login } = useAuth();
+  // WGF-T03d: honor an internal ?next= target (e.g. the required
+  // dispatch-details step after quote acceptance). Portal paths only —
+  // anything else falls back to the dashboard.
+  const rawNext = searchParams.get('next') || '';
+  const nextPath = rawNext.startsWith('/portal/') ? rawNext : null;
   const [status, setStatus] = useState('loading'); // 'loading' | 'success' | 'error'
   const [errorMessage, setErrorMessage] = useState(null);
   // Strict-mode and React 19 invoke effects twice in development; the
@@ -68,10 +74,11 @@ export default function MagicLogin() {
         if (res.ok && data.ok && data.session_token) {
           login(data.session_token, data.user);
           trackEvent('portal_login', { method: 'magic_link' });
-          // Land in the portal dashboard. The session is in memory only,
-          // so we navigate within the SPA rather than doing a hard
-          // redirect (which would discard the in-memory session).
-          navigate('/portal/dashboard', { replace: true });
+          // Land in the portal dashboard (or the required next step, e.g.
+          // dispatch-details after acceptance — WGF-T03d). The session is in
+          // memory only, so we navigate within the SPA rather than doing a
+          // hard redirect (which would discard the in-memory session).
+          navigate(nextPath || '/portal/dashboard', { replace: true });
           return;
         }
         // Backend returns 401 with `detail: "Invalid or expired magic link"`

@@ -106,11 +106,34 @@ export default function QuoteAction() {
                 we&rsquo;ve emailed you a link. The carrier can&rsquo;t pick up without it.
               </p>
             )}
-            {result.signin_token ? (
-              <Link to={`/portal/magic/${result.signin_token}`} style={{
-                ...btnStyles.accent, display: 'inline-block', textDecoration: 'none', padding: '12px 24px', fontSize: '13px',
+            {/* WGF-T03d: dispatch-critical facts missing — the required next
+                step is the dispatch-details page, listed explicitly. */}
+            {result.dispatch_details?.needed && (
+              <div style={{
+                fontFamily: fonts.sans, fontSize: '13px', color: '#8a6d1b', textAlign: 'left',
+                background: '#FFF8E1', border: '1px solid #F9A825', borderRadius: '10px',
+                padding: '10px 16px', maxWidth: '400px', margin: 0, lineHeight: 1.5,
               }}>
-                Continue to onboarding
+                <strong>One step left</strong> — to dispatch a carrier we still need:
+                <ul style={{ margin: '6px 0 0', paddingLeft: 18 }}>
+                  {(result.dispatch_details.missing || []).map((m) => <li key={m}>{m}</li>)}
+                </ul>
+              </div>
+            )}
+            {result.signin_token ? (
+              <Link
+                to={`/portal/magic/${result.signin_token}${
+                  result.dispatch_details?.needed
+                    ? `?next=${encodeURIComponent(result.dispatch_details.url)}`
+                    : ''
+                }`}
+                style={{
+                  ...btnStyles.accent, display: 'inline-block', textDecoration: 'none', padding: '12px 24px', fontSize: '13px',
+                }}
+              >
+                {result.dispatch_details?.needed
+                  ? 'Continue — provide pickup details'
+                  : 'Continue to onboarding'}
               </Link>
             ) : (
               <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted, maxWidth: '380px', margin: 0, lineHeight: 1.5 }}>

@@ -197,6 +197,10 @@ export default function Dashboard() {
         && !(o.delivery_contact_phone && String(o.delivery_contact_phone).trim()))
     : null;
 
+  // WGF-T03d: the awaiting-details attention item — the quote is accepted but
+  // dispatch-critical pickup facts are missing (server-computed flag).
+  const awaitingDetailsOrder = orders.find((o) => o.awaiting_details);
+
   // DEALER-DASH-S1-T03: dealer/exporter HOME = the three-block dashboard.
   // All hooks above run unconditionally; the onboarding-redirect effect still
   // sends unverified/unsigned dealers to /portal/onboarding before this shows.
@@ -239,6 +243,29 @@ export default function Dashboard() {
         }}>
           {error}
         </div>
+      )}
+
+      {/* WGF-T03d: accepted-but-awaiting-details — the ONE step blocking dispatch. */}
+      {awaitingDetailsOrder && (
+        <Link
+          to={`/portal/order/${awaitingDetailsOrder.id}/dispatch-details`}
+          style={{
+            display: 'block', textDecoration: 'none', marginBottom: '20px',
+            background: '#FFF8E1', border: '1px solid #F9A825', borderRadius: '12px',
+            padding: '14px 18px',
+          }}
+        >
+          <div style={{ fontFamily: fonts.sans, fontSize: '14px', fontWeight: 700, color: '#8a6d1b' }}>
+            &#9203; One step left — add pickup details to dispatch{' '}
+            {[awaitingDetailsOrder.vehicle_year, awaitingDetailsOrder.vehicle_make, awaitingDetailsOrder.vehicle_model]
+              .filter(Boolean).join(' ') || 'your vehicle'} &rarr;
+          </div>
+          <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: '#8a6d1b', marginTop: '2px' }}>
+            Your quote is accepted. We can send a carrier as soon as you add the exact
+            pickup address, the contact releasing the vehicle, and pickup hours — or pick
+            one of your saved locations.
+          </div>
+        </Link>
       )}
 
       {ownershipProofOrder && (

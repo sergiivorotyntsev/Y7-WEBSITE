@@ -1186,13 +1186,24 @@ export default function OrderDetail() {
             </>
           ) : (
             <>
-              <span style={{ fontFamily: fonts.sans, fontSize: '14px', color: '#E65100', fontWeight: 500 }}>
-                Dispatch details needed to proceed
-              </span>
+              <div>
+                <span style={{ fontFamily: fonts.sans, fontSize: '14px', color: '#E65100', fontWeight: 500 }}>
+                  Dispatch details needed to proceed
+                </span>
+                {/* WGF-T03d: the exact missing facts (same list the operator sees). */}
+                {(order.missing_dispatch_details || []).length > 0 && (
+                  <ul style={{
+                    fontFamily: fonts.sans, fontSize: '12px', color: '#8a6d1b',
+                    margin: '6px 0 0', paddingLeft: 18,
+                  }}>
+                    {order.missing_dispatch_details.map((m) => <li key={m.name}>{m.detail}</li>)}
+                  </ul>
+                )}
+              </div>
               <Link to={`/portal/order/${id}/dispatch-details`} style={{
                 fontFamily: fonts.sans, fontSize: '12px', fontWeight: 600,
                 color: '#fff', background: '#F57C00', padding: '6px 14px',
-                borderRadius: '16px', textDecoration: 'none',
+                borderRadius: '16px', textDecoration: 'none', flexShrink: 0, marginLeft: '12px',
               }}>
                 Provide Details
               </Link>
