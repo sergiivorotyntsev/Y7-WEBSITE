@@ -57,6 +57,8 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
   const [form, setForm] = useState({
     vin: urlParams?.get('vin') || '',
     vehicle_year: '', vehicle_make: '', vehicle_model: '',
+    vehicle_type: '', // WGF-T07: detected from VIN, editable, rides the payload spread
+
     pickup_zip: urlParams?.get('pickup_zip') || '',
     pickup_location_type: 'Residence',
     pickup_requires_twic: false,
@@ -179,6 +181,20 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
     setForm(prev => ({ ...prev, [field]: value }));
   }
 
+  // WGF-T07: mirror of services/vin_decoder.nhtsa_body_to_cd_key — maps the
+  // NHTSA body class to the CD body-type key; null = human picks (never a
+  // silent sedan).
+  function bodyClassToType(bodyClass, vehicleType) {
+    const bc = `${bodyClass || ''} ${vehicleType || ''}`.toLowerCase();
+    if (!bc.trim()) return '';
+    if (bc.includes('pickup') || bc.includes('truck')) return 'truck';
+    if (bc.includes('sport utility') || bc.includes('suv') || bc.includes('mpv') || bc.includes('multi-purpose')) return 'suv';
+    if (bc.includes('van')) return 'van';
+    if (bc.includes('motorcycle') || bc.includes('moped')) return 'motorcycle';
+    if (['sedan', 'saloon', 'coupe', 'hatchback', 'convertible', 'wagon', 'roadster', 'passenger car'].some(k => bc.includes(k))) return 'sedan';
+    return '';
+  }
+
   async function handleDecode() {
     const result = await decode(form.vin);
     trackEvent('vin_decoded', { success: !!result });
@@ -188,6 +204,8 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
         vehicle_year: result.year,
         vehicle_make: result.make,
         vehicle_model: result.model,
+        // WGF-T07: auto-detect the vehicle type; user can change it below.
+        vehicle_type: bodyClassToType(result.bodyClass, result.vehicleType) || prev.vehicle_type,
       }));
     }
   }
@@ -331,7 +349,14 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
               id="quote-vin"
               value={form.vin}
               onChange={e => set('vin', e.target.value.toUpperCase())}
-              onBlur={() => markTouched('vin')}
+              onBlur={() => {
+                markTouched('vin');
+                // WGF-T07: auto-decode on blur — most clients never clicked
+                // the Decode button, so the type was never detected.
+                if (/^[A-HJ-NPR-Z0-9]{17}$/.test((form.vin || '').trim().toUpperCase()) && !vinLoading) {
+                  handleDecode();
+                }
+              }}
               placeholder={t('form.vinPlaceholder')}
               maxLength={17}
               className={fieldErrors.vin ? styles.vinInputError : styles.vinInput}
@@ -358,6 +383,20 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
                 {vinResult.year} {vinResult.make} {vinResult.model}
               </div>
               <VehicleSilhouette make={vinResult.make} model={vinResult.model} year={vinResult.year} bodyClass={vinResult.bodyClass} />
+              {/* WGF-T07: detected vehicle type — visible and editable, never silent. */}
+              <div className={styles.field} style={{ marginTop: '8px' }}>
+                <label htmlFor="quote-vtype" className={styles.label}>
+                  Vehicle type {form.vehicle_type ? '(detected from VIN — please confirm)' : '(helps carriers quote right)'}
+                </label>
+                <select id="quote-vtype" value={form.vehicle_type} onChange={e => set('vehicle_type', e.target.value)} className={styles.selectLg}>
+                  <option value="">Select...</option>
+                  <option value="sedan">Sedan / Coupe / Hatchback</option>
+                  <option value="suv">SUV / Crossover</option>
+                  <option value="truck">Pickup / Truck</option>
+                  <option value="van">Van / Minivan</option>
+                  <option value="motorcycle">Motorcycle</option>
+                </select>
+              </div>
             </>
           )}
           <button

@@ -266,8 +266,9 @@ export default function QuoteAction() {
         </h2>
         <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.accent, marginBottom: '16px' }}>{error}</p>
         <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, lineHeight: 1.6, marginBottom: '20px', maxWidth: '380px', marginLeft: 'auto', marginRight: 'auto' }}>
+          {/* WGF-T02a/WDV: confirmed orders don't expire — no false 48h deadline. */}
           If you've already confirmed your quote, use the sign-in link in your welcome email
-          to create your account and complete onboarding within 48 hours. Otherwise, request a new quote.
+          to create your account and complete onboarding. Otherwise, request a new quote.
         </p>
         <Link to="/ship-my-car" style={{
           ...btnStyles.secondary, display: 'inline-block', textDecoration: 'none', padding: '12px 24px', fontSize: '13px',
