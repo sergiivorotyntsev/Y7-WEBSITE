@@ -15,7 +15,7 @@
   "trust": {
     "secure": "Bezpiecznie",
     "noSpam": "Bez spamu",
-    "fast": "Wycena w mniej niż godzinę"
+    "fast": "Wycena w mniej niż godzinę roboczą"
   },
   "placeholders": {
     "make": "Honda",
@@ -97,7 +97,7 @@
   },
   "success": {
     "title": "Zapytanie otrzymane!",
-    "message": "Wyślemy wycenę w ciągu 1 godziny na podany adres email.",
+    "message": "Wyślemy wycenę w ciągu 1 godziny roboczej na podany adres email.",
     "reference": "Numer referencyjny: {{ref}}",
     "confirmation": "Potwierdzenie wysłane na {{email}}",
     "track": "Śledź przez Telegram"

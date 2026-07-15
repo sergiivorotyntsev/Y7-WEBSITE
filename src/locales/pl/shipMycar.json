@@ -8,7 +8,7 @@
     },
     {
       "title": "Otrzymaj wycenę",
-      "desc": "Odpowiemy w ciągu godziny ze stałą ceną obejmującą wszystkie koszty."
+      "desc": "Odpowiemy w ciągu godziny w godzinach pracy ze stałą ceną obejmującą wszystkie koszty."
     },
     {
       "title": "Odbieramy auto",
@@ -56,7 +56,7 @@
     "stepsHeading": "Jak to działa"
   },
   "quoteTitle": "Otrzymaj darmową wycenę",
-  "quoteSubtitle": "Bez zobowiązań. Odpowiadamy w ciągu godziny.",
+  "quoteSubtitle": "Bez zobowiązań. Odpowiadamy w ciągu godziny w godzinach pracy.",
   "faqTitle": "Często zadawane pytania o transport aut w USA",
   "faqs": [
     {
@@ -77,7 +77,7 @@
     },
     {
       "q": "Co się dzieje po wysłaniu zapytania?",
-      "a": "Rozpatrujemy szczegóły i odpowiadamy w ciągu godziny z ceną obejmującą wszystko. Po Twoim potwierdzeniu publikujemy zlecenie w sieci przewoźników. Przewoźnicy składają oferty, a my wybieramy najlepszego pod względem ceny, trasy, terminów i oceny. Większość aut odbierana jest w ciągu 1-5 dni od pierwszej możliwej daty. Otrzymujesz kontakt do przewoźnika po przydzieleniu."
+      "a": "Rozpatrujemy szczegóły i odpowiadamy w ciągu godziny w godzinach pracy z ceną obejmującą wszystko. Po Twoim potwierdzeniu publikujemy zlecenie w sieci przewoźników. Przewoźnicy składają oferty, a my wybieramy najlepszego pod względem ceny, trasy, terminów i oceny. Większość aut odbierana jest w ciągu 1-5 dni od pierwszej możliwej daty. Otrzymujesz kontakt do przewoźnika po przydzieleniu."
     },
     {
       "q": "Jak przygotować auto do transportu?",
@@ -99,7 +99,7 @@
   "hero": {
     "cta": "Otrzymaj wycenę",
     "trust1": "Licencjonowany broker FMCSA",
-    "trust2": "Odpowiedź w godzinę",
+    "trust2": "Odpowiedź w godzinę (godziny pracy)",
     "trust3": "Bez zaliczki"
   },
   "finalCta": {

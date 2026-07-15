@@ -11,7 +11,7 @@
     "carriers": "700+",
     "carriersLabel": "Vetted Carriers",
     "support": "1hr",
-    "supportLabel": "Quote Response",
+    "supportLabel": "Quote Response (business hours)",
     "cd": "90%",
     "cdLabel": "Central Dispatch"
   },
@@ -65,9 +65,9 @@
     "steps": {
       "submitTitle": "Submit Your Quote",
       "submitDesc": "Enter your VIN and route details. We decode your vehicle instantly and show estimated pricing.",
-      "submitStat": "Under 1 hour",
+      "submitStat": "Under 1 hour (business hours)",
       "priceTitle": "Get Your Pricing",
-      "priceDesc": "Receive a competitive price range within 1 hour. Confirm when you are ready — no pressure.",
+      "priceDesc": "Receive a competitive price range within 1 hour during business hours. Confirm when you are ready — no pressure.",
       "priceStat": "Transparent",
       "signTitle": "Sign Agreement",
       "signDesc": "Quick digital signature on our transport agreement. Review terms, check boxes, type your name.",
@@ -122,7 +122,7 @@
   },
   "quoteSection": {
     "title": "Get Your Free Quote",
-    "subtitle": "Tell us where your vehicle needs to go. We'll respond within 1 hour."
+    "subtitle": "Tell us where your vehicle needs to go. We'll respond within 1 hour during business hours."
   },
   "coverage": {
     "kicker": "Coverage",

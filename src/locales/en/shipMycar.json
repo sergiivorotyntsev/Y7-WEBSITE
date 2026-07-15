@@ -8,7 +8,7 @@
     },
     {
       "title": "Get Your Quote",
-      "desc": "We respond within 1 hour with a competitive, all-inclusive price."
+      "desc": "We respond within 1 hour during business hours with a competitive, all-inclusive price."
     },
     {
       "title": "We Pick It Up",
@@ -56,7 +56,7 @@
     "stepsHeading": "How It Works"
   },
   "quoteTitle": "Get Your Free Quote",
-  "quoteSubtitle": "No obligation. We respond within 1 hour.",
+  "quoteSubtitle": "No obligation. We respond within 1 hour during business hours.",
   "faqTitle": "Frequently Asked Questions",
   "faqs": [
     {
@@ -77,7 +77,7 @@
     },
     {
       "q": "What happens after I submit a quote?",
-      "a": "We review your details and respond within 1 hour with an all-inclusive price. Once you confirm, we post the shipment to our carrier network. Carriers bid on the load, and we assign the best match based on price, route, timing, and carrier rating. Most vehicles are picked up within 1–5 days of the first available date. You will receive carrier details and contact information once assigned."
+      "a": "We review your details and respond within 1 hour during business hours with an all-inclusive price. Once you confirm, we post the shipment to our carrier network. Carriers bid on the load, and we assign the best match based on price, route, timing, and carrier rating. Most vehicles are picked up within 1–5 days of the first available date. You will receive carrier details and contact information once assigned."
     },
     {
       "q": "How do I prepare my car for shipping?",
@@ -99,7 +99,7 @@
   "hero": {
     "cta": "Get My Quote",
     "trust1": "FMCSA Licensed Broker",
-    "trust2": "1-hour response",
+    "trust2": "1-hour response (business hours)",
     "trust3": "No deposit required"
   },
   "finalCta": {

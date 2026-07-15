@@ -11,7 +11,7 @@
     "carriers": "700+",
     "carriersLabel": "Sprawdzonych przewoźników",
     "support": "1h",
-    "supportLabel": "Czas odpowiedzi na wycenę",
+    "supportLabel": "Odpowiedź na wycenę (godziny pracy)",
     "cd": "90%",
     "cdLabel": "Central Dispatch"
   },
@@ -65,9 +65,9 @@
     "steps": {
       "submitTitle": "Wyślij zapytanie",
       "submitDesc": "Podaj VIN i trasę. Natychmiast odkodujemy pojazd i pokażemy szacunkową cenę.",
-      "submitStat": "Do 1 godziny",
+      "submitStat": "Do 1 godziny (godziny pracy)",
       "priceTitle": "Otrzymaj wycenę",
-      "priceDesc": "Konkurencyjny zakres cen w ciągu godziny. Potwierdź, gdy będziesz gotowy — bez nacisku.",
+      "priceDesc": "Konkurencyjny zakres cen w ciągu godziny w godzinach pracy. Potwierdź, gdy będziesz gotowy — bez nacisku.",
       "priceStat": "Przejrzyście",
       "signTitle": "Podpisz umowę",
       "signDesc": "Szybki podpis cyfrowy umowy transportowej. Sprawdź warunki, zaznacz pola, wpisz imię.",
@@ -122,7 +122,7 @@
   },
   "quoteSection": {
     "title": "Otrzymaj darmową wycenę",
-    "subtitle": "Powiedz nam, dokąd ma trafić Twój pojazd. Odpowiemy w ciągu 1 godziny."
+    "subtitle": "Powiedz nam, dokąd ma trafić Twój pojazd. Odpowiemy w ciągu 1 godziny w godzinach pracy."
   },
   "coverage": {
     "kicker": "Zasięg",

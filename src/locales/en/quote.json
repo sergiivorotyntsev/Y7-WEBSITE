@@ -15,7 +15,7 @@
   "trust": {
     "secure": "Secure",
     "noSpam": "No spam",
-    "fast": "Quote in under 1 hour"
+    "fast": "Quote in under 1 business hour"
   },
   "placeholders": {
     "make": "Honda",
@@ -97,7 +97,7 @@
   },
   "success": {
     "title": "Quote Request Received!",
-    "message": "We'll send your quote within 1 hour via email.",
+    "message": "We'll send your quote within 1 hour during business hours via email.",
     "reference": "Reference: {{ref}}",
     "confirmation": "Confirmation sent to {{email}}",
     "track": "Track via Telegram"
