@@ -112,7 +112,7 @@ export default function NewtonAutoTransport() {
         </p>
         <p style={muted}>
           Y7 Logistics is a licensed FMCSA auto transport broker (MC #1741537, USDOT #4427359) based
-          locally in Newton. We do not own trucks — we coordinate with a vetted network of 100+
+          locally in Newton. We do not own trucks — we coordinate with a vetted network of 700+
           carriers on Central Dispatch, the industry&apos;s primary load board. That means you get
           access to the full New England carrier market through a single dispatcher who knows your
           neighborhood and can fix problems when they come up.

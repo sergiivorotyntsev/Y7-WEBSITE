@@ -616,7 +616,7 @@ function RussiaShipMyCar() {
             }}
           >
             Y7 Consulting Inc — зарегистрированный транспортный брокер. USDOT #4427359.
-            Сеть из 100+ проверенных перевозчиков, все 50 штатов.
+            Сеть из 700+ проверенных перевозчиков, все 50 штатов.
           </p>
           <a
             href="https://safer.fmcsa.dot.gov/CompanySnapshot.aspx"

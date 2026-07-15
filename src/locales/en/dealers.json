@@ -23,7 +23,7 @@
     "title": "What a Dispatch Department Does",
     "subtitle": "Y7 delivers every capability of an internal dispatcher — for a fraction of the fixed cost",
     "items": [
-      { "title": "Carrier sourcing & vetting", "desc": "Access to 100+ vetted carriers through Central Dispatch. MC number, insurance, and safety score verified before every dispatch." },
+      { "title": "Carrier sourcing & vetting", "desc": "Access to 700+ vetted carriers through Central Dispatch. MC number, insurance, and safety score verified before every dispatch." },
       { "title": "Rate negotiation", "desc": "We negotiate carrier rates on your behalf. You see the final lane price, not a negotiation game." },
       { "title": "Gate pass & buyer letter coordination", "desc": "Copart Transporter App, IAA buyer letters, Manheim wholesale release — we handle the paperwork per auction type." },
       { "title": "Shipment status visibility", "desc": "Every shipment visible in your portal with ETA, carrier contact, BOL status. Telegram alerts at key milestones." },
@@ -159,7 +159,7 @@
     "headers": { "feature": "Feature", "internal": "Internal Dispatcher", "broker": "Generic Broker", "y7": "Y7 Dispatch Department" },
     "rows": [
       { "feature": "Upfront cost", "internal": "$55-75k salary + $15-20k benefits + software + training", "broker": "$0 — quote per move", "y7": "$0 — flat dispatch fee per vehicle" },
-      { "feature": "Carrier network", "internal": "Whatever relationships that person builds", "broker": "Their own network", "y7": "Central Dispatch (100+ vetted carriers) + direct relationships" },
+      { "feature": "Carrier network", "internal": "Whatever relationships that person builds", "broker": "Their own network", "y7": "Central Dispatch (700+ vetted carriers) + direct relationships" },
       { "feature": "Scalability", "internal": "Fixed cost even in slow months. One vacation risks operations.", "broker": "Call each time, no relationship continuity", "y7": "Pay per vehicle. Scale up or down without hiring/firing." },
       { "feature": "BOL documentation", "internal": "Manual — whatever system they set up", "broker": "Their system, not yours", "y7": "Portal archive + DMS-ready exports" },
       { "feature": "Claims handling", "internal": "Your dispatcher chases carrier insurance", "broker": "Often hands off to you", "y7": "We coordinate from archive + carrier relationship" },

@@ -34,7 +34,7 @@
     "items": [
       {
         "title": "Pozyskiwanie i weryfikacja przewoźników",
-        "desc": "Dostęp do ponad 100 zweryfikowanych przewoźników przez Central Dispatch. Numer MC, ubezpieczenie i safety score sprawdzamy przed każdym zleceniem."
+        "desc": "Dostęp do ponad 700 zweryfikowanych przewoźników przez Central Dispatch. Numer MC, ubezpieczenie i safety score sprawdzamy przed każdym zleceniem."
       },
       {
         "title": "Negocjacja stawek",
@@ -336,7 +336,7 @@
         "feature": "Sieć przewoźników",
         "internal": "Tylko te relacje, które zbuduje ta osoba",
         "broker": "Ich własna sieć",
-        "y7": "Central Dispatch (ponad 100 zweryfikowanych przewoźników) + relacje bezpośrednie"
+        "y7": "Central Dispatch (ponad 700 zweryfikowanych przewoźników) + relacje bezpośrednie"
       },
       {
         "feature": "Skalowalność",

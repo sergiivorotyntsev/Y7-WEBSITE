@@ -86,7 +86,7 @@ export default function BostonCarShipping() {
         </p>
         <p style={muted}>
           Y7 Logistics is a licensed FMCSA auto transport broker (MC #1741537 / USDOT #4427359).
-          We coordinate shipments through a vetted network of 100+ carriers on Central Dispatch.
+          We coordinate shipments through a vetted network of 700+ carriers on Central Dispatch.
           We do not own trucks — our value is dispatch expertise, carrier vetting, and a single
           point of contact through the whole process.
         </p>

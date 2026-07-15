@@ -8,7 +8,7 @@
   "trust": {
     "experience": "10+",
     "experienceLabel": "Lat doświadczenia zespołu",
-    "carriers": "100+",
+    "carriers": "700+",
     "carriersLabel": "Sprawdzonych przewoźników",
     "support": "1h",
     "supportLabel": "Czas odpowiedzi na wycenę",
@@ -74,7 +74,7 @@
       "signStat": "~2 min",
       "carrierTitle": "Przewoźnik przydzielony",
       "carrierDesc": "Dobieramy sprawdzonego ubezpieczonego przewoźnika z naszej sieci. Otrzymujesz imię i telefon kierowcy.",
-      "carrierStat": "100+ przewoźników",
+      "carrierStat": "700+ przewoźników",
       "deliveredTitle": "Pojazd dostarczony",
       "deliveredDesc": "Śledź status przez portal. Przy odbiorze — oględziny, podpis BOL, gotowe.",
       "deliveredStat": "3–10 dni"
