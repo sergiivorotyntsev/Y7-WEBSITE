@@ -301,7 +301,7 @@ const PolandHome = () => {
                 <li>Transport lądowy z placu aukcji do portu załadunku</li>
                 <li>Koordynację gate pass przy odbiorze</li>
                 <li>Dokumentację transportową w USA</li>
-                <li>Tracking w czasie rzeczywistym</li>
+                <li>Aktualizacje statusu na każdym etapie</li>
               </ul>
             </div>
 
