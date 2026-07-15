@@ -29,6 +29,85 @@
   src: url('/fonts/jetbrains-mono-latin-700-normal.woff2') format('woff2');
 }
 
+/* DESIGN-V2-W1-T03: Oswald — the V2 condensed display face (DESIGN.md v2 §4).
+   Self-hosted (JetBrains Mono pattern), OFL-1.1, subsets latin + latin-ext +
+   cyrillic (Cyrillic coverage is a hard V2 requirement: RU/UA/PL H1 parity).
+   font-display: swap + the metric-matched local fallback below keeps the hero
+   H1 (the LCP element) painting immediately in "Oswald Fallback" with ~0 swap
+   shift; the latin-700 file is preloaded from index.html. */
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/oswald-latin-600-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/oswald-latin-700-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/oswald-latin-ext-600-normal.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/oswald-latin-ext-700-normal.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/oswald-cyrillic-600-normal.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/oswald-cyrillic-700-normal.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+/* Metric-matched fallback: local Arial Narrow adjusted to Oswald's metrics
+   (Oswald upm 1000, ascent 1193, descent -289, gap 0; measured width ratio
+   Oswald/Arial-Narrow = 95.8%). Keeps swap-time layout shift near zero. */
+@font-face {
+  font-family: 'Oswald Fallback';
+  src: local('Arial Narrow Bold'), local('Arial Narrow');
+  size-adjust: 95.8%;
+  ascent-override: 119.3%;
+  descent-override: 28.9%;
+  line-gap-override: 0%;
+}
+
+/* DESIGN-V2-W1-T03: Y7 JP Accent — hard-subset Noto Serif JP wght 600
+   (7.8 KB, 23 glyphs incl. vertical forms). Fixed brand-mark inventory only
+   (DESIGN.md v2 §5): シンプル・迅速・信頼 / 改善 / 七 / 選択と集中.
+   Never a text face; swap is fine (accents are aria-hidden decoration). */
+@font-face {
+  font-family: 'Y7 JP Accent';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/y7-jp-accent-600.woff2') format('woff2');
+}
+
 :root {
   /* Background */
   --bg: #F7F5F0;
@@ -156,7 +235,7 @@
      latin + latin-ext + cyrillic); until then the stack resolves to the
      metric-closest system condensed faces. --v2-font-jp is the hard-subset
      JP accent face (brand marks only, aria-hidden). */
-  --v2-font-display: 'Arial Narrow', 'Helvetica Neue Condensed', 'Roboto Condensed', Impact, sans-serif;
+  --v2-font-display: 'Oswald', 'Oswald Fallback', 'Arial Narrow', 'Roboto Condensed', Impact, sans-serif;
   --v2-font-jp: 'Y7 JP Accent', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
 }
 

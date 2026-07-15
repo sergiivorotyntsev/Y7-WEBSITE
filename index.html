@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- DESIGN-V2-W1-T03: preload the display face's latin-700 (hero H1 = LCP element).
+         Cyrillic/latin-ext resolve via inline-critical @font-face unicode-range at parse
+         time, so locale pages discover their subset immediately without extra preloads. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/oswald-latin-700-normal.woff2" crossorigin />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="fragment" content="!">
     <meta name="description" content="Y7 Logistics — Licensed auto transport broker. Ship your vehicle door-to-door or to any US port. Instant quotes, verified carriers, shipment status updates." />
@@ -78,7 +82,7 @@
     </script>
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      body { font-family: system-ui, -apple-system, sans-serif; color: #2C2C2A; background: #F7F5F0; -webkit-font-smoothing: antialiased; }
+      body { font-family: system-ui, -apple-system, sans-serif; color: #2C2C2A; background: #f4f0e8; -webkit-font-smoothing: antialiased; }
       a { color: inherit; text-decoration: none; }
       input, select, textarea, button { font-family: inherit; }
     </style>
