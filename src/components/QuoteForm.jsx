@@ -17,6 +17,14 @@ import { useEmailCheck } from '../hooks/useEmailCheck';
 import styles from './QuoteForm.module.css';
 import btn from '../styles/buttons.module.css';
 
+// WV-T04: US ZIP format (5 or 5-4), mirrors services/input_validators.validate_us_zip.
+// 00000/99999 are undeliverable sentinels.
+export function isValidUsZip(v) {
+  const z = (v || '').trim();
+  if (!/^\d{5}(-\d{4})?$/.test(z)) return false;
+  return !['00000', '99999'].includes(z.slice(0, 5));
+}
+
 export default function QuoteForm({ compact = false, hideHeader = false, onStepChange }) {
   const { t, i18n } = useTranslation('quote');
 
@@ -119,10 +127,12 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
     email: serverFieldErrors.email
       ? serverFieldErrors.email
       : (touched.email && form.email && !form.email.includes('@') ? 'Enter a valid email' : null),
-    pickup_zip: touched.pickup_zip && form.pickup_zip && form.pickup_zip.trim().length > 0 && form.pickup_zip.trim().length < 5
-      ? 'ZIP must be 5 digits' : null,
-    delivery_zip: touched.delivery_zip && form.delivery_zip && form.delivery_zip.trim().length > 0 && form.delivery_zip.trim().length < 5
-      ? 'ZIP must be 5 digits' : null,
+    // WV-T04: format check, not just length — "abcde"/"00000" must be caught
+    // client-side too (server is the backstop). US 5 or 5-4.
+    pickup_zip: touched.pickup_zip && form.pickup_zip && form.pickup_zip.trim().length > 0 && !isValidUsZip(form.pickup_zip)
+      ? 'Enter a valid US ZIP code' : null,
+    delivery_zip: touched.delivery_zip && form.delivery_zip && form.delivery_zip.trim().length > 0 && !isValidUsZip(form.delivery_zip)
+      ? 'Enter a valid US ZIP code' : null,
   };
 
   // Listen for transport type selection from TransportComparison buttons
@@ -249,6 +259,9 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
     if (!form.email.trim() || !form.email.includes('@')) { setError(t('errors.emailRequired')); return; }
     if (form.pickup_zip.trim().length < 5) { setError(t('errors.pickupRequired')); return; }
     if (form.delivery_zip.trim().length < 5) { setError(t('errors.deliveryRequired')); return; }
+    // WV-T04: block a malformed ZIP at submit, not just show an inline hint.
+    if (!isValidUsZip(form.pickup_zip)) { setError('Please enter a valid US pickup ZIP code (5 digits).'); return; }
+    if (!isValidUsZip(form.delivery_zip)) { setError('Please enter a valid US delivery ZIP code (5 digits).'); return; }
     if (form.phone && !isValidPhone(form.phone)) {
       setError('Please enter a valid 10-digit phone number, or leave it blank.');
       return;
