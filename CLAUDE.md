@@ -6,28 +6,30 @@ Licensed FMCSA auto transport broker (USDOT #4427359, MC #1741537, $75k BMC-84 s
 
 Two project-root files carry the design system. **Read them before any UI work or copy change.**
 
-- **[PRODUCT.md](./PRODUCT.md)** — strategic. Register (`brand`), three primary co-equal audiences (personal-car shippers, dealers, exporters), brand personality (operationally-honest, expert-confident, editorial-restrained), four named anti-references, and five strategic design principles.
-- **[DESIGN.md](./DESIGN.md)** — visual. Creative North Star "The Trade Bulletin", warm-newsprint-cream + burnt-sienna palette as OKLCH/hex tokens, Georgia serif + system sans + JetBrains Mono type scale, multi-layer subtle shadow vocabulary, component primitives (button / card / input / hero / CTA strip), forceful Do's and Don'ts.
-- **[DESIGN.json](./DESIGN.json)** — sidecar. Tonal ramps, motion tokens, breakpoints, full HTML/CSS component snippets for tooling (Stitch live panel, etc.). Regenerated alongside DESIGN.md.
+- **[PRODUCT.md](./PRODUCT.md)** — strategic. Register (`brand`), three audiences under a **B2B-first hierarchy** (dealers & exporters primary; personal-car shippers visually secondary but fully served, all SEO surfaces preserved), brand personality (operationally-honest, expert-confident, editorial-restrained), four named anti-references, and six strategic design principles.
+- **[DESIGN.md](./DESIGN.md)** — visual, **V2 "The Dispatch Board"** (supersedes V1 "Trade Bulletin", 2026-07). Board-black `#050607` + manifest-paper `#f4f0e8` surface alternation, signal-red `#d70f24` under a strict Signal Budget, Oswald condensed uppercase display (Cyrillic mandatory) + system sans body + JetBrains Mono microcopy, fixed-inventory Japanese brand-mark accents, measured contrast law, forceful Do's and Don'ts. V2 tokens are ADDITIVE (`--v2-*` / `theme.js v2`) until a wave flips a surface.
+- **[DESIGN.json](./DESIGN.json)** — sidecar. Tonal ramps, contrast matrix, motion tokens, breakpoints, full HTML/CSS component snippets for tooling. Regenerated alongside DESIGN.md.
 
 ## Strategic principles (from PRODUCT.md)
 
 1. **Recognition before expertise** — name the visitor's specific generalist-bundling pain before stating Y7's solution.
 2. **Specialization is the moat; show its depth** — operational specifics, not abstract claims. "Specifics or silence."
 3. **Practice the transparency we preach** — operational honesty in copy must be matched by operational honesty in design. No urgency theater, no fake social proof, no hidden markup mechanics.
-4. **Three audience tracks, one brand spine** — `/ship-my-car`, `/dealers`, `/exporters` diverge in copy depth, not visual language.
+4. **Three audience tracks, one brand spine, B2B-first billing** — `/ship-my-car`, `/dealers`, `/exporters` diverge in copy depth, not visual language; dealers & exporters lead on shared surfaces.
 5. **Translation quality is operational quality** — RU/PL/UK copy at parity with EN. The Polish exporter base is among Y7's most loyal segments.
 
-## Hard visual constraints (from DESIGN.md)
+## Hard visual constraints (from DESIGN.md v2 "The Dispatch Board")
 
-- Page background is **Newsprint Cream `#F7F5F0`**, never pure white.
-- Type is **Pressroom Ink `#2C2C2A`**, never pure black.
-- Accent is **Burnt Sienna `#993C1D`** used as a seal, ≤10% of any screen (One Seal Rule). CTA Strip is the single deliberate exception per page.
-- Section headers always pair a tracked-caps kicker (often `◆ KICKER`) above a Georgia serif headline. The Trade Bulletin signature.
-- No gradient text, no glassmorphism, no neon accents, no urgency theater, no side-stripe borders, no em dashes (`—`) in copy.
-- Status colors (Bonded Pine green, Cite Red) for system state only, never decorative.
-- Card hover lift caps at `-3px`. Subtle shadows only.
-- Multilingual parity across EN/RU/UK/PL is non-negotiable.
+- Two surfaces only: **board-black `#050607`** and **manifest-paper `#f4f0e8`** (panel `#0e1012` for cards inside board). Never pure `#000`/`#fff`. Conversion pages alternate surfaces and open+close dark; long-form/SEO pages stay paper-dominant (≤25% dark).
+- **Signal red `#d70f24`** under the Signal Budget: max one red fill + two red accents per viewport; ≤10%-alpha red is exempt. Body-size red on dark uses `#ef3a4e` (contrast law). The CTA gradient `#d70f24→#a90918` is the ONLY legal gradient.
+- Display type: **Oswald condensed uppercase** (self-hosted, Cyrillic mandatory), lh 0.98, no `overflow:hidden` on display headings. Reading copy stays sentence-case system-ui. Mono microcopy = JetBrains Mono.
+- Section opener: mono eyebrow + 46×2 red rule-line above condensed headline (◆ glyph, pine kickers, sienna = retired V1 artifacts). Max 2 consecutive sections open with the pair.
+- JP accents (シンプル・迅速・信頼 / 改善 / 七 / 選択と集中): `aria-hidden` brand marks, fixed inventory, never translated, never informative; max 2/viewport, 3/page.
+- No gradient text, no text shadows (one hero-URL exception), no glassmorphism, no neon, no urgency theater, no side-stripe borders, no em dashes (`—`) in copy.
+- Bonded Pine green for success/verified state only. Errors use the red family + icon, never color alone.
+- Card hover lift caps at `-3px`. Visible `:focus-visible` (2px red outline, offset 2) is mandatory everywhere.
+- Entrance animations only through `Reveal`/`__Y7_PRERENDER` gates (LCP law). Multilingual parity across EN/RU/UK/PL is non-negotiable.
+- V2 primitives live in `src/styles/v2/` and MUST be imported by build waves; re-implementing them inline on a page is a review-reject (Anti-Orphan Rule).
 
 ## Improvement framework
 
@@ -47,6 +49,13 @@ Specifically forbidden: gradient text (anti-reference #4), glassmorphism, neon a
 - Audience pages: `/ship-my-car` (personal), `/dealers` (B2B), `/exporters` (PL/RU/UA international).
 - Locale parity: EN, RU, UK, PL — all LTR. RTL, high-contrast mode are out of current scope.
 - **SEO ranking preservation:** y7agency.com pages already rank well in search engines and AI chatbot citations. Ranking pages are operational assets. When making improvements to `/dealers`, `/services`, `/ship-my-car`, `/exporters`, or any long-form page, augment with visual variety and presentation improvements, but preserve keyword density, content depth, and H1/H2/H3 hierarchy. Cutting content or rewriting copy on ranking pages requires explicit ranking-impact review first.
+
+## Process protocol (parallel sessions, builds, dist validation)
+
+- **Worktree protocol:** one git worktree per concurrent Claude/agent session — `git worktree add ../Y7-WEBSITE-<task> origin/main`. Never run two sessions in one working copy: mid-build src edits corrupt prerender snapshots, and foreign commits land on the wrong branch (AIA1 precedent: isolate to its own branch and report, never let it ride a sprint branch).
+- **Single-builder rule:** before `npm run build`, verify no concurrent build is running (fresh node processes, changing `dist/` mtimes). Two overlapping builds produced empty-shell snapshots that still reported "138 OK".
+- **Dist validation:** never trust the prerender's own "N OK" counter. After every build: check all routes in `dist/valid-routes.json` have files, flag snapshots <20 KB, and spot-check 3 pages for real content (helmet title/meta, populated `#root`, expected strings).
+- **V2 primitive adoption (Anti-Orphan Rule):** every DESIGN-V2 build wave imports `src/styles/v2/*.module.css` for surfaces/type/buttons/cards/accents. New inline re-implementations of these patterns on pages are a review-reject.
 
 ## Design skill precedence
 
