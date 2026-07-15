@@ -104,3 +104,13 @@
   text-underline-offset: 2px;
 }
 .bodyLinkOnDark:hover { color: var(--v2-red-bright); }
+
+/* Focus-Visible Law applies to body links too: 2px surface-matched red, offset 2. */
+.bodyLinkOnPaper:focus-visible {
+  outline: 2px solid var(--v2-red);
+  outline-offset: 2px;
+}
+.bodyLinkOnDark:focus-visible {
+  outline: 2px solid var(--v2-red-bright);
+  outline-offset: 2px;
+}
