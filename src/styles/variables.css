@@ -95,6 +95,76 @@
   /* PHASE5C-BLEND: rust↔green connective tissue. Gradient stops reuse --accent (rust)
      + --success family; only the sweep duration is a new (non-color) derived token. */
   --blend-sweep: 6s;
+
+  /* ============================================================
+     DESIGN-V2-W1: V2 "Dispatch Board" token families (ADDITIVE).
+     Mirrors theme.js `v2` export; spec = DESIGN.md v2. V1 tokens
+     above keep their values until a build wave flips a surface
+     (Additive Migration Rule). Naming: --v2-<group>-<name>.
+     ============================================================ */
+
+  /* Surfaces */
+  --v2-board: #050607;
+  --v2-board-2: #0b0d0f;
+  --v2-panel: #0e1012;
+  --v2-paper: #f4f0e8;
+  --v2-paper-deep: #eee8dd;
+  --v2-card-cream: #fffaf1;
+
+  /* Text on dark */
+  --v2-text-on-dark: #fff7ed;
+  --v2-text-on-dark-secondary: #e8e0d3;
+  --v2-text-on-dark-muted: #9c9b96;
+
+  /* Text on paper */
+  --v2-ink: #050607;
+  --v2-ink-muted: #5c5851;
+
+  /* Signal red family. CONTRAST LAW (measured): #d70f24 on paper 4.64:1 (AA body),
+     on board 3.85:1 (AA LARGE ONLY — never body-size red on dark; use -bright 5.20:1). */
+  --v2-red: #d70f24;
+  --v2-red-deep: #a90918;
+  --v2-red-bright: #ef3a4e;
+  --v2-red-gradient: linear-gradient(135deg, #d70f24, #a90918);
+
+  /* Hairlines */
+  --v2-line-on-dark: rgba(255, 247, 237, 0.14);
+  --v2-line-on-dark-strong: rgba(255, 247, 237, 0.24);
+  --v2-line-on-paper: rgba(5, 6, 7, 0.14);
+
+  /* Shadows (red-glow: the only colored shadow; one per viewport) */
+  --v2-red-glow: 0 18px 44px rgba(215, 15, 36, 0.22);
+  --v2-board-depth: 0 24px 70px rgba(0, 0, 0, 0.3);
+  --v2-inset-toplight: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+
+  /* Radii */
+  --v2-radius-sm: 6px;
+  --v2-radius-md: 12px;
+  --v2-radius-lg: 18px;
+  --v2-radius-xl: 22px;
+  --v2-radius-pill: 999px;
+
+  /* Tracking scale */
+  --v2-track-display: 0.02em;
+  --v2-track-section: 0.035em;
+  --v2-track-caps-ui: 0.06em;
+  --v2-track-label: 0.14em;
+  --v2-track-eyebrow: 0.18em;
+  --v2-track-slogan: 0.26em;
+
+  /* Font stacks. --v2-font-display is pinned in W1-T03 (self-hosted, must ship
+     latin + latin-ext + cyrillic); until then the stack resolves to the
+     metric-closest system condensed faces. --v2-font-jp is the hard-subset
+     JP accent face (brand marks only, aria-hidden). */
+  --v2-font-display: 'Arial Narrow', 'Helvetica Neue Condensed', 'Roboto Condensed', Impact, sans-serif;
+  --v2-font-jp: 'Y7 JP Accent', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+}
+
+/* V2 utility: vertical JP brand strips (writing-mode isolated here so pages
+   never hand-roll it; density + aria-hidden rules in DESIGN.md §5). */
+.v2-vertical-rl {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
 }
 
 /* CLSFIX-T01: the document must never grow a horizontal scrollbar. In the

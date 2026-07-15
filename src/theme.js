@@ -89,6 +89,60 @@ export const typography = {
   },
 };
 
+// ============================================================
+// DESIGN-V2-W1: V2 "Dispatch Board" token families (ADDITIVE).
+// Mirrors src/styles/variables.css --v2-* block; spec = DESIGN.md v2.
+// V1 exports above are untouched until a build wave flips a surface
+// (Additive Migration Rule). Sync duty: theme.js ↔ variables.css ↔ DESIGN.json.
+export const v2 = {
+  colors: {
+    board: '#050607',
+    board2: '#0b0d0f',
+    panel: '#0e1012',
+    paper: '#f4f0e8',
+    paperDeep: '#eee8dd',
+    cardCream: '#fffaf1',
+    textOnDark: '#fff7ed',
+    textOnDarkSecondary: '#e8e0d3',
+    textOnDarkMuted: '#9c9b96',
+    ink: '#050607',
+    inkMuted: '#5c5851',
+    // Contrast law (measured): red on paper 4.64:1 (AA body); red on board
+    // 3.85:1 (AA LARGE ONLY). Body-size red on dark surfaces must use redBright (5.20:1).
+    red: '#d70f24',
+    redDeep: '#a90918',
+    redBright: '#ef3a4e',
+    lineOnDark: 'rgba(255,247,237,0.14)',
+    lineOnDarkStrong: 'rgba(255,247,237,0.24)',
+    lineOnPaper: 'rgba(5,6,7,0.14)',
+  },
+  gradients: {
+    // The ONLY legal gradient in the system (Gradient Legality Rule).
+    cta: 'linear-gradient(135deg, #d70f24, #a90918)',
+    ctaHover: 'linear-gradient(135deg, #c40d1f, #8f0714)',
+  },
+  shadows: {
+    redGlow: '0 18px 44px rgba(215,15,36,0.22)',
+    boardDepth: '0 24px 70px rgba(0,0,0,0.3)',
+    insetToplight: 'inset 0 1px 0 rgba(255,255,255,0.07)',
+  },
+  radii: { sm: 6, md: 12, lg: 18, xl: 22, pill: 999 },
+  tracking: {
+    display: '0.02em',
+    section: '0.035em',
+    capsUi: '0.06em',
+    label: '0.14em',
+    eyebrow: '0.18em',
+    slogan: '0.26em',
+  },
+  fonts: {
+    display: 'var(--v2-font-display)',
+    jp: 'var(--v2-font-jp)',
+    mono: "'JetBrains Mono', 'Courier New', monospace",
+    body: 'system-ui, -apple-system, sans-serif',
+  },
+};
+
 export const button = {
   primary: {
     background: colors.dark,
