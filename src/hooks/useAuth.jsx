@@ -97,12 +97,21 @@ export async function portalFetch(path, options = {}) {
       const body = await cloned.json();
       const detail = body?.detail || body;
       const errorCode = detail?.error;
+      // WCF-T02 (F2): resolve the recovery URL on THIS origin (the backend
+      // used to send an absolute prod URL — dev leaked to prod) and carry the
+      // customer's current intent as ?next= so onboarding can return them
+      // (e.g. straight back to dispatch-details after accepting a quote).
+      const _recover = (raw) => {
+        const u = new URL(raw, window.location.origin);
+        const next = encodeURIComponent(window.location.pathname + window.location.search);
+        window.location.href = `${u.pathname}?next=${next}`;
+      };
       if (errorCode === 'classification_required' && detail?.classification_url) {
-        window.location.href = detail.classification_url;
+        _recover(detail.classification_url);
         return res;
       }
       if (errorCode === 'agreement_required' && detail?.agreement_url) {
-        window.location.href = detail.agreement_url;
+        _recover(detail.agreement_url);
         return res;
       }
       // DEALER-LIFECYCLE-G1: dealer verification / trial-quote states have no

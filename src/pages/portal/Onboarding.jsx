@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, radii, spacing } from '../../theme';
@@ -178,6 +178,13 @@ const firstIncompleteStep = (u) => {
 export default function Onboarding() {
   const { user, checkAuth, loading } = useAuth();
   const navigate = useNavigate();
+  // WCF-T02 (F2): honor ?next= — the intent that brought the customer here
+  // (e.g. dispatch-details after accepting a quote). Internal portal paths
+  // only; everything else falls back to the dashboard.
+  const [searchParams] = useSearchParams();
+  const rawNext = searchParams.get('next') || '';
+  const nextPath = rawNext.startsWith('/portal/') ? rawNext : null;
+  const donePath = nextPath || '/portal/dashboard';
 
   const [step, setStep] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
@@ -216,11 +223,11 @@ export default function Onboarding() {
     if (isClassifiedType(user.customer_type)) setSelectedType(user.customer_type);
     const target = firstIncompleteStep(user);
     if (target === 'done') {
-      navigate('/portal/dashboard', { replace: true });
+      navigate(donePath, { replace: true });  // WCF-T02: honor ?next
       return;
     }
     setStep(target);
-  }, [user, loading, navigate]);
+  }, [user, loading, navigate, donePath]);
   /* eslint-enable react-hooks/set-state-in-effect */
 
   if (loading || step === null) {
@@ -267,7 +274,7 @@ export default function Onboarding() {
               if (isClassifiedType(fresh?.customer_type)) setSelectedType(fresh.customer_type);
               const target = firstIncompleteStep(fresh);
               if (target === 'done') {
-                navigate('/portal/dashboard', { replace: true });
+                navigate(donePath, { replace: true });  // WCF-T02: honor ?next
                 return;
               }
               setStep(target);
@@ -320,7 +327,7 @@ export default function Onboarding() {
             onComplete={(action) => {
               if (action === 'create_order') navigate('/portal/new-order');
               else if (action === 'application') navigate('/portal/application');
-              else navigate('/portal/dashboard');
+              else navigate(donePath);  // WCF-T02: back to the interrupted step
             }}
           />
         )}
