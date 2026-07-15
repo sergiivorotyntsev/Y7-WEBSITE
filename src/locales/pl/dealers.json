@@ -154,7 +154,7 @@
       },
       {
         "label": "Powiadomienia Telegram",
-        "desc": "Powiadomienia o zleceniu, odbiorze i dostawie dla zespołu operacyjnego na żywo. Konfigurowalne dla każdego użytkownika."
+        "desc": "Powiadomienia o zleceniu, odbiorze i dostawie dla zespołu operacyjnego. Konfigurowalne dla każdego użytkownika."
       },
       {
         "label": "Raportowanie tygodniowe",
@@ -269,7 +269,7 @@
       },
       {
         "situation": "Opóźnienie dostawy poza ETA",
-        "response": "Status na żywo w portalu + proaktywne powiadomienie na Telegram. To my kontaktujemy się z kierowcą, nie Ty. Zaktualizowany ETA natychmiast przekazujemy Twojemu zespołowi sprzedaży, jeśli wpływa to na dostawę do klienta."
+        "response": "Aktualny status w portalu + proaktywne powiadomienie na Telegram. To my kontaktujemy się z kierowcą, nie Ty. Zaktualizowany ETA natychmiast przekazujemy Twojemu zespołowi sprzedaży, jeśli wpływa to na dostawę do klienta."
       },
       {
         "situation": "Uszkodzenie udokumentowane przy dostawie",

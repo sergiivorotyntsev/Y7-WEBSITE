@@ -87,7 +87,7 @@
       { "label": "Saved pickup locations", "desc": "Your auction yards, trade partners, wholesale sources. One-click dispatch to repeat locations." },
       { "label": "Document vault", "desc": "Every BOL, photo inspection, condition report, and invoice archived. DMS-ready CSV/PDF export on demand." },
       { "label": "Multi-user access", "desc": "Finance team sees billing only. Dispatch team sees active loads. Sales team sees delivery ETAs for customer updates." },
-      { "label": "Telegram alerts", "desc": "Dispatched, picked-up, delivered notifications to operations team in real-time. Configurable per user." },
+      { "label": "Telegram alerts", "desc": "Dispatched, picked-up, delivered notifications to operations team. Configurable per user." },
       { "label": "Weekly reporting", "desc": "Friday summary: vehicles moved, total spend, lane breakdown, carrier performance. Exportable for accounting reconciliation." }
     ]
   },
@@ -134,7 +134,7 @@
     "intro": "Auto transport has failure modes. Here's our recovery playbook. We don't hide this — this is what makes us a real dispatch department, not a quote-aggregator.",
     "scenarios": [
       { "situation": "Carrier no-show at pickup", "response": "Redispatch within 24h. You're not charged for the original booking. Incident logged for carrier rating. You get a Telegram alert before the dock operations notice anything wrong." },
-      { "situation": "Delivery delay beyond ETA", "response": "Real-time status in portal + proactive Telegram alert. We contact the driver, you don't. Revised ETA communicated immediately to your sales team if customer delivery is affected." },
+      { "situation": "Delivery delay beyond ETA", "response": "Current status in portal + proactive Telegram alert. We contact the driver, you don't. Revised ETA communicated immediately to your sales team if customer delivery is affected." },
       { "situation": "Damage documented at delivery", "response": "We pull BOL photos and condition reports from our archive. File claim with carrier insurance within 24 hours. Track resolution. You don't chase the paperwork." },
       { "situation": "Wrong vehicle picked up", "response": "Driver VIN verification at yard prevents most cases. If it happens, redispatch at no additional cost. One confirmed pickup per booking guaranteed." },
       { "situation": "Carrier payment dispute (COD model)", "response": "We mediate. We know the carriers. Most disputes resolved same-day via our existing relationship with the carrier." },

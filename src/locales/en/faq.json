@@ -122,7 +122,7 @@
         },
         {
           "q": "Can I put multiple users on one dealer account?",
-          "a": "Yes. Dealer accounts support multiple users with shared order visibility, so your buyers and back office see the same real-time status. Learn more on our dealers page.",
+          "a": "Yes. Dealer accounts support multiple users with shared order visibility, so your buyers and back office see the same up-to-date status. Learn more on our dealers page.",
           "links": [{ "text": "dealers page", "href": "/dealers" }]
         },
         {
