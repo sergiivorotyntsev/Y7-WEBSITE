@@ -242,6 +242,30 @@ export default function DealerDashboard({ user }) {
           status must surface here too. Self-suppresses when verified. */}
       <VerificationBanner />
 
+      {/* CO3W-T06: Certificate of Origin entry — exporters only. */}
+      {isExporter && (
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap',
+          background: '#fff', border: `1px solid ${colors.border}`, borderRadius: '12px',
+          padding: '14px 18px', marginBottom: '20px',
+        }}>
+          <div style={{ flex: 1, minWidth: 220 }}>
+            <strong style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.text }}>
+              Certificate of Origin
+            </strong>
+            <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: '#6b6b68' }}>
+              0% EU duty for US-manufactured vehicles — check a VIN in seconds.
+            </div>
+          </div>
+          <Link to="/portal/co" style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600, color: colors.accent, textDecoration: 'none' }}>
+            CO requests →
+          </Link>
+          <Link to="/portal/co/companies" style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600, color: colors.accent, textDecoration: 'none' }}>
+            My companies →
+          </Link>
+        </div>
+      )}
+
       {/* Loads */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', alignItems: 'start' }}>
 

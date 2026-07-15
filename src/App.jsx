@@ -91,6 +91,11 @@ const LocationSetup = lazyWithRetry(() => import('./pages/portal/LocationSetup')
 const Locations = lazyWithRetry(() => import('./pages/portal/Locations'));
 const DealerApplication = lazyWithRetry(() => import('./pages/portal/DealerApplication'));
 const Onboarding = lazyWithRetry(() => import('./pages/portal/Onboarding'));
+// CO3W: Certificate of Origin self-service (exporters)
+const CoCompanies = lazyWithRetry(() => import('./pages/portal/CoCompanies'));
+const CoRequests = lazyWithRetry(() => import('./pages/portal/CoRequests'));
+const CoRequestDetail = lazyWithRetry(() => import('./pages/portal/CoRequestDetail'));
+const CoStart = lazyWithRetry(() => import('./pages/portal/CoStart'));
 // Intl placeholder pages
 const PolandHome = lazyWithRetry(() => import('./pages/intl/PolandHome'));
 const PolandCopart = lazyWithRetry(() => import('./pages/intl/PolandCopart'));
@@ -283,6 +288,13 @@ export default function App() {
             {/* ONBOARD-T08: unified classify-and-sign wizard — replaces
                 AccountTypeModal + separate /agreement page flow. */}
             <Route path="/portal/onboarding" element={<ProtectedRoute><Onboarding /></ProtectedRoute>} />
+            {/* CO3W: Certificate of Origin self-service. /portal/co/start is the
+                email deep-link landing — NOT wrapped in ProtectedRoute because it
+                handles login itself (?next= return), like /portal/magic. */}
+            <Route path="/portal/co" element={<ProtectedRoute><CoRequests /></ProtectedRoute>} />
+            <Route path="/portal/co/companies" element={<ProtectedRoute><CoCompanies /></ProtectedRoute>} />
+            <Route path="/portal/co/requests/:id" element={<ProtectedRoute><CoRequestDetail /></ProtectedRoute>} />
+            <Route path="/portal/co/start" element={<CoStart />} />
             {/* UNIQUE international landing pages — descriptive native slugs,
                 unique content, NOT hreflang equivalents of English pages */}
             <Route path="/pl/transport-z-usa" element={<PolandHome />} />
