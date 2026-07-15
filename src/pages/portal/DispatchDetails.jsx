@@ -71,9 +71,20 @@ export default function DispatchDetails() {
     special_instructions: '',
   });
 
+  // WCF-T01 hardening (F1): if the order can't be loaded for THIS session
+  // (404/403 — e.g. it belongs to another account after a stale-session mixup),
+  // never render a fillable form in the wrong context — show an error instead.
+  const [loadFailed, setLoadFailed] = useState(false);
+
   useEffect(() => {
     portalFetch(`/api/portal/data/orders/${id}`)
-      .then(r => r.json())
+      .then(r => {
+        if (!r.ok) {
+          setLoadFailed(true);
+          throw new Error(`order load failed (${r.status})`);
+        }
+        return r.json();
+      })
       .then(data => {
         setOrder(data);
         // W7D-T04: recorded answer (true/false) or null = ask the question.
@@ -251,8 +262,23 @@ export default function DispatchDetails() {
   if (loading) {
     return <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: fonts.sans, color: colors.textMuted }}>Loading...</div>;
   }
-  if (!order) {
-    return <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: fonts.sans, color: colors.textMuted }}>Order not found.</div>;
+  if (loadFailed || !order) {
+    // WCF-T01: never a fillable form when the order isn't THIS account's —
+    // clear error + a path back, instead of a wrong-context form.
+    return (
+      <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: fonts.sans }}>
+        <div style={{ fontSize: '16px', color: colors.text, marginBottom: '8px', fontWeight: 600 }}>
+          This order isn&rsquo;t available in the account you&rsquo;re signed in to.
+        </div>
+        <div style={{ fontSize: '13px', color: colors.textMuted, marginBottom: '20px' }}>
+          If you followed a link from an email, sign out and open the link again — or check
+          you&rsquo;re signed in with the account that placed this order.
+        </div>
+        <Link to="/portal/dashboard" style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.accent }}>
+          Go to my dashboard
+        </Link>
+      </div>
+    );
   }
 
   if (success) {

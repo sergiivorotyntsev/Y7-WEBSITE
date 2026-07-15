@@ -65,8 +65,13 @@ export default function MagicLogin() {
     // unmount are benign no-ops.
     (async () => {
       try {
+        // WCF-T01 (F1): credentials:'include' so the Set-Cookie from consume
+        // REPLACES any previous account's ambient session cookie. Without it
+        // the browser drops the new cookie and the old account's cookie kept
+        // winning server-side — the cross-account context leak.
         const res = await fetch(`${API_URL}/api/public/magic/consume`, {
           method: 'POST',
+          credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ token }),
         });
