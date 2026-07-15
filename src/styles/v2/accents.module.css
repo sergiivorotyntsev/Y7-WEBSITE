@@ -1,0 +1,47 @@
+/* DESIGN-V2-W1-T04: JP brand-mark accents + hairlines (DESIGN.md v2 §5).
+   JP accents: fixed inventory, aria-hidden ALWAYS, max 2 per viewport / 3 per
+   page. They never carry information (Brand-Mark Rule). */
+
+.jpVertical {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-family: var(--v2-font-jp);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: rgba(255, 247, 237, 0.58);
+  font-size: 16px;
+  line-height: 1.7;
+  user-select: none;
+}
+
+/* Paper-surface variant (section-head margin accent). */
+.jpVerticalOnPaper {
+  composes: jpVertical;
+  color: rgba(5, 6, 7, 0.38);
+}
+
+.stamp {
+  display: inline-block;
+  border: 1px solid rgba(215, 15, 36, 0.75);
+  color: var(--v2-red);
+  border-radius: 4px;
+  padding: 5px 3px;
+  font-family: var(--v2-font-jp);
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1;
+  text-align: center;
+  user-select: none;
+}
+
+/* Hairline dividers */
+.ruleOnDark { border: 0; border-top: 1px solid var(--v2-line-on-dark); margin: 0; }
+.ruleOnPaper { border: 0; border-top: 1px solid var(--v2-line-on-paper); margin: 0; }
+
+/* The single legal red rule-line (46x2) outside the eyebrow context. */
+.redRule {
+  display: inline-block;
+  width: 46px;
+  height: 2px;
+  background: var(--v2-red);
+}

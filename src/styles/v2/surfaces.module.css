@@ -1,0 +1,52 @@
+/* DESIGN-V2-W1-T04: V2 surface shells (DESIGN.md v2 §2).
+   ANTI-ORPHAN RULE: build waves import these; re-implementing a surface
+   inline on a page is a review-reject. Tokens only from --v2-*. */
+
+/* Full-width section bands. Compose: <section class={s.board}><div class={s.inner}>. */
+.board {
+  background: var(--v2-board);
+  color: var(--v2-text-on-dark);
+  border-top: 1px solid var(--v2-line-on-dark);
+}
+
+.manifest {
+  background: var(--v2-paper);
+  color: var(--v2-ink);
+  border-top: 1px solid var(--v2-line-on-paper);
+}
+
+.inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(56px, 8vh, 96px) 34px;
+}
+
+@media (max-width: 640px) {
+  .inner { padding: 38px 18px; }
+}
+
+/* Hero variant: board + the single sanctioned red radial (18% alpha cap,
+   low-alpha exemption from the Signal Budget). */
+.boardHero {
+  composes: board;
+  position: relative;
+  overflow: hidden;
+}
+.boardHero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 75% 34%, rgba(215, 15, 36, 0.18), transparent 23%),
+    radial-gradient(circle at 12% 54%, rgba(215, 15, 36, 0.10), transparent 24%);
+}
+.boardHero > * { position: relative; }
+
+/* Panel: elevated shell INSIDE board sections only (forms, featured blocks). */
+.panel {
+  background: var(--v2-panel);
+  border: 1px solid var(--v2-line-on-dark);
+  border-radius: var(--v2-radius-xl);
+  box-shadow: var(--v2-board-depth);
+}

@@ -1,0 +1,106 @@
+/* DESIGN-V2-W1-T04: V2 type patterns (DESIGN.md v2 §4).
+   Display lh 0.98 per the Cyrillic Clearance Rule (Oswald ascends past the
+   em box; never put overflow:hidden on display headings). */
+
+.display {
+  font-family: var(--v2-font-display);
+  font-size: clamp(2.6rem, 6vw, 6rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: var(--v2-track-display);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.sectionDisplay {
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.9rem, 3.4vw, 3.25rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: var(--v2-track-section);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.cardTitle {
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.3rem, 2vw, 1.65rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* One red accent span per headline (Accent Word Rule). On dark this is
+   display-size text, which signal-red passes (large-text law). */
+.accent { color: var(--v2-red); }
+
+/* Eyebrow: mono label + 46x2 red rule-line (replaces V1 ◆ kicker).
+   Density cap: max 2 consecutive sections open with the pair. */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: var(--v2-track-eyebrow);
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+.eyebrow::before {
+  content: '';
+  width: 46px;
+  height: 2px;
+  background: var(--v2-red);
+  flex: 0 0 auto;
+}
+.eyebrowOnDark { color: var(--v2-text-on-dark-muted); }
+.eyebrowOnPaper { color: var(--v2-ink-muted); }
+
+/* Mono microcopy tiers */
+.monoLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: var(--v2-track-label);
+  text-transform: uppercase;
+}
+.monoMicro {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: var(--v2-track-label);
+  text-transform: uppercase;
+}
+.monoData {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Section head lede: body-size, muted, capped for readability. */
+.lede {
+  font-size: 15px;
+  line-height: 1.65;
+  max-width: 520px;
+  margin: 12px 0 0;
+}
+.ledeOnPaper { color: var(--v2-ink-muted); }
+.ledeOnDark { color: var(--v2-text-on-dark-secondary); }
+
+/* Body links (The Body-Link Law): rest in surface text color + underline;
+   hover shifts to the surface's red. Red is NEVER the resting color. */
+.bodyLinkOnPaper {
+  color: var(--v2-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.bodyLinkOnPaper:hover { color: var(--v2-red-deep); }
+.bodyLinkOnDark {
+  color: var(--v2-text-on-dark);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.bodyLinkOnDark:hover { color: var(--v2-red-bright); }

@@ -1,0 +1,71 @@
+/* DESIGN-V2-W1-T04: V2 buttons (DESIGN.md v2 §7).
+   Focus-Visible Law applied on every variant. */
+
+.base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  font-family: var(--v2-font-display);
+  letter-spacing: var(--v2-track-caps-ui);
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--transition-normal);
+}
+.base:active { transform: scale(0.98); }
+
+/* Primary CTA: the only legal gradient (Gradient Legality Rule) + the only
+   colored shadow (red-glow, one per viewport per the Signal Budget). */
+.cta {
+  composes: base;
+  padding: 14px 20px;
+  background: var(--v2-red-gradient);
+  color: #fff;
+  border: 0;
+  border-radius: var(--v2-radius-sm);
+  font-size: 15px;
+  box-shadow: var(--v2-red-glow);
+}
+.cta:hover { background: linear-gradient(135deg, #c40d1f, #8f0714); }
+.ctaLarge {
+  composes: cta;
+  font-size: 20px;
+  padding: 18px 30px;
+  border-radius: 8px;
+}
+
+/* Ghost variants: pill, hairline border. */
+.ghostOnDark {
+  composes: base;
+  padding: 12px 18px;
+  background: transparent;
+  color: var(--v2-text-on-dark);
+  border: 1px solid var(--v2-line-on-dark-strong);
+  border-radius: var(--v2-radius-pill);
+  font-size: 14px;
+}
+.ghostOnDark:hover { border-color: rgba(255, 247, 237, 0.5); }
+
+.ghostOnPaper {
+  composes: base;
+  padding: 12px 18px;
+  background: transparent;
+  color: var(--v2-ink);
+  border: 1px solid var(--v2-line-on-paper);
+  border-radius: var(--v2-radius-pill);
+  font-size: 14px;
+}
+.ghostOnPaper:hover { border-color: rgba(5, 6, 7, 0.4); }
+
+/* Focus-Visible Law: 2px outline, surface-matched red, offset 2. Never suppressed. */
+.cta:focus-visible,
+.ghostOnDark:focus-visible {
+  outline: 2px solid var(--v2-red-bright);
+  outline-offset: 2px;
+}
+.ghostOnPaper:focus-visible {
+  outline: 2px solid var(--v2-red);
+  outline-offset: 2px;
+}
