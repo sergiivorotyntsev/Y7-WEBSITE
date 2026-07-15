@@ -35,6 +35,11 @@ export default function Login() {
   // "new" customer already has a customers row, so register-verify-email would
   // 409 — the email screen lets them log in or reset instead.
   const [email, setEmail] = useState(() => searchParams.get('email') || '');
+  // CO3W-T05: honor an internal return path (?next=/portal/...) after login —
+  // mirrors MagicLogin's nextPath handling (WGF-T03d). External/absolute URLs
+  // are ignored; only in-app /portal paths pass.
+  const rawNext = searchParams.get('next') || '';
+  const nextPath = rawNext.startsWith('/portal') && !rawNext.startsWith('//') ? rawNext : null;
   const [code, setCode] = useState(['', '', '', '', '', '']);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -68,8 +73,8 @@ export default function Login() {
   navigateRef.current = navigate;
 
   useEffect(() => {
-    if (user) navigate('/portal/dashboard', { replace: true });
-  }, [user, navigate]);
+    if (user) navigate(nextPath || '/portal/dashboard', { replace: true });
+  }, [user, navigate, nextPath]);
 
   function setRegField(field, value) {
     setReg(prev => ({ ...prev, [field]: value }));
@@ -138,7 +143,7 @@ export default function Login() {
           navigate('/portal/profile', { replace: true, state: { incomplete: true } });
           return;
         }
-        navigate('/portal/dashboard', { replace: true });
+        navigate(nextPath || '/portal/dashboard', { replace: true });
         return;
       }
       if (loginRes.status === 401) {
@@ -258,7 +263,7 @@ export default function Login() {
           navigate('/portal/profile', { replace: true, state: { incomplete: true } });
           return;
         }
-        navigate('/portal/dashboard', { replace: true });
+        navigate(nextPath || '/portal/dashboard', { replace: true });
         return;
       }
       if (res.status === 400) {
@@ -417,7 +422,7 @@ export default function Login() {
           navigate('/portal/profile', { replace: true, state: { incomplete: true } });
           return;
         }
-        navigate('/portal/dashboard', { replace: true });
+        navigate(nextPath || '/portal/dashboard', { replace: true });
       } else {
         setError(data.detail || 'Invalid or expired code');
         setCode(['', '', '', '', '', '']);
