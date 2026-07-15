@@ -6,6 +6,21 @@ import { colors, fonts, button } from '../../theme';
 import { API_URL } from '../../config';
 import PhoneInput, { getCleanPhone, isValidPhone } from '../../components/PhoneInput';
 import { GENERIC_RELEASE_DOC_TERM } from '../../utils/releaseDocTerm';
+import IntakeAssistant from '../../components/portal/IntakeAssistant';
+
+// AIA1-T03: map a brief REQUIRE/ASK field to the DOM field to focus. The
+// assistant only POINTS here — it never fills anything (no mutation).
+const _FIELD_FOCUS = {
+  pickup_street_present: 'aia-pickup-street',
+  pickup_address: 'aia-pickup-street',
+  pickup_contact_present: 'aia-pickup-contact-name',
+  pickup_contact_phone: 'aia-pickup-contact-phone',
+  pickup_hours_present: 'aia-pickup-hours',
+  pickup_business_hours: 'aia-pickup-hours',
+  release_doc_on_file: 'aia-release-doc',
+  special_instructions: 'aia-special-instructions',
+  pickup_released_by: 'aia-released-by',
+};
 
 const US_STATES = [
   'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD',
@@ -337,6 +352,17 @@ export default function DispatchDetails() {
         {vehicle} &mdash; provide pickup information so we can dispatch a carrier.
       </p>
 
+      {/* AIA1-T03: the deterministic intake assistant (no AI). Auto-opens on
+          REQUIRE gaps; each item points at the real field below (focus only —
+          never fills). */}
+      <IntakeAssistant
+        orderId={id}
+        onFocusControl={(field) => {
+          const el = document.getElementById(_FIELD_FOCUS[field] || '');
+          if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); el.focus?.(); }
+        }}
+      />
+
       <form onSubmit={handleSubmit}>
         {/* W7D-T04: release-document block — FIRST, right after acceptance.
             Auction pickups (or a recorded Yes) get the upload/PIN block;
@@ -498,7 +524,7 @@ export default function DispatchDetails() {
             <label style={labelStyle}>
               Street Address{(order?.pickup_is_auction || form.pickup_location_type === 'Auction') ? '' : ' *'}
             </label>
-            <input style={inputStyle} value={form.pickup_full_address} onChange={set('pickup_full_address')} placeholder="123 Main St" />
+            <input id="aia-pickup-street" style={inputStyle} value={form.pickup_full_address} onChange={set('pickup_full_address')} placeholder="123 Main St" />
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '10px', ...rowStyle }}>
@@ -536,7 +562,7 @@ export default function DispatchDetails() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', ...rowStyle }}>
             <div>
               <label style={labelStyle}>Contact Name *</label>
-              <input style={inputStyle} value={form.pickup_contact_name} onChange={set('pickup_contact_name')} placeholder="John Smith" />
+              <input id="aia-pickup-contact-name" style={inputStyle} value={form.pickup_contact_name} onChange={set('pickup_contact_name')} placeholder="John Smith" />
             </div>
             <div>
               <label style={labelStyle}>Contact Phone *</label>
@@ -546,7 +572,7 @@ export default function DispatchDetails() {
 
           <div style={rowStyle}>
             <label style={labelStyle}>Business Hours *</label>
-            <input style={inputStyle} value={form.pickup_business_hours} onChange={set('pickup_business_hours')} placeholder="Mon-Fri 8am-5pm" />
+            <input id="aia-pickup-hours" style={inputStyle} value={form.pickup_business_hours} onChange={set('pickup_business_hours')} placeholder="Mon-Fri 8am-5pm" />
           </div>
 
           {/* WCF-T03: the pickup-model question — who hands the vehicle to the
@@ -689,7 +715,7 @@ export default function DispatchDetails() {
           </div>
           <textarea
             style={{ ...inputStyle, minHeight: '80px', resize: 'vertical' }}
-            value={form.special_instructions}
+            id="aia-special-instructions" value={form.special_instructions}
             onChange={set('special_instructions')}
             placeholder="Any additional notes for the carrier (e.g. low clearance, appointment required, etc.)"
           />
