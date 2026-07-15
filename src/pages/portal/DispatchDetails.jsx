@@ -43,6 +43,8 @@ export default function DispatchDetails() {
   // W7D-T04: the functional release-doc question — null = not answered yet,
   // true/false = recorded answer (auction pickups are auto-true server-side).
   const [releaseDocAnswer, setReleaseDocAnswer] = useState(null);
+  // WCF-T03: who releases the vehicle (self | third_party | gate_pass_only).
+  const [releasedBy, setReleasedBy] = useState('');
   const [answerBusy, setAnswerBusy] = useState(false);
   // W2D-T02: saved delivery locations for the one-click picker (manual = fallback).
   const [savedLocations, setSavedLocations] = useState([]);
@@ -93,6 +95,9 @@ export default function DispatchDetails() {
             : data.pickup_release_doc_required === false ? false
               : null,
         );
+        // WCF-T03: explicit answer wins; else the server's reliable-rule
+        // prefill (one-tap confirm); else unanswered — the customer picks.
+        setReleasedBy(data.pickup_released_by || data.pickup_released_by_suggested || '');
         // Pre-fill pickup from order if available
         setForm(f => ({
           ...f,
@@ -229,6 +234,7 @@ export default function DispatchDetails() {
           pickup_contact_name: form.pickup_contact_name,
           pickup_contact_phone: getCleanPhone(form.pickup_contact_phone),
           pickup_business_hours: form.pickup_business_hours,
+          pickup_released_by: releasedBy || null,  // WCF-T03
           preferred_pickup_date: form.preferred_pickup_date || null,  // WAF-T01
           gate_pass: form.gate_pass || null,
           delivery_full_address: form.delivery_full_address || null,
@@ -541,6 +547,39 @@ export default function DispatchDetails() {
           <div style={rowStyle}>
             <label style={labelStyle}>Business Hours *</label>
             <input style={inputStyle} value={form.pickup_business_hours} onChange={set('pickup_business_hours')} placeholder="Mon-Fri 8am-5pm" />
+          </div>
+
+          {/* WCF-T03: the pickup-model question — who hands the vehicle to the
+              driver. Prefilled by the server's reliable rule (one-tap confirm);
+              ambiguous addresses get no prefill and answer plainly. */}
+          <div style={rowStyle}>
+            <label style={labelStyle}>Who hands the vehicle to the driver at pickup?</label>
+            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+              {[
+                { v: 'self', label: 'I / my staff' },
+                { v: 'third_party', label: 'A third party (auction / another dealer)' },
+                { v: 'gate_pass_only', label: 'No contact — gate pass / PIN only' },
+              ].map(({ v, label }) => (
+                <button
+                  key={v}
+                  type="button"
+                  onClick={() => setReleasedBy(v)}
+                  style={{
+                    fontFamily: fonts.sans, fontSize: '13px', padding: '8px 12px',
+                    borderRadius: '8px', cursor: 'pointer',
+                    border: `1.5px solid ${releasedBy === v ? colors.accent : colors.borderInput}`,
+                    background: releasedBy === v ? '#FFF0EC' : colors.bgInput,
+                    color: releasedBy === v ? colors.accent : colors.text,
+                    fontWeight: releasedBy === v ? 600 : 400,
+                  }}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginTop: 4 }}>
+              So the driver knows who to see when they arrive.
+            </div>
           </div>
 
           {/* WAF-T01: optional availability date (empty = available now). */}
