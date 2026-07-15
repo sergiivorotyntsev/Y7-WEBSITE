@@ -32,7 +32,7 @@ export default function TeslaCarShipping() {
     <SeoLandingPage
       meta={{
         title: 'Tesla Car Shipping',
-        description: 'Professional Tesla transport service. Licensed broker handling Model S, 3, X, Y, and Cybertruck shipping with specialized carriers. Free quotes, insured, nationwide.',
+        description: 'Professional Tesla transport service. Licensed & Bonded FMCSA Broker handling Model S, 3, X, Y, and Cybertruck shipping with specialized carriers. Free quotes nationwide.',
         path: '/tesla-car-shipping',
       }}
       primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
