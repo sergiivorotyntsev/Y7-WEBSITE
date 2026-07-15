@@ -40,7 +40,7 @@ const PAGE_SPEC = {
   shipMyCar: {
     serviceType: 'Auto Transport (Door-to-Door)',
     description:
-      'Door-to-door vehicle shipping across all 50 US states for private customers. Open and enclosed trailer options, VIN decode, real-time status updates, and FMCSA-vetted carriers.',
+      'Door-to-door vehicle shipping across all 50 US states for private customers. Open and enclosed trailer options, VIN decode, status updates at shipment milestones, and FMCSA-vetted carriers.',
     url: '/ship-my-car',
     audienceType: 'Person',
     audienceName: 'Individual Vehicle Owners',
