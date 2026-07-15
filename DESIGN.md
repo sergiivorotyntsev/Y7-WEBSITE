@@ -1,332 +1,293 @@
 ---
 name: Y7 Logistics
-description: Editorial-restrained trade-publication design system for a specialized FMCSA auto transport broker.
+description: Dark-board / paper-manifest / signal-red design system (V2) for a specialized FMCSA auto transport broker. B2B-first. Supersedes the Trade Bulletin system (V1).
+version: 2
 colors:
-  newsprint-cream: "#F7F5F0"
-  card-white: "#FFFFFF"
-  margin-sand: "#EFECE6"
-  pressroom-ink: "#2C2C2A"
-  pressroom-ink-deep: "#1A1A19"
-  type-stone: "#706E68"
-  hint-gray: "#999999"
-  burnt-sienna: "#993C1D"
-  embered-sienna: "#7A3017"
+  board-black: "#050607"
+  board-black-2: "#0b0d0f"
+  panel-steel: "#0e1012"
+  manifest-paper: "#f4f0e8"
+  paper-deep: "#eee8dd"
+  card-cream: "#fffaf1"
+  headlight-white: "#fff7ed"
+  on-dark-secondary: "#e8e0d3"
+  on-dark-muted: "#9c9b96"
+  paper-ink: "#050607"
+  paper-muted: "#5c5851"
+  signal-red: "#d70f24"
+  signal-red-deep: "#a90918"
+  signal-red-bright: "#ef3a4e"
+  line-on-dark: "rgba(255,247,237,0.14)"
+  line-on-dark-strong: "rgba(255,247,237,0.24)"
+  line-on-paper: "rgba(5,6,7,0.14)"
   bonded-pine: "#0F6E56"
   bonded-pine-tint: "#E1F5EE"
-  cite-red: "#C0392B"
-  margin-hairline: "#E5E0D8"
-  field-rule: "#DDDDDD"
 typography:
   display:
-    fontFamily: "Georgia, 'Times New Roman', serif"
-    fontSize: "clamp(1.8rem, 4vw, 2.75rem)"
+    fontFamily: "var(--v2-font-display)"
+    fontSize: "clamp(2.6rem, 6vw, 6rem)"
     fontWeight: 700
-    lineHeight: 1.1
-    letterSpacing: "-0.02em"
-  headline:
-    fontFamily: "Georgia, 'Times New Roman', serif"
-    fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)"
+    lineHeight: 0.94
+    letterSpacing: "0.02em"
+    textTransform: "uppercase"
+  section-display:
+    fontFamily: "var(--v2-font-display)"
+    fontSize: "clamp(1.9rem, 3.4vw, 3.25rem)"
     fontWeight: 700
-    lineHeight: 1.2
-    letterSpacing: "-0.02em"
-  title:
-    fontFamily: "system-ui, -apple-system, sans-serif"
-    fontSize: "16px"
+    lineHeight: 0.98
+    letterSpacing: "0.035em"
+    textTransform: "uppercase"
+  card-title:
+    fontFamily: "var(--v2-font-display)"
+    fontSize: "clamp(1.3rem, 2vw, 1.65rem)"
     fontWeight: 600
-    lineHeight: 1.4
-    letterSpacing: "normal"
+    lineHeight: 1.05
+    letterSpacing: "0.05em"
+    textTransform: "uppercase"
   body:
     fontFamily: "system-ui, -apple-system, sans-serif"
-    fontSize: "14.5px"
+    fontSize: "15px"
     fontWeight: 400
-    lineHeight: 1.7
-    letterSpacing: "normal"
+    lineHeight: 1.65
   body-long:
     fontFamily: "system-ui, -apple-system, sans-serif"
     fontSize: "16px"
     fontWeight: 400
     lineHeight: 1.7
-    letterSpacing: "normal"
-  label:
-    fontFamily: "system-ui, -apple-system, sans-serif"
+  mono-label:
+    fontFamily: "'JetBrains Mono', 'Courier New', monospace"
     fontSize: "11px"
-    fontWeight: 700
-    lineHeight: 1.2
+    fontWeight: 500
+    lineHeight: 1.5
+    letterSpacing: "0.18em"
+    textTransform: "uppercase"
+  mono-micro:
+    fontFamily: "'JetBrains Mono', 'Courier New', monospace"
+    fontSize: "10px"
+    fontWeight: 500
+    lineHeight: 1.5
     letterSpacing: "0.14em"
-  micro:
-    fontFamily: "system-ui, -apple-system, sans-serif"
-    fontSize: "12px"
-    fontWeight: 600
-    lineHeight: 1.4
-    letterSpacing: "0.02em"
-  mono:
+    textTransform: "uppercase"
+  mono-data:
     fontFamily: "'JetBrains Mono', 'Courier New', monospace"
     fontSize: "13px"
     fontWeight: 500
     lineHeight: 1.5
-    letterSpacing: "normal"
 rounded:
-  sm: "4px"
-  md: "8px"
-  lg: "12px"
-  xl: "16px"
-  pill: "20px"
+  sm: "6px"
+  md: "12px"
+  lg: "18px"
+  xl: "22px"
+  pill: "999px"
 spacing:
   xs: "8px"
   sm: "16px"
   md: "24px"
   lg: "32px"
   xl: "48px"
-  section: "clamp(60px, 8vh, 100px)"
-components:
-  button-primary:
-    backgroundColor: "{colors.pressroom-ink}"
-    textColor: "{colors.newsprint-cream}"
-    rounded: "{rounded.pill}"
-    padding: "10px 24px"
-  button-primary-hover:
-    backgroundColor: "{colors.pressroom-ink-deep}"
-    textColor: "{colors.newsprint-cream}"
-  button-accent:
-    backgroundColor: "{colors.burnt-sienna}"
-    textColor: "{colors.card-white}"
-    rounded: "{rounded.pill}"
-    padding: "10px 24px"
-  button-accent-hover:
-    backgroundColor: "{colors.embered-sienna}"
-    textColor: "{colors.card-white}"
-  button-secondary:
-    backgroundColor: "transparent"
-    textColor: "{colors.pressroom-ink}"
-    rounded: "{rounded.pill}"
-    padding: "10px 24px"
-  button-secondary-hover:
-    backgroundColor: "{colors.margin-sand}"
-    textColor: "{colors.pressroom-ink}"
-  card:
-    backgroundColor: "{colors.card-white}"
-    textColor: "{colors.pressroom-ink}"
-    rounded: "{rounded.lg}"
-    padding: "28px"
-  card-muted:
-    backgroundColor: "{colors.margin-sand}"
-    textColor: "{colors.pressroom-ink}"
-    rounded: "{rounded.lg}"
-    padding: "28px"
-  card-dark:
-    backgroundColor: "{colors.pressroom-ink}"
-    textColor: "{colors.newsprint-cream}"
-    rounded: "{rounded.lg}"
-    padding: "28px"
-  input:
-    backgroundColor: "{colors.card-white}"
-    textColor: "{colors.pressroom-ink}"
-    rounded: "{rounded.md}"
-    padding: "10px 14px"
-  input-focus:
-    backgroundColor: "{colors.card-white}"
-    textColor: "{colors.pressroom-ink}"
-  page-hero-warm:
-    backgroundColor: "{colors.newsprint-cream}"
-    textColor: "{colors.pressroom-ink}"
-    padding: "clamp(64px, 10vh, 96px) 24px clamp(40px, 6vh, 56px)"
+  section: "clamp(56px, 8vh, 96px)"
+tracking:
+  display: "0.02em"
+  section: "0.035em"
+  caps-ui: "0.06em"
+  label: "0.14em"
+  eyebrow: "0.18em"
+  slogan: "0.26em"
 ---
 
-# Design System: Y7 Logistics
+# Design System V2: Y7 Logistics
 
 ## 1. Overview
 
-**Creative North Star: "The Trade Bulletin"**
+**Creative North Star: "The Dispatch Board"**
 
-Y7's site reads like a specialized industry publication, not a marketing landing page. The visual language borrows from print trade journals: warm newsprint-cream paper stock, pressroom-ink type, a single burnt-sienna seal as the only accent, kicker eyebrows in tracked caps, restrained scale-and-weight hierarchy. The page earns the visitor's attention through substance, the way a quality trade publication earns readership: by speaking as an informed insider to other insiders, with operational language matched by operational typography. Recognition first, persuasion second, decoration never.
+Y7's site reads like the operational heart of a working dispatch operation: the dark board where loads move, and the paper manifest where every move is documented. Two surfaces carry the whole system. **Board** sections (near-black `#050607`) hold conviction moments: the hero, the proof blocks, the conversion ask. **Manifest** sections (warm paper `#f4f0e8`) hold the working documents: estimates, process, coverage, long-form content. **Signal red** `#d70f24` is exactly what its name says, a signal: it marks the action, the live stat, the stamp. It is never atmosphere.
 
-The system explicitly rejects four aesthetic lanes named in PRODUCT.md. Generic auto-broker template (stock highway photography, blue/red gradients, "GET INSTANT QUOTE!" hero theatrics, urgency timers, fake counter widgets). SaaS-cream marketing (rounded everything, identical 3-card grids, hero-metric repetition, "AI-powered logistics platform" buzzword copy). Logistics-corporate (navy + gold, suit-and-tie photography, 1990s freight-forwarder energy). Crypto/startup (gradient text, glassmorphism, neon accents). The Trade Bulletin posture is the antithesis of all four: it doesn't perform credibility, it documents it.
+This is a **final brand decision** matching the approved vehicle-wrap system V4: signal red + near-black + warm paper, condensed uppercase display type, JetBrains Mono microcopy, and a fixed inventory of Japanese serif accents (シンプル・迅速・信頼, the 改善 stamp, the 七 hanko lineage). Positioning is **B2B-first**: dealers and exporters lead, private relocations remain fully served but visually secondary.
 
-**Key Characteristics:**
-- Warm newsprint-cream surface (#F7F5F0), never pure white. Paper stock, not screen.
-- Pressroom-ink type (#2C2C2A), never pure black. Ink on paper, not pixels on screen.
-- Single burnt-sienna accent (#993C1D) used as a seal, not a flood. Restrained color strategy: tinted neutrals + one accent ≤10% of any given screen.
-- Georgia serif for headlines and titles; system sans for body and UI; JetBrains Mono for credentials, IDs, and structured numerics.
-- Hierarchy through scale and weight contrast (≥1.25 ratio), not loudness. No exclamation marks, no urgency theater.
-- Multi-layer subtle shadows (four-stop scale) carrying ambient depth, never decorative drop shadows.
-- All four locales (EN, RU, UK, PL) at typographic parity. Translation quality is operational quality.
+V2 supersedes V1 ("The Trade Bulletin"). What carries over from V1 unchanged: operational honesty as a design doctrine, no urgency theater, hedged promises, locale parity as a brand value, reduced-motion respect, the augment-don't-rewrite rule for ranking content. What V2 replaces: the cream/serif/sienna palette, the One Seal Rule (now the Signal Budget), Georgia as display face (now condensed caps), and the flat-single-surface page model (now board/manifest alternation).
 
-> Two alternate North Stars considered, both viable if "Trade Bulletin" doesn't fit:
-> *"The Compliance Ledger"* (operational paperwork as visual language: ledger forms, signed certificates, bonded documents, mono numerics).
-> *"The Specialist's Workshop"* (matte tools of a trade: paper, ink, terracotta seal, nothing decorative).
+The four PRODUCT.md anti-references still stand and V2 must be read against them honestly: dark + red is the classic generic-carrier combination, so the system stays out of that lane through restraint (no highway stock photos, no chrome, no italics-forward "speed" clichés, no urgency), through mono-documented specifics (USDOT, MC, BOL, gate pass), and through the editorial discipline of the manifest sections. If a screen could pass for a towing-company template, it has failed V2 even if every token is correct.
 
-## 2. Colors
+## 2. Surfaces
 
-A warm-paper neutral base with a single high-conviction accent, expressing the Restrained color strategy. The palette is committed to two doctrines: tint every neutral toward the brand hue rather than using true gray, and treat the accent as a seal whose value comes from rarity.
+The page is a stack of full-width surface bands. Every section declares one of three surfaces:
 
-### Primary
-- **Burnt Sienna** (#993C1D, oklch ≈ 47% 0.13 38): the single brand seal color. Used on primary CTAs ("GET QUOTE"), accent badges, kicker eyebrows ("◆ FMCSA LICENSED"), focus glows on inputs, link underlines, hover borders on cards, and the radial wash behind dark heroes. This color carries the brand. It is never used decoratively.
-- **Embered Sienna** (#7A3017, oklch ≈ 38% 0.12 38): hover state for accent buttons. Slightly deepened, never bluer or warmer.
+- **Board** (`board-black #050607`, gradient tolerance down to `board-black-2 #0b0d0f`): hero, advantage/proof blocks, conversion block, footer. Text on board: `headlight-white #fff7ed` (primary), `on-dark-secondary #e8e0d3` (supporting), `on-dark-muted #9c9b96` (captions). Hairlines: `line-on-dark`.
+- **Manifest** (`manifest-paper #f4f0e8`, gradient tolerance to `paper-deep #eee8dd`): estimate strip, who-we-serve, process, coverage, testimonials, all long-form/SEO body content. Text: `paper-ink #050607`, muted `paper-muted #5c5851`. Hairlines: `line-on-paper`.
+- **Panel** (`panel-steel #0e1012`): cards and form shells INSIDE board sections only. Never a full-width section surface.
 
-### Neutral (warm-paper, not gray)
-- **Newsprint Cream** (#F7F5F0): the page surface. Tinted toward burnt sienna at very low chroma. Replaces pure white everywhere on the marketing site. This IS the paper stock.
-- **Card White** (#FFFFFF): used only inside elevated cards on top of the cream surface, where the contrast bump signals "this is on top of the page" rather than "this is the page". Never used as a page background.
-- **Margin Sand** (#EFECE6): muted soft-bg for sectioned breaks, hover-on-cream surfaces, disabled inputs, sidebar panels.
-- **Pressroom Ink** (#2C2C2A): primary text, dark CTA fills, dark hero backgrounds. Never pure black. The warm tint matters.
-- **Pressroom Ink Deep** (#1A1A19): hover state on dark CTAs only.
-- **Type Stone** (#706E68): muted body copy, secondary metadata, hints, captions.
-- **Hint Gray** (#999999): placeholder italic text inside inputs.
-- **Margin Hairline** (#E5E0D8): card and divider borders. Always full borders or none, never side stripes.
-- **Field Rule** (#DDDDDD): input field default border, slightly cooler than card borders by intent.
+**The Alternation Rule.** Adjacent sections never share a surface on conversion pages (Home, audience pages): board, then manifest, then board. A page opens dark (hero) and closes dark (footer). Long-form/SEO pages are manifest-dominant: board appears only as the hero band and at most one mid-page conversion band; body content between them stays paper for reading comfort and content continuity.
 
-### Status (used sparingly)
-- **Bonded Pine** (#0F6E56): success state, verified-carrier badges, "Licensed & Bonded" trust marks. Only ever for state, never for decoration.
-- **Bonded Pine Tint** (#E1F5EE): success message background.
-- **Cite Red** (#C0392B): form error borders and error message text. The only place red appears.
+**The Dark Share Rule.** Conversion pages: 40-60% of scroll height is board. Long-form pages: no more than 25%. Below 40% on Home the brand reads timid; above 60% anywhere it reads like a gaming site.
 
-### Named Rules
+**Cards on paper** use `card-cream #fffaf1` with `line-on-paper` borders (the V1 no-true-white doctrine carried: #FFFFFF never appears as a surface). **Cards on board** use `panel-steel` or translucent white washes at 3.5-5% alpha with `line-on-dark` borders.
 
-**The One Seal Rule.** Burnt Sienna covers ≤10% of any given screen. Its rarity is the point. If a page has the accent on the kicker, the primary CTA, and the focus glow, it has met its budget; a fourth use is a deduction. The CTA Strip block is the deliberate exception (a full-bleed accent surface used at most once per page).
+**The No-True-Black/White Rule (carried from V1, recalibrated).** `#050607` is the floor; `#000` never appears. `card-cream #fffaf1` is the ceiling; `#fff` never appears as a surface (pure white may exist only inside the logo SVG and as button text where contrast demands it).
 
-**The No-True-White Rule.** The marketing surface is never #FFFFFF. The page is always Newsprint Cream. Card White exists only on top of cream as elevation, never as a base.
+## 3. Color
 
-**The No-True-Black Rule.** Type and dark surfaces are never #000. Pressroom Ink (#2C2C2A) is the warmest near-black we use. Anything cooler reads as a different brand.
+### Signal Red
 
-**The Status-Only Color Rule.** Cite Red exists only to express system state (error). Bonded Pine carries success / verified state **and** one deliberate editorial role: the non-hero section kicker (see the Kicker–Headline Pair Rule). That single structural use is the only place green is not a status signal; everywhere else green still means status, never vibe. Neither color appears as a decorative wash, divider, or category tag. PRODUCT.md's "operational honesty" is enforced here: status colors mean status, the pine kicker means "section eyebrow", nothing means vibe.
+- **signal-red `#d70f24`**: the one brand accent. CTAs, the live stat number, the stamp border, the kicker rule-line, link hover, one accent word in a display headline (`<span class="red">`), the hero URL display.
+- **signal-red-deep `#a90918`**: gradient partner and hover state.
+- **signal-red-bright `#ef3a4e`**: the ONLY red for body-size text on dark surfaces (see contrast law below). Never used on paper.
 
-## 3. Typography
+**The Signal Budget Rule (replaces the One Seal Rule).** Red is a signal, so it must stay rare enough to be read as one. Per viewport at any scroll position: at most **one red-filled element** (a CTA or the stamp), plus at most **two red text/hairline accents** (stat number, accent word, kicker rule, link underline). Red never exceeds ~8% of the pixels in any viewport. Red is never a section background, never a decorative wash larger than the hero's radial glow (which caps at 18% alpha), never a divider system. If a section already contains the gradient CTA, its stat numbers go white/ink, not red. **Low-alpha exemption:** red elements rendered at ≤10% alpha (the step-numeral watermark, the hero radial at distance) do not count toward the pixel budget or the accent count; at that alpha red reads as texture, not signal.
 
-**Display Font:** Georgia (with 'Times New Roman', serif fallback)
-**Body Font:** system-ui (with -apple-system, sans-serif fallback)
-**Mono Font:** JetBrains Mono (with 'Courier New', monospace fallback)
+**The Red Contrast Law (measured, WCAG AA).** `signal-red` on paper = 4.64:1 (passes AA body, use freely). `signal-red` on board = 3.85:1 (passes ONLY large text ≥18.66px bold or 24px regular; display numbers, headlines, big URL: yes; captions, body, mono-labels: NO). Body-size red on dark must use `signal-red-bright` (5.2:1 on board, 4.89:1 on panel). White on the CTA gradient passes at both stops (4.97-7.22:1).
 
-**Character:** Serif headlines + sans body is the trade-publication pairing — Georgia carries editorial weight without paying webfont latency, system sans keeps body copy fast and locale-native across EN/RU/UK/PL. JetBrains Mono is reserved for structured numerics (USDOT #4427359, MC #1741537, dispatch sheet IDs, $40–60 fee callouts) where tabular alignment expresses operational precision.
+### Neutrals
 
-### Hierarchy
+Documented in §2 (Surfaces). Contrast matrix, all measured:
 
-- **Display** (Georgia 700, clamp(1.8rem, 4vw, 2.75rem), line-height 1.1, tracking -0.02em): page heroes only. One per page maximum. Letter-spacing tightened to feel set, not typed.
-- **Headline** (Georgia 700, clamp(1.35rem, 2.5vw, 1.75rem), line-height 1.2, tracking -0.02em): section titles inside `.sectionHeader`. The dominant typographic move on every long-form page.
-- **Title** (system-ui 600, 16px, line-height 1.4): card titles, list item titles, in-card subheadings. Sans by intent — keeps the serif/sans contrast clean between section and contents.
-- **Body** (system-ui 400, 14.5px, line-height 1.7): standard reading copy.
-- **Body Long** (system-ui 400, 16px, line-height 1.7): long-form blog and guide articles. Cap line length at 65–75ch via `narrowColumn` (max-width 720px).
-- **Label / Kicker** (system-ui 700, 11px, uppercase, tracking 0.14em): the editorial eyebrow, paired with `◆`. Two-color system: the single page-hero kicker is **Burnt Sienna** (the seal); every non-hero section kicker is **Bonded Pine** green. Marks the section topic; complements the headline. (See the Kicker–Headline Pair Rule and the Status-Only Color Rule for why the section eyebrow is green.)
-- **Micro** (system-ui 600, 12px, tracking 0.02em): form labels, fine print, hint copy. Smaller than the kicker; never uppercase.
-- **Mono** (JetBrains Mono 500, 13px): credentials, IDs, dollar figures in dispatch sheets, BOL numbers. Operational paperwork rendered as type.
+| Pair | Ratio | Verdict |
+|---|---|---|
+| paper-ink on manifest-paper | 17.84 | AAA |
+| paper-muted on manifest-paper | 6.22 | AA+ body |
+| headlight-white on board-black | 19.10 | AAA |
+| on-dark-secondary on board-black | 15.48 | AAA |
+| on-dark-muted on board-black | 7.28 | AA+ body |
+| headlight-white on panel-steel | 17.96 | AAA |
+| signal-red on manifest-paper | 4.64 | AA body |
+| signal-red on board-black | 3.85 | AA large ONLY |
+| signal-red-bright on board-black | 5.20 | AA body |
+| white on signal-red / red-deep | 5.27 / 7.22 | AA / AAA |
 
-### Named Rules
+### Status
 
-**The Kicker–Headline Pair Rule.** Section headers are always a Label kicker (uppercase, with `◆`) directly above a serif Headline. Never a serif kicker, never a body-cased kicker, never an emoji. The pair is the trade-publication signature. **Kicker color (the two-color editorial system):** the one page-hero kicker is Burnt Sienna; every non-hero section kicker is Bonded Pine green. This is deliberate, not decorative drift: leading every section eyebrow in sienna on a long page would blow the One Seal Rule, so the sienna seal is reserved for the hero kicker plus the primary CTA and focus glows, and the recurring section eyebrow carries the calmer pine. On dark surfaces (dark hero, spotlight bands) the kicker brightens to the on-dark pine tint rather than sienna, for contrast.
+- **bonded-pine `#0F6E56`** + tint: success and verified state only, unchanged from V1. On dark surfaces use the existing bright derivative (`--success-bright`).
+- **Errors** use `signal-red-deep` on paper and `signal-red-bright` on dark, always paired with an icon or text label (never color alone). V1's separate Cite Red is retired; red already means "attention" in V2, and a second red would blur the signal.
+- Status colors never decorate. Green means verified/success, nothing else.
 
-**The No Decorative Type Rule.** Never gradient text. Never text shadows. Never letter-spaced display copy beyond the tightening described above. Emphasis comes from weight (400 → 700) and scale (≥1.25 ratio between steps), nothing else.
+## 4. Typography
 
-**The Em-Dash Substitution Rule.** No em dashes (`—`) in copy and no `--`. Use commas, colons, semicolons, periods, or parentheses. PRODUCT.md is enforced here: copy that drifts toward em-dash rhythm reads as AI slop.
+**Display:** condensed uppercase sans, self-hosted webfont with **mandatory Latin + Latin-Extended + Cyrillic coverage** (H1 renders in RU/UA/PL at parity; a display face without Cyrillic is disqualified regardless of look). The face is selected and pinned in W1-T03; `var(--v2-font-display)` is the single reference. Fallback stack is metric-tuned Arial Narrow.
+**Body:** system-ui. Unchanged. Fast, locale-native, zero webfont cost.
+**Mono:** JetBrains Mono (already self-hosted, 400/600/700 latin). V2 promotes it from "credentials only" to the system's microcopy voice: eyebrows, labels, sublines, captions, stats labels, chips.
+**Serif:** Georgia is retired as a display face. It may survive only as the long-form reading face inside blog article bodies (decision finalized in the blog wave); it never appears in headings, navigation, or UI. The only other serif on the site is the JP accent face (§5).
 
-**The Multilingual Parity Rule.** Russian / Polish / Ukrainian copy uses the same hierarchy and tracking as the English original. No tightened tracking on Cyrillic, no different sizes on Polish. If a translation runs longer, the line-length cap moves down a step before the type scale shrinks.
+### Scale (from frontmatter, the law in prose)
 
-## 4. Elevation
-
-Multi-layer subtle shadows over a flat-by-default base. The system layers depth atmospherically, never theatrically: each named shadow is two stops stacked (a soft near and a diffuse far) at very low alpha (0.04–0.12). Surfaces are flat at rest; shadows respond to state — hover, focus, active.
-
-### Shadow Vocabulary
-
-- **shadow-sm** (`box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06)`): default card resting shadow. Faint enough that the card feels grounded in paper, not floating.
-- **shadow-md** (`box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06)`): subtle hover, primary CTA hover.
-- **shadow-lg** (`box-shadow: 0 4px 12px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08)`): card hover lift, dark card hover.
-- **shadow-xl** (`box-shadow: 0 8px 24px rgba(0,0,0,0.06), 0 16px 48px rgba(0,0,0,0.12)`): dialog / sheet / featured-block elevation. Use sparingly.
-- **accent-glow** (`box-shadow: 0 2px 8px rgba(153,60,29,0.15), 0 8px 24px rgba(153,60,29,0.15)`): accent CTA hover wash. The only colored shadow in the system.
-- **focus-ring** (`box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent)`): keyboard-only focus ring on buttons, inputs, and interactive cards. Two-layer (cream then sienna) so it reads against any surface.
+- **Display** (hero H1): condensed 700, `clamp(2.6rem, 6vw, 6rem)`, line-height 0.94, tracking 0.02em, uppercase. One per page. **Cyrillic Clearance Rule:** uppercase Cyrillic diacritics (Й, Ї, Ё) risk clipping at 0.94 in condensed faces; if the pinned face clips them, display line-height rises to 0.98-1.0 (same value across all locales, parity rule). Every display-font candidate is tested with "ЙЇЁ ДОСТАВКА АВТОМОБІЛІВ" at display size before pinning.
+- **Section Display** (H2): condensed 700, `clamp(1.9rem, 3.4vw, 3.25rem)`, line-height 0.98, tracking 0.035em, uppercase.
+- **Card Title** (H3/tile): condensed 600, tracking 0.05em, uppercase.
+- **Body / Body-Long**: system-ui 400, 15/16px, line-height 1.65/1.7, sentence case. Reading text is NEVER uppercase and NEVER condensed.
+- **Mono Label** (eyebrow/kicker): mono 500, 11px, tracking 0.18em, uppercase.
+- **Mono Micro** (chips, captions): mono 500, 10px, tracking 0.14em, uppercase.
+- **Mono Data**: mono 500, 13px, normal case, for USDOT/MC/$ figures and tabular numerics.
 
 ### Named Rules
 
-**The Flat-By-Default Rule.** Surfaces sit flat on the page at rest. Cards have shadow-sm (barely there). Shadows escalate only on state — hover lifts to shadow-lg, focus replaces shadow with the focus ring, accent CTA hover fires the colored accent-glow.
+**The Caps Ceiling Rule.** Uppercase lives in display type and mono microcopy only. Anything a user actually reads (two or more consecutive sentences) is sentence-case body. A page that shouts everywhere says nothing; the condensed caps earn their force from the calm system-ui text around them.
 
-**The No Glassmorphism Rule.** No `backdrop-filter: blur` as a decorative surface treatment. PRODUCT.md anti-reference #4. If translucency is genuinely needed (e.g., a sticky nav over scrolled content), use a solid Newsprint Cream background with shadow, not blur.
+**The Kicker-Headline Pair, V2 form.** The section opener signature is now: mono eyebrow (11px, 0.18em tracking, `on-dark-muted`/`paper-muted`, preceded by a 46×2px signal-red rule-line, NOT the ◆ glyph) above a condensed uppercase headline. **Density cap:** at most 2 consecutive sections open with the eyebrow+headline pair; every third section must vary the opener (plain headline, JP vertical accent, or a stat lead-in). The ◆ kicker glyph is a V1 artifact; it does not appear in V2 surfaces.
 
-**The 3px Lift Cap Rule.** Card hover translateY caps at -3px. Anything more reads as a bouncy startup card; the trade-publication register stays controlled.
+**The Accent Word Rule.** A display headline may carry at most ONE red accent span. Never two, never a red-only headline on board (contrast law), never gradient text (carried V1 ban).
 
-**The Augment-Don't-Rewrite Rule.** Ranking pages get visual refinement, not content cuts. Vary layouts, restyle cards, add banner-like breaks, refine iconography — but preserve content depth and heading structure that earned the ranking. The page is a working SEO asset; design serves it, doesn't replace it. Future commands like `distill`, `layout`, `bolder` operating on ranking pages must respect this: if a suggestion removes content paragraphs or restructures H2 hierarchy on a ranking page, flag for ranking-impact review before applying. (See PRODUCT.md Design Principle 6.)
+**The No Decorative Type Rule (amended).** No gradient text, ever. Text-shadow is banned with ONE legalized exception: the hero URL display element (`Y7AGENCY.COM`) may carry the single red glow `0 18px 42px rgba(215,15,36,0.16)`. Nothing else glows.
 
-## Token aliasing
+**The Em-Dash Substitution Rule (carried verbatim from V1).** No em dashes (`—`) and no `--` in copy. Commas, colons, periods, parentheses.
 
-The descriptive token names in this spec (`newsprint-cream`, `pressroom-ink`, `burnt-sienna`, etc.) are aliases over the existing CSS custom properties in `src/styles/variables.css` (`--bg`, `--text`, `--accent`, etc.). Both naming conventions resolve to the same hex values; no refactor is required. New code may use either layer. Use the descriptive names when authoring new components or reasoning about visual roles; the legacy `--bg`/`--text`/`--accent` shorthands remain valid in existing CSS modules.
+**The Multilingual Parity Rule (carried, extended).** RU/UA/PL render the same hierarchy, same tracking, same weights. The display face MUST ship Cyrillic glyphs from day one; a Latin-only fallback rendering RU headlines in Arial Narrow while EN gets the brand face is a parity defect, not a fallback. Tracked-caps tracking values are identical across scripts.
 
-## 5. Components
+## 5. Japanese Accents (Brand Marks, Not Copy)
 
-### Buttons
+The JP accents tie the site to the vehicle-wrap brand system V4 and the kaizen operational ethos. They are **brand marks with the same status as the logo**, not content.
 
-Pill-shape across all variants (radius 20px). Tracked caps (uppercase, letter-spacing 0.5px), 12px size, weight 600. Min height 40px (44px under 520px viewport for touch comfort). Active state scales to 0.97 instead of bouncing.
+**Fixed inventory (closed list, additions require a DESIGN.md amendment):**
+- シンプル・迅速・信頼 ("simple, fast, trust"): vertical strip, hero left margin.
+- 改善 (kaizen): the red-bordered stamp, paired with the vertical strip or standalone.
+- 七 (seven): hanko-style brand lineage mark, logo contexts only.
+- 選択と集中 ("focus and concentration"): section-head margin accent, board sections only.
 
-- **Primary (`.btnPrimary`):** Pressroom Ink fill, Newsprint Cream text. Hover deepens to #1A1A19 plus shadow-md. The default action button across most surfaces.
-- **Accent (`.btnAccent`):** Burnt Sienna fill, white text. Hover deepens to Embered Sienna plus accent-glow. Reserved for high-intent CTAs ("GET QUOTE", "REQUEST DISPATCH", "BOOK PORT DELIVERY"). Never use for tertiary actions; the One Seal Rule applies.
-- **Secondary (`.btnSecondary`):** transparent fill, Pressroom Ink text, 1px Field Rule border. Hover fills to Margin Sand and shifts border to Pressroom Ink. Pairs with Primary when two CTAs sit side by side ("GET QUOTE" + "TRACK SHIPMENT").
-- **Ghost (`.btnGhost`):** transparent fill, no border. Hover fills to a 6% Pressroom Ink wash. For tertiary actions in dense surfaces.
-- **Sizes:** `btnSm` (6px 14px / 11px text), `btnLg` (14px 32px / 13px text). Compose onto any variant.
+**Named Rules:**
 
-### Cards
+**The Brand-Mark Rule.** JP accents are never translated, never localized, never carry information required to use the page. They are `aria-hidden="true"`, invisible to screen readers and to SEO. If removing every JP glyph from a page changes what a user knows or can do, the page has broken this law. This is how the accents coexist with the Multilingual Parity Rule: they are parity-neutral because they are decoration on every locale equally.
 
-- **Default (`.card`):** Card White fill, 1px Margin Hairline border, radius 12px, padding 28px, shadow-sm at rest. Hover translateY -3px, shadow-lg, border shifts to Burnt Sienna. The dominant container across the site.
-- **Muted (`.cardMuted`):** Margin Sand fill, transparent border at rest, radius 12px, padding 28px. Hover lifts -2px, border becomes Burnt Sienna, fill becomes Card White (the "ghost-to-paper" reveal). Used where a section needs a softer container break than full white.
-- **Dark (`.cardDark`):** Pressroom Ink fill, Newsprint Cream text, 1px self-border, radius 12px, padding 28px. Hover translateY -3px, shadow-lg. Reserved for testimonial blocks and inverted feature surfaces inside dark sections.
-- **Accent Border (`.accentBorder`):** modifier that swaps the resting border to Burnt Sienna and adds a 1px sienna ring + shadow-md. For a single "featured" card per group ("Most Popular", "Recommended"), never multiple.
-- **Grids:** `.cardGrid` (3-col → 2 → 1, gap 24/20/16), `.cardGrid2` (2-col → 1, gap 24/16), `.cardGrid4` (4-col → 2 → 1, gap 20). Vary spacing across sections rather than reusing one grid; identical grids stacked are PRODUCT.md anti-reference #2.
+**The Density Cap.** At most 2 JP accents per viewport, at most 3 per page. The hero strip + stamp combination counts as 2.
 
-### Inputs
+**Rendering:** vertical strips use `writing-mode: vertical-rl` with the JP serif asset from W1-T03 (hard-subset webfont ≤6KB or inline SVG; never a full CJK font). Color: `on-dark-muted` at 58% alpha for strips; stamp border and glyph in `signal-red` at 75% alpha.
 
-Card White fill, 1px Field Rule border, radius 8px, padding 10px 14px (12px 14px on mobile), min-height 44px. Font size 14px desktop, **16px mobile** (iOS zoom-on-focus prevention is non-negotiable).
+## 6. Elevation, Radii, Motion
 
-- **Hover:** border darkens to #BBB.
-- **Focus:** border becomes Burnt Sienna; 3px Burnt Sienna 15%-alpha glow surrounds the field.
-- **Placeholder:** Hint Gray, italic, 0.8 opacity. The italic is intentional — it visually distinguishes hint from value.
-- **Error (`.inputError`):** border + focus glow swap to Cite Red. Error message renders in Cite Red 12px weight 500 below the field.
-- **Textarea:** composes input, vertical resize, min-height 96px, line-height 1.6.
-- **Select:** composes input, native chevron replaced with inline SVG (gray, 10×6) at right 14px center.
-- **Checkbox / Radio:** `accent-color: Burnt Sienna`. Focus-visible adds a 2px sienna outline with 2px offset.
+### Radii (V2 family)
 
-### Page Hero
+`sm 6px` (buttons, chips-on-paper), `md 12px` (inputs, small tiles), `lg 18px` (cards, tiles), `xl 22px` (feature cards, form shells), `pill 999px` (ghost buttons, chips-on-dark). One radius tier per component class per page; mixing 18 and 22 on sibling cards in one section is a defect.
 
-Two variants. Always centered, always paired with kicker + display.
+### Elevation
 
-- **Warm (`.pageHeroWarm`):** Newsprint Cream → Margin Sand vertical gradient with a low-alpha radial Burnt Sienna wash at center-bottom. Padding clamps responsively. Default for marketing pages.
-- **Dark (`.pageHeroDark`):** Pressroom Ink fill with a Burnt Sienna 18%-alpha radial wash positioned top-right (-40% / -10%, 520×520). Display title swaps to Newsprint Cream. Used for high-conviction surfaces (About, exporter pitch).
+Board sections carry depth through **hairlines and surface steps**, not shadows: `line-on-dark` borders, panel-over-board contrast, inset top-light `inset 0 1px 0 rgba(255,255,255,0.07)`. Paper sections keep the V1 subtle shadow scale (`shadow-sm/md/lg` unchanged) for cream cards. New in V2:
 
-### Section Header
+- **red-glow** `0 18px 44px rgba(215,15,36,0.22)`: the gradient CTA's resting shadow. The ONLY colored shadow. One element per viewport may carry it (Signal Budget).
+- **board-depth** `0 24px 70px rgba(0,0,0,0.3)`: form shells and featured panels on board sections only.
 
-Kicker + serif title + optional sans lede. Centered. Margin-bottom clamps responsively. The kicker is always uppercase 11px with 0.14em tracking, Bonded Pine green fill (the page-hero kicker is the lone Burnt Sienna exception), optionally prefixed with `◆`. The title is Headline-tier serif. The lede caps at 620px width.
+**The 3px Lift Cap Rule (carried from V1).** Hover translateY caps at -3px on any surface. The register stays controlled.
 
-### Audience Cards (signature pattern)
+### Motion
 
-Three-up audience-routing card row used on Home to send visitors into the right track (`/ship-my-car`, `/dealers`, `/exporters`). Each card is a full clickable region (role="link", tabindex=0, keyboard activation on Enter / Space) with: an icon block, a small audience tag (Label-style), a serif Title, a body description, a status row with a tone-colored dot + stat line, and a CTA button with a trailing arrow. The three cards diverge only in `tone` modifier (coral / teal / amber) which colors the icon block, dot, and CTA underline; everything else stays at parity. Stagger the entrance with `--i: index` (0/1/2) and `staggerChild` so the row reveals left-to-right under `prefers-reduced-motion: no-preference`. Stops being a card grid the moment it's read as one — vary the layout *around* it on the page (a wide hero above, an asymmetric Benefits + WhyY7 split below) so the row is the deliberate three-up moment, not another generic card grid.
+- Durations 150-400ms, ease-out family. Entrances: fade + ≤16px rise.
+- **The Reveal Gate Rule (hard technical law).** Every entrance animation runs through the `Reveal`/`ScrollReveal` components or replicates their gates: instant at-rest path when `window.__Y7_PRERENDER` or `window.__Y7_STATIC_SHOWN`, and full `prefers-reduced-motion` collapse. An entrance that animates in the prerender snapshot regresses LCP sitewide; this is a build-blocking defect, not a style note.
+- New keyframes register in `theme.js` (single injection point via Layout).
+- No scroll-hijack, no parallax on content, no marquees, no infinite decorative loops. Status pulses (live dot) are the sole perpetual motion allowed, max one per viewport.
 
-### CTA Strip (signature component)
+**The Focus-Visible Law.** Visible keyboard focus is mandatory on every interactive element, including cards-as-links: 2px outline, `signal-red-bright` on dark surfaces / `signal-red` on paper, `outline-offset: 2px`. `:focus-visible` is never suppressed, never replaced by a shadow-only treatment that fails on nested surfaces.
 
-Full-bleed Burnt Sienna → Embered Sienna 135° gradient, radius 16px, padding clamps responsively. Title in white serif Headline, subtitle in 82%-alpha white sans, primary button is the only inverted button in the system (white fill, Burnt Sienna text). One CTA Strip per long-form page maximum — it is the deliberate exception to the One Seal Rule.
+## 7. Components
 
-### Underline Grow (link treatment)
+- **Button / CTA (primary):** gradient `linear-gradient(135deg, #d70f24, #a90918)`, white text, radius `sm 6px` (large: 8px), condensed caps 15px tracking 0.06em, resting `red-glow`. **The Gradient Legality Rule:** this exact pair is the ONLY legal gradient fill in the system (supersedes V1's blanket gradient ban); any other gradient (text, borders, cards, section washes beyond the hero radial) remains banned.
+- **Button (ghost):** transparent, 1px `line-on-dark-strong`/`line-on-paper` border, pill radius, condensed caps. On-dark text `headlight-white`, on-paper `paper-ink`.
+- **Section shell:** max-width 1440px, padding `section` clamp, surface per §2.
+- **Section head:** eyebrow (mono label + red rule-line) + condensed H2 + optional lede (body, ≤520px, muted). Optional JP vertical accent right-aligned (board sections only, density cap applies).
+- **Card (board):** `panel-steel` or 3.5-5% white wash, `line-on-dark` border, radius lg/xl, inset top-light. Hover: border brightens to `line-on-dark-strong`, lift ≤3px.
+- **Card (paper):** `card-cream`, `line-on-paper` border, radius lg, `shadow-sm` at rest, V1 hover behavior.
+- **Chips:** mono-micro caps in pill borders; `line-on-dark`/`line-on-paper`, never filled.
+- **Trust row / stat tiles:** hairline-divided grid on 4.5% white wash; stat number condensed in `signal-red` (large-text sizes only), label mono-micro `on-dark-secondary`. Stats obey the honesty laws (§8): hedged, sourced, no fake precision.
+- **Forms on board:** `board-black` shell radius xl + `board-depth`; inputs `panel-steel`, `line-on-dark` border, radius md, white text, mono labels above (never placeholder-as-label). Focus: 2px `signal-red-bright` ring + 2px offset; error text `signal-red-bright` + icon. iOS 16px input floor carried from V1.
+- **Forms on paper:** V1 input spec carried, focus ring recolored `signal-red` (4.64:1).
+- **Numbered process steps:** oversized condensed step numeral at 9% red alpha as card watermark; this is the one sanctioned decorative red (counts toward Signal Budget as a hairline-tier accent).
+- **Port/coverage tiles:** mono airport-code style abbreviation in red (large text), name in body. Always real links to `/ports/*` pages.
+- **Body links (The Body-Link Law):** inline links in reading copy rest in the surface's text color with an underline: `paper-ink` + underline on manifest, `headlight-white` + underline on board. Hover shifts the color to `signal-red-deep` (paper) / `signal-red-bright` (dark). Red is NEVER the resting color of body links; on link-dense SEO pages resting-red links would consume the Signal Budget instantly and demote red from signal to noise.
 
-Inline link gets a 1.5px Burnt Sienna underline that scales from 0 → 1 on hover (`scaleX`, transform-origin left). Pairs with `.underlineCenter` (transform-origin center) for centered link rows. The trade-publication footnote feel: links don't shout, they reveal underlines on intent.
+## 8. Brand, Copy, Honesty (Law Carried Forward and Pinned)
 
-## 6. Do's and Don'ts
+- **Brand-String Law:** the public brand is **"Y7 Logistics"** in all copy, nav, titles, footer. "Y7 Agency" never appears in copy. `Y7AGENCY.COM` is permitted solely as the graphic URL display element (hero/footer). Legal line: `© Y7 Consulting Inc d/b/a Y7 Logistics`. Schema `name` stays "Y7 Logistics".
+- **Descriptor Law:** "Licensed & Bonded FMCSA Broker" verbatim; never "Licensed & Insured"; carrier count claim is "700+"; all response-time promises carry the business-hours hedge (W0 baseline is the floor, never regress it).
+- **No urgency theater, no fake social proof, no invented precision.** Every stat on a V2 surface must be sourced (operational data) or hedged. Red makes stats louder; the honesty bar rises with the volume.
+- **Milestone language:** status updates happen at shipment milestones; never "real-time tracking", "GPS", "live tracking" (W0 compliance baseline).
+- **Copy register:** expert-confident and matter-of-fact. The condensed caps carry conviction; the words stay operational. "MOVE MORE. PAY LESS." is a slogan; body copy under it explains dispatch fees in plain sentences.
+
+## 9. Process Laws (How V2 Ships)
+
+- **The Additive Migration Rule.** V2 tokens live alongside V1 (`--v2-*` namespace) until a wave explicitly flips a surface. No V1 token value changes outside a wave's declared scope. theme.js ↔ variables.css ↔ DESIGN.json stay in sync on every token commit.
+- **The Anti-Orphan Rule.** V1's primitives died as orphans (cards/layout/premium modules, zero importers). V2 primitives in `src/styles/v2/` are the ONLY implementation of this spec: every build wave imports them; a page re-implementing a V2 surface, card, button, or section-head inline is a review-reject. New inline section styles on pages are a defect by definition.
+- **The SEO Contract.** Every V2 wave ships against `design-v2-audit/SEO_CONTRACT.md`: heading structure, schema, internal links, locale parity preserved 1:1. Restyle is unlimited; content changes need explicit sign-off.
+- **The Reveal Gate** (§6) and **prerender validation** (CLAUDE.md protocol): 138 OK + file-level content checks before any wave reports done.
+
+## 10. Do's and Don'ts
 
 ### Do:
-- **Do** treat Newsprint Cream (#F7F5F0) as the page background everywhere on the marketing site. Card White (#FFFFFF) belongs only inside elevated cards.
-- **Do** use Burnt Sienna (#993C1D) as a seal: kicker fills, primary CTAs, focus glows, link underlines, hover borders. ≤10% of any screen.
-- **Do** pair every section title with a tracked-caps Label kicker, optionally prefixed by `◆`. The kicker–headline pair is the trade-publication signature.
-- **Do** lead with operational specifics on every audience surface: USDOT #4427359, MC #1741537, $75k BMC-84 surety bond, port partners, dispatch fee structure. Render IDs in JetBrains Mono.
-- **Do** vary card grid layouts across long pages (3-col, 2-col, narrow column, asymmetric pairs). Identical card grids stacked are PRODUCT.md anti-reference #2.
-- **Do** keep status colors (Bonded Pine, Cite Red) for system state only — never decorative.
-- **Do** maintain typographic parity across EN, RU, UK, PL. Translation quality is operational quality (PRODUCT.md Design Principle 5).
-- **Do** respect `prefers-reduced-motion` on every animation; entrance fades, lifts, and reveals all collapse to instant when reduced motion is set.
-- **Do** keep input font-size at 16px on mobile to prevent iOS zoom-on-focus.
-- **Do** state Y7 as "Licensed & Bonded FMCSA Broker", never "Licensed & Insured" (brokers don't carry cargo insurance, carriers do — PRODUCT.md operational-honesty doctrine carried through copy).
+- **Do** open conversion pages with the board-black hero and close with the board footer; alternate surfaces between.
+- **Do** render every credential, ID, price, and stat label in JetBrains Mono. The mono voice IS the operational-honesty voice.
+- **Do** keep body copy sentence-case system-ui at 15-16px; the condensed caps are for display only.
+- **Do** treat signal red as a budgeted signal: one red fill + two red accents per viewport, max.
+- **Do** use the JP accents from the fixed inventory, `aria-hidden`, within density caps.
+- **Do** ship display-font Cyrillic coverage and identical type treatment across EN/RU/UA/PL.
+- **Do** respect `prefers-reduced-motion` and the Reveal prerender gates on every entrance.
+- **Do** link every port tile, coverage item, and audience card to its real page with crawlable anchor text.
+- **Do** carry V1's honesty bans: no urgency timers, no fake counters, no review stars, no "Licensed & Insured".
+- **Do** import `src/styles/v2/` primitives; extend them there when a wave needs a variant.
 
 ### Don't:
-- **Don't** use pure white (#FFFFFF) as a page background. The Newsprint Cream warm tint is non-negotiable; pure white reads as SaaS-cream marketing (PRODUCT.md anti-reference #2).
-- **Don't** use pure black (#000) on text or surfaces. Pressroom Ink (#2C2C2A) carries the warm cast that ties to the rest of the palette.
-- **Don't** ship gradient text (`background-clip: text` over a gradient fill). PRODUCT.md anti-reference #4. Emphasis comes from weight and scale, not coloring tricks.
-- **Don't** ship glassmorphism or `backdrop-filter: blur` as decoration. PRODUCT.md anti-reference #4.
-- **Don't** add neon accents, Web3-flavored gradients, "AI-native dispatch" copy, or any startup/crypto visual cues. PRODUCT.md anti-reference #4.
-- **Don't** ship blue/red/orange marketing gradients, "GET INSTANT QUOTE!" hero treatments in giant fonts, urgency timers, fake "X people just got quotes" widgets, or cherry-picked review carousels. PRODUCT.md anti-reference #1.
-- **Don't** ship navy + gold logistics-corporate palette, suit-and-tie photography, or "Your global logistics partner since 1985" energy. PRODUCT.md anti-reference #3.
-- **Don't** use side-stripe borders (`border-left` > 1px as a colored accent). Always full borders or no border.
-- **Don't** ship the hero-metric template (big number + small label + supporting stats + gradient accent). SaaS cliché.
-- **Don't** stack identical 3-card grids more than once per page. Vary the rhythm; nested cards are always wrong.
-- **Don't** use modals as a first thought. Exhaust inline / progressive alternatives. Modals exist; they are not the default.
-- **Don't** use em dashes (`—`) or `--` in copy. PRODUCT.md copy rule.
-- **Don't** exceed a -3px translateY on card hover. The trade-publication register stays controlled; anything more reads as bouncy startup card.
-- **Don't** use Burnt Sienna as a decorative wash, divider, or large fill outside the CTA Strip exception. The accent's value is rarity (One Seal Rule).
-- **Don't** treat RU/UK/PL copy as smaller, looser, or visually demoted. The Polish exporter base is among Y7's most loyal segments; locale parity is a brand value, not a translation chore.
+- **Don't** use pure `#000` or pure `#fff` as any surface.
+- **Don't** put body-size `signal-red` text on dark surfaces (3.85:1 fails AA); use `signal-red-bright`.
+- **Don't** ship red section backgrounds, red washes, or more than one red-filled element per viewport.
+- **Don't** use any gradient except the legal CTA pair; gradient text stays banned.
+- **Don't** set reading copy (two-plus sentences) in caps or condensed.
+- **Don't** translate, localize, or attach meaning to JP accents; never let them carry required information.
+- **Don't** stack two dark sections or two paper sections adjacently on conversion pages.
+- **Don't** use highway stock photos, chrome/carbon-fiber textures, italic "speed" type, or anything from the generic-carrier lane; dark+red must stay disciplined or it becomes anti-reference #1.
+- **Don't** exceed the -3px hover lift, add text shadows (one URL-display exception), or introduce glassmorphism (carried ban; the nav's existing blur is grandfathered until the chrome wave re-decides it).
+- **Don't** re-implement V2 primitives inline on pages (Anti-Orphan Rule) or add entrance animations outside the Reveal gates.
+- **Don't** use the ◆ glyph, Bonded Pine kickers, or sienna anywhere in V2 surfaces; they are V1 artifacts that read as brand drift now.
+- **Don't** use em dashes in copy, ever.

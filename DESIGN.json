@@ -1,261 +1,501 @@
 {
-  "schemaVersion": 2,
-  "generatedAt": "2026-04-30T00:00:00.000Z",
-  "title": "Design System: Y7 Logistics",
-  "extensions": {
-    "colorMeta": {
-      "newsprint-cream": {
-        "role": "neutral",
-        "displayName": "Newsprint Cream",
-        "canonical": "oklch(96.5% 0.008 70)",
-        "tonalRamp": ["#1A1916", "#2D2B26", "#4A463E", "#706A5C", "#A39C8B", "#D4CDBC", "#EFECE6", "#F7F5F0"]
-      },
-      "card-white": {
-        "role": "neutral",
-        "displayName": "Card White",
-        "canonical": "oklch(100% 0 0)",
-        "tonalRamp": ["#1A1916", "#2D2B26", "#4A463E", "#706A5C", "#A39C8B", "#D4CDBC", "#EFECE6", "#FFFFFF"]
-      },
-      "margin-sand": {
-        "role": "neutral",
-        "displayName": "Margin Sand",
-        "canonical": "oklch(93% 0.008 70)",
-        "tonalRamp": ["#1A1916", "#2D2B26", "#4A463E", "#706A5C", "#A39C8B", "#D4CDBC", "#EFECE6", "#F7F5F0"]
-      },
-      "pressroom-ink": {
-        "role": "neutral",
-        "displayName": "Pressroom Ink",
-        "canonical": "oklch(22% 0.005 70)",
-        "tonalRamp": ["#1A1A19", "#2C2C2A", "#454541", "#5E5D58", "#787570", "#928E87", "#ACA89F", "#C7C2B7"]
-      },
-      "pressroom-ink-deep": {
-        "role": "neutral",
-        "displayName": "Pressroom Ink Deep",
-        "canonical": "oklch(18% 0.005 70)",
-        "tonalRamp": ["#0E0E0D", "#1A1A19", "#2C2C2A", "#454541", "#5E5D58", "#787570", "#928E87", "#ACA89F"]
-      },
-      "type-stone": {
-        "role": "neutral",
-        "displayName": "Type Stone",
-        "canonical": "oklch(50% 0.005 70)",
-        "tonalRamp": ["#2C2B28", "#3F3D39", "#535048", "#6A6660", "#706E68", "#8A877F", "#A6A399", "#C2BFB4"]
-      },
-      "hint-gray": {
-        "role": "neutral",
-        "displayName": "Hint Gray",
-        "canonical": "oklch(66% 0 0)",
-        "tonalRamp": ["#3D3D3D", "#525252", "#666666", "#7A7A7A", "#999999", "#B3B3B3", "#CCCCCC", "#E6E6E6"]
-      },
-      "burnt-sienna": {
-        "role": "primary",
-        "displayName": "Burnt Sienna",
-        "canonical": "oklch(47% 0.13 38)",
-        "tonalRamp": ["#2A0F07", "#48190C", "#681F0E", "#7A3017", "#993C1D", "#B85128", "#D4733F", "#E5A079"]
-      },
-      "embered-sienna": {
-        "role": "primary",
-        "displayName": "Embered Sienna",
-        "canonical": "oklch(38% 0.12 38)",
-        "tonalRamp": ["#1F0A05", "#3A1309", "#5A1A0E", "#7A3017", "#993C1D", "#B85128", "#D4733F", "#E5A079"]
-      },
-      "bonded-pine": {
-        "role": "tertiary",
-        "displayName": "Bonded Pine",
-        "canonical": "oklch(48% 0.09 165)",
-        "tonalRamp": ["#062A20", "#0A4034", "#0F6E56", "#178672", "#27A089", "#5BBBA8", "#92D0C2", "#E1F5EE"]
-      },
-      "bonded-pine-tint": {
-        "role": "tertiary",
-        "displayName": "Bonded Pine Tint",
-        "canonical": "oklch(95% 0.025 165)",
-        "tonalRamp": ["#062A20", "#0A4034", "#0F6E56", "#178672", "#27A089", "#5BBBA8", "#92D0C2", "#E1F5EE"]
-      },
-      "cite-red": {
-        "role": "secondary",
-        "displayName": "Cite Red",
-        "canonical": "oklch(53% 0.17 28)",
-        "tonalRamp": ["#3A0E08", "#5C160C", "#7E1E10", "#A02817", "#C0392B", "#D55E50", "#E58A7E", "#F4BAB1"]
-      },
-      "margin-hairline": {
-        "role": "neutral",
-        "displayName": "Margin Hairline",
-        "canonical": "oklch(89% 0.008 70)",
-        "tonalRamp": ["#52504B", "#6B695F", "#85827A", "#A09E94", "#BAB7AB", "#D2D0C5", "#E5E0D8", "#F2EFE8"]
-      },
-      "field-rule": {
-        "role": "neutral",
-        "displayName": "Field Rule",
-        "canonical": "oklch(87% 0 0)",
-        "tonalRamp": ["#3D3D3D", "#525252", "#666666", "#7A7A7A", "#999999", "#B3B3B3", "#DDDDDD", "#EFEFEF"]
-      }
-    },
-    "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "Page heroes only. One per page." },
-      "headline": { "displayName": "Headline", "purpose": "Section titles inside .sectionHeader." },
-      "title": { "displayName": "Title", "purpose": "Card titles, in-card subheadings (sans by intent)." },
-      "body": { "displayName": "Body", "purpose": "Standard reading copy, 14.5px / 1.7." },
-      "body-long": { "displayName": "Body Long", "purpose": "Long-form blog and guide articles, 16px / 1.7. Cap line length 65–75ch." },
-      "label": { "displayName": "Label / Kicker", "purpose": "Tracked uppercase eyebrow above headlines, sienna fill, paired with ◆." },
-      "micro": { "displayName": "Micro", "purpose": "Form labels, fine print, hint copy." },
-      "mono": { "displayName": "Mono", "purpose": "Credentials, IDs, dispatch sheet numerics, dollar figures." }
-    },
-    "shadows": [
-      { "name": "shadow-sm", "value": "0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06)", "purpose": "Default card resting shadow. Faintly grounded in paper." },
-      { "name": "shadow-md", "value": "0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06)", "purpose": "Subtle hover lift. Primary CTA hover." },
-      { "name": "shadow-lg", "value": "0 4px 12px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08)", "purpose": "Card hover, dark card hover." },
-      { "name": "shadow-xl", "value": "0 8px 24px rgba(0,0,0,0.06), 0 16px 48px rgba(0,0,0,0.12)", "purpose": "Dialog / sheet / featured-block elevation. Sparingly." },
-      { "name": "accent-glow", "value": "0 2px 8px rgba(153,60,29,0.15), 0 8px 24px rgba(153,60,29,0.15)", "purpose": "Accent CTA hover wash. The only colored shadow in the system." },
-      { "name": "focus-ring", "value": "0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D)", "purpose": "Keyboard-only focus ring. Two-layer (cream then sienna) so it reads against any surface." }
-    ],
-    "motion": [
-      { "name": "transition-fast", "value": "150ms ease-out", "purpose": "Active scale, focus-ring fade-in." },
-      { "name": "transition-normal", "value": "250ms ease-out", "purpose": "Default for hover, color shifts, card lifts." },
-      { "name": "transition-slow", "value": "400ms ease-out", "purpose": "Section transitions, scroll-driven reveals." },
-      { "name": "fade-up", "value": "translateY(10px) → translateY(0), opacity 0 → 1, 500ms ease-out", "purpose": "Entrance animation. Auto-disabled under prefers-reduced-motion." }
-    ],
-    "breakpoints": [
-      { "name": "phone-portrait", "value": "520px" },
-      { "name": "sm", "value": "640px" },
-      { "name": "md", "value": "768px" },
-      { "name": "lg", "value": "1024px" },
-      { "name": "xl", "value": "1200px" }
+ "schemaVersion": 2,
+ "generatedAt": "2026-07-15T00:00:00-04:00",
+ "title": "Y7 Logistics Design System V2",
+ "extensions": {
+  "colorMeta": {
+   "board-black": {
+    "role": "surface-dark",
+    "displayName": "Board Black",
+    "canonical": "oklch(13% 0.005 260)",
+    "tonalRamp": [
+     "#050607",
+     "#0b0d0f",
+     "#0e1012",
+     "#16181b",
+     "#22252a"
     ]
+   },
+   "board-black-2": {
+    "role": "surface-dark",
+    "displayName": "Board Black 2",
+    "canonical": "oklch(15% 0.005 260)",
+    "tonalRamp": [
+     "#050607",
+     "#0b0d0f",
+     "#111315",
+     "#181b1e"
+    ]
+   },
+   "panel-steel": {
+    "role": "surface-dark-elevated",
+    "displayName": "Panel Steel",
+    "canonical": "oklch(16% 0.005 260)",
+    "tonalRamp": [
+     "#0b0d0f",
+     "#0e1012",
+     "#15181b",
+     "#1e2226"
+    ]
+   },
+   "manifest-paper": {
+    "role": "surface-light",
+    "displayName": "Manifest Paper",
+    "canonical": "oklch(95% 0.011 85)",
+    "tonalRamp": [
+     "#d9d2c2",
+     "#e6dfd2",
+     "#eee8dd",
+     "#f4f0e8",
+     "#f9f6f0",
+     "#fffaf1"
+    ]
+   },
+   "paper-deep": {
+    "role": "surface-light",
+    "displayName": "Paper Deep",
+    "canonical": "oklch(92% 0.014 85)",
+    "tonalRamp": [
+     "#ddd5c4",
+     "#e6dfd1",
+     "#eee8dd",
+     "#f4f0e8"
+    ]
+   },
+   "card-cream": {
+    "role": "surface-light-elevated",
+    "displayName": "Card Cream",
+    "canonical": "oklch(98% 0.011 85)",
+    "tonalRamp": [
+     "#f4f0e8",
+     "#f9f5ec",
+     "#fffaf1"
+    ]
+   },
+   "headlight-white": {
+    "role": "text-on-dark",
+    "displayName": "Headlight White",
+    "canonical": "oklch(97% 0.014 75)",
+    "tonalRamp": [
+     "#d9d0c0",
+     "#e8e0d3",
+     "#fff7ed"
+    ]
+   },
+   "on-dark-secondary": {
+    "role": "text-on-dark",
+    "displayName": "On-Dark Secondary",
+    "canonical": "oklch(90% 0.013 80)",
+    "tonalRamp": [
+     "#bcb5ab",
+     "#d9d0c3",
+     "#e8e0d3"
+    ]
+   },
+   "on-dark-muted": {
+    "role": "text-on-dark",
+    "displayName": "On-Dark Muted",
+    "canonical": "oklch(66% 0.004 80)",
+    "tonalRamp": [
+     "#6f6e6a",
+     "#85847f",
+     "#9c9b96",
+     "#b4b3ae"
+    ]
+   },
+   "paper-ink": {
+    "role": "text-on-light",
+    "displayName": "Paper Ink",
+    "canonical": "oklch(13% 0.005 260)",
+    "tonalRamp": [
+     "#050607",
+     "#1c1e20",
+     "#312e29"
+    ]
+   },
+   "paper-muted": {
+    "role": "text-on-light",
+    "displayName": "Paper Muted",
+    "canonical": "oklch(43% 0.008 75)",
+    "tonalRamp": [
+     "#45413b",
+     "#5c5851",
+     "#7d746c",
+     "#8a8378"
+    ]
+   },
+   "signal-red": {
+    "role": "accent",
+    "displayName": "Signal Red",
+    "canonical": "oklch(55% 0.22 25)",
+    "tonalRamp": [
+     "#2f080d",
+     "#590a13",
+     "#830b18",
+     "#ad0d1e",
+     "#d70f24",
+     "#e14956",
+     "#eb8388",
+     "#f5bdbb"
+    ]
+   },
+   "signal-red-deep": {
+    "role": "accent-hover",
+    "displayName": "Signal Red Deep",
+    "canonical": "oklch(44% 0.19 25)",
+    "tonalRamp": [
+     "#4d040b",
+     "#7a0712",
+     "#a90918",
+     "#c40d1f",
+     "#d70f24"
+    ]
+   },
+   "signal-red-bright": {
+    "role": "accent-on-dark-text",
+    "displayName": "Signal Red Bright",
+    "canonical": "oklch(64% 0.21 20)",
+    "tonalRamp": [
+     "#d70f24",
+     "#e42439",
+     "#ef3a4e",
+     "#f4586a",
+     "#f97a88"
+    ]
+   },
+   "bonded-pine": {
+    "role": "status-success",
+    "displayName": "Bonded Pine",
+    "canonical": "oklch(47% 0.09 175)",
+    "tonalRamp": [
+     "#083d30",
+     "#0F6E56",
+     "#1D9E75",
+     "#54E0B0",
+     "#E1F5EE"
+    ]
+   }
   },
-  "components": [
-    {
-      "name": "Primary Button",
-      "kind": "button",
-      "refersTo": "button-primary",
-      "description": "Default action button across most surfaces. Pressroom Ink fill, Newsprint Cream text. Pill-shape, tracked caps.",
-      "html": "<button class=\"ds-btn-primary\">GET QUOTE</button>",
-      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 24px; min-height: 40px; background: #2C2C2A; color: #F7F5F0; border: 0.5px solid transparent; border-radius: 20px; font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; cursor: pointer; outline: none; transition: background-color 250ms ease-out, transform 150ms ease-out, box-shadow 250ms ease-out; } .ds-btn-primary:hover { background: #1A1A19; box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06); } .ds-btn-primary:active { transform: scale(0.97); } .ds-btn-primary:focus-visible { box-shadow: 0 0 0 2px #F7F5F0, 0 0 0 4px #993C1D; }"
-    },
-    {
-      "name": "Accent Button",
-      "kind": "button",
-      "refersTo": "button-accent",
-      "description": "High-intent CTA only (\"GET QUOTE\", \"REQUEST DISPATCH\"). Burnt Sienna seal, white text, accent-glow on hover.",
-      "html": "<button class=\"ds-btn-accent\">REQUEST DISPATCH</button>",
-      "css": ".ds-btn-accent { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 24px; min-height: 40px; background: #993C1D; color: #FFFFFF; border: 0.5px solid transparent; border-radius: 20px; font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; cursor: pointer; outline: none; transition: background-color 250ms ease-out, transform 150ms ease-out, box-shadow 250ms ease-out; } .ds-btn-accent:hover { background: #7A3017; box-shadow: 0 2px 8px rgba(153,60,29,0.15), 0 8px 24px rgba(153,60,29,0.15); } .ds-btn-accent:active { transform: scale(0.97); } .ds-btn-accent:focus-visible { box-shadow: 0 0 0 2px #F7F5F0, 0 0 0 4px #993C1D; }"
-    },
-    {
-      "name": "Secondary Button",
-      "kind": "button",
-      "refersTo": "button-secondary",
-      "description": "Outline pair to Primary or Accent. Transparent fill with thin border, fills to Margin Sand on hover.",
-      "html": "<button class=\"ds-btn-secondary\">TRACK SHIPMENT</button>",
-      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 24px; min-height: 40px; background: transparent; color: #2C2C2A; border: 1px solid #CCCCCC; border-radius: 20px; font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; cursor: pointer; outline: none; transition: background-color 250ms ease-out, border-color 250ms ease-out, transform 150ms ease-out; } .ds-btn-secondary:hover { background: #EFECE6; border-color: #2C2C2A; } .ds-btn-secondary:active { transform: scale(0.97); } .ds-btn-secondary:focus-visible { box-shadow: 0 0 0 2px #F7F5F0, 0 0 0 4px #993C1D; }"
-    },
-    {
-      "name": "Card",
-      "kind": "card",
-      "refersTo": "card",
-      "description": "Default container across the site. Card White on Newsprint Cream, hairline border, sm shadow at rest, lift + sienna border on hover.",
-      "html": "<article class=\"ds-card\"><span class=\"ds-card-kicker\">◆ FMCSA LICENSED</span><h3 class=\"ds-card-title\">Door-to-door transport</h3><p class=\"ds-card-body\">Verified carriers, real dispatchers, no hidden markup. Customer pays Y7 only the flat dispatch fee per load.</p></article>",
-      "css": ".ds-card { background: #FFFFFF; border: 1px solid #E5E0D8; border-radius: 12px; padding: 28px; box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06); transition: transform 250ms ease-out, box-shadow 250ms ease-out, border-color 250ms ease-out; } .ds-card:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08); border-color: #993C1D; } .ds-card-kicker { display: inline-block; font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 700; color: #993C1D; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 10px; } .ds-card-title { font-family: Georgia, 'Times New Roman', serif; font-size: 1.25rem; font-weight: 700; color: #2C2C2A; letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 10px; } .ds-card-body { font-family: system-ui, -apple-system, sans-serif; font-size: 14.5px; line-height: 1.7; color: #706E68; margin: 0; }"
-    },
-    {
-      "name": "Muted Card",
-      "kind": "card",
-      "refersTo": "card-muted",
-      "description": "Softer container break. Margin Sand fill at rest, ghosts to Card White on hover with a sienna border reveal.",
-      "html": "<article class=\"ds-card-muted\"><h3 class=\"ds-card-muted-title\">Operational depth</h3><p class=\"ds-card-muted-body\">Yards, gate passes, BOL archive, claims coordination, weekly billing.</p></article>",
-      "css": ".ds-card-muted { background: #EFECE6; border: 1px solid transparent; border-radius: 12px; padding: 28px; transition: transform 250ms ease-out, border-color 250ms ease-out, background-color 250ms ease-out; } .ds-card-muted:hover { transform: translateY(-2px); border-color: #993C1D; background: #FFFFFF; } .ds-card-muted-title { font-family: Georgia, 'Times New Roman', serif; font-size: 1.25rem; font-weight: 700; color: #2C2C2A; letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 10px; } .ds-card-muted-body { font-family: system-ui, -apple-system, sans-serif; font-size: 14.5px; line-height: 1.7; color: #706E68; margin: 0; }"
-    },
-    {
-      "name": "Dark Card",
-      "kind": "card",
-      "refersTo": "card-dark",
-      "description": "Inverted card for testimonial blocks and feature surfaces inside dark sections.",
-      "html": "<figure class=\"ds-card-dark\"><blockquote class=\"ds-card-dark-quote\">\"Y7 quoted the actual carrier rate on the dispatch sheet. No spread. We paid the carrier COD at delivery.\"</blockquote><figcaption class=\"ds-card-dark-cite\">Operations Manager, Independent Dealership</figcaption></figure>",
-      "css": ".ds-card-dark { background: #2C2C2A; color: #F7F5F0; border: 1px solid #2C2C2A; border-radius: 12px; padding: 28px; transition: transform 250ms ease-out, box-shadow 250ms ease-out; } .ds-card-dark:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08); } .ds-card-dark-quote { font-family: Georgia, 'Times New Roman', serif; font-size: 1.1rem; font-weight: 400; line-height: 1.5; margin: 0 0 16px; color: #F7F5F0; } .ds-card-dark-cite { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.02em; color: rgba(247, 245, 240, 0.7); }"
-    },
-    {
-      "name": "Input Field",
-      "kind": "input",
-      "refersTo": "input",
-      "description": "Default text input. Card White fill, Field Rule border, sienna focus glow. iOS 16px font-size on mobile.",
-      "html": "<div class=\"ds-input-group\"><label class=\"ds-input-label\" for=\"ds-pickup\">PICKUP CITY</label><input class=\"ds-input\" id=\"ds-pickup\" type=\"text\" placeholder=\"e.g. Newark, NJ\"/></div>",
-      "css": ".ds-input-group { display: flex; flex-direction: column; gap: 6px; } .ds-input-label { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 600; color: #2C2C2A; letter-spacing: 0.02em; } .ds-input { width: 100%; padding: 10px 14px; min-height: 44px; font-family: system-ui, -apple-system, sans-serif; font-size: 14px; color: #2C2C2A; background: #FFFFFF; border: 1px solid #DDDDDD; border-radius: 8px; outline: none; box-sizing: border-box; transition: border-color 250ms ease-out, box-shadow 250ms ease-out; } @media (max-width: 640px) { .ds-input { font-size: 16px; padding: 12px 14px; } } .ds-input::placeholder { color: #999999; font-style: italic; opacity: 0.8; } .ds-input:hover { border-color: #BBBBBB; } .ds-input:focus { border-color: #993C1D; box-shadow: 0 0 0 3px rgba(153, 60, 29, 0.15); }"
-    },
-    {
-      "name": "Section Header",
-      "kind": "custom",
-      "refersTo": "n/a",
-      "description": "Kicker + serif title. The trade-publication signature on every long-form section.",
-      "html": "<header class=\"ds-section-header\"><span class=\"ds-section-kicker\">◆ HOW IT WORKS</span><h2 class=\"ds-section-title\">No spread, no hidden markup</h2><p class=\"ds-section-lede\">Customer pays Y7 only the flat dispatch fee per load. Carrier rate is paid separately, COD at delivery or via dispatch sheet showing the carrier's actual rate.</p></header>",
-      "css": ".ds-section-header { text-align: center; margin: 0 auto 32px; max-width: 720px; } .ds-section-kicker { display: inline-block; font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 700; color: #993C1D; text-transform: uppercase; letter-spacing: 0.14em; margin: 0 0 10px; } .ds-section-title { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.35rem, 2.5vw, 1.75rem); font-weight: 700; color: #2C2C2A; letter-spacing: -0.02em; line-height: 1.2; margin: 0; } .ds-section-lede { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; color: #706E68; line-height: 1.7; max-width: 620px; margin: 10px auto 0; }"
-    },
-    {
-      "name": "CTA Strip",
-      "kind": "custom",
-      "refersTo": "n/a",
-      "description": "Signature full-bleed Burnt Sienna gradient block. The single deliberate exception to the One Seal Rule. One per long-form page maximum.",
-      "html": "<section class=\"ds-cta-strip\"><h2 class=\"ds-cta-strip-title\">Ready for an unbundled quote?</h2><p class=\"ds-cta-strip-subtitle\">Flat dispatch fee, transparent carrier rate, no hidden markup.</p><button class=\"ds-cta-strip-btn\">REQUEST QUOTE</button></section>",
-      "css": ".ds-cta-strip { background: linear-gradient(135deg, #993C1D 0%, #7A3017 100%); border-radius: 16px; padding: 48px 32px; text-align: center; color: #FFFFFF; box-shadow: 0 12px 32px rgba(153, 60, 29, 0.18); } .ds-cta-strip-title { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.35rem, 2.5vw, 1.75rem); font-weight: 700; color: #FFFFFF; letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 10px; } .ds-cta-strip-subtitle { font-family: system-ui, -apple-system, sans-serif; font-size: 14.5px; color: rgba(255, 255, 255, 0.82); line-height: 1.7; margin: 0 auto 24px; max-width: 520px; } .ds-cta-strip-btn { display: inline-block; padding: 14px 32px; background: #FFFFFF; color: #993C1D; border: none; border-radius: 24px; font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; cursor: pointer; outline: none; transition: background-color 150ms ease-out, transform 150ms ease-out, box-shadow 250ms ease-out; } .ds-cta-strip-btn:hover { background: #F7F5F0; color: #7A3017; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); } .ds-cta-strip-btn:active { transform: scale(0.97); } .ds-cta-strip-btn:focus-visible { box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.6); }"
-    },
-    {
-      "name": "Page Hero (Warm)",
-      "kind": "custom",
-      "refersTo": "page-hero-warm",
-      "description": "Default marketing page hero. Newsprint Cream → Margin Sand vertical gradient with a low-alpha radial sienna wash at center-bottom.",
-      "html": "<section class=\"ds-page-hero-warm\"><div class=\"ds-page-hero-inner\"><span class=\"ds-page-hero-kicker\">◆ FMCSA LICENSED BROKER</span><h1 class=\"ds-page-hero-title\">Specialized US inland dispatch.</h1><p class=\"ds-page-hero-subtitle\">USDOT #4427359 · MC #1741537 · $75k BMC-84 surety bond. No hidden markup, no urgency theater, no \"Licensed &amp; Insured\" language.</p></div></section>",
-      "css": ".ds-page-hero-warm { padding: clamp(64px, 10vh, 96px) 24px clamp(40px, 6vh, 56px); text-align: center; background: radial-gradient(circle at 50% 100%, rgba(153, 60, 29, 0.06), transparent 60%), linear-gradient(180deg, #F7F5F0 0%, #EFECE6 100%); margin-bottom: clamp(48px, 8vh, 72px); } .ds-page-hero-inner { position: relative; max-width: 900px; margin: 0 auto; } .ds-page-hero-kicker { display: inline-block; font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 700; color: #993C1D; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 12px; } .ds-page-hero-title { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.8rem, 4vw, 2.75rem); font-weight: 700; color: #2C2C2A; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 14px; } .ds-page-hero-subtitle { font-family: system-ui, -apple-system, sans-serif; font-size: clamp(0.95rem, 1.4vw, 1.1rem); color: #706E68; line-height: 1.7; max-width: 640px; margin: 0 auto; }"
-    }
+  "typographyMeta": {
+   "display": {
+    "displayName": "Display",
+    "purpose": "Hero H1 only. Condensed uppercase, one per page."
+   },
+   "section-display": {
+    "displayName": "Section Display",
+    "purpose": "Section H2. Condensed uppercase."
+   },
+   "card-title": {
+    "displayName": "Card Title",
+    "purpose": "Card and tile H3. Condensed uppercase 600."
+   },
+   "body": {
+    "displayName": "Body",
+    "purpose": "Standard reading copy. Sentence case, system-ui."
+   },
+   "body-long": {
+    "displayName": "Body Long",
+    "purpose": "Long-form article copy. 65-75ch column cap."
+   },
+   "mono-label": {
+    "displayName": "Mono Label",
+    "purpose": "Eyebrow/kicker with red rule-line. JetBrains Mono caps."
+   },
+   "mono-micro": {
+    "displayName": "Mono Micro",
+    "purpose": "Chips, captions, stat labels. JetBrains Mono caps."
+   },
+   "mono-data": {
+    "displayName": "Mono Data",
+    "purpose": "USDOT/MC/$ figures, tabular numerics. Normal case."
+   }
+  },
+  "shadows": [
+   {
+    "name": "shadow-sm",
+    "value": "0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06)",
+    "purpose": "Paper card resting shadow (carried from V1)."
+   },
+   {
+    "name": "shadow-md",
+    "value": "0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06)",
+    "purpose": "Subtle hover on paper (carried)."
+   },
+   {
+    "name": "shadow-lg",
+    "value": "0 4px 12px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08)",
+    "purpose": "Paper card hover lift (carried)."
+   },
+   {
+    "name": "red-glow",
+    "value": "0 18px 44px rgba(215,15,36,0.22)",
+    "purpose": "CTA gradient resting shadow. The only colored shadow. One per viewport."
+   },
+   {
+    "name": "board-depth",
+    "value": "0 24px 70px rgba(0,0,0,0.3)",
+    "purpose": "Form shells and featured panels on board sections."
+   },
+   {
+    "name": "inset-toplight",
+    "value": "inset 0 1px 0 rgba(255,255,255,0.07)",
+    "purpose": "Board card top edge light."
+   },
+   {
+    "name": "focus-ring-dark",
+    "value": "0 0 0 2px #050607, 0 0 0 4px #ef3a4e",
+    "purpose": "Keyboard focus on board surfaces."
+   },
+   {
+    "name": "focus-ring-paper",
+    "value": "0 0 0 2px #f4f0e8, 0 0 0 4px #d70f24",
+    "purpose": "Keyboard focus on manifest surfaces."
+   }
   ],
-  "narrative": {
-    "northStar": "The Trade Bulletin",
-    "overview": "Y7's site reads like a specialized industry publication, not a marketing landing page. The visual language borrows from print trade journals: warm newsprint-cream paper stock, pressroom-ink type, a single burnt-sienna seal as the only accent, kicker eyebrows in tracked caps, restrained scale-and-weight hierarchy. The page earns the visitor's attention through substance, the way a quality trade publication earns readership: by speaking as an informed insider to other insiders, with operational language matched by operational typography. Recognition first, persuasion second, decoration never. The system explicitly rejects four aesthetic lanes named in PRODUCT.md: generic auto-broker template, SaaS-cream marketing, logistics-corporate, and crypto/startup. The Trade Bulletin posture is the antithesis of all four: it doesn't perform credibility, it documents it.",
-    "keyCharacteristics": [
-      "Warm newsprint-cream surface (#F7F5F0), never pure white. Paper stock, not screen.",
-      "Pressroom-ink type (#2C2C2A), never pure black. Ink on paper, not pixels on screen.",
-      "Single burnt-sienna accent (#993C1D) used as a seal, not a flood. Restrained color strategy: tinted neutrals + one accent ≤10% of any given screen.",
-      "Georgia serif for headlines and titles; system sans for body and UI; JetBrains Mono for credentials, IDs, and structured numerics.",
-      "Hierarchy through scale and weight contrast (≥1.25 ratio), not loudness. No exclamation marks, no urgency theater.",
-      "Multi-layer subtle shadows (four-stop scale) carrying ambient depth, never decorative drop shadows.",
-      "All four locales (EN, RU, UK, PL) at typographic parity. Translation quality is operational quality."
-    ],
-    "rules": [
-      { "name": "The One Seal Rule", "body": "Burnt Sienna covers ≤10% of any given screen. Its rarity is the point. The CTA Strip block is the deliberate exception (a full-bleed accent surface used at most once per page).", "section": "colors" },
-      { "name": "The No-True-White Rule", "body": "The marketing surface is never #FFFFFF. The page is always Newsprint Cream. Card White exists only on top of cream as elevation, never as a base.", "section": "colors" },
-      { "name": "The No-True-Black Rule", "body": "Type and dark surfaces are never #000. Pressroom Ink (#2C2C2A) is the warmest near-black we use.", "section": "colors" },
-      { "name": "The Status-Only Color Rule", "body": "Bonded Pine and Cite Red exist only to express system state (success / error / verified). Never decorative.", "section": "colors" },
-      { "name": "The Kicker–Headline Pair Rule", "body": "Section headers are always a Label kicker (uppercase, sienna, with ◆) directly above a serif Headline. The pair is the trade-publication signature.", "section": "typography" },
-      { "name": "The No Decorative Type Rule", "body": "Never gradient text. Never text shadows. Never letter-spaced display copy beyond minor tightening. Emphasis comes from weight (400 → 700) and scale (≥1.25 ratio between steps).", "section": "typography" },
-      { "name": "The Em-Dash Substitution Rule", "body": "No em dashes (—) and no -- in copy. Use commas, colons, semicolons, periods, or parentheses.", "section": "typography" },
-      { "name": "The Multilingual Parity Rule", "body": "Russian / Polish / Ukrainian copy uses the same hierarchy and tracking as the English original. No demoted treatment.", "section": "typography" },
-      { "name": "The Flat-By-Default Rule", "body": "Surfaces sit flat at rest. Cards have shadow-sm (barely there). Shadows escalate only on state.", "section": "elevation" },
-      { "name": "The No Glassmorphism Rule", "body": "No backdrop-filter: blur as decorative surface treatment. PRODUCT.md anti-reference #4.", "section": "elevation" },
-      { "name": "The 3px Lift Cap Rule", "body": "Card hover translateY caps at -3px. The trade-publication register stays controlled.", "section": "elevation" }
-    ],
-    "dos": [
-      "Do treat Newsprint Cream (#F7F5F0) as the page background everywhere on the marketing site.",
-      "Do use Burnt Sienna (#993C1D) as a seal: kicker fills, primary CTAs, focus glows, link underlines, hover borders. ≤10% of any screen.",
-      "Do pair every section title with a tracked-caps Label kicker, optionally prefixed by ◆.",
-      "Do lead with operational specifics on every audience surface: USDOT #4427359, MC #1741537, $75k BMC-84 surety bond. Render IDs in JetBrains Mono.",
-      "Do vary card grid layouts across long pages.",
-      "Do keep status colors (Bonded Pine, Cite Red) for system state only.",
-      "Do maintain typographic parity across EN, RU, UK, PL.",
-      "Do respect prefers-reduced-motion on every animation.",
-      "Do keep input font-size at 16px on mobile to prevent iOS zoom-on-focus.",
-      "Do state Y7 as 'Licensed & Bonded FMCSA Broker', never 'Licensed & Insured'."
-    ],
-    "donts": [
-      "Don't use pure white (#FFFFFF) as a page background.",
-      "Don't use pure black (#000) on text or surfaces.",
-      "Don't ship gradient text. PRODUCT.md anti-reference #4.",
-      "Don't ship glassmorphism or backdrop-filter: blur as decoration. PRODUCT.md anti-reference #4.",
-      "Don't add neon accents, Web3-flavored gradients, or 'AI-native dispatch' copy. PRODUCT.md anti-reference #4.",
-      "Don't ship blue/red/orange marketing gradients, 'GET INSTANT QUOTE!' hero treatments, urgency timers, fake counter widgets, or cherry-picked review carousels. PRODUCT.md anti-reference #1.",
-      "Don't ship navy + gold logistics-corporate palette or 'Your global logistics partner since 1985' energy. PRODUCT.md anti-reference #3.",
-      "Don't use side-stripe borders (border-left > 1px as a colored accent).",
-      "Don't ship the hero-metric template.",
-      "Don't stack identical 3-card grids more than once per page.",
-      "Don't use modals as a first thought.",
-      "Don't use em dashes (—) or -- in copy.",
-      "Don't exceed -3px translateY on card hover.",
-      "Don't use Burnt Sienna as a decorative wash, divider, or large fill outside the CTA Strip exception.",
-      "Don't treat RU/UK/PL copy as smaller, looser, or visually demoted."
-    ]
+  "motion": [
+   {
+    "name": "transition-fast",
+    "value": "150ms ease-out",
+    "purpose": "Active scale, focus states."
+   },
+   {
+    "name": "transition-normal",
+    "value": "250ms ease-out",
+    "purpose": "Hover lifts, border shifts."
+   },
+   {
+    "name": "transition-slow",
+    "value": "400ms ease-out",
+    "purpose": "Section entrances (via Reveal gates only)."
+   },
+   {
+    "name": "reveal-rule",
+    "value": "Reveal/__Y7_PRERENDER gates mandatory",
+    "purpose": "Entrances must take the instant path in prerender snapshots and under prefers-reduced-motion."
+   }
+  ],
+  "breakpoints": [
+   {
+    "name": "phone-portrait",
+    "value": "520px"
+   },
+   {
+    "name": "phone",
+    "value": "640px"
+   },
+   {
+    "name": "tablet",
+    "value": "768px"
+   },
+   {
+    "name": "desktop",
+    "value": "1050px"
+   },
+   {
+    "name": "wide",
+    "value": "1440px"
+   }
+  ],
+  "contrastMatrix": [
+   {
+    "pair": "paper-ink on manifest-paper",
+    "ratio": 17.84,
+    "verdict": "AAA"
+   },
+   {
+    "pair": "paper-muted on manifest-paper",
+    "ratio": 6.22,
+    "verdict": "AA+ body"
+   },
+   {
+    "pair": "headlight-white on board-black",
+    "ratio": 19.1,
+    "verdict": "AAA"
+   },
+   {
+    "pair": "on-dark-secondary on board-black",
+    "ratio": 15.48,
+    "verdict": "AAA"
+   },
+   {
+    "pair": "on-dark-muted on board-black",
+    "ratio": 7.28,
+    "verdict": "AA+ body"
+   },
+   {
+    "pair": "headlight-white on panel-steel",
+    "ratio": 17.96,
+    "verdict": "AAA"
+   },
+   {
+    "pair": "signal-red on manifest-paper",
+    "ratio": 4.64,
+    "verdict": "AA body"
+   },
+   {
+    "pair": "signal-red on board-black",
+    "ratio": 3.85,
+    "verdict": "AA large ONLY"
+   },
+   {
+    "pair": "signal-red-bright on board-black",
+    "ratio": 5.2,
+    "verdict": "AA body"
+   },
+   {
+    "pair": "signal-red-bright on panel-steel",
+    "ratio": 4.89,
+    "verdict": "AA body"
+   },
+   {
+    "pair": "white on signal-red",
+    "ratio": 5.27,
+    "verdict": "AA"
+   },
+   {
+    "pair": "white on signal-red-deep",
+    "ratio": 7.22,
+    "verdict": "AAA"
+   }
+  ]
+ },
+ "components": [
+  {
+   "name": "CTA Gradient Button",
+   "kind": "button",
+   "refersTo": "button-cta",
+   "description": "Primary conversion CTA. The only legal gradient in the system. White text passes AA at both stops. Resting red-glow shadow; one per viewport (Signal Budget).",
+   "html": "<button class=\"v2-btn-cta\">REQUEST DISPATCH QUOTE</button>",
+   "css": ".v2-btn-cta { display:inline-flex; align-items:center; justify-content:center; padding:14px 20px; background:linear-gradient(135deg,#d70f24,#a90918); color:#fff; border:0; border-radius:6px; font-family:var(--v2-font-display); font-size:15px; letter-spacing:.06em; text-transform:uppercase; box-shadow:0 18px 44px rgba(215,15,36,.22); cursor:pointer; min-height:44px; } .v2-btn-cta:hover { background:linear-gradient(135deg,#c40d1f,#8f0714); } .v2-btn-cta:active { transform:scale(.98); }"
+  },
+  {
+   "name": "Ghost Button (on dark)",
+   "kind": "button",
+   "refersTo": "button-ghost-dark",
+   "description": "Secondary action on board surfaces. Pill, hairline border, headlight-white text.",
+   "html": "<a class=\"v2-btn-ghost-dark\" href=\"/dealers\">DEALER PROGRAM</a>",
+   "css": ".v2-btn-ghost-dark { display:inline-flex; align-items:center; padding:12px 18px; background:transparent; color:#fff7ed; border:1px solid rgba(255,247,237,.24); border-radius:999px; font-family:var(--v2-font-display); font-size:14px; letter-spacing:.06em; text-transform:uppercase; min-height:44px; } .v2-btn-ghost-dark:hover { border-color:rgba(255,247,237,.5); }"
+  },
+  {
+   "name": "Board Section Shell",
+   "kind": "section",
+   "refersTo": "surface-board",
+   "description": "Full-width dark section band. Hairline top border, optional 18%-alpha red radial glow (hero only).",
+   "html": "<section class=\"v2-board\"><div class=\"v2-section-inner\">...</div></section>",
+   "css": ".v2-board { background:#050607; color:#fff7ed; border-top:1px solid rgba(255,247,237,.14); } .v2-section-inner { max-width:1440px; margin:0 auto; padding:clamp(56px,8vh,96px) 34px; }"
+  },
+  {
+   "name": "Manifest Section Shell",
+   "kind": "section",
+   "refersTo": "surface-manifest",
+   "description": "Full-width paper section band for working content.",
+   "html": "<section class=\"v2-manifest\"><div class=\"v2-section-inner\">...</div></section>",
+   "css": ".v2-manifest { background:#f4f0e8; color:#050607; border-top:1px solid rgba(5,6,7,.14); }"
+  },
+  {
+   "name": "Section Head",
+   "kind": "pattern",
+   "refersTo": "section-head",
+   "description": "Mono eyebrow with 46x2 red rule-line above condensed H2. Density cap: max 2 consecutive sections open with this pair.",
+   "html": "<div class=\"v2-eyebrow\">WHO WE SERVE</div><h2 class=\"v2-h2\">Built for buyers who move inventory</h2>",
+   "css": ".v2-eyebrow { display:flex; align-items:center; gap:12px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:#9c9b96; } .v2-eyebrow::before { content:''; width:46px; height:2px; background:#d70f24; } .v2-h2 { font-family:var(--v2-font-display); font-size:clamp(1.9rem,3.4vw,3.25rem); line-height:.98; letter-spacing:.035em; text-transform:uppercase; margin:12px 0 0; }"
+  },
+  {
+   "name": "Board Card",
+   "kind": "card",
+   "refersTo": "card-board",
+   "description": "Card on dark surfaces. Panel steel or translucent wash, hairline border, inset top-light. Hover: border brightens, lift <=3px.",
+   "html": "<article class=\"v2-card-board\">...</article>",
+   "css": ".v2-card-board { background:rgba(255,255,255,.045); border:1px solid rgba(255,247,237,.14); border-radius:18px; padding:28px; box-shadow:inset 0 1px 0 rgba(255,255,255,.07); transition:transform 250ms ease-out,border-color 250ms ease-out; } .v2-card-board:hover { transform:translateY(-3px); border-color:rgba(255,247,237,.24); }"
+  },
+  {
+   "name": "Paper Card",
+   "kind": "card",
+   "refersTo": "card-paper",
+   "description": "Card on manifest surfaces. Card cream, hairline border, V1 shadow scale carried.",
+   "html": "<article class=\"v2-card-paper\">...</article>",
+   "css": ".v2-card-paper { background:#fffaf1; border:1px solid rgba(5,6,7,.14); border-radius:18px; padding:28px; box-shadow:0 1px 3px rgba(0,0,0,.04),0 1px 2px rgba(0,0,0,.06); } .v2-card-paper:hover { transform:translateY(-3px); box-shadow:0 4px 12px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.08); }"
+  },
+  {
+   "name": "Trust Stat Tile",
+   "kind": "pattern",
+   "refersTo": "trust-row",
+   "description": "Hairline-divided stat grid on 4.5% wash. Red stat numbers are large-text only (contrast law); labels mono-micro.",
+   "html": "<div class=\"v2-trust-row\"><div><b>700+</b><span>VETTED CARRIERS</span></div></div>",
+   "css": ".v2-trust-row { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(255,255,255,.12); border:1px solid rgba(255,247,237,.14); border-radius:12px; overflow:hidden; } .v2-trust-row > div { background:rgba(255,255,255,.045); padding:18px 16px; } .v2-trust-row b { display:block; font-family:var(--v2-font-display); font-size:24px; color:#d70f24; letter-spacing:.04em; } .v2-trust-row span { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:#e8e0d3; }"
+  },
+  {
+   "name": "Kaizen Stamp",
+   "kind": "accent",
+   "refersTo": "jp-stamp",
+   "description": "Red-bordered 改善 stamp. Brand mark: aria-hidden, never translated, density cap 2 JP accents per viewport.",
+   "html": "<span class=\"v2-stamp\" aria-hidden=\"true\">改善</span>",
+   "css": ".v2-stamp { display:inline-block; border:1px solid rgba(215,15,36,.75); color:#d70f24; border-radius:4px; padding:5px 3px; font-family:var(--v2-font-jp,serif); font-size:15px; line-height:1; text-align:center; }"
+  },
+  {
+   "name": "JP Vertical Strip",
+   "kind": "accent",
+   "refersTo": "jp-vertical",
+   "description": "Vertical brand strip (fixed inventory). writing-mode vertical-rl, muted 58% alpha, aria-hidden.",
+   "html": "<div class=\"v2-jp-vertical\" aria-hidden=\"true\">シンプル・迅速・信頼</div>",
+   "css": ".v2-jp-vertical { writing-mode:vertical-rl; text-orientation:upright; font-family:var(--v2-font-jp,serif); letter-spacing:.18em; color:rgba(255,247,237,.58); font-size:16px; line-height:1.7; }"
   }
+ ],
+ "narrative": {
+  "northStar": "The Dispatch Board",
+  "overview": "Two surfaces carry the system: the dark board (near-black #050607) for conviction moments and the paper manifest (#f4f0e8) for working documents. Signal red #d70f24 is a budgeted signal, never atmosphere. Condensed uppercase display + JetBrains Mono microcopy + a fixed inventory of Japanese serif brand marks tie the site to the vehicle-wrap brand system V4. B2B-first; supersedes the Trade Bulletin (V1). Honesty doctrine carried: no urgency theater, hedged promises, milestone status language, locale parity across EN/RU/UA/PL.",
+  "keyCharacteristics": [
+   "Board/manifest surface alternation; conversion pages open and close dark",
+   "Signal Budget: one red fill + two red accents per viewport, red <=8% of pixels",
+   "Condensed uppercase display with mandatory Cyrillic coverage; body stays sentence-case system-ui",
+   "JetBrains Mono as the operational microcopy voice",
+   "JP accents are aria-hidden brand marks from a fixed inventory (max 2/viewport, 3/page)",
+   "Only legal gradient: CTA pair #d70f24 to #a90918",
+   "Reveal/__Y7_PRERENDER gates mandatory for all entrances"
+  ],
+  "rules": [
+   "The Alternation Rule",
+   "The Dark Share Rule",
+   "The Signal Budget Rule",
+   "The Red Contrast Law",
+   "The Caps Ceiling Rule",
+   "The Kicker-Headline Pair V2 + density cap",
+   "The Accent Word Rule",
+   "The Brand-Mark Rule (JP)",
+   "The Density Cap (JP)",
+   "The 3px Lift Cap Rule",
+   "The Reveal Gate Rule",
+   "The Gradient Legality Rule",
+   "The Em-Dash Substitution Rule",
+   "The Multilingual Parity Rule",
+   "The Brand-String Law (Y7 Logistics)",
+   "The Descriptor Law",
+   "The Additive Migration Rule",
+   "The Anti-Orphan Rule",
+   "The Body-Link Law",
+   "The Focus-Visible Law",
+   "The Cyrillic Clearance Rule",
+   "Signal Budget low-alpha exemption (<=10% alpha)"
+  ],
+  "dos": [
+   "Open conversion pages dark, close dark, alternate between",
+   "Render credentials, IDs, prices, stat labels in JetBrains Mono",
+   "Keep reading copy sentence-case system-ui 15-16px",
+   "Budget red: one fill + two accents per viewport",
+   "Ship display-font Cyrillic coverage; identical treatment across locales",
+   "Import src/styles/v2/ primitives; never re-implement inline"
+  ],
+  "donts": [
+   "No pure #000 or #fff surfaces",
+   "No body-size #d70f24 text on dark (use #ef3a4e)",
+   "No red section backgrounds or washes; no second gradient",
+   "No caps/condensed reading copy",
+   "No translated or meaningful JP accents",
+   "No adjacent same-surface sections on conversion pages",
+   "No highway stock photos, chrome, italic speed cliches",
+   "No text shadows (single hero-URL exception), no glassmorphism",
+   "No em dashes in copy",
+   "No V1 artifacts in V2 surfaces (diamond glyph, pine kickers, sienna)"
+  ]
+ }
 }
