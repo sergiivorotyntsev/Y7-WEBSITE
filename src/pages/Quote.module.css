@@ -1,0 +1,35 @@
+/* =====================================================================
+   Quote — DESIGN-V2-W5-T02 "Dispatch Board" restyle of the page shell.
+   Surfaces/type come from src/styles/v2/ primitives (Anti-Orphan Rule);
+   this module is LAYOUT ONLY: hero head measure, spacing, band-specific
+   text colors. QuoteForm's own white-card internals are a known V1
+   island (W4 prerender-gated) and are NOT restyled here.
+   No radii introduced in this module (single-tier rule trivially met).
+   ===================================================================== */
+
+.page {
+  background: var(--v2-paper, #f4f0e8);
+}
+
+/* Hero head — centered over the form island (page's original centered
+   register), condensed H1 with the mono credentials eyebrow above. */
+.heroHead {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 36px;
+}
+
+.heroEyebrow {
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  margin-bottom: 16px;
+}
+
+.heroTitle {
+  font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+  margin: 0 auto 6px;
+}
+
+.heroSubtitle {
+  margin: 12px auto 0;
+  max-width: 560px;
+}
