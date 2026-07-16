@@ -24,37 +24,67 @@
 }
 
 .calc {
+  /* T13: one fused instrument - controls -> connector -> terminal result */
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-  background: var(--v2-card-cream);
-  border: 1px solid var(--v2-line-on-paper);
-  border-radius: var(--v2-radius-lg);
+  grid-template-columns: 1fr auto minmax(190px, 0.42fr);
+  gap: 12px;
+  align-items: stretch;
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
   padding: 18px;
   box-shadow: var(--shadow-sm);
 }
 
-@media (max-width: 720px) {
-  .calc { grid-template-columns: 1fr 1fr; }
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.connector {
+  display: flex;
+  align-items: center;
+  color: var(--v2-ink-muted, #5c5851);
+}
+
+@media (max-width: 900px) {
+  .calc { grid-template-columns: 1fr; }
+  .connector { justify-content: center; transform: rotate(90deg); }
 }
 
 .field {
-  background: var(--v2-paper);
-  border: 1px solid var(--v2-line-on-paper);
-  border-radius: var(--v2-radius-md);
-  padding: 13px 14px;
-  min-height: 74px;
+  display: block;
+  background: var(--v2-paper, #f4f0e8);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-md, 12px);
+  padding: 10px 12px 12px;
+}
+
+.staticValue {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--v2-ink);
+  padding-top: 4px;
+}
+
+.select {
+  background: transparent;
+  border: 0;
+  padding: 4px 0 0;
+  font-weight: 600;
+  cursor: pointer;
+}
+.select:focus-visible {
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
 }
 
 .fieldLabel {
   display: block;
   color: var(--v2-ink-muted);
   margin-bottom: 7px;
-}
-
-.fieldValue {
-  font-size: 15px;
-  color: var(--v2-ink);
 }
 
 /* Result tile: the strip's dark moment. Red value at display-ish size passes
@@ -79,6 +109,21 @@
   color: var(--v2-text-on-dark-muted);
 }
 
+.resultValueSm {
+  display: block;
+  font-family: var(--v2-font-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--v2-text-on-dark);
+  margin: 6px 0;
+}
+.resultMiles {
+  display: block;
+  color: var(--v2-text-on-dark-muted);
+  letter-spacing: 0.08em;
+}
 .resultValue {
   display: block;
   font-family: var(--v2-font-display);

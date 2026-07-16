@@ -171,11 +171,18 @@
     "deliverLabel": "Deliver to",
     "vehicleLabel": "Vehicle",
     "transportLabel": "Transport",
-    "transportValue": "Open / Enclosed",
-    "resultLabel": "Typical carrier rate",
+    "resultLabel": "Typical carrier rate for this route",
     "resultHedge": "range from recent dispatches",
     "cta": "Get the exact quote",
     "resultFee": "+ flat Y7 dispatch fee",
-    "ctaHedge": "Exact quote under 1 hr, business hours"
+    "ctaHedge": "Exact quote under 1 hr, business hours",
+    "otherOption": "Other / exact quote",
+    "otherResult": "Get an exact quote",
+    "sameCity": "Pick two different cities",
+    "vehicle_sedan": "Sedan",
+    "vehicle_suv": "SUV",
+    "vehicle_pickup": "Pickup truck",
+    "transport_open": "Open",
+    "transport_enclosed": "Enclosed"
   }
 }
