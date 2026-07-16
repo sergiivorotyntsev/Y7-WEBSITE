@@ -100,6 +100,42 @@
   .trustRow { grid-template-columns: 1fr 1fr; }
 }
 
+/* Port/coverage tile (DESIGN.md §7): airport-code style abbreviation in red
+   (large-text law) + name in body; always a real link to /ports/*. The red
+   codes are §7's sanctioned tile treatment — the section carries no other
+   red fill. Paper variant. */
+.portTile {
+  display: block;
+  padding: 16px;
+  border: 1px solid var(--v2-line-on-paper);
+  border-radius: var(--v2-radius-md);
+  background: var(--v2-card-cream);
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--transition-normal, 0.25s ease-out), box-shadow var(--transition-normal, 0.25s ease-out);
+}
+.portTile:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.portTile:focus-visible {
+  outline: 2px solid var(--v2-red);
+  outline-offset: 2px;
+}
+.portCode {
+  display: block;
+  font-family: var(--v2-font-display);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--v2-red);
+}
+.portName {
+  display: block;
+  font-size: 13px;
+  color: var(--v2-ink-muted);
+}
+
 /* Chips: mono micro caps in hairline pills, never filled. */
 .chipOnDark {
   display: inline-block;

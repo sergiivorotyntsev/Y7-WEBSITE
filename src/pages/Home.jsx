@@ -10,13 +10,11 @@ import Reveal from '../components/Reveal/Reveal';
 import AudienceCards from '../components/AudienceCards';
 import Advantages from '../components/Advantages';
 import ProcessSteps from '../components/ProcessSteps';
-import PortPills from '../components/PortPills';
 import CoverageMap from '../components/CoverageMap';
 import LiveActivityFeed from '../components/LiveActivityFeed';
 import ReviewsCarousel from '../components/ReviewsCarousel';
 import TrustBadges from '../components/TrustBadges';
 import ExternalReviewsStrip from '../components/ExternalReviewsStrip';
-import VerificationStrip from '../components/VerificationStrip';
 import styles from './Home.module.css';
 import v2s from '../styles/v2/surfaces.module.css';
 import v2t from '../styles/v2/type.module.css';
@@ -152,11 +150,9 @@ export default function Home() {
       <LiveActivityFeed />
       <TrustBar />
 
-      {/* 5b. Coverage Map — internal SEO links to location + route pages
-          (rebuilt as the Coverage band in T06) */}
-      <ScrollReveal style={{ padding: 'clamp(50px, 7vh, 80px) 24px' }}>
-        <CoverageMap />
-      </ScrollReveal>
+      {/* 6. Coverage — manifest band (T06): all location/route links, port
+          tiles as real links, licensed-broker panel with external verification. */}
+      <CoverageMap />
 
       {/* 8. Quote Form */}
       <section id="quote-section" className={styles.quoteSection}>
@@ -173,16 +169,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 10. Port Pills */}
-      <ScrollReveal style={{ padding: 'clamp(60px, 8vh, 100px) 24px' }}>
-        <div className={styles.sectionHeader}>
-          <span className={styles.sectionMicro}>&#9670; {t('sections.coverage')}</span>
-        </div>
-        <PortPills />
-      </ScrollReveal>
-
-      {/* 11. Verification Strip — FMCSA, broker, Central Dispatch external links */}
-      <VerificationStrip />
     </div>
   );
 }
