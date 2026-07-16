@@ -165,8 +165,8 @@
     "verified": "Verified Y7 Customer"
   },
   "quoteStrip": {
-    "title": "See the dispatch price before a call.",
-    "desc": "Carrier rate plus a flat Y7 dispatch fee, shown before you commit. No spread, no hidden markup.",
+    "title": "See the dispatch price before you book.",
+    "desc": "Carrier rate plus a flat Y7 dispatch fee: real numbers from real dispatches. No spread, no hidden markup.",
     "pickupLabel": "Pickup",
     "deliverLabel": "Deliver to",
     "vehicleLabel": "Vehicle",

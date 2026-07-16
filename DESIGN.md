@@ -129,7 +129,7 @@ The page is a stack of full-width surface bands. Every section declares one of t
 
 ### Signal Red
 
-- **signal-red `#d70f24`**: the one brand accent. CTAs, the live stat number, the stamp border, the kicker rule-line, link hover, one accent word in a display headline (`<span class="red">`), the hero URL display.
+- **signal-red `#d70f24`**: the one brand accent. CTAs, the live stat number, the stamp border, the kicker rule-line, link hover, one accent word in a display headline (`<span class="red">`).
 - **signal-red-deep `#a90918`**: gradient partner and hover state.
 - **signal-red-bright `#ef3a4e`**: the ONLY red for body-size text on dark surfaces (see contrast law below). Never used on paper.
 
@@ -185,7 +185,7 @@ Documented in §2 (Surfaces). Contrast matrix, all measured:
 
 **The Accent Word Rule.** A display headline may carry at most ONE red accent span. Never two, never a red-only headline on board (contrast law), never gradient text (carried V1 ban).
 
-**The No Decorative Type Rule (amended).** No gradient text, ever. Text-shadow is banned with ONE legalized exception: the hero URL display element (`Y7AGENCY.COM`) may carry the single red glow `0 18px 42px rgba(215,15,36,0.16)`. Nothing else glows.
+**The No Decorative Type Rule (amended, W2-T10).** No gradient text, ever. Text-shadow is banned with no active exceptions: the former hero-URL-display carve-out is dormant (the `Y7AGENCY.COM` hero element was removed in W2-T10 as on-site tautology). Nothing glows.
 
 **The Em-Dash Substitution Rule (carried verbatim from V1).** No em dashes (`—`) and no `--` in copy. Commas, colons, periods, parentheses.
 
@@ -251,7 +251,7 @@ Board sections carry depth through **hairlines and surface steps**, not shadows:
 
 ## 8. Brand, Copy, Honesty (Law Carried Forward and Pinned)
 
-- **Brand-String Law:** the public brand is **"Y7 Logistics"** in all copy, nav, titles, footer. "Y7 Agency" never appears in copy. `Y7AGENCY.COM` is permitted solely as the graphic URL display element (hero/footer). Legal line: `© Y7 Consulting Inc d/b/a Y7 Logistics`. Schema `name` stays "Y7 Logistics".
+- **Brand-String Law:** the public brand is **"Y7 Logistics"** in all copy, nav, titles, footer. "Y7 Agency" never appears in copy. `Y7AGENCY.COM` is permitted solely as a graphic URL display element (footer contexts only; the hero instance was removed in W2-T10 as on-site tautology). Legal line: `© Y7 Consulting Inc d/b/a Y7 Logistics`. Schema `name` stays "Y7 Logistics".
 - **Descriptor Law:** "Licensed & Bonded FMCSA Broker" verbatim; never "Licensed & Insured"; carrier count claim is "700+"; all response-time promises carry the business-hours hedge (W0 baseline is the floor, never regress it).
 - **No urgency theater, no fake social proof, no invented precision.** Every stat on a V2 surface must be sourced (operational data) or hedged. Red makes stats louder; the honesty bar rises with the volume.
 - **Milestone language:** status updates happen at shipment milestones; never "real-time tracking", "GPS", "live tracking" (W0 compliance baseline).

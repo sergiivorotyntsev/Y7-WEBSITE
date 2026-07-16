@@ -43,8 +43,9 @@ export default function Home() {
           broker; see the sprint's no-ratings invariant). */}
 
       {/* 1. Hero — V2 boardHero (DESIGN.md §2). Signal Budget in this viewport:
-          red fill = gradient CTA; red accents = H1 accent line + URL element.
-          Therefore: plain eyebrow (no red rule), white quartet stats, no stamp. */}
+          red fill = gradient CTA; red accent = H1 accent line (T10: the
+          Y7AGENCY.COM element was removed in T10: on-site it is tautology).
+          Plain eyebrow (no red rule), white quartet stats, no stamp. */}
       <section className={`${v2s.boardHero} ${styles.hero}`}>
         <div className={`${v2s.inner} ${styles.heroLayout}`}>
           <div className={`${v2a.jpVertical} ${styles.heroJpStrip}`} aria-hidden="true">
@@ -60,9 +61,6 @@ export default function Home() {
               <span className={v2t.accent}>{t('hero.taglineAccent')}</span>
             </h1>
             <p className={`${v2t.lede} ${v2t.ledeOnDark}`}>{t('hero.description')}</p>
-            <div className={`${v2t.heroUrl} ${styles.heroUrlWrap}`} aria-hidden="true">
-              Y7AGENCY.COM
-            </div>
             <div className={styles.heroCtas}>
               <a
                 href="#quote-section"

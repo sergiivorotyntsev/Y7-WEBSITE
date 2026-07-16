@@ -70,20 +70,6 @@
   margin: 0 0 12px;
 }
 
-/* Hero URL display element (Y7AGENCY.COM). Carries the SINGLE legalized
-   text-shadow in the system (DESIGN.md §4 No Decorative Type Rule). Red at
-   display size passes the large-text law on board. */
-.heroUrl {
-  font-family: var(--v2-font-display);
-  font-size: clamp(2.2rem, 4.6vw, 4.5rem);
-  font-weight: 700;
-  line-height: 0.9;
-  letter-spacing: 0.055em;
-  text-transform: uppercase;
-  color: var(--v2-red);
-  text-shadow: 0 18px 42px rgba(215, 15, 36, 0.16);
-}
-
 /* Mono microcopy tiers */
 .monoLabel {
   font-family: var(--font-mono);

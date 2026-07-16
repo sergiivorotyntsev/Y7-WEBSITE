@@ -165,8 +165,8 @@
     "verified": "Zweryfikowany klient Y7"
   },
   "quoteStrip": {
-    "title": "Poznaj cenę transportu przed rozmową.",
-    "desc": "Stawka przewoźnika plus stała opłata dyspozytorska Y7, widoczna przed potwierdzeniem. Bez marży i ukrytych opłat.",
+    "title": "Poznaj cenę transportu przed zleceniem.",
+    "desc": "Stawka przewoźnika plus stała opłata dyspozytorska Y7: prawdziwe liczby z prawdziwych zleceń. Bez marży i ukrytych opłat.",
     "pickupLabel": "Odbiór",
     "deliverLabel": "Dostawa do",
     "vehicleLabel": "Pojazd",

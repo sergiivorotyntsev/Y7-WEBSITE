@@ -3,7 +3,7 @@
 // constant; the Fast-Refresh HMR impact is dev-only.
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { colors, fonts } from '../theme';
+import { fonts, v2 } from '../theme';
 
 function getCookie(name) {
   const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
@@ -40,8 +40,8 @@ export default function CookieConsent() {
       <style>{`
         .cookie-banner {
           position: fixed; bottom: 0; left: 0; right: 0; z-index: 999;
-          background: ${colors.bg}; border-top: 1px solid ${colors.border};
-          box-shadow: 0 -4px 24px rgba(0,0,0,0.08);
+          background: ${v2.colors.panel}; border-top: 1px solid ${v2.colors.lineOnDark};
+          box-shadow: 0 -12px 40px rgba(0,0,0,0.35);
           padding: 20px 24px;
         }
         .cookie-inner {
@@ -62,12 +62,12 @@ export default function CookieConsent() {
         <div className="cookie-inner">
           <div className="cookie-text">
             <p style={{
-              fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted,
+              fontFamily: fonts.sans, fontSize: '13px', color: v2.colors.textOnDarkSecondary,
               lineHeight: 1.6, margin: 0,
             }}>
               We use cookies to improve your experience and analyze site traffic.
               By continuing to use this site, you agree to our{' '}
-              <Link to="/privacy" style={{ color: colors.accent, textDecoration: 'underline' }}>Privacy Policy</Link>.
+              <Link to="/privacy" style={{ color: v2.colors.textOnDark, textDecoration: 'underline', textUnderlineOffset: '2px' }}>Privacy Policy</Link>.
             </p>
           </div>
           <div className="cookie-actions">
@@ -75,8 +75,8 @@ export default function CookieConsent() {
               onClick={() => accept('all')}
               style={{
                 fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600,
-                background: colors.accent, color: '#fff',
-                border: 'none', borderRadius: '20px',
+                background: v2.gradients.cta, color: '#fff',
+                border: 'none', borderRadius: '6px',
                 padding: '10px 24px', cursor: 'pointer',
                 whiteSpace: 'nowrap',
               }}
@@ -87,8 +87,8 @@ export default function CookieConsent() {
               onClick={() => accept('essential')}
               style={{
                 fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600,
-                background: 'transparent', color: colors.text,
-                border: `1px solid ${colors.border}`, borderRadius: '20px',
+                background: 'transparent', color: v2.colors.textOnDark,
+                border: `1px solid ${v2.colors.lineOnDarkStrong}`, borderRadius: '999px',
                 padding: '10px 24px', cursor: 'pointer',
                 whiteSpace: 'nowrap',
               }}
@@ -99,7 +99,7 @@ export default function CookieConsent() {
               to="/privacy"
               style={{
                 fontFamily: fonts.sans, fontSize: '13px', fontWeight: 500,
-                color: colors.textMuted, textDecoration: 'none',
+                color: v2.colors.textOnDarkMuted, textDecoration: 'none',
                 padding: '10px 12px', whiteSpace: 'nowrap',
                 display: 'flex', alignItems: 'center',
               }}
