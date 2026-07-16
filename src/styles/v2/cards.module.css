@@ -62,6 +62,13 @@
   letter-spacing: 0.04em;
   color: var(--v2-red);
 }
+/* Quiet stat variant: white numbers for sections whose Signal Budget is spent
+   by a gradient CTA (DESIGN.md §3: "if a section already contains the gradient
+   CTA, its stat numbers go white/ink"). */
+.trustStatQuiet {
+  composes: trustStat;
+  color: var(--v2-text-on-dark);
+}
 .trustLabel {
   font-family: var(--font-mono);
   font-size: 10px;

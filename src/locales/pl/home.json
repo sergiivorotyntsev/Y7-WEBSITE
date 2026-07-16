@@ -1,9 +1,13 @@
 ﻿{
   "hero": {
     "title": "Transport samochodów na terenie całych USA",
-    "tagline": "My przewozimy samochody.",
-    "taglineAccent": "Ty idziesz do przodu.",
-    "description": "Licencjonowany broker FMCSA łączący Państwa ze sprawdzonymi, ubezpieczonymi przewoźnikami we wszystkich 50 stanach. Odbiory z aukcji, wymiana dealerska, dostawy do portów i przeprowadzki prywatne."
+    "tagline": "Transport aut po USA",
+    "taglineAccent": "dla dealerów i eksporterów",
+    "description": "Sprawdzeni przewoźnicy, odbiór z aukcji, dostawy do dealerów, dostawy do magazynów portowych, przeprowadzki prywatne, dokumentacja BOL i aktualizacje statusu. Jeden zespół dyspozytorski.",
+    "eyebrow": "Licencjonowany broker FMCSA z gwarancją BMC-84 · MC #1741537",
+    "ctaPrimary": "Zapytaj o wycenę transportu",
+    "ctaDealers": "Program dealerski",
+    "ctaExporters": "Program dla eksporterów"
   },
   "trust": {
     "experience": "10+",
@@ -13,7 +17,11 @@
     "support": "1h",
     "supportLabel": "Odpowiedź na wycenę (godziny pracy)",
     "cd": "90%",
-    "cdLabel": "Central Dispatch"
+    "cdLabel": "Central Dispatch",
+    "states": "50",
+    "statesLabel": "stanów USA",
+    "bond": "$75K",
+    "bondLabel": "gwarancja BMC-84"
   },
   "audience": {
     "dealersTitle": "Transport dilerski",

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import HreflangTags from '../components/HreflangTags';
 import ScrollReveal from '../components/ScrollReveal';
@@ -17,16 +17,22 @@ import TrustBadges from '../components/TrustBadges';
 import ExternalReviewsStrip from '../components/ExternalReviewsStrip';
 import WhyY7 from '../components/WhyY7';
 import TrustSection from '../components/TrustSection';
-import HeroRouteVisual from '../components/HeroRouteVisual';
-import HeroSeal from '../components/HeroSeal';
 import VerificationStrip from '../components/VerificationStrip';
 import styles from './Home.module.css';
-import btn from '../styles/buttons.module.css';
+import v2s from '../styles/v2/surfaces.module.css';
+import v2t from '../styles/v2/type.module.css';
+import v2b from '../styles/v2/buttons.module.css';
+import v2c from '../styles/v2/cards.module.css';
+import v2a from '../styles/v2/accents.module.css';
 
 export default function Home() {
   const { t } = useTranslation('home');
   const { t: tCommon } = useTranslation();
-  const navigate = useNavigate();
+  const location = useLocation();
+  // Locale-aware link helper (same pattern as Header.jsx).
+  const localeMatch = location.pathname.match(/^\/(ua|pl|ru)(\/|$)/);
+  const prefix = localeMatch ? `/${localeMatch[1]}` : '';
+  const L = (path) => `${prefix}${path}`;
   const scrollToQuote = () => {
     const el = document.getElementById('quote-section');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -41,33 +47,59 @@ export default function Home() {
           and no aggregateRating (self-serving stars are policy-ineligible for a
           broker; see the sprint's no-ratings invariant). */}
 
-      {/* 1. Hero — centered with subtle route visual background */}
-      <section className={styles.hero}>
-        <HeroSeal size={320} className={styles.heroSeal} />
-        <div className={styles.heroInner}>
-          <div className={styles.heroVisual} aria-hidden="true">
-            <HeroRouteVisual />
+      {/* 1. Hero — V2 boardHero (DESIGN.md §2). Signal Budget in this viewport:
+          red fill = gradient CTA; red accents = H1 accent line + URL element.
+          Therefore: plain eyebrow (no red rule), white quartet stats, no stamp. */}
+      <section className={`${v2s.boardHero} ${styles.hero}`}>
+        <div className={`${v2s.inner} ${styles.heroLayout}`}>
+          <div className={`${v2a.jpVertical} ${styles.heroJpStrip}`} aria-hidden="true">
+            シンプル・迅速・信頼
           </div>
           <Reveal className={styles.heroText}>
-            <span className={styles.heroKicker}>&#9670; {t('hero.title')}</span>
-            <h1 className={styles.heroTitle}>
-              {t('hero.tagline')}{' '}
-              <span className={styles.heroAccent}>{t('hero.taglineAccent')}</span>
+            <p className={`${v2t.eyebrowPlain} ${styles.heroEyebrow}`}>{t('hero.eyebrow')}</p>
+            {/* Line break is controlled manually (DESIGN.md §4 Line-Break
+                Clearance Addendum); accent span = the whole second line. */}
+            <h1 className={v2t.display}>
+              {t('hero.tagline')}
+              <br />
+              <span className={v2t.accent}>{t('hero.taglineAccent')}</span>
             </h1>
-            <p className={styles.heroDesc}>{t('hero.description')}</p>
+            <p className={`${v2t.lede} ${v2t.ledeOnDark}`}>{t('hero.description')}</p>
+            <div className={`${v2t.heroUrl} ${styles.heroUrlWrap}`} aria-hidden="true">
+              Y7AGENCY.COM
+            </div>
             <div className={styles.heroCtas}>
-              <button
-                onClick={scrollToQuote}
-                className={`${btn.btnAccent} ${styles.heroCtaPrimary}`}
+              <a
+                href="#quote-section"
+                onClick={(e) => { e.preventDefault(); scrollToQuote(); }}
+                className={`${v2b.cta} ${v2b.ctaLarge}`}
               >
-                {tCommon('cta.getQuote')}
-              </button>
-              <button
-                onClick={() => navigate('/track')}
-                className={`${btn.btnSecondary} ${styles.heroCtaSecondary}`}
-              >
-                {tCommon('nav.track')}
-              </button>
+                {t('hero.ctaPrimary')}
+              </a>
+              <Link to={L('/dealers')} className={v2b.ghostOnDark}>
+                {t('hero.ctaDealers')}
+              </Link>
+              <Link to={L('/exporters')} className={v2b.ghostOnDark}>
+                {t('hero.ctaExporters')}
+              </Link>
+            </div>
+            <div className={`${v2c.trustRow} ${styles.heroTrust}`}>
+              <div>
+                <b className={v2c.trustStatQuiet}>{t('trust.carriers')}</b>
+                <span className={v2c.trustLabel}>{t('trust.carriersLabel')}</span>
+              </div>
+              <div>
+                <b className={v2c.trustStatQuiet}>{t('trust.support')}</b>
+                <span className={v2c.trustLabel}>{t('trust.supportLabel')}</span>
+              </div>
+              <div>
+                <b className={v2c.trustStatQuiet}>{t('trust.states')}</b>
+                <span className={v2c.trustLabel}>{t('trust.statesLabel')}</span>
+              </div>
+              <div>
+                <b className={v2c.trustStatQuiet}>{t('trust.bond')}</b>
+                <span className={v2c.trustLabel}>{t('trust.bondLabel')}</span>
+              </div>
             </div>
           </Reveal>
         </div>
