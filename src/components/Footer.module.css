@@ -7,7 +7,7 @@
    The three-step muted hierarchy is preserved; base color unchanged. */
 
 .footer {
-  background: var(--text, #2C2C2A);
+  background: var(--v2-board, #050607);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding: 48px 24px 32px;
 }
@@ -35,14 +35,14 @@
   font-family: var(--font-serif, Georgia, serif);
   font-size: 22px;
   font-weight: 700;
-  color: var(--bg, #F7F5F0);
+  color: var(--v2-text-on-dark, #fff7ed);
   margin-bottom: 12px;
 }
 
 .tagline {
   font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: rgba(247, 245, 240, 0.6);
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   line-height: 1.6;
   margin-bottom: 12px;
 }
@@ -50,7 +50,7 @@
 .addressLine {
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
-  color: rgba(247, 245, 240, 0.6);
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   line-height: 1.6;
   margin-bottom: 8px;
 }
@@ -58,7 +58,7 @@
 .legalIds {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 12px;
-  color: rgba(247, 245, 240, 0.55);
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   line-height: 1.8;
 }
 
@@ -71,7 +71,7 @@
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
   font-weight: 600;
-  color: rgba(247, 245, 240, 0.6);
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 16px;
@@ -81,7 +81,7 @@
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
   font-weight: 600;
-  color: rgba(247, 245, 240, 0.55);
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   text-transform: uppercase;
   letter-spacing: 0.8px;
   margin-top: 20px;
@@ -101,7 +101,7 @@
 .link {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: rgba(247, 245, 240, 0.7);
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
   text-decoration: none;
   transition: color var(--transition-fast, 150ms ease-out), transform var(--transition-fast, 150ms ease-out);
   outline: none;
@@ -113,14 +113,14 @@
 
 @media (hover: hover) {
   .link:hover {
-    color: var(--bg, #F7F5F0);
+    color: var(--v2-text-on-dark, #fff7ed);
     transform: translateX(2px);
   }
 }
 
 .link:focus-visible {
-  color: var(--bg, #F7F5F0);
-  box-shadow: 0 0 0 2px var(--text, #2C2C2A), 0 0 0 4px var(--bg, #F7F5F0);
+  color: var(--v2-text-on-dark, #fff7ed);
+  box-shadow: 0 0 0 2px var(--v2-board, #050607), 0 0 0 4px var(--v2-red-bright, #ef3a4e);
 }
 
 /* =====================================================================
@@ -137,7 +137,7 @@
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
   font-weight: 600;
-  color: rgba(247, 245, 240, 0.55);
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   text-transform: uppercase;
   letter-spacing: 0.8px;
   margin-bottom: 10px;
@@ -161,20 +161,20 @@
 }
 
 .familyLink:focus-visible {
-  box-shadow: 0 0 0 2px var(--text, #2C2C2A), 0 0 0 4px var(--bg, #F7F5F0);
+  box-shadow: 0 0 0 2px var(--v2-board, #050607), 0 0 0 4px var(--v2-red-bright, #ef3a4e);
 }
 
 .familyName {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
   font-weight: 600;
-  color: rgba(247, 245, 240, 0.8);
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
 }
 
 .familyDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
-  color: rgba(247, 245, 240, 0.6);
+  color: var(--v2-text-on-dark-muted, #9c9b96);
 }
 
 /* =====================================================================
@@ -213,7 +213,7 @@
 .bottomLink {
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
-  color: rgba(247, 245, 240, 0.6);
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   text-decoration: none;
   transition: color var(--transition-fast, 150ms ease-out);
   outline: none;
@@ -222,13 +222,13 @@
 
 @media (hover: hover) {
   .bottomLink:hover {
-    color: var(--bg, #F7F5F0);
+    color: var(--v2-text-on-dark, #fff7ed);
   }
 }
 
 .bottomLink:focus-visible {
-  color: var(--bg, #F7F5F0);
-  box-shadow: 0 0 0 2px var(--text, #2C2C2A), 0 0 0 4px var(--bg, #F7F5F0);
+  color: var(--v2-text-on-dark, #fff7ed);
+  box-shadow: 0 0 0 2px var(--v2-board, #050607), 0 0 0 4px var(--v2-red-bright, #ef3a4e);
 }
 
 .bottomRight {
@@ -241,7 +241,7 @@
 .copyright {
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
-  color: rgba(247, 245, 240, 0.52);
+  color: var(--v2-text-on-dark-muted, #9c9b96);
 }
 
 /* =====================================================================
@@ -255,7 +255,7 @@
 }
 
 .socialIcon {
-  color: rgba(247, 245, 240, 0.6);
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   transition: color var(--transition-fast, 150ms ease-out);
   display: inline-flex;
   align-items: center;
@@ -268,13 +268,13 @@
 
 @media (hover: hover) {
   .socialIcon:hover {
-    color: var(--bg, #F7F5F0);
+    color: var(--v2-text-on-dark, #fff7ed);
   }
 }
 
 .socialIcon:focus-visible {
-  color: var(--bg, #F7F5F0);
-  box-shadow: 0 0 0 2px var(--text, #2C2C2A), 0 0 0 4px var(--bg, #F7F5F0);
+  color: var(--v2-text-on-dark, #fff7ed);
+  box-shadow: 0 0 0 2px var(--v2-board, #050607), 0 0 0 4px var(--v2-red-bright, #ef3a4e);
 }
 
 /* =====================================================================
@@ -282,13 +282,13 @@
    ===================================================================== */
 
 .langSwitcherWrap {
-  --bg: var(--text, #2C2C2A);
+  --bg: var(--v2-board, #050607);
   --bg-card: rgba(255, 255, 255, 0.1);
   --bg-muted: rgba(255, 255, 255, 0.06);
-  --text: var(--bg, #F7F5F0);
-  --text-muted: rgba(247, 245, 240, 0.6);
-  --accent: var(--bg, #F7F5F0);
-  --accent-hover: rgba(247, 245, 240, 0.8);
+  --text: var(--v2-text-on-dark, #fff7ed);
+  --text-muted: var(--v2-text-on-dark-muted, #9c9b96);
+  --accent: var(--v2-text-on-dark, #fff7ed);
+  --accent-hover: var(--v2-text-on-dark-secondary, #e8e0d3);
   --border: rgba(255, 255, 255, 0.12);
 }
 

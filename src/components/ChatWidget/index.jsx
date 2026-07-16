@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { colors, fonts } from '../../theme'
+import { colors, fonts, v2 } from '../../theme'
 import useChatStream from './useChatStream'
 import LeadForm from './LeadForm'
 
@@ -30,8 +30,8 @@ function ChatBubbleButton({ onClick, open }) {
       style={{
         position: 'fixed', bottom: 90, right: 24, zIndex: 9999,
         width: 56, height: 56, borderRadius: '50%',
-        background: colors.accent, color: '#fff',
-        border: 'none', cursor: 'pointer',
+        background: v2.colors.panel, color: v2.colors.textOnDark,
+        border: `1px solid ${v2.colors.lineOnDarkStrong}`, cursor: 'pointer',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
         transition: 'transform 0.2s',
@@ -55,7 +55,7 @@ function ChatMessage({ msg }) {
     }}>
       <div style={{
         maxWidth: '85%', padding: '10px 14px', borderRadius: 16,
-        background: isUser ? colors.accent : '#fff',
+        background: isUser ? v2.colors.red : '#fff',
         color: isUser ? '#fff' : colors.text,
         fontSize: 14, lineHeight: 1.5,
         fontFamily: fonts.sans,
@@ -132,7 +132,7 @@ function ChatInput({ onSend, disabled }) {
         minWidth: 48, height: 44, /* WCAG touch target */
         padding: '0 16px', borderRadius: 22, border: 'none',
         flexShrink: 0,
-        background: text.trim() && !disabled ? colors.accent : colors.bgMuted,
+        background: text.trim() && !disabled ? v2.colors.red : colors.bgMuted,
         color: text.trim() && !disabled ? '#fff' : colors.textMuted,
         fontSize: 16, fontWeight: 600, cursor: text.trim() && !disabled ? 'pointer' : 'default',
         fontFamily: fonts.sans, transition: 'background 0.15s',

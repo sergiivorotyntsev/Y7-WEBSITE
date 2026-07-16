@@ -8,6 +8,7 @@ import AnimatedLogo from './AnimatedLogo';
 import { CloseIcon, MenuIcon, ChevronDownIcon } from './icons';
 import styles from './Header.module.css';
 import btn from '../styles/buttons.module.css';
+import v2b from '../styles/v2/buttons.module.css';
 
 export default function Header() {
   const { t } = useTranslation();
@@ -168,7 +169,7 @@ export default function Header() {
           {/* Persistent Get a Quote CTA — visible on desktop and tablet */}
           <button
             onClick={handleQuoteClick}
-            className={`${btn.btnAccent} ${styles.headerCta}`}
+            className={`${v2b.ghostOnDark} ${styles.headerCta}`}
           >
             {t('cta.getQuote')}
           </button>
@@ -190,7 +191,7 @@ export default function Header() {
         <div className={styles.mobileMenu} role="dialog" aria-modal="true" aria-label="Navigation menu">
           <button
             onClick={() => { handleQuoteClick(); }}
-            className={`${btn.btnAccent} ${styles.mobileCta}`}
+            className={`${v2b.ghostOnDark} ${styles.mobileCta}`}
           >
             {t('cta.getQuote')}
           </button>

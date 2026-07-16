@@ -14,7 +14,7 @@
   border: none;
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: #eafff6;
+  color: var(--v2-text-on-dark, #fff7ed);
   font-weight: 500;
   cursor: pointer;
   padding: 4px 0;
@@ -29,7 +29,7 @@
   bottom: 0;
   width: 100%;
   height: 2px;
-  background: var(--success-bright, #54E0B0);
+  background: var(--v2-red-bright, #ef3a4e);
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform var(--transition-normal, 250ms ease-out);
@@ -38,7 +38,7 @@
 @media (hover: hover) {
   .wrapper:hover .trigger,
   .trigger:hover {
-    color: var(--success-bright, #54E0B0);
+    color: var(--v2-red-bright, #ef3a4e);
   }
   .wrapper:hover .trigger::after,
   .trigger:hover::after {
@@ -47,7 +47,7 @@
 }
 
 .trigger:focus-visible {
-  color: var(--success-bright, #54E0B0);
+  color: var(--v2-red-bright, #ef3a4e);
 }
 .trigger:focus-visible::after {
   transform: scaleX(1);
@@ -55,7 +55,7 @@
 
 .triggerActive {
   composes: trigger;
-  color: var(--success-bright, #54E0B0);
+  color: var(--v2-red-bright, #ef3a4e);
   font-weight: 700;
 }
 .triggerActive::after {

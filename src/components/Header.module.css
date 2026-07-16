@@ -2,15 +2,15 @@
 
 .header {
   background: var(--spotlight-bg, #081813);
-  border-bottom: 1px solid rgba(125, 210, 180, 0.16);
+  border-bottom: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
   position: sticky;
   top: 0;
   z-index: 100;
   /* PHASE5D: the AnimatedLogo reads --color-text / --color-accent (defaulting dark/rust).
      Override them on the dark header → light wordmark + --success-bright dot. These vars
      inherit only into the header; the Footer's logo keeps its defaults. */
-  --color-text: #eafff6;
-  --color-accent: var(--success-bright, #54E0B0);
+  --color-text: var(--v2-text-on-dark, #fff7ed);
+  --color-accent: var(--v2-red, #d70f24);
 }
 
 .inner {
@@ -27,7 +27,7 @@
   font-family: var(--font-serif, Georgia, serif);
   font-size: 22px;
   font-weight: 700;
-  color: #eafff6;
+  color: var(--v2-text-on-dark, #fff7ed);
   letter-spacing: -0.5px;
   text-decoration: none;
   flex-shrink: 0;
@@ -42,12 +42,12 @@
 }
 
 .logo:focus-visible {
-  box-shadow: 0 0 0 2px var(--spotlight-bg, #081813), 0 0 0 4px var(--success-bright, #54E0B0);
+  box-shadow: 0 0 0 2px var(--spotlight-bg, #081813), 0 0 0 4px var(--v2-red-bright, #ef3a4e);
   border-radius: 4px;
 }
 
 .logoDot {
-  color: var(--success-bright, #54E0B0);
+  color: var(--v2-red-bright, #ef3a4e);
 }
 
 .nav {
@@ -70,7 +70,7 @@
   position: relative;
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: #eafff6;
+  color: var(--v2-text-on-dark, #fff7ed);
   font-weight: 500;
   text-decoration: none;
   padding: 4px 0;
@@ -85,7 +85,7 @@
   bottom: 0;
   width: 100%;
   height: 2px;
-  background: var(--success-bright, #54E0B0);
+  background: var(--v2-red-bright, #ef3a4e);
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform var(--transition-normal, 250ms ease-out);
@@ -93,7 +93,7 @@
 
 @media (hover: hover) {
   .navLink:hover {
-    color: var(--success-bright, #54E0B0);
+    color: var(--v2-red-bright, #ef3a4e);
   }
   .navLink:hover::after {
     transform: scaleX(1);
@@ -101,14 +101,14 @@
 }
 
 .navLink:focus-visible {
-  color: var(--success-bright, #54E0B0);
+  color: var(--v2-red-bright, #ef3a4e);
 }
 .navLink:focus-visible::after {
   transform: scaleX(1);
 }
 
 .navLinkActive {
-  color: var(--success-bright, #54E0B0);
+  color: var(--v2-red-bright, #ef3a4e);
   font-weight: 700;
 }
 .navLinkActive::after {
@@ -129,7 +129,7 @@
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
   font-weight: 600;
-  color: var(--success-bright, #54E0B0);
+  color: var(--v2-red-bright, #ef3a4e);
   white-space: nowrap;
   text-decoration: none;
   padding: 2px 4px;
@@ -145,7 +145,7 @@
 }
 
 .accountLink:focus-visible {
-  box-shadow: 0 0 0 2px var(--spotlight-bg, #081813), 0 0 0 4px var(--success-bright, #54E0B0);
+  box-shadow: 0 0 0 2px var(--spotlight-bg, #081813), 0 0 0 4px var(--v2-red-bright, #ef3a4e);
 }
 
 .ctaGroup {
@@ -158,8 +158,8 @@
   padding: 6px 14px !important;
   font-size: 10px !important;
   /* PHASE5D: light outline on the dark header (btnSecondary is dark-on-light by default) */
-  color: #eafff6 !important;
-  border-color: rgba(125, 210, 180, 0.45) !important;
+  color: var(--v2-text-on-dark, #fff7ed) !important;
+  border-color: var(--v2-line-on-dark-strong, rgba(255, 247, 237, 0.24)) !important;
   background: transparent !important;
 }
 
@@ -208,7 +208,7 @@
   cursor: pointer;
   padding: 8px;
   font-size: 20px;
-  color: #eafff6;
+  color: var(--v2-text-on-dark, #fff7ed);
   border-radius: var(--radius-md, 8px);
   transition: background-color var(--transition-fast, 150ms ease-out);
   outline: none;
@@ -216,12 +216,12 @@
 
 @media (hover: hover) {
   .mobileMenuBtn:hover {
-    background-color: rgba(125, 210, 180, 0.08);
+    background-color: rgba(255, 247, 237, 0.06);
   }
 }
 
 .mobileMenuBtn:focus-visible {
-  box-shadow: 0 0 0 2px var(--spotlight-bg, #081813), 0 0 0 4px var(--success-bright, #54E0B0);
+  box-shadow: 0 0 0 2px var(--spotlight-bg, #081813), 0 0 0 4px var(--v2-red-bright, #ef3a4e);
 }
 
 /* =====================================================================
@@ -257,10 +257,10 @@
 .mobileNavLink {
   font-family: var(--font-sans, system-ui);
   font-size: 18px;
-  color: #eafff6;
+  color: var(--v2-text-on-dark, #fff7ed);
   font-weight: 500;
   padding: 10px 8px 10px 12px;
-  border-bottom: 1px solid rgba(125, 210, 180, 0.16);
+  border-bottom: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
   border-left: 3px solid transparent;
   text-decoration: none;
   transition: color var(--transition-fast, 150ms ease-out), border-left-color var(--transition-fast, 150ms ease-out);
@@ -272,21 +272,21 @@
 
 @media (hover: hover) {
   .mobileNavLink:hover {
-    color: var(--success-bright, #54E0B0);
-    border-left-color: var(--success-bright, #54E0B0);
+    color: var(--v2-red-bright, #ef3a4e);
+    border-left-color: var(--v2-red-bright, #ef3a4e);
   }
 }
 
 .mobileNavLink:focus-visible {
-  color: var(--success-bright, #54E0B0);
-  border-left-color: var(--success-bright, #54E0B0);
-  background-color: rgba(125, 210, 180, 0.08);
+  color: var(--v2-red-bright, #ef3a4e);
+  border-left-color: var(--v2-red-bright, #ef3a4e);
+  background-color: rgba(255, 247, 237, 0.06);
 }
 
 .mobileNavLinkActive {
-  color: var(--success-bright, #54E0B0);
+  color: var(--v2-red-bright, #ef3a4e);
   font-weight: 700;
-  border-left-color: var(--success-bright, #54E0B0);
+  border-left-color: var(--v2-red-bright, #ef3a4e);
 }
 
 .mobileCta {
@@ -320,13 +320,13 @@
   width: 100%;
   background: transparent;
   border: none;
-  border-bottom: 1px solid rgba(125, 210, 180, 0.16);
+  border-bottom: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
   border-left: 3px solid transparent;
   padding: 14px 12px 14px 12px;
   font-family: var(--font-sans, system-ui);
   font-size: 18px;
   font-weight: 600;
-  color: #eafff6;
+  color: var(--v2-text-on-dark, #fff7ed);
   cursor: pointer;
   outline: none;
   min-height: 44px;
@@ -336,22 +336,22 @@
 
 @media (hover: hover) {
   .mobileSectionToggle:hover {
-    color: var(--success-bright, #54E0B0);
-    border-left-color: var(--success-bright, #54E0B0);
+    color: var(--v2-red-bright, #ef3a4e);
+    border-left-color: var(--v2-red-bright, #ef3a4e);
   }
 }
 
 .mobileSectionToggle:focus-visible {
-  color: var(--success-bright, #54E0B0);
-  border-left-color: var(--success-bright, #54E0B0);
-  background-color: rgba(125, 210, 180, 0.08);
+  color: var(--v2-red-bright, #ef3a4e);
+  border-left-color: var(--v2-red-bright, #ef3a4e);
+  background-color: rgba(255, 247, 237, 0.06);
 }
 
 .mobileSubmenu {
   display: flex;
   flex-direction: column;
   padding: 4px 0 4px 24px;
-  background: rgba(125, 210, 180, 0.08);
+  background: rgba(255, 247, 237, 0.06);
   border-radius: var(--radius-md, 8px);
   margin: 0 0 6px;
 }
@@ -367,7 +367,7 @@
   align-items: center;
   font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: #eafff6;
+  color: var(--v2-text-on-dark, #fff7ed);
   font-weight: 500;
   text-decoration: none;
   padding: 12px 10px;
@@ -379,21 +379,21 @@
 
 @media (hover: hover) {
   .mobileSubLink:hover {
-    color: var(--success-bright, #54E0B0);
-    border-left-color: var(--success-bright, #54E0B0);
+    color: var(--v2-red-bright, #ef3a4e);
+    border-left-color: var(--v2-red-bright, #ef3a4e);
   }
 }
 
 .mobileSubLink:focus-visible {
-  color: var(--success-bright, #54E0B0);
-  border-left-color: var(--success-bright, #54E0B0);
+  color: var(--v2-red-bright, #ef3a4e);
+  border-left-color: var(--v2-red-bright, #ef3a4e);
 }
 
 /* Footer area in mobile menu — lang switcher + login */
 .mobileFooter {
   margin-top: auto;
   padding-top: 20px;
-  border-top: 1px solid rgba(125, 210, 180, 0.16);
+  border-top: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
   display: flex;
   flex-direction: column;
   align-items: flex-start;

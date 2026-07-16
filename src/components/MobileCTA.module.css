@@ -7,7 +7,7 @@
   left: 0;
   right: 0;
   height: 52px;
-  background: var(--text, #2C2C2A);
+  background: var(--v2-board, #050607);
   display: flex;
   align-items: center;
   z-index: 1000;
@@ -48,7 +48,7 @@
 
 .btn:focus-visible {
   background-color: rgba(255, 255, 255, 0.12);
-  box-shadow: inset 0 0 0 2px var(--accent, #993C1D);
+  box-shadow: inset 0 0 0 2px var(--v2-red-bright, #ef3a4e);
 }
 
 .btn + .btn {

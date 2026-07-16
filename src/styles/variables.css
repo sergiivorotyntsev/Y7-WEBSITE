@@ -133,7 +133,7 @@
      dark spotlight treatment so the magnet is theme-driven, not hardcoded brand hex. */
   --success-mid: #1D9E75;
   --success-bright: #54E0B0;
-  --spotlight-bg: #081813;
+  --spotlight-bg: #050607; /* DESIGN-V2-W2-T08: green-black -> board-black (the sanctioned V1 flip; all spotlight consumers follow) */
 
   /* Borders */
   --border: #e5e0d8;

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { colors, fonts, keyframes } from '../theme';
+import { colors, fonts, keyframes, v2 } from '../theme';
 import { TelegramIcon, EmailIcon, CloseIcon } from './icons';
 import { trackEvent } from '../utils/trackEvent';
 
@@ -101,12 +101,12 @@ export default function FloatingContact() {
           width: '56px',
           height: '56px',
           borderRadius: '50%',
-          background: colors.accent,
-          color: '#fff',
-          border: 'none',
+          background: v2.colors.panel,
+          color: v2.colors.textOnDark,
+          border: `1px solid ${v2.colors.lineOnDarkStrong}`,
           cursor: 'pointer',
           fontSize: '24px',
-          boxShadow: '0 4px 16px rgba(153, 60, 29, 0.3)',
+          boxShadow: '0 4px 16px rgba(0, 0, 0, 0.4)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
