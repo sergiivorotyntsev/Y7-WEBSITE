@@ -1,4 +1,4 @@
-import { colors, fonts } from '../theme';
+import { colors, fonts, v2 } from '../theme';
 
 const steps = [
   { title: 'Win Auction', timing: 'Day 0', desc: 'You purchase at Copart, IAAI, or Manheim' },
@@ -56,10 +56,13 @@ export default function AuctionToPortWorkflow() {
       `}</style>
 
       <h2 style={{
-        fontFamily: fonts.serif,
+        fontFamily: v2.fonts.display,
         fontSize: '22px',
-        fontWeight: 700,
-        color: colors.text,
+        fontWeight: 600,
+        letterSpacing: '0.05em',
+        textTransform: 'uppercase',
+        color: v2.colors.ink,
+        lineHeight: 1.05,
         marginBottom: '28px',
       }}>
         Auction-to-Port Pipeline
@@ -76,9 +79,10 @@ export default function AuctionToPortWorkflow() {
               width: 40,
               height: 40,
               borderRadius: '50%',
-              background: colors.accent,
-              color: '#fff',
-              fontFamily: fonts.serif,
+              background: v2.colors.cardCream,
+              border: `1px solid ${v2.colors.lineOnPaper}`,
+              color: v2.colors.ink,
+              fontFamily: fonts.mono,
               fontSize: '16px',
               fontWeight: 700,
               display: 'flex',
@@ -100,7 +104,7 @@ export default function AuctionToPortWorkflow() {
             <div style={{
               fontFamily: fonts.mono,
               fontSize: '10px',
-              color: colors.accent,
+              color: v2.colors.inkMuted,
               marginBottom: '4px',
             }}>
               {step.timing}
