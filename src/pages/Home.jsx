@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import HreflangTags from '../components/HreflangTags';
 import ScrollReveal from '../components/ScrollReveal';
-import TrustBar from '../components/TrustBar';
 import QuoteFormCompact from '../components/QuoteFormCompact';
 import Reveal from '../components/Reveal/Reveal';
 import AudienceCards from '../components/AudienceCards';
@@ -11,7 +10,6 @@ import QuoteStrip from '../components/QuoteStrip';
 import Advantages from '../components/Advantages';
 import ProcessSteps from '../components/ProcessSteps';
 import CoverageMap from '../components/CoverageMap';
-import LiveActivityFeed from '../components/LiveActivityFeed';
 import ReviewsCarousel from '../components/ReviewsCarousel';
 import TrustBadges from '../components/TrustBadges';
 import ExternalReviewsStrip from '../components/ExternalReviewsStrip';
@@ -135,11 +133,6 @@ export default function Home() {
           </ScrollReveal>
         </div>
       </section>
-
-      {/* 3b. Live Activity Feed + Trust Bar: retired in T09 (stats absorbed by
-          the hero quartet; feed killed by decision). */}
-      <LiveActivityFeed />
-      <TrustBar />
 
       {/* 6. Coverage — manifest band (T06): all location/route links, port
           tiles as real links, licensed-broker panel with external verification. */}

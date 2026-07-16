@@ -144,64 +144,6 @@
 
 
 /* =====================================================================
-   SECTION RHYTHM — alternating backgrounds + consistent spacing
-   ===================================================================== */
-
-.section {
-  padding: clamp(60px, 8vh, 100px) 24px;
-}
-
-.sectionMuted {
-  background: var(--bg-muted, #EFECE6);
-}
-
-.sectionDark {
-  background: var(--text, #2C2C2A);
-  color: var(--bg, #F7F5F0);
-}
-
-.sectionInner {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.sectionInnerNarrow {
-  max-width: 720px;
-  margin: 0 auto;
-}
-
-.sectionHeader {
-  text-align: center;
-  margin-bottom: clamp(32px, 6vh, 56px);
-}
-
-.sectionMicro {
-  display: inline-block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--success, #0F6E56); /* PHASE5B-HOME (Variant 2): green leads non-hero kickers */
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  margin-bottom: 12px;
-}
-
-.sectionTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
-  text-align: center;
-  margin: 0;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-}
-
-.sectionDark .sectionTitle {
-  color: var(--bg, #F7F5F0);
-}
-
-/* =====================================================================
    QUOTE SECTION
    ===================================================================== */
 
@@ -252,43 +194,6 @@
 
 .quoteStamp {
   margin-top: 28px;
-}
-
-.quoteSectionHeader {
-  text-align: center;
-  margin-bottom: 32px;
-}
-
-.quoteSectionKicker {
-  display: inline-block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--success-bright, #54E0B0); /* PHASE5B-HOME: on-dark spotlight */
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  margin: 0 0 12px;
-}
-
-.quoteSectionTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 700;
-  color: #eafff6; /* PHASE5B-HOME: on-dark spotlight */
-  margin: 0 0 10px;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-}
-
-.quoteSectionSubtitle {
-  font-family: var(--font-sans, system-ui);
-  font-size: 15px;
-  color: #9fc4b8; /* PHASE5B-HOME: on-dark spotlight */
-  margin: 0;
-  line-height: 1.7;
-  max-width: 520px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .trustBadgesRow {
