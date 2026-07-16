@@ -181,7 +181,7 @@
     "displayName": "Display",
     "purpose": "Hero H1 only. Condensed uppercase, one per page.",
     "lineHeight": 0.98,
-    "lineHeightNote": "Pinned in W1-T06 via the Cyrillic Clearance Rule: 0.94 clips ЙЇЁ diacritics in Oswald 700 at display size; 0.98 clears them. Same value across all locales. Never overflow:hidden on display headings."
+    "lineHeightNote": "Pinned in W1-T06 via the Cyrillic Clearance Rule: 0.94 clips ЙЇЁ diacritics in Oswald 700 at display size; 0.98 clears them. Same value across all locales. Never overflow:hidden on display headings. W2 addendum: display copy avoids stacking Щ/Ц/Д directly above Й/Ї across a line break; RU/UA display line breaks are controlled manually."
    },
    "section-display": {
     "displayName": "Section Display",
