@@ -1,753 +1,575 @@
-/* Exporters — hero, value callout, fee table, process, port cards, request form. */
+/* =====================================================================
+   Exporters — DESIGN-V2-W4-T02 "Dispatch Board" restyle.
+   Surfaces/type/buttons/cards/forms come from src/styles/v2/ primitives
+   (Anti-Orphan Rule); this module is LAYOUT ONLY: grids, spacing, the
+   route rail, card interiors, and band-specific text colors.
+   Radius tiers: lg = cards/sheets, md = destination tiles + FAQ rows,
+   sm = ISO badges, pill = chips (from v2 cards), xl = form shell.
+   ===================================================================== */
 
-.wrap {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 0 80px;
+.page {
+  background: var(--v2-paper, #f4f0e8);
 }
 
-.hero {
-  padding: clamp(48px, 8vh, 96px) 20px clamp(32px, 6vh, 48px);
-  text-align: center;
-  background:
-    radial-gradient(circle at 50% 100%, rgba(153, 60, 29, 0.06), transparent 60%),
-    linear-gradient(180deg, var(--bg, #F7F5F0) 0%, var(--bg-muted, #EFECE6) 100%);
-  margin-bottom: clamp(32px, 5vh, 56px);
+/* Shared section-head sizing (composes over v2 type.sectionDisplay). */
+.h2 {
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  max-width: 900px;
 }
 
-.heroMicro {
-  display: inline-block;
-  font-family: var(--font-sans, system-ui);
-  font-size: clamp(10px, 2.6vw, 11px);
-  font-weight: 700;
-  color: var(--accent, #993C1D);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  margin-bottom: 12px;
+/* Card-interior text tiers (band-specific colors; type comes from v2). */
+.cardTitleSm {
+  font-size: clamp(1.02rem, 1.4vw, 1.2rem);
+  margin: 0 0 8px;
 }
-
-.title {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.75rem, 6.5vw, 2.75rem);
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
-  text-align: center;
-  margin: 0 0 14px;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  overflow-wrap: break-word;
-}
-
-.subtitle {
-  font-family: var(--font-sans, system-ui);
-  font-size: clamp(0.95rem, 3.2vw, 1.1rem);
-  color: var(--text-muted, #706E68);
-  text-align: center;
-  max-width: 640px;
-  margin: 0 auto;
+.descOnPaper {
+  font-size: 13.5px;
   line-height: 1.65;
-  padding: 0 4px;
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 0;
 }
 
+/* ===================================================================
+   HERO (board) — JP strip + text column (single brand mark on page).
+   H1 clamp per the W4 pattern.
+   =================================================================== */
+.heroLayout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 34px;
+  align-items: start;
+}
+.heroJpStrip {
+  padding-top: 6px;
+  font-size: 14px;
+}
+.heroText {
+  position: relative;
+  z-index: 1;
+  max-width: 920px;
+}
+@media (max-width: 1050px) {
+  .heroLayout { grid-template-columns: 1fr; }
+  .heroJpStrip { display: none; }
+}
+.heroEyebrow {
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  margin-bottom: 20px;
+}
+.heroTitle {
+  font-size: clamp(1.9rem, 3.6vw, 3rem);
+  margin-bottom: 18px;
+}
+.heroSubtitle {
+  max-width: 680px;
+  margin: 0 0 24px;
+}
 .heroTrust {
-  margin-top: 24px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px 14px;
-  font-family: var(--font-sans, system-ui);
-  font-size: 12.5px;
-  color: var(--text-muted, #706E68);
-}
-.heroTrustItem {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-.heroTrustDot {
-  color: var(--border, #d8d0c3);
-}
-
-/* Mid-page CTA (post-FAQ anchor scroll to form) */
-.midCta {
-  margin: clamp(40px, 6vh, 80px) auto;
-  text-align: center;
-  padding: 0 24px;
-}
-
-.midCtaButton {
-  display: inline-block;
-  padding: 14px 32px;
-  background: var(--accent, #993C1D);
-  color: var(--bg, #F7F5F0);
-  text-decoration: none;
-  font-family: Georgia, serif;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: var(--radius-md, 8px);
-  border: 1px solid var(--accent, #993C1D);
-  outline: none;
-  transition: background-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
-}
-
-.midCtaButton:hover {
-  background: var(--accent-hover, #7A3017);
-  transform: translateY(-1px);
-}
-
-/* A-spine: :focus-visible standard ring (was missing). */
-.midCtaButton:focus-visible {
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
-}
-
-@media (max-width: 600px) {
-  .midCtaButton {
-    padding: 12px 24px;
-    font-size: 15px;
-  }
-}
-
-/* Cross-links row */
-.crosslinks {
-  margin-top: clamp(48px, 8vh, 72px);
-  padding-top: clamp(32px, 5vh, 40px);
-  border-top: 1px solid var(--border, #e5e0d8);
-  text-align: center;
-}
-.crosslinksTitle {
-  display: block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--text-muted, #706E68);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
-.crosslinksRow {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 14px 28px;
+  gap: 8px 24px;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
 }
-.crosslink {
-  font-family: var(--font-sans, system-ui);
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--accent, #993C1D);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 150ms ease-out, color 150ms ease-out;
-}
-@media (hover: hover) {
-  .crosslink:hover {
-    color: var(--accent-hover, #7A3017);
-    border-bottom-color: var(--accent-hover, #7A3017);
-  }
-}
+.heroTrustItem { white-space: nowrap; }
 
-/* A-spine: :focus-visible standard (was missing on inline crosslinks). */
-.crosslink:focus-visible {
-  outline: 2px solid var(--accent, #993C1D);
-  outline-offset: 3px;
-  border-radius: 2px;
+/* ===================================================================
+   VALUE PROPOSITION (paper) — sentence-case checklist, muted checks.
+   =================================================================== */
+.valueBlock {
+  margin-top: clamp(28px, 4vh, 44px);
 }
-
-.body {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-.sectionHeader {
-  text-align: center;
-  margin-bottom: 32px;
-}
-
-.sectionMicro {
-  display: inline-block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  font-weight: 700;
-  /* A-spine (Option G): non-hero section kickers lead in Bonded Pine green. */
-  color: var(--success, #0F6E56);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  margin: 0 0 10px;
-}
-
-.sectionHeading {
-  font-family: var(--font-serif, Georgia, serif);
-  /* A-spine: one Headline ramp, matched to Home's .sectionTitle. */
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
-  text-align: center;
-  margin: 0;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-}
-
-/* =====================================================================
-   VALUE CALLOUT
-   ===================================================================== */
-
-/* A-spine: retire the off-palette peach + banned side-stripe; clean elevated card. */
-.valueCallout {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-lg, 12px);
-  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
-  padding: 24px 28px;
-  margin-bottom: 40px;
-}
-
-.valueTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
-  margin: 0 0 16px;
-  letter-spacing: -0.01em;
-}
-
 .valueList {
-  font-family: var(--font-sans, system-ui);
-  font-size: 14px;
-  color: var(--text-muted, #706E68);
-  line-height: 1.8;
-  padding-left: 20px;
-  margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 22px 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 36px;
+  font-size: 14.5px;
+  color: var(--v2-ink-muted, #5c5851);
+  line-height: 1.65;
+  max-width: 900px;
+}
+@media (max-width: 720px) {
+  .valueList { grid-template-columns: 1fr; }
+}
+.valueList li {
+  position: relative;
+  padding-left: 22px;
+}
+.valueList li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: var(--v2-ink-muted, #5c5851);
 }
 
-/* =====================================================================
-   FEE TABLE
-   ===================================================================== */
-
+/* ===================================================================
+   FEE TABLE (board proof band) — fee rows as translucent-wash board
+   cards (v2 cards.board), white text, mono chip numerics, no red.
+   Doubled .feeRow beats the v2 card padding at equal specificity.
+   =================================================================== */
 .feeBlock {
-  margin-bottom: 48px;
+  margin-top: 0; /* band opener */
 }
-
 .feeTable {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-lg, 12px);
-  overflow: hidden;
+  display: grid;
+  gap: 12px;
+  margin-top: 26px;
 }
-
-.feeRow {
-  padding: 20px 24px;
-  border-bottom: 1px solid var(--border, #e5e0d8);
+.feeRow.feeRow {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 20px;
   flex-wrap: wrap;
-  transition: background-color var(--transition-fast, 150ms ease-out);
+  padding: 20px 24px;
 }
-
-.feeRow:nth-child(even) {
-  background: var(--bg, #F7F5F0);
-}
-
-.feeRow:last-child { border-bottom: none; }
-
-@media (hover: hover) {
-  .feeRow:hover {
-    background-color: var(--bg-muted, #EFECE6);
-  }
-}
-
 .feeLabel {
   flex: 1;
   min-width: 200px;
 }
-
 .feeTitle {
-  font-family: var(--font-sans, system-ui);
   font-size: 15px;
   font-weight: 600;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-text-on-dark, #fff7ed);
   margin: 0 0 4px;
 }
-
 .feeDesc {
-  font-family: var(--font-sans, system-ui);
-  font-size: 13px;
-  color: var(--text-muted, #706E68);
+  font-size: 13.5px;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   line-height: 1.6;
   margin: 0;
 }
-
 .feeBadge {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--accent, #993C1D);
-  background: var(--bg-muted, #EFECE6);
-  padding: 4px 12px;
-  border-radius: var(--radius-pill, 20px);
   white-space: nowrap;
   flex-shrink: 0;
 }
 
-/* =====================================================================
-   HOW (4 steps)
-   ===================================================================== */
-
-.howBlock {
-  background: var(--bg-muted, #EFECE6);
-  border-radius: var(--radius-xl, 16px);
-  padding: 40px 32px;
-  margin-bottom: 48px;
-}
-
-.howTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  /* A-spine: one Headline ramp. */
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
-  margin: 0 0 24px;
-  text-align: center;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-}
-
+/* ===================================================================
+   HOW IT WORKS (paper) — numbered cream cards, mono numerals.
+   =================================================================== */
 .stepsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
 }
-
-.step {
-  text-align: center;
+@media (max-width: 960px) { .stepsGrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .stepsGrid { grid-template-columns: 1fr; } }
+.stepCard.stepCard {
+  padding: 24px 22px;
 }
-
 .stepNum {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--accent, #993C1D);
-  color: var(--text-on-accent, #fff);
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: 18px;
-  font-weight: 700;
+  color: var(--v2-ink-muted, #5c5851);
+  margin-bottom: 10px;
+}
+
+/* ===================================================================
+   PORT COVERAGE + NUMBER ANCHORS (board) — static route rail, board
+   port link cards, then the quiet trustRow. Port codes stay white/ink
+   mono (red codes belong to /ports tiles); the rail's red mid-dot is
+   the band's single red accent.
+   =================================================================== */
+.routeRail {
+  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 12px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 760px;
+  margin: 30px 0 26px;
+  padding: 8px 4px 4px;
 }
-
-.stepTitle {
-  font-family: var(--font-sans, system-ui);
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text, #2C2C2A);
-  margin: 0 0 6px;
+.routeSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
-
-.stepDesc {
-  font-family: var(--font-sans, system-ui);
-  font-size: 13px;
-  color: var(--text-muted, #706E68);
-  line-height: 1.6;
-  margin: 0;
+.routeTrack {
+  stroke: var(--v2-text-on-dark-muted, #9c9b96);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 6;
+  stroke-linecap: round;
+  fill: none;
+  opacity: 0.55;
 }
-
-/* =====================================================================
-   PORTS
-   ===================================================================== */
-
-.portsBlock {
-  margin-bottom: 48px;
-}
-
-.portsTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  /* A-spine: one Headline ramp. */
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+.routeNode {
+  position: relative;
+  z-index: 1;
   text-align: center;
-  margin: 0 0 20px;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
+}
+.routeDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--v2-board, #050607);
+  border: 2px solid var(--v2-text-on-dark-secondary, #e8e0d3);
+  margin: 0 auto 8px;
+}
+/* The mid node (the leg Y7 runs) carries one of the band's two red accents. */
+.routeDotMid {
+  border-color: var(--v2-red, #d70f24);
+}
+.routeLabel {
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  white-space: nowrap;
+}
+.routeSub {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin-top: 2px;
 }
 
 .portsGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   align-items: stretch;
 }
-
 @media (max-width: 768px) { .portsGrid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px) { .portsGrid { grid-template-columns: 1fr; } }
-
 .portLink {
+  display: block;
   text-decoration: none;
   color: inherit;
-  display: block;
-  outline: none;
-  border-radius: var(--radius-lg, 12px);
+  border-radius: var(--v2-radius-lg, 18px);
 }
-
 .portLink:focus-visible {
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+  outline: 2px solid var(--v2-red-bright, #ef3a4e);
+  outline-offset: 2px;
 }
-
-.portCard {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-lg, 12px);
-  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
-  padding: 16px 18px 14px;
+.portCard.portCard {
+  height: 100%;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  transition:
-    transform var(--transition-normal, 250ms ease-out),
-    box-shadow var(--transition-normal, 250ms ease-out),
-    border-color var(--transition-normal, 250ms ease-out);
-}
-
-@media (hover: hover) {
-  .portLink:hover .portCard,
-  .portCard:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-card-hover, 0 2px 6px rgba(44,44,42,0.06), 0 16px 40px rgba(44,44,42,0.12));
-    border-color: var(--success, #0F6E56);
-  }
-}
-
-/* C: port-pill head — green pin + mono port code */
-.portTop { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-.portPin {
-  width: 9px; height: 9px; border-radius: 50%;
-  background: var(--success, #0F6E56); flex: none;
-  box-shadow: 0 0 0 3px var(--success-bg, #E1F5EE);
 }
 .portCode {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 10px; font-weight: 600;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--accent, #993C1D);
-  margin-left: auto;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  margin-bottom: 10px;
 }
-
 .portName {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
-  margin-bottom: 4px;
-  letter-spacing: -0.01em;
+  font-size: clamp(1.02rem, 1.4vw, 1.2rem);
+  margin: 0 0 6px;
 }
-
 .portDesc {
-  font-family: var(--font-sans, system-ui);
-  font-size: 12px;
-  color: var(--text-muted, #706E68);
+  font-size: 13px;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   line-height: 1.6;
   flex: 1;
-}
-
-.portCta {
-  font-family: var(--font-sans, system-ui);
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--accent, #993C1D);
-  margin-top: 8px;
-}
-
-/* =====================================================================
-   FORM
-   ===================================================================== */
-
-/* B: token card elevation (was a flat muted panel). */
-.formBlock {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-xl, 16px);
-  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
-  padding: 40px 32px;
-}
-
-.successBlock {
-  text-align: center;
-  padding: 20px 0;
-}
-
-.successIcon { margin-bottom: 12px; }
-
-.successTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: 22px;
-  color: var(--success, #0F6E56);
-  margin: 0 0 8px;
-  letter-spacing: -0.02em;
-}
-
-.successMsg {
-  font-family: var(--font-sans, system-ui);
-  font-size: 14px;
-  color: var(--text-muted, #706E68);
-  line-height: 1.7;
   margin: 0;
 }
-
-.formTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  /* A-spine: one Headline ramp. */
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
-  text-align: center;
-  margin: 0 0 8px;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
+.portCta {
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin-top: 12px;
 }
 
-.formSubtitle {
-  font-family: var(--font-sans, system-ui);
+/* Number anchors — v2 trustRow, quiet white stats, inside the ports band.
+   Doubled class beats the v2 grid template at equal source order. */
+.anchorsRow.anchorsRow {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  margin-top: clamp(36px, 5vh, 56px);
+}
+
+/* ===================================================================
+   EXPORT DOCUMENTS (board) — checklist as translucent-wash board
+   cards (v2 cards.board), white titles, muted mono checks.
+   Doubled .docsItem beats the v2 card padding at equal specificity.
+   =================================================================== */
+.docsBlock {
+  margin-top: 0; /* band opener */
+}
+.docsList {
+  list-style: none;
+  padding: 0;
+  margin: 26px 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+@media (max-width: 720px) {
+  .docsList { grid-template-columns: 1fr; }
+}
+.docsItem.docsItem {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 18px 20px;
+}
+.docsCheck {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 14px;
-  color: var(--text-muted, #706E68);
-  text-align: center;
-  margin: 0 0 28px;
-  line-height: 1.7;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  line-height: 1.6;
+}
+.docsTitle {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin-bottom: 3px;
+}
+.docsDesc {
+  display: block;
+  font-size: 13.5px;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  line-height: 1.6;
 }
 
-.form {
-  max-width: 600px;
+/* ===================================================================
+   DESTINATIONS (paper band) — mono ISO badge tiles, md radius tier.
+   =================================================================== */
+.destBlock {
+  margin-top: 0; /* band opener */
+}
+.destGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 12px;
+  margin-top: 26px;
+}
+.destItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-md, 12px);
+}
+.destBadge {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 30px;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--v2-ink, #050607);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-sm, 6px);
+}
+.destBody {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.destRoute {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.destFrom {
+  color: var(--v2-ink-muted, #5c5851);
+}
+.destArrow {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 12px;
+  color: var(--v2-ink-muted, #5c5851);
+}
+.destCountry {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--v2-ink, #050607);
+}
+.destNotes {
+  font-size: 13px;
+  color: var(--v2-ink-muted, #5c5851);
+  line-height: 1.55;
+}
+
+/* ===================================================================
+   REQUEST FORM (paper) — labels/inputs/errors from v2 forms-on-paper
+   primitives; shell composes v2 cards.paper. Doubled class beats the
+   primitive at equal specificity: xl radius tier + generous padding,
+   and the card hover-lift is neutralized (form shells are static).
+   =================================================================== */
+.formShell.formShell {
+  max-width: 760px;
   margin: 0 auto;
+  border-radius: var(--v2-radius-xl, 22px);
+  padding: clamp(24px, 4vw, 36px);
+}
+.formShell.formShell:hover {
+  transform: none;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
+}
+.formSubtitle {
+  margin: 10px 0 26px;
+}
+.form {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
-
 .formRow {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
-
 @media (max-width: 480px) {
   .formRow { grid-template-columns: 1fr; }
 }
-
-/* B: one error language — Cite-Red, full border (no side-stripe). */
-.errorAlert {
-  font-family: var(--font-sans, system-ui);
-  font-size: 13px;
-  color: #C0392B;
-  padding: 10px 14px;
-  background: rgba(192, 57, 43, 0.07);
-  border-radius: var(--radius-md, 8px);
-  border: 1px solid rgba(192, 57, 43, 0.35);
+.textarea {
+  resize: vertical;
 }
-
-.submitBtn {
-  padding: 14px 32px !important;
-  font-size: 14px !important;
-  width: 100%;
-}
-
 .vinTextarea {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace) !important;
-  font-size: 13px !important;
-  resize: vertical !important;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 13px;
   min-height: 96px;
 }
-
-/* =====================================================================
-   OVERNIGHT-T06 — Export documents, destinations, FAQ
-   ===================================================================== */
-
-.docsSection,
-.destinationsSection,
-.faqSection {
-  padding: clamp(32px, 5vh, 48px) 24px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.docsList { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-.docsItem {
-  display: grid; grid-template-columns: 28px 1fr; gap: 14px; align-items: flex-start;
-  padding: 16px 18px;
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-lg, 12px);
-  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
-}
-.docsCheck {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 26px; height: 26px; border-radius: 50%;
-  background: var(--accent, #993C1D); color: var(--text-on-accent, #fff);
-  font-weight: 700; font-size: 14px;
-}
-.docsTitle { display: block; font-family: var(--font-serif, Georgia, serif); font-size: 1rem; color: var(--text, #2C2C2A); margin-bottom: 4px; }
-.docsDesc { display: block; font-family: var(--font-sans, system-ui); font-size: 13.5px; color: var(--text-muted, #706E68); line-height: 1.6; }
-
-.destinationsGrid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 14px;
-}
-/* C: flag-free destination rows — mono country-code badge + route + notes */
-.destItem {
-  padding: 14px 16px;
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-lg, 12px);
-  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
-  display: flex; align-items: center; gap: 14px;
-  transition: border-color var(--transition-normal, 250ms ease-out), box-shadow var(--transition-normal, 250ms ease-out);
-}
-@media (hover: hover) {
-  .destItem:hover {
-    border-color: var(--success, #0F6E56);
-    box-shadow: var(--shadow-card-hover, 0 2px 6px rgba(44,44,42,0.06), 0 16px 40px rgba(44,44,42,0.12));
-  }
-}
-.destBadge {
-  flex: none;
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 40px; height: 30px;
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 14px; font-weight: 600; letter-spacing: 0.04em;
-  color: var(--text, #2C2C2A);
-  background: var(--bg-muted, #EFECE6);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-sm, 4px);
-}
-.destBody { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
-.destRoute { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
-.destFrom {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted, #706E68);
-}
-.destArrow { font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 12px; color: var(--success, #0F6E56); }
-.destCountry {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: 1.05rem; font-weight: 700; color: var(--text, #2C2C2A); letter-spacing: -0.01em;
-}
-.destNotes {
-  font-family: var(--font-sans, system-ui);
-  font-size: 13px; color: var(--text-muted, #706E68); line-height: 1.55;
-}
-
-/* FAQ */
-.faqList { display: grid; gap: 10px; max-width: 820px; margin: 0 auto; }
-.faqItem {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-lg, 12px);
-  overflow: hidden;
-}
-.faqItem[open] { border-color: var(--accent, #993C1D); }
-.faqSummary {
-  list-style: none; padding: 16px 20px; cursor: pointer;
-  display: flex; justify-content: space-between; gap: 12px;
-  font-family: var(--font-sans, system-ui);
-  font-size: 15px; font-weight: 600;
-  color: var(--text, #2C2C2A); outline: none;
-}
-.faqSummary::-webkit-details-marker { display: none; }
-/* A-spine: :focus-visible standard (was outline:none with no replacement). */
-.faqSummary:focus-visible {
-  box-shadow: inset 0 0 0 2px var(--accent, #993C1D);
-  border-radius: var(--radius-lg, 12px);
-}
-.faqChevron { color: var(--accent, #993C1D); font-size: 14px; transition: transform 200ms ease-out; }
-.faqItem[open] .faqChevron { transform: rotate(180deg); }
-.faqAnswer {
-  padding: 0 20px 18px;
-  font-family: var(--font-sans, system-ui);
-  font-size: 14px; color: var(--text-muted, #706E68); line-height: 1.7; margin: 0;
-}
-
-/* =====================================================================
-   C — Logistics-Forward motif on the ports section: route rail + the
-   number-anchors as the page's mid-page dark spotlight band. Restyles
-   existing facts only (port/destination counts, on-page USDOT/BMC-84).
-   ===================================================================== */
-
-.routeRail {
-  position: relative;
-  display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
-  max-width: 760px; margin: 0 auto 24px;
-  padding: 8px 4px 4px;
-}
-.routeSvg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-.routeTrack {
-  stroke: var(--text-muted, #706E68); stroke-width: 1.5; stroke-dasharray: 4 6;
-  stroke-linecap: round; fill: none; opacity: 0.5;
-}
-.routeGlow {
-  stroke: var(--accent, #993C1D); stroke-width: 2; stroke-linecap: round; fill: none;
-  opacity: 0.9; stroke-dasharray: 680; stroke-dashoffset: 680;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .routeGlow { animation: expRouteDraw 2.8s ease-out 0.3s forwards; }
-}
-@keyframes expRouteDraw { to { stroke-dashoffset: 0; } }
-.routeNode { position: relative; z-index: 1; text-align: center; }
-.routeDot {
-  width: 14px; height: 14px; border-radius: 50%;
-  background: var(--bg-card, #fff); border: 2px solid var(--accent, #993C1D);
-  margin: 0 auto 8px;
-}
-.routeDotMid { border-color: var(--success, #0F6E56); }
-.routeLabel {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 10px;
-  text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted, #706E68); white-space: nowrap;
-}
-.routeSub { font-family: var(--font-sans, system-ui); font-size: 11px; color: var(--text, #2C2C2A); font-weight: 600; margin-top: 2px; }
-
-/* Number-anchors = the mid-page dark spotlight band (Home recipe). */
-.anchorsBand {
-  position: relative; overflow: hidden;
-  margin: 0 auto 28px; padding: clamp(24px, 4vh, 36px) 24px;
-  border-radius: var(--radius-xl, 16px);
-  color: #eafff6;
-  background: radial-gradient(120% 140% at 12% 0%, #0d2a22 0%, var(--spotlight-bg, #081813) 46%, #050f0c 100%);
-  border: 1px solid rgba(125, 210, 180, 0.14);
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
-}
-.anchorsRow {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 20px 44px; text-align: center;
-}
-.anchor { min-width: 96px; }
-.anchorNum {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: clamp(1.3rem, 3vw, 1.7rem); font-weight: 600;
-  color: var(--success-bright, #54E0B0); letter-spacing: -0.01em; margin: 0;
-}
-.anchorLabel {
-  font-family: var(--font-sans, system-ui); font-size: 11px; letter-spacing: 0.06em;
-  text-transform: uppercase; color: #9fc4b8; margin: 2px 0 0;
-}
-
-/* =====================================================================
-   B — form discipline: keyboard focus ring + field-level error state
-   ===================================================================== */
-.form input:focus-visible,
-.form select:focus-visible,
-.form textarea:focus-visible {
-  border-color: var(--accent, #993C1D);
-  box-shadow: 0 0 0 2px var(--bg-card, #fff), 0 0 0 4px var(--accent-glow, rgba(153, 60, 29, 0.15));
-}
-.fieldError {
-  border-color: #C0392B !important;
-}
-.fieldError:focus-visible {
-  box-shadow: 0 0 0 2px var(--bg-card, #fff), 0 0 0 4px rgba(192, 57, 43, 0.22) !important;
+/* Field-level error state on v2 inputs; message is text, never color alone.
+   Paper surface: signal red border, red-deep body-size text (contrast law;
+   red-bright is the on-dark variant). */
+.fieldError.fieldError {
+  border-color: var(--v2-red, #d70f24);
 }
 .fieldErrorMsg {
-  display: flex; align-items: center; gap: 6px;
-  font-family: var(--font-sans, system-ui);
-  font-size: 12px; font-weight: 500; color: #C0392B;
-  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--v2-red-deep, #a90918);
 }
-.fieldErrorMsg svg { flex: none; }
+.submitBtn {
+  width: 100%;
+}
+/* Success state — bonded pine (status only). On paper use the base pine,
+   not success-bright (that tint is the on-dark variant). */
+.successBlock {
+  text-align: center;
+  padding: 12px 0;
+}
+.successIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--success, #0F6E56);
+  color: var(--success, #0F6E56);
+  margin-bottom: 14px;
+}
+.successTitle {
+  color: var(--success, #0F6E56);
+  font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+  margin: 0 0 8px;
+}
+.successMsg {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--success, #0F6E56);
+  margin: 0;
+}
+
+/* ===================================================================
+   FAQ ACCORDION (paper band) — md radius tier (compact rows, not cards).
+   Band opener now (own manifest band), so no top offset.
+   =================================================================== */
+.faqBlock {
+  margin-top: 0;
+}
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 880px;
+  margin-top: 24px;
+}
+.faqItem {
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-md, 12px);
+  background: var(--v2-card-cream, #fffaf1);
+  transition: border-color var(--transition-normal, 200ms ease);
+}
+.faqItem[open] {
+  border-color: rgba(5, 6, 7, 0.4);
+}
+.faqSummary {
+  list-style: none;
+  cursor: pointer;
+  padding: 16px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--v2-ink, #050607);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.faqSummary::-webkit-details-marker { display: none; }
+.faqSummary:focus-visible {
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
+  border-radius: var(--v2-radius-md, 12px);
+}
+.faqChevron {
+  font-size: 13px;
+  color: var(--v2-ink-muted, #5c5851);
+  transition: transform var(--transition-normal, 200ms ease);
+}
+.faqItem[open] .faqChevron { transform: rotate(180deg); }
+.faqAnswer {
+  font-size: 14px;
+  color: var(--v2-ink-muted, #5c5851);
+  line-height: 1.75;
+  padding: 0 20px 20px;
+  margin: 0;
+}
+
+/* ===================================================================
+   CONTEXTUAL CTA (board mini-band) — cream card as contrast island.
+   Doubled class beats the v2 inner padding at equal source order.
+   =================================================================== */
+.ctaBandInner.ctaBandInner {
+  padding-top: clamp(36px, 5vh, 56px);
+  padding-bottom: clamp(36px, 5vh, 56px);
+}
+
+/* ===================================================================
+   MID CTA (board mini-band, close-dark) — the gradient CTA is the fill.
+   =================================================================== */
+.midCtaInner.midCtaInner {
+  padding-top: clamp(36px, 5vh, 56px);
+  padding-bottom: clamp(36px, 5vh, 56px);
+  text-align: center;
+}
+
+/* ===================================================================
+   CROSSLINKS TAIL (paper) — Body-Link Law styling from v2 type.
+   =================================================================== */
+.crosslinksInner.crosslinksInner {
+  padding-top: clamp(36px, 5vh, 56px);
+  padding-bottom: clamp(36px, 5vh, 56px);
+  text-align: center;
+}
+.crosslinksTitle {
+  display: block;
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 0 0 16px;
+}
+.crosslinksRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 28px;
+}
+.crosslink {
+  font-size: 14px;
+  font-weight: 500;
+}

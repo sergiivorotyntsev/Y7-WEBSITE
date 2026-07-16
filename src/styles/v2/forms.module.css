@@ -61,3 +61,36 @@
   font-size: 14px;
   color: var(--success-bright, #54E0B0);
 }
+
+/* Paper variants (W4-T02): §7 forms-on-paper — cream inputs, ink text,
+   signal-red focus (4.64:1 on paper). */
+.labelOnPaper {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: var(--v2-track-label, 0.14em);
+  text-transform: uppercase;
+  color: var(--v2-ink-muted, #5c5851);
+}
+.inputOnPaper {
+  width: 100%;
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-md, 12px);
+  padding: 15px;
+  color: var(--v2-ink, #050607);
+  font: inherit;
+  font-size: 16px;
+}
+.inputOnPaper::placeholder { color: var(--v2-ink-muted, #5c5851); }
+.inputOnPaper:focus-visible {
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
+}
+.errorOnPaper {
+  font-size: 13px;
+  color: var(--v2-red-deep, #a90918);
+  padding: 10px 14px;
+  background: rgba(215, 15, 36, 0.06);
+  border-radius: var(--v2-radius-md, 12px);
+}

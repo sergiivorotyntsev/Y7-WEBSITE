@@ -11,8 +11,26 @@ import { CheckIcon } from '../components/icons';
 import { apiPost } from '../hooks/useApi';
 import PhoneInput, { getCleanPhone, isValidPhone } from '../components/PhoneInput';
 import styles from './Exporters.module.css';
-import btn from '../styles/buttons.module.css';
-import forms from '../styles/forms.module.css';
+import v2s from '../styles/v2/surfaces.module.css';
+import v2t from '../styles/v2/type.module.css';
+import v2b from '../styles/v2/buttons.module.css';
+import v2c from '../styles/v2/cards.module.css';
+import v2a from '../styles/v2/accents.module.css';
+import v2f from '../styles/v2/forms.module.css';
+
+// DESIGN-V2-W4-T02: Dispatch Board restyle. SEO contract frozen: every heading
+// text/level, i18n keys, schema call sites, EntityTldr position (first element
+// after the hero), the 5 crosslinks, the form pipeline, and the ContextualCTA
+// target are unchanged. Band map (approved, strict alternation, rebalanced to
+// the mandated 40-60% dark share): hero=B · tldr+value=P · fees=B (board proof
+// band, translucent-wash cards, white text, no red fills) · how=P ·
+// ports+anchors=B (board port link cards + quiet trustRow; the rail's red
+// mid-dot is the band's single red accent) · form=P (§7 forms-on-paper; submit
+// CTA = the band's single red fill) · docs=B (wash checklist cards) ·
+// destinations=P · ContextualCTA=B mini-band · faq=P · midCta=B (close-dark) ·
+// crosslinks=P tail. No entrance animations (page had none; Reveal Gate law).
+// H2 ladder order (frozen): value · fees · how · ports · form · docs ·
+// destinations · faq — formBlock precedes docs/destinations in the DOM.
 
 // C motif helpers. City substring -> /ports/{slug} + mono port code; the exporters
 // i18n names ports "Newark, NJ" / "Houston, TX", so match on the city.
@@ -120,333 +138,380 @@ export default function Exporters() {
   const portCount = Array.isArray(portList) ? portList.length : 0;
 
   return (
-    <div className={styles.wrap}>
+    <div className={styles.page}>
       <BreadcrumbSchema items={[{name:'Home',url:'/'},{name:'Exporters',url:'/exporters'}]} />
       <MoneyPageSchema pageType="exporters" />
       <FaqPageSchema pageUrl="https://www.y7agency.com/exporters" items={faqItems} />
       <PageMeta title={tCommon('meta.exportersTitle')} description={tCommon('meta.exportersDescription')} path="/exporters" />
 
-      {/* Hero */}
-      <section className={styles.hero}>
-        <span className={styles.heroMicro}>&#9670; {t('hero.kicker')}</span>
-        <h1 className={styles.title}>{t('title')}</h1>
-        <p className={styles.subtitle}>{t('subtitle')}</p>
-        <div className={styles.heroTrust}>
-          <span className={styles.heroTrustItem}>&#x2713; {t('hero.trust1')}</span>
-          <span className={styles.heroTrustDot} aria-hidden="true">&middot;</span>
-          <span className={styles.heroTrustItem}>&#x2713; {t('hero.trust2')}</span>
-          <span className={styles.heroTrustDot} aria-hidden="true">&middot;</span>
-          <span className={styles.heroTrustItem}>&#x2713; {t('hero.trust3')}</span>
+      {/* Hero — board. Plain mono eyebrow (no rule-line: hero budget; the
+          boardHero red radial is low-alpha exempt). JP vertical strip is the
+          page's single brand mark, aria-hidden. */}
+      <section className={v2s.boardHero}>
+        <div className={`${v2s.inner} ${styles.heroLayout}`}>
+          <div className={`${v2a.jpVertical} ${styles.heroJpStrip}`} aria-hidden="true">
+            シンプル・迅速・信頼
+          </div>
+          <div className={styles.heroText}>
+            <p className={`${v2t.eyebrowPlain} ${styles.heroEyebrow}`}>{t('hero.kicker')}</p>
+            <h1 className={`${v2t.sectionDisplay} ${styles.heroTitle}`}>{t('title')}</h1>
+            <p className={`${v2t.lede} ${v2t.ledeOnDark} ${styles.heroSubtitle}`}>{t('subtitle')}</p>
+            <div className={styles.heroTrust}>
+              <span className={styles.heroTrustItem}>&#x2713; {t('hero.trust1')}</span>
+              <span className={styles.heroTrustItem}>&#x2713; {t('hero.trust2')}</span>
+              <span className={styles.heroTrustItem}>&#x2713; {t('hero.trust3')}</span>
+            </div>
+          </div>
         </div>
       </section>
 
-      <div className={styles.body}>
-      <EntityTldr kicker="Exporters, in brief" ariaLabel="Y7 for exporters, in brief" text={tldr} />
+      {/* TL;DR + value proposition — manifest band; the extractable answer
+          card stays the first element after the hero. */}
+      <section className={v2s.manifest}>
+        <div className={v2s.inner}>
+          <EntityTldr kicker="Exporters, in brief" ariaLabel="Y7 for exporters, in brief" text={tldr} />
 
-      {/* Value proposition */}
-      <div className={styles.valueCallout}>
-        <h2 className={styles.valueTitle}>{t('value.title')}</h2>
-        <ul className={styles.valueList}>
-          {Array.isArray(valuePoints) && valuePoints.map((point, i) => (
-            <li key={i}>{point}</li>
-          ))}
-        </ul>
-      </div>
+          {/* Value proposition — plain H2 opener (density cap) */}
+          <div className={styles.valueBlock}>
+            <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('value.title')}</h2>
+            <ul className={styles.valueList}>
+              {Array.isArray(valuePoints) && valuePoints.map((point, i) => (
+                <li key={i}>{point}</li>
+              ))}
+            </ul>
+          </div>
 
-      {/* Service Fee Table */}
-      <div className={styles.feeBlock}>
-        <div className={styles.sectionHeader}>
-          <span className={styles.sectionMicro}>{t('fees.kicker')}</span>
-          <h2 className={styles.sectionHeading}>{t('fees.title')}</h2>
         </div>
-        <div className={styles.feeTable}>
-          {Array.isArray(fees) && fees.map((fee, i) => (
-            <div key={i} className={styles.feeRow}>
-              <div className={styles.feeLabel}>
-                <div className={styles.feeTitle}>{fee.service}</div>
-                <div className={styles.feeDesc}>{fee.desc}</div>
+      </section>
+
+      {/* Service Fee Table — board proof band, eyebrow pair opener. Fee rows
+          are translucent-wash board cards with white text + mono chip numerics;
+          no red fills (the eyebrow rule-line is the band's single red accent). */}
+      <section className={v2s.board}>
+        <div className={v2s.inner}>
+          <div className={styles.feeBlock}>
+            <p className={`${v2t.eyebrow} ${v2t.eyebrowOnDark}`}>{t('fees.kicker')}</p>
+            <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('fees.title')}</h2>
+            <div className={styles.feeTable}>
+              {Array.isArray(fees) && fees.map((fee, i) => (
+                <div key={i} className={`${v2c.board} ${styles.feeRow}`}>
+                  <div className={styles.feeLabel}>
+                    <div className={styles.feeTitle}>{fee.service}</div>
+                    <div className={styles.feeDesc}>{fee.desc}</div>
+                  </div>
+                  <div className={`${v2c.chipOnDark} ${styles.feeBadge}`}>{fee.note}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works — paper; numbered steps as cream cards. Plain H2 opener. */}
+      <section className={v2s.manifest}>
+        <div className={v2s.inner}>
+          <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('howTitle')}</h2>
+          <div className={styles.stepsGrid}>
+            {Array.isArray(steps) && steps.map((step, i) => (
+              <div key={i} className={`${v2c.paper} ${styles.stepCard}`}>
+                <div className={`${v2t.monoLabel} ${styles.stepNum}`}>{String(i + 1).padStart(2, '0')}</div>
+                <h3 className={`${v2t.cardTitle} ${styles.cardTitleSm}`}>{step.title}</h3>
+                <p className={styles.descOnPaper}>{step.desc}</p>
               </div>
-              <div className={styles.feeBadge}>{fee.note}</div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Port Coverage + number anchors — ONE board band: static route rail,
+          port link cards in the board-card style (/ports/* links kept), then
+          the trustRow stat band. Port codes stay white/ink mono (red codes are
+          the /ports tiles' sanctioned treatment) and the stat numerals stay
+          quiet white; the rail's red mid-dot is the band's single red accent.
+          Plain H2 opener. */}
+      <section className={v2s.board}>
+        <div className={v2s.inner}>
+          <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('ports.title')}</h2>
+
+          {/* Route rail: auction/dealer -> US export port -> destination */}
+          <div className={styles.routeRail}>
+            <svg className={styles.routeSvg} viewBox="0 0 760 60" preserveAspectRatio="none" aria-hidden="true">
+              <path className={styles.routeTrack} d="M40 15 H720" />
+            </svg>
+            <div className={styles.routeNode}>
+              <div className={styles.routeDot} />
+              <div className={`${v2t.monoMicro} ${styles.routeLabel}`}>Auction / Dealer</div>
             </div>
-          ))}
-        </div>
-      </div>
-
-      {/* How It Works — 4 steps */}
-      <div className={styles.howBlock}>
-        <h2 className={styles.howTitle}>{t('howTitle')}</h2>
-        <div className={styles.stepsGrid}>
-          {Array.isArray(steps) && steps.map((step, i) => (
-            <div key={i} className={styles.step}>
-              <div className={styles.stepNum}>{i + 1}</div>
-              <h3 className={styles.stepTitle}>{step.title}</h3>
-              <p className={styles.stepDesc}>{step.desc}</p>
+            <div className={styles.routeNode}>
+              <div className={`${styles.routeDot} ${styles.routeDotMid}`} />
+              <div className={`${v2t.monoMicro} ${styles.routeLabel}`}>US Export Port</div>
+              {portCount > 0 && <div className={styles.routeSub}>{portCount} ports</div>}
             </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Port Coverage — C motif: route rail + number anchors + port-pills */}
-      <div className={styles.portsBlock}>
-        <h2 className={styles.portsTitle}>{t('ports.title')}</h2>
-
-        {/* Route rail: auction/dealer -> US export port -> destination */}
-        <div className={styles.routeRail}>
-          <svg className={styles.routeSvg} viewBox="0 0 760 60" preserveAspectRatio="none" aria-hidden="true">
-            <path className={styles.routeTrack} d="M40 15 H720" />
-            <path className={styles.routeGlow} d="M40 15 H720" />
-          </svg>
-          <div className={styles.routeNode}>
-            <div className={styles.routeDot} />
-            <div className={styles.routeLabel}>Auction / Dealer</div>
+            <div className={styles.routeNode}>
+              <div className={styles.routeDot} />
+              <div className={`${v2t.monoMicro} ${styles.routeLabel}`}>Destination</div>
+            </div>
           </div>
-          <div className={styles.routeNode}>
-            <div className={`${styles.routeDot} ${styles.routeDotMid}`} />
-            <div className={styles.routeLabel}>US Export Port</div>
-            {portCount > 0 && <div className={styles.routeSub}>{portCount} ports</div>}
-          </div>
-          <div className={styles.routeNode}>
-            <div className={styles.routeDot} />
-            <div className={styles.routeLabel}>Destination</div>
-          </div>
-        </div>
 
-        {/* Number anchors = the page's mid-page dark spotlight band. Restyles facts
-            already on the page: port/destination counts + footer USDOT/BMC-84. */}
-        <div className={styles.anchorsBand}>
-          <div className={styles.anchorsRow}>
+          <div className={styles.portsGrid}>
+            {Array.isArray(portList) && portList.map((port, i) => {
+              const { slug, code } = portMeta(port.name);
+              const card = (
+                <div className={`${v2c.board} ${styles.portCard}`}>
+                  <div className={`${v2t.monoLabel} ${styles.portCode}`}>{code}</div>
+                  <div className={`${v2t.cardTitle} ${styles.portName}`}>{port.name}</div>
+                  <div className={styles.portDesc}>{port.desc}</div>
+                  {slug && <div className={`${v2t.monoLabel} ${styles.portCta}`}>{t('crosslinks.viewPortDetails')}</div>}
+                </div>
+              );
+              return slug ? (
+                <Link key={i} to={`/ports/${slug}`} className={styles.portLink}>
+                  {card}
+                </Link>
+              ) : (
+                <div key={i}>{card}</div>
+              );
+            })}
+          </div>
+
+          {/* Number anchors — quiet (white) stat numerals inside the ports band.
+              Restyles facts already on the page: port/destination counts +
+              USDOT/BMC-84. */}
+          <div className={`${v2c.trustRow} ${styles.anchorsRow}`}>
             {portCount > 0 && (
-              <div className={styles.anchor}>
-                <p className={styles.anchorNum}>{portCount}</p>
-                <p className={styles.anchorLabel}>US export ports</p>
+              <div>
+                <span className={v2c.trustStatQuiet}>{portCount}</span>
+                <span className={v2c.trustLabel}>US export ports</span>
               </div>
             )}
             {destItems.length > 0 && (
-              <div className={styles.anchor}>
-                <p className={styles.anchorNum}>{destItems.length}</p>
-                <p className={styles.anchorLabel}>destinations</p>
+              <div>
+                <span className={v2c.trustStatQuiet}>{destItems.length}</span>
+                <span className={v2c.trustLabel}>destinations</span>
               </div>
             )}
-            <div className={styles.anchor}>
-              <p className={styles.anchorNum}>$75K</p>
-              <p className={styles.anchorLabel}>BMC-84 bond</p>
+            <div>
+              <span className={v2c.trustStatQuiet}>$75K</span>
+              <span className={v2c.trustLabel}>BMC-84 bond</span>
             </div>
-            <div className={styles.anchor}>
-              <p className={styles.anchorNum}>#4427359</p>
-              <p className={styles.anchorLabel}>USDOT</p>
+            <div>
+              <span className={v2c.trustStatQuiet}>#4427359</span>
+              <span className={v2c.trustLabel}>USDOT</span>
             </div>
           </div>
         </div>
+      </section>
 
-        <div className={styles.portsGrid}>
-          {Array.isArray(portList) && portList.map((port, i) => {
-            const { slug, code } = portMeta(port.name);
-            const card = (
-              <div className={styles.portCard}>
-                <div className={styles.portTop}>
-                  <span className={styles.portPin} aria-hidden="true" />
-                  <span className={styles.portCode}>{code}</span>
-                </div>
-                <div className={styles.portName}>{port.name}</div>
-                <div className={styles.portDesc}>{port.desc}</div>
-                {slug && <div className={styles.portCta}>{t('crosslinks.viewPortDetails')}</div>}
+      {/* Request Form — paper band, §7 forms-on-paper primitives (cream shell,
+          ink labels, cream inputs). Plain H2 opener. Fields, validation, and
+          the contact pipeline are frozen. The submit CTA is this band's single
+          red fill. */}
+      <section className={v2s.manifest}>
+        <div className={v2s.inner}>
+          <div id="exporter-form" className={`${v2c.paper} ${styles.formShell}`}>
+            {success ? (
+              <div className={styles.successBlock}>
+                <div className={styles.successIcon}><CheckIcon size={16} /></div>
+                <h3 className={`${v2t.cardTitle} ${styles.successTitle}`}>{t('formSuccess.title')}</h3>
+                <p className={styles.successMsg}>{t('formSuccess.message')}</p>
               </div>
-            );
-            return slug ? (
-              <Link key={i} to={`/ports/${slug}`} className={styles.portLink}>
-                {card}
-              </Link>
             ) : (
-              <div key={i}>{card}</div>
-            );
-          })}
+              <>
+                <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('form.title')}</h2>
+                <p className={`${v2t.lede} ${v2t.ledeOnPaper} ${styles.formSubtitle}`}>{t('form.subtitle')}</p>
+
+                {/* inputGroupOnBoard is layout-only (column + gap), surface-agnostic. */}
+                <form onSubmit={handleSubmit} className={styles.form}>
+                  <div className={styles.formRow}>
+                    <div className={v2f.inputGroupOnBoard}>
+                      <label htmlFor="exporter-company" className={v2f.labelOnPaper}>{t('form.companyName')}</label>
+                      <input id="exporter-company" className={v2f.inputOnPaper} value={form.company_name} onChange={e => set('company_name', e.target.value)} />
+                    </div>
+                    <div className={v2f.inputGroupOnBoard}>
+                      <label htmlFor="exporter-name" className={v2f.labelOnPaper}>{t('form.contactName')} *</label>
+                      <input id="exporter-name" className={`${v2f.inputOnPaper} ${fieldErrors.contact_name ? styles.fieldError : ''}`} value={form.contact_name} onChange={e => set('contact_name', e.target.value)} aria-invalid={fieldErrors.contact_name ? 'true' : undefined} />
+                      {fieldErrors.contact_name && <span className={styles.fieldErrorMsg}>{fieldErrors.contact_name}</span>}
+                    </div>
+                  </div>
+                  <div className={styles.formRow}>
+                    <div className={v2f.inputGroupOnBoard}>
+                      <label htmlFor="exporter-email" className={v2f.labelOnPaper}>{t('form.email')} *</label>
+                      <input id="exporter-email" type="email" className={`${v2f.inputOnPaper} ${fieldErrors.email ? styles.fieldError : ''}`} value={form.email} onChange={e => set('email', e.target.value)} aria-invalid={fieldErrors.email ? 'true' : undefined} />
+                      {fieldErrors.email && <span className={styles.fieldErrorMsg}>{fieldErrors.email}</span>}
+                    </div>
+                    <div className={v2f.inputGroupOnBoard}>
+                      <label htmlFor="exporter-phone" className={v2f.labelOnPaper}>{t('form.phone')}</label>
+                      <PhoneInput id="exporter-phone" className={`${v2f.inputOnPaper} ${fieldErrors.phone ? styles.fieldError : ''}`} value={form.phone} onChange={v => set('phone', v)} />
+                      {fieldErrors.phone && <span className={styles.fieldErrorMsg}>{fieldErrors.phone}</span>}
+                    </div>
+                  </div>
+                  <div className={styles.formRow}>
+                    <div className={v2f.inputGroupOnBoard}>
+                      <label htmlFor="exporter-volume" className={v2f.labelOnPaper}>{t('form.monthlyVolume')}</label>
+                      <select id="exporter-volume" className={v2f.inputOnPaper} value={form.monthly_volume} onChange={e => set('monthly_volume', e.target.value)}>
+                        <option value="">{t('form.volumeSelect')}</option>
+                        {Array.isArray(volumes) && volumes.map(v => (
+                          <option key={v} value={v}>{v}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className={v2f.inputGroupOnBoard}>
+                      <label htmlFor="exporter-port" className={v2f.labelOnPaper}>{t('form.preferredPorts')}</label>
+                      <input
+                        id="exporter-port"
+                        className={v2f.inputOnPaper}
+                        value={form.preferred_ports}
+                        onChange={e => set('preferred_ports', e.target.value)}
+                        placeholder={t('form.portsPlaceholder')}
+                      />
+                    </div>
+                  </div>
+                  <div className={v2f.inputGroupOnBoard}>
+                    <label htmlFor="exporter-vins" className={v2f.labelOnPaper}>{t('form.vins')}</label>
+                    <textarea
+                      id="exporter-vins"
+                      className={`${v2f.inputOnPaper} ${styles.textarea} ${styles.vinTextarea}`}
+                      value={form.vins}
+                      onChange={e => set('vins', e.target.value)}
+                      placeholder={t('form.vinsPlaceholder')}
+                      rows={4}
+                    />
+                  </div>
+                  <div className={v2f.inputGroupOnBoard}>
+                    <label htmlFor="exporter-notes" className={v2f.labelOnPaper}>{t('form.notes')}</label>
+                    <textarea
+                      id="exporter-notes"
+                      className={`${v2f.inputOnPaper} ${styles.textarea}`}
+                      value={form.notes}
+                      onChange={e => set('notes', e.target.value)}
+                      placeholder={t('form.notesPlaceholder')}
+                      rows={3}
+                    />
+                  </div>
+
+                  {error && <div className={v2f.errorOnPaper} role="alert">{error}</div>}
+
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className={`${v2b.cta} ${styles.submitBtn}`}
+                  >
+                    {submitting ? t('form.submitting') : t('form.submit')}
+                  </button>
+                </form>
+              </>
+            )}
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Request Form */}
-      <div id="exporter-form" className={styles.formBlock}>
-        {success ? (
-          <div className={styles.successBlock}>
-            <div className={styles.successIcon}><CheckIcon size={16} /></div>
-            <h3 className={styles.successTitle}>{t('formSuccess.title')}</h3>
-            <p className={styles.successMsg}>{t('formSuccess.message')}</p>
-          </div>
-        ) : (
-          <>
-            <h2 className={styles.formTitle}>{t('form.title')}</h2>
-            <p className={styles.formSubtitle}>{t('form.subtitle')}</p>
-
-            <form onSubmit={handleSubmit} className={styles.form}>
-              <div className={styles.formRow}>
-                <div className={forms.inputGroup}>
-                  <label htmlFor="exporter-company" className={forms.label}>{t('form.companyName')}</label>
-                  <input id="exporter-company" className={forms.input} value={form.company_name} onChange={e => set('company_name', e.target.value)} />
-                </div>
-                <div className={forms.inputGroup}>
-                  <label htmlFor="exporter-name" className={forms.label}>{t('form.contactName')} *</label>
-                  <input id="exporter-name" className={`${forms.input} ${fieldErrors.contact_name ? styles.fieldError : ''}`} value={form.contact_name} onChange={e => set('contact_name', e.target.value)} aria-invalid={fieldErrors.contact_name ? 'true' : undefined} />
-                  {fieldErrors.contact_name && <span className={styles.fieldErrorMsg}>{fieldErrors.contact_name}</span>}
-                </div>
-              </div>
-              <div className={styles.formRow}>
-                <div className={forms.inputGroup}>
-                  <label htmlFor="exporter-email" className={forms.label}>{t('form.email')} *</label>
-                  <input id="exporter-email" type="email" className={`${forms.input} ${fieldErrors.email ? styles.fieldError : ''}`} value={form.email} onChange={e => set('email', e.target.value)} aria-invalid={fieldErrors.email ? 'true' : undefined} />
-                  {fieldErrors.email && <span className={styles.fieldErrorMsg}>{fieldErrors.email}</span>}
-                </div>
-                <div className={forms.inputGroup}>
-                  <label htmlFor="exporter-phone" className={forms.label}>{t('form.phone')}</label>
-                  <PhoneInput id="exporter-phone" className={`${forms.input} ${fieldErrors.phone ? styles.fieldError : ''}`} value={form.phone} onChange={v => set('phone', v)} />
-                  {fieldErrors.phone && <span className={styles.fieldErrorMsg}>{fieldErrors.phone}</span>}
-                </div>
-              </div>
-              <div className={styles.formRow}>
-                <div className={forms.inputGroup}>
-                  <label htmlFor="exporter-volume" className={forms.label}>{t('form.monthlyVolume')}</label>
-                  <select id="exporter-volume" className={forms.select} value={form.monthly_volume} onChange={e => set('monthly_volume', e.target.value)}>
-                    <option value="">{t('form.volumeSelect')}</option>
-                    {Array.isArray(volumes) && volumes.map(v => (
-                      <option key={v} value={v}>{v}</option>
-                    ))}
-                  </select>
-                </div>
-                <div className={forms.inputGroup}>
-                  <label htmlFor="exporter-port" className={forms.label}>{t('form.preferredPorts')}</label>
-                  <input
-                    id="exporter-port"
-                    className={forms.input}
-                    value={form.preferred_ports}
-                    onChange={e => set('preferred_ports', e.target.value)}
-                    placeholder={t('form.portsPlaceholder')}
-                  />
-                </div>
-              </div>
-              <div className={forms.inputGroup}>
-                <label htmlFor="exporter-vins" className={forms.label}>{t('form.vins')}</label>
-                <textarea
-                  id="exporter-vins"
-                  className={`${forms.textarea} ${styles.vinTextarea}`}
-                  value={form.vins}
-                  onChange={e => set('vins', e.target.value)}
-                  placeholder={t('form.vinsPlaceholder')}
-                  rows={4}
-                />
-              </div>
-              <div className={forms.inputGroup}>
-                <label htmlFor="exporter-notes" className={forms.label}>{t('form.notes')}</label>
-                <textarea
-                  id="exporter-notes"
-                  className={forms.textarea}
-                  value={form.notes}
-                  onChange={e => set('notes', e.target.value)}
-                  placeholder={t('form.notesPlaceholder')}
-                  rows={3}
-                />
-              </div>
-
-              {error && <div className={styles.errorAlert} role="alert">{error}</div>}
-
-              <button
-                type="submit"
-                disabled={submitting}
-                className={`${btn.btnAccent} ${styles.submitBtn}`}
-              >
-                {submitting ? t('form.submitting') : t('form.submit')}
-              </button>
-            </form>
-          </>
-        )}
-      </div>
-
-      {/* Export documents checklist */}
-      {exportDocs && docItems.length > 0 && (
-        <section className={styles.docsSection}>
-          <div className={styles.sectionHeader}>
-            <span className={styles.sectionMicro}>&#9670; {exportDocs.kicker}</span>
-            <h2 className={styles.sectionHeading}>{exportDocs.title}</h2>
-          </div>
-          <ul className={styles.docsList}>
-            {docItems.map((item, i) => (
-              <li key={i} className={styles.docsItem}>
-                <span className={styles.docsCheck} aria-hidden="true">&#10003;</span>
-                <div>
-                  <strong className={styles.docsTitle}>{item.title}</strong>
-                  <span className={styles.docsDesc}>{item.desc}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {/* Destinations */}
-      {destinations && destItems.length > 0 && (
-        <section className={styles.destinationsSection}>
-          <div className={styles.sectionHeader}>
-            <span className={styles.sectionMicro}>&#9670; {destinations.kicker}</span>
-            <h2 className={styles.sectionHeading}>{destinations.title}</h2>
-          </div>
-          <div className={styles.destinationsGrid}>
-            {destItems.map((item, i) => (
-              <div key={i} className={styles.destItem}>
-                <span className={styles.destBadge} aria-hidden="true">{countryCode(item.country)}</span>
-                <div className={styles.destBody}>
-                  <span className={styles.destRoute}>
-                    <span className={styles.destFrom}>US Port</span>
-                    <span className={styles.destArrow} aria-hidden="true">&rarr;</span>
-                    <span className={styles.destCountry}>{item.country}</span>
-                  </span>
-                  <span className={styles.destNotes}>{item.notes}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Contextual CTA to dealers */}
-      <ContextualCTA variant="card" to="/dealers" intlKey="dealers" tone="teal" />
-
-      {/* Exporter FAQ */}
-      {exporterFaq && faqItems.length > 0 && (
-        <section className={styles.faqSection}>
-          <div className={styles.sectionHeader}>
-            <span className={styles.sectionMicro}>&#9670; {exporterFaq.kicker}</span>
-            <h2 className={styles.sectionHeading}>{exporterFaq.title}</h2>
-          </div>
-          <div className={styles.faqList}>
-            {faqItems.map((item, i) => (
-              <details key={i} className={styles.faqItem}>
-                <summary className={styles.faqSummary}>
-                  <span>{item.q}</span>
-                  <span className={styles.faqChevron} aria-hidden="true">&#9662;</span>
-                </summary>
-                <p className={styles.faqAnswer}>{item.a}</p>
-              </details>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Mid-page CTA: post-FAQ anchor scroll back to form */}
-      <div className={styles.midCta}>
-        <a href="#exporter-form" className={styles.midCtaButton}>
-          {t('midCta')}
-        </a>
-      </div>
-
-      {/* Cross-links */}
-      <div className={styles.crosslinks}>
-        <span className={styles.crosslinksTitle}>{t('crosslinks.title')}</span>
-        <div className={styles.crosslinksRow}>
-          <Link to="/door-to-port-auto-transport" className={styles.crosslink}>{t('crosslinks.deepDive')} &rarr;</Link>
-          <Link to="/auction-to-port-transport" className={styles.crosslink}>{t('crosslinks.auction')} &rarr;</Link>
-          <Link to="/copart-shipping" className={styles.crosslink}>{t('crosslinks.copartShipping')}</Link>
-          <Link to="/copart-international-shipping" className={styles.crosslink}>{t('crosslinks.copartExport')}</Link>
-          <Link to="/dealers" className={styles.crosslink}>{t('crosslinks.dealers')} &rarr;</Link>
+      {/* Export documents — board band; the checklist renders as translucent-
+          wash board cards with white titles. Eyebrow pair opener (on dark). */}
+      <section className={v2s.board}>
+        <div className={v2s.inner}>
+          {exportDocs && docItems.length > 0 && (
+            <section className={styles.docsBlock}>
+              <p className={`${v2t.eyebrow} ${v2t.eyebrowOnDark}`}>{exportDocs.kicker}</p>
+              <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{exportDocs.title}</h2>
+              <ul className={styles.docsList}>
+                {docItems.map((item, i) => (
+                  <li key={i} className={`${v2c.board} ${styles.docsItem}`}>
+                    <span className={styles.docsCheck} aria-hidden="true">&#10003;</span>
+                    <div>
+                      <strong className={styles.docsTitle}>{item.title}</strong>
+                      <span className={styles.docsDesc}>{item.desc}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
         </div>
-      </div>
-      </div>
+      </section>
+
+      {/* Destinations — paper band (cream ISO-badge tiles). Eyebrow pair opener:
+          docs + destinations remain the page's consecutive pair (cap: 2). */}
+      <section className={v2s.manifest}>
+        <div className={v2s.inner}>
+          {destinations && destItems.length > 0 && (
+            <section className={styles.destBlock}>
+              <p className={`${v2t.eyebrow} ${v2t.eyebrowOnPaper}`}>{destinations.kicker}</p>
+              <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{destinations.title}</h2>
+              <div className={styles.destGrid}>
+                {destItems.map((item, i) => (
+                  <div key={i} className={styles.destItem}>
+                    <span className={styles.destBadge} aria-hidden="true">{countryCode(item.country)}</span>
+                    <div className={styles.destBody}>
+                      <span className={styles.destRoute}>
+                        <span className={`${v2t.monoMicro} ${styles.destFrom}`}>US Port</span>
+                        <span className={styles.destArrow} aria-hidden="true">&rarr;</span>
+                        <span className={styles.destCountry}>{item.country}</span>
+                      </span>
+                      <span className={styles.destNotes}>{item.notes}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+        </div>
+      </section>
+
+      {/* Contextual CTA — its own board mini-band; the cream ContextualCTA card
+          reads as the contrast island on the dark surface. */}
+      <section className={v2s.board}>
+        <div className={`${v2s.inner} ${styles.ctaBandInner}`}>
+          <ContextualCTA variant="card" to="/dealers" intlKey="dealers" tone="teal" />
+        </div>
+      </section>
+
+      {/* Exporter FAQ — paper band. Plain H2 opener: docs + destinations already
+          hold the consecutive eyebrow-pair cap (2) in the preceding paper band;
+          exporterFaq.kicker stays unrendered. */}
+      <section className={v2s.manifest}>
+        <div className={v2s.inner}>
+          {exporterFaq && faqItems.length > 0 && (
+            <section className={styles.faqBlock}>
+              <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{exporterFaq.title}</h2>
+              <div className={styles.faqList}>
+                {faqItems.map((item, i) => (
+                  <details key={i} className={styles.faqItem}>
+                    <summary className={styles.faqSummary}>
+                      <span>{item.q}</span>
+                      <span className={styles.faqChevron} aria-hidden="true">&#9662;</span>
+                    </summary>
+                    <p className={styles.faqAnswer}>{item.a}</p>
+                  </details>
+                ))}
+              </div>
+            </section>
+          )}
+        </div>
+      </section>
+
+      {/* Mid-page CTA — board mini-band, the page's close-dark. Anchor scroll
+          back to the form; the gradient CTA is this viewport's red fill. */}
+      <section className={v2s.board}>
+        <div className={`${v2s.inner} ${styles.midCtaInner}`}>
+          <a href="#exporter-form" className={v2b.cta}>
+            {t('midCta')}
+          </a>
+        </div>
+      </section>
+
+      {/* Cross-links — manifest tail. Body-Link Law styling. */}
+      <section className={v2s.manifest}>
+        <div className={`${v2s.inner} ${styles.crosslinksInner}`}>
+          <span className={`${v2t.monoLabel} ${styles.crosslinksTitle}`}>{t('crosslinks.title')}</span>
+          <div className={styles.crosslinksRow}>
+            <Link to="/door-to-port-auto-transport" className={`${v2t.bodyLinkOnPaper} ${styles.crosslink}`}>{t('crosslinks.deepDive')} &rarr;</Link>
+            <Link to="/auction-to-port-transport" className={`${v2t.bodyLinkOnPaper} ${styles.crosslink}`}>{t('crosslinks.auction')} &rarr;</Link>
+            <Link to="/copart-shipping" className={`${v2t.bodyLinkOnPaper} ${styles.crosslink}`}>{t('crosslinks.copartShipping')}</Link>
+            <Link to="/copart-international-shipping" className={`${v2t.bodyLinkOnPaper} ${styles.crosslink}`}>{t('crosslinks.copartExport')}</Link>
+            <Link to="/dealers" className={`${v2t.bodyLinkOnPaper} ${styles.crosslink}`}>{t('crosslinks.dealers')} &rarr;</Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
