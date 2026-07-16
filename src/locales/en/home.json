@@ -38,7 +38,13 @@
     "exportersCta": "Exporter Services",
     "shipMyCarTag": "INDIVIDUALS",
     "dealersTag": "DEALERS",
-    "exportersTag": "EXPORTERS"
+    "exportersTag": "EXPORTERS",
+    "dealersChip1": "Auction pickup",
+    "dealersChip2": "Weekly invoice",
+    "exportersChip1": "Gate pass",
+    "exportersChip2": "Port warehouse",
+    "shipMyCarChip1": "Door-to-door",
+    "shipMyCarChip2": "Open / enclosed"
   },
   "ports": {
     "title": "Major Port Coverage",

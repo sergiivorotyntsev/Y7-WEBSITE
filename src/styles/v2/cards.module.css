@@ -42,6 +42,25 @@
   outline-offset: 2px;
 }
 
+/* Solid dark card for PAPER surfaces (serve-cards): panel-steel fill instead of
+   the translucent wash (which needs a dark backdrop). B2B-first hierarchy:
+   dark cards lead on the manifest band, the cream card reads secondary. */
+.boardSolid {
+  background: var(--v2-panel);
+  color: var(--v2-text-on-dark);
+  border: 1px solid rgba(5, 6, 7, 0.2);
+  border-radius: var(--v2-radius-xl);
+  transition: transform var(--transition-normal, 0.25s ease-out), box-shadow var(--transition-normal, 0.25s ease-out);
+}
+.boardSolid:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+.boardSolid:focus-visible {
+  outline: 2px solid var(--v2-red);
+  outline-offset: 2px;
+}
+
 /* Trust stat row: hairline-divided grid on a 4.5% wash. Red stat values are
    large text only (Red Contrast Law); labels mono-micro. */
 .trustRow {

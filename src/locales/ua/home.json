@@ -38,7 +38,13 @@
     "dealersCta": "Дивитися ціни",
     "exportersTag": "ЕКСПОРТЕРИ",
     "exportersStat": "Усі великі порти США · Під контейнер",
-    "exportersCta": "Послуги для експортерів"
+    "exportersCta": "Послуги для експортерів",
+    "dealersChip1": "Забір з аукціону",
+    "dealersChip2": "Тижневий інвойс",
+    "exportersChip1": "Gate pass",
+    "exportersChip2": "Портовий склад",
+    "shipMyCarChip1": "Від дверей до дверей",
+    "shipMyCarChip2": "Відкритий / закритий"
   },
   "ports": {
     "title": "Покриття основних портів",

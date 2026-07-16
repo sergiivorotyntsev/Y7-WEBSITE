@@ -38,7 +38,13 @@
     "dealersCta": "Zobacz cennik",
     "exportersTag": "EKSPORTERZY",
     "exportersStat": "Wszystkie duże porty USA · Ready-to-container",
-    "exportersCta": "Usługi dla eksporterów"
+    "exportersCta": "Usługi dla eksporterów",
+    "dealersChip1": "Odbiór z aukcji",
+    "dealersChip2": "Faktura tygodniowa",
+    "exportersChip1": "Gate pass",
+    "exportersChip2": "Magazyn portowy",
+    "shipMyCarChip1": "Od drzwi do drzwi",
+    "shipMyCarChip2": "Otwarty / zamknięty"
   },
   "ports": {
     "title": "Zasięg głównych portów",

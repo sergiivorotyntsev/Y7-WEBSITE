@@ -1,414 +1,66 @@
-/* AudienceCards — three premium segment cards with audience tones.
-   Redesigned: icon + tag inline (top row), trust stat micro-line, enriched hover. */
+/* AudienceCards — DESIGN-V2-W2-T03. Surfaces/chips/titles come from
+   src/styles/v2/ primitives (Anti-Orphan Rule); this module is LAYOUT only:
+   grid, card interior rhythm, CTA hover shift. */
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  max-width: 1180px;
-  margin: 0 auto;
+  gap: 18px;
   align-items: stretch;
 }
 
 @media (max-width: 900px) {
-  .grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-}
-
-@media (max-width: 560px) {
   .grid { grid-template-columns: 1fr; gap: 16px; }
 }
 
-/* =====================================================================
-   TONE PALETTE
-   ---------------------------------------------------------------------
-   Each tone drives the icon gradient, hover tint, and accent ink.
-     coral (individuals)  #993C1D -> warm primary
-     teal  (dealers)      #14648C -> cool professional
-     amber (exporters)    #8C5020 -> rich international/shipping
-   ===================================================================== */
-
-/* PHASE5B-HOME (Variant 2): green leads. All three audience tones repoint to the
-   --success family so the cards read as one green premium system (icon chips, top-bar,
-   CTA links). Tone class names kept (JSX untouched); only the color values change. */
-.tone_coral,
-.tone_teal,
-.tone_amber {
-  --tone-ink:        var(--success, #0F6E56);
-  --tone-ink-dark:   #0B5946;
-  --tone-tint-soft:  rgba(15, 110, 86, 0.06);
-  --tone-tint-mid:   rgba(15, 110, 86, 0.14);
-  --tone-tint-deep:  rgba(15, 110, 86, 0.22);
-  --tone-grad-a:     var(--success-mid, #1D9E75);
-  --tone-grad-b:     var(--success, #0F6E56);
-}
-
-/* =====================================================================
-   CARD SHELL
-   ===================================================================== */
-
 .card {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-xl, 18px);
-  padding: 28px 26px 24px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  cursor: pointer;
-  outline: none;
-  text-align: left;
-  position: relative;
-  overflow: hidden;
-  /* card is an <a> since SEOAI-T04 — neutralize anchor defaults */
+  padding: 30px 28px 26px;
+  min-height: 280px;
   text-decoration: none;
   color: inherit;
-  transition:
-    transform 280ms cubic-bezier(0.2, 0.7, 0.2, 1),
-    box-shadow 280ms ease-out,
-    border-color 280ms ease-out,
-    background-color 280ms ease-out;
 }
 
-/* PHASE5B-HOME (Variant 2): persistent green top-bar (was hover-reveal). */
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--success-mid, #1D9E75), var(--success, #0F6E56));
-  transform: scaleX(1);
-  transform-origin: left;
-  transition: transform 280ms ease-out;
-}
+.cardDark .tag { color: var(--v2-text-on-dark-muted); }
+.cardCream .tag { color: var(--v2-ink-muted); }
 
-/* Radial halo in the top-right corner (moved from top-left to avoid icon zone) */
-.card::after {
-  content: '';
-  position: absolute;
-  top: -90px;
-  right: -90px;
-  width: 240px;
-  height: 240px;
-  border-radius: 50%;
-  background: radial-gradient(circle at center, var(--tone-tint-mid), transparent 65%);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 320ms ease-out;
-}
+.tag { letter-spacing: 0.22em; }
 
-@media (hover: hover) {
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.03), 0 18px 40px rgba(0,0,0,0.10);
-    border-color: var(--tone-ink);
-    background-color: var(--tone-tint-soft);
-  }
-  .card:hover::before { transform: scaleX(1); }
-  .card:hover::after  { opacity: 1; }
-}
-
-.card:focus-visible {
-  border-color: var(--tone-ink);
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--tone-ink);
-}
-.card:focus-visible::before { transform: scaleX(1); }
-.card:focus-visible::after  { opacity: 1; }
-
-/* Entrance animation (preserved) */
-@media (prefers-reduced-motion: no-preference) {
-  .card {
-    opacity: 0;
-    animation: audienceIn 500ms ease-out forwards;
-    animation-delay: calc(var(--i, 0) * 100ms);
-  }
-}
-
-/* CWV2-T03: the static prerendered page already played this entrance; the
-   client createRoot rebuild must not replay it (html.app-remounted is set in
-   main.jsx before render, never during prerender). */
-:global(html.app-remounted) .card {
-  animation: none;
-  opacity: 1;
-}
-
-@keyframes audienceIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* =====================================================================
-   TOP ROW — icon + tag inline
-   ===================================================================== */
-
-.topRow {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 6px;
-}
-
-/* =====================================================================
-   ICON — 56px circle with tone gradient, inner ring, hover intensify
-   ===================================================================== */
-
-.iconWrap {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--tone-grad-a), var(--tone-grad-b));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow:
-    0 1px 2px rgba(0,0,0,0.06),
-    0 6px 16px var(--tone-tint-mid),
-    inset 0 0 0 3px rgba(255,255,255,0.18);
-  transition: transform 280ms cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 280ms ease-out;
-  flex-shrink: 0;
-}
-
-.iconInner {
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@media (hover: hover) {
-  .card:hover .iconWrap {
-    transform: scale(1.06) rotate(-2deg);
-    box-shadow:
-      0 2px 4px rgba(0,0,0,0.08),
-      0 12px 28px var(--tone-tint-deep),
-      inset 0 0 0 3px rgba(255,255,255,0.26);
-  }
-}
-
-/* =====================================================================
-   TAG — full-width audience bar filling the space right of icon
-   ===================================================================== */
-
-.tag {
-  flex: 1 1 auto;
-  min-height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--tone-ink);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  padding: 0 16px;
-  border-radius: 24px;
-  background: var(--tone-tint-soft);
-  border: 1px solid var(--tone-tint-mid);
-  position: relative;
-  transition: background-color 240ms ease-out, border-color 240ms ease-out;
-}
-
-/* Tag leading dot */
-.tag::before {
-  content: '';
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--tone-ink);
-  margin-right: 10px;
-  flex-shrink: 0;
-}
-
-@media (hover: hover) {
-  .card:hover .tag {
-    background: var(--tone-tint-mid);
-    border-color: var(--tone-ink);
-  }
-}
-
-/* =====================================================================
-   TITLE + DESC
-   ===================================================================== */
-
-.title {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin: 10px 0 0 0;
-}
-
-/* PHASE5C-BLEND: black→rust title gradient — reintroduces rust into the green-led
-   cards so they read rust+green (uses --accent directly; --tone-ink is green here).
-   Solid --text base (fallback); deepens toward rust on card hover. Text stays in DOM. */
-@supports ((background-clip: text) or (-webkit-background-clip: text)) {
-  .title {
-    background: linear-gradient(115deg,
-      var(--text, #2C2C2A) 0%, var(--text, #2C2C2A) 48%, var(--accent, #993C1D) 100%);
-    background-size: 170% auto;
-    background-position: 0% center;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    transition: background-position 320ms ease-out;
-  }
-  .card:hover .title,
-  .card:focus-visible .title {
-    background-position: 100% center;
-  }
-}
+.title { margin: 14px 0 0; }
 
 .desc {
-  font-family: var(--font-sans, system-ui);
-  font-size: 14.5px;
-  color: var(--text-muted, #6C6A62);
-  line-height: 1.7;
   margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
   flex: 1;
 }
+.cardDark .desc { color: var(--v2-text-on-dark-muted); }
+.cardCream .desc { color: var(--v2-ink-muted); }
 
-/* =====================================================================
-   STAT ROW — trust micro-line with dot + divider
-   ===================================================================== */
-
-.statRow {
+.chips {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  padding-top: 14px;
-  margin-top: 2px;
-  border-top: 1px dashed rgba(15, 110, 86, 0.18);
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-.statDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--tone-ink);
-  flex-shrink: 0;
-}
+.stat { margin-top: 4px; }
+.cardDark .stat { color: var(--v2-text-on-dark-secondary); }
+.cardCream .stat { color: var(--v2-ink-muted); }
 
-.stat {
-  font-family: var(--font-sans, system-ui);
-  font-size: 12.5px;
+/* CTA row rests in surface text color; hover shifts to the surface's red
+   (Body-Link Law logic — red is never the resting color). */
+.ctaRow {
+  font-family: var(--v2-font-display);
+  font-size: 16px;
   font-weight: 600;
-  color: var(--tone-ink);
-  letter-spacing: 0.01em;
-  line-height: 1.4;
-}
-
-/* =====================================================================
-   CTA — tone-colored with animated underline & arrow
-   ===================================================================== */
-
-.cta {
-  align-self: flex-start;
-  font-family: var(--font-sans, system-ui);
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--tone-ink);
-  text-transform: uppercase;
   letter-spacing: 0.08em;
-  background: none;
-  border: none;
-  padding: 8px 0;
-  margin-top: 6px;
-  cursor: pointer;
-  position: relative;
-  outline: none;
-  transition: color 150ms ease-out, transform 150ms ease-out;
+  text-transform: uppercase;
+  margin-top: 10px;
+  transition: color var(--transition-fast, 0.15s ease-out);
 }
-
-.cta::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 2px;
-  right: 0;
-  height: 1.5px;
-  background: var(--tone-ink);
-  transform: scaleX(0.2);
-  transform-origin: left center;
-  transition: transform 280ms ease-out;
-}
-
-@media (hover: hover) {
-  .card:hover .cta,
-  .cta:hover {
-    color: var(--tone-ink-dark);
-  }
-  .card:hover .cta::after,
-  .cta:hover::after {
-    transform: scaleX(1);
-  }
-  .cta:active {
-    transform: translateX(2px);
-  }
-}
-
-.cta:focus-visible {
-  color: var(--tone-ink-dark);
-}
-.cta:focus-visible::after {
-  transform: scaleX(1);
-}
-
-.ctaArrow {
-  display: inline-block;
-  margin-left: 4px;
-  transition: transform 180ms ease-out;
-}
-
-@media (hover: hover) {
-  .card:hover .ctaArrow,
-  .cta:hover .ctaArrow {
-    transform: translateX(5px);
-  }
-}
-
-/* =====================================================================
-   MOBILE (< 560px) — icon+tag top row, then content stack
-   ===================================================================== */
-
-@media (max-width: 560px) {
-  .card {
-    padding: 22px 20px 20px;
-  }
-  .topRow {
-    gap: 12px;
-    margin-bottom: 4px;
-  }
-  .iconWrap {
-    width: 48px;
-    height: 48px;
-  }
-  .iconInner svg {
-    width: 28px;
-    height: 28px;
-  }
-  .tag {
-    font-size: 10px;
-    padding: 0 12px;
-    min-height: 38px;
-    letter-spacing: 0.12em;
-  }
-  .tag::before {
-    margin-right: 8px;
-  }
-  .title {
-    font-size: 1.25rem;
-    margin-top: 6px;
-  }
-  .desc {
-    font-size: 14px;
-  }
-  .stat {
-    font-size: 12px;
-  }
-}
+.cardDark:hover .ctaRow,
+.cardDark:focus-visible .ctaRow { color: var(--v2-red-bright); }
+.cardCream:hover .ctaRow,
+.cardCream:focus-visible .ctaRow { color: var(--v2-red-deep); }

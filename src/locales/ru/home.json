@@ -38,7 +38,13 @@
     "dealersCta": "Смотреть цены",
     "exportersTag": "ЭКСПОРТЕРЫ",
     "exportersStat": "Все крупные порты США · Под контейнер",
-    "exportersCta": "Услуги для экспортеров"
+    "exportersCta": "Услуги для экспортеров",
+    "dealersChip1": "Забор с аукциона",
+    "dealersChip2": "Недельный инвойс",
+    "exportersChip1": "Gate pass",
+    "exportersChip2": "Портовый склад",
+    "shipMyCarChip1": "От двери до двери",
+    "shipMyCarChip2": "Открытый / закрытый"
   },
   "ports": {
     "title": "Покрытие основных портов",
