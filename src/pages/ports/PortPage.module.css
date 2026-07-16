@@ -1,4 +1,8 @@
-/* PortPage — hero, info cards, route list, CTA. Renders 6 port slugs. */
+/* PortPage — hero, info cards, route list, CTA. Renders 24 routes.
+   DESIGN-V2-W3-T03: CSS-module-only reskin on v2 tokens/primitives (JSX and
+   portData untouched). Long-form template: manifest-dominant, one board CTA
+   panel. The V1 auto-play entrance on route cards is retired (Reveal Gate
+   law: no ungated entrances; templates ship static). */
 
 .wrap {
   max-width: 1000px;
@@ -7,51 +11,45 @@
 }
 
 /* =====================================================================
-   HERO
+   HERO — paper band, mono eyebrow + condensed display
    ===================================================================== */
 
 .hero {
   padding: clamp(56px, 8vh, 80px) 24px clamp(32px, 5vh, 48px);
   text-align: center;
-  background:
-    radial-gradient(circle at 50% 100%, rgba(153, 60, 29, 0.06), transparent 60%),
-    linear-gradient(180deg, var(--bg, #F7F5F0) 0%, var(--bg-muted, #EFECE6) 100%);
+  background: linear-gradient(180deg, var(--v2-paper, #f4f0e8) 0%, var(--v2-paper-deep, #eee8dd) 100%);
+  border-bottom: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
   margin-bottom: clamp(40px, 6vh, 56px);
 }
 
 .heroKicker {
   display: inline-block;
-  font-family: var(--font-sans, system-ui);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
+  font-weight: 500;
+  color: var(--v2-ink-muted, #5c5851);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--v2-track-eyebrow, 0.18em);
   margin-bottom: 12px;
 }
 
 .title {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(2rem, 4.5vw, 3rem);
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  composes: sectionDisplay from '../../styles/v2/type.module.css';
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  color: var(--v2-ink, #050607);
   margin: 0 0 10px;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
 }
 
 .subtitle {
-  font-family: var(--font-sans, system-ui);
   font-size: clamp(1rem, 1.4vw, 1.1rem);
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   margin: 0 0 6px;
   line-height: 1.6;
 }
 
 .location {
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   margin: 0 0 20px;
 }
 
@@ -63,13 +61,9 @@
 }
 
 .credBadge {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  composes: chipOnPaper from '../../styles/v2/cards.module.css';
   font-size: 11px;
-  color: var(--text-muted, #706E68);
-  background: var(--bg-muted, #EFECE6);
-  padding: 5px 14px;
-  border-radius: var(--radius-pill, 20px);
-  border: 1px solid var(--border, #e5e0d8);
+  background: var(--v2-card-cream, #fffaf1);
 }
 
 /* =====================================================================
@@ -92,29 +86,24 @@
 
 .sectionMicro {
   display: inline-block;
-  font-family: var(--font-sans, system-ui);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
+  font-weight: 500;
+  color: var(--v2-ink-muted, #5c5851);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--v2-track-label, 0.14em);
   margin: 0 0 8px;
 }
 
 .sectionTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.35rem, 2.5vw, 1.65rem);
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  composes: cardTitle from '../../styles/v2/type.module.css';
+  color: var(--v2-ink, #050607);
   margin: 0 0 16px;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
 }
 
 .bodyText {
-  font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.8;
   margin: 0;
 }
@@ -124,33 +113,32 @@
    ===================================================================== */
 
 .infoCard {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-xl, 16px);
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-xl, 22px);
   padding: clamp(24px, 4vw, 32px);
-  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06));
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
 }
 
 .infoCardMuted {
   composes: infoCard;
-  background: var(--bg-muted, #EFECE6);
+  background: var(--v2-paper-deep, #eee8dd);
   box-shadow: none;
 }
 
 .infoLabel {
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--v2-ink-muted, #5c5851);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--v2-track-label, 0.14em);
   margin-bottom: 6px;
 }
 
 .infoValue {
-  font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   line-height: 1.7;
   margin-bottom: 20px;
 }
@@ -160,7 +148,7 @@
 }
 
 /* =====================================================================
-   ROUTES GRID
+   ROUTES GRID — static cards (entrance retired per Reveal Gate law)
    ===================================================================== */
 
 .routesGrid {
@@ -174,9 +162,9 @@
 }
 
 .routeCard {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-lg, 12px);
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
   padding: 16px 20px;
   display: flex;
   justify-content: space-between;
@@ -190,47 +178,34 @@
 
 @media (hover: hover) {
   .routeCard:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md, 0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06));
-    border-color: var(--accent, #993C1D);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md, 0 2px 8px rgba(0, 0, 0, 0.06));
+    border-color: rgba(5, 6, 7, 0.4);
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .routeCard {
-    opacity: 0;
-    animation: portCardIn 500ms ease-out forwards;
-    animation-delay: calc(var(--i, 0) * 60ms);
-  }
-}
-
-@keyframes portCardIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 
 .routeFrom {
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
   font-weight: 600;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   margin-bottom: 2px;
 }
 
 .routeTo {
-  font-family: var(--font-sans, system-ui);
   font-size: 12px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
 }
 
+/* Transit figure: mono data voice, ink (no red data chips — Signal Budget). */
 .routeDays {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 12px;
   font-weight: 600;
-  color: var(--accent, #993C1D);
-  background: #FFF8F5;
+  color: var(--v2-ink, #050607);
+  background: var(--v2-paper, #f4f0e8);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
   padding: 4px 12px;
-  border-radius: var(--radius-pill, 20px);
+  border-radius: var(--v2-radius-pill, 999px);
   white-space: nowrap;
 }
 
@@ -239,41 +214,38 @@
    ===================================================================== */
 
 .docsList {
-  font-family: var(--font-sans, system-ui);
   font-size: 14.5px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.8;
   padding-left: 20px;
   margin: 0;
 }
 
 /* =====================================================================
-   CTA CARD
+   CTA CARD — the page's one board moment (red lives in the button fill)
    ===================================================================== */
 
 .ctaCard {
-  background: linear-gradient(135deg, var(--accent, #993C1D) 0%, var(--accent-hover, #7A3017) 100%);
-  border-radius: var(--radius-xl, 16px);
+  background: var(--v2-board, #050607);
+  border: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
+  border-radius: var(--v2-radius-xl, 22px);
   padding: clamp(32px, 5vh, 48px);
   text-align: center;
-  color: #fff;
-  box-shadow: 0 12px 32px rgba(153, 60, 29, 0.18);
+  color: var(--v2-text-on-dark, #fff7ed);
+  box-shadow: var(--v2-board-depth, 0 24px 70px rgba(0, 0, 0, 0.3));
   margin-bottom: 48px;
 }
 
 .ctaTitle {
-  font-family: var(--font-serif, Georgia, serif);
+  composes: cardTitle from '../../styles/v2/type.module.css';
   font-size: clamp(1.3rem, 2.4vw, 1.6rem);
-  font-weight: 700;
-  color: #fff;
+  color: var(--v2-text-on-dark, #fff7ed);
   margin: 0 0 10px;
-  letter-spacing: -0.02em;
 }
 
 .ctaSubtitle {
-  font-family: var(--font-sans, system-ui);
   font-size: 14.5px;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   margin: 0 0 22px;
   line-height: 1.7;
   max-width: 480px;
@@ -282,19 +254,10 @@
 }
 
 .ctaBtn {
-  background: #fff !important;
-  color: var(--accent, #993C1D) !important;
-  padding: 14px 32px !important;
-  font-size: 13px !important;
+  composes: cta from '../../styles/v2/buttons.module.css';
+  padding: 14px 32px;
+  font-size: 15px;
   text-decoration: none;
-  display: inline-block;
-}
-
-@media (hover: hover) {
-  .ctaBtn:hover {
-    background: var(--bg, #F7F5F0) !important;
-    color: var(--accent-hover, #7A3017) !important;
-  }
 }
 
 /* =====================================================================
@@ -303,22 +266,20 @@
 
 .companyFooter {
   text-align: center;
-  border-top: 1px solid var(--border, #e5e0d8);
+  border-top: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
   padding-top: 32px;
 }
 
 .companyName {
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   font-weight: 600;
   margin: 0 0 4px;
 }
 
 .companyDesc {
-  font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.6;
   margin: 0 0 8px;
 }
@@ -326,7 +287,7 @@
 .companyIds {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 12px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
 }
 
 /* =====================================================================
@@ -341,26 +302,24 @@
 }
 
 .notFoundTitle {
-  font-family: var(--font-serif, Georgia, serif);
+  composes: sectionDisplay from '../../styles/v2/type.module.css';
   font-size: 2rem;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   margin: 0 0 12px;
-  letter-spacing: -0.02em;
 }
 
 .notFoundMsg {
-  font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   margin: 0 0 32px;
   line-height: 1.6;
 }
 
 .notFoundBtn {
-  padding: 12px 28px !important;
-  font-size: 12px !important;
+  composes: cta from '../../styles/v2/buttons.module.css';
+  padding: 12px 28px;
+  font-size: 13px;
   text-decoration: none;
-  display: inline-block;
 }
 
 .relatedList {
@@ -374,13 +333,12 @@
 
 .relatedList li {
   padding: 8px 0;
-  border-bottom: 1px solid var(--border, #e5e0d8);
+  border-bottom: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
 }
 
 .relatedLink {
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   text-decoration: none;
   font-weight: 500;
   transition: color var(--transition-fast, 150ms ease-out);
@@ -389,6 +347,11 @@
 
 @media (hover: hover) {
   .relatedLink:hover {
-    color: var(--accent, #993C1D);
+    color: var(--v2-red-deep, #a90918);
   }
+}
+
+.relatedLink:focus-visible {
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
 }
