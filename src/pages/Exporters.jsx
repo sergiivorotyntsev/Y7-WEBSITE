@@ -231,7 +231,7 @@ export default function Exporters() {
           Plain H2 opener. */}
       <section className={v2s.board}>
         <div className={v2s.inner}>
-          <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('ports.title')}</h2>
+          <h2 className={`${v2t.sectionDisplay} ${styles.h2} ${styles.portsHeadCenter}`}>{t('ports.title')}</h2>
 
           {/* Route rail: auction/dealer -> US export port -> destination */}
           <div className={styles.routeRail}>

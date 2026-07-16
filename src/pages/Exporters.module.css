@@ -181,9 +181,12 @@
   justify-content: space-between;
   gap: 12px;
   max-width: 760px;
-  margin: 30px 0 26px;
+  /* T05: center the rail within the band (was left-hugging vs the grid) */
+  margin: 30px auto 26px;
   padding: 8px 4px 4px;
 }
+/* T05: center the ports band opener to match rail + grid (h2 max-width) */
+.portsHeadCenter { text-align: center; margin-left: auto; margin-right: auto; }
 .routeSvg {
   position: absolute;
   inset: 0;
@@ -489,8 +492,13 @@
   flex-direction: column;
   gap: 10px;
   max-width: 880px;
-  margin-top: 24px;
+  /* T05: center the accordion within the band (was left-hugging) */
+  margin: 24px auto 0;
 }
+/* T05: center the FAQ band head to match the centered list */
+.faqBlock { text-align: center; }
+.faqBlock .faqList { text-align: left; }
+.faqBlock .h2 { margin-left: auto; margin-right: auto; }
 .faqItem {
   border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
   border-radius: var(--v2-radius-md, 12px);

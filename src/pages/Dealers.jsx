@@ -347,7 +347,7 @@ export default function Dealers() {
           </Reveal>
 
           <Reveal>
-            <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('faqs.title')}</h2>
+            <h2 className={`${v2t.sectionDisplay} ${styles.h2} ${styles.faqHeadCenter}`}>{t('faqs.title')}</h2>
             <div className={styles.faqList}>
               {Array.isArray(faqs) && faqs.map((f, i) => (
                 <details key={i} className={styles.faqItem}>
