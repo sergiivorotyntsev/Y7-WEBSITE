@@ -1,0 +1,123 @@
+/* Advantages — DESIGN-V2-W2-T04. Surfaces/cards/type from src/styles/v2/
+   primitives; this module is LAYOUT only. */
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+  margin-bottom: 28px;
+}
+
+.subhead {
+  color: var(--v2-text-on-dark-muted);
+  margin: 14px 0 0;
+}
+
+.jp { font-size: 13px; }
+
+@media (max-width: 900px) {
+  .jp { display: none; }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 1000px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.card {
+  padding: 26px;
+  min-height: 172px;
+}
+
+.iconWrap {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--v2-line-on-dark-strong);
+  border-radius: 50%;
+  margin-bottom: 18px;
+}
+
+.cardTitle {
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  margin-bottom: 10px;
+}
+
+.cardDesc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--v2-text-on-dark-muted);
+}
+
+/* Protection accordion (ex-TrustSection) */
+.protToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 34px;
+  padding: 18px 0;
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--v2-line-on-dark);
+  cursor: pointer;
+  color: inherit;
+}
+.protToggle:focus-visible {
+  outline: 2px solid var(--v2-red-bright);
+  outline-offset: 2px;
+}
+
+.protTitle {
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.protHint { color: var(--v2-text-on-dark-muted); }
+
+.protPanel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 400ms ease;
+}
+.protPanel[data-open='true'] { max-height: 900px; }
+
+.protGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 10px 0 24px;
+}
+
+.protItem {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.protItemTitle {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.protItemDesc {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--v2-text-on-dark-muted);
+}

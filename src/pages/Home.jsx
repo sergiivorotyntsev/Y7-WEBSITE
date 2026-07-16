@@ -8,15 +8,13 @@ import QuoteFormCompact from '../components/QuoteFormCompact';
 import BaitQuote from '../components/BaitQuote/BaitQuote';
 import Reveal from '../components/Reveal/Reveal';
 import AudienceCards from '../components/AudienceCards';
+import Advantages from '../components/Advantages';
 import PortPills from '../components/PortPills';
 import CoverageMap from '../components/CoverageMap';
 import LiveActivityFeed from '../components/LiveActivityFeed';
-import Benefits from '../components/Benefits';
 import ReviewsCarousel from '../components/ReviewsCarousel';
 import TrustBadges from '../components/TrustBadges';
 import ExternalReviewsStrip from '../components/ExternalReviewsStrip';
-import WhyY7 from '../components/WhyY7';
-import TrustSection from '../components/TrustSection';
 import VerificationStrip from '../components/VerificationStrip';
 import styles from './Home.module.css';
 import v2s from '../styles/v2/surfaces.module.css';
@@ -133,30 +131,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. Live Activity Feed */}
-      <LiveActivityFeed />
+      {/* 3. Advantages — board band (T04): merges Benefits + WhyY7 (12 cards)
+          + TrustSection protection accordion; H2/H3 per the approved decision. */}
+      <Advantages />
 
-      {/* 4. Trust Bar */}
+      {/* 3b. Live Activity Feed + Trust Bar: retired in T09 (stats absorbed by
+          the hero quartet; feed killed by decision). */}
+      <LiveActivityFeed />
       <TrustBar />
 
-      {/* 5. Benefits — "Your Complete Transport Solution" */}
-      <ScrollReveal style={{ padding: 'clamp(60px, 8vh, 100px) 24px', background: 'var(--bg-muted)' }}>
-        <Benefits />
-      </ScrollReveal>
-
-      {/* 5b. Coverage Map — internal SEO links to location + route pages */}
+      {/* 5b. Coverage Map — internal SEO links to location + route pages
+          (rebuilt as the Coverage band in T06) */}
       <ScrollReveal style={{ padding: 'clamp(50px, 7vh, 80px) 24px' }}>
         <CoverageMap />
-      </ScrollReveal>
-
-      {/* 6. Why Y7 */}
-      <ScrollReveal style={{ padding: 'clamp(60px, 8vh, 100px) 24px', background: 'var(--bg-muted)' }}>
-        <WhyY7 />
-      </ScrollReveal>
-
-      {/* 7. Trust Section — "How we protect your shipment" */}
-      <ScrollReveal style={{ padding: '0 0 40px' }}>
-        <TrustSection />
       </ScrollReveal>
 
       {/* 8. Quote Form */}
