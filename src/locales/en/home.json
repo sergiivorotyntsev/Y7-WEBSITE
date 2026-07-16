@@ -136,7 +136,10 @@
   },
   "quoteSection": {
     "title": "Get Your Free Quote",
-    "subtitle": "Tell us where your vehicle needs to go. We'll respond within 1 hour during business hours."
+    "subtitle": "Tell us where your vehicle needs to go. We'll respond within 1 hour during business hours.",
+    "proof1": "Quote response during business hours",
+    "proof2": "Dealer and exporter workflows supported",
+    "proof3": "BOL, photos, carrier contacts, status updates"
   },
   "coverage": {
     "kicker": "Coverage",
@@ -160,5 +163,18 @@
   "reviews": {
     "title": "What Our Customers Say",
     "verified": "Verified Y7 Customer"
+  },
+  "quoteStrip": {
+    "title": "See the dispatch price before a call.",
+    "desc": "Carrier rate plus a flat Y7 dispatch fee, shown before you commit. No spread, no hidden markup.",
+    "pickupLabel": "Pickup",
+    "deliverLabel": "Deliver to",
+    "vehicleLabel": "Vehicle",
+    "transportLabel": "Transport",
+    "transportValue": "Open / Enclosed",
+    "resultLabel": "Dispatch quote",
+    "resultValue": "Under 1 hr",
+    "resultHedge": "business hours",
+    "cta": "Get the exact quote"
   }
 }

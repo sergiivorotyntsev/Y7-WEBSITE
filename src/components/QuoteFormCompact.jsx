@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { trackEvent } from '../utils/trackEvent';
 import styles from './QuoteFormCompact.module.css';
-import btn from '../styles/buttons.module.css';
-import forms from '../styles/forms.module.css';
+import v2b from '../styles/v2/buttons.module.css';
 
 function isFiveDigit(s) {
   return /^\d{5}$/.test(s);
@@ -73,11 +72,11 @@ export default function QuoteFormCompact() {
 
       <form onSubmit={handleSubmit} className={styles.form} noValidate>
         <div className={styles.row}>
-          <div className={forms.inputGroup}>
-            <label className={forms.label} htmlFor="qqc-pickup">{t('quickQuote.pickupZip')}</label>
+          <div className={styles.inputGroup}>
+            <label className={styles.label} htmlFor="qqc-pickup">{t('quickQuote.pickupZip')}</label>
             <input
               id="qqc-pickup"
-              className={forms.input}
+              className={styles.input}
               inputMode="numeric"
               maxLength={5}
               autoComplete="postal-code"
@@ -86,11 +85,11 @@ export default function QuoteFormCompact() {
               placeholder="12345"
             />
           </div>
-          <div className={forms.inputGroup}>
-            <label className={forms.label} htmlFor="qqc-delivery">{t('quickQuote.deliveryZip')}</label>
+          <div className={styles.inputGroup}>
+            <label className={styles.label} htmlFor="qqc-delivery">{t('quickQuote.deliveryZip')}</label>
             <input
               id="qqc-delivery"
-              className={forms.input}
+              className={styles.input}
               inputMode="numeric"
               maxLength={5}
               autoComplete="postal-code"
@@ -101,11 +100,11 @@ export default function QuoteFormCompact() {
           </div>
         </div>
 
-        <div className={forms.inputGroup}>
-          <label className={forms.label} htmlFor="qqc-contact">{t('quickQuote.contactLabel')}</label>
+        <div className={styles.inputGroup}>
+          <label className={styles.label} htmlFor="qqc-contact">{t('quickQuote.contactLabel')}</label>
           <input
             id="qqc-contact"
-            className={forms.input}
+            className={styles.input}
             type="text"
             autoComplete="email"
             value={contact}
@@ -116,7 +115,7 @@ export default function QuoteFormCompact() {
 
         {error && <div className={styles.error} role="alert">{error}</div>}
 
-        <button type="submit" className={`${btn.btnAccent} ${styles.submit}`}>
+        <button type="submit" className={`${v2b.cta} ${styles.submit}`}>
           {t('quickQuote.submit')}
         </button>
       </form>

@@ -136,7 +136,10 @@
   },
   "quoteSection": {
     "title": "Otrzymaj darmową wycenę",
-    "subtitle": "Powiedz nam, dokąd ma trafić Twój pojazd. Odpowiemy w ciągu 1 godziny w godzinach pracy."
+    "subtitle": "Powiedz nam, dokąd ma trafić Twój pojazd. Odpowiemy w ciągu 1 godziny w godzinach pracy.",
+    "proof1": "Odpowiedź w godzinach pracy",
+    "proof2": "Obsługa procesów dealerskich i eksportowych",
+    "proof3": "BOL, zdjęcia, kontakt do przewoźnika, aktualizacje statusu"
   },
   "coverage": {
     "kicker": "Zasięg",
@@ -160,5 +163,18 @@
   "reviews": {
     "title": "Co mówią nasi klienci",
     "verified": "Zweryfikowany klient Y7"
+  },
+  "quoteStrip": {
+    "title": "Poznaj cenę transportu przed rozmową.",
+    "desc": "Stawka przewoźnika plus stała opłata dyspozytorska Y7, widoczna przed potwierdzeniem. Bez marży i ukrytych opłat.",
+    "pickupLabel": "Odbiór",
+    "deliverLabel": "Dostawa do",
+    "vehicleLabel": "Pojazd",
+    "transportLabel": "Transport",
+    "transportValue": "Otwarty / zamknięty",
+    "resultLabel": "Wycena",
+    "resultValue": "Do 1 godziny",
+    "resultHedge": "w godzinach pracy",
+    "cta": "Otrzymaj dokładną wycenę"
   }
 }

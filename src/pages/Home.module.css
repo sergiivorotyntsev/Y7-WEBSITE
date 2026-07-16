@@ -208,8 +208,50 @@
 /* PHASE5B-HOME: the final quote CTA is the second selective dark "spotlight" band
    (bookends the magnet). The white QuoteFormCompact card sits on top, readable. */
 .quoteSection {
-  padding: clamp(60px, 8vh, 100px) 24px;
-  background: radial-gradient(120% 130% at 50% 0%, #0d2a22 0%, var(--spotlight-bg, #081813) 50%, #050f0c 100%);
+  background: var(--v2-board-2, #0b0d0f);
+  color: var(--v2-text-on-dark);
+  border-top: 1px solid var(--v2-line-on-dark);
+}
+
+.quoteGrid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 1000px) {
+  .quoteGrid { grid-template-columns: 1fr; }
+}
+
+.quoteEyebrow { color: var(--v2-text-on-dark-muted); }
+
+.quoteTitle { margin: 0 0 12px; }
+
+.proofList {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.proof {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--v2-text-on-dark-secondary);
+}
+.proof::before {
+  content: '';
+  width: 8px;
+  height: 2px;
+  background: var(--v2-line-on-dark-strong);
+  flex: 0 0 auto;
+}
+
+.quoteStamp {
+  margin-top: 28px;
 }
 
 .quoteSectionHeader {

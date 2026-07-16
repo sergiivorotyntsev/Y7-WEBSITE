@@ -1,0 +1,101 @@
+/* QuoteStrip — DESIGN-V2-W2-T07 (BaitQuote successor). Layout only; type and
+   buttons from v2 primitives. Lives inside the serve manifest band. */
+
+.strip {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 28px;
+  align-items: center;
+  padding-bottom: clamp(40px, 6vh, 64px);
+  margin-bottom: clamp(40px, 6vh, 64px);
+  border-bottom: 1px solid var(--v2-line-on-paper);
+}
+
+@media (max-width: 1000px) {
+  .strip { grid-template-columns: 1fr; }
+}
+
+.title {
+  font-size: clamp(1.7rem, 2.8vw, 2.6rem);
+}
+
+.cta {
+  margin-top: 22px;
+}
+
+.calc {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  background: var(--v2-card-cream);
+  border: 1px solid var(--v2-line-on-paper);
+  border-radius: var(--v2-radius-lg);
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 720px) {
+  .calc { grid-template-columns: 1fr 1fr; }
+}
+
+.field {
+  background: var(--v2-paper);
+  border: 1px solid var(--v2-line-on-paper);
+  border-radius: var(--v2-radius-md);
+  padding: 13px 14px;
+  min-height: 74px;
+}
+
+.fieldLabel {
+  display: block;
+  color: var(--v2-ink-muted);
+  margin-bottom: 7px;
+}
+
+.fieldValue {
+  font-size: 15px;
+  color: var(--v2-ink);
+}
+
+/* Result tile: the strip's dark moment. Red value at display-ish size passes
+   the large-text law on the panel. Clickable → #quote-section (contract). */
+.result {
+  display: block;
+  background: var(--v2-panel);
+  color: var(--v2-text-on-dark);
+  border-radius: var(--v2-radius-md);
+  padding: 13px 16px;
+  text-decoration: none;
+  transition: transform var(--transition-normal, 0.25s ease-out);
+}
+.result:hover { transform: translateY(-2px); }
+.result:focus-visible {
+  outline: 2px solid var(--v2-red);
+  outline-offset: 2px;
+}
+
+.resultLabel {
+  display: block;
+  color: var(--v2-text-on-dark-muted);
+}
+
+.resultValue {
+  display: block;
+  font-family: var(--v2-font-display);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--v2-red-bright);
+  margin: 2px 0;
+}
+
+.resultHedge {
+  display: block;
+  color: var(--v2-text-on-dark-muted);
+  text-transform: none;
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 720px) {
+  .result { grid-column: 1 / -1; }
+}

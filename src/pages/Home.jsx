@@ -5,9 +5,9 @@ import HreflangTags from '../components/HreflangTags';
 import ScrollReveal from '../components/ScrollReveal';
 import TrustBar from '../components/TrustBar';
 import QuoteFormCompact from '../components/QuoteFormCompact';
-import BaitQuote from '../components/BaitQuote/BaitQuote';
 import Reveal from '../components/Reveal/Reveal';
 import AudienceCards from '../components/AudienceCards';
+import QuoteStrip from '../components/QuoteStrip';
 import Advantages from '../components/Advantages';
 import ProcessSteps from '../components/ProcessSteps';
 import CoverageMap from '../components/CoverageMap';
@@ -102,21 +102,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 1b. Bait-quote magnet — instant transparent estimate, directly below the hero.
-          PHASE5A-MAGNET. English-only for now (see PHASE5A_MAGNET_REPORT). Not wrapped in
-          ScrollReveal: it's above the fold, so it shows immediately (its own CSS entrance
-          motion handles the reveal). Both CTAs target the quote form (scrollToQuote). */}
-      <section style={{ padding: 'clamp(60px, 8vh, 100px) 24px' }}>
-        <div className={styles.sectionHeader}>
-          <span className={styles.sectionMicro}>&#9670; Instant dealer estimate</span>
-        </div>
-        <BaitQuote onPrimaryCta={scrollToQuote} onSecondaryCta={scrollToQuote} />
-      </section>
-
-      {/* 2. Serve-cards — manifest band (DESIGN-V2-W2-T03). Section opener =
-          eyebrow + condensed H2 (Kicker-Headline Pair). B2B-first card order. */}
+      {/* 2. Quote strip + Serve-cards — one manifest band, two blocks (T03+T07).
+          The strip is the BaitQuote successor (i18n x4); the serve block opens
+          with the eyebrow + condensed H2 pair. B2B-first card order. */}
       <section className={v2s.manifest}>
         <div className={v2s.inner}>
+          <QuoteStrip onCta={scrollToQuote} />
           <ScrollReveal>
             <div className={styles.serveHead}>
               <p className={`${v2t.eyebrow} ${v2t.eyebrowOnPaper}`}>{t('sections.whoWeServe')}</p>
@@ -154,18 +145,33 @@ export default function Home() {
           tiles as real links, licensed-broker panel with external verification. */}
       <CoverageMap />
 
-      {/* 8. Quote Form */}
+      {/* 7. Conversion — board-black-2 band (T07, §2 board-family tonal step).
+          H2/subtitle preserved verbatim (SEO contract). Signal Budget here:
+          red fill = form CTA; accent = the 改善 stamp (JP inventory #3 of 3).
+          Form = §7 form-on-board. Private-shipper path stays fully visible. */}
       <section id="quote-section" className={styles.quoteSection}>
-        <ScrollReveal>
-          <div className={styles.quoteSectionHeader}>
-            <span className={styles.quoteSectionKicker}>&#9670; {t('sections.requestQuote')}</span>
-            <h2 className={styles.quoteSectionTitle}>{t('quoteSection.title')}</h2>
-            <p className={styles.quoteSectionSubtitle}>{t('quoteSection.subtitle')}</p>
+        <div className={v2s.inner}>
+          <div className={styles.quoteGrid}>
+            <ScrollReveal>
+              <div className={styles.quoteCopy}>
+                <p className={`${v2t.eyebrow} ${styles.quoteEyebrow}`}>{t('sections.requestQuote')}</p>
+                <h2 className={`${v2t.sectionDisplay} ${styles.quoteTitle}`}>{t('quoteSection.title')}</h2>
+                <p className={`${v2t.lede} ${v2t.ledeOnDark}`}>{t('quoteSection.subtitle')}</p>
+                <ul className={styles.proofList}>
+                  <li className={`${v2t.monoMicro} ${styles.proof}`}>{t('quoteSection.proof1')}</li>
+                  <li className={`${v2t.monoMicro} ${styles.proof}`}>{t('quoteSection.proof2')}</li>
+                  <li className={`${v2t.monoMicro} ${styles.proof}`}>{t('quoteSection.proof3')}</li>
+                </ul>
+                <span className={`${v2a.stamp} ${styles.quoteStamp}`} aria-hidden="true">改善</span>
+              </div>
+            </ScrollReveal>
+            <div>
+              <QuoteFormCompact />
+              <div className={styles.trustBadgesRow}>
+                <TrustBadges layout="horizontal" variant="compact" />
+              </div>
+            </div>
           </div>
-        </ScrollReveal>
-        <QuoteFormCompact />
-        <div className={styles.trustBadgesRow}>
-          <TrustBadges layout="horizontal" variant="compact" />
         </div>
       </section>
 
