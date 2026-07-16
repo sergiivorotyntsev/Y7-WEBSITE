@@ -119,7 +119,7 @@ The page is a stack of full-width surface bands. Every section declares one of t
 
 **The Alternation Rule.** Adjacent sections never share a surface on conversion pages (Home, audience pages): board, then manifest, then board. A page opens dark (hero) and closes dark (footer). Long-form/SEO pages are manifest-dominant: board appears only as the hero band and at most one mid-page conversion band; body content between them stays paper for reading comfort and content continuity.
 
-**The Dark Share Rule.** Conversion pages: 40-60% of scroll height is board. Long-form pages: no more than 25%. Below 40% on Home the brand reads timid; above 60% anywhere it reads like a gaming site.
+**The Dark Share Rule.** Conversion pages: 40-60% of scroll height is board. Long-form pages: no more than 25%. Link-hub pages (catalogs, directories: /services, FAQ/Track/Contact-class hubs): dark reserved for the hero + closing CTA band, 25-35% share (W4 ruling). Below 40% on Home the brand reads timid; above 60% anywhere it reads like a gaming site.
 
 **Cards on paper** use `card-cream #fffaf1` with `line-on-paper` borders (the V1 no-true-white doctrine carried: #FFFFFF never appears as a surface). **Cards on board** use `panel-steel` or translucent white washes at 3.5-5% alpha with `line-on-dark` borders.
 

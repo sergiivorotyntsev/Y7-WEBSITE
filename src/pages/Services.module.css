@@ -1,331 +1,158 @@
-/* Services — hub page with compact dark hero + card grid + CTA strip. */
+/* Services — DESIGN-V2-W4-T04: link-hub page (DESIGN.md §2 amendment).
+   Dark = hero + closing CTA strip only; catalogs manifest. Layout-only module;
+   surfaces/type/buttons from v2 primitives. V1 stagger entrance retired
+   (Reveal Gate law: no ungated entrances; hubs ship static). */
 
 .wrap {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 0 80px;
+  padding: 0;
 }
 
-/* =====================================================================
-   COMPACT DARK HERO
-   ===================================================================== */
-
+/* HERO (board) */
 .hero {
-  background: var(--text, #2C2C2A);
-  color: var(--bg, #F7F5F0);
-  padding: clamp(64px, 10vh, 96px) 24px;
-  margin-bottom: clamp(56px, 8vh, 80px);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -40%;
-  right: -10%;
-  width: 520px;
-  height: 520px;
-  background: radial-gradient(circle, var(--accent-glow, rgba(153, 60, 29, 0.15)) 0%, transparent 70%);
-  pointer-events: none;
+  border-top: 0;
 }
 
 .heroInner {
-  position: relative;
-  max-width: 900px;
-  margin: 0 auto;
   text-align: center;
+  max-width: 860px;
+  padding-top: clamp(64px, 10vh, 110px);
+  padding-bottom: clamp(64px, 10vh, 110px);
 }
 
 .heroMicro {
-  display: inline-block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--bg, #F7F5F0);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  margin-bottom: 12px;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  margin-bottom: 14px;
 }
 
 .title {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.8rem, 4vw, 2.75rem);
-  font-weight: 700;
-  color: var(--bg, #F7F5F0);
-  text-align: center;
+  composes: sectionDisplay from '../styles/v2/type.module.css';
+  font-size: clamp(1.9rem, 3.6vw, 3rem);
+  color: var(--v2-text-on-dark, #fff7ed);
   margin: 0 0 12px;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
 }
 
 .subtitle {
-  font-family: var(--font-sans, system-ui);
-  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
-  /* A-spine fix: lift muted-on-dark subtitle contrast (was 0.7, read too faint). */
-  color: rgba(247, 245, 240, 0.85);
-  text-align: center;
-  line-height: 1.7;
+  font-size: clamp(1rem, 1.4vw, 1.1rem);
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+  line-height: 1.65;
   margin: 0 auto;
   max-width: 640px;
 }
 
+/* BODY (manifest band) */
 .bodyWrap {
-  padding: 0 24px;
+  max-width: 1200px;
 }
 
-.sectionHeading {
-  font-family: var(--font-serif, Georgia, serif);
-  /* A-spine: one Headline ramp, matched to Home's .sectionTitle. */
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
-  text-align: center;
-  margin: 0 0 8px;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-}
-
-.sectionMicro {
-  display: inline-block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  font-weight: 700;
-  /* A-spine (Option G): non-hero section kickers lead in Bonded Pine green;
-     the lone sienna kicker is the dark hero above. */
-  color: var(--success, #0F6E56);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  margin: 0 0 10px;
+.section {
+  margin-top: clamp(48px, 7vh, 72px);
 }
 
 .sectionHeadingWrap {
-  text-align: center;
-  margin-bottom: 36px;
+  margin-bottom: 20px;
+}
+
+.sectionHeading {
+  composes: sectionDisplay from '../styles/v2/type.module.css';
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  color: var(--v2-ink, #050607);
+  margin: 0 0 8px;
 }
 
 .sectionLede {
-  font-family: var(--font-sans, system-ui);
-  font-size: 14px;
-  color: var(--text-muted, #706E68);
-  text-align: center;
-  margin: 0 auto 32px;
-  line-height: 1.7;
-  max-width: 600px;
-}
-
-/* =====================================================================
-   CTA STRIP
-   ===================================================================== */
-
-/* A-spine: the closing CTA is the page's single dark spotlight moment (replaces the
-   solid-sienna slab). Same deep-green spotlight recipe Home uses; the sienna seal
-   button is the lone accent on the dark stage. */
-.ctaStrip {
-  margin-top: clamp(56px, 8vh, 80px);
-  background: radial-gradient(120% 130% at 50% 0%, #0d2a22 0%, var(--spotlight-bg, #081813) 50%, #050f0c 100%);
-  border: 1px solid rgba(125, 210, 180, 0.14);
-  border-radius: var(--radius-xl, 16px);
-  padding: clamp(40px, 7vh, 64px) clamp(24px, 4vw, 48px);
-  text-align: center;
-  color: #eafff6;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
-}
-
-.ctaTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 700;
-  color: #eafff6;
-  margin: 0 0 10px;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-}
-
-.ctaSubtitle {
-  font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: #9fc4b8;
-  margin: 0 0 24px;
-  line-height: 1.7;
-  max-width: 520px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.ctaBtnLight {
-  background: linear-gradient(135deg, var(--accent, #993C1D), var(--accent-hover, #7A3017)) !important;
-  color: #fff !important;
-  padding: 14px 32px !important;
-  font-size: 13px !important;
-  box-shadow: 0 6px 20px var(--accent-glow, rgba(153, 60, 29, 0.15));
-}
-
-@media (hover: hover) {
-  .ctaBtnLight:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px var(--accent-glow, rgba(153, 60, 29, 0.15));
-    filter: brightness(1.08) saturate(1.05);
-  }
+  color: var(--v2-ink-muted, #5c5851);
+  line-height: 1.65;
+  max-width: 560px;
+  margin: 8px 0 0;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  align-items: stretch;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
 }
 
-@media (max-width: 768px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 480px) {
-  .grid { grid-template-columns: 1fr; }
-}
-
-.section {
-  margin-top: clamp(56px, 8vh, 80px);
-}
-
-/* =====================================================================
-   CARDS
-   ===================================================================== */
-
+/* Feature cards (non-link) */
 .card {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-xl, 16px);
-  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
-  padding: 28px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  transition:
-    transform var(--transition-normal, 250ms ease-out),
-    box-shadow var(--transition-normal, 250ms ease-out),
-    border-color var(--transition-normal, 250ms ease-out);
+  composes: paper from '../styles/v2/cards.module.css';
+  padding: 22px 24px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .card,
-  .linkCard {
-    opacity: 0;
-    animation: servicesCardIn 500ms ease-out forwards;
-    animation-delay: calc(var(--i, 0) * 60ms);
-  }
-}
-
-@keyframes servicesCardIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@media (hover: hover) {
-  .card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-card-hover, 0 2px 6px rgba(44,44,42,0.06), 0 16px 40px rgba(44,44,42,0.12));
-    border-color: var(--success, #0F6E56);
-  }
-}
+.card:hover { transform: none; box-shadow: var(--shadow-sm); }
 
 .cardTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
-  margin: 0;
-  letter-spacing: -0.01em;
+  composes: cardTitle from '../styles/v2/type.module.css';
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  color: var(--v2-ink, #050607);
+  margin: 0 0 8px;
 }
 
 .cardDesc {
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #706E68);
-  line-height: 1.7;
-  flex: 1;
+  color: var(--v2-ink-muted, #5c5851);
+  line-height: 1.65;
   margin: 0;
 }
 
-/* =====================================================================
-   LINK CARDS (sub-service pages)
-   ===================================================================== */
-
+/* Link cards (catalog tiles) */
 .linkCard {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-xl, 16px);
-  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
-  padding: 24px 20px;
+  composes: paper from '../styles/v2/cards.module.css';
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding: 22px 24px;
   text-decoration: none;
-  outline: none;
-  position: relative;
-  transition:
-    transform var(--transition-normal, 250ms ease-out),
-    box-shadow var(--transition-normal, 250ms ease-out),
-    border-color var(--transition-normal, 250ms ease-out);
+  color: inherit;
 }
-
-.linkCard::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  border-top-left-radius: var(--radius-xl, 16px);
-  border-top-right-radius: var(--radius-xl, 16px);
-  background: var(--accent, #993C1D);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--transition-normal, 250ms ease-out);
-}
-
-@media (hover: hover) {
-  .linkCard:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-card-hover, 0 2px 6px rgba(44,44,42,0.06), 0 16px 40px rgba(44,44,42,0.12));
-    border-color: var(--success, #0F6E56);
-  }
-  .linkCard:hover::before {
-    transform: scaleX(1);
-  }
-}
-
-.linkCard:focus-visible {
-  border-color: var(--accent, #993C1D);
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
-}
-.linkCard:focus-visible::before { transform: scaleX(1); }
 
 .linkTitle {
-  font-family: var(--font-sans, system-ui);
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text, #2C2C2A);
+  composes: cardTitle from '../styles/v2/type.module.css';
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  color: var(--v2-ink, #050607);
   margin: 0;
 }
 
 .linkDesc {
-  font-family: var(--font-sans, system-ui);
-  font-size: 13px;
-  color: var(--text-muted, #706E68);
+  font-size: 13.5px;
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.6;
-  flex: 1;
   margin: 0;
+  flex: 1;
 }
 
+/* CTA row rests in ink; hover shifts red (Body-Link logic, no resting red). */
 .linkCta {
-  font-family: var(--font-sans, system-ui);
-  font-size: 12px;
-  color: var(--accent, #993C1D);
+  font-family: var(--v2-font-display);
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: var(--v2-track-caps-ui, 0.06em);
+  text-transform: uppercase;
+  color: var(--v2-ink, #050607);
+  transition: color var(--transition-fast, 150ms ease-out);
+}
+.linkCard:hover .linkCta,
+.linkCard:focus-visible .linkCta {
+  color: var(--v2-red-deep, #a90918);
 }
 
-.ctaWrap {
+/* CTA STRIP — full-bleed closing board band (link-hub close-dark).
+   Escapes the manifest band's inner padding via negative margins. */
+.ctaStrip {
+  background: var(--v2-board, #050607);
+  border-top: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
+  color: var(--v2-text-on-dark, #fff7ed);
   text-align: center;
-  margin-top: 48px;
+  padding: clamp(64px, 10vh, 110px) clamp(24px, 4vw, 44px);
+  margin: clamp(48px, 7vh, 72px) calc(50% - 50vw) calc(-1 * clamp(56px, 8vh, 96px));
+}
+
+.ctaTitle {
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin: 0 0 10px;
+}
+
+.ctaSubtitle {
+  margin: 0 auto 22px;
+  max-width: 560px;
 }

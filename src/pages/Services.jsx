@@ -3,7 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import styles from './Services.module.css';
-import btn from '../styles/buttons.module.css';
+import v2s from '../styles/v2/surfaces.module.css';
+import v2t from '../styles/v2/type.module.css';
+import v2b from '../styles/v2/buttons.module.css';
 
 const servicePages = [
   { to: '/ship-my-car', title: 'Ship My Car', desc: 'Door-to-door auto transport for individuals. Open or enclosed carriers, status updates at every stage.' },
@@ -77,15 +79,17 @@ export default function Services() {
       <PageMeta title={tCommon('meta.servicesTitle')} description={tCommon('meta.servicesDescription')} path="/services" />
 
       {/* Compact dark hero */}
-      <section className={styles.hero}>
-        <div className={styles.heroInner}>
-          <span className={styles.heroMicro}>&#9670; {t('heroKicker')}</span>
+      {/* DESIGN-V2-W4-T04: link-hub page (DESIGN.md §2 amendment) — dark is
+          hero + closing CTA only; catalogs stay manifest. */}
+      <section className={`${v2s.boardHero} ${styles.hero}`}>
+        <div className={`${v2s.inner} ${styles.heroInner}`}>
+          <p className={`${v2t.eyebrowPlain} ${styles.heroMicro}`}>{t('heroKicker')}</p>
           <h1 className={styles.title}>{t('title')}</h1>
           <p className={styles.subtitle}>{t('subtitle')}</p>
         </div>
       </section>
 
-      <div className={styles.bodyWrap}>
+      <section className={v2s.manifest}><div className={`${v2s.inner} ${styles.bodyWrap}`}>
         <h2 className={styles.sectionHeading}>{t('gridHeading')}</h2>
         <div className={styles.grid}>
           {Array.isArray(list) && list.map((item, i) => (
@@ -99,7 +103,7 @@ export default function Services() {
         {/* Service pages hub */}
         <div className={styles.section}>
           <div className={styles.sectionHeadingWrap}>
-            <span className={styles.sectionMicro}>{t('exploreKicker')}</span>
+            <p className={`${v2t.eyebrow} ${v2t.eyebrowOnPaper}`}>{t('exploreKicker')}</p>
             <h2 className={styles.sectionHeading}>{t('exploreTitle')}</h2>
           </div>
           <div className={styles.grid}>
@@ -116,7 +120,7 @@ export default function Services() {
         {/* Locations We Serve */}
         <div className={styles.section}>
           <div className={styles.sectionHeadingWrap}>
-            <span className={styles.sectionMicro}>&#9670; {t('locationsKicker')}</span>
+            <p className={`${v2t.eyebrow} ${v2t.eyebrowOnPaper}`}>{t('locationsKicker')}</p>
             <h2 className={styles.sectionHeading}>{t('locationsTitle')}</h2>
           </div>
           <div className={styles.grid}>
@@ -133,7 +137,6 @@ export default function Services() {
         {/* Popular Routes */}
         <div className={styles.section}>
           <div className={styles.sectionHeadingWrap}>
-            <span className={styles.sectionMicro}>&#9670; {t('routesKicker')}</span>
             <h2 className={styles.sectionHeading}>{t('routesTitle')}</h2>
           </div>
           <div className={styles.grid}>
@@ -150,7 +153,7 @@ export default function Services() {
         {/* EV & Tesla Services */}
         <div className={styles.section}>
           <div className={styles.sectionHeadingWrap}>
-            <span className={styles.sectionMicro}>{t('evKicker')}</span>
+            <p className={`${v2t.eyebrow} ${v2t.eyebrowOnPaper}`}>{t('evKicker')}</p>
             <h2 className={styles.sectionHeading}>{t('evTitle')}</h2>
             <p className={styles.sectionLede}>{t('evLede')}</p>
           </div>
@@ -165,18 +168,15 @@ export default function Services() {
           </div>
         </div>
 
-        {/* CTA strip */}
+        {/* CTA strip — the hub's closing dark band */}
         <div className={styles.ctaStrip}>
-          <h2 className={styles.ctaTitle}>{t('ctaTitle')}</h2>
-          <p className={styles.ctaSubtitle}>{t('ctaSubtitle')}</p>
-          <button
-            onClick={() => navigate('/quote')}
-            className={`${btn.btn} ${styles.ctaBtnLight}`}
-          >
+          <h2 className={`${v2t.sectionDisplay} ${styles.ctaTitle}`}>{t('ctaTitle')}</h2>
+          <p className={`${v2t.lede} ${v2t.ledeOnDark} ${styles.ctaSubtitle}`}>{t('ctaSubtitle')}</p>
+          <button onClick={() => navigate('/quote')} className={v2b.cta}>
             {t('ctaButton')}
           </button>
         </div>
-      </div>
+      </div></section>
     </div>
   );
 }
