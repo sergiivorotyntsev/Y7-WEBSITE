@@ -1,0 +1,63 @@
+/* DESIGN-V2-W4-T00: form-on-board primitives (DESIGN.md §7). Extracted from the
+   proven QuoteFormCompact treatment so money-page forms compose them instead of
+   re-implementing (Anti-Orphan Rule). The V1 src/styles/forms.module.css is
+   untouched (3 external importers). */
+
+/* Board form shell: radius xl + board-depth. */
+.shellOnBoard {
+  background: var(--v2-board, #050607);
+  border: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
+  border-radius: var(--v2-radius-xl, 22px);
+  box-shadow: var(--v2-board-depth, 0 24px 70px rgba(0, 0, 0, 0.3));
+  padding: clamp(24px, 4vw, 36px);
+}
+
+.inputGroupOnBoard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Mono label ABOVE the input (never placeholder-as-label). */
+.labelOnBoard {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: var(--v2-track-label, 0.14em);
+  text-transform: uppercase;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+}
+
+/* Panel input: 16px floor (iOS zoom law), red-bright focus ring. */
+.inputOnBoard {
+  width: 100%;
+  background: var(--v2-panel, #0e1012);
+  border: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
+  border-radius: var(--v2-radius-md, 12px);
+  padding: 15px;
+  color: #fff;
+  font: inherit;
+  font-size: 16px;
+}
+.inputOnBoard::placeholder {
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+}
+.inputOnBoard:focus-visible {
+  outline: 2px solid var(--v2-red-bright, #ef3a4e);
+  outline-offset: 2px;
+}
+
+/* Error: red-bright + textual message (never color alone). */
+.errorOnBoard {
+  font-size: 13px;
+  color: var(--v2-red-bright, #ef3a4e);
+  padding: 10px 14px;
+  background: rgba(215, 15, 36, 0.08);
+  border-radius: var(--v2-radius-md, 12px);
+}
+
+/* Success/verified state: bonded pine (status only). */
+.successOnBoard {
+  font-size: 14px;
+  color: var(--success-bright, #54E0B0);
+}

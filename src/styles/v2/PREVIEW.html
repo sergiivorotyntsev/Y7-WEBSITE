@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="buttons.module.css" />
 <link rel="stylesheet" href="cards.module.css" />
 <link rel="stylesheet" href="accents.module.css" />
+<link rel="stylesheet" href="forms.module.css" />
 <style>
   /* file:// font paths (variables.css uses absolute /fonts/). */
   @font-face { font-family:'Oswald'; font-weight:600; font-display:swap; src:url('../../../public/fonts/oswald-latin-600-normal.woff2') format('woff2'); unicode-range:U+0000-00FF; }
@@ -85,6 +86,14 @@
         <p class="monoData" style="margin-top:14px;">USDOT #4427359 · MC #1741537</p>
       </article>
     </div>
+    <p class="demo-label" style="margin-top:24px;">cards.tableOnPaper + tableColHighlight (W4-T00)</p>
+    <table class="tableOnPaper">
+      <thead><tr><th></th><th class="tableColHighlight">Y7 dispatch</th><th>In-house dispatcher</th></tr></thead>
+      <tbody>
+        <tr><td>Cost basis</td><td class="tableColHighlight">Flat per-vehicle fee</td><td>$90k salary + benefits</td></tr>
+        <tr><td>Coverage</td><td class="tableColHighlight">All 50 states</td><td>Where your staff reaches</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
@@ -107,6 +116,14 @@
         <h3 class="cardTitle">Panel-steel card</h3>
         <p style="color:var(--v2-text-on-dark-muted); line-height:1.6;">Solid panel variant. Red body text on dark uses <span style="color:var(--v2-red-bright)">signal-red-bright</span> (5.2:1).</p>
       </article>
+      <div class="shellOnBoard" style="padding:24px;">
+        <p class="demo-label">forms.shellOnBoard + labelOnBoard + inputOnBoard (W4-T00)</p>
+        <div class="inputGroupOnBoard" style="margin-bottom:12px;">
+          <label class="labelOnBoard">Company name</label>
+          <input class="inputOnBoard" placeholder="Dealer / exporter company" />
+        </div>
+        <div class="errorOnBoard">Enter a valid 5-digit ZIP.</div>
+      </div>
       <div class="panel" style="padding:24px;">
         <p class="monoLabel" style="color:var(--v2-text-on-dark-muted); margin:0 0 8px;">Form shell (surfaces.panel)</p>
         <input style="width:100%; background:var(--v2-panel); border:1px solid var(--v2-line-on-dark); border-radius:var(--v2-radius-md); padding:15px; color:#fff; font:inherit; font-size:16px;" placeholder="Pickup ZIP / auction" />

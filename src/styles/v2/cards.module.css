@@ -136,6 +136,42 @@
   color: var(--v2-ink-muted);
 }
 
+/* Comparison table on paper (DESIGN-V2-W4-T00): cream sheet, hairline rows,
+   mono numerics; the highlighted (Y7) column uses an INK wash, never red
+   (approved ruling — red stays a signal, not a table decoration). */
+.tableOnPaper {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
+  overflow: hidden;
+}
+.tableOnPaper th {
+  font-family: var(--v2-font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: var(--v2-track-caps-ui, 0.06em);
+  text-transform: uppercase;
+  color: var(--v2-ink, #050607);
+  text-align: left;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+}
+.tableOnPaper td {
+  font-size: 14px;
+  color: var(--v2-ink-muted, #5c5851);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  vertical-align: top;
+}
+.tableOnPaper tr:last-child td { border-bottom: 0; }
+.tableColHighlight {
+  background: rgba(5, 6, 7, 0.05);
+  color: var(--v2-ink, #050607);
+  font-weight: 600;
+}
+
 /* Chips: mono micro caps in hairline pills, never filled. */
 .chipOnDark {
   display: inline-block;
