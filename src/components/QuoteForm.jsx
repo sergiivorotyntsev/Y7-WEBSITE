@@ -45,6 +45,16 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
   const errorRef = useRef(null);
   const [step2Height, setStep2Height] = useState(0);
 
+  // DESIGN-V2-W4-T03 (Reveal Gate law, DESIGN.md §6): during the prerender pass
+  // the Step-2 wrapper must NOT be a framer-motion element — Motion.div bakes
+  // style="opacity:0;max-height:0" into the snapshot (both ZIPs are empty at
+  // prerender), hiding the contact fields from the static HTML. When
+  // __Y7_PRERENDER is set we render a plain <div> (at-rest, fully visible);
+  // in the browser the Motion.div below behaves exactly as before (hydration
+  // starts collapsed, expands on ZIP entry).
+  const isPrerender = typeof window !== 'undefined' && window.__Y7_PRERENDER;
+  const Step2Shell = isPrerender ? 'div' : Motion.div;
+
   // Pre-fill from URL params (e.g. resubmit after decline: ?vin=...&pickup_zip=...)
   const urlParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
 
@@ -681,17 +691,22 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
       {/* Route Estimator (appears when both ZIPs filled) */}
       <RouteEstimator pickupZip={form.pickup_zip} deliveryZip={form.delivery_zip} />
 
-      {/* ── STEP 2: Contact (animated reveal — framer-motion Q1-T09) ── */}
-      <Motion.div
+      {/* ── STEP 2: Contact (animated reveal — framer-motion Q1-T09; plain div
+          during prerender per the Reveal Gate law, DESIGN-V2-W4-T03) ── */}
+      <Step2Shell
         className={styles.step2}
-        initial={false}
-        animate={{
-          maxHeight: showStep2 ? step2Height + 20 : 0,
-          opacity: showStep2 ? 1 : 0,
-        }}
-        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        style={{ overflow: 'hidden' }}
-        aria-hidden={!showStep2}
+        {...(isPrerender
+          ? {}
+          : {
+              initial: false,
+              animate: {
+                maxHeight: showStep2 ? step2Height + 20 : 0,
+                opacity: showStep2 ? 1 : 0,
+              },
+              transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
+              style: { overflow: 'hidden' },
+              'aria-hidden': !showStep2,
+            })}
       >
         <div ref={step2Ref} className={styles.step2Content}>
           <div className={styles.step2Kicker}>{t('form.almostThere')}</div>
@@ -878,7 +893,7 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
             </div>
           </div>
         </div>
-      </Motion.div>
+      </Step2Shell>
 
       {/* ── STEP 3: Error + Submit ── */}
 
