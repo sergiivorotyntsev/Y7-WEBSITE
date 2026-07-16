@@ -27,10 +27,8 @@
   letter-spacing: var(--v2-track-section, 0.035em);
   text-transform: uppercase;
   line-height: 1.02;
-  color: var(--bg, #F7F5F0);
-  line-height: 1.15;
+  color: var(--v2-text-on-dark, #fff7ed);
   margin-bottom: 16px;
-  letter-spacing: -0.02em;
 }
 
 .heroDesc {
@@ -69,7 +67,7 @@
    ===================================================================== */
 
 .filterBar {
-  background: var(--bg, #F7F5F0);
+  background: var(--v2-paper, #f4f0e8);
   border-bottom: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
   padding: 16px 24px;
   position: sticky;
