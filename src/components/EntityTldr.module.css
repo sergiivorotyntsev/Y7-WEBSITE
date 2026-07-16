@@ -1,32 +1,32 @@
-/* EntityTldr — mirrors the /faq .tldr card (FAQ.module.css) so the
-   extractable-answer pattern reads identically site-wide. */
+/* EntityTldr — extractable-answer card. DESIGN-V2-W3-T01: v2 tokens (mono
+   kicker voice, system-ui reading text; Georgia retired per §4). Position and
+   copy PRESERVE-AS-IS per the SEO contract — restyle only. */
 
 .tldr {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-lg, 12px);
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
   padding: 22px 26px;
   max-width: 860px;
   margin: clamp(28px, 4vh, 40px) auto;
   width: calc(100% - 48px);
-  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06));
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
 }
 
 .kicker {
   display: block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 10.5px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--v2-ink-muted, #5c5851);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--v2-track-label, 0.14em);
   margin-bottom: 10px;
 }
 
 .text {
-  font-family: var(--font-serif, Georgia, serif);
   font-size: clamp(0.95rem, 1.5vw, 1.05rem);
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   line-height: 1.65;
   margin: 0;
 }

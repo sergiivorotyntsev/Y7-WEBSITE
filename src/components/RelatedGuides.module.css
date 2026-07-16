@@ -1,9 +1,11 @@
-/* RelatedGuides — topical clustering section for SEO pages. */
+/* RelatedGuides — topical clustering section for SEO pages.
+   DESIGN-V2-W3-T01: paper-deep band, cream cards, condensed title; the V1
+   animated left-stripe is retired (side-stripe ban). */
 
 .section {
   padding: 60px 24px;
-  background: var(--bg-muted, #EFECE6);
-  border-top: 1px solid var(--border, #e5e0d8);
+  background: var(--v2-paper-deep, #eee8dd);
+  border-top: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
 }
 
 .inner {
@@ -12,13 +14,15 @@
 }
 
 .title {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: 1.75rem;
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.4rem, 2.4vw, 1.75rem);
   font-weight: 600;
-  color: var(--text, #2C2C2A);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--v2-ink, #050607);
   margin: 0 0 1.5rem;
   text-align: center;
-  letter-spacing: -0.02em;
+  line-height: 1.05;
 }
 
 .grid {
@@ -30,69 +34,43 @@
 .link {
   display: block;
   padding: 20px;
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-md, 8px);
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-md, 12px);
   text-decoration: none;
-  color: var(--text, #2C2C2A);
-  outline: none;
-  position: relative;
+  color: var(--v2-ink, #050607);
   transition:
     transform var(--transition-normal, 250ms ease-out),
     border-color var(--transition-normal, 250ms ease-out),
     box-shadow var(--transition-normal, 250ms ease-out);
 }
 
-.link::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 3px;
-  border-top-left-radius: var(--radius-md, 8px);
-  border-bottom-left-radius: var(--radius-md, 8px);
-  background: var(--accent, #993C1D);
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform var(--transition-normal, 250ms ease-out);
-}
-
 @media (hover: hover) {
   .link:hover {
-    transform: translateY(-2px);
-    border-color: var(--accent, #993C1D);
-    box-shadow: var(--shadow-md, 0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06));
+    transform: translateY(-3px);
+    border-color: rgba(5, 6, 7, 0.4);
+    box-shadow: var(--shadow-md, 0 2px 8px rgba(0, 0, 0, 0.06));
   }
-  .link:hover::before {
-    transform: scaleY(1);
+  .link:hover .linkTitle {
+    color: var(--v2-red-deep, #a90918);
   }
 }
 
 .link:focus-visible {
-  border-color: var(--accent, #993C1D);
-  box-shadow: 0 0 0 2px var(--bg-muted, #EFECE6), 0 0 0 4px var(--accent, #993C1D);
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
 }
-.link:focus-visible::before { transform: scaleY(1); }
 
 .linkTitle {
-  font-family: var(--font-sans, system-ui);
   font-weight: 600;
   font-size: 1.05rem;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   transition: color var(--transition-fast, 150ms ease-out);
 }
 
-@media (hover: hover) {
-  .link:hover .linkTitle {
-    color: var(--accent, #993C1D);
-  }
-}
-
 .linkDesc {
-  font-family: var(--font-sans, system-ui);
   font-size: 0.9rem;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.6;
   margin-top: 8px;
 }

@@ -13,7 +13,7 @@ export default function EntityTldr({ kicker, text, ariaLabel }) {
   if (!text) return null;
   return (
     <aside className={styles.tldr} aria-label={ariaLabel || 'Summary'}>
-      <span className={styles.kicker}>&#9670; {kicker || 'The short answer'}</span>
+      <span className={styles.kicker}>{kicker || 'The short answer'}</span>
       <p className={styles.text}>{text}</p>
     </aside>
   );
