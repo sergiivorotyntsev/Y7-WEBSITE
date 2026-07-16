@@ -172,9 +172,10 @@
     "vehicleLabel": "Vehicle",
     "transportLabel": "Transport",
     "transportValue": "Open / Enclosed",
-    "resultLabel": "Dispatch quote",
-    "resultValue": "Under 1 hr",
-    "resultHedge": "business hours",
-    "cta": "Get the exact quote"
+    "resultLabel": "Typical carrier rate",
+    "resultHedge": "range from recent dispatches",
+    "cta": "Get the exact quote",
+    "resultFee": "+ flat Y7 dispatch fee",
+    "ctaHedge": "Exact quote under 1 hr, business hours"
   }
 }

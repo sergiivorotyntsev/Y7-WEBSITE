@@ -172,9 +172,10 @@
     "vehicleLabel": "Pojazd",
     "transportLabel": "Transport",
     "transportValue": "Otwarty / zamknięty",
-    "resultLabel": "Wycena",
-    "resultValue": "Do 1 godziny",
-    "resultHedge": "w godzinach pracy",
-    "cta": "Otrzymaj dokładną wycenę"
+    "resultLabel": "Typowa stawka przewoźnika",
+    "resultHedge": "zakres z ostatnich zleceń",
+    "cta": "Otrzymaj dokładną wycenę",
+    "resultFee": "+ stała opłata Y7",
+    "ctaHedge": "Dokładna wycena do 1 godziny, w godzinach pracy"
   }
 }

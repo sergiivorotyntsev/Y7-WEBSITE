@@ -89,11 +89,19 @@
   margin: 2px 0;
 }
 
-.resultHedge {
+.resultHedge,
+.resultFee {
   display: block;
   color: var(--v2-text-on-dark-muted);
   text-transform: none;
   letter-spacing: 0.06em;
+}
+.resultFee { margin-top: 2px; }
+
+.ctaHedge {
+  color: var(--v2-ink-muted);
+  text-transform: none;
+  margin: 10px 0 0;
 }
 
 @media (max-width: 720px) {

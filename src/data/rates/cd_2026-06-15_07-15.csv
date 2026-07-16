@@ -1,0 +1,185 @@
+pickup_name,pickup_city,pickup_state,pickup_zip,dest_name,dest_city,dest_state,dest_zip,miles,price_usd,vehicle_class
+IAAI Pittsburgh,Aliquippa,PA,15001,Lube Avto Shipping (Apex),Irvington,NJ,07111,386,350,standard
+IAAI Baton Rouge,Carville,LA,70721,TRT International - Argus Motors,La Porte,TX,77571,273,305,standard
+IAAI Baton Rouge,Carville,LA,70721,TRT International - Argus Motors,La Porte,TX,77571,273,300,standard
+IAAI Chicago-South,Markham,IL,60428,Lube Avto Shipping (Apex),Irvington,NJ,07111,771,530,standard
+IAAI Raleigh,Clayton,NC,27520,TRT International,Rincon,GA,31326,316,240,standard
+IAAI Fremont,Fremont,CA,94538,TRT International - PACLOGISTIC,Gardena,CA,90248,366,300,standard
+IAAI Dream Rides,Los Angeles,CA,91605,TRT International - PACLOGISTIC,Gardena,CA,90248,33,120,standard
+Copart Martinez,Martinez,CA,94553,TRT International - PACLOGISTIC,Gardena,CA,90248,390,300,standard
+Copart Elgin,Elgin,IL,60120,Lube Avto Shipping (Apex),Irvington,NJ,07111,821,500,standard
+Copart Lebanon,Lebanon,TN,37090,TRT International,Rincon,GA,31326,486,350,standard
+Copart Los Angeles,Van Nuys,CA,91405,TRT International - PACLOGISTIC,Gardena,CA,90248,31,120,standard
+Copart Glassboro,Glassboro,NJ,08028,Lube Avto Shipping (Apex),Irvington,NJ,07111,97,180,standard
+IAAI St. Louis,Caseyville,IL,62232,TRT International,Rincon,GA,31326,787,550,standard
+Copart San Diego,San Diego,CA,92154,TRT International - PACLOGISTIC,Gardena,CA,90248,137,225,standard
+Copart Tucson,Tucson,AZ,85706,TRT International - PACLOGISTIC,Gardena,CA,90248,496,350,standard
+Copart Wilmer,Wilmer,TX,75172,TRT International - Argus Motors,La Porte,TX,77571,249,250,standard
+Copart Wilmer,Wilmer,TX,75172,TRT International - Argus Motors,La Porte,TX,77571,249,250,standard
+Manheim Darlington,Darlington,SC,29532,TRT International,Rincon,GA,31326,185,245,standard
+Copart Mercedes,Mercedes,TX,78570,TRT International - Argus Motors,La Porte,TX,77571,361,285,standard
+IAAI Oklahoma City,Oklahoma City,OK,73121,TRT International - Argus Motors,La Porte,TX,77571,472,400,standard
+IAAI Charlotte,Charlotte,NC,28206,TRT International,Rincon,GA,31326,256,230,standard
+Copart Portland,Portland,OR,97218,TRT International - PACLOGISTIC,Gardena,CA,90248,985,520,standard
+IAAI Port Murray,Port Murray,NJ,07865,Lube Avto Shipping (Apex),Irvington,NJ,07111,51,150,standard
+IAAI Pittsburgh-North,Gibsonia,PA,15044,Lube Avto Shipping (Apex),Irvington,NJ,07111,362,355,standard
+Copart Bismarck,Bismarck,ND,58504,Lube Avto Shipping (Apex),Irvington,NJ,07111,1618,1050,standard
+Copart San Antonio,San Antonio,TX,78224,TRT International - Argus Motors,La Porte,TX,77571,228,225,standard
+IAAI Sacramento,Rancho Cordova,CA,95742,TRT International - PACLOGISTIC,Gardena,CA,90248,402,300,standard
+Manheim Pennsylvania,Manheim,PA,17545,Lube Avto Shipping (Apex),Irvington,NJ,07111,159,200,standard
+Copart Grantville,Grantville,PA,17028,Lube Avto Shipping (Apex),Irvington,NJ,07111,142,230,standard
+Manheim California,Anaheim,CA,92807,TRT International - PACLOGISTIC,Gardena,CA,90248,31,150,standard
+IAAI Omaha South,Greenwood,NE,68366,TRT International,Rincon,GA,31326,1239,900,standard
+Copart Pittsburgh,West Mifflin,PA,15122,Lube Avto Shipping (Apex),Irvington,NJ,07111,347,400,standard
+IAAI Flint,Flint,MI,48507,Lube Avto Shipping (Apex),Irvington,NJ,07111,656,560,standard
+Copart Lawrenceburg,Lawrenceburg,KY,40342,TRT International,Rincon,GA,31326,604,475,standard
+Copart Atlanta North,Gainesville,GA,30507,TRT International,Rincon,GA,31326,236,275,standard
+IAAI St. Louis,Caseyville,IL,62232,TRT International,Rincon,GA,31326,787,550,standard
+IAAI Houston North,Houston,TX,77032,TRT International - Argus Motors,La Porte,TX,77571,35,110,standard
+Copart Pennsburg,Pennsburg,PA,18073,Lube Avto Shipping (Apex),Irvington,NJ,07111,87,175,standard
+Copart Opa Locka,Opa Locka,FL,33054,TRT International,Rincon,GA,31326,484,275,standard
+Copart Thonotosassa,Thonotosassa,FL,33592,TRT International,Rincon,GA,31326,336,270,standard
+IAAI Hartford,East Windsor,CT,06088,Lube Avto Shipping (Apex),Irvington,NJ,07111,152,275,standard
+Copart Center Rutland,Center Rutland,VT,05736,Lube Avto Shipping (Apex),Irvington,NJ,07111,249,425,standard
+IAAI Miami-North 2,Pembroke Pines,FL,33332,TRT International,Rincon,GA,31326,487,305,standard
+Copart Elgin,Elgin,IL,60120,Lube Avto Shipping (Apex),Irvington,NJ,07111,821,525,standard
+Copart Pennsburg,Pennsburg,PA,18073,Lube Avto Shipping (Apex),Irvington,NJ,07111,87,150,standard
+IAAI Baltimore,Baltimore,MD,21226,Lube Avto Shipping (Apex),Irvington,NJ,07111,183,230,standard
+Manheim Philadelphia,Hatfield,PA,19440,Lube Avto Shipping (Apex),Irvington,NJ,07111,74,200,standard
+IAAI Houston North,Houston,TX,77032,TRT International - Argus Motors,La Porte,TX,77571,35,150,standard
+Copart Malvern,Malvern,PA,19355,Lube Avto Shipping (Apex),Irvington,NJ,07111,104,250,standard
+Copart Mendon,Mendon,MA,01756,Lube Avto Shipping (Apex),Irvington,NJ,07111,214,325,standard
+IAAI Little Rock,Scott,AR,72142,TRT International - Argus Motors,La Porte,TX,77571,461,405,standard
+Manheim Orlando,Ocoee,FL,34761,TRT International,Rincon,GA,31326,299,375,standard
+Copart American Canyon,American Canyon,CA,94503,TRT International - PACLOGISTIC,Gardena,CA,90248,411,325,standard
+IAAI Greensboro,Graham,NC,27253,TRT International,Rincon,GA,31326,325,300,standard
+IAAI Eugene,Eugene,OR,97402,TRT International - PACLOGISTIC,Gardena,CA,90248,867,555,standard
+IAAI North Hollywood,Los Angeles,CA,91605,TRT International - PACLOGISTIC,Gardena,CA,90248,33,120,standard
+Copart San Martin,San Martin,CA,95046,TRT International - PACLOGISTIC,Gardena,CA,90248,326,350,standard
+ADESA Manville,Manville,NJ,08835,Lube Avto Shipping (Apex),Irvington,NJ,07111,32,160,standard
+IAAI LI Rice Court,Medford,NY,11763,Lube Avto Shipping (Apex),Irvington,NJ,07111,80,190,standard
+IAAI Cleveland,Lorain,OH,44053,Lube Avto Shipping (Apex),Irvington,NJ,07111,473,400,standard
+IAAI Fort Myers,Fort Myers,FL,33913,TRT International,Rincon,GA,31326,475,370,standard
+Copart Jacksonville,Jacksonville,FL,32218,TRT International,Rincon,GA,31326,138,180,standard
+Copart Brighton,Brighton,CO,80603,TRT International - Argus Motors,La Porte,TX,77571,1042,600,standard
+Copart Cahokia Heights,Cahokia Heights,IL,62205,TRT International,Rincon,GA,31326,790,540,standard
+Copart Oklahoma City,Oklahoma City,OK,73129,TRT International - Argus Motors,La Porte,TX,77571,464,350,standard
+Copart Baltimore,Baltimore,MD,21225,Lube Avto Shipping (Apex),Irvington,NJ,07111,181,215,standard
+IAAI Dallas,Wilmer,TX,75172,TRT International - Argus Motors,La Porte,TX,77571,249,200,standard
+Manheim Tulsa,Sapulpa,OK,74066,TRT International - Argus Motors,La Porte,TX,77571,515,400,standard
+IAA St. Louis Granite City,Granite City,IL,62040,TRT International,Rincon,GA,31326,802,540,standard
+Copart Harleyville,Harleyville,SC,29448,TRT International,Rincon,GA,31326,108,145,standard
+Copart Cicero,Cicero,IN,46034,Lube Avto Shipping (Apex),Irvington,NJ,07111,701,525,standard
+Copart Sun Valley,Sun Valley,CA,91352,TRT International - PACLOGISTIC,Gardena,CA,90248,31,120,standard
+Copart Madisonville,Madisonville,TN,37354,TRT International,Rincon,GA,31326,392,350,standard
+Copart Portland,Portland,OR,97218,TRT International - PACLOGISTIC,Gardena,CA,90248,985,515,standard
+Copart Sulphur,Sulphur,LA,70663,TRT International - Argus Motors,La Porte,TX,77571,124,270,standard
+Copart Spartanburg,Spartanburg,SC,29301,TRT International,Rincon,GA,31326,248,250,standard
+IAAI Richmond,Ashland,VA,23005,Lube Avto Shipping (Apex),Irvington,NJ,07111,314,350,standard
+Copart Savannah,Savannah,GA,31405,TRT International,Rincon,GA,31326,23,100,standard
+IAAI Davenport,Davenport,IA,52802,Lube Avto Shipping (Apex),Irvington,NJ,07111,935,530,standard
+Copart Jacksonville,Jacksonville,FL,32218,TRT International,Rincon,GA,31326,138,225,standard
+Copart Seymour,Seymour,MO,65746,TRT International,Rincon,GA,31326,869,560,standard
+IAAI Los Angeles,Gardena,CA,90248,TRT International - PACLOGISTIC,Gardena,CA,90248,0,100,standard
+Copart Le Roy,Le Roy,NY,14482,Lube Avto Shipping (Apex),Irvington,NJ,07111,328,310,standard
+Copart Mobile,Eight Mile,AL,36613,TRT International,Rincon,GA,31326,492,500,standard
+Copart Woodburn,Woodburn,OR,97071,TRT International - PACLOGISTIC,Gardena,CA,90248,949,850,van
+Copart Wayland,Wayland,MI,49348,Lube Avto Shipping (Apex),Irvington,NJ,07111,731,750,standard
+IAAI Spokane,Spokane Valley,WA,99216,TRT International - PACLOGISTIC,Gardena,CA,90248,1229,800,standard
+IAAI Lexington,Lexington,SC,29073,TRT International,Rincon,GA,31326,121,170,standard
+IAA Englishtown,Englishtown,NJ,07726,Lube Avto Shipping (Apex),Irvington,NJ,07111,35,115,standard
+IAAI Los Angeles,Gardena,CA,90248,TRT International - PACLOGISTIC,Gardena,CA,90248,0,90,standard
+Copart Vallejo,Vallejo,CA,94590,TRT International - PACLOGISTIC,Gardena,CA,90248,397,305,standard
+Copart New Britain,New Britain,CT,06051,Lube Avto Shipping (Apex),Irvington,NJ,07111,132,200,standard
+Copart Elgin,Elgin,IL,60120,Lube Avto Shipping (Apex),Irvington,NJ,07111,821,550,standard
+Copart Byron,Byron,GA,31008,TRT International,Rincon,GA,31326,179,200,standard
+IAAI Los Angeles,Gardena,CA,90248,TRT International - PACLOGISTIC,Gardena,CA,90248,0,100,standard
+Copart Colton,Colton,CA,92324,TRT International - PACLOGISTIC,Gardena,CA,90248,65,150,standard
+IAAI Indianapolis,Indianapolis,IN,46217,Lube Avto Shipping (Apex),Irvington,NJ,07111,704,525,standard
+Copart Newburgh,Newburgh,NY,12550,Lube Avto Shipping (Apex),Irvington,NJ,07111,66,175,standard
+Copart North Billerica,North Billerica,MA,01862,Lube Avto Shipping (Apex),Irvington,NJ,07111,240,300,standard
+Copart Ham Lake,Ham Lake,MN,55304,Lube Avto Shipping (Apex),Irvington,NJ,07111,1214,550,standard
+IAAI Concord,Concord,NC,28025,TRT International,Rincon,GA,31326,281,250,standard
+IAAI Atlanta East,Winder,GA,30680,TRT International,Rincon,GA,31326,212,275,standard
+Copart Wilmer,Wilmer,TX,75172,TRT International - Argus Motors,La Porte,TX,77571,249,325,van
+Copart Mendon,Mendon,MA,01756,Lube Avto Shipping (Apex),Irvington,NJ,07111,214,250,standard
+Copart Spanaway,Spanaway,WA,98387,TRT International - PACLOGISTIC,Gardena,CA,90248,1117,610,standard
+IAAI East Bay,Bay Point,CA,94565,TRT International - PACLOGISTIC,Gardena,CA,90248,374,325,standard
+Copart Phoenix,Phoenix,AZ,85043,TRT International - PACLOGISTIC,Gardena,CA,90248,371,300,standard
+Manheim Chicago,Matteson,IL,60443,Lube Avto Shipping (Apex),Irvington,NJ,07111,778,550,standard
+Greensboro Auto Auction,Greensboro,NC,27407,TRT International,Rincon,GA,31326,317,300,standard
+Copart American Canyon,American Canyon,CA,94503,TRT International - PACLOGISTIC,Gardena,CA,90248,411,850,van
+Copart Avon,Avon,MN,56310,Lube Avto Shipping (Apex),Irvington,NJ,07111,1276,585,standard
+Copart Chicago Heights,Chicago Heights,IL,60411,Lube Avto Shipping (Apex),Irvington,NJ,07111,770,525,standard
+Copart Chalfont,Chalfont,PA,18914,Lube Avto Shipping (Apex),Irvington,NJ,07111,70,185,standard
+Copart Tampa South,Riverview,FL,33578,TRT International,Rincon,GA,31326,342,275,standard
+IAAI Knoxville,Knoxville,TN,37914,TRT International,Rincon,GA,31326,408,375,standard
+IAAI Dream Rides,Lincoln,IL,62656,Lube Avto Shipping (Apex),Irvington,NJ,07111,892,1200,premium
+IAAI Philadelphia,Conshohocken,PA,19428,Lube Avto Shipping (Apex),Irvington,NJ,07111,90,200,standard
+IAAI Miami-North,Southwest Ranches,FL,33332,TRT International,Rincon,GA,31326,487,325,standard
+Copart Dallas,Grand Prairie,TX,75051,TRT International - Argus Motors,La Porte,TX,77571,272,220,standard
+Copart Savannah,Savannah,GA,31405,TRT International,Rincon,GA,31326,23,100,standard
+IAAI LI Rice Court,Medford,NY,11763,Lube Avto Shipping (Apex),Irvington,NJ,07111,80,175,standard
+Copart Earlington,Earlington,KY,42410,TRT International,Rincon,GA,31326,589,400,standard
+Copart American Canyon,American Canyon,CA,94503,TRT International - PACLOGISTIC,Gardena,CA,90248,411,350,standard
+ADESA Colorado Springs,Fountain,CO,80817,TRT International - Argus Motors,La Porte,TX,77571,968,500,standard
+Manheim Fredericksburg,Fredericksburg,VA,22406,Lube Avto Shipping (Apex),Irvington,NJ,07111,271,300,standard
+Copart Hurricane,Hurricane,WV,25526,TRT International,Rincon,GA,31326,539,550,standard
+Copart Sacramento,Sacramento,CA,95828,TRT International - PACLOGISTIC,Gardena,CA,90248,394,350,standard
+IAAI Oklahoma City,Oklahoma City,OK,73121,TRT International - Argus Motors,La Porte,TX,77571,472,350,standard
+IAAI Albuquerque,Albuquerque,NM,87105,TRT International - Argus Motors,La Porte,TX,77571,925,600,standard
+IAAI Fontana,Fontana,CA,92335,TRT International - PACLOGISTIC,Gardena,CA,90248,59,175,standard
+IAAI Indianapolis,Indianapolis,IN,46217,Lube Avto Shipping (Apex),Irvington,NJ,07111,704,520,standard
+IAAI Gulf Coast,Moss Point,MS,39562,TRT International,Rincon,GA,31326,541,375,standard
+Copart Fresno,Fresno,CA,93725,TRT International - PACLOGISTIC,Gardena,CA,90248,227,225,standard
+Copart Tucson,Tucson,AZ,85706,TRT International - PACLOGISTIC,Gardena,CA,90248,496,300,standard
+Manheim Fort Lauderdale,Davie,FL,33314,TRT International,Rincon,GA,31326,471,450,standard
+Copart Pennsburg,Pennsburg,PA,18073,Lube Avto Shipping (Apex),Irvington,NJ,07111,87,200,standard
+Manheim Northstar,Shakopee,MN,55379,Lube Avto Shipping (Apex),Irvington,NJ,07111,1217,600,standard
+Copart Angola,Angola,NY,14006,Lube Avto Shipping (Apex),Irvington,NJ,07111,379,500,standard
+Copart Las Vegas,Las Vegas,NV,89165,TRT International - PACLOGISTIC,Gardena,CA,90248,274,325,standard
+Copart Austell,Austell,GA,30168,TRT International,Rincon,GA,31326,253,275,standard
+Copart Bakersfield,Bakersfield,CA,93307,TRT International - PACLOGISTIC,Gardena,CA,90248,116,225,standard
+Copart Marlboro,Marlboro,NY,12542,Lube Avto Shipping (Apex),Irvington,NJ,07111,74,200,standard
+Copart St Louis,Bridgeton,MO,63044,TRT International,Rincon,GA,31326,813,500,standard
+IAAI Kansas City,Kansas City,KS,66111,TRT International,Rincon,GA,31326,1057,550,standard
+IAAI Jacksonville Pecan Park,Jacksonville,FL,32218,TRT International,Rincon,GA,31326,138,250,standard
+IAAI Omaha,Springfield,NE,68059,TRT International - Argus Motors,La Porte,TX,77571,921,675,standard
+Copart San Diego,San Diego,CA,92154,TRT International - PACLOGISTIC,Gardena,CA,90248,137,205,standard
+Copart San Diego,San Diego,CA,92154,TRT International - PACLOGISTIC,Gardena,CA,90248,137,200,standard
+Copart Fresno,Fresno,CA,93725,TRT International - PACLOGISTIC,Gardena,CA,90248,227,225,standard
+IAAI McAllen,Donna,TX,78537,TRT International - Argus Motors,La Porte,TX,77571,375,505,standard
+Copart West Warren,West Warren,MA,01092,Lube Avto Shipping (Apex),Irvington,NJ,07111,187,260,standard
+Copart Elgin,Elgin,IL,60120,Lube Avto Shipping (Apex),Irvington,NJ,07111,821,500,standard
+Copart Houston,Houston,TX,77073,TRT International - Argus Motors,La Porte,TX,77571,40,125,standard
+Copart Newburgh,Newburgh,NY,12550,Lube Avto Shipping (Apex),Irvington,NJ,07111,66,175,standard
+Copart Fredericksburg,Fredericksburg,VA,22408,Lube Avto Shipping (Apex),Irvington,NJ,07111,280,315,standard
+IAAI Miami-North 2,Pembroke Pines,FL,33332,TRT International,Rincon,GA,31326,487,423,standard
+IAAI Pensacola,Milton,FL,32583,TRT International,Rincon,GA,31326,473,350,standard
+IAAI Houston North,Houston,TX,77032,TRT International - Argus Motors,La Porte,TX,77571,35,150,standard
+IAAI Rochester,Bergen,NY,14416,Lube Avto Shipping (Apex),Irvington,NJ,07111,342,325,standard
+IAAI Terminal Drive,Lorain,OH,44053,Lube Avto Shipping (Apex),Irvington,NJ,07111,473,470,standard
+IAAI Little Rock,Scott,AR,72142,TRT International,Rincon,GA,31326,750,500,standard
+IAAI LI East Yard,Medford,NY,11763,Lube Avto Shipping (Apex),Irvington,NJ,07111,80,200,standard
+Copart Knightdale,Knightdale,NC,27545,TRT International,Rincon,GA,31326,328,275,standard
+Copart Windham,Windham,ME,04062,Lube Avto Shipping (Apex),Irvington,NJ,07111,342,350,standard
+Copart Chicago Heights,Chicago Heights,IL,60411,Lube Avto Shipping (Apex),Irvington,NJ,07111,770,550,standard
+Copart Woodhaven,Woodhaven,MI,48183,Lube Avto Shipping (Apex),Irvington,NJ,07111,586,505,standard
+IAAI Houston South,Rosharon,TX,77583,TRT International - Argus Motors,La Porte,TX,77571,48,150,standard
+Copart Lebanon,Lebanon,TN,37090,TRT International,Rincon,GA,31326,486,330,standard
+Copart Spanaway,Spanaway,WA,98387,TRT International - PACLOGISTIC,Gardena,CA,90248,1117,625,standard
+Copart Littleton,Littleton,CO,80125,TRT International - Argus Motors,La Porte,TX,77571,1037,580,standard
+Copart Finksburg,Finksburg,MD,21048,Lube Avto Shipping (Apex),Irvington,NJ,07111,199,250,standard
+Copart Elgin,Elgin,IL,60120,Lube Avto Shipping (Apex),Irvington,NJ,07111,821,515,standard
+Copart Opa Locka,Opa Locka,FL,33054,TRT International,Rincon,GA,31326,484,350,standard
+IAAI LI Rice Court,Medford,NY,11763,Lube Avto Shipping (Apex),Irvington,NJ,07111,80,388,expedited
+Copart Rancho Cucamonga,Rancho Cucamonga,CA,91739,TRT International - PACLOGISTIC,Gardena,CA,90248,59,170,standard
+Copart Phoenix,Phoenix,AZ,85085,Cedars Express Intl,Compton,CA,90221,392,300,standard
+Private seller,Miami,FL,33131,Private residence,Lexington,MA,02421,1492,975,standard
+RT43 Auto Group,New Lebanon,NY,12125,Broadway Motoring,Ayer,MA,01432,140,335,standard
+Private seller,Greenville,DE,19807,Private residence,Chatsworth,CA,91311,2717,1600,standard
+Atlantic Hyundai,West Islip,NY,11795,Broadway Motoring,Ayer,MA,01432,230,330,standard
+IAA Akron-Canton,New Philadelphia,OH,44663,Oak Tree Auto Body,Morganville,NJ,07751,452,525,standard
+IAA Templeton,Templeton,MA,01468,Oak Tree Auto Body,Morganville,NJ,07751,233,300,standard
+Broadway Motoring,Ayer,MA,01432,Broadway Motoring,Derry,NH,03038,47,140,standard
+United Auto Sales of Utica,Yorkville,NY,13495,Broadway Motoring,Ayer,MA,01432,256,335,standard
