@@ -156,5 +156,9 @@
     "errZipDelivery": "Wprowadź prawidłowy 5-cyfrowy kod pocztowy dostawy.",
     "errContact": "Podaj email lub telefon, abyśmy mogli się skontaktować.",
     "errContactFormat": "Użyj prawidłowego email lub 10-cyfrowego numeru telefonu."
+  },
+  "reviews": {
+    "title": "Co mówią nasi klienci",
+    "verified": "Zweryfikowany klient Y7"
   }
 }

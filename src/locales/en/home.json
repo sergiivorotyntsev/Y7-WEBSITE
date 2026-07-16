@@ -156,5 +156,9 @@
     "errZipDelivery": "Enter a valid 5-digit delivery ZIP.",
     "errContact": "Enter an email or phone so we can get back to you.",
     "errContactFormat": "Use a valid email or a 10-digit phone number."
+  },
+  "reviews": {
+    "title": "What Our Customers Say",
+    "verified": "Verified Y7 Customer"
   }
 }

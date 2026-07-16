@@ -9,6 +9,7 @@ import BaitQuote from '../components/BaitQuote/BaitQuote';
 import Reveal from '../components/Reveal/Reveal';
 import AudienceCards from '../components/AudienceCards';
 import Advantages from '../components/Advantages';
+import ProcessSteps from '../components/ProcessSteps';
 import PortPills from '../components/PortPills';
 import CoverageMap from '../components/CoverageMap';
 import LiveActivityFeed from '../components/LiveActivityFeed';
@@ -114,9 +115,6 @@ export default function Home() {
         <BaitQuote onPrimaryCta={scrollToQuote} onSecondaryCta={scrollToQuote} />
       </section>
 
-      {/* External reviews strip (visible when env vars set) */}
-      <ExternalReviewsStrip />
-
       {/* 2. Serve-cards — manifest band (DESIGN-V2-W2-T03). Section opener =
           eyebrow + condensed H2 (Kicker-Headline Pair). B2B-first card order. */}
       <section className={v2s.manifest}>
@@ -134,6 +132,20 @@ export default function Home() {
       {/* 3. Advantages — board band (T04): merges Benefits + WhyY7 (12 cards)
           + TrustSection protection accordion; H2/H3 per the approved decision. */}
       <Advantages />
+
+      {/* 4. Process — manifest band (T05): existing 5-step howItWorks copy. */}
+      <ProcessSteps />
+
+      {/* 5. Reviews — board band (T05), between Process and Coverage per the
+          SEO contract. Opener varies (no eyebrow): the carousel's own h3 leads. */}
+      <section className={v2s.board}>
+        <div className={v2s.inner}>
+          <ScrollReveal>
+            <ReviewsCarousel />
+            <ExternalReviewsStrip />
+          </ScrollReveal>
+        </div>
+      </section>
 
       {/* 3b. Live Activity Feed + Trust Bar: retired in T09 (stats absorbed by
           the hero quartet; feed killed by decision). */}
@@ -160,14 +172,6 @@ export default function Home() {
           <TrustBadges layout="horizontal" variant="compact" />
         </div>
       </section>
-
-      {/* 9. Testimonials */}
-      <ScrollReveal style={{ padding: 'clamp(60px, 8vh, 100px) 24px', background: 'var(--bg-muted)' }}>
-        <div className={styles.sectionHeader}>
-          <span className={styles.sectionMicro}>&#9670; {t('sections.testimonials')}</span>
-        </div>
-        <ReviewsCarousel />
-      </ScrollReveal>
 
       {/* 10. Port Pills */}
       <ScrollReveal style={{ padding: 'clamp(60px, 8vh, 100px) 24px' }}>

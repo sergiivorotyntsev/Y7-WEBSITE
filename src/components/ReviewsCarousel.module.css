@@ -1,4 +1,7 @@
-/* ReviewsCarousel — single-card quote carousel with auto-advance. */
+/* ReviewsCarousel — DESIGN-V2-W2-T05: editorial pull-quote on the board band.
+   Surfaces from v2 tokens; quote card = panel tier. The decorative opening
+   quote mark sits at 9% red alpha (Signal Budget low-alpha exemption, same
+   tier as the step numeral watermark). */
 
 .wrap {
   max-width: 680px;
@@ -7,56 +10,51 @@
 }
 
 .heading {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.3rem, 2vw, 1.65rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--v2-text-on-dark);
   margin: 0 0 8px;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+  line-height: 1.05;
 }
 
 .aggregate {
-  font-family: var(--font-sans, system-ui);
-  font-size: 13px;
-  color: var(--text-muted, #706E68);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 12px;
+  color: var(--v2-text-on-dark-muted);
   margin: 0 0 20px;
 }
 
 .aggregateStar {
-  color: #F5A623;
+  color: var(--v2-text-on-dark);
   font-weight: 700;
 }
 
-/* =====================================================================
-   CARD — with large serif opening quote mark
-   ===================================================================== */
-
 .card {
   position: relative;
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-xl, 16px);
+  background: var(--v2-panel);
+  border: 1px solid var(--v2-line-on-dark);
+  border-radius: var(--v2-radius-lg);
   padding: clamp(32px, 5vw, 44px) clamp(24px, 4vw, 36px);
   min-height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  box-shadow: var(--shadow-md, 0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06));
+  box-shadow: var(--v2-inset-toplight);
   overflow: hidden;
 }
 
-/* Large decorative opening quote mark */
 .card::before {
   content: '\201C';
   position: absolute;
   top: -8px;
   left: 16px;
-  font-family: var(--font-serif, Georgia, serif);
+  font-family: var(--v2-font-display);
   font-size: 6rem;
   line-height: 1;
-  color: var(--success, #0F6E56);
-  opacity: 0.18;
+  color: rgba(215, 15, 36, 0.09);
   pointer-events: none;
 }
 
@@ -75,23 +73,21 @@
   display: flex;
   justify-content: center;
   gap: 2px;
-  color: #F5A623;
+  color: var(--v2-text-on-dark-secondary);
 }
 
 .quoteText {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  font-size: clamp(1rem, 1.6vw, 1.1rem);
   font-style: italic;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-text-on-dark);
   line-height: 1.7;
   margin: 18px 0 14px;
 }
 
 .author {
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
   font-weight: 700;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-text-on-dark);
   letter-spacing: 0.01em;
 }
 
@@ -105,26 +101,24 @@
 
 .badge {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 11px;
-  padding: 3px 10px;
-  border-radius: var(--radius-pill, 20px);
-  background: var(--bg-muted, #EFECE6);
-  color: var(--text-muted, #706E68);
-  letter-spacing: 0.02em;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: var(--v2-radius-pill);
+  border: 1px solid var(--v2-line-on-dark);
+  color: var(--v2-text-on-dark-secondary);
+  background: transparent;
 }
 
 .verified {
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  color: var(--text-muted, #706E68);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  color: var(--v2-text-on-dark-muted);
   margin-top: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
 }
-
-/* =====================================================================
-   NAVIGATION DOTS
-   ===================================================================== */
 
 .dots {
   display: flex;
@@ -138,10 +132,9 @@
   height: 8px;
   border-radius: 50%;
   background: transparent;
-  border: 1.5px solid var(--border, #e5e0d8);
+  border: 1.5px solid var(--v2-line-on-dark-strong);
   cursor: pointer;
   padding: 0;
-  outline: none;
   transition:
     background-color var(--transition-normal, 250ms ease-out),
     border-color var(--transition-normal, 250ms ease-out),
@@ -150,18 +143,19 @@
 
 @media (hover: hover) {
   .dot:hover:not(.dotActive) {
-    border-color: var(--text-muted, #706E68);
-    background: var(--text-muted, #706E68);
+    border-color: var(--v2-text-on-dark-muted);
+    background: var(--v2-text-on-dark-muted);
   }
 }
 
 .dot:focus-visible {
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--success, #0F6E56);
+  outline: 2px solid var(--v2-red-bright);
+  outline-offset: 2px;
 }
 
 .dotActive {
   width: 22px;
-  border-radius: var(--radius-pill, 20px);
-  background: var(--success, #0F6E56);
-  border-color: var(--success, #0F6E56);
+  border-radius: var(--v2-radius-pill);
+  background: var(--v2-text-on-dark-secondary);
+  border-color: var(--v2-text-on-dark-secondary);
 }

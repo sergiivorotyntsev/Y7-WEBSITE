@@ -1,0 +1,42 @@
+/* ProcessSteps — DESIGN-V2-W2-T05. Layout only; card surface/watermark from
+   v2 primitives (cards.step). */
+
+.head {
+  margin-bottom: 28px;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 1100px) {
+  .steps { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .steps { grid-template-columns: 1fr; }
+}
+
+.step {
+  padding: 26px 22px;
+  display: flex;
+  flex-direction: column;
+}
+
+.stepTitle {
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  margin: 40px 0 10px;
+}
+
+.stepDesc {
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--v2-ink-muted);
+  flex: 1;
+}
+
+.stepStat {
+  color: var(--v2-ink-muted);
+}

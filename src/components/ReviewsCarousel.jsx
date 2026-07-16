@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { StarFilledIcon, StarEmptyIcon } from './icons';
 import { API_URL } from '../config';
 import styles from './ReviewsCarousel.module.css';
@@ -21,6 +22,7 @@ function Stars({ count, size = 14 }) {
 }
 
 export default function ReviewsCarousel() {
+  const { t } = useTranslation('home');
   const [reviews, setReviews] = useState(STATIC_TESTIMONIALS);
   const [aggregate, setAggregate] = useState(null);
   const [active, setActive] = useState(0);
@@ -60,7 +62,7 @@ export default function ReviewsCarousel() {
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
     >
-      <h3 className={styles.heading}>What Our Customers Say</h3>
+      <h3 className={styles.heading}>{t('reviews.title')}</h3>
 
       {aggregate && aggregate.total_count > 0 && (
         <p className={styles.aggregate}>
@@ -79,7 +81,7 @@ export default function ReviewsCarousel() {
             {r.vehicle && <span className={styles.badge}>{r.vehicle}</span>}
           </div>
         )}
-        <div className={styles.verified}>Verified Y7 Customer</div>
+        <div className={styles.verified}>{t('reviews.verified')}</div>
       </div>
 
       <div className={styles.dots}>
