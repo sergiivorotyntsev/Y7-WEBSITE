@@ -1,35 +1,21 @@
-import { useEffect, useRef, useState } from 'react';
+import Reveal from './Reveal/Reveal';
 
-const prefersReducedMotion =
-  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-export default function ScrollReveal({ children, delay = 0, style = {} }) {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(prefersReducedMotion);
-
-  useEffect(() => {
-    if (prefersReducedMotion) return;
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
-      { threshold: 0.15 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
+/* DESIGN-V2-W2-T10 blocker fix — ScrollReveal is now a thin delegate to Reveal.
+ *
+ * The old implementation was hidden-by-default (inline opacity:0 until an
+ * IntersectionObserver fired) with NO __Y7_PRERENDER/__Y7_STATIC_SHOWN gates.
+ * Consequence: prerendered snapshots carried 6 mid-page sections with inline
+ * opacity:0 — invisible without JS. That violates the Reveal Gate Rule
+ * (DESIGN.md §6, "hard technical law") and was a pre-existing V1 defect that
+ * W2 verification surfaced. It also used a 20px rise (law caps entrances at
+ * 16px). Reveal is visible-by-default (base opacity 1; the entrance animation
+ * is a progressive enhancement added on scroll-into-view) and carries both
+ * prerender gates, so snapshots bake at rest and no-JS renders everything.
+ */
+export default function ScrollReveal({ children, delay = 0, style, ...rest }) {
   return (
-    <div
-      ref={ref}
-      style={{
-        ...style,
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(20px)',
-        transition: prefersReducedMotion ? 'none' : `opacity 500ms ease ${delay}ms, transform 500ms ease ${delay}ms`,
-      }}
-    >
+    <Reveal delay={delay} style={style} {...rest}>
       {children}
-    </div>
+    </Reveal>
   );
 }
