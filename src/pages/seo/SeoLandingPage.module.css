@@ -1,4 +1,8 @@
-/* SeoLandingPage — shared template for 15+ SEO landing pages. High leverage. */
+/* SeoLandingPage — shared template for 60 routes. High leverage.
+   DESIGN-V2-W3-T02: reskinned onto v2 primitives via composes (Anti-Orphan
+   Rule; JSX untouched). Long-form/SEO page: manifest-paper dominant, the one
+   board moment is the conversion panel (§2 long-form law, dark share ≤25%).
+   Signal Budget: near-zero red — the CTA fill + link/hover shifts only. */
 
 .wrap {
   max-width: 800px;
@@ -7,51 +11,49 @@
 }
 
 .breadcrumb {
-  font-family: var(--font-sans, system-ui);
-  font-size: 13px;
-  color: var(--text-muted, #706E68);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--v2-ink-muted, #5c5851);
   margin-bottom: 24px;
 }
 
 .crumbLink {
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   text-decoration: none;
-  outline: none;
   padding: 2px 4px;
   margin: 0 -4px;
-  border-radius: var(--radius-sm, 4px);
-  transition: color var(--transition-fast, 150ms ease-out), background-color var(--transition-fast, 150ms ease-out);
+  border-radius: var(--v2-radius-sm, 6px);
+  transition: color var(--transition-fast, 150ms ease-out);
 }
 
 @media (hover: hover) {
   .crumbLink:hover {
-    color: var(--accent, #993C1D);
-    background-color: var(--accent-glow, rgba(153, 60, 29, 0.15));
+    color: var(--v2-red-deep, #a90918);
   }
 }
 
 .crumbLink:focus-visible {
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
 }
 
 .crumbSep { margin: 0 6px; }
 
-.crumbCurrent { color: var(--text, #2C2C2A); }
+.crumbCurrent { color: var(--v2-ink, #050607); }
 
+/* Template H1: condensed caps per §4 (Georgia retired from display).
+   Section-display tier — the hero-display clamp is too large for a reading column. */
 .title {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(28px, 4vw, 40px);
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  composes: sectionDisplay from '../../styles/v2/type.module.css';
+  font-size: clamp(1.8rem, 3.2vw, 2.9rem);
+  color: var(--v2-ink, #050607);
   margin: 0 0 16px;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
 }
 
 .intro {
-  font-family: var(--font-sans, system-ui);
   font-size: 16px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.7;
   margin: 0 0 48px;
 }
@@ -64,13 +66,12 @@
   margin-bottom: 40px;
 }
 
+/* Template H2: card-title tier (condensed 600). Plain opener — no eyebrows
+   on body-heavy templates (density + red restraint). */
 .sectionTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  composes: cardTitle from '../../styles/v2/type.module.css';
+  color: var(--v2-ink, #050607);
   margin: 0 0 16px;
-  letter-spacing: -0.02em;
 }
 
 .list {
@@ -82,9 +83,8 @@
 }
 
 .listItem {
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.7;
 }
 
@@ -104,38 +104,39 @@
   align-items: flex-start;
 }
 
+/* Step numeral: mono data voice in a hairline ring — no red fills in the
+   reading flow (Signal Budget). */
 .stepNum {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: var(--accent, #993C1D);
-  color: #fff;
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  color: var(--v2-ink, #050607);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
-  font-family: var(--font-sans, system-ui);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
   flex-shrink: 0;
 }
 
 .stepTitle {
-  font-family: var(--font-sans, system-ui);
   font-size: 15px;
   font-weight: 600;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   margin-bottom: 4px;
 }
 
 .stepDesc {
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.7;
 }
 
 /* =====================================================================
-   CAPABILITIES GRID
+   CAPABILITIES GRID — cream cards from the v2 primitive
    ===================================================================== */
 
 .capabilityGrid {
@@ -145,26 +146,11 @@
 }
 
 .capability {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-lg, 12px);
+  composes: paper from '../../styles/v2/cards.module.css';
   padding: 16px 20px;
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   line-height: 1.6;
-  transition:
-    transform var(--transition-normal, 250ms ease-out),
-    border-color var(--transition-normal, 250ms ease-out),
-    box-shadow var(--transition-normal, 250ms ease-out);
-}
-
-@media (hover: hover) {
-  .capability:hover {
-    transform: translateY(-2px);
-    border-color: var(--accent, #993C1D);
-    box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.04));
-  }
 }
 
 /* =====================================================================
@@ -178,39 +164,34 @@
 }
 
 .faq {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-lg, 12px);
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
   overflow: hidden;
-  transition:
-    border-color var(--transition-normal, 250ms ease-out),
-    box-shadow var(--transition-normal, 250ms ease-out);
+  transition: border-color var(--transition-normal, 250ms ease-out);
 }
 
 @media (hover: hover) {
   .faq:hover {
-    border-color: var(--text-muted, #706E68);
+    border-color: rgba(5, 6, 7, 0.4);
   }
 }
 
 .faq[open] {
-  border-color: var(--accent, #993C1D);
-  box-shadow: 0 2px 12px rgba(153, 60, 29, 0.06);
+  border-color: rgba(5, 6, 7, 0.4);
 }
 
 .faqSummary {
   list-style: none;
   padding: 16px 24px;
-  font-family: var(--font-sans, system-ui);
   font-size: 15px;
   font-weight: 600;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  outline: none;
   transition: background-color var(--transition-fast, 150ms ease-out);
 }
 
@@ -219,13 +200,13 @@
 }
 
 .faqSummary:focus-visible {
-  background-color: var(--bg-muted, #EFECE6);
-  box-shadow: inset 0 0 0 2px var(--accent, #993C1D);
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: -2px;
 }
 
 @media (hover: hover) {
   .faqSummary:hover {
-    background-color: rgba(247, 245, 240, 0.6);
+    background-color: var(--v2-paper, #f4f0e8);
   }
 }
 
@@ -233,7 +214,7 @@
   flex-shrink: 0;
   width: 14px;
   height: 14px;
-  color: var(--accent, #993C1D);
+  color: var(--v2-ink-muted, #5c5851);
   transition: transform var(--transition-normal, 250ms ease-out);
 }
 
@@ -243,9 +224,8 @@
 
 .faqA {
   padding: 0 24px 18px;
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.75;
   margin: 0;
 }
@@ -262,71 +242,41 @@
 }
 
 /* =====================================================================
-   CTA — accent background strip
+   CTA — the page's one board moment (§2: at most one mid-page conversion
+   band on long-form pages). Red never a section background; the panel is
+   board-black, the red lives in the CTA button fill (the viewport's one).
    ===================================================================== */
 
 .ctaBlock {
   margin-top: clamp(40px, 6vh, 56px);
-  background: linear-gradient(135deg, var(--accent, #993C1D) 0%, var(--accent-hover, #7A3017) 100%);
-  border-radius: var(--radius-xl, 16px);
+  background: var(--v2-board, #050607);
+  border: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
+  border-radius: var(--v2-radius-xl, 22px);
   padding: clamp(32px, 5vh, 48px) clamp(24px, 4vw, 40px);
   text-align: center;
-  color: #fff;
-  box-shadow: 0 12px 32px rgba(153, 60, 29, 0.18);
+  color: var(--v2-text-on-dark, #fff7ed);
+  box-shadow: var(--v2-board-depth, 0 24px 70px rgba(0, 0, 0, 0.3));
 }
 
 .ctaTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.2rem, 2.2vw, 1.5rem);
-  font-weight: 700;
-  color: #fff;
+  composes: cardTitle from '../../styles/v2/type.module.css';
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  color: var(--v2-text-on-dark, #fff7ed);
   margin: 0 0 8px;
-  letter-spacing: -0.02em;
 }
 
 .ctaSubtitle {
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   margin: 0 0 20px;
   line-height: 1.7;
 }
 
 .ctaBtn {
-  background: #fff !important;
-  color: var(--accent, #993C1D) !important;
-  padding: 14px 32px !important;
-  font-size: 13px !important;
-  border-radius: 24px !important;
-  display: inline-block;
+  composes: cta from '../../styles/v2/buttons.module.css';
+  padding: 14px 32px;
+  font-size: 15px;
   text-decoration: none;
-  font-family: var(--font-sans, system-ui);
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  transition:
-    background-color var(--transition-fast, 150ms ease-out),
-    transform var(--transition-fast, 150ms ease-out),
-    box-shadow var(--transition-normal, 250ms ease-out);
-}
-
-@media (hover: hover) {
-  .ctaBtn:hover {
-    background: var(--bg, #F7F5F0) !important;
-    color: var(--accent-hover, #7A3017) !important;
-    transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-  }
-  .ctaBtn:active {
-    transform: scale(0.97);
-  }
-}
-
-.ctaBtn:focus-visible {
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.6);
 }
 
 /* =====================================================================
@@ -334,18 +284,25 @@
    ===================================================================== */
 
 .relatedBlock {
-  border-top: 1px solid var(--border, #e5e0d8);
+  border-top: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
   padding-top: 32px;
 }
 
 .relatedHeading {
-  font-family: var(--font-sans, system-ui);
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text, #2C2C2A);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  composes: monoLabel from '../../styles/v2/type.module.css';
+  color: var(--v2-ink-muted, #5c5851);
   margin: 0 0 16px;
+}
+
+.relatedPill {
+  composes: chipOnPaper from '../../styles/v2/cards.module.css';
+  font-size: 12px;
+  color: var(--v2-ink, #050607);
+  background: var(--v2-card-cream, #fffaf1);
+  text-decoration: none;
+  transition:
+    color var(--transition-fast, 150ms ease-out),
+    border-color var(--transition-fast, 150ms ease-out);
 }
 
 .relatedPills {
@@ -354,31 +311,14 @@
   gap: 10px;
 }
 
-.relatedPill {
-  font-family: var(--font-sans, system-ui);
-  font-size: 13px;
-  color: var(--accent, #993C1D);
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-pill, 20px);
-  padding: 8px 16px;
-  text-decoration: none;
-  outline: none;
-  transition:
-    border-color var(--transition-fast, 150ms ease-out),
-    background-color var(--transition-fast, 150ms ease-out),
-    transform var(--transition-fast, 150ms ease-out);
-}
-
 @media (hover: hover) {
   .relatedPill:hover {
-    border-color: var(--accent, #993C1D);
-    background-color: #FFF8F5;
-    transform: translateY(-1px);
+    color: var(--v2-red-deep, #a90918);
+    border-color: rgba(5, 6, 7, 0.4);
   }
 }
 
 .relatedPill:focus-visible {
-  border-color: var(--accent, #993C1D);
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
 }
