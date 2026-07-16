@@ -123,7 +123,7 @@ export default function FAQ() {
       )}
 
       <section className={styles.hero}>
-        <span className={styles.kicker}>&#9670; {heroKicker}</span>
+        <span className={styles.kicker}>{heroKicker}</span>
         <h1 className={styles.title}>{t('title')}</h1>
         <p className={styles.subtitle}>{t('subtitle')}</p>
         {lastUpdated && (
@@ -134,7 +134,7 @@ export default function FAQ() {
       <div className={styles.body}>
         {tldr && (
           <aside className={styles.tldr} aria-label={tldrAriaLabel}>
-            <span className={styles.tldrKicker}>&#9670; {tldrKicker}</span>
+            <span className={styles.tldrKicker}>{tldrKicker}</span>
             <p className={styles.tldrText}>{tldr}</p>
           </aside>
         )}
@@ -156,7 +156,7 @@ export default function FAQ() {
           <section key={sec.anchor} id={sec.anchor} className={styles.section} style={{ '--i': i }}>
             <div className={styles.sectionHead}>
               {sec.kicker && (
-                <span className={styles.sectionKicker}>&#9670; {sec.kicker}</span>
+                <span className={styles.sectionKicker}>{sec.kicker}</span>
               )}
               <h2 className={styles.sectionTitle}>{sec.name}</h2>
             </div>

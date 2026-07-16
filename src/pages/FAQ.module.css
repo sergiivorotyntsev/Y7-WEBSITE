@@ -1,315 +1,246 @@
-/* FAQ page — Trade Bulletin restyle.
-   Entity TL;DR, in-page nav, three always-open sections (General / Dealers /
-   Exporters), each a flat card of native <details> Q&A rows. Flat-by-default,
-   One-Seal accent, <=3px hover lift, no glassmorphism, SSR-safe. */
+/* FAQ hub — DESIGN-V2-W5-T01. Link-hub rule (§2, W4 ruling): dark = the hero
+   band only (no closing CTA on this page); 29-Q catalog stays manifest.
+   Q/A strings, links[] data and the FAQPage JSON-LD are FROZEN (contract §7,
+   link-injection law) — this file restyles shells and typography only. */
 
 .wrap {
-  max-width: 860px;
-  margin: 0 auto;
   padding: 0 0 80px;
+  background: var(--v2-paper, #f4f0e8);
 }
 
+/* HERO — board band */
 .hero {
-  padding: clamp(56px, 8vh, 80px) 24px clamp(28px, 4vh, 40px);
+  padding: clamp(56px, 9vh, 96px) 24px clamp(36px, 5vh, 56px);
   text-align: center;
-  background:
-    radial-gradient(circle at 50% 100%, rgba(153, 60, 29, 0.05), transparent 62%),
-    linear-gradient(180deg, var(--bg, #F7F5F0) 0%, var(--bg-muted, #EFECE6) 100%);
+  background: var(--v2-board, #050607);
+  color: var(--v2-text-on-dark, #fff7ed);
   margin-bottom: clamp(28px, 4vh, 44px);
 }
 
 .kicker {
   display: inline-block;
-  font-family: var(--font-sans, system-ui);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
+  font-weight: 500;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--v2-track-eyebrow, 0.18em);
   margin-bottom: 12px;
 }
 
 .title {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.9rem, 3.6vw, 3rem);
   font-weight: 700;
-  color: var(--text, #2C2C2A);
-  margin: 0 0 12px;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  letter-spacing: var(--v2-track-section, 0.035em);
+  text-transform: uppercase;
+  line-height: 0.98;
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin: 0 0 10px;
 }
 
 .subtitle {
-  font-family: var(--font-sans, system-ui);
-  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
-  color: var(--text-muted, #706E68);
+  font-size: clamp(1rem, 1.4vw, 1.1rem);
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+  line-height: 1.6;
   margin: 0 auto;
-  line-height: 1.7;
-  max-width: 620px;
+  max-width: 560px;
 }
 
 .updated {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 11px;
-  letter-spacing: 0.04em;
-  color: var(--text-hint, #999);
-  margin: 16px 0 0;
+  letter-spacing: 0.08em;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  margin: 14px 0 0;
 }
 
+/* BODY */
 .body {
-  max-width: 760px;
+  max-width: 860px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
-/* =====================================================================
-   ENTITY TL;DR — machine-extractable definition of Y7
-   ===================================================================== */
-
+/* TL;DR aside — extractable-answer card (EntityTldr treatment) */
 .tldr {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-lg, 12px);
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
   padding: 22px 26px;
-  margin-bottom: clamp(28px, 4vh, 40px);
-  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06));
+  margin-bottom: 28px;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
 }
 
 .tldrKicker {
   display: block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 10.5px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--v2-ink-muted, #5c5851);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--v2-track-label, 0.14em);
   margin-bottom: 10px;
 }
 
 .tldrText {
-  font-family: var(--font-serif, Georgia, serif);
   font-size: clamp(0.95rem, 1.5vw, 1.05rem);
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   line-height: 1.65;
   margin: 0;
 }
 
-/* =====================================================================
-   IN-PAGE NAV
-   ===================================================================== */
-
+/* Jump nav — mono chips */
 .jumpNav {
   display: flex;
+  align-items: baseline;
+  gap: 12px;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 10px 14px;
-  margin-bottom: clamp(32px, 5vh, 48px);
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border, #e5e0d8);
+  margin-bottom: clamp(28px, 4vh, 40px);
 }
 
 .jumpLabel {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: var(--v2-track-label, 0.14em);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-hint, #999);
+  color: var(--v2-ink-muted, #5c5851);
 }
 
 .jumpLinks {
   display: flex;
-  flex-wrap: wrap;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .jumpLink {
-  font-family: var(--font-sans, system-ui);
-  font-size: 12.5px;
-  font-weight: 600;
-  color: var(--text, #2C2C2A);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--v2-ink, #050607);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-pill, 999px);
+  padding: 7px 12px;
   text-decoration: none;
-  padding: 7px 14px;
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-pill, 20px);
-  background: var(--bg-card, #fff);
-  transition:
-    transform var(--transition-fast, 150ms ease-out),
-    border-color var(--transition-fast, 150ms ease-out),
-    color var(--transition-fast, 150ms ease-out);
+  transition: color var(--transition-fast, 150ms ease-out), border-color var(--transition-fast, 150ms ease-out);
 }
-
-@media (hover: hover) {
-  .jumpLink:hover {
-    transform: translateY(-2px);
-    border-color: var(--accent, #993C1D);
-    color: var(--accent, #993C1D);
-  }
+.jumpLink:hover {
+  color: var(--v2-red-deep, #a90918);
+  border-color: rgba(5, 6, 7, 0.4);
 }
-
 .jumpLink:focus-visible {
-  outline: 2px solid var(--accent, #993C1D);
+  outline: 2px solid var(--v2-red, #d70f24);
   outline-offset: 2px;
 }
 
-/* =====================================================================
-   SECTION — always-open, serif headline + tracked kicker
-   ===================================================================== */
-
+/* SECTIONS */
 .section {
-  margin-bottom: clamp(40px, 6vh, 60px);
-  scroll-margin-top: 96px;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .section {
-    opacity: 0;
-    animation: faqSectionIn 500ms ease-out forwards;
-    animation-delay: calc(var(--i, 0) * 80ms);
-  }
-}
-
-@keyframes faqSectionIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  margin-bottom: clamp(32px, 5vh, 48px);
 }
 
 .sectionHead {
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .sectionKicker {
   display: block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: var(--v2-track-label, 0.14em);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  margin-bottom: 8px;
+  color: var(--v2-ink-muted, #5c5851);
+  margin-bottom: 6px;
 }
 
 .sectionTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.35rem, 2.6vw, 1.7rem);
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
   font-weight: 700;
-  color: var(--text, #2C2C2A);
-  letter-spacing: -0.02em;
-  line-height: 1.15;
+  letter-spacing: var(--v2-track-section, 0.035em);
+  text-transform: uppercase;
+  line-height: 1.02;
+  color: var(--v2-ink, #050607);
   margin: 0;
 }
 
+/* Q&A card: one cream sheet per section, hairline-divided rows */
 .card {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-xl, 16px);
-  padding: 0 24px;
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
   overflow: hidden;
 }
 
-/* =====================================================================
-   Q&A ROW — native <details>/<summary>
-   ===================================================================== */
-
 .qaItem {
-  border-bottom: 1px solid var(--border, #e5e0d8);
+  border-bottom: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
 }
-
-.qaItem:last-child {
-  border-bottom: none;
-}
+.qaItem:last-child { border-bottom: 0; }
 
 .qaSummary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  padding: 18px 0;
-  cursor: pointer;
   list-style: none;
-  outline: none;
-  transition: color var(--transition-fast, 150ms ease-out);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 22px;
+  cursor: pointer;
+  transition: background-color var(--transition-fast, 150ms ease-out);
+}
+.qaSummary::-webkit-details-marker { display: none; }
+
+@media (hover: hover) {
+  .qaSummary:hover { background: var(--v2-paper, #f4f0e8); }
+}
+.qaSummary:focus-visible {
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: -2px;
 }
 
-/* Hide the default disclosure triangle across engines */
-.qaSummary::-webkit-details-marker { display: none; }
-.qaSummary::marker { content: ''; }
-
 .qaQuestion {
-  font-family: var(--font-sans, system-ui);
   font-size: 15px;
   font-weight: 600;
-  color: var(--text, #2C2C2A);
-  line-height: 1.5;
+  color: var(--v2-ink, #050607);
   margin: 0;
+  line-height: 1.4;
 }
 
 .qaChevron {
-  color: var(--accent, #993C1D);
   flex-shrink: 0;
-  display: flex;
-  align-items: center;
+  color: var(--v2-ink-muted, #5c5851);
   transition: transform var(--transition-normal, 250ms ease-out);
+  display: inline-flex;
 }
-
-.qaItem[open] .qaChevron {
-  transform: rotate(90deg);
-}
-
-@media (hover: hover) {
-  .qaSummary:hover .qaQuestion {
-    color: var(--accent, #993C1D);
-  }
-}
-
-.qaSummary:focus-visible {
-  box-shadow: inset 0 0 0 2px var(--accent, #993C1D);
-  border-radius: var(--radius-sm, 4px);
-}
+.qaItem[open] .qaChevron { transform: rotate(90deg); }
 
 .qaAnswer {
-  font-family: var(--font-sans, system-ui);
+  padding: 0 22px 18px;
   font-size: 14px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.75;
-  padding: 0 0 20px;
   margin: 0;
-  max-width: 66ch;
-}
-
-.answerLink {
-  color: var(--accent, #993C1D);
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  text-decoration-thickness: 1px;
-  transition: color var(--transition-fast, 150ms ease-out);
-}
-
-@media (hover: hover) {
-  .answerLink:hover {
-    color: var(--accent-hover, #7A3017);
-  }
-}
-
-.answerLink:focus-visible {
-  outline: 2px solid var(--accent, #993C1D);
-  outline-offset: 2px;
-  border-radius: 2px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .qaItem[open] .qaAnswer {
-    animation: faqAnswerIn 260ms ease-out;
-  }
+  .qaItem[open] .qaAnswer { animation: faqSlide 250ms ease-out; }
 }
-
-@keyframes faqAnswerIn {
+@keyframes faqSlide {
   from { opacity: 0; transform: translateY(-4px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 560px) {
-  .card { padding: 0 18px; }
-  .tldr { padding: 20px; }
+/* Injected answer links — the Body-Link Law */
+.answerLink {
+  color: var(--v2-ink, #050607);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 600;
+  transition: color var(--transition-fast, 150ms ease-out);
+}
+.answerLink:hover { color: var(--v2-red-deep, #a90918); }
+.answerLink:focus-visible {
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
 }
