@@ -16,14 +16,17 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent, #993C1D);
+  color: var(--v2-ink, #050607);
   margin-bottom: 16px;
 }
 
 .heroTitle {
-  font-family: var(--font-serif, Georgia, serif);
+  font-family: var(--v2-font-display);
   font-size: clamp(1.8rem, 4vw, 2.8rem);
   font-weight: 700;
+  letter-spacing: var(--v2-track-section, 0.035em);
+  text-transform: uppercase;
+  line-height: 1.02;
   color: var(--bg, #F7F5F0);
   line-height: 1.15;
   margin-bottom: 16px;
@@ -49,7 +52,7 @@
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: clamp(1.2rem, 2vw, 1.6rem);
   font-weight: 700;
-  color: var(--accent, #993C1D);
+  color: var(--v2-ink, #050607);
 }
 
 .heroStatLabel {
@@ -67,7 +70,7 @@
 
 .filterBar {
   background: var(--bg, #F7F5F0);
-  border-bottom: 1px solid var(--border, #e5e0d8);
+  border-bottom: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
   padding: 16px 24px;
   position: sticky;
   top: 64px;
@@ -95,7 +98,7 @@
   border-radius: 0;
   border: none;
   background: transparent;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   cursor: pointer;
   outline: none;
   transition:
@@ -110,7 +113,7 @@
   right: 0;
   bottom: 0;
   height: 2px;
-  background: var(--accent, #993C1D);
+  background: var(--v2-red-gradient, linear-gradient(135deg, #d70f24, #a90918));
   transform: scaleX(0);
   transform-origin: center;
   transition: transform var(--transition-normal, 250ms ease-out);
@@ -118,7 +121,7 @@
 
 @media (hover: hover) {
   .filterBtn:hover {
-    color: var(--text, #2C2C2A);
+    color: var(--v2-ink, #050607);
   }
   .filterBtn:hover::after {
     transform: scaleX(0.6);
@@ -129,13 +132,14 @@
 }
 
 .filterBtn:focus-visible {
-  color: var(--text, #2C2C2A);
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 3px var(--accent, #993C1D);
+  color: var(--v2-ink, #050607);
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
   border-radius: var(--radius-sm, 4px);
 }
 
 .filterBtnActive {
-  color: var(--accent, #993C1D);
+  color: var(--v2-ink, #050607);
 }
 
 .filterBtnActive::after {
@@ -144,7 +148,7 @@
 
 @media (hover: hover) {
   .filterBtnActive:hover {
-    color: var(--accent, #993C1D);
+    color: var(--v2-ink, #050607);
   }
   .filterBtnActive:hover::after {
     transform: scaleX(1);
@@ -170,7 +174,7 @@
 .card {
   text-decoration: none;
   color: inherit;
-  background: #fff;
+  background: var(--v2-card-cream, #fffaf1);
   border: 1px solid transparent;
   border-radius: var(--radius-lg, 12px);
   overflow: hidden;
@@ -205,7 +209,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: var(--accent, #993C1D);
+  background: var(--v2-red-gradient, linear-gradient(135deg, #d70f24, #a90918));
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--transition-normal, 250ms ease-out);
@@ -216,7 +220,7 @@
   .card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-lg, 0 4px 12px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08));
-    border-color: var(--accent, #993C1D);
+    border-color: var(--v2-ink, #050607);
   }
   .card:hover::before {
     transform: scaleX(1);
@@ -224,8 +228,9 @@
 }
 
 .card:focus-visible {
-  border-color: var(--accent, #993C1D);
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+  border-color: var(--v2-ink, #050607);
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
 }
 .card:focus-visible::before { transform: scaleX(1); }
 
@@ -263,14 +268,17 @@
 .metaText {
   font-family: var(--font-sans, system-ui);
   font-size: 0.78rem;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
 }
 
 .cardTitle {
-  font-family: var(--font-serif, Georgia, serif);
+  font-family: var(--v2-font-display);
   font-size: clamp(1.05rem, 2vw, 1.2rem);
   font-weight: 700;
-  color: var(--text, #2C2C2A);
+  letter-spacing: var(--v2-track-section, 0.035em);
+  text-transform: uppercase;
+  line-height: 1.02;
+  color: var(--v2-ink, #050607);
   line-height: 1.35;
   margin: 0 0 10px;
   letter-spacing: -0.01em;
@@ -279,7 +287,7 @@
 .cardExcerpt {
   font-family: var(--font-sans, system-ui);
   font-size: 0.88rem;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.7;
   flex: 1;
   margin: 0 0 16px;
@@ -294,8 +302,8 @@
 .tag {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 0.7rem;
-  color: var(--text-muted, #706E68);
-  background: var(--bg-muted, #EFECE6);
+  color: var(--v2-ink-muted, #5c5851);
+  background: var(--v2-paper-deep, #eee8dd);
   padding: 2px 8px;
   border-radius: 6px;
   transition: background-color var(--transition-fast, 150ms ease-out);
@@ -308,7 +316,7 @@
 .empty {
   font-family: var(--font-sans, system-ui);
   font-size: 1rem;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   text-align: center;
   padding: 60px 0;
 }
@@ -324,10 +332,13 @@
 }
 
 .clustersTitle {
-  font-family: var(--font-serif, Georgia, serif);
+  font-family: var(--v2-font-display);
   font-size: clamp(1.1rem, 2vw, 1.3rem);
   font-weight: 700;
-  color: var(--text, #2C2C2A);
+  letter-spacing: var(--v2-track-section, 0.035em);
+  text-transform: uppercase;
+  line-height: 1.02;
+  color: var(--v2-ink, #050607);
   margin: 0 0 16px;
   letter-spacing: -0.01em;
   text-align: center;
@@ -348,8 +359,8 @@
   flex-direction: column;
   gap: 6px;
   padding: 18px 20px;
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
   border-radius: var(--radius-lg, 12px);
   cursor: pointer;
   text-align: left;
@@ -359,7 +370,7 @@
 
 @media (hover: hover) {
   .clusterCard:hover {
-    border-color: var(--accent, #993C1D);
+    border-color: var(--v2-ink, #050607);
     transform: translateY(-2px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.06);
   }
@@ -367,15 +378,19 @@
 
 .clusterCard:focus-visible {
   outline: none;
-  border-color: var(--accent, #993C1D);
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+  border-color: var(--v2-ink, #050607);
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
 }
 
 .clusterCardTitle {
-  font-family: var(--font-serif, Georgia, serif);
+  font-family: var(--v2-font-display);
   font-size: 1rem;
   font-weight: 700;
-  color: var(--text, #2C2C2A);
+  letter-spacing: var(--v2-track-section, 0.035em);
+  text-transform: uppercase;
+  line-height: 1.02;
+  color: var(--v2-ink, #050607);
   margin: 0;
   letter-spacing: -0.01em;
 }
@@ -383,7 +398,7 @@
 .clusterCardDesc {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   margin: 0;
   line-height: 1.55;
 }
@@ -392,7 +407,7 @@
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
   font-weight: 700;
-  color: var(--accent, #993C1D);
+  color: var(--v2-ink, #050607);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-top: 4px;

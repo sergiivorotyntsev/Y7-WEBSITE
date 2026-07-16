@@ -34,13 +34,14 @@
 }
 
 .title {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
   font-weight: 700;
-  color: var(--text, #2C2C2A);
-  line-height: 1.2;
+  letter-spacing: var(--v2-track-section, 0.035em);
+  text-transform: uppercase;
+  color: var(--v2-ink, #050607);
+  line-height: 0.98;
   margin: 0 0 16px;
-  letter-spacing: -0.02em;
 }
 
 .meta {
@@ -60,9 +61,9 @@
   gap: 2px;
   padding: 14px 18px;
   margin: 0 0 28px;
-  background: var(--bg-muted, #EFECE6);
-  border-left: 3px solid var(--accent, #993C1D);
-  border-radius: var(--radius-sm, 6px);
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-md, 12px);
   font-family: var(--font-sans, system-ui);
 }
 
@@ -86,12 +87,12 @@
 
 .divider {
   height: 1px;
-  background: var(--border, #e5e0d8);
+  background: var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
   margin-bottom: 32px;
 }
 
 .shareFooter {
-  border-top: 1px solid var(--border, #e5e0d8);
+  border-top: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
   padding-top: 24px;
   margin-top: 36px;
 }
@@ -108,7 +109,7 @@
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 0.75rem;
   color: var(--text-muted, #706E68);
-  background: var(--bg-muted, #EFECE6);
+  background: var(--v2-paper-deep, #eee8dd);
   padding: 4px 12px;
   border-radius: var(--radius-md, 8px);
 }
@@ -117,7 +118,7 @@
   font-family: var(--font-sans, system-ui);
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--accent, #993C1D);
+  color: var(--v2-ink, #050607);
   text-decoration: none;
   outline: none;
   padding: 4px 6px;
@@ -128,13 +129,13 @@
 
 @media (hover: hover) {
   .backLink:hover {
-    color: var(--accent-hover, #7A3017);
-    background-color: var(--accent-glow, rgba(153, 60, 29, 0.15));
+    color: var(--v2-red-deep, #a90918);
   }
 }
 
 .backLink:focus-visible {
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
 }
 
 /* =====================================================================
@@ -142,8 +143,8 @@
    ===================================================================== */
 
 .relatedSection {
-  background: var(--bg-muted, #EFECE6);
-  border-top: 1px solid var(--border, #e5e0d8);
+  background: var(--v2-paper-deep, #eee8dd);
+  border-top: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
   padding: 48px 24px 64px;
 }
 
@@ -153,12 +154,14 @@
 }
 
 .relatedTitle {
-  font-family: var(--font-serif, Georgia, serif);
+  font-family: var(--v2-font-display);
   font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--v2-ink, #050607);
+  line-height: 1.05;
   margin: 0 0 24px;
-  letter-spacing: -0.02em;
 }
 
 .relatedGrid {
@@ -170,7 +173,7 @@
 .relatedCard {
   text-decoration: none;
   color: inherit;
-  background: #fff;
+  background: var(--v2-card-cream, #fffaf1);
   border: 1px solid transparent;
   border-radius: 10px;
   padding: 20px 24px;
@@ -187,13 +190,14 @@
   .relatedCard:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-md, 0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06));
-    border-color: var(--accent, #993C1D);
+    border-color: var(--v2-ink, #050607);
   }
 }
 
 .relatedCard:focus-visible {
-  border-color: var(--accent, #993C1D);
-  box-shadow: 0 0 0 2px var(--bg-muted, #EFECE6), 0 0 0 4px var(--accent, #993C1D);
+  border-color: var(--v2-ink, #050607);
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
 }
 
 .relatedBadge {
@@ -208,7 +212,6 @@
 }
 
 .relatedCardTitle {
-  font-family: var(--font-serif, Georgia, serif);
   font-size: 1rem;
   font-weight: 700;
   color: var(--text, #2C2C2A);
@@ -224,11 +227,11 @@
 }
 
 .relatedServicesBlock {
-  background: var(--bg-muted, #EFECE6);
-  border-left: 3px solid var(--accent, #993C1D);
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
   padding: 20px 24px;
   margin: 36px 0 20px;
-  border-radius: 0 8px 8px 0;
+  border-radius: var(--v2-radius-md, 12px);
 }
 
 .relatedServicesTitle {
@@ -237,7 +240,7 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent, #993C1D);
+  color: var(--v2-ink-muted, #5c5851);
   margin: 0 0 12px;
 }
 
@@ -261,7 +264,7 @@
 
 @media (hover: hover) {
   .relatedServicesLink:hover {
-    color: var(--accent, #993C1D);
+    color: var(--v2-ink, #050607);
   }
 }
 
@@ -272,14 +275,13 @@
 .articleCta {
   margin-top: clamp(32px, 5vh, 48px);
   padding: clamp(20px, 3vw, 28px);
-  background: var(--bg-muted, #EFECE6);
-  border: 1px solid var(--border, #e5e0d8);
+  background: var(--v2-paper-deep, #eee8dd);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
   border-radius: var(--radius-lg, 12px);
   text-align: center;
 }
 
 .articleCtaQuestion {
-  font-family: var(--font-serif, Georgia, serif);
   font-size: clamp(1rem, 2vw, 1.15rem);
   font-weight: 600;
   color: var(--text, #2C2C2A);
@@ -307,26 +309,29 @@
 }
 
 .articleCtaPrimary {
-  background: var(--accent, #993C1D);
+  background: var(--v2-red-gradient, linear-gradient(135deg, #d70f24, #a90918));
   color: #fff;
-  border: 1px solid var(--accent, #993C1D);
+  border: 0;
+  border-radius: var(--v2-radius-sm, 6px);
 }
 
-.articleCtaPrimary:hover,
+.articleCtaPrimary:hover {
+  background: linear-gradient(135deg, #c40d1f, #8f0714);
+}
 .articleCtaPrimary:focus-visible {
-  background: var(--accent-dark, #7f3118);
-  outline: none;
+  outline: 2px solid var(--v2-red-bright, #ef3a4e);
+  outline-offset: 2px;
 }
 
 .articleCtaSecondary {
   background: transparent;
   color: var(--text, #2C2C2A);
-  border: 1px solid var(--border, #e5e0d8);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
 }
 
 .articleCtaSecondary:hover,
 .articleCtaSecondary:focus-visible {
-  border-color: var(--accent, #993C1D);
-  color: var(--accent, #993C1D);
+  border-color: var(--v2-ink, #050607);
+  color: var(--v2-ink, #050607);
   outline: none;
 }
