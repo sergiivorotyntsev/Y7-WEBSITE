@@ -15,8 +15,10 @@ const STATIC_TESTIMONIALS = [
 function Stars({ count, size = 14 }) {
   return (
     <span className={styles.starsRow}>
-      {Array.from({ length: count }, (_, i) => <StarFilledIcon key={`f${i}`} size={size} />)}
-      {Array.from({ length: 5 - count }, (_, i) => <StarEmptyIcon key={`e${i}`} size={size} />)}
+      {/* T11: currentColor -> .starsRow's v2 on-dark tier (the icons' default
+          prop is V1 sienna, banned on V2 surfaces; viewport stays red-free). */}
+      {Array.from({ length: count }, (_, i) => <StarFilledIcon key={`f${i}`} size={size} color="currentColor" />)}
+      {Array.from({ length: 5 - count }, (_, i) => <StarEmptyIcon key={`e${i}`} size={size} color="currentColor" />)}
     </span>
   );
 }
