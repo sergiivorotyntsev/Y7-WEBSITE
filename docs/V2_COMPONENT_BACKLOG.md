@@ -17,7 +17,7 @@ ritual; none of these may ride inside an unrelated design wave.
 
 | String | Where | Issue |
 |---|---|---|
-| "267+ CARRIERS" | blog index hero stat | conflicts with sitewide "700+" claim (W0 swept only "100+") |
+| ~~"267+ CARRIERS"~~ | blog index hero stat | CLOSED W5-T07: aligned to "700+" (pre-authorized) |
 | "Open vs Enclosed Transport" H2 + card copy | TransportComparison | hardcoded EN on all 4 locales |
 | "Buying at auction? Copart guide" | ShipMyCar crosslinks | hardcoded EN |
 | Services card/link titles+descs | /services catalogs | hardcoded EN (kickers/headings are i18n, cards are not) |
@@ -29,6 +29,6 @@ ritual; none of these may ride inside an unrelated design wave.
 
 | Item | Origin |
 |---|---|
-| QuoteStrip interactive selects over lookupBand (route/vehicle) | W2-T12 approved follow-up |
+| ~~QuoteStrip interactive selects~~ | CLOSED T13: shipped as the rate calculator |
 | V1 May-Jun CD loads export -> src/data/rates/ append + regen | W2-T12, pending Sergii's dashboard export (1,524 total) |
-| /quote real preview submit test with TEST fixture (customer id=9) | W4 review note, before/after W5 work |
+| /quote real submit test (fixture id=9) | IN W5 Phase 2 verification (this wave) |

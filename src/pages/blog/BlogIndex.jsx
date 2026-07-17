@@ -60,7 +60,7 @@ export default function BlogIndex() {
           </p>
           <div className={styles.heroStats}>
             {[
-              { num: '267+', label: 'Carriers' },
+              { num: '700+', label: 'Carriers' },
               { num: '3,674', label: 'Messages' },
               { num: 'MC #1741537', label: 'FMCSA Licensed' },
             ].map(s => (
