@@ -8,8 +8,7 @@
       "Stawka przewoźnika przekazywana po kosztach — zerowa marża na transport",
       "Nasza opłata pokrywa: ogłoszenie na Central Dispatch, weryfikację przewoźników, dyspozycję, BOL/gate pass, monitoring",
       "Opcjonalna obsługa płatności dla przewoźnika — my płacimy, Ty zwracasz koszty",
-      "Dedykowany opiekun konta dla 10+ pojazdów/miesiąc",
-      "Wszystkie główne porty eksportowe USA: Newark, Houston, Savannah, Baltimore, LA, Jacksonville"
+      "Dedykowany opiekun konta dla 10+ pojazdów/miesiąc"
     ]
   },
   "fees": {
@@ -118,8 +117,10 @@
   "hero": {
     "kicker": "DLA EKSPORTERÓW",
     "trust1": "Koordynacja gate pass",
-    "trust2": "Wszystkie główne porty USA",
-    "trust3": "Przejrzyste ceny cost-plus"
+    "trust2": "700+ zweryfikowanych przewoźników",
+    "trust3": "Gwarancja BMC-84 $75k",
+    "ctaPrimary": "Zobacz program",
+    "ctaSecondary": "Zapytaj o stawki"
   },
   "crosslinks": {
     "title": "Więcej dla eksporterów",
@@ -241,8 +242,69 @@
       {
         "q": "Jaki model cenowy?",
         "a": "Cost-plus, przejrzysty. Widzisz stawkę przewoźnika z Central Dispatch, plus dodajemy stałą opłatę dispatch $50 za pojazd. Bez ukrytych marży, bez tajemniczych procentów. Opcjonalnie: możemy zapłacić przewoźnikowi w Twoim imieniu za dodatkową opłatę za obsługę płatności $10 za zlecenie (zwracasz koszt przewoźnika + $10), żebyś nie zarządzał przelewami do przewoźników samodzielnie."
+      },
+      {
+        "q": "Co obejmuje konfiguracja Programu dla eksporterów?",
+        "a": "Cztery warstwy konfigurowane pod klienta: uzgodniony kanał zleceń (ustrukturyzowany email, Telegram albo portal), Twoja sieć magazynów wprowadzona do naszego systemu, automatyczne powiadomienia o zleceniach w Twoim kanale oraz analiza trasowania, która wybiera optymalny magazyn przed każdym ogłoszeniem eksportowym."
+      },
+      {
+        "q": "Czy możecie pracować z systemami naszych magazynów?",
+        "a": "Tak. Tam, gdzie masz umowy z operatorami magazynów, możemy zintegrować się bezpośrednio z ich systemami CRM. Integracja jest dostępna na życzenie, wyceniana indywidualnie, a w zależności od złożoności może obowiązywać opłata konfiguracyjna."
       }
     ]
   },
-  "midCta": "Gotowy do wysyłki? Sprawdź stawki powyżej."
+  "midCta": "Gotowy do wysyłki? Sprawdź stawki powyżej.",
+  "titleMain": "Dyspozycja i logistyka dla ",
+  "titleAccent": "eksporterów pojazdów",
+  "program": {
+    "kicker": "KONFIGUROWANY POD KLIENTA",
+    "title": "Program dla eksporterów",
+    "lede": "To nie jest szablonowy cennik. Konfigurujemy naszą platformę dyspozytorską pod Twoją działalność: cztery warstwy, ustawiane raz. Potem każde zlecenie przechodzi tą samą ścieżką.",
+    "layers": [
+      {
+        "kicker": "01 · PRZYJMOWANIE ZLECEŃ",
+        "title": "Jeden uzgodniony kanał zleceń",
+        "body": "Ustrukturyzowany email (dajemy format: PIN lub numer aukcyjny (lot) w temacie, szczegóły w treści, odpowiedzi zostają w tym samym wątku), Telegram albo portal klienta. Twój zespół wysyła zlecenia tak, jak już pracuje."
+      },
+      {
+        "kicker": "02 · SIEĆ MAGAZYNÓW",
+        "title": "Twoje magazyny od razu w systemie",
+        "body": "Twoje magazyny eksportowe, we wszystkich stanach, są wprowadzane do naszego systemu od pierwszego dnia. Zlecenia prowadzimy po Twojej realnej sieci, a nie po ogólnej liście portów. Tam, gdzie masz umowy z operatorami magazynów, możliwa jest bezpośrednia integracja z ich systemami CRM: na życzenie, wyceniana indywidualnie; konfiguracja może być płatna, zależnie od złożoności."
+      },
+      {
+        "kicker": "03 · POWIADOMIENIA",
+        "title": "Powiadomienia w Twoim kanale",
+        "body": "Zlecenie przyjęte → ogłoszenie na Central Dispatch utworzone, i widzisz je od razu w swoim kanale: Telegram, ten sam wątek email albo portal. Przewoźnik przydzielony → to samo powiadomienie, skonfigurowane z każdym klientem tak, żeby trafiało do Twojego kanału we właściwy sposób."
+      },
+      {
+        "kicker": "04 · INTELIGENTNE TRASOWANIE",
+        "title": "Optymalny magazyn za każdym razem",
+        "body": "Przed każdym ogłoszeniem eksportowym automatycznie analizujemy, który z Twoich magazynów jest optymalny dla danego zlecenia. Równoodległe opcje porównujemy po bieżących stawkach transportu; jeśli podzielisz się swoimi stawkami frachtu morskiego do krajów docelowych, wchodzą one do tej samej kalkulacji. Przy złożonych trasach wystawiamy równoległe ogłoszenia na dwa magazyny i decyduje wycena przewoźników."
+      }
+    ]
+  },
+  "routing": {
+    "title": "Jak zapadają decyzje o trasie",
+    "body": "Auto z Copart w York Haven, PA może wyjechać przez Newark (około 160 mil drogą) albo Baltimore (około 65). W ostatnich wysyłkach odcinek do Baltimore kosztuje $175-215 wobec $230-300 do Newark. Lądem wygrywa Baltimore. Ale jeśli Twoja stawka frachtu do kraju docelowego jest o $120 lepsza z Newark, w łącznym rozrachunku wygrywa Newark. Dokładnie tę analizę wykonujemy automatycznie przed każdym ogłoszeniem eksportowym.",
+    "legFrom": "Copart York Haven, PA",
+    "legA": "Baltimore, MD · ~65 mil",
+    "legARate": "$175-215",
+    "legB": "Newark, NJ · ~160 mil",
+    "legBRate": "$230-300",
+    "footnote": "Kwoty to typowe przedziały stawek przewoźników z naszych ostatnich wysyłek (czerwiec-lipiec 2026), nie oferty."
+  },
+  "proof": {
+    "title": "Widzisz to samo, co my",
+    "chips": [
+      "Portal: statusy i dokumenty",
+      "Bot Telegram",
+      "Tygodniowa faktura zbiorcza",
+      "Zespół EN · RU · PL · UA"
+    ]
+  },
+  "co": {
+    "kicker": "JUŻ DOSTĘPNE",
+    "title": "Świadectwa pochodzenia dla aut do UE",
+    "body": "Już dostępne w ramach programu: świadectwa pochodzenia (Certificate of Origin) dla pojazdów wyprodukowanych w USA. Z CO auta amerykańskiej produkcji wjeżdżają do UE z cłem 0% zgodnie z obowiązującym rozporządzeniem UE. Y7 przygotowuje zgłoszenie jako stały agent i dołącza CO do Twojego kompletu dokumentów eksportowych. Uprawnienie sprawdzamy przy każdej wysyłce: produkcja USA, kierunek UE i komplet dokumentów."
+  }
 }
