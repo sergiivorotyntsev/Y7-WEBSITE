@@ -1,0 +1,67 @@
+/* HeroRouteVisual — decorative CSS/SVG route sketch, intl-LP-only since W2.
+   DESIGN-V2-W6-T00: own module on v2 tokens (was piggybacking Home.module.css
+   V1 classes). On-dark treatment: the three intl Home heroes open board-black
+   (conversion law). The red route stroke is a hairline accent — one of the
+   hero viewport's two allowed accents; dots are panel-filled, labels mono.
+   The ambient dot pulse is NOT an entrance (nothing hidden at rest) and stays
+   compositor-friendly + reduced-motion-gated (CWV-T05 rationale carried over). */
+
+.routeSvg {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+}
+
+.routeTrack {
+  stroke: var(--v2-text-on-dark-muted, #9c9b96);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 6;
+  stroke-linecap: round;
+  fill: none;
+  opacity: 0.4;
+}
+
+.routeTrackGlow {
+  stroke: var(--v2-red-bright, #ef3a4e);
+  stroke-width: 2;
+  stroke-linecap: round;
+  fill: none;
+  opacity: 0.85;
+  /* JUMP-2B: rendered in its FINAL drawn state at rest (dashoffset 0) — the
+     one-shot draw-on restarts on hydration and snaps the line empty. */
+  stroke-dasharray: 520;
+  stroke-dashoffset: 0;
+}
+
+.routeDot {
+  fill: var(--v2-panel, #0e1012);
+  stroke: var(--v2-red-bright, #ef3a4e);
+  stroke-width: 2;
+  /* CWV-T05: pulse via compositor-friendly transform:scale + opacity instead
+     of animating the SVG `r` attribute. */
+  transform-box: fill-box;
+  transform-origin: center;
+  vector-effect: non-scaling-stroke;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .routeDot {
+    animation: routeDotPulse 3s ease-in-out infinite;
+  }
+  .routeDot:nth-of-type(2) { animation-delay: 0.75s; }
+  .routeDot:nth-of-type(3) { animation-delay: 1.5s; }
+  .routeDot:nth-of-type(4) { animation-delay: 2.25s; }
+}
+
+@keyframes routeDotPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3333); opacity: 0.7; }
+}
+
+.routeLabel {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  fill: var(--v2-text-on-dark-muted, #9c9b96);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}

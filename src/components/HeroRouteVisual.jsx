@@ -1,4 +1,4 @@
-import styles from '../pages/Home.module.css';
+import styles from './HeroRouteVisual.module.css';
 
 /**
  * HeroRouteVisual — CSS/SVG-only decorative route visualization for the Home hero.
