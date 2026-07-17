@@ -230,10 +230,7 @@ export default function BlogArticle() {
       </div>
 
       <article className={styles.article}>
-        <span
-          className={styles.categoryBadge}
-          style={{ background: cat.color || 'var(--text)' }}
-        >
+        <span className={styles.categoryBadge}>
           {cat.label}
         </span>
 
@@ -316,10 +313,7 @@ export default function BlogArticle() {
                 const rCat = CATEGORIES[r.category] || {};
                 return (
                   <Link key={r.slug} to={`/blog/${r.slug}`} className={styles.relatedCard}>
-                    <span
-                      className={styles.relatedBadge}
-                      style={{ background: rCat.color || 'var(--text)' }}
-                    >
+                    <span className={styles.relatedBadge}>
                       {rCat.label}
                     </span>
                     <h3 className={styles.relatedCardTitle}>{r.title}</h3>

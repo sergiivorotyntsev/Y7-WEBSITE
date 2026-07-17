@@ -22,14 +22,16 @@
 
 .categoryBadge {
   display: inline-block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: var(--v2-track-label, 0.14em);
   text-transform: uppercase;
-  color: #fff;
+  color: var(--v2-ink-muted, #5c5851);
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-pill, 999px);
   padding: 4px 12px;
-  border-radius: 10px;
   margin-bottom: 16px;
 }
 
@@ -201,14 +203,16 @@
 }
 
 .relatedBadge {
-  font-family: var(--font-sans, system-ui);
-  font-size: 0.68rem;
-  font-weight: 700;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--v2-ink-muted, #5c5851);
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
   padding: 2px 8px;
-  border-radius: 8px;
-  letter-spacing: 0.08em;
+  border-radius: var(--v2-radius-pill, 999px);
+  letter-spacing: var(--v2-track-label, 0.14em);
 }
 
 .relatedCardTitle {

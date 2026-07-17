@@ -139,10 +139,7 @@ export default function BlogIndex() {
 
                 <div className={styles.content}>
                   <div className={styles.meta}>
-                    <span
-                      className={styles.categoryBadge}
-                      style={{ background: cat.color || 'var(--text)' }}
-                    >
+                    <span className={styles.categoryBadge}>
                       {cat.label}
                     </span>
                     <span className={styles.metaText}>
