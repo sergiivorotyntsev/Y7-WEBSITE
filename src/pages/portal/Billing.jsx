@@ -153,7 +153,7 @@ export default function Billing() {
                     {fmt(inv.total_due_cents)}
                   </span>
                   <a
-                    href={`/api/portal/billing/invoice/${inv.id}/download`}
+                    href={`${API_URL}/api/portal/billing/invoice/${inv.id}/download`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.accent }}
