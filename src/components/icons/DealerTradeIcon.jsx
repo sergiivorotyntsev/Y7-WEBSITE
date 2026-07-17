@@ -1,4 +1,4 @@
-export default function DealerTradeIcon({ size = 40, color = '#993C1D' }) {
+export default function DealerTradeIcon({ size = 40, color = 'currentColor' }) {
   return (
     <svg width={size} height={size} viewBox="0 0 48 48" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       {/* Left car facing right */}

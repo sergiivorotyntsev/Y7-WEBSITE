@@ -1,4 +1,4 @@
-export default function RouteIcon({ size = 24, color = '#993C1D' }) {
+export default function RouteIcon({ size = 24, color = 'currentColor' }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <line x1="3" y1="22" x2="10" y2="2" />

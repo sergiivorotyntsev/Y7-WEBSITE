@@ -1,4 +1,4 @@
-export default function HandshakeIcon({ size = 24, color = '#993C1D' }) {
+export default function HandshakeIcon({ size = 24, color = 'currentColor' }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M20 11l-4-4-8 4-4-4" />

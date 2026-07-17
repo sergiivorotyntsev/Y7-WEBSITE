@@ -1,4 +1,4 @@
-export default function ShipIcon({ size = 24, color = '#993C1D' }) {
+export default function ShipIcon({ size = 24, color = 'currentColor' }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M2 20l2-2h16l2 2" />
