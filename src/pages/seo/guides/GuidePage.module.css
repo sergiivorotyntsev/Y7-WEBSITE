@@ -1,0 +1,309 @@
+/* Guide pages — DESIGN-V2-W5-T06 "Dispatch Board" restyle. Shared module for
+   the six bespoke guides (BillOfLading, HowToShipAuctionCar, OpenVsEnclosed,
+   CopartStorageFees, CopartGatePassGuide, CopartInternationalShipping).
+   Long-form law (§2): dark = the board hero band + at most one closing CTA
+   panel; the whole reading body stays manifest paper (dark share well under
+   25%). H1/H2/H3 texts, levels and order are FROZEN — shells + tokens only.
+   Signal Budget: near-zero red — the CTA fill (where a page has one) plus
+   link/hover shifts and focus rings. Anti-Orphan Rule: surfaces/type/
+   buttons/cards compose from src/styles/v2/*. */
+
+.page {
+  padding: 0 0 80px;
+  background: var(--v2-paper, #f4f0e8);
+}
+
+/* =====================================================================
+   HERO — the board band (breadcrumb + mono kicker + condensed H1)
+   ===================================================================== */
+
+.hero {
+  composes: board from '../../../styles/v2/surfaces.module.css';
+  padding: clamp(48px, 8vh, 80px) 24px clamp(36px, 5vh, 52px);
+}
+
+.heroInner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.breadcrumb {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  margin-bottom: 28px;
+}
+
+.crumbLink {
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  text-decoration: none;
+  padding: 2px 4px;
+  margin: 0 -4px;
+  border-radius: var(--v2-radius-sm, 6px);
+  transition: color var(--transition-fast, 150ms ease-out);
+}
+
+@media (hover: hover) {
+  .crumbLink:hover {
+    color: var(--v2-text-on-dark, #fff7ed);
+  }
+}
+
+.crumbLink:focus-visible {
+  outline: 2px solid var(--v2-red-bright, #ef3a4e);
+  outline-offset: 2px;
+}
+
+.crumbSep { margin: 0 6px; }
+
+.crumbCurrent { color: var(--v2-text-on-dark-secondary, #e8e0d3); }
+
+/* Plain mono kicker (no red rule-line: hero budget stays quiet on guides). */
+.kicker {
+  display: block;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: var(--v2-track-eyebrow, 0.18em);
+  text-transform: uppercase;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  margin: 0 0 14px;
+}
+
+/* Guide H1: section-display tier (hero clamp is too large for an article). */
+.h1 {
+  composes: sectionDisplay from '../../../styles/v2/type.module.css';
+  font-size: clamp(1.8rem, 3.4vw, 2.9rem);
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin: 0;
+}
+
+/* =====================================================================
+   READING BODY — manifest paper, ~72ch measure
+   ===================================================================== */
+
+.body {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: clamp(40px, 6vh, 56px) 24px 0;
+}
+
+.intro {
+  font-size: 16px;
+  color: var(--v2-ink, #050607);
+  line-height: 1.7;
+  margin: 0 0 40px;
+}
+
+.h2 {
+  composes: cardTitle from '../../../styles/v2/type.module.css';
+  color: var(--v2-ink, #050607);
+  margin: 48px 0 16px;
+}
+
+.h3 {
+  font-family: var(--v2-font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: var(--v2-ink, #050607);
+  margin: 28px 0 10px;
+}
+
+.p {
+  font-size: 15px;
+  color: var(--v2-ink-muted, #5c5851);
+  line-height: 1.7;
+  margin: 0 0 16px;
+}
+
+.p strong { color: var(--v2-ink, #050607); }
+
+.list {
+  padding: 0 0 0 20px;
+  margin: 0 0 24px;
+}
+
+.listItem {
+  font-size: 15px;
+  color: var(--v2-ink-muted, #5c5851);
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.listItem strong { color: var(--v2-ink, #050607); }
+
+/* Static cream callout sheet (reading surface, non-interactive: no lift,
+   no side-stripe border — V1 borderLeft accent retired). */
+.callout {
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
+  padding: 18px 24px;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
+  font-size: 14.5px;
+  color: var(--v2-ink, #050607);
+  line-height: 1.7;
+  margin: 16px 0 24px;
+}
+
+/* Data tables: the v2 cream comparison sheet (values byte-identical). */
+.table {
+  composes: tableOnPaper from '../../../styles/v2/cards.module.css';
+  margin: 12px 0 24px;
+}
+
+/* Body links (The Body-Link Law): ink + underline at rest, red on hover. */
+.link {
+  composes: bodyLinkOnPaper from '../../../styles/v2/type.module.css';
+  font-weight: 600;
+}
+
+/* =====================================================================
+   COMPARISON SHEET (OpenVsEnclosed factor grid — div-based, values frozen)
+   ===================================================================== */
+
+.compare {
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
+  padding: 24px 32px;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
+  margin-bottom: 16px;
+}
+
+.compareHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  padding-bottom: 12px;
+}
+
+.compareCols {
+  display: flex;
+  gap: 40px;
+}
+
+.compareHead {
+  font-family: var(--v2-font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: var(--v2-track-caps-ui, 0.06em);
+  text-transform: uppercase;
+  color: var(--v2-ink, #050607);
+}
+
+.compareHeadCol {
+  composes: compareHead;
+  width: 80px;
+  text-align: center;
+}
+
+.compareRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+}
+
+.compareRowLast {
+  composes: compareRow;
+  border-bottom: none;
+}
+
+.compareCell {
+  font-size: 14px;
+  color: var(--v2-ink-muted, #5c5851);
+}
+
+.compareCellCol {
+  composes: compareCell;
+  width: 80px;
+  text-align: center;
+}
+
+/* =====================================================================
+   CTA — the page's one closing board moment (§2 long-form law). The red
+   lives in the CTA button fill only (the viewport's one red fill).
+   ===================================================================== */
+
+.ctaBlock {
+  margin-top: clamp(40px, 6vh, 56px);
+  background: var(--v2-board, #050607);
+  border: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
+  border-radius: var(--v2-radius-xl, 22px);
+  padding: clamp(32px, 5vh, 48px) clamp(24px, 4vw, 40px);
+  text-align: center;
+  color: var(--v2-text-on-dark, #fff7ed);
+  box-shadow: var(--v2-board-depth, 0 24px 70px rgba(0, 0, 0, 0.3));
+}
+
+.ctaTitle {
+  composes: cardTitle from '../../../styles/v2/type.module.css';
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin: 0 0 8px;
+}
+
+.ctaSubtitle {
+  font-size: 14px;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  margin: 0 0 20px;
+  line-height: 1.7;
+}
+
+.ctaBtn {
+  composes: cta from '../../../styles/v2/buttons.module.css';
+  padding: 14px 32px;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+/* =====================================================================
+   RELATED — mono label + hairline chip pills
+   ===================================================================== */
+
+.relatedBlock {
+  border-top: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  padding-top: 32px;
+  margin-top: 48px;
+}
+
+.relatedHeading {
+  composes: monoLabel from '../../../styles/v2/type.module.css';
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 0 0 16px;
+}
+
+.relatedPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.relatedPill {
+  composes: chipOnPaper from '../../../styles/v2/cards.module.css';
+  font-size: 12px;
+  color: var(--v2-ink, #050607);
+  background: var(--v2-card-cream, #fffaf1);
+  text-decoration: none;
+  transition:
+    color var(--transition-fast, 150ms ease-out),
+    border-color var(--transition-fast, 150ms ease-out);
+}
+
+@media (hover: hover) {
+  .relatedPill:hover {
+    color: var(--v2-red-deep, #a90918);
+    border-color: rgba(5, 6, 7, 0.4);
+  }
+}
+
+.relatedPill:focus-visible {
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
+}
