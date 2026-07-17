@@ -30,3 +30,24 @@
   line-height: 1.65;
   margin: 0;
 }
+
+/* EXPORTERS-V2 T02: additive manifest-card variant (opt-in via
+   variant="manifest"; the other EntityTldr pages render exactly as before).
+   Hairline double frame + stamp-weight first impression: the card reads as a
+   filed manifest sheet, not a generic callout. */
+.manifest {
+  border: 1px solid rgba(5, 6, 7, 0.35);
+  outline: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  outline-offset: 4px;
+  border-radius: var(--v2-radius-md, 10px);
+  background: var(--v2-card-cream, #fffaf1);
+  box-shadow: none;
+}
+.manifest .kicker {
+  color: var(--v2-ink, #050607);
+  font-weight: 700;
+  letter-spacing: var(--v2-track-eyebrow, 0.18em);
+}
+.manifest .text {
+  font-weight: 500;
+}

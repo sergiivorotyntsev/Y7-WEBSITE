@@ -154,7 +154,15 @@ export default function Exporters() {
           </div>
           <div className={styles.heroText}>
             <p className={`${v2t.eyebrowPlain} ${styles.heroEyebrow}`}>{t('hero.kicker')}</p>
-            <h1 className={`${v2t.sectionDisplay} ${styles.heroTitle}`}>{t('title')}</h1>
+            {/* EXPORTERS-V2 T02: H1 red-accent idiom (site-wide second-part
+                accent). titleMain+titleAccent concatenate byte-identically to
+                the frozen title; locales without the split keys render the
+                plain title until T03 lands. */}
+            <h1 className={`${v2t.sectionDisplay} ${styles.heroTitle}`}>
+              {i18n.exists('exporters:titleAccent')
+                ? (<>{t('titleMain')}<span className={v2t.accent}>{t('titleAccent')}</span></>)
+                : t('title')}
+            </h1>
             <p className={`${v2t.lede} ${v2t.ledeOnDark} ${styles.heroSubtitle}`}>{t('subtitle')}</p>
             <div className={styles.heroTrust}>
               <span className={styles.heroTrustItem}>&#x2713; {t('hero.trust1')}</span>
@@ -176,7 +184,7 @@ export default function Exporters() {
           card stays the first element after the hero. */}
       <section className={v2s.manifest}>
         <div className={v2s.inner}>
-          <EntityTldr kicker="Exporters, in brief" ariaLabel="Y7 for exporters, in brief" text={tldr} />
+          <EntityTldr kicker="Exporters, in brief" ariaLabel="Y7 for exporters, in brief" text={tldr} variant="manifest" />
 
           {/* Value proposition — plain H2 opener (density cap) */}
           <div className={styles.valueBlock}>

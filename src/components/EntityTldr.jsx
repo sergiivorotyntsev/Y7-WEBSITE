@@ -9,10 +9,11 @@ import styles from './EntityTldr.module.css';
  * it verbatim. Renders nothing when `text` is empty — callers on localized
  * routes gate the string via i18n.getResource() so ru/pl/ua stay untouched.
  */
-export default function EntityTldr({ kicker, text, ariaLabel }) {
+export default function EntityTldr({ kicker, text, ariaLabel, variant }) {
   if (!text) return null;
+  const cls = variant === 'manifest' ? `${styles.tldr} ${styles.manifest}` : styles.tldr;
   return (
-    <aside className={styles.tldr} aria-label={ariaLabel || 'Summary'}>
+    <aside className={cls} aria-label={ariaLabel || 'Summary'}>
       <span className={styles.kicker}>{kicker || 'The short answer'}</span>
       <p className={styles.text}>{text}</p>
     </aside>
