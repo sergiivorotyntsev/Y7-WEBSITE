@@ -1,21 +1,37 @@
-/* PolandHome.module.css — composes from shared primitives.
-   Applied to key interactive elements: buttons, cards, FAQ, CTA strip.
-   Keeps existing inline styles as visual baseline; adds hover/focus. */
+/* PolandHome.module.css — DESIGN-V2-W6-T02 "Dispatch Board" restyle.
+   Conversion-page law (§2): opens dark (hero), closes dark (final CTA),
+   board/paper surface alternation between. Anti-Orphan Rule: surfaces / type /
+   buttons / cards compose from src/styles/v2/*. Copy is FROZEN — this file is
+   presentation only; the JSX keeps every string and the element order intact. */
 
 /* =====================================================================
-   HERO — centered, warm gradient, pill kicker (parity with Home.jsx)
+   PAGE SHELL + SURFACE BANDS
    ===================================================================== */
 
-.heroSection {
-  padding: clamp(80px, 12vh, 140px) 24px clamp(50px, 8vh, 90px) !important;
-  background:
-    radial-gradient(circle at 50% 40%, rgba(153, 60, 29, 0.06) 0%, transparent 55%),
-    linear-gradient(180deg, var(--bg, #F7F5F0) 0%, var(--bg-muted, #EFECE6) 100%);
+.page {
+  background: var(--v2-paper, #f4f0e8);
+  color: var(--v2-ink, #050607);
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.bandBoard { composes: board from '../../styles/v2/surfaces.module.css'; }
+.bandPaper { composes: manifest from '../../styles/v2/surfaces.module.css'; }
+
+.inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 2rem);
+}
+
+/* =====================================================================
+   HERO — board-black band + the sanctioned red radial (boardHero)
+   ===================================================================== */
+
+.hero {
+  composes: boardHero from '../../styles/v2/surfaces.module.css';
+  padding: clamp(80px, 12vh, 140px) 24px clamp(50px, 8vh, 90px);
   text-align: center;
-  max-width: none !important;
-  margin: 0 !important;
-  position: relative;
-  overflow: hidden;
 }
 
 .heroVisual {
@@ -27,16 +43,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.18;
+  opacity: 0.5;
   pointer-events: none;
   z-index: 0;
 }
 
 @media (max-width: 520px) {
-  .heroVisual {
-    opacity: 0.12;
-    width: 100vw;
-  }
+  .heroVisual { opacity: 0.32; width: 100vw; }
 }
 
 .heroInner {
@@ -50,183 +63,335 @@
   z-index: 1;
 }
 
-.heroKickerPill {
-  display: inline-block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  padding: 6px 14px;
-  background: rgba(153, 60, 29, 0.08);
-  border-radius: var(--radius-pill, 20px);
-  margin: 0 0 24px;
+/* Plain mono eyebrow (no red rule): the hero viewport spends its Signal Budget
+   on the CTA gradient + the red route stroke. */
+.heroKicker {
+  composes: eyebrowPlain from '../../styles/v2/type.module.css';
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  margin: 0 0 22px;
+}
+
+.h1 {
+  composes: display from '../../styles/v2/type.module.css';
+  font-size: clamp(2rem, 4.6vw, 3.6rem);
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin: 0 0 1.5rem;
+  text-align: center;
+}
+
+.heroSub {
+  font-size: clamp(1.05rem, 1.6vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+  margin: 0 auto 2rem;
+  max-width: 620px;
+  text-align: center;
+}
+
+.heroActions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  justify-content: center;
 }
 
 /* =====================================================================
-   SECTION KICKER
+   BUTTONS
    ===================================================================== */
 
-.sectionKicker {
-  display: block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  margin: 0 0 10px;
+.btnCta {
+  composes: cta from '../../styles/v2/buttons.module.css';
+  padding: 0.875rem 1.75rem;
+  font-size: 15px;
+}
+
+.btnGhostDark {
+  composes: ghostOnDark from '../../styles/v2/buttons.module.css';
+  padding: 0.8rem 1.6rem;
+  font-size: 14px;
 }
 
 /* =====================================================================
-   DARK STATS STRIP
+   SECTION HEADS — eyebrow (rule on board / plain on paper) + condensed H2
    ===================================================================== */
 
-.statsStrip {
-  background: var(--text, #2C2C2A);
-  color: var(--bg, #F7F5F0);
-  padding: clamp(32px, 5vw, 48px) 24px;
+.eyebrowRuleBoard { composes: eyebrow eyebrowOnDark from '../../styles/v2/type.module.css'; }
+.eyebrowPlainPaper {
+  composes: eyebrowPlain from '../../styles/v2/type.module.css';
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 0 0 12px;
+}
+.eyebrowPlainBoard {
+  composes: eyebrowPlain from '../../styles/v2/type.module.css';
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  margin: 0 0 12px;
+}
+
+.h2Board {
+  composes: sectionDisplay from '../../styles/v2/type.module.css';
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin: 0 0 1rem;
+}
+.h2Paper {
+  composes: sectionDisplay from '../../styles/v2/type.module.css';
+  color: var(--v2-ink, #050607);
+  margin: 0 0 1rem;
+}
+
+.h3Board {
+  composes: cardTitle from '../../styles/v2/type.module.css';
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin: 0 0 1rem;
+}
+.h3Paper {
+  composes: cardTitle from '../../styles/v2/type.module.css';
+  color: var(--v2-ink, #050607);
+  margin: 0;
+}
+
+/* Reading copy (system-ui, sentence case) */
+.leadPaper { font-size: 1.0625rem; line-height: 1.7; color: var(--v2-ink-muted, #5c5851); margin: 0 0 2.5rem; }
+.leadBoard { font-size: 1.0625rem; line-height: 1.7; color: var(--v2-text-on-dark-secondary, #e8e0d3); margin: 0 0 2.5rem; }
+.pPaper { font-size: 1.0625rem; line-height: 1.7; color: var(--v2-ink-muted, #5c5851); }
+.pBoard { font-size: 1.0625rem; line-height: 1.7; color: var(--v2-text-on-dark-secondary, #e8e0d3); }
+.pBoard strong { color: var(--v2-text-on-dark, #fff7ed); }
+.pPaper strong { color: var(--v2-ink, #050607); }
+
+.notePaper { font-size: 0.875rem; color: var(--v2-ink-muted, #5c5851); font-style: italic; margin: 0; }
+.noteBoard { font-size: 0.875rem; color: var(--v2-text-on-dark-muted, #9c9b96); font-style: italic; margin: 0; }
+
+/* =====================================================================
+   STATS BAND (paper manifest) — red display numerals + mono labels
+   ===================================================================== */
+
+.statsInner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 3rem) clamp(1.25rem, 4vw, 2rem);
 }
 
 .statsGrid {
-  max-width: 1100px;
-  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 24px;
   text-align: center;
 }
-
-.statsGrid > * + * {
-  border-left: 1px solid rgba(247, 245, 240, 0.16);
-}
-
+.statsGrid > * + * { border-left: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14)); }
 @media (max-width: 700px) {
   .statsGrid > * + * {
     border-left: none;
-    border-top: 1px solid rgba(247, 245, 240, 0.16);
+    border-top: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
     padding-top: 20px;
   }
 }
 
-.statNumberDark {
-  font-family: var(--font-serif, Georgia, serif);
+.statNumber {
+  composes: sectionDisplay from '../../styles/v2/type.module.css';
   font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-weight: 700;
-  color: var(--accent, #993C1D);
-  line-height: 1.1;
-  margin: 0 0 4px;
-  letter-spacing: -0.02em;
+  color: var(--v2-red, #d70f24);
+  margin: 0 0 6px;
 }
-
-.statLabelDark {
-  font-family: var(--font-sans, system-ui);
-  font-size: 12px;
-  color: rgba(247, 245, 240, 0.7);
+.statLabel {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  color: var(--v2-ink-muted, #5c5851);
   margin: 0;
 }
 
-.btnAccent {
-  composes: btnAccent from '../../styles/buttons.module.css';
+/* =====================================================================
+   CARDS
+   ===================================================================== */
+
+.cardBoard { composes: board from '../../styles/v2/cards.module.css'; }
+.cardPaper { composes: paper from '../../styles/v2/cards.module.css'; }
+
+.cardMiniLabel {
+  composes: monoLabel from '../../styles/v2/type.module.css';
+  display: block;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  margin-bottom: 0.5rem;
 }
 
-.btnSecondary {
-  composes: btnSecondary from '../../styles/buttons.module.css';
+.cardList {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+  padding-left: 1.25rem;
+  margin: 0;
 }
 
-.liftCard {
-  composes: liftCard from '../../styles/interactions.module.css';
-}
+.bodyLinkDark { composes: bodyLinkOnDark from '../../styles/v2/type.module.css'; }
 
-.subtleLift {
-  composes: subtleLift from '../../styles/interactions.module.css';
-}
+/* =====================================================================
+   PROCESS STEPS (paper) — badge circle + condensed title + mono time
+   ===================================================================== */
 
-.underlineGrow {
-  composes: underlineGrow from '../../styles/interactions.module.css';
+.stepRow {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
 }
-
-.focusRing {
-  composes: focusRing from '../../styles/interactions.module.css';
+.stepNum {
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  color: var(--v2-ink, #050607);
+  font-family: var(--v2-font-display);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-.ctaStrip {
-  composes: ctaStrip from '../../styles/layout.module.css';
+.stepHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
 }
-
-.ctaStripTitle {
-  composes: ctaStripTitle from '../../styles/layout.module.css';
-}
-
-.ctaStripSubtitle {
-  composes: ctaStripSubtitle from '../../styles/layout.module.css';
-}
-
-.ctaStripBtn {
-  composes: ctaStripBtn from '../../styles/layout.module.css';
+.stepTime {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--v2-ink-muted, #5c5851);
+  white-space: nowrap;
 }
 
 /* =====================================================================
-   FAQ ACCORDION — details/summary styled
+   COST PANEL (board) — panel-steel sheet, hairline rows, mono values
+   ===================================================================== */
+
+.dataPanel {
+  background: var(--v2-panel, #0e1012);
+  border: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+.dataRow { padding: 1.5rem; border-bottom: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14)); }
+.dataRowLast { padding: 1.5rem; }
+.dataRowHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+.dataValue {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--v2-text-on-dark, #fff7ed);
+}
+
+/* =====================================================================
+   PROFITABILITY CARDS (paper) — mono row ledger + ink savings
+   ===================================================================== */
+
+.exRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  margin-bottom: 0.375rem;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+}
+.exRowLabel { color: var(--v2-ink-muted, #5c5851); }
+.exRowValue { color: var(--v2-ink, #050607); }
+.exYear {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--v2-ink-muted, #5c5851);
+  margin-bottom: 1rem;
+}
+.exSavings {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-weight: 600;
+  color: var(--v2-ink, #050607);
+}
+
+/* =====================================================================
+   FAQ (paper) — hairline rows, sentence-case questions, mono-free markers
    ===================================================================== */
 
 .faqItem {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-lg, 12px);
-  margin-bottom: 12px;
-  overflow: hidden;
-  transition: border-color var(--transition-normal, 250ms ease-out);
+  border-bottom: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
 }
-
-.faqItem[open] {
-  border-color: var(--accent, #993C1D);
-}
-
 .faqSummary {
-  padding: 20px 24px;
-  cursor: pointer;
-  font-family: var(--font-sans, system-ui);
-  font-size: 1rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1.125rem;
   font-weight: 500;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
+  cursor: pointer;
+  padding: 0.75rem 0;
   list-style: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  gap: 1rem;
 }
-
 .faqSummary::-webkit-details-marker { display: none; }
-
-.faqSummary::after {
-  content: '+';
-  font-size: 1.5rem;
-  line-height: 1;
-  color: var(--accent, #993C1D);
-  transition: transform var(--transition-normal, 250ms ease-out);
-  flex-shrink: 0;
-}
-
-.faqItem[open] .faqSummary::after {
-  transform: rotate(45deg);
-}
-
+.faqSummary:focus-visible { outline: 2px solid var(--v2-red, #d70f24); outline-offset: 2px; }
+.faqMarker { color: var(--v2-ink-muted, #5c5851); font-size: 1.5rem; flex-shrink: 0; }
 .faqAnswer {
-  padding: 0 24px 20px;
-  font-family: var(--font-sans, system-ui);
-  font-size: 0.95rem;
+  font-size: 0.9375rem;
   line-height: 1.7;
-  color: var(--text-muted, #4A4A46);
+  color: var(--v2-ink-muted, #5c5851);
+  padding-top: 0.5rem;
+  margin: 0;
 }
 
 /* =====================================================================
-   SECTION RHYTHM — alternating backgrounds
+   DIASPORA PRICING (board)
    ===================================================================== */
 
-.sectionAlt {
-  background: var(--bg-muted, #EFECE6);
+.priceLabel {
+  composes: monoLabel from '../../styles/v2/type.module.css';
+  display: block;
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+  margin: 0 0 0.75rem;
+}
+.priceValue {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 300;
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin-bottom: 0.5rem;
+}
+.priceDesc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+  margin: 0;
+}
+
+/* =====================================================================
+   FINAL CTA (board)
+   ===================================================================== */
+
+.finalActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }

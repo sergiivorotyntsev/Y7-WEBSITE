@@ -10,7 +10,6 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
 import ContextualCTA from '../../components/ContextualCTA';
-import { colors, fonts } from '../../theme';
 import styles from './PolandCopart.module.css';
 
 const PolandCopart = () => {
@@ -93,9 +92,9 @@ const PolandCopart = () => {
     <>
       <Helmet>
         <title>Sprowadzanie aut z Copart do Polski — przewodnik 2026 | Y7 & DaytonaCargo</title>
-        <meta 
-          name="description" 
-          content="Kompleksowy przewodnik po sprowadzaniu aut z aukcji Copart do Polski. Realne koszty, terminy, pułapki. Y7 Logistics obsługuje transport w USA, DaytonaCargo zajmuje się frachtem i dostawą do Polski." 
+        <meta
+          name="description"
+          content="Kompleksowy przewodnik po sprowadzaniu aut z aukcji Copart do Polski. Realne koszty, terminy, pułapki. Y7 Logistics obsługuje transport w USA, DaytonaCargo zajmuje się frachtem i dostawą do Polski."
         />
         <meta property="og:title" content="Sprowadzanie aut z Copart do Polski — przewodnik 2026" />
         <meta property="og:description" content="Co naprawdę kosztuje sprowadzenie auta z Copart, ile to trwa i na co uważać. Bez marketingowych obietnic." />
@@ -108,291 +107,163 @@ const PolandCopart = () => {
         <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
       </Helmet>
 
-      <HreflangTags 
+      <HreflangTags
         currentPath="/copart-shipping"
         hasPolishVersion={true}
         hasUkrainianVersion={true}
         hasRussianVersion={true}
       />
 
-      <main style={{
-        fontFamily: fonts.serif,
-        color: colors.text,
-        background: colors.bg,
-        minHeight: '100vh',
-      }}>
+      <main className={styles.page}>
         {/* Breadcrumb */}
-        <nav style={{
-          maxWidth: '900px',
-          margin: '0 auto',
-          padding: '1.5rem clamp(1.25rem, 4vw, 2rem) 0',
-          fontSize: '0.875rem',
-          color: '#6B6B65',
-          fontFamily: fonts.sans,
-        }}>
-          <Link to="/pl" style={{ color: '#6B6B65', textDecoration: 'none' }}>
-            Sprowadzanie aut z USA
-          </Link>
-          {' → '}
-          <span>Copart</span>
+        <nav className={styles.breadcrumbBar}>
+          <div className={styles.breadcrumbInner}>
+            <Link to="/pl" className={styles.crumbLink}>
+              Sprowadzanie aut z USA
+            </Link>
+            {' → '}
+            <span>Copart</span>
+          </div>
         </nav>
 
         {/* Hero */}
-        <section style={{
-          maxWidth: '900px',
-          margin: '0 auto',
-          padding: 'clamp(1.5rem, 4vw, 3rem) clamp(1.25rem, 4vw, 2rem) clamp(2rem, 5vw, 3rem)',
-        }}>
-          <div style={{ 
-            fontSize: '14px', 
-            textTransform: 'uppercase', 
-            letterSpacing: '0.15em', 
-            color: colors.accent,
-            marginBottom: '1rem',
-            fontFamily: fonts.sans
-          }}>
-            Copart × Polska
-          </div>
-          
-          <h1 style={{
-            fontSize: 'clamp(2rem, 5vw, 3rem)',
-            lineHeight: '1.15',
-            fontWeight: 400,
-            marginTop: 0,
-            marginBottom: '1.5rem',
-            letterSpacing: '-0.01em',
-          }}>
-            Sprowadzanie aut z Copart do Polski — przewodnik bez marketingowego lukru
-          </h1>
-          
-          <p style={{
-            fontSize: 'clamp(1.0625rem, 2vw, 1.1875rem)',
-            lineHeight: '1.65',
-            color: '#4A4A46',
-            marginBottom: '1.5rem',
-          }}>
-            Copart to największa platforma aukcyjna aut powypadkowych na świecie — codziennie 
-            wystawia ponad 175 000 pojazdów na ponad 260 placach w USA i Kanadzie. 
-            Dla polskich importerów oznacza to potencjalnie niższe ceny o 30-50% w stosunku 
-            do rynku krajowego. Ale droga "od młotka do garażu" ma więcej etapów i pułapek, 
-            niż sugeruje marketing firm importowych.
-          </p>
+        <section className={styles.hero}>
+          <div className={styles.heroInner}>
+            <span className={styles.eyebrowRuleBoard}>Copart × Polska</span>
 
-          <p style={{
-            fontSize: '1.0625rem',
-            lineHeight: '1.65',
-            color: '#4A4A46',
-            marginBottom: '2rem',
-          }}>
-            Ten przewodnik pokazuje realny proces: ile to kosztuje, ile trwa, czego unikać. 
-            Y7 Logistics obsługuje amerykańską część łańcucha — odbiór z placów Copart 
-            i transport do portu załadunku. Dalszą obsługę (fracht, odprawa, dostawa 
-            do Polski) prowadzi nasza siostrzana firma DaytonaCargo LLC.
-          </p>
+            <h1 className={styles.h1}>
+              Sprowadzanie aut z Copart do Polski — przewodnik bez marketingowego lukru
+            </h1>
+
+            <p className={styles.heroLead}>
+              Copart to największa platforma aukcyjna aut powypadkowych na świecie — codziennie
+              wystawia ponad 175 000 pojazdów na ponad 260 placach w USA i Kanadzie.
+              Dla polskich importerów oznacza to potencjalnie niższe ceny o 30-50% w stosunku
+              do rynku krajowego. Ale droga "od młotka do garażu" ma więcej etapów i pułapek,
+              niż sugeruje marketing firm importowych.
+            </p>
+
+            <p className={styles.heroLead}>
+              Ten przewodnik pokazuje realny proces: ile to kosztuje, ile trwa, czego unikać.
+              Y7 Logistics obsługuje amerykańską część łańcucha — odbiór z placów Copart
+              i transport do portu załadunku. Dalszą obsługę (fracht, odprawa, dostawa
+              do Polski) prowadzi nasza siostrzana firma DaytonaCargo LLC.
+            </p>
+          </div>
         </section>
 
         {/* What Copart really is */}
-        <section style={{
-          background: '#fff',
-          borderTop: `1px solid ${colors.border}`,
-        }}>
-          <div style={{
-            maxWidth: '900px',
-            margin: '0 auto',
-            padding: 'clamp(3rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem)',
-          }}>
-            <span className={styles.sectionKicker}>◆ O COPART</span>
-            <h2 style={{
-              fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
-              fontWeight: 400,
-              marginBottom: '1rem',
-              letterSpacing: '-0.01em',
-            }}>
+        <section className={styles.bandPaper}>
+          <div className={styles.inner}>
+            <span className={styles.eyebrowPlainPaper}>O COPART</span>
+            <h2 className={styles.h2Paper}>
               Czym tak naprawdę jest Copart
             </h2>
-            <p style={{ 
-              fontSize: '1.0625rem', 
-              lineHeight: '1.7', 
-              color: '#4A4A46',
-              marginBottom: '1.5rem'
-            }}>
-              Copart (Copart Inc., założony 1982 w Kalifornii) to platforma łącząca 
-              ubezpieczycieli, dealerów i banki z kupującymi na całym świecie. 
-              Skala: ponad 175 tysięcy aut dziennie, ponad milion sprzedaży rocznie, 
-              siedziba w Dallas, Teksas. W przeciwieństwie do tradycyjnych domów aukcyjnych 
-              Copart działa wyłącznie online — wszystkie licytacje odbywają się 
+            <p className={styles.pPaper} style={{ marginBottom: '1.5rem' }}>
+              Copart (Copart Inc., założony 1982 w Kalifornii) to platforma łącząca
+              ubezpieczycieli, dealerów i banki z kupującymi na całym świecie.
+              Skala: ponad 175 tysięcy aut dziennie, ponad milion sprzedaży rocznie,
+              siedziba w Dallas, Teksas. W przeciwieństwie do tradycyjnych domów aukcyjnych
+              Copart działa wyłącznie online — wszystkie licytacje odbywają się
               przez internet w systemie VB3 (Virtual Bidding 3.0).
             </p>
 
-            <p style={{ 
-              fontSize: '1.0625rem', 
-              lineHeight: '1.7', 
-              color: '#4A4A46',
-              marginBottom: '1.5rem'
-            }}>
-              Większość aut na Copart pochodzi od ubezpieczycieli — są to pojazdy 
-              uznane za szkodę całkowitą (total loss) po kolizjach, kradzieżach, 
-              powodziach, gradobiciach. Co ważne: "szkoda całkowita" w USA nie zawsze 
-              oznacza zniszczenie. Amerykańskie zasady wymagają uznania auta za 
-              total loss, gdy koszt naprawy przekracza ~70-80% wartości rynkowej — 
-              to oznacza, że wiele lekko uszkodzonych aut trafia na Copart tylko dlatego, 
+            <p className={styles.pPaper} style={{ marginBottom: '1.5rem' }}>
+              Większość aut na Copart pochodzi od ubezpieczycieli — są to pojazdy
+              uznane za szkodę całkowitą (total loss) po kolizjach, kradzieżach,
+              powodziach, gradobiciach. Co ważne: "szkoda całkowita" w USA nie zawsze
+              oznacza zniszczenie. Amerykańskie zasady wymagają uznania auta za
+              total loss, gdy koszt naprawy przekracza ~70-80% wartości rynkowej —
+              to oznacza, że wiele lekko uszkodzonych aut trafia na Copart tylko dlatego,
               że cena części w USA jest wysoka, a wartość rynkowa niższa niż w Europie.
             </p>
 
-            <p style={{ 
-              fontSize: '1.0625rem', 
-              lineHeight: '1.7', 
-              color: '#4A4A46',
-              marginBottom: 0
-            }}>
-              Dla polskiego importera to szansa: auto powypadkowe w USA za 10 000 USD 
-              może po naprawie i sprowadzeniu być warte 90 000 zł na polskim rynku. 
-              Ale ta sama zasada działa w drugą stronę — niedoświadczony kupiec może 
-              wylicytować auto z ukrytymi wadami, których koszt naprawy zjada całą 
+            <p className={styles.pPaper} style={{ marginBottom: 0 }}>
+              Dla polskiego importera to szansa: auto powypadkowe w USA za 10 000 USD
+              może po naprawie i sprowadzeniu być warte 90 000 zł na polskim rynku.
+              Ale ta sama zasada działa w drugą stronę — niedoświadczony kupiec może
+              wylicytować auto z ukrytymi wadami, których koszt naprawy zjada całą
               potencjalną oszczędność.
             </p>
           </div>
         </section>
 
         {/* Copart vs IAAI */}
-        <section style={{
-          maxWidth: '900px',
-          margin: '0 auto',
-          padding: 'clamp(3rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem)',
-        }}>
-          <span className={styles.sectionKicker}>◆ COPART vs IAAI</span>
-          <h2 style={{
-            fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
-            fontWeight: 400,
-            marginBottom: '1rem',
-            letterSpacing: '-0.01em',
-          }}>
-            Copart czy IAAI — różnica dla polskiego importera
-          </h2>
-          <p style={{ 
-            fontSize: '1.0625rem', 
-            lineHeight: '1.7', 
-            color: '#4A4A46',
-            marginBottom: '2rem'
-          }}>
-            Copart to jeden z dwóch graczy na amerykańskim rynku aukcji aut powypadkowych. 
-            Drugi to IAAI (Insurance Auto Auctions). Oba mają polskich klientów, ale różnią 
-            się wolumenem, regulacjami i dostępnością dla kupujących spoza USA.
-          </p>
+        <section className={styles.bandBoard}>
+          <div className={styles.inner}>
+            <span className={styles.eyebrowRuleBoard}>COPART vs IAAI</span>
+            <h2 className={styles.h2Board}>
+              Copart czy IAAI — różnica dla polskiego importera
+            </h2>
+            <p className={styles.leadBoard}>
+              Copart to jeden z dwóch graczy na amerykańskim rynku aukcji aut powypadkowych.
+              Drugi to IAAI (Insurance Auto Auctions). Oba mają polskich klientów, ale różnią
+              się wolumenem, regulacjami i dostępnością dla kupujących spoza USA.
+            </p>
 
-          <div style={{
-            background: '#fff',
-            border: `1px solid ${colors.border}`,
-            borderRadius: '8px',
-            overflowX: 'auto',
-            WebkitOverflowScrolling: 'touch',
-            marginBottom: '2rem',
-            fontSize: '0.9375rem',
-          }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-              <thead>
-                <tr style={{ background: colors.bg }}>
-                  <th style={{ padding: '0.75rem 1rem', textAlign: 'left', borderBottom: `1px solid ${colors.border}`, fontWeight: 500 }}></th>
-                  <th style={{ padding: '0.75rem 1rem', textAlign: 'left', borderBottom: `1px solid ${colors.border}`, fontWeight: 500 }}>Copart</th>
-                  <th style={{ padding: '0.75rem 1rem', textAlign: 'left', borderBottom: `1px solid ${colors.border}`, fontWeight: 500 }}>IAAI</th>
-                </tr>
-              </thead>
-              <tbody style={{ fontFamily: fonts.sans, color: '#4A4A46' }}>
-                {[
-                  ['Wolumen dzienny', '~175 000 lotów', '~50 000 lotów'],
-                  ['Placów w USA', 'Ponad 260', 'Ponad 200'],
-                  ['Dostęp bez licencji', 'Basic/Premier member', 'Utrudniony, często broker konieczny'],
-                  ['Typ licytacji', 'VB3 — licytacja na żywo', 'Pre-bid + live auction'],
-                  ['Źródło aut', 'Ubezpieczyciele, dealerzy, osoby prywatne', 'Głównie ubezpieczyciele'],
-                  ['Typy tytułów', 'Salvage, Clean, Rebuilt', 'Głównie Salvage'],
-                  ['Interfejs', 'Bardziej techniczny', 'Prostszy w obsłudze'],
-                  ['Narzędzia oceny', 'Standardowe zdjęcia', 'Key Images, Engine Start Video'],
-                ].map((row, i) => (
-                  <tr key={i} style={{ borderBottom: i < 7 ? `1px solid ${colors.border}` : 'none' }}>
-                    <td style={{ padding: '0.75rem 1rem', fontWeight: 500, color: colors.text }}>{row[0]}</td>
-                    <td style={{ padding: '0.75rem 1rem' }}>{row[1]}</td>
-                    <td style={{ padding: '0.75rem 1rem' }}>{row[2]}</td>
+            <div className={styles.tableWrap}>
+              <table className={styles.table}>
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Copart</th>
+                    <th>IAAI</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {[
+                    ['Wolumen dzienny', '~175 000 lotów', '~50 000 lotów'],
+                    ['Placów w USA', 'Ponad 260', 'Ponad 200'],
+                    ['Dostęp bez licencji', 'Basic/Premier member', 'Utrudniony, często broker konieczny'],
+                    ['Typ licytacji', 'VB3 — licytacja na żywo', 'Pre-bid + live auction'],
+                    ['Źródło aut', 'Ubezpieczyciele, dealerzy, osoby prywatne', 'Głównie ubezpieczyciele'],
+                    ['Typy tytułów', 'Salvage, Clean, Rebuilt', 'Głównie Salvage'],
+                    ['Interfejs', 'Bardziej techniczny', 'Prostszy w obsłudze'],
+                    ['Narzędzia oceny', 'Standardowe zdjęcia', 'Key Images, Engine Start Video'],
+                  ].map((row, i) => (
+                    <tr key={i}>
+                      <td className={styles.tableRowLabel}>{row[0]}</td>
+                      <td>{row[1]}</td>
+                      <td>{row[2]}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
-          <p style={{ 
-            fontSize: '1rem', 
-            lineHeight: '1.65', 
-            color: '#4A4A46',
-            marginBottom: '1rem'
-          }}>
-            <strong style={{ color: colors.text }}>Kiedy Copart:</strong> gdy szukasz maksymalnie 
-            szerokiej oferty, chcesz mieć dostęp do klasyków lub nietypowych modeli, cenisz 
-            dynamiczną licytację i masz doświadczenie z amerykańskimi platformami.
-          </p>
-          <p style={{ 
-            fontSize: '1rem', 
-            lineHeight: '1.65', 
-            color: '#4A4A46',
-            margin: 0
-          }}>
-            <strong style={{ color: colors.text }}>Kiedy IAAI:</strong> gdy priorytetem jest 
-            pewne źródło pochodzenia (głównie ubezpieczyciele), cenisz dodatkowe narzędzia 
-            oceny stanu technicznego i zaczynasz przygodę z importem — interfejs jest bardziej 
-            przejrzysty.
-          </p>
+            <p className={styles.pBoard} style={{ fontSize: '1rem', lineHeight: '1.65', marginBottom: '1rem' }}>
+              <strong>Kiedy Copart:</strong> gdy szukasz maksymalnie
+              szerokiej oferty, chcesz mieć dostęp do klasyków lub nietypowych modeli, cenisz
+              dynamiczną licytację i masz doświadczenie z amerykańskimi platformami.
+            </p>
+            <p className={styles.pBoard} style={{ fontSize: '1rem', lineHeight: '1.65', margin: 0 }}>
+              <strong>Kiedy IAAI:</strong> gdy priorytetem jest
+              pewne źródło pochodzenia (głównie ubezpieczyciele), cenisz dodatkowe narzędzia
+              oceny stanu technicznego i zaczynasz przygodę z importem — interfejs jest bardziej
+              przejrzysty.
+            </p>
+          </div>
         </section>
 
         {/* Opłaty Copart */}
-        <section style={{
-          background: '#fff',
-          borderTop: `1px solid ${colors.border}`,
-        }}>
-          <div style={{
-            maxWidth: '900px',
-            margin: '0 auto',
-            padding: 'clamp(3rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem)',
-          }}>
-            <span className={styles.sectionKicker}>◆ OPŁATY</span>
-            <h2 style={{
-              fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
-              fontWeight: 400,
-              marginBottom: '1rem',
-              letterSpacing: '-0.01em',
-            }}>
+        <section className={styles.bandPaper}>
+          <div className={styles.inner}>
+            <span className={styles.eyebrowPlainPaper}>OPŁATY</span>
+            <h2 className={styles.h2Paper}>
               Opłaty Copart — czego nie pokazuje cena wyświetlana na licytacji
             </h2>
-            <p style={{ 
-              fontSize: '1.0625rem', 
-              lineHeight: '1.7', 
-              color: '#4A4A46',
-              marginBottom: '2rem'
-            }}>
-              Największy szok dla początkujących importerów to różnica między ceną 
-              wylicytowaną a kwotą na fakturze. Copart pobiera serię opłat, które trzeba 
-              doliczyć do każdej stawki. Dla auta wylicytowanego za 5 000 USD realny koszt 
+            <p className={styles.leadPaper}>
+              Największy szok dla początkujących importerów to różnica między ceną
+              wylicytowaną a kwotą na fakturze. Copart pobiera serię opłat, które trzeba
+              doliczyć do każdej stawki. Dla auta wylicytowanego za 5 000 USD realny koszt
               wyjścia z placu Copart wynosi 6 500-7 000 USD.
             </p>
 
-            <div style={{
-              background: colors.bg,
-              borderRadius: '8px',
-              padding: '1.5rem',
-              marginBottom: '2rem'
-            }}>
-              <h3 style={{ 
-                fontSize: '1.125rem', 
-                fontWeight: 500, 
-                marginTop: 0,
-                marginBottom: '1rem',
-                fontFamily: fonts.sans
-              }}>
+            <div className={styles.ledger}>
+              <h3 className={styles.ledgerTitle}>
                 Typowy rachunek Copart (auto za 10 000 USD)
               </h3>
-              <div style={{ 
-                fontSize: '0.9375rem',
-                fontFamily: fonts.sans,
-                color: '#4A4A46',
-                lineHeight: '1.7'
-              }}>
+              <div>
                 {[
                   ['Cena wylicytowana (Sale Price)', '10 000 USD'],
                   ['Buyer Fee (główna opłata aukcji)', '900-1 200 USD'],
@@ -401,187 +272,108 @@ const PolandCopart = () => {
                   ['Environmental Fee', '15 USD'],
                   ['Membership (roczna, jeśli własne konto)', '200 USD (Basic) lub 600 USD (Premier)'],
                 ].map((row, i) => (
-                  <div key={i} style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    padding: '0.5rem 0',
-                    borderBottom: i < 5 ? `1px solid ${colors.border}` : 'none'
-                  }}>
+                  <div key={i} className={i < 5 ? styles.ledgerRow : styles.ledgerRowLast}>
                     <span>{row[0]}</span>
-                    <span style={{ fontVariantNumeric: 'tabular-nums' }}>{row[1]}</span>
+                    <span>{row[1]}</span>
                   </div>
                 ))}
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  padding: '0.75rem 0 0 0',
-                  fontWeight: 500,
-                  color: colors.text
-                }}>
+                <div className={styles.ledgerTotal}>
                   <span>Realny koszt wyjścia z placu</span>
                   <span>11 250-12 550 USD</span>
                 </div>
               </div>
             </div>
 
-            <p style={{ 
-              fontSize: '1rem', 
-              lineHeight: '1.65', 
-              color: '#4A4A46',
-              marginBottom: '1rem'
-            }}>
-              Dodatkowo: <strong>storage fee</strong> — jeśli nie odbierzesz auta w ciągu 3 dni 
-              od płatności, Copart nalicza 20-40 USD dziennie. <strong>Late Payment Fee</strong> — 
-              50 USD za każdy dzień opóźnienia przelewu. <strong>Wash Fee</strong> — opcjonalna 
+            <p className={styles.pPaper} style={{ fontSize: '1rem', lineHeight: '1.65', marginBottom: '1rem' }}>
+              Dodatkowo: <strong>storage fee</strong> — jeśli nie odbierzesz auta w ciągu 3 dni
+              od płatności, Copart nalicza 20-40 USD dziennie. <strong>Late Payment Fee</strong> —
+              50 USD za każdy dzień opóźnienia przelewu. <strong>Wash Fee</strong> — opcjonalna
               opłata 25-50 USD za mycie przed odbiorem (zwykle pomijana przy salvage).
             </p>
-            <p style={{ 
-              fontSize: '1rem', 
-              lineHeight: '1.65', 
-              color: '#4A4A46',
-              margin: 0
-            }}>
-              <strong style={{ color: colors.text }}>Dlaczego broker obniża koszty:</strong> licencjonowany 
-              dealer ma dostęp do niższych buyer fees (tzw. dealer rates), nie płaci rocznego 
-              membership i może łączyć zakupy kilku klientów w jeden transport — co obniża 
+            <p className={styles.pPaper} style={{ fontSize: '1rem', lineHeight: '1.65', margin: 0 }}>
+              <strong>Dlaczego broker obniża koszty:</strong> licencjonowany
+              dealer ma dostęp do niższych buyer fees (tzw. dealer rates), nie płaci rocznego
+              membership i może łączyć zakupy kilku klientów w jeden transport — co obniża
               koszt na jedno auto. W praktyce ta oszczędność często pokrywa koszt prowizji brokera.
             </p>
           </div>
         </section>
 
         {/* Transport do portu */}
-        <section style={{
-          maxWidth: '900px',
-          margin: '0 auto',
-          padding: 'clamp(3rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem)',
-        }}>
-          <span className={styles.sectionKicker}>◆ TRANSPORT USA</span>
-          <h2 style={{
-            fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
-            fontWeight: 400,
-            marginBottom: '1rem',
-            letterSpacing: '-0.01em',
-          }}>
-            Transport z placu Copart do portu — rola Y7 Logistics
-          </h2>
-          <p style={{ 
-            fontSize: '1.0625rem', 
-            lineHeight: '1.7', 
-            color: '#4A4A46',
-            marginBottom: '1.5rem'
-          }}>
-            Po zapłacie i otrzymaniu dokumentu wydania (gate pass) auto musi opuścić 
-            plac Copart w ciągu 3 dni bezpłatnego przechowania. To pierwszy moment, 
-            w którym wchodzi Y7 Logistics — jako licencjonowany broker FMCSA (MC #1741537) 
-            koordynujemy odbiór i transport do portu załadunku.
-          </p>
+        <section className={styles.bandBoard}>
+          <div className={styles.inner}>
+            <span className={styles.eyebrowRuleBoard}>TRANSPORT USA</span>
+            <h2 className={styles.h2Board}>
+              Transport z placu Copart do portu — rola Y7 Logistics
+            </h2>
+            <p className={styles.leadBoard} style={{ marginBottom: '1.5rem' }}>
+              Po zapłacie i otrzymaniu dokumentu wydania (gate pass) auto musi opuścić
+              plac Copart w ciągu 3 dni bezpłatnego przechowania. To pierwszy moment,
+              w którym wchodzi Y7 Logistics — jako licencjonowany broker FMCSA (MC #1741537)
+              koordynujemy odbiór i transport do portu załadunku.
+            </p>
 
-          <p style={{ 
-            fontSize: '1.0625rem', 
-            lineHeight: '1.7', 
-            color: '#4A4A46',
-            marginBottom: '2rem'
-          }}>
-            Najczęstsze scenariusze dla aut kierowanych do Polski:
-          </p>
+            <p className={styles.leadBoard}>
+              Najczęstsze scenariusze dla aut kierowanych do Polski:
+            </p>
 
-          {[
-            {
-              route: 'Copart Newark (NJ) → Port Newark',
-              distance: '~25 km',
-              cost: '150-200 USD',
-              time: '1 dzień',
-              note: 'Najkrótszy możliwy transport — wiele aut na Copart Newark kończy w Port Newark tego samego dnia. Optymalny scenariusz kosztowy.'
-            },
-            {
-              route: 'Copart Chicago (IL) → Port Newark lub Baltimore',
-              distance: '~1 200 km',
-              cost: '500-750 USD',
-              time: '3-5 dni',
-              note: 'Transport lawetą przez Wschodnie Wybrzeże. Alternatywnie Cicero (IN) — port używany przez DaytonaCargo dla aut ze Środkowego Zachodu.'
-            },
-            {
-              route: 'Copart Dallas (TX) → Port Houston',
-              distance: '~400 km',
-              cost: '300-450 USD',
-              time: '2-3 dni',
-              note: 'Port Houston to druga co do wielkości lokalizacja eksportu aut z USA. Transit z Teksasu krótszy niż z East Coast.'
-            },
-            {
-              route: 'Copart LA (CA) → Port Long Beach',
-              distance: '~50 km',
-              cost: '200-280 USD',
-              time: '1-2 dni',
-              note: 'Zachodnie wybrzeże. Uwaga: fracht z West Coast do Europy trwa 4-5 tygodni (Kanał Panamski) vs 2-3 tygodnie z East Coast.'
-            }
-          ].map((item, i) => (
-            <div key={i} style={{
-              background: '#fff',
-              border: `1px solid ${colors.border}`,
-              borderRadius: '8px',
-              padding: '1.25rem 1.5rem',
-              marginBottom: '1rem'
-            }}>
-              <h3 style={{ 
-                fontSize: '1.0625rem', 
-                fontWeight: 500, 
-                margin: '0 0 0.75rem 0',
-                fontFamily: fonts.sans
-              }}>
-                {item.route}
-              </h3>
-              <div style={{
-                display: 'flex',
-                gap: '1.5rem',
-                flexWrap: 'wrap',
-                fontSize: '0.875rem',
-                fontFamily: fonts.sans,
-                color: '#6B6B65',
-                marginBottom: '0.75rem'
-              }}>
-                <span><strong style={{ color: colors.text }}>Dystans:</strong> {item.distance}</span>
-                <span><strong style={{ color: colors.text }}>Koszt:</strong> {item.cost}</span>
-                <span><strong style={{ color: colors.text }}>Czas:</strong> {item.time}</span>
+            {[
+              {
+                route: 'Copart Newark (NJ) → Port Newark',
+                distance: '~25 km',
+                cost: '150-200 USD',
+                time: '1 dzień',
+                note: 'Najkrótszy możliwy transport — wiele aut na Copart Newark kończy w Port Newark tego samego dnia. Optymalny scenariusz kosztowy.'
+              },
+              {
+                route: 'Copart Chicago (IL) → Port Newark lub Baltimore',
+                distance: '~1 200 km',
+                cost: '500-750 USD',
+                time: '3-5 dni',
+                note: 'Transport lawetą przez Wschodnie Wybrzeże. Alternatywnie Cicero (IN) — port używany przez DaytonaCargo dla aut ze Środkowego Zachodu.'
+              },
+              {
+                route: 'Copart Dallas (TX) → Port Houston',
+                distance: '~400 km',
+                cost: '300-450 USD',
+                time: '2-3 dni',
+                note: 'Port Houston to druga co do wielkości lokalizacja eksportu aut z USA. Transit z Teksasu krótszy niż z East Coast.'
+              },
+              {
+                route: 'Copart LA (CA) → Port Long Beach',
+                distance: '~50 km',
+                cost: '200-280 USD',
+                time: '1-2 dni',
+                note: 'Zachodnie wybrzeże. Uwaga: fracht z West Coast do Europy trwa 4-5 tygodni (Kanał Panamski) vs 2-3 tygodnie z East Coast.'
+              }
+            ].map((item, i) => (
+              <div key={i} className={styles.routeCard}>
+                <h3 className={styles.routeTitle}>
+                  {item.route}
+                </h3>
+                <div className={styles.routeMeta}>
+                  <span><strong>Dystans:</strong> {item.distance}</span>
+                  <span><strong>Koszt:</strong> {item.cost}</span>
+                  <span><strong>Czas:</strong> {item.time}</span>
+                </div>
+                <p className={styles.routeNote}>
+                  {item.note}
+                </p>
               </div>
-              <p style={{ 
-                fontSize: '0.9375rem', 
-                lineHeight: '1.6', 
-                color: '#4A4A46',
-                margin: 0
-              }}>
-                {item.note}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </section>
 
         {/* Na co uważać */}
-        <section style={{
-          background: '#fff',
-          borderTop: `1px solid ${colors.border}`,
-        }}>
-          <div style={{
-            maxWidth: '900px',
-            margin: '0 auto',
-            padding: 'clamp(3rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem)',
-          }}>
-            <span className={styles.sectionKicker}>◆ PUŁAPKI</span>
-            <h2 style={{
-              fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
-              fontWeight: 400,
-              marginBottom: '1rem',
-              letterSpacing: '-0.01em',
-            }}>
+        <section className={styles.bandPaper}>
+          <div className={styles.inner}>
+            <span className={styles.eyebrowPlainPaper}>PUŁAPKI</span>
+            <h2 className={styles.h2Paper}>
               Siedem pułapek przy kupowaniu na Copart
             </h2>
-            <p style={{ 
-              fontSize: '1.0625rem', 
-              lineHeight: '1.7', 
-              color: '#4A4A46',
-              marginBottom: '2rem'
-            }}>
-              Po latach obsługi klientów polskich i europejskich widzimy powtarzające się 
-              błędy początkujących. Poniżej lista rzeczy, które najczęściej kosztują ludzi 
+            <p className={styles.leadPaper}>
+              Po latach obsługi klientów polskich i europejskich widzimy powtarzające się
+              błędy początkujących. Poniżej lista rzeczy, które najczęściej kosztują ludzi
               pieniądze — albo marzenie o wymarzonym aucie.
             </p>
 
@@ -622,45 +414,15 @@ const PolandCopart = () => {
                 text: 'Niektóre loty są oznaczone "Dealer Only" — nie kupisz ich bez licencji dealerskiej w USA. Widzisz ofertę, ale nie możesz licytować. Jeśli wybrałeś auto i dopiero przed licytacją zauważyłeś ten status, skontaktuj się z brokerem — może pomóc.'
               }
             ].map(item => (
-              <div key={item.num} style={{
-                display: 'flex',
-                gap: '1rem',
-                marginBottom: '1.5rem',
-                paddingBottom: '1.5rem',
-                borderBottom: item.num !== '7' ? `1px solid ${colors.border}` : 'none'
-              }}>
-                <div style={{
-                  flexShrink: 0,
-                  width: '2rem',
-                  height: '2rem',
-                  borderRadius: '50%',
-                  background: colors.bg,
-                  color: colors.accent,
-                  fontSize: '1rem',
-                  fontWeight: 500,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontFamily: fonts.serif
-                }}>
+              <div key={item.num} className={item.num !== '7' ? styles.pitfallRow : styles.pitfallRowLast}>
+                <div className={styles.pitfallNum}>
                   {item.num}
                 </div>
                 <div style={{ flex: 1 }}>
-                  <h3 style={{ 
-                    fontSize: '1.0625rem', 
-                    fontWeight: 500, 
-                    margin: '0 0 0.5rem 0',
-                    color: colors.text,
-                    fontFamily: fonts.sans
-                  }}>
+                  <h3 className={styles.h3SansPaper}>
                     {item.title}
                   </h3>
-                  <p style={{ 
-                    fontSize: '0.9375rem', 
-                    lineHeight: '1.65', 
-                    color: '#4A4A46',
-                    margin: 0
-                  }}>
+                  <p className={styles.pitfallText}>
                     {item.text}
                   </p>
                 </div>
@@ -670,91 +432,61 @@ const PolandCopart = () => {
         </section>
 
         {/* Jak wygląda współpraca */}
-        <section style={{
-          maxWidth: '900px',
-          margin: '0 auto',
-          padding: 'clamp(3rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem)',
-        }}>
-          <span className={styles.sectionKicker}>◆ WSPÓŁPRACA</span>
-          <h2 style={{
-            fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
-            fontWeight: 400,
-            marginBottom: '1rem',
-            letterSpacing: '-0.01em',
-          }}>
-            Jak wygląda współpraca z Y7 i DaytonaCargo
-          </h2>
-          <p style={{ 
-            fontSize: '1.0625rem', 
-            lineHeight: '1.7', 
-            color: '#4A4A46',
-            marginBottom: '2rem'
-          }}>
-            Dla Ciebie to jedna usługa z jednym kontaktem. Technicznie obsługują ją dwie 
-            wyspecjalizowane firmy, ale klient rozmawia z jedną osobą i otrzymuje jedną 
-            wycenę "door-to-door" — od placu Copart do własnego podwórka w Polsce.
-          </p>
+        <section className={styles.bandBoard}>
+          <div className={styles.inner}>
+            <span className={styles.eyebrowRuleBoard}>WSPÓŁPRACA</span>
+            <h2 className={styles.h2Board}>
+              Jak wygląda współpraca z Y7 i DaytonaCargo
+            </h2>
+            <p className={styles.leadBoard}>
+              Dla Ciebie to jedna usługa z jednym kontaktem. Technicznie obsługują ją dwie
+              wyspecjalizowane firmy, ale klient rozmawia z jedną osobą i otrzymuje jedną
+              wycenę "door-to-door" — od placu Copart do własnego podwórka w Polsce.
+            </p>
 
-          <ol style={{ 
-            fontSize: '1rem', 
-            lineHeight: '1.8', 
-            color: '#4A4A46',
-            paddingLeft: '1.25rem',
-            margin: 0
-          }}>
-            <li style={{ marginBottom: '0.75rem' }}>
-              <strong>Wybierasz auto na Copart</strong> lub prosisz nas o pomoc w wyszukaniu. 
-              Wyślij link do lotu przez Telegram lub e-mail — otrzymasz wstępną kalkulację 
-              całkowitego kosztu w ciągu kilku godzin.
-            </li>
-            <li style={{ marginBottom: '0.75rem' }}>
-              <strong>Akceptujesz wycenę</strong> i wpłacasz kaucję (zazwyczaj 10% zakładanej 
-              ceny maksymalnej). Kaucja zabezpiecza obie strony i jest odliczana od końcowego rachunku.
-            </li>
-            <li style={{ marginBottom: '0.75rem' }}>
-              <strong>DaytonaCargo licytuje</strong> w Twoim imieniu na aukcji z użyciem 
-              licencji dealerskiej — dostęp do wszystkich lotów, niższe buyer fees.
-            </li>
-            <li style={{ marginBottom: '0.75rem' }}>
-              <strong>Y7 Logistics dysponuje przewoźnikiem</strong> do odbioru z placu Copart —
-              cel to 1-5 dni od wygranej, gdy warunki rynkowe na to pozwalają. Opłaty storage
-              pozostają między Tobą a Copart; my pomagamy planować i działamy jak najszybciej,
-              ale nie gwarantujemy odbioru w oknie bezpłatnym. Otrzymujesz dokumentację
-              transportową i tracking.
-            </li>
-            <li style={{ marginBottom: '0.75rem' }}>
-              <strong>DaytonaCargo organizuje fracht</strong> — kontener lub RoRo do Gdyni 
-              lub Rotterdamu. Czas transportu morskiego 2-5 tygodni w zależności od wybrzeża 
-              startowego i dostępności statków.
-            </li>
-            <li style={{ marginBottom: '0.75rem' }}>
-              <strong>Odprawa celna w Polsce</strong> — cło 10%, VAT 23%, akcyza. DaytonaCargo 
-              koordynuje dokumenty, Ty opłacasz należności.
-            </li>
-            <li style={{ marginBottom: 0 }}>
-              <strong>Dostawa pod dom</strong> z portu do wskazanego adresu w Polsce. 
-              Alternatywnie odbiór własny z Gdyni obniża koszt o 800-1500 zł.
-            </li>
-          </ol>
+            <ol className={styles.orderedList}>
+              <li>
+                <strong>Wybierasz auto na Copart</strong> lub prosisz nas o pomoc w wyszukaniu.
+                Wyślij link do lotu przez Telegram lub e-mail — otrzymasz wstępną kalkulację
+                całkowitego kosztu w ciągu kilku godzin.
+              </li>
+              <li>
+                <strong>Akceptujesz wycenę</strong> i wpłacasz kaucję (zazwyczaj 10% zakładanej
+                ceny maksymalnej). Kaucja zabezpiecza obie strony i jest odliczana od końcowego rachunku.
+              </li>
+              <li>
+                <strong>DaytonaCargo licytuje</strong> w Twoim imieniu na aukcji z użyciem
+                licencji dealerskiej — dostęp do wszystkich lotów, niższe buyer fees.
+              </li>
+              <li>
+                <strong>Y7 Logistics dysponuje przewoźnikiem</strong> do odbioru z placu Copart —
+                cel to 1-5 dni od wygranej, gdy warunki rynkowe na to pozwalają. Opłaty storage
+                pozostają między Tobą a Copart; my pomagamy planować i działamy jak najszybciej,
+                ale nie gwarantujemy odbioru w oknie bezpłatnym. Otrzymujesz dokumentację
+                transportową i tracking.
+              </li>
+              <li>
+                <strong>DaytonaCargo organizuje fracht</strong> — kontener lub RoRo do Gdyni
+                lub Rotterdamu. Czas transportu morskiego 2-5 tygodni w zależności od wybrzeża
+                startowego i dostępności statków.
+              </li>
+              <li>
+                <strong>Odprawa celna w Polsce</strong> — cło 10%, VAT 23%, akcyza. DaytonaCargo
+                koordynuje dokumenty, Ty opłacasz należności.
+              </li>
+              <li>
+                <strong>Dostawa pod dom</strong> z portu do wskazanego adresu w Polsce.
+                Alternatywnie odbiór własny z Gdyni obniża koszt o 800-1500 zł.
+              </li>
+            </ol>
+          </div>
         </section>
 
         {/* FAQ */}
-        <section style={{
-          background: '#fff',
-          borderTop: `1px solid ${colors.border}`,
-        }}>
-          <div style={{
-            maxWidth: '900px',
-            margin: '0 auto',
-            padding: 'clamp(3rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem)',
-          }}>
-            <span className={styles.sectionKicker}>◆ FAQ</span>
-            <h2 style={{
-              fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
-              fontWeight: 400,
-              marginBottom: '2rem',
-              letterSpacing: '-0.01em',
-            }}>
+        <section className={styles.bandPaper}>
+          <div className={styles.inner}>
+            <span className={styles.eyebrowPlainPaper}>FAQ</span>
+            <h2 className={styles.h2Paper} style={{ marginBottom: '2rem' }}>
               Pytania, które słyszymy najczęściej
             </h2>
 
@@ -762,33 +494,12 @@ const PolandCopart = () => {
               <details
                 key={i}
                 className={styles.faqItem}
-                style={{
-                  borderBottom: `1px solid ${colors.border}`,
-                  paddingBottom: '1rem',
-                  marginBottom: '1rem'
-                }}
               >
-                <summary style={{
-                  fontSize: '1.0625rem',
-                  fontWeight: 400,
-                  cursor: 'pointer',
-                  padding: '0.75rem 0',
-                  listStyle: 'none',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  gap: '1rem'
-                }}>
+                <summary className={styles.faqSummary}>
                   <span>{faq.name}</span>
-                  <span style={{ color: colors.accent, fontSize: '1.5rem' }}>+</span>
+                  <span className={styles.faqMarker}>+</span>
                 </summary>
-                <p style={{
-                  fontSize: '0.9375rem',
-                  lineHeight: '1.7',
-                  color: '#4A4A46',
-                  paddingTop: '0.5rem',
-                  margin: 0
-                }}>
+                <p className={styles.faqAnswer}>
                   {faq.acceptedAnswer.text}
                 </p>
               </details>
@@ -800,45 +511,15 @@ const PolandCopart = () => {
         {/* ================================================================== */}
         {/* SECTION — Dla Polonii w USA (diaspora addendum)                    */}
         {/* ================================================================== */}
-        <section style={{
-          background: '#EFEAE0',
-          borderTop: '1px solid #E8E4DC',
-          borderBottom: '1px solid #E8E4DC',
-        }}>
-          <div style={{
-            maxWidth: '900px',
-            margin: '0 auto',
-            padding: 'clamp(3rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem)',
-          }}>
-            <div style={{
-              display: 'inline-block',
-              padding: '0.375rem 0.875rem',
-              background: '#fff',
-              border: '1px solid #E8E4DC',
-              borderRadius: '999px',
-              fontSize: '0.8rem',
-              color: colors.accent,
-              letterSpacing: '0.05em',
-              textTransform: 'uppercase',
-              marginBottom: '1rem',
-              fontFamily: fonts.sans,
-            }}>
+        <section className={styles.bandBoard}>
+          <div className={styles.inner}>
+            <span className={styles.eyebrowPlainBoard}>
               Dla Polonii w USA
-            </div>
-            <h2 style={{
-              fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
-              fontWeight: 400,
-              marginBottom: '1rem',
-              letterSpacing: '-0.01em',
-            }}>
+            </span>
+            <h2 className={styles.h2Board}>
               Kupujesz na Copart i mieszkasz w USA? Dostarczymy pod dom
             </h2>
-            <p style={{
-              fontSize: '1.0625rem',
-              lineHeight: '1.7',
-              color: '#4A4A46',
-              marginBottom: '1.25rem',
-            }}>
+            <p className={styles.pBoard} style={{ marginBottom: '1.25rem' }}>
               Cały powyższy przewodnik opisuje drogę auta z Copart do Polski — pełny import
               z aukcji, przez fracht morski, aż po odprawę celną w Gdyni. Ale jeśli jesteś
               z Polonii mieszkającej w Stanach i kupujesz auto na Copart na własne potrzeby
@@ -846,12 +527,7 @@ const PolandCopart = () => {
               bezpośrednio pod dom w Chicago, Los Angeles, Nowym Jorku albo gdziekolwiek
               w Stanach. Y7 Logistics obsługuje ten zakres samodzielnie.
             </p>
-            <p style={{
-              fontSize: '1.0625rem',
-              lineHeight: '1.7',
-              color: '#4A4A46',
-              marginBottom: '1.25rem',
-            }}>
+            <p className={styles.pBoard} style={{ marginBottom: '1.25rem' }}>
               Jako licencjonowany broker FMCSA (MC #1741537) odbieramy auta z każdego
               z ponad 200 placów Copart w USA i Kanadzie oraz z aukcji IAAI. Sieć
               zweryfikowanych przewoźników pokrywa wszystkie 50 stanów. Typowa trasa
@@ -860,12 +536,7 @@ const PolandCopart = () => {
               opłaty za storage od 3. dnia po wygranej licytacji, więc szybkie potwierdzenie
               zlecenia oszczędza 100-300 USD.
             </p>
-            <p style={{
-              fontSize: '1.0625rem',
-              lineHeight: '1.7',
-              color: '#4A4A46',
-              marginBottom: '1.5rem',
-            }}>
+            <p className={styles.pBoard} style={{ marginBottom: '1.5rem' }}>
               <strong>Uczciwie mówiąc:</strong> nasz zespół w Y7 nie prowadzi obsługi
               w języku polskim — komunikację prowadzimy po angielsku lub rosyjsku przez
               Telegram. Jeśli zależy Ci na pełnej obsłudze po polsku również w USA,
@@ -880,120 +551,47 @@ const PolandCopart = () => {
               gap: '1rem',
               marginTop: '2rem',
             }}>
-              <div style={{
-                background: '#fff',
-                padding: '1.5rem',
-                borderRadius: '8px',
-                border: '1px solid #E8E4DC',
-              }}>
-                <h3 style={{
-                  fontFamily: fonts.sans,
-                  fontWeight: 600,
-                  fontSize: '0.95rem',
-                  marginTop: 0,
-                  marginBottom: '0.75rem',
-                  color: '#4A4A46',
-                }}>
+              <div className={styles.cardBoard}>
+                <h3 className={styles.priceLabel}>
                   Copart pod dom (do 500 mil)
                 </h3>
-                <div style={{
-                  fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
-                  fontWeight: 300,
-                  color: colors.accent,
-                  marginBottom: '0.5rem',
-                }}>
+                <div className={styles.priceValue}>
                   $450–750
                 </div>
-                <p style={{
-                  fontSize: '0.9rem',
-                  lineHeight: '1.6',
-                  color: '#4A4A46',
-                  margin: 0,
-                }}>
+                <p className={styles.priceDesc}>
                   Typowa trasa wewnątrz jednego regionu. Np. Copart NJ → Nowy Jork,
                   Copart CA → Los Angeles.
                 </p>
               </div>
 
-              <div style={{
-                background: '#fff',
-                padding: '1.5rem',
-                borderRadius: '8px',
-                border: '1px solid #E8E4DC',
-              }}>
-                <h3 style={{
-                  fontFamily: fonts.sans,
-                  fontWeight: 600,
-                  fontSize: '0.95rem',
-                  marginTop: 0,
-                  marginBottom: '0.75rem',
-                  color: '#4A4A46',
-                }}>
+              <div className={styles.cardBoard}>
+                <h3 className={styles.priceLabel}>
                   Copart między regionami (500-1500 mil)
                 </h3>
-                <div style={{
-                  fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
-                  fontWeight: 300,
-                  color: colors.accent,
-                  marginBottom: '0.5rem',
-                }}>
+                <div className={styles.priceValue}>
                   $750–1 200
                 </div>
-                <p style={{
-                  fontSize: '0.9rem',
-                  lineHeight: '1.6',
-                  color: '#4A4A46',
-                  margin: 0,
-                }}>
+                <p className={styles.priceDesc}>
                   Np. Copart Texas → Chicago, Copart Florida → Nowy Jork.
                   Czas dostawy 5-8 dni.
                 </p>
               </div>
 
-              <div style={{
-                background: '#fff',
-                padding: '1.5rem',
-                borderRadius: '8px',
-                border: '1px solid #E8E4DC',
-              }}>
-                <h3 style={{
-                  fontFamily: fonts.sans,
-                  fontWeight: 600,
-                  fontSize: '0.95rem',
-                  marginTop: 0,
-                  marginBottom: '0.75rem',
-                  color: '#4A4A46',
-                }}>
+              <div className={styles.cardBoard}>
+                <h3 className={styles.priceLabel}>
                   Copart przez cały kraj (1500+ mil)
                 </h3>
-                <div style={{
-                  fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
-                  fontWeight: 300,
-                  color: colors.accent,
-                  marginBottom: '0.5rem',
-                }}>
+                <div className={styles.priceValue}>
                   $1 100–1 600
                 </div>
-                <p style={{
-                  fontSize: '0.9rem',
-                  lineHeight: '1.6',
-                  color: '#4A4A46',
-                  margin: 0,
-                }}>
+                <p className={styles.priceDesc}>
                   Np. Copart California → New York, Copart Washington → Florida.
                   Czas dostawy 7-10 dni.
                 </p>
               </div>
             </div>
 
-            <p style={{
-              fontSize: '0.95rem',
-              lineHeight: '1.6',
-              color: '#4A4A46',
-              marginTop: '1.5rem',
-              marginBottom: 0,
-              fontStyle: 'italic',
-            }}>
+            <p className={styles.noteBoard} style={{ marginTop: '1.5rem' }}>
               Ceny dla standardowego sedana lub crossovera na lawecie otwartej.
               Auta niejężdżące (non-running) — dopłata 150-300 USD za wciąganie wciągarką.
               Auta powypadkowe bez szyby/drzwi — wymagana enclosed laweta, dopłata 30-60%.
@@ -1009,33 +607,13 @@ const PolandCopart = () => {
                 href="https://t.me/y7dispatch_bot"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  background: colors.accent,
-                  color: '#fff',
-                  padding: '0.75rem 1.5rem',
-                  borderRadius: '6px',
-                  textDecoration: 'none',
-                  fontSize: '0.95rem',
-                  fontWeight: 500,
-                  fontFamily: fonts.sans,
-                }}
+                className={styles.btnCta}
               >
                 Telegram — wyślij numer lotu
               </a>
               <Link
                 to="/pl/ship-my-car"
-                className={`${styles.subtleLift} ${styles.focusRing}`}
-                style={{
-                  background: 'transparent',
-                  color: colors.accent,
-                  padding: '0.75rem 1.5rem',
-                  borderRadius: '6px',
-                  textDecoration: 'none',
-                  fontSize: '0.95rem',
-                  fontWeight: 500,
-                  border: `1px solid ${colors.accent}`,
-                  fontFamily: fonts.sans,
-                }}
+                className={styles.btnGhostDark}
               >
                 Jak zamówić transport →
               </Link>
@@ -1046,74 +624,27 @@ const PolandCopart = () => {
         <ContextualCTA variant="card" to="/exporters" intlKey="exporters" tone="amber" />
 
         {/* CTA */}
-        <section style={{
-          background: colors.text,
-          color: colors.bg
-        }}>
-          <div style={{
-            maxWidth: '900px',
-            margin: '0 auto',
-            padding: 'clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 2rem)',
-            textAlign: 'center'
-          }}>
-            <h2 style={{
-              fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
-              fontWeight: 400,
-              marginBottom: '1rem',
-              letterSpacing: '-0.01em',
-              color: colors.bg
-            }}>
+        <section className={styles.bandBoard}>
+          <div className={styles.inner} style={{ textAlign: 'center' }}>
+            <h2 className={styles.h2Board}>
               Masz wybrane auto na Copart?
             </h2>
-            <p style={{ 
-              fontSize: '1.0625rem', 
-              lineHeight: '1.7', 
-              color: '#D0CDC6',
-              marginBottom: '2rem',
-              maxWidth: '600px',
-              margin: '0 auto 2rem auto'
-            }}>
-              Prześlij link do lotu — otrzymasz pełną kalkulację door-to-door w ciągu godziny. 
+            <p className={styles.leadBoard} style={{ maxWidth: '600px', margin: '0 auto 2rem auto' }}>
+              Prześlij link do lotu — otrzymasz pełną kalkulację door-to-door w ciągu godziny.
               Bez zobowiązań, bez ukrytych opłat, bez marketingowej sprzedaży.
             </p>
-            <div style={{
-              display: 'flex',
-              gap: '1rem',
-              justifyContent: 'center',
-              flexWrap: 'wrap'
-            }}>
+            <div className={styles.finalActions}>
               <a
                 href="https://t.me/y7dispatch_bot"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${styles.subtleLift} ${styles.focusRing}`}
-                style={{
-                  background: colors.accent,
-                  color: '#fff',
-                  padding: '0.875rem 2rem',
-                  borderRadius: '6px',
-                  textDecoration: 'none',
-                  fontSize: '1rem',
-                  fontWeight: 500,
-                  fontFamily: fonts.sans
-                }}
+                className={styles.btnCta}
               >
                 Telegram — szybka wycena
               </a>
               <Link
                 to="/pl/ship-my-car"
-                className={`${styles.subtleLift} ${styles.focusRing}`}
-                style={{
-                  background: 'transparent',
-                  color: colors.bg,
-                  padding: '0.875rem 2rem',
-                  borderRadius: '6px',
-                  textDecoration: 'none',
-                  fontSize: '1rem',
-                  fontWeight: 500,
-                  border: `1px solid ${colors.bg}`,
-                  fontFamily: fonts.sans
-                }}
+                className={styles.btnGhostDark}
               >
                 Jak zamówić auto →
               </Link>

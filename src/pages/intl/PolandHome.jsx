@@ -11,7 +11,6 @@ import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
 import LanguageSwitcher from '../../components/LanguageSwitcher';
 import ContextualCTA from '../../components/ContextualCTA';
-import { colors, fonts } from '../../theme';
 import styles from './PolandHome.module.css';
 import HeroRouteVisual from '../../components/HeroRouteVisual';
 
@@ -94,9 +93,9 @@ const PolandHome = () => {
     <>
       <Helmet>
         <title>Sprowadzanie aut z USA do Polski — Y7 Logistics & DaytonaCargo</title>
-        <meta 
-          name="description" 
-          content="Y7 Logistics (FMCSA, MC #1741537) i DaytonaCargo — kompleksowe sprowadzanie aut z USA do Polski. Od Copart i IAAI przez transport lądowy w USA po fracht morski i dostawę pod dom. Przejrzyste ceny, realny czas realizacji." 
+        <meta
+          name="description"
+          content="Y7 Logistics (FMCSA, MC #1741537) i DaytonaCargo — kompleksowe sprowadzanie aut z USA do Polski. Od Copart i IAAI przez transport lądowy w USA po fracht morski i dostawę pod dom. Przejrzyste ceny, realny czas realizacji."
         />
         <meta property="og:title" content="Sprowadzanie aut z USA do Polski — Y7 Logistics" />
         <meta property="og:description" content="Kompleksowa obsługa od aukcji Copart i IAAI po dostawę pod dom w Polsce. Licencjonowany broker FMCSA MC #1741537." />
@@ -109,293 +108,155 @@ const PolandHome = () => {
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
 
-      <HreflangTags 
+      <HreflangTags
         currentPath=""
         hasPolishVersion={true}
         hasUkrainianVersion={true}
         hasRussianVersion={true}
       />
 
-      <main style={{
-        fontFamily: fonts.serif,
-        color: colors.text,
-        background: colors.bg,
-        minHeight: '100vh',
-      }}>
+      <main className={styles.page}>
         {/* Hero section */}
-        <section className={styles.heroSection}>
+        <section className={styles.hero}>
           <div className={styles.heroVisual} aria-hidden="true">
             <HeroRouteVisual />
           </div>
           <div className={styles.heroInner}>
-            <span className={styles.heroKickerPill}>◆ Y7 Logistics × DaytonaCargo</span>
+            <span className={styles.heroKicker}>Y7 Logistics × DaytonaCargo</span>
 
-            <h1 style={{
-              fontFamily: fonts.serif,
-              fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-              lineHeight: '1.1',
-              fontWeight: 700,
-              marginTop: 0,
-              marginBottom: '1.5rem',
-              letterSpacing: '-0.02em',
-              textAlign: 'center',
-            }}>
+            <h1 className={styles.h1}>
               Sprowadzanie aut z USA do Polski — od licytacji po dostawę pod dom
             </h1>
-          
-            <p style={{
-              fontSize: 'clamp(1.05rem, 1.6vw, 1.15rem)',
-              lineHeight: '1.7',
-              color: '#4A4A46',
-              marginBottom: '2rem',
-              textAlign: 'center',
-              maxWidth: '620px',
-              fontFamily: fonts.sans,
-            }}>
+
+            <p className={styles.heroSub}>
               Licencjonowany broker FMCSA (MC #1741537) obsługujący odbiór z aukcji Copart, IAAI
               i Manheim oraz transport lądowy w USA. Dalszą część drogi — fracht morski, odprawę
               celną i dostawę do Polski — prowadzi nasza siostrzana firma DaytonaCargo LLC.
             </p>
 
-            <div style={{
-              display: 'flex',
-              gap: '12px',
-              flexWrap: 'wrap',
-              marginBottom: '1rem',
-              justifyContent: 'center',
-            }}>
-            <a
-              href="https://t.me/y7dispatch_bot"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${styles.subtleLift} ${styles.focusRing}`}
-              style={{
-                background: colors.accent,
-                color: '#fff',
-                padding: '0.875rem 1.75rem',
-                borderRadius: '6px',
-                textDecoration: 'none',
-                fontSize: '1rem',
-                fontWeight: 500,
-                fontFamily: fonts.sans,
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-              }}
-            >
-              Napisz na Telegramie →
-            </a>
-            <a
-              href="mailto:info@y7agency.com"
-              className={`${styles.subtleLift} ${styles.focusRing}`}
-              style={{
-                background: 'transparent',
-                color: colors.text,
-                padding: '0.875rem 1.75rem',
-                borderRadius: '6px',
-                textDecoration: 'none',
-                fontSize: '1rem',
-                fontWeight: 500,
-                fontFamily: fonts.sans,
-                border: `1px solid ${colors.text}`,
-              }}
-            >
-              info@y7agency.com
-            </a>
-          </div>
+            <div className={styles.heroActions}>
+              <a
+                href="https://t.me/y7dispatch_bot"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.btnCta}
+              >
+                Napisz na Telegramie →
+              </a>
+              <a
+                href="mailto:info@y7agency.com"
+                className={styles.btnGhostDark}
+              >
+                info@y7agency.com
+              </a>
+            </div>
           </div>
         </section>
 
         {/* Quick stats — dark strip, parity with English TrustBar */}
-        <section className={styles.statsStrip}>
-          <div className={styles.statsGrid}>
-            <div style={{ padding: '8px 16px' }}>
-              <p className={styles.statNumberDark}>6-10 tyg.</p>
-              <p className={styles.statLabelDark}>typowy czas od wygranej aukcji do odbioru w Polsce</p>
-            </div>
-            <div style={{ padding: '8px 16px' }}>
-              <p className={styles.statNumberDark}>4-8 tys. zł</p>
-              <p className={styles.statLabelDark}>koszt transportu USA → Polska (kontener lub RoRo)</p>
-            </div>
-            <div style={{ padding: '8px 16px' }}>
-              <p className={styles.statNumberDark}>MC #1741537</p>
-              <p className={styles.statLabelDark}>licencja FMCSA — pełna weryfikacja DOT</p>
+        <section className={styles.bandPaper}>
+          <div className={styles.statsInner}>
+            <div className={styles.statsGrid}>
+              <div style={{ padding: '8px 16px' }}>
+                <p className={styles.statNumber}>6-10 tyg.</p>
+                <p className={styles.statLabel}>typowy czas od wygranej aukcji do odbioru w Polsce</p>
+              </div>
+              <div style={{ padding: '8px 16px' }}>
+                <p className={styles.statNumber}>4-8 tys. zł</p>
+                <p className={styles.statLabel}>koszt transportu USA → Polska (kontener lub RoRo)</p>
+              </div>
+              <div style={{ padding: '8px 16px' }}>
+                <p className={styles.statNumber}>MC #1741537</p>
+                <p className={styles.statLabel}>licencja FMCSA — pełna weryfikacja DOT</p>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Kto jest za co odpowiedzialny */}
-        <section style={{
-          maxWidth: '900px',
-          margin: '0 auto',
-          padding: 'clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 2rem)',
-        }}>
-          <span className={styles.sectionKicker}>◆ PARTNERSTWO</span>
-          <h2 style={{
-            fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
-            fontWeight: 400,
-            marginBottom: '1rem',
-            letterSpacing: '-0.01em',
-          }}>
-            Dwie firmy, jeden łańcuch logistyczny
-          </h2>
-          <p style={{ 
-            fontSize: '1.0625rem', 
-            lineHeight: '1.7', 
-            color: '#4A4A46',
-            marginBottom: '2.5rem'
-          }}>
-            Sprowadzanie auta z USA to proces rozciągnięty na dwa kontynenty i pod dwóch 
-            różnych reżimów regulacyjnych. W Stanach obowiązują przepisy Federal Motor 
-            Carrier Safety Administration (FMCSA), w Europie — Unia Celna i krajowe urzędy 
-            skarbowe. Dlatego obsługujemy Cię poprzez dwie wyspecjalizowane firmy.
-          </p>
+        <section className={styles.bandBoard}>
+          <div className={styles.inner}>
+            <span className={styles.eyebrowRuleBoard}>PARTNERSTWO</span>
+            <h2 className={styles.h2Board}>
+              Dwie firmy, jeden łańcuch logistyczny
+            </h2>
+            <p className={styles.leadBoard}>
+              Sprowadzanie auta z USA to proces rozciągnięty na dwa kontynenty i pod dwóch
+              różnych reżimów regulacyjnych. W Stanach obowiązują przepisy Federal Motor
+              Carrier Safety Administration (FMCSA), w Europie — Unia Celna i krajowe urzędy
+              skarbowe. Dlatego obsługujemy Cię poprzez dwie wyspecjalizowane firmy.
+            </p>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '1.5rem',
-            marginBottom: '2rem',
-          }}>
-            {/* Y7 card */}
-            <div className={styles.liftCard} style={{
-              background: '#fff',
-              border: `1px solid ${colors.border}`,
-              borderRadius: '8px',
-              padding: '2rem',
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '1.5rem',
+              marginBottom: '2rem',
             }}>
-              <div style={{ 
-                fontSize: '0.75rem', 
-                textTransform: 'uppercase', 
-                letterSpacing: '0.1em',
-                color: colors.accent,
-                marginBottom: '0.5rem',
-                fontFamily: fonts.sans
-              }}>
-                Etap amerykański
+              {/* Y7 card */}
+              <div className={styles.cardBoard}>
+                <div className={styles.cardMiniLabel}>
+                  Etap amerykański
+                </div>
+                <h3 className={styles.h3Board}>
+                  Y7 Logistics
+                </h3>
+                <p className={styles.pBoard} style={{ fontSize: '0.9375rem', lineHeight: '1.6', marginBottom: '1rem' }}>
+                  Licencjonowany broker FMCSA z siedzibą w Newton (Massachusetts).
+                  USDOT #4427359, MC #1741537. Obsługujemy:
+                </p>
+                <ul className={styles.cardList}>
+                  <li>Odbiór auta z aukcji Copart, IAAI, Manheim</li>
+                  <li>Transport lądowy z placu aukcji do portu załadunku</li>
+                  <li>Koordynację gate pass przy odbiorze</li>
+                  <li>Dokumentację transportową w USA</li>
+                  <li>Aktualizacje statusu na każdym etapie</li>
+                </ul>
               </div>
-              <h3 style={{ 
-                fontSize: '1.5rem', 
-                fontWeight: 400, 
-                margin: '0 0 1rem 0' 
-              }}>
-                Y7 Logistics
-              </h3>
-              <p style={{ 
-                fontSize: '0.9375rem', 
-                lineHeight: '1.6', 
-                color: '#4A4A46',
-                marginBottom: '1rem'
-              }}>
-                Licencjonowany broker FMCSA z siedzibą w Newton (Massachusetts). 
-                USDOT #4427359, MC #1741537. Obsługujemy:
-              </p>
-              <ul style={{ 
-                fontSize: '0.9375rem', 
-                lineHeight: '1.7', 
-                color: '#4A4A46',
-                paddingLeft: '1.25rem',
-                margin: 0
-              }}>
-                <li>Odbiór auta z aukcji Copart, IAAI, Manheim</li>
-                <li>Transport lądowy z placu aukcji do portu załadunku</li>
-                <li>Koordynację gate pass przy odbiorze</li>
-                <li>Dokumentację transportową w USA</li>
-                <li>Aktualizacje statusu na każdym etapie</li>
-              </ul>
-            </div>
 
-            {/* DaytonaCargo card */}
-            <div className={styles.liftCard} style={{
-              background: '#fff',
-              border: `1px solid ${colors.border}`,
-              borderRadius: '8px',
-              padding: '2rem',
-            }}>
-              <div style={{ 
-                fontSize: '0.75rem', 
-                textTransform: 'uppercase', 
-                letterSpacing: '0.1em',
-                color: colors.accent,
-                marginBottom: '0.5rem',
-                fontFamily: fonts.sans
-              }}>
-                Etap międzynarodowy
+              {/* DaytonaCargo card */}
+              <div className={styles.cardBoard}>
+                <div className={styles.cardMiniLabel}>
+                  Etap międzynarodowy
+                </div>
+                <h3 className={styles.h3Board}>
+                  DaytonaCargo LLC
+                </h3>
+                <p className={styles.pBoard} style={{ fontSize: '0.9375rem', lineHeight: '1.6', marginBottom: '1rem' }}>
+                  Siostrzana firma zarejestrowana w Dover (Delaware), specjalizująca się
+                  w międzynarodowym transporcie z USA i Kanady do Europy. Obsługa po polsku.
+                  Zajmuje się:
+                </p>
+                <ul className={styles.cardList}>
+                  <li>Załadunek kontenera lub RoRo w porcie USA</li>
+                  <li>Fracht morski do Gdyni lub portu UE</li>
+                  <li>Sprawdzanie historii pojazdu (Carfax, AutoCheck)</li>
+                  <li>Przygotowanie dokumentacji eksportowej</li>
+                  <li>Dostawa "Pojazd pod dom" w Polsce</li>
+                </ul>
+                <p style={{ fontSize: '0.875rem', marginTop: '1rem' }}>
+                  <a
+                    href="mailto:info@y7agency.com"
+                    className={styles.bodyLinkDark}
+                  >
+                    info@y7agency.com — obsługa po polsku →
+                  </a>
+                </p>
               </div>
-              <h3 style={{ 
-                fontSize: '1.5rem', 
-                fontWeight: 400, 
-                margin: '0 0 1rem 0' 
-              }}>
-                DaytonaCargo LLC
-              </h3>
-              <p style={{ 
-                fontSize: '0.9375rem', 
-                lineHeight: '1.6', 
-                color: '#4A4A46',
-                marginBottom: '1rem'
-              }}>
-                Siostrzana firma zarejestrowana w Dover (Delaware), specjalizująca się 
-                w międzynarodowym transporcie z USA i Kanady do Europy. Obsługa po polsku. 
-                Zajmuje się:
-              </p>
-              <ul style={{ 
-                fontSize: '0.9375rem', 
-                lineHeight: '1.7', 
-                color: '#4A4A46',
-                paddingLeft: '1.25rem',
-                margin: 0
-              }}>
-                <li>Załadunek kontenera lub RoRo w porcie USA</li>
-                <li>Fracht morski do Gdyni lub portu UE</li>
-                <li>Sprawdzanie historii pojazdu (Carfax, AutoCheck)</li>
-                <li>Przygotowanie dokumentacji eksportowej</li>
-                <li>Dostawa "Pojazd pod dom" w Polsce</li>
-              </ul>
-              <p style={{ 
-                fontSize: '0.875rem', 
-                marginTop: '1rem',
-                fontFamily: fonts.sans
-              }}>
-                <a
-                  href="mailto:info@y7agency.com"
-                  className={`${styles.underlineGrow} ${styles.focusRing}`}
-                  style={{ color: colors.accent }}
-                >
-                  info@y7agency.com — obsługa po polsku →
-                </a>
-              </p>
             </div>
           </div>
         </section>
 
         {/* Etapy procesu */}
-        <section style={{
-          background: '#fff',
-          borderTop: `1px solid ${colors.border}`,
-        }}>
-          <div style={{
-            maxWidth: '900px',
-            margin: '0 auto',
-            padding: 'clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 2rem)',
-          }}>
-            <span className={styles.sectionKicker}>◆ JAK TO DZIAŁA</span>
-            <h2 style={{
-              fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
-              fontWeight: 400,
-              marginBottom: '1rem',
-              letterSpacing: '-0.01em',
-            }}>
+        <section className={styles.bandPaper}>
+          <div className={styles.inner}>
+            <span className={styles.eyebrowPlainPaper}>JAK TO DZIAŁA</span>
+            <h2 className={styles.h2Paper}>
               Jak wygląda cały proces — krok po kroku
             </h2>
-            <p style={{ 
-              fontSize: '1.0625rem', 
-              lineHeight: '1.7', 
-              color: '#4A4A46',
-              marginBottom: '2.5rem'
-            }}>
-              Poniżej realny harmonogram sprowadzenia auta z aukcji Copart lub IAAI do 
-              odbioru pod dom w Polsce. Terminy pochodzą z rzeczywistej praktyki — bez 
+            <p className={styles.leadPaper}>
+              Poniżej realny harmonogram sprowadzenia auta z aukcji Copart lub IAAI do
+              odbioru pod dom w Polsce. Terminy pochodzą z rzeczywistej praktyki — bez
               marketingowych obietnic "szybkiej dostawy w 3 tygodnie", których nikt nie dotrzymuje.
             </p>
 
@@ -431,59 +292,20 @@ const PolandHome = () => {
                 desc: 'Po przybyciu do portu UE (najczęściej Gdynia lub Rotterdam) następuje odprawa celna. Poniesiesz cło 10%, VAT 23% i akcyzę (3,1% dla silników do 2000 cm³, 18,7% powyżej). Następnie transport lawetą do miejsca docelowego w Polsce: 800-1500 zł z Gdyni, mniej przy odbiorze własnym.'
               }
             ].map(step => (
-              <div key={step.num} style={{
-                display: 'flex',
-                gap: '1.5rem',
-                marginBottom: '2rem',
-                paddingBottom: '2rem',
-                borderBottom: `1px solid ${colors.border}`
-              }}>
-                <div style={{
-                  flexShrink: 0,
-                  width: '3rem',
-                  height: '3rem',
-                  borderRadius: '50%',
-                  background: colors.bg,
-                  color: colors.accent,
-                  fontSize: '1.5rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontFamily: fonts.serif
-                }}>
+              <div key={step.num} className={styles.stepRow}>
+                <div className={styles.stepNum}>
                   {step.num}
                 </div>
                 <div style={{ flex: 1 }}>
-                  <div style={{ 
-                    display: 'flex', 
-                    justifyContent: 'space-between', 
-                    alignItems: 'baseline',
-                    gap: '1rem',
-                    flexWrap: 'wrap',
-                    marginBottom: '0.5rem'
-                  }}>
-                    <h3 style={{ 
-                      fontSize: '1.25rem', 
-                      fontWeight: 400, 
-                      margin: 0 
-                    }}>
+                  <div className={styles.stepHead}>
+                    <h3 className={styles.h3Paper} style={{ fontSize: '1.25rem' }}>
                       {step.title}
                     </h3>
-                    <span style={{
-                      fontSize: '0.875rem',
-                      color: '#6B6B65',
-                      fontFamily: fonts.sans,
-                      whiteSpace: 'nowrap'
-                    }}>
+                    <span className={styles.stepTime}>
                       {step.time}
                     </span>
                   </div>
-                  <p style={{ 
-                    fontSize: '0.9375rem', 
-                    lineHeight: '1.65', 
-                    color: '#4A4A46',
-                    margin: 0
-                  }}>
+                  <p className={styles.pPaper} style={{ fontSize: '0.9375rem', lineHeight: '1.65', margin: 0 }}>
                     {step.desc}
                   </p>
                 </div>
@@ -493,145 +315,79 @@ const PolandHome = () => {
         </section>
 
         {/* Rzeczywiste koszty */}
-        <section style={{
-          maxWidth: '900px',
-          margin: '0 auto',
-          padding: 'clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 2rem)',
-        }}>
-          <span className={styles.sectionKicker}>◆ KOSZTY</span>
-          <h2 style={{
-            fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
-            fontWeight: 400,
-            marginBottom: '1rem',
-            letterSpacing: '-0.01em',
-          }}>
-            Rzeczywiste koszty — cztery składowe
-          </h2>
-          <p style={{ 
-            fontSize: '1.0625rem', 
-            lineHeight: '1.7', 
-            color: '#4A4A46',
-            marginBottom: '2rem'
-          }}>
-            Całkowity koszt sprowadzenia auta to suma czterech pozycji. Poniżej realne 
-            widełki oparte o dane z aukcji Copart i IAAI oraz aktualne stawki frachtu 
-            morskiego z 2026 roku.
-          </p>
+        <section className={styles.bandBoard}>
+          <div className={styles.inner}>
+            <span className={styles.eyebrowRuleBoard}>KOSZTY</span>
+            <h2 className={styles.h2Board}>
+              Rzeczywiste koszty — cztery składowe
+            </h2>
+            <p className={styles.leadBoard} style={{ marginBottom: '2rem' }}>
+              Całkowity koszt sprowadzenia auta to suma czterech pozycji. Poniżej realne
+              widełki oparte o dane z aukcji Copart i IAAI oraz aktualne stawki frachtu
+              morskiego z 2026 roku.
+            </p>
 
-          <div style={{ 
-            background: '#fff', 
-            border: `1px solid ${colors.border}`,
-            borderRadius: '8px',
-            overflow: 'hidden',
-            marginBottom: '2rem'
-          }}>
-            {[
-              {
-                label: '1. Zakup na aukcji',
-                range: 'Cena wylicytowana + 10-25%',
-                detail: 'Buyer\'s premium Copart/IAAI, opłaty członkowskie, storage fees jeśli odbiór z opóźnieniem. Dla auta wylicytowanego za 10 000 USD realnie zapłacisz 11 500-12 500 USD.'
-              },
-              {
-                label: '2. Transport lądowy w USA',
-                range: '200-500 USD',
-                detail: 'Zależy od odległości placu aukcji do portu. Copart/IAAI w Newark, NJ — 200 USD do Port Newark. Copart Dallas — 450-600 USD do Port Houston. Cross-country z Kalifornii do East Coast: 1200-1800 USD (rzadkie, ale zdarza się).'
-              },
-              {
-                label: '3. Fracht morski',
-                range: '800-2500 USD',
-                detail: 'RoRo: 800-1500 USD — tańszy, auto na otwartym pokładzie. Kontener 40-stopowy współdzielony: 1200-2000 USD za auto. Kontener dedykowany: 2500-3500 USD. Z East Coast transit 2-3 tyg., West Coast 4-5 tyg.'
-              },
-              {
-                label: '4. Cło, VAT i akcyza w Polsce',
-                range: '~35-50% wartości auta',
-                detail: 'Cło 10% od wartości CIF (cena + fracht + ubezpieczenie). VAT 23% od wartości CIF + cła. Akcyza 3,1% (silniki do 2000 cm³) lub 18,7% (powyżej 2000 cm³). Dla auta o wartości 15 000 USD: około 22 000-28 000 zł opłat.'
-              }
-            ].map((item, i) => (
-              <div 
-                key={i}
-                style={{
-                  padding: '1.5rem',
-                  borderBottom: i < 3 ? `1px solid ${colors.border}` : 'none'
-                }}
-              >
-                <div style={{ 
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'baseline',
-                  gap: '1rem',
-                  flexWrap: 'wrap',
-                  marginBottom: '0.5rem'
-                }}>
-                  <h3 style={{ 
-                    fontSize: '1.125rem', 
-                    fontWeight: 400, 
-                    margin: 0 
-                  }}>
-                    {item.label}
-                  </h3>
-                  <span style={{
-                    color: colors.accent,
-                    fontSize: '1rem',
-                    fontFamily: fonts.sans,
-                    fontWeight: 500
-                  }}>
-                    {item.range}
-                  </span>
+            <div className={styles.dataPanel}>
+              {[
+                {
+                  label: '1. Zakup na aukcji',
+                  range: 'Cena wylicytowana + 10-25%',
+                  detail: 'Buyer\'s premium Copart/IAAI, opłaty członkowskie, storage fees jeśli odbiór z opóźnieniem. Dla auta wylicytowanego za 10 000 USD realnie zapłacisz 11 500-12 500 USD.'
+                },
+                {
+                  label: '2. Transport lądowy w USA',
+                  range: '200-500 USD',
+                  detail: 'Zależy od odległości placu aukcji do portu. Copart/IAAI w Newark, NJ — 200 USD do Port Newark. Copart Dallas — 450-600 USD do Port Houston. Cross-country z Kalifornii do East Coast: 1200-1800 USD (rzadkie, ale zdarza się).'
+                },
+                {
+                  label: '3. Fracht morski',
+                  range: '800-2500 USD',
+                  detail: 'RoRo: 800-1500 USD — tańszy, auto na otwartym pokładzie. Kontener 40-stopowy współdzielony: 1200-2000 USD za auto. Kontener dedykowany: 2500-3500 USD. Z East Coast transit 2-3 tyg., West Coast 4-5 tyg.'
+                },
+                {
+                  label: '4. Cło, VAT i akcyza w Polsce',
+                  range: '~35-50% wartości auta',
+                  detail: 'Cło 10% od wartości CIF (cena + fracht + ubezpieczenie). VAT 23% od wartości CIF + cła. Akcyza 3,1% (silniki do 2000 cm³) lub 18,7% (powyżej 2000 cm³). Dla auta o wartości 15 000 USD: około 22 000-28 000 zł opłat.'
+                }
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className={i < 3 ? styles.dataRow : styles.dataRowLast}
+                >
+                  <div className={styles.dataRowHead}>
+                    <h3 className={styles.h3Board} style={{ fontSize: '1.125rem', margin: 0 }}>
+                      {item.label}
+                    </h3>
+                    <span className={styles.dataValue}>
+                      {item.range}
+                    </span>
+                  </div>
+                  <p className={styles.pBoard} style={{ fontSize: '0.9375rem', lineHeight: '1.65', margin: 0 }}>
+                    {item.detail}
+                  </p>
                 </div>
-                <p style={{ 
-                  fontSize: '0.9375rem', 
-                  lineHeight: '1.65', 
-                  color: '#4A4A46',
-                  margin: 0
-                }}>
-                  {item.detail}
-                </p>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
 
-          <p style={{
-            fontSize: '0.875rem',
-            color: '#6B6B65',
-            fontStyle: 'italic',
-            borderLeft: `3px solid ${colors.border}`,
-            paddingLeft: '1rem',
-            margin: 0
-          }}>
-            Podane widełki oparte są o dane publiczne z aukcji Copart i IAAI oraz 
-            aktualne stawki frachtu morskiego z Q1 2026. Rzeczywista cena zależy od 
-            modelu, lokalizacji, pory roku i wybranej metody transportu. Wycena indywidualna 
-            zawsze darmowa — napisz na Telegramie lub e-mailu.
-          </p>
+            <p className={styles.noteBoard}>
+              Podane widełki oparte są o dane publiczne z aukcji Copart i IAAI oraz
+              aktualne stawki frachtu morskiego z Q1 2026. Rzeczywista cena zależy od
+              modelu, lokalizacji, pory roku i wybranej metody transportu. Wycena indywidualna
+              zawsze darmowa — napisz na Telegramie lub e-mailu.
+            </p>
+          </div>
         </section>
 
         {/* Przykłady realnych rachunków */}
-        <section style={{
-          background: '#fff',
-          borderTop: `1px solid ${colors.border}`,
-        }}>
-          <div style={{
-            maxWidth: '900px',
-            margin: '0 auto',
-            padding: 'clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 2rem)',
-          }}>
-            <span className={styles.sectionKicker}>◆ OPŁACALNOŚĆ</span>
-            <h2 style={{
-              fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
-              fontWeight: 400,
-              marginBottom: '1rem',
-              letterSpacing: '-0.01em',
-            }}>
+        <section className={styles.bandPaper}>
+          <div className={styles.inner}>
+            <span className={styles.eyebrowPlainPaper}>OPŁACALNOŚĆ</span>
+            <h2 className={styles.h2Paper}>
               Kiedy import z USA się opłaca
             </h2>
-            <p style={{ 
-              fontSize: '1.0625rem', 
-              lineHeight: '1.7', 
-              color: '#4A4A46',
-              marginBottom: '2rem'
-            }}>
-              Nie każde auto warto sprowadzać. Próg opłacalności to zazwyczaj 60 000 zł 
-              wartości rynkowej w Polsce — poniżej tej kwoty koszty transportu i opłat 
+            <p className={styles.leadPaper} style={{ marginBottom: '2rem' }}>
+              Nie każde auto warto sprowadzać. Próg opłacalności to zazwyczaj 60 000 zł
+              wartości rynkowej w Polsce — poniżej tej kwoty koszty transportu i opłat
               zjadają marżę. Poniżej trzy przykłady z rynku pokazujące gdzie import ma sens.
             </p>
 
@@ -666,202 +422,109 @@ const PolandHome = () => {
                   savings: '30-55 tys. zł'
                 }
               ].map((ex, i) => (
-                <div 
+                <div
                   key={i}
-                  style={{
-                    background: colors.bg,
-                    border: `1px solid ${colors.border}`,
-                    borderRadius: '8px',
-                    padding: '1.5rem'
-                  }}
+                  className={styles.cardPaper}
                 >
-                  <h3 style={{ 
-                    fontSize: '1.25rem', 
-                    fontWeight: 400, 
-                    margin: '0 0 0.25rem 0' 
-                  }}>
+                  <h3 className={styles.h3Paper} style={{ fontSize: '1.25rem', margin: '0 0 0.25rem 0' }}>
                     {ex.model}
                   </h3>
-                  <div style={{ 
-                    fontSize: '0.875rem', 
-                    color: '#6B6B65', 
-                    marginBottom: '1rem',
-                    fontFamily: fonts.sans
-                  }}>
+                  <div className={styles.exYear}>
                     Rocznik {ex.year}
                   </div>
-                  
+
                   {[
                     ['Cena na Copart', ex.auctionPrice],
                     ['Całkowity koszt w PL', ex.polandTotal],
                     ['Rynek krajowy', ex.marketPL],
                   ].map(([label, value], j) => (
-                    <div 
+                    <div
                       key={j}
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        fontSize: '0.875rem',
-                        marginBottom: '0.375rem',
-                        fontFamily: fonts.sans
-                      }}
+                      className={styles.exRow}
                     >
-                      <span style={{ color: '#6B6B65' }}>{label}</span>
-                      <span>{value}</span>
+                      <span className={styles.exRowLabel}>{label}</span>
+                      <span className={styles.exRowValue}>{value}</span>
                     </div>
                   ))}
-                  
-                  <div style={{
-                    marginTop: '0.75rem',
-                    paddingTop: '0.75rem',
-                    borderTop: `1px solid ${colors.border}`,
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    fontFamily: fonts.sans
-                  }}>
-                    <span style={{ color: colors.accent, fontWeight: 500 }}>Oszczędność</span>
-                    <span style={{ color: colors.accent, fontWeight: 500 }}>{ex.savings}</span>
+
+                  <div className={styles.exSavings}>
+                    <span>Oszczędność</span>
+                    <span>{ex.savings}</span>
                   </div>
                 </div>
               ))}
             </div>
 
-            <p style={{
-              fontSize: '0.8125rem',
-              color: '#6B6B65',
-              fontStyle: 'italic',
-              marginTop: '1.5rem',
-              marginBottom: 0
-            }}>
-              Źródło danych: aukcje Copart i IAAI, serwisy ogłoszeniowe otomoto.pl 
-              i autotrader.pl, dane Q1 2026. Oszczędność nie uwzględnia kosztów 
-              naprawy ewentualnych uszkodzeń pozostałych po wypadku — budżetuj dodatkowo 
+            <p className={styles.notePaper} style={{ fontSize: '0.8125rem', marginTop: '1.5rem' }}>
+              Źródło danych: aukcje Copart i IAAI, serwisy ogłoszeniowe otomoto.pl
+              i autotrader.pl, dane Q1 2026. Oszczędność nie uwzględnia kosztów
+              naprawy ewentualnych uszkodzeń pozostałych po wypadku — budżetuj dodatkowo
               3 000-8 000 zł na przegląd i drobne naprawy.
             </p>
           </div>
         </section>
 
         {/* Pułapki i ryzyka */}
-        <section style={{
-          maxWidth: '900px',
-          margin: '0 auto',
-          padding: 'clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 2rem)',
-        }}>
-          <span className={styles.sectionKicker}>◆ RYZYKA</span>
-          <h2 style={{
-            fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
-            fontWeight: 400,
-            marginBottom: '1rem',
-            letterSpacing: '-0.01em',
-          }}>
-            Pułapki, o których nikt nie mówi wprost
-          </h2>
-          <p style={{ 
-            fontSize: '1.0625rem', 
-            lineHeight: '1.7', 
-            color: '#4A4A46',
-            marginBottom: '2rem'
-          }}>
-            Marketing firm importowych koncentruje się na oszczędnościach. Uczciwość 
-            wymaga pokazania także ryzyk — w końcu sprowadzasz auto, nie kupujesz 
-            chleba. Oto cztery rzeczy, o których warto wiedzieć przed licytacją.
-          </p>
+        <section className={styles.bandBoard}>
+          <div className={styles.inner}>
+            <span className={styles.eyebrowRuleBoard}>RYZYKA</span>
+            <h2 className={styles.h2Board}>
+              Pułapki, o których nikt nie mówi wprost
+            </h2>
+            <p className={styles.leadBoard} style={{ marginBottom: '2rem' }}>
+              Marketing firm importowych koncentruje się na oszczędnościach. Uczciwość
+              wymaga pokazania także ryzyk — w końcu sprowadzasz auto, nie kupujesz
+              chleba. Oto cztery rzeczy, o których warto wiedzieć przed licytacją.
+            </p>
 
-          {[
-            {
-              title: 'Opóźnienia są normą, nie wyjątkiem',
-              text: '6-10 tygodni to optymistyczny scenariusz. Problemy z dokumentacją tytułu (brakujący original title, opóźnienie wystawienia), zatory w porcie Gdynia w sezonie lub awarie statków mogą dodać 2-6 tygodni. Nie planuj wymiany auta "na konkretną datę".'
-            },
-            {
-              title: 'Naprawy po sprowadzeniu — realny budżet',
-              text: 'Każde auto z Copart/IAAI wymaga przeglądu: hamulce, opony, amortyzatory, lampy, akumulator. Przy autach po 80 000 milach budżet 3 000-8 000 zł na podstawowe naprawy to minimum. Droższe uszkodzenia (rama, silnik) wymagają dużo większych nakładów.'
-            },
-            {
-              title: 'Dopasowanie do europejskich norm',
-              text: 'Amerykańskie światła mają symetryczne odbłyśniki — trzeba je wymienić lub modyfikować przed rejestracją. Tylnie kierunkowskazy często są czerwone — niektóre modele wymagają wymiany. Tylny reflektor przeciwmgłowy bywa nieobecny. Koszt adaptacji: 500-3000 zł w zależności od auta.'
-            },
-            {
-              title: 'Koszt tłumaczenia dokumentów',
-              text: 'Title, bill of sale i inne dokumenty wymagają tłumaczenia przez tłumacza przysięgłego — polskiego, nie amerykańskiego. Tłumaczenie z USA nie ma mocy prawnej w Polsce. Koszt: 200-500 zł za komplet dokumentów do rejestracji.'
-            }
-          ].map((item, i) => (
-            <div key={i} style={{
-              background: '#fff',
-              border: `1px solid ${colors.border}`,
-              borderRadius: '8px',
-              padding: '1.5rem',
-              marginBottom: '1rem'
-            }}>
-              <h3 style={{ 
-                fontSize: '1.125rem', 
-                fontWeight: 400, 
-                margin: '0 0 0.5rem 0',
-                color: colors.text
-              }}>
-                {item.title}
-              </h3>
-              <p style={{ 
-                fontSize: '0.9375rem', 
-                lineHeight: '1.65', 
-                color: '#4A4A46',
-                margin: 0
-              }}>
-                {item.text}
-              </p>
-            </div>
-          ))}
+            {[
+              {
+                title: 'Opóźnienia są normą, nie wyjątkiem',
+                text: '6-10 tygodni to optymistyczny scenariusz. Problemy z dokumentacją tytułu (brakujący original title, opóźnienie wystawienia), zatory w porcie Gdynia w sezonie lub awarie statków mogą dodać 2-6 tygodni. Nie planuj wymiany auta "na konkretną datę".'
+              },
+              {
+                title: 'Naprawy po sprowadzeniu — realny budżet',
+                text: 'Każde auto z Copart/IAAI wymaga przeglądu: hamulce, opony, amortyzatory, lampy, akumulator. Przy autach po 80 000 milach budżet 3 000-8 000 zł na podstawowe naprawy to minimum. Droższe uszkodzenia (rama, silnik) wymagają dużo większych nakładów.'
+              },
+              {
+                title: 'Dopasowanie do europejskich norm',
+                text: 'Amerykańskie światła mają symetryczne odbłyśniki — trzeba je wymienić lub modyfikować przed rejestracją. Tylnie kierunkowskazy często są czerwone — niektóre modele wymagają wymiany. Tylny reflektor przeciwmgłowy bywa nieobecny. Koszt adaptacji: 500-3000 zł w zależności od auta.'
+              },
+              {
+                title: 'Koszt tłumaczenia dokumentów',
+                text: 'Title, bill of sale i inne dokumenty wymagają tłumaczenia przez tłumacza przysięgłego — polskiego, nie amerykańskiego. Tłumaczenie z USA nie ma mocy prawnej w Polsce. Koszt: 200-500 zł za komplet dokumentów do rejestracji.'
+              }
+            ].map((item, i) => (
+              <div key={i} className={styles.cardBoard} style={{ marginBottom: '1rem' }}>
+                <h3 className={styles.h3Board} style={{ fontSize: '1.125rem', margin: '0 0 0.5rem 0' }}>
+                  {item.title}
+                </h3>
+                <p className={styles.pBoard} style={{ fontSize: '0.9375rem', lineHeight: '1.65', margin: 0 }}>
+                  {item.text}
+                </p>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* FAQ */}
-        <section style={{
-          background: '#fff',
-          borderTop: `1px solid ${colors.border}`,
-        }}>
-          <div style={{
-            maxWidth: '900px',
-            margin: '0 auto',
-            padding: 'clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 2rem)',
-          }}>
-            <span className={styles.sectionKicker}>◆ FAQ</span>
-            <h2 style={{
-              fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
-              fontWeight: 400,
-              marginBottom: '2rem',
-              letterSpacing: '-0.01em',
-            }}>
+        <section className={styles.bandPaper}>
+          <div className={styles.inner}>
+            <span className={styles.eyebrowPlainPaper}>FAQ</span>
+            <h2 className={styles.h2Paper} style={{ marginBottom: '2rem' }}>
               Najczęściej zadawane pytania
             </h2>
 
             {faqSchema.mainEntity.map((faq, i) => (
-              <details 
+              <details
                 key={i}
-                style={{
-                  borderBottom: `1px solid ${colors.border}`,
-                  paddingBottom: '1rem',
-                  marginBottom: '1rem'
-                }}
+                className={styles.faqItem}
               >
-                <summary style={{
-                  fontSize: '1.125rem',
-                  fontWeight: 400,
-                  cursor: 'pointer',
-                  padding: '0.75rem 0',
-                  listStyle: 'none',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  gap: '1rem'
-                }}>
+                <summary className={styles.faqSummary}>
                   <span>{faq.name}</span>
-                  <span style={{ color: colors.accent, fontSize: '1.5rem' }}>+</span>
+                  <span className={styles.faqMarker}>+</span>
                 </summary>
-                <p style={{
-                  fontSize: '0.9375rem',
-                  lineHeight: '1.7',
-                  color: '#4A4A46',
-                  paddingTop: '0.5rem',
-                  margin: 0
-                }}>
+                <p className={styles.faqAnswer}>
                   {faq.acceptedAnswer.text}
                 </p>
               </details>
@@ -873,45 +536,15 @@ const PolandHome = () => {
         {/* ================================================================== */}
         {/* SECTION — Dla Polonii w USA (diaspora addendum)                    */}
         {/* ================================================================== */}
-        <section style={{
-          background: '#EFEAE0',
-          borderTop: '1px solid #E8E4DC',
-          borderBottom: '1px solid #E8E4DC',
-        }}>
-          <div style={{
-            maxWidth: '900px',
-            margin: '0 auto',
-            padding: 'clamp(3rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem)',
-          }}>
-            <div style={{
-              display: 'inline-block',
-              padding: '0.375rem 0.875rem',
-              background: '#fff',
-              border: '1px solid #E8E4DC',
-              borderRadius: '999px',
-              fontSize: '0.8rem',
-              color: colors.accent,
-              letterSpacing: '0.05em',
-              textTransform: 'uppercase',
-              marginBottom: '1rem',
-              fontFamily: fonts.sans,
-            }}>
+        <section className={styles.bandBoard}>
+          <div className={styles.inner}>
+            <span className={styles.eyebrowPlainBoard}>
               Dla Polonii w USA
-            </div>
-            <h2 style={{
-              fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
-              fontWeight: 400,
-              marginBottom: '1rem',
-              letterSpacing: '-0.01em',
-            }}>
+            </span>
+            <h2 className={styles.h2Board}>
               Mieszkasz w Stanach? Obsługujemy transport również u Ciebie
             </h2>
-            <p style={{
-              fontSize: '1.0625rem',
-              lineHeight: '1.7',
-              color: '#4A4A46',
-              marginBottom: '1.25rem',
-            }}>
+            <p className={styles.pBoard} style={{ marginBottom: '1.25rem' }}>
               Cała góra tej strony opisuje drogę auta z USA do Polski — pełny import
               z aukcji Copart pod dom w Gdańsku czy Krakowie. Ale jeśli jesteś z Polonii
               mieszkającej w Stanach i potrzebujesz jedynie transportu lądowego między
@@ -919,12 +552,7 @@ const PolandHome = () => {
               Nowego Jorku albo dostawy do portu przed wysłaniem auta rodzinie w Polsce —
               Y7 Logistics obsługuje ten zakres samodzielnie, bez angażowania DaytonaCargo.
             </p>
-            <p style={{
-              fontSize: '1.0625rem',
-              lineHeight: '1.7',
-              color: '#4A4A46',
-              marginBottom: '1.25rem',
-            }}>
+            <p className={styles.pBoard} style={{ marginBottom: '1.25rem' }}>
               Jako licencjonowany broker FMCSA (MC #1741537) mamy dostęp do sieci
               zweryfikowanych przewoźników na terenie wszystkich 50 stanów. Typowe
               zlecenia od Polonii to transport z aukcji Copart i IAAI, przeprowadzki
@@ -932,12 +560,7 @@ const PolandHome = () => {
               Cars.com, oraz dowóz auta do portu (Newark, Baltimore, Savannah, Houston,
               Los Angeles) przed wysyłką oceaniczną.
             </p>
-            <p style={{
-              fontSize: '1.0625rem',
-              lineHeight: '1.7',
-              color: '#4A4A46',
-              marginBottom: '1.5rem',
-            }}>
+            <p className={styles.pBoard} style={{ marginBottom: '1.5rem' }}>
               <strong>Uczciwie mówiąc:</strong> nasz zespół w Y7 nie prowadzi obsługi
               w języku polskim — komunikację prowadzimy po angielsku lub rosyjsku przez
               Telegram. Jeśli zależy Ci na pełnej obsłudze po polsku również w USA,
@@ -952,117 +575,44 @@ const PolandHome = () => {
               gap: '1rem',
               marginTop: '2rem',
             }}>
-              <div className={styles.liftCard} style={{
-                background: '#fff',
-                padding: '1.5rem',
-                borderRadius: '8px',
-                border: '1px solid #E8E4DC',
-              }}>
-                <h3 style={{
-                  fontFamily: fonts.sans,
-                  fontWeight: 600,
-                  fontSize: '0.95rem',
-                  marginTop: 0,
-                  marginBottom: '0.75rem',
-                  color: '#4A4A46',
-                }}>
+              <div className={styles.cardBoard}>
+                <h3 className={styles.priceLabel}>
                   Krótki dystans (do 500 mil)
                 </h3>
-                <div style={{
-                  fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
-                  fontWeight: 300,
-                  color: colors.accent,
-                  marginBottom: '0.5rem',
-                }}>
+                <div className={styles.priceValue}>
                   $450–750
                 </div>
-                <p style={{
-                  fontSize: '0.9rem',
-                  lineHeight: '1.6',
-                  color: '#4A4A46',
-                  margin: 0,
-                }}>
+                <p className={styles.priceDesc}>
                   Np. NY → Chicago, LA → San Francisco, Miami → Atlanta. Czas dostawy 3-5 dni.
                 </p>
               </div>
 
-              <div className={styles.liftCard} style={{
-                background: '#fff',
-                padding: '1.5rem',
-                borderRadius: '8px',
-                border: '1px solid #E8E4DC',
-              }}>
-                <h3 style={{
-                  fontFamily: fonts.sans,
-                  fontWeight: 600,
-                  fontSize: '0.95rem',
-                  marginTop: 0,
-                  marginBottom: '0.75rem',
-                  color: '#4A4A46',
-                }}>
+              <div className={styles.cardBoard}>
+                <h3 className={styles.priceLabel}>
                   Średni dystans (500-1500 mil)
                 </h3>
-                <div style={{
-                  fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
-                  fontWeight: 300,
-                  color: colors.accent,
-                  marginBottom: '0.5rem',
-                }}>
+                <div className={styles.priceValue}>
                   $750–1 200
                 </div>
-                <p style={{
-                  fontSize: '0.9rem',
-                  lineHeight: '1.6',
-                  color: '#4A4A46',
-                  margin: 0,
-                }}>
+                <p className={styles.priceDesc}>
                   Np. Chicago → Miami, NY → Dallas, Denver → Seattle. Czas dostawy 5-8 dni.
                 </p>
               </div>
 
-              <div className={styles.liftCard} style={{
-                background: '#fff',
-                padding: '1.5rem',
-                borderRadius: '8px',
-                border: '1px solid #E8E4DC',
-              }}>
-                <h3 style={{
-                  fontFamily: fonts.sans,
-                  fontWeight: 600,
-                  fontSize: '0.95rem',
-                  marginTop: 0,
-                  marginBottom: '0.75rem',
-                  color: '#4A4A46',
-                }}>
+              <div className={styles.cardBoard}>
+                <h3 className={styles.priceLabel}>
                   Przez cały kraj (1500+ mil)
                 </h3>
-                <div style={{
-                  fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
-                  fontWeight: 300,
-                  color: colors.accent,
-                  marginBottom: '0.5rem',
-                }}>
+                <div className={styles.priceValue}>
                   $1 100–1 600
                 </div>
-                <p style={{
-                  fontSize: '0.9rem',
-                  lineHeight: '1.6',
-                  color: '#4A4A46',
-                  margin: 0,
-                }}>
+                <p className={styles.priceDesc}>
                   Np. Kalifornia → New York, Florida → Washington. Czas dostawy 7-10 dni.
                 </p>
               </div>
             </div>
 
-            <p style={{
-              fontSize: '0.95rem',
-              lineHeight: '1.6',
-              color: '#4A4A46',
-              marginTop: '1.5rem',
-              marginBottom: 0,
-              fontStyle: 'italic',
-            }}>
+            <p className={styles.noteBoard} style={{ fontSize: '0.95rem', lineHeight: '1.6', marginTop: '1.5rem' }}>
               Ceny dla standardowego sedana lub crossovera na lawecie otwartej. Auta enclosed
               (kryte), pickupy i auta niejężdżące wyceniamy indywidualnie — dopłata typowo 30-60%.
             </p>
@@ -1075,17 +625,7 @@ const PolandHome = () => {
             }}>
               <Link
                 to="/pl/ship-my-car"
-                className={`${styles.subtleLift} ${styles.focusRing}`}
-                style={{
-                  background: colors.accent,
-                  color: '#fff',
-                  padding: '0.75rem 1.5rem',
-                  borderRadius: '6px',
-                  textDecoration: 'none',
-                  fontSize: '0.95rem',
-                  fontWeight: 500,
-                  fontFamily: fonts.sans,
-                }}
+                className={styles.btnCta}
               >
                 Szczegóły zlecenia transportu →
               </Link>
@@ -1093,18 +633,7 @@ const PolandHome = () => {
                 href="https://t.me/y7dispatch_bot"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${styles.subtleLift} ${styles.focusRing}`}
-                style={{
-                  background: 'transparent',
-                  color: colors.accent,
-                  padding: '0.75rem 1.5rem',
-                  borderRadius: '6px',
-                  textDecoration: 'none',
-                  fontSize: '0.95rem',
-                  fontWeight: 500,
-                  border: `1px solid ${colors.accent}`,
-                  fontFamily: fonts.sans,
-                }}
+                className={styles.btnGhostDark}
               >
                 Telegram — napisz po angielsku
               </a>
@@ -1115,74 +644,27 @@ const PolandHome = () => {
         <ContextualCTA variant="card" to="/exporters" intlKey="exporters" tone="amber" />
 
         {/* Final CTA */}
-        <section style={{
-          background: colors.text,
-          color: colors.bg
-        }}>
-          <div style={{
-            maxWidth: '900px',
-            margin: '0 auto',
-            padding: 'clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 2rem)',
-            textAlign: 'center'
-          }}>
-            <h2 style={{
-              fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
-              fontWeight: 400,
-              marginBottom: '1rem',
-              letterSpacing: '-0.01em',
-              color: colors.bg
-            }}>
+        <section className={styles.bandBoard}>
+          <div className={styles.inner} style={{ textAlign: 'center' }}>
+            <h2 className={styles.h2Board}>
               Rozważasz sprowadzenie auta z USA?
             </h2>
-            <p style={{ 
-              fontSize: '1.0625rem', 
-              lineHeight: '1.7', 
-              color: '#D0CDC6',
-              marginBottom: '2rem',
-              maxWidth: '600px',
-              margin: '0 auto 2rem auto'
-            }}>
-              Przed licytacją sprawdź realny koszt całego procesu. Darmowa wycena 
+            <p className={styles.leadBoard} style={{ maxWidth: '600px', margin: '0 auto 2rem auto' }}>
+              Przed licytacją sprawdź realny koszt całego procesu. Darmowa wycena
               w ciągu godziny, bez zobowiązań. Odpowiadamy po polsku przez DaytonaCargo.
             </p>
-            <div style={{
-              display: 'flex',
-              gap: '1rem',
-              justifyContent: 'center',
-              flexWrap: 'wrap'
-            }}>
+            <div className={styles.finalActions}>
               <a
                 href="https://t.me/y7dispatch_bot"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${styles.subtleLift} ${styles.focusRing}`}
-                style={{
-                  background: colors.accent,
-                  color: '#fff',
-                  padding: '0.875rem 2rem',
-                  borderRadius: '6px',
-                  textDecoration: 'none',
-                  fontSize: '1rem',
-                  fontWeight: 500,
-                  fontFamily: fonts.sans
-                }}
+                className={styles.btnCta}
               >
                 Telegram — szybka wycena
               </a>
               <a
                 href="mailto:info@y7agency.com"
-                className={`${styles.subtleLift} ${styles.focusRing}`}
-                style={{
-                  background: 'transparent',
-                  color: colors.bg,
-                  padding: '0.875rem 2rem',
-                  borderRadius: '6px',
-                  textDecoration: 'none',
-                  fontSize: '1rem',
-                  fontWeight: 500,
-                  border: `1px solid ${colors.bg}`,
-                  fontFamily: fonts.sans
-                }}
+                className={styles.btnGhostDark}
               >
                 Email — wycena po polsku
               </a>

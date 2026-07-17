@@ -1,71 +1,348 @@
-/* PolandCopart.module.css — composes from shared primitives. */
+/* PolandCopart.module.css — DESIGN-V2-W6-T02 "Dispatch Board" restyle.
+   Conversion-page law (§2): opens dark (breadcrumb + hero), closes dark (final
+   CTA), board/paper alternation between. Anti-Orphan Rule: surfaces / type /
+   buttons / cards compose from src/styles/v2/*. Copy is FROZEN — presentation
+   only; the JSX keeps every string, the comparison table and every data array. */
 
-.sectionKicker {
-  display: block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  margin: 0 0 10px;
+/* =====================================================================
+   PAGE SHELL + SURFACE BANDS
+   ===================================================================== */
+
+.page {
+  background: var(--v2-paper, #f4f0e8);
+  color: var(--v2-ink, #050607);
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, sans-serif;
 }
 
-.heroKickerPill {
-  display: inline-block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  padding: 6px 14px;
-  background: rgba(153, 60, 29, 0.08);
-  border-radius: var(--radius-pill, 20px);
-  margin: 0 0 24px;
+.bandBoard { composes: board from '../../styles/v2/surfaces.module.css'; }
+.bandPaper { composes: manifest from '../../styles/v2/surfaces.module.css'; }
+
+.inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(3rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem);
 }
 
-.liftCard { composes: liftCard from '../../styles/interactions.module.css'; }
-.subtleLift { composes: subtleLift from '../../styles/interactions.module.css'; }
-.underlineGrow { composes: underlineGrow from '../../styles/interactions.module.css'; }
-.focusRing { composes: focusRing from '../../styles/interactions.module.css'; }
+/* =====================================================================
+   BREADCRUMB BAR (board) — mono, part of the dark opening
+   ===================================================================== */
+
+.breadcrumbBar { background: var(--v2-board, #050607); }
+.breadcrumbInner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem clamp(1.25rem, 4vw, 2rem) 0;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+}
+.crumbLink {
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  text-decoration: none;
+}
+.crumbLink:hover { color: var(--v2-text-on-dark, #fff7ed); }
+.crumbLink:focus-visible { outline: 2px solid var(--v2-red-bright, #ef3a4e); outline-offset: 2px; }
+
+/* =====================================================================
+   HERO (board)
+   ===================================================================== */
+
+.hero {
+  composes: board from '../../styles/v2/surfaces.module.css';
+  border-top: 0;
+}
+.heroInner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1.25rem, 4vw, 2rem) clamp(2rem, 5vw, 3rem);
+}
+.h1 {
+  composes: display from '../../styles/v2/type.module.css';
+  font-size: clamp(2rem, 4.6vw, 3.2rem);
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin: 0 0 1.5rem;
+}
+.heroLead {
+  font-size: clamp(1.0625rem, 2vw, 1.1875rem);
+  line-height: 1.65;
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+  margin: 0 0 1.5rem;
+}
+.heroLead:last-child { margin-bottom: 0; }
+
+/* =====================================================================
+   BUTTONS
+   ===================================================================== */
+
+.btnCta {
+  composes: cta from '../../styles/v2/buttons.module.css';
+  padding: 0.875rem 2rem;
+  font-size: 15px;
+}
+.btnGhostDark {
+  composes: ghostOnDark from '../../styles/v2/buttons.module.css';
+  padding: 0.8rem 1.6rem;
+  font-size: 14px;
+}
+
+/* =====================================================================
+   SECTION HEADS
+   ===================================================================== */
+
+.eyebrowRuleBoard { composes: eyebrow eyebrowOnDark from '../../styles/v2/type.module.css'; }
+.eyebrowPlainPaper {
+  composes: eyebrowPlain from '../../styles/v2/type.module.css';
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 0 0 12px;
+}
+.eyebrowPlainBoard {
+  composes: eyebrowPlain from '../../styles/v2/type.module.css';
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  margin: 0 0 12px;
+}
+
+.h2Board {
+  composes: sectionDisplay from '../../styles/v2/type.module.css';
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin: 0 0 1rem;
+}
+.h2Paper {
+  composes: sectionDisplay from '../../styles/v2/type.module.css';
+  color: var(--v2-ink, #050607);
+  margin: 0 0 1rem;
+}
+.h3Board {
+  composes: cardTitle from '../../styles/v2/type.module.css';
+  color: var(--v2-text-on-dark, #fff7ed);
+}
+.h3Paper {
+  composes: cardTitle from '../../styles/v2/type.module.css';
+  color: var(--v2-ink, #050607);
+}
+/* Sans-bold heading for long sentence-case titles (Caps Ceiling: not every
+   card title uppercases well when it is a full clause). */
+.h3SansPaper {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--v2-ink, #050607);
+  margin: 0 0 0.5rem;
+}
+
+/* Reading copy */
+.leadPaper { font-size: 1.0625rem; line-height: 1.7; color: var(--v2-ink-muted, #5c5851); margin: 0 0 2rem; }
+.leadBoard { font-size: 1.0625rem; line-height: 1.7; color: var(--v2-text-on-dark-secondary, #e8e0d3); margin: 0 0 2rem; }
+.pPaper { font-size: 1.0625rem; line-height: 1.7; color: var(--v2-ink-muted, #5c5851); }
+.pBoard { font-size: 1.0625rem; line-height: 1.7; color: var(--v2-text-on-dark-secondary, #e8e0d3); }
+.pPaper strong { color: var(--v2-ink, #050607); }
+.pBoard strong { color: var(--v2-text-on-dark, #fff7ed); }
+
+/* =====================================================================
+   DARK COMPARISON TABLE (board) — panel sheet, hairline rows, mono numerics
+   ===================================================================== */
+
+.tableWrap {
+  background: var(--v2-panel, #0e1012);
+  border: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 2rem;
+}
+.table { width: 100%; border-collapse: collapse; }
+.table thead tr { background: rgba(255, 255, 255, 0.04); }
+.table th {
+  font-family: var(--v2-font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: var(--v2-track-caps-ui, 0.06em);
+  text-transform: uppercase;
+  color: var(--v2-text-on-dark, #fff7ed);
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
+}
+.table td {
+  font-size: 0.9375rem;
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
+  vertical-align: top;
+}
+.table tbody tr:last-child td { border-bottom: 0; }
+.tableRowLabel { font-weight: 500; color: var(--v2-text-on-dark, #fff7ed); }
+
+/* =====================================================================
+   FEE LEDGER (paper) — cream sub-panel, mono rows
+   ===================================================================== */
+
+.ledger {
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+.ledgerTitle {
+  composes: cardTitle from '../../styles/v2/type.module.css';
+  font-size: 1.15rem;
+  color: var(--v2-ink, #050607);
+  margin: 0 0 1rem;
+}
+.ledgerRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.9375rem;
+  color: var(--v2-ink-muted, #5c5851);
+}
+.ledgerRowLast { composes: ledgerRow; border-bottom: 0; }
+.ledgerTotal {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0 0 0;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-weight: 600;
+  color: var(--v2-ink, #050607);
+}
+
+/* =====================================================================
+   ROUTE CARDS (board)
+   ===================================================================== */
+
+.routeCard {
+  composes: board from '../../styles/v2/cards.module.css';
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+.routeTitle {
+  composes: cardTitle from '../../styles/v2/type.module.css';
+  font-size: 1.05rem;
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin: 0 0 0.75rem;
+}
+.routeMeta {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.8125rem;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  margin-bottom: 0.75rem;
+}
+.routeMeta strong { color: var(--v2-text-on-dark, #fff7ed); font-weight: 600; }
+.routeNote { font-size: 0.9375rem; line-height: 1.6; color: var(--v2-text-on-dark-secondary, #e8e0d3); margin: 0; }
+
+/* =====================================================================
+   NUMBERED PITFALLS (paper) — badge + sans title
+   ===================================================================== */
+
+.pitfallRow {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+}
+.pitfallRowLast { composes: pitfallRow; border-bottom: 0; }
+.pitfallNum {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  color: var(--v2-ink, #050607);
+  font-family: var(--v2-font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pitfallText { font-size: 0.9375rem; line-height: 1.65; color: var(--v2-ink-muted, #5c5851); margin: 0; }
+
+/* =====================================================================
+   ORDERED WORKFLOW LIST (board)
+   ===================================================================== */
+
+.orderedList {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+  padding-left: 1.25rem;
+  margin: 0;
+}
+.orderedList li { margin-bottom: 0.75rem; }
+.orderedList li:last-child { margin-bottom: 0; }
+.orderedList strong { color: var(--v2-text-on-dark, #fff7ed); }
+
+/* =====================================================================
+   FAQ (paper)
+   ===================================================================== */
 
 .faqItem {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-lg, 12px);
-  margin-bottom: 12px;
-  overflow: hidden;
-  transition: border-color var(--transition-normal, 250ms ease-out);
+  border-bottom: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
 }
-.faqItem[open] { border-color: var(--accent, #993C1D); }
 .faqSummary {
-  padding: 20px 24px;
-  cursor: pointer;
-  font-family: var(--font-sans, system-ui);
-  font-size: 1rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1.0625rem;
   font-weight: 500;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
+  cursor: pointer;
+  padding: 0.75rem 0;
   list-style: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  gap: 1rem;
 }
 .faqSummary::-webkit-details-marker { display: none; }
-.faqSummary::after {
-  content: '+';
-  font-size: 1.5rem;
-  line-height: 1;
-  color: var(--accent, #993C1D);
-  transition: transform var(--transition-normal, 250ms ease-out);
-  flex-shrink: 0;
-}
-.faqItem[open] .faqSummary::after { transform: rotate(45deg); }
+.faqSummary:focus-visible { outline: 2px solid var(--v2-red, #d70f24); outline-offset: 2px; }
+.faqMarker { color: var(--v2-ink-muted, #5c5851); font-size: 1.5rem; flex-shrink: 0; }
 .faqAnswer {
-  padding: 0 24px 20px;
-  font-family: var(--font-sans, system-ui);
-  font-size: 0.95rem;
+  font-size: 0.9375rem;
   line-height: 1.7;
-  color: var(--text-muted, #4A4A46);
+  color: var(--v2-ink-muted, #5c5851);
+  padding-top: 0.5rem;
+  margin: 0;
+}
+
+/* =====================================================================
+   DIASPORA PRICING (board)
+   ===================================================================== */
+
+.cardBoard { composes: board from '../../styles/v2/cards.module.css'; }
+.priceLabel {
+  composes: monoLabel from '../../styles/v2/type.module.css';
+  display: block;
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+  margin: 0 0 0.75rem;
+}
+.priceValue {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 300;
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin-bottom: 0.5rem;
+}
+.priceDesc { font-size: 0.9rem; line-height: 1.6; color: var(--v2-text-on-dark-secondary, #e8e0d3); margin: 0; }
+.noteBoard { font-size: 0.95rem; line-height: 1.6; color: var(--v2-text-on-dark-muted, #9c9b96); font-style: italic; margin: 0; }
+
+/* =====================================================================
+   FINAL CTA (board)
+   ===================================================================== */
+
+.finalActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }

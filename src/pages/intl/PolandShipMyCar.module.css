@@ -1,72 +1,242 @@
-/* PolandShipMyCar.module.css — composes from shared primitives. */
+/* PolandShipMyCar.module.css — DESIGN-V2-W6-T02 "Dispatch Board" restyle.
+   Conversion-page law (§2): opens dark (hero), closes dark (final CTA),
+   board/paper alternation between. Anti-Orphan Rule: surfaces / type / buttons /
+   cards compose from src/styles/v2/*. Copy is FROZEN (native Polish, \u escapes
+   preserved) — presentation only. */
 
-.sectionKicker {
+/* =====================================================================
+   PAGE SHELL + SURFACE BANDS
+   ===================================================================== */
+
+.page {
+  background: var(--v2-paper, #f4f0e8);
+  color: var(--v2-ink, #050607);
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.bandBoard { composes: board from '../../styles/v2/surfaces.module.css'; }
+.bandPaper { composes: manifest from '../../styles/v2/surfaces.module.css'; }
+
+.inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 4vw, 2rem);
+}
+.heroInner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 4vw, 2rem) clamp(2rem, 5vw, 4rem);
+}
+
+/* =====================================================================
+   BUTTONS
+   ===================================================================== */
+
+.btnCta {
+  composes: cta from '../../styles/v2/buttons.module.css';
+  padding: 0.875rem 1.75rem;
+  font-size: 15px;
+}
+.btnGhostDark {
+  composes: ghostOnDark from '../../styles/v2/buttons.module.css';
+  padding: 0.8rem 1.6rem;
+  font-size: 14px;
+}
+
+/* =====================================================================
+   SECTION HEADS
+   ===================================================================== */
+
+.eyebrowRuleBoard { composes: eyebrow eyebrowOnDark from '../../styles/v2/type.module.css'; }
+.eyebrowPlainPaper {
+  composes: eyebrowPlain from '../../styles/v2/type.module.css';
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 0 0 12px;
+}
+.eyebrowPlainBoard {
+  composes: eyebrowPlain from '../../styles/v2/type.module.css';
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  margin: 0 0 12px;
+}
+
+.h1 {
+  composes: display from '../../styles/v2/type.module.css';
+  font-size: clamp(2rem, 4.6vw, 3.25rem);
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin: 0;
+}
+.h2Board {
+  composes: sectionDisplay from '../../styles/v2/type.module.css';
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin: 0 0 1rem;
+}
+.h2Paper {
+  composes: sectionDisplay from '../../styles/v2/type.module.css';
+  color: var(--v2-ink, #050607);
+  margin: 0 0 1rem;
+}
+/* Sans-bold sub-heading for sentence-case labels (Caps Ceiling). */
+.h3SansBoard {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin: 0 0 0.5rem;
+}
+.h3SansPaper {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--v2-ink, #050607);
+  margin: 0 0 0.5rem;
+}
+
+/* Reading copy */
+.leadPaper { font-size: clamp(1rem, 2vw, 1.125rem); line-height: 1.7; color: var(--v2-ink-muted, #5c5851); }
+.leadBoard { font-size: clamp(1rem, 2vw, 1.125rem); line-height: 1.7; color: var(--v2-text-on-dark-secondary, #e8e0d3); }
+.pPaper { font-size: clamp(1rem, 2vw, 1.125rem); line-height: 1.7; color: var(--v2-ink-muted, #5c5851); }
+.pBoard { font-size: clamp(1rem, 2vw, 1.125rem); line-height: 1.7; color: var(--v2-text-on-dark-secondary, #e8e0d3); }
+.pPaper strong { color: var(--v2-ink, #050607); }
+.pBoard strong { color: var(--v2-text-on-dark, #fff7ed); }
+
+/* =====================================================================
+   CARDS
+   ===================================================================== */
+
+.cardBoard { composes: board from '../../styles/v2/cards.module.css'; }
+.cardPaper { composes: paper from '../../styles/v2/cards.module.css'; }
+
+/* Checklist card (paper) */
+.checkMark {
+  color: var(--v2-ink, #050607);
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Ordering step (board) — badge + title + desc */
+.stepBadge {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
+  color: var(--v2-text-on-dark, #fff7ed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--v2-font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* Pricing */
+.priceLabelBoard {
+  composes: monoLabel from '../../styles/v2/type.module.css';
   display: block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+  margin: 0 0 0.75rem;
+}
+.priceLabelPaper {
+  composes: monoLabel from '../../styles/v2/type.module.css';
+  display: block;
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 0 0 0.75rem;
+}
+.priceValueBoard {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 300;
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin-bottom: 0.5rem;
+}
+.priceValuePaper {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 300;
+  color: var(--v2-ink, #050607);
+  margin-bottom: 0.5rem;
+}
+.priceDescBoard { font-size: 0.9rem; line-height: 1.6; color: var(--v2-text-on-dark-secondary, #e8e0d3); }
+.priceDescPaper { font-size: 0.9rem; line-height: 1.6; color: var(--v2-ink-muted, #5c5851); }
+.priceList { font-size: 0.9rem; line-height: 1.7; color: var(--v2-ink-muted, #5c5851); margin: 0; padding-left: 1.1rem; }
+
+.notePaper { font-size: 0.85rem; line-height: 1.6; color: var(--v2-ink-muted, #5c5851); font-style: italic; margin: 0; }
+.noteBoard { font-size: 0.85rem; line-height: 1.6; color: var(--v2-text-on-dark-muted, #9c9b96); font-style: italic; margin: 0; }
+
+/* =====================================================================
+   TRUST BLOCK (board panel)
+   ===================================================================== */
+
+.trustCard {
+  background: var(--v2-panel, #0e1012);
+  border: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
+  border-radius: var(--v2-radius-xl, 22px);
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  box-shadow: var(--v2-board-depth, 0 24px 70px rgba(0, 0, 0, 0.3));
+}
+.trustStatLabel {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: var(--v2-track-label, 0.14em);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  margin: 0 0 10px;
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+  display: block;
+  margin-bottom: 0.35rem;
+}
+.trustStatValue {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.95rem;
+  color: var(--v2-text-on-dark, #fff7ed);
 }
 
-.heroKickerPill {
-  display: inline-block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  padding: 6px 14px;
-  background: rgba(153, 60, 29, 0.08);
-  border-radius: var(--radius-pill, 20px);
-  margin: 0 0 24px;
-}
+/* =====================================================================
+   CONTACT CARDS (paper)
+   ===================================================================== */
 
-.liftCard { composes: liftCard from '../../styles/interactions.module.css'; }
-.subtleLift { composes: subtleLift from '../../styles/interactions.module.css'; }
-.underlineGrow { composes: underlineGrow from '../../styles/interactions.module.css'; }
-.focusRing { composes: focusRing from '../../styles/interactions.module.css'; }
-.ctaStrip { composes: ctaStrip from '../../styles/layout.module.css'; }
+.contactLabel {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+  color: var(--v2-ink, #050607);
+  margin-bottom: 0.5rem;
+}
+.contactLink { composes: bodyLinkOnPaper from '../../styles/v2/type.module.css'; }
+
+/* =====================================================================
+   FAQ (paper)
+   ===================================================================== */
 
 .faqItem {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-lg, 12px);
-  margin-bottom: 12px;
-  overflow: hidden;
-  transition: border-color var(--transition-normal, 250ms ease-out);
+  border-bottom: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
 }
-.faqItem[open] { border-color: var(--accent, #993C1D); }
 .faqSummary {
-  padding: 20px 24px;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--v2-ink, #050607);
   cursor: pointer;
-  font-family: var(--font-sans, system-ui);
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--text, #2C2C2A);
   list-style: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  gap: 1rem;
 }
 .faqSummary::-webkit-details-marker { display: none; }
-.faqSummary::after {
-  content: '+';
-  font-size: 1.5rem;
-  line-height: 1;
-  color: var(--accent, #993C1D);
-  transition: transform var(--transition-normal, 250ms ease-out);
-  flex-shrink: 0;
-}
-.faqItem[open] .faqSummary::after { transform: rotate(45deg); }
-.faqAnswer {
-  padding: 0 24px 20px;
-  font-family: var(--font-sans, system-ui);
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: var(--text-muted, #4A4A46);
+.faqSummary:focus-visible { outline: 2px solid var(--v2-red, #d70f24); outline-offset: 2px; }
+.faqMarker { color: var(--v2-ink-muted, #5c5851); font-size: 1.25rem; margin-left: 1rem; flex-shrink: 0; }
+.faqAnswer { font-size: clamp(1rem, 2vw, 1.125rem); line-height: 1.7; color: var(--v2-ink-muted, #5c5851); margin: 1rem 0 0; }
+
+/* =====================================================================
+   FINAL CTA (board)
+   ===================================================================== */
+
+.finalActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
 }
