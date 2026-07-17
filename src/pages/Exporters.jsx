@@ -161,6 +161,13 @@ export default function Exporters() {
               <span className={styles.heroTrustItem}>&#x2713; {t('hero.trust2')}</span>
               <span className={styles.heroTrustItem}>&#x2713; {t('hero.trust3')}</span>
             </div>
+            {/* EXPORTERS-V2 T01: hero CTA row — the landing for home's
+                "Exporter Program" button. Gradient = the hero's single red
+                fill; the second action stays ghost. */}
+            <div className={styles.heroCtas}>
+              <a href="#exporter-program" className={v2b.cta}>{t('hero.ctaPrimary')}</a>
+              <a href="#exporter-form" className={v2b.ghostOnDark}>{t('hero.ctaSecondary')}</a>
+            </div>
           </div>
         </div>
       </section>
@@ -181,6 +188,56 @@ export default function Exporters() {
             </ul>
           </div>
 
+        </div>
+      </section>
+
+      {/* THE PROGRAM — EXPORTERS-V2 T01: the 4-layer per-client operating
+          model (board band, numbered split rows). Anchor target for the hero
+          CTA and home's "Exporter Program" button. Eyebrow pair opener; the
+          rule-line is the band's red accent, layer numerals stay mono/ink. */}
+      <section id="exporter-program" className={v2s.board}>
+        <div className={v2s.inner}>
+          <p className={`${v2t.eyebrow} ${v2t.eyebrowOnDark}`}>{t('program.kicker')}</p>
+          <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('program.title')}</h2>
+          <p className={`${v2t.lede} ${v2t.ledeOnDark} ${styles.programLede}`}>{t('program.lede')}</p>
+          <div className={styles.programLayers}>
+            {Array.isArray(t('program.layers', { returnObjects: true })) &&
+              t('program.layers', { returnObjects: true }).map((layer, i) => (
+                <div key={i} className={styles.programLayer}>
+                  <div className={`${v2t.monoLabel} ${styles.programLayerKicker}`}>{layer.kicker}</div>
+                  <div className={styles.programLayerBody}>
+                    <h3 className={`${v2t.cardTitle} ${styles.programLayerTitle}`}>{layer.title}</h3>
+                    <p className={styles.programLayerText}>{layer.body}</p>
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Smart-routing worked example — EXPORTERS-V2 T01/T04: paper band,
+          single ledger card with real corridor figures from dispatchRates
+          (typical ranges, hedged; fee never derived from the table). */}
+      <section className={v2s.manifest}>
+        <div className={v2s.inner}>
+          <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('routing.title')}</h2>
+          <div className={styles.routingBlock}>
+            <p className={styles.routingBody}>{t('routing.body')}</p>
+            <div className={styles.routingLedger}>
+              <div className={`${v2t.monoLabel} ${styles.routingFrom}`}>{t('routing.legFrom')}</div>
+              <div className={styles.routingLegs}>
+                <div className={styles.routingLeg}>
+                  <span className={styles.routingLegName}>{t('routing.legA')}</span>
+                  <span className={`${v2t.monoLabel} ${styles.routingLegRate}`}>{t('routing.legARate')}</span>
+                </div>
+                <div className={styles.routingLeg}>
+                  <span className={styles.routingLegName}>{t('routing.legB')}</span>
+                  <span className={`${v2t.monoLabel} ${styles.routingLegRate}`}>{t('routing.legBRate')}</span>
+                </div>
+              </div>
+              <p className={`${v2t.monoMicro} ${styles.routingFootnote}`}>{t('routing.footnote')}</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -231,6 +288,20 @@ export default function Exporters() {
           Plain H2 opener. */}
       <section className={v2s.board}>
         <div className={v2s.inner}>
+          {/* Proof strip — EXPORTERS-V2 T01: notification/portal capabilities
+              as a chip row above Port Coverage. Styled label, deliberately NOT
+              a heading (an h3 here would precede the ports h2 and disorder the
+              frozen ladder). */}
+          <div className={styles.proofStrip} role="group" aria-label={t('proof.title')}>
+            <span className={`${v2t.monoLabel} ${styles.proofTitle}`}>{t('proof.title')}</span>
+            <div className={styles.proofChips}>
+              {Array.isArray(t('proof.chips', { returnObjects: true })) &&
+                t('proof.chips', { returnObjects: true }).map((chip, i) => (
+                  <span key={i} className={`${v2c.chipOnDark} ${styles.proofChip}`}>{chip}</span>
+                ))}
+            </div>
+          </div>
+
           <h2 className={`${v2t.sectionDisplay} ${styles.h2} ${styles.portsHeadCenter}`}>{t('ports.title')}</h2>
 
           {/* Route rail: auction/dealer -> US export port -> destination */}
@@ -433,6 +504,17 @@ export default function Exporters() {
           docs + destinations remain the page's consecutive pair (cap: 2). */}
       <section className={v2s.manifest}>
         <div className={v2s.inner}>
+          {/* Certificates of Origin — EXPORTERS-V2 T01 (approved live service).
+              Paper aside before Destinations; no new schema. */}
+          <section className={styles.coBlock}>
+            {/* Plain mono kicker, NOT the eyebrow+rule pair: docs + destinations
+                already hold the page's consecutive-pair cap (2), and a third
+                pair-opener between them would break the density law. */}
+            <p className={`${v2t.eyebrowPlain} ${styles.coKicker}`}>{t('co.kicker')}</p>
+            <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('co.title')}</h2>
+            <p className={styles.coBody}>{t('co.body')}</p>
+          </section>
+
           {destinations && destItems.length > 0 && (
             <section className={styles.destBlock}>
               <p className={`${v2t.eyebrow} ${v2t.eyebrowOnPaper}`}>{destinations.kicker}</p>

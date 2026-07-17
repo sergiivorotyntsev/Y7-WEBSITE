@@ -581,3 +581,150 @@
   font-size: 14px;
   font-weight: 500;
 }
+
+/* =====================================================================
+   EXPORTERS-V2 T01 — new sections: hero CTA row, THE PROGRAM (numbered
+   split rows), routing ledger, proof strip, CO aside.
+   ===================================================================== */
+
+.heroCtas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+/* THE PROGRAM — board band. Numbered split rows: mono kicker rail on the
+   left, body on the right; hairline dividers, no cards (band-variety law:
+   neighbors use manifest card / ledger patterns). */
+.programLede {
+  max-width: 640px;
+  margin: 0 0 36px;
+}
+
+.programLayers {
+  border-top: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
+}
+
+.programLayer {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
+}
+
+@media (max-width: 720px) {
+  .programLayer { grid-template-columns: 1fr; gap: 8px; padding: 20px 0; }
+}
+
+.programLayerKicker {
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  padding-top: 3px;
+}
+
+.programLayerTitle {
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin: 0 0 8px;
+}
+
+.programLayerText {
+  font-size: 14.5px;
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+  line-height: 1.75;
+  margin: 0;
+  max-width: 68ch;
+}
+
+/* Routing worked example — paper band, one ledger card. */
+.routingBlock {
+  max-width: 760px;
+}
+
+.routingBody {
+  font-size: 15px;
+  color: var(--v2-ink-muted, #5c5851);
+  line-height: 1.8;
+  margin: 0 0 24px;
+}
+
+.routingLedger {
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
+  padding: 22px 26px;
+}
+
+.routingFrom {
+  display: block;
+  color: var(--v2-ink, #050607);
+  margin-bottom: 14px;
+}
+
+.routingLegs {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+}
+
+.routingLeg {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+}
+
+.routingLegName {
+  font-size: 14.5px;
+  color: var(--v2-ink, #050607);
+}
+
+.routingLegRate {
+  color: var(--v2-ink, #050607);
+  white-space: nowrap;
+}
+
+.routingFootnote {
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 14px 0 0;
+}
+
+/* Proof strip — chips row above Port Coverage inside the board band. */
+.proofStrip {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
+}
+
+.proofTitle {
+  color: var(--v2-text-on-dark, #fff7ed);
+}
+
+.proofChips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* CO aside — paper, before Destinations. */
+.coBlock {
+  margin-bottom: clamp(36px, 5vh, 52px);
+  max-width: 760px;
+}
+
+.coKicker {
+  color: var(--v2-ink-muted, #5c5851);
+}
+
+.coBody {
+  font-size: 15px;
+  color: var(--v2-ink-muted, #5c5851);
+  line-height: 1.8;
+  margin: 0;
+}

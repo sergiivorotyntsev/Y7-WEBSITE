@@ -8,8 +8,7 @@
       "Carrier rate passed through at cost — zero markup on transport",
       "Our fee covers: CD listing, carrier vetting, dispatch, BOL/gate pass, monitoring",
       "Optional carrier payment handling — we pay, you reimburse",
-      "Dedicated account manager for 10+ vehicles/month",
-      "All major US export ports: Newark, Houston, Savannah, Baltimore, LA, Jacksonville"
+      "Dedicated account manager for 10+ vehicles/month"
     ]
   },
   "fees": {
@@ -118,8 +117,10 @@
   "hero": {
     "kicker": "FOR EXPORTERS",
     "trust1": "Gate pass coordination",
-    "trust2": "All major US ports",
-    "trust3": "Transparent cost-plus pricing"
+    "trust2": "700+ vetted carriers",
+    "trust3": "$75k BMC-84 bond",
+    "ctaPrimary": "See the program",
+    "ctaSecondary": "Request rates"
   },
   "crosslinks": {
     "title": "More for exporters",
@@ -241,8 +242,67 @@
       {
         "q": "What's your pricing model?",
         "a": "Cost-plus transparent. You see the carrier rate from Central Dispatch, and we add a $50 flat dispatch fee per vehicle. No hidden markup, no mystery percentage. Optional: we can pay the carrier on your behalf for a +$10 payment processing fee per load (you reimburse carrier cost + $10), so you don't manage carrier transfers yourself."
+      },
+      {
+        "q": "What does the Exporter Program setup include?",
+        "a": "Four layers configured per client: an agreed intake channel (structured email, Telegram, or the portal), your warehouse network preloaded in our system, automatic order notifications in your channel, and routing analysis that picks the optimal warehouse before every export listing."
+      },
+      {
+        "q": "Can you work with our warehouses' own systems?",
+        "a": "Yes. Where you hold contracts with warehouse operators, we can integrate directly with their CRM systems. Integration is available on request, scoped per case, and a setup fee may apply depending on complexity."
       }
     ]
   },
-  "midCta": "Ready to ship? Get your rates above."
+  "midCta": "Ready to ship? Get your rates above.",
+  "program": {
+    "kicker": "CONFIGURED PER CLIENT",
+    "title": "The Exporter Program",
+    "lede": "Not a generic rate card. We configure our dispatch platform around your operation: four layers, set up once. After that, every order flows the same way.",
+    "layers": [
+      {
+        "kicker": "01 · INTAKE",
+        "title": "One agreed intake channel",
+        "body": "Structured email (we provide the format: PIN or lot number in the subject line, details in the body, replies stay in the same thread), Telegram, or the client portal. Your team sends orders the way it already works."
+      },
+      {
+        "kicker": "02 · WAREHOUSE NETWORK",
+        "title": "Your warehouses, preloaded",
+        "body": "Your export warehouses, across all states, are set up in our system from day one. Orders route against your real network, not a generic port list. Where you hold contracts with warehouse operators, direct integration with their CRM systems is available on request: scoped per integration, and a setup fee may apply depending on complexity."
+      },
+      {
+        "kicker": "03 · NOTIFICATIONS",
+        "title": "Notifications in your channel",
+        "body": "Order received → the Central Dispatch listing is created, and you see it immediately in your channel: Telegram, the same email thread, or the portal. Carrier assigned → the same notification, configured with each client so it lands in your channel the right way."
+      },
+      {
+        "kicker": "04 · SMART ROUTING",
+        "title": "The optimal warehouse, every time",
+        "body": "Before every export listing we automatically analyze which of your warehouses is optimal for that order. Equidistant options are compared on current transport rates; when you share your ocean rates per destination, they enter the same calculation. For complex routes we run parallel listings on two warehouses and let carrier pricing decide."
+      }
+    ]
+  },
+  "routing": {
+    "title": "How routing decisions get made",
+    "body": "A Copart unit in York Haven, PA can gate out through Newark (about 160 road miles) or Baltimore (about 65). On recent dispatches the Baltimore leg runs $175-215 against $230-300 to Newark. Inland, Baltimore wins. But if your ocean rate to the destination is $120 better ex-Newark, Newark wins the total. That is the analysis we run automatically before every export listing.",
+    "legFrom": "Copart York Haven, PA",
+    "legA": "Baltimore, MD · ~65 mi",
+    "legARate": "$175-215",
+    "legB": "Newark, NJ · ~160 mi",
+    "legBRate": "$230-300",
+    "footnote": "Figures are typical carrier ranges from our recent dispatches (Jun-Jul 2026), not quotes."
+  },
+  "proof": {
+    "title": "You see what we see",
+    "chips": [
+      "Portal: statuses & documents",
+      "Telegram bot",
+      "Weekly consolidated invoicing",
+      "EN · RU · PL · UA team"
+    ]
+  },
+  "co": {
+    "kicker": "NOW AVAILABLE",
+    "title": "Certificates of Origin for EU-bound vehicles",
+    "body": "Now available as part of the program: Certificates of Origin for US-origin vehicles. With a CO, US-built vehicles enter the EU at 0% import duty under the applicable EU regulation. Y7 prepares the filing as standing agent and attaches the CO to your export document set. Eligibility is per shipment: US-origin vehicles, EU destinations, and the supporting documentation in order."
+  }
 }
