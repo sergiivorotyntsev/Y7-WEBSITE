@@ -31,8 +31,10 @@
   .portGrid { grid-template-columns: repeat(2, 1fr); }
 }
 
-.legalPanel {
-  padding: 18px 12px;
+.legalPanel.legalPanel {
+  /* T06a: internal padding matches portTile (16px + 1px border) so the panel
+     text sits on the same content grid as the tile text when stacked. */
+  padding: 16px;
 }
 
 .linkRows {

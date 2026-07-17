@@ -1,16 +1,27 @@
 .strip {
+  /* T06a: no max-width / auto margins / padding here — the caller's container
+     owns geometry (the T06 rule: one width system per band). */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 8px 14px;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px 24px;
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
 }
+
+/* Panel form: stacked, left-aligned to the container's padding grid;
+   separators are an inline-row device and never render here (no orphaned
+   dots at any width by construction). */
+.stacked {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.stacked .divider { display: none; }
+.stacked .caption { text-align: left; margin-top: 8px; }
 
 .link {
   /* Body-Link Law (V2): rest in surface ink + underline; hover shifts to the

@@ -199,7 +199,10 @@ export default function Contact() {
         </div>
       </div>
 
-      <VerificationStrip />
+      {/* T06a: geometry moved to this caller container (component owns none). */}
+      <div className={styles.verifyWrap}>
+        <VerificationStrip />
+      </div>
     </div>
   );
 }

@@ -70,7 +70,7 @@ export default function CoverageMap() {
             {/* Licensed-broker trust panel: USDOT/MC/$75K facts + external
                 verification links (E-E-A-T) — folded VerificationStrip. */}
             <div className={`${v2c.paper} ${styles.legalPanel}`}>
-              <VerificationStrip />
+              <VerificationStrip stacked />
             </div>
           </div>
 

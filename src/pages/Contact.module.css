@@ -367,3 +367,10 @@
   letter-spacing: 0;
   line-height: 1.4;
 }
+
+/* T06a: VerificationStrip geometry lives with the caller now. */
+.verifyWrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 24px;
+}
