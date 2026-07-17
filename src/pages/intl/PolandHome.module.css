@@ -189,7 +189,10 @@
 .statNumber {
   composes: sectionDisplay from '../../styles/v2/type.module.css';
   font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  color: var(--v2-red, #d70f24);
+  /* W6 review ruling: ink digits — the adjacent hero viewport carries the
+     gradient CTA, and CTA-fill sections send stats to white/ink (§3).
+     Aligns with the RU/UA twins. */
+  color: var(--v2-ink, #050607);
   margin: 0 0 6px;
 }
 .statLabel {

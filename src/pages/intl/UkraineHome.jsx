@@ -105,21 +105,21 @@ const audienceCards = [
     desc: 'Покрокова інструкція як замовити пригін авто з США в Україну. Документи, оплата, етапи доставки.',
     cta: 'Деталі замовлення',
     to: '/ua/ship-my-car',
-    icon: <PersonalCarIcon size={40} color="currentColor" />,
+    icon: <PersonalCarIcon size={40} />,
   },
   {
     title: 'Гайд по Copart та IAAI',
     desc: 'Як купувати на американських аукціонах: title-коди, фото, ставки, ризики. Чесна аналітика без прикрас.',
     cta: 'Читати гайд',
     to: '/ua/copart-shipping',
-    icon: <GlobeRouteIcon size={40} color="currentColor" />,
+    icon: <GlobeRouteIcon size={40} />,
   },
   {
     title: 'Для діаспори в США',
     desc: 'Перевезення між штатами по всій території США. Українська підтримка, прозорі ціни, без прихованих комісій.',
     cta: 'Дізнатись більше',
     to: '#diaspora',
-    icon: <TruckIcon size={40} color="currentColor" />,
+    icon: <TruckIcon size={40} />,
   },
 ];
 
@@ -310,8 +310,9 @@ function UkraineHome() {
           <h1 className={styles.heroTitle}>
             Пригін авто з США в Україну —
             <br />
+            чесно, прозоро, з{' '}
             <span className={styles.heroAccent}>
-              чесно, прозоро, з українськомовною підтримкою
+              українськомовною підтримкою
             </span>
           </h1>
           <p className={styles.heroLede}>
