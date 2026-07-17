@@ -211,15 +211,12 @@ export default function ShipMyCar() {
         </div>
       </section>
 
-      {/* Open vs Enclosed — board band. TransportComparison keeps its V1
-          internals (ink-on-paper heading, white cards, V1 buttons), which are
-          illegible directly on board-black, so it sits inside a cream panel
-          island (the ContextualCTA-on-board precedent from /exporters). */}
+      {/* Open vs Enclosed — board band. TransportComparison is natively V2
+          since V2-CLEANUP T01 (panel cards on dark); the W4 cream island is
+          retired. */}
       <section className={v2s.board}>
         <div className={`${v2s.inner} ${styles.comparisonInner}`}>
-          <div className={styles.comparisonIsland}>
-            <TransportComparison />
-          </div>
+          <TransportComparison />
         </div>
       </section>
 

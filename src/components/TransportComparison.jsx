@@ -1,6 +1,6 @@
 import { CheckIcon } from './icons';
 import styles from './TransportComparison.module.css';
-import btn from '../styles/buttons.module.css';
+import v2b from '../styles/v2/buttons.module.css';
 
 const TYPES = [
   {
@@ -73,7 +73,7 @@ export default function TransportComparison() {
             <div className={styles.price}>{t.price}</div>
             <button
               onClick={e => { e.stopPropagation(); scrollToQuote(t.type); }}
-              className={`${t.premium ? btn.btnAccent : btn.btnPrimary} ${styles.cta}`}
+              className={`${t.premium ? v2b.cta : v2b.ghostOnDark} ${styles.cta}`}
             >
               {t.cta}
             </button>

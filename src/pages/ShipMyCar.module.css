@@ -225,22 +225,12 @@
 }
 
 /* ===================================================================
-   COMPARISON (board) — TransportComparison is a frozen V1 component
-   whose internals (ink heading, white cards) are illegible on board-
-   black, so it sits inside a cream panel island. xl radius tier
-   (feature-shell), no hover (it is a container, not a card).
+   OPEN VS ENCLOSED (board) — TransportComparison is natively V2 since
+   V2-CLEANUP T01; this wrapper only sets band padding.
    =================================================================== */
 .comparisonInner.comparisonInner {
   padding-top: clamp(48px, 7vh, 80px);
   padding-bottom: clamp(48px, 7vh, 80px);
-}
-.comparisonIsland {
-  background: var(--v2-card-cream, #fffaf1);
-  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
-  border-radius: var(--v2-radius-xl, 22px);
-  padding: clamp(28px, 5vw, 48px);
-  max-width: 860px;
-  margin: 0 auto;
 }
 
 /* ===================================================================

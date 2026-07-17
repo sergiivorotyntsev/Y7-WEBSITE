@@ -1,72 +1,71 @@
-/* TransportComparison — Open vs Enclosed side-by-side comparison. */
+/* TransportComparison — Open vs Enclosed side-by-side comparison.
+   V2-CLEANUP T01: natively V2 for its board-band placement (/ship-my-car).
+   Panel cards on dark, condensed heading, mono price voice; the enclosed
+   card's gradient CTA is the band's single red fill (open stays ghost).
+   Content, props and the quote-section scroll contract are untouched. */
 
 .title {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  composes: sectionDisplay from '../styles/v2/type.module.css';
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  color: var(--v2-text-on-dark, #fff7ed);
   text-align: center;
-  margin: 0 0 24px;
-  letter-spacing: -0.02em;
+  margin: 0 0 28px;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
-  max-width: 700px;
+  max-width: 760px;
   margin: 0 auto;
 }
 
 .card {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-xl, 16px);
+  background: var(--v2-panel, #0e1012);
+  border: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
   padding: 28px 24px;
   cursor: pointer;
   position: relative;
   outline: none;
   transition:
     transform var(--transition-normal, 250ms ease-out),
-    border-color var(--transition-normal, 250ms ease-out),
-    box-shadow var(--transition-normal, 250ms ease-out);
+    border-color var(--transition-normal, 250ms ease-out);
 }
 
 @media (hover: hover) {
   .card:hover {
     transform: translateY(-3px);
-    border-color: var(--accent, #993C1D);
-    box-shadow: var(--shadow-md, 0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06));
+    border-color: var(--v2-line-on-dark-strong, rgba(255, 247, 237, 0.3));
   }
 }
 
 .card:focus-visible {
-  border-color: var(--accent, #993C1D);
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+  outline: 2px solid var(--v2-red-bright, #ef3a4e);
+  outline-offset: 2px;
 }
 
+/* Premium marker: hairline mono chip (sienna fill retired). */
 .badge {
   position: absolute;
-  top: -10px;
+  top: -11px;
   right: 20px;
-  background: var(--accent, #993C1D);
-  color: #fff;
-  font-family: var(--font-sans, system-ui);
+  background: var(--v2-board, #050607);
+  color: var(--v2-text-on-dark, #fff7ed);
+  border: 1px solid var(--v2-line-on-dark-strong, rgba(255, 247, 237, 0.3));
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 500;
   padding: 3px 10px;
-  border-radius: 10px;
+  border-radius: var(--v2-radius-pill, 999px);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--v2-track-label, 0.14em);
 }
 
 .cardTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  composes: cardTitle from '../styles/v2/type.module.css';
+  color: var(--v2-text-on-dark, #fff7ed);
   margin: 0 0 16px;
-  letter-spacing: -0.02em;
 }
 
 .featureList {
@@ -81,37 +80,40 @@
 .feature {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
   line-height: 1.7;
   padding-left: 22px;
   position: relative;
 }
 
+/* Feature checks are list markers, not success states: on-dark muted ink
+   (pine reserved for verified/success semantics). */
 .featureIcon {
   position: absolute;
   left: 0;
   top: 2px;
-  color: var(--success, #0F6E56);
+  color: var(--v2-text-on-dark-muted, #9c9b96);
 }
 
 .price {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--v2-text-on-dark, #fff7ed);
   margin-bottom: 16px;
 }
 
 .cta {
   width: 100%;
-  padding: 12px !important;
-  font-size: 12px !important;
+  padding: 12px 16px;
+  font-size: 13px;
 }
 
 .disclaimer {
-  font-family: var(--font-sans, system-ui);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 11px;
-  color: var(--text-hint, #999);
+  letter-spacing: 0.04em;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   text-align: center;
-  margin-top: 16px;
+  margin-top: 18px;
 }
