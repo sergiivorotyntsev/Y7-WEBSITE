@@ -7,8 +7,8 @@ import { apiPost } from '../hooks/useApi';
 import PhoneInput, { getCleanPhone, isValidPhone } from '../components/PhoneInput';
 import VerificationStrip from '../components/VerificationStrip';
 import styles from './Contact.module.css';
-import btn from '../styles/buttons.module.css';
-import forms from '../styles/forms.module.css';
+import v2b from '../styles/v2/buttons.module.css';
+import v2f from '../styles/v2/forms.module.css';
 
 export default function Contact() {
   const { t } = useTranslation('common');
@@ -66,7 +66,7 @@ export default function Contact() {
       <PageMeta title={t('meta.contactTitle')} description={t('meta.contactDescription')} path="/contact" />
 
       <div className={styles.header}>
-        <span className={styles.headerMicro}>&#9670; {t('contact.kicker')}</span>
+        <span className={styles.headerMicro}>{t('contact.kicker')}</span>
         <h1 className={styles.title}>{t('contact.h1')}</h1>
         <p className={styles.subtitle}>{t('contact.subtitle')}</p>
       </div>
@@ -133,11 +133,11 @@ export default function Contact() {
                 <h2 className={styles.formHeading}>{t('contact.formHeading')}</h2>
                 <p className={styles.formSubtitle}>{t('contact.formSubtitle')}</p>
               </div>
-              <div className={forms.inputGroup}>
-                <label htmlFor="contact-name" className={forms.label}>{t('contact.labelName')}</label>
+              <div className={styles.inputGroup}>
+                <label htmlFor="contact-name" className={v2f.labelOnPaper}>{t('contact.labelName')}</label>
                 <input
                   id="contact-name"
-                  className={`${forms.input} ${fieldErrors.name ? styles.fieldError : ''}`}
+                  className={`${v2f.inputOnPaper} ${fieldErrors.name ? styles.fieldError : ''}`}
                   value={form.name}
                   onChange={e => set('name', e.target.value)}
                   aria-invalid={fieldErrors.name ? 'true' : undefined}
@@ -145,40 +145,40 @@ export default function Contact() {
                 {fieldErrors.name && <span className={styles.fieldErrorMsg}>{fieldErrors.name}</span>}
               </div>
               <div className={styles.formRow}>
-                <div className={forms.inputGroup}>
-                  <label htmlFor="contact-email" className={forms.label}>
+                <div className={styles.inputGroup}>
+                  <label htmlFor="contact-email" className={v2f.labelOnPaper}>
                     {t('contact.labelEmail')}
                     <span className={styles.fieldHelp}>{t('contact.emailHelp')}</span>
                   </label>
                   <input
                     id="contact-email"
                     type="email"
-                    className={`${forms.input} ${fieldErrors.email ? styles.fieldError : ''}`}
+                    className={`${v2f.inputOnPaper} ${fieldErrors.email ? styles.fieldError : ''}`}
                     value={form.email}
                     onChange={e => set('email', e.target.value)}
                     aria-invalid={fieldErrors.email ? 'true' : undefined}
                   />
                   {fieldErrors.email && <span className={styles.fieldErrorMsg}>{fieldErrors.email}</span>}
                 </div>
-                <div className={forms.inputGroup}>
-                  <label htmlFor="contact-phone" className={forms.label}>
+                <div className={styles.inputGroup}>
+                  <label htmlFor="contact-phone" className={v2f.labelOnPaper}>
                     {t('contact.labelPhone')}
                     <span className={styles.fieldHelp}>{t('contact.phoneHelp')}</span>
                   </label>
                   <PhoneInput
                     id="contact-phone"
-                    className={`${forms.input} ${fieldErrors.phone ? styles.fieldError : ''}`}
+                    className={`${v2f.inputOnPaper} ${fieldErrors.phone ? styles.fieldError : ''}`}
                     value={form.phone}
                     onChange={v => set('phone', v)}
                   />
                   {fieldErrors.phone && <span className={styles.fieldErrorMsg}>{fieldErrors.phone}</span>}
                 </div>
               </div>
-              <div className={forms.inputGroup}>
-                <label htmlFor="contact-message" className={forms.label}>{t('contact.labelMessage')}</label>
+              <div className={styles.inputGroup}>
+                <label htmlFor="contact-message" className={v2f.labelOnPaper}>{t('contact.labelMessage')}</label>
                 <textarea
                   id="contact-message"
-                  className={`${forms.textarea} ${fieldErrors.message ? styles.fieldError : ''}`}
+                  className={`${v2f.inputOnPaper} ${styles.textarea} ${fieldErrors.message ? styles.fieldError : ''}`}
                   value={form.message}
                   onChange={e => set('message', e.target.value)}
                   rows={5}
@@ -186,11 +186,11 @@ export default function Contact() {
                 />
                 {fieldErrors.message && <span className={styles.fieldErrorMsg}>{fieldErrors.message}</span>}
               </div>
-              {error && <div className={styles.errorAlert} role="alert">{error}</div>}
+              {error && <div className={v2f.errorOnPaper} role="alert">{error}</div>}
               <button
                 type="submit"
                 disabled={submitting}
-                className={`${btn.btnAccent} ${styles.submitBtn}`}
+                className={`${v2b.cta} ${styles.submitBtn}`}
               >
                 {submitting ? t('contact.sending') : t('contact.submit')}
               </button>

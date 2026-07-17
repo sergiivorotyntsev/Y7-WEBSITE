@@ -1,144 +1,143 @@
 /* =====================================================================
-   Careers page — carrier recruiting funnel
+   Careers — DESIGN-V2-W5-T04 "Dispatch Board" restyle.
+   Long-form recruiting page (§2): dark = the board hero + the closing
+   CTA band (~20% share, under the 25% long-form cap); everything between
+   alternates manifest paper / paper-deep. Heading texts/levels, schema
+   (JobPosting + FAQPage), copy strings and link targets are FROZEN.
+   Section openers: plain mono kickers (no red rule-line) so the 9-section
+   stack never trips the eyebrow density cap. Radius tiers: cards lg,
+   chips pill, v2 buttons own their tiers. Signal Budget: the hero CTA
+   and closing CTA gradients are each viewport's single red fill.
+   The old useInViewFade/fadeSection entrance system is deleted
+   (ungated V1 entrance, Reveal Gate Rule).
    ===================================================================== */
 
-.page { color: var(--text, #2C2C2A); }
+.page {
+  color: var(--v2-ink, #050607);
+  background: var(--v2-paper, #f4f0e8);
+}
+
 .inner {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 clamp(16px, 4vw, 32px);
 }
 
-.fadeSection {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-.fadeSection.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-@media (prefers-reduced-motion: reduce) {
-  .fadeSection,
-  .fadeSection.visible {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
-
 .kicker {
   display: inline-block;
-  font-family: var(--font-sans, system-ui);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
+  font-weight: 500;
+  color: var(--v2-ink-muted, #5c5851);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--v2-track-eyebrow, 0.18em);
   margin-bottom: 12px;
 }
+
 .h2 {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.55rem, 3vw, 2.1rem);
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
   font-weight: 700;
-  color: var(--text, #2C2C2A);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  letter-spacing: var(--v2-track-section, 0.035em);
+  text-transform: uppercase;
+  line-height: 0.98;
+  color: var(--v2-ink, #050607);
   margin: 0 0 14px;
   max-width: 820px;
 }
+
 .sectionSub {
-  font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.7;
   max-width: 720px;
   margin: 0 0 28px;
 }
+
 .section {
   padding: clamp(60px, 9vh, 96px) 0;
-  background: var(--bg, #F7F5F0);
-}
-.sectionMuted {
-  padding: clamp(60px, 9vh, 96px) 0;
-  background: var(--bg-muted, #EFECE6);
+  background: var(--v2-paper, #f4f0e8);
 }
 
-/* Hero */
-.hero {
-  padding: clamp(70px, 11vh, 110px) 0 clamp(50px, 8vh, 80px);
-  background:
-    radial-gradient(circle at 15% 30%, rgba(153, 60, 29, 0.08), transparent 55%),
-    radial-gradient(circle at 85% 60%, rgba(15, 110, 86, 0.05), transparent 55%),
-    linear-gradient(180deg, var(--bg, #F7F5F0) 0%, var(--bg-muted, #EFECE6) 100%);
+.sectionMuted {
+  padding: clamp(60px, 9vh, 96px) 0;
+  background: var(--v2-paper-deep, #eee8dd);
 }
+
+/* =====================================================================
+   HERO — board band (opens dark)
+   ===================================================================== */
+
+.hero {
+  composes: boardHero from '../styles/v2/surfaces.module.css';
+  padding: clamp(70px, 11vh, 110px) 0 clamp(50px, 8vh, 80px);
+}
+
 .heroInner {
   max-width: 960px;
   margin: 0 auto;
   padding: 0 clamp(16px, 4vw, 32px);
   text-align: center;
 }
+
 .heroKicker {
   display: inline-block;
-  font-family: var(--font-sans, system-ui);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
+  font-weight: 500;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--v2-track-eyebrow, 0.18em);
   margin-bottom: 16px;
 }
+
 .heroTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(2rem, 5.5vw, 3.6rem);
+  font-family: var(--v2-font-display);
+  font-size: clamp(2.2rem, 5.5vw, 4.25rem);
   font-weight: 700;
-  color: var(--text, #2C2C2A);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
+  letter-spacing: var(--v2-track-display, 0.02em);
+  text-transform: uppercase;
+  line-height: 0.98;
+  color: var(--v2-text-on-dark, #fff7ed);
   margin: 0 0 18px;
 }
+
 .heroSubtitle {
-  font-family: var(--font-sans, system-ui);
   font-size: clamp(1rem, 1.6vw, 1.15rem);
-  color: var(--text-muted, #706E68);
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
   line-height: 1.7;
   max-width: 720px;
   margin: 0 auto 28px;
 }
+
 .heroTrust {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 8px 24px;
-  font-family: var(--font-sans, system-ui);
-  font-size: 13px;
-  color: var(--text-muted, #706E68);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   margin-bottom: 28px;
 }
+
 .heroTrustItem { white-space: nowrap; }
+
 .heroCtaRow {
   display: flex;
   justify-content: center;
 }
+
+/* Layout hook next to the composed v2 CTA class. */
 .heroCta {
-  display: inline-block;
-  padding: 14px 28px;
-  background: var(--accent, #993C1D);
-  color: #fff;
-  font-family: var(--font-sans, system-ui);
-  font-size: 15px;
-  font-weight: 700;
-  border-radius: 24px;
   text-decoration: none;
-  transition: background-color 200ms ease;
-}
-.heroCta:hover,
-.heroCta:focus-visible {
-  background: var(--accent-dark, #7f3118);
-  outline: none;
 }
 
-/* Benefit grid */
+/* =====================================================================
+   BENEFIT GRID
+   ===================================================================== */
+
 .benefitGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -146,45 +145,43 @@
 }
 @media (max-width: 860px) { .benefitGrid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .benefitGrid { grid-template-columns: 1fr; } }
+
 .benefitCard {
+  composes: paper from '../styles/v2/cards.module.css';
   padding: 22px;
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: 12px;
-  transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
 }
-@media (hover: hover) {
-  .benefitCard:hover {
-    transform: translateY(-3px);
-    border-color: var(--accent, #993C1D);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  }
-}
+
 .benefitNum {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 12px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
-  letter-spacing: 0.08em;
+  font-weight: 500;
+  color: var(--v2-ink-muted, #5c5851);
+  letter-spacing: var(--v2-track-label, 0.14em);
   margin-bottom: 10px;
 }
+
 .benefitTitle {
-  font-family: var(--font-serif, Georgia, serif);
+  font-family: var(--v2-font-display);
   font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--v2-ink, #050607);
   margin: 0 0 8px;
-  letter-spacing: -0.01em;
 }
+
 .benefitDesc {
-  font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.65;
   margin: 0;
 }
 
-/* Qualification list */
+/* =====================================================================
+   QUALIFICATION LIST
+   ===================================================================== */
+
 .qualList {
   list-style: none;
   padding: 0;
@@ -195,22 +192,26 @@
   max-width: 840px;
 }
 @media (max-width: 720px) { .qualList { grid-template-columns: 1fr; } }
+
 .qualItem {
   display: flex;
   gap: 10px;
   align-items: flex-start;
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   line-height: 1.6;
 }
+
 .qualCheck {
-  color: var(--accent, #993C1D);
+  color: var(--v2-ink, #050607);
   font-weight: 700;
   flex-shrink: 0;
 }
 
-/* Timeline */
+/* =====================================================================
+   ONBOARDING TIMELINE
+   ===================================================================== */
+
 .timeline {
   list-style: none;
   padding: 0;
@@ -220,40 +221,42 @@
   gap: 14px;
 }
 @media (max-width: 860px) { .timeline { grid-template-columns: 1fr; } }
+
 .timelineItem {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: 12px;
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
   padding: 20px 18px;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
 }
+
 .timelineDay {
-  display: inline-block;
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 11px;
-  font-weight: 700;
-  color: #fff;
-  background: var(--accent, #993C1D);
-  padding: 4px 10px;
-  border-radius: 12px;
-  letter-spacing: 0.05em;
+  composes: chipOnPaper from '../styles/v2/cards.module.css';
   margin-bottom: 12px;
 }
+
 .timelineTitle {
-  font-family: var(--font-serif, Georgia, serif);
+  font-family: var(--v2-font-display);
   font-size: 1rem;
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--v2-ink, #050607);
   margin: 0 0 6px;
 }
+
 .timelineDesc {
-  font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.6;
   margin: 0;
 }
 
-/* Flow cards */
+/* =====================================================================
+   FLOW CARDS
+   ===================================================================== */
+
 .flowGrid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -261,66 +264,83 @@
 }
 @media (max-width: 860px) { .flowGrid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .flowGrid { grid-template-columns: 1fr; } }
+
 .flowCard {
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
   padding: 22px;
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: 12px;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
 }
+
 .flowNum {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 12px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
-  letter-spacing: 0.08em;
+  font-weight: 500;
+  color: var(--v2-ink-muted, #5c5851);
+  letter-spacing: var(--v2-track-label, 0.14em);
   margin-bottom: 10px;
 }
+
 .flowTitle {
-  font-family: var(--font-serif, Georgia, serif);
+  font-family: var(--v2-font-display);
   font-size: 1rem;
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--v2-ink, #050607);
   margin: 0 0 8px;
-  letter-spacing: -0.01em;
 }
+
 .flowDesc {
-  font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.65;
   margin: 0;
 }
 
-/* Payment cards */
+/* =====================================================================
+   PAYMENT CARDS
+   ===================================================================== */
+
 .payGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
 }
 @media (max-width: 760px) { .payGrid { grid-template-columns: 1fr; } }
+
 .payCard {
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
   padding: 24px;
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: 12px;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
 }
+
 .payCardTitle {
-  font-family: var(--font-serif, Georgia, serif);
+  font-family: var(--v2-font-display);
   font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--v2-ink, #050607);
   margin: 0 0 8px;
-  letter-spacing: -0.01em;
 }
+
 .payCardDesc {
-  font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.65;
   margin: 0;
 }
 
-/* Portal grid */
+/* =====================================================================
+   PORTAL GRID
+   ===================================================================== */
+
 .portalGrid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -328,33 +348,40 @@
 }
 @media (max-width: 860px) { .portalGrid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .portalGrid { grid-template-columns: 1fr; } }
+
 .portalCard {
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
   padding: 22px;
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: 12px;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
 }
+
 .portalLabel {
-  font-family: var(--font-serif, Georgia, serif);
+  font-family: var(--v2-font-display);
   font-size: 1rem;
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--v2-ink, #050607);
   margin: 0 0 8px;
-  letter-spacing: -0.01em;
 }
+
 .portalDesc {
-  font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.65;
   margin: 0;
 }
 
-/* Per-load list */
+/* =====================================================================
+   PER-LOAD LIST
+   ===================================================================== */
+
 .perloadList {
-  font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   line-height: 1.8;
   margin: 0;
   padding-left: 24px;
@@ -362,7 +389,10 @@
 }
 .perloadList li { margin-bottom: 6px; }
 
-/* Boundaries list */
+/* =====================================================================
+   HONEST BOUNDARIES (full hairline border; side-stripes are banned)
+   ===================================================================== */
+
 .boundList {
   list-style: none;
   padding: 0;
@@ -372,169 +402,157 @@
   gap: 10px;
   max-width: 780px;
 }
+
 .boundItem {
   display: flex;
   gap: 12px;
   align-items: flex-start;
-  font-family: var(--font-sans, system-ui);
   font-size: 14.5px;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   line-height: 1.65;
   padding: 14px 16px;
-  background: var(--bg-card, #fff);
-  border-left: 3px solid #c0392b;
-  border-radius: 6px;
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
 }
+
 .boundX {
-  color: #c0392b;
+  color: var(--v2-ink-muted, #5c5851);
   font-weight: 700;
   font-size: 18px;
   flex-shrink: 0;
   line-height: 1.2;
 }
 
-/* FAQ */
+/* =====================================================================
+   FAQ
+   ===================================================================== */
+
 .faqList {
   display: flex;
   flex-direction: column;
   gap: 10px;
   max-width: 880px;
 }
+
 .faqItem {
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: 10px;
-  background: var(--bg-card, #fff);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
+  background: var(--v2-card-cream, #fffaf1);
   overflow: hidden;
-  transition: border-color 200ms ease;
+  transition: border-color var(--transition-fast, 150ms ease-out);
 }
-.faqItem[open] { border-color: var(--accent, #993C1D); }
+
+.faqItem[open] { border-color: rgba(5, 6, 7, 0.32); }
+
 .faqSummary {
   list-style: none;
   cursor: pointer;
   padding: 16px 20px;
-  font-family: var(--font-serif, Georgia, serif);
   font-size: 15px;
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  font-weight: 600;
+  color: var(--v2-ink, #050607);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  letter-spacing: -0.01em;
 }
 .faqSummary::-webkit-details-marker { display: none; }
+.faqSummary:focus-visible {
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: -2px;
+}
+
 .faqChevron {
   font-size: 14px;
-  color: var(--accent, #993C1D);
-  transition: transform 200ms ease;
+  color: var(--v2-ink-muted, #5c5851);
+  transition: transform var(--transition-normal, 250ms ease-out);
 }
 .faqItem[open] .faqChevron { transform: rotate(180deg); }
+
 .faqAnswer {
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.75;
   padding: 0 20px 20px;
   margin: 0;
 }
 
-/* CTA */
+/* =====================================================================
+   CLOSING CTA — board band (closes dark)
+   ===================================================================== */
+
 .ctaStrip {
+  composes: board from '../styles/v2/surfaces.module.css';
   padding: clamp(60px, 9vh, 90px) 0;
-  background: var(--accent, #993C1D);
-  color: #fff;
   text-align: center;
 }
+
 .ctaTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.7rem, 3vw, 2.6rem);
   font-weight: 700;
-  color: #fff;
+  letter-spacing: var(--v2-track-section, 0.035em);
+  text-transform: uppercase;
+  line-height: 0.98;
+  color: var(--v2-text-on-dark, #fff7ed);
   margin: 0 0 14px;
-  letter-spacing: -0.02em;
 }
+
 .ctaSubtitle {
-  font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: rgba(255, 255, 255, 0.88);
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
   line-height: 1.7;
   margin: 0 auto 24px;
   max-width: 640px;
 }
+
 .ctaButtons {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
   justify-content: center;
 }
-.ctaPrimary {
-  display: inline-block;
-  padding: 14px 28px;
-  background: #fff;
-  color: var(--accent, #993C1D);
-  font-family: var(--font-sans, system-ui);
-  font-size: 15px;
-  font-weight: 700;
-  border-radius: 24px;
-  text-decoration: none;
-  transition: background-color 200ms ease;
-}
-.ctaPrimary:hover,
-.ctaPrimary:focus-visible {
-  background: #f7f5f0;
-  outline: none;
-}
-.ctaSecondary {
-  display: inline-block;
-  padding: 14px 28px;
-  background: transparent;
-  color: #fff;
-  font-family: var(--font-sans, system-ui);
-  font-size: 15px;
-  font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  border-radius: 24px;
-  text-decoration: none;
-  transition: background-color 200ms ease, border-color 200ms ease;
-}
-.ctaSecondary:hover,
-.ctaSecondary:focus-visible {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: #fff;
-  outline: none;
-}
 
-/* Crosslinks */
+/* Layout hooks next to the composed v2 button classes. */
+.ctaPrimary { text-decoration: none; }
+.ctaSecondary { text-decoration: none; }
+
+/* =====================================================================
+   CROSSLINKS (Body-Link Law)
+   ===================================================================== */
+
 .crosslinks {
   padding: clamp(36px, 6vh, 56px) 0;
-  background: var(--bg-muted, #EFECE6);
+  background: var(--v2-paper-deep, #eee8dd);
 }
+
 .crosslinksTitle {
-  font-family: var(--font-sans, system-ui);
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--text-muted, #706E68);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--v2-ink-muted, #5c5851);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: var(--v2-track-label, 0.14em);
   margin: 0 0 14px;
 }
+
 .crosslinksRow {
   display: flex;
   flex-wrap: wrap;
   gap: 18px;
 }
+
 .crosslink {
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text, #2C2C2A);
-  text-decoration: none;
+  color: var(--v2-ink, #050607);
+  text-decoration: underline;
+  text-underline-offset: 2px;
   font-weight: 500;
-  border-bottom: 1px solid transparent;
-  transition: color 150ms ease, border-color 150ms ease;
+  transition: color var(--transition-fast, 150ms ease-out);
 }
-.crosslink:hover,
+.crosslink:hover { color: var(--v2-red-deep, #a90918); }
 .crosslink:focus-visible {
-  color: var(--accent, #993C1D);
-  border-bottom-color: var(--accent, #993C1D);
-  outline: none;
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
 }

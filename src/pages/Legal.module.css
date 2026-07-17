@@ -1,78 +1,91 @@
-/* Legal pages — shared typography for PrivacyPolicy, Terms, Accessibility. */
+/* Legal pages (Privacy / Terms / Accessibility) — DESIGN-V2-W5-T05
+   "Dispatch Board" restyle. Utility documents: board hero strip + paper
+   reading body at a 65-75ch measure, sentence-case system body. Document
+   text, heading levels and link targets are FROZEN; shells + tokens only.
+   Radius tiers: sheets lg, notes md. No red fills anywhere on these pages;
+   red appears only as link hover + focus rings (Body-Link Law). */
 
 .wrap {
-  max-width: 860px;
-  margin: 0 auto;
   padding: 0 0 80px;
+  background: var(--v2-paper, #f4f0e8);
 }
 
+/* =====================================================================
+   HERO — board strip
+   ===================================================================== */
+
 .hero {
-  padding: clamp(56px, 8vh, 80px) 24px clamp(28px, 4vh, 40px);
+  composes: board from '../styles/v2/surfaces.module.css';
+  padding: clamp(48px, 7vh, 72px) 24px clamp(28px, 4vh, 40px);
   text-align: center;
-  background:
-    radial-gradient(circle at 50% 100%, rgba(153, 60, 29, 0.05), transparent 60%),
-    linear-gradient(180deg, var(--bg, #F7F5F0) 0%, var(--bg-muted, #EFECE6) 100%);
   margin-bottom: clamp(32px, 5vh, 48px);
 }
 
 .kicker {
   display: inline-block;
-  font-family: var(--font-sans, system-ui);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
+  font-weight: 500;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--v2-track-eyebrow, 0.18em);
   margin-bottom: 10px;
 }
 
 .title {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.75rem, 3.4vw, 2.75rem);
   font-weight: 700;
-  color: var(--text, #2C2C2A);
+  letter-spacing: var(--v2-track-section, 0.035em);
+  text-transform: uppercase;
+  line-height: 0.98;
+  color: var(--v2-text-on-dark, #fff7ed);
   margin: 0 0 10px;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
 }
 
 .updated {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 12px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   margin: 0;
   letter-spacing: 0.02em;
 }
 
+/* =====================================================================
+   READING BODY — 65-75ch measure
+   ===================================================================== */
+
 .body {
-  max-width: 720px;
+  max-width: 72ch;
   margin: 0 auto;
   padding: 0 24px;
 }
 
 .h2 {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--v2-ink, #050607);
   margin: clamp(32px, 5vh, 44px) 0 12px;
-  letter-spacing: -0.02em;
-  line-height: 1.25;
 }
 
 .h3 {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  font-family: var(--v2-font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--v2-ink, #050607);
   margin: 28px 0 10px;
-  letter-spacing: -0.01em;
 }
 
 .p {
-  font-family: var(--font-sans, system-ui);
   font-size: 14.5px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.8;
   margin: 0 0 14px;
 }
@@ -83,76 +96,72 @@
 }
 
 .ul {
-  font-family: var(--font-sans, system-ui);
   font-size: 14.5px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.8;
   padding-left: 22px;
   margin: 0 0 14px;
 }
 
 .strong {
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   font-weight: 600;
 }
 
+/* Body-Link Law: ink + underline at rest; red on hover only. */
 .link {
-  color: var(--accent, #993C1D);
-  text-decoration: none;
+  color: var(--v2-ink, #050607);
+  text-decoration: underline;
+  text-underline-offset: 2px;
   font-weight: 600;
-  border-radius: 2px;
-  padding: 1px 3px;
-  margin: 0 -3px;
-  outline: none;
-  transition: background-color var(--transition-fast, 150ms ease-out);
+  transition: color var(--transition-fast, 150ms ease-out);
 }
 
 @media (hover: hover) {
   .link:hover {
-    background-color: var(--accent-glow, rgba(153, 60, 29, 0.15));
-    color: var(--accent-hover, #7A3017);
-    text-decoration: underline;
+    color: var(--v2-red-deep, #a90918);
   }
 }
 
 .link:focus-visible {
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 3px var(--accent, #993C1D);
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
 }
 
 .divider {
   border: none;
   height: 1px;
-  background: var(--border, #e5e0d8);
+  background: var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
   margin: 36px 0;
 }
 
 .footerNote {
   margin-top: clamp(32px, 5vh, 44px);
   padding: 20px 24px;
-  background: var(--bg-muted, #EFECE6);
-  border-radius: var(--radius-md, 8px);
-  font-family: var(--font-sans, system-ui);
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-md, 12px);
   font-size: 13.5px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.7;
 }
 
 /* Table of contents (for long docs) */
 .toc {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-lg, 12px);
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
   padding: 20px 24px;
   margin-bottom: 40px;
 }
 
 .tocHeading {
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--v2-ink-muted, #5c5851);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--v2-track-label, 0.14em);
   margin: 0 0 12px;
 }
 
@@ -166,23 +175,22 @@
 }
 
 .tocLink {
-  font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
-  color: var(--text, #2C2C2A);
-  text-decoration: none;
+  color: var(--v2-ink, #050607);
+  text-decoration: underline;
+  text-underline-offset: 2px;
   padding: 4px 0;
   display: inline-block;
-  border-radius: 2px;
   transition: color var(--transition-fast, 150ms ease-out);
 }
 
 @media (hover: hover) {
   .tocLink:hover {
-    color: var(--accent, #993C1D);
-    text-decoration: underline;
+    color: var(--v2-red-deep, #a90918);
   }
 }
 
 .tocLink:focus-visible {
-  box-shadow: 0 0 0 2px var(--bg-card, #fff), 0 0 0 3px var(--accent, #993C1D);
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
 }

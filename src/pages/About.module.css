@@ -1,48 +1,60 @@
-/* About page — editorial layout, FMCSA badge, values grid. */
+/* About — DESIGN-V2-W5-T04 "Dispatch Board" restyle. Long-form page (§2):
+   dark = the board hero band only (~10% share, well under the 25% cap);
+   the whole reading body stays manifest paper. Heading texts/levels,
+   i18n keys and link targets are FROZEN; shells + tokens only.
+   Section openers use the plain mono kicker (no red rule-line) so the
+   7-section stack never trips the eyebrow density cap. Radius tiers:
+   content sheets lg, icon chips md, badges pill. Static content sheets
+   deliberately carry no hover lift (nothing here is interactive). */
 
 .page {
-  max-width: 1100px;
-  margin: 0 auto;
   padding: 0 0 80px;
+  background: var(--v2-paper, #f4f0e8);
 }
 
+/* =====================================================================
+   HERO — board band
+   ===================================================================== */
+
 .hero {
+  composes: board from '../styles/v2/surfaces.module.css';
   padding: clamp(64px, 10vh, 96px) 24px clamp(40px, 6vh, 56px);
   text-align: center;
-  background:
-    radial-gradient(circle at 50% 100%, rgba(153, 60, 29, 0.06), transparent 60%),
-    linear-gradient(180deg, var(--bg, #F7F5F0) 0%, var(--bg-muted, #EFECE6) 100%);
   margin-bottom: clamp(48px, 8vh, 72px);
 }
 
 .heroMicro {
   display: inline-block;
-  font-family: var(--font-sans, system-ui);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
+  font-weight: 500;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--v2-track-eyebrow, 0.18em);
   margin-bottom: 12px;
 }
 
 .h1 {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.8rem, 4vw, 2.75rem);
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.9rem, 3.8vw, 3.25rem);
   font-weight: 700;
-  color: var(--text, #2C2C2A);
+  letter-spacing: var(--v2-track-section, 0.035em);
+  text-transform: uppercase;
+  line-height: 0.98;
+  color: var(--v2-text-on-dark, #fff7ed);
   margin: 0 0 20px;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
 }
 
 .body {
+  max-width: 1100px;
+  margin: 0 auto;
   padding: 0 24px;
 }
 
 .narrowColumn {
   max-width: 720px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .sectionHeader {
@@ -52,12 +64,12 @@
 
 .sectionMicro {
   display: inline-block;
-  font-family: var(--font-sans, system-ui);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
+  font-weight: 500;
+  color: var(--v2-ink-muted, #5c5851);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--v2-track-eyebrow, 0.18em);
   margin: 0 0 10px;
 }
 
@@ -68,16 +80,22 @@
   flex-wrap: wrap;
 }
 
+/* Mono credential chip, paper variant (hairline pill, never filled). */
 .badge {
   display: inline-block;
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 13px;
-  font-weight: 600;
-  color: var(--text, #2C2C2A);
-  background: var(--bg-muted, #EFECE6);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-pill, 20px);
+  font-weight: 500;
+  color: var(--v2-ink, #050607);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-pill, 999px);
   padding: 6px 16px;
+}
+
+/* Dark-surface variant for the hero credential chips. */
+.badgeOnDark {
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+  border-color: var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
 }
 
 .section {
@@ -85,42 +103,34 @@
 }
 
 .sectionTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
   font-weight: 700;
-  color: var(--text, #2C2C2A);
+  letter-spacing: var(--v2-track-section, 0.035em);
+  text-transform: uppercase;
+  line-height: 1.02;
+  color: var(--v2-ink, #050607);
   margin: 0 0 16px;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
   text-align: center;
 }
 
+/* Static cream content sheet (reading surface, non-interactive: no lift). */
 .card {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-xl, 16px);
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
   padding: 28px 24px;
-  transition:
-    border-color var(--transition-normal, 250ms ease-out),
-    box-shadow var(--transition-normal, 250ms ease-out);
-}
-
-@media (hover: hover) {
-  .card:hover {
-    border-color: var(--accent, #993C1D);
-    box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.04));
-  }
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
 }
 
 .bodyText {
-  font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.8;
 }
 
 .bodyStrong {
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
 }
 
 .bodyMargin {
@@ -159,23 +169,25 @@
   top: 24px;
   left: 60%;
   width: 80%;
-  height: 2px;
-  background: var(--border, #e5e0d8);
+  height: 1px;
+  background: var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
   z-index: 0;
 }
 
+/* Ink-filled step marker: dark board chip on the paper sheet. */
 .stepNum {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: var(--accent, #993C1D);
-  color: #fff;
+  background: var(--v2-ink, #050607);
+  color: var(--v2-text-on-dark, #fff7ed);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-sans, system-ui);
+  font-family: var(--v2-font-display);
   font-size: 18px;
   font-weight: 700;
+  letter-spacing: 0.04em;
   margin-bottom: 14px;
   position: relative;
   z-index: 1;
@@ -183,17 +195,15 @@
 }
 
 .stepTitle {
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
   font-weight: 700;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   margin: 0 0 6px;
 }
 
 .stepDesc {
-  font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.6;
   margin: 0;
 }
@@ -215,44 +225,32 @@
 @media (max-width: 520px) { .whyGrid { grid-template-columns: 1fr; } }
 
 .whyCard {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-xl, 16px);
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
   padding: 28px 24px;
   display: flex;
   gap: 14px;
   align-items: flex-start;
-  transition:
-    transform var(--transition-normal, 250ms ease-out),
-    box-shadow var(--transition-normal, 250ms ease-out),
-    border-color var(--transition-normal, 250ms ease-out);
-}
-
-@media (hover: hover) {
-  .whyCard:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md, 0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06));
-    border-color: var(--accent, #993C1D);
-  }
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
 }
 
 .whyIcon {
   line-height: 1;
   flex-shrink: 0;
+  color: var(--v2-ink, #050607);
 }
 
 .whyTitle {
-  font-family: var(--font-sans, system-ui);
   font-size: 15px;
   font-weight: 700;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   margin: 0 0 4px;
 }
 
 .whyDesc {
-  font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.6;
   margin: 0;
 }
@@ -267,51 +265,46 @@
 }
 
 .commitment {
-  font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.7;
   margin-bottom: 8px;
 }
 .commitment:last-child { margin-bottom: 0; }
 
 /* =====================================================================
-   LINKS
+   LINKS (Body-Link Law: ink + underline at rest, red on hover)
    ===================================================================== */
 
 .accentLink {
-  color: var(--accent, #993C1D);
-  text-decoration: none;
+  color: var(--v2-ink, #050607);
+  text-decoration: underline;
+  text-underline-offset: 2px;
   font-weight: 600;
-  border-radius: 2px;
-  padding: 2px 4px;
-  margin: 0 -4px;
-  outline: none;
-  transition: color var(--transition-fast, 150ms ease-out), background-color var(--transition-fast, 150ms ease-out);
+  transition: color var(--transition-fast, 150ms ease-out);
 }
 
 @media (hover: hover) {
   .accentLink:hover {
-    color: var(--accent-hover, #7A3017);
-    background-color: var(--accent-glow, rgba(153, 60, 29, 0.15));
-    text-decoration: underline;
+    color: var(--v2-red-deep, #a90918);
   }
 }
 
 .accentLink:focus-visible {
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
 }
 
 .fmcsaCard,
 .contactCard {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-xl, 16px);
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
   padding: 28px 24px;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  transition: border-color var(--transition-normal, 250ms ease-out), box-shadow var(--transition-normal, 250ms ease-out);
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
 }
 
 .fmcsaShieldRow {
@@ -321,26 +314,28 @@
   padding-bottom: 4px;
 }
 
+/* Ink plate, no gradient (Gradient Legality Rule), no colored shadow. */
 .fmcsaShield {
   flex-shrink: 0;
   width: 56px;
   height: 56px;
-  border-radius: var(--radius-md, 8px);
-  background: linear-gradient(135deg, var(--accent, #993C1D) 0%, var(--accent-hover, #7A3017) 100%);
-  color: #fff;
+  border-radius: var(--v2-radius-md, 12px);
+  background: var(--v2-ink, #050607);
+  color: var(--v2-text-on-dark, #fff7ed);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(153, 60, 29, 0.22);
 }
 
 .fmcsaHeading {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--v2-ink, #050607);
   margin: 0 0 10px;
-  letter-spacing: -0.01em;
 }
 
 .fmcsaIds {
@@ -349,22 +344,13 @@
   flex-wrap: wrap;
 }
 
-@media (hover: hover) {
-  .fmcsaCard:hover,
-  .contactCard:hover {
-    border-color: var(--accent, #993C1D);
-    box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.04));
-  }
-}
-
 /* ====================================================================
-   How Y7 Communicates section (P3-CLARITY-T02)
+   How Y7 Communicates section
    ==================================================================== */
 
 .commsLead {
-  font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   line-height: 1.75;
   max-width: 720px;
   margin: 0 auto 32px;
@@ -383,51 +369,52 @@
 }
 
 .commsCard {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-lg, 12px);
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
   padding: clamp(20px, 3vw, 28px);
   display: flex;
   flex-direction: column;
   gap: 12px;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
 }
 
 .commsCard:nth-child(2) {
-  background: var(--bg-muted, #EFECE6);
+  background: var(--v2-paper-deep, #eee8dd);
 }
 
 .commsIcon {
   width: 44px;
   height: 44px;
-  border-radius: var(--radius-md, 8px);
-  background: rgba(153, 60, 29, 0.10);
-  color: var(--accent, #993C1D);
+  border-radius: var(--v2-radius-md, 12px);
+  background: var(--v2-ink, #050607);
+  color: var(--v2-text-on-dark, #fff7ed);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .commsCardTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.15rem, 1.8vw, 1.3rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--v2-ink, #050607);
   margin: 0;
-  letter-spacing: -0.01em;
 }
 
 .commsCardDesc {
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.7;
   margin: 0;
 }
 
 .commsList {
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   line-height: 1.8;
   margin: 4px 0 0;
   padding-left: 20px;
@@ -436,20 +423,19 @@
 .commsList li { margin-bottom: 4px; }
 
 .commsBenefits {
-  background: var(--bg, #F7F5F0);
-  border: 1px dashed var(--border, #e5e0d8);
-  border-radius: var(--radius-lg, 12px);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
   padding: clamp(18px, 3vw, 24px);
   text-align: center;
 }
 
 .commsBenefitsTitle {
-  font-family: var(--font-sans, system-ui);
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--text-muted, #706E68);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--v2-ink-muted, #5c5851);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: var(--v2-track-label, 0.14em);
   margin: 0 0 14px;
 }
 
@@ -461,12 +447,5 @@
 }
 
 .commsBenefit {
-  display: inline-block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 13px;
-  color: var(--text, #2C2C2A);
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-pill, 20px);
-  padding: 6px 14px;
+  composes: chipOnPaper from '../styles/v2/cards.module.css';
 }

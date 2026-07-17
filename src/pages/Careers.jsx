@@ -1,28 +1,12 @@
-import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import styles from './Careers.module.css';
+import v2b from '../styles/v2/buttons.module.css';
 
-function useInViewFade() {
-  const ref = useRef(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (typeof window === 'undefined') return;
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      el.classList.add(styles.visible);
-      return;
-    }
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add(styles.visible); },
-      { threshold: 0.12 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-  return ref;
-}
+// DESIGN-V2-W5-T04: the previous useInViewFade IntersectionObserver entrance
+// (opacity-0 sections) ran outside the Reveal/__Y7_PRERENDER gates and could
+// snapshot mid-fade in the prerender (Reveal Gate Rule). Removed, not ported.
 
 const BENEFITS = [
   { title: 'Steady lane mix', desc: 'Copart, IAA, Manheim, ADESA pickups daily. No dead freight, no wasted backhauls. Clean dispatch packets with accurate condition notes.' },
@@ -87,18 +71,6 @@ const FAQS = [
 ];
 
 export default function Careers() {
-  const heroRef = useInViewFade();
-  const whyRef = useInViewFade();
-  const qualRef = useInViewFade();
-  const onbRef = useInViewFade();
-  const flowRef = useInViewFade();
-  const payRef = useInViewFade();
-  const portalRef = useInViewFade();
-  const perloadRef = useInViewFade();
-  const boundRef = useInViewFade();
-  const faqRef = useInViewFade();
-  const ctaRef = useInViewFade();
-
   const jobSchema = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'JobPosting',
@@ -145,9 +117,9 @@ export default function Careers() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqSchema }} />
 
       {/* Hero */}
-      <section ref={heroRef} className={`${styles.hero} ${styles.fadeSection}`}>
+      <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <span className={styles.heroKicker}>&#9670; CARRIER RECRUITING</span>
+          <span className={styles.heroKicker}>CARRIER RECRUITING</span>
           <h1 className={styles.heroTitle}>Become a Y7 Carrier Partner</h1>
           <p className={styles.heroSubtitle}>
             Y7 Logistics is building a vetted carrier network for auto transport. Steady loads from
@@ -160,15 +132,15 @@ export default function Careers() {
             <span className={styles.heroTrustItem}>&#x2713; Fast Zelle / ACH payment</span>
           </div>
           <div className={styles.heroCtaRow}>
-            <Link to="/careers/apply" className={styles.heroCta}>Apply to Carrier Network &rarr;</Link>
+            <Link to="/careers/apply" className={`${v2b.cta} ${styles.heroCta}`}>Apply to Carrier Network &rarr;</Link>
           </div>
         </div>
       </section>
 
       {/* Why Work With Y7 */}
-      <section ref={whyRef} className={`${styles.section} ${styles.fadeSection}`}>
+      <section className={styles.section}>
         <div className={styles.inner}>
-          <span className={styles.kicker}>&#9670; WHY Y7</span>
+          <span className={styles.kicker}>WHY Y7</span>
           <h2 className={styles.h2}>What you get as a Y7 carrier partner</h2>
           <div className={styles.benefitGrid}>
             {BENEFITS.map((b, i) => (
@@ -183,9 +155,9 @@ export default function Careers() {
       </section>
 
       {/* What We Look For */}
-      <section ref={qualRef} className={`${styles.sectionMuted} ${styles.fadeSection}`}>
+      <section className={styles.sectionMuted}>
         <div className={styles.inner}>
-          <span className={styles.kicker}>&#9670; QUALIFICATIONS</span>
+          <span className={styles.kicker}>QUALIFICATIONS</span>
           <h2 className={styles.h2}>What we look for</h2>
           <p className={styles.sectionSub}>
             Standard FMCSA compliance plus a safety profile we can confidently represent to shippers.
@@ -204,9 +176,9 @@ export default function Careers() {
       </section>
 
       {/* Onboarding */}
-      <section ref={onbRef} className={`${styles.section} ${styles.fadeSection}`}>
+      <section className={styles.section}>
         <div className={styles.inner}>
-          <span className={styles.kicker}>&#9670; ONBOARDING</span>
+          <span className={styles.kicker}>ONBOARDING</span>
           <h2 className={styles.h2}>From apply to active in about one business day</h2>
           <ol className={styles.timeline}>
             {ONBOARDING_STEPS.map((s, i) => (
@@ -221,9 +193,9 @@ export default function Careers() {
       </section>
 
       {/* How Loads Flow */}
-      <section ref={flowRef} className={`${styles.sectionMuted} ${styles.fadeSection}`}>
+      <section className={styles.sectionMuted}>
         <div className={styles.inner}>
-          <span className={styles.kicker}>&#9670; HOW LOADS FLOW</span>
+          <span className={styles.kicker}>HOW LOADS FLOW</span>
           <h2 className={styles.h2}>From dispatch to delivery, operationally</h2>
           <div className={styles.flowGrid}>
             {LOAD_FLOW.map((f, i) => (
@@ -238,9 +210,9 @@ export default function Careers() {
       </section>
 
       {/* Payment Terms */}
-      <section ref={payRef} className={`${styles.section} ${styles.fadeSection}`}>
+      <section className={styles.section}>
         <div className={styles.inner}>
-          <span className={styles.kicker}>&#9670; PAYMENT</span>
+          <span className={styles.kicker}>PAYMENT</span>
           <h2 className={styles.h2}>Payment terms, transparently</h2>
           <div className={styles.payGrid}>
             <div className={styles.payCard}>
@@ -260,9 +232,9 @@ export default function Careers() {
       </section>
 
       {/* Portal Tabs */}
-      <section ref={portalRef} className={`${styles.sectionMuted} ${styles.fadeSection}`}>
+      <section className={styles.sectionMuted}>
         <div className={styles.inner}>
-          <span className={styles.kicker}>&#9670; CARRIER PORTAL</span>
+          <span className={styles.kicker}>CARRIER PORTAL</span>
           <h2 className={styles.h2}>Four tabs, everything you need</h2>
           <p className={styles.sectionSub}>
             Phone OTP login at dispatch.y7agency.com/carrier-portal — no passwords to lose. Every tab
@@ -280,9 +252,9 @@ export default function Careers() {
       </section>
 
       {/* Per-load workflow */}
-      <section ref={perloadRef} className={`${styles.section} ${styles.fadeSection}`}>
+      <section className={styles.section}>
         <div className={styles.inner}>
-          <span className={styles.kicker}>&#9670; PER-LOAD WORKFLOW</span>
+          <span className={styles.kicker}>PER-LOAD WORKFLOW</span>
           <h2 className={styles.h2}>Per-load confirmation — one link, two minutes</h2>
           <p className={styles.sectionSub}>
             When you&apos;re assigned a load, we may text a per-load confirmation link. It takes two
@@ -298,9 +270,9 @@ export default function Careers() {
       </section>
 
       {/* Honest boundaries */}
-      <section ref={boundRef} className={`${styles.sectionMuted} ${styles.fadeSection}`}>
+      <section className={styles.sectionMuted}>
         <div className={styles.inner}>
-          <span className={styles.kicker}>&#9670; OPERATIONAL HONESTY</span>
+          <span className={styles.kicker}>OPERATIONAL HONESTY</span>
           <h2 className={styles.h2}>What Y7 does not do</h2>
           <p className={styles.sectionSub}>
             Clear on scope. If any of these are deal-breakers, Y7 is not the right broker
@@ -318,9 +290,9 @@ export default function Careers() {
       </section>
 
       {/* FAQ */}
-      <section ref={faqRef} className={`${styles.section} ${styles.fadeSection}`}>
+      <section className={styles.section}>
         <div className={styles.inner}>
-          <span className={styles.kicker}>&#9670; FAQ</span>
+          <span className={styles.kicker}>FAQ</span>
           <h2 className={styles.h2}>Questions carriers ask</h2>
           <div className={styles.faqList}>
             {FAQS.map((f, i) => (
@@ -337,7 +309,7 @@ export default function Careers() {
       </section>
 
       {/* CTA */}
-      <section ref={ctaRef} className={`${styles.ctaStrip} ${styles.fadeSection}`}>
+      <section className={styles.ctaStrip}>
         <div className={styles.inner}>
           <h2 className={styles.ctaTitle}>Ready to join the network?</h2>
           <p className={styles.ctaSubtitle}>
@@ -345,8 +317,8 @@ export default function Careers() {
             minutes during business hours.
           </p>
           <div className={styles.ctaButtons}>
-            <Link to="/careers/apply" className={styles.ctaPrimary}>Apply to Carrier Network &rarr;</Link>
-            <a href="https://dispatch.y7agency.com/carrier-portal" className={styles.ctaSecondary}>
+            <Link to="/careers/apply" className={`${v2b.cta} ${styles.ctaPrimary}`}>Apply to Carrier Network &rarr;</Link>
+            <a href="https://dispatch.y7agency.com/carrier-portal" className={`${v2b.ghostOnDark} ${styles.ctaSecondary}`}>
               Already a Y7 carrier? Sign in &rarr;
             </a>
           </div>

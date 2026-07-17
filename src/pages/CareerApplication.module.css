@@ -1,5 +1,16 @@
+/* CareerApplication — DESIGN-V2-W5-T04 "Dispatch Board" restyle.
+   Application funnel: board hero band (title + progress rail) + paper form
+   body with cream step sheets and v2 paper form fields (Anti-Orphan Rule:
+   inputs compose src/styles/v2/forms). Submit pipeline, validation regexes,
+   FormData payload and copy are FROZEN; shells + tokens only. Radius tiers:
+   sheets lg, inputs md (v2), chips sm/pill, v2 buttons own their tiers.
+   Signal Budget: the gradient primary button is each step's one red fill;
+   active state chips fill ink, never red. Pine strictly for the success
+   confirmation + accepted-file feedback (verified-state semantics). */
+
 .page {
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
+  background: var(--v2-paper, #f4f0e8);
   min-height: 80vh;
 }
 
@@ -15,39 +26,51 @@
   padding: 0 clamp(16px, 4vw, 32px);
 }
 
-/* Hero */
+/* =====================================================================
+   HERO — board band
+   ===================================================================== */
+
 .heroSection {
+  composes: board from '../styles/v2/surfaces.module.css';
   padding: clamp(50px, 8vh, 80px) 0 clamp(24px, 4vh, 40px);
-  background: linear-gradient(180deg, var(--bg, #F7F5F0) 0%, var(--bg-muted, #EFECE6) 100%);
 }
+
 .backLink {
-  font-family: var(--font-sans, system-ui);
-  font-size: 13px;
-  color: var(--text-muted, #706E68);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   text-decoration: none;
   margin-bottom: 20px;
   display: inline-block;
 }
-.backLink:hover { color: var(--accent, #993C1D); }
-.title {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
-  margin: 0 0 10px;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
+.backLink:hover { color: var(--v2-text-on-dark, #fff7ed); }
+.backLink:focus-visible {
+  outline: 2px solid var(--v2-red-bright, #ef3a4e);
+  outline-offset: 2px;
 }
+
+.title {
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: var(--v2-track-section, 0.035em);
+  text-transform: uppercase;
+  line-height: 0.98;
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin: 0 0 10px;
+}
+
 .subtitle {
-  font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
   line-height: 1.7;
   margin: 0 0 28px;
   max-width: 620px;
 }
 
-/* Progress */
+/* Progress rail on board */
 .progress {
   display: flex;
   align-items: center;
@@ -55,122 +78,125 @@
   max-width: 560px;
   margin-top: 16px;
 }
+
 .progressStep {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-sans, system-ui);
 }
+
 .progressNum {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: var(--border, #e5e0d8);
-  color: var(--text-muted, #706E68);
-  font-size: 13px;
-  font-weight: 700;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 12px;
+  font-weight: 500;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .progressStep.progressActive .progressNum {
-  background: var(--accent, #993C1D);
-  color: #fff;
+  background: var(--v2-text-on-dark, #fff7ed);
+  border-color: var(--v2-text-on-dark, #fff7ed);
+  color: var(--v2-board, #050607);
 }
+
 .progressLabel {
-  font-size: 13px;
-  color: var(--text-muted, #706E68);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
   font-weight: 500;
+  letter-spacing: var(--v2-track-label, 0.14em);
+  text-transform: uppercase;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
 }
+
 .progressStep.progressActive .progressLabel {
-  color: var(--text, #2C2C2A);
-  font-weight: 700;
+  color: var(--v2-text-on-dark, #fff7ed);
 }
+
 .progressBar {
   flex: 1;
-  height: 2px;
-  background: var(--border, #e5e0d8);
+  height: 1px;
+  background: var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
   overflow: hidden;
 }
+
 .progressFill {
   width: 0;
   height: 100%;
-  background: var(--accent, #993C1D);
+  background: var(--v2-text-on-dark, #fff7ed);
   transition: width 300ms ease;
 }
+
 .progressBar .progressFill.progressActive { width: 100%; }
 
-/* Form */
+/* =====================================================================
+   FORM — paper body, cream step sheet
+   ===================================================================== */
+
 .formSection {
   padding: clamp(32px, 5vh, 56px) 0 clamp(60px, 9vh, 96px);
-  background: var(--bg, #F7F5F0);
 }
+
 .stepCard {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: 16px;
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
   padding: clamp(24px, 4vw, 36px);
   display: flex;
   flex-direction: column;
   gap: 18px;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
 }
+
 .stepTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--v2-ink, #050607);
   margin: 0 0 4px;
-  letter-spacing: -0.01em;
 }
+
 .stepIntro {
-  font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   margin: 0 0 8px;
   line-height: 1.6;
 }
 
+/* Wrapping label: sentence-case reading label (forms-on-paper carry the V1
+   label spec, §7); the v2 input inside inherits the sans stack from here. */
 .label {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  font-family: var(--font-sans, system-ui);
   font-size: 13px;
   font-weight: 600;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
 }
-.req { color: var(--accent, #993C1D); }
+
+.req { color: var(--v2-red-deep, #a90918); }
+
 .hint {
   display: block;
   font-size: 12px;
   font-weight: 400;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   margin-top: 4px;
 }
 
-.input,
-.textarea {
-  font-family: var(--font-sans, system-ui);
-  font-size: 15px;
-  color: var(--text, #2C2C2A);
-  padding: 10px 12px;
-  background: var(--bg, #F7F5F0);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: 8px;
-  width: 100%;
-  box-sizing: border-box;
-  transition: border-color 150ms ease, background-color 150ms ease;
-}
-.input:focus,
-.textarea:focus {
-  outline: none;
-  border-color: var(--accent, #993C1D);
-  background: #fff;
-}
 .textarea {
   resize: vertical;
   min-height: 80px;
-  font-family: inherit;
+  line-height: 1.6;
 }
 
 .row {
@@ -190,100 +216,117 @@
   flex-direction: column;
   gap: 10px;
 }
+
 .legend {
-  font-family: var(--font-sans, system-ui);
   font-size: 13px;
   font-weight: 600;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   padding: 0;
   margin: 0 0 4px;
 }
 
+/* Equipment radios: hairline pills, never filled. */
 .radioRow {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
 }
+
 .radio {
   display: flex;
   align-items: center;
   gap: 6px;
   padding: 10px 18px;
-  background: var(--bg-muted, #EFECE6);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: 20px;
-  font-family: var(--font-sans, system-ui);
+  background: transparent;
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-pill, 999px);
   font-size: 14px;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   cursor: pointer;
   font-weight: 600;
-  transition: border-color 150ms ease, background-color 150ms ease;
+  transition: border-color var(--transition-fast, 150ms ease-out);
 }
-.radio input { margin: 0; accent-color: var(--accent, #993C1D); }
-.radio:hover { border-color: var(--accent, #993C1D); }
+.radio input { margin: 0; accent-color: var(--v2-red, #d70f24); }
+.radio:hover { border-color: rgba(5, 6, 7, 0.4); }
+.radio:focus-within {
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
+}
 
+/* Operating-state chips: mono; active fills ink (never red). */
 .statesGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(58px, 1fr));
   gap: 6px;
 }
+
 .stateChip,
 .stateChipActive {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 8px 0;
-  background: var(--bg-muted, #EFECE6);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: 6px;
+  background: var(--v2-paper-deep, #eee8dd);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-sm, 6px);
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 12px;
-  font-weight: 700;
-  color: var(--text-muted, #706E68);
+  font-weight: 500;
+  color: var(--v2-ink-muted, #5c5851);
   cursor: pointer;
   user-select: none;
-  transition: all 150ms ease;
+  transition: border-color var(--transition-fast, 150ms ease-out), color var(--transition-fast, 150ms ease-out);
 }
 .stateChip input,
 .stateChipActive input { display: none; }
-.stateChip:hover { border-color: var(--accent, #993C1D); color: var(--text, #2C2C2A); }
+.stateChip:hover { border-color: rgba(5, 6, 7, 0.4); color: var(--v2-ink, #050607); }
+.stateChip:focus-within,
+.stateChipActive:focus-within {
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
+}
+
 .stateChipActive {
-  background: var(--accent, #993C1D);
-  border-color: var(--accent, #993C1D);
-  color: #fff;
+  background: var(--v2-ink, #050607);
+  border-color: var(--v2-ink, #050607);
+  color: var(--v2-text-on-dark, #fff7ed);
 }
 
 .fileInput {
-  font-family: var(--font-sans, system-ui);
   font-size: 13px;
   padding: 8px 0;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
 }
+.fileInput:focus-visible {
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
+}
+
+/* Accepted-file feedback: pine = verified/success state only. */
 .fileOk {
   display: block;
   margin-top: 6px;
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 12px;
-  color: #0F6E56;
+  color: var(--success, #0F6E56);
   font-weight: 600;
 }
 
 .legal {
-  font-family: var(--font-sans, system-ui);
   font-size: 12px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.6;
   margin: 8px 0 0;
 }
 
+/* Error: red family + text, full hairline border (side-stripes banned). */
 .errorBox {
-  font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
-  color: #c0392b;
-  background: #fceae8;
-  border-left: 3px solid #c0392b;
+  color: var(--v2-red-deep, #a90918);
+  background: rgba(215, 15, 36, 0.06);
+  border: 1px solid rgba(215, 15, 36, 0.35);
   padding: 12px 14px;
-  border-radius: 6px;
+  border-radius: var(--v2-radius-md, 12px);
   line-height: 1.55;
 }
 
@@ -297,66 +340,46 @@
 .footer > :only-child {
   margin-left: auto;
 }
-.primary,
-.secondary {
-  font-family: var(--font-sans, system-ui);
-  font-size: 14px;
-  font-weight: 700;
-  padding: 12px 24px;
-  border-radius: 24px;
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
-}
-.primary {
-  background: var(--accent, #993C1D);
-  color: #fff;
-}
-.primary:disabled {
-  background: var(--border, #e5e0d8);
-  color: var(--text-muted, #706E68);
+
+/* Disabled ("locked") states layered over the composed v2 buttons.
+   Element-qualified selectors outweigh the v2 :hover rules regardless of
+   bundle order. */
+button.primary:disabled {
+  background: var(--v2-paper-deep, #eee8dd);
+  color: var(--v2-ink-muted, #5c5851);
   cursor: not-allowed;
-}
-.primary:not(:disabled):hover,
-.primary:not(:disabled):focus-visible {
-  background: var(--accent-dark, #7f3118);
-  outline: none;
-}
-.secondary {
-  background: transparent;
-  color: var(--text, #2C2C2A);
-  border-color: var(--border, #e5e0d8);
-}
-.secondary:disabled {
-  color: var(--text-muted, #706E68);
-  cursor: not-allowed;
-}
-.secondary:not(:disabled):hover,
-.secondary:not(:disabled):focus-visible {
-  border-color: var(--accent, #993C1D);
-  color: var(--accent, #993C1D);
-  outline: none;
+  box-shadow: none;
 }
 
-/* Success */
+button.secondary:disabled {
+  color: var(--v2-ink-muted, #5c5851);
+  border-color: var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  cursor: not-allowed;
+}
+
+/* =====================================================================
+   SUCCESS — paper band, cream sheet, pine confirmation
+   ===================================================================== */
+
 .successSection {
   padding: clamp(60px, 10vh, 110px) 0;
-  background: var(--bg, #F7F5F0);
   min-height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .successCard {
   max-width: 580px;
   margin: 0 20px;
   padding: 48px 36px;
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: 16px;
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
   text-align: center;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
 }
+
 .successIcon {
   display: inline-flex;
   align-items: center;
@@ -364,52 +387,47 @@
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: #0F6E56;
+  background: var(--success, #0F6E56);
   color: #fff;
   font-size: 32px;
   font-weight: 700;
   margin-bottom: 16px;
 }
+
 .successTitle {
-  font-family: var(--font-serif, Georgia, serif);
+  font-family: var(--v2-font-display);
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 700;
-  color: var(--text, #2C2C2A);
+  letter-spacing: var(--v2-track-section, 0.035em);
+  text-transform: uppercase;
+  line-height: 1.02;
+  color: var(--v2-ink, #050607);
   margin: 0 0 12px;
-  letter-spacing: -0.02em;
 }
+
 .successMsg {
-  font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   line-height: 1.7;
   margin: 0 0 14px;
 }
+
 .successNote {
-  font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   margin: 0 0 28px;
   line-height: 1.6;
 }
+
+/* Body-Link Law */
 .successLink {
-  color: var(--accent, #993C1D);
+  color: var(--v2-ink, #050607);
   text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 600;
 }
-.successButton {
-  font-family: var(--font-sans, system-ui);
-  font-size: 14px;
-  font-weight: 700;
-  padding: 12px 28px;
-  background: var(--accent, #993C1D);
-  color: #fff;
-  border: none;
-  border-radius: 24px;
-  cursor: pointer;
-  transition: background-color 200ms ease;
-}
-.successButton:hover,
-.successButton:focus-visible {
-  background: var(--accent-dark, #7f3118);
-  outline: none;
+.successLink:hover { color: var(--v2-red-deep, #a90918); }
+.successLink:focus-visible {
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
 }

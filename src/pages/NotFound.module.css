@@ -1,72 +1,69 @@
+/* NotFound (404) — DESIGN-V2-W5-T05 "Dispatch Board" restyle. Single board
+   band + panel card (QuoteVerified pattern). i18n keys, heading levels and
+   link targets are FROZEN. Signal Budget: the 404 numeral is the page's one
+   red element (display-size, large-text law); suggestion cards are board
+   washes, secondary links are ghost pills, no red fill anywhere.
+   The V1 badgePulse infinite loop (decorative perpetual motion) and the
+   ungated cardIn stagger entrance are deleted, not ported. */
+
 .wrap {
+  composes: board from '../styles/v2/surfaces.module.css';
   min-height: calc(100vh - 80px);
-  padding: clamp(60px, 10vh, 120px) 20px clamp(80px, 12vh, 140px);
-  background:
-    radial-gradient(circle at 50% 0%, rgba(153, 60, 29, 0.05), transparent 55%),
-    var(--bg, #F7F5F0);
+  padding: clamp(48px, 8vh, 96px) 20px clamp(64px, 10vh, 120px);
   display: flex;
   align-items: flex-start;
   justify-content: center;
 }
 
 .inner {
+  composes: panel from '../styles/v2/surfaces.module.css';
   max-width: 960px;
   width: 100%;
   text-align: center;
+  padding: clamp(36px, 6vh, 64px) clamp(20px, 4vw, 48px);
 }
 
 .badge {
   display: inline-block;
-  font-family: var(--font-serif, Georgia, serif);
+  font-family: var(--v2-font-display);
   font-size: clamp(4.5rem, 14vw, 7.5rem);
   font-weight: 700;
-  color: var(--accent, #993C1D);
-  line-height: 1;
-  letter-spacing: -0.04em;
+  color: var(--v2-red, #d70f24);
+  line-height: 0.98;
+  letter-spacing: var(--v2-track-display, 0.02em);
   margin-bottom: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .badge {
-    animation: badgePulse 3.5s ease-in-out infinite;
-  }
-}
-
-@keyframes badgePulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.85; transform: scale(1.02); }
-}
-
 .title {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.75rem, 5.5vw, 2.5rem);
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.75rem, 5.5vw, 2.6rem);
   font-weight: 700;
-  color: var(--text, #2C2C2A);
-  letter-spacing: -0.02em;
-  line-height: 1.15;
+  letter-spacing: var(--v2-track-section, 0.035em);
+  text-transform: uppercase;
+  line-height: 0.98;
+  color: var(--v2-text-on-dark, #fff7ed);
   margin: 0 0 14px;
 }
 
 .subtitle {
-  font-family: var(--font-sans, system-ui);
   font-size: clamp(0.95rem, 2.6vw, 1.1rem);
-  color: var(--text-muted, #706E68);
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
   line-height: 1.65;
   max-width: 640px;
-  margin: 0 auto 56px;
+  margin: 0 auto 48px;
 }
 
 .suggestions {
-  margin-bottom: 48px;
+  margin-bottom: 40px;
 }
 
 .suggestionsKicker {
   display: inline-block;
-  font-family: var(--font-sans, system-ui);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
-  letter-spacing: 0.14em;
+  font-weight: 500;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  letter-spacing: var(--v2-track-eyebrow, 0.18em);
   text-transform: uppercase;
   margin-bottom: 24px;
 }
@@ -84,64 +81,35 @@
 }
 
 .card {
+  composes: board from '../styles/v2/cards.module.css';
   position: relative;
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-xl, 16px);
   padding: 24px 22px 56px;
   text-decoration: none;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-text-on-dark, #fff7ed);
   text-align: left;
-  transition: transform 250ms cubic-bezier(0.2, 0.7, 0.2, 1),
-              box-shadow 250ms ease-out,
-              border-color 250ms ease-out;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .card {
-    opacity: 0;
-    animation: cardIn 400ms ease-out forwards;
-  }
-  .card:nth-child(1) { animation-delay: 100ms; }
-  .card:nth-child(2) { animation-delay: 200ms; }
-  .card:nth-child(3) { animation-delay: 300ms; }
-}
-
-@keyframes cardIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.tone_coral { --tone: #993C1D; --tone-tint: rgba(153,60,29,0.08); }
-.tone_teal { --tone: #14648C; --tone-tint: rgba(20,100,140,0.08); }
-.tone_amber { --tone: #8C5020; --tone-tint: rgba(140,80,32,0.08); }
 
 @media (hover: hover) {
-  .card:hover {
-    transform: translateY(-3px);
-    border-color: var(--tone);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
-    background: var(--tone-tint);
-  }
   .card:hover .cardArrow {
     transform: translateX(4px);
-    color: var(--tone);
+    color: var(--v2-text-on-dark, #fff7ed);
   }
 }
 
 .cardTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--tone, var(--accent));
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--v2-text-on-dark, #fff7ed);
   margin: 0 0 8px;
-  letter-spacing: -0.01em;
 }
 
 .cardDesc {
-  font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   line-height: 1.6;
   margin: 0;
 }
@@ -151,34 +119,19 @@
   right: 22px;
   bottom: 20px;
   font-size: 18px;
-  color: var(--text-muted, #706E68);
-  transition: transform 200ms ease-out, color 200ms ease-out;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  transition: transform var(--transition-fast, 150ms ease-out), color var(--transition-fast, 150ms ease-out);
 }
 
+/* Secondary utility links: ghost pill row (v2 buttons compose in JSX). */
 .secondary {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 10px 16px;
-  font-family: var(--font-sans, system-ui);
-  font-size: 14px;
+  gap: 10px 12px;
 }
 
 .secondaryLink {
-  color: var(--accent, #993C1D);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 150ms ease-out, color 150ms ease-out;
-}
-
-@media (hover: hover) {
-  .secondaryLink:hover {
-    border-bottom-color: var(--accent, #993C1D);
-    color: var(--accent-hover, #7A3017);
-  }
-}
-
-.sep {
-  color: var(--border, #e5e0d8);
 }

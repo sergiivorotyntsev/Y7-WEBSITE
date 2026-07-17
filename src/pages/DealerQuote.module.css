@@ -1,99 +1,106 @@
-/* DealerQuote — premium partnership application form. */
+/* DealerQuote — DESIGN-V2-W5-T04 "Dispatch Board" restyle. Conversion page:
+   opens with the board hero, works on paper (cream section sheets + v2 paper
+   form fields), and closes dark with the submit plate (board form-shell
+   treatment) and the board-band success state (QuoteVerified pattern).
+   The TCPA SmsConsent component is shared + ink-styled, which pins the
+   consent row (and therefore the form body) to paper; the submit plate is
+   the sanctioned dark closer. Submit pipeline, validation, UTM capture and
+   copy are FROZEN. Radius tiers: sheets lg, plate/success xl (form-shell
+   tier), inputs md (v2). Signal Budget: the gradient submit is the only red
+   fill; state chips and markers stay ink. The V1 dealerSectionIn staggered
+   entrance (ungated) is deleted, not ported (Reveal Gate Rule). */
 
 .wrap {
-  max-width: 760px;
-  margin: 0 auto;
   padding: 0 0 80px;
+  background: var(--v2-paper, #f4f0e8);
 }
+
+/* =====================================================================
+   HERO — board band (opens dark)
+   ===================================================================== */
 
 .hero {
-  padding: clamp(56px, 8vh, 80px) 24px clamp(32px, 5vh, 48px);
+  composes: boardHero from '../styles/v2/surfaces.module.css';
+  padding: clamp(56px, 9vh, 96px) 24px clamp(36px, 5vh, 56px);
   text-align: center;
-  background:
-    radial-gradient(circle at 50% 100%, rgba(153, 60, 29, 0.06), transparent 60%),
-    linear-gradient(180deg, var(--bg, #F7F5F0) 0%, var(--bg-muted, #EFECE6) 100%);
   margin-bottom: clamp(32px, 5vh, 48px);
-}
-
-.backLink {
-  display: inline-block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--accent, #993C1D);
-  text-decoration: none;
-  margin-bottom: 24px;
-  padding: 4px 6px;
-  margin-left: -6px;
-  border-radius: var(--radius-sm, 4px);
-  outline: none;
-  transition: background-color var(--transition-fast, 150ms ease-out);
-}
-
-@media (hover: hover) {
-  .backLink:hover {
-    background-color: var(--accent-glow, rgba(153, 60, 29, 0.15));
-    color: var(--accent-hover, #7A3017);
-  }
-}
-
-.backLink:focus-visible {
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 3px var(--accent, #993C1D);
 }
 
 .heroKicker {
   display: inline-block;
-  font-family: var(--font-sans, system-ui);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
+  font-weight: 500;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--v2-track-eyebrow, 0.18em);
   margin-bottom: 12px;
 }
 
 .title {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.9rem, 4vw, 3.25rem);
   font-weight: 700;
-  color: var(--text, #2C2C2A);
+  letter-spacing: var(--v2-track-section, 0.035em);
+  text-transform: uppercase;
+  line-height: 0.98;
+  color: var(--v2-text-on-dark, #fff7ed);
   margin: 0 0 12px;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
 }
 
 .subtitle {
-  font-family: var(--font-sans, system-ui);
   font-size: 15px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
   line-height: 1.7;
   margin: 0 auto;
   max-width: 520px;
 }
 
+/* =====================================================================
+   BODY — paper column
+   ===================================================================== */
+
 .body {
+  max-width: 760px;
+  margin: 0 auto;
   padding: 0 24px;
 }
 
-/* =====================================================================
-   PREFILL BANNER
-   ===================================================================== */
+.backLink {
+  display: inline-block;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--v2-ink-muted, #5c5851);
+  text-decoration: none;
+  margin-bottom: 24px;
+  transition: color var(--transition-fast, 150ms ease-out);
+}
 
-/* A-spine: tokenized success palette + full border (was hardcoded greens + side-stripe). */
+@media (hover: hover) {
+  .backLink:hover { color: var(--v2-ink, #050607); }
+}
+
+.backLink:focus-visible {
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
+}
+
+/* Prefill notice: pine = verified-account state. */
 .prefillBanner {
-  font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
   color: var(--success, #0F6E56);
   padding: 12px 16px;
   background: var(--success-bg, #E1F5EE);
   border: 1px solid rgba(15, 110, 86, 0.25);
-  border-radius: var(--radius-md, 8px);
+  border-radius: var(--v2-radius-md, 12px);
   margin-bottom: 20px;
   line-height: 1.6;
 }
 
 /* =====================================================================
-   FORM SECTIONS
+   FORM SECTIONS — cream sheets
    ===================================================================== */
 
 .form {
@@ -102,36 +109,21 @@
   gap: 20px;
 }
 
-/* B: token card elevation (was shadow-sm). */
 .section {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-lg, 12px);
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
   padding: 24px;
-  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .section {
-    opacity: 0;
-    animation: dealerSectionIn 500ms ease-out forwards;
-    animation-delay: calc(var(--i, 0) * 80ms);
-  }
-}
-
-@keyframes dealerSectionIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
 }
 
 .sectionTitle {
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  font-weight: 700;
-  /* A-spine (Option G): non-hero section kickers lead in Bonded Pine green. */
-  color: var(--success, #0F6E56);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--v2-ink-muted, #5c5851);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--v2-track-label, 0.14em);
   margin: 0 0 16px;
 }
 
@@ -158,6 +150,24 @@
   .row2, .row3 { grid-template-columns: 1fr; }
 }
 
+/* Select affordance layered on the v2 paper input. */
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3e%3cpath fill='none' stroke='%235c5851' stroke-width='1.5' d='M1 1l4 4 4-4'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 10px 6px;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 96px;
+  line-height: 1.6;
+}
+
 /* =====================================================================
    RADIO / CHECKBOX GROUPS
    ===================================================================== */
@@ -174,32 +184,23 @@
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   padding: 4px 0;
   min-height: 44px; /* tap target */
-  transition: color var(--transition-fast, 150ms ease-out);
-}
-
-@media (hover: hover) {
-  .radioLabel:hover {
-    color: var(--accent, #993C1D);
-  }
 }
 
 .radioInput,
 .checkInput {
-  accent-color: var(--accent, #993C1D);
+  accent-color: var(--v2-red, #d70f24);
   width: 16px;
   height: 16px;
   cursor: pointer;
 }
 
-/* B: :focus-visible on radios + checkboxes (was missing). */
 .radioInput:focus-visible,
 .checkInput:focus-visible {
-  outline: 2px solid var(--accent, #993C1D);
+  outline: 2px solid var(--v2-red, #d70f24);
   outline-offset: 2px;
 }
 
@@ -215,40 +216,34 @@
 }
 
 /* =====================================================================
-   ERROR / SUBMIT
+   SUBMIT PLATE — board form-shell closer (closes dark)
    ===================================================================== */
 
-/* B: one error language — Cite-Red, full border (no side-stripe). */
-.errorAlert {
-  font-family: var(--font-sans, system-ui);
-  font-size: 13px;
-  color: #C0392B;
-  padding: 10px 14px;
-  background: rgba(192, 57, 43, 0.07);
-  border: 1px solid rgba(192, 57, 43, 0.35);
-  border-radius: var(--radius-md, 8px);
-  margin-bottom: 4px;
+.submitPlate {
+  background: var(--v2-board, #050607);
+  border: 1px solid rgba(5, 6, 7, 0.2);
+  border-radius: var(--v2-radius-xl, 22px);
+  box-shadow: var(--v2-board-depth, 0 24px 70px rgba(0, 0, 0, 0.3));
+  padding: clamp(20px, 4vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .submitBtn {
-  width: 100% !important;
-  padding: 16px !important;
-  font-size: 13px !important;
-  letter-spacing: 0.08em !important;
+  width: 100%;
   min-height: 52px;
 }
 
-/* Locked state (submit is gated on TCPA SMS consent): a deliberate neutral-muted
-   "inactive" fill instead of a faded-sienna, so it reads as intentionally locked,
-   not washed-out/broken. Scoped to this form's submit only; no shared-class edit. */
-.submitBtn:disabled,
-.submitBtn[disabled] {
-  background: var(--bg-muted, #EFECE6) !important;
-  color: var(--text-muted, #706E68) !important;
-  border-color: var(--border-input, #ddd) !important;
-  opacity: 1 !important;
-  cursor: not-allowed !important;
-  box-shadow: none !important;
+/* Locked state (submit is gated on TCPA SMS consent): deliberate neutral
+   wash so it reads intentionally locked, not broken. Element-qualified to
+   outweigh the v2 .cta rules regardless of bundle order. */
+button.submitBtn:disabled,
+button.submitBtn[disabled] {
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  box-shadow: none;
+  cursor: not-allowed;
 }
 
 .trustRow {
@@ -256,33 +251,54 @@
   justify-content: center;
   align-items: center;
   gap: clamp(12px, 3vw, 28px);
-  padding-top: 12px;
   flex-wrap: wrap;
 }
 
 .trustItem {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  color: var(--text-muted, #706E68);
-  letter-spacing: 0.04em;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: var(--v2-track-label, 0.14em);
+  text-transform: uppercase;
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
 }
 
-.trustDot {
-  color: var(--accent, #993C1D);
-  font-size: 8px;
+/* Field-level error: red family + text, never color alone. */
+.fieldError { border-color: var(--v2-red-deep, #a90918) !important; }
+.fieldErrorMsg {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--v2-red-deep, #a90918);
+  margin-top: 4px;
+}
+
+/* Focus-Visible Law blanket (covers the inline-styled PhoneInput too). */
+.form input:focus-visible,
+.form select:focus-visible,
+.form textarea:focus-visible {
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
 }
 
 /* =====================================================================
-   SUCCESS STATE
+   SUCCESS STATE — board band + panel card (QuoteVerified pattern)
    ===================================================================== */
 
 .successWrap {
-  max-width: 600px;
-  margin: 0 auto;
+  composes: board from '../styles/v2/surfaces.module.css';
   padding: clamp(64px, 10vh, 96px) 24px;
+  min-height: 55vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.successCard {
+  composes: panel from '../styles/v2/surfaces.module.css';
+  max-width: 600px;
+  width: 100%;
+  padding: 48px 32px;
   text-align: center;
 }
 
@@ -299,31 +315,32 @@
 }
 
 .successTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: 1.75rem;
-  color: var(--text, #2C2C2A);
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 700;
+  letter-spacing: var(--v2-track-section, 0.035em);
+  text-transform: uppercase;
+  line-height: 1.02;
+  color: var(--v2-text-on-dark, #fff7ed);
   margin: 0 0 12px;
-  letter-spacing: -0.02em;
 }
 
 .successRef {
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
   line-height: 1.7;
   margin: 0 0 8px;
 }
 
 .successRefCode {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  color: var(--text, #2C2C2A);
+  color: var(--v2-text-on-dark, #fff7ed);
   font-weight: 600;
 }
 
 .successMsg {
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
   line-height: 1.7;
   margin: 0 0 28px;
   max-width: 480px;
@@ -332,32 +349,5 @@
 }
 
 .backBtn {
-  padding: 12px 28px !important;
-  font-size: 12px !important;
   text-decoration: none;
-  display: inline-block;
-}
-
-/* =====================================================================
-   B — form discipline: keyboard focus ring, field-level error, 16px inputs
-   ===================================================================== */
-.form input:focus-visible,
-.form select:focus-visible,
-.form textarea:focus-visible {
-  border-color: var(--accent, #993C1D);
-  box-shadow: 0 0 0 2px var(--bg-card, #fff), 0 0 0 4px var(--accent-glow, rgba(153, 60, 29, 0.15));
-}
-.fieldError { border-color: #C0392B !important; }
-.fieldError:focus-visible {
-  box-shadow: 0 0 0 2px var(--bg-card, #fff), 0 0 0 4px rgba(192, 57, 43, 0.22) !important;
-}
-.fieldErrorMsg {
-  font-family: var(--font-sans, system-ui);
-  font-size: 12px; font-weight: 500; color: #C0392B; margin-top: 4px;
-}
-/* iOS Safari zooms on focus for inputs < 16px — bump on small screens. */
-@media (max-width: 640px) {
-  .form input,
-  .form select,
-  .form textarea { font-size: 16px; }
 }

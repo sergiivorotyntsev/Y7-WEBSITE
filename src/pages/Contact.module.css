@@ -1,48 +1,89 @@
-/* Contact page — two-column layout with info cards on left, form on right. */
+/* Contact — DESIGN-V2-W5-T03 "Dispatch Board" restyle. Utility/hub page (§2
+   link-hub rule): dark = the board hero band only; policy note, channel
+   cards and the form stay paper. Inputs/labels come from the v2 forms
+   paper variants (Anti-Orphan Rule); this module is layout + page shells.
+   Submit pipeline, validation, i18n keys and the shared VerificationStrip
+   are FROZEN. Radius tiers: cards lg, form shell xl, notes/inputs md.
+   Signal Budget: the gradient submit is the page's one red fill. */
 
 .wrap {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: clamp(60px, 8vh, 96px) 24px 80px;
+  padding: 0 0 80px;
+  background: var(--v2-paper, #f4f0e8);
 }
 
+/* =====================================================================
+   HERO — board band
+   ===================================================================== */
+
 .header {
+  composes: board from '../styles/v2/surfaces.module.css';
   text-align: center;
-  margin-bottom: clamp(40px, 6vh, 56px);
+  padding: clamp(56px, 9vh, 96px) 24px clamp(36px, 5vh, 56px);
+  margin-bottom: clamp(32px, 5vh, 48px);
 }
 
 .headerMicro {
   display: inline-block;
-  font-family: var(--font-sans, system-ui);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
+  font-weight: 500;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--v2-track-eyebrow, 0.18em);
   margin-bottom: 12px;
 }
 
 .title {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.8rem, 4vw, 2.75rem);
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.9rem, 3.8vw, 3.25rem);
   font-weight: 700;
-  color: var(--text, #2C2C2A);
+  letter-spacing: var(--v2-track-section, 0.035em);
+  text-transform: uppercase;
+  line-height: 0.98;
+  color: var(--v2-text-on-dark, #fff7ed);
   margin: 0 0 12px;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
 }
 
 .subtitle {
-  font-family: var(--font-sans, system-ui);
   font-size: clamp(0.95rem, 1.4vw, 1.1rem);
-  color: var(--text-muted, #706E68);
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
   line-height: 1.7;
   margin: 0 auto;
   max-width: 560px;
 }
 
 /* =====================================================================
-   TWO-COLUMN LAYOUT
+   POLICY BLOCK
+   ===================================================================== */
+
+.policyBlock {
+  max-width: 780px;
+  margin: 0 24px clamp(32px, 4vh, 48px);
+  padding: 18px 22px;
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
+}
+
+.policyTitle {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--v2-ink-muted, #5c5851);
+  text-transform: uppercase;
+  letter-spacing: var(--v2-track-label, 0.14em);
+  margin: 0 0 6px;
+}
+
+.policyBody {
+  font-size: 14px;
+  color: var(--v2-ink, #050607);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* =====================================================================
+   TWO-COLUMN LAYOUT — paper body
    ===================================================================== */
 
 .layout {
@@ -50,6 +91,9 @@
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
   gap: clamp(32px, 5vw, 64px);
   align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 @media (max-width: 860px) {
@@ -59,8 +103,16 @@
   }
 }
 
+/* Center the policy block once the viewport exceeds its measure. */
+@media (min-width: 828px) {
+  .policyBlock {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 /* =====================================================================
-   LEFT COLUMN — contact info cards
+   LEFT COLUMN — contact channels
    ===================================================================== */
 
 .infoColumn {
@@ -70,79 +122,52 @@
 }
 
 .infoColumnHeading {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: 1.15rem;
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
   font-weight: 700;
-  color: var(--text, #2C2C2A);
+  letter-spacing: var(--v2-track-section, 0.035em);
+  text-transform: uppercase;
+  line-height: 1.02;
+  color: var(--v2-ink, #050607);
   margin: 0 0 4px;
-  letter-spacing: -0.01em;
 }
 
 .infoCard {
+  composes: paper from '../styles/v2/cards.module.css';
   display: flex;
   align-items: center;
   gap: 16px;
   padding: 18px 20px;
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-lg, 12px);
-  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
   text-decoration: none;
   color: inherit;
-  outline: none;
-  transition:
-    transform var(--transition-fast, 150ms ease-out),
-    border-color var(--transition-normal, 250ms ease-out),
-    box-shadow var(--transition-normal, 250ms ease-out);
-}
-
-@media (hover: hover) {
-  .infoCard:hover {
-    transform: translateY(-3px);
-    border-color: var(--success, #0F6E56);
-    box-shadow: var(--shadow-card-hover, 0 2px 6px rgba(44,44,42,0.06), 0 16px 40px rgba(44,44,42,0.12));
-  }
-  .infoCard:hover .infoIcon {
-    background: rgba(153, 60, 29, 0.16);
-    transform: scale(1.05);
-  }
-}
-
-.infoCard:focus-visible {
-  border-color: var(--accent, #993C1D);
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
 }
 
 .infoIcon {
   flex-shrink: 0;
   width: 44px;
   height: 44px;
-  border-radius: var(--radius-md, 8px);
-  background: rgba(153, 60, 29, 0.08);
-  color: var(--accent, #993C1D);
+  border-radius: var(--v2-radius-md, 12px);
+  background: var(--v2-paper-deep, #eee8dd);
+  color: var(--v2-ink, #050607);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition:
-    background-color var(--transition-normal, 250ms ease-out),
-    transform var(--transition-fast, 150ms ease-out);
 }
 
 .infoMethod {
-  font-family: var(--font-sans, system-ui);
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--text-muted, #706E68);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--v2-ink-muted, #5c5851);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin: 0 0 2px;
+  letter-spacing: var(--v2-track-label, 0.14em);
+  margin: 0 0 4px;
 }
 
 .infoDetail {
-  font-family: var(--font-sans, system-ui);
   font-size: 15px;
   font-weight: 600;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   margin: 0;
   word-break: break-word;
 }
@@ -150,105 +175,113 @@
 .legal {
   margin-top: 16px;
   padding: 16px 20px;
-  background: var(--bg-muted, #EFECE6);
-  border-radius: var(--radius-md, 8px);
+  background: var(--v2-paper-deep, #eee8dd);
+  border-radius: var(--v2-radius-md, 12px);
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 12px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.7;
 }
 
 .trustBlock {
   margin-top: 16px;
   padding: 16px 20px;
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-md, 8px);
-  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
 }
 
 .trustHeading {
-  font-family: var(--font-sans, system-ui);
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--text-muted, #706E68);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--v2-ink-muted, #5c5851);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--v2-track-label, 0.14em);
   margin: 0 0 10px;
 }
 
 .trustLine {
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   margin: 0 0 4px;
   line-height: 1.6;
 }
 
 .trustNote {
-  font-family: var(--font-sans, system-ui);
   font-size: 12px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   margin: 10px 0 0;
   line-height: 1.6;
-  font-style: italic;
 }
 
 .addressLines {
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
   font-style: normal;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   line-height: 1.7;
   margin: 0;
 }
 
 /* =====================================================================
-   RIGHT COLUMN — form
+   RIGHT COLUMN — form (v2 paper form variants; shell here is layout)
    ===================================================================== */
 
-/* B: token card elevation (was shadow-sm). */
 .form {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-xl, 16px);
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-xl, 22px);
   padding: clamp(24px, 4vw, 36px);
   display: flex;
   flex-direction: column;
   gap: 16px;
-  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
 }
 
-/* B: :focus-visible ring on every control (covers the inline-styled PhoneInput). */
+/* Layout-only group (label above input, never placeholder-as-label). */
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 96px;
+  line-height: 1.6;
+}
+
+/* Focus-Visible Law blanket for every control (covers PhoneInput too). */
 .form input:focus-visible,
 .form select:focus-visible,
 .form textarea:focus-visible {
-  border-color: var(--accent, #993C1D);
-  box-shadow: 0 0 0 2px var(--bg-card, #fff), 0 0 0 4px var(--accent-glow, rgba(153, 60, 29, 0.15));
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
 }
-/* B: field-level error state (Cite-Red), only applied after an invalid submit. */
-.fieldError { border-color: #C0392B !important; }
-.fieldError:focus-visible {
-  box-shadow: 0 0 0 2px var(--bg-card, #fff), 0 0 0 4px rgba(192, 57, 43, 0.22) !important;
-}
+
+/* Field-level error: red family + text message, never color alone. */
+.fieldError { border-color: var(--v2-red-deep, #a90918) !important; }
 .fieldErrorMsg {
-  font-family: var(--font-sans, system-ui);
-  font-size: 12px; font-weight: 500; color: #C0392B; margin-top: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--v2-red-deep, #a90918);
+  margin-top: 4px;
 }
 
 .formHeading {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: 1.2rem;
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
   font-weight: 700;
-  color: var(--text, #2C2C2A);
+  letter-spacing: var(--v2-track-section, 0.035em);
+  text-transform: uppercase;
+  line-height: 1.02;
+  color: var(--v2-ink, #050607);
   margin: 0 0 4px;
-  letter-spacing: -0.01em;
 }
 
 .formSubtitle {
-  font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   margin: 0 0 8px;
   line-height: 1.6;
 }
@@ -263,27 +296,13 @@
   .formRow { grid-template-columns: 1fr; }
 }
 
-/* B: one error language — Cite-Red, full border (no side-stripe). */
-.errorAlert {
-  font-family: var(--font-sans, system-ui);
-  font-size: 13px;
-  color: #C0392B;
-  padding: 10px 14px;
-  background: rgba(192, 57, 43, 0.07);
-  border-radius: var(--radius-md, 8px);
-  border: 1px solid rgba(192, 57, 43, 0.35);
-}
-
-/* B: full-width submit via scoped specificity (was three !important overrides). */
 .form .submitBtn {
   width: 100%;
-  padding: 14px;
-  font-size: 13px;
   margin-top: 4px;
 }
 
 /* =====================================================================
-   SUCCESS STATE
+   SUCCESS STATE (Bonded Pine = success/verified only)
    ===================================================================== */
 
 .successBlock {
@@ -291,12 +310,13 @@
   padding: clamp(40px, 6vh, 64px) 20px;
   background: var(--success-bg, #E1F5EE);
   border: 1px solid rgba(15, 110, 86, 0.2);
-  border-radius: var(--radius-xl, 16px);
+  border-radius: var(--v2-radius-xl, 22px);
 }
 
+/* Post-interaction state feedback (never rendered at page load / prerender). */
 @media (prefers-reduced-motion: no-preference) {
   .successBlock {
-    animation: contactSuccessIn 500ms ease-out;
+    animation: contactSuccessIn 400ms ease-out;
   }
 }
 
@@ -318,59 +338,30 @@
 }
 
 .successTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: 1.5rem;
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.3rem, 2.2vw, 1.65rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.05;
   color: var(--success, #0F6E56);
   margin: 0 0 8px;
-  letter-spacing: -0.02em;
 }
 
 .successMsg {
-  font-family: var(--font-sans, system-ui);
   font-size: 14.5px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.7;
   margin: 0;
 }
 
-/* ====================================================================
-   P3-CLARITY-T05: policy block + field help microcopy
-   ==================================================================== */
-
-/* A-spine: full border (was a banned accent side-stripe). */
-.policyBlock {
-  max-width: 780px;
-  margin: 0 auto clamp(32px, 4vh, 48px);
-  padding: 18px 22px;
-  background: var(--bg-muted, #EFECE6);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-md, 8px);
-}
-
-.policyTitle {
-  font-family: var(--font-sans, system-ui);
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin: 0 0 6px;
-}
-
-.policyBody {
-  font-family: var(--font-sans, system-ui);
-  font-size: 14px;
-  color: var(--text, #2C2C2A);
-  line-height: 1.7;
-  margin: 0;
-}
-
+/* Field help microcopy under labels */
 .fieldHelp {
   display: block;
   font-family: var(--font-sans, system-ui);
   font-size: 11.5px;
   font-weight: 400;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   margin-top: 2px;
   text-transform: none;
   letter-spacing: 0;

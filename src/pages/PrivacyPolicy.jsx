@@ -23,7 +23,7 @@ export default function PrivacyPolicy() {
       />
 
       <section className={styles.hero}>
-        <span className={styles.kicker}>&#9670; Legal</span>
+        <span className={styles.kicker}>Legal</span>
         <h1 className={styles.title}>{title}</h1>
         <p className={styles.updated}>
           {version && <>Version {version}</>}

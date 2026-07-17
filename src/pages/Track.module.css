@@ -1,14 +1,26 @@
-/* Track page — centered search, status timeline card. */
+/* Track — DESIGN-V2-W5-T03 "Dispatch Board" restyle. Utility/hub page (§2
+   link-hub rule): dark = the board hero band only; search console, result
+   card and the fallback catalog stay paper. Search pipeline, i18n keys,
+   link targets and STATUS_PIPELINE rendering are FROZEN; this module is
+   shells + tokens only. Radius tiers: cards lg, inputs/notes md, v2 buttons
+   own their tiers. Pine = completed-status only (success semantics);
+   signal-red marks the current step; the gradient submit is the page's one
+   red fill (error CTAs are ghosts so the budget holds when both render). */
 
 .wrap {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: clamp(48px, 8vh, 72px) 24px 80px;
+  padding: 0 0 80px;
+  background: var(--v2-paper, #f4f0e8);
 }
 
+/* =====================================================================
+   HERO — board band
+   ===================================================================== */
+
 .header {
+  composes: board from '../styles/v2/surfaces.module.css';
   text-align: center;
-  margin-bottom: 32px;
+  padding: clamp(56px, 9vh, 96px) 24px clamp(36px, 5vh, 56px);
+  margin-bottom: clamp(28px, 4vh, 44px);
 }
 
 .headerIcon {
@@ -18,39 +30,76 @@
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: rgba(153, 60, 29, 0.08);
-  color: var(--accent, #993C1D);
+  border: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
   margin-bottom: 16px;
 }
 
 .kicker {
   display: inline-block;
-  font-family: var(--font-sans, system-ui);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
+  font-weight: 500;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  margin-bottom: 10px;
+  letter-spacing: var(--v2-track-eyebrow, 0.18em);
+  margin-bottom: 12px;
 }
 
 .title {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.9rem, 3.6vw, 3rem);
   font-weight: 700;
-  color: var(--text, #2C2C2A);
+  letter-spacing: var(--v2-track-section, 0.035em);
+  text-transform: uppercase;
+  line-height: 0.98;
+  color: var(--v2-text-on-dark, #fff7ed);
   margin: 0 0 10px;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
 }
 
 .subtitle {
-  font-family: var(--font-sans, system-ui);
   font-size: 14.5px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
   line-height: 1.7;
   margin: 0 auto;
   max-width: 480px;
+}
+
+/* =====================================================================
+   BODY — paper column
+   ===================================================================== */
+
+.body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Explanation block */
+.explanationBlock {
+  max-width: 640px;
+  margin: 0 auto 24px;
+  padding: 16px 20px;
+  text-align: center;
+  background: var(--v2-paper-deep, #eee8dd);
+  border-radius: var(--v2-radius-md, 12px);
+}
+
+.explanation {
+  font-size: 14px;
+  color: var(--v2-ink, #050607);
+  line-height: 1.65;
+  margin: 0 0 6px;
+}
+
+.fastestPath {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: var(--v2-track-label, 0.14em);
 }
 
 /* =====================================================================
@@ -61,58 +110,24 @@
   display: flex;
   gap: 10px;
   margin-bottom: 32px;
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-pill, 20px);
-  padding: 4px;
-  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06));
-  transition: border-color var(--transition-normal, 250ms ease-out), box-shadow var(--transition-normal, 250ms ease-out);
-}
-
-.form:focus-within {
-  border-color: var(--accent, #993C1D);
-  box-shadow: 0 0 0 3px var(--accent-glow, rgba(153, 60, 29, 0.15));
 }
 
 .searchInput {
+  composes: inputOnPaper from '../styles/v2/forms.module.css';
   flex: 1;
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 15px;
-  padding: 12px 18px;
-  border-radius: var(--radius-pill, 20px);
-  border: none;
-  background: transparent;
-  color: var(--text, #2C2C2A);
-  outline: none;
   min-width: 0;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
   letter-spacing: 0.02em;
 }
 
-.searchInput::placeholder {
-  color: var(--text-muted, #706E68);
-  font-style: italic;
-}
-
 .submitBtn {
-  padding: 12px 28px !important;
-  font-size: 12px !important;
   flex-shrink: 0;
   min-width: 88px;
 }
 
 @media (max-width: 480px) {
-  .form {
-    flex-direction: column;
-    padding: 10px;
-    border-radius: var(--radius-lg, 12px);
-  }
-  .searchInput {
-    padding: 10px 14px;
-    border-radius: var(--radius-md, 8px);
-  }
-  .submitBtn {
-    width: 100%;
-  }
+  .form { flex-direction: column; }
+  .submitBtn { width: 100%; }
 }
 
 /* =====================================================================
@@ -120,23 +135,19 @@
    ===================================================================== */
 
 .errorCard {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-xl, 16px);
+  composes: paper from '../styles/v2/cards.module.css';
   padding: 40px 28px;
   text-align: center;
-  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
 }
 
 .errorIcon {
   margin-bottom: 16px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
 }
 
 .errorMsg {
-  font-family: var(--font-sans, system-ui);
   font-size: 14px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.7;
   margin: 0 0 24px;
 }
@@ -149,8 +160,6 @@
 }
 
 .errorBtn {
-  padding: 11px 22px !important;
-  font-size: 12px !important;
   min-height: 44px;
   text-decoration: none;
 }
@@ -160,26 +169,25 @@
    ===================================================================== */
 
 .resultCard {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-xl, 16px);
+  composes: paper from '../styles/v2/cards.module.css';
   padding: clamp(24px, 4vw, 32px);
-  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
 }
 
 .vehicle {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.2rem, 2vw, 1.4rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--v2-ink, #050607);
   margin: 0 0 4px;
-  letter-spacing: -0.02em;
 }
 
 .vin {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 12px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   margin: 0 0 24px;
   letter-spacing: 0.03em;
 }
@@ -216,7 +224,7 @@
   border-radius: 50%;
   flex-shrink: 0;
   margin-top: 4px;
-  border: 2px solid var(--border, #e5e0d8);
+  border: 2px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
   background: transparent;
 }
 
@@ -228,22 +236,20 @@
 
 .timelineDotCurrent {
   composes: timelineDot;
-  background: var(--accent, #993C1D);
-  border-color: var(--accent, #993C1D);
-  box-shadow: 0 0 0 4px var(--accent-glow, rgba(153, 60, 29, 0.15));
+  background: var(--v2-red, #d70f24);
+  border-color: var(--v2-red, #d70f24);
+  box-shadow: 0 0 0 4px rgba(215, 15, 36, 0.10);
 }
 
 .timelineLine {
   width: 2px;
   flex: 1;
-  background: var(--border, #e5e0d8);
-  opacity: 0.5;
+  background: var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
 }
 
 .timelineLineDone {
   composes: timelineLine;
   background: var(--success, #0F6E56);
-  opacity: 1;
 }
 
 .timelineText {
@@ -251,25 +257,24 @@
 }
 
 .timelineLabel {
-  font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
 }
 
 .timelineLabelDone {
   composes: timelineLabel;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   font-weight: 600;
 }
 
 .timelineCurrent {
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  color: var(--accent, #993C1D);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--v2-red, #d70f24);
   margin-left: 8px;
-  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--v2-track-label, 0.14em);
 }
 
 /* =====================================================================
@@ -277,98 +282,65 @@
    ===================================================================== */
 
 .meta {
-  background: var(--bg-input, #F7F5F0);
-  border-radius: var(--radius-md, 8px);
+  background: var(--v2-paper-deep, #eee8dd);
+  border-radius: var(--v2-radius-md, 12px);
   padding: 16px 18px;
-  font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.9;
 }
 
 .metaStrong {
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   font-weight: 600;
 }
 
 /* =====================================================================
-   HELP TEXT
+   HELP TEXT (Body-Link Law: ink + underline at rest, red on hover)
    ===================================================================== */
 
 .helpText {
   text-align: center;
-  font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   margin-top: 24px;
   line-height: 1.7;
 }
 
 .helpLink {
-  color: var(--accent, #993C1D);
-  text-decoration: none;
+  color: var(--v2-ink, #050607);
+  text-decoration: underline;
+  text-underline-offset: 2px;
   font-weight: 600;
-  border-radius: 2px;
-  padding: 2px 4px;
-  margin: 0 -2px;
-  outline: none;
-  transition: background-color var(--transition-fast, 150ms ease-out);
+  transition: color var(--transition-fast, 150ms ease-out);
 }
 
 @media (hover: hover) {
-  .helpLink:hover {
-    background-color: var(--accent-glow, rgba(153, 60, 29, 0.15));
-  }
+  .helpLink:hover { color: var(--v2-red-deep, #a90918); }
 }
 
 .helpLink:focus-visible {
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
 }
 
-/* ====================================================================
-   P3-CLARITY-T04: explanation block + fallback cards
-   ==================================================================== */
+/* =====================================================================
+   FALLBACK CARDS + ORDER NOTE
+   ===================================================================== */
 
-.explanationBlock {
-  max-width: 640px;
-  margin: 0 auto 24px;
-  padding: 16px 20px;
-  text-align: center;
-  background: var(--bg-muted, #EFECE6);
-  border-radius: var(--radius-md, 8px);
-}
-
-.explanation {
-  font-family: var(--font-sans, system-ui);
-  font-size: 14px;
-  color: var(--text, #2C2C2A);
-  line-height: 1.65;
-  margin: 0 0 6px;
-}
-
-.fastestPath {
-  font-family: var(--font-sans, system-ui);
-  font-size: 12px;
-  color: var(--text-muted, #706E68);
-  margin: 0;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-/* A-spine: unified to the page column width (was 900, wider than the 720 wrap). */
 .fallbackSection {
-  max-width: 720px;
   margin: clamp(40px, 6vh, 56px) auto 0;
-  padding: 0 16px;
 }
 
 .fallbackHeading {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.1rem, 2vw, 1.25rem);
-  color: var(--text, #2C2C2A);
+  font-family: var(--v2-font-display);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: var(--v2-track-section, 0.035em);
+  text-transform: uppercase;
+  line-height: 1.02;
+  color: var(--v2-ink, #050607);
   margin: 0 0 16px;
-  letter-spacing: -0.01em;
   text-align: center;
 }
 
@@ -383,31 +355,13 @@
 }
 
 .fallbackCard {
+  composes: paper from '../styles/v2/cards.module.css';
   display: flex;
   flex-direction: column;
   gap: 8px;
   padding: 18px 20px;
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-lg, 12px);
-  box-shadow: var(--shadow-card, 0 1px 2px rgba(44,44,42,0.04), 0 6px 20px rgba(44,44,42,0.07));
   text-decoration: none;
   color: inherit;
-  transition: border-color 200ms ease, transform 150ms ease, box-shadow 200ms ease;
-}
-
-@media (hover: hover) {
-  .fallbackCard:hover {
-    border-color: var(--success, #0F6E56);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-card-hover, 0 2px 6px rgba(44,44,42,0.06), 0 16px 40px rgba(44,44,42,0.12));
-  }
-}
-
-.fallbackCard:focus-visible {
-  outline: none;
-  border-color: var(--accent, #993C1D);
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 4px var(--accent, #993C1D);
 }
 
 .fallbackIcon {
@@ -416,49 +370,48 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-md, 8px);
-  background: rgba(153, 60, 29, 0.10);
-  color: var(--accent, #993C1D);
+  border-radius: var(--v2-radius-md, 12px);
+  background: var(--v2-paper-deep, #eee8dd);
+  color: var(--v2-ink, #050607);
 }
 
 .fallbackTitle {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  font-family: var(--v2-font-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--v2-ink, #050607);
   margin: 4px 0 0;
-  letter-spacing: -0.01em;
 }
 
 .fallbackDesc {
-  font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   margin: 0;
   line-height: 1.55;
 }
 
 .fallbackCta {
-  font-family: var(--font-sans, system-ui);
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--accent, #993C1D);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: var(--v2-track-label, 0.14em);
+  text-transform: uppercase;
+  color: var(--v2-ink-muted, #5c5851);
   margin-top: auto;
-  padding-top: 4px;
+  padding-top: 6px;
 }
 
-/* P3-FIX-T02: explicit "orders go through portal" policy note */
-/* A-spine: full border (was a banned accent side-stripe); width unified to 720. */
+/* Orders-go-through-portal policy note */
 .orderNote {
-  max-width: 720px;
   margin: 0 auto 28px;
   padding: 14px 20px;
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-md, 8px);
-  font-family: var(--font-sans, system-ui);
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-md, 12px);
   font-size: 13.5px;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   line-height: 1.65;
 }
 

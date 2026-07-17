@@ -8,7 +8,7 @@ import { apiGet } from '../hooks/useApi';
 import { STATUS_PIPELINE, STATUS_LABELS } from '../utils/orderStatus';
 import { trackEvent } from '../utils/trackEvent';
 import styles from './Track.module.css';
-import btn from '../styles/buttons.module.css';
+import v2b from '../styles/v2/buttons.module.css';
 
 function fmtDate(d) {
   if (!d) return null;
@@ -49,11 +49,12 @@ export default function Track() {
 
       <div className={styles.header}>
         <div className={styles.headerIcon}><SearchIcon size={22} /></div>
-        <span className={styles.kicker}>&#9670; {t('track.kicker')}</span>
+        <span className={styles.kicker}>{t('track.kicker')}</span>
         <h1 className={styles.title}>{t('track.h1')}</h1>
         <p className={styles.subtitle}>{t('track.subtitle')}</p>
       </div>
 
+      <div className={styles.body}>
       <div className={styles.explanationBlock}>
         <p className={styles.explanation}>{t('track.explanation')}</p>
         <p className={styles.fastestPath}>{t('track.fastestPath')}</p>
@@ -71,7 +72,7 @@ export default function Track() {
           type="submit"
           disabled={loading}
           aria-busy={loading}
-          className={`${btn.btnAccent} ${styles.submitBtn}`}
+          className={`${v2b.cta} ${styles.submitBtn}`}
         >
           {loading ? '...' : 'Track'}
         </button>
@@ -86,10 +87,10 @@ export default function Track() {
             {error === 'Shipment not found' ? 'No shipment found with that code. Please check and try again.' : error}
           </p>
           <div className={styles.errorCtas}>
-            <Link to="/ship-my-car" className={`${btn.btnAccent} ${styles.errorBtn}`}>
+            <Link to="/ship-my-car" className={`${v2b.ghostOnPaper} ${styles.errorBtn}`}>
               Get a Quote
             </Link>
-            <Link to="/portal/login" className={`${btn.btnSecondary} ${styles.errorBtn}`}>
+            <Link to="/portal/login" className={`${v2b.ghostOnPaper} ${styles.errorBtn}`}>
               Sign In
             </Link>
           </div>
@@ -188,6 +189,7 @@ export default function Track() {
             <span className={styles.fallbackCta}>{t('track.emailCard.cta')} &rarr;</span>
           </a>
         </div>
+      </div>
       </div>
     </div>
   );

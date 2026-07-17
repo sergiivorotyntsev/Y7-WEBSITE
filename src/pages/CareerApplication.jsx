@@ -4,6 +4,8 @@ import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { API_URL } from '../config';
 import styles from './CareerApplication.module.css';
+import v2b from '../styles/v2/buttons.module.css';
+import v2f from '../styles/v2/forms.module.css';
 
 const STATES = [
   'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
@@ -150,7 +152,7 @@ export default function CareerApplication() {
               Didn&apos;t receive it? Check spam, then email{' '}
               <a href="mailto:dispatch@y7agency.com" className={styles.successLink}>dispatch@y7agency.com</a>.
             </p>
-            <button onClick={() => navigate('/careers')} className={styles.successButton}>
+            <button onClick={() => navigate('/careers')} className={v2b.ghostOnPaper}>
               Back to careers
             </button>
           </div>
@@ -202,7 +204,7 @@ export default function CareerApplication() {
               <label className={styles.label}>
                 Legal company name <span className={styles.req}>*</span>
                 <input
-                  className={styles.input}
+                  className={v2f.inputOnPaper}
                   value={form.legalName}
                   onChange={(e) => set('legalName', e.target.value)}
                   placeholder="ACME Auto Transport LLC"
@@ -213,7 +215,7 @@ export default function CareerApplication() {
                 <label className={styles.label}>
                   MC number <span className={styles.req}>*</span>
                   <input
-                    className={styles.input}
+                    className={v2f.inputOnPaper}
                     value={form.mcNumber}
                     onChange={(e) => set('mcNumber', e.target.value)}
                     placeholder="MC-1234567 or 1234567"
@@ -223,7 +225,7 @@ export default function CareerApplication() {
                 <label className={styles.label}>
                   USDOT number <span className={styles.req}>*</span>
                   <input
-                    className={styles.input}
+                    className={v2f.inputOnPaper}
                     value={form.usdotNumber}
                     onChange={(e) => set('usdotNumber', e.target.value)}
                     placeholder="1234567"
@@ -252,7 +254,7 @@ export default function CareerApplication() {
 
               <div className={styles.footer}>
                 <button
-                  className={styles.primary}
+                  className={`${v2b.cta} ${styles.primary}`}
                   disabled={!step1Valid}
                   onClick={() => setStep(2)}
                 >
@@ -269,7 +271,7 @@ export default function CareerApplication() {
               <label className={styles.label}>
                 Primary contact name <span className={styles.req}>*</span>
                 <input
-                  className={styles.input}
+                  className={v2f.inputOnPaper}
                   value={form.contactName}
                   onChange={(e) => set('contactName', e.target.value)}
                   placeholder="John Smith"
@@ -281,7 +283,7 @@ export default function CareerApplication() {
                   Contact email <span className={styles.req}>*</span>
                   <input
                     type="email"
-                    className={styles.input}
+                    className={v2f.inputOnPaper}
                     value={form.contactEmail}
                     onChange={(e) => set('contactEmail', e.target.value)}
                     placeholder="dispatch@yourcompany.com"
@@ -291,7 +293,7 @@ export default function CareerApplication() {
                   Contact phone <span className={styles.req}>*</span>
                   <input
                     type="tel"
-                    className={styles.input}
+                    className={v2f.inputOnPaper}
                     value={form.contactPhone}
                     onChange={(e) => set('contactPhone', formatPhone(e.target.value))}
                     placeholder="(555) 555-5555"
@@ -321,7 +323,7 @@ export default function CareerApplication() {
               <label className={styles.label}>
                 Notes (optional)
                 <textarea
-                  className={styles.textarea}
+                  className={`${v2f.inputOnPaper} ${styles.textarea}`}
                   rows={3}
                   value={form.notes}
                   onChange={(e) => set('notes', e.target.value)}
@@ -330,8 +332,8 @@ export default function CareerApplication() {
               </label>
 
               <div className={styles.footer}>
-                <button className={styles.secondary} onClick={() => setStep(1)}>&larr; Back</button>
-                <button className={styles.primary} disabled={!step2Valid} onClick={() => setStep(3)}>
+                <button className={`${v2b.ghostOnPaper} ${styles.secondary}`} onClick={() => setStep(1)}>&larr; Back</button>
+                <button className={`${v2b.cta} ${styles.primary}`} disabled={!step2Valid} onClick={() => setStep(3)}>
                   Next &rarr;
                 </button>
               </div>
@@ -384,11 +386,11 @@ export default function CareerApplication() {
               {error && <div className={styles.errorBox} role="alert">{error}</div>}
 
               <div className={styles.footer}>
-                <button className={styles.secondary} onClick={() => setStep(2)} disabled={submitting}>
+                <button className={`${v2b.ghostOnPaper} ${styles.secondary}`} onClick={() => setStep(2)} disabled={submitting}>
                   &larr; Back
                 </button>
                 <button
-                  className={styles.primary}
+                  className={`${v2b.cta} ${styles.primary}`}
                   disabled={!step3Valid || submitting}
                   onClick={submit}
                 >

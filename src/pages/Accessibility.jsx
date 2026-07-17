@@ -12,7 +12,7 @@ export default function Accessibility() {
       />
 
       <section className={styles.hero}>
-        <span className={styles.kicker}>&#9670; Legal</span>
+        <span className={styles.kicker}>Legal</span>
         <h1 className={styles.title}>Accessibility Statement</h1>
         <p className={styles.updated}>Last updated: April 3, 2026</p>
       </section>

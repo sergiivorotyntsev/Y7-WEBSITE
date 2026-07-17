@@ -28,11 +28,11 @@ export default function About() {
 
       {/* Hero */}
       <section className={styles.hero}>
-        <span className={styles.heroMicro}>&#9670; {t('heroKicker')}</span>
+        <span className={styles.heroMicro}>{t('heroKicker')}</span>
         <h1 className={styles.h1}>{t('heroH1')}</h1>
         <div className={styles.badgeRow}>
-          <span className={styles.badge}>USDOT #4427359</span>
-          <span className={styles.badge}>MC #1741537</span>
+          <span className={`${styles.badge} ${styles.badgeOnDark}`}>USDOT #4427359</span>
+          <span className={`${styles.badge} ${styles.badgeOnDark}`}>MC #1741537</span>
         </div>
       </section>
 

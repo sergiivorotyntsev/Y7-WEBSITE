@@ -8,8 +8,8 @@ import SmsConsent from '../components/SmsConsent';
 import PhoneInput, { getCleanPhone, isValidPhone } from '../components/PhoneInput';
 import { trackEvent } from '../utils/trackEvent';
 import styles from './DealerQuote.module.css';
-import qForm from '../components/QuoteForm.module.css';
-import btn from '../styles/buttons.module.css';
+import v2b from '../styles/v2/buttons.module.css';
+import v2f from '../styles/v2/forms.module.css';
 
 const US_STATES = [
   'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD',
@@ -135,20 +135,22 @@ export default function DealerQuote() {
     return (
       <div className={styles.successWrap}>
         <PageMeta title="Dealer Partnership" description="Apply for dealer partnership. Volume pricing, dedicated dispatcher, fixed contract rates." path="/dealer-quote" />
-        <div className={styles.successIcon}><CheckIcon size={32} /></div>
-        <h2 className={styles.successTitle}>Application Received</h2>
-        <p className={styles.successRef}>
-          Reference: <strong className={styles.successRefCode}>{success}</strong>
-        </p>
-        <p className={styles.successMsg}>
-          Our dealer relations team will contact you within 24 hours to discuss your transportation needs and set up your account.
-        </p>
-        <p className={styles.successMsg}>
-          We've also sent a portal access link to your email — check your inbox to log in and track your inquiry.
-        </p>
-        <Link to="/dealers" className={`${btn.btnSecondary} ${styles.backBtn}`}>
-          Back to Dealers
-        </Link>
+        <div className={styles.successCard}>
+          <div className={styles.successIcon}><CheckIcon size={32} /></div>
+          <h2 className={styles.successTitle}>Application Received</h2>
+          <p className={styles.successRef}>
+            Reference: <strong className={styles.successRefCode}>{success}</strong>
+          </p>
+          <p className={styles.successMsg}>
+            Our dealer relations team will contact you within 24 hours to discuss your transportation needs and set up your account.
+          </p>
+          <p className={styles.successMsg}>
+            We've also sent a portal access link to your email — check your inbox to log in and track your inquiry.
+          </p>
+          <Link to="/dealers" className={`${v2b.ghostOnDark} ${styles.backBtn}`}>
+            Back to Dealers
+          </Link>
+        </div>
       </div>
     );
   }
@@ -159,7 +161,7 @@ export default function DealerQuote() {
 
       {/* Hero */}
       <section className={styles.hero}>
-        <span className={styles.heroKicker}>&#9670; Dealer Partnership</span>
+        <span className={styles.heroKicker}>Dealer Partnership</span>
         <h1 className={styles.title}>Apply for a Dealer Partnership</h1>
         <p className={styles.subtitle}>
           Tell us about your dealership and transportation needs. We'll build a custom logistics plan for your business.
@@ -177,32 +179,32 @@ export default function DealerQuote() {
 
         <form onSubmit={handleSubmit} className={styles.form}>
           {/* Business Info */}
-          <div className={styles.section} style={{ '--i': 0 }}>
+          <div className={styles.section}>
             <div className={styles.sectionTitle}>Business Information</div>
             <div className={styles.row}>
-              <label htmlFor="dq-dealership" className={qForm.label}>Dealership Name *</label>
-              <input id="dq-dealership" className={`${qForm.input} ${fieldErrors.dealership_name ? styles.fieldError : ''}`} value={form.dealership_name} onChange={e => set('dealership_name', e.target.value)} placeholder="ABC Motors" aria-invalid={fieldErrors.dealership_name ? 'true' : undefined} />
+              <label htmlFor="dq-dealership" className={v2f.labelOnPaper}>Dealership Name *</label>
+              <input id="dq-dealership" className={`${v2f.inputOnPaper} ${fieldErrors.dealership_name ? styles.fieldError : ''}`} value={form.dealership_name} onChange={e => set('dealership_name', e.target.value)} placeholder="ABC Motors" aria-invalid={fieldErrors.dealership_name ? 'true' : undefined} />
               {fieldErrors.dealership_name && <span className={styles.fieldErrorMsg}>{fieldErrors.dealership_name}</span>}
             </div>
             <div className={styles.row2}>
               <div>
-                <label htmlFor="dq-contact" className={qForm.label}>Contact Person *</label>
-                <input id="dq-contact" className={`${qForm.input} ${fieldErrors.contact_name ? styles.fieldError : ''}`} value={form.contact_name} onChange={e => set('contact_name', e.target.value)} placeholder="John Smith" aria-invalid={fieldErrors.contact_name ? 'true' : undefined} />
+                <label htmlFor="dq-contact" className={v2f.labelOnPaper}>Contact Person *</label>
+                <input id="dq-contact" className={`${v2f.inputOnPaper} ${fieldErrors.contact_name ? styles.fieldError : ''}`} value={form.contact_name} onChange={e => set('contact_name', e.target.value)} placeholder="John Smith" aria-invalid={fieldErrors.contact_name ? 'true' : undefined} />
                 {fieldErrors.contact_name && <span className={styles.fieldErrorMsg}>{fieldErrors.contact_name}</span>}
               </div>
               <div>
-                <label htmlFor="dq-phone" className={qForm.label}>Phone *</label>
-                <PhoneInput id="dq-phone" className={`${qForm.input} ${fieldErrors.phone ? styles.fieldError : ''}`} value={form.phone} onChange={v => set('phone', v)} required />
+                <label htmlFor="dq-phone" className={v2f.labelOnPaper}>Phone *</label>
+                <PhoneInput id="dq-phone" className={`${v2f.inputOnPaper} ${fieldErrors.phone ? styles.fieldError : ''}`} value={form.phone} onChange={v => set('phone', v)} required />
                 {fieldErrors.phone && <span className={styles.fieldErrorMsg}>{fieldErrors.phone}</span>}
               </div>
             </div>
             <div className={styles.row}>
-              <label htmlFor="dq-email" className={qForm.label}>Email *</label>
-              <input id="dq-email" className={`${qForm.input} ${fieldErrors.email ? styles.fieldError : ''}`} type="email" value={form.email} onChange={e => set('email', e.target.value)} placeholder="john@abcmotors.com" aria-invalid={fieldErrors.email ? 'true' : undefined} />
+              <label htmlFor="dq-email" className={v2f.labelOnPaper}>Email *</label>
+              <input id="dq-email" className={`${v2f.inputOnPaper} ${fieldErrors.email ? styles.fieldError : ''}`} type="email" value={form.email} onChange={e => set('email', e.target.value)} placeholder="john@abcmotors.com" aria-invalid={fieldErrors.email ? 'true' : undefined} />
               {fieldErrors.email && <span className={styles.fieldErrorMsg}>{fieldErrors.email}</span>}
             </div>
             <div className={styles.row}>
-              <label className={qForm.label}>Do you hold an active dealer license? *</label>
+              <label className={v2f.labelOnPaper}>Do you hold an active dealer license? *</label>
               <div className={styles.radioGroup}>
                 {[
                   { value: 'yes', label: 'Yes' },
@@ -226,32 +228,32 @@ export default function DealerQuote() {
           </div>
 
           {/* Address */}
-          <div className={styles.section} style={{ '--i': 1 }}>
+          <div className={styles.section}>
             <div className={styles.sectionTitle}>Dealership Address</div>
             <div className={styles.row}>
-              <label htmlFor="dq-address" className={qForm.label}>Street</label>
-              <input id="dq-address" className={qForm.input} value={form.address} onChange={e => set('address', e.target.value)} placeholder="123 Auto Drive" />
+              <label htmlFor="dq-address" className={v2f.labelOnPaper}>Street</label>
+              <input id="dq-address" className={v2f.inputOnPaper} value={form.address} onChange={e => set('address', e.target.value)} placeholder="123 Auto Drive" />
             </div>
             <div className={styles.row3}>
               <div>
-                <label htmlFor="dq-city" className={qForm.label}>City</label>
-                <input id="dq-city" className={qForm.input} value={form.city} onChange={e => set('city', e.target.value)} placeholder="Houston" />
+                <label htmlFor="dq-city" className={v2f.labelOnPaper}>City</label>
+                <input id="dq-city" className={v2f.inputOnPaper} value={form.city} onChange={e => set('city', e.target.value)} placeholder="Houston" />
               </div>
               <div>
-                <label htmlFor="dq-state" className={qForm.label}>State</label>
-                <select id="dq-state" className={qForm.select} value={form.state} onChange={e => set('state', e.target.value)}>
+                <label htmlFor="dq-state" className={v2f.labelOnPaper}>State</label>
+                <select id="dq-state" className={`${v2f.inputOnPaper} ${styles.select}`} value={form.state} onChange={e => set('state', e.target.value)}>
                   <option value="">--</option>
                   {US_STATES.map(s => <option key={s} value={s}>{s}</option>)}
                 </select>
               </div>
               <div>
-                <label htmlFor="dq-zip" className={qForm.label}>ZIP</label>
-                <input id="dq-zip" className={qForm.input} value={form.zip} onChange={e => set('zip', e.target.value)} placeholder="77001" maxLength={5} />
+                <label htmlFor="dq-zip" className={v2f.labelOnPaper}>ZIP</label>
+                <input id="dq-zip" className={v2f.inputOnPaper} value={form.zip} onChange={e => set('zip', e.target.value)} placeholder="77001" maxLength={5} />
               </div>
             </div>
             <div className={styles.row}>
-              <label htmlFor="dq-reg-state" className={qForm.label}>State where your company is registered *</label>
-              <select id="dq-reg-state" className={`${qForm.select} ${fieldErrors.registration_state ? styles.fieldError : ''}`} value={form.registration_state} onChange={e => set('registration_state', e.target.value)} aria-invalid={fieldErrors.registration_state ? 'true' : undefined}>
+              <label htmlFor="dq-reg-state" className={v2f.labelOnPaper}>State where your company is registered *</label>
+              <select id="dq-reg-state" className={`${v2f.inputOnPaper} ${styles.select} ${fieldErrors.registration_state ? styles.fieldError : ''}`} value={form.registration_state} onChange={e => set('registration_state', e.target.value)} aria-invalid={fieldErrors.registration_state ? 'true' : undefined}>
                 <option value="">--</option>
                 {US_STATES.map(s => <option key={s} value={s}>{s}</option>)}
               </select>
@@ -260,29 +262,29 @@ export default function DealerQuote() {
           </div>
 
           {/* Transportation Needs */}
-          <div className={styles.section} style={{ '--i': 2 }}>
+          <div className={styles.section}>
             <div className={styles.sectionTitle}>Transportation Needs</div>
             <div className={styles.row2}>
               <div>
-                <label htmlFor="dq-volume" className={qForm.label}>Monthly Volume</label>
-                <select id="dq-volume" className={qForm.select} value={form.monthly_volume} onChange={e => set('monthly_volume', e.target.value)}>
+                <label htmlFor="dq-volume" className={v2f.labelOnPaper}>Monthly Volume</label>
+                <select id="dq-volume" className={`${v2f.inputOnPaper} ${styles.select}`} value={form.monthly_volume} onChange={e => set('monthly_volume', e.target.value)}>
                   <option value="">Select...</option>
                   {VOLUMES.map(v => <option key={v} value={v}>{v} vehicles</option>)}
                 </select>
               </div>
               <div>
-                <label htmlFor="dq-referral" className={qForm.label}>How did you hear about us</label>
-                <select id="dq-referral" className={qForm.select} value={form.referral_source} onChange={e => set('referral_source', e.target.value)}>
+                <label htmlFor="dq-referral" className={v2f.labelOnPaper}>How did you hear about us</label>
+                <select id="dq-referral" className={`${v2f.inputOnPaper} ${styles.select}`} value={form.referral_source} onChange={e => set('referral_source', e.target.value)}>
                   <option value="">Select...</option>
                   {REFERRAL_SOURCES.map(s => <option key={s} value={s}>{s}</option>)}
                 </select>
               </div>
             </div>
             <div className={styles.row}>
-              <label htmlFor="dq-routes" className={qForm.label}>Primary Routes</label>
+              <label htmlFor="dq-routes" className={v2f.labelOnPaper}>Primary Routes</label>
               <textarea
                 id="dq-routes"
-                className={qForm.textarea}
+                className={`${v2f.inputOnPaper} ${styles.textarea}`}
                 value={form.primary_routes}
                 onChange={e => set('primary_routes', e.target.value)}
                 placeholder="e.g., Copart Dallas → Our lot in Houston, Manheim PA → Our lot in Newark"
@@ -291,7 +293,7 @@ export default function DealerQuote() {
             </div>
 
             <div className={styles.row}>
-              <label className={qForm.label}>Preferred Pricing Model</label>
+              <label className={v2f.labelOnPaper}>Preferred Pricing Model</label>
               <div className={styles.radioGroup}>
                 {[
                   { value: 'broker_paid', label: 'Broker-paid carrier (we handle everything)' },
@@ -313,7 +315,7 @@ export default function DealerQuote() {
             </div>
 
             <div className={styles.row}>
-              <label className={qForm.label}>Services Needed</label>
+              <label className={v2f.labelOnPaper}>Services Needed</label>
               <div className={styles.serviceGrid}>
                 {SERVICES.map(svc => (
                   <label key={svc.key} className={styles.radioLabel}>
@@ -331,10 +333,10 @@ export default function DealerQuote() {
           </div>
 
           {/* Notes */}
-          <div className={styles.section} style={{ '--i': 3 }}>
+          <div className={styles.section}>
             <div className={styles.sectionTitle}>Additional Information</div>
             <textarea
-              className={qForm.textarea}
+              className={`${v2f.inputOnPaper} ${styles.textarea}`}
               value={form.notes}
               onChange={e => set('notes', e.target.value)}
               placeholder="Anything else you'd like us to know about your business needs..."
@@ -352,26 +354,22 @@ export default function DealerQuote() {
             />
           </div>
 
-          {error && <div className={styles.errorAlert} role="alert">{error}</div>}
+          <div className={styles.submitPlate}>
+            {error && <div className={v2f.errorOnBoard} role="alert">{error}</div>}
 
-          <button
-            type="submit"
-            disabled={submitting || !form.sms_consent}
-            className={`${btn.btnAccent} ${styles.submitBtn}`}
-          >
-            {submitting ? 'Submitting...' : 'REQUEST DEALER PARTNERSHIP'}
-          </button>
+            <button
+              type="submit"
+              disabled={submitting || !form.sms_consent}
+              className={`${v2b.cta} ${styles.submitBtn}`}
+            >
+              {submitting ? 'Submitting...' : 'REQUEST DEALER PARTNERSHIP'}
+            </button>
 
-          <div className={styles.trustRow}>
-            <span className={styles.trustItem}>
-              <span className={styles.trustDot}>&#9670;</span> FMCSA Licensed MC #1741537
-            </span>
-            <span className={styles.trustItem}>
-              <span className={styles.trustDot}>&#9670;</span> Volume pricing available
-            </span>
-            <span className={styles.trustItem}>
-              <span className={styles.trustDot}>&#9670;</span> 24-hour response
-            </span>
+            <div className={styles.trustRow}>
+              <span className={styles.trustItem}>FMCSA Licensed MC #1741537</span>
+              <span className={styles.trustItem}>Volume pricing available</span>
+              <span className={styles.trustItem}>24-hour response</span>
+            </div>
           </div>
         </form>
       </div>
