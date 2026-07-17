@@ -1,51 +1,350 @@
-/* UkraineCopart.module.css — composes from shared primitives. */
+/* UkraineCopart.module.css — DESIGN-V2-W6-T03 "Dispatch Board" restyle.
+   This is the reading-dense Copart guide: board-black hero opens, a paper
+   reading column carries the reference sections (legibility — DESIGN long-form
+   law), dark promotional panels (Real Scenario, Why Y7, diaspora) alternate the
+   surface mid-column, and a board CTA + related band close dark. Copy FROZEN.
+   Anti-Orphan Rule: surfaces / type / buttons / cards compose from
+   src/styles/v2/*. */
 
-.sectionKicker {
+.page { background: var(--v2-paper, #f4f0e8); }
+
+/* =====================================================================
+   HERO — board-black band
+   ===================================================================== */
+.hero {
+  composes: board from '../../styles/v2/surfaces.module.css';
+  padding: clamp(52px, 8vh, 88px) 24px clamp(36px, 5vh, 52px);
+}
+.heroInner { max-width: 800px; margin: 0 auto; }
+
+.breadcrumb {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  margin-bottom: 24px;
+}
+.crumbLink {
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  text-decoration: none;
+  padding: 2px 4px;
+  margin: 0 -4px;
+  border-radius: var(--v2-radius-sm, 6px);
+  transition: color var(--transition-fast, 150ms ease-out);
+}
+@media (hover: hover) {
+  .crumbLink:hover { color: var(--v2-text-on-dark, #fff7ed); }
+}
+.crumbLink:focus-visible {
+  outline: 2px solid var(--v2-red-bright, #ef3a4e);
+  outline-offset: 2px;
+}
+.crumbSep { margin: 0 6px; color: var(--v2-text-on-dark-muted, #9c9b96); }
+.crumbCurrent { color: var(--v2-text-on-dark-secondary, #e8e0d3); }
+
+.h1 {
+  composes: sectionDisplay from '../../styles/v2/type.module.css';
+  font-size: clamp(1.8rem, 3.6vw, 2.9rem);
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin: 0 0 16px;
+}
+.intro {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+  margin: 0;
+}
+
+/* =====================================================================
+   READING COLUMN — paper page background, ~800ch measure
+   ===================================================================== */
+.body {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: clamp(40px, 6vh, 60px) 24px 64px;
+}
+
+.sectionWrap { margin-bottom: 40px; }
+
+.eyebrowPaper {
+  composes: eyebrow from '../../styles/v2/type.module.css';
+  composes: eyebrowOnPaper from '../../styles/v2/type.module.css';
+}
+.eyebrowDark {
+  composes: eyebrow from '../../styles/v2/type.module.css';
+  composes: eyebrowOnDark from '../../styles/v2/type.module.css';
+}
+
+.titlePaper {
+  composes: sectionDisplay from '../../styles/v2/type.module.css';
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  color: var(--v2-ink, #050607);
+  margin: 0 0 16px;
+}
+.titleDark {
+  composes: sectionDisplay from '../../styles/v2/type.module.css';
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin: 0 0 16px;
+}
+
+.pPaper {
+  font-family: var(--v2-font-body, system-ui, sans-serif);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 0 0 16px;
+}
+.pPaper strong { color: var(--v2-ink, #050607); }
+.pNote {
+  composes: pPaper;
+  font-style: italic;
+  margin: 16px 0 0;
+}
+.pDark {
+  font-family: var(--v2-font-body, system-ui, sans-serif);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+  margin: 0 0 16px;
+}
+.pDark strong { color: var(--v2-text-on-dark, #fff7ed); }
+.pNoteDark {
+  composes: pDark;
+  font-style: italic;
+  margin: 16px 0 0;
+}
+
+/* =====================================================================
+   COMPARISON TABLE (Copart vs IAAI) — cream sheet primitive
+   ===================================================================== */
+.tableWrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.table {
+  composes: tableOnPaper from '../../styles/v2/cards.module.css';
+}
+
+/* =====================================================================
+   RISK WARNINGS — neutral cream callout cards (no side-stripe)
+   ===================================================================== */
+.warnList { display: grid; gap: 12px; }
+.warnCard {
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
+}
+.warnTitle {
+  font-family: var(--v2-font-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--v2-ink, #050607);
+  margin: 0 0 8px;
+}
+.warnDesc {
+  font-family: var(--v2-font-body, system-ui, sans-serif);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 0;
+}
+
+/* =====================================================================
+   LISTS
+   ===================================================================== */
+.list {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+}
+.listItem {
+  font-family: var(--v2-font-body, system-ui, sans-serif);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--v2-ink-muted, #5c5851);
+}
+
+/* =====================================================================
+   PROCESS STEPS — paper, ink numerals
+   ===================================================================== */
+.procList { display: flex; flex-direction: column; gap: 20px; }
+.procItem { display: flex; gap: 16px; align-items: flex-start; }
+.procNum {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--v2-ink, #050607);
+  color: var(--v2-paper, #f4f0e8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--v2-font-display);
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.procTitle {
+  font-family: var(--v2-font-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--v2-ink, #050607);
+  margin-bottom: 4px;
+}
+.procDesc {
+  font-family: var(--v2-font-body, system-ui, sans-serif);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--v2-ink-muted, #5c5851);
+}
+
+/* =====================================================================
+   CAPABILITIES — paper cards
+   ===================================================================== */
+.capGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.capCard {
+  composes: paper from '../../styles/v2/cards.module.css';
+  padding: 16px 20px;
+  font-family: var(--v2-font-body, system-ui, sans-serif);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--v2-ink, #050607);
+}
+
+/* =====================================================================
+   PRICING — paper cards, ink numerals
+   ===================================================================== */
+.priceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.priceCard { composes: paper from '../../styles/v2/cards.module.css'; padding: 20px 24px; }
+.priceLabel {
+  composes: monoLabel from '../../styles/v2/type.module.css';
+  color: var(--v2-ink-muted, #5c5851);
   display: block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
+  margin-bottom: 8px;
+}
+.priceValue {
+  font-family: var(--v2-font-display);
+  font-size: 24px;
   font-weight: 700;
-  color: var(--accent, #993C1D);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  margin: 0 0 10px;
+  letter-spacing: 0.02em;
+  color: var(--v2-ink, #050607);
+  margin-bottom: 8px;
+}
+.priceList {
+  font-family: var(--v2-font-body, system-ui, sans-serif);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 0;
+  padding-left: 1.1rem;
+}
+.priceNote {
+  font-family: var(--v2-font-body, system-ui, sans-serif);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 8px 0 0;
+  font-style: italic;
+}
+.priceBody {
+  font-family: var(--v2-font-body, system-ui, sans-serif);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 0;
 }
 
-.heroKickerPill {
-  display: inline-block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  padding: 6px 14px;
-  background: rgba(153, 60, 29, 0.08);
-  border-radius: var(--radius-pill, 20px);
-  margin: 0 0 24px;
+/* =====================================================================
+   DARK PROMOTIONAL PANELS (Real Scenario, Why Y7, Diaspora) — board card
+   spanning the reading column; the surface-alternation moments.
+   ===================================================================== */
+.darkPanel {
+  background: var(--v2-board, #050607);
+  border: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
+  border-radius: var(--v2-radius-xl, 22px);
+  box-shadow: var(--v2-board-depth, 0 24px 70px rgba(0, 0, 0, 0.3));
+  color: var(--v2-text-on-dark, #fff7ed);
+  padding: clamp(28px, 4vw, 40px);
+  margin-bottom: 40px;
 }
 
-.liftCard { composes: liftCard from '../../styles/interactions.module.css'; }
-.subtleLift { composes: subtleLift from '../../styles/interactions.module.css'; }
-.underlineGrow { composes: underlineGrow from '../../styles/interactions.module.css'; }
-.focusRing { composes: focusRing from '../../styles/interactions.module.css'; }
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin: 8px 0 16px;
+}
+.metaLabel {
+  composes: monoLabel from '../../styles/v2/type.module.css';
+  display: block;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  margin-bottom: 4px;
+}
+.metaValue {
+  font-family: var(--v2-font-display);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--v2-text-on-dark, #fff7ed);
+}
 
+/* Diaspora use-case cards on the dark panel */
+.ucGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 16px 0 24px;
+}
+.ucCard { composes: board from '../../styles/v2/cards.module.css'; padding: 20px; }
+.ucTitle {
+  font-family: var(--v2-font-display);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin: 0 0 6px;
+}
+.ucDesc {
+  font-family: var(--v2-font-body, system-ui, sans-serif);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+  margin: 0;
+}
+
+/* =====================================================================
+   FAQ — paper cream cards
+   ===================================================================== */
+.faqList { display: flex; flex-direction: column; gap: 12px; }
 .faqItem {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-lg, 12px);
-  margin-bottom: 12px;
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
   overflow: hidden;
   transition: border-color var(--transition-normal, 250ms ease-out);
 }
-.faqItem[open] { border-color: var(--accent, #993C1D); }
+.faqItem[open] { border-color: rgba(5, 6, 7, 0.4); }
 .faqSummary {
-  padding: 20px 24px;
+  padding: 18px 24px;
   cursor: pointer;
-  font-family: var(--font-sans, system-ui);
+  font-family: var(--v2-font-body, system-ui, sans-serif);
   font-size: 1rem;
-  font-weight: 500;
-  color: var(--text, #2C2C2A);
+  font-weight: 600;
+  color: var(--v2-ink, #050607);
   list-style: none;
   display: flex;
   justify-content: space-between;
@@ -55,17 +354,72 @@
 .faqSummary::-webkit-details-marker { display: none; }
 .faqSummary::after {
   content: '+';
+  font-family: var(--v2-font-display);
   font-size: 1.5rem;
   line-height: 1;
-  color: var(--accent, #993C1D);
+  color: var(--v2-red, #d70f24);
   transition: transform var(--transition-normal, 250ms ease-out);
   flex-shrink: 0;
 }
 .faqItem[open] .faqSummary::after { transform: rotate(45deg); }
+.faqSummary:focus-visible {
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
+}
 .faqAnswer {
   padding: 0 24px 20px;
-  font-family: var(--font-sans, system-ui);
+  font-family: var(--v2-font-body, system-ui, sans-serif);
   font-size: 0.95rem;
   line-height: 1.7;
-  color: var(--text-muted, #4A4A46);
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 0;
+}
+
+/* =====================================================================
+   CTA — board-black band
+   ===================================================================== */
+.ctaBand {
+  composes: board from '../../styles/v2/surfaces.module.css';
+  padding: clamp(40px, 6vh, 64px) 24px;
+  text-align: center;
+}
+.ctaBtn {
+  composes: cta from '../../styles/v2/buttons.module.css';
+  padding: 14px 32px;
+  text-decoration: none;
+}
+
+/* =====================================================================
+   RELATED — board-black band, hairline chip links (close dark)
+   ===================================================================== */
+.relatedBand {
+  composes: board from '../../styles/v2/surfaces.module.css';
+  padding: clamp(36px, 5vh, 52px) 24px clamp(44px, 7vh, 72px);
+}
+.relatedInner { max-width: 800px; margin: 0 auto; }
+.relatedHeading {
+  composes: monoLabel from '../../styles/v2/type.module.css';
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  display: block;
+  margin-bottom: 16px;
+}
+.relatedPills { display: flex; flex-wrap: wrap; gap: 10px; }
+.relatedPill {
+  composes: chipOnDark from '../../styles/v2/cards.module.css';
+  font-size: 12px;
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+  text-decoration: none;
+  transition:
+    color var(--transition-fast, 150ms ease-out),
+    border-color var(--transition-fast, 150ms ease-out);
+}
+@media (hover: hover) {
+  .relatedPill:hover {
+    color: var(--v2-text-on-dark, #fff7ed);
+    border-color: var(--v2-line-on-dark-strong, rgba(255, 247, 237, 0.24));
+  }
+}
+.relatedPill:focus-visible {
+  outline: 2px solid var(--v2-red-bright, #ef3a4e);
+  outline-offset: 2px;
 }

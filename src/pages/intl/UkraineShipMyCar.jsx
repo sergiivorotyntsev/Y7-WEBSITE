@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
 import ContextualCTA from '../../components/ContextualCTA';
-import { colors, fonts, button as btnStyles } from '../../theme';
 import styles from './UkraineShipMyCar.module.css';
 
 // =============================================================================
@@ -180,37 +179,13 @@ const diasporaUseCases = [
   },
 ];
 
-// -- Reusable styles ----------------------------------------------------------
-
-const sectionH2 = {
-  fontFamily: fonts.serif,
-  fontSize: '22px',
-  fontWeight: 700,
-  color: colors.text,
-  marginBottom: '16px',
-};
-
-const editorialP = {
-  fontFamily: fonts.sans,
-  fontSize: '14px',
-  color: colors.textMuted,
-  lineHeight: 1.7,
-};
-
-const cardStyle = {
-  background: colors.bgCard,
-  border: `1px solid ${colors.border}`,
-  borderRadius: '12px',
-  padding: '20px',
-};
-
 // =============================================================================
 // Component
 // =============================================================================
 
 function UkraineShipMyCar() {
   return (
-    <div lang="uk" style={{ background: colors.bg, color: colors.text }}>
+    <div lang="uk" className={styles.page}>
       <Helmet>
         <title>Замовити пригін авто з США в Україну | Y7 Logistics</title>
         <meta
@@ -252,363 +227,131 @@ function UkraineShipMyCar() {
       {/* ================================================================== */}
       {/* SECTION 1 — Hero (mirrors English ShipMyCar centered hero)         */}
       {/* ================================================================== */}
-      <section
-        style={{
-          maxWidth: '800px',
-          margin: '0 auto',
-          padding: '60px 24px 40px',
-          textAlign: 'center',
-        }}
-      >
-        <h1
-          style={{
-            fontFamily: fonts.serif,
-            fontSize: 'clamp(28px, 4vw, 42px)',
-            fontWeight: 700,
-            color: colors.text,
-            marginBottom: '12px',
-            lineHeight: 1.2,
-          }}
-        >
-          Замовте пригін авто з США — просто і без прихованих комісій
-        </h1>
-        <p
-          style={{
-            fontFamily: fonts.sans,
-            fontSize: '15px',
-            color: colors.textMuted,
-            lineHeight: 1.6,
-            maxWidth: '560px',
-            margin: '0 auto',
-          }}
-        >
-          Y7 Logistics — ліцензований FMCSA-брокер (MC #1741537) з
-          українськомовною підтримкою. Обслуговуємо американську частину
-          логістики: забір з Copart/IAAI, транспорт до порту, передача
-          партнерам-експедиторам для морської частини.
-        </p>
+      <section className={styles.hero}>
+        <div className={styles.heroInner}>
+          <h1 className={styles.heroTitle}>
+            Замовте пригін авто з США — просто і без прихованих комісій
+          </h1>
+          <p className={styles.heroLede}>
+            Y7 Logistics — ліцензований FMCSA-брокер (MC #1741537) з
+            українськомовною підтримкою. Обслуговуємо американську частину
+            логістики: забір з Copart/IAAI, транспорт до порту, передача
+            партнерам-експедиторам для морської частини.
+          </p>
+        </div>
       </section>
 
       {/* ================================================================== */}
       {/* SECTION 2 — How it works (numbered grid, mirrors English steps)    */}
       {/* ================================================================== */}
-      <section
-        style={{
-          maxWidth: '900px',
-          margin: '0 auto',
-          padding: '0 24px 48px',
-        }}
-      >
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-            gap: '24px',
-          }}
-        >
-          {orderingSteps.map((step, i) => (
-            <div key={i} style={{ textAlign: 'center' }}>
-              <div
-                style={{
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '50%',
-                  background: colors.accent,
-                  color: '#fff',
-                  fontFamily: fonts.serif,
-                  fontSize: '18px',
-                  fontWeight: 700,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  margin: '0 auto 12px',
-                }}
-              >
-                {i + 1}
+      <section className={styles.paperBand}>
+        <div className={styles.innerWide}>
+          <div className={styles.stepsGrid}>
+            {orderingSteps.map((step, i) => (
+              <div key={i} className={styles.stepCol}>
+                <div className={styles.stepNum}>{i + 1}</div>
+                <h3 className={styles.stepTitle}>{step.title}</h3>
+                <p className={styles.stepDesc}>{step.desc}</p>
               </div>
-              <h3
-                style={{
-                  fontFamily: fonts.sans,
-                  fontSize: '15px',
-                  fontWeight: 600,
-                  color: colors.text,
-                  marginBottom: '6px',
-                }}
-              >
-                {step.title}
-              </h3>
-              <p
-                style={{
-                  fontFamily: fonts.sans,
-                  fontSize: '13px',
-                  color: colors.textMuted,
-                  lineHeight: 1.5,
-                }}
-              >
-                {step.desc}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ================================================================== */}
       {/* SECTION 3 — What to prepare (bulleted checklist)                   */}
       {/* ================================================================== */}
-      <section
-        style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}
-      >
-        <span className={styles.sectionKicker}>◆ ПІДГОТОВКА</span>
-        <h2 style={sectionH2}>Що підготувати перед замовленням</h2>
-        <p style={editorialP}>
-          Чим раніше зберете ці відомості, тим швидше отримаєте точний
-          розрахунок і коротший час очікування забору з майданчика Copart. Це
-          мінімум, без якого не можемо стартувати.
-        </p>
-        <ul
-          style={{
-            paddingLeft: '20px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '10px',
-            marginTop: '16px',
-          }}
-        >
-          {checklistItems.map((item, i) => (
-            <li
-              key={i}
-              style={{
-                fontFamily: fonts.sans,
-                fontSize: '14px',
-                color: colors.textMuted,
-                lineHeight: 1.7,
-              }}
-            >
-              {item}
-            </li>
-          ))}
-        </ul>
+      <section className={styles.paperBand}>
+        <div className={styles.inner}>
+          <span className={styles.eyebrowPaper}>ПІДГОТОВКА</span>
+          <h2 className={styles.titlePaper}>Що підготувати перед замовленням</h2>
+          <p className={styles.pPaper}>
+            Чим раніше зберете ці відомості, тим швидше отримаєте точний
+            розрахунок і коротший час очікування забору з майданчика Copart. Це
+            мінімум, без якого не можемо стартувати.
+          </p>
+          <ul className={styles.checklist}>
+            {checklistItems.map((item, i) => (
+              <li key={i} className={styles.checkItem}>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       {/* ================================================================== */}
       {/* SECTION 4 — Detailed ordering process (editorial)                  */}
       {/* ================================================================== */}
-      <section
-        style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}
-      >
-        <span className={styles.sectionKicker}>◆ ЯК ЦЕ ПРАЦЮЄ</span>
-        <h2 style={sectionH2}>Як виглядає процес замовлення — крок за кроком</h2>
-        <p style={editorialP}>
-          Увесь процес — від першого запиту до отримання авто в Україні —
-          займає типово 6-8 тижнів. Нижче показуємо, що відбувається на кожному
-          етапі і хто за що відповідає. Відповідальність переходить з Y7 до
-          партнерів-експедиторів у момент передачі у термінал порту США — але
-          для вас це одна безперервна координація.
-        </p>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '20px',
-            marginTop: '20px',
-          }}
-        >
-          {orderingStepsLong.map((step) => (
-            <div
-              key={step.num}
-              style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}
-            >
-              <div
-                style={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: '50%',
-                  background: colors.accent,
-                  color: '#fff',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '14px',
-                  fontWeight: 700,
-                  fontFamily: fonts.sans,
-                  flexShrink: 0,
-                }}
-              >
-                {step.num}
-              </div>
-              <div>
-                <div
-                  style={{
-                    fontFamily: fonts.sans,
-                    fontSize: '15px',
-                    fontWeight: 600,
-                    color: colors.text,
-                    marginBottom: '4px',
-                  }}
-                >
-                  {step.title}
-                </div>
-                <div
-                  style={{
-                    fontFamily: fonts.sans,
-                    fontSize: '14px',
-                    color: colors.textMuted,
-                    lineHeight: 1.6,
-                  }}
-                >
-                  {step.desc}
+      <section className={styles.boardBand}>
+        <div className={styles.inner}>
+          <span className={styles.eyebrowDark}>ЯК ЦЕ ПРАЦЮЄ</span>
+          <h2 className={styles.titleDark}>Як виглядає процес замовлення — крок за кроком</h2>
+          <p className={styles.pDark}>
+            Увесь процес — від першого запиту до отримання авто в Україні —
+            займає типово 6-8 тижнів. Нижче показуємо, що відбувається на кожному
+            етапі і хто за що відповідає. Відповідальність переходить з Y7 до
+            партнерів-експедиторів у момент передачі у термінал порту США — але
+            для вас це одна безперервна координація.
+          </p>
+          <div className={styles.procList}>
+            {orderingStepsLong.map((step) => (
+              <div key={step.num} className={styles.procItem}>
+                <div className={styles.procNum}>{step.num}</div>
+                <div>
+                  <div className={styles.procTitle}>{step.title}</div>
+                  <div className={styles.procDesc}>{step.desc}</div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ================================================================== */}
       {/* SECTION 5 — Pricing overview (editorial section)                   */}
       {/* ================================================================== */}
-      <section
-        style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}
-      >
-        <span className={styles.sectionKicker}>◆ ЦІНИ</span>
-        <h2 style={sectionH2}>Орієнтовні витрати</h2>
-        <p style={editorialP}>
-          Нижче типові діапазони для стандартного легкового авто (седан, SUV,
-          кросовер до 2,5 тонни). Точну вартість надаємо після отримання номера
-          лоту. Ціни не включають розмитнення в Україні (мито, акциз, ПДВ) — це
-          окрема сума, що залежить від віку авто, обʼєму двигуна та типу
-          палива.
-        </p>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '12px',
-            marginTop: '16px',
-          }}
-        >
-          <div className={styles.liftCard} style={cardStyle}>
-            <div
-              style={{
-                fontFamily: fonts.sans,
-                fontWeight: 600,
-                fontSize: '13px',
-                color: colors.text,
-                marginBottom: '8px',
-              }}
-            >
-              Транспорт по США (Y7)
+      <section className={styles.paperBand}>
+        <div className={styles.inner}>
+          <span className={styles.eyebrowPlainPaper}>ЦІНИ</span>
+          <h2 className={styles.titlePaper}>Орієнтовні витрати</h2>
+          <p className={styles.pPaper}>
+            Нижче типові діапазони для стандартного легкового авто (седан, SUV,
+            кросовер до 2,5 тонни). Точну вартість надаємо після отримання номера
+            лоту. Ціни не включають розмитнення в Україні (мито, акциз, ПДВ) — це
+            окрема сума, що залежить від віку авто, обʼєму двигуна та типу
+            палива.
+          </p>
+          <div className={styles.priceGrid}>
+            <div className={styles.priceCard}>
+              <span className={styles.priceLabel}>Транспорт по США (Y7)</span>
+              <div className={styles.priceValue}>$300–1 600</div>
+              <ul className={styles.priceList}>
+                <li>До 500 миль: $300–600</li>
+                <li>500–1 500 миль: $600–1 200</li>
+                <li>Через усю країну (1 500+ миль): $900–1 600</li>
+              </ul>
+              <p className={styles.priceNote}>
+                Забір з майданчика Copart/IAAI і доставка. Залежить від відстані,
+                стану авто, сезону.
+              </p>
             </div>
-            <div
-              style={{
-                fontFamily: fonts.serif,
-                fontSize: '24px',
-                fontWeight: 700,
-                color: colors.accent,
-                marginBottom: '8px',
-              }}
-            >
-              $300–1 600
+            <div className={styles.priceCard}>
+              <span className={styles.priceLabel}>Морський фрахт</span>
+              <div className={styles.priceValue}>$1 200–2 400</div>
+              <p className={styles.priceBody}>
+                Контейнер 40HC (1-3 авто) або RoRo. Залежить від порту в США та
+                європейського порту призначення.
+              </p>
             </div>
-            <ul
-              style={{
-                fontFamily: fonts.sans,
-                fontSize: '13px',
-                color: colors.textMuted,
-                lineHeight: 1.55,
-                margin: 0,
-                paddingLeft: '1.1rem',
-              }}
-            >
-              <li>До 500 миль: $300–600</li>
-              <li>500–1 500 миль: $600–1 200</li>
-              <li>Через усю країну (1 500+ миль): $900–1 600</li>
-            </ul>
-            <p
-              style={{
-                fontFamily: fonts.sans,
-                fontSize: '12px',
-                color: colors.textMuted,
-                lineHeight: 1.5,
-                margin: '8px 0 0',
-                fontStyle: 'italic',
-              }}
-            >
-              Забір з майданчика Copart/IAAI і доставка. Залежить від відстані,
-              стану авто, сезону.
-            </p>
-          </div>
-          <div className={styles.liftCard} style={cardStyle}>
-            <div
-              style={{
-                fontFamily: fonts.sans,
-                fontWeight: 600,
-                fontSize: '13px',
-                color: colors.text,
-                marginBottom: '8px',
-              }}
-            >
-              Морський фрахт
+            <div className={styles.priceCard}>
+              <span className={styles.priceLabel}>Доставка в Україну</span>
+              <div className={styles.priceValue}>$600–1 200</div>
+              <p className={styles.priceBody}>
+                Автовоз з європейського порту до вашого міста через Гдиню,
+                Клайпеду або Констанцу.
+              </p>
             </div>
-            <div
-              style={{
-                fontFamily: fonts.serif,
-                fontSize: '24px',
-                fontWeight: 700,
-                color: colors.accent,
-                marginBottom: '8px',
-              }}
-            >
-              $1 200–2 400
-            </div>
-            <p
-              style={{
-                fontFamily: fonts.sans,
-                fontSize: '13px',
-                color: colors.textMuted,
-                lineHeight: 1.5,
-                margin: 0,
-              }}
-            >
-              Контейнер 40HC (1-3 авто) або RoRo. Залежить від порту в США та
-              європейського порту призначення.
-            </p>
-          </div>
-          <div className={styles.liftCard} style={cardStyle}>
-            <div
-              style={{
-                fontFamily: fonts.sans,
-                fontWeight: 600,
-                fontSize: '13px',
-                color: colors.text,
-                marginBottom: '8px',
-              }}
-            >
-              Доставка в Україну
-            </div>
-            <div
-              style={{
-                fontFamily: fonts.serif,
-                fontSize: '24px',
-                fontWeight: 700,
-                color: colors.accent,
-                marginBottom: '8px',
-              }}
-            >
-              $600–1 200
-            </div>
-            <p
-              style={{
-                fontFamily: fonts.sans,
-                fontSize: '13px',
-                color: colors.textMuted,
-                lineHeight: 1.5,
-                margin: 0,
-              }}
-            >
-              Автовоз з європейського порту до вашого міста через Гдиню,
-              Клайпеду або Констанцу.
-            </p>
           </div>
         </div>
       </section>
@@ -616,127 +359,34 @@ function UkraineShipMyCar() {
       {/* ================================================================== */}
       {/* SECTION 6 — Trust highlight box (mirrors English insurance box)    */}
       {/* ================================================================== */}
-      <section
-        style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}
-      >
-        <div
-          style={{
-            background: '#FFF8F5',
-            borderLeft: `4px solid ${colors.accent}`,
-            borderRadius: '0 12px 12px 0',
-            padding: '24px 28px',
-          }}
-        >
-          <h3
-            style={{
-              fontFamily: fonts.sans,
-              fontSize: '15px',
-              fontWeight: 700,
-              color: colors.text,
-              marginBottom: '10px',
-            }}
-          >
-            Чому варто довіряти Y7 Logistics
-          </h3>
-          <p
-            style={{
-              fontFamily: fonts.sans,
-              fontSize: '13px',
-              color: colors.textMuted,
-              lineHeight: 1.7,
-              marginBottom: '12px',
-            }}
-          >
-            Y7 Logistics працює як ліцензований FMCSA-брокер — це означає
-            федеральний нагляд Департаменту транспорту США, обовʼязкове
-            страхування відповідальності та публічну реєстрацію в базі SAFER.
-            Кожен може перевірити наш статус через пошук на safer.fmcsa.dot.gov
-            за номером MC #1741537. Для українських клієнтів пропонуємо
-            українськомовну підтримку через Telegram, прозорі ціни без
-            прихованих комісій і реальний досвід роботи з маршрутами через
-            Гдиню, Клайпеду та Констанцу.
-          </p>
-          <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '20px',
-              marginTop: '8px',
-            }}
-          >
-            <div>
-              <div
-                style={{
-                  fontFamily: fonts.sans,
-                  fontSize: '11px',
-                  fontWeight: 600,
-                  color: colors.text,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.5px',
-                  marginBottom: '2px',
-                }}
-              >
-                Ліцензія брокера
+      <section className={styles.boardBand}>
+        <div className={styles.inner}>
+          <div className={styles.panel}>
+            <h3 className={styles.panelTitle}>
+              Чому варто довіряти Y7 Logistics
+            </h3>
+            <p className={styles.panelText}>
+              Y7 Logistics працює як ліцензований FMCSA-брокер — це означає
+              федеральний нагляд Департаменту транспорту США, обовʼязкове
+              страхування відповідальності та публічну реєстрацію в базі SAFER.
+              Кожен може перевірити наш статус через пошук на safer.fmcsa.dot.gov
+              за номером MC #1741537. Для українських клієнтів пропонуємо
+              українськомовну підтримку через Telegram, прозорі ціни без
+              прихованих комісій і реальний досвід роботи з маршрутами через
+              Гдиню, Клайпеду та Констанцу.
+            </p>
+            <div className={styles.metaRow}>
+              <div>
+                <span className={styles.metaLabel}>Ліцензія брокера</span>
+                <div className={styles.metaValue}>MC #1741537</div>
               </div>
-              <div
-                style={{
-                  fontFamily: fonts.serif,
-                  fontSize: '15px',
-                  color: colors.accent,
-                  fontWeight: 700,
-                }}
-              >
-                MC #1741537
+              <div>
+                <span className={styles.metaLabel}>USDOT</span>
+                <div className={styles.metaValue}>#4427359</div>
               </div>
-            </div>
-            <div>
-              <div
-                style={{
-                  fontFamily: fonts.sans,
-                  fontSize: '11px',
-                  fontWeight: 600,
-                  color: colors.text,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.5px',
-                  marginBottom: '2px',
-                }}
-              >
-                USDOT
-              </div>
-              <div
-                style={{
-                  fontFamily: fonts.serif,
-                  fontSize: '15px',
-                  color: colors.accent,
-                  fontWeight: 700,
-                }}
-              >
-                #4427359
-              </div>
-            </div>
-            <div>
-              <div
-                style={{
-                  fontFamily: fonts.sans,
-                  fontSize: '11px',
-                  fontWeight: 600,
-                  color: colors.text,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.5px',
-                  marginBottom: '2px',
-                }}
-              >
-                Статус FMCSA
-              </div>
-              <div
-                style={{
-                  fontFamily: fonts.serif,
-                  fontSize: '15px',
-                  color: colors.accent,
-                  fontWeight: 700,
-                }}
-              >
-                Активний
+              <div>
+                <span className={styles.metaLabel}>Статус FMCSA</span>
+                <div className={styles.metaValue}>Активний</div>
               </div>
             </div>
           </div>
@@ -746,104 +396,40 @@ function UkraineShipMyCar() {
       {/* ================================================================== */}
       {/* SECTION 7 — Contact (editorial)                                    */}
       {/* ================================================================== */}
-      <section
-        style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}
-      >
-        <span className={styles.sectionKicker}>◆ КОНТАКТИ</span>
-        <h2 style={sectionH2}>Звʼяжіться з нами</h2>
-        <p style={editorialP}>
-          Найшвидше — через Telegram. Типово відповідаємо протягом 1-2 годин у
-          робочий час (9:00-18:00 за східним часом США, тобто 16:00-01:00 за
-          київським). Спілкуємося українською, російською або англійською — як
-          вам зручніше.
-        </p>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '12px',
-            marginTop: '16px',
-          }}
-        >
-          <div className={styles.liftCard} style={cardStyle}>
-            <div
-              style={{
-                fontFamily: fonts.sans,
-                fontWeight: 600,
-                fontSize: '13px',
-                color: colors.text,
-                marginBottom: '6px',
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px',
-              }}
-            >
-              Telegram
+      <section className={styles.paperBand}>
+        <div className={styles.inner}>
+          <span className={styles.eyebrowPaper}>КОНТАКТИ</span>
+          <h2 className={styles.titlePaper}>Звʼяжіться з нами</h2>
+          <p className={styles.pPaper}>
+            Найшвидше — через Telegram. Типово відповідаємо протягом 1-2 годин у
+            робочий час (9:00-18:00 за східним часом США, тобто 16:00-01:00 за
+            київським). Спілкуємося українською, російською або англійською — як
+            вам зручніше.
+          </p>
+          <div className={styles.contactGrid}>
+            <div className={styles.contactCard}>
+              <span className={styles.contactLabel}>Telegram</span>
+              <a
+                href="https://t.me/y7dispatch_bot"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.contactLink}
+              >
+                @y7dispatch_bot
+              </a>
             </div>
-            <a
-              href="https://t.me/y7dispatch_bot"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: colors.accent,
-                textDecoration: 'underline',
-                fontFamily: fonts.sans,
-                fontSize: '14px',
-              }}
-            >
-              @y7dispatch_bot
-            </a>
-          </div>
-          <div className={styles.liftCard} style={cardStyle}>
-            <div
-              style={{
-                fontFamily: fonts.sans,
-                fontWeight: 600,
-                fontSize: '13px',
-                color: colors.text,
-                marginBottom: '6px',
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px',
-              }}
-            >
-              Email
+            <div className={styles.contactCard}>
+              <span className={styles.contactLabel}>Email</span>
+              <a href="mailto:info@y7agency.com" className={styles.contactLink}>
+                info@y7agency.com
+              </a>
             </div>
-            <a
-              href="mailto:info@y7agency.com"
-              style={{
-                color: colors.accent,
-                textDecoration: 'underline',
-                fontFamily: fonts.sans,
-                fontSize: '14px',
-              }}
-            >
-              info@y7agency.com
-            </a>
-          </div>
-          <div className={styles.liftCard} style={cardStyle}>
-            <div
-              style={{
-                fontFamily: fonts.sans,
-                fontWeight: 600,
-                fontSize: '13px',
-                color: colors.text,
-                marginBottom: '6px',
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px',
-              }}
-            >
-              Портал клієнта
+            <div className={styles.contactCard}>
+              <span className={styles.contactLabel}>Портал клієнта</span>
+              <Link to="/portal/login" className={styles.contactLink}>
+                Клієнтський портал
+              </Link>
             </div>
-            <Link
-              to="/portal/login"
-              style={{
-                color: colors.accent,
-                textDecoration: 'underline',
-                fontFamily: fonts.sans,
-                fontSize: '14px',
-              }}
-            >
-              Клієнтський портал
-            </Link>
           </div>
         </div>
       </section>
@@ -851,125 +437,62 @@ function UkraineShipMyCar() {
       {/* ================================================================== */}
       {/* SECTION 8 — Diaspora highlight box                                 */}
       {/* ================================================================== */}
-      <section
-        style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}
-      >
-        <div
-          style={{
-            background: '#FFF8F5',
-            borderLeft: `4px solid ${colors.accent}`,
-            borderRadius: '0 12px 12px 0',
-            padding: '24px 28px',
-          }}
-        >
-          <h3
-            style={{
-              fontFamily: fonts.sans,
-              fontSize: '15px',
-              fontWeight: 700,
-              color: colors.text,
-              marginBottom: '10px',
-            }}
-          >
-            Живете в Штатах? Перевезення по США без міжнародного етапу
-          </h3>
-          <p
-            style={{
-              fontFamily: fonts.sans,
-              fontSize: '13px',
-              color: colors.textMuted,
-              lineHeight: 1.7,
-            }}
-          >
-            Якщо ви з української громади в США і потрібен лише внутрішній
-            транспорт — забір з Copart під дім, переїзд між штатами, доставка
-            до порту — Y7 обслуговує цей обсяг самостійно, без залучення
-            міжнародних партнерів. Як ліцензований FMCSA-брокер (MC #1741537)
-            маємо доступ до мережі перевірених перевізників по всіх 50 штатах.
-            Комунікуємо українською через Telegram. Орієнтовні ціни для
-            стандартного седана: $450-750 (до 500 миль), $750-1 200 (500-1500
-            миль), $1 100-1 600 (через усю країну).
-          </p>
+      <section className={styles.boardBand}>
+        <div className={styles.inner}>
+          <div className={styles.panel}>
+            <h3 className={styles.panelTitle}>
+              Живете в Штатах? Перевезення по США без міжнародного етапу
+            </h3>
+            <p className={styles.panelText}>
+              Якщо ви з української громади в США і потрібен лише внутрішній
+              транспорт — забір з Copart під дім, переїзд між штатами, доставка
+              до порту — Y7 обслуговує цей обсяг самостійно, без залучення
+              міжнародних партнерів. Як ліцензований FMCSA-брокер (MC #1741537)
+              маємо доступ до мережі перевірених перевізників по всіх 50 штатах.
+              Комунікуємо українською через Telegram. Орієнтовні ціни для
+              стандартного седана: $450-750 (до 500 миль), $750-1 200 (500-1500
+              миль), $1 100-1 600 (через усю країну).
+            </p>
+          </div>
         </div>
       </section>
 
       {/* ================================================================== */}
       {/* SECTION 9 — Diaspora use cases (editorial)                          */}
       {/* ================================================================== */}
-      <section
-        style={{ maxWidth: '700px', margin: '0 auto', padding: '0 24px 48px' }}
-      >
-        <span className={styles.sectionKicker}>◆ ДЛЯ ДІАСПОРИ</span>
-        <h2 style={sectionH2}>Типові замовлення від діаспори</h2>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '12px',
-            marginTop: '16px',
-          }}
-        >
-          {diasporaUseCases.map((uc, idx) => (
-            <div key={idx} className={styles.liftCard} style={cardStyle}>
-              <h4
-                style={{
-                  fontFamily: fonts.sans,
-                  fontSize: '14px',
-                  fontWeight: 600,
-                  marginTop: 0,
-                  marginBottom: '6px',
-                  color: colors.text,
-                }}
-              >
-                {uc.title}
-              </h4>
-              <p
-                style={{
-                  fontFamily: fonts.sans,
-                  fontSize: '13px',
-                  color: colors.textMuted,
-                  lineHeight: 1.5,
-                  margin: 0,
-                }}
-              >
-                {uc.desc}
-              </p>
-            </div>
-          ))}
+      <section className={styles.paperBand}>
+        <div className={styles.inner}>
+          <span className={styles.eyebrowPaper}>ДЛЯ ДІАСПОРИ</span>
+          <h2 className={styles.titlePaper}>Типові замовлення від діаспори</h2>
+          <div className={styles.ucGrid}>
+            {diasporaUseCases.map((uc, idx) => (
+              <div key={idx} className={styles.ucCard}>
+                <h4 className={styles.ucTitle}>{uc.title}</h4>
+                <p className={styles.ucDesc}>{uc.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ================================================================== */}
       {/* SECTION 10 — FAQ (mirrors English ShipMyCar FAQ cards)             */}
       {/* ================================================================== */}
-      <section
-        style={{
-          maxWidth: '700px',
-          margin: '0 auto',
-          padding: '60px 24px 80px',
-        }}
-      >
-        <h2
-          style={{
-            fontFamily: fonts.serif,
-            fontSize: '24px',
-            fontWeight: 700,
-            color: colors.text,
-            textAlign: 'center',
-            marginBottom: '32px',
-          }}
-        >
-          Часті запитання
-        </h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          {faqSchema.mainEntity.map((faq, i) => (
-            <details key={i} className={styles.faqItem}>
-              <summary className={styles.faqSummary}>
-                <span>{faq.name}</span>
-              </summary>
-              <p className={styles.faqAnswer}>{faq.acceptedAnswer.text}</p>
-            </details>
-          ))}
+      <section className={styles.paperBand}>
+        <div className={styles.inner}>
+          <h2 className={styles.faqCenterTitle}>
+            Часті запитання
+          </h2>
+          <div className={styles.faqList}>
+            {faqSchema.mainEntity.map((faq, i) => (
+              <details key={i} className={styles.faqItem}>
+                <summary className={styles.faqSummary}>
+                  <span>{faq.name}</span>
+                </summary>
+                <p className={styles.faqAnswer}>{faq.acceptedAnswer.text}</p>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -978,81 +501,26 @@ function UkraineShipMyCar() {
       {/* ================================================================== */}
       {/* SECTION 11 — CTA (dark band with accent button)                    */}
       {/* ================================================================== */}
-      <section
-        style={{
-          background: colors.dark,
-          color: colors.bg,
-          padding: 'clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 2rem)',
-        }}
-      >
-        <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
-          <h2
-            style={{
-              fontFamily: fonts.serif,
-              fontSize: 'clamp(22px, 3vw, 32px)',
-              fontWeight: 700,
-              color: colors.bg,
-              marginBottom: '16px',
-            }}
-          >
+      <section className={styles.cta}>
+        <div className={styles.ctaInner}>
+          <h2 className={styles.ctaTitle}>
             Готові замовити пригін?
           </h2>
-          <p
-            style={{
-              fontFamily: fonts.sans,
-              fontSize: '15px',
-              color: '#C5C0B8',
-              lineHeight: 1.6,
-              maxWidth: '600px',
-              margin: '0 auto 24px',
-            }}
-          >
+          <p className={styles.ctaText}>
             Надішліть номер лоту з Copart або IAAI у Telegram — отримаєте
             реальний розрахунок протягом 1-2 годин. Безкоштовно, без
             зобовʼязань.
           </p>
-          <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '12px',
-              justifyContent: 'center',
-            }}
-          >
+          <div className={styles.ctaRow}>
             <a
               href="https://t.me/y7dispatch_bot"
               target="_blank"
               rel="noopener noreferrer"
-              className={`${styles.subtleLift} ${styles.focusRing}`}
-              style={{
-                ...btnStyles.accent,
-                display: 'inline-block',
-                padding: '14px 32px',
-                fontSize: '13px',
-                textDecoration: 'none',
-                borderRadius: '24px',
-              }}
+              className={styles.ctaPrimary}
             >
               Написати в Telegram
             </a>
-            <Link
-              to="/ua"
-              className={`${styles.subtleLift} ${styles.focusRing}`}
-              style={{
-                background: 'transparent',
-                color: colors.bg,
-                border: `1px solid ${colors.bg}`,
-                padding: '14px 32px',
-                fontSize: '13px',
-                textDecoration: 'none',
-                borderRadius: '24px',
-                fontFamily: fonts.sans,
-                fontWeight: 600,
-                letterSpacing: '0.5px',
-                textTransform: 'uppercase',
-                display: 'inline-block',
-              }}
-            >
+            <Link to="/ua" className={styles.ctaGhost}>
               На головну
             </Link>
           </div>

@@ -1,53 +1,357 @@
-/* UkraineShipMyCar.module.css — composes from shared primitives. */
+/* UkraineShipMyCar.module.css — DESIGN-V2-W6-T03 "Dispatch Board" restyle.
+   Conversion-page law (§2): opens board-black (hero), closes board-black (CTA),
+   with two interior dark bands (detailed process + trust/diaspora panels) so the
+   surface alternation lands ~45-50% dark. Copy is FROZEN — shells + tokens only.
+   Anti-Orphan Rule: surfaces / type / buttons / cards compose from
+   src/styles/v2/*; no inline re-implementation of those primitives. */
 
-.sectionKicker {
+.page { background: var(--v2-paper, #f4f0e8); }
+
+/* =====================================================================
+   BANDS — full-bleed surfaces, each wrapping a max-width inner
+   ===================================================================== */
+.boardBand { composes: board from '../../styles/v2/surfaces.module.css'; }
+.paperBand { composes: manifest from '../../styles/v2/surfaces.module.css'; }
+
+.inner {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: clamp(44px, 7vh, 76px) 24px;
+}
+.innerWide {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(44px, 7vh, 76px) 24px;
+}
+
+/* =====================================================================
+   HERO — board-black open (conversion law)
+   ===================================================================== */
+.hero {
+  composes: board from '../../styles/v2/surfaces.module.css';
+  padding: clamp(60px, 10vh, 108px) 24px clamp(40px, 6vh, 60px);
+  text-align: center;
+}
+.heroInner { max-width: 800px; margin: 0 auto; }
+
+.heroTitle {
+  composes: sectionDisplay from '../../styles/v2/type.module.css';
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin: 0 0 16px;
+}
+.heroLede {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* =====================================================================
+   SECTION HEADERS
+   ===================================================================== */
+.eyebrowPaper {
+  composes: eyebrow from '../../styles/v2/type.module.css';
+  composes: eyebrowOnPaper from '../../styles/v2/type.module.css';
+}
+.eyebrowPlainPaper {
+  composes: eyebrowPlain from '../../styles/v2/type.module.css';
+  color: var(--v2-ink-muted, #5c5851);
+}
+.eyebrowDark {
+  composes: eyebrow from '../../styles/v2/type.module.css';
+  composes: eyebrowOnDark from '../../styles/v2/type.module.css';
+}
+.eyebrowPlainDark {
+  composes: eyebrowPlain from '../../styles/v2/type.module.css';
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+}
+
+.titlePaper {
+  composes: sectionDisplay from '../../styles/v2/type.module.css';
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  color: var(--v2-ink, #050607);
+  margin: 0 0 16px;
+}
+.titleDark {
+  composes: sectionDisplay from '../../styles/v2/type.module.css';
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin: 0 0 16px;
+}
+
+.pPaper {
+  font-family: var(--v2-font-body, system-ui, sans-serif);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 0 0 16px;
+}
+.pDark {
+  font-family: var(--v2-font-body, system-ui, sans-serif);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+  margin: 0 0 16px;
+}
+
+/* =====================================================================
+   HOW IT WORKS — paper, numbered grid (ink numerals)
+   ===================================================================== */
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 24px;
+}
+.stepCol { text-align: center; }
+.stepNum {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--v2-ink, #050607);
+  color: var(--v2-paper, #f4f0e8);
+  font-family: var(--v2-font-display);
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+}
+.stepTitle {
+  font-family: var(--v2-font-display);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--v2-ink, #050607);
+  margin: 0 0 6px;
+}
+.stepDesc {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 0;
+}
+
+/* =====================================================================
+   CHECKLIST — paper
+   ===================================================================== */
+.checklist {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 0 0;
+}
+.checkItem {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--v2-ink-muted, #5c5851);
+}
+
+/* =====================================================================
+   DETAILED PROCESS — board band, panel-ringed numerals
+   ===================================================================== */
+.procList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+.procItem { display: flex; gap: 16px; align-items: flex-start; }
+.procNum {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--v2-panel, #0e1012);
+  border: 1px solid var(--v2-line-on-dark-strong, rgba(255, 247, 237, 0.24));
+  color: var(--v2-text-on-dark, #fff7ed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--v2-font-display);
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.procTitle {
+  font-family: var(--v2-font-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin-bottom: 4px;
+}
+.procDesc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+}
+
+/* =====================================================================
+   PRICING — paper cards, display numerals in ink (no red numbers)
+   ===================================================================== */
+.priceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+.priceCard { composes: paper from '../../styles/v2/cards.module.css'; padding: 20px; }
+.priceLabel {
+  composes: monoLabel from '../../styles/v2/type.module.css';
+  color: var(--v2-ink-muted, #5c5851);
   display: block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
+  margin-bottom: 8px;
+}
+.priceValue {
+  font-family: var(--v2-font-display);
+  font-size: 26px;
   font-weight: 700;
-  color: var(--accent, #993C1D);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  margin: 0 0 10px;
+  letter-spacing: 0.02em;
+  color: var(--v2-ink, #050607);
+  margin-bottom: 8px;
+}
+.priceList {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 0;
+  padding-left: 1.1rem;
+}
+.priceNote {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 8px 0 0;
+  font-style: italic;
+}
+.priceBody {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 0;
 }
 
-.heroKickerPill {
-  display: inline-block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
+/* =====================================================================
+   PANELS (trust + diaspora) on board bands
+   ===================================================================== */
+.panel {
+  composes: panel from '../../styles/v2/surfaces.module.css';
+  padding: 28px 30px;
+}
+.panelTitle {
+  font-family: var(--v2-font-display);
+  font-size: 16px;
   font-weight: 700;
-  color: var(--accent, #993C1D);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  padding: 6px 14px;
-  background: rgba(153, 60, 29, 0.08);
-  border-radius: var(--radius-pill, 20px);
-  margin: 0 0 24px;
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin: 0 0 12px;
+}
+.panelText {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+  margin: 0 0 12px;
+}
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 8px;
+}
+.metaLabel {
+  composes: monoLabel from '../../styles/v2/type.module.css';
+  display: block;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  margin-bottom: 4px;
+}
+.metaValue {
+  font-family: var(--v2-font-display);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--v2-text-on-dark, #fff7ed);
 }
 
-.liftCard { composes: liftCard from '../../styles/interactions.module.css'; }
-.subtleLift { composes: subtleLift from '../../styles/interactions.module.css'; }
-.underlineGrow { composes: underlineGrow from '../../styles/interactions.module.css'; }
-.focusRing { composes: focusRing from '../../styles/interactions.module.css'; }
+/* =====================================================================
+   CONTACT — paper cards
+   ===================================================================== */
+.contactGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+.contactCard { composes: paper from '../../styles/v2/cards.module.css'; padding: 20px; }
+.contactLabel {
+  composes: monoLabel from '../../styles/v2/type.module.css';
+  display: block;
+  color: var(--v2-ink-muted, #5c5851);
+  margin-bottom: 6px;
+}
+.contactLink {
+  composes: bodyLinkOnPaper from '../../styles/v2/type.module.css';
+  font-family: var(--v2-font-body, system-ui, sans-serif);
+  font-size: 14px;
+}
 
-.sectionAlt { background: var(--bg-muted, #EFECE6); }
+/* =====================================================================
+   DIASPORA USE CASES — paper cards
+   ===================================================================== */
+.ucGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+.ucCard { composes: paper from '../../styles/v2/cards.module.css'; padding: 20px; }
+.ucTitle {
+  font-family: var(--v2-font-display);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--v2-ink, #050607);
+  margin: 0 0 6px;
+}
+.ucDesc {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 0;
+}
 
+/* =====================================================================
+   FAQ — paper cream cards
+   ===================================================================== */
+.faqCenterTitle {
+  composes: sectionDisplay from '../../styles/v2/type.module.css';
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  color: var(--v2-ink, #050607);
+  text-align: center;
+  margin: 0 0 32px;
+}
+.faqList { display: flex; flex-direction: column; gap: 12px; }
 .faqItem {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-lg, 12px);
-  margin-bottom: 12px;
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-lg, 18px);
   overflow: hidden;
   transition: border-color var(--transition-normal, 250ms ease-out);
 }
-.faqItem[open] { border-color: var(--accent, #993C1D); }
+.faqItem[open] { border-color: rgba(5, 6, 7, 0.4); }
 .faqSummary {
-  padding: 20px 24px;
+  padding: 18px 24px;
   cursor: pointer;
-  font-family: var(--font-sans, system-ui);
+  font-family: var(--v2-font-body, system-ui, sans-serif);
   font-size: 1rem;
-  font-weight: 500;
-  color: var(--text, #2C2C2A);
+  font-weight: 600;
+  color: var(--v2-ink, #050607);
   list-style: none;
   display: flex;
   justify-content: space-between;
@@ -57,17 +361,61 @@
 .faqSummary::-webkit-details-marker { display: none; }
 .faqSummary::after {
   content: '+';
+  font-family: var(--v2-font-display);
   font-size: 1.5rem;
   line-height: 1;
-  color: var(--accent, #993C1D);
+  color: var(--v2-red, #d70f24);
   transition: transform var(--transition-normal, 250ms ease-out);
   flex-shrink: 0;
 }
 .faqItem[open] .faqSummary::after { transform: rotate(45deg); }
+.faqSummary:focus-visible {
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
+}
 .faqAnswer {
   padding: 0 24px 20px;
-  font-family: var(--font-sans, system-ui);
+  font-family: var(--v2-font-body, system-ui, sans-serif);
   font-size: 0.95rem;
   line-height: 1.7;
-  color: var(--text-muted, #4A4A46);
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 0;
+}
+
+/* =====================================================================
+   CTA — board-black close
+   ===================================================================== */
+.cta {
+  composes: board from '../../styles/v2/surfaces.module.css';
+  padding: clamp(48px, 8vh, 84px) 24px;
+}
+.ctaInner { max-width: 900px; margin: 0 auto; text-align: center; }
+.ctaTitle {
+  composes: sectionDisplay from '../../styles/v2/type.module.css';
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--v2-text-on-dark, #fff7ed);
+  margin: 0 0 16px;
+}
+.ctaText {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
+  max-width: 600px;
+  margin: 0 auto 24px;
+}
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+.ctaPrimary {
+  composes: cta from '../../styles/v2/buttons.module.css';
+  padding: 14px 32px;
+  text-decoration: none;
+}
+.ctaGhost {
+  composes: ghostOnDark from '../../styles/v2/buttons.module.css';
+  padding: 14px 32px;
+  text-decoration: none;
 }

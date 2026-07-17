@@ -2,7 +2,6 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import HreflangTags from '../../components/HreflangTags';
-import { colors, fonts, button as btnStyles } from '../../theme';
 import styles from './UkraineCopart.module.css';
 
 // =============================================================================
@@ -16,84 +15,12 @@ import styles from './UkraineCopart.module.css';
 // (breadcrumb + H1 + intro + Section blocks + Real Scenario + lists + FAQ + CTA)
 // =============================================================================
 
-// -- Reusable styles (theme-driven, mirror SeoLandingPage) --------------------
-
-const editorialP = {
-  fontFamily: fonts.sans,
-  fontSize: '14px',
-  color: colors.textMuted,
-  lineHeight: 1.7,
-  marginBottom: '16px',
-};
-
-const listItemStyle = {
-  fontFamily: fonts.sans,
-  fontSize: '14px',
-  color: colors.textMuted,
-  lineHeight: 1.6,
-};
-
-const stepNumberStyle = {
-  width: 32,
-  height: 32,
-  borderRadius: '50%',
-  background: colors.accent,
-  color: '#fff',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  fontSize: '14px',
-  fontWeight: 700,
-  fontFamily: fonts.sans,
-  flexShrink: 0,
-};
-
-const cardStyle = {
-  background: colors.bgCard,
-  border: `1px solid ${colors.border}`,
-  borderRadius: '12px',
-  padding: '20px 24px',
-};
-
-const warningCardStyle = {
-  background: '#FDF6E8',
-  border: '1px solid #E8DCC0',
-  borderLeft: '4px solid #C89B3C',
-  borderRadius: '12px',
-  padding: '20px 24px',
-};
-
-// Inline Section helper (mirrors SeoLandingPage's exported Section)
+// Inline Section helper (paper reading section — mirrors SeoLandingPage's Section)
 function Section({ title, kicker, children }) {
   return (
-    <section style={{ marginBottom: '40px' }}>
-      {kicker && (
-        <span
-          style={{
-            display: 'block',
-            fontFamily: fonts.sans,
-            fontSize: '11px',
-            fontWeight: 700,
-            color: colors.accent,
-            textTransform: 'uppercase',
-            letterSpacing: '0.14em',
-            marginBottom: '8px',
-          }}
-        >
-          {kicker}
-        </span>
-      )}
-      <h2
-        style={{
-          fontFamily: fonts.serif,
-          fontSize: '22px',
-          fontWeight: 700,
-          color: colors.text,
-          marginBottom: '16px',
-        }}
-      >
-        {title}
-      </h2>
+    <section className={styles.sectionWrap}>
+      {kicker && <span className={styles.eyebrowPaper}>{kicker}</span>}
+      <h2 className={styles.titlePaper}>{title}</h2>
       {children}
     </section>
   );
@@ -316,13 +243,7 @@ const relatedLinks = [
 
 function UkraineCopart() {
   return (
-    <div
-      lang="uk"
-      style={{
-        background: colors.bg,
-        color: colors.text,
-      }}
-    >
+    <div lang="uk" className={styles.page}>
       <Helmet>
         <title>Copart — пригін авто з аукціону в Україну | Y7 Logistics</title>
         <meta
@@ -361,62 +282,42 @@ function UkraineCopart() {
         hasRussianVersion={true}
       />
 
-      <div style={{ maxWidth: '800px', margin: '0 auto', padding: '60px 24px 80px' }}>
-        {/* Breadcrumb (mirrors SeoLandingPage) */}
-        <nav
-          aria-label="Breadcrumb"
-          style={{
-            fontFamily: fonts.sans,
-            fontSize: '13px',
-            color: colors.textMuted,
-            marginBottom: '24px',
-          }}
-        >
-          <Link to="/ua" style={{ color: colors.textMuted, textDecoration: 'none' }}>
-            Головна (UA)
-          </Link>
-          <span style={{ margin: '0 6px' }}>/</span>
-          <span style={{ color: colors.textMuted }}>Послуги</span>
-          <span style={{ margin: '0 6px' }}>/</span>
-          <span style={{ color: colors.text }}>Copart — пригін з аукціону</span>
-        </nav>
+      <section className={styles.hero}>
+        <div className={styles.heroInner}>
+          {/* Breadcrumb (mirrors SeoLandingPage) */}
+          <nav aria-label="Breadcrumb" className={styles.breadcrumb}>
+            <Link to="/ua" className={styles.crumbLink}>
+              Головна (UA)
+            </Link>
+            <span className={styles.crumbSep}>/</span>
+            <span>Послуги</span>
+            <span className={styles.crumbSep}>/</span>
+            <span className={styles.crumbCurrent}>Copart — пригін з аукціону</span>
+          </nav>
 
-        {/* H1 (mirrors SeoLandingPage typography) */}
-        <h1
-          style={{
-            fontFamily: fonts.serif,
-            fontSize: 'clamp(28px, 4vw, 40px)',
-            fontWeight: 700,
-            color: colors.text,
-            marginBottom: '16px',
-            lineHeight: 1.2,
-          }}
-        >
-          Пригін авто з Copart в Україну — чесний гайд без маркетингу
-        </h1>
+          {/* H1 (mirrors SeoLandingPage typography) */}
+          <h1 className={styles.h1}>
+            Пригін авто з Copart в Україну — чесний гайд без маркетингу
+          </h1>
 
-        {/* Intro paragraph */}
-        <p
-          style={{
-            fontFamily: fonts.sans,
-            fontSize: '16px',
-            color: colors.textMuted,
-            lineHeight: 1.7,
-            marginBottom: '48px',
-          }}
-        >
-          Copart — найбільший страховий аукціон у США. Понад 175 тисяч авто
-          щоденно, понад 200 майданчиків, мільйон продажів на рік. Для
-          українського покупця це шанс купити авто на 30-50% дешевше ніж на
-          внутрішньому ринку — але шлях від «молотка до гаража» має більше
-          етапів і пасток, ніж обіцяє реклама. Y7 Logistics — ліцензований
-          FMCSA-брокер (MC #1741537), що обслуговує американську частину
-          процесу.
-        </p>
+          {/* Intro paragraph */}
+          <p className={styles.intro}>
+            Copart — найбільший страховий аукціон у США. Понад 175 тисяч авто
+            щоденно, понад 200 майданчиків, мільйон продажів на рік. Для
+            українського покупця це шанс купити авто на 30-50% дешевше ніж на
+            внутрішньому ринку — але шлях від «молотка до гаража» має більше
+            етапів і пасток, ніж обіцяє реклама. Y7 Logistics — ліцензований
+            FMCSA-брокер (MC #1741537), що обслуговує американську частину
+            процесу.
+          </p>
+        </div>
+      </section>
+
+      <div className={styles.body}>
 
         {/* Editorial Section: What is Copart */}
-        <Section kicker="◆ ПРО COPART" title="Що таке Copart насправді">
-          <p style={editorialP}>
+        <Section kicker="ПРО COPART" title="Що таке Copart насправді">
+          <p className={styles.pPaper}>
             Copart (Copart Inc., заснований 1982 року в Каліфорнії) — це
             платформа, що зʼєднує страхові компанії, дилерів і банки з
             покупцями по всьому світу. На відміну від класичних аукціонних
@@ -424,7 +325,7 @@ function UkraineCopart() {
             інтернет у системі VB3 (Virtual Bidding 3.0). Штаб-квартира у
             Далласі, Техас.
           </p>
-          <p style={editorialP}>
+          <p className={styles.pPaper}>
             Більшість авто на Copart — це пошкоджені транспортні засоби від
             страхових компаній. Після ДТП, крадіжки, повені або градобою
             страхова визнає авто total loss (повна конструктивна загибель) і
@@ -435,7 +336,7 @@ function UkraineCopart() {
             авто потрапляє на Copart лише тому, що їх невигідно ремонтувати для
             американського ринку.
           </p>
-          <p style={editorialP}>
+          <p className={styles.pPaper}>
             Для українського імпортера це шанс: авто після легкого ДТП у США за
             $10 000 може після ремонту та пригону коштувати в Україні значно
             дорожче. Але ця ж логіка діє у зворотний бік — недосвідчений
@@ -445,121 +346,33 @@ function UkraineCopart() {
         </Section>
 
         {/* Editorial Section: Copart vs IAAI table */}
-        <Section kicker="◆ COPART vs IAAI" title="Copart vs IAAI — у чому різниця">
-          <p style={editorialP}>
+        <Section kicker="COPART vs IAAI" title="Copart vs IAAI — у чому різниця">
+          <p className={styles.pPaper}>
             В США працює два великих страхових аукціони. Обидва продають
             подібний товар — авто після страхових випадків — але мають свої
             особливості.
           </p>
-          <div
-            style={{
-              ...cardStyle,
-              padding: 0,
-              overflowX: 'auto',
-              WebkitOverflowScrolling: 'touch',
-            }}
-          >
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <div className={styles.tableWrap}>
+            <table className={styles.table}>
               <thead>
-                <tr
-                  style={{
-                    background: colors.bgMuted,
-                    borderBottom: `1px solid ${colors.border}`,
-                  }}
-                >
-                  <th
-                    style={{
-                      padding: '12px 16px',
-                      textAlign: 'left',
-                      fontFamily: fonts.sans,
-                      fontSize: '13px',
-                      fontWeight: 600,
-                      color: colors.text,
-                    }}
-                  >
-                    Характеристика
-                  </th>
-                  <th
-                    style={{
-                      padding: '12px 16px',
-                      textAlign: 'left',
-                      fontFamily: fonts.sans,
-                      fontSize: '13px',
-                      fontWeight: 600,
-                      color: colors.accent,
-                    }}
-                  >
-                    Copart
-                  </th>
-                  <th
-                    style={{
-                      padding: '12px 16px',
-                      textAlign: 'left',
-                      fontFamily: fonts.sans,
-                      fontSize: '13px',
-                      fontWeight: 600,
-                      color: colors.text,
-                    }}
-                  >
-                    IAAI
-                  </th>
+                <tr>
+                  <th>Характеристика</th>
+                  <th>Copart</th>
+                  <th>IAAI</th>
                 </tr>
               </thead>
               <tbody>
                 {copartVsIaai.map((row, idx) => (
-                  <tr
-                    key={idx}
-                    style={{
-                      borderBottom:
-                        idx < copartVsIaai.length - 1
-                          ? `1px solid ${colors.border}`
-                          : 'none',
-                    }}
-                  >
-                    <td
-                      style={{
-                        padding: '12px 16px',
-                        fontSize: '13px',
-                        color: colors.text,
-                        fontFamily: fonts.sans,
-                        fontWeight: 500,
-                      }}
-                    >
-                      {row.feature}
-                    </td>
-                    <td
-                      style={{
-                        padding: '12px 16px',
-                        fontSize: '13px',
-                        color: colors.textMuted,
-                        fontFamily: fonts.sans,
-                      }}
-                    >
-                      {row.copart}
-                    </td>
-                    <td
-                      style={{
-                        padding: '12px 16px',
-                        fontSize: '13px',
-                        color: colors.textMuted,
-                        fontFamily: fonts.sans,
-                      }}
-                    >
-                      {row.iaai}
-                    </td>
+                  <tr key={idx}>
+                    <td>{row.feature}</td>
+                    <td>{row.copart}</td>
+                    <td>{row.iaai}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <p
-            style={{
-              ...editorialP,
-              marginTop: '16px',
-              marginBottom: 0,
-              fontStyle: 'italic',
-            }}
-          >
+          <p className={styles.pNote}>
             Для більшості українських покупців обидва аукціони працюють
             аналогічно. Ми обслуговуємо логістику з обох — різниця лише у
             номері лоту, який ви нам надсилаєте.
@@ -567,46 +380,26 @@ function UkraineCopart() {
         </Section>
 
         {/* Editorial Section: Risk warnings */}
-        <Section kicker="◆ ПЕРЕД СТАВКОЮ" title="На що звернути увагу до ставки">
-          <p style={editorialP}>
+        <Section kicker="ПЕРЕД СТАВКОЮ" title="На що звернути увагу до ставки">
+          <p className={styles.pPaper}>
             Найбільша помилка новачків — покладатися лише на фото і mileage.
             Copart не дає гарантій стану авто, умови продажу «as-is». Нижче —
             чотири речі, які реально впливають на фінансовий результат.
           </p>
-          <div style={{ display: 'grid', gap: '12px' }}>
+          <div className={styles.warnList}>
             {riskWarnings.map((warn, idx) => (
-              <div key={idx} style={warningCardStyle}>
-                <h3
-                  style={{
-                    fontFamily: fonts.sans,
-                    fontSize: '15px',
-                    fontWeight: 600,
-                    marginTop: 0,
-                    marginBottom: '8px',
-                    color: '#8B6B1F',
-                  }}
-                >
-                  {warn.title}
-                </h3>
-                <p
-                  style={{
-                    fontFamily: fonts.sans,
-                    fontSize: '14px',
-                    color: colors.textMuted,
-                    lineHeight: 1.6,
-                    margin: 0,
-                  }}
-                >
-                  {warn.desc}
-                </p>
+              <div key={idx} className={styles.warnCard}>
+                <h3 className={styles.warnTitle}>{warn.title}</h3>
+                <p className={styles.warnDesc}>{warn.desc}</p>
               </div>
             ))}
           </div>
         </Section>
 
         {/* Real Scenario (mirrors English "Real Scenario: Copart Dallas to Houston") */}
-        <Section title="Реальний приклад: Copart Dallas → Одеса">
-          <p style={editorialP}>
+        <section className={styles.darkPanel}>
+          <h2 className={styles.titleDark}>Реальний приклад: Copart Dallas → Одеса</h2>
+          <p className={styles.pDark}>
             Ви виграли Honda Civic 2019 з salvage title на Copart Dallas у
             понеділок за $6 800. У вівторок робите wire-переказ; платіж
             проходить у середу зранку. У четвер опівдні Copart видає gate pass.
@@ -619,7 +412,7 @@ function UkraineCopart() {
             віддаленому майданчику або при виграші у п'ятницю історія могла
             коштувати кілька днів зберігання.
           </p>
-          <p style={editorialP}>
+          <p className={styles.pDark}>
             У Houston авто чекає на завантаження у 40HC контейнер близько 10
             днів. Морський фрахт до Констанци (Румунія) — $1 850, транзит 28
             днів. Локальний експедитор передає авто українському митному
@@ -629,21 +422,13 @@ function UkraineCopart() {
             $2 680 без розмитнення, $4 780 з розмитненням. Загальний термін
             від виграшу лоту до отримання у Одесі: 6 тижнів і 4 дні.
           </p>
-        </Section>
+        </section>
 
         {/* When You Need This (mirrors SeoLandingPage whenNeeded) */}
         <Section title="Коли вам потрібен Y7 для Copart">
-          <ul
-            style={{
-              paddingLeft: '20px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '8px',
-              margin: 0,
-            }}
-          >
+          <ul className={styles.list}>
             {whenNeeded.map((item, i) => (
-              <li key={i} style={listItemStyle}>
+              <li key={i} className={styles.listItem}>
                 {item}
               </li>
             ))}
@@ -651,51 +436,19 @@ function UkraineCopart() {
         </Section>
 
         {/* How It Works — numbered steps (mirrors SeoLandingPage steps) */}
-        <Section kicker="◆ ЯК ЦЕ ПРАЦЮЄ" title="Як це працює">
-          <p style={editorialP}>
+        <Section kicker="ЯК ЦЕ ПРАЦЮЄ" title="Як це працює">
+          <p className={styles.pPaper}>
             Увесь цикл — від виграшу лоту до отримання авто в Україні — займає
             типово 6-8 тижнів. Нижче деталі кожного етапу і що саме робить Y7,
             а що залежить від вас та інших учасників процесу.
           </p>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '20px',
-            }}
-          >
+          <div className={styles.procList}>
             {processSteps.map((step, i) => (
-              <div
-                key={i}
-                style={{
-                  display: 'flex',
-                  gap: '16px',
-                  alignItems: 'flex-start',
-                }}
-              >
-                <div style={stepNumberStyle}>{i + 1}</div>
+              <div key={i} className={styles.procItem}>
+                <div className={styles.procNum}>{i + 1}</div>
                 <div>
-                  <div
-                    style={{
-                      fontFamily: fonts.sans,
-                      fontSize: '15px',
-                      fontWeight: 600,
-                      color: colors.text,
-                      marginBottom: '4px',
-                    }}
-                  >
-                    {step.title}
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: fonts.sans,
-                      fontSize: '14px',
-                      color: colors.textMuted,
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    {step.desc}
-                  </div>
+                  <div className={styles.procTitle}>{step.title}</div>
+                  <div className={styles.procDesc}>{step.desc}</div>
                 </div>
               </div>
             ))}
@@ -704,17 +457,9 @@ function UkraineCopart() {
 
         {/* What You Need (requirements) */}
         <Section title="Що потрібно від вас">
-          <ul
-            style={{
-              paddingLeft: '20px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '8px',
-              margin: 0,
-            }}
-          >
+          <ul className={styles.list}>
             {requirements.map((item, i) => (
-              <li key={i} style={listItemStyle}>
+              <li key={i} className={styles.listItem}>
                 {item}
               </li>
             ))}
@@ -723,27 +468,9 @@ function UkraineCopart() {
 
         {/* Our Capabilities */}
         <Section title="Наші можливості">
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-              gap: '12px',
-            }}
-          >
+          <div className={styles.capGrid}>
             {capabilities.map((item, i) => (
-              <div
-                key={i}
-                style={{
-                  background: colors.bgCard,
-                  border: `1px solid ${colors.border}`,
-                  borderRadius: '12px',
-                  padding: '16px 20px',
-                  fontFamily: fonts.sans,
-                  fontSize: '14px',
-                  color: colors.text,
-                  lineHeight: 1.5,
-                }}
-              >
+              <div key={i} className={styles.capCard}>
                 {item}
               </div>
             ))}
@@ -751,153 +478,46 @@ function UkraineCopart() {
         </Section>
 
         {/* Pricing (preserved from original) */}
-        <Section kicker="◆ ЦІНИ" title="Орієнтовні витрати на логістику">
-          <p style={editorialP}>
+        <Section kicker="ЦІНИ" title="Орієнтовні витрати на логістику">
+          <p className={styles.pPaper}>
             Нижче типові діапазони для стандартного легкового авто (седан, SUV,
             кросовер до 2,5 тонни). Конкретну вартість рахуємо після отримання
             номера лоту — різниця між майданчиками Copart і портами завантаження
             може складати кілька сотень доларів. Ціни не включають саме авто,
             buyer fee Copart та розмитнення в Україні.
           </p>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-              gap: '12px',
-            }}
-          >
-            <div className={styles.liftCard} style={cardStyle}>
-              <div
-                style={{
-                  fontFamily: fonts.sans,
-                  fontWeight: 600,
-                  fontSize: '13px',
-                  color: colors.text,
-                  marginBottom: '8px',
-                }}
-              >
-                Транспорт по США (Y7)
-              </div>
-              <div
-                style={{
-                  fontFamily: fonts.serif,
-                  fontSize: '24px',
-                  fontWeight: 700,
-                  color: colors.accent,
-                  marginBottom: '8px',
-                }}
-              >
-                $300–1 600
-              </div>
-              <ul
-                style={{
-                  fontFamily: fonts.sans,
-                  fontSize: '13px',
-                  color: colors.textMuted,
-                  lineHeight: 1.55,
-                  margin: 0,
-                  paddingLeft: '1.1rem',
-                }}
-              >
+          <div className={styles.priceGrid}>
+            <div className={styles.priceCard}>
+              <span className={styles.priceLabel}>Транспорт по США (Y7)</span>
+              <div className={styles.priceValue}>$300–1 600</div>
+              <ul className={styles.priceList}>
                 <li>До 500 миль: $300–600</li>
                 <li>500–1 500 миль: $600–1 200</li>
                 <li>Через усю країну (1 500+ миль): $900–1 600</li>
               </ul>
-              <p
-                style={{
-                  fontFamily: fonts.sans,
-                  fontSize: '12px',
-                  color: colors.textMuted,
-                  lineHeight: 1.5,
-                  margin: '8px 0 0',
-                  fontStyle: 'italic',
-                }}
-              >
+              <p className={styles.priceNote}>
                 Забір з майданчика Copart до порту. Залежить від відстані, стану
                 авто (їде/не їде), сезону.
               </p>
             </div>
-            <div className={styles.liftCard} style={cardStyle}>
-              <div
-                style={{
-                  fontFamily: fonts.sans,
-                  fontWeight: 600,
-                  fontSize: '13px',
-                  color: colors.text,
-                  marginBottom: '8px',
-                }}
-              >
-                Морський фрахт
-              </div>
-              <div
-                style={{
-                  fontFamily: fonts.serif,
-                  fontSize: '24px',
-                  fontWeight: 700,
-                  color: colors.accent,
-                  marginBottom: '8px',
-                }}
-              >
-                $1 200–2 400
-              </div>
-              <p
-                style={{
-                  fontFamily: fonts.sans,
-                  fontSize: '13px',
-                  color: colors.textMuted,
-                  lineHeight: 1.5,
-                  margin: 0,
-                }}
-              >
+            <div className={styles.priceCard}>
+              <span className={styles.priceLabel}>Морський фрахт</span>
+              <div className={styles.priceValue}>$1 200–2 400</div>
+              <p className={styles.priceBody}>
                 Контейнер 40HC (1-3 авто у контейнері) або RoRo. Залежить від
                 порту США та європейського порту призначення.
               </p>
             </div>
-            <div className={styles.liftCard} style={cardStyle}>
-              <div
-                style={{
-                  fontFamily: fonts.sans,
-                  fontWeight: 600,
-                  fontSize: '13px',
-                  color: colors.text,
-                  marginBottom: '8px',
-                }}
-              >
-                Доставка в Україну
-              </div>
-              <div
-                style={{
-                  fontFamily: fonts.serif,
-                  fontSize: '24px',
-                  fontWeight: 700,
-                  color: colors.accent,
-                  marginBottom: '8px',
-                }}
-              >
-                $600–1 200
-              </div>
-              <p
-                style={{
-                  fontFamily: fonts.sans,
-                  fontSize: '13px',
-                  color: colors.textMuted,
-                  lineHeight: 1.5,
-                  margin: 0,
-                }}
-              >
+            <div className={styles.priceCard}>
+              <span className={styles.priceLabel}>Доставка в Україну</span>
+              <div className={styles.priceValue}>$600–1 200</div>
+              <p className={styles.priceBody}>
                 Автовоз з європейського порту до вашого міста через один з
                 трьох маршрутів (Гдиня, Клайпеда, Констанца).
               </p>
             </div>
           </div>
-          <p
-            style={{
-              ...editorialP,
-              marginTop: '16px',
-              marginBottom: 0,
-              fontStyle: 'italic',
-            }}
-          >
+          <p className={styles.pNote}>
             <strong>Застереження:</strong> не забудьте додати buyer fee Copart
             ($500-1 200 залежно від лоту), мито, акциз та ПДВ при розмитненні.
             Для точного розрахунку надішліть номер лоту — дамо конкретні цифри
@@ -906,128 +526,48 @@ function UkraineCopart() {
         </Section>
 
         {/* Why Y7 Trust Box */}
-        <Section kicker="◆ ЧОМУ Y7" title="Чому Y7 Logistics">
-          <div
-            style={{
-              ...cardStyle,
-              borderLeft: `4px solid ${colors.accent}`,
-            }}
-          >
-            <p style={editorialP}>
-              Y7 Logistics працює як ліцензований FMCSA-брокер — це означає
-              федеральний нагляд Департаменту транспорту США, обовʼязкове
-              страхування відповідальності, публічна реєстрація в базі SAFER
-              (safer.fmcsa.dot.gov). Ви можете перевірити наш статус за номером
-              MC #1741537 самостійно в будь-який момент.
-            </p>
-            <div
-              style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: '24px',
-                marginTop: '8px',
-                marginBottom: '16px',
-              }}
-            >
-              <div>
-                <div
-                  style={{
-                    fontFamily: fonts.sans,
-                    fontWeight: 600,
-                    fontSize: '12px',
-                    color: colors.text,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.5px',
-                    marginBottom: '4px',
-                  }}
-                >
-                  Ліцензія брокера
-                </div>
-                <div
-                  style={{
-                    fontFamily: fonts.serif,
-                    fontSize: '16px',
-                    color: colors.accent,
-                    fontWeight: 700,
-                  }}
-                >
-                  MC #1741537
-                </div>
-              </div>
-              <div>
-                <div
-                  style={{
-                    fontFamily: fonts.sans,
-                    fontWeight: 600,
-                    fontSize: '12px',
-                    color: colors.text,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.5px',
-                    marginBottom: '4px',
-                  }}
-                >
-                  USDOT
-                </div>
-                <div
-                  style={{
-                    fontFamily: fonts.serif,
-                    fontSize: '16px',
-                    color: colors.accent,
-                    fontWeight: 700,
-                  }}
-                >
-                  #4427359
-                </div>
-              </div>
-              <div>
-                <div
-                  style={{
-                    fontFamily: fonts.sans,
-                    fontWeight: 600,
-                    fontSize: '12px',
-                    color: colors.text,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.5px',
-                    marginBottom: '4px',
-                  }}
-                >
-                  Статус FMCSA
-                </div>
-                <div
-                  style={{
-                    fontFamily: fonts.serif,
-                    fontSize: '16px',
-                    color: colors.accent,
-                    fontWeight: 700,
-                  }}
-                >
-                  Активний
-                </div>
-              </div>
+        <section className={styles.darkPanel}>
+          <span className={styles.eyebrowDark}>ЧОМУ Y7</span>
+          <h2 className={styles.titleDark}>Чому Y7 Logistics</h2>
+          <p className={styles.pDark}>
+            Y7 Logistics працює як ліцензований FMCSA-брокер — це означає
+            федеральний нагляд Департаменту транспорту США, обовʼязкове
+            страхування відповідальності, публічна реєстрація в базі SAFER
+            (safer.fmcsa.dot.gov). Ви можете перевірити наш статус за номером
+            MC #1741537 самостійно в будь-який момент.
+          </p>
+          <div className={styles.metaRow}>
+            <div>
+              <span className={styles.metaLabel}>Ліцензія брокера</span>
+              <div className={styles.metaValue}>MC #1741537</div>
             </div>
-            <p
-              style={{
-                ...editorialP,
-                marginBottom: 0,
-              }}
-            >
-              Для українських клієнтів ми пропонуємо українськомовну підтримку
-              через Telegram, прозорі ціни без прихованих комісій і реальний
-              досвід роботи з маршрутами через Гдиню, Клайпеду та Констанцу.
-            </p>
+            <div>
+              <span className={styles.metaLabel}>USDOT</span>
+              <div className={styles.metaValue}>#4427359</div>
+            </div>
+            <div>
+              <span className={styles.metaLabel}>Статус FMCSA</span>
+              <div className={styles.metaValue}>Активний</div>
+            </div>
           </div>
-        </Section>
+          <p className={styles.pDark}>
+            Для українських клієнтів ми пропонуємо українськомовну підтримку
+            через Telegram, прозорі ціни без прихованих комісій і реальний
+            досвід роботи з маршрутами через Гдиню, Клайпеду та Констанцу.
+          </p>
+        </section>
 
         {/* Diaspora section (preserved as inline editorial) */}
-        <Section title="Для діаспори в США — Copart під дім">
-          <p style={editorialP}>
+        <section className={styles.darkPanel}>
+          <h2 className={styles.titleDark}>Для діаспори в США — Copart під дім</h2>
+          <p className={styles.pDark}>
             Якщо ви з української діаспори в США і купуєте авто для
             використання у Штатах або на продаж — ваш маршрут коротший: від
             майданчика Copart одразу під дім у Чикаго, Лос-Анджелесі, Нью-Йорку
             чи будь-де в США. Y7 обслуговує цей обсяг самостійно, без
             міжнародного етапу.
           </p>
-          <p style={editorialP}>
+          <p className={styles.pDark}>
             Як ліцензований FMCSA-брокер (MC #1741537) маємо доступ до мережі
             перевірених перевізників по всіх 50 штатах. Типовий маршрут між
             штатами для седана з Copart — 5-8 днів від виграшу лоту до
@@ -1035,61 +575,26 @@ function UkraineCopart() {
             Copart нараховує плату за зберігання з 3 дня після виграшу, тому
             швидке підтвердження замовлення економить $100-300.
           </p>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-              gap: '12px',
-              marginTop: '16px',
-              marginBottom: '24px',
-            }}
-          >
+          <div className={styles.ucGrid}>
             {diasporaUseCases.map((uc, idx) => (
-              <div key={idx} className={styles.liftCard} style={cardStyle}>
-                <h4
-                  style={{
-                    fontFamily: fonts.sans,
-                    fontSize: '14px',
-                    fontWeight: 600,
-                    marginTop: 0,
-                    marginBottom: '6px',
-                    color: colors.text,
-                  }}
-                >
-                  {uc.title}
-                </h4>
-                <p
-                  style={{
-                    fontFamily: fonts.sans,
-                    fontSize: '13px',
-                    color: colors.textMuted,
-                    lineHeight: 1.5,
-                    margin: 0,
-                  }}
-                >
-                  {uc.desc}
-                </p>
+              <div key={idx} className={styles.ucCard}>
+                <h4 className={styles.ucTitle}>{uc.title}</h4>
+                <p className={styles.ucDesc}>{uc.desc}</p>
               </div>
             ))}
           </div>
-          <p
-            style={{
-              ...editorialP,
-              marginBottom: 0,
-              fontStyle: 'italic',
-            }}
-          >
+          <p className={styles.pNoteDark}>
             Ціни для стандартного седана чи кросовера на відкритому автовозі.
             Non-running авто — доплата $150-300 за завантаження лебідкою.
             Закриті автовози (enclosed) — доплата 30-60%. Діапазони: $450-750
             (до 500 миль), $750-1 200 (500-1500 миль), $1 100-1 600 (через усю
             країну).
           </p>
-        </Section>
+        </section>
 
         {/* FAQ (mirrors SeoLandingPage faqs) */}
-        <Section kicker="◆ FAQ" title="Часті запитання">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        <Section kicker="FAQ" title="Часті запитання">
+          <div className={styles.faqList}>
             {faqSchema.mainEntity.map((faq, idx) => (
               <details key={idx} className={styles.faqItem}>
                 <summary className={styles.faqSummary}>
@@ -1100,77 +605,35 @@ function UkraineCopart() {
             ))}
           </div>
         </Section>
+      </div>
 
-        {/* CTA (mirrors SeoLandingPage CTA) */}
-        <div
-          style={{
-            textAlign: 'center',
-            padding: '40px 0',
-            borderTop: `1px solid ${colors.border}`,
-            marginTop: '16px',
-          }}
+      {/* CTA (mirrors SeoLandingPage CTA) */}
+      <section className={styles.ctaBand}>
+        <a
+          href="https://t.me/y7dispatch_bot"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.ctaBtn}
         >
-          <a
-            href="https://t.me/y7dispatch_bot"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`${styles.subtleLift} ${styles.focusRing}`}
-            style={{
-              ...btnStyles.accent,
-              display: 'inline-block',
-              padding: '14px 32px',
-              fontSize: '13px',
-              textDecoration: 'none',
-              borderRadius: '24px',
-            }}
-          >
-            Розрахунок у Telegram
-          </a>
-        </div>
+          Розрахунок у Telegram
+        </a>
+      </section>
 
-        {/* Related Pages (mirrors SeoLandingPage related) */}
-        <div
-          style={{
-            borderTop: `1px solid ${colors.border}`,
-            paddingTop: '32px',
-          }}
-        >
-          <h3
-            style={{
-              fontFamily: fonts.sans,
-              fontSize: '13px',
-              fontWeight: 600,
-              color: colors.text,
-              textTransform: 'uppercase',
-              letterSpacing: '0.5px',
-              marginBottom: '16px',
-            }}
-          >
+      {/* Related Pages (mirrors SeoLandingPage related) */}
+      <section className={styles.relatedBand}>
+        <div className={styles.relatedInner}>
+          <h3 className={styles.relatedHeading}>
             Повʼязані сторінки
           </h3>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+          <div className={styles.relatedPills}>
             {relatedLinks.map((link, i) => (
-              <Link
-                key={i}
-                to={link.to}
-                style={{
-                  fontFamily: fonts.sans,
-                  fontSize: '13px',
-                  color: colors.accent,
-                  background: colors.bgCard,
-                  border: `1px solid ${colors.border}`,
-                  borderRadius: '20px',
-                  padding: '8px 16px',
-                  textDecoration: 'none',
-                  transition: 'border-color 0.2s',
-                }}
-              >
+              <Link key={i} to={link.to} className={styles.relatedPill}>
                 {link.label}
               </Link>
             ))}
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
