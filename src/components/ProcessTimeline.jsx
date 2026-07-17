@@ -9,7 +9,7 @@ export default function ProcessTimeline() {
     <section className={styles.section} aria-labelledby="process-timeline-title">
       <div className={styles.inner}>
         <div className={styles.header}>
-          <span className={styles.kicker}>&#9670; {t('kicker')}</span>
+          <span className={styles.kicker}>{t('kicker')}</span>
           <h2 id="process-timeline-title" className={styles.title}>{t('title')}</h2>
           <p className={styles.subtitle}>{t('subtitle')}</p>
         </div>

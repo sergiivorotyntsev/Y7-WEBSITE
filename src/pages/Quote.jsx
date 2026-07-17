@@ -49,9 +49,7 @@ export default function Quote() {
         </div>
       </section>
 
-      {/* Process timeline — manifest band. ProcessTimeline is an unedited
-          shared component that paints its own near-paper V1 surface
-          (ShipMyCar W4 precedent). */}
+      {/* Process timeline — manifest band (shared component, V2 since T02b). */}
       {showChrome && (
         <section className={v2s.manifest}>
           <ProcessTimeline />
