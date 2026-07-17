@@ -188,77 +188,12 @@ const FAQS = [
   { q: 'Как отследить перевозку?', a: 'После бронирования вы получаете данные перевозчика и ориентировочные даты. Статус — через @y7dispatch_bot в любое время.' },
 ];
 
-// ---------------------------------------------------------------------------
-// Shared inline styles
-// ---------------------------------------------------------------------------
-const styles = {
-  main: {
-    fontFamily: 'Georgia, "Times New Roman", serif',
-    color: '#2C2C2A',
-    background: '#F7F5F0',
-  },
-  section: {
-    maxWidth: '900px',
-    margin: '0 auto',
-    padding: 'clamp(2rem, 5vw, 4rem) clamp(1.25rem, 4vw, 2rem)',
-  },
-  h1: {
-    fontSize: 'clamp(2rem, 5vw, 3.25rem)',
-    lineHeight: '1.15',
-    fontWeight: 400,
-  },
-  h2: {
-    fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
-    lineHeight: '1.2',
-    fontWeight: 400,
-    marginBottom: '1rem',
-  },
-  paragraph: {
-    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-    lineHeight: '1.7',
-    color: '#4A4A46',
-  },
-  card: {
-    background: '#fff',
-    padding: '1.5rem',
-    borderRadius: '8px',
-    border: '1px solid #E8E4DC',
-  },
-  ctaButton: {
-    background: '#993C1D',
-    color: '#fff',
-    padding: '0.875rem 1.75rem',
-    borderRadius: '6px',
-    display: 'inline-block',
-    textDecoration: 'none',
-    fontFamily: 'system-ui, sans-serif',
-    fontWeight: 500,
-    border: 'none',
-    cursor: 'pointer',
-  },
-  darkCta: {
-    background: '#2C2C2A',
-    color: '#F7F5F0',
-  },
-  statNumber: {
-    fontSize: 'clamp(2rem, 4vw, 3rem)',
-    fontWeight: 300,
-    color: '#993C1D',
-  },
-  sansFont: {
-    fontFamily: 'system-ui, sans-serif',
-  },
-  accent: {
-    color: '#993C1D',
-  },
-};
-
 // =============================================================================
 // Component
 // =============================================================================
 function RussiaCopart() {
   return (
-    <div style={styles.main}>
+    <div className={pageStyles.page}>
       {/* ----------------------------------------------------------------- */}
       {/* Head / SEO                                                        */}
       {/* ----------------------------------------------------------------- */}
@@ -287,539 +222,232 @@ function RussiaCopart() {
       {/* ================================================================= */}
       {/* Breadcrumb nav                                                    */}
       {/* ================================================================= */}
-      <nav
-        style={{
-          ...styles.section,
-          paddingTop: '1rem',
-          paddingBottom: '0',
-        }}
-        aria-label="Breadcrumb"
-      >
-        <ol
-          style={{
-            ...styles.sansFont,
-            listStyle: 'none',
-            padding: 0,
-            margin: 0,
-            display: 'flex',
-            gap: '0.5rem',
-            fontSize: '0.85rem',
-            color: '#4A4A46',
-            flexWrap: 'wrap',
-          }}
-        >
-          <li>
-            <Link
-              to="/ru"
-              style={{ color: '#993C1D', textDecoration: 'none' }}
-            >
-              Y7 Logistics
-            </Link>
-            <span style={{ margin: '0 0.25rem' }}>/</span>
-          </li>
-          <li>
-            <Link
-              to="/ru"
-              style={{ color: '#993C1D', textDecoration: 'none' }}
-            >
-              Русский
-            </Link>
-            <span style={{ margin: '0 0.25rem' }}>/</span>
-          </li>
-          <li style={{ color: '#2C2C2A' }}>
-            Copart и IAAI
-          </li>
-        </ol>
+      <nav className={pageStyles.breadcrumb} aria-label="Breadcrumb">
+        <div className={pageStyles.breadcrumbInner}>
+          <ol className={pageStyles.breadcrumbList}>
+            <li>
+              <Link to="/ru" className={pageStyles.breadcrumbLink}>
+                Y7 Logistics
+              </Link>
+              <span className={pageStyles.breadcrumbSep}>/</span>
+            </li>
+            <li>
+              <Link to="/ru" className={pageStyles.breadcrumbLink}>
+                Русский
+              </Link>
+              <span className={pageStyles.breadcrumbSep}>/</span>
+            </li>
+            <li>
+              Copart и IAAI
+            </li>
+          </ol>
+        </div>
       </nav>
 
       {/* ================================================================= */}
-      {/* SECTION 1 — Hero                                                  */}
+      {/* SECTION 1 — Hero (board-black)                                     */}
       {/* ================================================================= */}
-      <section style={styles.section}>
-        <h1 style={styles.h1}>
-          Перевозка автомобилей с аукционов Copart и IAAI по всей территории США
-        </h1>
-        <p
-          style={{
-            ...styles.paragraph,
-            marginTop: '1.5rem',
-            maxWidth: '720px',
-          }}
-        >
-          Покупаете автомобили на аукционах Copart или IAAI? Y7 Logistics организует забор
-          с площадки и доставку в любую точку США — домой, в мастерскую или в морской порт.
-          Лицензированный брокер FMCSA (MC&nbsp;#1741537), русскоязычная команда, опыт работы
-          со всеми площадками Copart и IAAI.
-        </p>
+      <section className={`${pageStyles.heroBand} ${pageStyles.hero}`}>
+        <div className={pageStyles.inner}>
+          <h1 className={pageStyles.heroTitle}>
+            Перевозка автомобилей с аукционов Copart и IAAI по всей территории США
+          </h1>
+          <p className={pageStyles.heroLede}>
+            Покупаете автомобили на аукционах Copart или IAAI? Y7 Logistics организует забор
+            с площадки и доставку в любую точку США — домой, в мастерскую или в морской порт.
+            Лицензированный брокер FMCSA (MC&nbsp;#1741537), русскоязычная команда, опыт работы
+            со всеми площадками Copart и IAAI.
+          </p>
+        </div>
       </section>
 
       {/* ================================================================= */}
-      {/* SECTION 2 — What Copart really is                                 */}
+      {/* SECTION 2 — What Copart really is (paper)                          */}
       {/* ================================================================= */}
-      <section
-        style={{
-          ...styles.section,
-          borderTop: '1px solid #E8E4DC',
-        }}
-      >
-        <span className={pageStyles.sectionKicker}>◆ COPART И IAAI</span>
-        <h2 style={styles.h2}>Что такое Copart и IAAI</h2>
-        <p style={{ ...styles.paragraph, marginBottom: '1rem' }}>
-          Copart и IAAI — два крупнейших онлайн-аукциона подержанных и повреждённых автомобилей
-          в Соединённых Штатах. Вместе они обрабатывают миллионы лотов ежегодно: автомобили после ДТП,
-          страховых случаев, лизинговые возвраты, конфискации и fleet-списания.
-        </p>
-        <p style={{ ...styles.paragraph, marginBottom: '1rem' }}>
-          Для покупки на этих площадках нужна дилерская лицензия или аккаунт через
-          брокера-посредника (CrashedToys, BidFax и другие). Торги проходят полностью
-          онлайн — вы можете участвовать из любой точки мира.
-        </p>
-        <p style={styles.paragraph}>
-          После выигрыша и оплаты лота вам даётся ограниченное время на вывоз автомобиля
-          с площадки (обычно 3 бизнес-дня). Именно на этом этапе подключается Y7 Logistics —
-          мы забираем автомобиль и доставляем его по указанному адресу.
-        </p>
+      <section className={pageStyles.paperBand}>
+        <div className={pageStyles.inner}>
+          <span className={pageStyles.eyebrowRulePaper}>COPART И IAAI</span>
+          <h2 className={pageStyles.sectionTitle}>Что такое Copart и IAAI</h2>
+          <p className={pageStyles.prose}>
+            Copart и IAAI — два крупнейших онлайн-аукциона подержанных и повреждённых автомобилей
+            в Соединённых Штатах. Вместе они обрабатывают миллионы лотов ежегодно: автомобили после ДТП,
+            страховых случаев, лизинговые возвраты, конфискации и fleet-списания.
+          </p>
+          <p className={pageStyles.prose}>
+            Для покупки на этих площадках нужна дилерская лицензия или аккаунт через
+            брокера-посредника (CrashedToys, BidFax и другие). Торги проходят полностью
+            онлайн — вы можете участвовать из любой точки мира.
+          </p>
+          <p className={pageStyles.prose}>
+            После выигрыша и оплаты лота вам даётся ограниченное время на вывоз автомобиля
+            с площадки (обычно 3 бизнес-дня). Именно на этом этапе подключается Y7 Logistics —
+            мы забираем автомобиль и доставляем его по указанному адресу.
+          </p>
+        </div>
       </section>
 
       {/* ================================================================= */}
-      {/* SECTION 3 — Copart vs IAAI comparison table                       */}
+      {/* SECTION 3 — Copart vs IAAI comparison table (paper)               */}
       {/* ================================================================= */}
-      <section style={styles.section}>
-        <span className={pageStyles.sectionKicker}>◆ СРАВНЕНИЕ</span>
-        <h2 style={styles.h2}>Сравнение Copart и IAAI</h2>
+      <section className={pageStyles.paperBand}>
+        <div className={pageStyles.inner}>
+          <span className={pageStyles.eyebrowPlainPaper}>СРАВНЕНИЕ</span>
+          <h2 className={pageStyles.sectionTitle}>Сравнение Copart и IAAI</h2>
 
-        <div
-          style={{
-            overflowX: 'auto',
-            borderRadius: '8px',
-            border: '1px solid #E8E4DC',
-          }}
-        >
-          <table
-            style={{
-              width: '100%',
-              borderCollapse: 'collapse',
-              ...styles.sansFont,
-              fontSize: '0.95rem',
-              background: '#fff',
-            }}
-          >
-            <thead>
-              <tr style={{ background: '#F7F5F0' }}>
-                <th
-                  style={{
-                    padding: '0.875rem 1rem',
-                    textAlign: 'left',
-                    fontWeight: 600,
-                    color: '#2C2C2A',
-                    borderBottom: '2px solid #E8E4DC',
-                  }}
-                >
-                  Параметр
-                </th>
-                <th
-                  style={{
-                    padding: '0.875rem 1rem',
-                    textAlign: 'left',
-                    fontWeight: 600,
-                    color: '#2C2C2A',
-                    borderBottom: '2px solid #E8E4DC',
-                  }}
-                >
-                  Copart
-                </th>
-                <th
-                  style={{
-                    padding: '0.875rem 1rem',
-                    textAlign: 'left',
-                    fontWeight: 600,
-                    color: '#2C2C2A',
-                    borderBottom: '2px solid #E8E4DC',
-                  }}
-                >
-                  IAAI
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {COMPARISON_ROWS.map((row, i) => (
-                <tr
-                  key={i}
-                  style={{
-                    borderBottom: '1px solid #E8E4DC',
-                    background: i % 2 === 0 ? '#fff' : '#FAFAF8',
-                  }}
-                >
-                  <td
-                    style={{
-                      padding: '0.75rem 1rem',
-                      fontWeight: 500,
-                      color: '#2C2C2A',
-                    }}
-                  >
-                    {row.feature}
-                  </td>
-                  <td style={{ padding: '0.75rem 1rem', color: '#4A4A46' }}>
-                    {row.copart}
-                  </td>
-                  <td style={{ padding: '0.75rem 1rem', color: '#4A4A46' }}>
-                    {row.iaai}
-                  </td>
+          <div className={pageStyles.tableWrap}>
+            <table className={pageStyles.tableOnPaper}>
+              <thead>
+                <tr>
+                  <th>Параметр</th>
+                  <th>Copart</th>
+                  <th>IAAI</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {COMPARISON_ROWS.map((row, i) => (
+                  <tr key={i}>
+                    <td>{row.feature}</td>
+                    <td>{row.copart}</td>
+                    <td>{row.iaai}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
 
       {/* ================================================================= */}
-      {/* SECTION 4 — Fees breakdown                                        */}
+      {/* SECTION 4 — Fees breakdown (paper)                                */}
       {/* ================================================================= */}
-      <section
-        style={{
-          ...styles.section,
-          borderTop: '1px solid #E8E4DC',
-        }}
-      >
-        <span className={pageStyles.sectionKicker}>◆ РАСХОДЫ</span>
-        <h2 style={styles.h2}>Какие расходы учитывать</h2>
+      <section className={pageStyles.paperBand}>
+        <div className={pageStyles.inner}>
+          <span className={pageStyles.eyebrowRulePaper}>РАСХОДЫ</span>
+          <h2 className={pageStyles.sectionTitle}>Какие расходы учитывать</h2>
 
-        <div style={{ display: 'grid', gap: '1rem' }}>
-          {FEES.map((fee, i) => (
-            <div
-              key={i}
-              style={{
-                ...styles.card,
-                display: 'grid',
-                gridTemplateColumns: '1fr auto',
-                gap: '1rem',
-                alignItems: 'center',
-              }}
-            >
-              <div>
-                <h3
-                  style={{
-                    ...styles.sansFont,
-                    fontSize: '1rem',
-                    fontWeight: 600,
-                    color: '#2C2C2A',
-                    marginBottom: '0.25rem',
-                  }}
-                >
-                  {fee.name}
-                </h3>
-                <p
-                  style={{
-                    ...styles.paragraph,
-                    fontSize: '0.85rem',
-                  }}
-                >
-                  {fee.note}
-                </p>
+          <div className={pageStyles.feesList}>
+            {FEES.map((fee, i) => (
+              <div key={i} className={`${pageStyles.cardPaper} ${pageStyles.feeRow}`}>
+                <div>
+                  <h3 className={pageStyles.feeName}>{fee.name}</h3>
+                  <p className={pageStyles.bodyText}>{fee.note}</p>
+                </div>
+                <p className={pageStyles.feeAmount}>{fee.amount}</p>
               </div>
-              <p
-                style={{
-                  fontSize: '1.25rem',
-                  fontWeight: 500,
-                  color: '#993C1D',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                {fee.amount}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ================================================================= */}
-      {/* SECTION 5 — Transport routes                                      */}
+      {/* SECTION 5 — Transport routes (board mid band)                     */}
       {/* ================================================================= */}
-      <section style={styles.section}>
-        <span className={pageStyles.sectionKicker}>◆ МАРШРУТЫ</span>
-        <h2 style={styles.h2}>Популярные маршруты с аукционов</h2>
+      <section className={pageStyles.boardBand}>
+        <div className={pageStyles.inner}>
+          <span className={pageStyles.eyebrowRuleDark}>МАРШРУТЫ</span>
+          <h2 className={pageStyles.sectionTitle}>Популярные маршруты с аукционов</h2>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '1.25rem',
-          }}
-        >
-          {ROUTES.map((route, i) => (
-            <div key={i} className={pageStyles.liftCard} style={styles.card}>
-              <p
-                style={{
-                  ...styles.sansFont,
-                  fontSize: '0.8rem',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.05em',
-                  color: '#993C1D',
-                  marginBottom: '0.5rem',
-                }}
-              >
-                {route.from}
-              </p>
-              <p
-                style={{
-                  ...styles.sansFont,
-                  fontSize: '1.1rem',
-                  fontWeight: 600,
-                  color: '#2C2C2A',
-                  marginBottom: '0.75rem',
-                }}
-              >
-                {route.to}
-              </p>
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  fontSize: '0.9rem',
-                  color: '#4A4A46',
-                  ...styles.sansFont,
-                }}
-              >
-                <span>{route.distance}</span>
-                <span>{route.time}</span>
+          <div className={`${pageStyles.grid} ${pageStyles.grid4}`}>
+            {ROUTES.map((route, i) => (
+              <div key={i} className={pageStyles.cardBoard}>
+                <p className={pageStyles.routeFrom}>{route.from}</p>
+                <p className={pageStyles.routeTo}>{route.to}</p>
+                <div className={pageStyles.routeMeta}>
+                  <span>{route.distance}</span>
+                  <span>{route.time}</span>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ================================================================= */}
-      {/* SECTION 6 — Seven pitfalls                                        */}
+      {/* SECTION 6 — Seven pitfalls (paper)                                */}
       {/* ================================================================= */}
-      <section
-        style={{
-          ...styles.section,
-          borderTop: '1px solid #E8E4DC',
-        }}
-      >
-        <span className={pageStyles.sectionKicker}>◆ РИСКИ</span>
-        <h2 style={styles.h2}>7 ошибок при покупке на аукционе</h2>
+      <section className={pageStyles.paperBand}>
+        <div className={pageStyles.inner}>
+          <span className={pageStyles.eyebrowPlainPaper}>РИСКИ</span>
+          <h2 className={pageStyles.sectionTitle}>7 ошибок при покупке на аукционе</h2>
 
-        <div style={{ display: 'grid', gap: '1.25rem' }}>
-          {PITFALLS.map((pit, i) => (
-            <div
-              key={i}
-              style={{
-                ...styles.card,
-                display: 'grid',
-                gridTemplateColumns: '2.5rem 1fr',
-                gap: '1rem',
-                alignItems: 'start',
-              }}
-            >
-              <span
-                style={{
-                  ...styles.statNumber,
-                  fontSize: '1.5rem',
-                  lineHeight: '1',
-                }}
-              >
-                {i + 1}
-              </span>
-              <div>
-                <h3
-                  style={{
-                    ...styles.sansFont,
-                    fontSize: '1.05rem',
-                    fontWeight: 600,
-                    marginBottom: '0.35rem',
-                    color: '#2C2C2A',
-                  }}
-                >
-                  {pit.title}
-                </h3>
-                <p style={{ ...styles.paragraph, fontSize: '0.95rem' }}>
-                  {pit.desc}
-                </p>
-              </div>
-            </div>
-          ))}
+          <ol className={pageStyles.stepList}>
+            {PITFALLS.map((pit, i) => (
+              <li key={i} className={pageStyles.step} data-step={i + 1}>
+                <h3 className={pageStyles.cardHeading}>{pit.title}</h3>
+                <p className={pageStyles.bodyText}>{pit.desc}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
       {/* ================================================================= */}
-      {/* SECTION 7 — How it works                                          */}
+      {/* SECTION 7 — How it works (board)                                  */}
       {/* ================================================================= */}
-      <section style={styles.section}>
-        <span className={pageStyles.sectionKicker}>◆ ЗАКАЗ</span>
-        <h2 style={styles.h2}>Как заказать перевозку с аукциона</h2>
+      <section className={pageStyles.boardBand}>
+        <div className={pageStyles.inner}>
+          <span className={pageStyles.eyebrowRuleDark}>ЗАКАЗ</span>
+          <h2 className={pageStyles.sectionTitle}>Как заказать перевозку с аукциона</h2>
 
-        <ol
-          style={{
-            listStyle: 'none',
-            padding: 0,
-            margin: 0,
-            display: 'grid',
-            gap: '1.25rem',
-          }}
-        >
-          {HOW_IT_WORKS.map((step, i) => (
-            <li
-              key={i}
-              style={{
-                ...styles.card,
-                display: 'grid',
-                gridTemplateColumns: '3rem 1fr',
-                gap: '1rem',
-                alignItems: 'start',
-              }}
-            >
-              <span
-                style={{
-                  ...styles.sansFont,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '2.5rem',
-                  height: '2.5rem',
-                  borderRadius: '50%',
-                  background: '#993C1D',
-                  color: '#fff',
-                  fontSize: '1rem',
-                  fontWeight: 600,
-                }}
-              >
-                {i + 1}
-              </span>
-              <div>
-                <h3
-                  style={{
-                    ...styles.sansFont,
-                    fontSize: '1.05rem',
-                    fontWeight: 600,
-                    marginBottom: '0.35rem',
-                    color: '#2C2C2A',
-                  }}
-                >
-                  {step.title}
-                </h3>
-                <p style={{ ...styles.paragraph, fontSize: '0.95rem' }}>
-                  {step.desc}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ol>
+          <ol className={pageStyles.stepFlow}>
+            {HOW_IT_WORKS.map((step, i) => (
+              <li key={i} className={pageStyles.flowItem}>
+                <span className={pageStyles.flowNumDark}>{i + 1}</span>
+                <div>
+                  <h3 className={pageStyles.cardHeading}>{step.title}</h3>
+                  <p className={pageStyles.bodyText}>{step.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
       </section>
 
       {/* ================================================================= */}
-      {/* SECTION 8 — FAQ                                                   */}
+      {/* SECTION 8 — FAQ (paper)                                           */}
       {/* ================================================================= */}
-      <section
-        style={{
-          ...styles.section,
-          borderTop: '1px solid #E8E4DC',
-        }}
-      >
-        <span className={pageStyles.sectionKicker}>◆ FAQ</span>
-        <h2 style={styles.h2}>Часто задаваемые вопросы</h2>
+      <section className={pageStyles.paperBand}>
+        <div className={pageStyles.inner}>
+          <span className={pageStyles.eyebrowPlainPaper}>FAQ</span>
+          <h2 className={pageStyles.sectionTitle}>Часто задаваемые вопросы</h2>
 
-        <div style={{ display: 'grid', gap: '0.75rem' }}>
-          {FAQS.map((faq, i) => (
-            <details
-              key={i}
-              className={pageStyles.faqItem}
-              style={{
-                ...styles.card,
-                cursor: 'pointer',
-              }}
-            >
-              <summary
-                style={{
-                  ...styles.sansFont,
-                  fontSize: '1.05rem',
-                  fontWeight: 600,
-                  color: '#2C2C2A',
-                  listStyle: 'none',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                {faq.q}
-                <span
-                  style={{
-                    fontSize: '1.25rem',
-                    color: '#993C1D',
-                    marginLeft: '1rem',
-                    flexShrink: 0,
-                  }}
-                >
-                  +
-                </span>
-              </summary>
-              <p
-                style={{
-                  ...styles.paragraph,
-                  marginTop: '1rem',
-                  fontSize: '0.95rem',
-                }}
-              >
-                {faq.a}
-              </p>
-            </details>
-          ))}
+          <div className={pageStyles.faqList}>
+            {FAQS.map((faq, i) => (
+              <details key={i} className={pageStyles.faqItem}>
+                <summary className={pageStyles.faqSummary}>
+                  {faq.q}
+                  <span className={pageStyles.faqIcon} aria-hidden="true">+</span>
+                </summary>
+                <p className={pageStyles.faqAnswer}>{faq.a}</p>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
 
       <ContextualCTA variant="card" to="/exporters" intlKey="exporters" tone="amber" />
 
       {/* ================================================================= */}
-      {/* SECTION 9 — Dark CTA                                              */}
+      {/* SECTION 9 — Dark CTA (board, page closes dark)                    */}
       {/* ================================================================= */}
-      <section
-        style={{
-          ...styles.darkCta,
-          padding: 'clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 2rem)',
-          textAlign: 'center',
-        }}
-      >
-        <div style={{ maxWidth: '700px', margin: '0 auto' }}>
-          <h2
-            style={{
-              ...styles.h2,
-              color: '#F7F5F0',
-            }}
-          >
-            Выиграли лот? Закажите перевозку
-          </h2>
-          <p
-            style={{
-              fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-              lineHeight: '1.7',
-              color: '#A8A49C',
-              marginBottom: '2rem',
-            }}
-          >
-            Напишите нам VIN и номер площадки — мы рассчитаем стоимость и постараемся
-            организовать забор как можно быстрее (storage fees устанавливает Copart, не
-            брокер; мы не гарантируем забор в бесплатном окне, но помогаем планировать).
-          </p>
-          <Link
-            to="/ru/ship-my-car"
-            className={`${pageStyles.subtleLift} ${pageStyles.focusRing}`}
-            style={{
-              ...styles.ctaButton,
-              fontSize: '1.05rem',
-            }}
-          >
-            Заказать перевозку
-          </Link>
-          <p
-            style={{
-              ...styles.sansFont,
-              fontSize: '0.85rem',
-              color: '#6B6963',
-              marginTop: '1rem',
-            }}
-          >
-            MC #1741537 · USDOT #4427359 · Лицензированный брокер FMCSA
-          </p>
+      <section className={`${pageStyles.boardBand} ${pageStyles.ctaBand}`}>
+        <div className={pageStyles.inner}>
+          <div className={pageStyles.ctaInner}>
+            <h2 className={pageStyles.sectionTitle}>
+              Выиграли лот? Закажите перевозку
+            </h2>
+            <p className={pageStyles.ctaLede}>
+              Напишите нам VIN и номер площадки — мы рассчитаем стоимость и постараемся
+              организовать забор как можно быстрее (storage fees устанавливает Copart, не
+              брокер; мы не гарантируем забор в бесплатном окне, но помогаем планировать).
+            </p>
+            <Link to="/ru/ship-my-car" className={pageStyles.cta}>
+              Заказать перевозку
+            </Link>
+            <p className={pageStyles.ctaCredential}>
+              MC #1741537 · USDOT #4427359 · Лицензированный брокер FMCSA
+            </p>
+          </div>
         </div>
       </section>
     </div>

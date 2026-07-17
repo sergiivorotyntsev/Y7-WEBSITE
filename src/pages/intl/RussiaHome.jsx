@@ -203,77 +203,12 @@ const FAQS = [
   { q: 'Как с вами связаться?', a: 'Самый быстрый способ — Telegram-бот @y7dispatch_bot (ответ в течение минут). Также можно написать на info@y7agency.com. Диспетчерская на связи в рабочие часы.' },
 ];
 
-// ---------------------------------------------------------------------------
-// Shared inline styles
-// ---------------------------------------------------------------------------
-const styles = {
-  main: {
-    fontFamily: 'Georgia, "Times New Roman", serif',
-    color: '#2C2C2A',
-    background: '#F7F5F0',
-  },
-  section: {
-    maxWidth: '900px',
-    margin: '0 auto',
-    padding: 'clamp(2rem, 5vw, 4rem) clamp(1.25rem, 4vw, 2rem)',
-  },
-  h1: {
-    fontSize: 'clamp(2rem, 5vw, 3.25rem)',
-    lineHeight: '1.15',
-    fontWeight: 400,
-  },
-  h2: {
-    fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
-    lineHeight: '1.2',
-    fontWeight: 400,
-    marginBottom: '1rem',
-  },
-  paragraph: {
-    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-    lineHeight: '1.7',
-    color: '#4A4A46',
-  },
-  card: {
-    background: '#fff',
-    padding: '1.5rem',
-    borderRadius: '8px',
-    border: '1px solid #E8E4DC',
-  },
-  ctaButton: {
-    background: '#993C1D',
-    color: '#fff',
-    padding: '0.875rem 1.75rem',
-    borderRadius: '6px',
-    display: 'inline-block',
-    textDecoration: 'none',
-    fontFamily: 'system-ui, sans-serif',
-    fontWeight: 500,
-    border: 'none',
-    cursor: 'pointer',
-  },
-  darkCta: {
-    background: '#2C2C2A',
-    color: '#F7F5F0',
-  },
-  statNumber: {
-    fontSize: 'clamp(2rem, 4vw, 3rem)',
-    fontWeight: 300,
-    color: '#993C1D',
-  },
-  sansFont: {
-    fontFamily: 'system-ui, sans-serif',
-  },
-  accent: {
-    color: '#993C1D',
-  },
-};
-
 // =============================================================================
 // Component
 // =============================================================================
 function RussiaHome() {
   return (
-    <div style={styles.main}>
+    <div className={pageStyles.page}>
       {/* ----------------------------------------------------------------- */}
       {/* Head / SEO                                                        */}
       {/* ----------------------------------------------------------------- */}
@@ -299,513 +234,274 @@ function RussiaHome() {
       />
 
       {/* ================================================================= */}
-      {/* SECTION 1 — Hero (centered, pill kicker, matches Home.jsx pattern) */}
+      {/* SECTION 1 — Hero (board-black, centered, HeroRouteVisual)          */}
       {/* ================================================================= */}
-      <section className={pageStyles.heroSection}>
+      <section className={`${pageStyles.heroBand} ${pageStyles.hero}`}>
         <div className={pageStyles.heroVisual} aria-hidden="true">
           <HeroRouteVisual />
         </div>
-        <div className={pageStyles.heroInner}>
-          <span className={pageStyles.heroKickerPill}>◆ Y7 Logistics</span>
+        <div className={pageStyles.inner}>
+          <div className={pageStyles.heroInner}>
+            <span className={`${pageStyles.eyebrowPlainDark} ${pageStyles.heroEyebrow}`}>Y7 Logistics</span>
 
-          <h1 style={{ ...styles.h1, textAlign: 'center' }}>
-            Перевозка автомобилей по всей территории США — от аукциона до вашего адреса
-          </h1>
+            <h1 className={pageStyles.heroTitle}>
+              Перевозка автомобилей по всей территории США — от аукциона до вашего адреса
+            </h1>
 
-          <p
-            style={{
-              ...styles.paragraph,
-              marginTop: '1.5rem',
-              maxWidth: '720px',
-              textAlign: 'center',
-            }}
-          >
-            Y7 Logistics — лицензированный брокер автоперевозок FMCSA (MC&nbsp;#1741537).
-            Мы организуем доставку автомобилей по всем 50 штатам: с аукционов Copart и IAAI,
-            между городами, до морских портов. Сеть из 700+ проверенных
-            перевозчиков и русскоязычная команда, которая отвечает быстро через Telegram и email. Наши цены
-            формируются на основе реальных данных Central Dispatch — без скрытых доплат
-            и неприятных сюрпризов.
+            <p className={pageStyles.heroLede}>
+              Y7 Logistics — лицензированный брокер автоперевозок FMCSA (MC&nbsp;#1741537).
+              Мы организуем доставку автомобилей по всем 50 штатам: с аукционов Copart и IAAI,
+              между городами, до морских портов. Сеть из 700+ проверенных
+              перевозчиков и русскоязычная команда, которая отвечает быстро через Telegram и email. Наши цены
+              формируются на основе реальных данных Central Dispatch — без скрытых доплат
+              и неприятных сюрпризов.
+            </p>
+
+            {/* CTA buttons — centered row */}
+            <div className={pageStyles.heroCtas}>
+              <Link to="/ru/ship-my-car" className={pageStyles.cta}>
+                Рассчитать стоимость доставки
+              </Link>
+              <Link to="/track" className={pageStyles.ghostDark}>
+                Трекинг
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================= */}
+      {/* SECTION 2 — Quick Stats (paper manifest row)                       */}
+      {/* ================================================================= */}
+      <section className={pageStyles.paperBand}>
+        <div className={pageStyles.inner}>
+          <div className={pageStyles.statsGrid}>
+            {STATS.map((stat, i) => (
+              <div key={i} className={pageStyles.statCell}>
+                <p className={pageStyles.statNum}>{stat.number}</p>
+                <p className={pageStyles.statLabel}>{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================= */}
+      {/* SECTION 3 — Our Services (board)                                   */}
+      {/* ================================================================= */}
+      <section className={pageStyles.boardBand}>
+        <div className={pageStyles.inner}>
+          <span className={pageStyles.eyebrowRuleDark}>Услуги</span>
+          <h2 className={pageStyles.sectionTitle}>Наши услуги</h2>
+          <p className={pageStyles.lede}>
+            Полный спектр автоперевозок внутри США — от единичного заказа до регулярных дилерских
+            маршрутов. Все услуги доступны на русском языке.
           </p>
 
-          {/* CTA buttons — centered row */}
-          <div style={{ marginTop: '2rem', display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
-            <Link to="/ru/ship-my-car" className={`${pageStyles.subtleLift} ${pageStyles.focusRing}`} style={styles.ctaButton}>
-              Рассчитать стоимость доставки
-            </Link>
-            <Link
-              to="/track"
-              className={`${pageStyles.subtleLift} ${pageStyles.focusRing}`}
-              style={{
-                ...styles.ctaButton,
-                background: 'transparent',
-                color: '#2C2C2A',
-                border: '1px solid #2C2C2A',
-              }}
-            >
-              Трекинг
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================= */}
-      {/* SECTION 2 — Quick Stats (dark strip, parity with English TrustBar)*/}
-      {/* ================================================================= */}
-      <section className={pageStyles.statsStrip}>
-        <div className={pageStyles.statsGrid}>
-          {STATS.map((stat, i) => (
-            <div key={i} style={{ padding: '8px 16px' }}>
-              <p className={pageStyles.statNumberDark}>{stat.number}</p>
-              <p className={pageStyles.statLabelDark}>{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ================================================================= */}
-      {/* SECTION 3 — Our Services (US diaspora framing)                    */}
-      {/* ================================================================= */}
-      <section style={styles.section}>
-        <span className={pageStyles.sectionKicker}>◆ Услуги</span>
-        <h2 style={styles.h2}>Наши услуги</h2>
-        <p style={{ ...styles.paragraph, marginBottom: '2rem' }}>
-          Полный спектр автоперевозок внутри США — от единичного заказа до регулярных дилерских
-          маршрутов. Все услуги доступны на русском языке.
-        </p>
-
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap: '1.25rem',
-          }}
-        >
-          {SERVICES.map((svc, i) => (
-            <div key={i} className={pageStyles.liftCard} style={styles.card}>
-              <p
-                style={{
-                  fontSize: '1.75rem',
-                  marginBottom: '0.5rem',
-                }}
-              >
-                {svc.icon}
-              </p>
-              <h3
-                style={{
-                  ...styles.sansFont,
-                  fontSize: '1.1rem',
-                  fontWeight: 600,
-                  marginBottom: '0.5rem',
-                  color: '#2C2C2A',
-                }}
-              >
-                {svc.title}
-              </h3>
-              <p style={{ ...styles.paragraph, fontSize: '0.95rem' }}>
-                {svc.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ================================================================= */}
-      {/* SECTION 4 — Process Steps                                         */}
-      {/* ================================================================= */}
-      <section
-        style={{
-          ...styles.section,
-          borderTop: '1px solid #E8E4DC',
-        }}
-      >
-        <span className={pageStyles.sectionKicker}>◆ Процесс</span>
-        <h2 style={styles.h2}>Как это работает</h2>
-
-        <ol
-          style={{
-            listStyle: 'none',
-            padding: 0,
-            margin: 0,
-            display: 'grid',
-            gap: '1.5rem',
-          }}
-        >
-          {PROCESS_STEPS.map((step) => (
-            <li
-              key={step.num}
-              style={{
-                ...styles.card,
-                display: 'grid',
-                gridTemplateColumns: '3rem 1fr',
-                gap: '1rem',
-                alignItems: 'start',
-              }}
-            >
-              <span
-                style={{
-                  ...styles.statNumber,
-                  fontSize: '1.75rem',
-                  lineHeight: '1',
-                }}
-              >
-                {step.num}
-              </span>
-              <div>
-                <h3
-                  style={{
-                    ...styles.sansFont,
-                    fontSize: '1.05rem',
-                    fontWeight: 600,
-                    marginBottom: '0.35rem',
-                    color: '#2C2C2A',
-                  }}
-                >
-                  {step.title}
-                </h3>
-                <p style={{ ...styles.paragraph, fontSize: '0.95rem' }}>
-                  {step.desc}
-                </p>
+          <div className={`${pageStyles.grid} ${pageStyles.grid3}`}>
+            {SERVICES.map((svc, i) => (
+              <div key={i} className={pageStyles.cardBoard}>
+                <p className={pageStyles.cardIcon}>{svc.icon}</p>
+                <h3 className={pageStyles.cardHeading}>{svc.title}</h3>
+                <p className={pageStyles.bodyText}>{svc.description}</p>
               </div>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      {/* ================================================================= */}
-      {/* SECTION 5 — Cost Breakdown                                        */}
-      {/* ================================================================= */}
-      <section style={styles.section}>
-        <span className={pageStyles.sectionKicker}>◆ Цены</span>
-        <h2 style={styles.h2}>Ориентировочная стоимость</h2>
-
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '1.25rem',
-          }}
-        >
-          {COST_CARDS.map((cost, i) => (
-            <div key={i} className={pageStyles.liftCard} style={styles.card}>
-              <p
-                style={{
-                  ...styles.sansFont,
-                  fontSize: '0.85rem',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.05em',
-                  color: '#4A4A46',
-                  marginBottom: '0.5rem',
-                }}
-              >
-                {cost.title}
-              </p>
-              <p
-                style={{
-                  fontSize: 'clamp(1.5rem, 3vw, 2rem)',
-                  fontWeight: 300,
-                  color: '#993C1D',
-                  marginBottom: '0.5rem',
-                }}
-              >
-                {cost.amount}
-              </p>
-              <p
-                style={{
-                  ...styles.paragraph,
-                  fontSize: '0.875rem',
-                }}
-              >
-                {cost.note}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ================================================================= */}
-      {/* SECTION 6 — Real Examples                                         */}
-      {/* ================================================================= */}
-      <section
-        style={{
-          ...styles.section,
-          borderTop: '1px solid #E8E4DC',
-        }}
-      >
-        <span className={pageStyles.sectionKicker}>◆ Маршруты</span>
-        <h2 style={styles.h2}>Примеры реальных маршрутов</h2>
-
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap: '1.25rem',
-          }}
-        >
-          {CAR_EXAMPLES.map((car, i) => (
-            <div key={i} className={pageStyles.liftCard} style={styles.card}>
-              <h3
-                style={{
-                  ...styles.sansFont,
-                  fontSize: '1.05rem',
-                  fontWeight: 600,
-                  marginBottom: '0.5rem',
-                  color: '#2C2C2A',
-                }}
-              >
-                {car.title}
-              </h3>
-              <p
-                style={{
-                  ...styles.paragraph,
-                  fontSize: '0.9rem',
-                  marginBottom: '0.25rem',
-                }}
-              >
-                {car.route}
-              </p>
-              <p
-                style={{
-                  fontSize: '1.25rem',
-                  fontWeight: 500,
-                  color: '#993C1D',
-                  marginBottom: '0.5rem',
-                }}
-              >
-                {car.price}
-              </p>
-              <p
-                style={{
-                  ...styles.paragraph,
-                  fontSize: '0.85rem',
-                }}
-              >
-                {car.detail}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ================================================================= */}
-      {/* SECTION 7 — Risks                                                 */}
-      {/* ================================================================= */}
-      <section style={styles.section}>
-        <span className={pageStyles.sectionKicker}>◆ Важно знать</span>
-        <h2 style={styles.h2}>На что обратить внимание</h2>
-
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap: '1.25rem',
-          }}
-        >
-          {RISKS.map((risk, i) => (
-            <div
-              key={i}
-              className={pageStyles.liftCard}
-              style={{
-                ...styles.card,
-                borderLeft: '3px solid #993C1D',
-              }}
-            >
-              <h3
-                style={{
-                  ...styles.sansFont,
-                  fontSize: '1.05rem',
-                  fontWeight: 600,
-                  marginBottom: '0.5rem',
-                  color: '#2C2C2A',
-                }}
-              >
-                {risk.title}
-              </h3>
-              <p style={{ ...styles.paragraph, fontSize: '0.9rem' }}>
-                {risk.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ================================================================= */}
-      {/* SECTION 8 — FAQ                                                   */}
-      {/* ================================================================= */}
-      <section
-        style={{
-          ...styles.section,
-          borderTop: '1px solid #E8E4DC',
-        }}
-      >
-        <span className={pageStyles.sectionKicker}>◆ FAQ</span>
-        <h2 style={styles.h2}>Часто задаваемые вопросы</h2>
-
-        <div style={{ display: 'grid', gap: '0.75rem' }}>
-          {FAQS.map((faq, i) => (
-            <details
-              key={i}
-              className={pageStyles.faqItem}
-              style={{
-                ...styles.card,
-                cursor: 'pointer',
-              }}
-            >
-              <summary
-                style={{
-                  ...styles.sansFont,
-                  fontSize: '1.05rem',
-                  fontWeight: 600,
-                  color: '#2C2C2A',
-                  listStyle: 'none',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                {faq.q}
-                <span
-                  style={{
-                    fontSize: '1.25rem',
-                    color: '#993C1D',
-                    marginLeft: '1rem',
-                    flexShrink: 0,
-                  }}
-                >
-                  +
-                </span>
-              </summary>
-              <p
-                style={{
-                  ...styles.paragraph,
-                  marginTop: '1rem',
-                  fontSize: '0.95rem',
-                }}
-              >
-                {faq.a}
-              </p>
-            </details>
-          ))}
-        </div>
-      </section>
-
-      {/* ================================================================= */}
-      {/* SECTION 8b — Отзывы (testimonials, diaspora voice)                 */}
-      {/* ================================================================= */}
-      <section style={{ ...styles.section, borderTop: '1px solid #E8E4DC' }}>
-        <span className={pageStyles.sectionKicker}>◆ Отзывы</span>
-        <h2 style={styles.h2}>Что говорят клиенты</h2>
-        <p style={{ ...styles.paragraph, marginBottom: '2rem', maxWidth: '720px' }}>
-          Реальные перевозки — реальные истории. Имена и города сохранены с разрешения клиентов.
-        </p>
-        <div className={pageStyles.testimonialGrid}>
-          <div className={pageStyles.testimonialCard}>
-            <p className={pageStyles.testimonialQuote}>
-              «Купил BMW на Copart в Техасе, Y7 забрали с аукциона и доставили в Нью-Джерси
-              за 5 дней. Всё через Telegram, без звонков. Перевозчика подобрали быстро,
-              цена совпала с расчётом — без сюрпризов.»
-            </p>
-            <p className={pageStyles.testimonialAttribution}>
-              Алексей · Бруклин, NY · Copart → порт Newark
-            </p>
-          </div>
-          <div className={pageStyles.testimonialCard}>
-            <p className={pageStyles.testimonialQuote}>
-              «Переезжали из Калифорнии в Флориду и нужно было перевезти две машины. Y7
-              нашли один трак, обе машины ехали вместе, цена оказалась ниже чем у первых
-              двух контор где спрашивал. Диспетчер по-русски — огромный плюс.»
-            </p>
-            <p className={pageStyles.testimonialAttribution}>
-              Марина · Сан-Диего → Майами
-            </p>
-          </div>
-          <div className={pageStyles.testimonialCard}>
-            <p className={pageStyles.testimonialQuote}>
-              «Заказывал доставку авто с IAAI Атланта до порта в Хьюстоне — для отправки
-              родственникам. Y7 согласовали забор, привезли без повреждений, передали
-              экспедитору. Никаких скрытых доплат, всё как обещали.»
-            </p>
-            <p className={pageStyles.testimonialAttribution}>
-              Дмитрий · Атланта, GA · IAAI → порт Houston
-            </p>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ================================================================= */}
-      {/* SECTION 8c — Порты (port pills)                                    */}
+      {/* SECTION 4 — Process Steps (paper)                                  */}
       {/* ================================================================= */}
-      <section style={{ ...styles.section, borderTop: '1px solid #E8E4DC' }}>
-        <div style={{ textAlign: 'center' }}>
-          <span className={pageStyles.sectionKicker}>◆ Порты</span>
+      <section className={pageStyles.paperBand}>
+        <div className={pageStyles.inner}>
+          <span className={pageStyles.eyebrowRulePaper}>Процесс</span>
+          <h2 className={pageStyles.sectionTitle}>Как это работает</h2>
+
+          <ol className={pageStyles.stepList}>
+            {PROCESS_STEPS.map((step) => (
+              <li key={step.num} className={pageStyles.step} data-step={step.num}>
+                <h3 className={pageStyles.cardHeading}>{step.title}</h3>
+                <p className={pageStyles.bodyText}>{step.desc}</p>
+              </li>
+            ))}
+          </ol>
         </div>
-        <h2 style={{ ...styles.h2, textAlign: 'center' }}>Работаем с основными портами США</h2>
-        <p style={{ ...styles.paragraph, textAlign: 'center', marginBottom: '2rem', maxWidth: '640px', marginLeft: 'auto', marginRight: 'auto' }}>
-          Доставляем автомобили до порта отправления — дальнейшая экспортная логистика
-          на стороне партнёрского экспедитора.
-        </p>
-        <div className={pageStyles.portPillGrid}>
-          <span className={pageStyles.portPill}>Ньюарк (NJ)</span>
-          <span className={pageStyles.portPill}>Балтимор (MD)</span>
-          <span className={pageStyles.portPill}>Саванна (GA)</span>
-          <span className={pageStyles.portPill}>Джексонвилл (FL)</span>
-          <span className={pageStyles.portPill}>Хьюстон (TX)</span>
-          <span className={pageStyles.portPill}>Лос-Анджелес (CA)</span>
+      </section>
+
+      {/* ================================================================= */}
+      {/* SECTION 5 — Cost Breakdown (board)                                 */}
+      {/* ================================================================= */}
+      <section className={pageStyles.boardBand}>
+        <div className={pageStyles.inner}>
+          <span className={pageStyles.eyebrowPlainDark}>Цены</span>
+          <h2 className={pageStyles.sectionTitle}>Ориентировочная стоимость</h2>
+
+          <div className={`${pageStyles.grid} ${pageStyles.grid4}`}>
+            {COST_CARDS.map((cost, i) => (
+              <div key={i} className={pageStyles.cardBoard}>
+                <p className={pageStyles.costLabel}>{cost.title}</p>
+                <p className={pageStyles.costAmount}>{cost.amount}</p>
+                <p className={pageStyles.bodyText}>{cost.note}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================= */}
+      {/* SECTION 6 — Real Examples (paper)                                  */}
+      {/* ================================================================= */}
+      <section className={pageStyles.paperBand}>
+        <div className={pageStyles.inner}>
+          <span className={pageStyles.eyebrowRulePaper}>Маршруты</span>
+          <h2 className={pageStyles.sectionTitle}>Примеры реальных маршрутов</h2>
+
+          <div className={`${pageStyles.grid} ${pageStyles.grid3}`}>
+            {CAR_EXAMPLES.map((car, i) => (
+              <div key={i} className={pageStyles.cardPaper}>
+                <h3 className={pageStyles.cardHeading}>{car.title}</h3>
+                <p className={pageStyles.exampleRoute}>{car.route}</p>
+                <p className={pageStyles.examplePrice}>{car.price}</p>
+                <p className={pageStyles.bodyText}>{car.detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================= */}
+      {/* SECTION 7 — Risks (board)                                          */}
+      {/* ================================================================= */}
+      <section className={pageStyles.boardBand}>
+        <div className={pageStyles.inner}>
+          <span className={pageStyles.eyebrowRuleDark}>Важно знать</span>
+          <h2 className={pageStyles.sectionTitle}>На что обратить внимание</h2>
+
+          <div className={`${pageStyles.grid} ${pageStyles.grid3}`}>
+            {RISKS.map((risk, i) => (
+              <div key={i} className={pageStyles.cardBoard}>
+                <h3 className={pageStyles.cardHeading}>{risk.title}</h3>
+                <p className={pageStyles.bodyText}>{risk.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================= */}
+      {/* SECTION 8 — FAQ (paper)                                            */}
+      {/* ================================================================= */}
+      <section className={pageStyles.paperBand}>
+        <div className={pageStyles.inner}>
+          <span className={pageStyles.eyebrowPlainPaper}>FAQ</span>
+          <h2 className={pageStyles.sectionTitle}>Часто задаваемые вопросы</h2>
+
+          <div className={pageStyles.faqList}>
+            {FAQS.map((faq, i) => (
+              <details key={i} className={pageStyles.faqItem}>
+                <summary className={pageStyles.faqSummary}>
+                  {faq.q}
+                  <span className={pageStyles.faqIcon} aria-hidden="true">+</span>
+                </summary>
+                <p className={pageStyles.faqAnswer}>{faq.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================= */}
+      {/* SECTION 8b — Отзывы (testimonials, board)                          */}
+      {/* ================================================================= */}
+      <section className={pageStyles.boardBand}>
+        <div className={pageStyles.inner}>
+          <span className={pageStyles.eyebrowRuleDark}>Отзывы</span>
+          <h2 className={pageStyles.sectionTitle}>Что говорят клиенты</h2>
+          <p className={pageStyles.lede}>
+            Реальные перевозки — реальные истории. Имена и города сохранены с разрешения клиентов.
+          </p>
+          <div className={pageStyles.testimonialGrid}>
+            <div className={pageStyles.cardBoard}>
+              <p className={pageStyles.testimonialQuote}>
+                «Купил BMW на Copart в Техасе, Y7 забрали с аукциона и доставили в Нью-Джерси
+                за 5 дней. Всё через Telegram, без звонков. Перевозчика подобрали быстро,
+                цена совпала с расчётом — без сюрпризов.»
+              </p>
+              <p className={pageStyles.testimonialAttribution}>
+                Алексей · Бруклин, NY · Copart → порт Newark
+              </p>
+            </div>
+            <div className={pageStyles.cardBoard}>
+              <p className={pageStyles.testimonialQuote}>
+                «Переезжали из Калифорнии в Флориду и нужно было перевезти две машины. Y7
+                нашли один трак, обе машины ехали вместе, цена оказалась ниже чем у первых
+                двух контор где спрашивал. Диспетчер по-русски — огромный плюс.»
+              </p>
+              <p className={pageStyles.testimonialAttribution}>
+                Марина · Сан-Диего → Майами
+              </p>
+            </div>
+            <div className={pageStyles.cardBoard}>
+              <p className={pageStyles.testimonialQuote}>
+                «Заказывал доставку авто с IAAI Атланта до порта в Хьюстоне — для отправки
+                родственникам. Y7 согласовали забор, привезли без повреждений, передали
+                экспедитору. Никаких скрытых доплат, всё как обещали.»
+              </p>
+              <p className={pageStyles.testimonialAttribution}>
+                Дмитрий · Атланта, GA · IAAI → порт Houston
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================= */}
+      {/* SECTION 8c — Порты (paper, port chips)                             */}
+      {/* ================================================================= */}
+      <section className={pageStyles.paperBand}>
+        <div className={pageStyles.inner}>
+          <div className={pageStyles.centered}>
+            <span className={pageStyles.eyebrowPlainPaper}>Порты</span>
+          </div>
+          <h2 className={`${pageStyles.sectionTitle} ${pageStyles.centered}`}>Работаем с основными портами США</h2>
+          <p className={`${pageStyles.lede} ${pageStyles.centered} ${pageStyles.centeredLede}`}>
+            Доставляем автомобили до порта отправления — дальнейшая экспортная логистика
+            на стороне партнёрского экспедитора.
+          </p>
+          <div className={pageStyles.portGrid}>
+            <span className={pageStyles.chipPaper}>Ньюарк (NJ)</span>
+            <span className={pageStyles.chipPaper}>Балтимор (MD)</span>
+            <span className={pageStyles.chipPaper}>Саванна (GA)</span>
+            <span className={pageStyles.chipPaper}>Джексонвилл (FL)</span>
+            <span className={pageStyles.chipPaper}>Хьюстон (TX)</span>
+            <span className={pageStyles.chipPaper}>Лос-Анджелес (CA)</span>
+          </div>
         </div>
       </section>
 
       <ContextualCTA variant="card" to="/exporters" intlKey="exporters" tone="amber" />
 
       {/* ================================================================= */}
-      {/* SECTION 9 — Dark CTA                                              */}
+      {/* SECTION 9 — Dark CTA (board, page closes dark)                     */}
       {/* ================================================================= */}
-      <section
-        style={{
-          ...styles.darkCta,
-          padding: 'clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 2rem)',
-          textAlign: 'center',
-        }}
-      >
-        <div style={{ maxWidth: '700px', margin: '0 auto' }}>
-          <h2
-            style={{
-              ...styles.h2,
-              color: '#F7F5F0',
-            }}
-          >
-            Готовы перевезти автомобиль?
-          </h2>
-          <p
-            style={{
-              fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-              lineHeight: '1.7',
-              color: '#A8A49C',
-              marginBottom: '2rem',
-            }}
-          >
-            Получите расчёт стоимости за несколько минут. Укажите маршрут — мы подберём
-            оптимального перевозчика из нашей сети.
-          </p>
-          <Link
-            to="/ru/ship-my-car"
-            className={`${pageStyles.subtleLift} ${pageStyles.focusRing}`}
-            style={{
-              ...styles.ctaButton,
-              fontSize: '1.05rem',
-            }}
-          >
-            Рассчитать стоимость
-          </Link>
-          <p
-            style={{
-              ...styles.sansFont,
-              fontSize: '0.85rem',
-              color: '#6B6963',
-              marginTop: '1rem',
-            }}
-          >
-            MC #1741537 · USDOT #4427359 · Лицензированный брокер FMCSA
-          </p>
+      <section className={`${pageStyles.boardBand} ${pageStyles.ctaBand}`}>
+        <div className={pageStyles.inner}>
+          <div className={pageStyles.ctaInner}>
+            <h2 className={pageStyles.sectionTitle}>
+              Готовы перевезти автомобиль?
+            </h2>
+            <p className={pageStyles.ctaLede}>
+              Получите расчёт стоимости за несколько минут. Укажите маршрут — мы подберём
+              оптимального перевозчика из нашей сети.
+            </p>
+            <Link to="/ru/ship-my-car" className={pageStyles.cta}>
+              Рассчитать стоимость
+            </Link>
+            <p className={pageStyles.ctaCredential}>
+              MC #1741537 · USDOT #4427359 · Лицензированный брокер FMCSA
+            </p>
+          </div>
         </div>
       </section>
     </div>
