@@ -176,7 +176,7 @@ export default class ErrorBoundary extends Component {
             <style>{'@keyframes y7spin{to{transform:rotate(360deg)}}'}</style>
             <div style={{
               width: 28, height: 28, borderRadius: '50%',
-              border: `3px solid ${colors.border}`, borderTopColor: colors.accent,
+              border: `3px solid ${colors.border}`, borderTopColor: 'var(--v2-red, #d70f24)',
               animation: 'y7spin 0.8s linear infinite',
             }} />
           </div>
@@ -185,14 +185,17 @@ export default class ErrorBoundary extends Component {
 
       return (
         <div style={centered}>
+          {/* SPRINT-W7 B2: V2 retoken (smoke-discovered V1 leftover). */}
           <div style={{ marginBottom: '16px' }}><WarningIcon size={48} /></div>
           <h1 style={{
-            fontFamily: fonts.serif, fontSize: '24px', color: colors.text, marginBottom: '12px',
+            fontFamily: 'var(--v2-font-display, Oswald, system-ui)', textTransform: 'uppercase',
+            letterSpacing: '0.01em', lineHeight: 1.05, fontWeight: 600,
+            fontSize: '24px', color: 'var(--v2-ink, #050607)', marginBottom: '12px',
           }}>
             Something went wrong
           </h1>
           <p style={{
-            fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted,
+            fontFamily: fonts.sans, fontSize: '14px', color: 'var(--v2-ink-muted, #5c5851)',
             marginBottom: '24px', maxWidth: '400px',
           }}>
             An unexpected error occurred. Please try reloading the page.
@@ -201,8 +204,8 @@ export default class ErrorBoundary extends Component {
             onClick={() => window.location.reload()}
             style={{
               fontFamily: fonts.sans, fontSize: '14px', fontWeight: 600,
-              padding: '12px 28px', background: colors.accent, color: '#fff',
-              border: 'none', borderRadius: '8px', cursor: 'pointer',
+              padding: '12px 28px', background: 'var(--v2-red-gradient, linear-gradient(135deg, #d70f24, #a90918))',
+              color: '#fff7ed', border: 'none', borderRadius: '8px', cursor: 'pointer',
             }}
           >
             Reload Page

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { colors, fonts, button as btnStyles } from '../theme';
+import { fonts } from '../theme';
 import { DocumentIcon, ProfileIcon, LockIcon, ClockIcon, ShieldIcon } from './icons';
 
 const CONFIGS = {
@@ -60,14 +60,16 @@ export default function ActionRequired({ type, message: customMessage }) {
       justifyContent: 'center', minHeight: '50vh', padding: '40px 24px',
       textAlign: 'center',
     }}>
+      {/* SPRINT-W7 B2: V2 retoken (smoke-discovered V1 leftover — this shared
+          screen renders between login and the portal on 401/403 states). */}
       <div style={{ marginBottom: '20px' }}>{config.icon}</div>
-      <h2 style={{ fontFamily: fonts.serif, fontSize: '24px', fontWeight: 700, color: colors.text, marginBottom: '12px' }}>
+      <h2 style={{ fontFamily: 'var(--v2-font-display, Oswald, system-ui)', textTransform: 'uppercase', letterSpacing: '0.01em', lineHeight: 1.05, fontSize: '24px', fontWeight: 600, color: 'var(--v2-ink, #050607)', marginBottom: '12px' }}>
         {config.title}
       </h2>
-      <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, maxWidth: '400px', marginBottom: '24px', lineHeight: 1.6 }}>
+      <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: 'var(--v2-ink-muted, #5c5851)', maxWidth: '400px', marginBottom: '24px', lineHeight: 1.6 }}>
         {displayMessage}
       </p>
-      <Link to={config.action.to} style={{ ...btnStyles.accent, padding: '12px 28px', fontSize: '14px', textDecoration: 'none' }}>
+      <Link to={config.action.to} style={{ background: 'var(--v2-red-gradient, linear-gradient(135deg, #d70f24, #a90918))', color: '#fff7ed', borderRadius: 8, fontFamily: fonts.sans, fontWeight: 600, display: 'inline-block', padding: '12px 28px', fontSize: '14px', textDecoration: 'none' }}>
         {config.action.label}
       </Link>
     </div>

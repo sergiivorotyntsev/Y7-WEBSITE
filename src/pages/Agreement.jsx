@@ -3,8 +3,34 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth, portalFetch } from '../hooks/useAuth';
 import { apiPost, apiGet } from '../hooks/useApi';
-import { colors, fonts, button as btnStyles } from '../theme';
+import { colors, fonts } from '../theme';
 import { trackEvent } from '../utils/trackEvent';
+
+// DESIGN-V2 "Dispatch Board": local token aliases for this page's inline styles.
+const V2_INK = 'var(--v2-ink, #050607)';
+const V2_INK_MUTED = 'var(--v2-ink-muted, #5c5851)';
+const V2_LINE = 'var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))';
+const V2_CREAM = 'var(--v2-card-cream, #fffaf1)';
+const V2_DISPLAY = 'var(--v2-font-display, Oswald, system-ui)';
+const v2PrimaryBtn = {
+  background: 'var(--v2-red-gradient, linear-gradient(135deg, #d70f24, #a90918))',
+  color: '#fff7ed',
+  padding: '10px 24px',
+  borderRadius: 8,
+  fontSize: '12px',
+  border: 'none',
+  cursor: 'pointer',
+  fontFamily: fonts.sans,
+  fontWeight: 600,
+  letterSpacing: '0.5px',
+  textTransform: 'uppercase',
+};
+const v2ErrorBox = {
+  color: 'var(--v2-red-deep, #a90918)',
+  background: 'rgba(215, 15, 36, 0.06)',
+  border: '1px solid rgba(215, 15, 36, 0.25)',
+  borderRadius: '8px',
+};
 
 const LEGACY_SECTION_IDS = ['service', 'bol', 'payment', 'insurance', 'cancellation', 'customer', 'delays', 'liability'];
 const LEGACY_HIGHLIGHTS = new Set(['bol', 'payment', 'customer']);
@@ -71,9 +97,9 @@ function getAgreementType(customerType) {
 }
 
 const highlightedBox = {
-  background: '#FFF8F5',
-  borderLeft: `4px solid ${colors.accent}`,
-  borderRadius: '0 12px 12px 0',
+  background: 'rgba(215, 15, 36, 0.04)',
+  border: `1px solid ${V2_LINE}`,
+  borderRadius: 8,
   padding: '20px 24px',
   marginBottom: '24px',
 };
@@ -81,14 +107,17 @@ const highlightedBox = {
 const normalBox = {
   marginBottom: '24px',
   paddingBottom: '20px',
-  borderBottom: `1px solid ${colors.border}`,
+  borderBottom: `1px solid ${V2_LINE}`,
 };
 
 const sectionTitle = {
-  fontFamily: fonts.serif,
+  fontFamily: V2_DISPLAY,
+  textTransform: 'uppercase',
   fontSize: '18px',
-  fontWeight: 700,
-  color: colors.text,
+  fontWeight: 600,
+  letterSpacing: '0.01em',
+  lineHeight: 1.05,
+  color: V2_INK,
   marginBottom: '10px',
   display: 'flex',
   alignItems: 'center',
@@ -98,7 +127,7 @@ const sectionTitle = {
 const sectionBody = {
   fontFamily: fonts.sans,
   fontSize: '14px',
-  color: colors.textMuted,
+  color: V2_INK_MUTED,
   lineHeight: 1.7,
 };
 
@@ -114,7 +143,7 @@ function CheckIcon() {
 function PendingIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style={{ flexShrink: 0 }}>
-      <circle cx="9" cy="9" r="8.5" stroke={colors.border} />
+      <circle cx="9" cy="9" r="8.5" stroke={V2_INK_MUTED} />
     </svg>
   );
 }
@@ -135,17 +164,17 @@ function BankAuthAgreement({ user: _user }) {
     import('../locales/en/agreement_bank_auth.json').then(m => setTpl(m.default || m));
   }, []);
 
-  if (!tpl) return <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: fonts.sans, color: colors.textMuted }}>Loading...</div>;
+  if (!tpl) return <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: fonts.sans, color: V2_INK_MUTED }}>Loading...</div>;
 
   if (success) {
     return (
       <div style={{ maxWidth: '600px', margin: '0 auto', padding: '80px 24px', textAlign: 'center' }}>
         <div style={{ fontSize: '48px', marginBottom: '16px' }}>&#10003;</div>
-        <h2 style={{ fontFamily: fonts.serif, fontSize: '24px', color: colors.success, marginBottom: '12px' }}>Bank Authorization Signed</h2>
-        <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, marginBottom: '24px' }}>
+        <h2 style={{ fontFamily: V2_DISPLAY, textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.01em', lineHeight: 1.05, fontSize: '24px', color: colors.success, marginBottom: '12px' }}>Bank Authorization Signed</h2>
+        <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: V2_INK_MUTED, marginBottom: '24px' }}>
           Your bank authorization agreement has been recorded. You can now receive weekly invoices.
         </p>
-        <button onClick={() => navigate('/portal/dashboard')} style={btnStyles.accent}>Go to Dashboard</button>
+        <button onClick={() => navigate('/portal/dashboard')} style={v2PrimaryBtn}>Go to Dashboard</button>
       </div>
     );
   }
@@ -180,27 +209,27 @@ function BankAuthAgreement({ user: _user }) {
 
   return (
     <div style={{ maxWidth: '760px', margin: '0 auto', padding: '48px 24px 80px' }}>
-      <h1 style={{ fontFamily: fonts.serif, fontSize: 'clamp(24px, 4vw, 34px)', fontWeight: 700, color: colors.text, marginBottom: '8px' }}>
+      <h1 style={{ fontFamily: V2_DISPLAY, textTransform: 'uppercase', letterSpacing: '0.01em', lineHeight: 1.05, fontSize: 'clamp(24px, 4vw, 34px)', fontWeight: 600, color: V2_INK, marginBottom: '8px' }}>
         {tpl.title}
       </h1>
 
 
 
       {error && (
-        <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.accent, padding: '12px 16px', background: '#FFF0EC', borderRadius: '8px', marginBottom: '20px' }}>
+        <div style={{ ...v2ErrorBox, fontFamily: fonts.sans, fontSize: '13px', padding: '12px 16px', marginBottom: '20px' }}>
           {error}
         </div>
       )}
 
       {/* Agreement body */}
-      <div style={{ border: `1px solid ${colors.border}`, borderRadius: '12px', padding: '32px 28px', marginBottom: '24px', background: colors.bgCard }}>
-        <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, lineHeight: 1.7, marginBottom: '24px' }}>
+      <div style={{ border: `1px solid ${V2_LINE}`, borderRadius: '12px', padding: '32px 28px', marginBottom: '24px', background: V2_CREAM }}>
+        <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: V2_INK_MUTED, lineHeight: 1.7, marginBottom: '24px' }}>
           {tpl.intro}
         </p>
         {(tpl.sections || []).map(sec => (
-          <div key={sec.id} style={{ marginBottom: '24px', paddingBottom: '20px', borderBottom: `1px solid ${colors.border}` }}>
-            <h3 style={{ fontFamily: fonts.serif, fontSize: '18px', fontWeight: 700, color: colors.text, marginBottom: '10px' }}>{sec.title}</h3>
-            <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, lineHeight: 1.7 }}>{sec.body}</p>
+          <div key={sec.id} style={{ marginBottom: '24px', paddingBottom: '20px', borderBottom: `1px solid ${V2_LINE}` }}>
+            <h3 style={{ fontFamily: V2_DISPLAY, textTransform: 'uppercase', fontSize: '18px', fontWeight: 600, letterSpacing: '0.01em', lineHeight: 1.05, color: V2_INK, marginBottom: '10px' }}>{sec.title}</h3>
+            <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: V2_INK_MUTED, lineHeight: 1.7 }}>{sec.body}</p>
           </div>
         ))}
       </div>
@@ -210,13 +239,13 @@ function BankAuthAgreement({ user: _user }) {
         {checkboxEntries.map(([, label], i) => (
           <label key={i} style={{
             display: 'flex', alignItems: 'flex-start', gap: '10px', padding: '10px 0',
-            cursor: 'pointer', fontFamily: fonts.sans, fontSize: '13px', color: colors.text, lineHeight: 1.5,
+            cursor: 'pointer', fontFamily: fonts.sans, fontSize: '13px', color: V2_INK, lineHeight: 1.5,
           }}>
             <input
               type="checkbox"
               checked={checks[i] || false}
               onChange={() => setChecks(prev => prev.map((v, j) => j === i ? !v : v))}
-              style={{ marginTop: '2px', accentColor: colors.accent }}
+              style={{ marginTop: '2px', accentColor: 'var(--v2-red, #d70f24)' }}
             />
             {label}
           </label>
@@ -226,7 +255,7 @@ function BankAuthAgreement({ user: _user }) {
       {/* Signer name + sign button */}
       <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-end', flexWrap: 'wrap' }}>
         <div style={{ flex: 1, minWidth: '200px' }}>
-          <label style={{ fontFamily: fonts.sans, fontSize: '12px', fontWeight: 600, color: colors.text, textTransform: 'uppercase', letterSpacing: '0.5px', display: 'block', marginBottom: '4px' }}>
+          <label style={{ fontFamily: fonts.sans, fontSize: '12px', fontWeight: 600, color: V2_INK, textTransform: 'uppercase', letterSpacing: '0.5px', display: 'block', marginBottom: '4px' }}>
             Full Legal Name
           </label>
           <input
@@ -235,8 +264,8 @@ function BankAuthAgreement({ user: _user }) {
             placeholder="Enter your full legal name"
             style={{
               fontFamily: fonts.sans, fontSize: '16px', padding: '10px 14px', borderRadius: '8px',
-              border: `1px solid ${colors.borderInput}`, background: colors.bgInput, color: colors.text,
-              outline: 'none', width: '100%', boxSizing: 'border-box',
+              border: `1px solid ${V2_LINE}`, background: V2_CREAM, color: V2_INK,
+              width: '100%', boxSizing: 'border-box',
             }}
           />
         </div>
@@ -244,10 +273,10 @@ function BankAuthAgreement({ user: _user }) {
           onClick={handleSign}
           disabled={!canSign || submitting}
           style={{
-            ...btnStyles.accent,
+            ...v2PrimaryBtn,
             padding: '12px 32px',
             fontSize: '14px',
-            opacity: canSign && !submitting ? 1 : 0.5,
+            opacity: canSign && !submitting ? 1 : 0.45,
             cursor: canSign && !submitting ? 'pointer' : 'default',
           }}
         >
@@ -432,7 +461,7 @@ export default function Agreement() {
 
   if (loading) {
     return (
-      <div style={{ textAlign: 'center', padding: '80px 24px', fontFamily: fonts.sans, color: colors.textMuted }}>
+      <div style={{ textAlign: 'center', padding: '80px 24px', fontFamily: fonts.sans, color: V2_INK_MUTED }}>
         {t('loading')}
       </div>
     );
@@ -444,10 +473,10 @@ export default function Agreement() {
         <div style={{ fontSize: '64px', marginBottom: '16px' }}>
           <CheckIcon />
         </div>
-        <h2 style={{ fontFamily: fonts.serif, fontSize: '28px', color: colors.success, marginBottom: '12px' }}>
+        <h2 style={{ fontFamily: V2_DISPLAY, textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.01em', lineHeight: 1.05, fontSize: '28px', color: colors.success, marginBottom: '12px' }}>
           {t('success.title')}
         </h2>
-        <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, marginBottom: '20px' }}>
+        <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: V2_INK_MUTED, marginBottom: '20px' }}>
           {t('success.message')}
         </p>
         {agreementIdRef.current && (
@@ -456,9 +485,9 @@ export default function Agreement() {
             target="_blank" rel="noopener noreferrer"
             style={{
               fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600,
-              color: colors.accent, textDecoration: 'none',
-              padding: '10px 20px', border: `1px solid ${colors.accent}`,
-              borderRadius: '20px', display: 'inline-block',
+              color: V2_INK, textDecoration: 'none',
+              padding: '10px 20px', border: '1px solid rgba(5, 6, 7, 0.3)',
+              borderRadius: 8, display: 'inline-block',
             }}
           >
             Download Signed Agreement (PDF)
@@ -488,10 +517,13 @@ export default function Agreement() {
     <div style={{ maxWidth: '760px', margin: '0 auto', padding: '48px 24px 80px' }}>
       {/* Header */}
       <h1 style={{
-        fontFamily: fonts.serif,
+        fontFamily: V2_DISPLAY,
+        textTransform: 'uppercase',
+        letterSpacing: '0.01em',
+        lineHeight: 1.05,
         fontSize: 'clamp(24px, 4vw, 34px)',
-        fontWeight: 700,
-        color: colors.text,
+        fontWeight: 600,
+        color: V2_INK,
         marginBottom: '8px',
       }}>
         {t('title')}
@@ -500,7 +532,7 @@ export default function Agreement() {
         <div style={{
           fontFamily: fonts.mono,
           fontSize: '12px',
-          color: colors.textMuted,
+          color: V2_INK_MUTED,
           marginBottom: '14px',
           letterSpacing: '0.02em',
         }}>
@@ -513,26 +545,24 @@ export default function Agreement() {
         <div style={{
           fontFamily: fonts.sans,
           fontSize: '13px',
-          color: colors.textMuted,
+          color: V2_INK_MUTED,
           marginBottom: '24px',
           display: 'flex',
           gap: '16px',
           flexWrap: 'wrap',
         }}>
-          {order.reference && <span>Ref: <strong style={{ color: colors.text, fontFamily: fonts.mono }}>{order.reference}</strong></span>}
-          {order.vehicle && <span>Vehicle: <strong style={{ color: colors.text }}>{order.vehicle}</strong></span>}
-          {order.vin && <span>VIN: <strong style={{ color: colors.text, fontFamily: fonts.mono }}>{order.vin}</strong></span>}
+          {order.reference && <span>Ref: <strong style={{ color: V2_INK, fontFamily: fonts.mono }}>{order.reference}</strong></span>}
+          {order.vehicle && <span>Vehicle: <strong style={{ color: V2_INK }}>{order.vehicle}</strong></span>}
+          {order.vin && <span>VIN: <strong style={{ color: V2_INK, fontFamily: fonts.mono }}>{order.vin}</strong></span>}
         </div>
       )}
 
       {error && (
         <div style={{
+          ...v2ErrorBox,
           fontFamily: fonts.sans,
           fontSize: '13px',
-          color: colors.accent,
           padding: '12px 16px',
-          background: '#FFF0EC',
-          borderRadius: '8px',
           marginBottom: '20px',
         }}>
           {error}
@@ -546,10 +576,10 @@ export default function Agreement() {
         style={{
           maxHeight: '500px',
           overflowY: 'auto',
-          border: `1px solid ${colors.border}`,
+          border: `1px solid ${V2_LINE}`,
           borderRadius: '12px',
           padding: '28px 24px',
-          background: colors.bgCard,
+          background: V2_CREAM,
           marginBottom: '28px',
         }}
       >
@@ -606,14 +636,14 @@ export default function Agreement() {
                 marginTop: '3px',
                 width: '18px',
                 height: '18px',
-                accentColor: colors.success,
+                accentColor: 'var(--v2-red, #d70f24)',
                 flexShrink: 0,
               }}
             />
             <span style={{
               fontFamily: fonts.sans,
               fontSize: '13px',
-              color: colors.text,
+              color: V2_INK,
               lineHeight: 1.5,
             }}>
               {label}
@@ -639,14 +669,14 @@ export default function Agreement() {
             marginTop: '3px',
             width: '18px',
             height: '18px',
-            accentColor: colors.success,
+            accentColor: 'var(--v2-red, #d70f24)',
             flexShrink: 0,
           }}
         />
         <span style={{
           fontFamily: fonts.sans,
           fontSize: '13px',
-          color: colors.text,
+          color: V2_INK,
           lineHeight: 1.5,
         }}>
           I agree to conduct business electronically and to sign this agreement electronically.
@@ -655,7 +685,7 @@ export default function Agreement() {
 
       {/* Signature block */}
       <div style={{
-        background: colors.bgMuted,
+        background: 'rgba(5, 6, 7, 0.04)',
         borderRadius: '12px',
         padding: '24px',
         opacity: allChecked ? 1 : 0.5,
@@ -666,7 +696,7 @@ export default function Agreement() {
           fontFamily: fonts.sans,
           fontSize: '12px',
           fontWeight: 600,
-          color: colors.text,
+          color: V2_INK,
           textTransform: 'uppercase',
           letterSpacing: '0.5px',
           display: 'block',
@@ -679,15 +709,14 @@ export default function Agreement() {
           onChange={e => setSignerName(e.target.value)}
           placeholder={t('signature.placeholder')}
           style={{
-            fontFamily: fonts.serif,
+            fontFamily: 'var(--font-sans, system-ui)',
             fontSize: '20px',
             fontStyle: 'italic',
             padding: '12px 16px',
             borderRadius: '8px',
-            border: `1px solid ${colors.borderInput}`,
-            background: colors.bgCard,
-            color: colors.text,
-            outline: 'none',
+            border: `1px solid ${V2_LINE}`,
+            background: V2_CREAM,
+            color: V2_INK,
             width: '100%',
             marginBottom: '12px',
           }}
@@ -695,7 +724,7 @@ export default function Agreement() {
         <p style={{
           fontFamily: fonts.sans,
           fontSize: '11px',
-          color: colors.textMuted,
+          color: V2_INK_MUTED,
           lineHeight: 1.5,
           marginBottom: '20px',
         }}>
@@ -706,7 +735,7 @@ export default function Agreement() {
           onClick={handleSign}
           disabled={!canSign || submitting}
           style={{
-            ...btnStyles.accent,
+            ...v2PrimaryBtn,
             padding: '16px 32px',
             fontSize: '14px',
             width: '100%',

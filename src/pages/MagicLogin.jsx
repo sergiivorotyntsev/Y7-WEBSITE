@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { API_URL } from '../config';
-import { colors, fonts, button as btnStyles } from '../theme';
+import { fonts, button as btnStyles } from '../theme';
 import { trackEvent } from '../utils/trackEvent';
 
 /**
@@ -107,10 +107,13 @@ export default function MagicLogin() {
         textAlign: 'center',
       }}>
         <div style={{
-          fontFamily: fonts.serif,
+          fontFamily: 'var(--v2-font-display, Oswald, system-ui)',
+          textTransform: 'uppercase',
           fontSize: '22px',
-          fontWeight: 700,
-          color: colors.text,
+          fontWeight: 600,
+          letterSpacing: '0.01em',
+          lineHeight: 1.05,
+          color: 'var(--v2-ink, #050607)',
           marginBottom: '12px',
         }}>
           Signing you in...
@@ -118,7 +121,7 @@ export default function MagicLogin() {
         <p style={{
           fontFamily: fonts.sans,
           fontSize: '14px',
-          color: colors.textMuted,
+          color: 'var(--v2-ink-muted, #5c5851)',
           lineHeight: 1.6,
         }}>
           One moment while we open your dealer portal.
@@ -136,10 +139,13 @@ export default function MagicLogin() {
       textAlign: 'center',
     }}>
       <div style={{
-        fontFamily: fonts.serif,
+        fontFamily: 'var(--v2-font-display, Oswald, system-ui)',
+        textTransform: 'uppercase',
         fontSize: '24px',
-        fontWeight: 700,
-        color: colors.text,
+        fontWeight: 600,
+        letterSpacing: '0.01em',
+        lineHeight: 1.05,
+        color: 'var(--v2-ink, #050607)',
         marginBottom: '12px',
       }}>
         This link has expired or been used
@@ -147,7 +153,7 @@ export default function MagicLogin() {
       <p style={{
         fontFamily: fonts.sans,
         fontSize: '14px',
-        color: colors.textMuted,
+        color: 'var(--v2-ink-muted, #5c5851)',
         lineHeight: 1.7,
         marginBottom: '24px',
       }}>
@@ -159,9 +165,12 @@ export default function MagicLogin() {
         <div style={{
           fontFamily: fonts.sans,
           fontSize: '12px',
-          color: colors.textMuted,
+          color: 'var(--v2-red-deep, #a90918)',
+          background: 'rgba(215, 15, 36, 0.06)',
+          border: '1px solid rgba(215, 15, 36, 0.25)',
+          borderRadius: '8px',
+          padding: '10px 14px',
           marginBottom: '24px',
-          fontStyle: 'italic',
         }}>
           ({errorMessage})
         </div>
@@ -176,6 +185,9 @@ export default function MagicLogin() {
           to="/dealers"
           style={{
             ...btnStyles.accent,
+            background: 'var(--v2-red-gradient, linear-gradient(135deg, #d70f24, #a90918))',
+            color: '#fff7ed',
+            borderRadius: 8,
             display: 'inline-block',
             padding: '12px 28px',
             fontSize: '14px',
@@ -189,8 +201,9 @@ export default function MagicLogin() {
           style={{
             fontFamily: fonts.sans,
             fontSize: '13px',
-            color: colors.accent,
-            textDecoration: 'none',
+            color: 'var(--v2-ink, #050607)',
+            textDecoration: 'underline',
+            textUnderlineOffset: 2,
             marginTop: '4px',
           }}
         >

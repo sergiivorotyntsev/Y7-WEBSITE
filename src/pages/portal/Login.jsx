@@ -7,7 +7,7 @@ import { getCleanPhone, isValidPhone } from '../../components/PhoneInput';
 import { trackEvent } from '../../utils/trackEvent';
 import LoginCard from './components/LoginCard';
 import RegisterOtpStep from '../../components/RegisterOtpStep';
-import { colors, fonts, button as btnStyles, keyframes, radii, shadows } from '../../theme';
+import { colors, fonts, button as btnStyles, keyframes, shadows } from '../../theme';
 
 // PHASE1-RECOVERY: mask an email for the recovery screen (e.g. d••••@gmail.com).
 // Pure + module-level (prerender-safe).
@@ -453,12 +453,12 @@ export default function Login() {
         <div style={{
           minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center',
           padding: '40px 20px',
-          background: `radial-gradient(1100px 480px at 50% -8%, ${colors.bgMuted} 0%, transparent 62%), linear-gradient(160deg, #faf8f4 0%, #ffffff 70%)`,
+          background: 'var(--v2-paper, #f4f0e8)',
           animation: 'fadeIn 400ms ease',
         }}>
           <div style={{
-            width: '100%', maxWidth: 460, background: colors.bgCard,
-            border: `1px solid ${colors.border}`, borderRadius: radii.xl,
+            width: '100%', maxWidth: 460, background: 'var(--v2-card-cream, #fffaf1)',
+            border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))', borderRadius: 'var(--v2-radius-xl, 22px)',
             boxShadow: (shadows && shadows.lg) || '0 20px 50px rgba(0,0,0,0.10)',
             padding: '40px 32px', textAlign: 'center',
             animation: 'fadeUp 500ms ease both',
@@ -466,41 +466,40 @@ export default function Login() {
             <div style={{
               width: 64, height: 64, margin: '0 auto 20px', borderRadius: '50%',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              background: `linear-gradient(135deg, ${colors.accent}, ${colors.accentHover})`,
-              boxShadow: `0 10px 24px ${colors.accent}40`,
+              background: 'var(--v2-board, #050607)',
               animation: 'bounceIn 600ms ease both',
             }}>
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--v2-text-on-dark, #fff7ed)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <rect x="3" y="5" width="18" height="14" rx="2" />
                 <path d="m3 7 9 6 9-6" />
               </svg>
             </div>
 
-            <h1 style={{ fontFamily: fonts.serif, fontSize: 24, fontWeight: 700, color: colors.text, margin: '0 0 10px' }}>
+            <h1 style={{ fontFamily: 'var(--v2-font-display, Oswald, system-ui)', textTransform: 'uppercase', fontSize: 24, fontWeight: 600, letterSpacing: '0.01em', lineHeight: 1.05, color: 'var(--v2-ink, #050607)', margin: '0 0 10px' }}>
               {recoveryQuoteOrigin ? 'Welcome — let’s finish setting up' : 'You already started with Y7'}
             </h1>
-            <p style={{ fontFamily: fonts.sans, fontSize: 15, lineHeight: 1.6, color: colors.textMuted, margin: '0 0 4px' }}>
+            <p style={{ fontFamily: fonts.sans, fontSize: 15, lineHeight: 1.6, color: 'var(--v2-ink-muted, #5c5851)', margin: '0 0 4px' }}>
               {recoveryQuoteOrigin
                 ? 'We found your earlier quote. We’ve emailed a sign-in link to'
                 : 'We’ve emailed your sign-in link to'}
             </p>
-            <p style={{ fontFamily: fonts.mono, fontSize: 15, fontWeight: 600, color: colors.text, margin: '0 0 18px' }}>
+            <p style={{ fontFamily: fonts.mono, fontSize: 15, fontWeight: 600, color: 'var(--v2-ink, #050607)', margin: '0 0 18px' }}>
               {masked}
             </p>
-            <p style={{ fontFamily: fonts.sans, fontSize: 14, lineHeight: 1.6, color: colors.textMuted, margin: '0 0 22px' }}>
+            <p style={{ fontFamily: fonts.sans, fontSize: 14, lineHeight: 1.6, color: 'var(--v2-ink-muted, #5c5851)', margin: '0 0 22px' }}>
               Click the link to jump straight back into your account &mdash; no password needed. It&rsquo;s valid for 24 hours.
             </p>
 
             {resendState === 'sent' ? (
               <div style={{
-                fontFamily: fonts.sans, fontSize: 13, color: colors.accent, fontWeight: 600,
+                fontFamily: fonts.sans, fontSize: 13, color: colors.success, fontWeight: 600,
                 marginBottom: 18, animation: 'popUp 300ms ease both',
               }}>
                 &#10003; Link sent &mdash; check your inbox (and spam).
               </div>
             ) : (
               <div style={{
-                fontFamily: fonts.sans, fontSize: 13, color: colors.textMuted,
+                fontFamily: fonts.sans, fontSize: 13, color: 'var(--v2-ink-muted, #5c5851)',
                 marginBottom: 18, animation: 'pulse 1.2s ease infinite',
               }}>
                 Sending your link&hellip;
@@ -511,7 +510,7 @@ export default function Login() {
               type="button"
               onClick={sendSigninLink}
               disabled={resendState === 'sending'}
-              style={{ ...btnStyles.accent, width: '100%', marginBottom: 12, opacity: resendState === 'sending' ? 0.7 : 1, cursor: resendState === 'sending' ? 'default' : 'pointer' }}
+              style={{ ...btnStyles.accent, background: 'var(--v2-red-gradient, linear-gradient(135deg, #d70f24, #a90918))', color: '#fff7ed', borderRadius: 8, width: '100%', marginBottom: 12, opacity: resendState === 'sending' ? 0.7 : 1, cursor: resendState === 'sending' ? 'default' : 'pointer' }}
             >
               {resendState === 'sending' ? 'Sending…' : 'Resend sign-in link'}
             </button>
@@ -520,13 +519,13 @@ export default function Login() {
               type="button"
               onClick={() => { setResendState('idle'); setError(null); setStep('email'); }}
               style={{
-                width: '100%', background: 'transparent', border: `1px solid ${colors.border}`,
-                borderRadius: radii.md, padding: '11px 16px', fontFamily: fonts.sans,
-                fontSize: 14, fontWeight: 600, color: colors.text, cursor: 'pointer',
+                width: '100%', background: 'transparent', border: '1px solid rgba(5, 6, 7, 0.3)',
+                borderRadius: 8, padding: '11px 16px', fontFamily: fonts.sans,
+                fontSize: 14, fontWeight: 600, color: 'var(--v2-ink, #050607)', cursor: 'pointer',
                 transition: 'border-color 150ms ease',
               }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = colors.accent; }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = colors.border; }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--v2-red, #d70f24)'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(5, 6, 7, 0.3)'; }}
             >
               Sign in with a password instead
             </button>
@@ -536,7 +535,7 @@ export default function Login() {
               onClick={() => { setResendState('idle'); setError(null); setStep('email'); }}
               style={{
                 marginTop: 16, background: 'none', border: 'none', cursor: 'pointer',
-                fontFamily: fonts.sans, fontSize: 13, color: colors.textMuted, textDecoration: 'underline',
+                fontFamily: fonts.sans, fontSize: 13, color: 'var(--v2-ink, #050607)', textDecoration: 'underline', textUnderlineOffset: 2,
               }}
             >
               Use a different email

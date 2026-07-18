@@ -69,7 +69,6 @@ const TYPES = [
       'Auction pickups (Copart / IAA / Manheim) with document auto-fill',
       // fee benefits appended per pricing model at render time
     ],
-    tone: { border: '#993C1D', bg: '#FFF8F5' },
   },
   {
     id: 'dealer',
@@ -81,7 +80,6 @@ const TYPES = [
       '$50 COD / $65 Full Service (AP service available separately)',
     ],
     note: 'Requires a short verification — apply now, we review and set up a call to activate.',
-    tone: { border: '#0F6E56', bg: '#F0FAF6' },
   },
   {
     id: 'exporter',
@@ -97,7 +95,6 @@ const TYPES = [
       'Y7 picks the optimal warehouse and dispatches',
     ],
     note: 'Requires a short verification — apply now, we review and set up a call to activate.',
-    tone: { border: '#14648C', bg: '#F0F6FA' },
   },
 ];
 
@@ -233,7 +230,7 @@ export default function Onboarding() {
   if (loading || step === null) {
     return (
       <div style={wrapStyle}>
-        <div style={{ color: colors.textMuted, fontFamily: fonts.sans }}>
+        <div style={{ color: 'var(--v2-ink-muted, #5c5851)', fontFamily: fonts.sans }}>
           Loading...
         </div>
       </div>
@@ -404,13 +401,15 @@ function Header({ steps, step }) {
   return (
     <div style={{ marginBottom: spacing.lg }}>
       <h1 style={{
-        fontFamily: fonts.serif, fontSize: 26, fontWeight: 700,
-        color: colors.text, margin: 0, marginBottom: spacing.xs,
+        fontFamily: 'var(--v2-font-display, Oswald, system-ui)',
+        textTransform: 'uppercase', fontSize: 26, fontWeight: 600,
+        letterSpacing: '0.01em', lineHeight: 1.05,
+        color: 'var(--v2-ink, #050607)', margin: 0, marginBottom: spacing.xs,
       }}>
         Complete your account setup
       </h1>
       <p style={{
-        fontFamily: fonts.sans, fontSize: 14, color: colors.textMuted,
+        fontFamily: fonts.sans, fontSize: 14, color: 'var(--v2-ink-muted, #5c5851)',
         margin: 0, marginBottom: spacing.md, lineHeight: 1.5,
       }}>
         Tell us who you are, pick your account type, and sign the
@@ -426,9 +425,9 @@ function Header({ steps, step }) {
           }}>
             <div style={{
               width: 28, height: 28, borderRadius: '50%',
-              border: `2px solid ${current >= i ? colors.accent : colors.border}`,
-              background: current >= i ? colors.accent : 'transparent',
-              color: current >= i ? '#fff' : colors.textMuted,
+              border: `2px solid ${current >= i ? 'var(--v2-ink, #050607)' : 'var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))'}`,
+              background: current >= i ? 'var(--v2-ink, #050607)' : 'transparent',
+              color: current >= i ? '#fff7ed' : 'var(--v2-ink-muted, #5c5851)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontFamily: fonts.sans, fontSize: 13, fontWeight: 600,
             }}>
@@ -437,7 +436,7 @@ function Header({ steps, step }) {
             {i < steps.length - 1 && (
               <div style={{
                 width: 32, height: 2,
-                background: current > i ? colors.accent : colors.border,
+                background: current > i ? 'var(--v2-ink, #050607)' : 'var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
                 margin: `0 ${spacing.xs}px`,
               }} />
             )}
@@ -445,7 +444,7 @@ function Header({ steps, step }) {
         ))}
         <div style={{
           marginLeft: spacing.sm,
-          fontFamily: fonts.sans, fontSize: 12, color: colors.textMuted,
+          fontFamily: fonts.sans, fontSize: 12, color: 'var(--v2-ink-muted, #5c5851)',
         }}>
           {STEP_LABELS[step]}
         </div>
@@ -547,7 +546,7 @@ function ProfileStep({ user, onCompleted }) {
       <div style={{ marginBottom: spacing.md }}>
         <label style={{
           display: 'block', fontFamily: fonts.sans, fontSize: 13,
-          fontWeight: 600, color: colors.text, marginBottom: spacing.xs,
+          fontWeight: 600, color: 'var(--v2-ink, #050607)', marginBottom: spacing.xs,
         }}>
           Phone number *
         </label>
@@ -559,10 +558,10 @@ function ProfileStep({ user, onCompleted }) {
           style={{
             width: '100%', padding: '10px 12px',
             fontSize: 16, fontFamily: fonts.sans, // >=16px avoids iOS focus-zoom
-            border: `1px solid ${colors.borderInput}`,
+            border: '1px solid rgba(5, 6, 7, 0.3)',
             borderRadius: radii.md,
-            background: colors.bgCard,
-            color: colors.text,
+            background: 'var(--v2-card-cream, #fffaf1)',
+            color: 'var(--v2-ink, #050607)',
             boxSizing: 'border-box',
           }}
         />
@@ -605,7 +604,9 @@ function ProfileStep({ user, onCompleted }) {
 
       <div style={{
         marginTop: spacing.lg, padding: spacing.md,
-        background: colors.bgMuted, borderRadius: radii.md,
+        background: 'rgba(5, 6, 7, 0.04)',
+        border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
+        borderRadius: radii.md,
       }}>
         <label style={{
           display: 'flex', alignItems: 'flex-start', gap: spacing.sm,
@@ -615,13 +616,13 @@ function ProfileStep({ user, onCompleted }) {
             type="checkbox"
             checked={smsConsent}
             onChange={e => setSmsConsent(e.target.checked)}
-            style={{ marginTop: 4, width: 16, height: 16, flexShrink: 0 }}
+            style={{ marginTop: 4, width: 16, height: 16, flexShrink: 0, accentColor: 'var(--v2-red, #d70f24)' }}
           />
           <div>
-            <div style={{ fontSize: 13, fontWeight: 600, color: colors.text, marginBottom: 4 }}>
+            <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--v2-ink, #050607)', marginBottom: 4 }}>
               Get text updates about your shipment
             </div>
-            <div style={{ fontSize: 12, color: colors.textMuted, lineHeight: 1.5 }}>
+            <div style={{ fontSize: 12, color: 'var(--v2-ink-muted, #5c5851)', lineHeight: 1.5 }}>
               {consentText || 'Y7 Logistics will text you about your shipment. Reply STOP to opt out. Msg & data rates may apply.'}
             </div>
           </div>
@@ -637,8 +638,7 @@ function ProfileStep({ user, onCompleted }) {
           disabled={!canSubmit || saving}
           style={{
             ...primaryBtnStyle,
-            background: canSubmit && !saving ? colors.accent : colors.bgMuted,
-            color: canSubmit && !saving ? '#fff' : colors.textMuted,
+            opacity: canSubmit && !saving ? 1 : 0.45,
             cursor: canSubmit && !saving ? 'pointer' : 'not-allowed',
           }}
         >
@@ -655,7 +655,7 @@ function Field({ label, value, onChange, placeholder, required, type = 'text', a
     <div style={{ marginBottom: spacing.md }}>
       <label style={{
         display: 'block', fontFamily: fonts.sans, fontSize: 13,
-        fontWeight: 600, color: colors.text, marginBottom: spacing.xs,
+        fontWeight: 600, color: 'var(--v2-ink, #050607)', marginBottom: spacing.xs,
       }}>
         {label}{required ? ' *' : ''}
       </label>
@@ -669,10 +669,10 @@ function Field({ label, value, onChange, placeholder, required, type = 'text', a
         style={{
           width: '100%', padding: '10px 12px',
           fontSize: 16, fontFamily: fonts.sans, // >=16px avoids iOS focus-zoom
-          border: `1px solid ${colors.borderInput}`,
+          border: '1px solid rgba(5, 6, 7, 0.3)',
           borderRadius: radii.md,
-          background: colors.bgCard,
-          color: colors.text,
+          background: 'var(--v2-card-cream, #fffaf1)',
+          color: 'var(--v2-ink, #050607)',
           boxSizing: 'border-box',
         }}
       />
@@ -714,39 +714,40 @@ function AccountTypeStep({ onSelected }) {
             onBlur={() => setFocused(null)}
             style={{
               padding: spacing.md,
-              border: `2px solid ${focused === t.id ? t.tone.border : colors.border}`,
+              border: `2px solid ${focused === t.id ? 'var(--v2-red, #d70f24)' : 'var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))'}`,
               borderRadius: radii.lg,
-              background: focused === t.id ? t.tone.bg : colors.bgCard,
+              background: 'var(--v2-card-cream, #fffaf1)',
               cursor: 'pointer', textAlign: 'left',
               fontFamily: fonts.sans,
               transition: 'all 150ms ease',
-              outline: 'none',
               boxShadow: focused === t.id
-                ? `0 0 0 3px ${t.tone.border}33`
+                ? '0 0 0 3px rgba(215, 15, 36, 0.15)'
                 : 'none',
             }}
           >
             <div style={{
-              fontFamily: fonts.serif, fontSize: 18, fontWeight: 700,
-              color: colors.text, marginBottom: 4,
+              fontFamily: 'var(--v2-font-display, Oswald, system-ui)',
+              textTransform: 'uppercase', fontSize: 18, fontWeight: 600,
+              letterSpacing: '0.01em', lineHeight: 1.05,
+              color: 'var(--v2-ink, #050607)', marginBottom: 4,
             }}>
               {t.title}
             </div>
             <div style={{
-              fontSize: 13, color: colors.textMuted, marginBottom: spacing.sm,
+              fontSize: 13, color: 'var(--v2-ink-muted, #5c5851)', marginBottom: spacing.sm,
             }}>
               {t.description}
             </div>
             <ul style={{
               margin: 0, padding: '0 0 0 16px', fontSize: 12,
-              color: colors.textMuted, lineHeight: 1.7,
+              color: 'var(--v2-ink-muted, #5c5851)', lineHeight: 1.7,
             }}>
               {cardBenefits(t).map((b, i) => <li key={i}>{b}</li>)}
             </ul>
             {t.note && (
               <div style={{
                 marginTop: spacing.sm, fontSize: 12, fontWeight: 600,
-                color: t.tone.border, lineHeight: 1.5,
+                color: 'var(--v2-ink, #050607)', lineHeight: 1.5,
               }}>
                 {t.note}
               </div>
@@ -987,17 +988,17 @@ function AgreementStep({ user, customerType, onBack, onSigned }) {
             <label style={{
               display: 'flex', alignItems: 'flex-start', gap: spacing.sm,
               padding: spacing.sm,
-              borderTop: `1px solid ${colors.border}`,
+              borderTop: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
               marginTop: spacing.md, paddingTop: spacing.md,
               cursor: 'pointer',
-              fontFamily: fonts.sans, fontSize: 13, color: colors.text,
+              fontFamily: fonts.sans, fontSize: 13, color: 'var(--v2-ink, #050607)',
               lineHeight: 1.5,
             }}>
               <input
                 type="checkbox"
                 checked={isChecked}
                 onChange={(e) => setChecked({ ...checked, [cb.id]: e.target.checked })}
-                style={{ marginTop: 2 }}
+                style={{ marginTop: 2, accentColor: 'var(--v2-red, #d70f24)' }}
               />
               <span><strong>{cb.label}</strong></span>
             </label>
@@ -1010,15 +1011,15 @@ function AgreementStep({ user, customerType, onBack, onSigned }) {
       <label style={{
         display: 'flex', alignItems: 'flex-start', gap: spacing.sm,
         marginTop: spacing.md, paddingTop: spacing.md,
-        borderTop: `1px solid ${colors.border}`,
+        borderTop: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
         cursor: 'pointer', fontFamily: fonts.sans, fontSize: 13,
-        color: colors.text, lineHeight: 1.5,
+        color: 'var(--v2-ink, #050607)', lineHeight: 1.5,
       }}>
         <input
           type="checkbox"
           checked={eConsent}
           onChange={(e) => setEConsent(e.target.checked)}
-          style={{ marginTop: 2 }}
+          style={{ marginTop: 2, accentColor: 'var(--v2-red, #d70f24)' }}
         />
         <span>
           I agree to conduct business electronically and to sign this agreement
@@ -1028,12 +1029,12 @@ function AgreementStep({ user, customerType, onBack, onSigned }) {
 
       <div style={signerBlockStyle}>
         <h3 style={{ ...sectionHeadingStyle, marginTop: 0 }}>Your signature</h3>
-        <p style={{ margin: 0, fontFamily: fonts.sans, fontSize: 14, color: colors.text }}>
+        <p style={{ margin: 0, fontFamily: fonts.sans, fontSize: 14, color: 'var(--v2-ink, #050607)' }}>
           I, <strong>{profileName}</strong>, agree to the terms above.
         </p>
         <p style={{
           margin: `${spacing.xs}px 0 0`, fontFamily: fonts.sans,
-          fontSize: 12, color: colors.textMuted,
+          fontSize: 12, color: 'var(--v2-ink-muted, #5c5851)',
         }}>
           Signed on {new Date().toLocaleDateString()}. To change the
           name on this signature, update your profile.
@@ -1060,8 +1061,7 @@ function AgreementStep({ user, customerType, onBack, onSigned }) {
           disabled={!canSign || submitting}
           style={{
             ...primaryBtnStyle,
-            background: canSign && !submitting ? colors.accent : colors.bgMuted,
-            color: canSign && !submitting ? '#fff' : colors.textMuted,
+            opacity: canSign && !submitting ? 1 : 0.45,
             cursor: canSign && !submitting ? 'pointer' : 'not-allowed',
           }}
         >
@@ -1078,15 +1078,15 @@ function LockedCard({ number, title }) {
     <div style={{
       ...sectionCardStyle,
       opacity: 0.55,
-      background: colors.bgMuted,
+      background: 'rgba(5, 6, 7, 0.04)',
     }}>
-      <h3 style={{ ...sectionHeadingStyle, color: colors.textMuted }}>
+      <h3 style={{ ...sectionHeadingStyle, color: 'var(--v2-ink-muted, #5c5851)' }}>
         {number}. {title}{' '}
         <span style={{ marginLeft: spacing.sm, fontSize: 13 }}>(locked)</span>
       </h3>
       <p style={{
         margin: 0, fontFamily: fonts.sans, fontSize: 13,
-        color: colors.textMuted,
+        color: 'var(--v2-ink-muted, #5c5851)',
       }}>
         Confirm the previous section to unlock this one.
       </p>
@@ -1109,8 +1109,8 @@ function WelcomeStep({ customerType, name, pendingReview, onComplete }) {
     <div style={{ textAlign: 'center', padding: spacing.md + 'px 0' }}>
       <div style={{
         width: 72, height: 72, borderRadius: '50%',
-        background: pendingReview ? colors.bgMuted : colors.successBg,
-        color: pendingReview ? colors.text : colors.success,
+        background: pendingReview ? 'rgba(5, 6, 7, 0.04)' : colors.successBg,
+        color: pendingReview ? 'var(--v2-ink, #050607)' : colors.success,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         margin: '0 auto ' + spacing.md + 'px',
       }}>
@@ -1128,7 +1128,10 @@ function WelcomeStep({ customerType, name, pendingReview, onComplete }) {
         )}
       </div>
       <h2 style={{
-        fontFamily: fonts.serif, fontSize: 24, color: colors.text,
+        fontFamily: 'var(--v2-font-display, Oswald, system-ui)',
+        textTransform: 'uppercase', fontSize: 24, fontWeight: 600,
+        letterSpacing: '0.01em', lineHeight: 1.05,
+        color: 'var(--v2-ink, #050607)',
         margin: 0, marginBottom: spacing.xs,
       }}>
         {pendingReview ? 'Application submitted' : `Welcome${name ? `, ${name}` : ''}.`}
@@ -1136,15 +1139,17 @@ function WelcomeStep({ customerType, name, pendingReview, onComplete }) {
       {pendingReview ? (
         <>
           <p style={{
-            fontFamily: fonts.sans, fontSize: 15, color: colors.textMuted,
+            fontFamily: fonts.sans, fontSize: 15, color: 'var(--v2-ink-muted, #5c5851)',
             margin: 0, marginBottom: spacing.md,
           }}>
             Thanks{name ? `, ${name}` : ''}. We'll review your <strong>{label}</strong>{' '}
             details and set up a call to activate your account.
           </p>
           <p style={{
-            fontFamily: fonts.sans, fontSize: 13, color: colors.textMuted,
-            background: colors.bgMuted, padding: spacing.sm + 'px ' + spacing.md + 'px',
+            fontFamily: fonts.sans, fontSize: 13, color: 'var(--v2-ink-muted, #5c5851)',
+            background: 'rgba(5, 6, 7, 0.04)',
+            border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
+            padding: spacing.sm + 'px ' + spacing.md + 'px',
             borderRadius: radii.md, display: 'inline-block',
             marginBottom: spacing.lg,
           }}>
@@ -1165,14 +1170,16 @@ function WelcomeStep({ customerType, name, pendingReview, onComplete }) {
       ) : (
         <>
           <p style={{
-            fontFamily: fonts.sans, fontSize: 15, color: colors.textMuted,
+            fontFamily: fonts.sans, fontSize: 15, color: 'var(--v2-ink-muted, #5c5851)',
             margin: 0, marginBottom: spacing.md,
           }}>
             Your <strong>{label}</strong> account is active.
           </p>
           <p style={{
-            fontFamily: fonts.sans, fontSize: 13, color: colors.textMuted,
-            background: colors.bgMuted, padding: spacing.sm + 'px ' + spacing.md + 'px',
+            fontFamily: fonts.sans, fontSize: 13, color: 'var(--v2-ink-muted, #5c5851)',
+            background: 'rgba(5, 6, 7, 0.04)',
+            border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
+            padding: spacing.sm + 'px ' + spacing.md + 'px',
             borderRadius: radii.md, display: 'inline-block',
             marginBottom: spacing.lg,
           }}>
@@ -1202,7 +1209,7 @@ function WelcomeStep({ customerType, name, pendingReview, onComplete }) {
 const wrapStyle = {
   minHeight: '100vh',
   padding: spacing.lg,
-  background: colors.bg,
+  background: 'var(--v2-paper, #f4f0e8)',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'flex-start',
@@ -1212,73 +1219,84 @@ const wrapStyle = {
 const cardStyle = {
   width: '100%',
   maxWidth: 760,
-  background: colors.bgCard,
-  borderRadius: radii.xl,
+  background: 'var(--v2-card-cream, #fffaf1)',
+  border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
+  borderRadius: 18,
   padding: spacing.xl,
   boxShadow: '0 4px 16px rgba(0,0,0,0.04), 0 8px 32px rgba(0,0,0,0.06)',
 };
 
 const stepTitleStyle = {
-  fontFamily: fonts.serif, fontSize: 20, color: colors.text,
+  fontFamily: 'var(--v2-font-display, Oswald, system-ui)',
+  textTransform: 'uppercase', fontSize: 20, fontWeight: 600,
+  letterSpacing: '0.01em', lineHeight: 1.05,
+  color: 'var(--v2-ink, #050607)',
   margin: 0, marginBottom: 4,
 };
 
 const stepSubtitleStyle = {
-  fontFamily: fonts.sans, fontSize: 13, color: colors.textMuted,
+  fontFamily: fonts.sans, fontSize: 13, color: 'var(--v2-ink-muted, #5c5851)',
   margin: 0, marginBottom: 16, lineHeight: 1.5,
 };
 
 const subSectionTitleStyle = {
-  fontFamily: fonts.serif, fontSize: 16, color: colors.text,
+  fontFamily: 'var(--v2-font-display, Oswald, system-ui)',
+  textTransform: 'uppercase', fontSize: 16, fontWeight: 600,
+  letterSpacing: '0.01em', lineHeight: 1.05,
+  color: 'var(--v2-ink, #050607)',
   margin: `${spacing.lg}px 0 ${spacing.sm}px`,
 };
 
 const sectionCardStyle = {
-  border: `1px solid ${colors.border}`,
-  borderRadius: radii.md,
+  border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
+  borderRadius: 12,
   padding: spacing.md,
   marginBottom: spacing.md,
-  background: colors.bgCard,
+  background: 'var(--v2-card-cream, #fffaf1)',
 };
 
 const sectionHeadingStyle = {
-  fontFamily: fonts.serif, fontSize: 15, fontWeight: 700,
-  color: colors.text, margin: `0 0 ${spacing.sm}px 0`,
+  fontFamily: 'var(--v2-font-display, Oswald, system-ui)',
+  textTransform: 'uppercase', fontSize: 15, fontWeight: 600,
+  letterSpacing: '0.01em', lineHeight: 1.05,
+  color: 'var(--v2-ink, #050607)', margin: `0 0 ${spacing.sm}px 0`,
 };
 
 const sectionBodyStyle = {
-  fontFamily: fonts.sans, fontSize: 13, color: colors.text,
+  fontFamily: fonts.sans, fontSize: 13, color: 'var(--v2-ink, #050607)',
   lineHeight: 1.65,
 };
 
 const signerBlockStyle = {
   marginTop: spacing.lg,
   padding: spacing.md,
-  background: '#F8F4EE',
-  border: `1px solid ${colors.border}`,
-  borderRadius: radii.md,
+  background: 'rgba(5, 6, 7, 0.04)',
+  border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
+  borderRadius: 12,
 };
 
 const primaryBtnStyle = {
   padding: '12px 24px',
-  background: colors.accent, color: '#fff',
-  border: 'none', borderRadius: 20,
+  background: 'var(--v2-red-gradient, linear-gradient(135deg, #d70f24, #a90918))',
+  color: '#fff7ed',
+  border: 'none', borderRadius: 8,
   fontSize: 13, fontWeight: 600, fontFamily: fonts.sans,
   letterSpacing: '0.5px', cursor: 'pointer',
 };
 
 const secondaryBtnStyle = {
   padding: '12px 24px',
-  background: 'transparent', color: colors.text,
-  border: `1px solid ${colors.border}`, borderRadius: 20,
+  background: 'transparent', color: 'var(--v2-ink, #050607)',
+  border: '1px solid rgba(5, 6, 7, 0.3)', borderRadius: 8,
   fontSize: 13, fontWeight: 600, fontFamily: fonts.sans,
   letterSpacing: '0.5px', cursor: 'pointer',
 };
 
 const errorBoxStyle = {
   padding: spacing.sm + 'px ' + spacing.md + 'px',
-  background: '#FEE2E2', border: '1px solid #FCA5A5',
-  borderRadius: radii.md, color: '#991B1B',
+  background: 'rgba(215, 15, 36, 0.06)',
+  border: '1px solid rgba(215, 15, 36, 0.25)',
+  borderRadius: 8, color: 'var(--v2-red-deep, #a90918)',
   fontFamily: fonts.sans, fontSize: 13,
   marginTop: spacing.md, marginBottom: spacing.md,
 };

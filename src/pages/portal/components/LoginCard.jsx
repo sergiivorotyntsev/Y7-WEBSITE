@@ -5,44 +5,59 @@ import PhoneInput from '../../../components/PhoneInput';
 import EmailInputWithCheck from '../../../components/EmailInputWithCheck';
 import AnimatedLogo from '../../../components/AnimatedLogo';
 
-// LOGIN-TB: Trade Bulletin alignment. The previous constants declared
-// Playfair Display / DM Sans / DM Mono — none of which the portal loads —
-// and off-token colors. These are the site's actual tokens (DESIGN.md):
-// Georgia serif, system sans, self-hosted JetBrains Mono, Newsprint Cream,
-// Pressroom Ink, Burnt Sienna.
+// LOGIN-V2: DESIGN-V2 "Dispatch Board" retoken. The retired V1 "Trade
+// Bulletin" palette (its old reading-face display, burnt-sienna accent, and
+// ad-hoc paper/ink hexes) is gone on this screen. `fonts` and `C` are kept
+// as local alias tables so the diff stays reviewable, but every value is now
+// a V2 token (board-black + manifest-paper + signal-red, self-hosted
+// JetBrains Mono, Oswald condensed display). Red is RESTRAINED: errors, the
+// one primary button, focus rings, and selected-state accents only.
 const fonts = {
-  serif: "Georgia, 'Times New Roman', serif",
+  display: 'var(--v2-font-display, Oswald, system-ui)',
   sans: "system-ui, -apple-system, 'Segoe UI', sans-serif",
   mono: "'JetBrains Mono', Consolas, monospace",
 };
 
 const C = {
-  bgPage: '#F7F5F0',
-  bgCard: '#FFFFFF',
-  bgInput: '#F7F5F0',
-  border: '#E5E0D8',
-  borderInput: '#D9D2C6',
-  borderFocused: '#993C1D',
-  text: '#2C2C2A',
-  textMuted: '#706E68',
-  accent: '#993C1D',
-  accentHover: '#7E3118',
-  accentText: '#F7F5F0',
-  errorBg: '#FBEDE8',
-  errorBorder: '#E8C7B8',
-  // masthead panel (dark, like the site header/footer)
-  ink: '#232220',
-  inkText: '#F7F5F0',
-  inkMuted: 'rgba(247, 245, 240, 0.62)',
-  inkRule: 'rgba(247, 245, 240, 0.14)',
-  accentOnInk: '#E08960',
+  bgPage: 'var(--v2-paper, #f4f0e8)',
+  bgCard: 'var(--v2-card-cream, #fffaf1)',
+  bgInput: 'var(--v2-paper, #f4f0e8)',
+  border: 'var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
+  borderInput: 'var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
+  // secondary-button / stronger paper hairline
+  borderStrong: 'rgba(5, 6, 7, 0.3)',
+  borderFocused: 'var(--v2-red, #d70f24)',
+  text: 'var(--v2-ink, #050607)',
+  textMuted: 'var(--v2-ink-muted, #5c5851)',
+  // RED — restrained: primary button, focus, selected/filled states, errors.
+  accent: 'var(--v2-red, #d70f24)',
+  accentHover: 'var(--v2-red-deep, #a90918)',
+  accentText: '#fff7ed',
+  errorText: 'var(--v2-red-deep, #a90918)',
+  errorBg: 'rgba(215, 15, 36, 0.06)',
+  errorBorder: 'rgba(215, 15, 36, 0.25)',
+  // masthead panel (board-black, like the site header/footer)
+  ink: 'var(--v2-board, #050607)',
+  inkText: 'var(--v2-text-on-dark, #fff7ed)',
+  inkMuted: 'var(--v2-text-on-dark-muted, #9c9b96)',
+  inkRule: 'var(--v2-line-on-dark, rgba(255, 247, 237, 0.14))',
+  accentOnInk: 'var(--v2-red-bright, #ef3a4e)',
+};
+
+// V2 display-heading treatment (replaces every V1 reading-face heading).
+const displayHeading = {
+  fontFamily: fonts.display,
+  textTransform: 'uppercase',
+  fontWeight: 600,
+  letterSpacing: '0.01em',
+  lineHeight: 1.05,
 };
 
 const kickerStyle = {
   fontFamily: fonts.sans,
   fontSize: '10.5px',
   fontWeight: 700,
-  color: C.accent,
+  color: C.text,
   textTransform: 'uppercase',
   letterSpacing: '0.14em',
   display: 'block',
@@ -69,17 +84,17 @@ const inputStyle = {
   border: `1px solid ${C.borderInput}`,
   background: C.bgInput,
   color: C.text,
-  outline: 'none',
   width: '100%',
   boxSizing: 'border-box',
 };
 
+// The one red fill on any screen (Signal Budget): CTA gradient, ink-cream text.
 const primaryBtn = {
   fontFamily: fonts.sans,
   fontSize: '14px',
   fontWeight: 700,
   color: C.accentText,
-  background: C.accent,
+  background: 'var(--v2-red-gradient, linear-gradient(135deg, #d70f24, #a90918))',
   border: 'none',
   borderRadius: '8px',
   padding: '14px',
@@ -91,9 +106,9 @@ const secondaryBtn = {
   fontFamily: fonts.sans,
   fontSize: '12px',
   fontWeight: 600,
-  color: C.textMuted,
+  color: C.text,
   background: 'transparent',
-  border: `1px solid ${C.border}`,
+  border: `1px solid ${C.borderStrong}`,
   borderRadius: '8px',
   padding: '10px',
   width: '100%',
@@ -101,7 +116,9 @@ const secondaryBtn = {
 };
 
 // REGC-S13-W01: account-type cards lifted verbatim from Onboarding.jsx:43-88
-// (title + description + 3 benefits + tone). Dealer is now SHOWN at signup.
+// (title + description + 3 benefits). LOGIN-V2: the per-type tone swatches
+// (sienna/gold/pine/blue washes) are RETIRED — all four cards render neutral
+// (cream + hairline + ink); the selected state carries the single red accent.
 const REG_TYPES = [
   {
     id: 'individual',
@@ -112,7 +129,6 @@ const REG_TYPES = [
       'Pay carrier directly on delivery (COD)',
       '$50 COD or $65 Full Service fee',
     ],
-    tone: { border: '#993C1D', bg: '#FFF8F5' },
   },
   {
     id: 'auction_buyer',
@@ -123,7 +139,6 @@ const REG_TYPES = [
       'Gate-pass upload + VIN decode',
       '$50 COD or $65 Full Service fee',
     ],
-    tone: { border: '#B8851F', bg: '#FFFBF0' },
   },
   {
     id: 'dealer',
@@ -134,7 +149,6 @@ const REG_TYPES = [
       'Dedicated dealer agreement',
       '$50 COD / $65 Full Service (AP service available separately)',
     ],
-    tone: { border: '#0F6E56', bg: '#F0FAF6' },
   },
   {
     id: 'exporter',
@@ -145,7 +159,6 @@ const REG_TYPES = [
       'Container-ready delivery',
       '$50 COD or $65 Full Service fee',
     ],
-    tone: { border: '#14648C', bg: '#F0F6FA' },
   },
 ];
 
@@ -196,8 +209,8 @@ export default function LoginCard({
   // REGC-S13-W02/W03: OTP step renders RegisterOtpStep (passed as a node)
   otpStep,
 }) {
-  // LOGIN-TB: tracked-caps kicker above the serif heading — the Trade
-  // Bulletin section-header signature, step-aware.
+  // LOGIN-V2: tracked-caps kicker above the condensed display heading —
+  // the Dispatch Board section-opener signature, step-aware.
   const stepKicker =
     step === 'code' ? t('login.kickerCode')
     : step === 'reg_type' ? t('login.kickerType')
@@ -218,6 +231,7 @@ export default function LoginCard({
         .y7lp-back:hover { color: ${C.text}; }
         .y7lp-brandbar { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; --color-text: ${C.text}; --color-accent: ${C.accent}; }
         .y7lp-creds { margin-top: 26px; text-align: center; }
+        .y7lp input:focus-visible, .y7lp button:focus-visible, .y7lp a:focus-visible { outline: 2px solid var(--v2-red, #d70f24); outline-offset: 2px; }
         @media (min-width: 960px) {
           .y7lp { grid-template-columns: minmax(360px, 430px) 1fr; }
           .y7lp-mast {
@@ -238,10 +252,10 @@ export default function LoginCard({
             color: C.accentOnInk, textTransform: 'uppercase', letterSpacing: '0.16em',
             display: 'block', margin: '40px 0 12px',
           }}>
-            &#9670; {t('login.brandKicker')}
+            {t('login.brandKicker')}
           </span>
           <h2 style={{
-            fontFamily: fonts.serif, fontSize: '27px', fontWeight: 700, lineHeight: 1.25,
+            ...displayHeading, fontSize: '27px',
             color: C.inkText, margin: '0 0 28px', maxWidth: '300px',
           }}>
             {t('login.brandTitle')}
@@ -295,14 +309,12 @@ export default function LoginCard({
         border: `1px solid ${C.border}`,
         boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 28px rgba(44, 44, 42, 0.07)',
       }}>
-        <span style={kickerStyle}>&#9670; {stepKicker}</span>
+        <span style={kickerStyle}>{stepKicker}</span>
         <h1 style={{
-          fontFamily: fonts.serif,
+          ...displayHeading,
           fontSize: '25px',
-          fontWeight: 700,
           color: C.text,
           textAlign: 'left',
-          lineHeight: 1.25,
           marginBottom: '10px',
           marginTop: 0,
         }}>
@@ -355,7 +367,7 @@ export default function LoginCard({
           <div role="alert" style={{
             fontFamily: fonts.sans,
             fontSize: '13px',
-            color: C.accent,
+            color: C.errorText,
             padding: '10px 14px',
             background: C.errorBg,
             border: `1px solid ${C.errorBorder}`,
@@ -404,12 +416,13 @@ export default function LoginCard({
                   fontFamily: fonts.sans,
                   fontSize: '12px',
                   fontWeight: 600,
-                  color: C.textMuted,
+                  color: C.text,
                   background: 'transparent',
                   border: 'none',
                   padding: 0,
                   cursor: 'pointer',
                   textDecoration: 'underline',
+                  textUnderlineOffset: 2,
                 }}
               >
                 {t('login.forgotPassword')}
@@ -462,10 +475,10 @@ export default function LoginCard({
                     fontSize: '24px',
                     fontWeight: 700,
                     borderRadius: '10px',
-                    border: `2px solid ${digit ? C.accent : C.borderInput}`,
+                    border: `2px solid ${digit ? C.text : C.borderInput}`,
                     background: C.bgCard,
                     color: C.text,
-                    outline: 'none',
+                    caretColor: C.accent,
                   }}
                 />
               ))}
@@ -562,10 +575,10 @@ export default function LoginCard({
                     fontSize: '24px',
                     fontWeight: 700,
                     borderRadius: '10px',
-                    border: `2px solid ${digit ? C.accent : C.borderInput}`,
+                    border: `2px solid ${digit ? C.text : C.borderInput}`,
                     background: C.bgCard,
                     color: C.text,
-                    outline: 'none',
+                    caretColor: C.accent,
                   }}
                 />
               ))}
@@ -592,10 +605,12 @@ export default function LoginCard({
                   onClick={() => onSelectType(tp.id)}
                   style={{
                     textAlign: 'left',
-                    border: `2px solid ${selected ? tp.tone.border : C.border}`,
-                    background: selected ? tp.tone.bg : C.bgCard,
+                    border: `${selected ? '2px' : '1px'} solid ${selected ? 'var(--v2-red, #d70f24)' : C.border}`,
+                    background: C.bgCard,
                     borderRadius: '12px',
-                    padding: '14px 16px',
+                    // 1px less padding when selected — compensates the +1px border so
+                    // toggling selection produces no layout shift.
+                    padding: selected ? '13px 15px' : '14px 16px',
                     cursor: 'pointer',
                     width: '100%',
                   }}
@@ -612,8 +627,8 @@ export default function LoginCard({
             })}
             {(regType === 'dealer' || regType === 'exporter') && (
               <div style={{
-                fontFamily: fonts.sans, fontSize: '12px', color: '#0F6E56',
-                background: '#F0FAF6', border: '1px solid #0F6E56',
+                fontFamily: fonts.sans, fontSize: '12px', color: C.text,
+                background: 'rgba(5, 6, 7, 0.04)', border: `1px solid ${C.border}`,
                 borderRadius: '8px', padding: '10px 12px', lineHeight: 1.5,
               }}>
                 {DEALER_PENDING_NOTE}
@@ -697,9 +712,9 @@ export default function LoginCard({
               lineHeight: 1.5, textAlign: 'center', margin: '0 0 12px',
             }}>
               By creating an account, you agree to our{' '}
-              <a href="/terms" target="_blank" rel="noopener noreferrer" style={{ color: C.accent, textDecoration: 'underline' }}>Terms &amp; Conditions</a>
+              <a href="/terms" target="_blank" rel="noopener noreferrer" style={{ color: C.text, textDecoration: 'underline', textUnderlineOffset: 2 }}>Terms &amp; Conditions</a>
               {' '}and{' '}
-              <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: C.accent, textDecoration: 'underline' }}>Privacy Policy</a>.
+              <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: C.text, textDecoration: 'underline', textUnderlineOffset: 2 }}>Privacy Policy</a>.
             </p>
             <button type="submit" disabled={loading} style={{
               ...primaryBtn,
@@ -729,9 +744,9 @@ export default function LoginCard({
             fontFamily: fonts.sans,
             fontSize: '14px',
             fontWeight: 700,
-            color: C.accent,
+            color: C.text,
             background: 'transparent',
-            border: `1.5px solid ${C.accent}`,
+            border: `1px solid ${C.borderStrong}`,
             borderRadius: '8px',
             padding: '11px 24px',
             cursor: 'pointer',
@@ -743,7 +758,7 @@ export default function LoginCard({
             fontFamily: fonts.sans, fontSize: '12px', color: C.textMuted, margin: '12px 0 0',
           }}>
             <Link to="/ship-my-car" style={{
-              fontFamily: fonts.sans, fontWeight: 600, color: C.accent, textDecoration: 'none',
+              fontFamily: fonts.sans, fontWeight: 600, color: C.text, textDecoration: 'underline', textUnderlineOffset: 2,
             }}>
               {t('login.getQuote')} →
             </Link>

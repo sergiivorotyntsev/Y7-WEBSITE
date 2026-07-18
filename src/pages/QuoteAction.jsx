@@ -2,7 +2,45 @@ import { useState, useEffect } from 'react';
 import { useParams, useSearchParams, Link } from 'react-router-dom';
 import { CheckIcon } from '../components/icons';
 import { apiGet } from '../hooks/useApi';
-import { colors, fonts, button as btnStyles, keyframes, radii, shadows } from '../theme';
+import { colors, fonts, radii, shadows } from '../theme';
+
+// DESIGN-V2 "Dispatch Board": local token aliases for this page's inline styles.
+const V2_INK = 'var(--v2-ink, #050607)';
+const V2_INK_MUTED = 'var(--v2-ink-muted, #5c5851)';
+const V2_LINE = 'var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))';
+const V2_CREAM = 'var(--v2-card-cream, #fffaf1)';
+const V2_DISPLAY = 'var(--v2-font-display, Oswald, system-ui)';
+const v2PrimaryBtn = {
+  background: 'var(--v2-red-gradient, linear-gradient(135deg, #d70f24, #a90918))',
+  color: '#fff7ed',
+  padding: '10px 24px',
+  borderRadius: 8,
+  fontSize: '12px',
+  border: 'none',
+  cursor: 'pointer',
+  fontFamily: fonts.sans,
+  fontWeight: 600,
+  letterSpacing: '0.5px',
+  textTransform: 'uppercase',
+};
+const v2GhostBtn = {
+  background: 'transparent',
+  color: V2_INK,
+  padding: '10px 24px',
+  borderRadius: 8,
+  fontSize: '12px',
+  border: '1px solid rgba(5, 6, 7, 0.3)',
+  cursor: 'pointer',
+  fontFamily: fonts.sans,
+  fontWeight: 600,
+  letterSpacing: '0.5px',
+  textTransform: 'uppercase',
+};
+const v2ErrorBox = {
+  color: 'var(--v2-red-deep, #a90918)',
+  background: 'rgba(215, 15, 36, 0.06)',
+  border: '1px solid rgba(215, 15, 36, 0.25)',
+};
 
 const money = (cents) => (cents == null ? '—' : `$${Math.round(cents / 100)}`);
 
@@ -67,13 +105,13 @@ export default function QuoteAction() {
         <div style={{ marginBottom: '16px' }}>
           <CheckIcon size={40} />
         </div>
-        <h2 style={{ fontFamily: fonts.serif, fontSize: '24px', color: isConfirm ? colors.success : colors.text, marginBottom: '12px' }}>
+        <h2 style={{ fontFamily: V2_DISPLAY, textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.01em', lineHeight: 1.05, fontSize: '24px', color: isConfirm ? colors.success : V2_INK, marginBottom: '12px' }}>
           {result.message}
         </h2>
         {isConfirm && (
           <div style={{ marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'center' }}>
             {result.order_ref && (
-              <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted, margin: 0 }}>
+              <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: V2_INK_MUTED, margin: 0 }}>
                 Reference: <strong>{result.order_ref}</strong>
               </p>
             )}
@@ -81,7 +119,7 @@ export default function QuoteAction() {
                 fee range + COD condition the customer just agreed to. */}
             {details?.pricing_model === 'ind_2026' && (
               <p style={{
-                fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted,
+                fontFamily: fonts.sans, fontSize: '13px', color: V2_INK_MUTED,
                 maxWidth: '400px', margin: 0, lineHeight: 1.5,
               }}>
                 Broker service fee: <strong>
@@ -98,8 +136,8 @@ export default function QuoteAction() {
                 the request email is already on its way (auction-aware term). */}
             {result.release_doc?.needed && (
               <p style={{
-                fontFamily: fonts.sans, fontSize: '13px', color: '#8a6d1b',
-                background: '#FFF8E1', border: '1px solid #F9A825', borderRadius: '10px',
+                fontFamily: fonts.sans, fontSize: '13px', color: V2_INK,
+                background: 'rgba(5, 6, 7, 0.04)', border: `1px solid ${V2_LINE}`, borderRadius: '10px',
                 padding: '10px 16px', maxWidth: '400px', margin: 0, lineHeight: 1.5,
               }}>
                 Next step: upload your <strong>{result.release_doc.term}</strong> —
@@ -110,8 +148,8 @@ export default function QuoteAction() {
                 step is the dispatch-details page, listed explicitly. */}
             {result.dispatch_details?.needed && (
               <div style={{
-                fontFamily: fonts.sans, fontSize: '13px', color: '#8a6d1b', textAlign: 'left',
-                background: '#FFF8E1', border: '1px solid #F9A825', borderRadius: '10px',
+                fontFamily: fonts.sans, fontSize: '13px', color: V2_INK, textAlign: 'left',
+                background: 'rgba(5, 6, 7, 0.04)', border: `1px solid ${V2_LINE}`, borderRadius: '10px',
                 padding: '10px 16px', maxWidth: '400px', margin: 0, lineHeight: 1.5,
               }}>
                 <strong>One step left</strong> — to dispatch a carrier we still need:
@@ -128,7 +166,7 @@ export default function QuoteAction() {
                     : ''
                 }`}
                 style={{
-                  ...btnStyles.accent, display: 'inline-block', textDecoration: 'none', padding: '12px 24px', fontSize: '13px',
+                  ...v2PrimaryBtn, display: 'inline-block', textDecoration: 'none', padding: '12px 24px', fontSize: '13px',
                 }}
               >
                 {result.dispatch_details?.needed
@@ -136,12 +174,12 @@ export default function QuoteAction() {
                   : 'Continue to onboarding'}
               </Link>
             ) : (
-              <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted, maxWidth: '380px', margin: 0, lineHeight: 1.5 }}>
+              <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: V2_INK_MUTED, maxWidth: '380px', margin: 0, lineHeight: 1.5 }}>
                 Check your email for the sign-in link to create your account and complete onboarding.
               </p>
             )}
             <Link to={`/agreement/${orderId}`} style={{
-              fontFamily: fonts.sans, fontSize: '13px', color: colors.accent, textDecoration: 'none',
+              fontFamily: fonts.sans, fontSize: '13px', color: V2_INK, textDecoration: 'underline', textUnderlineOffset: 2,
             }}>
               Sign Brokerage Agreement
             </Link>
@@ -150,7 +188,7 @@ export default function QuoteAction() {
         {!isConfirm && (
           <div style={{ marginTop: '24px' }}>
             <Link to="/ship-my-car" style={{
-              ...btnStyles.primary, display: 'inline-block', textDecoration: 'none', padding: '12px 24px', fontSize: '13px',
+              ...v2PrimaryBtn, display: 'inline-block', textDecoration: 'none', padding: '12px 24px', fontSize: '13px',
             }}>
               Request a New Quote
             </Link>
@@ -167,23 +205,21 @@ export default function QuoteAction() {
     const hi = details.quote_price_max_cents;
     return (
       <div style={{ maxWidth: '560px', margin: '0 auto', padding: '64px 24px' }}>
-        <style>{keyframes}</style>
         <div style={{
-          background: colors.bgCard, border: `1px solid ${colors.border}`, borderRadius: radii.xl,
+          background: V2_CREAM, border: `1px solid ${V2_LINE}`, borderRadius: radii.xl,
           boxShadow: shadows.lg, padding: 'clamp(24px, 4vw, 40px)', textAlign: 'center',
-          animation: 'popUp 400ms ease-out both',
         }}>
           <div style={{
             display: 'inline-block', padding: '4px 14px', borderRadius: radii.pill, marginBottom: 16,
-            background: 'linear-gradient(135deg, #FBE5DE 0%, #F5D9CE 100%)', color: colors.accent,
+            background: 'rgba(215, 15, 36, 0.06)', border: '1px solid rgba(215, 15, 36, 0.25)', color: V2_INK,
             fontFamily: fonts.sans, fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em',
           }}>
             Updated Quote
           </div>
-          <h1 style={{ fontFamily: fonts.serif, fontSize: 26, fontWeight: 700, color: colors.text, margin: '0 0 10px', letterSpacing: '-0.02em' }}>
+          <h1 style={{ fontFamily: V2_DISPLAY, textTransform: 'uppercase', fontSize: 26, fontWeight: 600, color: V2_INK, margin: '0 0 10px', letterSpacing: '0.01em', lineHeight: 1.05 }}>
             Your price needs re-confirmation
           </h1>
-          <p style={{ fontFamily: fonts.sans, fontSize: 14, color: colors.textMuted, lineHeight: 1.6, margin: '0 auto 28px', maxWidth: 420 }}>
+          <p style={{ fontFamily: fonts.sans, fontSize: 14, color: V2_INK_MUTED, lineHeight: 1.6, margin: '0 auto 28px', maxWidth: 420 }}>
             {details.vehicle ? <>For your <strong>{details.vehicle}</strong>, the </> : 'The '}
             assigned carrier came in at <strong>{money(carrier)}</strong>, above your original quote.
             Here's the updated price — please accept it to proceed, or decline.
@@ -192,19 +228,18 @@ export default function QuoteAction() {
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', marginBottom: 28, flexWrap: 'wrap' }}>
             <div style={{
               flex: '1 1 180px', minWidth: 160, padding: '18px 16px', borderRadius: radii.lg,
-              background: colors.bgMuted, border: `1px solid ${colors.border}`,
+              background: 'rgba(5, 6, 7, 0.04)', border: `1px solid ${V2_LINE}`,
             }}>
-              <div style={{ fontFamily: fonts.sans, fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: colors.textMuted, marginBottom: 8 }}>
+              <div style={{ fontFamily: fonts.sans, fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: V2_INK_MUTED, marginBottom: 8 }}>
                 Carrier price
               </div>
-              <div style={{ fontFamily: fonts.mono, fontSize: 24, fontWeight: 700, color: colors.textMuted }}>
+              <div style={{ fontFamily: fonts.mono, fontSize: 24, fontWeight: 700, color: V2_INK_MUTED }}>
                 {money(carrier)}
               </div>
             </div>
             <div style={{
               flex: '1 1 180px', minWidth: 160, padding: '18px 16px', borderRadius: radii.lg,
               background: colors.successBg, border: `1px solid ${colors.success}`,
-              animation: 'fadeUp 500ms ease-out both',
             }}>
               <div style={{ fontFamily: fonts.sans, fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: colors.success, marginBottom: 8 }}>
                 Your updated quote
@@ -219,9 +254,9 @@ export default function QuoteAction() {
               customer is accepting. Legacy orders render nothing here. */}
           {details.pricing_model === 'ind_2026' && (
             <p style={{
-              fontFamily: fonts.sans, fontSize: 13, color: colors.textMuted, lineHeight: 1.6,
+              fontFamily: fonts.sans, fontSize: 13, color: V2_INK_MUTED, lineHeight: 1.6,
               margin: '0 auto 24px', maxWidth: 420, textAlign: 'left',
-              background: colors.bgMuted, border: `1px solid ${colors.border}`,
+              background: 'rgba(5, 6, 7, 0.04)', border: `1px solid ${V2_LINE}`,
               borderRadius: radii.md, padding: '12px 16px',
             }}>
               Broker service fee: <strong>
@@ -237,18 +272,18 @@ export default function QuoteAction() {
           )}
 
           {error && (
-            <div style={{ fontFamily: fonts.sans, fontSize: 13, color: colors.accent, padding: 12, background: '#FFF0EC', borderRadius: radii.md, marginBottom: 16 }}>
+            <div style={{ ...v2ErrorBox, fontFamily: fonts.sans, fontSize: 13, padding: 12, borderRadius: radii.md, marginBottom: 16 }}>
               {error}
             </div>
           )}
 
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
             <button onClick={() => doAction(true)} disabled={loading}
-              style={{ ...btnStyles.accent, padding: '14px 28px', fontSize: 13, opacity: loading ? 0.6 : 1, transition: '150ms ease-out' }}>
+              style={{ ...v2PrimaryBtn, padding: '14px 28px', fontSize: 13, opacity: loading ? 0.6 : 1, transition: '150ms ease-out' }}>
               {loading ? 'Processing…' : 'Accept Updated Price'}
             </button>
             <button onClick={() => doAction(false)} disabled={loading}
-              style={{ ...btnStyles.secondary, padding: '14px 28px', fontSize: 13, opacity: loading ? 0.6 : 1 }}>
+              style={{ ...v2GhostBtn, padding: '14px 28px', fontSize: 13, opacity: loading ? 0.6 : 1 }}>
               Decline
             </button>
           </div>
@@ -261,17 +296,17 @@ export default function QuoteAction() {
   if (isConfirm && error) {
     return (
       <div style={{ maxWidth: '500px', margin: '0 auto', padding: '80px 24px', textAlign: 'center' }}>
-        <h2 style={{ fontFamily: fonts.serif, fontSize: '22px', color: colors.text, marginBottom: '12px' }}>
+        <h2 style={{ fontFamily: V2_DISPLAY, textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.01em', lineHeight: 1.05, fontSize: '22px', color: V2_INK, marginBottom: '12px' }}>
           This confirmation link is no longer active
         </h2>
-        <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.accent, marginBottom: '16px' }}>{error}</p>
-        <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, lineHeight: 1.6, marginBottom: '20px', maxWidth: '380px', marginLeft: 'auto', marginRight: 'auto' }}>
+        <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: 'var(--v2-red-deep, #a90918)', marginBottom: '16px' }}>{error}</p>
+        <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: V2_INK_MUTED, lineHeight: 1.6, marginBottom: '20px', maxWidth: '380px', marginLeft: 'auto', marginRight: 'auto' }}>
           {/* WGF-T02a/WDV: confirmed orders don't expire — no false 48h deadline. */}
           If you've already confirmed your quote, use the sign-in link in your welcome email
           to create your account and complete onboarding. Otherwise, request a new quote.
         </p>
         <Link to="/ship-my-car" style={{
-          ...btnStyles.secondary, display: 'inline-block', textDecoration: 'none', padding: '12px 24px', fontSize: '13px',
+          ...v2GhostBtn, display: 'inline-block', textDecoration: 'none', padding: '12px 24px', fontSize: '13px',
         }}>
           Request a New Quote
         </Link>
@@ -282,7 +317,7 @@ export default function QuoteAction() {
   if (isConfirm && (loading || gateLoading)) {
     return (
       <div style={{ maxWidth: '500px', margin: '0 auto', padding: '80px 24px', textAlign: 'center' }}>
-        <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted }}>Confirming your quote...</p>
+        <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: V2_INK_MUTED }}>Confirming your quote...</p>
       </div>
     );
   }
@@ -290,19 +325,19 @@ export default function QuoteAction() {
   // Decline page shows a form
   return (
     <div style={{ maxWidth: '500px', margin: '0 auto', padding: '60px 24px' }}>
-      <h1 style={{ fontFamily: fonts.serif, fontSize: '28px', fontWeight: 700, color: colors.text, textAlign: 'center', marginBottom: '16px' }}>
+      <h1 style={{ fontFamily: V2_DISPLAY, textTransform: 'uppercase', fontSize: '28px', fontWeight: 600, letterSpacing: '0.01em', lineHeight: 1.05, color: V2_INK, textAlign: 'center', marginBottom: '16px' }}>
         {isConfirm ? 'Confirm Your Quote' : 'Decline Quote'}
       </h1>
 
       {error && (
-        <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.accent, padding: '12px', background: '#FFF0EC', borderRadius: '8px', marginBottom: '16px', textAlign: 'center' }}>
+        <div style={{ ...v2ErrorBox, fontFamily: fonts.sans, fontSize: '13px', padding: '12px', borderRadius: '8px', marginBottom: '16px', textAlign: 'center' }}>
           {error}
         </div>
       )}
 
       {!isConfirm && (
         <>
-          <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, textAlign: 'center', marginBottom: '24px' }}>
+          <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: V2_INK_MUTED, textAlign: 'center', marginBottom: '24px' }}>
             We're sorry to see you go. Could you let us know why?
           </p>
           <textarea
@@ -312,7 +347,7 @@ export default function QuoteAction() {
             rows={4}
             style={{
               width: '100%', fontFamily: fonts.sans, fontSize: '16px', padding: '12px',
-              borderRadius: '8px', border: `1px solid ${colors.borderInput}`, outline: 'none',
+              borderRadius: '8px', border: `1px solid ${V2_LINE}`, background: V2_CREAM, color: V2_INK,
               resize: 'vertical', marginBottom: '16px',
             }}
           />
@@ -323,7 +358,7 @@ export default function QuoteAction() {
         onClick={() => doAction(isConfirm)}
         disabled={loading}
         style={{
-          ...(isConfirm ? btnStyles.accent : btnStyles.secondary),
+          ...(isConfirm ? v2PrimaryBtn : v2GhostBtn),
           width: '100%',
           padding: '14px',
           fontSize: '14px',
