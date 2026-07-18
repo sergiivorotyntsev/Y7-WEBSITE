@@ -58,6 +58,33 @@ export const STATUS_COLORS = {
   [ORDER_STATUS.CANCELLED]: '#adb5bd',
 };
 
+/* SPRINT-W7 C0: canonical status -> V2 chip-variant mapping (owner-ruled
+   four-variant system in src/styles/v2/portal.module.css — blue/purple
+   semantics collapse into ink):
+     ink  = neutral / informational progress
+     pine = terminal success
+     red  = danger / action-required only
+     soft = pending / attention (low-alpha red)
+   C1+ pages consume this instead of STATUS_COLORS; the bootstrap colors
+   above remain only for not-yet-migrated surfaces. */
+export const STATUS_CHIP_VARIANT = {
+  [ORDER_STATUS.PENDING]: 'soft',
+  [ORDER_STATUS.QUOTED]: 'soft',
+  [ORDER_STATUS.ACCEPTED]: 'ink',
+  [ORDER_STATUS.LINKED]: 'ink',
+  [ORDER_STATUS.CONFIRMED]: 'ink',
+  [ORDER_STATUS.DISPATCHED]: 'ink',
+  [ORDER_STATUS.LISTED]: 'ink',
+  [ORDER_STATUS.PICKED_UP]: 'ink',
+  [ORDER_STATUS.IN_TRANSIT]: 'ink',
+  [ORDER_STATUS.DELIVERED]: 'pine',
+  [ORDER_STATUS.COMPLETED]: 'pine',
+  [ORDER_STATUS.REJECTED]: 'red',
+  [ORDER_STATUS.DECLINED]: 'red',
+  [ORDER_STATUS.CANCELLED]: 'red',
+  [ORDER_STATUS.EXPIRED]: 'ink',
+};
+
 export const CANCELLATION_REASON_LABELS = {
   carrier_refused: 'Carrier became unavailable',
   carrier_broke_down: 'Carrier mechanical issue',

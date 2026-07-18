@@ -1,0 +1,266 @@
+/* SPRINT-W7 C0: portal primitives (DESIGN-V2 "Dispatch Board").
+   ANTI-ORPHAN RULE: portal pages IMPORT these; re-implementing a shell,
+   field, or chip inline on a page is a review-reject. The portal is a WORK
+   SURFACE: paper-dominant, dark reserved for the page-header band at most
+   (owner spec). Migration is page-atomic — a page is either fully on these
+   primitives or untouched (no half-migrations).
+
+   STATUS-CHIP SEMANTICS (owner ruling, replaces ALL five bootstrap badge
+   palettes — blue/purple semantics collapse into ink):
+     chipInk     neutral / informational (draft, sent, types, roles, progress)
+     chipPine    success / paid / verified / issued (Bonded Pine law)
+     chipRed     danger / action-required ONLY (overdue, rejected, cancelled)
+     chipSoft    pending / attention (low-alpha red, Signal-Budget exempt)
+   The per-status mapping table lives in src/utils/orderStatus.js
+   (STATUS_CHIP_VARIANT) and in the C0 gate report. */
+
+/* =====================================================================
+   SHELL — the ONE portal container (T06 shared-container law). Pages stop
+   hand-rolling { maxWidth, margin auto, padding } blocks. Narrow forms
+   inside the shell use a measure class below — the explicitly-ruled
+   sole-content centered composition (same ruling family as DealerQuote).
+   ===================================================================== */
+
+.shell {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* Sanctioned sole-content measures (forms, focused reads). */
+.measureNarrow { max-width: 640px; margin-inline: auto; }
+.measureMid { max-width: 760px; margin-inline: auto; }
+
+/* =====================================================================
+   PAGE HEADER — replaces the per-page serif-H1 + back-link pattern.
+   ===================================================================== */
+
+.pageHead {
+  margin-bottom: 28px;
+}
+
+.backLink {
+  display: inline-block;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--v2-ink-muted, #5c5851);
+  text-decoration: none;
+  margin-bottom: 14px;
+}
+.backLink:hover { color: var(--v2-ink, #050607); text-decoration: underline; text-underline-offset: 2px; }
+.backLink:focus-visible { outline: 2px solid var(--v2-red, #d70f24); outline-offset: 2px; }
+
+.pageTitle {
+  font-family: var(--v2-font-display, 'Oswald', system-ui);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+  color: var(--v2-ink, #050607);
+  margin: 0;
+}
+
+.pageSub {
+  font-family: var(--font-sans, system-ui);
+  font-size: 14px;
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 6px 0 0;
+  line-height: 1.6;
+}
+
+/* =====================================================================
+   SECTION CARD — the bordered white/cream card every page re-declares.
+   ===================================================================== */
+
+.card {
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.sectionTitle {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: var(--v2-track-label, 0.14em);
+  text-transform: uppercase;
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 0 0 12px;
+}
+
+/* Hairline list row (invoices, orders, ledger). Mono numerics live in
+   .mono cells; rows separate by hairline, never zebra. */
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+}
+.row:last-child { border-bottom: 0; }
+
+.mono {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 13px;
+  color: var(--v2-ink, #050607);
+}
+
+/* =====================================================================
+   FIELDS — portal forms-on-paper (16px iOS floor, Focus-Visible law).
+   ===================================================================== */
+
+.label {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: var(--v2-track-label, 0.14em);
+  text-transform: uppercase;
+  color: var(--v2-ink-muted, #5c5851);
+}
+
+.input {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: var(--font-sans, system-ui);
+  font-size: 16px;
+  color: var(--v2-ink, #050607);
+  background: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-md, 12px);
+  box-sizing: border-box;
+}
+.input::placeholder { color: var(--v2-ink-muted, #5c5851); }
+.input:hover:not(:disabled):not(:focus) { border-color: rgba(5, 6, 7, 0.3); }
+.input:focus { border-color: rgba(5, 6, 7, 0.45); }
+.input:focus-visible {
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
+}
+.input:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.select {
+  composes: input;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3e%3cpath fill='none' stroke='%235c5851' stroke-width='1.5' d='M1 1l4 4 4-4'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 10px 6px;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+.textarea {
+  composes: input;
+  resize: vertical;
+  min-height: 96px;
+  line-height: 1.6;
+}
+
+.hint {
+  font-family: var(--font-sans, system-ui);
+  font-size: 11px;
+  color: var(--v2-ink-muted, #5c5851);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+.errorText {
+  font-family: var(--font-sans, system-ui);
+  font-size: 12px;
+  color: var(--v2-red-deep, #a90918);
+  margin-top: 4px;
+}
+
+/* Error block: red family + text, full hairline (no side-stripes, §10). */
+.errorBlock {
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  color: var(--v2-red-deep, #a90918);
+  padding: 10px 14px;
+  background: rgba(215, 15, 36, 0.06);
+  border: 1px solid rgba(215, 15, 36, 0.25);
+  border-radius: 8px;
+}
+
+/* Neutral info notice (replaces every amber/blue wash). */
+.notice {
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  color: var(--v2-ink, #050607);
+  padding: 10px 14px;
+  background: rgba(5, 6, 7, 0.04);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: 8px;
+  line-height: 1.5;
+}
+
+/* Pine success block (success/verified states ONLY). */
+.successBlock {
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  color: var(--success, #0f6e56);
+  padding: 10px 14px;
+  background: var(--success-bg, #e1f5ee);
+  border: 1px solid rgba(15, 110, 86, 0.35);
+  border-radius: 8px;
+  line-height: 1.5;
+}
+
+/* =====================================================================
+   STATUS CHIPS — the ONE badge system. Mono, hairline, pill.
+   ===================================================================== */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  color: var(--v2-ink, #050607);
+  background: transparent;
+}
+
+/* neutral / informational (draft, sent, types, roles, progress states) */
+.chipInk {
+  composes: chip;
+}
+
+/* success / paid / verified / issued */
+.chipPine {
+  composes: chip;
+  color: var(--success, #0f6e56);
+  border-color: rgba(15, 110, 86, 0.4);
+  background: rgba(15, 110, 86, 0.07);
+}
+
+/* danger / action-required ONLY */
+.chipRed {
+  composes: chip;
+  color: var(--v2-red-deep, #a90918);
+  border-color: rgba(215, 15, 36, 0.35);
+  background: rgba(215, 15, 36, 0.06);
+}
+
+/* pending / attention (low-alpha red — Signal-Budget exempt) */
+.chipSoft {
+  composes: chip;
+  color: var(--v2-ink, #050607);
+  border-color: rgba(215, 15, 36, 0.25);
+  background: rgba(215, 15, 36, 0.05);
+}
