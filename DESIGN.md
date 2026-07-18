@@ -310,4 +310,6 @@ Photography is permitted ONLY: (a) inside dark (`board`) sections; (b) as an obj
 
 ### § Hero Scope Law
 
-The Angle and Photo Treatment laws apply to conversion-page heroes (`/`, `/dealers`, `/exporters`) and future sanctioned marketing surfaces only. All other pages remain pure-typographic V2. Long-form and link-hub Dark Share caps are unchanged. Primitives live in `src/styles/v2/hero.module.css` (`angledPlate` / `angledBadge` / `photoEmergence`) and follow the Anti-Orphan Rule.
+The Angle and Photo Treatment laws apply to conversion-page heroes (`/`, `/dealers`, `/exporters`) and future sanctioned marketing surfaces only. All other pages remain pure-typographic V2. Long-form and link-hub Dark Share caps are unchanged. Primitives live in `src/styles/v2/hero.module.css` (`angledPlate` / `angledBadge` / `photoEmergence` / `mobileEmergence`) and follow the Anti-Orphan Rule.
+
+**Mobile treatment (SPRINT-W7 owner ruling, canonical):** below the hero breakpoint the photo renders as a compact emergence coda **stacked in-flow after the text content — never layered under it**. Zero text/photo overlap by construction satisfies Photo Treatment Law (e) at any locale's text length. The `mobileEmergence` primitive is the only sanctioned implementation. Loading discipline is measured, not assumed: below the 390×844 first-viewport fold → `loading="lazy"` and any preload media-gated to desktop; inside the first viewport → eager. Desktop-eager hero `<picture>`s carry a blank-pixel `<source media>` gate so phones never download the hidden desktop asset.

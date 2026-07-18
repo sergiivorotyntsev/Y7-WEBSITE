@@ -146,14 +146,15 @@
 }
 
 /* =====================================================================
-   MOBILE EMERGENCE — SPRINT-W7 M0 (owner reversal of the W-HOME mobile
-   degradation): below the hero breakpoint the car returns as a compact
-   IN-FLOW coda at the BOTTOM of the hero band. It stacks AFTER the text
-   content, never layers under it, so text/photo overlap is zero by
-   construction (Photo Treatment Law (e)). Above 900px this block is
-   display:none and the absolute photoEmergence serves the hero instead.
-   The img keeps explicit width/height attributes, so the box is reserved
-   before load (CLS 0) even though the file arrives lazily.
+   MOBILE EMERGENCE — SPRINT-W7 M0, CANONICAL mobile hero photo treatment
+   (owner ruling at the M0 gate, recorded in DESIGN.md §11 Hero Scope):
+   below the hero breakpoint the photo is a compact IN-FLOW coda at the
+   BOTTOM of the hero band — STACKED after the text content, NEVER layered
+   under it. Zero text/photo overlap by construction (Photo Treatment Law
+   (e)); do not reintroduce absolute/layered mobile variants. Above 900px
+   this block is display:none and the absolute photoEmergence serves the
+   hero instead. The img keeps explicit width/height attributes, so the
+   box is reserved before load (CLS 0) even though the file arrives lazily.
    ===================================================================== */
 .mobileEmergence {
   display: none;
