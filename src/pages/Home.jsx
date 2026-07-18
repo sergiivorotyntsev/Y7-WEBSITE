@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 import { Link, useLocation } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import HreflangTags from '../components/HreflangTags';
@@ -18,6 +19,7 @@ import v2s from '../styles/v2/surfaces.module.css';
 import v2t from '../styles/v2/type.module.css';
 import v2b from '../styles/v2/buttons.module.css';
 import v2c from '../styles/v2/cards.module.css';
+import v2h from '../styles/v2/hero.module.css';
 import v2a from '../styles/v2/accents.module.css';
 
 export default function Home() {
@@ -47,6 +49,20 @@ export default function Home() {
           Y7AGENCY.COM element was removed in T10: on-site it is tautology).
           Plain eyebrow (no red rule), white quartet stats, no stamp. */}
       <section className={`${v2s.boardHero} ${styles.hero}`}>
+        {/* SPRINT-V21 W-HOME: photo emergence (Photo Treatment Law). Owner
+            sign-off for this AI-derived asset is recorded in the sprint
+            report. Decorative, aria-hidden, absolute layer with explicit
+            dimensions (CLS 0); content siblings paint above by DOM order. */}
+        <Helmet>
+          <link rel="preload" as="image" href="/images/hero-car.avif" type="image/avif" />
+        </Helmet>
+        <div className={`${v2h.photoEmergence} ${styles.heroPhoto}`} aria-hidden="true">
+          <picture>
+            <source srcSet="/images/hero-car.avif" type="image/avif" />
+            <source srcSet="/images/hero-car.webp" type="image/webp" />
+            <img src="/images/hero-car.webp" alt="" width="1560" height="900" loading="eager" fetchPriority="high" decoding="async" />
+          </picture>
+        </div>
         <div className={`${v2s.inner} ${styles.heroLayout}`}>
           <div className={`${v2a.jpVertical} ${styles.heroJpStrip}`} aria-hidden="true">
             シンプル・迅速・信頼
@@ -62,10 +78,13 @@ export default function Home() {
             </h1>
             <p className={`${v2t.lede} ${v2t.ledeOnDark}`}>{t('hero.description')}</p>
             <div className={styles.heroCtas}>
+              {/* SPRINT-V21: plate-as-CTA (Angle Law) — the angled plate IS
+                  this viewport's red fill; the old gradient button class is
+                  retired here so the budget stays at one fill. */}
               <a
                 href="#quote-section"
                 onClick={(e) => { e.preventDefault(); scrollToQuote(); }}
-                className={`${v2b.cta} ${v2b.ctaLarge}`}
+                className={v2h.angledPlate}
               >
                 {t('hero.ctaPrimary')}
               </a>

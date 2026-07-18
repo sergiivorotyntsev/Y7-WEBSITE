@@ -85,7 +85,9 @@
    decorative; explicit dimensions guarantee CLS 0.
    ===================================================================== */
 
-.photoEmergence {
+.photoEmergence.photoEmergence {
+  /* Doubled: .boardHero > * sets position:relative on section children and
+     can win by bundle order — the emergence layer must stay absolute. */
   position: absolute;
   inset: 0;
   overflow: hidden;

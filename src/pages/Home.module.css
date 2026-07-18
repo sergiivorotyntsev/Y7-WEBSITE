@@ -51,6 +51,25 @@
   max-width: 1160px;
 }
 
+/* SPRINT-V21 W-HOME: photo emergence positioning for this hero. The car
+   anchors right/bottom; text column caps at ~56% on wide screens so the
+   headline never sits over photo regions (Photo Treatment Law (e)). Below
+   900px the photo is hidden entirely (mobile degradation: contrast + LCP
+   protection; the hero reverts to pure V2 typography). */
+.heroPhoto img {
+  right: -2%;
+  bottom: -4%;
+  width: min(52vw, 820px);
+}
+
+@media (min-width: 901px) {
+  .heroText { max-width: 56%; }
+}
+
+@media (max-width: 900px) {
+  .heroPhoto { display: none; }
+}
+
 /* Serve-cards section head (T03) */
 .serveHead {
   margin-bottom: 28px;
