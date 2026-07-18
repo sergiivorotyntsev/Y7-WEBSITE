@@ -493,3 +493,17 @@
   padding: 8px 0;
   width: fit-content;
 }
+
+/* SPRINT-V21 W-CONV: hero photo (tighter low-right crop than home; hidden
+   below 900px — pure V2 typography degradation, per the approved pattern). */
+.heroPhoto img {
+  right: -6%;
+  bottom: -10%;
+  width: min(44vw, 700px);
+}
+@media (min-width: 901px) {
+  .heroText { max-width: 60%; }
+}
+@media (max-width: 900px) {
+  .heroPhoto { display: none; }
+}

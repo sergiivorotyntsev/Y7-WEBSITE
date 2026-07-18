@@ -17,6 +17,7 @@ import v2b from '../styles/v2/buttons.module.css';
 import v2c from '../styles/v2/cards.module.css';
 import v2a from '../styles/v2/accents.module.css';
 import v2f from '../styles/v2/forms.module.css';
+import v2h from '../styles/v2/hero.module.css';
 
 // DESIGN-V2-W4-T02: Dispatch Board restyle. SEO contract frozen: every heading
 // text/level, i18n keys, schema call sites, EntityTldr position (first element
@@ -148,6 +149,16 @@ export default function Exporters() {
           boardHero red radial is low-alpha exempt). JP vertical strip is the
           page's single brand mark, aria-hidden. */}
       <section className={v2s.boardHero}>
+        {/* SPRINT-V21 W-CONV: photo emergence (same de-badged asset; higher,
+            more cropped placement than home so the program CTA row stays
+            clear). Decorative, aria-hidden, CLS 0. */}
+        <div className={`${v2h.photoEmergence} ${styles.heroPhoto}`} aria-hidden="true">
+          <picture>
+            <source srcSet="/images/hero-car.avif" type="image/avif" />
+            <source srcSet="/images/hero-car.webp" type="image/webp" />
+            <img src="/images/hero-car.webp" alt="" width="1560" height="900" loading="eager" decoding="async" />
+          </picture>
+        </div>
         <div className={`${v2s.inner} ${styles.heroLayout}`}>
           <div className={`${v2a.jpVertical} ${styles.heroJpStrip}`} aria-hidden="true">
             シンプル・迅速・信頼
@@ -173,7 +184,8 @@ export default function Exporters() {
                 "Exporter Program" button. Gradient = the hero's single red
                 fill; the second action stays ghost. */}
             <div className={styles.heroCtas}>
-              <a href="#exporter-program" className={v2b.cta}>{t('hero.ctaPrimary')}</a>
+              {/* SPRINT-V21: plate-as-CTA (Angle Law) — one red fill. */}
+              <a href="#exporter-program" className={v2h.angledPlate}>{t('hero.ctaPrimary')}</a>
               <a href="#exporter-form" className={v2b.ghostOnDark}>{t('hero.ctaSecondary')}</a>
             </div>
           </div>

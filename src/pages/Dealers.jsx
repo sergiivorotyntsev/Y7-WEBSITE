@@ -10,6 +10,7 @@ import v2t from '../styles/v2/type.module.css';
 import v2b from '../styles/v2/buttons.module.css';
 import v2c from '../styles/v2/cards.module.css';
 import v2a from '../styles/v2/accents.module.css';
+import v2h from '../styles/v2/hero.module.css';
 
 // DESIGN-V2-W4-T01: Dispatch Board restyle. SEO contract frozen: every heading
 // text/level, i18n keys, section order, schema emission, EntityTldr position,
@@ -86,6 +87,15 @@ export default function Dealers() {
           boardHero's red radial is low-alpha exempt. Plain mono eyebrow (no
           rule-line: hero budget). JP vertical strip = brand mark, aria-hidden. */}
       <section className={v2s.boardHero}>
+        {/* SPRINT-V21 W-CONV: photo emergence (same de-badged asset, tighter
+            low-right crop than home). Decorative, aria-hidden, CLS 0. */}
+        <div className={`${v2h.photoEmergence} ${styles.heroPhoto}`} aria-hidden="true">
+          <picture>
+            <source srcSet="/images/hero-car.avif" type="image/avif" />
+            <source srcSet="/images/hero-car.webp" type="image/webp" />
+            <img src="/images/hero-car.webp" alt="" width="1560" height="900" loading="eager" decoding="async" />
+          </picture>
+        </div>
         <div className={`${v2s.inner} ${styles.heroLayout}`}>
           <div className={`${v2a.jpVertical} ${styles.heroJpStrip}`} aria-hidden="true">
             シンプル・迅速・信頼
@@ -100,7 +110,9 @@ export default function Dealers() {
               <span className={styles.heroTrustItem}>&#x2713; {t('hero.trust3')}</span>
             </div>
             <div className={styles.heroCtaRow}>
-              <button onClick={() => navigate('/dealer-quote')} className={v2b.cta}>
+              {/* SPRINT-V21: plate-as-CTA (Angle Law) — the plate is this
+                  viewport's one red fill. */}
+              <button onClick={() => navigate('/dealer-quote')} className={v2h.angledPlate}>
                 {t('ctaButton')}
               </button>
             </div>

@@ -728,3 +728,16 @@
   line-height: 1.8;
   margin: 0;
 }
+
+/* SPRINT-V21 W-CONV: hero photo (smaller, right-anchored, raised crop). */
+.heroPhoto img {
+  right: -8%;
+  bottom: 6%;
+  width: min(40vw, 640px);
+}
+@media (min-width: 901px) {
+  .heroText { max-width: 58%; }
+}
+@media (max-width: 900px) {
+  .heroPhoto { display: none; }
+}
