@@ -7,9 +7,10 @@
   border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
   border-radius: var(--v2-radius-lg, 18px);
   padding: 22px 26px;
+  /* T06b: no own width system (the T06 rule) — the card caps at 860 but its
+     left edge sits on the caller's band grid; callers own centering if any. */
   max-width: 860px;
-  margin: clamp(28px, 4vh, 40px) auto;
-  width: calc(100% - 48px);
+  margin: clamp(28px, 4vh, 40px) 0;
   box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
 }
 
