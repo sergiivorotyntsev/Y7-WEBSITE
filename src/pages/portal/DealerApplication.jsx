@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { portalFetch, useAuth } from '../../hooks/useAuth';
-import { colors, fonts, button as btnStyles } from '../../theme';
+import pp from '../../styles/v2/portal.module.css';
+import v2b from '../../styles/v2/buttons.module.css';
 import VerificationBanner from '../../components/VerificationBanner';
 
 // AQ-4 (collection) + AQ-6 (reflection): the single dealer/exporter activation
@@ -9,16 +10,6 @@ import VerificationBanner from '../../components/VerificationBanner';
 // needs_details with the admin's note / verified / rejected) and lets them
 // submit or resubmit the required info, which feeds the SAME dealer_applications
 // row the admin review queue reads.
-
-const inputStyle = {
-  fontFamily: fonts.sans, fontSize: '16px', padding: '10px 14px', borderRadius: '8px',
-  border: `1px solid ${colors.borderInput}`, background: colors.bgInput, color: colors.text,
-  outline: 'none', width: '100%', boxSizing: 'border-box',
-};
-const labelStyle = {
-  fontFamily: fonts.sans, fontSize: '12px', fontWeight: 600, color: colors.text,
-  textTransform: 'uppercase', letterSpacing: '0.5px', display: 'block', marginBottom: '4px',
-};
 
 const FIELDS = [
   { key: 'company_name', label: 'Company name', required: true },
@@ -93,19 +84,19 @@ export default function DealerApplication() {
     }
   }
 
-  const wrap = { maxWidth: '760px', margin: '0 auto', padding: '40px 24px 80px' };
-
   if (loading) {
-    return <div style={wrap}><p style={{ fontFamily: fonts.sans, color: colors.textMuted }}>Loading…</p></div>;
+    return <div className={pp.shell}><div className={pp.measureMid}><p style={{ fontFamily: 'var(--font-sans, system-ui)', color: 'var(--v2-ink-muted, #5c5851)' }}>Loading…</p></div></div>;
   }
 
   if (data && !data.is_dealer_or_exporter) {
     return (
-      <div style={wrap}>
-        <h1 style={{ fontFamily: fonts.serif, fontSize: 26, color: colors.text }}>Dealer / Exporter application</h1>
-        <p style={{ fontFamily: fonts.sans, color: colors.textMuted }}>
-          This page is for dealer and exporter accounts. <Link to="/portal/dashboard" style={{ color: colors.accent }}>Back to dashboard</Link>.
-        </p>
+      <div className={pp.shell}>
+        <div className={pp.measureMid}>
+          <h1 className={pp.pageTitle}>Dealer / Exporter application</h1>
+          <p className={pp.pageSub}>
+            This page is for dealer and exporter accounts. <Link to="/portal/dashboard" style={{ color: 'var(--v2-ink, #050607)', textDecoration: 'underline' }}>Back to dashboard</Link>.
+          </p>
+        </div>
       </div>
     );
   }
@@ -114,38 +105,39 @@ export default function DealerApplication() {
   const verified = status === 'verified';
 
   return (
-    <div style={wrap}>
-      <h1 style={{ fontFamily: fonts.serif, fontSize: 26, color: colors.text, marginBottom: 6 }}>
+    <div className={pp.shell}>
+      <div className={pp.measureMid}>
+      <h1 className={pp.pageTitle} style={{ marginBottom: 6 }}>
         Your activation application
       </h1>
-      <p style={{ fontFamily: fonts.sans, fontSize: 14, color: colors.textMuted, marginTop: 0, marginBottom: 20 }}>
+      <p className={pp.pageSub} style={{ marginTop: 0, marginBottom: 20 }}>
         We review every dealer / exporter and set up a short call before activating direct orders + billing.
       </p>
 
       <VerificationBanner />
 
       {verified ? (
-        <div style={{ background: colors.successBg, borderRadius: 10, padding: 20, marginTop: 12 }}>
-          <p style={{ fontFamily: fonts.sans, fontSize: 15, color: colors.text, margin: 0 }}>
+        <div className={pp.successBlock} style={{ marginTop: 12 }}>
+          <p style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: 15, color: 'var(--v2-ink, #050607)', margin: 0 }}>
             Your account is <strong>active</strong>. You can submit orders directly.
           </p>
-          <button onClick={() => navigate('/portal/new-order')} style={{ ...btnStyles.primary, marginTop: 14 }}>
+          <button onClick={() => navigate('/portal/new-order')} className={v2b.cta} style={{ marginTop: 14 }}>
             Submit an order
           </button>
         </div>
       ) : (
         <form onSubmit={onSubmit}>
           {error && (
-            <div style={{ background: '#FDECEA', color: '#B91C1C', padding: 12, borderRadius: 8, fontFamily: fonts.sans, fontSize: 13, marginBottom: 16 }}>
+            <div className={pp.errorBlock} style={{ marginBottom: 16 }}>
               {error}
             </div>
           )}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
             {FIELDS.map(f => (
               <div key={f.key} style={{ gridColumn: ['primary_routes', 'address'].includes(f.key) ? '1 / -1' : 'auto' }}>
-                <label style={labelStyle}>{f.label}{f.required ? ' *' : ''}</label>
+                <label className={pp.label}>{f.label}{f.required ? ' *' : ''}</label>
                 <input
-                  style={inputStyle}
+                  className={pp.input}
                   value={form[f.key]}
                   onChange={e => set(f.key, e.target.value)}
                   placeholder={f.label}
@@ -154,24 +146,26 @@ export default function DealerApplication() {
             ))}
           </div>
 
-          <p style={{ fontFamily: fonts.sans, fontSize: 12, color: colors.textMuted, marginTop: 12 }}>
+          <p style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: 12, color: 'var(--v2-ink-muted, #5c5851)', marginTop: 12 }}>
             Provide at least one of MC number, DOT number, or dealer license so we can verify your business.
           </p>
 
           <button
             type="submit"
             disabled={!canSubmit}
-            style={{ ...btnStyles.primary, marginTop: 12, opacity: canSubmit ? 1 : 0.5, cursor: canSubmit ? 'pointer' : 'not-allowed' }}
+            className={v2b.cta}
+            style={{ marginTop: 12, opacity: canSubmit ? 1 : 0.5, cursor: canSubmit ? 'pointer' : 'not-allowed' }}
           >
             {saving ? 'Submitting…' : status === 'needs_details' ? 'Resubmit application' : 'Submit application'}
           </button>
           {!hasIdentifier && (
-            <span style={{ fontFamily: fonts.sans, fontSize: 12, color: colors.textMuted, marginLeft: 12 }}>
+            <span style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: 12, color: 'var(--v2-ink-muted, #5c5851)', marginLeft: 12 }}>
               Add an MC#, DOT#, or dealer license to submit.
             </span>
           )}
         </form>
       )}
+      </div>
     </div>
   );
 }

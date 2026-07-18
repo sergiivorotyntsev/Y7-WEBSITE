@@ -5,6 +5,8 @@ import OnboardingBanner from '../../components/OnboardingBanner';
 import BouncingEmailBanner from '../../components/recovery/BouncingEmailBanner';
 import { portalFetch, useAuth, authHeader, clearSessionOn401 } from '../../hooks/useAuth';
 import { colors, fonts } from '../../theme';
+import pp from '../../styles/v2/portal.module.css';
+import v2b from '../../styles/v2/buttons.module.css';
 import { API_URL } from '../../config';
 import { releaseDocShortTerm } from '../../utils/releaseDocTerm';
 import { STATUS_LABELS, STATUS_PIPELINE, NO_QUOTE_LABELS, CANCELLATION_REASON_LABELS } from '../../utils/orderStatus';
@@ -54,24 +56,8 @@ function fmtDeliveryWindow(d) {
 
 function InfoCard({ title, children }) {
   return (
-    <div style={{
-      background: colors.bgCard,
-      border: `1px solid ${colors.border}`,
-      borderRadius: '12px',
-      padding: '20px',
-      marginBottom: '16px',
-    }}>
-      <div style={{
-        fontFamily: fonts.sans,
-        fontSize: '11px',
-        fontWeight: 600,
-        color: colors.textMuted,
-        textTransform: 'uppercase',
-        letterSpacing: '0.5px',
-        marginBottom: '12px',
-      }}>
-        {title}
-      </div>
+    <div className={pp.card}>
+      <div className={pp.sectionTitle}>{title}</div>
       {children}
     </div>
   );
@@ -82,15 +68,21 @@ function InfoRow({ label, value, mono }) {
     <div style={{
       display: 'flex',
       justifyContent: 'space-between',
+      gap: '12px',
       padding: '4px 0',
-      fontFamily: fonts.sans,
       fontSize: '13px',
     }}>
-      <span style={{ color: colors.textMuted }}>{label}</span>
+      <span style={{
+        fontFamily: "var(--font-mono, 'JetBrains Mono', monospace)",
+        fontSize: '10px',
+        letterSpacing: '0.14em',
+        textTransform: 'uppercase',
+        color: 'var(--v2-ink-muted, #5c5851)',
+      }}>{label}</span>
       <span style={{
         fontWeight: 500,
-        color: colors.text,
-        fontFamily: mono ? fonts.mono : fonts.sans,
+        color: 'var(--v2-ink, #050607)',
+        fontFamily: mono ? "var(--font-mono, 'JetBrains Mono', monospace)" : 'var(--font-sans, system-ui)',
         textAlign: 'right',
       }}>
         {value || '\u2014'}
@@ -121,38 +113,6 @@ function OwnershipProofCard({ orderId, status, docType, note, submittedAt, onUpd
 
   const st = status || 'none';
   const showForm = st === 'none' || st === 'rejected' || (st === 'pending' && replacing);
-
-  const selectStyle = {
-    width: '100%',
-    padding: '10px 12px',
-    border: `1px solid ${colors.borderInput}`,
-    borderRadius: '8px',
-    fontSize: '16px', // >=16px avoids iOS zoom
-    fontFamily: fonts.sans,
-    background: colors.bgInput,
-    color: colors.text,
-    boxSizing: 'border-box',
-  };
-  const uploadBtnStyle = (disabled) => ({
-    // WA-T03: minHeight 44px = iOS minimum tap target; inline-flex centres the
-    // label now that the button is taller than its text.
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: '44px',
-    padding: '8px 20px',
-    background: colors.accent,
-    color: '#fff',
-    border: 'none',
-    borderRadius: '22px',
-    fontSize: '12px',
-    fontWeight: 600,
-    textTransform: 'uppercase',
-    letterSpacing: '0.5px',
-    fontFamily: fonts.sans,
-    cursor: disabled ? 'not-allowed' : 'pointer',
-    opacity: disabled ? 0.6 : 1,
-  });
 
   const upload = async () => {
     if (!file) { setErr('Choose a file first.'); return; }
@@ -191,18 +151,18 @@ function OwnershipProofCard({ orderId, status, docType, note, submittedAt, onUpd
   return (
     <InfoCard title="Ownership Proof">
       {st === 'approved' && (
-        <div style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.success, fontWeight: 500 }}>
+        <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', color: 'var(--success, #0f6e56)', fontWeight: 500 }}>
           <CheckIcon size={16} /> Ownership verified{docType ? ` (${ownershipTypeLabel(docType)})` : ''}
         </div>
       )}
 
       {st === 'pending' && !replacing && (
         <div>
-          <div style={{ fontFamily: fonts.sans, fontSize: '14px', color: '#B8851F', fontWeight: 500 }}>
+          <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', color: 'var(--v2-ink, #050607)', fontWeight: 500 }}>
             Under review{docType ? ` — ${ownershipTypeLabel(docType)}` : ''}
           </div>
           {submittedAt && (
-            <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginTop: '2px' }}>
+            <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '2px' }}>
               Submitted {fmtDate(submittedAt) || submittedAt}
             </div>
           )}
@@ -213,8 +173,8 @@ function OwnershipProofCard({ orderId, status, docType, note, submittedAt, onUpd
               // WA-T03: padded hit area so the text link is a comfortable tap on a phone.
               display: 'inline-flex', alignItems: 'center', minHeight: '44px',
               background: 'none', border: 'none', padding: '4px 0', marginTop: '4px',
-              fontFamily: fonts.sans, fontSize: '13px', color: colors.accent,
-              textDecoration: 'underline', cursor: 'pointer',
+              fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink, #050607)',
+              textDecoration: 'underline', textUnderlineOffset: '2px', cursor: 'pointer',
             }}
           >
             Replace document
@@ -223,13 +183,13 @@ function OwnershipProofCard({ orderId, status, docType, note, submittedAt, onUpd
       )}
 
       {st === 'rejected' && (
-        <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.accent, marginBottom: '10px', lineHeight: 1.5 }}>
+        <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-red-deep, #a90918)', marginBottom: '10px', lineHeight: 1.5 }}>
           Your document wasn&apos;t accepted{note ? `: ${note}` : '.'} Please upload a new one.
         </div>
       )}
 
       {st === 'none' && (
-        <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted, marginBottom: '12px', lineHeight: 1.5 }}>
+        <p style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink-muted, #5c5851)', marginBottom: '12px', lineHeight: 1.5 }}>
           To move your shipment forward, upload one document showing you own or are authorized
           to ship this vehicle.
         </p>
@@ -237,7 +197,7 @@ function OwnershipProofCard({ orderId, status, docType, note, submittedAt, onUpd
 
       {showForm && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          <select value={selType} onChange={(e) => setSelType(e.target.value)} style={selectStyle}>
+          <select className={pp.select} value={selType} onChange={(e) => setSelType(e.target.value)}>
             {OWNERSHIP_DOC_TYPES.map((t) => (
               <option key={t.value} value={t.value}>{t.label}</option>
             ))}
@@ -246,32 +206,28 @@ function OwnershipProofCard({ orderId, status, docType, note, submittedAt, onUpd
             type="file"
             accept=".pdf,.jpg,.jpeg,.png,.heic,.webp"
             onChange={(e) => { setFile(e.target.files[0]); setErr(null); }}
+            className={pp.input}
             // WA-T03: taller padding keeps the native picker an easy tap target on iOS.
-            style={{ ...selectStyle, padding: '11px 12px' }}
+            style={{ padding: '11px 12px' }}
           />
           {err && (
-            <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.accent }}>{err}</div>
+            <div className={pp.errorText}>{err}</div>
           )}
           <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-            <button type="button" onClick={upload} disabled={uploading || !file} style={uploadBtnStyle(uploading || !file)}>
+            <button type="button" onClick={upload} disabled={uploading || !file} className={v2b.cta} style={{ opacity: (uploading || !file) ? 0.6 : 1 }}>
               {uploading ? 'Uploading...' : 'Upload document'}
             </button>
             {st === 'pending' && replacing && (
               <button
                 type="button"
                 onClick={() => { setReplacing(false); setFile(null); setErr(null); }}
-                style={{
-                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                  minHeight: '44px', padding: '8px 18px', background: 'transparent', color: colors.textMuted,
-                  border: `1px solid ${colors.border}`, borderRadius: '22px', fontSize: '12px',
-                  fontWeight: 600, fontFamily: fonts.sans, cursor: 'pointer',
-                }}
+                className={v2b.ghostOnPaper}
               >
                 Cancel
               </button>
             )}
           </div>
-          <div style={{ fontFamily: fonts.sans, fontSize: '11px', color: colors.textHint }}>
+          <div className={pp.hint}>
             PDF or photo (JPG, PNG, HEIC, WebP), up to 15&nbsp;MB.
           </div>
         </div>
@@ -289,22 +245,6 @@ function DocIntakeCard({ orderId, onUpdated }) {
   const [err, setErr] = useState(null);
   const [fields, setFields] = useState(null); // confirm fields after extract
   const [done, setDone] = useState(null);
-
-  const inputStyle = {
-    width: '100%', padding: '8px 10px', border: `1px solid ${colors.borderInput}`,
-    borderRadius: '8px', fontSize: '16px', fontFamily: fonts.sans,
-    background: colors.bgInput, color: colors.text, boxSizing: 'border-box', marginTop: '2px',
-  };
-  const btn = (disabled, secondary) => ({
-    // WA-T03: minHeight 44px iOS tap target; inline-flex centres the label.
-    display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minHeight: '44px',
-    padding: '8px 18px', background: secondary ? 'transparent' : colors.accent,
-    color: secondary ? colors.accent : '#fff', border: secondary ? `1px solid ${colors.accent}` : 'none',
-    borderRadius: '22px', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase',
-    letterSpacing: '0.5px', fontFamily: fonts.sans, cursor: disabled ? 'not-allowed' : 'pointer',
-    opacity: disabled ? 0.6 : 1,
-  });
-  const lbl = { fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, fontWeight: 600 };
 
   const post = async (path, fd) => {
     // Raw fetch — portalFetch forces JSON which breaks FormData.
@@ -423,21 +363,22 @@ function DocIntakeCard({ orderId, onUpdated }) {
     <InfoCard title="Upload auction document">
       {!fields && (
         <div>
-          <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted, lineHeight: 1.5, margin: '0 0 12px' }}>
+          <p style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink-muted, #5c5851)', lineHeight: 1.5, margin: '0 0 12px' }}>
             Upload your auction document and we’ll read the VIN, vehicle, value, and pickup —
             no need to type the VIN by hand. Or attach it as proof only.
           </p>
           <input
             type="file" accept=".pdf,.jpg,.jpeg,.png,.heic,.webp"
             onChange={(e) => { setFile(e.target.files?.[0] || null); setErr(null); setDone(null); }}
+            className={pp.input}
             // WA-T03: taller padding keeps the native picker an easy tap target on iOS.
-            style={{ ...inputStyle, padding: '11px 10px' }}
+            style={{ padding: '11px 10px' }}
           />
           <div style={{ display: 'flex', gap: '10px', marginTop: '12px', flexWrap: 'wrap' }}>
-            <button type="button" onClick={extract} disabled={busy || !file} style={btn(busy || !file)}>
+            <button type="button" onClick={extract} disabled={busy || !file} className={v2b.cta} style={{ opacity: (busy || !file) ? 0.6 : 1 }}>
               {busy ? 'Reading…' : 'Read & auto-fill'}
             </button>
-            <button type="button" onClick={attachProof} disabled={busy || !file} style={btn(busy || !file, true)}>
+            <button type="button" onClick={attachProof} disabled={busy || !file} className={v2b.ghostOnPaper} style={{ opacity: (busy || !file) ? 0.6 : 1 }}>
               Attach as proof only
             </button>
           </div>
@@ -446,53 +387,53 @@ function DocIntakeCard({ orderId, onUpdated }) {
 
       {fields && (
         <div>
-          <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.text, lineHeight: 1.5, margin: '0 0 12px' }}>
+          <p style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink, #050607)', lineHeight: 1.5, margin: '0 0 12px' }}>
             We read your document — review and confirm. <strong>You don’t need to type the VIN.</strong>
           </p>
           <div style={{ marginBottom: '10px' }}>
-            <span style={lbl}>VIN</span>
-            <input style={inputStyle} value={fields.vin} onChange={(e) => setF('vin', e.target.value)} />
+            <span className={pp.label}>VIN</span>
+            <input className={pp.input} value={fields.vin} onChange={(e) => setF('vin', e.target.value)} />
           </div>
           <div style={row2}>
-            <div><span style={lbl}>Year</span><input style={inputStyle} value={fields.vehicle_year} onChange={(e) => setF('vehicle_year', e.target.value)} /></div>
-            <div><span style={lbl}>Vehicle value (USD)</span><input style={inputStyle} value={fields.vehicle_value_dollars} onChange={(e) => setF('vehicle_value_dollars', e.target.value)} placeholder="e.g. 9900" /></div>
+            <div><span className={pp.label}>Year</span><input className={pp.input} value={fields.vehicle_year} onChange={(e) => setF('vehicle_year', e.target.value)} /></div>
+            <div><span className={pp.label}>Vehicle value (USD)</span><input className={pp.input} value={fields.vehicle_value_dollars} onChange={(e) => setF('vehicle_value_dollars', e.target.value)} placeholder="e.g. 9900" /></div>
           </div>
           <div style={{ ...row2, marginTop: '10px' }}>
-            <div><span style={lbl}>Make</span><input style={inputStyle} value={fields.vehicle_make} onChange={(e) => setF('vehicle_make', e.target.value)} /></div>
-            <div><span style={lbl}>Model</span><input style={inputStyle} value={fields.vehicle_model} onChange={(e) => setF('vehicle_model', e.target.value)} /></div>
+            <div><span className={pp.label}>Make</span><input className={pp.input} value={fields.vehicle_make} onChange={(e) => setF('vehicle_make', e.target.value)} /></div>
+            <div><span className={pp.label}>Model</span><input className={pp.input} value={fields.vehicle_model} onChange={(e) => setF('vehicle_model', e.target.value)} /></div>
           </div>
           {/* W7D-T02: the document's business/facility name, editable before apply. */}
           <div style={{ marginTop: '10px' }}>
-            <span style={lbl}>Pickup location name</span>
-            <input style={inputStyle} value={fields.pickup_location_name} onChange={(e) => setF('pickup_location_name', e.target.value)} placeholder="e.g. COPART - MIAMI SOUTH" />
+            <span className={pp.label}>Pickup location name</span>
+            <input className={pp.input} value={fields.pickup_location_name} onChange={(e) => setF('pickup_location_name', e.target.value)} placeholder="e.g. COPART - MIAMI SOUTH" />
           </div>
           <div style={{ marginTop: '10px' }}>
-            <span style={lbl}>Pickup address</span>
-            <input style={inputStyle} value={fields.pickup_address} onChange={(e) => setF('pickup_address', e.target.value)} />
+            <span className={pp.label}>Pickup address</span>
+            <input className={pp.input} value={fields.pickup_address} onChange={(e) => setF('pickup_address', e.target.value)} />
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '10px', marginTop: '10px' }}>
-            <div><span style={lbl}>City</span><input style={inputStyle} value={fields.pickup_city} onChange={(e) => setF('pickup_city', e.target.value)} /></div>
-            <div><span style={lbl}>State</span><input style={inputStyle} value={fields.pickup_state} onChange={(e) => setF('pickup_state', e.target.value)} /></div>
-            <div><span style={lbl}>ZIP</span><input style={inputStyle} value={fields.pickup_zip} onChange={(e) => setF('pickup_zip', e.target.value)} /></div>
+            <div><span className={pp.label}>City</span><input className={pp.input} value={fields.pickup_city} onChange={(e) => setF('pickup_city', e.target.value)} /></div>
+            <div><span className={pp.label}>State</span><input className={pp.input} value={fields.pickup_state} onChange={(e) => setF('pickup_state', e.target.value)} /></div>
+            <div><span className={pp.label}>ZIP</span><input className={pp.input} value={fields.pickup_zip} onChange={(e) => setF('pickup_zip', e.target.value)} /></div>
           </div>
           {/* EXP1-T04: lot/stock + buyer # — read from the document, editable here. */}
           <div style={{ ...row2, marginTop: '10px' }}>
-            <div><span style={lbl}>Lot / Stock #</span><input style={inputStyle} value={fields.lot_number} onChange={(e) => setF('lot_number', e.target.value)} /></div>
-            <div><span style={lbl}>Buyer #</span><input style={inputStyle} value={fields.buyer_number} onChange={(e) => setF('buyer_number', e.target.value)} /></div>
+            <div><span className={pp.label}>Lot / Stock #</span><input className={pp.input} value={fields.lot_number} onChange={(e) => setF('lot_number', e.target.value)} /></div>
+            <div><span className={pp.label}>Buyer #</span><input className={pp.input} value={fields.buyer_number} onChange={(e) => setF('buyer_number', e.target.value)} /></div>
           </div>
           <div style={{ display: 'flex', gap: '10px', marginTop: '14px', flexWrap: 'wrap' }}>
-            <button type="button" onClick={applyConfirm} disabled={busy} style={btn(busy)}>
+            <button type="button" onClick={applyConfirm} disabled={busy} className={v2b.cta} style={{ opacity: busy ? 0.6 : 1 }}>
               {busy ? 'Saving…' : 'Confirm & apply'}
             </button>
-            <button type="button" onClick={() => { setFields(null); setDone(null); }} disabled={busy} style={btn(busy, true)}>
+            <button type="button" onClick={() => { setFields(null); setDone(null); }} disabled={busy} className={v2b.ghostOnPaper} style={{ opacity: busy ? 0.6 : 1 }}>
               Cancel
             </button>
           </div>
         </div>
       )}
 
-      {done && <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.success, marginTop: '12px' }}>{done}</div>}
-      {err && <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: '#B91C1C', marginTop: '12px' }}>{err}</div>}
+      {done && <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--success, #0f6e56)', marginTop: '12px' }}>{done}</div>}
+      {err && <div className={pp.errorText} style={{ marginTop: '12px' }}>{err}</div>}
     </InfoCard>
   );
 }
@@ -644,7 +585,7 @@ export default function OrderDetail() {
 
   if (loading) {
     return (
-      <div style={{ maxWidth: '700px', margin: '0 auto', padding: '40px 24px 80px' }}>
+      <div className={pp.shell}>
         <style>{`@keyframes shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }`}</style>
         {[120, 200, 160].map((h, i) => (
           <div key={i} style={{
@@ -659,11 +600,8 @@ export default function OrderDetail() {
 
   if (!order && error) {
     return (
-      <div style={{ maxWidth: '700px', margin: '0 auto', padding: '40px 24px 80px', textAlign: 'center' }}>
-        <div style={{
-          fontFamily: fonts.sans, fontSize: '13px', color: colors.accent,
-          padding: '10px 14px', background: '#FFF0EC', borderRadius: '8px',
-        }}>
+      <div className={pp.shell} style={{ textAlign: 'center' }}>
+        <div className={pp.errorBlock}>
           {error}
         </div>
       </div>
@@ -671,7 +609,7 @@ export default function OrderDetail() {
   }
 
   if (!order) {
-    return <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: fonts.sans, color: colors.textMuted }}>Order not found.</div>;
+    return <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: 'var(--font-sans, system-ui)', color: 'var(--v2-ink-muted, #5c5851)' }}>Order not found.</div>;
   }
 
   const vehicle = [order.vehicle_year, order.vehicle_make, order.vehicle_model].filter(Boolean).join(' ') || 'Vehicle TBD';
@@ -700,32 +638,20 @@ export default function OrderDetail() {
       : null;
 
   return (
-    <div style={{ maxWidth: '700px', margin: '0 auto', padding: '40px 24px 80px' }}>
+    <div className={pp.shell}>
       <BouncingEmailBanner />
       <OnboardingBanner />
       {/* Back link */}
-      <Link to="/portal/dashboard" style={{
-        fontFamily: fonts.sans,
-        fontSize: '13px',
-        color: colors.accent,
-        display: 'inline-block',
-        marginBottom: '20px',
-      }}>
+      <Link to="/portal/dashboard" className={pp.backLink}>
         &larr; Back to Dashboard
       </Link>
 
       {/* Header */}
-      <h1 style={{
-        fontFamily: fonts.serif,
-        fontSize: '24px',
-        fontWeight: 700,
-        color: colors.text,
-        marginBottom: '4px',
-      }}>
+      <h1 className={pp.pageTitle} style={{ marginBottom: '4px' }}>
         {vehicle}
       </h1>
       {order.vin && order.vin !== 'TBD' && (
-        <p style={{ fontFamily: fonts.mono, fontSize: '13px', color: colors.textMuted, marginBottom: '24px' }}>
+        <p className={pp.mono} style={{ color: 'var(--v2-ink-muted, #5c5851)', marginBottom: '24px' }}>
           VIN: {order.vin}
         </p>
       )}
@@ -733,13 +659,10 @@ export default function OrderDetail() {
       {/* ORD-INV-4: billing lifecycle for dealer/exporter orders (separate from
           the shipment status timeline below). Pending is the default and hidden. */}
       {['dealer', 'exporter'].includes(user?.customer_type) && ['invoiced', 'closed'].includes(order.billing_status) && (
-        <span style={{
-          display: 'inline-block', marginBottom: '20px',
-          padding: '4px 12px', borderRadius: '10px', fontSize: '12px', fontWeight: 600,
-          fontFamily: fonts.sans,
-          color: order.billing_status === 'closed' ? '#065F46' : '#92400e',
-          background: order.billing_status === 'closed' ? '#D1FAE5' : '#FEF3C7',
-        }}>
+        <span
+          className={order.billing_status === 'closed' ? pp.chipPine : pp.chipSoft}
+          style={{ marginBottom: '20px' }}
+        >
           {order.billing_status === 'closed' ? 'Closed — paid' : 'Invoiced — awaiting payment'}
         </span>
       )}
@@ -749,14 +672,14 @@ export default function OrderDetail() {
           surfaces the prompt and the updated price. */}
       {order.status === 'quoted' && order.requires_reprice && (
         <div style={{
-          background: 'linear-gradient(135deg, #FBE5DE 0%, #F7EDE8 100%)',
-          border: `1px solid ${colors.accent}`, borderRadius: '12px',
+          background: 'rgba(215, 15, 36, 0.06)',
+          border: '1px solid rgba(215, 15, 36, 0.25)', borderRadius: '12px',
           padding: '16px 18px', marginBottom: '24px',
         }}>
-          <div style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 700, color: colors.accent, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '6px' }}>
+          <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', fontWeight: 700, color: 'var(--v2-red-deep, #a90918)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '6px' }}>
             Needs your re-confirmation
           </div>
-          <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.text, lineHeight: 1.6, margin: 0 }}>
+          <p style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', color: 'var(--v2-ink, #050607)', lineHeight: 1.6, margin: 0 }}>
             The carrier price came in above your original quote, so we sent an updated quote
             {order.quote_price_min != null && order.quote_price_max != null
               ? <> of <strong>${order.quote_price_min}–${order.quote_price_max}</strong></>
@@ -767,16 +690,10 @@ export default function OrderDetail() {
       )}
 
       {/* Status Timeline */}
-      <div style={{
-        background: colors.bgCard,
-        border: `1px solid ${colors.border}`,
-        borderRadius: '12px',
-        padding: '24px',
-        marginBottom: '24px',
-      }}>
+      <div className={pp.card} style={{ padding: '24px', marginBottom: '24px' }}>
         {steps.map((step, i) => {
           const done = isStepDone(step.key);
-          const isCurrent = step.key === order.status;
+          const terminal = step.key === 'delivered' || step.key === 'completed';
           const date = getStepDate(step);
 
           return (
@@ -797,8 +714,8 @@ export default function OrderDetail() {
                   width: '14px',
                   height: '14px',
                   borderRadius: '50%',
-                  background: done ? colors.success : (isCurrent ? colors.accent : colors.border),
-                  border: done ? 'none' : `2px solid ${isCurrent ? colors.accent : colors.border}`,
+                  background: done ? (terminal ? 'var(--success, #0f6e56)' : 'var(--v2-ink, #050607)') : 'transparent',
+                  border: done ? 'none' : '2px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
                   flexShrink: 0,
                   marginTop: '3px',
                 }} />
@@ -806,8 +723,7 @@ export default function OrderDetail() {
                   <div style={{
                     width: '2px',
                     flex: 1,
-                    background: done ? colors.success : colors.border,
-                    opacity: done ? 0.4 : 0.3,
+                    background: 'var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
                   }} />
                 )}
               </div>
@@ -815,18 +731,18 @@ export default function OrderDetail() {
               {/* Content */}
               <div style={{ flex: 1, paddingBottom: '12px' }}>
                 <div style={{
-                  fontFamily: fonts.sans,
+                  fontFamily: 'var(--font-sans, system-ui)',
                   fontSize: '14px',
                   fontWeight: done ? 600 : 400,
-                  color: done ? colors.text : colors.textMuted,
+                  color: done ? 'var(--v2-ink, #050607)' : 'var(--v2-ink-muted, #5c5851)',
                 }}>
                   {step.label}
                 </div>
                 {date && (
                   <div style={{
-                    fontFamily: fonts.sans,
+                    fontFamily: 'var(--font-sans, system-ui)',
                     fontSize: '12px',
-                    color: colors.textMuted,
+                    color: 'var(--v2-ink-muted, #5c5851)',
                     marginTop: '2px',
                   }}>
                     {date}
@@ -834,9 +750,9 @@ export default function OrderDetail() {
                 )}
                 {!done && !date && (
                   <div style={{
-                    fontFamily: fonts.sans,
+                    fontFamily: 'var(--font-sans, system-ui)',
                     fontSize: '12px',
-                    color: colors.textHint,
+                    color: 'var(--v2-ink-muted, #5c5851)',
                     fontStyle: 'italic',
                     marginTop: '2px',
                   }}>
@@ -1058,13 +974,13 @@ export default function OrderDetail() {
           Release", ACV "Pickup Slip"; generic when the site is unknown). */}
       <InfoCard title={releaseDocShortTerm(order.auction_type_code)}>
         {order.gate_pass_file_name ? (
-          <div style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.success }}>
+          <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', color: 'var(--success, #0f6e56)' }}>
             <CheckIcon size={16} /> {order.gate_pass_file_name}
           </div>
         ) : order.gate_pass ? (
           <InfoRow label={`${releaseDocShortTerm(order.auction_type_code)} #`} value={order.gate_pass} />
         ) : (
-          <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textHint, fontStyle: 'italic' }}>
+          <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink-muted, #5c5851)', fontStyle: 'italic' }}>
             Not uploaded
           </div>
         )}
@@ -1080,7 +996,7 @@ export default function OrderDetail() {
           id="doc-intake"
           style={uploadFocus ? {
             scrollMarginTop: 12,
-            border: `2px solid ${colors.accent}`,
+            border: '2px solid var(--v2-red, #d70f24)',
             borderRadius: 14,
             padding: 2,
           } : undefined}
@@ -1105,25 +1021,25 @@ export default function OrderDetail() {
       {/* Driver info card (dispatched orders) */}
       {['dispatched', 'completed'].includes(order.status) && order.driver_name && (
         <InfoCard title="YOUR DRIVER">
-          <div style={{ fontFamily: fonts.sans, fontSize: '15px', fontWeight: 600, color: colors.text }}>
+          <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '15px', fontWeight: 600, color: 'var(--v2-ink, #050607)' }}>
             {order.driver_name}
           </div>
           {order.driver_phone && (
             <a href={`tel:${order.driver_phone}`} style={{
               display: 'inline-block', marginTop: '6px',
-              fontFamily: fonts.sans, fontSize: '14px', fontWeight: 600,
-              color: colors.accent, textDecoration: 'none',
+              fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', fontWeight: 600,
+              color: 'var(--v2-ink, #050607)', textDecoration: 'underline', textUnderlineOffset: '2px',
             }}>
               {order.driver_phone}
             </a>
           )}
           {order.estimated_delivery_date && (
-            <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted, marginTop: '10px' }}>
+            <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '10px' }}>
               Est. delivery: {fmtDeliveryWindow(order.estimated_delivery_date) || order.estimated_delivery_date}
             </div>
           )}
           {order.carrier_name && (
-            <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textHint, marginTop: '4px' }}>
+            <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '4px' }}>
               Carrier: {order.carrier_name}{order.carrier_mc ? ` (MC ${order.carrier_mc})` : ''}
             </div>
           )}
@@ -1136,22 +1052,22 @@ export default function OrderDetail() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {order.status_history.map((entry, idx) => (
               <div key={entry.id} style={{
-                borderLeft: `3px solid ${idx === 0 ? colors.accent : colors.border}`,
+                borderLeft: `3px solid ${idx === 0 ? 'var(--v2-ink, #050607)' : 'var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))'}`,
                 paddingLeft: '12px', paddingTop: '2px', paddingBottom: '2px',
               }}>
-                <div style={{ fontFamily: fonts.sans, fontSize: '14px', fontWeight: 600, color: colors.text }}>
+                <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', fontWeight: 600, color: 'var(--v2-ink, #050607)' }}>
                   {STATUS_LABELS[entry.to_status] || entry.to_status}
                 </div>
-                <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginTop: '2px' }}>
+                <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '2px' }}>
                   {fmtDate(entry.created_at)}
                 </div>
                 {entry.cancellation_reason && (
-                  <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: '#B8851F', marginTop: '4px' }}>
+                  <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '4px' }}>
                     {CANCELLATION_REASON_LABELS[entry.cancellation_reason] || entry.cancellation_reason}
                   </div>
                 )}
                 {entry.carrier_name_at_transition && (
-                  <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textHint, marginTop: '2px' }}>
+                  <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '2px' }}>
                     Carrier: {entry.carrier_name_at_transition}
                   </div>
                 )}
@@ -1163,23 +1079,24 @@ export default function OrderDetail() {
 
       {/* Dispatch Details Status */}
       {['confirmed', 'dispatched'].includes(order.status) && (
-        <div style={{
-          background: order.dispatch_info_completed ? colors.successBg : '#FFF8E1',
-          border: `1px solid ${order.dispatch_info_completed ? colors.success : '#F9A825'}`,
-          borderRadius: '12px',
-          padding: '16px 20px',
-          marginBottom: '16px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}>
+        <div
+          className={order.dispatch_info_completed ? pp.successBlock : pp.notice}
+          style={{
+            marginBottom: '16px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            gap: '12px',
+          }}
+        >
           {order.dispatch_info_completed ? (
             <>
-              <span style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.success, fontWeight: 500 }}>
+              <span style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', color: 'var(--success, #0f6e56)', fontWeight: 500 }}>
                 <CheckIcon size={16} /> Dispatch details provided
               </span>
               <Link to={`/portal/order/${id}/dispatch-details`} style={{
-                fontFamily: fonts.sans, fontSize: '12px', color: colors.accent, textDecoration: 'none',
+                fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink, #050607)',
+                textDecoration: 'underline', textUnderlineOffset: '2px', flexShrink: 0,
               }}>
                 Edit
               </Link>
@@ -1187,24 +1104,20 @@ export default function OrderDetail() {
           ) : (
             <>
               <div>
-                <span style={{ fontFamily: fonts.sans, fontSize: '14px', color: '#E65100', fontWeight: 500 }}>
+                <span style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', color: 'var(--v2-ink, #050607)', fontWeight: 600 }}>
                   Dispatch details needed to proceed
                 </span>
                 {/* WGF-T03d: the exact missing facts (same list the operator sees). */}
                 {(order.missing_dispatch_details || []).length > 0 && (
                   <ul style={{
-                    fontFamily: fonts.sans, fontSize: '12px', color: '#8a6d1b',
+                    fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)',
                     margin: '6px 0 0', paddingLeft: 18,
                   }}>
                     {order.missing_dispatch_details.map((m) => <li key={m.name}>{m.detail}</li>)}
                   </ul>
                 )}
               </div>
-              <Link to={`/portal/order/${id}/dispatch-details`} style={{
-                fontFamily: fonts.sans, fontSize: '12px', fontWeight: 600,
-                color: '#fff', background: '#F57C00', padding: '6px 14px',
-                borderRadius: '16px', textDecoration: 'none', flexShrink: 0, marginLeft: '12px',
-              }}>
+              <Link to={`/portal/order/${id}/dispatch-details`} className={v2b.cta} style={{ flexShrink: 0 }}>
                 Provide Details
               </Link>
             </>
@@ -1214,22 +1127,14 @@ export default function OrderDetail() {
 
       {/* Error banner */}
       {error && (
-        <div style={{
-          fontFamily: fonts.sans, fontSize: '13px', color: colors.accent,
-          padding: '10px 14px', background: '#FFF0EC', borderRadius: '8px',
-          marginBottom: '16px',
-        }}>
+        <div className={pp.errorBlock} style={{ marginBottom: '16px' }}>
           {error}
         </div>
       )}
 
       {/* Success banner after saving dispatch details */}
       {dispatchSaved && (
-        <div style={{
-          background: colors.successBg, border: `1px solid ${colors.success}`,
-          borderRadius: '12px', padding: '12px 20px', marginBottom: '16px',
-          fontFamily: fonts.sans, fontSize: '14px', color: colors.success, fontWeight: 500,
-        }}>
+        <div className={pp.successBlock} style={{ marginBottom: '16px', fontWeight: 500 }}>
           <CheckIcon size={16} /> Dispatch details saved successfully
         </div>
       )}
@@ -1255,33 +1160,20 @@ export default function OrderDetail() {
                 URL.revokeObjectURL(url);
               } else { setError('Invoice not available yet.'); }
             } catch { setError('Failed to download invoice.'); }
-          }} style={{
-            fontFamily: fonts.sans, fontSize: '13px', fontWeight: 500,
-            color: colors.accent, padding: '10px 16px',
-            border: `1px solid ${colors.border}`, borderRadius: '8px',
-            background: 'transparent', cursor: 'pointer',
-          }}>
+          }} className={v2b.ghostOnPaper}>
             Download Invoice
           </button>
         )}
-        <button onClick={() => { setShowMessageForm(f => !f); setMessageSent(false); }} style={{
-          fontFamily: fonts.sans, fontSize: '13px', fontWeight: 500,
-          color: colors.accent, padding: '10px 16px',
-          border: `1px solid ${colors.border}`, borderRadius: '8px',
-          background: 'transparent', cursor: 'pointer',
-        }}>
+        <button onClick={() => { setShowMessageForm(f => !f); setMessageSent(false); }} className={v2b.ghostOnPaper}>
           Contact Dispatcher
         </button>
       </div>
 
       {/* Message to dispatcher form */}
       {showMessageForm && (
-        <div style={{
-          background: colors.bgCard, border: `1px solid ${colors.border}`,
-          borderRadius: '12px', padding: '16px 20px', marginTop: '12px',
-        }}>
+        <div className={pp.card} style={{ marginTop: '12px', marginBottom: 0 }}>
           {messageSent ? (
-            <div style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.success, fontWeight: 500 }}>
+            <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', color: 'var(--success, #0f6e56)', fontWeight: 500 }}>
               <CheckIcon size={16} /> Message sent! We'll respond shortly.
             </div>
           ) : (
@@ -1290,12 +1182,8 @@ export default function OrderDetail() {
                 value={message}
                 onChange={e => setMessage(e.target.value)}
                 placeholder="Message to dispatcher about this order..."
-                style={{
-                  width: '100%', minHeight: '80px', resize: 'vertical',
-                  padding: '10px 12px', border: `1px solid ${colors.borderInput}`,
-                  borderRadius: '8px', fontSize: '14px', fontFamily: fonts.sans,
-                  background: colors.bgInput, color: colors.text, boxSizing: 'border-box',
-                }}
+                className={pp.textarea}
+                style={{ minHeight: '80px' }}
               />
               <button
                 disabled={sendingMessage || !message.trim()}
@@ -1311,12 +1199,9 @@ export default function OrderDetail() {
                   } catch { setError('Failed to send message. Please check your connection.'); }
                   setSendingMessage(false);
                 }}
+                className={v2b.cta}
                 style={{
-                  marginTop: '8px', padding: '8px 20px',
-                  background: colors.accent, color: '#fff',
-                  border: 'none', borderRadius: '20px',
-                  fontSize: '12px', fontWeight: 600, cursor: sendingMessage ? 'not-allowed' : 'pointer',
-                  fontFamily: fonts.sans, textTransform: 'uppercase', letterSpacing: '0.5px',
+                  marginTop: '8px',
                   opacity: (sendingMessage || !message.trim()) ? 0.6 : 1,
                 }}
               >
@@ -1330,18 +1215,20 @@ export default function OrderDetail() {
       {/* Cancel */}
       {(order.status === 'pending' || order.status === 'quoted') && (
         <>
-          <button onClick={handleCancel} style={{
-            fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600,
-            textTransform: 'uppercase', letterSpacing: '0.5px',
-            padding: '12px 24px', background: confirmCancel ? '#b02a37' : '#dc3545', color: '#fff',
-            border: 'none', borderRadius: '20px', cursor: 'pointer',
-            marginTop: '12px', width: '100%',
-          }}>
+          <button
+            onClick={handleCancel}
+            className={v2b.ghostOnPaper}
+            style={{
+              color: 'var(--v2-red-deep, #a90918)',
+              borderColor: 'rgba(215, 15, 36, 0.35)',
+              marginTop: '12px', width: '100%',
+            }}
+          >
             {confirmCancel ? 'Confirm Cancellation' : 'Cancel Order'}
           </button>
           {confirmCancel && (
             <button onClick={() => setConfirmCancel(false)} style={{
-              fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted,
+              fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)',
               background: 'none', border: 'none', cursor: 'pointer',
               marginTop: '8px', width: '100%',
             }}>
@@ -1353,13 +1240,11 @@ export default function OrderDetail() {
 
       {/* Resubmit after decline */}
       {(order.status === 'declined' || order.status === 'cancelled') && (
-        <button onClick={() => navigate(`/?vin=${encodeURIComponent(order.vin || '')}&pickup_zip=${encodeURIComponent(order.pickup_zip || '')}`)} style={{
-          fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600,
-          textTransform: 'uppercase', letterSpacing: '0.5px',
-          padding: '12px 24px', background: colors.accent, color: '#fff',
-          border: 'none', borderRadius: '20px', cursor: 'pointer',
-          marginTop: '8px', width: '100%',
-        }}>
+        <button
+          onClick={() => navigate(`/?vin=${encodeURIComponent(order.vin || '')}&pickup_zip=${encodeURIComponent(order.pickup_zip || '')}`)}
+          className={v2b.cta}
+          style={{ marginTop: '8px', width: '100%' }}
+        >
           Request New Quote
         </button>
       )}

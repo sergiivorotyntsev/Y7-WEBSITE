@@ -3,8 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
 import VerificationBanner from '../../components/VerificationBanner';
 import { portalFetch } from '../../hooks/useAuth';
-import { colors, fonts, button as btnStyles, keyframes } from '../../theme';
+import { keyframes } from '../../theme';
 import { UNIFIED_STAGES, mapUnifiedStage } from '../../utils/loadStatus';
+import pp from '../../styles/v2/portal.module.css';
+import v2b from '../../styles/v2/buttons.module.css';
 
 // DEALER-DASH-S1-T03 — Dealer/Exporter HOME: loads dashboard.
 // Block 1 (Loads) is the live surface. The former Money/Documents "coming
@@ -39,20 +41,10 @@ function money(dollars) {
   return `$${Number(dollars).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 })}`;
 }
 
-const inputStyle = {
-  fontFamily: fonts.sans,
-  fontSize: '16px', // iOS: >=16px prevents zoom-on-focus
-  padding: '8px 12px',
-  border: `1px solid ${colors.border}`,
-  borderRadius: '8px',
-  background: colors.bgInput || '#fff',
-  color: colors.text,
-};
-
 function UnifiedProgress({ stageIndex, terminal, label }) {
   if (terminal) {
     return (
-      <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: '#991B1B', padding: '8px 0' }}>
+      <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-red-deep, #a90918)', padding: '8px 0' }}>
         This load is {label.toLowerCase()}.
       </div>
     );
@@ -64,10 +56,10 @@ function UnifiedProgress({ stageIndex, terminal, label }) {
         const current = i === stageIndex;
         return (
           <span key={s.key} style={{
-            fontFamily: fonts.sans, fontSize: '11px', fontWeight: current ? 700 : 500,
-            color: current ? '#fff' : done ? colors.text : colors.textMuted,
-            background: current ? colors.accent : done ? colors.bgMuted : 'transparent',
-            border: `1px solid ${current ? colors.accent : colors.border}`,
+            fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', fontWeight: current ? 700 : 500,
+            color: current ? '#f4f0e8' : done ? 'var(--v2-ink, #050607)' : 'var(--v2-ink-muted, #5c5851)',
+            background: current ? 'var(--v2-ink, #050607)' : done ? 'var(--v2-card-cream, #fffaf1)' : 'transparent',
+            border: `1px solid ${current ? 'var(--v2-ink, #050607)' : 'var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))'}`,
             padding: '3px 8px', borderRadius: '10px', whiteSpace: 'nowrap',
           }}>
             {done ? '✓ ' : ''}{s.label}
@@ -97,7 +89,7 @@ function LoadRow({ order, expanded, onToggle }) {
   const carrierAssigned = Boolean(order.carrier_name);
 
   return (
-    <div style={{ borderBottom: `1px solid ${colors.border}` }}>
+    <div style={{ borderBottom: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))' }}>
       <button
         onClick={onToggle}
         aria-expanded={expanded}
@@ -108,46 +100,36 @@ function LoadRow({ order, expanded, onToggle }) {
         }}
       >
         <div style={{ minWidth: 0, flex: 1 }}>
-          <div style={{ fontFamily: fonts.sans, fontSize: '14px', fontWeight: 600, color: colors.text, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', fontWeight: 600, color: 'var(--v2-ink, #050607)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             {vehicle}
           </div>
-          <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginTop: '2px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-            <span style={{ fontFamily: fonts.mono, marginRight: '8px' }}>{loadId}</span>
+          <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '2px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            <span className={pp.mono} style={{ marginRight: '8px' }}>{loadId}</span>
             {route && <span>{route}</span>}
           </div>
           {carrierAssigned && (
-            <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.text, marginTop: '4px' }}>
+            <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink, #050607)', marginTop: '4px' }}>
               Carrier: {order.carrier_name}{order.carrier_mc ? ` · MC ${order.carrier_mc}` : ''}
             </div>
           )}
         </div>
         <div style={{ textAlign: 'right', flexShrink: 0 }}>
-          <span style={{
-            fontFamily: fonts.sans, fontSize: '11px', fontWeight: 600,
-            color: u.terminal ? '#991B1B' : colors.accent,
-            background: u.terminal ? '#FEE2E2' : colors.bgMuted,
-            padding: '2px 8px', borderRadius: '10px', textTransform: 'uppercase', letterSpacing: '0.5px',
-          }}>
+          <span className={u.terminal ? pp.chipRed : pp.chipInk}>
             {u.label}
           </span>
           {/* PHASE4B-REPRICE: a revised quote needs the dealer's re-confirmation. */}
           {order.status === 'quoted' && order.requires_reprice && (
-            <div style={{
-              fontFamily: fonts.sans, fontSize: '10px', fontWeight: 700, color: '#fff',
-              background: 'linear-gradient(135deg, #B0461F 0%, #993C1D 100%)',
-              padding: '2px 8px', borderRadius: '10px', textTransform: 'uppercase',
-              letterSpacing: '0.5px', marginTop: '4px', display: 'inline-block',
-            }}>
+            <div className={pp.chipSoft} style={{ marginTop: '4px' }}>
               Needs your re-confirmation
             </div>
           )}
           {transport && (
-            <div style={{ fontFamily: fonts.mono, fontSize: '13px', fontWeight: 600, color: colors.text, marginTop: '4px' }}>
+            <div className={pp.mono} style={{ marginTop: '4px' }}>
               {transport}
             </div>
           )}
           {yfee && (
-            <div style={{ fontFamily: fonts.sans, fontSize: '11px', color: colors.textMuted, marginTop: '1px' }}>
+            <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '1px' }}>
               + {yfee} Y7 service fee
             </div>
           )}
@@ -156,7 +138,7 @@ function LoadRow({ order, expanded, onToggle }) {
       {expanded && (
         <div style={{ padding: '0 20px 16px' }}>
           <UnifiedProgress stageIndex={u.stageIndex} terminal={u.terminal} label={u.label} />
-          <Link to={`/portal/order/${order.id}`} style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.accent, textDecoration: 'none' }}>
+          <Link to={`/portal/order/${order.id}`} style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink, #050607)', textDecoration: 'underline', textUnderlineOffset: '2px' }}>
             View full details &amp; timeline &rarr;
           </Link>
         </div>
@@ -214,7 +196,7 @@ export default function DealerDashboard({ user }) {
   const isExporter = user?.customer_type === 'exporter';
 
   return (
-    <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '40px 24px 80px' }}>
+    <div className={pp.shell}>
       <PageMeta title="Dealer Dashboard" description="Monitor your loads, costs, and documents in one place." path="/portal/dashboard" />
       <style>{keyframes}</style>
 
@@ -222,19 +204,15 @@ export default function DealerDashboard({ user }) {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px', flexWrap: 'wrap', gap: '16px' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <h1 style={{ fontFamily: fonts.serif, fontSize: '28px', fontWeight: 700, color: colors.text }}>
+            <h1 className={pp.pageTitle}>
               Welcome back, {user?.name?.split(' ')[0] || 'there'}
             </h1>
-            <span style={{
-              fontFamily: fonts.sans, fontSize: '11px', fontWeight: 700, color: '#fff',
-              background: '#1a1a2e', padding: '3px 10px', borderRadius: '10px',
-              textTransform: 'uppercase', letterSpacing: '0.5px', whiteSpace: 'nowrap',
-            }}>
+            <span className={pp.chipInk} style={{ whiteSpace: 'nowrap' }}>
               {isExporter ? 'Exporter Account' : 'Dealer Account'}
             </span>
           </div>
         </div>
-        <button onClick={() => navigate('/portal/new-order')} style={btnStyles.accent}>New Order</button>
+        <button onClick={() => navigate('/portal/new-order')} className={v2b.cta}>New Order</button>
       </div>
 
       {/* FX-3: dealers/exporters render this dashboard (not the individual one
@@ -244,23 +222,21 @@ export default function DealerDashboard({ user }) {
 
       {/* CO3W-T06: Certificate of Origin entry — exporters only. */}
       {isExporter && (
-        <div style={{
+        <div className={pp.card} style={{
           display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap',
-          background: '#fff', border: `1px solid ${colors.border}`, borderRadius: '12px',
-          padding: '14px 18px', marginBottom: '20px',
         }}>
           <div style={{ flex: 1, minWidth: 220 }}>
-            <strong style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.text }}>
+            <strong style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', color: 'var(--v2-ink, #050607)' }}>
               Certificate of Origin
             </strong>
-            <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: '#6b6b68' }}>
+            <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink-muted, #5c5851)' }}>
               0% EU duty for US-manufactured vehicles — check a VIN in seconds.
             </div>
           </div>
-          <Link to="/portal/co" style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600, color: colors.accent, textDecoration: 'none' }}>
+          <Link to="/portal/co" style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', fontWeight: 600, color: 'var(--v2-ink, #050607)', textDecoration: 'underline', textUnderlineOffset: '2px' }}>
             CO requests →
           </Link>
-          <Link to="/portal/co/companies" style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600, color: colors.accent, textDecoration: 'none' }}>
+          <Link to="/portal/co/companies" style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', fontWeight: 600, color: 'var(--v2-ink, #050607)', textDecoration: 'underline', textUnderlineOffset: '2px' }}>
             My companies →
           </Link>
         </div>
@@ -270,7 +246,7 @@ export default function DealerDashboard({ user }) {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', alignItems: 'start' }}>
 
         <div style={{ gridColumn: '1 / -1' }}>
-          <h2 style={{ fontFamily: fonts.serif, fontSize: '20px', fontWeight: 700, color: colors.text, marginBottom: '12px' }}>
+          <h2 className={pp.sectionTitle} style={{ marginBottom: '12px' }}>
             Your Loads
           </h2>
 
@@ -282,18 +258,19 @@ export default function DealerDashboard({ user }) {
               onChange={e => setSearch(e.target.value)}
               placeholder="Search vehicle, load ID, VIN, city, carrier…"
               aria-label="Search loads"
-              style={{ ...inputStyle, flex: '1 1 240px', minWidth: '180px' }}
+              className={pp.input}
+              style={{ flex: '1 1 240px', minWidth: '180px' }}
             />
-            <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} aria-label="Filter by status" style={inputStyle}>
+            <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} aria-label="Filter by status" className={pp.select} style={{ width: 'auto' }}>
               {STATUS_FILTERS.map(f => <option key={f.value} value={f.value}>{f.label}</option>)}
             </select>
-            <select value={sortValue} onChange={e => setSortValue(e.target.value)} aria-label="Sort loads" style={inputStyle}>
+            <select value={sortValue} onChange={e => setSortValue(e.target.value)} aria-label="Sort loads" className={pp.select} style={{ width: 'auto' }}>
               {SORT_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
             </select>
           </div>
 
           {error && (
-            <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.accent, padding: '10px 14px', background: '#FFF0EC', borderRadius: '8px', marginBottom: '16px' }}>
+            <div className={pp.errorBlock} style={{ marginBottom: '16px' }}>
               {error}
             </div>
           )}
@@ -303,22 +280,22 @@ export default function DealerDashboard({ user }) {
               {[0, 1, 2].map(i => (
                 <div key={i} style={{
                   height: 64, borderRadius: '8px', marginBottom: '8px',
-                  background: `linear-gradient(90deg, ${colors.bgMuted} 25%, ${colors.bgCard} 50%, ${colors.bgMuted} 75%)`,
+                  background: 'linear-gradient(90deg, rgba(5,6,7,0.06) 25%, rgba(5,6,7,0.03) 50%, rgba(5,6,7,0.06) 75%)',
                   backgroundSize: '800px 100%', animation: 'shimmer 1.5s ease-in-out infinite',
                 }} />
               ))}
             </div>
           ) : visible.length === 0 ? (
-            <div style={{ background: colors.bgCard, border: `1px solid ${colors.border}`, borderRadius: '12px', padding: '40px 20px', textAlign: 'center' }}>
-              <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, marginBottom: '16px' }}>
+            <div className={pp.card} style={{ padding: '40px 20px', textAlign: 'center' }}>
+              <p style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', color: 'var(--v2-ink-muted, #5c5851)', marginBottom: '16px' }}>
                 {orders.length === 0 ? 'No loads yet. Submit your first transport order to get started.' : 'No loads match your filters.'}
               </p>
               {orders.length === 0 && (
-                <button onClick={() => navigate('/portal/new-order')} style={btnStyles.accent}>New Order</button>
+                <button onClick={() => navigate('/portal/new-order')} className={v2b.ghostOnPaper}>New Order</button>
               )}
             </div>
           ) : (
-            <div style={{ background: colors.bgCard, border: `1px solid ${colors.border}`, borderRadius: '12px', overflow: 'hidden' }}>
+            <div className={pp.card} style={{ padding: 0, overflow: 'hidden' }}>
               {visible.map(order => (
                 <LoadRow
                   key={order.id}

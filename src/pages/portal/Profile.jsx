@@ -6,30 +6,9 @@ import Toast from '../../components/Toast';
 import OnboardingBanner from '../../components/OnboardingBanner';
 import BouncingEmailBanner from '../../components/recovery/BouncingEmailBanner';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
-import { colors, fonts, button as btnStyles } from '../../theme';
-
-const inputStyle = {
-  fontFamily: fonts.sans,
-  fontSize: '16px',
-  padding: '10px 14px',
-  borderRadius: '8px',
-  border: `1px solid ${colors.borderInput}`,
-  background: colors.bgInput,
-  color: colors.text,
-  outline: 'none',
-  width: '100%',
-};
-
-const labelStyle = {
-  fontFamily: fonts.sans,
-  fontSize: '12px',
-  fontWeight: 600,
-  color: colors.text,
-  textTransform: 'uppercase',
-  letterSpacing: '0.5px',
-  display: 'block',
-  marginBottom: '4px',
-};
+import { colors } from '../../theme';
+import pp from '../../styles/v2/portal.module.css';
+import v2b from '../../styles/v2/buttons.module.css';
 
 const TYPE_LABELS = {
   dealer: 'Dealer',
@@ -46,9 +25,9 @@ const BILLING_LABELS = {
 
 function StatusRow({ label, value, valueColor }) {
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: `1px solid ${colors.border}` }}>
-      <span style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted }}>{label}</span>
-      <span style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600, color: valueColor || colors.text }}>{value}</span>
+    <div className={pp.row} style={{ padding: '8px 0' }}>
+      <span style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink-muted, #5c5851)' }}>{label}</span>
+      <span style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', fontWeight: 600, color: valueColor || 'var(--v2-ink, #050607)' }}>{value}</span>
     </div>
   );
 }
@@ -71,32 +50,32 @@ function SavedLocationsPreview() {
   const extra = locs.length - 3;
 
   return (
-    <div style={{ paddingTop: '12px', borderTop: `1px solid ${colors.border}` }}>
-      <div style={{ ...labelStyle, marginBottom: '8px' }}>Saved Locations</div>
+    <div style={{ paddingTop: '12px', borderTop: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))' }}>
+      <div className={pp.label} style={{ marginBottom: 8 }}>Saved Locations</div>
       {locs.length === 0 ? (
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <span style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted }}>No saved locations</span>
+          <span style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink-muted, #5c5851)' }}>No saved locations</span>
           <button onClick={() => navigate('/portal/locations')} style={{
-            background: 'none', border: `1px solid ${colors.border}`, borderRadius: 6,
-            padding: '6px 12px', fontSize: 12, fontFamily: fonts.sans, color: colors.accent,
+            background: 'none', border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))', borderRadius: 6,
+            padding: '6px 12px', fontSize: 12, fontFamily: 'var(--font-sans, system-ui)', color: 'var(--v2-ink, #050607)',
             cursor: 'pointer',
           }}>+ Add Location</button>
         </div>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
           {shown.map(loc => (
-            <div key={loc.id} style={{ display: 'flex', alignItems: 'center', gap: 6, fontFamily: fonts.sans, fontSize: 13 }}>
-              <span style={{ fontWeight: 600, color: colors.text }}>{loc.label || loc.name}</span>
+            <div key={loc.id} style={{ display: 'flex', alignItems: 'center', gap: 6, fontFamily: 'var(--font-sans, system-ui)', fontSize: 13 }}>
+              <span style={{ fontWeight: 600, color: 'var(--v2-ink, #050607)' }}>{loc.label || loc.name}</span>
               {loc.is_default && (
-                <span style={{ padding: '1px 5px', borderRadius: 3, fontSize: 9, fontWeight: 600, background: '#FEF3C7', color: '#92400E' }}>DEFAULT</span>
+                <span className={pp.chipInk}>DEFAULT</span>
               )}
-              <span style={{ color: colors.textMuted }}>{loc.city}, {loc.state}</span>
+              <span style={{ color: 'var(--v2-ink-muted, #5c5851)' }}>{loc.city}, {loc.state}</span>
             </div>
           ))}
           {extra > 0 && (
-            <span style={{ fontFamily: fonts.sans, fontSize: 12, color: colors.textMuted }}>and {extra} more</span>
+            <span style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: 12, color: 'var(--v2-ink-muted, #5c5851)' }}>and {extra} more</span>
           )}
-          <Link to="/portal/locations" style={{ fontFamily: fonts.sans, fontSize: 12, color: colors.accent, marginTop: 4 }}>
+          <Link to="/portal/locations" style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: 12, color: 'var(--v2-ink, #050607)', textDecoration: 'underline', marginTop: 4 }}>
             Manage all locations &rarr;
           </Link>
         </div>
@@ -161,113 +140,81 @@ export default function Profile() {
   }
 
   if (loading) {
-    return <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: fonts.sans, color: colors.textMuted }}>Loading...</div>;
+    return <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: 'var(--font-sans, system-ui)', color: 'var(--v2-ink-muted, #5c5851)' }}>Loading...</div>;
   }
 
   if (!profile) {
-    return <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: fonts.sans, color: colors.textMuted }}>Could not load profile.</div>;
+    return <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: 'var(--font-sans, system-ui)', color: 'var(--v2-ink-muted, #5c5851)' }}>Could not load profile.</div>;
   }
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '40px 24px 80px' }}>
+    <div className={pp.shell}>
+      <div className={pp.measureNarrow}>
       <BouncingEmailBanner />
       <OnboardingBanner />
-      <Link to="/portal/dashboard" style={{
-        fontFamily: fonts.sans,
-        fontSize: '13px',
-        color: colors.accent,
-        display: 'inline-block',
-        marginBottom: '20px',
-      }}>
+      <Link to="/portal/dashboard" className={pp.backLink}>
         &larr; Back to Dashboard
       </Link>
 
-      <h1 style={{
-        fontFamily: fonts.serif,
-        fontSize: '28px',
-        fontWeight: 700,
-        color: colors.text,
-        marginBottom: '24px',
-      }}>
+      <h1 className={pp.pageTitle} style={{ marginBottom: 24 }}>
         My Profile
       </h1>
 
       {message && (
-        <div style={{
-          fontFamily: fonts.sans,
-          fontSize: '13px',
-          color: message.type === 'success' ? colors.success : colors.accent,
-          padding: '10px 14px',
-          background: message.type === 'success' ? colors.successBg : '#FFF0EC',
-          borderRadius: '8px',
-          marginBottom: '20px',
-        }}>
+        <div className={message.type === 'success' ? pp.successBlock : pp.errorBlock} style={{ marginBottom: 20 }}>
           {message.text}
         </div>
       )}
 
-      <form onSubmit={handleSave} style={{
-        background: colors.bgCard,
-        border: `1px solid ${colors.border}`,
-        borderRadius: '16px',
-        padding: '28px 24px',
+      <form onSubmit={handleSave} className={pp.card} style={{
         display: 'flex',
         flexDirection: 'column',
         gap: '16px',
       }}>
         <div>
-          <label style={labelStyle}>Company Name</label>
-          <input value={profile.company_name || ''} onChange={e => set('company_name', e.target.value)} style={inputStyle} />
+          <label className={pp.label}>Company Name</label>
+          <input value={profile.company_name || ''} onChange={e => set('company_name', e.target.value)} className={pp.input} />
         </div>
         <div>
-          <label style={labelStyle}>Full Name</label>
-          <input value={profile.contact_name || ''} onChange={e => set('contact_name', e.target.value)} style={inputStyle} />
+          <label className={pp.label}>Full Name</label>
+          <input value={profile.contact_name || ''} onChange={e => set('contact_name', e.target.value)} className={pp.input} />
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
           <div>
-            <label style={labelStyle}>Email</label>
-            <input value={profile.email || ''} disabled style={{ ...inputStyle, opacity: 0.6, cursor: 'not-allowed' }} />
+            <label className={pp.label}>Email</label>
+            <input value={profile.email || ''} disabled className={pp.input} />
           </div>
           <div>
-            <label style={labelStyle}>Phone</label>
-            <input value={profile.phone || ''} onChange={e => set('phone', e.target.value)} style={inputStyle} />
+            <label className={pp.label}>Phone</label>
+            <input value={profile.phone || ''} onChange={e => set('phone', e.target.value)} className={pp.input} />
           </div>
         </div>
 
-        <div style={{
-          fontFamily: fonts.sans,
-          fontSize: '12px',
-          fontWeight: 600,
-          color: colors.textMuted,
-          textTransform: 'uppercase',
-          letterSpacing: '0.5px',
-          paddingTop: '8px',
-          borderTop: `1px solid ${colors.border}`,
-        }}>
+        <div className={pp.label} style={{ paddingTop: 8, borderTop: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))' }}>
           Default Delivery Address
         </div>
         <div>
-          <label style={labelStyle}>Street</label>
-          <input value={profile.delivery_address || ''} onChange={e => set('delivery_address', e.target.value)} style={inputStyle} />
+          <label className={pp.label}>Street</label>
+          <input value={profile.delivery_address || ''} onChange={e => set('delivery_address', e.target.value)} className={pp.input} />
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '12px' }}>
           <div>
-            <label style={labelStyle}>City</label>
-            <input value={profile.delivery_city || ''} onChange={e => set('delivery_city', e.target.value)} style={inputStyle} />
+            <label className={pp.label}>City</label>
+            <input value={profile.delivery_city || ''} onChange={e => set('delivery_city', e.target.value)} className={pp.input} />
           </div>
           <div>
-            <label style={labelStyle}>State</label>
-            <input value={profile.delivery_state || ''} onChange={e => set('delivery_state', e.target.value)} maxLength={2} style={inputStyle} />
+            <label className={pp.label}>State</label>
+            <input value={profile.delivery_state || ''} onChange={e => set('delivery_state', e.target.value)} maxLength={2} className={pp.input} />
           </div>
           <div>
-            <label style={labelStyle}>ZIP</label>
-            <input value={profile.delivery_zip || ''} onChange={e => set('delivery_zip', e.target.value)} style={inputStyle} />
+            <label className={pp.label}>ZIP</label>
+            <input value={profile.delivery_zip || ''} onChange={e => set('delivery_zip', e.target.value)} className={pp.input} />
           </div>
         </div>
 
         {/* Account Status */}
-        <div style={{ paddingTop: '12px', borderTop: `1px solid ${colors.border}` }}>
-          <div style={{ ...labelStyle, marginBottom: '8px' }}>Account Status</div>
+        <div style={{ paddingTop: '12px', borderTop: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))' }}>
+          <div className={pp.label} style={{ marginBottom: 8 }}>Account Status</div>
           <StatusRow label="Account Type" value={TYPE_LABELS[user?.customer_type] || 'Unknown'} />
           {user?.customer_type === 'dealer' && (
             <StatusRow label="Billing Mode" value={BILLING_LABELS[user?.billing_mode] || user?.billing_mode} />
@@ -276,7 +223,7 @@ export default function Profile() {
             <StatusRow
               label="Deposit Balance"
               value={`$${((user?.deposit_balance_cents || 0) / 100).toFixed(2)}`}
-              valueColor={(user?.deposit_balance_cents || 0) < 0 ? '#DC2626' : colors.success}
+              valueColor={(user?.deposit_balance_cents || 0) < 0 ? 'var(--v2-red-deep, #a90918)' : colors.success}
             />
           )}
 
@@ -284,20 +231,15 @@ export default function Profile() {
             <div style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <button
                 onClick={() => navigate('/dealer-quote?prefill=1')}
-                style={{
-                  ...btnStyles.accent,
-                  width: '100%',
-                  padding: '12px 16px',
-                  fontSize: '13px',
-                  fontWeight: 600,
-                }}
+                className={v2b.ghostOnPaper}
+                style={{ width: '100%' }}
               >
                 Upgrade to Dealer Account
               </button>
               <p style={{
-                fontFamily: fonts.sans,
+                fontFamily: 'var(--font-sans, system-ui)',
                 fontSize: '11px',
-                color: colors.textMuted,
+                color: 'var(--v2-ink-muted, #5c5851)',
                 lineHeight: 1.5,
                 margin: 0,
               }}>
@@ -312,12 +254,12 @@ export default function Profile() {
               style={{
                 marginTop: '8px',
                 background: 'none',
-                border: `1px solid ${colors.border}`,
+                border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
                 borderRadius: '8px',
                 padding: '8px 14px',
                 fontSize: '12px',
-                fontFamily: fonts.sans,
-                color: colors.textMuted,
+                fontFamily: 'var(--font-sans, system-ui)',
+                color: 'var(--v2-ink-muted, #5c5851)',
                 cursor: 'pointer',
                 width: '100%',
               }}
@@ -328,21 +270,19 @@ export default function Profile() {
         </div>
 
         {/* Documents & Agreements */}
-        <div style={{ paddingTop: '12px', borderTop: `1px solid ${colors.border}` }}>
-          <div style={{ ...labelStyle, marginBottom: '8px' }}>Documents & Agreements</div>
+        <div style={{ paddingTop: '12px', borderTop: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))' }}>
+          <div className={pp.label} style={{ marginBottom: 8 }}>Documents & Agreements</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             {/* Transport agreement */}
-            <div style={{
-              padding: '12px', borderRadius: '8px',
-              background: user?.agreement_signed ? colors.successBg : '#FFF0EC',
-              border: `1px solid ${user?.agreement_signed ? '#A7D6BE' : '#FFD0C2'}`,
-              display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px',
-            }}>
+            <div
+              className={user?.agreement_signed ? pp.successBlock : pp.errorBlock}
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}
+            >
               <div>
-                <div style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600, color: colors.text }}>
+                <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', fontWeight: 600, color: 'var(--v2-ink, #050607)' }}>
                   {user?.customer_type === 'dealer' ? 'Dealer Transport Agreement' : 'Transport Service Agreement'}
                 </div>
-                <div style={{ fontFamily: fonts.sans, fontSize: '11px', color: user?.agreement_signed ? colors.success : colors.accent }}>
+                <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: user?.agreement_signed ? colors.success : 'var(--v2-red-deep, #a90918)' }}>
                   {user?.agreement_signed ? 'Signed' : 'Not signed — required to create orders'}
                 </div>
               </div>
@@ -350,26 +290,24 @@ export default function Profile() {
                 <button onClick={() => {
                   const t = user?.customer_type === 'dealer' ? 'dealer' : 'shipper';
                   navigate(`/agreement?customer_id=${user?.id}&type=${t}`);
-                }} style={{ ...btnStyles.accent, padding: '6px 14px', fontSize: '11px' }}>Sign</button>
+                }} className={v2b.ghostOnPaper} style={{ minHeight: 0, padding: '6px 14px', fontSize: '11px' }}>Sign</button>
               )}
             </div>
 
             {/* Bank auth (prepay dealers only) */}
             {user?.customer_type === 'dealer' && user?.billing_mode === 'prepay_manual_invoice' && (
-              <div style={{
-                padding: '12px', borderRadius: '8px',
-                background: user?.bank_auth_signed ? colors.successBg : '#FFF0EC',
-                border: `1px solid ${user?.bank_auth_signed ? '#A7D6BE' : '#FFD0C2'}`,
-                display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px',
-              }}>
+              <div
+                className={user?.bank_auth_signed ? pp.successBlock : pp.errorBlock}
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}
+              >
                 <div>
-                  <div style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600, color: colors.text }}>Bank Authorization Agreement</div>
-                  <div style={{ fontFamily: fonts.sans, fontSize: '11px', color: user?.bank_auth_signed ? colors.success : colors.accent }}>
+                  <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', fontWeight: 600, color: 'var(--v2-ink, #050607)' }}>Bank Authorization Agreement</div>
+                  <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: user?.bank_auth_signed ? colors.success : 'var(--v2-red-deep, #a90918)' }}>
                     {user?.bank_auth_signed ? 'Signed' : 'Not signed — required for prepay billing'}
                   </div>
                 </div>
                 {!user?.bank_auth_signed && (
-                  <button onClick={() => navigate(`/agreement?customer_id=${user?.id}&type=bank_auth`)} style={{ ...btnStyles.accent, padding: '6px 14px', fontSize: '11px' }}>Sign</button>
+                  <button onClick={() => navigate(`/agreement?customer_id=${user?.id}&type=bank_auth`)} className={v2b.ghostOnPaper} style={{ minHeight: 0, padding: '6px 14px', fontSize: '11px' }}>Sign</button>
                 )}
               </div>
             )}
@@ -382,27 +320,27 @@ export default function Profile() {
         )}
 
         {/* Connected accounts */}
-        <div style={{ paddingTop: '12px', borderTop: `1px solid ${colors.border}` }}>
-          <div style={{ ...labelStyle, marginBottom: '8px' }}>Connected Accounts</div>
-          <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted }}>
+        <div style={{ paddingTop: '12px', borderTop: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))' }}>
+          <div className={pp.label} style={{ marginBottom: 8 }}>Connected Accounts</div>
+          <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink-muted, #5c5851)' }}>
             {profile.telegram_username ? (
               <span>Telegram: <strong style={{ color: colors.success }}>@{profile.telegram_username} <CheckIcon size={14} /></strong></span>
             ) : (
               <span>
                 Telegram: Not connected.{' '}
-                <a href="https://t.me/y7dispatch_bot" target="_blank" rel="noopener noreferrer" style={{ color: colors.accent }}>Connect &rarr;</a>
+                <a href="https://t.me/y7dispatch_bot" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--v2-ink, #050607)', textDecoration: 'underline' }}>Connect &rarr;</a>
               </span>
             )}
           </div>
         </div>
 
         {/* Text message notifications */}
-        <div style={{ paddingTop: '12px', borderTop: `1px solid ${colors.border}` }}>
-          <div style={{ ...labelStyle, marginBottom: '8px' }}>Text Message Notifications</div>
+        <div style={{ paddingTop: '12px', borderTop: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))' }}>
+          <div className={pp.label} style={{ marginBottom: 8 }}>Text Message Notifications</div>
           <label style={{
             display: 'flex', alignItems: 'center', gap: '8px',
-            cursor: 'pointer', fontFamily: fonts.sans, fontSize: '14px',
-            color: colors.text,
+            cursor: 'pointer', fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px',
+            color: 'var(--v2-ink, #050607)',
           }}>
             <input
               type="checkbox"
@@ -427,13 +365,13 @@ export default function Profile() {
                   setMessage({ type: 'error', text: 'Network error' });
                 }
               }}
-              style={{ width: 18, height: 18, flexShrink: 0 }}
+              style={{ width: 18, height: 18, flexShrink: 0, accentColor: 'var(--v2-red, #d70f24)' }}
             />
             Get text updates when carrier is assigned
           </label>
           {smsEnabled && (
             <div style={{
-              fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted,
+              fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)',
               marginTop: '6px', paddingLeft: '26px', lineHeight: 1.5,
             }}>
               Reply STOP to any Y7 message to opt out at any time. Msg &amp; data rates may apply.
@@ -441,11 +379,8 @@ export default function Profile() {
           )}
         </div>
 
-        <button type="submit" disabled={saving} style={{
-          ...btnStyles.accent,
+        <button type="submit" disabled={saving} className={v2b.cta} style={{
           width: '100%',
-          padding: '14px',
-          fontSize: '14px',
           opacity: saving ? 0.6 : 1,
           marginTop: '8px',
         }}>
@@ -477,6 +412,7 @@ export default function Profile() {
           onDismiss={() => setReSignToast(null)}
         />
       )}
+      </div>
     </div>
   );
 }

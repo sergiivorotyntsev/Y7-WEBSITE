@@ -11,10 +11,19 @@ import BouncingEmailBanner from '../../components/recovery/BouncingEmailBanner';
 import VerificationBanner from '../../components/VerificationBanner';
 import LegacyTypeReprompt from '../../components/LegacyTypeReprompt';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
-import { colors, fonts, button as btnStyles, keyframes } from '../../theme';
-import { STATUS_COLORS, getStatusBadge } from '../../utils/orderStatus';
+import { keyframes } from '../../theme';
+import { STATUS_LABELS, STATUS_CHIP_VARIANT } from '../../utils/orderStatus';
+import pp from '../../styles/v2/portal.module.css';
+import v2b from '../../styles/v2/buttons.module.css';
 // DEALER-DASH-S1-T03: dealers/exporters get the three-block dashboard home.
 import DealerDashboard from './DealerDashboard';
+
+// SPRINT-W7 C0: canonical status -> C0 chip-class (four-variant system;
+// mapping table lives in utils/orderStatus STATUS_CHIP_VARIANT).
+const CHIP_VARIANT_CLASS = { ink: pp.chipInk, pine: pp.chipPine, red: pp.chipRed, soft: pp.chipSoft };
+function statusChipClass(status) {
+  return CHIP_VARIANT_CLASS[STATUS_CHIP_VARIANT[status] || 'ink'] || pp.chipInk;
+}
 
 const TOAST_MESSAGES = {
   agreement_signed: 'Dealer Agreement Signed Successfully',
@@ -34,7 +43,8 @@ function getNewOrderLabel() {
 function StatCard({ value, label, delay }) {
   return (
     <div style={{
-      background: colors.bgMuted,
+      background: 'var(--v2-card-cream, #fffaf1)',
+      border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
       borderRadius: '12px',
       padding: '20px 16px',
       textAlign: 'center',
@@ -42,19 +52,20 @@ function StatCard({ value, label, delay }) {
       animation: `fadeUp 400ms ease ${delay}ms forwards`,
     }}>
       <div style={{
-        fontFamily: fonts.serif,
+        fontFamily: 'var(--v2-font-display, Oswald, system-ui)',
         fontSize: '28px',
-        fontWeight: 700,
-        color: colors.accent,
+        fontWeight: 600,
+        textTransform: 'uppercase',
+        color: 'var(--v2-ink, #050607)',
         lineHeight: 1,
         marginBottom: '4px',
       }}>
         {value}
       </div>
       <div style={{
-        fontFamily: fonts.sans,
+        fontFamily: 'var(--font-sans, system-ui)',
         fontSize: '11px',
-        color: colors.textMuted,
+        color: 'var(--v2-ink-muted, #5c5851)',
         textTransform: 'uppercase',
         letterSpacing: '0.5px',
       }}>
@@ -85,27 +96,27 @@ function BillingSummary() {
   return (
     <div
       onClick={() => navigate('/portal/billing')}
+      className={pp.card}
       style={{
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-        background: colors.bgCard, border: `1px solid ${colors.border}`, borderRadius: '12px',
-        padding: '16px 20px', marginBottom: '24px', cursor: 'pointer',
+        marginBottom: '24px', cursor: 'pointer',
       }}
     >
       <div>
-        <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+        <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
           Deposit Balance
         </div>
-        <div style={{ fontFamily: fonts.serif, fontSize: '24px', fontWeight: 700, color: bal < 0 ? '#DC2626' : '#059669' }}>
+        <div style={{ fontFamily: 'var(--font-mono, "JetBrains Mono", monospace)', fontSize: '24px', fontWeight: 700, color: bal < 0 ? 'var(--v2-red-deep, #a90918)' : 'var(--success, #0f6e56)' }}>
           ${(bal / 100).toLocaleString('en-US', { minimumFractionDigits: 2 })}
         </div>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
         {billing.is_blocked && (
-          <span style={{ padding: '3px 10px', borderRadius: '10px', background: '#FEE2E2', color: '#991B1B', fontSize: '10px', fontWeight: 600, fontFamily: fonts.sans }}>
+          <span className={pp.errorBlock} style={{ fontSize: '10px' }}>
             Orders Paused
           </span>
         )}
-        <span style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.accent }}>View Billing &rarr;</span>
+        <span style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink, #050607)' }}>View Billing &rarr;</span>
       </div>
     </div>
   );
@@ -209,7 +220,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div style={{ maxWidth: '900px', margin: '0 auto', padding: '40px 24px 80px' }}>
+    <div className={pp.shell}>
       <PageMeta title="My Dashboard" description="Your active orders, shipment tracking, account management." path="/portal/dashboard" />
       {toastMsg && <Toast message={toastMsg} onDismiss={() => setToastMsg(null)} />}
       <style>{keyframes}</style>
@@ -220,7 +231,7 @@ export default function Dashboard() {
             {[0,1,2,3].map(i => (
               <div key={i} style={{
                 height: 80, borderRadius: '12px',
-                background: `linear-gradient(90deg, ${colors.bgMuted} 25%, ${colors.bgCard} 50%, ${colors.bgMuted} 75%)`,
+                background: 'linear-gradient(90deg, rgba(5,6,7,0.06) 25%, rgba(5,6,7,0.03) 50%, rgba(5,6,7,0.06) 75%)',
                 backgroundSize: '800px 100%', animation: 'shimmer 1.5s ease-in-out infinite',
               }} />
             ))}
@@ -228,7 +239,7 @@ export default function Dashboard() {
           {[0,1,2].map(i => (
             <div key={i} style={{
               height: 64, borderRadius: '8px', marginBottom: '8px',
-              background: `linear-gradient(90deg, ${colors.bgMuted} 25%, ${colors.bgCard} 50%, ${colors.bgMuted} 75%)`,
+              background: 'linear-gradient(90deg, rgba(5,6,7,0.06) 25%, rgba(5,6,7,0.03) 50%, rgba(5,6,7,0.06) 75%)',
               backgroundSize: '800px 100%', animation: 'shimmer 1.5s ease-in-out infinite',
             }} />
           ))}
@@ -236,11 +247,7 @@ export default function Dashboard() {
       )}
 
       {error && (
-        <div style={{
-          fontFamily: fonts.sans, fontSize: '13px', color: colors.accent,
-          padding: '10px 14px', background: '#FFF0EC', borderRadius: '8px',
-          marginBottom: '20px', textAlign: 'center',
-        }}>
+        <div className={pp.errorBlock} style={{ marginBottom: '20px', textAlign: 'center' }}>
           {error}
         </div>
       )}
@@ -249,18 +256,15 @@ export default function Dashboard() {
       {awaitingDetailsOrder && (
         <Link
           to={`/portal/order/${awaitingDetailsOrder.id}/dispatch-details`}
-          style={{
-            display: 'block', textDecoration: 'none', marginBottom: '20px',
-            background: '#FFF8E1', border: '1px solid #F9A825', borderRadius: '12px',
-            padding: '14px 18px',
-          }}
+          className={pp.notice}
+          style={{ display: 'block', textDecoration: 'none', marginBottom: '20px' }}
         >
-          <div style={{ fontFamily: fonts.sans, fontSize: '14px', fontWeight: 700, color: '#8a6d1b' }}>
+          <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', fontWeight: 700, color: 'var(--v2-ink, #050607)' }}>
             &#9203; One step left — add pickup details to dispatch{' '}
             {[awaitingDetailsOrder.vehicle_year, awaitingDetailsOrder.vehicle_make, awaitingDetailsOrder.vehicle_model]
               .filter(Boolean).join(' ') || 'your vehicle'} &rarr;
           </div>
-          <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: '#8a6d1b', marginTop: '2px' }}>
+          <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '2px' }}>
             Your quote is accepted. We can send a carrier as soon as you add the exact
             pickup address, the contact releasing the vehicle, and pickup hours — or pick
             one of your saved locations.
@@ -271,17 +275,14 @@ export default function Dashboard() {
       {ownershipProofOrder && (
         <Link
           to={`/portal/order/${ownershipProofOrder.id}`}
-          style={{
-            display: 'block', textDecoration: 'none', marginBottom: '20px',
-            background: '#FFF8E1', border: '1px solid #F9A825', borderRadius: '12px',
-            padding: '14px 18px',
-          }}
+          className={pp.notice}
+          style={{ display: 'block', textDecoration: 'none', marginBottom: '20px' }}
         >
           {/* CAP-S1-W03: strengthened copy/visibility — still soft (not a hard gate). */}
-          <div style={{ fontFamily: fonts.sans, fontSize: '14px', fontWeight: 700, color: '#8a6d1b' }}>
+          <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', fontWeight: 700, color: 'var(--v2-ink, #050607)' }}>
             &#128196; Verify vehicle ownership to speed up dispatch &rarr;
           </div>
-          <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: '#8a6d1b', marginTop: '2px' }}>
+          <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '2px' }}>
             Upload your title, registration, bill of sale, or auction invoice for{' '}
             {[ownershipProofOrder.vehicle_year, ownershipProofOrder.vehicle_make, ownershipProofOrder.vehicle_model]
               .filter(Boolean).join(' ') || 'your vehicle'}. It isn&rsquo;t required to submit, but it lets us dispatch as soon as your carrier is set.
@@ -293,16 +294,13 @@ export default function Dashboard() {
       {deliveryContactOrder && (
         <Link
           to={`/portal/order/${deliveryContactOrder.id}/dispatch-details`}
-          style={{
-            display: 'block', textDecoration: 'none', marginBottom: '20px',
-            background: '#FFF8E1', border: '1px solid #F9A825', borderRadius: '12px',
-            padding: '14px 18px',
-          }}
+          className={pp.notice}
+          style={{ display: 'block', textDecoration: 'none', marginBottom: '20px' }}
         >
-          <div style={{ fontFamily: fonts.sans, fontSize: '14px', fontWeight: 600, color: '#8a6d1b' }}>
+          <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', fontWeight: 600, color: 'var(--v2-ink, #050607)' }}>
             Add a delivery contact for your COD shipment &rarr;
           </div>
-          <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: '#8a6d1b', marginTop: '2px' }}>
+          <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '2px' }}>
             For COD orders we need the name and phone of whoever pays the driver at delivery for{' '}
             {[deliveryContactOrder.vehicle_year, deliveryContactOrder.vehicle_make, deliveryContactOrder.vehicle_model]
               .filter(Boolean).join(' ') || 'your vehicle'}.
@@ -321,44 +319,24 @@ export default function Dashboard() {
       }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
-            <h1 style={{
-              fontFamily: fonts.serif,
-              fontSize: '28px',
-              fontWeight: 700,
-              color: colors.text,
-            }}>
+            <h1 className={pp.pageTitle}>
               Welcome back, {user?.name?.split(' ')[0] || 'there'}
             </h1>
             {user?.customer_type === 'dealer' && (
-              <span style={{
-                fontFamily: fonts.sans,
-                fontSize: '11px',
-                fontWeight: 700,
-                color: '#fff',
-                background: '#1a1a2e',
-                padding: '3px 10px',
-                borderRadius: '10px',
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px',
-                whiteSpace: 'nowrap',
-              }}>
+              <span className={pp.chipInk} style={{ whiteSpace: 'nowrap' }}>
                 Dealer Account
               </span>
             )}
           </div>
           {user?.customer_type === 'dealer' && (
-            <span style={{
-              fontFamily: fonts.sans,
-              fontSize: '12px',
-              color: colors.textMuted,
-            }}>
+            <span className={pp.pageSub}>
               {{ per_delivery: 'Pay per delivery', prepay_manual_invoice: 'Prepay (manual invoice)', prepay_auto_debit: 'Prepay (auto debit)', monthly: 'Monthly billing' }[user.billing_mode] || 'Pay per delivery'}
             </span>
           )}
         </div>
         <button
           onClick={() => navigate(getNewOrderPath())}
-          style={btnStyles.accent}
+          className={v2b.cta}
         >
           {getNewOrderLabel()}
         </button>
@@ -395,46 +373,30 @@ export default function Dashboard() {
         alignItems: 'center',
         marginBottom: '16px',
       }}>
-        <h2 style={{
-          fontFamily: fonts.serif,
-          fontSize: '20px',
-          fontWeight: 700,
-          color: colors.text,
-        }}>
+        <h2 className={pp.sectionTitle}>
           Recent Orders
         </h2>
       </div>
 
       {loading ? (
-        <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted }}>Loading orders...</p>
+        <p style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', color: 'var(--v2-ink-muted, #5c5851)' }}>Loading orders...</p>
       ) : orders.length === 0 ? (
-        <div style={{
-          background: colors.bgCard,
-          border: `1px solid ${colors.border}`,
-          borderRadius: '12px',
-          padding: '40px 20px',
-          textAlign: 'center',
-        }}>
-          <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, marginBottom: '16px' }}>
+        <div className={pp.card} style={{ padding: '40px 20px', textAlign: 'center' }}>
+          <p style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', color: 'var(--v2-ink-muted, #5c5851)', marginBottom: '16px' }}>
             {user?.customer_type === 'dealer'
               ? 'No orders yet. Submit your first transport order to get started.'
               : 'No orders yet. Submit your first quote to get started.'}
           </p>
           <button
             onClick={() => navigate(getNewOrderPath())}
-            style={btnStyles.accent}
+            className={v2b.ghostOnPaper}
           >
             {getNewOrderLabel()}
           </button>
         </div>
       ) : (
-        <div style={{
-          background: colors.bgCard,
-          border: `1px solid ${colors.border}`,
-          borderRadius: '12px',
-          overflow: 'hidden',
-        }}>
-          {orders.map((order, i) => {
+        <div className={pp.card} style={{ padding: 0, overflow: 'hidden' }}>
+          {orders.map((order) => {
             const vehicle = [order.vehicle_year, order.vehicle_make, order.vehicle_model].filter(Boolean).join(' ') || 'Vehicle TBD';
             // SPRINT-E-T4: enriched route shows pickup city + ZIP, then arrow + delivery
             const pickup = [order.pickup_city, order.pickup_zip].filter(Boolean).join(' ');
@@ -453,27 +415,24 @@ export default function Dashboard() {
               <Link
                 key={order.id}
                 to={`/portal/order/${order.id}`}
+                className={pp.row}
                 style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
                   padding: '16px 20px',
-                  borderBottom: i < orders.length - 1 ? `1px solid ${colors.border}` : 'none',
                   textDecoration: 'none',
-                  color: colors.text,
+                  color: 'var(--v2-ink, #050607)',
                   transition: 'background 150ms ease',
                 }}
-                onMouseEnter={e => { e.currentTarget.style.background = colors.bgInput; }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(5, 6, 7, 0.04)'; }}
                 onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flex: 1, minWidth: 0 }}>
-                  <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: STATUS_COLORS[order.status] || colors.textMuted, flexShrink: 0 }} />
+                  <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: 'var(--v2-ink, #050607)', flexShrink: 0 }} />
                   <div style={{ minWidth: 0 }}>
                     <div style={{
-                      fontFamily: fonts.sans,
+                      fontFamily: 'var(--font-sans, system-ui)',
                       fontSize: '14px',
                       fontWeight: 600,
-                      color: colors.text,
+                      color: 'var(--v2-ink, #050607)',
                       whiteSpace: 'nowrap',
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
@@ -481,15 +440,15 @@ export default function Dashboard() {
                       {vehicle}
                     </div>
                     <div style={{
-                      fontFamily: fonts.sans,
+                      fontFamily: 'var(--font-sans, system-ui)',
                       fontSize: '12px',
-                      color: colors.textMuted,
+                      color: 'var(--v2-ink-muted, #5c5851)',
                       marginTop: '2px',
                       whiteSpace: 'nowrap',
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                     }}>
-                      <span style={{ fontFamily: fonts.mono, marginRight: '8px' }}>
+                      <span className={pp.mono} style={{ marginRight: '8px' }}>
                         {loadId}
                       </span>
                       {route && <span>{route}</span>}
@@ -498,29 +457,11 @@ export default function Dashboard() {
                   </div>
                 </div>
                 <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                  {(() => { const badge = getStatusBadge(order.status); return (
-                  <span style={{
-                    fontFamily: fonts.sans,
-                    fontSize: '11px',
-                    fontWeight: 600,
-                    color: badge.color,
-                    background: badge.backgroundColor,
-                    padding: '2px 8px',
-                    borderRadius: '10px',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.5px',
-                  }}>
-                    {badge.label}
+                  <span className={statusChipClass(order.status)}>
+                    {STATUS_LABELS[order.status] || order.status || 'Unknown'}
                   </span>
-                  ); })()}
                   {price && (
-                    <div style={{
-                      fontFamily: fonts.mono,
-                      fontSize: '13px',
-                      fontWeight: 600,
-                      color: colors.text,
-                      marginTop: '2px',
-                    }}>
+                    <div className={pp.mono} style={{ marginTop: '2px' }}>
                       {price}
                     </div>
                   )}
@@ -533,13 +474,7 @@ export default function Dashboard() {
 
       {/* Quick Actions */}
       <div style={{ marginTop: '40px' }}>
-        <h2 style={{
-          fontFamily: fonts.serif,
-          fontSize: '20px',
-          fontWeight: 700,
-          color: colors.text,
-          marginBottom: '16px',
-        }}>
+        <h2 className={pp.sectionTitle} style={{ marginBottom: '16px' }}>
           Quick Actions
         </h2>
         <div style={{
@@ -568,19 +503,19 @@ export default function Dashboard() {
                 alignItems: 'center',
                 gap: '10px',
                 padding: '14px 16px',
-                background: colors.bgCard,
-                border: `1px solid ${colors.border}`,
+                background: 'var(--v2-card-cream, #fffaf1)',
+                border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
                 borderRadius: '10px',
-                fontFamily: fonts.sans,
+                fontFamily: 'var(--font-sans, system-ui)',
                 fontSize: '13px',
                 fontWeight: 500,
-                color: colors.text,
+                color: 'var(--v2-ink, #050607)',
                 textDecoration: 'none',
                 cursor: 'pointer',
                 transition: 'border-color 200ms ease',
               }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = colors.accent; }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = colors.border; }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(5, 6, 7, 0.3)'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(5, 6, 7, 0.14)'; }}
             >
               {icon}
               {label}

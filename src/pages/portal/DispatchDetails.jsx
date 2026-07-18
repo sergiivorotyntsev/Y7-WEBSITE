@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { CheckIcon } from '../../components/icons';
 import { portalFetch, authHeader, clearSessionOn401 } from '../../hooks/useAuth';
-import { colors, fonts, button } from '../../theme';
+import pp from '../../styles/v2/portal.module.css';
+import v2b from '../../styles/v2/buttons.module.css';
 import { API_URL } from '../../config';
 import PhoneInput, { getCleanPhone, isValidPhone } from '../../components/PhoneInput';
 import { GENERIC_RELEASE_DOC_TERM } from '../../utils/releaseDocTerm';
@@ -266,21 +267,21 @@ export default function DispatchDetails() {
   };
 
   if (loading) {
-    return <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: fonts.sans, color: colors.textMuted }}>Loading...</div>;
+    return <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: 'var(--font-sans, system-ui)', color: 'var(--v2-ink-muted, #5c5851)' }}>Loading...</div>;
   }
   if (loadFailed || !order) {
     // WCF-T01: never a fillable form when the order isn't THIS account's —
     // clear error + a path back, instead of a wrong-context form.
     return (
-      <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: fonts.sans }}>
-        <div style={{ fontSize: '16px', color: colors.text, marginBottom: '8px', fontWeight: 600 }}>
+      <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: 'var(--font-sans, system-ui)' }}>
+        <div style={{ fontSize: '16px', color: 'var(--v2-ink, #050607)', marginBottom: '8px', fontWeight: 600 }}>
           This order isn&rsquo;t available in the account you&rsquo;re signed in to.
         </div>
-        <div style={{ fontSize: '13px', color: colors.textMuted, marginBottom: '20px' }}>
+        <div style={{ fontSize: '13px', color: 'var(--v2-ink-muted, #5c5851)', marginBottom: '20px' }}>
           If you followed a link from an email, sign out and open the link again — or check
           you&rsquo;re signed in with the account that placed this order.
         </div>
-        <Link to="/portal/dashboard" style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.accent }}>
+        <Link to="/portal/dashboard" style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink, #050607)', textDecoration: 'underline', textUnderlineOffset: '2px' }}>
           Go to my dashboard
         </Link>
       </div>
@@ -289,51 +290,28 @@ export default function DispatchDetails() {
 
   if (success) {
     return (
-      <div style={{ maxWidth: '560px', margin: '0 auto', padding: '80px 24px', textAlign: 'center' }}>
+      <div className={pp.shell} style={{ maxWidth: '560px', textAlign: 'center', paddingTop: '80px' }}>
         <div style={{ marginBottom: '16px' }}><CheckIcon size={40} /></div>
-        <h2 style={{ fontFamily: fonts.serif, fontSize: '22px', color: colors.text, marginBottom: '8px' }}>Dispatch Details Saved</h2>
-        <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted }}>Your dispatcher will begin arranging transport shortly.</p>
+        <h2 className={pp.pageTitle} style={{ marginBottom: '8px' }}>Dispatch Details Saved</h2>
+        <p style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', color: 'var(--v2-ink-muted, #5c5851)' }}>Your dispatcher will begin arranging transport shortly.</p>
       </div>
     );
   }
 
   const vehicle = [order.vehicle_year, order.vehicle_make, order.vehicle_model].filter(Boolean).join(' ') || 'Your Vehicle';
-  const inputStyle = {
-    width: '100%',
-    padding: '10px 12px',
-    border: `1px solid ${colors.borderInput}`,
-    borderRadius: '8px',
-    fontSize: '16px',
-    fontFamily: fonts.sans,
-    boxSizing: 'border-box',
-    background: colors.bgInput,
-    color: colors.text,
-  };
-  const labelStyle = {
-    display: 'block',
-    fontFamily: fonts.sans,
-    fontSize: '12px',
-    fontWeight: 600,
-    color: colors.textMuted,
-    marginBottom: '4px',
-    textTransform: 'uppercase',
-    letterSpacing: '0.3px',
-  };
   const rowStyle = { marginBottom: '14px' };
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '40px 24px 80px' }}>
-      <Link to={`/portal/order/${id}`} style={{
-        fontFamily: fonts.sans, fontSize: '13px', color: colors.accent,
-        display: 'inline-block', marginBottom: '20px', textDecoration: 'none',
-      }}>
+    <div className={pp.shell}>
+     <div className={pp.measureNarrow}>
+      <Link to={`/portal/order/${id}`} className={pp.backLink}>
         &larr; Back to Order
       </Link>
 
-      <h1 style={{ fontFamily: fonts.serif, fontSize: '22px', fontWeight: 700, color: colors.text, marginBottom: '4px' }}>
+      <h1 className={pp.pageTitle} style={{ marginBottom: '4px' }}>
         Dispatch Details
       </h1>
-      <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted, marginBottom: '28px' }}>
+      <p className={pp.pageSub} style={{ marginBottom: '28px' }}>
         {vehicle} &mdash; provide pickup information so we can dispatch a carrier.
       </p>
 
@@ -361,37 +339,38 @@ export default function DispatchDetails() {
             setAnswerBusy(false);
           };
           return (
-            <div style={{
-              background: colors.bgCard, borderRadius: '12px', padding: '20px', marginBottom: '16px',
-              border: needed && !docOnFile ? `2px solid ${colors.accent}` : `1px solid ${colors.border}`,
-            }}>
-              <div style={{ fontFamily: fonts.sans, fontSize: '11px', fontWeight: 600, color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '14px' }}>
+            <div
+              className={pp.card}
+              style={needed && !docOnFile ? { border: '2px solid var(--v2-red, #d70f24)' } : undefined}
+            >
+              <div className={pp.sectionTitle}>
                 Pickup Release Document
               </div>
 
               {docOnFile ? (
-                <div style={{ fontSize: '13px', color: colors.success, fontFamily: fonts.sans }}>
+                <div style={{ fontSize: '13px', color: 'var(--success, #0f6e56)', fontFamily: 'var(--font-sans, system-ui)' }}>
                   <CheckIcon size={14} /> Release document on file
                   {order?.gate_pass_file_name || order?.gate_pass_filename ? ` — ${order.gate_pass_file_name || order.gate_pass_filename}` : ''}
                 </div>
               ) : needed ? (
                 <>
-                  <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.text, margin: '0 0 12px' }}>
+                  <p style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink, #050607)', margin: '0 0 12px' }}>
                     The carrier needs your <strong>{term}</strong> to pick up the vehicle.
                     Upload the document or enter the PIN below.
                   </p>
                   <div style={rowStyle}>
-                    <label style={labelStyle}>{term} #</label>
-                    <input style={inputStyle} value={form.gate_pass} onChange={set('gate_pass')} placeholder="Enter the number / PIN if you have one" />
+                    <label className={pp.label}>{term} #</label>
+                    <input className={pp.input} value={form.gate_pass} onChange={set('gate_pass')} placeholder="Enter the number / PIN if you have one" />
                   </div>
                   <div style={rowStyle}>
-                    <label style={labelStyle}>Document file (PDF or photo)</label>
+                    <label className={pp.label}>Document file (PDF or photo)</label>
                     <input
                       type="file"
                       accept=".pdf,.jpg,.jpeg,.png"
                       onChange={(e) => { setGatePassFile(e.target.files[0]); setUploadDone(false); }}
+                      className={pp.input}
                       // WA-T03: taller padding keeps the native picker an easy tap target on iOS.
-                      style={{ ...inputStyle, padding: '11px 12px' }}
+                      style={{ padding: '11px 12px' }}
                     />
                     {gatePassFile && !uploadDone && (
                       <button
@@ -423,57 +402,35 @@ export default function DispatchDetails() {
                           setUploading(false);
                         }}
                         disabled={uploading}
-                        style={{
-                          // WA-T03: minHeight 44px iOS tap target; inline-flex centres the label.
-                          display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                          minHeight: '44px', marginTop: '8px', padding: '8px 20px',
-                          background: colors.accent, color: '#fff',
-                          border: 'none', borderRadius: '22px',
-                          fontSize: '12px', fontWeight: 600, cursor: uploading ? 'not-allowed' : 'pointer',
-                          fontFamily: fonts.sans, textTransform: 'uppercase', letterSpacing: '0.5px',
-                          opacity: uploading ? 0.7 : 1,
-                        }}
+                        className={v2b.cta}
+                        style={{ marginTop: '8px', opacity: uploading ? 0.7 : 1 }}
                       >
                         {uploading ? 'Uploading...' : 'Upload Document'}
                       </button>
                     )}
                     {uploadDone && (
-                      <div style={{ marginTop: '6px', fontSize: '13px', color: colors.success, fontFamily: fonts.sans }}>
+                      <div style={{ marginTop: '6px', fontSize: '13px', color: 'var(--success, #0f6e56)', fontFamily: 'var(--font-sans, system-ui)' }}>
                         <CheckIcon size={14} /> Document uploaded
                       </div>
                     )}
                   </div>
                 </>
               ) : releaseDocAnswer === false ? (
-                <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.textMuted }}>
+                <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink-muted, #5c5851)' }}>
                   You confirmed no document or PIN is needed at the pickup location.
                 </div>
               ) : (
                 <>
-                  <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.text, margin: '0 0 12px' }}>
+                  <p style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink, #050607)', margin: '0 0 12px' }}>
                     Does the driver need any document or PIN to be released the
                     vehicle at the pickup location? (For example a gate pass,
                     vehicle release, or pickup slip from an auction or dealer.)
                   </p>
                   <div style={{ display: 'flex', gap: '10px' }}>
-                    <button type="button" disabled={answerBusy} onClick={() => answerReleaseDoc(true)} style={{
-                      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                      minHeight: '44px', padding: '8px 24px',
-                      background: colors.accent, color: '#fff', border: 'none', borderRadius: '22px',
-                      fontSize: '12px', fontWeight: 600, cursor: answerBusy ? 'not-allowed' : 'pointer',
-                      fontFamily: fonts.sans, textTransform: 'uppercase', letterSpacing: '0.5px',
-                      opacity: answerBusy ? 0.7 : 1,
-                    }}>
+                    <button type="button" disabled={answerBusy} onClick={() => answerReleaseDoc(true)} className={v2b.cta} style={{ opacity: answerBusy ? 0.7 : 1 }}>
                       Yes — a document is needed
                     </button>
-                    <button type="button" disabled={answerBusy} onClick={() => answerReleaseDoc(false)} style={{
-                      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                      minHeight: '44px', padding: '8px 24px',
-                      background: 'transparent', color: colors.text, border: `1px solid ${colors.border}`, borderRadius: '22px',
-                      fontSize: '12px', fontWeight: 600, cursor: answerBusy ? 'not-allowed' : 'pointer',
-                      fontFamily: fonts.sans, textTransform: 'uppercase', letterSpacing: '0.5px',
-                      opacity: answerBusy ? 0.7 : 1,
-                    }}>
+                    <button type="button" disabled={answerBusy} onClick={() => answerReleaseDoc(false)} className={v2b.ghostOnPaper} style={{ opacity: answerBusy ? 0.7 : 1 }}>
                       No
                     </button>
                   </div>
@@ -484,44 +441,41 @@ export default function DispatchDetails() {
         })()}
 
         {/* Pickup Address Section */}
-        <div style={{
-          background: colors.bgCard, border: `1px solid ${colors.border}`, borderRadius: '12px',
-          padding: '20px', marginBottom: '16px',
-        }}>
-          <div style={{ fontFamily: fonts.sans, fontSize: '11px', fontWeight: 600, color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '14px' }}>
+        <div className={pp.card}>
+          <div className={pp.sectionTitle}>
             Pickup Location
           </div>
 
           <div style={rowStyle}>
             {/* WRI-T01: required for manual (non-auction) pickups — the carrier
                 needs the exact pickup location, not just the city. */}
-            <label style={labelStyle}>
+            <label className={pp.label}>
               Street Address{(order?.pickup_is_auction || form.pickup_location_type === 'Auction') ? '' : ' *'}
             </label>
-            <input style={inputStyle} value={form.pickup_full_address} onChange={set('pickup_full_address')} placeholder="123 Main St" />
+            <input className={pp.input} value={form.pickup_full_address} onChange={set('pickup_full_address')} placeholder="123 Main St" />
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '10px', ...rowStyle }}>
             <div>
-              <label style={labelStyle}>City *</label>
-              <input style={inputStyle} value={form.pickup_city} onChange={set('pickup_city')} placeholder="Houston" />
+              <label className={pp.label}>City *</label>
+              <input className={pp.input} value={form.pickup_city} onChange={set('pickup_city')} placeholder="Houston" />
             </div>
             <div>
-              <label style={labelStyle}>State</label>
-              <select style={{ ...inputStyle, background: colors.bgInput }} value={form.pickup_state} onChange={set('pickup_state')}>
+              <label className={pp.label}>State</label>
+              <select className={pp.select} value={form.pickup_state} onChange={set('pickup_state')}>
                 <option value="">--</option>
                 {US_STATES.map(s => <option key={s} value={s}>{s}</option>)}
               </select>
             </div>
             <div>
-              <label style={labelStyle}>ZIP</label>
-              <input style={inputStyle} value={form.pickup_zip} onChange={set('pickup_zip')} placeholder="77001" maxLength={5} />
+              <label className={pp.label}>ZIP</label>
+              <input className={pp.input} value={form.pickup_zip} onChange={set('pickup_zip')} placeholder="77001" maxLength={5} />
             </div>
           </div>
 
           <div style={rowStyle}>
-            <label style={labelStyle}>Location Type</label>
-            <select style={{ ...inputStyle, background: colors.bgInput }} value={form.pickup_location_type} onChange={set('pickup_location_type')}>
+            <label className={pp.label}>Location Type</label>
+            <select className={pp.select} value={form.pickup_location_type} onChange={set('pickup_location_type')}>
               {LOCATION_TYPES.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
             </select>
           </div>
@@ -529,31 +483,31 @@ export default function DispatchDetails() {
           {/* W7D-T02: driver-facing business name — goes on the carrier's
               pickup order (otherwise they only see the contact person). */}
           <div style={rowStyle}>
-            <label style={labelStyle}>Business / location name (if any)</label>
-            <input style={inputStyle} value={form.pickup_location_name} onChange={set('pickup_location_name')} placeholder="e.g. ABC Auto Sales" maxLength={200} />
+            <label className={pp.label}>Business / location name (if any)</label>
+            <input className={pp.input} value={form.pickup_location_name} onChange={set('pickup_location_name')} placeholder="e.g. ABC Auto Sales" maxLength={200} />
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', ...rowStyle }}>
             <div>
-              <label style={labelStyle}>Contact Name *</label>
-              <input style={inputStyle} value={form.pickup_contact_name} onChange={set('pickup_contact_name')} placeholder="John Smith" />
+              <label className={pp.label}>Contact Name *</label>
+              <input className={pp.input} value={form.pickup_contact_name} onChange={set('pickup_contact_name')} placeholder="John Smith" />
             </div>
             <div>
-              <label style={labelStyle}>Contact Phone *</label>
-              <PhoneInput style={inputStyle} value={form.pickup_contact_phone} onChange={v => setForm(f => ({ ...f, pickup_contact_phone: v }))} required />
+              <label className={pp.label}>Contact Phone *</label>
+              <PhoneInput className={pp.input} value={form.pickup_contact_phone} onChange={v => setForm(f => ({ ...f, pickup_contact_phone: v }))} required />
             </div>
           </div>
 
           <div style={rowStyle}>
-            <label style={labelStyle}>Business Hours *</label>
-            <input style={inputStyle} value={form.pickup_business_hours} onChange={set('pickup_business_hours')} placeholder="Mon-Fri 8am-5pm" />
+            <label className={pp.label}>Business Hours *</label>
+            <input className={pp.input} value={form.pickup_business_hours} onChange={set('pickup_business_hours')} placeholder="Mon-Fri 8am-5pm" />
           </div>
 
           {/* WCF-T03: the pickup-model question — who hands the vehicle to the
               driver. Prefilled by the server's reliable rule (one-tap confirm);
               ambiguous addresses get no prefill and answer plainly. */}
           <div style={rowStyle}>
-            <label style={labelStyle}>Who hands the vehicle to the driver at pickup?</label>
+            <label className={pp.label}>Who hands the vehicle to the driver at pickup?</label>
             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
               {[
                 { v: 'self', label: 'I / my staff' },
@@ -565,11 +519,14 @@ export default function DispatchDetails() {
                   type="button"
                   onClick={() => setReleasedBy(v)}
                   style={{
-                    fontFamily: fonts.sans, fontSize: '13px', padding: '8px 12px',
+                    fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px',
+                    padding: releasedBy === v ? '7px 11px' : '8px 12px',
                     borderRadius: '8px', cursor: 'pointer',
-                    border: `1.5px solid ${releasedBy === v ? colors.accent : colors.borderInput}`,
-                    background: releasedBy === v ? '#FFF0EC' : colors.bgInput,
-                    color: releasedBy === v ? colors.accent : colors.text,
+                    border: releasedBy === v
+                      ? '2px solid var(--v2-red, #d70f24)'
+                      : '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
+                    background: 'var(--v2-card-cream, #fffaf1)',
+                    color: 'var(--v2-ink, #050607)',
                     fontWeight: releasedBy === v ? 600 : 400,
                   }}
                 >
@@ -577,23 +534,24 @@ export default function DispatchDetails() {
                 </button>
               ))}
             </div>
-            <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginTop: 4 }}>
+            <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: 4 }}>
               So the driver knows who to see when they arrive.
             </div>
           </div>
 
           {/* WAF-T01: optional availability date (empty = available now). */}
           <div style={rowStyle}>
-            <label style={labelStyle}>When is the vehicle available for pickup?</label>
+            <label className={pp.label}>When is the vehicle available for pickup?</label>
             <input
               type="date"
-              style={{ ...inputStyle, width: 'auto' }}
+              className={pp.input}
+              style={{ width: 'auto' }}
               value={form.preferred_pickup_date}
               onChange={set('preferred_pickup_date')}
               min={pickupDateMin}
               max={pickupDateMax}
             />
-            <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginTop: 4 }}>
+            <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: 4 }}>
               Leave empty if it&rsquo;s available now.
             </div>
           </div>
@@ -601,20 +559,17 @@ export default function DispatchDetails() {
         </div>
 
         {/* Delivery Section */}
-        <div style={{
-          background: colors.bgCard, border: `1px solid ${colors.border}`, borderRadius: '12px',
-          padding: '20px', marginBottom: '16px',
-        }}>
-          <div style={{ fontFamily: fonts.sans, fontSize: '11px', fontWeight: 600, color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '14px' }}>
+        <div className={pp.card}>
+          <div className={pp.sectionTitle}>
             Delivery Location
           </div>
 
           {/* W2D-T02: one-click saved-location picker (manual entry stays as fallback). */}
           {savedLocations.length > 0 && (
             <div style={rowStyle}>
-              <label style={labelStyle}>Saved location</label>
+              <label className={pp.label}>Saved location</label>
               <select
-                style={{ ...inputStyle, background: colors.bgInput }}
+                className={pp.select}
                 value={deliveryManual ? 'manual' : (deliveryWarehouseId || '')}
                 onChange={e => onPickDelivery(e.target.value)}
               >
@@ -625,7 +580,7 @@ export default function DispatchDetails() {
                 <option value="manual">Enter a different address…</option>
               </select>
               {deliveryWarehouseId && !deliveryManual && (
-                <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginTop: '6px' }}>
+                <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '6px' }}>
                   Using your saved location. Edit any field below to enter a different address.
                 </div>
               )}
@@ -633,62 +588,60 @@ export default function DispatchDetails() {
           )}
 
           <div style={rowStyle}>
-            <label style={labelStyle}>Street Address</label>
-            <input style={inputStyle} value={form.delivery_full_address} onChange={setDelivery('delivery_full_address')} placeholder="456 Oak Ave" />
+            <label className={pp.label}>Street Address</label>
+            <input className={pp.input} value={form.delivery_full_address} onChange={setDelivery('delivery_full_address')} placeholder="456 Oak Ave" />
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '10px', ...rowStyle }}>
             <div>
-              <label style={labelStyle}>City</label>
-              <input style={inputStyle} value={form.delivery_city} onChange={setDelivery('delivery_city')} placeholder="Miami" />
+              <label className={pp.label}>City</label>
+              <input className={pp.input} value={form.delivery_city} onChange={setDelivery('delivery_city')} placeholder="Miami" />
             </div>
             <div>
-              <label style={labelStyle}>State</label>
-              <select style={{ ...inputStyle, background: colors.bgInput }} value={form.delivery_state} onChange={setDelivery('delivery_state')}>
+              <label className={pp.label}>State</label>
+              <select className={pp.select} value={form.delivery_state} onChange={setDelivery('delivery_state')}>
                 <option value="">--</option>
                 {US_STATES.map(s => <option key={s} value={s}>{s}</option>)}
               </select>
             </div>
             <div>
-              <label style={labelStyle}>ZIP</label>
-              <input style={inputStyle} value={form.delivery_zip} onChange={setDelivery('delivery_zip')} placeholder="33101" maxLength={5} />
+              <label className={pp.label}>ZIP</label>
+              <input className={pp.input} value={form.delivery_zip} onChange={setDelivery('delivery_zip')} placeholder="33101" maxLength={5} />
             </div>
           </div>
 
           <div style={rowStyle}>
-            <label style={labelStyle}>Location Type</label>
-            <select style={{ ...inputStyle, background: colors.bgInput }} value={form.delivery_location_type} onChange={set('delivery_location_type')}>
+            <label className={pp.label}>Location Type</label>
+            <select className={pp.select} value={form.delivery_location_type} onChange={set('delivery_location_type')}>
               {LOCATION_TYPES.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
             </select>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', ...rowStyle }}>
             <div>
-              <label style={labelStyle}>Contact Name {isCod ? '*' : ''}</label>
-              <input style={inputStyle} value={form.delivery_contact_name} onChange={setDelivery('delivery_contact_name')} placeholder="Receiving person" />
+              <label className={pp.label}>Contact Name {isCod ? '*' : ''}</label>
+              <input className={pp.input} value={form.delivery_contact_name} onChange={setDelivery('delivery_contact_name')} placeholder="Receiving person" />
             </div>
             <div>
-              <label style={labelStyle}>Contact Phone {isCod ? '*' : ''}</label>
-              <PhoneInput style={inputStyle} value={form.delivery_contact_phone} onChange={v => { setForm(f => ({ ...f, delivery_contact_phone: v })); setDeliveryWarehouseId(null); setDeliveryManual(true); }} />
+              <label className={pp.label}>Contact Phone {isCod ? '*' : ''}</label>
+              <PhoneInput className={pp.input} value={form.delivery_contact_phone} onChange={v => { setForm(f => ({ ...f, delivery_contact_phone: v })); setDeliveryWarehouseId(null); setDeliveryManual(true); }} />
             </div>
           </div>
           {isCod && (
-            <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginTop: '6px' }}>
+            <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '6px' }}>
               For COD, this is the person who pays the driver — required.
             </div>
           )}
         </div>
 
         {/* Special Instructions */}
-        <div style={{
-          background: colors.bgCard, border: `1px solid ${colors.border}`, borderRadius: '12px',
-          padding: '20px', marginBottom: '24px',
-        }}>
-          <div style={{ fontFamily: fonts.sans, fontSize: '11px', fontWeight: 600, color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '14px' }}>
+        <div className={pp.card} style={{ marginBottom: '24px' }}>
+          <div className={pp.sectionTitle}>
             Special Instructions
           </div>
           <textarea
-            style={{ ...inputStyle, minHeight: '80px', resize: 'vertical' }}
+            className={pp.textarea}
+            style={{ minHeight: '80px' }}
             value={form.special_instructions}
             onChange={set('special_instructions')}
             placeholder="Any additional notes for the carrier (e.g. low clearance, appointment required, etc.)"
@@ -696,25 +649,21 @@ export default function DispatchDetails() {
         </div>
 
         {error && (
-          <div style={{
-            fontFamily: fonts.sans, fontSize: '13px', color: '#c0392b',
-            background: '#fdecea', padding: '10px 14px', borderRadius: '8px', marginBottom: '16px',
-          }}>
+          <div className={pp.errorBlock} style={{ marginBottom: '16px' }}>
             {error}
           </div>
         )}
 
-        <button type="submit" disabled={saving} style={{
-          ...button.accent,
-          width: '100%',
-          padding: '14px',
-          fontSize: '14px',
-          opacity: saving ? 0.7 : 1,
-          cursor: saving ? 'not-allowed' : 'pointer',
-        }}>
+        <button
+          type="submit"
+          disabled={saving}
+          className={v2b.cta}
+          style={{ width: '100%', opacity: saving ? 0.7 : 1 }}
+        >
           {saving ? 'Saving...' : 'Submit Dispatch Details'}
         </button>
       </form>
+     </div>
     </div>
   );
 }

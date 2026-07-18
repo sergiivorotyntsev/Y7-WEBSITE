@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { releaseDocShortTerm } from '../../utils/releaseDocTerm';
-import { colors, fonts, button as btnStyles } from '../../theme';
+import pp from '../../styles/v2/portal.module.css';
+import v2b from '../../styles/v2/buttons.module.css';
 import PhoneInput from '../../components/PhoneInput';
 import OnboardingBanner from '../../components/OnboardingBanner';
 import BouncingEmailBanner from '../../components/recovery/BouncingEmailBanner';
@@ -13,65 +14,6 @@ import VerificationBanner from '../../components/VerificationBanner';
 // module load (not during render — react-hooks purity).
 const pickupDateMin = new Date().toISOString().split('T')[0];
 const pickupDateMax = new Date(Date.now() + 30 * 86400000).toISOString().split('T')[0];
-
-const inputStyle = {
-  fontFamily: fonts.sans,
-  fontSize: '16px',
-  padding: '10px 14px',
-  borderRadius: '8px',
-  border: `1px solid ${colors.borderInput}`,
-  background: colors.bgInput,
-  color: colors.text,
-  outline: 'none',
-  width: '100%',
-  boxSizing: 'border-box',
-};
-
-const selectStyle = {
-  ...inputStyle,
-  appearance: 'none',
-  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888780' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`,
-  backgroundRepeat: 'no-repeat',
-  backgroundPosition: 'right 12px center',
-  paddingRight: '32px',
-  cursor: 'pointer',
-};
-
-const labelStyle = {
-  fontFamily: fonts.sans,
-  fontSize: '12px',
-  fontWeight: 600,
-  color: colors.text,
-  textTransform: 'uppercase',
-  letterSpacing: '0.5px',
-  display: 'block',
-  marginBottom: '4px',
-};
-
-const hintStyle = {
-  fontFamily: fonts.sans,
-  fontSize: '12px',
-  color: colors.textMuted,
-  marginTop: '4px',
-};
-
-const sectionStyle = {
-  background: colors.bgCard,
-  border: `1px solid ${colors.border}`,
-  borderRadius: '12px',
-  padding: '16px 20px',
-  marginBottom: '16px',
-};
-
-const sectionTitle = {
-  fontFamily: fonts.sans,
-  fontSize: '11px',
-  fontWeight: 600,
-  color: colors.textMuted,
-  textTransform: 'uppercase',
-  letterSpacing: '0.5px',
-  marginBottom: '12px',
-};
 
 const VIN_RE = /^[A-HJ-NPR-Z0-9]{17}$/i;
 const ZIP_RE = /^\d{5}$/;
@@ -88,8 +30,8 @@ function WarehouseSection({ warehouses, selectedId, onSelect, overrideActive, on
     return (
       <div>
         <ManualAddressFields fields={manualFields} onChange={onManualChange} showLocationName={showLocationName} />
-        <div style={{ ...hintStyle, marginTop: 8 }}>
-          <Link to="/portal/locations" style={{ color: colors.accent, fontSize: 12 }}>Add a saved location</Link> to speed up future orders.
+        <div className={pp.hint} style={{ marginTop: 8 }}>
+          <Link to="/portal/locations" style={{ color: 'var(--v2-ink, #050607)', fontSize: 12, textDecoration: 'underline' }}>Add a saved location</Link> to speed up future orders.
         </div>
       </div>
     );
@@ -100,8 +42,8 @@ function WarehouseSection({ warehouses, selectedId, onSelect, overrideActive, on
       <div>
         <ManualAddressFields fields={manualFields} onChange={onManualChange} showLocationName={showLocationName} />
         <button type="button" onClick={onToggleOverride} style={{
-          background: 'none', border: 'none', color: colors.accent,
-          fontSize: 12, fontFamily: fonts.sans, cursor: 'pointer', padding: '4px 0', marginTop: 4,
+          background: 'none', border: 'none', color: 'var(--v2-ink, #050607)',
+          fontSize: 12, fontFamily: 'var(--font-sans, system-ui)', cursor: 'pointer', padding: '4px 0', marginTop: 4, textDecoration: 'underline',
         }}>
           Use a saved location instead
         </button>
@@ -113,8 +55,8 @@ function WarehouseSection({ warehouses, selectedId, onSelect, overrideActive, on
 
   return (
     <div>
-      <label style={labelStyle}>{label}</label>
-      <select style={selectStyle} value={selectedId || ''} onChange={e => onSelect(Number(e.target.value) || null)}>
+      <label className={pp.label}>{label}</label>
+      <select className={pp.select} value={selectedId || ''} onChange={e => onSelect(Number(e.target.value) || null)}>
         <option value="">Select location...</option>
         {warehouses.map(w => (
           <option key={w.id} value={w.id}>
@@ -123,21 +65,17 @@ function WarehouseSection({ warehouses, selectedId, onSelect, overrideActive, on
         ))}
       </select>
       {selected && (
-        <div style={{
-          marginTop: 8, padding: 10, background: colors.bgInput,
-          borderRadius: 8, fontSize: 12, fontFamily: fonts.sans, color: colors.text,
-          border: `1px solid ${colors.border}`,
-        }}>
+        <div className={pp.notice} style={{ marginTop: 8, fontSize: 12 }}>
           <div>{selected.address}</div>
           <div>{selected.city}, {selected.state} {selected.zip_code}</div>
-          {selected.contact_name && <div style={{ color: colors.textMuted, marginTop: 4 }}>Contact: {selected.contact_name}{selected.contact_phone ? ` ${selected.contact_phone}` : ''}</div>}
-          {selected.business_hours && <div style={{ color: colors.textMuted }}>Hours: {selected.business_hours}</div>}
-          {selected.delivery_instructions && <div style={{ color: colors.textMuted, marginTop: 2 }}>{selected.delivery_instructions}</div>}
+          {selected.contact_name && <div style={{ color: 'var(--v2-ink-muted, #5c5851)', marginTop: 4 }}>Contact: {selected.contact_name}{selected.contact_phone ? ` ${selected.contact_phone}` : ''}</div>}
+          {selected.business_hours && <div style={{ color: 'var(--v2-ink-muted, #5c5851)' }}>Hours: {selected.business_hours}</div>}
+          {selected.delivery_instructions && <div style={{ color: 'var(--v2-ink-muted, #5c5851)', marginTop: 2 }}>{selected.delivery_instructions}</div>}
         </div>
       )}
       <button type="button" onClick={onToggleOverride} style={{
-        background: 'none', border: 'none', color: colors.accent,
-        fontSize: 12, fontFamily: fonts.sans, cursor: 'pointer', padding: '4px 0', marginTop: 4,
+        background: 'none', border: 'none', color: 'var(--v2-ink, #050607)',
+        fontSize: 12, fontFamily: 'var(--font-sans, system-ui)', cursor: 'pointer', padding: '4px 0', marginTop: 4, textDecoration: 'underline',
       }}>
         Use a different location for this order
       </button>
@@ -153,26 +91,26 @@ function ManualAddressFields({ fields, onChange, showLocationName }) {
           location name (otherwise the carrier only sees the contact person). */}
       {showLocationName && (
         <div>
-          <label style={labelStyle}>Business / location name (if any)</label>
-          <input style={inputStyle} value={fields.location_name || ''} onChange={e => onChange('location_name', e.target.value)} placeholder="e.g. ABC Auto Sales" maxLength={200} />
+          <label className={pp.label}>Business / location name (if any)</label>
+          <input className={pp.input} value={fields.location_name || ''} onChange={e => onChange('location_name', e.target.value)} placeholder="e.g. ABC Auto Sales" maxLength={200} />
         </div>
       )}
       <div>
-        <label style={labelStyle}>ZIP *</label>
-        <input style={inputStyle} value={fields.zip} onChange={e => onChange('zip', e.target.value.replace(/\D/g, '').slice(0, 5))} placeholder="e.g. 02466" inputMode="numeric" maxLength={5} />
+        <label className={pp.label}>ZIP *</label>
+        <input className={pp.input} value={fields.zip} onChange={e => onChange('zip', e.target.value.replace(/\D/g, '').slice(0, 5))} placeholder="e.g. 02466" inputMode="numeric" maxLength={5} />
       </div>
       <div>
-        <label style={labelStyle}>Street</label>
-        <input style={inputStyle} value={fields.address} onChange={e => onChange('address', e.target.value)} placeholder="123 Main St" />
+        <label className={pp.label}>Street</label>
+        <input className={pp.input} value={fields.address} onChange={e => onChange('address', e.target.value)} placeholder="123 Main St" />
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 10 }}>
         <div>
-          <label style={labelStyle}>City</label>
-          <input style={inputStyle} value={fields.city} onChange={e => onChange('city', e.target.value)} />
+          <label className={pp.label}>City</label>
+          <input className={pp.input} value={fields.city} onChange={e => onChange('city', e.target.value)} />
         </div>
         <div>
-          <label style={labelStyle}>State</label>
-          <select style={selectStyle} value={fields.state} onChange={e => onChange('state', e.target.value)}>
+          <label className={pp.label}>State</label>
+          <select className={pp.select} value={fields.state} onChange={e => onChange('state', e.target.value)}>
             <option value="">--</option>
             {US_STATES.map(s => <option key={s} value={s}>{s}</option>)}
           </select>
@@ -180,12 +118,12 @@ function ManualAddressFields({ fields, onChange, showLocationName }) {
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
         <div>
-          <label style={labelStyle}>Contact Name</label>
-          <input style={inputStyle} value={fields.contact_name} onChange={e => onChange('contact_name', e.target.value)} />
+          <label className={pp.label}>Contact Name</label>
+          <input className={pp.input} value={fields.contact_name} onChange={e => onChange('contact_name', e.target.value)} />
         </div>
         <div>
-          <label style={labelStyle}>Contact Phone</label>
-          <PhoneInput style={inputStyle} value={fields.contact_phone} onChange={v => onChange('contact_phone', v)} />
+          <label className={pp.label}>Contact Phone</label>
+          <PhoneInput className={pp.input} value={fields.contact_phone} onChange={v => onChange('contact_phone', v)} />
         </div>
       </div>
     </div>
@@ -623,18 +561,20 @@ export default function NewOrder() {
       ? 'Your application was not approved. Please contact us if you would like to discuss next steps.'
       : "Before you can submit orders directly, our team verifies your dealership details. You can still request a quote in the meantime — direct orders open as soon as you're approved.";
     return (
-      <div style={{ maxWidth: '600px', margin: '0 auto', padding: '40px 24px 80px' }}>
-        <PageMeta title={heading} />
-        <div style={{
-          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-          minHeight: '50vh', padding: '40px 24px', textAlign: 'center',
-        }}>
-          <div style={{ fontSize: '44px', marginBottom: '16px' }}>&#128737;</div>
-          <h1 style={{ fontFamily: fonts.serif, fontSize: '24px', fontWeight: 700, color: colors.text, marginBottom: '12px' }}>{heading}</h1>
-          <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, maxWidth: '440px', lineHeight: 1.6, marginBottom: '28px' }}>{bodyText}</p>
-          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/portal/application" style={{ ...btnStyles.accent, textDecoration: 'none' }}>View your application</Link>
-            <button onClick={() => navigate('/portal/dashboard')} style={btnStyles.secondary}>Go to Dashboard</button>
+      <div className={pp.shell}>
+        <div className={pp.measureNarrow}>
+          <PageMeta title={heading} />
+          <div style={{
+            display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+            minHeight: '50vh', padding: '40px 24px', textAlign: 'center',
+          }}>
+            <div style={{ fontSize: '44px', marginBottom: '16px' }}>&#128737;</div>
+            <h1 className={pp.pageTitle} style={{ marginBottom: 12 }}>{heading}</h1>
+            <p className={pp.pageSub} style={{ maxWidth: 440, marginBottom: 28 }}>{bodyText}</p>
+            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link to="/portal/application" className={v2b.cta}>View your application</Link>
+              <button onClick={() => navigate('/portal/dashboard')} className={v2b.ghostOnPaper}>Go to Dashboard</button>
+            </div>
           </div>
         </div>
       </div>
@@ -647,24 +587,26 @@ export default function NewOrder() {
   // Strict === false: fail open when the backend doesn't send the flag.
   if (isExporter && user?.has_delivery_locations === false && !success) {
     return (
-      <div style={{ maxWidth: '600px', margin: '0 auto', padding: '40px 24px 80px' }}>
-        <PageMeta title="Register your export warehouses" />
-        <div style={{
-          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-          minHeight: '50vh', padding: '40px 24px', textAlign: 'center',
-        }}>
-          <div style={{ fontSize: '44px', marginBottom: '16px' }}>&#127981;</div>
-          <h1 style={{ fontFamily: fonts.serif, fontSize: '24px', fontWeight: 700, color: colors.text, marginBottom: '12px' }}>
-            Register your export warehouses first
-          </h1>
-          <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, maxWidth: '440px', lineHeight: 1.6, marginBottom: '28px' }}>
-            Y7 assigns each shipment to the optimal warehouse from your saved
-            locations — add every export warehouse you have a contract with,
-            then come back to place your first order.
-          </p>
-          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/portal/locations" style={{ ...btnStyles.accent, textDecoration: 'none' }}>Add your warehouses</Link>
-            <button onClick={() => navigate('/portal/dashboard')} style={btnStyles.secondary}>Go to Dashboard</button>
+      <div className={pp.shell}>
+        <div className={pp.measureNarrow}>
+          <PageMeta title="Register your export warehouses" />
+          <div style={{
+            display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+            minHeight: '50vh', padding: '40px 24px', textAlign: 'center',
+          }}>
+            <div style={{ fontSize: '44px', marginBottom: '16px' }}>&#127981;</div>
+            <h1 className={pp.pageTitle} style={{ marginBottom: 12 }}>
+              Register your export warehouses first
+            </h1>
+            <p className={pp.pageSub} style={{ maxWidth: 440, marginBottom: 28 }}>
+              Y7 assigns each shipment to the optimal warehouse from your saved
+              locations — add every export warehouse you have a contract with,
+              then come back to place your first order.
+            </p>
+            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link to="/portal/locations" className={v2b.cta}>Add your warehouses</Link>
+              <button onClick={() => navigate('/portal/dashboard')} className={v2b.ghostOnPaper}>Go to Dashboard</button>
+            </div>
           </div>
         </div>
       </div>
@@ -688,23 +630,25 @@ export default function NewOrder() {
         ? 'Your account has used its trial quote requests pending verification. Once our team verifies your dealership, you can submit without limits — we’ll be in touch.'
         : 'Thanks for registering as a dealer. Before you can submit orders directly, our team verifies your dealership details. We’ll email you as soon as your account is approved.';
     return (
-      <div style={{ maxWidth: '600px', margin: '0 auto', padding: '40px 24px 80px' }}>
-        <PageMeta title={heading} />
-        <div style={{
-          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-          minHeight: '50vh', padding: '40px 24px', textAlign: 'center',
-        }}>
-          <div style={{ fontSize: '44px', marginBottom: '16px' }}>{isLocations ? <>&#127981;</> : <>&#128737;</>}</div>
-          <h1 style={{ fontFamily: fonts.serif, fontSize: '24px', fontWeight: 700, color: colors.text, marginBottom: '12px' }}>{heading}</h1>
-          <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, maxWidth: '420px', lineHeight: 1.6, marginBottom: '28px' }}>{bodyText}</p>
-          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            {/* EXP2 review: same destination as the pre-check panel — the model
-                is multi-warehouse; LocationSetup is single-location, redirects
-                away at >=1, and lacks the port field. One destination, one task. */}
-            {isLocations
-              ? <Link to="/portal/locations" style={{ ...btnStyles.accent, textDecoration: 'none' }}>Add your warehouses</Link>
-              : <Link to="/contact" style={{ ...btnStyles.accent, textDecoration: 'none' }}>Contact us</Link>}
-            <button onClick={() => navigate('/portal/dashboard')} style={btnStyles.secondary}>Go to Dashboard</button>
+      <div className={pp.shell}>
+        <div className={pp.measureNarrow}>
+          <PageMeta title={heading} />
+          <div style={{
+            display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+            minHeight: '50vh', padding: '40px 24px', textAlign: 'center',
+          }}>
+            <div style={{ fontSize: '44px', marginBottom: '16px' }}>{isLocations ? <>&#127981;</> : <>&#128737;</>}</div>
+            <h1 className={pp.pageTitle} style={{ marginBottom: 12 }}>{heading}</h1>
+            <p className={pp.pageSub} style={{ maxWidth: 420, marginBottom: 28 }}>{bodyText}</p>
+            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+              {/* EXP2 review: same destination as the pre-check panel — the model
+                  is multi-warehouse; LocationSetup is single-location, redirects
+                  away at >=1, and lacks the port field. One destination, one task. */}
+              {isLocations
+                ? <Link to="/portal/locations" className={v2b.cta}>Add your warehouses</Link>
+                : <Link to="/contact" className={v2b.cta}>Contact us</Link>}
+              <button onClick={() => navigate('/portal/dashboard')} className={v2b.ghostOnPaper}>Go to Dashboard</button>
+            </div>
           </div>
         </div>
       </div>
@@ -713,43 +657,42 @@ export default function NewOrder() {
 
   if (success) {
     return (
-      <div style={{ maxWidth: '600px', margin: '0 auto', padding: '40px 24px 80px' }}>
-        <PageMeta title="Order Submitted" />
-        <div style={{ textAlign: 'center', padding: '60px 0', animation: 'fadeUp 0.4s ease-out' }}>
-          <div style={{ fontSize: '48px', marginBottom: '16px' }}>&#10003;</div>
-          <h1 style={{ fontFamily: fonts.serif, fontSize: '24px', fontWeight: 700, color: colors.text, marginBottom: '12px' }}>Order Submitted</h1>
-          <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, lineHeight: 1.6, marginBottom: showTierSelector ? '20px' : '32px' }}>
-            {/* WBF-T01: copy describes the post-submit flow (direct vs quote),
-                so it keys on the submission set — auction_buyer gets the quote wording. */}
-            {isDirectSubmitter
-              ? "Request received. We'll source the best-priced carrier; your transport price will appear here once it's set."
-              : 'Your transport request has been received. Our dispatcher will review it and send you a quote shortly.'}
-          </p>
-          {/* CAP-S1-W03: ownership-proof prompt (individual/auction_buyer). Soft — speeds dispatch, not a hard block.
-              W7U-T05: benefit-first copy — the document does TWO jobs: we read
-              it and fill the pickup details, and it doubles as ownership proof. */}
-          {showTierSelector && success.orderId && (
-            <div style={{
-              textAlign: 'left', maxWidth: '440px', margin: '0 auto 28px',
-              background: '#FFF8E1', border: '1px solid #F9A825', borderRadius: '12px', padding: '14px 18px',
-            }}>
-              <div style={{ fontFamily: fonts.sans, fontSize: '14px', fontWeight: 600, color: '#8a6d1b', marginBottom: 4 }}>
-                Have the purchase paperwork? Upload it — we&rsquo;ll do the typing.
+      <div className={pp.shell}>
+        <div className={pp.measureNarrow}>
+          <PageMeta title="Order Submitted" />
+          <div style={{ textAlign: 'center', padding: '60px 0', animation: 'fadeUp 0.4s ease-out' }}>
+            <div style={{ fontSize: '48px', marginBottom: '16px' }}>&#10003;</div>
+            <h1 className={pp.pageTitle} style={{ marginBottom: 12 }}>Order Submitted</h1>
+            <p className={pp.pageSub} style={{ marginBottom: showTierSelector ? 20 : 32 }}>
+              {/* WBF-T01: copy describes the post-submit flow (direct vs quote),
+                  so it keys on the submission set — auction_buyer gets the quote wording. */}
+              {isDirectSubmitter
+                ? "Request received. We'll source the best-priced carrier; your transport price will appear here once it's set."
+                : 'Your transport request has been received. Our dispatcher will review it and send you a quote shortly.'}
+            </p>
+            {/* CAP-S1-W03: ownership-proof prompt (individual/auction_buyer). Soft — speeds dispatch, not a hard block.
+                W7U-T05: benefit-first copy — the document does TWO jobs: we read
+                it and fill the pickup details, and it doubles as ownership proof. */}
+            {showTierSelector && success.orderId && (
+              <div className={pp.notice} style={{ textAlign: 'left', maxWidth: 440, margin: '0 auto 28px' }}>
+                <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', fontWeight: 600, color: 'var(--v2-ink, #050607)', marginBottom: 4 }}>
+                  Have the purchase paperwork? Upload it — we&rsquo;ll do the typing.
+                </div>
+                <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', lineHeight: 1.5, marginBottom: 10 }}>
+                  Snap or attach your bill of sale, auction invoice, or title and we
+                  read the pickup details off it — location name, address, lot and
+                  buyer numbers — so you don&rsquo;t retype them. It also counts as
+                  your proof of ownership, which we need before dispatch anyway.
+                </div>
+                <Link to={`/portal/order/${success.orderId}`} className={v2b.ghostOnPaper} style={{ padding: '8px 16px', minHeight: 0, fontSize: '13px' }}>
+                  Upload the document
+                </Link>
               </div>
-              <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: '#8a6d1b', lineHeight: 1.5, marginBottom: 10 }}>
-                Snap or attach your bill of sale, auction invoice, or title and we
-                read the pickup details off it — location name, address, lot and
-                buyer numbers — so you don&rsquo;t retype them. It also counts as
-                your proof of ownership, which we need before dispatch anyway.
-              </div>
-              <Link to={`/portal/order/${success.orderId}`} style={{ ...btnStyles.accent, textDecoration: 'none', display: 'inline-block', padding: '8px 16px', fontSize: '13px' }}>
-                Upload the document
-              </Link>
+            )}
+            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <button onClick={() => navigate('/portal/dashboard')} className={v2b.cta}>Go to Dashboard</button>
+              <button onClick={() => { setSuccess(null); setVin(''); setVehicleYear(''); setVehicleMake(''); setVehicleModel(''); setVehicleType(''); setVinDecodeNote(''); setPickupManual({ ...EMPTY_MANUAL }); setDeliveryManual({ ...EMPTY_MANUAL }); setNotes(''); }} className={v2b.ghostOnPaper}>Submit Another</button>
             </div>
-          )}
-          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <button onClick={() => navigate('/portal/dashboard')} style={btnStyles.accent}>Go to Dashboard</button>
-            <button onClick={() => { setSuccess(null); setVin(''); setVehicleYear(''); setVehicleMake(''); setVehicleModel(''); setVehicleType(''); setVinDecodeNote(''); setPickupManual({ ...EMPTY_MANUAL }); setDeliveryManual({ ...EMPTY_MANUAL }); setNotes(''); }} style={btnStyles.secondary}>Submit Another</button>
           </div>
         </div>
       </div>
@@ -757,14 +700,15 @@ export default function NewOrder() {
   }
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '40px 24px 80px' }}>
+    <div className={pp.shell}>
+      <div className={pp.measureNarrow}>
       <PageMeta title="New Transport Order" />
       <BouncingEmailBanner />
       <OnboardingBanner />
       <VerificationBanner />
-      <Link to="/portal/dashboard" style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.accent, display: 'inline-block', marginBottom: '20px' }}>&larr; Back to Dashboard</Link>
-      <h1 style={{ fontFamily: fonts.serif, fontSize: '28px', fontWeight: 700, color: colors.text, marginBottom: '8px' }}>New Transport Order</h1>
-      <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted, marginBottom: '6px' }}>
+      <Link to="/portal/dashboard" className={pp.backLink}>&larr; Back to Dashboard</Link>
+      <h1 className={pp.pageTitle} style={{ marginBottom: 8 }}>New Transport Order</h1>
+      <p className={pp.pageSub} style={{ marginBottom: 6 }}>
         {/* WBF-T01: submission-flow copy — keyed on the direct-submit set.
             EXP1-T01: exporter gets doc-first wording (Y7 assigns delivery). */}
         {isExporter
@@ -773,26 +717,26 @@ export default function NewOrder() {
             ? "Submit your vehicle. We'll source the best-priced carrier — your transport price will appear here once it's set."
             : "Submit a transport request. We'll review it and send you a quote."}
       </p>
-      <p style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, marginBottom: '24px' }}>
+      <p className={pp.pageSub} style={{ fontSize: 12, marginBottom: 24 }}>
         Contact info from your profile will be used.{' '}
-        <Link to="/portal/profile" style={{ color: colors.accent }}>Update in Profile</Link>
+        <Link to="/portal/profile" style={{ color: 'var(--v2-ink, #050607)', textDecoration: 'underline' }}>Update in Profile</Link>
       </p>
 
       <form onSubmit={handleSubmit}>
         {/* Direction toggle (dealer only) */}
         {isDealer && (
-          <div style={sectionStyle}>
-            <div style={sectionTitle}>Direction</div>
-            <div style={{ display: 'flex', gap: 0, borderRadius: 8, overflow: 'hidden', border: `1px solid ${colors.border}` }}>
+          <div className={pp.card}>
+            <div className={pp.sectionTitle}>Direction</div>
+            <div style={{ display: 'flex', gap: 0, borderRadius: 8, overflow: 'hidden', border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))' }}>
               {[
                 { value: 'inbound', label: 'Inbound', desc: 'Ship TO my location' },
                 { value: 'outbound', label: 'Outbound', desc: 'Ship FROM my location' },
               ].map(opt => (
                 <button key={opt.value} type="button" onClick={() => setDirection(opt.value)} style={{
                   flex: 1, padding: '12px 16px', border: 'none', cursor: 'pointer',
-                  fontFamily: fonts.sans, textAlign: 'center',
-                  background: direction === opt.value ? colors.accent : colors.bgCard,
-                  color: direction === opt.value ? '#fff' : colors.text,
+                  fontFamily: 'var(--font-sans, system-ui)', textAlign: 'center',
+                  background: direction === opt.value ? 'var(--v2-ink, #050607)' : 'var(--v2-card-cream, #fffaf1)',
+                  color: direction === opt.value ? 'var(--v2-text-on-dark, #f4f0e8)' : 'var(--v2-ink, #050607)',
                 }}>
                   <div style={{ fontWeight: 600, fontSize: 14 }}>{opt.label}</div>
                   <div style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>{opt.desc}</div>
@@ -803,12 +747,12 @@ export default function NewOrder() {
         )}
 
         {/* Vehicle */}
-        <div style={sectionStyle}>
-          <div style={sectionTitle}>Vehicle</div>
+        <div className={pp.card}>
+          <div className={pp.sectionTitle}>Vehicle</div>
           <div style={{ marginBottom: 12 }}>
-            <label style={labelStyle}>VIN Number</label>
+            <label className={pp.label}>VIN Number</label>
             <input
-              style={inputStyle}
+              className={pp.input}
               value={vin}
               onChange={e => setVin(e.target.value)}
               onBlur={async () => {
@@ -838,15 +782,15 @@ export default function NewOrder() {
               placeholder="Enter 17-character VIN or leave blank"
               maxLength={17}
             />
-            <div style={hintStyle}>
+            <div className={pp.hint}>
               {vinDecoding ? 'Decoding VIN…' : (vinDecodeNote || 'Optional. If unknown, enter vehicle details below.')}
             </div>
           </div>
           {/* W7U-T02: visible, editable body type (never silently defaulted).
               Required for direct-submit forms; optional on quote forms. */}
           <div style={{ marginBottom: 12 }}>
-            <label style={labelStyle}>Vehicle type {isDirectSubmitter ? '*' : '(helps carriers quote right)'}</label>
-            <select style={selectStyle} value={vehicleType} onChange={e => setVehicleType(e.target.value)}>
+            <label className={pp.label}>Vehicle type {isDirectSubmitter ? '*' : '(helps carriers quote right)'}</label>
+            <select className={pp.select} value={vehicleType} onChange={e => setVehicleType(e.target.value)}>
               <option value="">Select...</option>
               <option value="sedan">Sedan / Coupe / Hatchback</option>
               <option value="suv">SUV / Crossover</option>
@@ -857,19 +801,19 @@ export default function NewOrder() {
           </div>
           {showVehicleDetails && (
             <div>
-              <div style={{ ...hintStyle, marginTop: 0, marginBottom: 8 }}>Don't have the VIN? Enter vehicle details:</div>
+              <div className={pp.hint} style={{ marginTop: 0, marginBottom: 8 }}>Don't have the VIN? Enter vehicle details:</div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
                 <div>
-                  <label style={labelStyle}>Year</label>
-                  <input style={inputStyle} value={vehicleYear} onChange={e => setVehicleYear(e.target.value)} placeholder="2022" maxLength={4} inputMode="numeric" />
+                  <label className={pp.label}>Year</label>
+                  <input className={pp.input} value={vehicleYear} onChange={e => setVehicleYear(e.target.value)} placeholder="2022" maxLength={4} inputMode="numeric" />
                 </div>
                 <div>
-                  <label style={labelStyle}>Make *</label>
-                  <input style={inputStyle} value={vehicleMake} onChange={e => setVehicleMake(e.target.value)} placeholder="Honda" />
+                  <label className={pp.label}>Make *</label>
+                  <input className={pp.input} value={vehicleMake} onChange={e => setVehicleMake(e.target.value)} placeholder="Honda" />
                 </div>
                 <div>
-                  <label style={labelStyle}>Model</label>
-                  <input style={inputStyle} value={vehicleModel} onChange={e => setVehicleModel(e.target.value)} placeholder="CR-V" />
+                  <label className={pp.label}>Model</label>
+                  <input className={pp.input} value={vehicleModel} onChange={e => setVehicleModel(e.target.value)} placeholder="CR-V" />
                 </div>
               </div>
             </div>
@@ -877,23 +821,23 @@ export default function NewOrder() {
         </div>
 
         {/* Pickup */}
-        <div style={sectionStyle}>
-          <div style={sectionTitle}>
+        <div className={pp.card}>
+          <div className={pp.sectionTitle}>
             Pickup {pickupIsWarehouse ? '(from your location)' : ''}
           </div>
           {/* W2P-T02: pickup source — Auction vs one-off address (dealer-inbound
               + auction buyer). Reuses the direction-toggle button pattern. */}
           {pickupSourceSelectable && (
-            <div style={{ display: 'flex', gap: 0, borderRadius: 8, overflow: 'hidden', border: `1px solid ${colors.border}`, marginBottom: 12 }}>
+            <div style={{ display: 'flex', gap: 0, borderRadius: 8, overflow: 'hidden', border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))', marginBottom: 12 }}>
               {[
                 { value: 'auction', label: 'Auction pickup', desc: 'Copart, IAA, Manheim…' },
                 { value: 'oneoff', label: 'Other address', desc: 'Residence / business' },
               ].map(opt => (
                 <button key={opt.value} type="button" onClick={() => setPickupSource(opt.value)} style={{
                   flex: 1, padding: '12px 16px', border: 'none', cursor: 'pointer',
-                  fontFamily: fonts.sans, textAlign: 'center',
-                  background: pickupSource === opt.value ? colors.accent : colors.bgCard,
-                  color: pickupSource === opt.value ? '#fff' : colors.text,
+                  fontFamily: 'var(--font-sans, system-ui)', textAlign: 'center',
+                  background: pickupSource === opt.value ? 'var(--v2-ink, #050607)' : 'var(--v2-card-cream, #fffaf1)',
+                  color: pickupSource === opt.value ? 'var(--v2-text-on-dark, #f4f0e8)' : 'var(--v2-ink, #050607)',
                 }}>
                   <div style={{ fontWeight: 600, fontSize: 14 }}>{opt.label}</div>
                   <div style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>{opt.desc}</div>
@@ -919,7 +863,7 @@ export default function NewOrder() {
           {/* W2P-T02: document-first messaging for auction pickups (exporter has
               its own EXP-1 flow copy — same redirect, no duplicate hint). */}
           {pickupIsAuction && !isExporter && (
-            <div style={{ ...hintStyle, marginTop: 10 }}>
+            <div className={pp.hint} style={{ marginTop: 10 }}>
               Auction pickups are document-first: right after submitting you&rsquo;ll
               upload the auction document and we&rsquo;ll read the exact pickup
               address, lot and buyer number from it.
@@ -928,18 +872,16 @@ export default function NewOrder() {
           {/* W2P-T03: the dry-run liability consent — HARD BLOCK on the one-off
               manual branch only. */}
           {pickupIsOneOff && (
-            <label style={{
-              display: 'flex', gap: 10, alignItems: 'flex-start', marginTop: 12,
-              padding: '12px 14px', background: '#FFF7ED', border: '1px solid #B45309',
-              borderRadius: 8, cursor: 'pointer',
+            <label className={pp.notice} style={{
+              display: 'flex', gap: 10, alignItems: 'flex-start', marginTop: 12, cursor: 'pointer',
             }}>
               <input
                 type="checkbox"
                 checked={dryRunConsent}
                 onChange={e => setDryRunConsent(e.target.checked)}
-                style={{ marginTop: 3, width: 18, height: 18, flexShrink: 0, accentColor: colors.accent }}
+                style={{ marginTop: 3, width: 18, height: 18, flexShrink: 0, accentColor: 'var(--v2-red, #d70f24)' }}
               />
-              <span style={{ fontFamily: fonts.sans, fontSize: 13, color: '#7C2D12', lineHeight: 1.5 }}>
+              <span style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: 13, color: 'var(--v2-ink, #050607)', lineHeight: 1.5 }}>
                 I confirm this pickup address is correct. If the carrier cannot
                 pick up because the address is wrong, <strong>I am responsible for
                 the carrier&rsquo;s dry-run fee</strong>.
@@ -951,16 +893,17 @@ export default function NewOrder() {
               Details later. Empty = available now. Window [today .. +30 days]. */}
           {isDirectSubmitter && (
             <div style={{ marginTop: 12 }}>
-              <label style={labelStyle}>When is the vehicle available for pickup?</label>
+              <label className={pp.label}>When is the vehicle available for pickup?</label>
               <input
                 type="date"
                 value={preferredPickupDate}
                 onChange={e => setPreferredPickupDate(e.target.value)}
                 min={pickupDateMin}
                 max={pickupDateMax}
-                style={{ ...inputStyle, width: 'auto' }}
+                className={pp.input}
+                style={{ width: 'auto' }}
               />
-              <div style={{ fontFamily: fonts.sans, fontSize: 12, color: colors.textMuted, marginTop: 4 }}>
+              <div className={pp.hint}>
                 Leave empty if it&rsquo;s available now.
               </div>
             </div>
@@ -968,18 +911,14 @@ export default function NewOrder() {
         </div>
 
         {/* Delivery */}
-        <div style={sectionStyle}>
-          <div style={sectionTitle}>
+        <div className={pp.card}>
+          <div className={pp.sectionTitle}>
             Delivery {deliveryIsWarehouse ? '(to your location)' : ''}
           </div>
           {deliveryAssignedByY7 ? (
             /* EXP1-T01: exporter — no delivery entry; quiet info panel reusing
                the input-box tokens. */
-            <div style={{
-              padding: '12px 14px', background: colors.bgInput, borderRadius: 8,
-              border: `1px solid ${colors.border}`, fontFamily: fonts.sans,
-              fontSize: 13, color: colors.text, lineHeight: 1.6,
-            }}>
+            <div className={pp.notice} style={{ lineHeight: 1.6 }}>
               Y7 will review your documents and assign the optimal destination
               warehouse from your registered locations. You&rsquo;ll see the
               delivery details on this order once it&rsquo;s set.
@@ -1003,9 +942,9 @@ export default function NewOrder() {
         {/* WAP-T02: new-model customers see their contract terms up front —
             no tier choice (the fee is the formula, and payment is always COD). */}
         {showInd2026Terms && (
-          <div style={sectionStyle}>
-            <div style={sectionTitle}>How payment works</div>
-            <div style={{ fontFamily: fonts.sans, fontSize: 13, color: colors.text, lineHeight: 1.6, background: colors.bgCard, border: `1px solid ${colors.border}`, borderRadius: 8, padding: '12px 16px' }}>
+          <div className={pp.card}>
+            <div className={pp.sectionTitle}>How payment works</div>
+            <div className={pp.notice} style={{ lineHeight: 1.6 }}>
               <div style={{ marginBottom: 6 }}>
                 <strong>Broker service fee:</strong> $75 minimum or 10% of the carrier
                 price — you&rsquo;ll see the exact range on your quote; the final amount
@@ -1021,8 +960,8 @@ export default function NewOrder() {
 
         {/* CAP-S1-W01: service tier (individual + auction_buyer only) */}
         {showTierSelector && (
-          <div style={sectionStyle}>
-            <div style={sectionTitle}>How should the carrier be paid?</div>
+          <div className={pp.card}>
+            <div className={pp.sectionTitle}>How should the carrier be paid?</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {[
                 {
@@ -1040,9 +979,9 @@ export default function NewOrder() {
                 return (
                   <label key={opt.value} style={{
                     display: 'flex', gap: 10, alignItems: 'flex-start', cursor: 'pointer',
-                    padding: '12px 14px', borderRadius: 8,
-                    border: `1px solid ${selected ? colors.accent : colors.border}`,
-                    background: selected ? '#FFF7F4' : colors.bgCard,
+                    padding: selected ? '11px 13px' : '12px 14px', borderRadius: 8,
+                    border: selected ? '2px solid var(--v2-red, #d70f24)' : '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
+                    background: 'var(--v2-card-cream, #fffaf1)',
                   }}>
                     <input
                       type="radio"
@@ -1050,17 +989,17 @@ export default function NewOrder() {
                       value={opt.value}
                       checked={selected}
                       onChange={() => setServiceTier(opt.value)}
-                      style={{ marginTop: 3, width: 18, height: 18, flexShrink: 0, accentColor: colors.accent }}
+                      style={{ marginTop: 3, width: 18, height: 18, flexShrink: 0, accentColor: 'var(--v2-red, #d70f24)' }}
                     />
                     <span>
-                      <span style={{ display: 'block', fontFamily: fonts.sans, fontSize: 14, fontWeight: 600, color: colors.text }}>{opt.title}</span>
-                      <span style={{ display: 'block', fontFamily: fonts.sans, fontSize: 12, color: colors.textMuted, marginTop: 2, lineHeight: 1.5 }}>{opt.desc}</span>
+                      <span style={{ display: 'block', fontFamily: 'var(--font-sans, system-ui)', fontSize: 14, fontWeight: 600, color: 'var(--v2-ink, #050607)' }}>{opt.title}</span>
+                      <span style={{ display: 'block', fontFamily: 'var(--font-sans, system-ui)', fontSize: 12, color: 'var(--v2-ink-muted, #5c5851)', marginTop: 2, lineHeight: 1.5 }}>{opt.desc}</span>
                     </span>
                   </label>
                 );
               })}
             </div>
-            <div style={{ ...hintStyle, marginTop: 10 }}>
+            <div className={pp.hint} style={{ marginTop: 10 }}>
               This is Y7's dispatch fee only — the carrier's transport rate is quoted separately.
             </div>
           </div>
@@ -1068,12 +1007,12 @@ export default function NewOrder() {
 
         {/* Auction fields */}
         {showAuctionFields && (
-          <div style={{ marginBottom: '24px', padding: '16px', background: '#F9FAFB', borderRadius: '8px', border: '1px solid #E5E7EB' }}>
-            <div style={{ ...labelStyle, fontWeight: 600, marginBottom: '12px' }}>Auction Information</div>
+          <div style={{ marginBottom: '24px', padding: '16px', background: 'var(--v2-card-cream, #fffaf1)', borderRadius: '8px', border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))' }}>
+            <div className={pp.sectionTitle}>Auction Information</div>
             <div style={{ marginBottom: '12px' }}>
-              <label style={labelStyle}>Auction Site {(isAuctionBuyer || isIndividual) ? '*' : ''}</label>
+              <label className={pp.label}>Auction Site {(isAuctionBuyer || isIndividual) ? '*' : ''}</label>
               <select
-                style={inputStyle}
+                className={pp.select}
                 value={auctionTypeId}
                 onChange={e => { setAuctionTypeId(e.target.value); setGatePassPin(''); }}
               >
@@ -1087,11 +1026,11 @@ export default function NewOrder() {
               <div>
                 {/* W7U-T03: auction-aware term — Manheim says "Vehicle Release",
                     not Copart's "Gate Pass PIN". */}
-                <label style={labelStyle}>
+                <label className={pp.label}>
                   {releaseDocShortTerm(selectedAuction?.code)} {auctionRequiresPin ? '*' : '(if available)'}
                 </label>
                 <input
-                  style={inputStyle}
+                  className={pp.input}
                   type="text"
                   value={gatePassPin}
                   onChange={e => setGatePassPin(e.target.value)}
@@ -1105,9 +1044,9 @@ export default function NewOrder() {
 
         {/* Notes */}
         <div style={{ marginBottom: '24px' }}>
-          <label style={labelStyle}>Notes</label>
+          <label className={pp.label}>Notes</label>
           <textarea
-            style={{ ...inputStyle, minHeight: '80px', resize: 'vertical' }}
+            className={pp.textarea}
             value={notes}
             onChange={e => setNotes(e.target.value)}
             placeholder="Special instructions, vehicle details, etc."
@@ -1115,16 +1054,13 @@ export default function NewOrder() {
         </div>
 
         {error && (
-          <div style={{ fontFamily: fonts.sans, fontSize: '13px', color: colors.accent, padding: '10px 14px', background: '#FFF0EC', borderRadius: '8px', marginBottom: '16px' }}>
+          <div className={pp.errorBlock} style={{ marginBottom: 16 }}>
             {error}
           </div>
         )}
 
-        <button type="submit" disabled={submitting} style={{
-          ...btnStyles.accent,
+        <button type="submit" disabled={submitting} className={v2b.cta} style={{
           width: '100%',
-          padding: '14px 24px',
-          fontSize: '14px',
           opacity: submitting ? 0.7 : 1,
           cursor: submitting ? 'default' : 'pointer',
         }}>
@@ -1134,12 +1070,12 @@ export default function NewOrder() {
 
       {/* T04b: non-blocking duplicate-route advisory dialog */}
       {dupDialog && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(20,20,20,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', zIndex: 1000 }}>
-          <div style={{ background: colors.bgCard, border: `1px solid ${colors.border}`, borderRadius: '16px', padding: '28px 24px', width: '100%', maxWidth: '440px', fontFamily: fonts.sans }}>
-            <h3 style={{ fontFamily: fonts.serif, fontSize: '18px', color: colors.text, margin: '0 0 10px' }}>
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(5, 6, 7, 0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', zIndex: 1000 }}>
+          <div style={{ background: 'var(--v2-card-cream, #fffaf1)', border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))', borderRadius: '16px', padding: '28px 24px', width: '100%', maxWidth: '440px', fontFamily: 'var(--font-sans, system-ui)' }}>
+            <h3 style={{ fontFamily: 'var(--v2-font-display, Oswald, system-ui)', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.01em', fontSize: '18px', color: 'var(--v2-ink, #050607)', margin: '0 0 10px' }}>
               {dupDialog.category === 'active' ? 'Possible duplicate request' : 'Similar past request'}
             </h3>
-            <p style={{ fontSize: '14px', color: colors.textMuted, lineHeight: 1.5, margin: '0 0 20px' }}>
+            <p style={{ fontSize: '14px', color: 'var(--v2-ink-muted, #5c5851)', lineHeight: 1.5, margin: '0 0 20px' }}>
               {(() => {
                 const ref = dupDialog.primary.web_reference || `#${dupDialog.primary.id}`;
                 const status = dupDialog.primary.status;
@@ -1149,19 +1085,20 @@ export default function NewOrder() {
               })()}
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <button type="button" onClick={() => { const d = dupDialog; setDupDialog(null); submitOrder(d.pZip, d.dZip); }} style={{ ...btnStyles.accent, width: '100%' }}>
+              <button type="button" onClick={() => { const d = dupDialog; setDupDialog(null); submitOrder(d.pZip, d.dZip); }} className={v2b.cta} style={{ width: '100%' }}>
                 {dupDialog.category === 'active' ? 'Submit anyway' : 'Re-submit as new'}
               </button>
-              <button type="button" onClick={() => navigate(`/portal/orders/${dupDialog.primary.id}`)} style={{ ...btnStyles.secondary, width: '100%' }}>
+              <button type="button" onClick={() => navigate(`/portal/orders/${dupDialog.primary.id}`)} className={v2b.ghostOnPaper} style={{ width: '100%' }}>
                 View existing
               </button>
-              <button type="button" onClick={() => setDupDialog(null)} style={{ ...btnStyles.secondary, width: '100%', border: 'none', color: colors.textMuted }}>
+              <button type="button" onClick={() => setDupDialog(null)} style={{ width: '100%', background: 'none', border: 'none', color: 'var(--v2-ink-muted, #5c5851)', fontFamily: 'var(--font-sans, system-ui)', cursor: 'pointer', padding: '10px', textDecoration: 'underline' }}>
                 Cancel
               </button>
             </div>
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }
