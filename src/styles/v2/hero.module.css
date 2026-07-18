@@ -1,0 +1,136 @@
+/* SPRINT-V21 W-LAW: hero-language primitives (Angle Law + Photo Treatment
+   Law, DESIGN.md). Scope: conversion-page heroes and sanctioned marketing
+   surfaces ONLY (Hero Scope Law) — never body content, tables, cards, or
+   long-form pages. */
+
+/* =====================================================================
+   ANGLED PLATE — the signature-angle red plate (clip-path only; text
+   inside stays horizontal). An angled red plate COUNTS AS the viewport's
+   red fill (Signal Budget), so on heroes it hosts the primary CTA rather
+   than joining it. One angled element per viewport maximum.
+   Geometry: parallelogram leaning down-left (reference banner), vertical
+   edges at --v2-angle; cut width = plate height x tan(angle), so the
+   angle stays canonical at any plate height.
+   ===================================================================== */
+
+.angledPlate {
+  /* Callers may override --plate-h to change scale; the angle never changes. */
+  --plate-h: 48px;
+  --plate-cut: calc(var(--plate-h) * var(--v2-angle-tan, 0.36397));
+  position: relative;
+  isolation: isolate; /* own stacking context: the ::before shape must paint
+                         behind the label but never behind the band. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--plate-h);
+  padding: 0 calc(var(--plate-cut) + 22px);
+  border: 0;
+  background: transparent;
+  font-family: var(--v2-font-display);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: var(--v2-track-caps-ui, 0.06em);
+  text-transform: uppercase;
+  color: #fff7ed;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* The shape lives on ::before so the element box itself stays unclipped —
+   outlines and focus rings are never swallowed by the clip. */
+.angledPlate::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--v2-red-gradient, linear-gradient(135deg, #d70f24, #a90918));
+  clip-path: polygon(
+    var(--plate-cut) 0,
+    100% 0,
+    calc(100% - var(--plate-cut)) 100%,
+    0 100%
+  );
+  transition: filter var(--transition-fast, 150ms ease-out);
+}
+
+.angledPlate:hover::before { filter: brightness(1.08); }
+.angledPlate:active { transform: translateY(1px); }
+
+/* Focus Law (owner-mandated explicit treatment): an OFFSET RING around the
+   plate's bounding box — drawn on the unclipped element, so it reads as a
+   deliberate ring rather than a clipped default outline. */
+.angledPlate:focus-visible {
+  outline: 2px solid var(--v2-red-bright, #ef3a4e);
+  outline-offset: 4px;
+}
+
+/* Small badge/tab variant (Angle Law permitted use). Non-interactive. */
+.angledBadge {
+  composes: angledPlate;
+  --plate-h: 26px;
+  padding: 0 calc(var(--plate-cut) + 12px);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: var(--v2-track-label, 0.14em);
+  cursor: default;
+}
+
+/* =====================================================================
+   PHOTO EMERGENCE — photography emerging from the board (Photo Treatment
+   Law). Only inside dark sections; edges dissolve into #050607 via mask
+   (the ONLY legal gradient use: board -> transparent as a photo mask);
+   palette grade via filter (no color-to-color washes); aria-hidden
+   decorative; explicit dimensions guarantee CLS 0.
+   ===================================================================== */
+
+.photoEmergence {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.photoEmergence img {
+  position: absolute;
+  right: -4%;
+  bottom: 0;
+  width: min(58vw, 900px);
+  height: auto;
+  /* Palette grade: desaturate toward the board family, never a color cast. */
+  filter: saturate(0.8) contrast(1.06) brightness(0.88);
+  /* Emergence mask: object dissolves into board on its left/bottom edges. */
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 2%, #000 34%),
+    linear-gradient(to top, transparent 1%, #000 30%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent 2%, #000 34%),
+    linear-gradient(to top, transparent 1%, #000 30%);
+  mask-composite: intersect;
+}
+
+/* Board-tint layer above the photo: pins the shadows to #050607 so the image
+   sits IN the surface rather than on it (low-alpha, Signal-Budget neutral). */
+.photoEmergence::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 6, 7, 0.22);
+}
+
+/* Content above the photo layer: heroes place text in a sibling with a
+   higher stacking context (headline never overlaps photo regions below
+   WCAG contrast — Photo Treatment Law (e)). */
+
+@media (max-width: 900px) {
+  /* Mobile degradation default: the emergence shrinks and anchors to the
+     band's lower edge; heroes may hide it entirely below their own
+     breakpoint if contrast or size suffer (per-page decision at gates). */
+  .photoEmergence img {
+    width: min(88vw, 560px);
+    right: -12%;
+  }
+}

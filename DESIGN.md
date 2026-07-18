@@ -295,3 +295,19 @@ Board sections carry depth through **hairlines and surface steps**, not shadows:
 - **Don't** re-implement V2 primitives inline on pages (Anti-Orphan Rule) or add entrance animations outside the Reveal gates.
 - **Don't** use the ◆ glyph, Bonded Pine kickers, or sienna anywhere in V2 surfaces; they are V1 artifacts that read as brand drift now.
 - **Don't** use em dashes in copy, ever.
+
+## 11. Hero Language (V2.1 extension — SPRINT-V21)
+
+These sections EXTEND the constitution; every prior law stays in force.
+
+### § Angle Law
+
+One canonical brand angle, tokenized as `--v2-angle: 20deg` (owner-confirmed; measured family on the reference banner: plate edges 21.0-21.7 deg, section cut 18.4 deg; the clean token wins over AI-mock jitter). `--v2-angle-tan` carries the baked tangent for clip-path math. Permitted uses: red plates/ribbons in hero zones, section-boundary cuts on conversion-page heroes, small tab/badge accents. Implementation: `clip-path` only — no rotated boxes, no skewed text; text inside plates stays horizontal and follows existing display-type rules. Never in body content, tables, cards, or long-form pages. **One angled element per viewport maximum; an angled red plate counts as the red fill in the Signal Budget** — on heroes it therefore hosts the primary CTA rather than joining it.
+
+### § Photo Treatment Law
+
+Photography is permitted ONLY: (a) inside dark (`board`) sections; (b) as an object emerging from the board — edges dissolve into `#050607` via mask; the ONLY legal gradient remains board-to-transparent as a photo mask, never color-to-color, never decorative; (c) tinted/graded to sit in the palette (no bright ambient color casts); (d) `aria-hidden` decorative — never load-bearing for meaning; (e) text never overlaps photo regions below WCAG contrast — the headline sits on solid board or on the plate. Asset sourcing: owner-supplied only; no stock photography, no AI-generated imagery without explicit owner sign-off recorded in the sprint report.
+
+### § Hero Scope Law
+
+The Angle and Photo Treatment laws apply to conversion-page heroes (`/`, `/dealers`, `/exporters`) and future sanctioned marketing surfaces only. All other pages remain pure-typographic V2. Long-form and link-hub Dark Share caps are unchanged. Primitives live in `src/styles/v2/hero.module.css` (`angledPlate` / `angledBadge` / `photoEmergence`) and follow the Anti-Orphan Rule.

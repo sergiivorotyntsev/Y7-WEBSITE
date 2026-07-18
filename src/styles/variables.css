@@ -206,6 +206,12 @@
   --v2-red-bright: #ef3a4e;
   --v2-red-gradient: linear-gradient(135deg, #d70f24, #a90918);
 
+  /* SPRINT-V21 Angle Law: ONE canonical brand angle (owner-confirmed 20deg;
+     measured family 18.4-21.7deg on the reference banner). tan(20deg) baked
+     for clip-path math (CSS tan() not yet safe on all shipped targets). */
+  --v2-angle: 20deg;
+  --v2-angle-tan: 0.36397;
+
   /* Hairlines */
   --v2-line-on-dark: rgba(255, 247, 237, 0.14);
   --v2-line-on-dark-strong: rgba(255, 247, 237, 0.24);
