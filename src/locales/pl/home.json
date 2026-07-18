@@ -183,6 +183,8 @@
     "vehicle_suv": "SUV",
     "vehicle_pickup": "Pickup",
     "transport_open": "Otwarty",
-    "transport_enclosed": "Zamknięty"
+    "transport_enclosed": "Zamknięty",
+    "customRouteLabel": "Trasa niestandardowa",
+    "customRouteNote": "Trasy spoza listy miast wyceniamy indywidualnie."
   }
 }

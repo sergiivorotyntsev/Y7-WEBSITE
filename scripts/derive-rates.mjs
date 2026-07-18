@@ -265,7 +265,14 @@ const _round5 = (n) => Math.round(n / 5) * 5;
 // mult folds the vehicle/transport multipliers in (1 = none).
 export function estimateRange(miles, originState, mult = 1) {
   if (!(miles > 0)) return null;
-  const band = lookupBand(miles);
+  let band = lookupBand(miles);
+  // Tail spread rule: the 1200+ band is too thin (n=11) to estimate spread —
+  // its raw P25/P75 ratios read +/-25%. Long-haul ranges borrow the adjacent
+  // 801-1200 ratios (largest nearby sample, ~+/-10%: the sprint's target
+  // width), applied to the continuous mid.
+  if (band && band.maxMiles === null) {
+    band = DISPATCH_RATE_BANDS[DISPATCH_RATE_BANDS.length - 2];
+  }
   const adj = (originState && ORIGIN_ADJ[originState]) || 1;
   const mid = curveMid(miles) * adj * mult;
   return {

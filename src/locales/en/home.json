@@ -183,6 +183,8 @@
     "vehicle_suv": "SUV",
     "vehicle_pickup": "Pickup truck",
     "transport_open": "Open",
-    "transport_enclosed": "Enclosed"
+    "transport_enclosed": "Enclosed",
+    "customRouteLabel": "Custom route",
+    "customRouteNote": "We price routes beyond the metro list individually."
   }
 }

@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { lookupBand } from '../data/dispatchRates';
+import { estimateRange, DEFAULT_ROUTE } from '../data/dispatchRates';
 import { METROS, PORT_METROS, roadMiles } from '../data/metros';
 import styles from './QuoteStrip.module.css';
 import v2t from '../styles/v2/type.module.css';
@@ -57,21 +57,29 @@ export default function QuoteStrip({ onCta }) {
   const findMetro = (name) =>
     PORT_METROS.find(m => m.name === name) || METROS.find(m => m.name === name) || null;
 
+  // T14-C: continuous two-tier model (curve x origin-state adj). A metro-name
+  // miss now renders the Other-state, never a stale number or the sameCity
+  // string (the latent fallback path is gone).
   const calc = useMemo(() => {
     if (from === OTHER || to === OTHER) return { other: true };
     const a = findMetro(from), b = findMetro(to);
-    if (!a || !b || from === to) return { same: from === to };
-    const miles = roadMiles(a, b);
-    const band = lookupBand(miles);
-    if (!band) return {};
+    if (!a || !b) return { other: true };
+    if (from === to) return { same: true };
+    const miles = Math.round(roadMiles(a, b));
     const vMult = VEHICLES.find(v => v.key === vehicle).mult;
     const tMult = TRANSPORTS.find(x => x.key === transport).mult;
-    // Raw band quantiles ship untouched (keeps the T12 default $503-$550
-    // byte-stable); $5 rounding applies only to multiplied figures.
     const mult = vMult * tMult;
-    const lo = mult === 1 ? band.p25 : round5(band.p25 * mult);
-    const hi = mult === 1 ? band.p75 : round5(band.p75 * mult);
-    return { miles, lo, hi, range: `$${lo}-$${hi}` };
+    // Default pair at mult 1 reads the baked constants (asserted equal to the
+    // runtime model at build) so the prerender snapshot and hydration are
+    // byte-identical by construction.
+    if (from === DEFAULT_FROM && to === DEFAULT_TO && mult === 1) {
+      const { miles: dm, lo, hi } = DEFAULT_ROUTE;
+      return { miles: dm, lo, hi, range: `$${lo}-$${hi}` };
+    }
+    const originState = (from.match(/, ([A-Z]{2})/) || [])[1];
+    const est = estimateRange(miles, originState, mult);
+    if (!est) return { other: true };
+    return { miles, lo: est.lo, hi: est.hi, range: `$${est.lo}-$${est.hi}` };
   }, [from, to, vehicle, transport]);
 
   const isDefault = from === DEFAULT_FROM && to === DEFAULT_TO;
@@ -79,16 +87,18 @@ export default function QuoteStrip({ onCta }) {
   const go = (e) => {
     e.preventDefault();
     // Default path stays byte-identical to the shipped behavior: anchor scroll.
-    // A chosen route carries prefill ZIPs into the existing /quote query
-    // pattern (pickup_zip/delivery_zip — the same params QuoteFormCompact
-    // sends; zero /quote code changes).
-    if (isDefault || calc.other || calc.same) {
+    if (isDefault || calc.same) {
       if (onCta) onCta();
       return;
     }
+    // T14-D: Other/custom routes go to /quote prefilled with whatever IS
+    // selected (the resolvable side's ZIP); nothing is fabricated.
     const a = findMetro(from), b = findMetro(to);
-    const params = new URLSearchParams({ pickup_zip: a.zip, delivery_zip: b.zip });
-    navigate(`/quote?${params.toString()}#top`);
+    const params = new URLSearchParams();
+    if (a) params.set('pickup_zip', a.zip);
+    if (b) params.set('delivery_zip', b.zip);
+    const qs = params.toString();
+    navigate(`/quote${qs ? `?${qs}` : ''}#top`);
   };
 
   const selectProps = {
@@ -170,17 +180,24 @@ export default function QuoteStrip({ onCta }) {
         </div>
 
         <a href="#quote-section" onClick={go} className={styles.result}>
-          <span className={`${v2t.monoMicro} ${styles.resultLabel}`}>{t('quoteStrip.resultLabel')}</span>
+          <span className={`${v2t.monoMicro} ${styles.resultLabel}`}>{t(calc.other ? 'quoteStrip.customRouteLabel' : 'quoteStrip.resultLabel')}</span>
           {calc.range ? (
             <>
               <b className={styles.resultValue}>{calc.range}</b>
               <span className={`${v2t.monoMicro} ${styles.resultMiles}`}>~{calc.miles.toLocaleString('en-US')} mi</span>
+              <span className={`${v2t.monoMicro} ${styles.resultHedge}`}>{t('quoteStrip.resultHedge')}</span>
+              <span className={`${v2t.monoMicro} ${styles.resultFee}`}>{t('quoteStrip.resultFee')}</span>
+            </>
+          ) : calc.other ? (
+            /* T14-D custom-route state: no fabricated numbers; mono voice +
+               the CTA prefills /quote with the already-selected side(s). */
+            <>
+              <b className={styles.resultValueSm}>{t('quoteStrip.otherResult')}</b>
+              <span className={`${v2t.monoMicro} ${styles.resultHedge}`}>{t('quoteStrip.customRouteNote')}</span>
             </>
           ) : (
-            <b className={styles.resultValueSm}>{t(calc.other ? 'quoteStrip.otherResult' : 'quoteStrip.sameCity')}</b>
+            <b className={styles.resultValueSm}>{t('quoteStrip.sameCity')}</b>
           )}
-          <span className={`${v2t.monoMicro} ${styles.resultHedge}`}>{t('quoteStrip.resultHedge')}</span>
-          <span className={`${v2t.monoMicro} ${styles.resultFee}`}>{t('quoteStrip.resultFee')}</span>
         </a>
       </div>
     </div>

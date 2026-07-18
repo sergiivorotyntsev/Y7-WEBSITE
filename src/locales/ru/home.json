@@ -183,6 +183,8 @@
     "vehicle_suv": "Внедорожник",
     "vehicle_pickup": "Пикап",
     "transport_open": "Открытый",
-    "transport_enclosed": "Закрытый"
+    "transport_enclosed": "Закрытый",
+    "customRouteLabel": "Нестандартный маршрут",
+    "customRouteNote": "Маршруты вне списка городов оцениваем индивидуально."
   }
 }
