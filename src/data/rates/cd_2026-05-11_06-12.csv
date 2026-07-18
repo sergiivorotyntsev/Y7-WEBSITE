@@ -1,0 +1,201 @@
+pickup_name,pickup_city,pickup_state,pickup_zip,dest_name,dest_city,dest_state,dest_zip,miles,price_usd,vehicle_class,dispatch_id,status,dispatch_date,cod,vehicle_count,vehicle
+,Portage,WI,53901,,Irvington,NJ,07111,962,350,motorcycle,612ROYIN1,Delivered,06/12/2026,0,1,2023 ROYAL ENFIELD CONTINENTAL
+,Pembroke Pines,FL,33332,,Rincon,GA,31326,487,300,standard,612MAZMX1,Delivered,06/12/2026,0,1,2025 MAZDA MX-5 Miata RF
+,Grand Prairie,TX,75051,,La Porte,TX,77571,272,250,standard,612FORES1,Dispatched,06/12/2026,0,1,2025 Ford Escape
+,Las Vegas,NV,89115,,Gardena,CA,90248,295,285,standard,612LANRA1,Delivered,06/12/2026,0,1,2019 Land Rover Range Rover Velar
+,Las Vegas,NV,89115,,Gardena,CA,90248,295,275,standard,612INFQ61,Delivered,06/12/2026,0,1,2021 INFINITI Q60
+,De Soto,IA,50069,,Irvington,NJ,07111,1122,590,standard,612CHRPA1,Delivered,06/12/2026,0,1,2017 Chrysler Pacifica
+,Sun Valley,CA,91352,,Gardena,CA,90248,31,125,standard,612TOYMI1,Delivered,06/12/2026,0,1,2021 Toyota Mirai
+,Taylor,TX,76574,,La Porte,TX,77571,175,215,standard,612BMW431,Delivered,06/12/2026,0,1,2019 BMW 4 Series Coupe
+,Spanaway,WA,98387,,Gardena,CA,90248,1117,650,standard,611DODDU1,Delivered,06/11/2026,0,1,2023 Dodge Durango
+,Houston,TX,77032,,La Porte,TX,77571,35,125,standard,611DODDU2,Delivered,06/11/2026,0,1,2024 Dodge Durango
+,San Diego,CA,92154,,Gardena,CA,90248,137,200,standard,611VOLTI1,Delivered,06/11/2026,0,1,2024 Volkswagen Tiguan
+,Carson,CA,90248,,Gardena,CA,90248,0,110,standard,611ALFGI1,Delivered,06/11/2026,0,1,2018 Alfa Romeo Giulia Quadrifoglio
+,Cahokia Heights,IL,62205,,Rincon,GA,31326,790,515,standard,611DODCH1,Delivered,06/11/2026,0,1,2019 Dodge Challenger
+,Phoenix,AZ,85041,,Gardena,CA,90248,380,250,standard,611MERAM1,Delivered,06/11/2026,0,1,2017 Mercedes-Benz Mercedes-AMG
+,Phoenix,AZ,85041,,Gardena,CA,90248,380,250,standard,611AUDS51,Delivered,06/11/2026,0,1,2023 Audi S5 Sportback
+,Homestead,FL,33032,,Rincon,GA,31326,517,400,standard,608VOLXC2,Delivered,06/11/2026,0,1,2024 Volvo XC60
+,Moraine,OH,45439,,Irvington,NJ,07111,597,485,standard,608VOLXC1,Picked-Up,06/10/2026,0,1,2014 Volvo XC60
+,Opa Locka,FL,33054,,Rincon,GA,31326,484,550,standard,609ROLCU1,Delivered,06/10/2026,0,1,2025 Rolls-Royce Cullinan
+,Fredericksburg,VA,22408,,Irvington,NJ,07111,280,325,standard,609CHESU1,Delivered,06/10/2026,0,1,2020 Chevrolet Suburban 1500
+,Chicago Heights,IL,60411,,Irvington,NJ,07111,770,530,standard,610JAGEP1,Delivered,06/10/2026,0,1,2019 Jaguar E-PACE
+,Vancouver,WA,98682,,Gardena,CA,90248,996,600,standard,610DODCH1,Delivered,06/10/2026,0,1,2017 Dodge Charger
+,Elgin,IL,60120,,Irvington,NJ,07111,821,510,standard,610MERCL1,Delivered,06/10/2026,0,1,2014 Mercedes-Benz CLA
+,Jonesboro,LA,71251,,La Porte,TX,77571,302,1200,standard,519FORD67,Dispatched,06/10/2026,0,2,1967 FORD MUSTANG
+,Acworth,GA,30101,,Rincon,GA,31326,279,275,standard,610LEXIS1,Delivered,06/10/2026,0,1,2017 Lexus IS
+,Madisonville,TN,37354,,Rincon,GA,31326,392,350,standard,610FORMU1,Delivered,06/10/2026,0,1,2017 Ford Mustang
+,Sacramento,CA,95828,,Gardena,CA,90248,394,325,standard,610AUDA41,Delivered,06/10/2026,0,1,2017 Audi A4 Sedan
+,Seaford,DE,19973,,Irvington,NJ,07111,201,250,standard,610BMW541,Delivered,06/10/2026,0,1,2019 BMW 5 Series Sedan
+,Columbus,OH,43207,,Irvington,NJ,07111,521,450,standard,609TOYGR1,Delivered,06/09/2026,0,1,2026 Toyota GR86
+,Wilmer,TX,75172,,La Porte,TX,77571,249,270,standard,609VOLV61,Delivered,06/09/2026,0,1,2017 Volvo V60
+,Elgin,IL,60120,,Irvington,NJ,07111,821,515,standard,609BMWX11,Delivered,06/09/2026,0,1,2017 BMW X1 Sports Activity Vehicle
+,Elgin,IL,60120,,Irvington,NJ,07111,821,505,standard,609VOLXC3,Delivered,06/09/2026,0,1,2018 Volvo XC60
+,Fort Wayne,IN,46806,,Newark,NJ,07105,639,550,standard,608DODCH1,Delivered,06/09/2026,0,1,2016 Dodge Charger
+,South Bend,IN,46619,,Irvington,NJ,07111,700,550,standard,609VOLXC2,Delivered,06/09/2026,0,1,2020 Volvo XC60
+,Phoenix,AZ,85043,,Gardena,CA,90248,371,325,standard,609KIACA1,Delivered,06/09/2026,0,1,2025 Kia Carnival MPV
+,Bordentown,NJ,08505,,Irvington,NJ,07111,57,125,standard,609JEEGR1,Delivered,06/09/2026,0,1,2018 Jeep Grand Cherokee
+,San Martin,CA,95046,,Gardena,CA,90248,326,325,standard,609VOLS61,Dispatched,06/09/2026,0,1,2018 Volvo S60
+,Martinez,CA,94553,,Gardena,CA,90248,390,350,standard,609VOLXC1,Delivered,06/09/2026,0,1,2019 Volvo XC90
+,Lake City,GA,30260,,Rincon,GA,31326,228,235,standard,605BMWX31,Delivered,06/09/2026,0,1,2019 BMW X3 Sports Activity Vehicle
+,Yorkville,NY,13495,,Ayer,MA,01432,256,340,standard,BRA-0608,Dispatched,06/09/2026,1,1,2017 MAZDA MAZDA3
+,Acworth,GA,30101,,Rincon,GA,31326,279,275,standard,608AUDA61,Delivered,06/08/2026,0,1,2017 Audi A6
+,Dale,TX,78616,,La Porte,TX,77571,180,270,standard,608DODDU2,Delivered,06/08/2026,0,1,2021 Dodge Durango
+,Detroit,MI,48234,,Irvington,NJ,07111,613,500,standard,608VOLV61,Dispatched,06/08/2026,0,1,2016 Volvo V60
+,Lexington,SC,29073,,Rincon,GA,31326,121,185,standard,608DODCH2,Delivered,06/08/2026,0,1,2020 Dodge Charger
+,Grenada,MS,38901,,Rincon,GA,31326,605,425,standard,608DODDU1,Delivered,06/08/2026,0,1,2019 Dodge Durango
+,New Britain,CT,06051,,Irvington,NJ,07111,132,215,standard,608VOLXC3,Dispatched,06/08/2026,0,1,2024 Volvo XC60
+,North Billerica,MA,01862,,Irvington,NJ,07111,240,305,standard,608CHRPA1,Delivered,06/08/2026,0,1,2017 Chrysler Pacifica
+,Chicago Heights,IL,60411,,Irvington,NJ,07111,770,530,standard,605VOLXC1,Delivered,06/08/2026,0,1,2022 Volvo XC90
+,Gardena,CA,90248,,La Porte,TX,77571,1577,1100,standard,514BMW44,Delivered,06/08/2026,0,1,2019 BMW 4 Series Coupe
+,Portland,OR,97217,,Gardena,CA,90248,983,555,standard,608KIAST1,Delivered,06/08/2026,0,1,2018 Kia Stinger
+,Lexington,SC,29073,,Rincon,GA,31326,121,220,standard,605JEEGL1,Delivered,06/08/2026,0,1,2023 Jeep Gladiator
+,Medford,NY,11763,,Irvington,NJ,07111,80,200,standard,605CHECO1,Delivered,06/05/2026,0,1,2023 Chevrolet Corvette
+,North Billerica,MA,01862,,Irvington,NJ,07111,240,300,standard,605MERC31,Dispatched,06/05/2026,0,1,2015 Mercedes-Benz C-Class Sedan
+,Bridgeport,PA,19405,,Irvington,NJ,07111,94,180,standard,605BMW441,Dispatched,06/05/2026,0,1,2017 BMW 4 Series Gran Coupe
+,Fairburn,GA,30213,,Rincon,GA,31326,251,250,standard,605BMW331,Delivered,06/05/2026,0,1,2019 BMW 3 Series Sedan
+,Pembroke Pines,FL,33332,,Rincon,GA,31326,487,340,standard,605ALFGI1,Delivered,06/05/2026,0,1,2023 Alfa Romeo Giulia
+,College Park,GA,30349,,Rincon,GA,31326,241,255,standard,604JEEGR1,Delivered,06/04/2026,0,1,2018 Jeep Grand Cherokee
+,Loganville,GA,30052,,Rincon,GA,31326,218,250,standard,604VOLXC1,Delivered,06/04/2026,0,1,2018 Volvo XC90
+,Matteson,IL,60443,,Irvington,NJ,07111,778,525,standard,604ALFST1,Delivered,06/04/2026,0,1,2022 Alfa Romeo Stelvio
+,Austell,GA,30168,,Rincon,GA,31326,253,275,standard,603MERGL1,Delivered,06/03/2026,0,1,2025 Mercedes-Benz GLE SUV
+,Elgin,IL,60120,,Irvington,NJ,07111,821,510,standard,603AUDA81,Dispatched,06/03/2026,0,1,2015 Audi A8 L
+,Seaford,DE,19973,,Irvington,NJ,07111,201,245,standard,603HONAC1,Delivered,06/03/2026,0,1,2024 Honda Accord Hybrid
+,Glassboro,NJ,08028,,Irvington,NJ,07111,97,170,standard,603JEEGR1,Delivered,06/03/2026,0,1,2017 Jeep Grand Cherokee
+,Fremont,CA,94538,,Gardena,CA,90248,366,365,standard,603MERAM1,Delivered,06/03/2026,0,1,2020 Mercedes-Benz Mercedes-AMG
+,Vallejo,CA,94590,,Compton,CA,90221,399,300,standard,603MERGL2,Delivered,06/03/2026,0,1,2021 Mercedes-Benz GLA
+,Randolph,MN,55065,,Irvington,NJ,07111,1184,550,standard,603JEEGR2,Delivered,06/03/2026,0,1,2015 Jeep Grand Cherokee
+,Conshohocken,PA,19428,,Irvington,NJ,07111,90,200,standard,603DODDU2,Delivered,06/03/2026,0,1,2021 Dodge Durango
+,Haslet,TX,76052,,La Porte,TX,77571,302,230,standard,603BMWZ41,Delivered,06/03/2026,0,1,2019 BMW Z4 Roadster
+,Pennsburg,PA,18073,,Irvington,NJ,07111,87,200,standard,603DODDU1,Delivered,06/03/2026,0,1,2026 Dodge Durango
+,Hattiesburg,MS,39402,,Rincon,GA,31326,581,475,standard,518BMWX31,Delivered,06/02/2026,0,1,2019 BMW X3 Sports Activity Vehicle
+,Lebanon,TN,37090,,Rincon,GA,31326,486,350,standard,602BMWX31,Delivered,06/02/2026,0,1,2018 BMW X3 Sports Activity Vehicle
+,Louisville,KY,40272,,Rincon,GA,31326,658,450,standard,602VOLXC1,Delivered,06/02/2026,0,1,2024 Volvo XC60
+,Scranton,PA,18509,,Ayer,MA,01432,284,350,standard,BRX601MAZ,Delivered,06/01/2026,1,1,2015 MAZDA MAZDA3
+,Winder,GA,30680,,Rincon,GA,31326,212,250,standard,529HYUSA1,Delivered,06/01/2026,0,1,2026 Hyundai Santa Fe Hybrid
+,Winder,GA,30680,,Rincon,GA,31326,212,300,standard,526TOYSI1,Delivered,06/01/2026,0,1,2024 Toyota Sienna
+,Fredericksburg,VA,22408,,Irvington,NJ,07111,280,260,standard,601DODCH1,Delivered,06/01/2026,0,1,2015 Dodge Challenger
+,Savannah,GA,31405,,Rincon,GA,31326,23,100,standard,601DODCH2,Delivered,06/01/2026,0,1,2023 Dodge Challenger
+,Waldorf,MD,20602,,Irvington,NJ,07111,236,250,standard,601MASQU1,Delivered,06/01/2026,0,1,2010 Maserati Quattroporte
+,Sandston,VA,23150,,Irvington,NJ,07111,336,355,standard,601DODDU1,Delivered,06/01/2026,0,1,2015 Dodge Durango
+,Byram,MS,39272,,Rincon,GA,31326,631,400,standard,601JEEGR1,Delivered,06/01/2026,0,1,2022 Jeep Grand Cherokee L
+,Ocala,FL,34482,,Rincon,GA,31326,245,230,standard,601MERC41,Delivered,06/01/2026,0,1,2017 Mercedes-Benz Mercedes-AMG
+,Houston,TX,77038,,La Porte,TX,77571,37,110,standard,601ALFGI1,Delivered,06/01/2026,0,1,2017 Alfa Romeo Giulia
+,Caseyville,IL,62232,,Rincon,GA,31326,787,530,standard,601AUDA71,Delivered,06/01/2026,0,1,2012 Audi A7
+,Jacksonville,FL,32219,,Rincon,GA,31326,151,200,standard,513HYUTU1,Delivered,05/29/2026,0,1,2016 Hyundai Tucson
+,Brandywine,MD,20613,,Newark,NJ,07105,233,260,standard,529JAGXF1,Dispatched,05/29/2026,0,1,2017 Jaguar XF
+,Brandywine,MD,20613,,Irvington,NJ,07111,232,270,standard,529TOYRA1,Dispatched,05/29/2026,0,1,2023 Toyota RAV4 Hybrid
+,Brighton,CO,80603,,La Porte,TX,77571,1042,610,standard,529JEEGR1,Delivered,05/29/2026,0,1,2021 Jeep Grand Cherokee L
+,Chicago Heights,IL,60411,,Irvington,NJ,07111,770,575,standard,529DODDU1,Delivered,05/29/2026,0,1,2018 Dodge Durango
+,San Antonio,TX,78224,,La Porte,TX,77571,228,225,standard,529MERCL1,Delivered,05/29/2026,0,1,2015 Mercedes-Benz CLA
+,Wilmington,CA,90744,,Gardena,CA,90248,8,100,standard,529BMW331,Delivered,05/29/2026,0,1,2017 BMW 3 Series Sedan
+,College Park,GA,30349,,Rincon,GA,31326,241,250,standard,528JEEGR1,Delivered,05/28/2026,0,1,2020 Jeep Grand Cherokee
+,West Chester,OH,45069,,Irvington,NJ,07111,611,575,standard,521DODDU2,Delivered,05/28/2026,0,1,2014 Dodge Durango
+,Albuquerque,NM,87105,,Gardena,CA,90248,820,550,standard,528VOLV91,Delivered,05/28/2026,0,1,2019 Volvo V90 Cross Country
+,Sussex,WI,53089,,Irvington,NJ,07111,900,555,standard,528JEEGR2,Delivered,05/28/2026,0,1,2020 Jeep Grand Cherokee
+,Buffalo,NY,14207,,Irvington,NJ,07111,392,400,standard,528MERAM1,Delivered,05/28/2026,0,1,2020 Mercedes-Benz Mercedes-AMG
+,Dale,TX,78616,,La Porte,TX,77571,180,220,motorcycle,528HARRH1,Delivered,05/28/2026,0,1,2022 HARLEY-DAVIDSON NIGHTSTER
+,Phoenix,AZ,85085,,Gardena,CA,90248,397,300,standard,528JEEWR1,Delivered,05/28/2026,0,1,2024 Jeep Wrangler
+,Medford,NY,11763,,Irvington,NJ,07111,80,200,standard,528MERGL1,Delivered,05/28/2026,0,1,2022 Mercedes-Benz GLC SUV
+,Uxbridge,MA,01569,,Irvington,NJ,07111,212,310,standard,527ALFST1,Delivered,05/27/2026,0,1,2018 Alfa Romeo Stelvio
+,Dyer,IN,46311,,Irvington,NJ,07111,767,600,standard,522DODDU1,Dispatched,05/27/2026,0,1,2020 Dodge Durango
+,Pembroke Pines,FL,33332,,Rincon,GA,31326,487,350,standard,526ALFGI1,Delivered,05/27/2026,0,1,2022 Alfa Romeo Giulia
+,Oklahoma City,OK,73129,,La Porte,TX,77571,464,375,standard,527BMWX11,Delivered,05/27/2026,0,1,2024 BMW X1 Sports Activity Vehicle
+,Randolph,MN,55065,,Newark,NJ,07105,1185,600,standard,527DODCH1,Delivered,05/27/2026,0,1,2017 Dodge Challenger
+,San Diego,CA,92154,,Gardena,CA,90248,137,210,standard,527NIS371,Dispatched,05/27/2026,0,1,2019 Nissan 370Z Coupe
+,Chambersburg,PA,17202,,Irvington,NJ,07111,210,280,standard,526BMW331,Delivered,05/27/2026,0,1,2017 BMW 3 Series Sedan
+,Vermilion,OH,44089,,Irvington,NJ,07111,481,425,standard,527FORED1,Delivered,05/27/2026,0,1,2022 Ford Edge
+,Brighton,CO,80603,,La Porte,TX,77571,1042,500,standard,527VOLXC1,Delivered,05/27/2026,0,1,2020 Volvo XC90
+,Fontana,CA,92335,,Gardena,CA,90248,59,160,standard,527CHECA1,Delivered,05/27/2026,0,1,2016 Chevrolet Camaro
+,Medford,NY,11763,,Irvington,NJ,07111,80,215,standard,527BMWX31,Delivered,05/27/2026,0,1,2024 BMW X3
+,Angola,NY,14006,,Newark,NJ,07105,380,350,standard,527VOLS61,Delivered,05/27/2026,0,1,2019 Volvo S60
+,San Martin,CA,95046,,Gardena,CA,90248,326,350,standard,527MERGL1,Delivered,05/27/2026,0,1,2022 Mercedes-Benz GLA
+,Bay Point,CA,94565,,Gardena,CA,90248,374,325,standard,526BMW431,Delivered,05/27/2026,0,1,2020 BMW 4 Series Coupe
+,Mercedes,TX,78570,,La Porte,TX,77571,361,280,standard,521CHRTO1,Delivered,05/26/2026,0,1,2015 Chrysler Town & Country
+,Amarillo,TX,79118,,La Porte,TX,77571,613,500,standard,520TOY4R1,Dispatched,05/26/2026,0,1,2019 Toyota 4Runner
+,Taylor,TX,76574,,La Porte,TX,77571,175,225,standard,526BMW541,Delivered,05/26/2026,0,1,2018 BMW 5 Series Sedan
+,Elgin,IL,60120,,Newark,NJ,07105,822,525,standard,526SUBCR1,Delivered,05/26/2026,0,1,2024 Subaru Crosstrek
+,Pasco,WA,99301,,Gardena,CA,90248,1099,850,standard,519AUDA41,Delivered,05/26/2026,0,1,2017 Audi A4 Sedan
+,Haslet,TX,76052,,La Porte,TX,77571,302,270,standard,522MERGL2,Delivered,05/26/2026,0,1,2020 Mercedes-Benz GLS
+,Mcfarland,WI,53558,,Irvington,NJ,07111,926,670,standard,526DODDU1,Delivered,05/26/2026,0,1,2023 Dodge Durango
+,Rock Tavern,NY,12575,,Irvington,NJ,07111,63,200,standard,526MAZCX1,Delivered,05/26/2026,0,1,2024 MAZDA CX-90
+,Chicago,IL,60630,,Irvington,NJ,07111,790,800,standard,518JEEP43,Dispatched,05/26/2026,0,1,1943 Jeep Willys
+,Fridley,MN,55421,,Irvington,NJ,07111,1200,550,standard,526VOLXC1,Delivered,05/26/2026,0,1,2018 Volvo XC90
+,Los Angeles,CA,90001,,Gardena,CA,90248,10,115,standard,526PORPA1,Delivered,05/26/2026,0,1,2018 Porsche Panamera
+,Houston,TX,77049,,La Porte,TX,77571,18,125,standard,526VOLXC2,Dispatched,05/26/2026,0,1,2025 Volvo XC60
+,Commerce City,CO,80022,,La Porte,TX,77571,1036,530,standard,523MERE31,Delivered,05/26/2026,0,1,2017 Mercedes-Benz E-Class Sedan
+,Kansas City,KS,66111,,Rincon,GA,31326,1057,650,standard,522CHRPA1,Delivered,05/25/2026,0,1,2018 Chrysler Pacifica
+,Graham,NC,27253,,Newark,NJ,07105,510,400,standard,521LEXIS1,Delivered,05/22/2026,0,1,2024 Lexus IS
+,Sanford,FL,32773,,Rincon,GA,31326,277,425,standard,507MAZCX1,Delivered,05/22/2026,0,1,2024 MAZDA CX-90 PHEV
+,Riverview,FL,33578,,Rincon,GA,31326,342,300,standard,521MAZCX1,Delivered,05/22/2026,0,1,2024 MAZDA CX-90
+,Littleton,CO,80125,,La Porte,TX,77571,1037,550,standard,522BMWX31,Delivered,05/22/2026,0,1,2017 BMW X3 Sports Activity Vehicle
+,Medford,NY,11763,,Newark,NJ,07105,76,195,standard,522MERCL1,Dispatched,05/22/2026,0,1,2020 Mercedes-Benz CLA
+,Medford,NY,11763,,Irvington,NJ,07111,80,205,standard,522MERGL1,Dispatched,05/22/2026,0,1,2022 Mercedes-Benz GLC SUV
+,Houston,TX,77049,,La Porte,TX,77571,18,100,standard,522VOLXC1,Delivered,05/22/2026,0,1,2018 Volvo XC90
+,Milwaukee,WI,53224,,Newark,NJ,07105,896,550,standard,522CHECO1,Delivered,05/22/2026,0,1,2025 Chevrolet Corvette
+,Markham,IL,60428,,Irvington,NJ,07111,771,600,standard,521DODDU1,Picked-Up,05/21/2026,0,1,2024 Dodge Durango
+,Hayward,CA,94545,,Gardena,CA,90248,380,350,standard,521FORES1,Delivered,05/21/2026,0,1,2025 Ford Escape Plug-In Hybrid
+,Jacksonville,FL,32218,,Rincon,GA,31326,138,200,standard,521FORED1,Delivered,05/21/2026,0,1,2024 Ford Edge
+,New Britain,CT,06051,,Newark,NJ,07105,119,250,standard,521AUDA41,Delivered,05/21/2026,0,1,2019 Audi A4 Sedan
+,Arcadia,FL,34269,,Rincon,GA,31326,413,300,standard,519BMW331,Delivered,05/21/2026,0,1,2023 BMW 3 Series Sedan
+,Chalfont,PA,18914,,Irvington,NJ,07111,70,190,standard,520DODDU3,Delivered,05/20/2026,0,1,2021 Dodge Durango
+,Miami,FL,33167,,Rincon,GA,31326,485,285,standard,520ALFST1,Delivered,05/20/2026,0,1,2018 Alfa Romeo Stelvio
+,Colton,CA,92324,,Gardena,CA,90248,65,170,standard,520MERCL1,Delivered,05/20/2026,0,1,2019 Mercedes-Benz CLA
+,Los Angeles,CA,91605,,Gardena,CA,90248,33,130,standard,520AUDA41,Delivered,05/20/2026,0,1,2017 Audi A4 Sedan
+,Fremont,CA,94538,,Gardena,CA,90248,366,400,standard,520DODDU2,Delivered,05/20/2026,0,1,2021 Dodge Durango
+,Medford,NY,11763,,Irvington,NJ,07111,80,225,standard,520DODDU1,Delivered,05/20/2026,0,1,2023 Dodge Durango
+,Justin,TX,76247,,La Porte,TX,77571,307,200,standard,520TESMO1,Picked-Up,05/20/2026,0,1,2022 Tesla Model 3
+,Anaheim,CA,92806,,Gardena,CA,90248,26,130,standard,520MERSL1,Delivered,05/20/2026,0,1,2019 Mercedes-Benz SLC
+,Riverview,FL,33578,,Rincon,GA,31326,342,250,standard,519AUDA51,Delivered,05/20/2026,0,1,2019 Audi A5 Sportback
+,Wichita,KS,67216,,La Porte,TX,77571,619,500,standard,520PORPA1,Delivered,05/20/2026,0,1,2018 Porsche Panamera
+,Winder,GA,30680,,Rincon,GA,31326,212,235,standard,519VOLXC1,Delivered,05/19/2026,0,1,2025 Volvo XC60
+,Rock Tavern,NY,12575,,Irvington,NJ,07111,63,180,standard,519AUDQ51,Delivered,05/19/2026,0,1,2023 Audi Q5
+,Albany,NY,12205,,Irvington,NJ,07111,155,250,standard,519HYUKO1,Delivered,05/19/2026,0,1,2026 Hyundai Kona
+,Fort Wayne,IN,46806,,Irvington,NJ,07111,642,520,standard,519MERCL1,Delivered,05/19/2026,0,1,2014 Mercedes-Benz CLA
+,Ellwood City,PA,16117,,Irvington,NJ,07111,383,400,standard,515HYUTU1,Delivered,05/18/2026,0,1,2020 Hyundai Tucson
+,Medford,NY,11763,,Irvington,NJ,07111,80,200,standard,518MERA21,Delivered,05/18/2026,0,1,2022 Mercedes-Benz A-Class
+,Hayward,CA,94545,,Gardena,CA,90248,380,350,standard,515TESMO1,Delivered,05/18/2026,0,1,2023 Tesla Model 3
+,Louisville,KY,40272,,Rincon,GA,31326,658,485,standard,518JEEGR1,Delivered,05/18/2026,0,1,2021 Jeep Grand Cherokee L
+,Perris,CA,92571,,Gardena,CA,90248,76,175,standard,515MERC31,Delivered,05/18/2026,0,1,2021 Mercedes-Benz C-Class Sedan
+,Fontana,CA,92335,,Gardena,CA,90248,59,150,standard,518TOYGR1,Delivered,05/18/2026,0,1,2020 Toyota GR Supra
+,Fort Wayne,IN,46803,,Irvington,NJ,07111,638,515,standard,514HYUVE1,Delivered,05/18/2026,0,1,2013 Hyundai Veloster
+,Sun Valley,CA,91352,,Gardena,CA,90248,31,150,standard,518AUDET1,Delivered,05/18/2026,0,1,2024 Audi e-tron GT
+,East Granby,CT,06026,,Irvington,NJ,07111,154,270,standard,515JAGFP1,Delivered,05/18/2026,0,1,2019 Jaguar F-PACE
+,Salem,NH,03079,,Irvington,NJ,07111,254,325,standard,515VOLXC1,Delivered,05/16/2026,0,1,2019 Volvo XC60
+,San Diego,CA,92154,,Gardena,CA,90248,137,200,standard,515HYUGE1,Dispatched,05/15/2026,0,1,2015 Hyundai Genesis Coupe
+,South Bend,IN,46619,,Irvington,NJ,07111,700,505,standard,515AUDA41,Delivered,05/15/2026,0,1,2017 Audi A4 Sedan
+,Kansas City,KS,66111,,La Porte,TX,77571,805,485,standard,515VOLS61,Picked-Up,05/15/2026,0,1,2018 Volvo S60
+,Assonet,MA,02702,,Irvington,NJ,07111,228,300,standard,515BMW431,Delivered,05/15/2026,0,1,2018 BMW 4 Series Gran Coupe
+,Harleyville,SC,29448,,Rincon,GA,31326,108,150,standard,515KIAST1,Delivered,05/15/2026,0,1,2021 Kia Stinger
+,Marlboro,NY,12542,,Irvington,NJ,07111,74,200,standard,515ALFST1,Dispatched,05/15/2026,0,1,2018 Alfa Romeo Stelvio
+,Dyer,IN,46311,,Irvington,NJ,07111,767,505,standard,515ASTDB1,Dispatched,05/15/2026,0,1,2017 Aston Martin DB11
+,Newburgh,NY,12550,,Irvington,NJ,07111,66,170,standard,515AUDA51,Delivered,05/15/2026,0,1,2023 Audi A5 Sportback
+,Antelope,CA,95843,,Gardena,CA,90248,413,350,standard,513LEXIS1,Delivered,05/15/2026,0,1,2014 Lexus IS
+,East Taunton,MA,02718,,Irvington,NJ,07111,233,305,standard,514VOLXC1,Delivered,05/14/2026,0,1,2015 Volvo XC60
+,Flint,MI,48507,,Irvington,NJ,07111,656,600,standard,514JEEGR1,Delivered,05/14/2026,0,1,2018 Jeep Grand Cherokee
+,Buffalo,NY,14207,,Irvington,NJ,07111,392,375,standard,514FORES1,Delivered,05/14/2026,0,1,2023 Ford Escape
+,Fontana,CA,92335,,Gardena,CA,90248,59,175,standard,514DODDU1,Delivered,05/14/2026,0,1,2021 Dodge Durango
+,Phoenix,AZ,85041,,Gardena,CA,90248,380,300,standard,514MERCL1,Delivered,05/14/2026,0,1,2026 Mercedes-Benz CLE
+,Phoenix,AZ,85041,,Gardena,CA,90248,380,300,standard,513VOLXC1,Delivered,05/14/2026,0,1,2015 Volvo XC60
+,Charlotte,NC,28206,,Rincon,GA,31326,256,275,standard,512MERS51,Delivered,05/14/2026,0,1,2022 Mercedes-Benz S-Class Sedan
+,Clayton,NC,27520,,Rincon,GA,31326,316,240,standard,513FORMU1,Delivered,05/13/2026,0,1,2014 Ford Mustang
+,Lumberton,NC,28360,,Rincon,GA,31326,232,220,standard,513AUDA42,Delivered,05/13/2026,0,1,2021 Audi A4 Sedan
+,Wichita,KS,67216,,La Porte,TX,77571,619,465,standard,513AUDQ52,Delivered,05/13/2026,0,1,2014 Audi Q5
+,Commerce City,CO,80022,,La Porte,TX,77571,1036,510,standard,513FORED1,Delivered,05/13/2026,0,1,2018 Ford Edge
+,East Dundee,IL,60118,,Irvington,NJ,07111,829,550,standard,513JEEGR1,Delivered,05/13/2026,0,1,2017 Jeep Grand Cherokee
+,Dyer,IN,46311,,Irvington,NJ,07111,767,600,standard,512MERGL1,Dispatched,05/13/2026,0,1,2022 Mercedes-Benz GLS
+,Columbus,OH,43207,,Irvington,NJ,07111,521,450,standard,511CHRPA1,Delivered,05/13/2026,0,1,2018 Chrysler Pacifica
+,East Dundee,IL,60118,,Irvington,NJ,07111,829,550,standard,512VOLTI1,Delivered,05/13/2026,0,1,2023 Volkswagen Tiguan
+,Sandston,VA,23150,,Irvington,NJ,07111,336,325,standard,513FORES1,Delivered,05/13/2026,0,1,2024 Ford Escape
+,Culpeper,VA,22701,,Irvington,NJ,07111,288,325,standard,513HYUKO1,Delivered,05/13/2026,0,1,2025 Hyundai Kona
+,Phoenix,AZ,85041,,Gardena,CA,90248,380,300,standard,513AUDA41,Delivered,05/13/2026,0,1,2021 Audi A4 Sedan
+,Ashland,VA,23005,,Irvington,NJ,07111,314,300,standard,512BMW431,Delivered,05/12/2026,0,1,2019 BMW 4 Series Gran Coupe
+,Lorain,OH,44053,,Irvington,NJ,07111,473,450,standard,512JEECO1,Delivered,05/12/2026,0,1,2024 Jeep Compass
+,New Braunfels,TX,78130,,La Porte,TX,77571,197,240,standard,508AUDS51,Delivered,05/12/2026,0,1,2019 Audi S5 Sportback
+,Greenwood,NE,68366,,Irvington,NJ,07111,1269,650,standard,511TOYSI,Delivered,05/12/2026,0,1,2017 Toyota Sienna
+,Lennox,SD,57039,,La Porte,TX,77571,1089,900,standard,505MERC31,Delivered,05/12/2026,0,1,2016 Mercedes-Benz C-Class Sedan
+,Concord,NC,28025,,Rincon,GA,31326,281,265,standard,508JEEWR1,Delivered,05/11/2026,0,1,2018 Jeep Wrangler JK Unlimited
+,Columbus,OH,43223,,Irvington,NJ,07111,524,475,standard,511JEECO1,Dispatched,05/11/2026,0,1,2019 Jeep Compass
+,New Britain,CT,06051,,Irvington,NJ,07111,132,220,standard,511AUDA41,Delivered,05/11/2026,0,1,2020 Audi A4 allroad
+,Latimore Township,PA,17372,,Irvington,NJ,07111,181,400,standard,507RAM251,Delivered,05/11/2026,0,1,2022 Ram 2500
+,Fort Wayne,IN,46803,,Irvington,NJ,07111,638,560,standard,506JEECO1,Delivered,05/11/2026,0,1,2024 Jeep Compass
+,Fort Wayne,IN,46806,,Irvington,NJ,07111,642,560,standard,506BMWX52,Delivered,05/11/2026,0,1,2015 BMW X5 Sports Activity Vehicle
