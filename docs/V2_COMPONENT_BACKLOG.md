@@ -30,7 +30,7 @@ ritual; none of these may ride inside an unrelated design wave.
 | Em dashes pervasive in native intl copy | all 9 intl LPs (RU/PL/UA) + processTimeline.json EN step 2 | W6 native-copy LOG: needs language-capable copy pass (NOT a punctuation sweep) |
 | Emoji icons in RU data arrays | RussiaHome services (5), RussiaShipMyCar why-Y7 (3) | colorful glyphs on restrained V2 board; candidate for hairline SVG marks |
 | ~~Stat-numeral idiom divergence~~ | intl homes | CLOSED W6-T05a review ruling: ink/white everywhere |
-| Fee model fact fork | portal ind_2026 = max($75,10%) vs CLAUDE.md "$40-60" | docs reconciliation, no UI change |
+| ~~Fee model fact fork~~ | CLAUDE.md | CLOSED: canonical model recorded (dealers/exporters flat $50; individuals max($75,10%), ind_2026) per Sergii ruling |
 
 ## Deferred functional work
 
@@ -50,7 +50,7 @@ ritual; none of these may ride inside an unrelated design wave.
 ## Remaining open (post-CLEANUP target state)
 
 W7 PORTAL (final wave) · multipliers/V1-loads from Sergii's CD export (T13/W2-T12) ·
-fee-model doc fork (awaiting ruling) · W6 native-copy LOGs (language review) ·
+W6 native-copy LOGs (language review) ·
 new LOGs above. Pre-existing stragglers still open and outside that list, flagged
 honestly: QuoteForm internal trust-row (component mini-wave), RU emoji icon arrays
 (intl copy pass), duplicate "Transparent Pricing" (ranking review), Home Advantages

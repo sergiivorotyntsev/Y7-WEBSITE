@@ -43,7 +43,7 @@ Specifically forbidden: gradient text (anti-reference #4), glassmorphism, neon a
 
 ## Operational facts (so AI agents stop guessing)
 
-- Pricing model: customer pays Y7 only a flat dispatch fee per load (`$40-60` depending on customer type). Carrier rate is paid separately, either COD at delivery or via Y7 with a signed dispatch sheet showing the carrier's actual rate. **No spread, no hidden markup.**
+- Pricing model: customer pays Y7 only a dispatch fee per load. Y7 dispatch fee: dealers/exporters = flat $50 per vehicle; individuals = max($75, 10% of carrier price) (ind_2026 model, matches the portal). Carrier rate is paid separately, either COD at delivery or via Y7 with a signed dispatch sheet showing the carrier's actual rate. **No spread, no hidden markup.**
 - Always "Licensed & Bonded FMCSA Broker", never "Licensed & Insured" (brokers don't carry cargo insurance, carriers do).
 - Sister company: DaytonaCargo LLC (Dover, DE) handles the ocean freight leg for exporters wanting both legs from one trusted source.
 - Audience pages: `/ship-my-car` (personal), `/dealers` (B2B), `/exporters` (PL/RU/UA international).
