@@ -1,0 +1,29 @@
+{
+  "title": "Open vs Enclosed Transport",
+  "premiumBadge": "Premium",
+  "open": {
+    "title": "Open Transport",
+    "features": [
+      "Standard multi-car carrier",
+      "7-10 vehicle capacity",
+      "Weather exposed during transit",
+      "Most popular option (85% of shipments)",
+      "Best for daily drivers and standard vehicles"
+    ],
+    "price": "Most affordable option",
+    "cta": "Get Open Quote"
+  },
+  "enclosed": {
+    "title": "Enclosed Transport",
+    "features": [
+      "Fully enclosed trailer",
+      "2-6 vehicle capacity",
+      "Complete protection from elements",
+      "Premium white-glove service",
+      "Best for luxury, classic, and sports cars"
+    ],
+    "price": "Premium protection",
+    "cta": "Get Enclosed Quote"
+  },
+  "disclaimer": "Actual pricing varies by route, vehicle size, and season."
+}

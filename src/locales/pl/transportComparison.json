@@ -1,0 +1,29 @@
+{
+  "title": "Transport otwarty czy zamknięty",
+  "premiumBadge": "Premium",
+  "open": {
+    "title": "Transport otwarty",
+    "features": [
+      "Standardowa wielostanowiskowa laweta",
+      "Pojemność 7-10 pojazdów",
+      "Narażony na warunki pogodowe w trasie",
+      "Najpopularniejsza opcja (85% wysyłek)",
+      "Najlepszy dla aut codziennych i standardowych"
+    ],
+    "price": "Najtańsza opcja",
+    "cta": "Wycena transportu otwartego"
+  },
+  "enclosed": {
+    "title": "Transport zamknięty",
+    "features": [
+      "W pełni zabudowana naczepa",
+      "Pojemność 2-6 pojazdów",
+      "Pełna ochrona przed czynnikami zewnętrznymi",
+      "Usługa premium white-glove",
+      "Najlepszy dla aut luksusowych, klasycznych i sportowych"
+    ],
+    "price": "Ochrona premium",
+    "cta": "Wycena transportu zamkniętego"
+  },
+  "disclaimer": "Rzeczywista cena zależy od trasy, rozmiaru pojazdu i sezonu."
+}

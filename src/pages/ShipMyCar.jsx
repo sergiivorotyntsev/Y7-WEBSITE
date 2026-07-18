@@ -291,7 +291,7 @@ export default function ShipMyCar() {
           <div className={styles.crosslinksRow}>
             <Link to="/quote" className={`${v2t.bodyLinkOnPaper} ${styles.crosslink}`}>{t('crosslinks.quote')} &rarr;</Link>
             <Link to="/track" className={`${v2t.bodyLinkOnPaper} ${styles.crosslink}`}>{t('crosslinks.track')} &rarr;</Link>
-            <Link to="/copart-shipping" className={`${v2t.bodyLinkOnPaper} ${styles.crosslink}`}>Buying at auction? Copart guide &rarr;</Link>
+            <Link to="/copart-shipping" className={`${v2t.bodyLinkOnPaper} ${styles.crosslink}`}>{t('copartGuideLink')} &rarr;</Link>
             <Link to="/faq" className={`${v2t.bodyLinkOnPaper} ${styles.crosslink}`}>{t('crosslinks.faq')} &rarr;</Link>
           </div>
         </div>

@@ -41,5 +41,135 @@
       "desc": "Wysyłasz kilka samochodów? Koordynujemy transport grupowy ze zniżkami ilościowymi i jednym punktem dyspozytorskim."
     }
   ],
-  "gridHeading": "Co oferujemy"
+  "gridHeading": "Co oferujemy",
+  "cards": {
+    "services": [
+      {
+        "title": "Przewóz Twojego auta",
+        "desc": "Transport od drzwi do drzwi dla klientów prywatnych. Laweta otwarta lub zabudowana, aktualizacje statusu na każdym etapie."
+      },
+      {
+        "title": "Dla dealerów",
+        "desc": "Outsourcing dyspozycji dla dealerów: odbiory z aukcji, wymiany między dealerami, stała opłata za pojazd, cotygodniowe faktury."
+      },
+      {
+        "title": "Dla eksporterów",
+        "desc": "Logistyka od aukcji do portu: gate pass, zdawanie do magazynów i obsługa przewoźników we wszystkich sześciu głównych portach eksportowych."
+      },
+      {
+        "title": "Koszt transportu auta",
+        "desc": "Poznaj czynniki cenowe i otrzymaj przejrzystą wycenę bez ukrytych opłat."
+      },
+      {
+        "title": "Transport w zabudowanej lawecie",
+        "desc": "Transport kryty premium dla aut luksusowych, klasycznych i drogich."
+      },
+      {
+        "title": "Transport z aukcji",
+        "desc": "Odbiór z Copart, IAAI, Manheim i niezależnych aukcji w całym kraju."
+      },
+      {
+        "title": "Wysyłka z Copart",
+        "desc": "Szybki odbiór ze wszystkich 200+ placówek Copart. Koordynacja gate pass w cenie."
+      },
+      {
+        "title": "Transport z IAA",
+        "desc": "Transport pojazdów z placów aukcyjnych IAA. Salvage i auta z czystym tytułem."
+      },
+      {
+        "title": "Transport z Manheim",
+        "desc": "Wysyłka aut z aukcji dealerskiej: ceny za wolumen i stałe harmonogramy."
+      },
+      {
+        "title": "Transport do portu",
+        "desc": "Dostarczamy pojazdy do każdego dużego portu eksportowego USA: Newark, Houston, Savannah, LA, Baltimore, Jacksonville."
+      },
+      {
+        "title": "Transport dla dealerów",
+        "desc": "Transport B2B dla dealerów. Ceny za wolumen, odbiór z aukcji, wymiany między dealerami."
+      },
+      {
+        "title": "Transport otwartą lawetą",
+        "desc": "Standardowa wielostanowiskowa laweta: najtańszy sposób na przewóz auta."
+      },
+      {
+        "title": "Salvage i niejeżdżące",
+        "desc": "Transport aut salvage, niesprawnych i niejeżdżących ze specjalistycznym sprzętem."
+      },
+      {
+        "title": "Transport między stanami",
+        "desc": "Międzystanowy transport aut między wszystkimi 50 stanami USA. Licencjonowany broker FMCSA."
+      },
+      {
+        "title": "Z aukcji do portu",
+        "desc": "Bezpośredni ciąg od placów aukcyjnych USA do portów eksportowych. Od gate pass po dostawę do portu."
+      }
+    ],
+    "ev": [
+      {
+        "title": "Transport Tesli",
+        "desc": "Specjalistyczny transport dla Model S, 3, X, Y i Cybertrucka. Zawieszenie pneumatyczne, tryb transportowy, doświadczenie z nierdzewną stalą."
+      },
+      {
+        "title": "Transport aut elektrycznych",
+        "desc": "Wysyłka EV w całym kraju: Tesla, Rivian, Lucid, Ford Lightning, Porsche Taycan, Hummer EV i inne."
+      },
+      {
+        "title": "Transport Cybertrucka",
+        "desc": "Wzmocnione lawety dla Cybertrucka o wadze 6 600 funtów. Bezpieczna obsługa nierdzewnej stali, dostępne opcje zabudowane."
+      },
+      {
+        "title": "Dostawa EV do portu",
+        "desc": "Wysyłka aut elektrycznych z aukcji i od dealerów USA do portów eksportowych. Zgodność z wymogami dla baterii, koordynacja z Twoim spedytorem przy wysyłce międzynarodowej."
+      }
+    ],
+    "locations": [
+      {
+        "title": "Transport aut Newton, MA",
+        "desc": "Nasza baza. Lokalna obsługa brokerska dla wszystkich 13 dzielnic Newton oraz Wellesley, Brookline, Waltham, Watertown, Needham."
+      },
+      {
+        "title": "Transport aut w Bostonie",
+        "desc": "Odbiór i dostawa w Wielkim Bostonie. Cambridge, Somerville, Back Bay, Dorchester, Southie: przewoźnicy, którzy znają miasto."
+      },
+      {
+        "title": "Transport aut w Massachusetts",
+        "desc": "Pokrycie całego stanu. Metro Boston, zachodni Massachusetts, Cape Cod, MetroWest. Odbiory z Copart Lowell i IAAI East Taunton."
+      },
+      {
+        "title": "Transport aut na Florydzie",
+        "desc": "Kierunek nr 1 w Ameryce. Miami, Tampa, Orlando, Jacksonville. Doświadczenie w korytarzu snowbirdów i dostawy do portów."
+      },
+      {
+        "title": "Transport aut w New Jersey",
+        "desc": "Eksportowa brama Port Newark. Gęsty rynek dealerski. Duża częstotliwość przewoźników na Route 287, Turnpike i Garden State Parkway."
+      },
+      {
+        "title": "Transport aut w Teksasie",
+        "desc": "Houston, Dallas, Austin, San Antonio. Koordynacja eksportu przez port Houston. Odbiory z Copart Houston i IAAI Dallas."
+      }
+    ],
+    "routes": [
+      {
+        "title": "Massachusetts → Floryda",
+        "desc": "Korytarz snowbirdów nr 1. $750–$1,050 laweta otwarta, 5–7 dni w trasie. Szczyt sezonu: październik–styczeń."
+      },
+      {
+        "title": "New Jersey → Floryda",
+        "desc": "Wymiany dealerskie i ruch sezonowy. Zakres $600–$900, 4–6 dni w trasie. Korytarz o dużym wolumenie."
+      },
+      {
+        "title": "Teksas → Port Newark",
+        "desc": "Długi korytarz eksportowy. Houston i Dallas do Port Newark, gdzie Twój spedytor przejmuje część międzynarodową."
+      },
+      {
+        "title": "Chicago → Port Newark",
+        "desc": "Linia eksportowa Środkowego Zachodu. Ładunki łączone: wymiany dealerskie i aukcja-port."
+      },
+      {
+        "title": "Aukcja → Port",
+        "desc": "Zakup na Copart i IAAI → dostawa do portu eksportowego. Koordynacja gate pass, laweta specjalna dla aut niejeżdżących."
+      }
+    ]
+  }
 }

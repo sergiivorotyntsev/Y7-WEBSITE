@@ -41,5 +41,135 @@
       "desc": "Shipping multiple vehicles? We coordinate bulk transport with volume discounts and single-point dispatch management."
     }
   ],
-  "gridHeading": "What We Offer"
+  "gridHeading": "What We Offer",
+  "cards": {
+    "services": [
+      {
+        "title": "Ship My Car",
+        "desc": "Door-to-door auto transport for individuals. Open or enclosed carriers, status updates at every stage."
+      },
+      {
+        "title": "For Dealers",
+        "desc": "Outsourced dispatch for dealerships: auction pickups, dealer trades, flat per-vehicle fee, weekly invoicing."
+      },
+      {
+        "title": "For Exporters",
+        "desc": "Auction-to-port logistics: gate passes, warehouse drops, and carrier management at all six major export ports."
+      },
+      {
+        "title": "Car Shipping Cost",
+        "desc": "Understand pricing factors and get a transparent quote with no hidden fees."
+      },
+      {
+        "title": "Enclosed Car Shipping",
+        "desc": "Premium covered transport for luxury, classic, and high-value vehicles."
+      },
+      {
+        "title": "Auction Car Shipping",
+        "desc": "Pickup from Copart, IAAI, Manheim, and independent auctions nationwide."
+      },
+      {
+        "title": "Copart Shipping",
+        "desc": "Fast pickup from all 200+ Copart locations. Gate pass coordination included."
+      },
+      {
+        "title": "IAA Transport",
+        "desc": "Vehicle transport from IAA auction yards. Salvage and clean title vehicles."
+      },
+      {
+        "title": "Manheim Transport",
+        "desc": "Dealer auction vehicle shipping with volume pricing and recurring scheduling."
+      },
+      {
+        "title": "Door-to-Port Transport",
+        "desc": "Deliver vehicles to any major US export port — Newark, Houston, Savannah, LA, Baltimore, Jacksonville."
+      },
+      {
+        "title": "Dealer Auto Transport",
+        "desc": "B2B transport for dealerships. Volume pricing, auction pickup, dealer trades."
+      },
+      {
+        "title": "Open Car Shipping",
+        "desc": "Standard multi-car hauler transport — the most affordable way to ship your vehicle."
+      },
+      {
+        "title": "Salvage & Non-Running",
+        "desc": "Transport for salvage, inoperable, and non-running vehicles with specialized equipment."
+      },
+      {
+        "title": "State-to-State Shipping",
+        "desc": "Interstate auto transport between all 50 US states. FMCSA-licensed broker."
+      },
+      {
+        "title": "Auction to Port",
+        "desc": "Direct pipeline from US auction yards to export ports. Gate pass to port delivery."
+      }
+    ],
+    "ev": [
+      {
+        "title": "Tesla Shipping",
+        "desc": "Specialized transport for Model S, 3, X, Y, and Cybertruck. Air suspension, transport mode, stainless steel handling expertise."
+      },
+      {
+        "title": "Electric Vehicle Transport",
+        "desc": "Nationwide EV shipping for Tesla, Rivian, Lucid, Ford Lightning, Porsche Taycan, Hummer EV, and more."
+      },
+      {
+        "title": "Cybertruck Shipping",
+        "desc": "Heavy-duty carriers for the 6,600 lb Cybertruck. Stainless steel safe handling, enclosed options available."
+      },
+      {
+        "title": "EV Port Delivery",
+        "desc": "Ship EVs from US auctions and dealers to export ports. Battery safety compliance, coordination with your freight forwarder for international shipping."
+      }
+    ],
+    "locations": [
+      {
+        "title": "Newton, MA Auto Transport",
+        "desc": "Our home base. Local broker service for all 13 Newton villages plus Wellesley, Brookline, Waltham, Watertown, Needham."
+      },
+      {
+        "title": "Boston Car Shipping",
+        "desc": "Greater Boston pickup and delivery. Cambridge, Somerville, Back Bay, Dorchester, Southie — carriers who know the city."
+      },
+      {
+        "title": "Massachusetts Car Shipping",
+        "desc": "Statewide coverage. Boston metro, Western MA, Cape Cod, MetroWest. Copart Lowell and IAAI East Taunton pickups."
+      },
+      {
+        "title": "Florida Car Shipping",
+        "desc": "America’s #1 destination. Miami, Tampa, Orlando, Jacksonville. Snowbird corridor expertise and port delivery."
+      },
+      {
+        "title": "New Jersey Auto Transport",
+        "desc": "Port Newark export gateway. Dealer-dense market. Route 287, Turnpike, Garden State Parkway carrier frequency."
+      },
+      {
+        "title": "Texas Auto Transport",
+        "desc": "Houston, Dallas, Austin, San Antonio. Port of Houston export coordination. Copart Houston + IAAI Dallas pickups."
+      }
+    ],
+    "routes": [
+      {
+        "title": "Massachusetts → Florida",
+        "desc": "The #1 snowbird corridor. $750–$1,050 open trailer, 5–7 days transit. Peak season Oct–Jan."
+      },
+      {
+        "title": "New Jersey → Florida",
+        "desc": "Dealer trades and snowbird traffic. $600–$900 range, 4–6 days transit. High volume corridor."
+      },
+      {
+        "title": "Texas → Port Newark",
+        "desc": "Long-haul export corridor. Houston and Dallas to Port Newark, where your freight forwarder takes over for international shipping."
+      },
+      {
+        "title": "Chicago → Port Newark",
+        "desc": "Midwest export lane. Dealer trade and auction-to-port combined loads."
+      },
+      {
+        "title": "Auction → Port",
+        "desc": "Copart and IAAI purchase → export port delivery. Gate pass coordination, flatbed for inoperables."
+      }
+    ]
+  }
 }
