@@ -57,9 +57,9 @@
    900px the photo is hidden entirely (mobile degradation: contrast + LCP
    protection; the hero reverts to pure V2 typography). */
 .heroPhoto img {
-  right: -2%;
-  bottom: -4%;
-  width: min(52vw, 820px);
+  right: -3%;
+  bottom: 0;
+  width: min(58vw, 940px);
 }
 
 @media (min-width: 901px) {
@@ -143,3 +143,13 @@
   text-align: center;
 }
 
+
+/* SPRINT-V21 ASSET2: v2 asset is 1625x704 (wider/lower than v1) — retuned
+   crop; arc behind the car crown, upper right. */
+.heroPhoto .heroArc {
+  right: 2%;
+  bottom: 12%;
+  width: min(34vw, 540px);
+  height: auto;
+  aspect-ratio: 1;
+}

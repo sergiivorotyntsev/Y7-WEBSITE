@@ -136,3 +136,11 @@
     right: -12%;
   }
 }
+
+/* SPRINT-V21 ASSET2: the banner arc, in code (HeroArc.jsx). Absolute layer
+   inside photoEmergence, painted behind the car by DOM order; pages position
+   and scale it with their own class. Counts as ONE red accent per the
+   Signal Budget accounting recorded at the gates. */
+.heroArc {
+  position: absolute;
+}

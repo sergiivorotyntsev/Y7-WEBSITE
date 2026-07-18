@@ -18,6 +18,7 @@ import v2c from '../styles/v2/cards.module.css';
 import v2a from '../styles/v2/accents.module.css';
 import v2f from '../styles/v2/forms.module.css';
 import v2h from '../styles/v2/hero.module.css';
+import HeroArc from '../components/HeroArc';
 
 // DESIGN-V2-W4-T02: Dispatch Board restyle. SEO contract frozen: every heading
 // text/level, i18n keys, schema call sites, EntityTldr position (first element
@@ -153,10 +154,11 @@ export default function Exporters() {
             more cropped placement than home so the program CTA row stays
             clear). Decorative, aria-hidden, CLS 0. */}
         <div className={`${v2h.photoEmergence} ${styles.heroPhoto}`} aria-hidden="true">
+          <HeroArc className={styles.heroArc} />
           <picture>
             <source srcSet="/images/hero-car.avif" type="image/avif" />
             <source srcSet="/images/hero-car.webp" type="image/webp" />
-            <img src="/images/hero-car.webp" alt="" width="1560" height="900" loading="eager" decoding="async" />
+            <img src="/images/hero-car.webp" alt="" width="1625" height="704" loading="eager" decoding="async" />
           </picture>
         </div>
         <div className={`${v2s.inner} ${styles.heroLayout}`}>

@@ -497,13 +497,21 @@
 /* SPRINT-V21 W-CONV: hero photo (tighter low-right crop than home; hidden
    below 900px — pure V2 typography degradation, per the approved pattern). */
 .heroPhoto img {
-  right: -6%;
-  bottom: -10%;
-  width: min(44vw, 700px);
+  right: -7%;
+  bottom: -4%;
+  width: min(50vw, 800px);
 }
 @media (min-width: 901px) {
   .heroText { max-width: 60%; }
 }
 @media (max-width: 900px) {
   .heroPhoto { display: none; }
+}
+
+/* ASSET2 retune + arc. */
+.heroPhoto .heroArc {
+  right: -2%;
+  bottom: -6%;
+  width: min(28vw, 430px);
+  aspect-ratio: 1;
 }
