@@ -5,8 +5,10 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
 import { useAuth } from '../../hooks/useAuth';
-import { colors, button as btnStyles } from '../../theme';
-import { apiDetail, cardStyle, coJson } from './coShared';
+import { colors } from '../../theme';
+import pp from '../../styles/v2/portal.module.css';
+import v2b from '../../styles/v2/buttons.module.css';
+import { apiDetail, coJson } from './coShared';
 
 export default function CoStart() {
   const navigate = useNavigate();
@@ -36,19 +38,19 @@ export default function CoStart() {
     })();
   }, [loading, user, token, navigate]);
 
-  const shell = (children) => (
-    <div style={{ maxWidth: '640px', margin: '0 auto', padding: '60px 24px 80px' }}>
+  const shell = (children, box = pp.card) => (
+    <div className={`${pp.shell} ${pp.measureNarrow}`}>
       <PageMeta title="Certificate of Origin — Y7 Portal" path="/portal/co/start" noindex />
-      <div style={{ ...cardStyle, padding: 32 }}>{children}</div>
+      <div className={box} style={box === pp.card ? { padding: 32 } : undefined}>{children}</div>
     </div>
   );
 
   if (!token) {
     return shell(
       <>
-        <h1 style={{ fontSize: 22, marginTop: 0 }}>Certificate of Origin</h1>
+        <h1 className={pp.pageTitle}>Certificate of Origin</h1>
         <p style={{ fontSize: 14 }}>This link is missing its token.</p>
-        <Link to="/portal/co" style={{ ...btnStyles.accent, display: 'inline-block', textDecoration: 'none' }}>
+        <Link to="/portal/co" className={v2b.cta}>
           Go to CO requests
         </Link>
       </>,
@@ -56,21 +58,21 @@ export default function CoStart() {
   }
 
   if (loading) {
-    return shell(<p style={{ margin: 0, color: '#6b6b68' }}>Checking your session…</p>);
+    return shell('Checking your session…', pp.notice);
   }
 
   if (!user) {
     const next = encodeURIComponent(`/portal/co/start?t=${token}`);
     return shell(
       <>
-        <h1 style={{ fontSize: 22, marginTop: 0 }}>Order your Certificate of Origin package</h1>
+        <h1 className={pp.pageTitle}>Order your Certificate of Origin package</h1>
         <p style={{ fontSize: 14 }}>
           Log in to your Y7 portal account and we will open the prefilled request
           for your vehicle.
         </p>
         <Link
           to={`/portal/login?next=${next}`}
-          style={{ ...btnStyles.accent, display: 'inline-block', textDecoration: 'none' }}
+          className={v2b.cta}
         >
           Log in to continue
         </Link>
@@ -81,12 +83,12 @@ export default function CoStart() {
   if (error === 'expired') {
     return shell(
       <>
-        <h1 style={{ fontSize: 22, marginTop: 0 }}>This link has expired</h1>
+        <h1 className={pp.pageTitle}>This link has expired</h1>
         <p style={{ fontSize: 14 }}>
           Email links are valid for 30 days. No problem — you can screen the VIN
           again in a few seconds.
         </p>
-        <Link to="/portal/co" style={{ ...btnStyles.accent, display: 'inline-block', textDecoration: 'none' }}>
+        <Link to="/portal/co" className={v2b.cta}>
           Start a new request
         </Link>
       </>,
@@ -96,7 +98,7 @@ export default function CoStart() {
   if (error === 'wrong_account') {
     return shell(
       <>
-        <h1 style={{ fontSize: 22, marginTop: 0 }}>This link belongs to a different account</h1>
+        <h1 className={pp.pageTitle}>This link belongs to a different account</h1>
         <p style={{ fontSize: 14 }}>
           You are logged in as a different customer than the one this vehicle belongs to.
           Log in with the account that received the email, or contact info@y7agency.com.
@@ -109,12 +111,12 @@ export default function CoStart() {
   if (error) {
     return shell(
       <>
-        <h1 style={{ fontSize: 22, marginTop: 0 }}>Could not open this link</h1>
-        <p style={{ fontSize: 14 }}>{error}</p>
+        <h1 className={pp.pageTitle}>Could not open this link</h1>
+        <div className={pp.errorBlock}>{error}</div>
         <Link to="/portal/co" style={{ color: colors.accent }}>Go to CO requests</Link>
       </>,
     );
   }
 
-  return shell(<p style={{ margin: 0, color: '#6b6b68' }}>Opening your request…</p>);
+  return shell('Opening your request…', pp.notice);
 }

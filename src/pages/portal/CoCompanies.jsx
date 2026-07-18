@@ -5,9 +5,11 @@ import PageMeta from '../../components/PageMeta';
 import Toast from '../../components/Toast';
 import { API_URL } from '../../config';
 import { authHeader, clearSessionOn401 } from '../../hooks/useAuth';
-import { colors, button as btnStyles } from '../../theme';
+import { colors } from '../../theme';
+import pp from '../../styles/v2/portal.module.css';
+import v2b from '../../styles/v2/buttons.module.css';
 import {
-  AUTH_STATUS_INFO, apiDetail, badgeStyle, cardStyle, coJson, coUpload,
+  AUTH_STATUS_INFO, apiDetail, chipClass, coJson, coUpload,
   fieldInput, fieldLabel, sectionTitle,
 } from './coShared';
 
@@ -36,29 +38,29 @@ export default function CoCompanies() {
   useEffect(() => { load(); }, [load]);
 
   return (
-    <div style={{ maxWidth: '900px', margin: '0 auto', padding: '40px 24px 80px' }}>
+    <div className={`${pp.shell} ${pp.measureMid}`}>
       <PageMeta title="My Companies — Certificate of Origin" path="/portal/co/companies" />
       {toast && <Toast message={toast.message} type={toast.type} onDismiss={() => setToast(null)} />}
 
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
-        <h1 style={{ fontSize: 26, margin: 0, color: colors.text }}>My Companies</h1>
-        <button style={btnStyles.accent} onClick={() => setEditing('new')}>Add company</button>
+        <h1 className={pp.pageTitle}>My Companies</h1>
+        <button className={v2b.ghostOnPaper} onClick={() => setEditing('new')}>Add company</button>
       </div>
-      <p style={{ color: '#6b6b68', fontSize: 14, marginTop: 4 }}>
+      <p className={pp.pageSub}>
         The exporter companies you buy and export under. Each company signs a one-time
         authorization letter so Y7 can file Certificate of Origin applications on its behalf.
         {' '}<Link to="/portal/co" style={{ color: colors.accent }}>Go to CO requests →</Link>
       </p>
 
       {companies === null ? (
-        <p style={{ color: '#6b6b68' }}>Loading…</p>
+        <p style={{ color: 'var(--v2-ink-muted, #5c5851)' }}>Loading…</p>
       ) : companies.length === 0 && editing === null ? (
-        <div style={{ ...cardStyle, textAlign: 'center', padding: 40 }}>
+        <div className={pp.card} style={{ textAlign: 'center', padding: 40 }}>
           <p style={{ margin: 0, fontSize: 15 }}>No companies yet.</p>
-          <p style={{ color: '#6b6b68', fontSize: 14 }}>
+          <p style={{ color: 'var(--v2-ink-muted, #5c5851)', fontSize: 14 }}>
             Add the company shown as the buyer on your auction invoices.
           </p>
-          <button style={btnStyles.accent} onClick={() => setEditing('new')}>Add your first company</button>
+          <button className={v2b.cta} onClick={() => setEditing('new')}>Add your first company</button>
         </div>
       ) : (
         companies.map((c) => (
@@ -138,22 +140,22 @@ function CompanyCard({ company, onEdit, reload, setToast }) {
   };
 
   return (
-    <div style={cardStyle}>
+    <div className={pp.card}>
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, flexWrap: 'wrap' }}>
         <strong style={{ fontSize: 16 }}>{company.legal_name}</strong>
-        <span style={badgeStyle(info)}>{info.label}</span>
+        <span className={chipClass(info.variant)}>{info.label}</span>
         <span style={{ flex: 1 }} />
         {approved ? (
-          <span style={{ fontSize: 12, color: '#6b6b68' }}>
+          <span style={{ fontSize: 12, color: 'var(--v2-ink-muted, #5c5851)' }}>
             Details locked — contact Y7 to change them
           </span>
         ) : (
-          <button style={{ ...btnStyles.secondary, padding: '6px 14px', fontSize: 13 }} onClick={onEdit}>
+          <button className={v2b.ghostOnPaper} style={{ padding: '6px 14px', fontSize: 13 }} onClick={onEdit}>
             Edit
           </button>
         )}
       </div>
-      <div style={{ fontSize: 13, color: '#6b6b68', marginTop: 4 }}>
+      <div style={{ fontSize: 13, color: 'var(--v2-ink-muted, #5c5851)', marginTop: 4 }}>
         {address || 'No address yet'}
         {company.tax_id_masked ? ` · EIN ${company.tax_id_masked}` : ''}
         {(company.signers || []).length > 0 &&
@@ -161,30 +163,32 @@ function CompanyCard({ company, onEdit, reload, setToast }) {
       </div>
 
       {company.authorization_reject_note && (
-        <div style={{ marginTop: 10, padding: '8px 12px', background: '#f8d7da', color: '#842029', borderRadius: 8, fontSize: 13 }}>
+        <div className={pp.errorBlock} style={{ marginTop: 10 }}>
           Y7 note: {company.authorization_reject_note} — fix and upload a new scan.
         </div>
       )}
 
       {!approved && (
-        <div style={{ marginTop: 14, paddingTop: 12, borderTop: `1px solid ${colors.border}` }}>
+        <div style={{ marginTop: 14, paddingTop: 12, borderTop: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))' }}>
           <div style={sectionTitle}>Authorization letter</div>
           {missing.length > 0 && (
-            <div style={{ fontSize: 13, color: '#664d03', background: '#fff3cd', borderRadius: 8, padding: '8px 12px', marginBottom: 10 }}>
+            <div className={pp.notice} style={{ marginBottom: 10 }}>
               Complete these before the letter can be generated:{' '}
               {missing.map((m) => FIELD_LABELS[m] || m).join(', ')}.
             </div>
           )}
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
             <button
-              style={{ ...btnStyles.secondary, opacity: missing.length || busy ? 0.5 : 1 }}
+              className={v2b.ghostOnPaper}
+              style={{ opacity: missing.length || busy ? 0.5 : 1 }}
               disabled={missing.length > 0 || busy}
               onClick={downloadLetter}
             >
               1. Download authorization letter
             </button>
             <button
-              style={{ ...btnStyles.secondary, opacity: busy ? 0.5 : 1 }}
+              className={v2b.ghostOnPaper}
+              style={{ opacity: busy ? 0.5 : 1 }}
               disabled={busy}
               onClick={() => fileRef.current?.click()}
             >
@@ -202,7 +206,7 @@ function CompanyCard({ company, onEdit, reload, setToast }) {
               }}
             />
           </div>
-          <p style={{ fontSize: 12, color: '#6b6b68', marginTop: 8, marginBottom: 0 }}>
+          <p style={{ fontSize: 12, color: 'var(--v2-ink-muted, #5c5851)', marginTop: 8, marginBottom: 0 }}>
             Print the letter, have the signer sign it, then upload a scan or photo.
             This is done once per company — after Y7 approves it, you never repeat this step.
           </p>
@@ -267,7 +271,7 @@ function CompanyForm({ company, onClose, onSaved, setToast }) {
   };
 
   return (
-    <div style={{ ...cardStyle, border: `2px solid ${colors.accent}` }}>
+    <div className={pp.card}>
       <div style={sectionTitle}>{company ? `Edit ${company.legal_name}` : 'New company'}</div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 12 }}>
         <label style={{ gridColumn: '1 / -1' }}>
@@ -295,7 +299,8 @@ function CompanyForm({ company, onClose, onSaved, setToast }) {
           <input style={{ ...fieldInput, flex: 2, minWidth: 140 }} value={s.signer_title} onChange={setSigner(i, 'signer_title')} placeholder="Title (President, Director…)" />
           {form.signers.length > 1 && (
             <button
-              style={{ ...btnStyles.secondary, padding: '6px 12px' }}
+              className={v2b.ghostOnPaper}
+              style={{ padding: '6px 12px' }}
               onClick={() => setForm({ ...form, signers: form.signers.filter((_, j) => j !== i) })}
             >
               ×
@@ -304,17 +309,18 @@ function CompanyForm({ company, onClose, onSaved, setToast }) {
         </div>
       ))}
       <button
-        style={{ ...btnStyles.secondary, padding: '6px 12px', fontSize: 13 }}
+        className={v2b.ghostOnPaper}
+        style={{ padding: '6px 12px', fontSize: 13 }}
         onClick={() => setForm({ ...form, signers: [...form.signers, { signer_name: '', signer_title: '' }] })}
       >
         + another signer
       </button>
 
       <div style={{ display: 'flex', gap: 10, marginTop: 18 }}>
-        <button style={{ ...btnStyles.accent, opacity: busy ? 0.6 : 1 }} disabled={busy} onClick={submit}>
+        <button className={v2b.cta} style={{ opacity: busy ? 0.6 : 1 }} disabled={busy} onClick={submit}>
           {busy ? 'Saving…' : 'Save company'}
         </button>
-        <button style={btnStyles.secondary} onClick={onClose}>Cancel</button>
+        <button className={v2b.ghostOnPaper} onClick={onClose}>Cancel</button>
       </div>
     </div>
   );

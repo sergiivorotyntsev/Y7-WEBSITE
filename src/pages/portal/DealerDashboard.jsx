@@ -118,8 +118,10 @@ function LoadRow({ order, expanded, onToggle }) {
             {u.label}
           </span>
           {/* PHASE4B-REPRICE: a revised quote needs the dealer's re-confirmation. */}
+          {/* C2 gate correction (owner): reprice IS action-required — the
+              order is blocked on the customer's accept/decline. */}
           {order.status === 'quoted' && order.requires_reprice && (
-            <div className={pp.chipSoft} style={{ marginTop: '4px' }}>
+            <div className={pp.chipRed} style={{ marginTop: '4px' }}>
               Needs your re-confirmation
             </div>
           )}

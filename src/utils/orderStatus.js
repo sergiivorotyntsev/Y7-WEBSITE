@@ -82,7 +82,8 @@ export const STATUS_CHIP_VARIANT = {
   [ORDER_STATUS.REJECTED]: 'red',
   [ORDER_STATUS.DECLINED]: 'red',
   [ORDER_STATUS.CANCELLED]: 'red',
-  [ORDER_STATUS.EXPIRED]: 'ink',
+  // C2 gate correction (owner): expired is action-adjacent, not neutral.
+  [ORDER_STATUS.EXPIRED]: 'soft',
 };
 
 export const CANCELLATION_REASON_LABELS = {

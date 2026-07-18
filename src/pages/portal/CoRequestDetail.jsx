@@ -3,9 +3,11 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
 import Toast from '../../components/Toast';
-import { colors, button as btnStyles } from '../../theme';
+import { colors } from '../../theme';
+import pp from '../../styles/v2/portal.module.css';
+import v2b from '../../styles/v2/buttons.module.css';
 import {
-  CO_STATUS_BADGE, TITLE_TYPES, apiDetail, badgeStyle, cardStyle, coJson,
+  CO_STATUS_BADGE, TITLE_TYPES, apiDetail, chipClass, coJson,
   coUpload, fieldInput, fieldLabel, fmtDate, sectionTitle,
 } from './coShared';
 
@@ -36,11 +38,11 @@ export default function CoRequestDetail() {
   useEffect(() => { load(); }, [load]);
 
   if (!co) {
-    return <div style={{ maxWidth: 900, margin: '0 auto', padding: 40, color: '#6b6b68' }}>Loading…</div>;
+    return <div className={`${pp.shell} ${pp.measureMid}`} style={{ color: 'var(--v2-ink-muted, #5c5851)' }}>Loading…</div>;
   }
   if (co.missing) {
     return (
-      <div style={{ maxWidth: 900, margin: '0 auto', padding: 40 }}>
+      <div className={`${pp.shell} ${pp.measureMid}`}>
         <p>Request not found. <Link to="/portal/co">Back to CO requests</Link></p>
       </div>
     );
@@ -69,23 +71,23 @@ export default function CoRequestDetail() {
   };
 
   return (
-    <div style={{ maxWidth: '900px', margin: '0 auto', padding: '40px 24px 80px' }}>
+    <div className={`${pp.shell} ${pp.measureMid}`}>
       <PageMeta title={`CO request #${id} — Y7 Portal`} path={`/portal/co/requests/${id}`} />
       {toast && <Toast message={toast.message} type={toast.type} onDismiss={() => setToast(null)} />}
 
-      <Link to="/portal/co" style={{ fontSize: 13, color: colors.accent }}>← All CO requests</Link>
+      <Link to="/portal/co" className={pp.backLink}>← All CO requests</Link>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, margin: '8px 0 4px', flexWrap: 'wrap' }}>
-        <h1 style={{ fontSize: 24, margin: 0, color: colors.text }}>CO request #{co.id}</h1>
-        <span style={badgeStyle(badge)}>{badge.label}</span>
+        <h1 className={pp.pageTitle}>CO request #{co.id}</h1>
+        <span className={chipClass(badge.variant)}>{badge.label}</span>
       </div>
-      <p style={{ color: '#6b6b68', fontSize: 14, marginTop: 0 }}>
-        <span style={{ fontFamily: 'monospace' }}>{co.vin}</span>
+      <p className={pp.pageSub} style={{ marginTop: 0 }}>
+        <span className={pp.mono}>{co.vin}</span>
         {vehicle ? ` · ${vehicle}` : ''}
         {co.plant_country ? ` · manufactured: ${co.plant_country}` : ''}
       </p>
 
       {co.customer_submitted_at && (
-        <div style={{ ...cardStyle, background: '#d1e7dd', border: 'none', color: '#0F6E56' }}>
+        <div className={pp.successBlock} style={{ marginBottom: 16 }}>
           Submitted to Y7 for review on {fmtDate(co.customer_submitted_at)}. We will take it
           from here — you can still update documents if something changes.
         </div>
@@ -96,7 +98,7 @@ export default function CoRequestDetail() {
       )}
 
       {co.status === 'ineligible' && (
-        <div style={{ ...cardStyle, background: '#f8d7da', border: 'none', color: '#842029' }}>
+        <div className={pp.errorBlock} style={{ marginBottom: 16 }}>
           {co.ineligible_reason === 'origin'
             ? `This vehicle was manufactured in ${co.plant_country || 'another country'} and does not qualify for a US Certificate of Origin.`
             : 'The confirmed title type does not allow a Certificate of Origin (a transferable vehicle title is required).'}
@@ -105,7 +107,7 @@ export default function CoRequestDetail() {
 
       {!terminal && (
         <>
-          <div style={cardStyle}>
+          <div className={pp.card}>
             <div style={sectionTitle}>Exporter company & signer</div>
             {companies.length === 0 ? (
               <p style={{ fontSize: 14, margin: 0 }}>
@@ -142,7 +144,7 @@ export default function CoRequestDetail() {
               </div>
             )}
             {exporter && exporter.authorization_status !== 'approved' && (
-              <p style={{ fontSize: 13, background: '#fff3cd', color: '#664d03', borderRadius: 8, padding: '8px 12px', marginTop: 10, marginBottom: 0 }}>
+              <p className={pp.notice} style={{ marginTop: 10, marginBottom: 0 }}>
                 {exporter.legal_name}'s authorization letter is not approved yet
                 ({(exporter.authorization_status || 'draft').replace(/_/g, ' ')}). You can submit once
                 the signed letter is uploaded — filing waits for Y7's approval.{' '}
@@ -158,10 +160,10 @@ export default function CoRequestDetail() {
       )}
 
       {(co.history || []).length > 0 && (
-        <div style={cardStyle}>
+        <div className={pp.card}>
           <div style={sectionTitle}>History</div>
           {co.history.map((h, i) => (
-            <div key={i} style={{ fontSize: 13, padding: '4px 0', color: '#6b6b68' }}>
+            <div key={i} className={pp.row} style={{ fontSize: 13, color: 'var(--v2-ink-muted, #5c5851)' }}>
               {fmtDate(h.created_at)} — {h.from_status ? `${h.from_status} → ` : ''}{h.to_status}
             </div>
           ))}
@@ -191,8 +193,8 @@ function TitleConfirm({ co, reload, setToast }) {
     }
   };
   return (
-    <div style={{ ...cardStyle, background: '#fff3cd', border: 'none' }}>
-      <strong style={{ color: '#664d03' }}>What title does this vehicle have?</strong>
+    <div className={pp.card}>
+      <strong>What title does this vehicle have?</strong>
       <p style={{ fontSize: 13, margin: '6px 0 10px' }}>
         Telling us the title type lets the eligibility check finish right away.
       </p>
@@ -203,7 +205,7 @@ function TitleConfirm({ co, reload, setToast }) {
             <option key={t.value} value={t.value}>{t.value.replace(/_/g, ' ')} — {t.hint}</option>
           ))}
         </select>
-        <button style={{ ...btnStyles.accent, opacity: !pick || busy ? 0.5 : 1 }} disabled={!pick || busy} onClick={confirm}>
+        <button className={v2b.ghostOnPaper} style={{ opacity: !pick || busy ? 0.5 : 1 }} disabled={!pick || busy} onClick={confirm}>
           Confirm
         </button>
       </div>
@@ -218,7 +220,7 @@ function ConsigneeCard({ co, recent, busy, patchParties }) {
   const current = co.parties?.consignee;
 
   return (
-    <div style={cardStyle}>
+    <div className={pp.card}>
       <div style={sectionTitle}>Consignee (EU buyer / importer)</div>
       {current ? (
         <p style={{ fontSize: 14, margin: 0 }}>
@@ -231,7 +233,7 @@ function ConsigneeCard({ co, recent, busy, patchParties }) {
           </button>
         </p>
       ) : (
-        <p style={{ fontSize: 14, margin: 0, color: '#6b6b68' }}>
+        <p style={{ fontSize: 14, margin: 0, color: 'var(--v2-ink-muted, #5c5851)' }}>
           Who receives the vehicle in the EU (appears on the invoice and B/L).
         </p>
       )}
@@ -245,7 +247,7 @@ function ConsigneeCard({ co, recent, busy, patchParties }) {
                 <button
                   key={p.id}
                   disabled={busy}
-                  style={{ margin: '0 6px 6px 0', padding: '4px 10px', borderRadius: 12, border: `1px solid ${colors.border}`, background: '#fff', cursor: 'pointer', fontSize: 13 }}
+                  style={{ margin: '0 6px 6px 0', padding: '4px 10px', borderRadius: 12, border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))', background: 'var(--v2-card-cream, #fffaf1)', cursor: 'pointer', fontSize: 13 }}
                   onClick={() => { patchParties({ consignee_party_id: p.id }, 'Consignee set'); setOpen(false); }}
                 >
                   {p.legal_name}
@@ -272,7 +274,8 @@ function ConsigneeCard({ co, recent, busy, patchParties }) {
             <label><span style={fieldLabel}>VAT / EORI number</span><input style={fieldInput} value={form.tax_id} onChange={set('tax_id')} /></label>
           </div>
           <button
-            style={{ ...btnStyles.secondary, marginTop: 10, opacity: busy ? 0.5 : 1 }}
+            className={v2b.ghostOnPaper}
+            style={{ marginTop: 10, opacity: busy ? 0.5 : 1 }}
             disabled={busy || !form.legal_name.trim() || form.country.trim().length !== 2}
             onClick={() => {
               patchParties({ consignee: { ...form, tax_id: form.tax_id || undefined } }, 'Consignee saved');
@@ -312,22 +315,23 @@ function SlotRow({ co, slot, reload, setToast }) {
   };
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 0', borderBottom: `1px solid ${colors.border}`, fontSize: 14 }}>
-      <span style={{ width: 14, textAlign: 'center' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 0', borderBottom: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))', fontSize: 14 }}>
+      <span style={{ width: 14, textAlign: 'center', color: slot.filled ? 'var(--success, #0f6e56)' : 'var(--v2-ink-muted, #5c5851)' }}>
         {slot.filled ? '✓' : slot.required ? '•' : '○'}
       </span>
       <span style={{ flex: 1 }}>
         {label}
-        {!slot.required && <span style={{ color: '#adb5bd' }}> (optional)</span>}
+        {!slot.required && <span style={{ color: 'var(--v2-ink-muted, #5c5851)' }}> (optional)</span>}
       </span>
       {slot.filled ? (
-        <span style={{ fontSize: 12, color: '#0F6E56' }}>
+        <span style={{ fontSize: 12, color: 'var(--success, #0f6e56)' }}>
           uploaded {slot.filled_at ? fmtDate(slot.filled_at) : ''}
         </span>
       ) : yours ? (
         <>
           <button
-            style={{ ...btnStyles.secondary, padding: '4px 12px', fontSize: 13, opacity: busy ? 0.5 : 1 }}
+            className={v2b.ghostOnPaper}
+            style={{ padding: '4px 12px', fontSize: 13, opacity: busy ? 0.5 : 1 }}
             disabled={busy}
             onClick={() => fileRef.current?.click()}
           >
@@ -342,7 +346,7 @@ function SlotRow({ co, slot, reload, setToast }) {
           />
         </>
       ) : (
-        <span style={{ fontSize: 12, color: '#6b6b68' }}>prepared by Y7</span>
+        <span style={{ fontSize: 12, color: 'var(--v2-ink-muted, #5c5851)' }}>prepared by Y7</span>
       )}
     </div>
   );
@@ -351,10 +355,10 @@ function SlotRow({ co, slot, reload, setToast }) {
 function ChecklistCard({ co, reload, setToast }) {
   const slots = (co.checklist || []).filter((s) => s.required || s.owner === 'you' || s.filled);
   return (
-    <div style={cardStyle}>
+    <div className={pp.card}>
       <div style={sectionTitle}>Documents</div>
       {slots.map((s) => <SlotRow key={s.slot} co={co} slot={s} reload={reload} setToast={setToast} />)}
-      <p style={{ fontSize: 12, color: '#6b6b68', margin: '10px 0 0' }}>
+      <p style={{ fontSize: 12, color: 'var(--v2-ink-muted, #5c5851)', margin: '10px 0 0' }}>
         You upload the documents marked "Upload"; Y7 prepares the rest (NHTSA record,
         commercial invoice, declaration of origin) from your data.
       </p>
@@ -391,19 +395,19 @@ function SubmitCard({ co, exporter, reload, setToast }) {
   };
 
   return (
-    <div style={cardStyle}>
+    <div className={pp.card}>
       <div style={sectionTitle}>
         {co.customer_submitted_at ? 'Submitted — update if needed' : 'Submit for review'}
       </div>
       {!ready && !co.customer_submitted_at && (
-        <p style={{ fontSize: 13, color: '#6b6b68', marginTop: 0 }}>
+        <p style={{ fontSize: 13, color: 'var(--v2-ink-muted, #5c5851)', marginTop: 0 }}>
           Before submitting: select your company, signer and consignee, make sure the signed
           authorization letter is uploaded, and upload
           {yourMissing.length ? ` ${yourMissing.map((s) => s.slot.replace(/_/g, ' ')).join(', ')}` : ' your documents'}.
         </p>
       )}
       {problems && (
-        <div style={{ fontSize: 13, background: '#f8d7da', color: '#842029', borderRadius: 8, padding: '8px 12px', marginBottom: 10 }}>
+        <div className={pp.errorBlock} style={{ marginBottom: 10 }}>
           {problems}
         </div>
       )}
@@ -414,7 +418,7 @@ function SubmitCard({ co, exporter, reload, setToast }) {
           onChange={(e) => setNote(e.target.value)}
           placeholder="Note for Y7 (optional)"
         />
-        <button style={{ ...btnStyles.accent, opacity: busy ? 0.6 : 1 }} disabled={busy} onClick={submit}>
+        <button className={v2b.cta} style={{ opacity: busy ? 0.6 : 1 }} disabled={busy} onClick={submit}>
           {busy ? 'Submitting…' : co.customer_submitted_at ? 'Re-submit' : 'Submit for review'}
         </button>
       </div>

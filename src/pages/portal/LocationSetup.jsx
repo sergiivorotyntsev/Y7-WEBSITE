@@ -1,42 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
-import { colors, fonts, button as btnStyles } from '../../theme';
 import PhoneInput from '../../components/PhoneInput';
-
-const inputStyle = {
-  fontFamily: fonts.sans,
-  fontSize: '16px',
-  padding: '10px 14px',
-  borderRadius: '8px',
-  border: `1px solid ${colors.borderInput}`,
-  background: colors.bgInput,
-  color: colors.text,
-  outline: 'none',
-  width: '100%',
-  boxSizing: 'border-box',
-};
-
-const selectStyle = {
-  ...inputStyle,
-  appearance: 'none',
-  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888780' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`,
-  backgroundRepeat: 'no-repeat',
-  backgroundPosition: 'right 12px center',
-  paddingRight: '32px',
-  cursor: 'pointer',
-};
-
-const labelStyle = {
-  fontFamily: fonts.sans,
-  fontSize: '12px',
-  fontWeight: 600,
-  color: colors.text,
-  textTransform: 'uppercase',
-  letterSpacing: '0.5px',
-  display: 'block',
-  marginBottom: '4px',
-};
+import pp from '../../styles/v2/portal.module.css';
+import v2b from '../../styles/v2/buttons.module.css';
 
 // QUOTE-P1 T05: CD V2 CamelCase values (match QuoteForm.jsx)
 const LOCATION_TYPES = [
@@ -136,75 +103,60 @@ export default function LocationSetup() {
   }
 
   if (checking) {
-    return <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: fonts.sans, color: colors.textMuted }}>Loading...</div>;
+    return <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: 'var(--font-sans, system-ui)', color: 'var(--v2-ink-muted, #5c5851)' }}>Loading...</div>;
   }
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '40px 24px 80px' }}>
-      <Link to="/portal/dashboard" style={{
-        fontFamily: fonts.sans, fontSize: '13px', color: colors.accent,
-        display: 'inline-block', marginBottom: '20px', textDecoration: 'none',
-      }}>
+    <div className={`${pp.shell} ${pp.measureNarrow}`}>
+      <Link to="/portal/dashboard" className={pp.backLink}>
         &larr; Back to Dashboard
       </Link>
 
-      <h1 style={{
-        fontFamily: fonts.serif, fontSize: '28px', fontWeight: 700,
-        color: colors.text, marginBottom: '8px',
-      }}>
+      <h1 className={pp.pageTitle}>
         Add Your Default Location
       </h1>
-      <p style={{
-        fontFamily: fonts.sans, fontSize: '14px', color: colors.textMuted,
-        marginBottom: '24px', lineHeight: 1.6,
-      }}>
+      <p className={pp.pageSub} style={{ marginBottom: '24px' }}>
         We need at least one delivery location on file before you can sign your agreement and start placing orders. This will be used as the default destination for your shipments.
       </p>
 
-      <form onSubmit={handleSubmit} style={{
-        background: colors.bgCard,
-        border: `1px solid ${colors.border}`,
-        borderRadius: '16px',
-        padding: '28px 24px',
+      <form onSubmit={handleSubmit} className={pp.card} style={{
         display: 'flex',
         flexDirection: 'column',
         gap: '14px',
       }}>
         <div>
-          <label style={labelStyle}>Location Label *</label>
-          <input style={inputStyle} value={form.label} onChange={e => set('label', e.target.value)} placeholder="Main Lot" />
+          <label className={pp.label}>Location Label *</label>
+          <input className={pp.input} value={form.label} onChange={e => set('label', e.target.value)} placeholder="Main Lot" />
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
           <div>
-            <label style={labelStyle}>Location Type *</label>
-            <select style={selectStyle} value={form.location_type} onChange={e => set('location_type', e.target.value)}>
+            <label className={pp.label}>Location Type *</label>
+            <select className={pp.select} value={form.location_type} onChange={e => set('location_type', e.target.value)}>
               {LOCATION_TYPES.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
             </select>
           </div>
           <div>
-            <label style={labelStyle}>Usage *</label>
-            <select style={selectStyle} value={form.usage_role} onChange={e => set('usage_role', e.target.value)}>
+            <label className={pp.label}>Usage *</label>
+            <select className={pp.select} value={form.usage_role} onChange={e => set('usage_role', e.target.value)}>
               {USAGE_ROLES.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
             </select>
           </div>
         </div>
 
         {form.location_type === 'Port' && (
-          <label style={{
+          <label className={pp.notice} style={{
             display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px',
-            padding: '8px 10px', background: '#FFF7ED',
-            borderLeft: '3px solid #B45309', borderRadius: '4px',
           }}>
             <input
               type="checkbox"
               checked={form.requires_twic}
               onChange={e => set('requires_twic', e.target.checked)}
             />
-            <span style={{ fontSize: '13px', fontWeight: 600, color: '#7C2D12' }}>
+            <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--v2-ink, #050607)' }}>
               Driver must have TWIC card
             </span>
-            <small style={{ flexBasis: '100%', fontSize: '11px', color: '#7C2D12', lineHeight: 1.4 }}>
+            <small style={{ flexBasis: '100%', fontSize: '11px', color: 'var(--v2-ink-muted, #5c5851)', lineHeight: 1.4 }}>
               A Transportation Worker Identification Credential is required by the
               Maritime Transportation Security Act to access some port locations.
               If unsure, contact the port.
@@ -213,73 +165,67 @@ export default function LocationSetup() {
         )}
 
         <div>
-          <label style={labelStyle}>Street Address *</label>
-          <input style={inputStyle} value={form.address} onChange={e => set('address', e.target.value)} placeholder="123 Auto Drive" />
+          <label className={pp.label}>Street Address *</label>
+          <input className={pp.input} value={form.address} onChange={e => set('address', e.target.value)} placeholder="123 Auto Drive" />
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '12px' }}>
           <div>
-            <label style={labelStyle}>City *</label>
-            <input style={inputStyle} value={form.city} onChange={e => set('city', e.target.value)} placeholder="Houston" />
+            <label className={pp.label}>City *</label>
+            <input className={pp.input} value={form.city} onChange={e => set('city', e.target.value)} placeholder="Houston" />
           </div>
           <div>
-            <label style={labelStyle}>State *</label>
-            <select style={selectStyle} value={form.state} onChange={e => set('state', e.target.value)}>
+            <label className={pp.label}>State *</label>
+            <select className={pp.select} value={form.state} onChange={e => set('state', e.target.value)}>
               <option value="">--</option>
               {US_STATES.map(s => <option key={s} value={s}>{s}</option>)}
             </select>
           </div>
           <div>
-            <label style={labelStyle}>ZIP *</label>
-            <input style={inputStyle} value={form.zip_code} onChange={e => set('zip_code', e.target.value)} placeholder="77001" maxLength={5} />
+            <label className={pp.label}>ZIP *</label>
+            <input className={pp.input} value={form.zip_code} onChange={e => set('zip_code', e.target.value)} placeholder="77001" maxLength={5} />
           </div>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
           <div>
-            <label style={labelStyle}>Contact Name</label>
-            <input style={inputStyle} value={form.contact_name} onChange={e => set('contact_name', e.target.value)} placeholder="John Smith" />
+            <label className={pp.label}>Contact Name</label>
+            <input className={pp.input} value={form.contact_name} onChange={e => set('contact_name', e.target.value)} placeholder="John Smith" />
           </div>
           <div>
-            <label style={labelStyle}>Contact Phone</label>
-            <PhoneInput style={inputStyle} value={form.contact_phone} onChange={v => set('contact_phone', v)} />
+            <label className={pp.label}>Contact Phone</label>
+            <PhoneInput className={pp.input} value={form.contact_phone} onChange={v => set('contact_phone', v)} />
           </div>
         </div>
 
         <div>
-          <label style={labelStyle}>Business Hours</label>
-          <input style={inputStyle} value={form.business_hours} onChange={e => set('business_hours', e.target.value)} placeholder="Mon-Fri 9am-5pm" />
+          <label className={pp.label}>Business Hours</label>
+          <input className={pp.input} value={form.business_hours} onChange={e => set('business_hours', e.target.value)} placeholder="Mon-Fri 9am-5pm" />
         </div>
 
         <div>
-          <label style={labelStyle}>Delivery Instructions</label>
+          <label className={pp.label}>Delivery Instructions</label>
           <textarea
-            style={{ ...inputStyle, resize: 'vertical', minHeight: '70px' }}
+            className={pp.textarea}
             value={form.delivery_instructions}
             onChange={e => set('delivery_instructions', e.target.value.slice(0, 500))}
             placeholder="e.g., Call 30 min before delivery. Gate code #1234. Appointment required."
             rows={3}
             maxLength={500}
           />
-          <div style={{ fontFamily: fonts.sans, fontSize: '11px', color: colors.textMuted, textAlign: 'right', marginTop: '2px' }}>
+          <div className={pp.hint} style={{ textAlign: 'right' }}>
             {form.delivery_instructions.length}/500
           </div>
         </div>
 
         {error && (
-          <div style={{
-            fontFamily: fonts.sans, fontSize: '13px', color: '#c0392b',
-            padding: '10px 14px', background: '#fdecea', borderRadius: '8px',
-          }}>
+          <div className={pp.errorBlock}>
             {error}
           </div>
         )}
 
-        <button type="submit" disabled={submitting} style={{
-          ...btnStyles.accent,
+        <button type="submit" disabled={submitting} className={v2b.cta} style={{
           width: '100%',
-          padding: '14px',
-          fontSize: '14px',
           opacity: submitting ? 0.6 : 1,
           marginTop: '4px',
         }}>

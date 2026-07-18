@@ -3,27 +3,31 @@
 // (portalFetch forces JSON content-type and would kill the FormData boundary).
 import { API_URL } from '../../config';
 import { authHeader, clearSessionOn401, portalFetch } from '../../hooks/useAuth';
-import { colors } from '../../theme';
+import pp from '../../styles/v2/portal.module.css';
 
+// Status -> C0 chip-variant key (owner ruling; the five bootstrap badge
+// palettes collapse into the four chip variants by color family):
+//   pine = green (success/verified/issued), red = danger/rejected,
+//   soft = amber (pending/attention), ink = gray/blue/purple (neutral).
 export const CO_STATUS_BADGE = {
-  screening: { label: 'Screening', color: '#495057', backgroundColor: '#e9ecef' },
-  eligible: { label: 'Eligible', color: '#0F6E56', backgroundColor: '#d1e7dd' },
-  ineligible: { label: 'Not eligible', color: '#842029', backgroundColor: '#f8d7da' },
-  needs_review: { label: 'Needs review', color: '#664d03', backgroundColor: '#fff3cd' },
-  docs_pending: { label: 'Documents pending', color: '#084298', backgroundColor: '#cfe2ff' },
-  docs_complete: { label: 'Documents complete', color: '#0F6E56', backgroundColor: '#d2f4ea' },
-  filed: { label: 'Filed', color: '#3d2c8d', backgroundColor: '#e2d9f3' },
-  issued: { label: 'Issued', color: '#fff', backgroundColor: '#0F6E56' },
-  rejected: { label: 'Rejected', color: '#fff', backgroundColor: '#842029' },
+  screening: { label: 'Screening', variant: 'ink' },
+  eligible: { label: 'Eligible', variant: 'pine' },
+  ineligible: { label: 'Not eligible', variant: 'red' },
+  needs_review: { label: 'Needs review', variant: 'soft' },
+  docs_pending: { label: 'Documents pending', variant: 'ink' },
+  docs_complete: { label: 'Documents complete', variant: 'pine' },
+  filed: { label: 'Filed', variant: 'ink' },
+  issued: { label: 'Issued', variant: 'pine' },
+  rejected: { label: 'Rejected', variant: 'red' },
 };
 
 export const AUTH_STATUS_INFO = {
-  draft: { label: 'Company details incomplete', color: '#495057', backgroundColor: '#e9ecef' },
-  info_complete: { label: 'Ready — download the letter', color: '#084298', backgroundColor: '#cfe2ff' },
-  letter_downloaded: { label: 'Letter downloaded — sign & upload', color: '#664d03', backgroundColor: '#fff3cd' },
-  signed_uploaded: { label: 'Pending Y7 review', color: '#3d2c8d', backgroundColor: '#e2d9f3' },
-  approved: { label: 'Approved', color: '#0F6E56', backgroundColor: '#d1e7dd' },
-  rejected: { label: 'Rejected — see note', color: '#842029', backgroundColor: '#f8d7da' },
+  draft: { label: 'Company details incomplete', variant: 'ink' },
+  info_complete: { label: 'Ready — download the letter', variant: 'ink' },
+  letter_downloaded: { label: 'Letter downloaded — sign & upload', variant: 'soft' },
+  signed_uploaded: { label: 'Pending Y7 review', variant: 'ink' },
+  approved: { label: 'Approved', variant: 'pine' },
+  rejected: { label: 'Rejected — see note', variant: 'red' },
 };
 
 export const TITLE_TYPES = [
@@ -37,17 +41,17 @@ export const TITLE_TYPES = [
   { value: 'unknown', hint: "Not sure yet — we'll verify" },
 ];
 
-export function badgeStyle(b) {
-  return {
-    display: 'inline-block',
-    padding: '3px 10px',
-    borderRadius: 12,
-    fontSize: 12,
-    fontWeight: 600,
-    color: b.color,
-    backgroundColor: b.backgroundColor,
-    whiteSpace: 'nowrap',
-  };
+// Maps a status-badge variant key to the C0 chip className (the ONE badge
+// system, src/styles/v2/portal.module.css). Consumers: chipClass(badge.variant).
+const CHIP_CLASS = {
+  ink: pp.chipInk,
+  pine: pp.chipPine,
+  red: pp.chipRed,
+  soft: pp.chipSoft,
+};
+
+export function chipClass(variant) {
+  return CHIP_CLASS[variant] || pp.chipInk;
 }
 
 export function fmtDate(iso) {
@@ -87,20 +91,29 @@ export async function coUpload(path, file, extraFields = {}) {
   return { ok: r.ok, status: r.status, body };
 }
 
-// Shared field styles (theme-token based, matches portal form conventions)
+// Shared field styles — C0 v2 tokens (mirror src/styles/v2/portal.module.css
+// so pages spreading these stay on-system without re-declaring the primitives).
 export const fieldLabel = {
-  display: 'block', fontSize: 13, fontWeight: 600, color: colors.text,
-  marginBottom: 4,
+  display: 'block', marginBottom: 4,
+  fontFamily: "var(--font-mono, 'JetBrains Mono', monospace)",
+  fontSize: 10, fontWeight: 500, letterSpacing: '0.14em',
+  textTransform: 'uppercase', color: 'var(--v2-ink-muted, #5c5851)',
 };
 export const fieldInput = {
-  width: '100%', boxSizing: 'border-box', padding: '9px 12px', fontSize: 14,
-  border: `1px solid ${colors.border}`, borderRadius: 8, background: '#fff',
+  width: '100%', boxSizing: 'border-box', padding: '10px 14px', fontSize: 16,
+  color: 'var(--v2-ink, #050607)',
+  background: 'var(--v2-card-cream, #fffaf1)',
+  border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
+  borderRadius: 12,
 };
 export const cardStyle = {
-  background: '#fff', border: `1px solid ${colors.border}`, borderRadius: 12,
-  padding: 20, marginBottom: 16,
+  background: 'var(--v2-card-cream, #fffaf1)',
+  border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
+  borderRadius: 12, padding: 20, marginBottom: 16,
 };
 export const sectionTitle = {
-  fontSize: 12, fontWeight: 700, letterSpacing: '0.5px', textTransform: 'uppercase',
-  color: '#6b6b68', margin: '0 0 12px',
+  fontFamily: "var(--font-mono, 'JetBrains Mono', monospace)",
+  fontSize: 10, fontWeight: 500, letterSpacing: '0.14em',
+  textTransform: 'uppercase', color: 'var(--v2-ink-muted, #5c5851)',
+  margin: '0 0 12px',
 };

@@ -4,7 +4,7 @@ import { CheckIcon } from '../../components/icons';
 import OnboardingBanner from '../../components/OnboardingBanner';
 import BouncingEmailBanner from '../../components/recovery/BouncingEmailBanner';
 import { portalFetch, useAuth, authHeader, clearSessionOn401 } from '../../hooks/useAuth';
-import { colors, fonts } from '../../theme';
+import { colors } from '../../theme';
 import pp from '../../styles/v2/portal.module.css';
 import v2b from '../../styles/v2/buttons.module.css';
 import { API_URL } from '../../config';
@@ -819,7 +819,7 @@ export default function OrderDetail() {
                 }
                 mono
               />
-              <p style={{ fontFamily: fonts.sans, fontSize: '12px', color: colors.textMuted, lineHeight: 1.5, margin: '6px 0 0' }}>
+              <p style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', lineHeight: 1.5, margin: '6px 0 0' }}>
                 Broker fee is the greater of $75 or 10% of the carrier price. The
                 carrier is paid COD by you (or your designee) at pickup or delivery.
               </p>
@@ -831,8 +831,10 @@ export default function OrderDetail() {
           )}
           {order.payment_responsibility && <InfoRow label="Payment method" value={order.payment_responsibility === 'broker' ? 'Prepaid to Y7' : 'COD at delivery'} />}
 
+          {/* SPRINT-W7 C2: payment block migrated (the C1 carve-out ends here —
+              handlers, gating logic, and copy byte-identical; tokens only). */}
           {paymentData?.payment && (
-            <div style={{ marginTop: '12px', paddingTop: '12px', borderTop: `1px solid ${colors.border}` }}>
+            <div style={{ marginTop: '12px', paddingTop: '12px', borderTop: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))' }}>
               <InfoRow label="Tier" value={paymentData.payment.service_tier === 'full_service' ? 'Full Service' : 'COD'} />
               <InfoRow label="Dispatch fee" value={`$${(paymentData.payment.dispatch_fee_cents / 100).toFixed(2)}`} mono />
               {paymentData.payment.service_tier === 'full_service' && (
@@ -841,7 +843,7 @@ export default function OrderDetail() {
               {paymentData.payment.discount_cents > 0 && (
                 <div style={{ display: 'flex', justifyContent: 'space-between', padding: '4px 0', fontSize: '13px', color: colors.success }}>
                   <span>Promo ({paymentData.payment.promo_code})</span>
-                  <span style={{ fontFamily: 'monospace' }}>−${(paymentData.payment.discount_cents / 100).toFixed(2)}</span>
+                  <span style={{ fontFamily: 'var(--font-mono, monospace)' }}>−${(paymentData.payment.discount_cents / 100).toFixed(2)}</span>
                 </div>
               )}
               <InfoRow label="Total" value={`$${(paymentData.payment.total_charge_cents / 100).toFixed(2)}`} mono />
@@ -850,13 +852,13 @@ export default function OrderDetail() {
               {paymentData.payment.status === 'pending' && ['quoted', 'confirmed'].includes(order.status) && (
                 <div style={{ marginTop: '14px' }}>
                   {paymentData.payment.details_sent_at && (
-                    <div style={{ marginBottom: '16px', padding: '14px', background: '#F5F7FB', border: `1px solid ${colors.border}`, borderRadius: '10px' }}>
-                      <div style={{ fontSize: '13px', fontWeight: 700, color: colors.brand || '#1F3864', marginBottom: '8px' }}>
+                    <div style={{ marginBottom: '16px', padding: '14px', background: 'rgba(5, 6, 7, 0.04)', border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))', borderRadius: '10px' }}>
+                      <div style={{ fontFamily: 'var(--font-mono, "JetBrains Mono", monospace)', fontSize: '11px', fontWeight: 500, letterSpacing: 'var(--v2-track-label, 0.14em)', textTransform: 'uppercase', color: 'var(--v2-ink, #050607)', marginBottom: '8px' }}>
                         Pay by Zelle
                       </div>
                       <InfoRow label="Send to" value="dispatch@y7agency.com" mono />
                       <InfoRow label="Amount" value={`$${(paymentData.payment.total_charge_cents / 100).toFixed(2)}`} mono />
-                      <div style={{ fontSize: '12px', color: colors.textMuted, margin: '8px 0 12px', lineHeight: 1.5 }}>
+                      <div style={{ fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', margin: '8px 0 12px', lineHeight: 1.5 }}>
                         This is the Y7 service fee (prepaid). The carrier transport price is paid separately to the driver at delivery.
                       </div>
                       {paymentData.payment.reported_sent_at ? (
@@ -865,20 +867,21 @@ export default function OrderDetail() {
                         </div>
                       ) : (
                         <>
+                          {/* Ink fill: the red fill belongs to Pay Now below. */}
                           <button
                             onClick={handlePaymentSent}
                             disabled={sentLoading}
                             style={{
-                              width: '100%', padding: '12px 18px', border: 'none', borderRadius: '10px',
-                              background: colors.brand || '#1F3864', color: '#fff',
-                              fontFamily: fonts.sans, fontSize: '14px', fontWeight: 600,
+                              width: '100%', padding: '12px 18px', border: 'none', borderRadius: '8px',
+                              background: 'var(--v2-ink, #050607)', color: 'var(--v2-paper, #f4f0e8)',
+                              fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', fontWeight: 600,
                               cursor: sentLoading ? 'not-allowed' : 'pointer', opacity: sentLoading ? 0.6 : 1,
                             }}
                           >
                             {sentLoading ? 'Sending...' : 'I sent the payment'}
                           </button>
                           {sentError && (
-                            <div style={{ marginTop: '8px', fontSize: '12px', color: colors.accent }}>{sentError}</div>
+                            <div style={{ marginTop: '8px', fontSize: '12px', color: 'var(--v2-red-deep, #a90918)' }}>{sentError}</div>
                           )}
                         </>
                       )}
@@ -886,7 +889,7 @@ export default function OrderDetail() {
                   )}
                   {!paymentData.payment.promo_code && (
                     <div style={{ marginBottom: '12px' }}>
-                      <label style={{ fontSize: '11px', fontWeight: 600, color: colors.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '4px', display: 'block' }}>
+                      <label className={pp.label}>
                         Promo code
                       </label>
                       <div style={{ display: 'flex', gap: '8px' }}>
@@ -895,10 +898,10 @@ export default function OrderDetail() {
                           value={promoCode}
                           onChange={e => { setPromoCode(e.target.value.toUpperCase()); setPromoMsg(null); }}
                           placeholder="SAVE10"
+                          className={pp.input}
                           style={{
-                            flex: 1, padding: '8px 10px',
-                            border: `1px solid ${colors.border}`, borderRadius: '6px',
-                            fontSize: '14px', fontFamily: 'monospace', letterSpacing: '1px',
+                            flex: 1, width: 'auto',
+                            fontFamily: 'var(--font-mono, "JetBrains Mono", monospace)', letterSpacing: '1px',
                             textTransform: 'uppercase',
                           }}
                         />
@@ -907,8 +910,9 @@ export default function OrderDetail() {
                           disabled={promoLoading || !promoCode.trim()}
                           style={{
                             padding: '8px 14px',
-                            border: `1px solid ${colors.border}`, borderRadius: '6px',
-                            background: '#fff', fontSize: '13px', fontWeight: 600,
+                            border: '1px solid rgba(5, 6, 7, 0.3)', borderRadius: '8px',
+                            background: 'transparent', color: 'var(--v2-ink, #050607)',
+                            fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', fontWeight: 600,
                             cursor: (promoLoading || !promoCode.trim()) ? 'not-allowed' : 'pointer',
                             opacity: (promoLoading || !promoCode.trim()) ? 0.6 : 1,
                           }}
@@ -917,24 +921,26 @@ export default function OrderDetail() {
                         </button>
                       </div>
                       {promoMsg && (
-                        <div style={{ marginTop: '6px', fontSize: '12px', color: promoMsg.ok ? colors.success : colors.accent }}>
+                        <div style={{ marginTop: '6px', fontSize: '12px', color: promoMsg.ok ? colors.success : 'var(--v2-red-deep, #a90918)' }}>
                           {promoMsg.text}
                         </div>
                       )}
                     </div>
                   )}
                   {paymentData.payment.service_tier === 'full_service' && (
-                    <label style={{ display: 'flex', gap: '8px', fontSize: '12px', color: colors.textMuted, marginBottom: '10px', lineHeight: 1.45 }}>
+                    <label style={{ display: 'flex', gap: '8px', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', marginBottom: '10px', lineHeight: 1.45 }}>
                       <input
                         type="checkbox"
                         checked={feeAcknowledged}
                         onChange={e => setFeeAcknowledged(e.target.checked)}
+                        style={{ accentColor: 'var(--v2-red, #d70f24)', flexShrink: 0, marginTop: '2px' }}
                       />
                       <span>
                         I understand that payment processing fees (~${(paymentData.payment.total_charge_cents * 0.029 / 100 + 0.30).toFixed(2)}) are non-refundable and will be deducted from any refund.
                       </span>
                     </label>
                   )}
+                  {/* Pay Now = this screen's one red fill (Signal Budget). */}
                   <button
                     onClick={handlePayNow}
                     disabled={payLoading || (paymentData.payment.service_tier === 'full_service' && !feeAcknowledged)}
@@ -942,20 +948,20 @@ export default function OrderDetail() {
                       width: '100%',
                       padding: '12px 18px',
                       border: 'none',
-                      borderRadius: '10px',
-                      background: colors.brand || '#1F3864',
-                      color: '#fff',
-                      fontFamily: fonts.sans,
+                      borderRadius: '8px',
+                      background: 'var(--v2-red-gradient, linear-gradient(135deg, #d70f24, #a90918))',
+                      color: '#fff7ed',
+                      fontFamily: 'var(--font-sans, system-ui)',
                       fontSize: '14px',
                       fontWeight: 600,
                       cursor: payLoading ? 'not-allowed' : 'pointer',
-                      opacity: (payLoading || (paymentData.payment.service_tier === 'full_service' && !feeAcknowledged)) ? 0.6 : 1,
+                      opacity: (payLoading || (paymentData.payment.service_tier === 'full_service' && !feeAcknowledged)) ? 0.45 : 1,
                     }}
                   >
                     {payLoading ? 'Redirecting...' : `Pay $${(paymentData.payment.total_charge_cents / 100).toFixed(2)} Now`}
                   </button>
                   {payError && (
-                    <div style={{ marginTop: '8px', fontSize: '12px', color: colors.accent }}>{payError}</div>
+                    <div style={{ marginTop: '8px', fontSize: '12px', color: 'var(--v2-red-deep, #a90918)' }}>{payError}</div>
                   )}
                 </div>
               )}
