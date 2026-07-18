@@ -1,4 +1,15 @@
-/* QuoteForm — premium card-style transport quote form. */
+/* QuoteForm — the full transport quote form.
+   SPRINT-W7 B1: retokened from V1 (sienna/serif white card) to DESIGN-V2
+   "Dispatch Board". The form is the paper island on a board band (both
+   mounts — /quote hero and /ship-my-car #quote-section — are dark): paper
+   card, cream inputs (§7 forms-on-paper family), mono microcopy labels,
+   restrained red (errors, ONE primary action = the angled-plate submit,
+   focus states — owner ruling), Body-Link law on helper links, visible
+   :focus-visible everywhere. Behavior, markup structure, and i18n keys are
+   FROZEN — this file changes tokens and states only.
+   Container note: .wrap keeps its 720px centered measure — the form is the
+   band's sole content (sole-content clause, W4 island precedent; kept at
+   the B1 gate). */
 
 .wrap {
   max-width: 720px;
@@ -10,40 +21,44 @@
   margin-bottom: 20px;
 }
 
+/* Mono eyebrow (kicker glyph removed in JSX — ◆ is a retired V1 artifact). */
 .kicker {
   display: inline-block;
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--v2-text-on-dark-muted, #9c9b96);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--v2-track-label, 0.14em);
   margin: 0 0 8px;
 }
 
+/* Header renders over the board band (hideHeader=false callers only). */
 .title {
-  font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  font-family: var(--v2-font-display, 'Oswald', system-ui);
+  font-size: clamp(1.35rem, 2.4vw, 1.65rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--v2-text-on-dark, #fff7ed);
   margin: 0;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
 }
 
 /* =====================================================================
-   CARD CONTAINER
+   CARD CONTAINER — paper island on the board band
    ===================================================================== */
 
 .form {
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border, #e5e0d8);
-  border-radius: var(--radius-xl, 16px);
+  background: var(--v2-paper, #f4f0e8);
+  border: 1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14));
+  border-radius: var(--v2-radius-xl, 22px);
   padding: clamp(24px, 4vw, 36px);
   display: flex;
   flex-direction: column;
   gap: 16px;
-  box-shadow: var(--shadow-md, 0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06));
+  box-shadow: var(--v2-board-depth, 0 24px 70px rgba(0, 0, 0, 0.3));
+  color: var(--v2-ink, #050607);
 }
 
 .formCompact {
@@ -52,56 +67,55 @@
 }
 
 /* =====================================================================
-   INPUT / SELECT / TEXTAREA  — base + focus states
+   INPUT / SELECT / TEXTAREA — cream on paper (§7), 16px iOS floor,
+   red :focus-visible ring (Focus-Visible Law)
    ===================================================================== */
 
 .input {
   width: 100%;
   padding: 10px 14px;
   font-family: var(--font-sans, system-ui);
-  font-size: 14px;
-  color: var(--text, #2C2C2A);
-  background-color: var(--bg-input, #F7F5F0);
-  border: 1px solid var(--border-input, #ddd);
-  border-radius: var(--radius-md, 8px);
-  outline: none;
+  font-size: 16px;
+  color: var(--v2-ink, #050607);
+  background-color: var(--v2-card-cream, #fffaf1);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: var(--v2-radius-md, 12px);
   box-sizing: border-box;
   transition:
     border-color var(--transition-normal, 250ms ease-out),
-    box-shadow var(--transition-normal, 250ms ease-out),
     background-color var(--transition-normal, 250ms ease-out);
 }
 
 .input::placeholder {
-  color: var(--text-hint, #999);
-  font-style: italic;
+  color: var(--v2-ink-muted, #5c5851);
 }
 
 .input:hover:not(:disabled):not(:focus) {
-  border-color: #bbb;
+  border-color: rgba(5, 6, 7, 0.3);
 }
 
 .input:focus {
-  border-color: var(--accent, #993C1D);
-  box-shadow: 0 0 0 3px var(--accent-glow, rgba(153, 60, 29, 0.15));
-  background-color: var(--bg-card, #fff);
+  border-color: rgba(5, 6, 7, 0.45);
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
 }
 
 .inputError {
   composes: input;
-  border-color: var(--accent, #993C1D);
+  border-color: var(--v2-red-deep, #a90918);
 }
 
 .inputMono {
   composes: input;
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 16px;
   letter-spacing: 0.02em;
 }
 
 .inputLg {
   composes: input;
-  font-size: 16px;
 }
 
 .textarea {
@@ -115,7 +129,7 @@
   composes: input;
   appearance: none;
   -webkit-appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3e%3cpath fill='none' stroke='%23888' stroke-width='1.5' d='M1 1l4 4 4-4'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3e%3cpath fill='none' stroke='%235c5851' stroke-width='1.5' d='M1 1l4 4 4-4'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 14px center;
   background-size: 10px 6px;
@@ -125,22 +139,21 @@
 
 .selectLg {
   composes: select;
-  font-size: 16px;
 }
 
 /* =====================================================================
-   LABEL / FIELD GROUP
+   LABEL / FIELD GROUP — mono microcopy (§4)
    ===================================================================== */
 
 .label {
   display: block;
   margin-bottom: 4px;
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--text, #2C2C2A);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--v2-ink-muted, #5c5851);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--v2-track-label, 0.14em);
 }
 
 .field {
@@ -187,15 +200,15 @@
   composes: input;
   flex: 1;
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 16px;
   letter-spacing: 0.04em;
 }
 
 .vinInputError {
   composes: vinInput;
-  border-color: var(--accent, #993C1D);
+  border-color: var(--v2-red-deep, #a90918);
 }
 
+/* Pairs with v2 ghostOnPaper in JSX; local class carries sizing only. */
 .decodeBtn {
   padding: 10px 18px !important;
   font-size: 11px !important;
@@ -203,17 +216,25 @@
   min-width: 88px;
 }
 
+/* Hint paragraph under the VIN label (was inline-styled). */
+.vinHint {
+  font-family: var(--font-sans, system-ui);
+  font-size: 12px;
+  color: var(--v2-ink-muted, #5c5851);
+  margin: 4px 0 8px;
+}
+
 /* =====================================================================
    SECTION DIVIDERS AND LABELS (Pickup / Delivery)
    ===================================================================== */
 
 .sectionLabel {
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--text-muted, #706E68);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--v2-ink-muted, #5c5851);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--v2-track-label, 0.14em);
   margin-bottom: 8px;
 }
 
@@ -234,26 +255,19 @@
   cursor: pointer;
   font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
-  color: var(--text, #2C2C2A);
+  color: var(--v2-ink, #050607);
   padding: 6px 0;
-  transition: color var(--transition-fast, 150ms ease-out);
-}
-
-@media (hover: hover) {
-  .radioLabel:hover {
-    color: var(--accent, #993C1D);
-  }
 }
 
 .radioInput {
-  accent-color: var(--accent, #993C1D);
+  accent-color: var(--v2-red, #d70f24);
   cursor: pointer;
   width: 16px;
   height: 16px;
 }
 
 .radioInput:focus-visible {
-  outline: 2px solid var(--accent, #993C1D);
+  outline: 2px solid var(--v2-red, #d70f24);
   outline-offset: 2px;
   border-radius: 50%;
 }
@@ -265,45 +279,50 @@
 .hint {
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   margin-top: 4px;
   line-height: 1.5;
 }
 
+/* Bonded Pine: success/verified state only (§3). */
 .hintSuccess {
   composes: hint;
-  color: var(--success, #0F6E56);
+  color: var(--success, #0f6e56);
 }
 
 .errorText {
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
-  color: var(--accent, #993C1D);
+  color: var(--v2-red-deep, #a90918);
   margin-top: 4px;
 }
 
+/* Body-Link Law: rest in ink + underline; hover shifts to red. */
 .toggleLink {
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
   font-weight: 600;
-  color: var(--accent, #993C1D);
+  color: var(--v2-ink, #050607);
+  text-decoration: underline;
+  text-underline-offset: 2px;
   cursor: pointer;
   margin-top: 8px;
   display: inline-block;
   padding: 2px 4px;
+  border: none;
+  background: none;
   border-radius: var(--radius-sm, 4px);
-  outline: none;
-  transition: background-color var(--transition-fast, 150ms ease-out);
 }
 
 @media (hover: hover) {
   .toggleLink:hover {
-    background-color: var(--accent-glow, rgba(153, 60, 29, 0.15));
+    color: var(--v2-red-deep, #a90918);
   }
 }
 
 .toggleLink:focus-visible {
-  box-shadow: 0 0 0 2px var(--bg, #F7F5F0), 0 0 0 3px var(--accent, #993C1D);
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
 }
 
 /* =====================================================================
@@ -324,32 +343,32 @@
 }
 
 .step2Kicker {
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--accent, #993C1D);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--v2-ink-muted, #5c5851);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--v2-track-label, 0.14em);
   padding-top: 12px;
-  border-top: 1px solid var(--border, #e5e0d8);
+  border-top: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
 }
 
 /* =====================================================================
-   ERROR ALERT
+   ERROR ALERT — red family + textual message, no side-stripe (§10)
    ===================================================================== */
 
 .errorAlert {
   font-family: var(--font-sans, system-ui);
   font-size: 13px;
-  color: var(--accent, #993C1D);
+  color: var(--v2-red-deep, #a90918);
   padding: 10px 14px;
-  background: #FFF0EC;
-  border-radius: var(--radius-md, 8px);
-  border-left: 3px solid var(--accent, #993C1D);
+  background: rgba(215, 15, 36, 0.06);
+  border: 1px solid rgba(215, 15, 36, 0.25);
+  border-radius: var(--v2-radius-md, 12px);
 }
 
 /* =====================================================================
-   LEGAL LINE + SUBMIT BUTTON
+   CONSENT BLOCK / NOTICES / LEGAL LINE
    ===================================================================== */
 
 .consentBlock {
@@ -359,6 +378,8 @@
   margin-top: 12px;
 }
 
+/* TWIC / consent notices: neutral paper-tone info blocks (V1 amber family
+   retired; red stays reserved for errors). No side-stripe borders. */
 .twicRow {
   display: flex;
   flex-wrap: wrap;
@@ -366,22 +387,22 @@
   gap: 6px;
   margin-top: 8px;
   padding: 8px 10px;
-  background: #FFF7ED;
-  border-left: 3px solid #B45309;
-  border-radius: 4px;
+  background: rgba(5, 6, 7, 0.04);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-radius: 8px;
   font-family: var(--font-sans, system-ui);
 }
 
 .twicLabel {
   font-size: 13px;
   font-weight: 600;
-  color: #7C2D12;
+  color: var(--v2-ink, #050607);
 }
 
 .twicHelp {
   flex-basis: 100%;
   font-size: 11px;
-  color: #7C2D12;
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.4;
   margin-top: 4px;
 }
@@ -389,50 +410,112 @@
 .consentWarn {
   font-family: var(--font-sans, system-ui);
   font-size: 12px;
-  color: #B45309;
-  background: #FFF7ED;
-  border-left: 3px solid #B45309;
+  color: var(--v2-ink, #050607);
+  background: rgba(5, 6, 7, 0.04);
+  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
   padding: 8px 12px;
   margin-top: 4px;
   line-height: 1.5;
-  border-radius: 4px;
+  border-radius: 8px;
+}
+
+/* Terms checkbox row (was inline-styled in JSX). */
+.termsLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: pointer;
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  color: var(--v2-ink, #050607);
+}
+
+.termsCheckbox {
+  margin-top: 3px;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--v2-red, #d70f24);
+  flex-shrink: 0;
+}
+
+.termsCheckbox:focus-visible {
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
+}
+
+.termsErrorMsg {
+  margin-top: 6px;
+  margin-left: 24px;
+  font-size: 12px;
+  color: var(--v2-red-deep, #a90918);
+}
+
+/* Recognized-email status line (Bonded Pine: verified state). */
+.emailRecognized {
+  margin-top: 6px;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--success, #0f6e56);
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .legal {
   font-family: var(--font-sans, system-ui);
   font-size: 11px;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-ink-muted, #5c5851);
   line-height: 1.6;
   text-align: center;
   margin: 0;
 }
 
 .legalLink {
-  color: var(--accent, #993C1D);
+  color: var(--v2-ink, #050607);
   text-decoration: underline;
-  outline: none;
+  text-underline-offset: 2px;
   border-radius: 2px;
 }
 
-.legalLink:focus-visible {
-  box-shadow: 0 0 0 2px var(--bg-card, #fff), 0 0 0 3px var(--accent, #993C1D);
+@media (hover: hover) {
+  .legalLink:hover {
+    color: var(--v2-red-deep, #a90918);
+  }
 }
 
+.legalLink:focus-visible {
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: 2px;
+}
+
+/* =====================================================================
+   SUBMIT — pairs with v2 hero angledPlate in JSX (Angle Law: the plate is
+   this band's ONE red fill and hosts the primary CTA). Local class carries
+   sizing + disabled state only.
+   ===================================================================== */
+
 .submitBtn {
-  padding: 16px 32px !important;
-  font-size: 14px !important;
+  --plate-h: 52px;
   width: 100%;
-  min-height: 52px;
+  font-size: 14px !important;
   letter-spacing: 0.08em !important;
 }
 
 .submitBtn:disabled {
-  opacity: 0.45 !important;
-  cursor: not-allowed !important;
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submitHelper {
+  font-size: 13px;
+  color: var(--v2-ink-muted, #5c5851);
+  margin-top: 8px;
+  text-align: center;
 }
 
 /* =====================================================================
-   TRUST BADGES ROW
+   TRUST BADGES ROW — mono microcopy, hairline separators (◆ dots retired)
    ===================================================================== */
 
 .trustRow {
@@ -448,23 +531,24 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-family: var(--font-sans, system-ui);
-  font-size: 11px;
-  color: var(--text-muted, #706E68);
-  letter-spacing: 0.04em;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--v2-ink-muted, #5c5851);
 }
 
-.trustDot {
-  color: var(--accent, #993C1D);
-  font-size: 8px;
+.trustItem + .trustItem {
+  border-left: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  padding-left: clamp(12px, 3vw, 28px);
 }
 
 .trustIcon {
-  color: var(--success, #0F6E56);
+  color: var(--success, #0f6e56);
 }
 
-/* P1-TECH-T04: progressive-disclosure toggle. Subtle, button-shaped so it
-   reads as an optional expansion instead of a required next step. */
+/* P1-TECH-T04: progressive-disclosure toggle. Ink-ghost pill — red stays
+   reserved (errors / primary action / focus). */
 .advancedToggle {
   display: inline-flex;
   align-items: center;
@@ -473,11 +557,11 @@
   padding: 10px 16px;
   margin: 4px 0;
   background: transparent;
-  color: var(--accent, #993C1D);
+  color: var(--v2-ink, #050607);
   font-family: var(--font-sans, system-ui);
   font-size: 13.5px;
   font-weight: 600;
-  border: 1px dashed var(--accent, #993C1D);
+  border: 1px solid rgba(5, 6, 7, 0.3);
   border-radius: 24px;
   cursor: pointer;
   transition: background-color 150ms ease-out, border-color 150ms ease-out;
@@ -490,8 +574,8 @@
   justify-content: center;
   width: 22px;
   height: 22px;
-  background: var(--accent, #993C1D);
-  color: #fff;
+  background: var(--v2-ink, #050607);
+  color: var(--v2-paper, #f4f0e8);
   border-radius: 50%;
   font-size: 14px;
   font-weight: 700;
@@ -500,25 +584,18 @@
 
 @media (hover: hover) {
   .advancedToggle:hover {
-    background: rgba(153, 60, 29, 0.06);
-    border-style: solid;
+    background: rgba(5, 6, 7, 0.05);
+    border-color: rgba(5, 6, 7, 0.5);
   }
 }
 
 .advancedToggle:focus-visible {
-  outline: 2px solid var(--accent, #993C1D);
+  outline: 2px solid var(--v2-red, #d70f24);
   outline-offset: 2px;
 }
 
 .required {
-  color: var(--accent, #993C1D);
+  color: var(--v2-red-deep, #a90918);
   margin-left: 2px;
   font-weight: 600;
-}
-
-.submitHelper {
-  font-size: 13px;
-  color: var(--text-muted, #706E68);
-  margin-top: 8px;
-  text-align: center;
 }

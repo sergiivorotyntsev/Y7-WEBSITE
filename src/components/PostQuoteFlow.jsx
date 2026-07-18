@@ -25,18 +25,25 @@ import { motion as Motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { colors, fonts } from '../theme';
 
+// SPRINT-W7 B1: V2 retoken — paper cards on the board band (this screen
+// replaces the quote form in place, same island treatment), Oswald card
+// titles, red only on the single primary action (Signal Budget: the CTA
+// gradient is the viewport's one red fill; SuccessCard pine = success law).
+const INK = 'var(--v2-ink, #050607)';
+const INK_MUTED = 'var(--v2-ink-muted, #5c5851)';
+
 const CARD_BASE = {
-  background: colors.bgCard,
-  border: `1px solid ${colors.border}`,
+  background: 'var(--v2-paper, #f4f0e8)',
+  border: '1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14))',
   borderRadius: 12,
   padding: 24,
 };
 
 const PRIMARY_BTN = {
   padding: '10px 20px',
-  background: colors.accent,
-  color: '#FFFFFF',
-  borderRadius: 6,
+  background: 'var(--v2-red-gradient, linear-gradient(135deg, #d70f24, #a90918))',
+  color: '#fff7ed',
+  borderRadius: 8,
   textDecoration: 'none',
   fontFamily: fonts.sans,
   fontWeight: 600,
@@ -49,9 +56,9 @@ const PRIMARY_BTN = {
 const SECONDARY_LINK_BTN = {
   padding: '10px 20px',
   background: 'transparent',
-  border: `1px solid ${colors.borderInput}`,
-  color: colors.text,
-  borderRadius: 6,
+  border: '1px solid rgba(5, 6, 7, 0.3)',
+  color: INK,
+  borderRadius: 8,
   textDecoration: 'none',
   fontFamily: fonts.sans,
   fontSize: 14,
@@ -62,17 +69,20 @@ const TEXT_LINK_BTN = {
   padding: '10px 20px',
   background: 'transparent',
   border: 'none',
-  color: colors.textMuted,
+  color: INK_MUTED,
   fontFamily: fonts.sans,
   fontSize: 14,
   cursor: 'pointer',
   textDecoration: 'underline',
+  textUnderlineOffset: 2,
 };
 
 const CARD_TITLE = {
-  fontFamily: fonts.serif,
+  fontFamily: 'var(--v2-font-display, Oswald, system-ui)',
   fontSize: 18,
-  color: colors.text,
+  textTransform: 'uppercase',
+  letterSpacing: '0.01em',
+  color: INK,
   marginTop: 0,
   marginBottom: 8,
   fontWeight: 600,
@@ -80,7 +90,7 @@ const CARD_TITLE = {
 
 const CARD_SUBTITLE = {
   fontSize: 14,
-  color: colors.textMuted,
+  color: INK_MUTED,
   marginTop: 0,
   marginBottom: 16,
   lineHeight: 1.5,
@@ -153,8 +163,10 @@ function SuccessCard({ reference, email }) {
       </div>
       <h1
         style={{
-          fontFamily: fonts.serif,
+          fontFamily: 'var(--v2-font-display, Oswald, system-ui)',
           fontSize: 24,
+          textTransform: 'uppercase',
+          letterSpacing: '0.01em',
           color: colors.success,
           marginTop: 0,
           marginBottom: 8,
@@ -177,7 +189,7 @@ function SuccessCard({ reference, email }) {
         </p>
       )}
       {email && (
-        <p style={{ fontSize: 13, color: colors.textMuted, margin: 0 }}>
+        <p style={{ fontSize: 13, color: INK_MUTED, margin: 0 }}>
           {t('success.confirmation', { email })}
         </p>
       )}
@@ -281,8 +293,9 @@ function TimelineCard() {
                 width: 24,
                 height: 24,
                 borderRadius: '50%',
-                background: idx === 0 ? colors.accent : colors.bgMuted,
-                color: idx === 0 ? '#FFFFFF' : colors.textHint,
+                // Current step in ink (red stays on the primary CTA only).
+                background: idx === 0 ? INK : 'rgba(5, 6, 7, 0.06)',
+                color: idx === 0 ? 'var(--v2-paper, #f4f0e8)' : INK_MUTED,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -300,7 +313,7 @@ function TimelineCard() {
                 style={{
                   fontSize: 14,
                   fontWeight: 600,
-                  color: colors.text,
+                  color: INK,
                   fontFamily: fonts.sans,
                 }}
               >
@@ -309,7 +322,7 @@ function TimelineCard() {
               <div
                 style={{
                   fontSize: 13,
-                  color: colors.textMuted,
+                  color: INK_MUTED,
                   marginTop: 2,
                   lineHeight: 1.4,
                 }}
@@ -323,9 +336,9 @@ function TimelineCard() {
       <div
         style={{
           fontSize: 13,
-          color: colors.textHint,
+          color: INK_MUTED,
           paddingTop: 16,
-          borderTop: `1px solid ${colors.borderInput}`,
+          borderTop: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
           textAlign: 'center',
           fontFamily: fonts.sans,
         }}

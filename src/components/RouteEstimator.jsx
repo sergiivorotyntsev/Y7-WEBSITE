@@ -109,7 +109,8 @@ export default function RouteEstimator({ pickupZip, deliveryZip }) {
           fontFamily: fonts.mono,
           fontSize: '13px',
           fontWeight: 600,
-          color: colors.accent,
+          // SPRINT-W7 B1: mono data in ink (V1 sienna retired; red reserved).
+          color: 'var(--v2-ink, #050607)',
         }}>
           ~{data.distance_miles.toLocaleString()} mi
         </span>
@@ -124,7 +125,7 @@ export default function RouteEstimator({ pickupZip, deliveryZip }) {
       }}>
         <div style={{
           height: '100%',
-          background: colors.accent,
+          background: 'var(--v2-ink, #050607)',
           borderRadius: '2px',
           width: '100%',
           animation: 'growBar 600ms ease forwards',

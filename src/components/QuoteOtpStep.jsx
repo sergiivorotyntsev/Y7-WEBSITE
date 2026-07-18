@@ -28,14 +28,19 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion as Motion, useAnimationControls } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { colors, fonts } from '../theme';
+import { fonts } from '../theme';
 import { apiPost } from '../hooks/useApi';
 
 const DIGIT_COUNT = 6;
 const RESEND_COOLDOWN_SECONDS = 60;
 const AUTO_RETURN_DELAY_MS = 3000;
-const ERROR_RED = '#DC2626';
-const ERROR_BG = '#FFF0EC';
+// SPRINT-W7 B1: V2 error family (red-deep on paper; V1 #DC2626/#FFF0EC retired).
+const ERROR_RED = 'var(--v2-red-deep, #a90918)';
+const ERROR_BG = 'rgba(215, 15, 36, 0.06)';
+const INK = 'var(--v2-ink, #050607)';
+const INK_MUTED = 'var(--v2-ink-muted, #5c5851)';
+const CREAM = 'var(--v2-card-cream, #fffaf1)';
+const LINE_ON_PAPER = 'var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))';
 
 export default function QuoteOtpStep({
   pendingId,
@@ -264,10 +269,11 @@ export default function QuoteOtpStep({
     onCancel?.();
   };
 
+  // SPRINT-W7 B1: filled digits read in ink; red only for the error state.
   const inputBorder = (digit) => {
     if (error) return ERROR_RED;
-    if (digit) return colors.accent;
-    return colors.borderInput;
+    if (digit) return INK;
+    return LINE_ON_PAPER;
   };
 
   return (
@@ -276,26 +282,30 @@ export default function QuoteOtpStep({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
       style={{
+        // SPRINT-W7 B1: paper card on the board band (V2 island, same
+        // treatment as the quote form it replaces in the flow).
         maxWidth: 480,
         margin: '40px auto',
         padding: '36px 28px',
-        background: colors.bgCard,
-        border: `1px solid ${colors.border}`,
-        borderRadius: 16,
+        background: 'var(--v2-paper, #f4f0e8)',
+        border: '1px solid var(--v2-line-on-dark, rgba(255, 247, 237, 0.14))',
+        borderRadius: 'var(--v2-radius-xl, 22px)',
         fontFamily: fonts.sans,
         textAlign: 'center',
-        boxShadow: '0 4px 24px rgba(26, 22, 18, 0.06)',
+        boxShadow: 'var(--v2-board-depth, 0 24px 70px rgba(0, 0, 0, 0.3))',
       }}
     >
       <h2
         style={{
-          fontFamily: fonts.serif,
+          fontFamily: 'var(--v2-font-display, Oswald, system-ui)',
           fontSize: 24,
-          fontWeight: 700,
-          color: colors.text,
+          fontWeight: 600,
+          textTransform: 'uppercase',
+          color: INK,
           marginTop: 0,
           marginBottom: 8,
-          letterSpacing: '-0.01em',
+          letterSpacing: '0.01em',
+          lineHeight: 1.05,
         }}
       >
         {t('otp.title')}
@@ -305,13 +315,13 @@ export default function QuoteOtpStep({
         style={{
           fontFamily: fonts.sans,
           fontSize: 14,
-          color: colors.textMuted,
+          color: INK_MUTED,
           marginBottom: 28,
           lineHeight: 1.5,
         }}
       >
         {t('otp.subtitle')}{' '}
-        <strong style={{ color: colors.text, fontWeight: 600 }}>{email}</strong>
+        <strong style={{ color: INK, fontWeight: 600 }}>{email}</strong>
       </p>
 
       <Motion.div
@@ -348,10 +358,9 @@ export default function QuoteOtpStep({
               fontWeight: 700,
               borderRadius: 10,
               border: `2px solid ${inputBorder(digit)}`,
-              background: (verifying || locked) ? colors.bgMuted : colors.bgCard,
-              color: colors.text,
-              outline: 'none',
-              caretColor: colors.accent,
+              background: (verifying || locked) ? 'rgba(5, 6, 7, 0.06)' : CREAM,
+              color: INK,
+              caretColor: 'var(--v2-red, #d70f24)',
               transition: 'border-color 0.15s, background-color 0.15s',
               boxSizing: 'border-box',
             }}
@@ -369,20 +378,21 @@ export default function QuoteOtpStep({
               display: 'inline-block',
               fontFamily: fonts.sans,
               fontSize: 13,
-              color: colors.accent,
+              color: ERROR_RED,
               padding: '6px 14px',
               background: ERROR_BG,
+              border: '1px solid rgba(215, 15, 36, 0.25)',
               borderRadius: 8,
             }}
           >
             {error}
           </div>
         ) : verifying ? (
-          <p style={{ fontSize: 13, color: colors.textMuted, margin: 0 }}>
+          <p style={{ fontSize: 13, color: INK_MUTED, margin: 0 }}>
             {t('otp.verifying')}
           </p>
         ) : expiryDisplay && expiryDisplay !== 'expired' ? (
-          <p style={{ fontSize: 12, color: colors.textHint, margin: 0 }}>
+          <p style={{ fontSize: 12, color: INK_MUTED, margin: 0 }}>
             {t('otp.expiresIn', { time: expiryDisplay })}
           </p>
         ) : null}
@@ -397,7 +407,7 @@ export default function QuoteOtpStep({
         }}
       >
         {resendCountdown > 0 ? (
-          <p style={{ fontSize: 12, color: colors.textHint, margin: 0 }}>
+          <p style={{ fontSize: 12, color: INK_MUTED, margin: 0 }}>
             {t('otp.resendCountdown', { n: resendCountdown })}
           </p>
         ) : (
@@ -406,14 +416,16 @@ export default function QuoteOtpStep({
             onClick={handleResend}
             disabled={locked}
             style={{
+              // Body-Link Law: ink at rest, never resting red.
               background: 'none',
               border: 'none',
-              color: colors.accent,
+              color: INK,
               fontFamily: fonts.sans,
               fontSize: 13,
               fontWeight: 600,
               cursor: locked ? 'not-allowed' : 'pointer',
               textDecoration: 'underline',
+              textUnderlineOffset: 2,
               padding: 4,
             }}
           >
@@ -428,11 +440,12 @@ export default function QuoteOtpStep({
           style={{
             background: 'none',
             border: 'none',
-            color: colors.textMuted,
+            color: INK_MUTED,
             fontFamily: fonts.sans,
             fontSize: 12,
             cursor: locked ? 'not-allowed' : 'pointer',
             textDecoration: 'underline',
+            textUnderlineOffset: 2,
             padding: 4,
           }}
         >

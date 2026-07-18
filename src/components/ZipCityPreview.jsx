@@ -16,18 +16,20 @@ export default function ZipCityPreview({ status, city, stateAbbr, label }) {
   let bg = 'transparent';
   let fg = colors.text;
 
+  // SPRINT-W7 B1: V2 states — neutral pending, Bonded-Pine valid (success
+  // law), red-family invalid (it is a soft error; V1 sienna/amber retired).
   if (status === 'pending') {
     content = 'Looking up…';
-    bg = 'rgba(153, 60, 29, 0.06)';
-    fg = '#7A5230';
+    bg = 'rgba(5, 6, 7, 0.04)';
+    fg = 'var(--v2-ink-muted, #5c5851)';
   } else if (status === 'valid' && city) {
     content = `📍 ${city}${stateAbbr ? ', ' + stateAbbr : ''}`;
     bg = 'rgba(15, 110, 86, 0.10)';
     fg = colors.success;
   } else if (status === 'invalid') {
     content = "That ZIP doesn't look right — double-check?";
-    bg = 'rgba(217, 119, 6, 0.10)';
-    fg = '#8A5410';
+    bg = 'rgba(215, 15, 36, 0.06)';
+    fg = 'var(--v2-red-deep, #a90918)';
   }
 
   return (

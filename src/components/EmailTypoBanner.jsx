@@ -18,9 +18,11 @@ export default function EmailTypoBanner({ visible, suggestion, onAccept }) {
           exit={{ opacity: 0, height: 0, marginTop: 0 }}
           transition={{ duration: 0.22, ease: 'easeOut' }}
           style={{
+            // SPRINT-W7 B1: V2 neutral notice (V1 amber retired; red stays
+            // reserved for errors — a typo suggestion is not an error).
             overflow: 'hidden',
-            backgroundColor: 'rgba(217, 119, 6, 0.08)',
-            border: '1px solid rgba(217, 119, 6, 0.25)',
+            backgroundColor: 'rgba(5, 6, 7, 0.04)',
+            border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
             borderRadius: 8,
             padding: '8px 12px',
             display: 'flex',
@@ -29,7 +31,7 @@ export default function EmailTypoBanner({ visible, suggestion, onAccept }) {
             gap: 12,
             fontFamily: fonts.sans,
             fontSize: 13,
-            color: '#8A5410',
+            color: 'var(--v2-ink, #050607)',
           }}
           role="status"
         >
@@ -40,8 +42,8 @@ export default function EmailTypoBanner({ visible, suggestion, onAccept }) {
             type="button"
             onClick={onAccept}
             style={{
-              background: '#993C1D',
-              color: '#fff',
+              background: 'var(--v2-ink, #050607)',
+              color: 'var(--v2-paper, #f4f0e8)',
               border: 'none',
               borderRadius: 6,
               padding: '4px 12px',

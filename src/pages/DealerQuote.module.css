@@ -61,9 +61,15 @@
    ===================================================================== */
 
 .body {
+  /* SPRINT-W7 B1 (owner ruling at the W7-A gate): the body column composes
+     the SHARED v2 container (T06 shared-container law) instead of carrying
+     its own width system. The 760px reading measure remains as the
+     explicitly-ruled sole-content centered composition; vertical rhythm is
+     unchanged (band spacing comes from .hero margin + .wrap padding). */
+  composes: inner from '../styles/v2/surfaces.module.css';
   max-width: 760px;
-  margin: 0 auto;
-  padding: 0 24px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .backLink {

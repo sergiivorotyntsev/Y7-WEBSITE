@@ -15,7 +15,8 @@ import EmailTypoBanner from './EmailTypoBanner';
 import { trackEvent } from '../utils/trackEvent';
 import { useEmailCheck } from '../hooks/useEmailCheck';
 import styles from './QuoteForm.module.css';
-import btn from '../styles/buttons.module.css';
+import v2b from '../styles/v2/buttons.module.css';
+import v2h from '../styles/v2/hero.module.css';
 
 // WV-T04: US ZIP format (5 or 5-4), mirrors services/input_validators.validate_us_zip.
 // 00000/99999 are undeliverable sentinels.
@@ -353,7 +354,7 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
     <div className={styles.wrap}>
       {!hideHeader && (
         <div className={styles.header}>
-          <span className={styles.kicker}>&#9670; {t('header.kicker')}</span>
+          <span className={styles.kicker}>{t('header.kicker')}</span>
           <h2 className={styles.title}>{t('header.title')}</h2>
         </div>
       )}
@@ -366,7 +367,7 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
       {!noVinMode ? (
         <div className={styles.field}>
           <label htmlFor="quote-vin" className={styles.label}>{t('form.vin')}</label>
-          <p style={{ fontSize: '12px', color: 'var(--text-muted, #706E68)', margin: '4px 0 8px 0' }}>
+          <p className={styles.vinHint}>
             {t('form.vinHint')}
           </p>
           <div className={styles.vinRow}>
@@ -390,7 +391,7 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
               type="button"
               onClick={handleDecode}
               disabled={vinLoading || form.vin.length !== 17}
-              className={`${btn.btnSecondary} ${styles.decodeBtn}`}
+              className={`${v2b.ghostOnPaper} ${styles.decodeBtn}`}
             >
               {vinLoading ? '...' : t('form.decode')}
             </button>
@@ -428,7 +429,6 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
             type="button"
             onClick={() => setNoVinMode(true)}
             className={styles.toggleLink}
-            style={{ border: 'none', background: 'none' }}
           >
             {t('form.iDontHaveVin')}
           </button>
@@ -439,7 +439,7 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
             type="button"
             onClick={() => setNoVinMode(false)}
             className={styles.toggleLink}
-            style={{ border: 'none', background: 'none', marginBottom: '12px' }}
+            style={{ marginBottom: '12px' }}
           >
             {t('form.iHaveVin')}
           </button>
@@ -723,7 +723,7 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
           <div className={styles.row}>
             <div className={styles.field}>
               <label htmlFor="quote-phone" className={styles.label}>
-                {t('form.phone')} <span style={{ color: '#DC2626' }}>*</span>
+                {t('form.phone')} <span className={styles.required}>*</span>
               </label>
               <PhoneInput id="quote-phone" value={form.phone} onChange={v => set('phone', v)} className={styles.input} />
               {form.phone && !isValidPhone(form.phone) && (
@@ -731,7 +731,7 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
               )}
             </div>
             <div className={styles.field}>
-              <label htmlFor="quote-email" className={styles.label}>{t('form.email')} <span style={{ color: '#DC2626' }}>*</span></label>
+              <label htmlFor="quote-email" className={styles.label}>{t('form.email')} <span className={styles.required}>*</span></label>
               <input
                 id="quote-email"
                 value={form.email}
@@ -772,7 +772,7 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
                 </div>
               )}
               {emailCheck.isChecking && (
-                <div style={{ fontSize: '0.85rem', color: '#6B7280', marginTop: 4 }}>Checking…</div>
+                <div className={styles.hint}>Checking…</div>
               )}
               <AnimatePresence>
                 {emailCheck.status === 'duplicate' && (
@@ -783,22 +783,15 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
                     exit={{ opacity: 0, y: -4 }}
                     transition={{ duration: 0.2 }}
                     role="status"
-                    style={{
-                      marginTop: 6,
-                      fontFamily: 'inherit',
-                      fontSize: 13,
-                      color: '#1E6F46',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 6,
-                    }}
+                    className={styles.emailRecognized}
                   >
                     <span style={{ fontSize: 14 }} aria-hidden="true">✓</span>
                     <span>
                       {t('emailRecognized.prompt')}{' '}
                       <a
                         href={`/portal/login?email=${encodeURIComponent(form.email)}`}
-                        style={{ color: '#A0411F', fontWeight: 600, textDecoration: 'underline' }}
+                        className={styles.legalLink}
+                        style={{ fontWeight: 600 }}
                       >
                         {t('emailRecognized.loginCta')}
                       </a>{' '}
@@ -842,14 +835,7 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
               optional
             />
             <div style={{ marginTop: 16, marginBottom: 12 }}>
-              <label style={{
-                display: 'flex',
-                alignItems: 'flex-start',
-                gap: 8,
-                cursor: 'pointer',
-                fontSize: 13,
-                color: '#2C2C2A',
-              }}>
+              <label className={styles.termsLabel}>
                 <input
                   type="checkbox"
                   checked={form.termsAccepted}
@@ -857,21 +843,15 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
                     set('termsAccepted', e.target.checked);
                     if (e.target.checked) setTermsError(false);
                   }}
-                  style={{
-                    marginTop: 3,
-                    width: 16,
-                    height: 16,
-                    accentColor: '#993C1D',
-                    flexShrink: 0,
-                  }}
+                  className={styles.termsCheckbox}
                   aria-required="true"
                   aria-describedby={termsError ? "terms-error" : undefined}
                 />
                 <span>
                   <Trans i18nKey="consent.terms" t={t}>
-                    I agree to the <a href="/terms" target="_blank" rel="noopener noreferrer" style={{ color: '#993C1D', textDecoration: 'underline' }}>Terms of Service</a> and <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: '#993C1D', textDecoration: 'underline' }}>Privacy Policy</a>
+                    I agree to the <a href="/terms" target="_blank" rel="noopener noreferrer" className={styles.legalLink}>Terms of Service</a> and <a href="/privacy" target="_blank" rel="noopener noreferrer" className={styles.legalLink}>Privacy Policy</a>
                   </Trans>
-                  <span style={{ color: '#DC2626', marginLeft: 4 }} aria-hidden="true">*</span>
+                  <span className={styles.required} aria-hidden="true">*</span>
                 </span>
               </label>
 
@@ -882,12 +862,7 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.2 }}
                   role="alert"
-                  style={{
-                    marginTop: 6,
-                    marginLeft: 24,
-                    fontSize: 12,
-                    color: '#DC2626',
-                  }}
+                  className={styles.termsErrorMsg}
                 >
                   {t('consent.termsRequired')}
                 </Motion.div>
@@ -901,10 +876,12 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
 
       {error && <div ref={errorRef} className={styles.errorAlert} role="alert">{error}</div>}
 
+      {/* SPRINT-W7 B1: plate-as-CTA (Angle Law) — the angled plate is this
+          band's one red fill; the V1 gradient button class is retired here. */}
       <button
         type="submit"
         disabled={submitting || !canSubmit}
-        className={`${btn.btnAccent} ${styles.submitBtn}`}
+        className={`${v2h.angledPlate} ${styles.submitBtn}`}
       >
         {submitting ? t('form.submitting') : t('form.submit')}
       </button>
@@ -912,17 +889,11 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
         <p className={styles.submitHelper}>{t('form.submitHelper')}</p>
       )}
 
-      {/* Trust badges */}
+      {/* Trust badges — mono microcopy with hairline separators (◆ retired). */}
       <div className={styles.trustRow}>
-        <span className={styles.trustItem}>
-          <span className={styles.trustDot}>&#9670;</span> {t('trust.secure')}
-        </span>
-        <span className={styles.trustItem}>
-          <span className={styles.trustDot}>&#9670;</span> {t('trust.noSpam')}
-        </span>
-        <span className={styles.trustItem}>
-          <span className={styles.trustDot}>&#9670;</span> {t('trust.fast')}
-        </span>
+        <span className={styles.trustItem}>{t('trust.secure')}</span>
+        <span className={styles.trustItem}>{t('trust.noSpam')}</span>
+        <span className={styles.trustItem}>{t('trust.fast')}</span>
       </div>
     </form>
     </div>

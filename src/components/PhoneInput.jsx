@@ -149,15 +149,16 @@ export default function PhoneInput({
     return formatted || rawDigits;
   })();
 
+  // SPRINT-W7 B1: V2 states — red-deep error, Bonded-Pine valid (success law).
   const mergedStyle = showError
-    ? { ...style, borderColor: '#C0392B' }
+    ? { ...style, borderColor: 'var(--v2-red-deep, #a90918)' }
     : isValid && rawDigits
       ? { ...style, borderColor: '#0F6E56' }
       : style;
 
   // REGC-S13-W07d: country-select border color (computed once; used as per-side
   // longhands below to avoid a border/borderRight shorthand-conflict warning).
-  const selBorderColor = showError ? '#C0392B' : isValid && rawDigits ? '#0F6E56' : '#ddd';
+  const selBorderColor = showError ? 'var(--v2-red-deep, #a90918)' : isValid && rawDigits ? '#0F6E56' : 'var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))';
 
   return (
     <div>
@@ -181,10 +182,9 @@ export default function PhoneInput({
             borderLeft: `1px solid ${selBorderColor}`,
             borderRight: 'none',
             borderRadius: '8px 0 0 8px',
-            background: '#F7F5F0',
-            color: '#2C2C2A',
+            background: 'var(--v2-card-cream, #fffaf1)',
+            color: 'var(--v2-ink, #050607)',
             cursor: 'pointer',
-            outline: 'none',
             minWidth: 0,
             width: 'auto',
             appearance: 'none',

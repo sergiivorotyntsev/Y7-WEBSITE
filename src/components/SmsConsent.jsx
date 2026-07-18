@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { colors, fonts } from '../theme';
+import { fonts } from '../theme';
 
 /**
  * SmsConsent — TCPA affirmative opt-in checkbox.
@@ -36,14 +36,15 @@ export default function SmsConsent({ checked, onChange, showError = false, optio
             marginTop: '3px',
             width: '16px',
             height: '16px',
-            accentColor: colors.accent,
+            // SPRINT-W7 B1: V2 signal-red control accent (was V1 sienna).
+            accentColor: 'var(--v2-red, #d70f24)',
             flexShrink: 0,
           }}
         />
         <span style={{
           fontFamily: fonts.sans,
           fontSize: '12px',
-          color: colors.text,
+          color: 'var(--v2-ink, #050607)',
           lineHeight: 1.5,
         }}>
           {t('sms.checkboxLabel')}
@@ -56,10 +57,10 @@ export default function SmsConsent({ checked, onChange, showError = false, optio
           style={{
             marginTop: '8px',
             padding: '8px 12px',
-            background: 'rgba(192, 57, 43, 0.07)',
-            border: '1px solid #C0392B',
-            borderRadius: '4px',
-            color: '#C0392B',
+            background: 'rgba(215, 15, 36, 0.06)',
+            border: '1px solid rgba(215, 15, 36, 0.25)',
+            borderRadius: '8px',
+            color: 'var(--v2-red-deep, #a90918)',
             fontSize: '12px',
             fontFamily: fonts.sans,
             lineHeight: 1.4,
