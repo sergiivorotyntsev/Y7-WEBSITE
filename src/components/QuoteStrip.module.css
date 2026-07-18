@@ -24,16 +24,13 @@
 }
 
 .calc {
-  /* T13: one fused instrument - controls -> connector -> terminal result */
+  /* T14-E de-framing: the instrument sits FLAT on the paper band — no outer
+     card, no per-field boxes; the dark result tile is the single container
+     and the strip's one dark anchor. */
   display: grid;
   grid-template-columns: 1fr auto minmax(190px, 0.42fr);
-  gap: 12px;
+  gap: 18px;
   align-items: stretch;
-  background: var(--v2-card-cream, #fffaf1);
-  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
-  border-radius: var(--v2-radius-lg, 18px);
-  padding: 18px;
-  box-shadow: var(--shadow-sm);
 }
 
 .controls {
@@ -54,11 +51,10 @@
 }
 
 .field {
+  /* Flat field: mono-caps label above, 1px bottom rule below the value. */
   display: block;
-  background: var(--v2-paper, #f4f0e8);
-  border: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
-  border-radius: var(--v2-radius-md, 12px);
-  padding: 10px 12px 12px;
+  padding: 4px 0 0;
+  border-bottom: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
 }
 
 .staticValue {
@@ -66,17 +62,22 @@
   font-size: 15px;
   font-weight: 600;
   color: var(--v2-ink);
-  padding-top: 4px;
+  padding: 2px 0 10px;
 }
 
-.select {
+.select.select {
+  /* Doubled selector: must beat v2f.inputOnPaper in the cascade (Phase-0
+     finding: the single-class override lost and the input frame rendered,
+     making three nested borders around every select). */
   background: transparent;
   border: 0;
-  padding: 4px 0 0;
+  border-radius: 0;
+  padding: 2px 0 10px;
   font-weight: 600;
   cursor: pointer;
+  box-shadow: none;
 }
-.select:focus-visible {
+.select.select:focus-visible {
   outline: 2px solid var(--v2-red, #d70f24);
   outline-offset: 2px;
 }
