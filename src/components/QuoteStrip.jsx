@@ -29,7 +29,6 @@ const TRANSPORTS = [
   { key: 'open', mult: 1.0 },
   { key: 'enclosed', mult: 1.4 },
 ];
-const OTHER = '__other__';
 const DEFAULT_FROM = 'Chicago, IL';
 const DEFAULT_TO = 'Newark, NJ';
 
@@ -61,9 +60,14 @@ export default function QuoteStrip({ onCta }) {
   // miss now renders the Other-state, never a stale number or the sameCity
   // string (the latent fallback path is gone).
   const calc = useMemo(() => {
-    if (from === OTHER || to === OTHER) return { other: true };
     const a = findMetro(from), b = findMetro(to);
-    if (!a || !b) return { other: true };
+    if (!a || !b) {
+      // Defensive only: unreachable via the closed metro lists. Render the
+      // default route, never a dead string or a stale number.
+      if (typeof console !== 'undefined') console.warn('QuoteStrip: metro miss', from, to);
+      const { miles: dm, lo, hi } = DEFAULT_ROUTE;
+      return { miles: dm, lo, hi, range: `$${lo}-$${hi}` };
+    }
     if (from === to) return { same: true };
     const miles = Math.round(roadMiles(a, b));
     const vMult = VEHICLES.find(v => v.key === vehicle).mult;
@@ -78,7 +82,6 @@ export default function QuoteStrip({ onCta }) {
     }
     const originState = (from.match(/, ([A-Z]{2})/) || [])[1];
     const est = estimateRange(miles, originState, mult);
-    if (!est) return { other: true };
     return { miles, lo: est.lo, hi: est.hi, range: `$${est.lo}-$${est.hi}` };
   }, [from, to, vehicle, transport]);
 
@@ -91,14 +94,16 @@ export default function QuoteStrip({ onCta }) {
       if (onCta) onCta();
       return;
     }
-    // T14-D: Other/custom routes go to /quote prefilled with whatever IS
-    // selected (the resolvable side's ZIP); nothing is fabricated.
+    // T14-D (amended): full prefill — route + vehicle + transport all carry
+    // into /quote (QuoteForm consumes each, whitelisted). The strip's
+    // 'pickup' key maps to the form's 'truck' vehicle_type value.
     const a = findMetro(from), b = findMetro(to);
     const params = new URLSearchParams();
     if (a) params.set('pickup_zip', a.zip);
     if (b) params.set('delivery_zip', b.zip);
-    const qs = params.toString();
-    navigate(`/quote${qs ? `?${qs}` : ''}#top`);
+    params.set('vehicle_type', vehicle === 'pickup' ? 'truck' : vehicle);
+    params.set('transport_type', transport);
+    navigate(`/quote?${params.toString()}#top`);
   };
 
   const selectProps = {
@@ -147,14 +152,12 @@ export default function QuoteStrip({ onCta }) {
             <span className={`${v2t.monoMicro} ${styles.fieldLabel}`}>{t('quoteStrip.pickupLabel')}</span>
             <select {...selectProps} value={from} onChange={(e) => setFrom(e.target.value)}>
               {METROS.map(m => <option key={m.name} value={m.name}>{m.name}</option>)}
-              <option value={OTHER}>{t('quoteStrip.otherOption')}</option>
             </select>
           </label>
           <label className={styles.field}>
             <span className={`${v2t.monoMicro} ${styles.fieldLabel}`}>{t('quoteStrip.deliverLabel')}</span>
             <select {...selectProps} value={to} onChange={(e) => setTo(e.target.value)}>
               {deliverList.map(m => <option key={m.name} value={m.name}>{m.name}</option>)}
-              <option value={OTHER}>{t('quoteStrip.otherOption')}</option>
             </select>
           </label>
           <label className={styles.field}>
@@ -180,20 +183,13 @@ export default function QuoteStrip({ onCta }) {
         </div>
 
         <a href="#quote-section" onClick={go} className={styles.result}>
-          <span className={`${v2t.monoMicro} ${styles.resultLabel}`}>{t(calc.other ? 'quoteStrip.customRouteLabel' : 'quoteStrip.resultLabel')}</span>
+          <span className={`${v2t.monoMicro} ${styles.resultLabel}`}>{t('quoteStrip.resultLabel')}</span>
           {calc.range ? (
             <>
               <b className={styles.resultValue}>{calc.range}</b>
               <span className={`${v2t.monoMicro} ${styles.resultMiles}`}>~{calc.miles.toLocaleString('en-US')} mi</span>
               <span className={`${v2t.monoMicro} ${styles.resultHedge}`}>{t('quoteStrip.resultHedge')}</span>
               <span className={`${v2t.monoMicro} ${styles.resultFee}`}>{t('quoteStrip.resultFee')}</span>
-            </>
-          ) : calc.other ? (
-            /* T14-D custom-route state: no fabricated numbers; mono voice +
-               the CTA prefills /quote with the already-selected side(s). */
-            <>
-              <b className={styles.resultValueSm}>{t('quoteStrip.otherResult')}</b>
-              <span className={`${v2t.monoMicro} ${styles.resultHedge}`}>{t('quoteStrip.customRouteNote')}</span>
             </>
           ) : (
             <b className={styles.resultValueSm}>{t('quoteStrip.sameCity')}</b>

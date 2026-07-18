@@ -176,15 +176,11 @@
     "cta": "Otrzymaj dokładną wycenę",
     "resultFee": "+ stała opłata Y7",
     "ctaHedge": "Dokładna wycena do 1 godziny, w godzinach pracy",
-    "otherOption": "Inne / dokładna wycena",
-    "otherResult": "Otrzymaj dokładną wycenę",
     "sameCity": "Wybierz dwa różne miasta",
     "vehicle_sedan": "Sedan",
     "vehicle_suv": "SUV",
     "vehicle_pickup": "Pickup",
     "transport_open": "Otwarty",
-    "transport_enclosed": "Zamknięty",
-    "customRouteLabel": "Trasa niestandardowa",
-    "customRouteNote": "Trasy spoza listy miast wyceniamy indywidualnie."
+    "transport_enclosed": "Zamknięty"
   }
 }

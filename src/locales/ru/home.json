@@ -176,15 +176,11 @@
     "cta": "Получить точный расчёт",
     "resultFee": "+ фиксированная плата Y7",
     "ctaHedge": "Точный расчёт до 1 часа, в рабочее время",
-    "otherOption": "Другое / точный расчёт",
-    "otherResult": "Получите точный расчёт",
     "sameCity": "Выберите два разных города",
     "vehicle_sedan": "Седан",
     "vehicle_suv": "Внедорожник",
     "vehicle_pickup": "Пикап",
     "transport_open": "Открытый",
-    "transport_enclosed": "Закрытый",
-    "customRouteLabel": "Нестандартный маршрут",
-    "customRouteNote": "Маршруты вне списка городов оцениваем индивидуально."
+    "transport_enclosed": "Закрытый"
   }
 }

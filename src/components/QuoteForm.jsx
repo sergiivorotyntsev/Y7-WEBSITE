@@ -75,7 +75,9 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
   const [form, setForm] = useState({
     vin: urlParams?.get('vin') || '',
     vehicle_year: '', vehicle_make: '', vehicle_model: '',
-    vehicle_type: '', // WGF-T07: detected from VIN, editable, rides the payload spread
+    // WGF-T07: detected from VIN, editable, rides the payload spread.
+    // SPRINT-T14: also prefillable from the calculator CTA (whitelisted).
+    vehicle_type: ['sedan', 'suv', 'truck', 'van', 'motorcycle'].includes(urlParams?.get('vehicle_type')) ? urlParams.get('vehicle_type') : '',
 
     pickup_zip: urlParams?.get('pickup_zip') || '',
     pickup_location_type: 'Residence',
@@ -83,7 +85,7 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
     delivery_zip: urlParams?.get('delivery_zip') || '',
     delivery_location_type: 'Residence',
     delivery_requires_twic: false,
-    transport_type: 'open',
+    transport_type: ['open', 'enclosed'].includes(urlParams?.get('transport_type')) ? urlParams.get('transport_type') : 'open',
     is_inoperable: false,
     pickup_date_type: 'asap',
     preferred_pickup_date: '',

@@ -176,15 +176,11 @@
     "cta": "Get the exact quote",
     "resultFee": "+ flat Y7 dispatch fee",
     "ctaHedge": "Exact quote under 1 hr, business hours",
-    "otherOption": "Other / exact quote",
-    "otherResult": "Get an exact quote",
     "sameCity": "Pick two different cities",
     "vehicle_sedan": "Sedan",
     "vehicle_suv": "SUV",
     "vehicle_pickup": "Pickup truck",
     "transport_open": "Open",
-    "transport_enclosed": "Enclosed",
-    "customRouteLabel": "Custom route",
-    "customRouteNote": "We price routes beyond the metro list individually."
+    "transport_enclosed": "Enclosed"
   }
 }
