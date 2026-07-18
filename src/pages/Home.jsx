@@ -21,6 +21,7 @@ import v2b from '../styles/v2/buttons.module.css';
 import v2c from '../styles/v2/cards.module.css';
 import v2h from '../styles/v2/hero.module.css';
 import HeroArc from '../components/HeroArc';
+import MobileHeroEmergence, { HERO_BLANK_PX } from '../components/MobileHeroEmergence';
 import v2a from '../styles/v2/accents.module.css';
 
 export default function Home() {
@@ -54,12 +55,17 @@ export default function Home() {
             sign-off for this AI-derived asset is recorded in the sprint
             report. Decorative, aria-hidden, absolute layer with explicit
             dimensions (CLS 0); content siblings paint above by DOM order. */}
+        {/* SPRINT-W7 M0: preload is desktop-only (media gate) — on mobile the
+            car is a lazy below-fold coda and must not join the LCP chain. */}
         <Helmet>
-          <link rel="preload" as="image" href="/images/hero-car.avif" type="image/avif" />
+          <link rel="preload" as="image" href="/images/hero-car.avif" type="image/avif" media="(min-width: 901px)" />
         </Helmet>
         <div className={`${v2h.photoEmergence} ${styles.heroPhoto}`} aria-hidden="true">
           <HeroArc className={styles.heroArc} />
           <picture>
+            {/* SPRINT-W7 M0: blank-pixel gate — this eager desktop LCP image
+                must resolve to zero bytes on phones, where it is hidden. */}
+            <source media="(max-width: 900px)" srcSet={HERO_BLANK_PX} />
             <source srcSet="/images/hero-car.avif" type="image/avif" />
             <source srcSet="/images/hero-car.webp" type="image/webp" />
             <img src="/images/hero-car.webp" alt="" width="1625" height="704" loading="eager" fetchPriority="high" decoding="async" />
@@ -117,6 +123,9 @@ export default function Home() {
             </div>
           </Reveal>
         </div>
+        {/* SPRINT-W7 M0: mobile emergence coda — in-flow at the band's
+            bottom, <=900px only (owner reversal of the W-HOME degradation). */}
+        <MobileHeroEmergence />
       </section>
 
       {/* 2. Quote strip + Serve-cards — one manifest band, two blocks (T03+T07).

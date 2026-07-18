@@ -144,3 +144,63 @@
 .heroArc {
   position: absolute;
 }
+
+/* =====================================================================
+   MOBILE EMERGENCE — SPRINT-W7 M0 (owner reversal of the W-HOME mobile
+   degradation): below the hero breakpoint the car returns as a compact
+   IN-FLOW coda at the BOTTOM of the hero band. It stacks AFTER the text
+   content, never layers under it, so text/photo overlap is zero by
+   construction (Photo Treatment Law (e)). Above 900px this block is
+   display:none and the absolute photoEmergence serves the hero instead.
+   The img keeps explicit width/height attributes, so the box is reserved
+   before load (CLS 0) even though the file arrives lazily.
+   ===================================================================== */
+.mobileEmergence {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .mobileEmergence {
+    display: block;
+    position: relative;
+    pointer-events: none;
+    /* Pull the coda up into the band's bottom padding so the car reads as
+       emerging at the band's lower edge, not floating between sections. */
+    margin: -14px 0 0;
+  }
+
+  .mobileEmergence img {
+    display: block;
+    width: min(88vw, 560px);
+    height: auto;
+    margin-left: auto;
+    margin-right: -8vw;
+    /* Same palette grade as photoEmergence. */
+    filter: saturate(0.8) contrast(1.06) brightness(0.88);
+    /* Emergence mask: dissolve into board on the trailing/lower edges. */
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 2%, #000 30%),
+      linear-gradient(to top, transparent 4%, #000 32%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to right, transparent 2%, #000 30%),
+      linear-gradient(to top, transparent 4%, #000 32%);
+    mask-composite: intersect;
+  }
+
+  /* Board-tint above the photo — same shadow-pinning as photoEmergence. */
+  .mobileEmergence::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 6, 7, 0.22);
+  }
+
+  .mobileEmergence .heroArc {
+    right: -1%;
+    bottom: 4%;
+    width: min(50vw, 320px);
+    height: auto;
+    aspect-ratio: 1;
+  }
+}

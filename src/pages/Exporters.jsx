@@ -19,6 +19,7 @@ import v2a from '../styles/v2/accents.module.css';
 import v2f from '../styles/v2/forms.module.css';
 import v2h from '../styles/v2/hero.module.css';
 import HeroArc from '../components/HeroArc';
+import MobileHeroEmergence, { HERO_BLANK_PX } from '../components/MobileHeroEmergence';
 
 // DESIGN-V2-W4-T02: Dispatch Board restyle. SEO contract frozen: every heading
 // text/level, i18n keys, schema call sites, EntityTldr position (first element
@@ -156,6 +157,9 @@ export default function Exporters() {
         <div className={`${v2h.photoEmergence} ${styles.heroPhoto}`} aria-hidden="true">
           <HeroArc className={styles.heroArc} />
           <picture>
+            {/* SPRINT-W7 M0: blank-pixel gate — eager desktop image resolves
+                to zero bytes on phones, where it is hidden. */}
+            <source media="(max-width: 900px)" srcSet={HERO_BLANK_PX} />
             <source srcSet="/images/hero-car.avif" type="image/avif" />
             <source srcSet="/images/hero-car.webp" type="image/webp" />
             <img src="/images/hero-car.webp" alt="" width="1625" height="704" loading="eager" decoding="async" />
@@ -192,6 +196,11 @@ export default function Exporters() {
             </div>
           </div>
         </div>
+        {/* SPRINT-W7 M0: mobile emergence coda — in-flow at the band's
+            bottom, <=900px only (owner reversal of the W-HOME degradation).
+            eager: this hero is short enough that the car sits inside the
+            390x844 first viewport (measured). */}
+        <MobileHeroEmergence eager />
       </section>
 
       {/* TL;DR + value proposition — manifest band; the extractable answer
