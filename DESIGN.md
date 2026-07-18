@@ -165,7 +165,7 @@ Documented in §2 (Surfaces). Contrast matrix, all measured:
 **Display:** condensed uppercase sans, self-hosted webfont with **mandatory Latin + Latin-Extended + Cyrillic coverage** (H1 renders in RU/UA/PL at parity; a display face without Cyrillic is disqualified regardless of look). The face is selected and pinned in W1-T03; `var(--v2-font-display)` is the single reference. Fallback stack is metric-tuned Arial Narrow.
 **Body:** system-ui. Unchanged. Fast, locale-native, zero webfont cost.
 **Mono:** JetBrains Mono (already self-hosted, 400/600/700 latin). V2 promotes it from "credentials only" to the system's microcopy voice: eyebrows, labels, sublines, captions, stats labels, chips.
-**Serif:** Georgia is retired as a display face. It may survive only as the long-form reading face inside blog article bodies (decision finalized in the blog wave); it never appears in headings, navigation, or UI. The only other serif on the site is the JP accent face (§5).
+**Serif:** Georgia is retired as a display face. It may survive only as the long-form reading face inside blog article bodies (decision finalized in the blog wave); it never appears in headings, navigation, or UI. The only other serif on the site is the JP accent face (§5). Exemption: the AnimatedLogo "Y7." wordmark keeps Georgia — it is a sanctioned brand mark, the same legal class as the JP glyphs, outside the display-typography law.
 
 ### Scale (from frontmatter, the law in prose)
 
@@ -210,6 +210,10 @@ The JP accents tie the site to the vehicle-wrap brand system V4 and the kaizen o
 **Rendering:** vertical strips use `writing-mode: vertical-rl` with the JP serif asset from W1-T03 (hard-subset webfont ≤6KB or inline SVG; never a full CJK font). Color: `on-dark-muted` at 58% alpha for strips; stamp border and glyph in `signal-red` at 75% alpha.
 
 ## 6. Elevation, Radii, Motion
+
+### Layout (the T06 rule)
+
+Narrow content inside a wide band shares the band's container/grid — a block never carries its own width system (max-width + auto margins) inside a section. Edges coincide by construction via a shared container, never by tuned offsets. Deliberately centered sole-content compositions require an explicit ruling.
 
 ### Radii (V2 family)
 
