@@ -4,6 +4,7 @@ import SmsConsent from '../../../components/SmsConsent';
 import PhoneInput from '../../../components/PhoneInput';
 import EmailInputWithCheck from '../../../components/EmailInputWithCheck';
 import AnimatedLogo from '../../../components/AnimatedLogo';
+import { accountTypeCards, VERIFICATION_NOTE_LONG } from '../../../data/accountTypes';
 
 // LOGIN-V2: DESIGN-V2 "Dispatch Board" retoken. The retired V1 "Trade
 // Bulletin" palette (its old reading-face display, burnt-sienna accent, and
@@ -115,60 +116,19 @@ const secondaryBtn = {
   cursor: 'pointer',
 };
 
-// REGC-S13-W01: account-type cards lifted verbatim from Onboarding.jsx:43-88
-// (title + description + 3 benefits). LOGIN-V2: the per-type tone swatches
-// (sienna/gold/pine/blue washes) are RETIRED — all four cards render neutral
-// (cream + hairline + ink); the selected state carries the single red accent.
-const REG_TYPES = [
-  {
-    id: 'individual',
-    title: 'Ship My Car',
-    description: 'Single vehicle, personal shipment',
-    benefits: [
-      'One-vehicle web quote, door-to-door',
-      'Pay carrier directly on delivery (COD)',
-      '$50 COD or $65 Full Service fee',
-    ],
-  },
-  {
-    id: 'auction_buyer',
-    title: 'Auction Buyer',
-    description: 'Copart, IAA, Manheim, or similar',
-    benefits: [
-      'Auction presets (Copart / IAA / Manheim)',
-      'Gate-pass upload + VIN decode',
-      '$50 COD or $65 Full Service fee',
-    ],
-  },
-  {
-    id: 'dealer',
-    title: 'Auto Dealer',
-    description: 'Licensed dealer moving inventory / trades',
-    benefits: [
-      'Volume shipping + saved locations',
-      'Dedicated dealer agreement',
-      '$50 COD / $65 Full Service (AP service available separately)',
-    ],
-  },
-  {
-    id: 'exporter',
-    title: 'Exporter',
-    description: 'Shipping to US ports, warehouses, or containers',
-    benefits: [
-      'Saved port + warehouse addresses',
-      'Container-ready delivery',
-      '$50 COD or $65 Full Service fee',
-    ],
-  },
-];
+// WAC-T02: cards come from the shared source of truth (data/accountTypes.js)
+// — three types, Auction Buyer merged into Ship My Car per WAP-T02. This is a
+// PRE-ACCOUNT surface: every new signup is created as pricing_model='ind_2026'
+// (DB default, never changed by reclassification), so the individual card
+// always shows the ind_2026 terms here. LOGIN-V2 styling note: the per-type
+// tone swatches (sienna/gold/pine/blue washes) are RETIRED — cards render
+// neutral (cream + hairline + ink); the selected state carries the red accent.
+const REG_TYPES = accountTypeCards('ind_2026');
 
 // REGC-S13-W01 / FX-6: pinned pending note (verbatim — no time/SLA promises).
 // Shown for BOTH dealer and exporter so the verification requirement is set
 // before signup, matching the application -> review -> activate reality.
-const DEALER_PENDING_NOTE =
-  'Dealer and exporter accounts require a short verification before you can ' +
-  'place orders directly. You can finish setting up your account now — our ' +
-  "team will review your business and set up a call to activate you.";
+const DEALER_PENDING_NOTE = VERIFICATION_NOTE_LONG;
 
 export default function LoginCard({
   t,
