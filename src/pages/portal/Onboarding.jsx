@@ -5,6 +5,7 @@ import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, radii, spacing } from '../../theme';
 import PhoneInput, { isValidPhone } from '../../components/PhoneInput';
 import { LocationsManager } from './Locations'; // EXP2-T02: embedded warehouse step
+import { ACCOUNT_TYPE_CARDS, individualFeeBenefits } from '../../data/accountTypes';
 
 /**
  * Onboarding (WIZARD-REDESIGN T05+T06+T07)
@@ -43,60 +44,13 @@ const TEMPLATE_KEY_BY_TYPE = {
   exporter: 'exporter_v1.0.md',
 };
 
-// WAP-T02 (Sergii 2026-07-08): the Auction Buyer card MERGED into Ship My Car —
-// one card covers personal and auction purchases (existing auction_buyer
-// accounts keep working; new signups classify as individual). The fee line is
-// dynamic: new-model customers (pricing_model='ind_2026') see the formula
-// terms; legacy customers keep the $50/$65 wording they signed up under.
-const individualFeeBenefits = (pricingModel) =>
-  pricingModel === 'ind_2026'
-    ? [
-        'Broker fee: $75 minimum or 10% of carrier price',
-        'Carrier paid COD at pickup/delivery',
-      ]
-    : [
-        'Pay carrier directly on delivery (COD)',
-        '$50 COD or $65 Full Service fee',
-      ];
-
-const TYPES = [
-  {
-    id: 'individual',
-    title: 'Ship My Car',
-    description: 'Personal or auction purchase — single vehicles',
-    benefits: [
-      'One-vehicle web quote, door-to-door',
-      'Auction pickups (Copart / IAA / Manheim) with document auto-fill',
-      // fee benefits appended per pricing model at render time
-    ],
-  },
-  {
-    id: 'dealer',
-    title: 'Auto Dealer',
-    description: 'Licensed dealer moving inventory / trades',
-    benefits: [
-      'Volume shipping + saved locations',
-      'Dedicated dealer agreement',
-      '$50 COD / $65 Full Service (AP service available separately)',
-    ],
-    note: 'Requires a short verification — apply now, we review and set up a call to activate.',
-  },
-  {
-    id: 'exporter',
-    title: 'Exporter',
-    // EXP1-T05: state the actual exporter model so the dealer-vs-exporter
-    // choice is unambiguous at registration. The old card promised a COD/Full
-    // Service fee choice exporters never get (tier is individual/auction_buyer
-    // only — portal_data.py:448) and said nothing about Y7-assigned delivery.
-    description: 'Export via US ports — Y7 assigns the destination warehouse',
-    benefits: [
-      'Register your export warehouses once',
-      'Per order: just upload the auction documents',
-      'Y7 picks the optimal warehouse and dispatches',
-    ],
-    note: 'Requires a short verification — apply now, we review and set up a call to activate.',
-  },
-];
+// WAC-T01: the card set + terms come from the shared source of truth
+// (data/accountTypes.js) — WAP-T02 merge (Auction Buyer -> Ship My Car),
+// EXP1-T05 exporter model copy, and the real dealer terms all live THERE.
+// The individual fee line stays dynamic: new-model customers
+// (pricing_model='ind_2026') see the formula terms; legacy customers keep
+// the $50/$65 wording they signed up under.
+const TYPES = ACCOUNT_TYPE_CARDS;
 
 const LOCALE_BLOCK_COPY = {
   en: {

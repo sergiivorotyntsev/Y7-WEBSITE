@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { portalFetch, useAuth } from '../hooks/useAuth';
 import { colors, fonts } from '../theme';
+import { CANONICAL_TYPE_IDS, IND_2026_FEE_LINE, IND_2026_COD_LINE } from '../data/accountTypes';
 
 /**
  * AccountTypeModal (SPRINT-E-T3)
@@ -27,14 +28,18 @@ const TYPE_LABELS = {
 // covers personal and auction purchases. The terms line is dynamic per the
 // viewer's pricing model (new customers see the ind_2026 formula; legacy
 // customers keep the wording they signed up under).
+// WAC-T01: the card SET and the fee/terms lines come from the shared source
+// of truth (data/accountTypes.js); only the modal-context phrasing
+// ("I'm shipping my own vehicle...") stays local.
 const individualTermsBenefit = (pricingModel) =>
   pricingModel === 'ind_2026'
-    ? 'Broker fee: $75 minimum or 10% of carrier price · carrier paid COD at pickup/delivery'
+    ? `${IND_2026_FEE_LINE} · ${IND_2026_COD_LINE.charAt(0).toLowerCase()}${IND_2026_COD_LINE.slice(1)}`
     : 'Pay on delivery (COD)';
 
-const TYPES = [
-  {
-    id: 'individual',
+// Modal-context copy per canonical type (first-person, reclassification
+// framing). The type ids MUST stay the canonical set — no additions here.
+const MODAL_CARD_COPY = {
+  individual: {
     title: 'Individual',
     description: "I'm shipping my own vehicle — personal or auction purchase",
     benefits: [
@@ -43,18 +48,7 @@ const TYPES = [
       'Portal tracking & email updates',
     ],
   },
-  {
-    id: 'exporter',
-    title: 'Exporter',
-    description: 'I ship vehicles internationally',
-    benefits: [
-      'Saved port & warehouse addresses',
-      'Exporter-specific transport agreement',
-      'Route presets for international ports',
-    ],
-  },
-  {
-    id: 'dealer',
+  dealer: {
     title: 'Licensed Dealer',
     description: 'I run a dealership (application + verification required)',
     note: 'Activation requires a short review and call with Y7',
@@ -64,7 +58,18 @@ const TYPES = [
       'Dealer-specific transport agreement',
     ],
   },
-];
+  exporter: {
+    title: 'Exporter',
+    description: 'I ship vehicles internationally',
+    benefits: [
+      'Saved port & warehouse addresses',
+      'Exporter-specific transport agreement',
+      'Route presets for international ports',
+    ],
+  },
+};
+
+const TYPES = CANONICAL_TYPE_IDS.map((id) => ({ id, ...MODAL_CARD_COPY[id] }));
 
 export default function AccountTypeModal({ onComplete, mode = 'initial', currentType, onClose }) {
   const { user } = useAuth();
