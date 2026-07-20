@@ -79,36 +79,6 @@
       "label": "Done",
       "title": "You're all set"
     },
-    "type": {
-      "individual": {
-        "title": "Ship My Car",
-        "description": "Single vehicle, personal shipment",
-        "benefit1": "One-vehicle door-to-door quote",
-        "benefit2": "Pay carrier on delivery (COD)",
-        "benefit3": "$50 COD or $65 Full Service fee"
-      },
-      "auction_buyer": {
-        "title": "Auction Buyer",
-        "description": "Copart, IAA, Manheim, or similar",
-        "benefit1": "Auction origin presets",
-        "benefit2": "Gate-pass upload + VIN decode",
-        "benefit3": "$50 COD or $65 Full Service fee"
-      },
-      "dealer": {
-        "title": "Auto Dealer",
-        "description": "Licensed dealer moving inventory or trades",
-        "benefit1": "Volume shipping and saved locations",
-        "benefit2": "Dedicated dealer agreement",
-        "benefit3": "$50 COD / $65 Full Service (AP service available separately)"
-      },
-      "exporter": {
-        "title": "Exporter",
-        "description": "US ports, warehouses, or container staging",
-        "benefit1": "Saved port and warehouse addresses",
-        "benefit2": "Container-ready delivery",
-        "benefit3": "$50 COD or $65 Full Service fee"
-      }
-    },
     "agreement": {
       "readGuard": "Please scroll to the end of the agreement to continue.",
       "draftBanner": "Draft agreement — for evaluation.",

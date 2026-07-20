@@ -79,36 +79,6 @@
       "label": "Gotowe",
       "title": "Wszystko gotowe"
     },
-    "type": {
-      "individual": {
-        "title": "Osobiste auto",
-        "description": "Jeden pojazd, transport prywatny",
-        "benefit1": "Wycena pojedynczego pojazdu, od drzwi do drzwi",
-        "benefit2": "Płatność przewoźnikowi przy dostawie (COD)",
-        "benefit3": "$50 COD lub $65 Full Service"
-      },
-      "auction_buyer": {
-        "title": "Kupujący z aukcji",
-        "description": "Copart, IAA, Manheim lub podobne",
-        "benefit1": "Presety dla aukcji",
-        "benefit2": "Przesłanie gate-pass i dekodowanie VIN",
-        "benefit3": "$50 COD lub $65 Full Service"
-      },
-      "dealer": {
-        "title": "Dealer samochodowy",
-        "description": "Licencjonowany dealer, transport inventory i trades",
-        "benefit1": "Transport hurtowy i zapisane adresy",
-        "benefit2": "Dedykowana umowa dealerska",
-        "benefit3": "$50 COD / $65 Full Service (usługa AP dostępna osobno)"
-      },
-      "exporter": {
-        "title": "Eksporter",
-        "description": "Porty USA, magazyny lub terminale kontenerowe",
-        "benefit1": "Zapisane adresy portów i magazynów",
-        "benefit2": "Dostawa pod kontener",
-        "benefit3": "$50 COD lub $65 Full Service"
-      }
-    },
     "agreement": {
       "readGuard": "Przewiń umowę do końca, aby kontynuować.",
       "draftBanner": "Projekt umowy — do oceny.",
