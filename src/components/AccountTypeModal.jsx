@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { portalFetch, useAuth } from '../hooks/useAuth';
 import { colors, fonts } from '../theme';
 import {
-  ACCOUNT_TYPE_CARDS,
+  accountTypeCards,
   CANONICAL_TYPE_IDS,
   IND_2026_COD_LINE,
   IND_2026_FEE_LINE,
@@ -77,16 +77,24 @@ const MODAL_CARD_COPY = {
 // the modal only owns its first-person capability phrasing. The old
 // "Per-delivery billing & weekly invoicing" bullet is gone: it stated a cadence
 // no agreement binds and contradicted the confirmed model.
-const TYPES = CANONICAL_TYPE_IDS.map((id) => {
-  const shared = ACCOUNT_TYPE_CARDS.find((c) => c.id === id);
-  return { id, ...MODAL_CARD_COPY[id], terms: shared?.terms || [] };
-});
+// Terms are resolved per VIEWER, so an unmigrated legacy dealer sees the tier
+// they are actually charged rather than the 2026 model.
+const typesForViewer = (pricingModel) => {
+  const resolved = accountTypeCards(pricingModel);
+  return CANONICAL_TYPE_IDS.map((id) => ({
+    id,
+    ...MODAL_CARD_COPY[id],
+    terms: resolved.find((c) => c.id === id)?.terms || [],
+  }));
+};
 
 export default function AccountTypeModal({ onComplete, mode = 'initial', currentType, onClose }) {
   const { user } = useAuth();
   const isEdit = mode === 'edit';
   // AQ-3: one rule — dealer/exporter are selectable here too (they enter the
   // pending-application flow), so the edit list is no longer filtered.
+  // Resolved for this viewer's pricing model (B2B-T03).
+  const TYPES = typesForViewer(user?.pricing_model);
   const editTypes = TYPES;
   const [selected, setSelected] = useState(null);
   const [submitting, setSubmitting] = useState(false);

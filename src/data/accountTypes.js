@@ -112,11 +112,32 @@ export const ACCOUNT_TYPE_CARDS = [
   },
 ];
 
-// The card set with the individual terms resolved for this viewer's model.
+// A dealer/exporter still on the legacy tier must NOT be shown the 2026 terms:
+// until the T06 migration stamps their account, the engine charges them the
+// $50 COD / $65 Full Service schedule, and a card promising "$50 per load, $60
+// when Y7 pays" would be the same over-promise this sprint set out to remove.
+// Mirrors how the individual card has always resolved per model.
+export const B2B_LEGACY_TERMS = [
+  'Y7 fee: $50 COD or $65 Full Service — the schedule your account signed up under',
+  'Carrier price passed through at cost — Y7 never marks it up',
+];
+
+// The card set with the terms resolved for THIS viewer's pricing model.
 // `benefits` stays the concatenated list so existing consumers keep working;
 // `terms` is what B2B-T04 highlights on hover.
+//
+// Pre-account surfaces (portal signup) pass the model the account will be
+// CREATED on, so a prospective dealer sees the 2026 terms they will actually
+// get. Post-account surfaces pass the viewer's stored pricing_model.
 export const accountTypeCards = (pricingModel) =>
   ACCOUNT_TYPE_CARDS.map((c) => {
-    const terms = c.id === 'individual' ? individualFeeBenefits(pricingModel) : c.terms;
+    let terms;
+    if (c.id === 'individual') {
+      terms = individualFeeBenefits(pricingModel);
+    } else if (pricingModel === 'legacy') {
+      terms = B2B_LEGACY_TERMS;
+    } else {
+      terms = c.terms;
+    }
     return { ...c, terms, benefits: [...c.benefits, ...terms] };
   });

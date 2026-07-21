@@ -5,7 +5,7 @@ import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { colors, fonts, radii, spacing } from '../../theme';
 import PhoneInput, { isValidPhone } from '../../components/PhoneInput';
 import { LocationsManager } from './Locations'; // EXP2-T02: embedded warehouse step
-import { ACCOUNT_TYPE_CARDS, individualFeeBenefits } from '../../data/accountTypes';
+import { ACCOUNT_TYPE_CARDS, accountTypeCards } from '../../data/accountTypes';
 
 /**
  * Onboarding (WIZARD-REDESIGN T05+T06+T07)
@@ -643,9 +643,10 @@ function AccountTypeStep({ onSelected }) {
   const [focused, setFocused] = useState(null);
   const { user } = useAuth();
   // B2B-T04: terms are tracked separately from capabilities so only the
-  // commercial lines take the hover accent.
-  const cardTerms = (t) =>
-    t.id === 'individual' ? individualFeeBenefits(user?.pricing_model) : t.terms;
+  // commercial lines take the hover accent. Resolved for THIS viewer's pricing
+  // model, so an unmigrated legacy dealer is not shown the 2026 terms.
+  const viewerCards = accountTypeCards(user?.pricing_model);
+  const cardTerms = (t) => viewerCards.find((c) => c.id === t.id)?.terms || [];
   const cardBenefits = (t) => [...t.benefits, ...cardTerms(t)];
   return (
     <div>
