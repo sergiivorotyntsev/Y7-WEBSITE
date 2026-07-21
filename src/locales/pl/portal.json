@@ -81,7 +81,6 @@
     },
     "agreement": {
       "readGuard": "Przewiń umowę do końca, aby kontynuować.",
-      "draftBanner": "Projekt umowy — do oceny.",
       "checkbox_bol": "Rozumiem zasady listu przewozowego (BOL) i wymagania dotyczące oględzin.",
       "checkbox_payment": "Rozumiem strukturę opłat dyspozytora i warunki płatności.",
       "checkbox_broker_liability": "Rozumiem rolę brokera i ograniczenia odpowiedzialności.",

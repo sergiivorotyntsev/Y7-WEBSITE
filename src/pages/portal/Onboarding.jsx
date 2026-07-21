@@ -37,10 +37,17 @@ const TYPE_LABELS = {
   exporter: 'Exporter',
 };
 
+// AGRINV-T02: these keys are validated server-side against
+// db/customer_types.AGREEMENT_TEMPLATE_MAP — a mismatch is a hard HTTP 400
+// (portal_onboarding.py:404 template_type_mismatch), so the wizard cannot sign.
+// The dealer entry pointed at the SUPERSEDED v0.1 draft file from April until
+// AGR-T01 made v1.0 operative on 2026-07-17, which silently broke dealer
+// signing through this wizard. tests/unit/test_agreement_template_keys.py now
+// fails if the two maps drift again.
 const TEMPLATE_KEY_BY_TYPE = {
   individual: 'individual_v1.0.md',
   auction_buyer: 'individual_v1.0.md',
-  dealer: 'dealer_agreement_v0.1_DRAFT.md',
+  dealer: 'dealer_agreement_v1.0.md',
   exporter: 'exporter_v1.0.md',
 };
 

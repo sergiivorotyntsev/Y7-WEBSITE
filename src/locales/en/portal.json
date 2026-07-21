@@ -81,7 +81,6 @@
     },
     "agreement": {
       "readGuard": "Please scroll to the end of the agreement to continue.",
-      "draftBanner": "Draft agreement — for evaluation.",
       "checkbox_bol": "I understand the Bill of Lading and inspection requirements.",
       "checkbox_payment": "I understand the dispatch fee structure and payment terms.",
       "checkbox_broker_liability": "I understand the broker's role and liability limitations.",

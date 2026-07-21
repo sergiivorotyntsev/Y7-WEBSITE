@@ -310,9 +310,11 @@ export default function Agreement() {
   const [success, setSuccess] = useState(false);
   // ESIGN-MECHANICS: discrete UETA electronic-consent, unticked by default.
   const [eConsent, setEConsent] = useState(false);
-  // Template metadata for the dealer DRAFT flow — drives the banner and
-  // the agreement_version we send back when signing. Shipper flow leaves
-  // this null so nothing renders and the backend uses its default version.
+  // Template metadata: supplies the signer's pricing_model and the
+  // agreement_version we send back when signing. Shipper flow leaves this
+  // null so the backend uses its default version. No banner is rendered from
+  // it — the client-facing evaluation banner was removed in FX-1 and must not
+  // return: this is a binding, operative agreement.
   const [template, setTemplate] = useState(null);
 
   // Customer-level agreement modes:
@@ -335,10 +337,10 @@ export default function Agreement() {
   }
   /* eslint-disable react-hooks/rules-of-hooks */
 
-  // Fetch template metadata so we know the version + draft status. This
-  // runs in parallel with the signed-status fetch and is best-effort: a
-  // failure here only suppresses the DRAFT banner, it does not break the
-  // sign flow.
+  // Fetch template metadata so we know the version + pricing model. Runs in
+  // parallel with the signed-status fetch and is best-effort: a failure here
+  // only falls back to the session's pricing model; it renders no banner and
+  // does not break the sign flow.
   useEffect(() => {
     const tplType = getAgreementType(user?.customer_type);
     // WPF-T01: in order mode pass the order id so the backend can resolve the
