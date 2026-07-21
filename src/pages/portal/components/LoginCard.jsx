@@ -562,6 +562,7 @@ export default function LoginCard({
                 <button
                   key={tp.id}
                   type="button"
+                  className="acct-type-card"
                   onClick={() => onSelectType(tp.id)}
                   style={{
                     textAlign: 'left',
@@ -579,7 +580,14 @@ export default function LoginCard({
                   <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: C.textMuted, marginTop: '2px' }}>{tp.description}</div>
                   <ul style={{ margin: '8px 0 0', paddingLeft: '18px' }}>
                     {tp.benefits.map((b, i) => (
-                      <li key={i} style={{ fontFamily: fonts.sans, fontSize: '12px', color: C.textMuted, lineHeight: 1.5 }}>{b}</li>
+                      // B2B-T04: the commercial terms carry the hover accent.
+                      <li
+                        key={i}
+                        className={tp.terms.includes(b) ? 'acct-type-terms' : undefined}
+                        style={{ fontFamily: fonts.sans, fontSize: '12px', color: C.textMuted, lineHeight: 1.5 }}
+                      >
+                        {b}
+                      </li>
                     ))}
                   </ul>
                 </button>

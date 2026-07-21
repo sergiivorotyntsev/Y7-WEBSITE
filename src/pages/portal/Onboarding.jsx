@@ -642,10 +642,11 @@ function Field({ label, value, onChange, placeholder, required, type = 'text', a
 function AccountTypeStep({ onSelected }) {
   const [focused, setFocused] = useState(null);
   const { user } = useAuth();
-  const cardBenefits = (t) =>
-    t.id === 'individual'
-      ? [...t.benefits, ...individualFeeBenefits(user?.pricing_model)]
-      : t.benefits;
+  // B2B-T04: terms are tracked separately from capabilities so only the
+  // commercial lines take the hover accent.
+  const cardTerms = (t) =>
+    t.id === 'individual' ? individualFeeBenefits(user?.pricing_model) : t.terms;
+  const cardBenefits = (t) => [...t.benefits, ...cardTerms(t)];
   return (
     <div>
       <h2 style={stepTitleStyle}>Which best describes you?</h2>
@@ -663,6 +664,7 @@ function AccountTypeStep({ onSelected }) {
           <button
             key={t.id}
             type="button"
+            className="acct-type-card"
             onClick={() => onSelected(t.id)}
             onFocus={() => setFocused(t.id)}
             onBlur={() => setFocused(null)}
@@ -696,7 +698,11 @@ function AccountTypeStep({ onSelected }) {
               margin: 0, padding: '0 0 0 16px', fontSize: 12,
               color: 'var(--v2-ink-muted, #5c5851)', lineHeight: 1.7,
             }}>
-              {cardBenefits(t).map((b, i) => <li key={i}>{b}</li>)}
+              {cardBenefits(t).map((b, i) => (
+                <li key={i} className={cardTerms(t).includes(b) ? 'acct-type-terms' : undefined}>
+                  {b}
+                </li>
+              ))}
             </ul>
             {t.note && (
               <div style={{

@@ -57,6 +57,24 @@ export const VERIFICATION_NOTE_LONG =
 // The canonical three cards. The individual card's fee lines are appended at
 // render time via individualFeeBenefits(pricingModel) — pass 'ind_2026' on
 // pre-account surfaces (every new signup gets the new model).
+// B2B-T01/T03: the dealer + exporter commercial models (Sergii-confirmed).
+// Kept in step with services/b2b_pricing.py — B2B_FLAT_FEE_CENTS = 5000 ($50)
+// and DEALER_Y7_PAYS_FEE_CENTS = 6000 ($60). The anti-drift tests in
+// tests/unit/test_b2b_cards.py derive these strings from those constants.
+export const DEALER_FEE_LINE =
+  'Y7 fee: $50 per load — $60 when Y7 processes the carrier payment (after prepay)';
+export const EXPORTER_FEE_LINE = 'Y7 fee: $50 per load';
+export const PASS_THROUGH_LINE =
+  'Carrier price passed through at cost — Y7 never marks it up';
+export const B2B_INVOICING_LINE = 'Y7 fee invoiced every 2 weeks or monthly';
+export const EXPORTER_CARRIER_LINE =
+  'Y7 pays the carriers from the joint account you fund';
+export const DEALER_CARRIER_LINE =
+  'You pay the carrier on delivery — or prepay the transport cost and Y7 pays for you';
+
+// Each card separates CAPABILITIES (what you can do) from TERMS (what it
+// costs). B2B-T04 highlights only the terms on hover, so the split has to be
+// structural rather than "the last two bullets".
 export const ACCOUNT_TYPE_CARDS = [
   {
     id: 'individual',
@@ -65,8 +83,9 @@ export const ACCOUNT_TYPE_CARDS = [
     benefits: [
       'One-vehicle web quote, door-to-door',
       'Auction pickups (Copart / IAA / Manheim): gate-pass upload, VIN decode, document auto-fill',
-      // fee benefits appended per pricing model at render time
     ],
+    // terms resolved per pricing model at render time (see accountTypeCards)
+    terms: [],
   },
   {
     id: 'dealer',
@@ -74,9 +93,9 @@ export const ACCOUNT_TYPE_CARDS = [
     description: 'Licensed dealer moving inventory / trades',
     benefits: [
       'Volume shipping + saved locations',
-      'Fixed per-order broker fee quoted for your account — no markup on carrier charges',
-      'Per-delivery billing & weekly invoicing; optional AP service (Y7 pays carriers for you)',
+      'Dedicated dealer agreement and dispatch',
     ],
+    terms: [DEALER_FEE_LINE, PASS_THROUGH_LINE, DEALER_CARRIER_LINE, B2B_INVOICING_LINE],
     note: VERIFICATION_NOTE,
   },
   {
@@ -88,14 +107,16 @@ export const ACCOUNT_TYPE_CARDS = [
       'Per order: just upload the auction documents',
       'Y7 picks the optimal warehouse and dispatches',
     ],
+    terms: [EXPORTER_FEE_LINE, PASS_THROUGH_LINE, EXPORTER_CARRIER_LINE, B2B_INVOICING_LINE],
     note: VERIFICATION_NOTE,
   },
 ];
 
-// Convenience: the full card set with the individual fee lines resolved.
+// The card set with the individual terms resolved for this viewer's model.
+// `benefits` stays the concatenated list so existing consumers keep working;
+// `terms` is what B2B-T04 highlights on hover.
 export const accountTypeCards = (pricingModel) =>
-  ACCOUNT_TYPE_CARDS.map((c) =>
-    c.id === 'individual'
-      ? { ...c, benefits: [...c.benefits, ...individualFeeBenefits(pricingModel)] }
-      : c,
-  );
+  ACCOUNT_TYPE_CARDS.map((c) => {
+    const terms = c.id === 'individual' ? individualFeeBenefits(pricingModel) : c.terms;
+    return { ...c, terms, benefits: [...c.benefits, ...terms] };
+  });

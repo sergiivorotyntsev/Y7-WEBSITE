@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { portalFetch, useAuth } from '../hooks/useAuth';
 import { colors, fonts } from '../theme';
-import { CANONICAL_TYPE_IDS, IND_2026_FEE_LINE, IND_2026_COD_LINE } from '../data/accountTypes';
+import {
+  ACCOUNT_TYPE_CARDS,
+  CANONICAL_TYPE_IDS,
+  IND_2026_COD_LINE,
+  IND_2026_FEE_LINE,
+} from '../data/accountTypes';
 
 /**
  * AccountTypeModal (SPRINT-E-T3)
@@ -53,7 +58,6 @@ const MODAL_CARD_COPY = {
     description: 'I run a dealership (application + verification required)',
     note: 'Activation requires a short review and call with Y7',
     benefits: [
-      'Per-delivery billing & weekly invoicing',
       'Saved locations & dedicated dispatch',
       'Dealer-specific transport agreement',
     ],
@@ -69,7 +73,14 @@ const MODAL_CARD_COPY = {
   },
 };
 
-const TYPES = CANONICAL_TYPE_IDS.map((id) => ({ id, ...MODAL_CARD_COPY[id] }));
+// B2B-T03: the dealer/exporter COMMERCIAL terms come from the shared source —
+// the modal only owns its first-person capability phrasing. The old
+// "Per-delivery billing & weekly invoicing" bullet is gone: it stated a cadence
+// no agreement binds and contradicted the confirmed model.
+const TYPES = CANONICAL_TYPE_IDS.map((id) => {
+  const shared = ACCOUNT_TYPE_CARDS.find((c) => c.id === id);
+  return { id, ...MODAL_CARD_COPY[id], terms: shared?.terms || [] };
+});
 
 export default function AccountTypeModal({ onComplete, mode = 'initial', currentType, onClose }) {
   const { user } = useAuth();
@@ -199,6 +210,7 @@ export default function AccountTypeModal({ onComplete, mode = 'initial', current
             <button
               key={type.id}
               type="button"
+              className="acct-type-card"
               onClick={() => !type.disabled && setSelected(type.id)}
               disabled={type.disabled}
               style={{
@@ -239,12 +251,19 @@ export default function AccountTypeModal({ onComplete, mode = 'initial', current
                   color: colors.textMuted,
                   lineHeight: 1.6,
                 }}>
-                  {(type.id === 'individual'
-                    ? [...type.benefits, individualTermsBenefit(user?.pricing_model)]
-                    : type.benefits
-                  ).map((b, i) => (
-                    <li key={i}>{b}</li>
-                  ))}
+                  {(() => {
+                    // B2B-T04: commercial terms take the hover accent; the
+                    // capability bullets above them stay muted.
+                    const terms =
+                      type.id === 'individual'
+                        ? [individualTermsBenefit(user?.pricing_model)]
+                        : type.terms || [];
+                    return [...type.benefits, ...terms].map((b, i) => (
+                      <li key={i} className={terms.includes(b) ? 'acct-type-terms' : undefined}>
+                        {b}
+                      </li>
+                    ));
+                  })()}
                 </ul>
               )}
               {type.note && (

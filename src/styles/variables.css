@@ -267,3 +267,34 @@ html {
   overflow-x: hidden;
   overflow-x: clip;
 }
+
+/* B2B-T04: account-type card terms highlight.
+
+   Hovering a card marks the COMMERCIAL TERMS inside it in the V2 signal red —
+   the fee, the pass-through, who pays the carrier, the invoicing cadence — so
+   the reader's eye lands on what the choice actually costs. Per DESIGN.md's
+   Signal Budget this is ONE accent on the relevant text; the card itself is
+   not repainted and the border/background stay put (selection still owns the
+   card-level red).
+
+   Pure CSS on purpose: the three surfaces that render these cards (portal
+   signup, onboarding wizard, account-type modal) all use inline styles, and a
+   :hover rule keeps the behaviour identical across them without three copies
+   of hover state. `@media (hover: hover)` keeps it desktop-only — on touch,
+   :hover would latch after a tap and leave the terms stuck red. */
+@media (hover: hover) and (pointer: fine) {
+  .acct-type-card:hover .acct-type-terms {
+    color: var(--v2-red, #d70f24);
+  }
+}
+
+/* The colour change is the only motion here, but honour reduced-motion intent
+   by making it instant rather than transitioned for those users. */
+.acct-type-terms {
+  transition: color 120ms ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .acct-type-terms {
+    transition: none;
+  }
+}
