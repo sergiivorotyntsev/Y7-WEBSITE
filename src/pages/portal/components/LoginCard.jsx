@@ -578,14 +578,16 @@ export default function LoginCard({
                 >
                   <div style={{ fontFamily: fonts.sans, fontSize: '15px', fontWeight: 700, color: C.text }}>{tp.title}</div>
                   <div style={{ fontFamily: fonts.sans, fontSize: '12px', color: C.textMuted, marginTop: '2px' }}>{tp.description}</div>
-                  <ul style={{ margin: '8px 0 0', paddingLeft: '18px' }}>
+                  {/* B2B-T04: the muted colour lives on the <ul> so the li
+                      inherits it — an inline colour on the <li> would outrank
+                      the .acct-type-terms hover rule and the accent would
+                      silently never appear. */}
+                  <ul style={{
+                    margin: '8px 0 0', paddingLeft: '18px',
+                    fontFamily: fonts.sans, fontSize: '12px', color: C.textMuted, lineHeight: 1.5,
+                  }}>
                     {tp.benefits.map((b, i) => (
-                      // B2B-T04: the commercial terms carry the hover accent.
-                      <li
-                        key={i}
-                        className={tp.terms.includes(b) ? 'acct-type-terms' : undefined}
-                        style={{ fontFamily: fonts.sans, fontSize: '12px', color: C.textMuted, lineHeight: 1.5 }}
-                      >
+                      <li key={i} className={tp.terms.includes(b) ? 'acct-type-terms' : undefined}>
                         {b}
                       </li>
                     ))}
