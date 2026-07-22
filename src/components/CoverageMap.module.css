@@ -35,6 +35,11 @@
   /* T06a: internal padding matches portTile (16px + 1px border) so the panel
      text sits on the same content grid as the tile text when stacked. */
   padding: 16px;
+  /* WIDE-T02: track the ports column height so the card's bottom edge stays
+     aligned on wide screens (its links unwrap and the box otherwise shrinks
+     and floats above the port grid). Content stays flush-top via the stacked
+     flex column inside. */
+  align-self: stretch;
 }
 
 .linkRows {
