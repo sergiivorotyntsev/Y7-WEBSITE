@@ -48,6 +48,18 @@
   margin-bottom: 18px;
 }
 
+/* POLISH-T02: the card icons render stroke={color} with an explicit hex from
+   Advantages.jsx, so a parent color change can't reach them. A CSS stroke
+   property overrides the SVG presentation attribute, so hover moves the icon
+   to the red accent (all card icons are stroke-based). One card hovered =
+   1 red accent (Signal Budget). */
+.iconWrap svg {
+  transition: stroke var(--transition-normal, 0.25s ease-out);
+}
+.card:hover .iconWrap svg {
+  stroke: var(--v2-red-bright);
+}
+
 .cardTitle {
   font-size: clamp(1.1rem, 1.6vw, 1.35rem);
   margin-bottom: 10px;
