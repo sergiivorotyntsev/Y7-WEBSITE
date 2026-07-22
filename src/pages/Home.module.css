@@ -57,7 +57,11 @@
    900px the photo is hidden entirely (mobile degradation: contrast + LCP
    protection; the hero reverts to pure V2 typography). */
 .heroPhoto img {
-  right: -3%;
+  /* WIDE-T01: right is % of the full-width band, but the text frame caps at
+     the 1440 .inner; above that the car must stop tracking the viewport edge.
+     max() keeps the exact -3% below ~1440 and freezes to the centred frame
+     above (calc = frame right edge + the -3% offset measured at 1440). */
+  right: max(-3%, calc(50% - 763px));
   bottom: 0;
   width: min(58vw, 940px);
 }
@@ -147,7 +151,9 @@
 /* SPRINT-V21 ASSET2: v2 asset is 1625x704 (wider/lower than v1) — retuned
    crop; arc behind the car crown, upper right. */
 .heroPhoto .heroArc {
-  right: 2%;
+  /* WIDE-T01: frame-clamped in lockstep with the car so the arc↔car gap
+     freezes at its 1440 value instead of growing with the viewport. */
+  right: max(2%, calc(50% - 691px));
   bottom: 12%;
   width: min(34vw, 540px);
   height: auto;
