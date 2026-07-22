@@ -37,9 +37,13 @@
   padding: 16px;
   /* WIDE-T02: track the ports column height so the card's bottom edge stays
      aligned on wide screens (its links unwrap and the box otherwise shrinks
-     and floats above the port grid). Content stays flush-top via the stacked
-     flex column inside. */
+     and floats above the port grid). */
   align-self: stretch;
+  /* POLISH-T01: flex column so the stacked VerificationStrip fills the card
+     height (credential rows distribute, bond/authority pins to the bottom)
+     instead of clustering at the top over dead cream. */
+  display: flex;
+  flex-direction: column;
 }
 
 .linkRows {
