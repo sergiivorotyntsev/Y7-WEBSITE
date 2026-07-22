@@ -1,0 +1,91 @@
+/* GlowDot — POLISH-T03. Extracted from AnimatedLogo.module.css. Colour comes
+   from --dot-color (default currentColor); the soft halo/shadow tints derive
+   from it via color-mix so the whole dot is a single-colour system regardless
+   of the token a caller passes. Geometry/timing match the original logo dot. */
+
+.dotWrap {
+  --dot-color: currentColor;
+  position: relative;
+  display: inline-block;
+}
+
+/* Pulse ring 1 — outermost */
+.ring1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1.5px solid var(--dot-color);
+  transform: translate(-50%, -50%);
+  animation: glowDotRing1 2.2s ease-out infinite;
+}
+
+/* Pulse ring 2 — offset timing */
+.ring2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid var(--dot-color);
+  transform: translate(-50%, -50%);
+  animation: glowDotRing2 2.2s ease-out infinite 0.5s;
+}
+
+/* Inner glow */
+.glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--dot-color) 12%, transparent);
+  transform: translate(-50%, -50%);
+  animation: glowDotGlow 2.2s ease-in-out infinite;
+}
+
+/* Core dot */
+.core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 85%;
+  height: 85%;
+  border-radius: 50%;
+  background: var(--dot-color);
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 6px color-mix(in srgb, var(--dot-color) 50%, transparent),
+    0 0 2px color-mix(in srgb, var(--dot-color) 80%, transparent);
+  animation: glowDotCore 2.2s ease-in-out infinite;
+}
+
+@keyframes glowDotRing1 {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+  100% { transform: translate(-50%, -50%) scale(4.5); opacity: 0; }
+}
+
+@keyframes glowDotRing2 {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+  100% { transform: translate(-50%, -50%) scale(3.5); opacity: 0; }
+}
+
+@keyframes glowDotGlow {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.15; }
+  50% { transform: translate(-50%, -50%) scale(2.2); opacity: 0; }
+}
+
+@keyframes glowDotCore {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.15); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring1, .ring2, .glow, .core {
+    animation: none;
+  }
+}
