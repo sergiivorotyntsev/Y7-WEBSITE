@@ -731,7 +731,9 @@
 
 /* SPRINT-V21 W-CONV: hero photo (smaller, right-anchored, raised crop). */
 .heroPhoto img {
-  right: -8%;
+  /* WIDE-T03: frame-clamp past the 1440 .inner cap (same class as home hero) —
+     -8% below ~1440, frozen to the centred frame above. */
+  right: max(-8%, calc(50% - 835px));
   bottom: 8%;
   width: min(46vw, 730px);
 }
@@ -744,7 +746,8 @@
 
 /* ASSET2 retune + arc. */
 .heroPhoto .heroArc {
-  right: -3%;
+  /* WIDE-T03: frame-clamped in lockstep with the car (gap frozen at 1440). */
+  right: max(-3%, calc(50% - 763px));
   bottom: 10%;
   width: min(26vw, 400px);
   aspect-ratio: 1;
