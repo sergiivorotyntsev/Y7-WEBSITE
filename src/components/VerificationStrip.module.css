@@ -29,14 +29,20 @@
 }
 .stacked .divider { display: none; }
 
+/* BAND-T01: the stacked form now sits on the board dark anchor — dividers,
+   labels, links and caption flip to on-dark tokens. The shorter borderless port
+   grid feeds a shorter stretch height, so min-height drops to 34px: rows still
+   distribute by flex:1 1 0 without hitting an overflow floor, and the caption
+   still pins to the bottom (no squeezed rows, no dead space). Scoped to
+   .stacked so the inline Contact form stays on paper. */
 .row {
   display: flex;
   align-items: center;
   gap: 12px;
   flex: 1 1 0;
-  min-height: 44px;
+  min-height: 34px;
 }
-.row + .row { border-top: 1px solid var(--v2-line-on-paper); }
+.row + .row { border-top: 1px solid var(--v2-line-on-dark); }
 
 .rowLabel {
   flex: 0 0 58px;
@@ -45,7 +51,14 @@
   font-weight: 600;
   letter-spacing: var(--v2-track-label, 0.14em);
   text-transform: uppercase;
-  color: var(--text-muted, #706E68);
+  color: var(--v2-text-on-dark-secondary);
+}
+
+.stacked .link {
+  color: var(--v2-text-on-dark);
+}
+.stacked .link:hover {
+  color: var(--v2-red-bright);
 }
 
 .stacked .caption {
@@ -55,7 +68,8 @@
   width: 100%;
   margin-top: 0;
   padding-top: 14px;
-  border-top: 1px solid var(--v2-line-on-paper);
+  border-top: 1px solid var(--v2-line-on-dark);
+  color: var(--v2-text-on-dark-secondary);
 }
 
 .activeDot {

@@ -57,9 +57,9 @@ export default function CoverageMap() {
               <h3 className={`${v2t.cardTitle} ${styles.portsTitle}`}>{t('ports.title')}</h3>
               <div className={styles.portGrid}>
                 {PORTS.map((p, i) => (
-                  <Link key={p.to} to={p.to} className={v2c.portTile}>
+                  <Link key={p.to} to={p.to} className={styles.portCell}>
                     <span className={v2c.portCode}>{p.code}</span>
-                    <span className={v2c.portName}>
+                    <span className={`${v2c.portName} ${styles.portCity}`}>
                       {Array.isArray(portNames) ? portNames[i] : ''}
                     </span>
                   </Link>
@@ -68,8 +68,10 @@ export default function CoverageMap() {
             </div>
 
             {/* Licensed-broker trust panel: USDOT/MC/$75K facts + external
-                verification links (E-E-A-T) — folded VerificationStrip. */}
-            <div className={`${v2c.paper} ${styles.legalPanel}`}>
+                verification links (E-E-A-T) — folded VerificationStrip.
+                BAND-T01: the single dark anchor of the cream band (board ground,
+                no border — value contrast is the edge). */}
+            <div className={styles.legalPanel}>
               <VerificationStrip stacked />
             </div>
           </div>

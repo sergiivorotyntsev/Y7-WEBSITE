@@ -30,10 +30,12 @@ export default function VerificationStrip({ stacked }) {
           </div>
         ))}
         {/* POLISH-T03: bondCaption ends with ACTIVE (all locales), so the live
-            status dot lands on the Broker Authority line. */}
+            status dot lands on the Broker Authority line.
+            BAND-T01: bright red variant for legibility on the board dark anchor
+            (Red Contrast Law on dark). */}
         <div className={styles.caption}>
           {t('verify.bondCaption')}
-          <GlowDot size={7} color="var(--v2-red)" className={styles.activeDot} />
+          <GlowDot size={7} color="var(--v2-red-bright, #ef3a4e)" className={styles.activeDot} />
         </div>
       </div>
     );

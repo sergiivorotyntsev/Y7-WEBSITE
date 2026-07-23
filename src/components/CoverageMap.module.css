@@ -21,29 +21,63 @@
   margin: 0 0 14px;
 }
 
+/* BAND-T01: borderless typographic grid — the port codes/names sit on the
+   ground plane, separated by 1px hairlines (gap over a line-coloured ground,
+   the sanctioned tableOnPaper pattern) instead of six bordered cards. */
 .portGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 1px;
+  background: var(--v2-line-on-paper);
 }
 
 @media (max-width: 640px) {
   .portGrid { grid-template-columns: repeat(2, 1fr); }
 }
 
+.portCell {
+  display: block;
+  padding: 13px 14px;
+  background: var(--v2-paper);
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--transition-normal, 0.25s ease-out);
+}
+.portCell:hover { background: var(--v2-card-cream); }
+.portCell:focus-visible {
+  outline: 2px solid var(--v2-red);
+  outline-offset: -2px;
+}
+
+/* BAND-T01: rest-state click affordance (Body-Link Law) — the city name is
+   underlined at rest so the cell reads as a link on touch, not only on hover. */
+.portCity {
+  text-decoration: underline;
+  text-decoration-color: var(--v2-line-on-paper);
+  text-underline-offset: 2px;
+  transition: text-decoration-color var(--transition-normal, 0.25s ease-out),
+              color var(--transition-normal, 0.25s ease-out);
+}
+.portCell:hover .portCity {
+  color: var(--v2-red-deep);
+  text-decoration-color: var(--v2-red-deep);
+}
+
 .legalPanel.legalPanel {
-  /* T06a: internal padding matches portTile (16px + 1px border) so the panel
-     text sits on the same content grid as the tile text when stacked. */
-  padding: 16px;
-  /* WIDE-T02: track the ports column height so the card's bottom edge stays
-     aligned on wide screens (its links unwrap and the box otherwise shrinks
-     and floats above the port grid). */
+  /* BAND-T01: the band's single dark anchor. Board ground (#050607, not the
+     panel grey) with NO border — the paper<->board value contrast is the edge,
+     and it permanently differentiates the licence block from the port grid.
+     Keeps WIDE-T02 align-self:stretch + POLISH-T01 flex column so the credential
+     rows distribute and the bond/authority line pins to the bottom at the
+     port-grid height. */
+  padding: 20px;
   align-self: stretch;
-  /* POLISH-T01: flex column so the stacked VerificationStrip fills the card
-     height (credential rows distribute, bond/authority pins to the bottom)
-     instead of clustering at the top over dead cream. */
   display: flex;
   flex-direction: column;
+  background: var(--v2-board);
+  color: var(--v2-text-on-dark);
+  border: 0;
+  border-radius: var(--v2-radius-lg);
 }
 
 .linkRows {
