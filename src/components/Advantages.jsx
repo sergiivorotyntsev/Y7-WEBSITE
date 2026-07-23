@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import ScrollReveal from './ScrollReveal';
 import {
-  QuoteIcon, TelegramIcon, ScalesIcon, DollarIcon, ShieldCheckIcon, DocumentIcon,
+  QuoteIcon, DollarIcon, ShieldCheckIcon, DocumentIcon,
   VerifiedIcon, EyeIcon, MapPinIcon, GlobeIcon, ClockIcon,
   InsuranceIcon, BellIcon, HeadphonesIcon, EscalationIcon, ShieldIcon,
 } from './icons';
@@ -15,8 +15,9 @@ import v2a from '../styles/v2/accents.module.css';
 // DESIGN-V2-W2-T04: merges Benefits (6) + WhyY7 (6) into one board section.
 // Approved heading decision: H2 = whyY7.title ("Why Shippers Choose Y7"),
 // benefits.title ("Your Complete Transport Solution") survives as the H3
-// subhead. All 12 card copies preserved verbatim (SEO contract), including
-// Multilingual Support. TrustSection's 6 protection items fold in below as a
+// subhead. WHYDEDUP-T01: deduped 12 -> 9 cards (three merges consolidating the
+// duplicate Transparent Pricing, verification, and status cards; approved copy
+// in all four locales). TrustSection's 6 protection items fold in below as a
 // collapsible block, copy intact. Opener varies from the eyebrow pair
 // (Kicker-Headline density cap): plain H2 + JP margin accent (選択と集中,
 // board-only inventory mark, aria-hidden).
@@ -33,10 +34,7 @@ export default function Advantages() {
     { icon: <GlobeIcon size={20} color={ICON} />, title: t('whyY7.multilingualTitle'), desc: t('whyY7.multilingualDesc') },
     { icon: <ClockIcon size={20} color={ICON} />, title: t('whyY7.fastTitle'), desc: t('whyY7.fastDesc') },
     { icon: <QuoteIcon size={20} color={ICON} />, title: t('benefits.quoteAnywhereTitle'), desc: t('benefits.quoteAnywhereDesc') },
-    { icon: <TelegramIcon size={20} color={ICON} />, title: t('benefits.realTimeTitle'), desc: t('benefits.realTimeDesc') },
-    { icon: <ScalesIcon size={20} color={ICON} />, title: t('benefits.transparentTitle'), desc: t('benefits.transparentDesc') },
     { icon: <DollarIcon size={20} color={ICON} />, title: t('benefits.flexibleTitle'), desc: t('benefits.flexibleDesc') },
-    { icon: <ShieldCheckIcon size={20} color={ICON} />, title: t('benefits.verifiedTitle'), desc: t('benefits.verifiedDesc') },
     { icon: <DocumentIcon size={20} color={ICON} />, title: t('benefits.documentationTitle'), desc: t('benefits.documentationDesc') },
   ];
 
