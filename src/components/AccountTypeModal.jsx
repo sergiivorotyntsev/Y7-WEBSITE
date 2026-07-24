@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { portalFetch, useAuth } from '../hooks/useAuth';
+import { useFeePreview } from '../hooks/useFeePreview';
+import FeePreviewLine from './FeePreviewLine';
 import { colors, fonts } from '../theme';
 import {
   accountTypeCards,
@@ -88,9 +90,16 @@ const typesForViewer = (pricingModel) => {
   }));
 };
 
-export default function AccountTypeModal({ onComplete, mode = 'initial', currentType, onClose }) {
+export default function AccountTypeModal({ onComplete, mode = 'initial', currentType, onClose, orderId = null }) {
   const { user } = useAuth();
   const isEdit = mode === 'edit';
+  // [SPRINT-P2b] Same fee source as the onboarding wizard (the other door). The dashboard
+  // opens this modal for a customer-level reclassification with NO order in context, so it
+  // stays idle and the generic per-model terms show. If a caller ever scopes it to an order
+  // (decision #5), it renders the identical per-order figure the wizard does — same hook,
+  // same component, one source.
+  const { state: feeState, previews } = useFeePreview(orderId);
+  const hasLiveFee = feeState === 'loading' || feeState === 'ok' || feeState === 'error';
   // AQ-3: one rule — dealer/exporter are selectable here too (they enter the
   // pending-application flow), so the edit list is no longer filtered.
   // Resolved for this viewer's pricing model (B2B-T03).
@@ -262,8 +271,11 @@ export default function AccountTypeModal({ onComplete, mode = 'initial', current
                   {(() => {
                     // B2B-T04: commercial terms take the hover accent; the
                     // capability bullets above them stay muted.
-                    const terms =
-                      type.id === 'individual'
+                    // [SPRINT-P2b] with a live per-order fee, the generic terms are
+                    // suppressed (the number replaces them) — the capability bullets stay.
+                    const terms = hasLiveFee
+                      ? []
+                      : type.id === 'individual'
                         ? [individualTermsBenefit(user?.pricing_model)]
                         : type.terms || [];
                     return [...type.benefits, ...terms].map((b, i) => (
@@ -273,6 +285,10 @@ export default function AccountTypeModal({ onComplete, mode = 'initial', current
                     ));
                   })()}
                 </ul>
+              )}
+              {/* [SPRINT-P2b] the real per-order fee, same source as the wizard. */}
+              {hasLiveFee && (
+                <FeePreviewLine state={feeState} preview={previews?.[type.id]} />
               )}
               {type.note && (
                 <div style={{

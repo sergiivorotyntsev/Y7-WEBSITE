@@ -6,6 +6,8 @@ import { colors, fonts, radii, spacing } from '../../theme';
 import PhoneInput, { isValidPhone } from '../../components/PhoneInput';
 import { LocationsManager } from './Locations'; // EXP2-T02: embedded warehouse step
 import { ACCOUNT_TYPE_CARDS, accountTypeCards } from '../../data/accountTypes';
+import { useFeePreview, orderIdFromNext } from '../../hooks/useFeePreview';
+import FeePreviewLine from '../../components/FeePreviewLine';
 
 /**
  * Onboarding (WIZARD-REDESIGN T05+T06+T07)
@@ -241,6 +243,10 @@ export default function Onboarding() {
         )}
         {step === 'type' && (
           <AccountTypeStep
+            // [SPRINT-P2b] the order the magic link was minted for, parsed from ?next
+            // (decision #5). When present, each card shows the REAL fee for THIS shipment
+            // per type from the fee engine; when absent, the generic terms.
+            orderId={orderIdFromNext(rawNext)}
             onSelected={(id) => {
               setSelectedType(id);
               // EXP2-T01: transition by array lookup, never a hardcoded target.
@@ -646,15 +652,23 @@ function Field({ label, value, onChange, placeholder, required, type = 'text', a
 // Step 2 - AccountTypeStep
 // ---------------------------------------------------------------------------
 
-function AccountTypeStep({ onSelected }) {
+function AccountTypeStep({ onSelected, orderId = null }) {
   const [focused, setFocused] = useState(null);
   const { user } = useAuth();
+  // [SPRINT-P2b] When the customer arrived to classify a specific order (via the magic
+  // link's ?next), price THAT shipment per type from the fee engine — the real dollar
+  // figure, not the generic formula. No order in context -> idle -> generic terms below.
+  const { state: feeState, previews } = useFeePreview(orderId);
+  const hasLiveFee = feeState === 'loading' || feeState === 'ok' || feeState === 'error';
   // B2B-T04: terms are tracked separately from capabilities so only the
   // commercial lines take the hover accent. Resolved for THIS viewer's pricing
   // model, so an unmigrated legacy dealer is not shown the 2026 terms.
   const viewerCards = accountTypeCards(user?.pricing_model);
   const cardTerms = (t) => viewerCards.find((c) => c.id === t.id)?.terms || [];
-  const cardBenefits = (t) => [...t.benefits, ...cardTerms(t)];
+  // With a live per-order fee, the generic hardcoded terms are suppressed (the number
+  // replaces them) — showing both would put a formula next to its own resolved figure and
+  // re-introduce two sources. The capability bullets always stay.
+  const cardBenefits = (t) => (hasLiveFee ? t.benefits : [...t.benefits, ...cardTerms(t)]);
   return (
     <div>
       <h2 style={stepTitleStyle}>Which best describes you?</h2>
@@ -712,6 +726,11 @@ function AccountTypeStep({ onSelected }) {
                 </li>
               ))}
             </ul>
+            {/* [SPRINT-P2b] the real fee for THIS shipment under this type, from the
+                engine — replaces the generic terms when an order is in context. */}
+            {hasLiveFee && (
+              <FeePreviewLine state={feeState} preview={previews?.[t.id]} />
+            )}
             {t.note && (
               <div style={{
                 marginTop: spacing.sm, fontSize: 12, fontWeight: 600,

@@ -115,23 +115,18 @@ export default function QuoteAction() {
                 Reference: <strong>{result.order_ref}</strong>
               </p>
             )}
-            {/* WAP-T02: the accepted terms recap for new-model orders — the
-                fee range + COD condition the customer just agreed to. */}
-            {details?.pricing_model === 'ind_2026' && (
-              <p style={{
-                fontFamily: fonts.sans, fontSize: '13px', color: V2_INK_MUTED,
-                maxWidth: '400px', margin: 0, lineHeight: 1.5,
-              }}>
-                Broker service fee: <strong>
-                  {details.fee_range_min_cents != null
-                    ? (details.fee_range_min_cents === details.fee_range_max_cents
-                        ? `$${Math.round(details.fee_range_min_cents / 100)}`
-                        : `$${Math.round(details.fee_range_min_cents / 100)}–$${Math.round(details.fee_range_max_cents / 100)}`)
-                    : '$75 minimum or 10% of carrier price'}
-                </strong> (greater of $75 or 10% of the carrier price; final at carrier
-                assignment). The carrier is paid COD at pickup or delivery.
-              </p>
-            )}
+            {/* [SPRINT-P2b] Change 2: the accept step is NUMBER-FREE. The customer owes
+                nothing at accept — the Y7 fee obligation is booked only once the account
+                type is known and the order is confirmed (P2a-3), and the honest fee is
+                shown at the account-type step (fee-preview). State the two facts, no figure;
+                this used to hardcode "$75 minimum or 10%", the drift string this arc ends. */}
+            <p style={{
+              fontFamily: fonts.sans, fontSize: '13px', color: V2_INK_MUTED,
+              maxWidth: '400px', margin: 0, lineHeight: 1.5,
+            }}>
+              Your Y7 service fee is determined by the account type you choose when you
+              register. The transport price is paid separately to the carrier.
+            </p>
             {/* W7D-T04: auction pickup — the release document is needed NOW;
                 the request email is already on its way (auction-aware term). */}
             {result.release_doc?.needed && (
@@ -250,26 +245,21 @@ export default function QuoteAction() {
             </div>
           </div>
 
-          {/* WAP-T02: the new-model fee + COD condition, part of what the
-              customer is accepting. Legacy orders render nothing here. */}
-          {details.pricing_model === 'ind_2026' && (
-            <p style={{
-              fontFamily: fonts.sans, fontSize: 13, color: V2_INK_MUTED, lineHeight: 1.6,
-              margin: '0 auto 24px', maxWidth: 420, textAlign: 'left',
-              background: 'rgba(5, 6, 7, 0.04)', border: `1px solid ${V2_LINE}`,
-              borderRadius: radii.md, padding: '12px 16px',
-            }}>
-              Broker service fee: <strong>
-                {details.fee_range_min_cents != null
-                  ? (details.fee_range_min_cents === details.fee_range_max_cents
-                      ? `$${Math.round(details.fee_range_min_cents / 100)}`
-                      : `$${Math.round(details.fee_range_min_cents / 100)}–$${Math.round(details.fee_range_max_cents / 100)}`)
-                  : '$75 minimum or 10% of carrier price'}
-              </strong> — the greater of $75 or 10% of the carrier price; the final
-              amount is set when your carrier is assigned. The carrier is paid COD
-              by you (or your designee) at pickup or delivery.
-            </p>
-          )}
+          {/* [SPRINT-P2b] Change 2: number-free. The two cards above show the CARRIER
+              (transport) price the customer is re-accepting — that stays. The Y7 SERVICE
+              fee is not shown here as a number: it is determined by the account type at
+              registration and shown honestly at the account-type step (fee-preview). This
+              previously hardcoded "$75 minimum or 10%", the exact drift string. */}
+          <p style={{
+            fontFamily: fonts.sans, fontSize: 13, color: V2_INK_MUTED, lineHeight: 1.6,
+            margin: '0 auto 24px', maxWidth: 420, textAlign: 'left',
+            background: 'rgba(5, 6, 7, 0.04)', border: `1px solid ${V2_LINE}`,
+            borderRadius: radii.md, padding: '12px 16px',
+          }}>
+            The price above is the carrier&rsquo;s transport cost, paid separately to the
+            carrier. Your Y7 service fee is determined by the account type you choose when
+            you register.
+          </p>
 
           {error && (
             <div style={{ ...v2ErrorBox, fontFamily: fonts.sans, fontSize: 13, padding: 12, borderRadius: radii.md, marginBottom: 16 }}>
