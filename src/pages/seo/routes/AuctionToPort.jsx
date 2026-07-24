@@ -216,6 +216,18 @@ export default function AuctionToPort() {
         </p>
       </Section>
 
+      <Section title="New Jersey Export-Warehouse Pricing, Explained">
+        <p style={prose}>
+          The Northeast auction-to-port flow terminates at the export warehouses in the Newark /
+          Irvington area, and the carrier rate for that leg is not arbitrary &mdash; distance sets
+          most of it, with pickup type, auction brand, and vehicle size as small adjustments on top.
+          We broke down exactly how that rate is formed, using 586 real dispatches into those
+          warehouses, on a dedicated page:{' '}
+          <Link to="/nj-export-warehouse-shipping-cost">how NJ export-warehouse shipping cost is
+          formed</Link>.
+        </p>
+      </Section>
+
       <Section title="Timing and Storage Fees">
         <p style={prose}>
           The auction-to-port clock runs on two sides: auction storage fees on the origin end,
