@@ -19,7 +19,7 @@ export default function AuctionToPort() {
       tldr={{
         kicker: 'Auction to port, in brief',
         ariaLabel: 'Auction-to-port transport, in brief',
-        text: 'Auction-to-port transport is the domestic leg of vehicle export: Y7 Logistics (MC #1741537, USDOT #4427359) picks up from 200+ Copart, 170+ IAA, and 80+ Manheim locations and delivers to consolidation warehouses at the six major US export ports. Short regional runs typically cost $150-650, long hauls $0.40-0.70 per mile, and dispatch is timed to the auction’s 3-5 day free-storage window.',
+        text: 'Auction-to-port transport is the domestic leg of vehicle export: Y7 Logistics (MC #1741537, USDOT #4427359) picks up from 200+ Copart, 170+ IAA, and 80+ Manheim locations and delivers to consolidation warehouses at the six major US export ports. Short regional runs typically cost $150-650, long hauls about $0.52-0.79 per mile depending on distance, and dispatch is timed to the auction’s 3-5 day free-storage window.',
       }}
       whenNeeded={[
         'Exporter buying auction vehicles for overseas markets',
@@ -66,7 +66,7 @@ export default function AuctionToPort() {
         },
         {
           q: 'How much does auction-to-port transport cost?',
-          a: 'Short runs (IAAI Jersey City to Port Newark, ~15 mi) are $150–$350 at minimum-load floors. Regional runs (Copart Atlanta to Savannah, ~250 mi) are $400–$650. Cross-state runs (Copart Dallas to Houston, ~250 mi) are $300–$500. Long-haul runs (Copart Midwest to Port Newark) follow standard $0.40–$0.70/mi open rates.',
+          a: 'Short runs (IAAI Jersey City to Port Newark, ~15 mi) are $150–$350 at minimum-load floors. Regional runs (Copart Atlanta to Savannah, ~250 mi) are $400–$650. Cross-state runs (Copart Dallas to Houston, ~250 mi) are $300–$500. Long-haul runs (Copart Midwest to Port Newark) price by distance band — about $0.79/mi at 500–800 miles, $0.61/mi at 800–1,200 miles, and $0.52/mi beyond 1,200 miles, since the per-mile rate falls as the haul lengthens.',
         },
         {
           q: 'Can I get hit with storage fees at the port?',
