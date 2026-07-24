@@ -78,7 +78,8 @@ function AuctionVsBrokerCard() {
           <p style={{ ...p, marginBottom: 0 }}>
             The <strong style={strong}>same carrier&rsquo;s market rate</strong>, paid{' '}
             <strong style={strong}>directly to the carrier on delivery</strong>,{' '}
-            <strong style={strong}>+ a flat $50 dispatch fee</strong> (paid to Y7, not the carrier).
+            <strong style={strong}>+ a flat Y7 dispatch fee</strong> &mdash; $50 for dealers and
+            exporters, $75 for individuals (paid to Y7, not the carrier).
           </p>
         </div>
       </div>
