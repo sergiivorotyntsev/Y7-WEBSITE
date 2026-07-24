@@ -44,6 +44,7 @@ const ROUTES = [
   '/exporters',
   '/ports/newark',
   '/new-jersey-auto-transport',
+  '/nj-export-warehouse-shipping-cost',
   '/auction-to-port-transport',
   '/door-to-port-auto-transport',
   '/texas-to-newark-port-auto-transport',

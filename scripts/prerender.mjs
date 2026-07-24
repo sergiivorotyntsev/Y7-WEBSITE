@@ -517,6 +517,7 @@ const PUBLIC_ROUTES = [
   '/newton-auto-transport',
   '/florida-car-shipping',
   '/new-jersey-auto-transport',
+  '/nj-export-warehouse-shipping-cost',
   '/texas-auto-transport',
   // Route pages
   '/massachusetts-to-florida-car-shipping',

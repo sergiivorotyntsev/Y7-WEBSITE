@@ -52,6 +52,7 @@ const DealerAutoTransport = lazyWithRetry(() => import('./pages/seo/DealerAutoTr
 const SalvageCarShipping = lazyWithRetry(() => import('./pages/seo/SalvageCarShipping'));
 const OpenCarShipping = lazyWithRetry(() => import('./pages/seo/OpenCarShipping'));
 const StateToState = lazyWithRetry(() => import('./pages/seo/StateToState'));
+const NjExportWarehouseShippingCost = lazyWithRetry(() => import('./pages/seo/NjExportWarehouseShippingCost'));
 const MassachusettsCarShipping = lazyWithRetry(() => import('./pages/seo/locations/MassachusettsCarShipping'));
 const BostonCarShipping = lazyWithRetry(() => import('./pages/seo/locations/BostonCarShipping'));
 const NewtonAutoTransport = lazyWithRetry(() => import('./pages/seo/locations/NewtonAutoTransport'));
@@ -232,6 +233,7 @@ export default function App() {
             <Route path="/newton-auto-transport" element={<NewtonAutoTransport />} />
             <Route path="/florida-car-shipping" element={<FloridaCarShipping />} />
             <Route path="/new-jersey-auto-transport" element={<NewJerseyAutoTransport />} />
+            <Route path="/nj-export-warehouse-shipping-cost" element={<NjExportWarehouseShippingCost />} />
             <Route path="/texas-auto-transport" element={<TexasAutoTransport />} />
             {/* Route pages */}
             <Route path="/massachusetts-to-florida-car-shipping" element={<MassachusettsToFlorida />} />

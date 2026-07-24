@@ -294,6 +294,10 @@
         "text": "Auction → Port"
       },
       {
+        "tag": "h3",
+        "text": "NJ Export-Warehouse Pricing"
+      },
+      {
         "tag": "h2",
         "text": "Electric Vehicle Transport"
       },
@@ -337,8 +341,8 @@
       }
     ],
     "internalLinks": {
-      "total": 81,
-      "unique": 51
+      "total": 82,
+      "unique": 52
     }
   },
   "/exporters": {
@@ -655,6 +659,10 @@
       },
       {
         "tag": "h2",
+        "text": "The NJ Export-Warehouse Market"
+      },
+      {
+        "tag": "h2",
         "text": "When You Need This"
       },
       {
@@ -709,7 +717,101 @@
       }
     ],
     "internalLinks": {
-      "total": 61,
+      "total": 62,
+      "unique": 47
+    }
+  },
+  "/nj-export-warehouse-shipping-cost": {
+    "title": "NJ Export-Warehouse Shipping Cost — How Carrier Pricing Is Formed | Y7 Logistics",
+    "description": "How auto-transport carrier pricing to the New Jersey export warehouses is actually formed, measured on 586 real dispatches. Distance, pickup type, auction brand, vehicle size. Licensed FMCSA broker MC #1741537.",
+    "canonical": "https://www.y7agency.com/nj-export-warehouse-shipping-cost",
+    "hreflang": [],
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "NJ Export-Warehouse Shipping Cost: How the Carrier Rate Is Formed"
+      },
+      {
+        "tag": "h2",
+        "text": "Getting this car to a port?"
+      },
+      {
+        "tag": "h2",
+        "text": "What Actually Sets the Price"
+      },
+      {
+        "tag": "h2",
+        "text": "Why the Cost Per Mile Falls as the Haul Gets Longer"
+      },
+      {
+        "tag": "h2",
+        "text": "Auction Pickup Versus a Dealer or Private Address"
+      },
+      {
+        "tag": "h2",
+        "text": "Which Auction You Buy From Does Not Matter"
+      },
+      {
+        "tag": "h2",
+        "text": "Vehicle Size"
+      },
+      {
+        "tag": "h2",
+        "text": "Where in New Jersey You Deliver Does Not Matter"
+      },
+      {
+        "tag": "h2",
+        "text": "What Moves the Market"
+      },
+      {
+        "tag": "h2",
+        "text": "Where the Cars Come From"
+      },
+      {
+        "tag": "h2",
+        "text": "What the Carrier Rate Does Not Include"
+      },
+      {
+        "tag": "h2",
+        "text": "Frequently Asked Questions"
+      },
+      {
+        "tag": "h2",
+        "text": "Shipping auction vehicles for your dealership?"
+      },
+      {
+        "tag": "h2",
+        "text": "Ready to get started?"
+      },
+      {
+        "tag": "h3",
+        "text": "Related Services"
+      },
+      {
+        "tag": "h1",
+        "text": "Y7 Logistics — Nationwide Auto Transport"
+      }
+    ],
+    "jsonLd": [
+      {
+        "type": "LocalBusiness",
+        "key": "Y7 Logistics"
+      },
+      {
+        "type": "BreadcrumbList",
+        "key": null
+      },
+      {
+        "type": "FAQPage",
+        "key": null
+      },
+      {
+        "type": "Service",
+        "key": "NJ Export-Warehouse Shipping Cost: How the Carrier Rate Is Formed"
+      }
+    ],
+    "internalLinks": {
+      "total": 65,
       "unique": 46
     }
   },
@@ -781,6 +883,10 @@
       },
       {
         "tag": "h2",
+        "text": "New Jersey Export-Warehouse Pricing, Explained"
+      },
+      {
+        "tag": "h2",
         "text": "Timing and Storage Fees"
       },
       {
@@ -847,8 +953,8 @@
       }
     ],
     "internalLinks": {
-      "total": 71,
-      "unique": 51
+      "total": 72,
+      "unique": 52
     }
   },
   "/door-to-port-auto-transport": {

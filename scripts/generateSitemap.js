@@ -93,6 +93,7 @@ const PAGE_SOURCE = {
   '/newton-auto-transport': 'src/pages/seo/locations/NewtonAutoTransport.jsx',
   '/florida-car-shipping': 'src/pages/seo/locations/FloridaCarShipping.jsx',
   '/new-jersey-auto-transport': 'src/pages/seo/locations/NewJerseyAutoTransport.jsx',
+  '/nj-export-warehouse-shipping-cost': 'src/pages/seo/NjExportWarehouseShippingCost.jsx',
   '/texas-auto-transport': 'src/pages/seo/locations/TexasAutoTransport.jsx',
   '/massachusetts-to-florida-car-shipping': 'src/pages/seo/routes/MassachusettsToFlorida.jsx',
   '/new-jersey-to-florida-car-shipping': 'src/pages/seo/routes/NewJerseyToFlorida.jsx',
@@ -204,6 +205,7 @@ const ENGLISH_ONLY = [
   '/massachusetts-car-shipping', '/boston-car-shipping',
   '/newton-auto-transport', '/florida-car-shipping',
   '/new-jersey-auto-transport', '/texas-auto-transport',
+  '/nj-export-warehouse-shipping-cost',
 
   // Route pages
   '/massachusetts-to-florida-car-shipping', '/new-jersey-to-florida-car-shipping',
