@@ -745,6 +745,10 @@
       },
       {
         "tag": "h2",
+        "text": "What Each Distance Band Costs"
+      },
+      {
+        "tag": "h2",
         "text": "Auction Pickup Versus a Dealer or Private Address"
       },
       {
@@ -811,7 +815,7 @@
       }
     ],
     "internalLinks": {
-      "total": 65,
+      "total": 66,
       "unique": 46
     }
   },
@@ -958,8 +962,8 @@
     }
   },
   "/door-to-port-auto-transport": {
-    "title": "Door-to-Port Auto Transport | Y7 Logistics",
-    "description": "Transport vehicles from anywhere in the US to major export ports. Newark, Houston, Savannah, LA, Baltimore, Jacksonville. Y7 Logistics.",
+    "title": "Door-to-Port Auto Transport Cost & Transit Time to US Ports | Y7 Logistics",
+    "description": "Door-to-port auto transport cost and dispatch-to-delivery transit times to the six major US export ports — Newark, Houston, Savannah, LA, Baltimore, Jacksonville. Licensed FMCSA broker MC #1741537.",
     "canonical": "https://www.y7agency.com/door-to-port-auto-transport",
     "hreflang": [],
     "headings": [
@@ -985,7 +989,19 @@
       },
       {
         "tag": "h2",
+        "text": "What Door-to-Port Costs (New Jersey Corridor)"
+      },
+      {
+        "tag": "h2",
+        "text": "The Door Premium: Auction Yard vs. a Private or Dealer Address"
+      },
+      {
+        "tag": "h2",
         "text": "Transit Times and Scheduling"
+      },
+      {
+        "tag": "h2",
+        "text": "Where the Time Actually Goes: Sourcing vs. Driving"
       },
       {
         "tag": "h2",
@@ -1051,8 +1067,8 @@
       }
     ],
     "internalLinks": {
-      "total": 79,
-      "unique": 48
+      "total": 80,
+      "unique": 49
     }
   },
   "/texas-to-newark-port-auto-transport": {
