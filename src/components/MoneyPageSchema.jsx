@@ -16,7 +16,9 @@ const PAGE_SPEC = {
     url: '/dealers',
     audienceType: 'Business',
     audienceName: 'Auto Dealers',
-    priceRange: '$40-$65',
+    // Y7 dealer fee: $50/load, $60 when Y7 pays the carrier — TRANSPORT
+    // services/b2b_pricing.py (B2B_FLAT_FEE_CENTS 5000 / DEALER_Y7_PAYS_FEE_CENTS 6000).
+    priceRange: '$50-$60',
     offers: [
       { name: 'Auction Pickup', desc: 'Copart, IAA, Manheim gate-pass coordination and same-day dispatch' },
       { name: 'Dealer Trade Transport', desc: 'Dealer-to-dealer inventory moves with consolidated billing' },

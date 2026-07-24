@@ -87,6 +87,11 @@ function AuctionVsBrokerCard() {
 }
 
 export default function AuctionTransportSavings() {
+  // Fee-copy binding (keep every $ figure audience-explicit):
+  // dealer/exporter = flat $50 per load, $60 when Y7 pays the carrier
+  //   (TRANSPORT services/b2b_pricing.py: B2B_FLAT_FEE_CENTS / DEALER_Y7_PAYS_FEE_CENTS);
+  // individual = max($75, 10% of carrier price)
+  //   (TRANSPORT services/individual_pricing.py: IND_2026_FLOOR_CENTS / IND_2026_RATE).
   return (
     <SeoLandingPage
       meta={{
@@ -113,7 +118,7 @@ export default function AuctionTransportSavings() {
         },
         {
           q: 'How do I know Y7 isn’t just marking up the carrier rate too?',
-          a: 'With our cash-on-delivery option you pay the assigned carrier directly when the car is delivered, so you see the real carrier rate yourself - a hidden markup is impossible. Y7’s revenue is a flat $50 per-vehicle dispatch fee on top of that rate, not a spread inside it.',
+          a: 'With our cash-on-delivery option you pay the assigned carrier directly when the car is delivered, so you see the real carrier rate yourself - a hidden markup is impossible. For dealer and exporter accounts, Y7’s revenue is a flat $50 per-vehicle dispatch fee on top of that rate ($60 when Y7 also handles the carrier payment), not a spread inside it; individual customers pay a $75 per-vehicle fee, or 10% of the carrier price when that is greater.',
         },
         {
           q: 'How fast can you pick up an auction car?',
@@ -181,11 +186,13 @@ export default function AuctionTransportSavings() {
         <p style={p}>
           With our standard cash-on-delivery option, you pay the assigned carrier{' '}
           <strong style={strong}>directly when the car is delivered</strong> &mdash; so you see the real
-          carrier rate yourself, and a hidden markup is impossible. Y7&rsquo;s revenue is a flat{' '}
-          <strong style={strong}>$50</strong> per-vehicle dispatch fee on top of that rate, never a
-          spread buried inside it. Prefer us to handle the carrier payment? That&rsquo;s an optional,
-          separately-arranged service. (Individual, non-dealer shipments are quoted per job, since
-          complexity and lane vary.)
+          carrier rate yourself, and a hidden markup is impossible. For dealer and exporter accounts,
+          Y7&rsquo;s revenue is a flat <strong style={strong}>$50</strong> per-vehicle dispatch fee on
+          top of that rate ($60 when Y7 also handles the carrier payment), never a spread buried inside
+          it. Prefer us to handle the carrier payment? That&rsquo;s an optional, separately-arranged
+          service. (Individual, non-dealer shipments carry a <strong style={strong}>$75</strong>
+          {' '}per-vehicle fee &mdash; or 10% of the carrier price when that is greater &mdash; with the
+          carrier rate quoted per lane.)
         </p>
       </Section>
 
