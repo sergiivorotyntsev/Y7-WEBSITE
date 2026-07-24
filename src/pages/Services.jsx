@@ -55,6 +55,7 @@ const routePages = [
   { to: '/texas-to-newark-port-auto-transport' },
   { to: '/chicago-to-port-newark-car-shipping' },
   { to: '/auction-to-port-transport' },
+  { to: '/nj-export-warehouse-shipping-cost' },
 ];
 
 // Tier 1 — the page's real decision: who the visitor is. B2B-first (dealers and

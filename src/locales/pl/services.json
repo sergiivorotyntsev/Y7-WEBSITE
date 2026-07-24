@@ -179,6 +179,10 @@
       {
         "title": "Aukcja → Port",
         "desc": "Zakup na Copart i IAAI → dostawa do portu eksportowego. Koordynacja gate pass, laweta specjalna dla aut niejeżdżących."
+      },
+      {
+        "title": "Ceny magazynów eksportowych NJ",
+        "desc": "Jak powstaje stawka przewoźnika do magazynów eksportowych w rejonie Newark / Irvington — na podstawie 586 realnych przewozów. Dystans, typ odbioru, rozmiar auta."
       }
     ]
   }

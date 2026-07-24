@@ -179,6 +179,10 @@
       {
         "title": "Auction → Port",
         "desc": "Copart and IAAI purchase → export port delivery. Gate pass coordination, flatbed for inoperables."
+      },
+      {
+        "title": "NJ Export-Warehouse Pricing",
+        "desc": "How the carrier rate to the Newark / Irvington export warehouses is formed — measured on 586 real dispatches. Distance, pickup type, vehicle size."
       }
     ]
   }
