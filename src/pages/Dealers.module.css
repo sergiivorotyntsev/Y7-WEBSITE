@@ -494,14 +494,30 @@
   width: fit-content;
 }
 
-/* SPRINT-V21 W-CONV: hero photo (tighter low-right crop than home; hidden
-   below 900px — pure V2 typography degradation, per the approved pattern). */
-.heroPhoto img {
-  /* WIDE-T03: frame-clamp past the 1440 .inner cap (same class as home hero) —
-     -7% below ~1440, frozen to the centred frame above. */
+/* HEROIMG-T01: audience-specific hero (dealers = fleet in receding formation,
+   reads as volume). The old geometry framed ONE car in a right-third slot; the
+   new 16:9 composition needs a wider slot and a lighter left mask so it reads as
+   a formation, not a crop. Cap 900px keeps the 16:9 height (900/1.778=506px)
+   inside the 509px band at 2560 (no overflow:hidden top-clip); at 1440 the vw
+   term governs (864px/486px), the framing approved at the gate.
+   .heroPhoto.heroPhoto: the doubled class raises this to (0,2,1) so it beats the
+   shared .photoEmergence img (0,1,1) by SPECIFICITY, not by Vite chunk-emission
+   order — a chunking change must not be able to silently unstick the geometry. */
+.heroPhoto.heroPhoto img {
+  /* WIDE-T03: frame-clamp past the 1440 .inner cap — -7% below ~1440, frozen to
+     the centred frame above (K=821 puts the crossover at 1440; unchanged, so the
+     arc-to-image gap stays frozen at 72px). */
   right: max(-7%, calc(50% - 821px));
   bottom: -4%;
-  width: min(50vw, 800px);
+  width: min(60vw, 900px);
+  /* Left dissolve relaxed 34% -> 20% so more of the formation reads; bottom
+     dissolve unchanged from the shared primitive (emergence at the band base). */
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 2%, #000 20%),
+    linear-gradient(to top, transparent 1%, #000 30%);
+  mask-image:
+    linear-gradient(to right, transparent 2%, #000 20%),
+    linear-gradient(to top, transparent 1%, #000 30%);
 }
 @media (min-width: 901px) {
   .heroText { max-width: 60%; }

@@ -23,20 +23,34 @@ export const HERO_BLANK_PX =
  * min-width:901px blank source keeps desktop (where this block is
  * display:none) from fetching the real files either way.
  * Hero Scope Law: the three conversion heroes only.
+ *
+ * HEROIMG-T01: audience-specific mobile asset via optional props. Defaults are
+ * hero-car (1625x704) so Home stays byte-identical; /dealers and /exporters
+ * pass their own 16:9 asset + native dims. The width/height attrs must match
+ * the passed file's native pixels or the reserved box (CLS 0) is wrong.
  */
-export default function MobileHeroEmergence({ className, arcClassName, withArc = true, eager = false }) {
+export default function MobileHeroEmergence({
+  className,
+  arcClassName,
+  withArc = true,
+  eager = false,
+  avif = '/images/hero-car.avif',
+  webp = '/images/hero-car.webp',
+  width = 1625,
+  height = 704,
+}) {
   return (
     <div className={`${styles.mobileEmergence} ${className || ''}`} aria-hidden="true">
       {withArc && <HeroArc className={arcClassName} />}
       <picture>
         <source media="(min-width: 901px)" srcSet={HERO_BLANK_PX} />
-        <source type="image/avif" srcSet="/images/hero-car.avif" />
-        <source type="image/webp" srcSet="/images/hero-car.webp" />
+        <source type="image/avif" srcSet={avif} />
+        <source type="image/webp" srcSet={webp} />
         <img
-          src="/images/hero-car.webp"
+          src={webp}
           alt=""
-          width="1625"
-          height="704"
+          width={width}
+          height={height}
           loading={eager ? 'eager' : 'lazy'}
           decoding="async"
         />

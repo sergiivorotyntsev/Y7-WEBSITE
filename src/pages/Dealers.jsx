@@ -97,9 +97,9 @@ export default function Dealers() {
             {/* SPRINT-W7 M0: blank-pixel gate — eager desktop image resolves
                 to zero bytes on phones, where it is hidden. */}
             <source media="(max-width: 900px)" srcSet={HERO_BLANK_PX} />
-            <source srcSet="/images/hero-car.avif" type="image/avif" />
-            <source srcSet="/images/hero-car.webp" type="image/webp" />
-            <img src="/images/hero-car.webp" alt="" width="1625" height="704" loading="eager" decoding="async" />
+            <source srcSet="/images/hero-dealers.avif" type="image/avif" />
+            <source srcSet="/images/hero-dealers.webp" type="image/webp" />
+            <img src="/images/hero-dealers.webp" alt="" width="1672" height="940" loading="eager" decoding="async" />
           </picture>
         </div>
         <div className={`${v2s.inner} ${styles.heroLayout}`}>
@@ -128,7 +128,13 @@ export default function Dealers() {
             bottom, <=900px only (owner reversal of the W-HOME degradation).
             eager: this hero is short enough that the car sits inside the
             390x844 first viewport (measured). */}
-        <MobileHeroEmergence eager />
+        <MobileHeroEmergence
+          eager
+          avif="/images/hero-dealers.avif"
+          webp="/images/hero-dealers.webp"
+          width={1672}
+          height={940}
+        />
       </section>
 
       {/* TL;DR + Problem — one manifest band; the extractable answer card sits

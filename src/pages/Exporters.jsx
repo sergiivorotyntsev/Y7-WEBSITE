@@ -160,9 +160,9 @@ export default function Exporters() {
             {/* SPRINT-W7 M0: blank-pixel gate — eager desktop image resolves
                 to zero bytes on phones, where it is hidden. */}
             <source media="(max-width: 900px)" srcSet={HERO_BLANK_PX} />
-            <source srcSet="/images/hero-car.avif" type="image/avif" />
-            <source srcSet="/images/hero-car.webp" type="image/webp" />
-            <img src="/images/hero-car.webp" alt="" width="1625" height="704" loading="eager" decoding="async" />
+            <source srcSet="/images/hero-exporters.avif" type="image/avif" />
+            <source srcSet="/images/hero-exporters.webp" type="image/webp" />
+            <img src="/images/hero-exporters.webp" alt="" width="1536" height="864" loading="eager" decoding="async" />
           </picture>
         </div>
         <div className={`${v2s.inner} ${styles.heroLayout}`}>
@@ -200,7 +200,13 @@ export default function Exporters() {
             bottom, <=900px only (owner reversal of the W-HOME degradation).
             eager: this hero is short enough that the car sits inside the
             390x844 first viewport (measured). */}
-        <MobileHeroEmergence eager />
+        <MobileHeroEmergence
+          eager
+          avif="/images/hero-exporters.avif"
+          webp="/images/hero-exporters.webp"
+          width={1536}
+          height={864}
+        />
       </section>
 
       {/* TL;DR + value proposition — manifest band; the extractable answer
