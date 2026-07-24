@@ -12,9 +12,12 @@ import v2f from '../styles/v2/forms.module.css';
 // follow-up). Price source = the real-dispatch band model (dispatchRates.js);
 // the V1 formula stays retired. Distance = haversine * ROAD_FACTOR (1.12,
 // recalibrated against 37 known metro pairs in the ratings CSV; V1's 1.18
-// leaned high). Multipliers carry V1 values (SUV 1.13 / Pickup 1.25 /
-// Enclosed 1.4) — the CSV cannot validate them (no SUV/enclosed classes in
-// the standard set), flagged in the sprint report. Honesty laws: typical
+// leaned high). Vehicle multipliers [NJPORTS-T3] are measured on 586
+// NJ-inbound loads (2025-08-27 to 2026-07-23), expressed relative to
+// sedan = 1.0: SUV 1.05 (n=347), Pickup 1.17 (n=16 — thin sample, best
+// available estimate, not a firm value). Enclosed 1.4 stays a V1 carryover
+// — the dataset is open-carrier only, so there is no evidence either way.
+// Honesty laws: typical
 // range only, never a quote; fee named, not numbered. Default route renders
 // fully in the prerender snapshot (selects with defaultValue are
 // visible-by-default; interactivity is progressive enhancement — no
@@ -22,8 +25,8 @@ import v2f from '../styles/v2/forms.module.css';
 // stays the strip's single accent.
 const VEHICLES = [
   { key: 'sedan', mult: 1.0 },
-  { key: 'suv', mult: 1.13 },
-  { key: 'pickup', mult: 1.25 },
+  { key: 'suv', mult: 1.05 },
+  { key: 'pickup', mult: 1.17 },
 ];
 const TRANSPORTS = [
   { key: 'open', mult: 1.0 },
