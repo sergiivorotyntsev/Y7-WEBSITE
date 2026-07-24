@@ -121,6 +121,8 @@ The page is a stack of full-width surface bands. Every section declares one of t
 
 **The Dark Share Rule.** Conversion pages: 40-60% of scroll height is board. Long-form pages: no more than 25%. Link-hub pages (catalogs, directories: /services, FAQ/Track/Contact-class hubs): dark = hero + closing CTA only, <=35% share; deep catalogs typically land at 15-25% (W4 ruling, corrected after live measurement). Below 40% on Home the brand reads timid; above 60% anywhere it reads like a gaming site.
 
+**The Dark Share Measurement Convention (canonized LAW-T01).** The ranges above are unchanged; this fixes what "share of scroll height" actually counts, so every future measurement lands the same way instead of being re-guessed. **Reference width is 1440.** Dark Share is a composition rule and its measured value legitimately drifts at other widths (`/services`: 18.8% @1440, 20.1% @1920, 15.6% @768, 10.8% @375); only the 1440 figure governs, and a low mobile number is expected, not a violation. **What counts:** page-owned content bands only. The global header, the global footer, and transient overlays (e.g. the cookie banner) are excluded from **both** numerator and denominator, because under any convention that keeps the fixed dark header/footer in the denominator, *shortening* a bloated page mechanically inflates its Dark Share, and a rule that punishes the fix is the wrong rule. **Band classification:** a surface counts as a band only at **>=90% viewport width**; cards are not bands, so three dark cards on a paper band leave the band paper-dominant (this is what kept the `/services` Tier 1 anchors inside the link-hub range, where a full-width dark band would have projected ~30.7%). **The out-of-flow trap:** a `position: fixed` overlay contributes nothing to `scrollHeight` and is therefore already absent from the denominator; subtracting it a second time double-counts. Reference figures measured under this convention: Home **59.9%** (conversion range), `/services` **18.8%** (link-hub range).
+
 **Cards on paper** use `card-cream #fffaf1` with `line-on-paper` borders (the V1 no-true-white doctrine carried: #FFFFFF never appears as a surface). **Cards on board** use `panel-steel` or translucent white washes at 3.5-5% alpha with `line-on-dark` borders.
 
 **The No-True-Black/White Rule (carried from V1, recalibrated).** `#050607` is the floor; `#000` never appears. `card-cream #fffaf1` is the ceiling; `#fff` never appears as a surface (pure white may exist only inside the logo SVG and as button text where contrast demands it).
@@ -313,3 +315,21 @@ Photography is permitted ONLY: (a) inside dark (`board`) sections; (b) as an obj
 The Angle and Photo Treatment laws apply to conversion-page heroes (`/`, `/dealers`, `/exporters`) and future sanctioned marketing surfaces only. All other pages remain pure-typographic V2. Long-form and link-hub Dark Share caps are unchanged. Primitives live in `src/styles/v2/hero.module.css` (`angledPlate` / `angledBadge` / `photoEmergence` / `mobileEmergence`) and follow the Anti-Orphan Rule.
 
 **Mobile treatment (SPRINT-W7 owner ruling, canonical):** below the hero breakpoint the photo renders as a compact emergence coda **stacked in-flow after the text content — never layered under it**. Zero text/photo overlap by construction satisfies Photo Treatment Law (e) at any locale's text length. The `mobileEmergence` primitive is the only sanctioned implementation. Loading discipline is measured, not assumed: below the 390×844 first-viewport fold → `loading="lazy"` and any preload media-gated to desktop; inside the first viewport → eager. Desktop-eager hero `<picture>`s carry a blank-pixel `<source media>` gate so phones never download the hidden desktop asset.
+
+## 12. Earned Container (V2 law — LAW-CANON)
+
+This section EXTENDS the constitution; every prior law stays in force.
+
+### § The Earned Container Law
+
+A container — anything set apart by a border, a fill, or a radius — must **earn its place**. The default is content on the ground plane, separated by hairlines and typographic hierarchy, not boxed.
+
+**What earns a container:** interactive surfaces that need a hit-target and a resting edge (form fields, buttons), CTA panels, and deliberate dark anchors placed for hierarchy. Nothing else by default. A catalog of links, a coverage list, a group of tiles: these are rows and rules, not a field of boxes.
+
+**Why:** the "Dispatch Board" metaphor is rules and rows — the manifest and the board — not a field of rounded cards. A 1px-bordered rounded card repeated on cream is the generic broker-template / AI-startup-landing look this system exists to avoid; and when every element wears the same container, the container stops carrying hierarchy, because nothing is set apart when everything is.
+
+**Corollary — rest-state affordance (learned in BAND).** Removing the border from an *interactive* surface also removes its click affordance. Any borderless element that is a link MUST carry that affordance **at rest** — per the Body-Link Law (§7), the resting underline, never on hover alone, because hover does not exist on touch. Reference implementations: the port cells on the homepage Coverage band and the `/services` Tier 2/3 index rows.
+
+**Evidence.** The deferral condition — canonize only after the treatment survives production — is met twice:
+- Homepage Coverage band: 17 bordered containers → 3 (`9d6c4d5`, BAND-T01).
+- `/services`: 36 containers → 3, link contract 30/30 intact, heading delta h3 36→30 (`5c805a7`, SVC-T01).
