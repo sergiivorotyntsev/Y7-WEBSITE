@@ -6,23 +6,31 @@ import styles from './Services.module.css';
 import v2s from '../styles/v2/surfaces.module.css';
 import v2t from '../styles/v2/type.module.css';
 import v2b from '../styles/v2/buttons.module.css';
+import v2c from '../styles/v2/cards.module.css';
 
+// SVC-T01: three-tier link hub on the Earned Container principle. The page used
+// to be 36 identical tiles in five consecutive grids; a container now has to
+// earn its place, so only the three audience anchors keep a box and everything
+// else is typographic index rows on hairlines (the BAND-T01 portGrid pattern).
+//
+// The i18n arrays keep their ORIGINAL index order so the four locales stay 1:1
+// aligned — grouping happens here by index, never by re-ordering the JSON.
 const servicePages = [
-  { to: '/ship-my-car' },
-  { to: '/dealers' },
-  { to: '/exporters' },
-  { to: '/car-shipping-cost' },
-  { to: '/enclosed-car-shipping' },
-  { to: '/auction-car-shipping' },
-  { to: '/copart-shipping' },
-  { to: '/iaai-transport' },
-  { to: '/manheim-transport' },
-  { to: '/door-to-port-auto-transport' },
-  { to: '/dealer-auto-transport' },
-  { to: '/open-car-shipping' },
-  { to: '/salvage-car-shipping' },
-  { to: '/state-to-state-car-shipping' },
-  { to: '/auction-to-port-transport' },
+  { to: '/ship-my-car' },                 // 0  -> Tier 1
+  { to: '/dealers' },                     // 1  -> Tier 1
+  { to: '/exporters' },                   // 2  -> Tier 1
+  { to: '/car-shipping-cost' },           // 3  -> Tier 2 pricing
+  { to: '/enclosed-car-shipping' },       // 4  -> Tier 2 transport
+  { to: '/auction-car-shipping' },        // 5  -> Tier 2 auction
+  { to: '/copart-shipping' },             // 6  -> Tier 2 auction
+  { to: '/iaai-transport' },              // 7  -> Tier 2 auction
+  { to: '/manheim-transport' },           // 8  -> Tier 2 auction
+  { to: '/door-to-port-auto-transport' }, // 9  -> Tier 2 export
+  { to: '/dealer-auto-transport' },       // 10 -> Tier 2 export
+  { to: '/open-car-shipping' },           // 11 -> Tier 2 transport
+  { to: '/salvage-car-shipping' },        // 12 -> Tier 2 transport
+  { to: '/state-to-state-car-shipping' }, // 13 -> Tier 2 transport
+  { to: '/auction-to-port-transport' },   // 14 -> Tier 2 auction
 ];
 
 const evPages = [
@@ -49,6 +57,37 @@ const routePages = [
   { to: '/auction-to-port-transport' },
 ];
 
+// Tier 1 — the page's real decision: who the visitor is. B2B-first (dealers and
+// exporters lead on dark cards, individuals fully served on the cream card).
+// `absorbed` indexes services.list — the retired "What We Offer" prose, kept
+// verbatim rather than deleted. Multi-Vehicle Shipments (list 5) has no page of
+// its own and folds into the dealers anchor.
+const anchors = [
+  { card: 1, to: '/dealers', tag: 'dealers', dark: true, absorbed: [1, 5] },
+  { card: 2, to: '/exporters', tag: 'exporters', dark: true, absorbed: [2] },
+  { card: 0, to: '/ship-my-car', tag: 'individuals', dark: false, absorbed: [3] },
+];
+
+// Tier 2 — the tail, grouped so it is scannable instead of flat. `intro` indexes
+// services.list for the two remaining absorbed descriptions.
+const groups = [
+  { key: 'auction', items: [5, 6, 7, 8, 14], intro: 0 },
+  { key: 'transport', items: [11, 4, 12, 13], intro: 4 },
+  { key: 'export', items: [9, 10], intro: null },
+  { key: 'pricing', items: [3], intro: null },
+];
+
+// Tier 2/3 row: a link on the plane, not a card. The title is underlined AT REST
+// (Body-Link Law) so the row reads as a link on touch, where hover cannot.
+function IndexRow({ to, title, desc }) {
+  return (
+    <Link to={to} className={styles.row}>
+      <h3 className={styles.rowTitle}>{title}</h3>
+      <p className={styles.rowDesc}>{desc}</p>
+    </Link>
+  );
+}
+
 export default function Services() {
   const { t } = useTranslation('services');
   const { t: tCommon } = useTranslation('common');
@@ -57,6 +96,7 @@ export default function Services() {
   // V2-CLEANUP T04: card titles/descs moved to i18n (services.cards.*),
   // arrays keep only slugs; EN strings byte-identical to the old literals.
   const cardFor = (group, i) => (Array.isArray(group) && group[i]) || {};
+  const listFor = (i) => (Array.isArray(list) && list[i]) || {};
   const cardsServices = t('cards.services', { returnObjects: true });
   const cardsEv = t('cards.ev', { returnObjects: true });
   const cardsLocations = t('cards.locations', { returnObjects: true });
@@ -97,80 +137,115 @@ export default function Services() {
       </section>
 
       <section className={v2s.manifest}><div className={`${v2s.inner} ${styles.bodyWrap}`}>
-        <h2 className={styles.sectionHeading}>{t('gridHeading')}</h2>
-        <div className={styles.grid}>
-          {Array.isArray(list) && list.map((item, i) => (
-            <div key={i} className={styles.card} style={{ '--i': i }}>
-              <h3 className={styles.cardTitle}>{item.title}</h3>
-              <p className={styles.cardDesc}>{item.desc}</p>
-            </div>
-          ))}
+
+        {/* TIER 1 — who you are. The only earned containers on the page.
+            No eyebrow here: the dark cards already carry the weight, and it
+            keeps the red rule-line count inside the Signal Budget. */}
+        <div className={styles.sectionFirst}>
+          <div className={styles.sectionHeadingWrap}>
+            <h2 className={styles.sectionHeading}>{t('gridHeading')}</h2>
+          </div>
+          <div className={styles.anchorGrid}>
+            {anchors.map((a) => {
+              const card = cardFor(cardsServices, a.card);
+              return (
+                <Link
+                  key={a.to}
+                  to={a.to}
+                  aria-label={card.title}
+                  className={`${a.dark ? v2c.boardSolid : v2c.paper} ${styles.anchor} ${a.dark ? styles.anchorDark : styles.anchorCream}`}
+                >
+                  <span className={`${v2t.monoMicro} ${styles.anchorTag}`}>{t(`tags.${a.tag}`)}</span>
+                  <h3 className={`${v2t.cardTitle} ${styles.anchorTitle}`}>{card.title}</h3>
+                  <p className={styles.anchorLead}>{card.desc}</p>
+                  {a.absorbed.map((k) => (
+                    <p key={k} className={styles.anchorNote}>{listFor(k).desc}</p>
+                  ))}
+                  <span className={styles.anchorCta}>
+                    {t('linkCta')} <span aria-hidden="true">&rarr;</span>
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
         </div>
 
-        {/* Service pages hub */}
+        {/* TIER 2 — the tail as a grouped index */}
         <div className={styles.section}>
           <div className={styles.sectionHeadingWrap}>
             <p className={`${v2t.eyebrow} ${v2t.eyebrowOnPaper}`}>{t('exploreKicker')}</p>
             <h2 className={styles.sectionHeading}>{t('exploreTitle')}</h2>
           </div>
-          <div className={styles.grid}>
-            {servicePages.map((page, i) => (
-              <Link key={page.to} to={page.to} className={styles.linkCard} style={{ '--i': i }}>
-                <h3 className={styles.linkTitle}>{cardFor(cardsServices, i).title}</h3>
-                <p className={styles.linkDesc}>{cardFor(cardsServices, i).desc}</p>
-                <span className={styles.linkCta}>{t('linkCta')} &rarr;</span>
-              </Link>
-            ))}
-          </div>
+          {groups.map((g) => (
+            <div key={g.key} className={styles.group}>
+              <p className={`${v2t.monoLabel} ${styles.groupLabel}`}>{t(`groups.${g.key}`)}</p>
+              {g.intro !== null && (
+                <p className={styles.groupIntro}>{listFor(g.intro).desc}</p>
+              )}
+              <div className={styles.index}>
+                {g.items.map((i) => (
+                  <IndexRow
+                    key={servicePages[i].to}
+                    to={servicePages[i].to}
+                    title={cardFor(cardsServices, i).title}
+                    desc={cardFor(cardsServices, i).desc}
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* Locations We Serve */}
+        {/* TIER 3 — coverage indexes */}
         <div className={styles.section}>
           <div className={styles.sectionHeadingWrap}>
             <p className={`${v2t.eyebrow} ${v2t.eyebrowOnPaper}`}>{t('locationsKicker')}</p>
             <h2 className={styles.sectionHeading}>{t('locationsTitle')}</h2>
           </div>
-          <div className={styles.grid}>
+          <div className={styles.index}>
             {locationPages.map((page, i) => (
-              <Link key={page.to} to={page.to} className={styles.linkCard} style={{ '--i': i }}>
-                <h3 className={styles.linkTitle}>{cardFor(cardsLocations, i).title}</h3>
-                <p className={styles.linkDesc}>{cardFor(cardsLocations, i).desc}</p>
-                <span className={styles.linkCta}>{t('linkCta')} &rarr;</span>
-              </Link>
+              <IndexRow
+                key={page.to}
+                to={page.to}
+                title={cardFor(cardsLocations, i).title}
+                desc={cardFor(cardsLocations, i).desc}
+              />
             ))}
           </div>
         </div>
 
-        {/* Popular Routes */}
+        {/* Popular Routes — no eyebrow: breaks the consecutive rule-line run
+            (DESIGN.md: max 2 consecutive sections open with the pair). */}
         <div className={styles.section}>
           <div className={styles.sectionHeadingWrap}>
             <h2 className={styles.sectionHeading}>{t('routesTitle')}</h2>
           </div>
-          <div className={styles.grid}>
+          <div className={styles.index}>
             {routePages.map((page, i) => (
-              <Link key={page.to} to={page.to} className={styles.linkCard} style={{ '--i': i }}>
-                <h3 className={styles.linkTitle}>{cardFor(cardsRoutes, i).title}</h3>
-                <p className={styles.linkDesc}>{cardFor(cardsRoutes, i).desc}</p>
-                <span className={styles.linkCta}>{t('linkCta')} &rarr;</span>
-              </Link>
+              <IndexRow
+                key={page.to}
+                to={page.to}
+                title={cardFor(cardsRoutes, i).title}
+                desc={cardFor(cardsRoutes, i).desc}
+              />
             ))}
           </div>
         </div>
 
-        {/* EV & Tesla Services */}
         <div className={styles.section}>
           <div className={styles.sectionHeadingWrap}>
             <p className={`${v2t.eyebrow} ${v2t.eyebrowOnPaper}`}>{t('evKicker')}</p>
             <h2 className={styles.sectionHeading}>{t('evTitle')}</h2>
             <p className={styles.sectionLede}>{t('evLede')}</p>
           </div>
-          <div className={styles.grid}>
+          <div className={styles.index}>
             {evPages.map((page, i) => (
-              <Link key={page.to} to={page.to} className={styles.linkCard} style={{ '--i': i }}>
-                <h3 className={styles.linkTitle}>{cardFor(cardsEv, i).title}</h3>
-                <p className={styles.linkDesc}>{cardFor(cardsEv, i).desc}</p>
-                <span className={styles.linkCta}>{t('linkCta')} &rarr;</span>
-              </Link>
+              <IndexRow
+                key={page.to}
+                to={page.to}
+                title={cardFor(cardsEv, i).title}
+                desc={cardFor(cardsEv, i).desc}
+              />
             ))}
           </div>
         </div>

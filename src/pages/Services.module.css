@@ -1,7 +1,13 @@
 /* Services — DESIGN-V2-W4-T04: link-hub page (DESIGN.md §2 amendment).
    Dark = hero + closing CTA strip only; catalogs manifest. Layout-only module;
-   surfaces/type/buttons from v2 primitives. V1 stagger entrance retired
-   (Reveal Gate law: no ungated entrances; hubs ship static). */
+   surfaces/type/buttons/cards from v2 primitives. V1 stagger entrance retired
+   (Reveal Gate law: no ungated entrances; hubs ship static).
+
+   SVC-T01: restructured as a three-tier hub on the Earned Container principle.
+   Tier 1 (three audience anchors) is the only place a container is earned;
+   Tier 2/3 are borderless index rows on 1px hairlines — the pattern BAND-T01
+   proved on the homepage Coverage band. Band-scoped: nothing in
+   src/styles/v2/* is edited, only consumed. */
 
 .wrap {
   padding: 0;
@@ -48,6 +54,11 @@
   margin-top: clamp(48px, 7vh, 72px);
 }
 
+/* Tier 1 opens the band, so it carries no top margin of its own. */
+.sectionFirst {
+  margin-top: 0;
+}
+
 .sectionHeadingWrap {
   margin-bottom: 20px;
 }
@@ -67,72 +78,184 @@
   margin: 8px 0 0;
 }
 
-.grid {
+/* ---------------------------------------------------------------- TIER 1 --
+   The three audience anchors: the page's actual decision, and the only
+   containers that earn their place. B2B-first — dealers and exporters on the
+   solid dark card, individuals on cream (the shipped AudienceCards hierarchy).
+   Dark CARDS on the manifest band, never a dark BAND: a full-width dark tier
+   here would push the link-hub Dark Share out of its 15-25% range. */
+
+.anchorGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  align-items: stretch;
 }
 
-/* Feature cards (non-link) */
-.card {
-  composes: paper from '../styles/v2/cards.module.css';
-  padding: 22px 24px;
+@media (max-width: 900px) {
+  .anchorGrid { grid-template-columns: 1fr; gap: 16px; }
 }
-.card:hover { transform: none; box-shadow: var(--shadow-sm); }
 
-.cardTitle {
-  composes: cardTitle from '../styles/v2/type.module.css';
-  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
-  color: var(--v2-ink, #050607);
+/* One radius tier per component class per page (cards.module.css §head): the
+   dark and cream anchors are the same class, so boardSolid's xl is normalised
+   down to the cream card's lg. */
+.anchor {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 28px 26px 24px;
+  border-radius: var(--v2-radius-lg, 18px);
+  text-decoration: none;
+}
+
+/* Every colour on the anchors is set explicitly per variant. Inheriting from
+   the manifest band and letting the boardSolid primitive override it is a
+   cascade-order coin flip between two equal-specificity modules, and it lands
+   the wrong way here: the CTA row rendered ink-on-board, ~1:1 contrast. */
+.anchorDark { color: var(--v2-text-on-dark, #fff7ed); }
+.anchorCream { color: var(--v2-ink, #050607); }
+
+.anchorTag { letter-spacing: 0.22em; }
+.anchorDark .anchorTag { color: var(--v2-text-on-dark-muted, #9c9b96); }
+.anchorCream .anchorTag { color: var(--v2-ink-muted, #5c5851); }
+
+.anchorTitle { margin: 10px 0 0; }
+.anchorDark .anchorTitle { color: var(--v2-text-on-dark, #fff7ed); }
+.anchorCream .anchorTitle { color: var(--v2-ink, #050607); }
+
+/* Lead = the anchor's own catalog description. Note = the absorbed
+   "What We Offer" prose, one step quieter so the two do not compete. */
+.anchorLead {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.anchorDark .anchorLead { color: var(--v2-text-on-dark-secondary, #e8e0d3); }
+.anchorCream .anchorLead { color: var(--v2-ink, #050607); }
+
+.anchorNote {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+.anchorDark .anchorNote { color: var(--v2-text-on-dark-muted, #9c9b96); }
+.anchorCream .anchorNote { color: var(--v2-ink-muted, #5c5851); }
+
+/* CTA row rests in surface text color; hover shifts to the surface's red
+   (Body-Link Law logic — red is never the resting color). */
+.anchorCta {
+  font-family: var(--v2-font-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: auto;
+  padding-top: 14px;
+  transition: color var(--transition-fast, 150ms ease-out);
+}
+.anchorDark .anchorCta { color: var(--v2-text-on-dark, #fff7ed); }
+.anchorCream .anchorCta { color: var(--v2-ink, #050607); }
+.anchorDark:hover .anchorCta,
+.anchorDark:focus-visible .anchorCta { color: var(--v2-red-bright, #ef3a4e); }
+.anchorCream:hover .anchorCta,
+.anchorCream:focus-visible .anchorCta { color: var(--v2-red-deep, #a90918); }
+
+/* ------------------------------------------------------------ TIER 2 / 3 --
+   Borderless typographic index: rows sit on the ground plane separated by 1px
+   hairlines (gap over a line-coloured ground), not in 30 bordered boxes. */
+
+.group {
+  margin-top: 34px;
+}
+
+.groupLabel {
+  color: var(--v2-ink-muted, #5c5851);
   margin: 0 0 8px;
 }
 
-.cardDesc {
+.groupIntro {
   font-size: 14px;
   color: var(--v2-ink-muted, #5c5851);
   line-height: 1.65;
-  margin: 0;
+  max-width: 620px;
+  margin: 0 0 14px;
 }
 
-/* Link cards (catalog tiles) */
-.linkCard {
-  composes: paper from '../styles/v2/cards.module.css';
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 22px 24px;
+/* Hairlines are drawn BY THE ROWS, not by a line-coloured ground showing
+   through a 1px gap. The ground technique paints a solid block wherever a group
+   does not fill its last grid row (Pricing has one item), which is what it did
+   before this was caught. Row borders degrade correctly at any item count. */
+.index {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+}
+
+@media (max-width: 1100px) {
+  .index { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 700px) {
+  .index { grid-template-columns: 1fr; }
+}
+
+.row {
+  display: block;
+  padding: 15px 16px 17px;
+  background: var(--v2-paper, #f4f0e8);
+  border-bottom: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  border-left: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
   text-decoration: none;
   color: inherit;
+  transition: background var(--transition-normal, 250ms ease-out);
 }
 
-.linkTitle {
+/* Column rules: no left border on the first cell of each visual row. Every
+   override below carries the same specificity as the base so the cascade order
+   decides, not an accidental specificity win. */
+.index > .row:nth-child(3n + 1) { border-left: 0; }
+
+@media (max-width: 1100px) {
+  .index > .row:nth-child(3n + 1) { border-left: 1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14)); }
+  .index > .row:nth-child(2n + 1) { border-left: 0; }
+}
+
+@media (max-width: 700px) {
+  .index > .row:nth-child(n) { border-left: 0; }
+}
+.row:hover { background: var(--v2-card-cream, #fffaf1); }
+/* Inset ring so the outline is not clipped by the hairline grid. */
+.row:focus-visible {
+  outline: 2px solid var(--v2-red, #d70f24);
+  outline-offset: -2px;
+}
+
+/* Rest-state click affordance (Body-Link Law): the title is underlined at rest
+   so the row reads as a link on touch, not only on hover. No fixed-width title
+   column and no ellipsis — UA runs to 33 characters and PL to 31, and they must
+   wrap rather than truncate. */
+.rowTitle {
   composes: cardTitle from '../styles/v2/type.module.css';
-  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  font-size: clamp(0.95rem, 1.15vw, 1.05rem);
   color: var(--v2-ink, #050607);
-  margin: 0;
+  margin: 0 0 5px;
+  text-decoration: underline;
+  text-decoration-color: var(--v2-line-on-paper, rgba(5, 6, 7, 0.14));
+  text-underline-offset: 3px;
+  transition: color var(--transition-normal, 250ms ease-out),
+              text-decoration-color var(--transition-normal, 250ms ease-out);
+}
+.row:hover .rowTitle,
+.row:focus-visible .rowTitle {
+  color: var(--v2-red-deep, #a90918);
+  text-decoration-color: var(--v2-red-deep, #a90918);
 }
 
-.linkDesc {
+.rowDesc {
   font-size: 13.5px;
   color: var(--v2-ink-muted, #5c5851);
   line-height: 1.6;
   margin: 0;
-  flex: 1;
-}
-
-/* CTA row rests in ink; hover shifts red (Body-Link logic, no resting red). */
-.linkCta {
-  font-family: var(--v2-font-display);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: var(--v2-track-caps-ui, 0.06em);
-  text-transform: uppercase;
-  color: var(--v2-ink, #050607);
-  transition: color var(--transition-fast, 150ms ease-out);
-}
-.linkCard:hover .linkCta,
-.linkCard:focus-visible .linkCta {
-  color: var(--v2-red-deep, #a90918);
 }
 
 /* CTA STRIP — full-bleed closing board band (link-hub close-dark).

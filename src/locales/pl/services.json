@@ -3,12 +3,22 @@
   "exploreKicker": "Przegląd",
   "exploreTitle": "Wszystkie nasze usługi",
   "linkCta": "Dowiedz się więcej",
+  "tags": {
+    "dealers": "Dilerzy",
+    "exporters": "Eksporterzy",
+    "individuals": "Osoby prywatne"
+  },
+  "groups": {
+    "auction": "Aukcje",
+    "transport": "Rodzaj transportu",
+    "export": "Eksport",
+    "pricing": "Cennik"
+  },
   "evKicker": "Specjaliści od EV",
   "evTitle": "Transport samochodów elektrycznych",
   "evLede": "Wyspecjalizowani przewoźnicy dla Tesla, Rivian, Lucid i innych marek EV",
   "locationsKicker": "Zasięg",
   "locationsTitle": "Obsługiwane lokalizacje",
-  "routesKicker": "Korytarze",
   "routesTitle": "Popularne trasy",
   "ctaTitle": "Gotowy na transport auta?",
   "ctaSubtitle": "Uzyskaj przejrzystą wycenę w mniej niż godzinę roboczą. Bez ukrytych kosztów, bez presji.",
@@ -34,7 +44,7 @@
     },
     {
       "title": "Transport premium w zamkniętej naczepie",
-      "desc": "Zamknięte naczepy premium dla samochodów klasycznych, luksusowych i o wysokiej wartości. Pełne ubezpieczenie i staranna obsługa."
+      "desc": "Zamknięte naczepy premium dla samochodów klasycznych, luksusowych i o wysokiej wartości. Ubezpieczenie cargo przewoźnika sprawdzamy przed przydzieleniem."
     },
     {
       "title": "Transport wielu pojazdów",

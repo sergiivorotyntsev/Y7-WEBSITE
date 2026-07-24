@@ -3,12 +3,22 @@
   "exploreKicker": "Explore",
   "exploreTitle": "Every service we offer",
   "linkCta": "Learn more",
+  "tags": {
+    "dealers": "Dealers",
+    "exporters": "Exporters",
+    "individuals": "Individuals"
+  },
+  "groups": {
+    "auction": "Auction",
+    "transport": "Transport type",
+    "export": "Export",
+    "pricing": "Pricing"
+  },
   "evKicker": "EV Specialists",
   "evTitle": "Electric Vehicle Transport",
   "evLede": "Specialized carriers for Tesla, Rivian, Lucid, and every major EV brand",
   "locationsKicker": "Coverage",
   "locationsTitle": "Locations We Serve",
-  "routesKicker": "Corridors",
   "routesTitle": "Popular Routes",
   "ctaTitle": "Ready to move your vehicle?",
   "ctaSubtitle": "Get a transparent quote in under an hour during business hours. No hidden fees, no pressure.",
@@ -34,7 +44,7 @@
     },
     {
       "title": "Enclosed Premium Transport",
-      "desc": "White-glove enclosed carriers for classic, luxury, and high-value vehicles. Full insurance coverage and careful handling."
+      "desc": "White-glove enclosed carriers for classic, luxury, and high-value vehicles. We verify the carrier's cargo insurance before dispatch."
     },
     {
       "title": "Multi-Vehicle Shipments",
