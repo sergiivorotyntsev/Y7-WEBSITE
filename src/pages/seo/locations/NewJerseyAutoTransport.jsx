@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SeoLandingPage, { Section } from '../SeoLandingPage';
 import { prose, muted, subhead, tableWrap, table, th, td } from '../_enrichedStyles';
 
@@ -222,6 +223,25 @@ export default function NewJerseyAutoTransport() {
           dealer-only auctions in the Newark / Edison area complete the local picture. We pick up
           from all of them under dealer buyer numbers on recurring accounts, and we consolidate
           multi-vehicle runs into Port Newark when the timing lines up.
+        </p>
+      </Section>
+
+      <Section title="The NJ Export-Warehouse Market">
+        <p style={prose}>
+          Beyond the Port Newark terminal itself, New Jersey&rsquo;s export flow runs through a
+          cluster of export warehouses in the Newark / Irvington area that receive vehicles from
+          auctions across the country before they are loaded for ocean transit. This is a national
+          feeder market, not a local one: recent dispatch data shows cars arriving from 25 states
+          and 79 distinct pickup locations, led by volume from New York, Pennsylvania, Illinois,
+          Massachusetts, and New Jersey itself.
+        </p>
+        <p style={muted}>
+          The practical consequence for exporters and dealers is that the warehouse cluster behaves
+          as a single delivery point &mdash; where in the Newark / Irvington area a car is received
+          makes no measurable difference to the carrier rate. How that rate is actually formed
+          &mdash; the role of distance, pickup type, and vehicle size &mdash; is broken down on our{' '}
+          <Link to="/nj-export-warehouse-shipping-cost">NJ export-warehouse shipping cost</Link>{' '}
+          page.
         </p>
       </Section>
     </SeoLandingPage>
