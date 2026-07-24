@@ -30,7 +30,7 @@ export default function NjExportWarehouseShippingCost() {
       tldr={{
         kicker: 'NJ export-warehouse pricing, in brief',
         ariaLabel: 'How NJ export-warehouse carrier pricing is formed, in brief',
-        text: 'Across 586 dispatches (27 Aug 2025 - 23 Jul 2026, 213 carriers) into the export warehouses in the Newark / Irvington area, distance alone explains 88% of the carrier rate. Cost per mile falls as the haul lengthens (about $2.56/mi at 71 miles down to $0.52/mi at 1,294 miles). A non-auction pickup adds roughly $70 flat per vehicle; the auction brand (Copart, IAAI, Manheim) changes the rate by no more than 3%; an SUV is about 5% over a sedan, a minivan 8%, a pickup 17%. Which NJ warehouse receives the car makes no measurable difference. These are carrier rates; Y7 charges a separate flat fee (dealers and exporters $50, individuals $75).',
+        text: 'Across 586 dispatches (27 Aug 2025 - 23 Jul 2026, 213 carriers) into the export warehouses in the Newark / Irvington area, distance alone explains 88% of the carrier rate. A typical 500-800-mile haul runs about $500-$560; cost per mile falls as the haul lengthens (about $2.56/mi at 71 miles down to $0.52/mi at 1,294 miles). A non-auction pickup adds roughly $70 flat per vehicle; the auction brand (Copart, IAAI, Manheim) changes the rate by no more than 3%; an SUV is about 5% over a sedan, a minivan 8%, a pickup 17%. Which NJ warehouse receives the car makes no measurable difference. These are carrier rates; Y7 charges a separate flat fee (dealers and exporters $50, individuals $75).',
       }}
       faqs={[
         {
@@ -119,6 +119,40 @@ export default function NjExportWarehouseShippingCost() {
           71-mile run and a $0.52-per-mile 1,294-mile run can both be completely fair. The only meaningful
           comparison is against the typical carrier rate for <em>your</em> distance &mdash; which is
           exactly what the homepage calculator gives you for a specific route.
+        </p>
+      </Section>
+
+      <Section title="What Each Distance Band Costs">
+        <p style={prose}>
+          The decay curve above explains <em>why</em> the unit rate falls; this table shows{' '}
+          <em>what you actually pay</em>. These are typical carrier rates into the export warehouses in
+          the Newark / Irvington area, by haul distance, from the same 586 dispatches. The median is the
+          midpoint; the range is the 25th to 75th percentile &mdash; half of all dispatches land inside it.
+        </p>
+        <div style={tableWrap}>
+          <table style={table}>
+            <thead>
+              <tr>
+                <th style={th}>Haul distance</th>
+                <th style={th}>Median carrier rate</th>
+                <th style={th}>Typical range (25th&ndash;75th pct)</th>
+                <th style={th}>Per mile</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style={td}>under 100 mi</td><td style={td}>$180</td><td style={td}>$170 &ndash; $200</td><td style={td}>$2.56</td></tr>
+              <tr><td style={td}>101 &ndash; 250 mi</td><td style={td}>$270</td><td style={td}>$250 &ndash; $300</td><td style={td}>$1.42</td></tr>
+              <tr><td style={td}>251 &ndash; 500 mi</td><td style={td}>$360</td><td style={td}>$325 &ndash; $400</td><td style={td}>$1.05</td></tr>
+              <tr><td style={td}>501 &ndash; 800 mi</td><td style={td}>$525</td><td style={td}>$500 &ndash; $560</td><td style={td}>$0.79</td></tr>
+              <tr><td style={td}>801 &ndash; 1,200 mi</td><td style={td}>$550</td><td style={td}>$510 &ndash; $600</td><td style={td}>$0.61</td></tr>
+              <tr><td style={td}>over 1,200 mi</td><td style={td}>$600</td><td style={td}>$600 &ndash; $665</td><td style={td}>$0.52</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style={muted}>
+          These are band-level carrier rates for the NJ-inbound corridor, not a quote for a named lane.
+          For the live rate on your exact origin and destination, use the{' '}
+          <Link to="/">homepage calculator</Link>. The Y7 fee is separate (see below).
         </p>
       </Section>
 
