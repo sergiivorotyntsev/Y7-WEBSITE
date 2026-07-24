@@ -91,7 +91,7 @@ export default function DoorToPort() {
         },
         {
           q: 'Is it cheaper to ship from an auction than from my home or dealership?',
-          a: 'Yes, and it is measurable. A pickup from a private or dealer address costs roughly $70 more per vehicle than the same haul from an auction yard, and that surcharge is roughly flat in dollars regardless of distance — so it is about +48% on a haul under 100 miles but only about +14% on a haul over 500 miles. An auction yard lets a carrier collect several vehicles at one organised stop with loading equipment and predictable hours; a residential or dealer address is a dedicated detour for one car, often with no dock and uncertain timing. That extra time and risk is the roughly $70.',
+          a: 'Yes, and it is measurable. A pickup from a private or dealer address costs roughly $70 more per vehicle than the same haul from an auction yard, and that surcharge is roughly flat in dollars regardless of distance — so it is about +48% on a haul under 100 miles but only about +14% on a haul over 500 miles. This $70 is part of the carrier rate, not the Y7 fee — Y7’s flat fee (dealers and exporters $50, individuals $75) is unchanged by where the car is picked up. An auction yard lets a carrier collect several vehicles at one organised stop with loading equipment and predictable hours; a residential or dealer address is a dedicated detour for one car, often with no dock and uncertain timing. That extra time and risk is the roughly $70.',
         },
         {
           q: 'Do you handle export paperwork?',
@@ -124,7 +124,7 @@ export default function DoorToPort() {
     >
       <Section title="Major US Export Ports: What to Know">
         <p style={p}>
-          Each port operates differently, and those differences affect how we plan your domestic transport. Here is a brief overview of the six ports we deliver to most frequently. For full details on each port — including warehouse contacts, terminal maps, and delivery scheduling — see the individual port pages linked below.
+          Each port operates differently, and those differences affect how we plan your domestic transport. Here is a brief overview of the six ports we deliver to most frequently. For full details on each port — including warehouse contacts, terminal maps, and delivery scheduling — see the individual port pages linked below. The per-port timing notes below reflect our operating experience rather than a measured dispatch sample — only the New Jersey figures elsewhere on this page are drawn from the 156-dispatch dataset.
         </p>
         <p style={p}>
           <strong style={{ color: colors.text }}><Link to="/ports/newark" style={{ color: colors.accent, textDecoration: 'none' }}>Port Newark, NJ</Link></strong> is the largest vehicle export port on the East Coast. Nearly every major auto exporter in the Northeast routes through Newark. Delivery to port warehouses is appointment-based — you cannot just show up with a car hauler and expect to drop off. Yard parking near the port is limited and expensive, so timing matters. Most warehouses in the Newark port area (along Doremus Avenue and surrounding blocks) require 24-48 hour delivery scheduling. We coordinate directly with your warehouse to secure a delivery window that aligns with your vessel date.
@@ -208,7 +208,7 @@ export default function DoorToPort() {
 
       <Section title="The Door Premium: Auction Yard vs. a Private or Dealer Address">
         <p style={p}>
-          This is the part of &ldquo;door-to-port&rdquo; that most exporters underestimate: <strong style={strong}>where the car is picked up changes the rate</strong>. A pickup from a private residence or a dealer lot costs roughly <strong style={strong}>$70 more per vehicle</strong> than the same haul out of an auction yard, and that surcharge is roughly flat in dollars no matter how far the car is going.
+          This is the part of &ldquo;door-to-port&rdquo; that most exporters underestimate: <strong style={strong}>where the car is picked up changes the rate</strong>. A pickup from a private residence or a dealer lot costs roughly <strong style={strong}>$70 more per vehicle</strong> than the same haul out of an auction yard, and that surcharge is roughly flat in dollars no matter how far the car is going. That $70 is added to the <strong style={strong}>carrier rate</strong> &mdash; the amount paid to the trucker &mdash; not to Y7&rsquo;s fee, which stays the same flat figure whichever pickup point you choose.
         </p>
         <p style={p}>
           The economics are operational, not arbitrary. An auction yard is built for carriers: several vehicles can be collected at one organised stop, there is loading equipment, and the hours are predictable. A private or dealer address is a dedicated detour for a single car, frequently with no dock, no forklift, and uncertain availability — the driver may wait or make a second trip. That extra time and risk is the roughly $70.
@@ -276,7 +276,7 @@ export default function DoorToPort() {
           <strong style={{ color: colors.text }}>Texas auctions to Port Houston.</strong> This is the shortest and cheapest corridor. Copart and IAAI have over a dozen yards across Texas. Transit to Houston-area warehouses is typically same-day to 2 days. If you are buying Texas auction vehicles for export, Houston is almost always your best port choice.
         </p>
         <p style={p}>
-          <strong style={{ color: colors.text }}>Northeast and Mid-Atlantic auctions to <Link to="/ports/newark" style={{ color: colors.accent, textDecoration: 'none' }}>Port Newark</Link>.</strong> Auctions in New Jersey, Pennsylvania, New York, Connecticut, and surrounding states route naturally to Newark. This corridor handles the highest volume of export vehicles on the East Coast.
+          <strong style={{ color: colors.text }}>Northeast and Mid-Atlantic auctions to <Link to="/ports/newark" style={{ color: colors.accent, textDecoration: 'none' }}>Port Newark</Link>.</strong> Auctions in New Jersey, Pennsylvania, New York, Connecticut, and surrounding states route naturally to Newark. This corridor handles the highest volume of export vehicles on the East Coast; its dispatch-to-delivery times are the New Jersey-inbound figures shown in the transit section above.
         </p>
         <p style={p}>
           <strong style={{ color: colors.text }}>Southeast auctions to <Link to="/ports/savannah" style={{ color: colors.accent, textDecoration: 'none' }}>Savannah</Link> or <Link to="/ports/jacksonville" style={{ color: colors.accent, textDecoration: 'none' }}>Jacksonville</Link>.</strong> Georgia, Florida, South Carolina, and Alabama auction purchases feed into these two ports. Jacksonville is better for Caribbean-bound exports; Savannah offers more container route options for West Africa and the Middle East.
