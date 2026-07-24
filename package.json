@@ -11,7 +11,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "preview": "vite preview",
-    "start": "node server.js"
+    "start": "node server.js",
+    "seo:snapshot": "node scripts/seo-snapshot.mjs --write",
+    "seo:check": "node scripts/seo-snapshot.mjs --check"
   },
   "dependencies": {
     "express": "^5.2.1",

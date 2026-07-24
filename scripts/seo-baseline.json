@@ -1,0 +1,1250 @@
+{
+  "/": {
+    "title": "Y7 Logistics | Nationwide Auto Transport",
+    "description": "Licensed FMCSA auto transport broker. Ship your vehicle door-to-door or to any US port. Instant quotes, verified carriers, shipment status updates. $75,000 BMC-84 surety bond.",
+    "canonical": "https://www.y7agency.com/",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://www.y7agency.com/"
+      },
+      {
+        "hreflang": "en-US",
+        "href": "https://www.y7agency.com/"
+      },
+      {
+        "hreflang": "pl",
+        "href": "https://www.y7agency.com/pl"
+      },
+      {
+        "hreflang": "pl-PL",
+        "href": "https://www.y7agency.com/pl"
+      },
+      {
+        "hreflang": "ru",
+        "href": "https://www.y7agency.com/ru"
+      },
+      {
+        "hreflang": "uk",
+        "href": "https://www.y7agency.com/ua"
+      },
+      {
+        "hreflang": "uk-UA",
+        "href": "https://www.y7agency.com/ua"
+      },
+      {
+        "hreflang": "x-default",
+        "href": "https://www.y7agency.com/"
+      }
+    ],
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Auto Transport Dispatchfor Dealers & Exporters"
+      },
+      {
+        "tag": "h2",
+        "text": "See the dispatch price before you book."
+      },
+      {
+        "tag": "h2",
+        "text": "Transport for Every Buyer"
+      },
+      {
+        "tag": "h3",
+        "text": "Dealer Transport"
+      },
+      {
+        "tag": "h3",
+        "text": "Export & Port Delivery"
+      },
+      {
+        "tag": "h3",
+        "text": "Ship My Car"
+      },
+      {
+        "tag": "h2",
+        "text": "Why Shippers Choose Y7"
+      },
+      {
+        "tag": "h3",
+        "text": "Your Complete Transport Solution"
+      },
+      {
+        "tag": "h2",
+        "text": "How It Works"
+      },
+      {
+        "tag": "h3",
+        "text": "Submit Your Quote"
+      },
+      {
+        "tag": "h3",
+        "text": "Get Your Pricing"
+      },
+      {
+        "tag": "h3",
+        "text": "Sign Agreement"
+      },
+      {
+        "tag": "h3",
+        "text": "Carrier Assigned"
+      },
+      {
+        "tag": "h3",
+        "text": "Vehicle Delivered"
+      },
+      {
+        "tag": "h3",
+        "text": "What Our Customers Say"
+      },
+      {
+        "tag": "h2",
+        "text": "Where We Ship"
+      },
+      {
+        "tag": "h3",
+        "text": "Major Port Coverage"
+      },
+      {
+        "tag": "h2",
+        "text": "Get Your Free Quote"
+      },
+      {
+        "tag": "h3",
+        "text": "Request a quote in 30 seconds"
+      },
+      {
+        "tag": "h1",
+        "text": "Y7 Logistics — Nationwide Auto Transport"
+      }
+    ],
+    "jsonLd": [
+      {
+        "type": "LocalBusiness",
+        "key": "Y7 Logistics"
+      }
+    ],
+    "internalLinks": {
+      "total": 73,
+      "unique": 46
+    }
+  },
+  "/services": {
+    "title": "Auto Transport Services | Y7 Logistics",
+    "description": "Auction pickup (IAAI, Copart, Manheim), dealer trades, enclosed transport, US port delivery. Licensed FMCSA broker with 700+ verified carriers nationwide.",
+    "canonical": "https://www.y7agency.com/services",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://www.y7agency.com/services"
+      },
+      {
+        "hreflang": "en-US",
+        "href": "https://www.y7agency.com/services"
+      },
+      {
+        "hreflang": "pl",
+        "href": "https://www.y7agency.com/pl/services"
+      },
+      {
+        "hreflang": "pl-PL",
+        "href": "https://www.y7agency.com/pl/services"
+      },
+      {
+        "hreflang": "ru",
+        "href": "https://www.y7agency.com/ru/services"
+      },
+      {
+        "hreflang": "uk",
+        "href": "https://www.y7agency.com/ua/services"
+      },
+      {
+        "hreflang": "uk-UA",
+        "href": "https://www.y7agency.com/ua/services"
+      },
+      {
+        "hreflang": "x-default",
+        "href": "https://www.y7agency.com/services"
+      }
+    ],
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Our Services"
+      },
+      {
+        "tag": "h2",
+        "text": "What We Offer"
+      },
+      {
+        "tag": "h3",
+        "text": "For Dealers"
+      },
+      {
+        "tag": "h3",
+        "text": "For Exporters"
+      },
+      {
+        "tag": "h3",
+        "text": "Ship My Car"
+      },
+      {
+        "tag": "h2",
+        "text": "Every service we offer"
+      },
+      {
+        "tag": "h3",
+        "text": "Auction Car Shipping"
+      },
+      {
+        "tag": "h3",
+        "text": "Copart Shipping"
+      },
+      {
+        "tag": "h3",
+        "text": "IAA Transport"
+      },
+      {
+        "tag": "h3",
+        "text": "Manheim Transport"
+      },
+      {
+        "tag": "h3",
+        "text": "Auction to Port"
+      },
+      {
+        "tag": "h3",
+        "text": "Open Car Shipping"
+      },
+      {
+        "tag": "h3",
+        "text": "Enclosed Car Shipping"
+      },
+      {
+        "tag": "h3",
+        "text": "Salvage & Non-Running"
+      },
+      {
+        "tag": "h3",
+        "text": "State-to-State Shipping"
+      },
+      {
+        "tag": "h3",
+        "text": "Door-to-Port Transport"
+      },
+      {
+        "tag": "h3",
+        "text": "Dealer Auto Transport"
+      },
+      {
+        "tag": "h3",
+        "text": "Car Shipping Cost"
+      },
+      {
+        "tag": "h2",
+        "text": "Locations We Serve"
+      },
+      {
+        "tag": "h3",
+        "text": "Newton, MA Auto Transport"
+      },
+      {
+        "tag": "h3",
+        "text": "Boston Car Shipping"
+      },
+      {
+        "tag": "h3",
+        "text": "Massachusetts Car Shipping"
+      },
+      {
+        "tag": "h3",
+        "text": "Florida Car Shipping"
+      },
+      {
+        "tag": "h3",
+        "text": "New Jersey Auto Transport"
+      },
+      {
+        "tag": "h3",
+        "text": "Texas Auto Transport"
+      },
+      {
+        "tag": "h2",
+        "text": "Popular Routes"
+      },
+      {
+        "tag": "h3",
+        "text": "Massachusetts → Florida"
+      },
+      {
+        "tag": "h3",
+        "text": "New Jersey → Florida"
+      },
+      {
+        "tag": "h3",
+        "text": "Texas → Port Newark"
+      },
+      {
+        "tag": "h3",
+        "text": "Chicago → Port Newark"
+      },
+      {
+        "tag": "h3",
+        "text": "Auction → Port"
+      },
+      {
+        "tag": "h2",
+        "text": "Electric Vehicle Transport"
+      },
+      {
+        "tag": "h3",
+        "text": "Tesla Shipping"
+      },
+      {
+        "tag": "h3",
+        "text": "Electric Vehicle Transport"
+      },
+      {
+        "tag": "h3",
+        "text": "Cybertruck Shipping"
+      },
+      {
+        "tag": "h3",
+        "text": "EV Port Delivery"
+      },
+      {
+        "tag": "h2",
+        "text": "Ready to move your vehicle?"
+      },
+      {
+        "tag": "h1",
+        "text": "Y7 Logistics — Nationwide Auto Transport"
+      }
+    ],
+    "jsonLd": [
+      {
+        "type": "LocalBusiness",
+        "key": "Y7 Logistics"
+      },
+      {
+        "type": "BreadcrumbList",
+        "key": null
+      },
+      {
+        "type": "Service",
+        "key": "Auto Transport Brokerage"
+      }
+    ],
+    "internalLinks": {
+      "total": 81,
+      "unique": 51
+    }
+  },
+  "/exporters": {
+    "title": "Auto Export Services — Auction to Port Delivery Nationwide | Y7 Logistics",
+    "description": "Vehicle export logistics for international buyers. Auction to port delivery, gate pass coordination, warehouse drop-off. Newark, Houston, Savannah, LA, Baltimore, Jacksonville.",
+    "canonical": "https://www.y7agency.com/exporters",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://www.y7agency.com/exporters"
+      },
+      {
+        "hreflang": "en-US",
+        "href": "https://www.y7agency.com/exporters"
+      },
+      {
+        "hreflang": "pl",
+        "href": "https://www.y7agency.com/pl/exporters"
+      },
+      {
+        "hreflang": "pl-PL",
+        "href": "https://www.y7agency.com/pl/exporters"
+      },
+      {
+        "hreflang": "ru",
+        "href": "https://www.y7agency.com/ru/exporters"
+      },
+      {
+        "hreflang": "uk",
+        "href": "https://www.y7agency.com/ua/exporters"
+      },
+      {
+        "hreflang": "uk-UA",
+        "href": "https://www.y7agency.com/ua/exporters"
+      },
+      {
+        "hreflang": "x-default",
+        "href": "https://www.y7agency.com/exporters"
+      }
+    ],
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Dispatch & Logistics for Vehicle Exporters"
+      },
+      {
+        "tag": "h2",
+        "text": "Why Exporters Choose Y7"
+      },
+      {
+        "tag": "h2",
+        "text": "The Exporter Program"
+      },
+      {
+        "tag": "h3",
+        "text": "One agreed intake channel"
+      },
+      {
+        "tag": "h3",
+        "text": "Your warehouses, preloaded"
+      },
+      {
+        "tag": "h3",
+        "text": "Notifications in your channel"
+      },
+      {
+        "tag": "h3",
+        "text": "The optimal warehouse, every time"
+      },
+      {
+        "tag": "h2",
+        "text": "How routing decisions get made"
+      },
+      {
+        "tag": "h2",
+        "text": "Service Fee Structure"
+      },
+      {
+        "tag": "h2",
+        "text": "How It Works"
+      },
+      {
+        "tag": "h3",
+        "text": "Tell Us Your Needs"
+      },
+      {
+        "tag": "h3",
+        "text": "Receive Our Service Rates"
+      },
+      {
+        "tag": "h3",
+        "text": "Send Us Your Vehicles"
+      },
+      {
+        "tag": "h3",
+        "text": "We Dispatch & Deliver"
+      },
+      {
+        "tag": "h2",
+        "text": "Port Coverage"
+      },
+      {
+        "tag": "h2",
+        "text": "Request Our Service Rates"
+      },
+      {
+        "tag": "h2",
+        "text": "What the port warehouse expects at drop-off"
+      },
+      {
+        "tag": "h2",
+        "text": "Certificates of Origin for EU-bound vehicles"
+      },
+      {
+        "tag": "h2",
+        "text": "Where we send vehicles most often"
+      },
+      {
+        "tag": "h2",
+        "text": "Shipping auction vehicles for your dealership?"
+      },
+      {
+        "tag": "h2",
+        "text": "Operational questions exporters ask us"
+      },
+      {
+        "tag": "h1",
+        "text": "Y7 Logistics — Nationwide Auto Transport"
+      }
+    ],
+    "jsonLd": [
+      {
+        "type": "LocalBusiness",
+        "key": "Y7 Logistics"
+      },
+      {
+        "type": "BreadcrumbList",
+        "key": null
+      },
+      {
+        "type": "Service",
+        "key": "Vehicle Export Logistics"
+      },
+      {
+        "type": "FAQPage",
+        "key": "https://www.y7agency.com/exporters#faq"
+      }
+    ],
+    "internalLinks": {
+      "total": 63,
+      "unique": 46
+    }
+  },
+  "/ports/newark": {
+    "title": "Auto Transport to Port Newark, NJ | Y7 Logistics",
+    "description": "Vehicle shipping to Port Newark-Elizabeth Marine Terminal. Door-to-port auto transport for export. Licensed broker, verified carriers.",
+    "canonical": "https://www.y7agency.com/ports/newark",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://www.y7agency.com/ports/newark"
+      },
+      {
+        "hreflang": "en-US",
+        "href": "https://www.y7agency.com/ports/newark"
+      },
+      {
+        "hreflang": "pl",
+        "href": "https://www.y7agency.com/pl/ports/newark"
+      },
+      {
+        "hreflang": "pl-PL",
+        "href": "https://www.y7agency.com/pl/ports/newark"
+      },
+      {
+        "hreflang": "ru",
+        "href": "https://www.y7agency.com/ru/ports/newark"
+      },
+      {
+        "hreflang": "uk",
+        "href": "https://www.y7agency.com/ua/ports/newark"
+      },
+      {
+        "hreflang": "uk-UA",
+        "href": "https://www.y7agency.com/ua/ports/newark"
+      },
+      {
+        "hreflang": "x-default",
+        "href": "https://www.y7agency.com/ports/newark"
+      }
+    ],
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Port Newark"
+      },
+      {
+        "tag": "h2",
+        "text": "About This Port"
+      },
+      {
+        "tag": "h2",
+        "text": "Address & Gate Hours"
+      },
+      {
+        "tag": "h2",
+        "text": "Popular Routes to Port Newark"
+      },
+      {
+        "tag": "h2",
+        "text": "Documents Required"
+      },
+      {
+        "tag": "h2",
+        "text": "Storage & Demurrage"
+      },
+      {
+        "tag": "h2",
+        "text": "Shipping Destinations"
+      },
+      {
+        "tag": "h2",
+        "text": "Auction-to-Port Pipeline"
+      },
+      {
+        "tag": "h2",
+        "text": "Tips for Port Newark"
+      },
+      {
+        "tag": "h2",
+        "text": "Related Services"
+      },
+      {
+        "tag": "h2",
+        "text": "Get a Port Delivery Quote"
+      },
+      {
+        "tag": "h1",
+        "text": "Y7 Logistics — Nationwide Auto Transport"
+      }
+    ],
+    "jsonLd": [
+      {
+        "type": "LocalBusiness",
+        "key": "Y7 Logistics"
+      },
+      {
+        "type": "BreadcrumbList",
+        "key": null
+      }
+    ],
+    "internalLinks": {
+      "total": 56,
+      "unique": 46
+    }
+  },
+  "/new-jersey-auto-transport": {
+    "title": "New Jersey Auto Transport — NJ Car Shipping | Y7 Logistics",
+    "description": "NJ auto transport with Port Newark gate pass coordination. Dealer-dense market expertise. Licensed FMCSA broker MC #1741537.",
+    "canonical": "https://www.y7agency.com/new-jersey-auto-transport",
+    "hreflang": [],
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "New Jersey Auto Transport — Vehicle Shipping in NJ"
+      },
+      {
+        "tag": "h2",
+        "text": "Shipping one vehicle door-to-door?"
+      },
+      {
+        "tag": "h2",
+        "text": "New Jersey as the East Coast Export Gateway"
+      },
+      {
+        "tag": "h2",
+        "text": "Dealer-Dense Market: Newark, Jersey City, Edison"
+      },
+      {
+        "tag": "h2",
+        "text": "Pricing From and To New Jersey"
+      },
+      {
+        "tag": "h2",
+        "text": "Port Newark Gate Pass Process"
+      },
+      {
+        "tag": "h3",
+        "text": "Y7\\u2019s role"
+      },
+      {
+        "tag": "h3",
+        "text": "What happens at the port"
+      },
+      {
+        "tag": "h3",
+        "text": "Timing"
+      },
+      {
+        "tag": "h2",
+        "text": "NJ Auction Locations"
+      },
+      {
+        "tag": "h3",
+        "text": "Copart Somerville"
+      },
+      {
+        "tag": "h3",
+        "text": "IAAI Jersey City"
+      },
+      {
+        "tag": "h3",
+        "text": "Surrounding dealer and independent auctions"
+      },
+      {
+        "tag": "h2",
+        "text": "When You Need This"
+      },
+      {
+        "tag": "h2",
+        "text": "How It Works"
+      },
+      {
+        "tag": "h2",
+        "text": "What You Need"
+      },
+      {
+        "tag": "h2",
+        "text": "Our Capabilities"
+      },
+      {
+        "tag": "h2",
+        "text": "Frequently Asked Questions"
+      },
+      {
+        "tag": "h2",
+        "text": "Getting this car to a port?"
+      },
+      {
+        "tag": "h2",
+        "text": "Ready to get started?"
+      },
+      {
+        "tag": "h3",
+        "text": "Related Services"
+      },
+      {
+        "tag": "h1",
+        "text": "Y7 Logistics — Nationwide Auto Transport"
+      }
+    ],
+    "jsonLd": [
+      {
+        "type": "LocalBusiness",
+        "key": "Y7 Logistics"
+      },
+      {
+        "type": "BreadcrumbList",
+        "key": null
+      },
+      {
+        "type": "FAQPage",
+        "key": null
+      },
+      {
+        "type": "Service",
+        "key": "New Jersey Auto Transport — Vehicle Shipping in NJ"
+      }
+    ],
+    "internalLinks": {
+      "total": 61,
+      "unique": 46
+    }
+  },
+  "/auction-to-port-transport": {
+    "title": "Auction to Port Car Transport — Copart to Port Shipping | Y7 Logistics",
+    "description": "Auction to port vehicle transport with gate pass coordination. Copart, IAAI, Manheim to Port Newark, Houston, Savannah. Licensed FMCSA broker.",
+    "canonical": "https://www.y7agency.com/auction-to-port-transport",
+    "hreflang": [],
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Auction to Port Transport — Direct from Auction to Export Port"
+      },
+      {
+        "tag": "h2",
+        "text": "Getting this car to a port?"
+      },
+      {
+        "tag": "h3",
+        "text": "Typical Pricing for Auction to Port"
+      },
+      {
+        "tag": "h2",
+        "text": "The Complete Workflow"
+      },
+      {
+        "tag": "h2",
+        "text": "Y7\\u2019s Role as Broker"
+      },
+      {
+        "tag": "h2",
+        "text": "Gate Pass Coordination"
+      },
+      {
+        "tag": "h3",
+        "text": "What a gate pass is"
+      },
+      {
+        "tag": "h3",
+        "text": "Who needs it"
+      },
+      {
+        "tag": "h3",
+        "text": "How Y7 handles it"
+      },
+      {
+        "tag": "h2",
+        "text": "Popular Auction-to-Port Corridors"
+      },
+      {
+        "tag": "h3",
+        "text": "Copart Dallas → Port of Houston"
+      },
+      {
+        "tag": "h3",
+        "text": "IAAI Northeast → Port Newark"
+      },
+      {
+        "tag": "h3",
+        "text": "Copart Florida → JAXPORT"
+      },
+      {
+        "tag": "h3",
+        "text": "Manheim California → Port of Los Angeles"
+      },
+      {
+        "tag": "h3",
+        "text": "Manheim Atlanta → Port of Savannah"
+      },
+      {
+        "tag": "h2",
+        "text": "Timing and Storage Fees"
+      },
+      {
+        "tag": "h2",
+        "text": "Documents and Handoff"
+      },
+      {
+        "tag": "h2",
+        "text": "When You Need This"
+      },
+      {
+        "tag": "h2",
+        "text": "How It Works"
+      },
+      {
+        "tag": "h2",
+        "text": "What You Need"
+      },
+      {
+        "tag": "h2",
+        "text": "Our Capabilities"
+      },
+      {
+        "tag": "h2",
+        "text": "Frequently Asked Questions"
+      },
+      {
+        "tag": "h2",
+        "text": "Shipping auction vehicles for your dealership?"
+      },
+      {
+        "tag": "h2",
+        "text": "Ready to get started?"
+      },
+      {
+        "tag": "h3",
+        "text": "Related Services"
+      },
+      {
+        "tag": "h2",
+        "text": "Related Guides"
+      },
+      {
+        "tag": "h1",
+        "text": "Y7 Logistics — Nationwide Auto Transport"
+      }
+    ],
+    "jsonLd": [
+      {
+        "type": "LocalBusiness",
+        "key": "Y7 Logistics"
+      },
+      {
+        "type": "BreadcrumbList",
+        "key": null
+      },
+      {
+        "type": "FAQPage",
+        "key": null
+      },
+      {
+        "type": "Service",
+        "key": "Auction to Port Transport — Direct from Auction to Export Port"
+      }
+    ],
+    "internalLinks": {
+      "total": 71,
+      "unique": 51
+    }
+  },
+  "/door-to-port-auto-transport": {
+    "title": "Door-to-Port Auto Transport | Y7 Logistics",
+    "description": "Transport vehicles from anywhere in the US to major export ports. Newark, Houston, Savannah, LA, Baltimore, Jacksonville. Y7 Logistics.",
+    "canonical": "https://www.y7agency.com/door-to-port-auto-transport",
+    "hreflang": [],
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Door-to-Port Auto Transport — Vehicle Delivery to US Ports"
+      },
+      {
+        "tag": "h2",
+        "text": "Getting this car to a port?"
+      },
+      {
+        "tag": "h2",
+        "text": "Major US Export Ports: What to Know"
+      },
+      {
+        "tag": "h2",
+        "text": "What Y7 Handles vs. What You Handle"
+      },
+      {
+        "tag": "h2",
+        "text": "Warehouse vs. Direct Terminal Delivery"
+      },
+      {
+        "tag": "h2",
+        "text": "Transit Times and Scheduling"
+      },
+      {
+        "tag": "h2",
+        "text": "Common Export Corridors"
+      },
+      {
+        "tag": "h2",
+        "text": "When You Need This"
+      },
+      {
+        "tag": "h2",
+        "text": "How It Works"
+      },
+      {
+        "tag": "h2",
+        "text": "What You Need"
+      },
+      {
+        "tag": "h2",
+        "text": "Our Capabilities"
+      },
+      {
+        "tag": "h2",
+        "text": "Frequently Asked Questions"
+      },
+      {
+        "tag": "h2",
+        "text": "Shipping auction vehicles for your dealership?"
+      },
+      {
+        "tag": "h2",
+        "text": "Ready to get started?"
+      },
+      {
+        "tag": "h3",
+        "text": "Related Services"
+      },
+      {
+        "tag": "h2",
+        "text": "Related Guides"
+      },
+      {
+        "tag": "h1",
+        "text": "Y7 Logistics — Nationwide Auto Transport"
+      }
+    ],
+    "jsonLd": [
+      {
+        "type": "LocalBusiness",
+        "key": "Y7 Logistics"
+      },
+      {
+        "type": "BreadcrumbList",
+        "key": null
+      },
+      {
+        "type": "FAQPage",
+        "key": null
+      },
+      {
+        "type": "Service",
+        "key": "Door-to-Port Auto Transport — Vehicle Delivery to US Ports"
+      }
+    ],
+    "internalLinks": {
+      "total": 79,
+      "unique": 48
+    }
+  },
+  "/texas-to-newark-port-auto-transport": {
+    "title": "TX to Port Newark Vehicle Shipping | Y7 Logistics",
+    "description": "Vehicle transport from Texas to Port Newark for export. Auction pickup in TX, door-to-port delivery. All documentation handled.",
+    "canonical": "https://www.y7agency.com/texas-to-newark-port-auto-transport",
+    "hreflang": [],
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Texas to Port Newark Auto Transport"
+      },
+      {
+        "tag": "h2",
+        "text": "Shipping one vehicle door-to-door?"
+      },
+      {
+        "tag": "h3",
+        "text": "Typical Pricing for Texas to Port Newark"
+      },
+      {
+        "tag": "h2",
+        "text": "Texas Auction Yards Feeding This Corridor"
+      },
+      {
+        "tag": "h2",
+        "text": "Newark vs Houston: Choosing the Port from Texas"
+      },
+      {
+        "tag": "h3",
+        "text": "When Houston wins"
+      },
+      {
+        "tag": "h3",
+        "text": "When Newark wins"
+      },
+      {
+        "tag": "h2",
+        "text": "When You Need This"
+      },
+      {
+        "tag": "h2",
+        "text": "How It Works"
+      },
+      {
+        "tag": "h2",
+        "text": "What You Need"
+      },
+      {
+        "tag": "h2",
+        "text": "Our Capabilities"
+      },
+      {
+        "tag": "h2",
+        "text": "Frequently Asked Questions"
+      },
+      {
+        "tag": "h2",
+        "text": "Getting this car to a port?"
+      },
+      {
+        "tag": "h2",
+        "text": "Ready to get started?"
+      },
+      {
+        "tag": "h3",
+        "text": "Related Services"
+      },
+      {
+        "tag": "h2",
+        "text": "Related Guides"
+      },
+      {
+        "tag": "h1",
+        "text": "Y7 Logistics — Nationwide Auto Transport"
+      }
+    ],
+    "jsonLd": [
+      {
+        "type": "LocalBusiness",
+        "key": "Y7 Logistics"
+      },
+      {
+        "type": "BreadcrumbList",
+        "key": null
+      },
+      {
+        "type": "FAQPage",
+        "key": null
+      },
+      {
+        "type": "Service",
+        "key": "Texas to Port Newark Auto Transport"
+      }
+    ],
+    "internalLinks": {
+      "total": 69,
+      "unique": 48
+    }
+  },
+  "/chicago-to-port-newark-car-shipping": {
+    "title": "Chicago to Port Newark Auto Transport | Y7 Logistics",
+    "description": "Ship vehicles from Chicago area to Port Newark. Auction pickup, dealer transport, export delivery. ~800 miles, 3-4 days.",
+    "canonical": "https://www.y7agency.com/chicago-to-port-newark-car-shipping",
+    "hreflang": [],
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Chicago to Port Newark Car Shipping"
+      },
+      {
+        "tag": "h2",
+        "text": "Shipping one vehicle door-to-door?"
+      },
+      {
+        "tag": "h3",
+        "text": "Typical Pricing for Chicago to Port Newark"
+      },
+      {
+        "tag": "h2",
+        "text": "Why This Corridor Is an Export Lane First"
+      },
+      {
+        "tag": "h2",
+        "text": "Chicagoland Auction Pickup Mechanics"
+      },
+      {
+        "tag": "h3",
+        "text": "Release before dispatch"
+      },
+      {
+        "tag": "h3",
+        "text": "Consolidation is the price lever"
+      },
+      {
+        "tag": "h2",
+        "text": "When You Need This"
+      },
+      {
+        "tag": "h2",
+        "text": "How It Works"
+      },
+      {
+        "tag": "h2",
+        "text": "What You Need"
+      },
+      {
+        "tag": "h2",
+        "text": "Our Capabilities"
+      },
+      {
+        "tag": "h2",
+        "text": "Frequently Asked Questions"
+      },
+      {
+        "tag": "h2",
+        "text": "Getting this car to a port?"
+      },
+      {
+        "tag": "h2",
+        "text": "Ready to get started?"
+      },
+      {
+        "tag": "h3",
+        "text": "Related Services"
+      },
+      {
+        "tag": "h2",
+        "text": "Related Guides"
+      },
+      {
+        "tag": "h1",
+        "text": "Y7 Logistics — Nationwide Auto Transport"
+      }
+    ],
+    "jsonLd": [
+      {
+        "type": "LocalBusiness",
+        "key": "Y7 Logistics"
+      },
+      {
+        "type": "BreadcrumbList",
+        "key": null
+      },
+      {
+        "type": "FAQPage",
+        "key": null
+      },
+      {
+        "type": "Service",
+        "key": "Chicago to Port Newark Car Shipping"
+      }
+    ],
+    "internalLinks": {
+      "total": 66,
+      "unique": 46
+    }
+  },
+  "/new-jersey-to-florida-car-shipping": {
+    "title": "New Jersey to Florida Car Shipping | Y7 Logistics",
+    "description": "NJ to FL auto transport. Port Newark area to Miami, Orlando, Tampa. Dealer volume pricing. Licensed FMCSA broker MC #1741537.",
+    "canonical": "https://www.y7agency.com/new-jersey-to-florida-car-shipping",
+    "hreflang": [],
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "New Jersey to Florida Car Shipping"
+      },
+      {
+        "tag": "h2",
+        "text": "Shipping one vehicle door-to-door?"
+      },
+      {
+        "tag": "h3",
+        "text": "Typical Pricing for New Jersey to Florida"
+      },
+      {
+        "tag": "h2",
+        "text": "NJ to FL as a Dealer Trade Corridor"
+      },
+      {
+        "tag": "h2",
+        "text": "Pricing and Transit"
+      },
+      {
+        "tag": "h2",
+        "text": "Seasonal Pricing"
+      },
+      {
+        "tag": "h2",
+        "text": "The Route: I-95 Primary, I-81 Alternate"
+      },
+      {
+        "tag": "h2",
+        "text": "Dealer Volume Discounts"
+      },
+      {
+        "tag": "h2",
+        "text": "When You Need This"
+      },
+      {
+        "tag": "h2",
+        "text": "How It Works"
+      },
+      {
+        "tag": "h2",
+        "text": "What You Need"
+      },
+      {
+        "tag": "h2",
+        "text": "Our Capabilities"
+      },
+      {
+        "tag": "h2",
+        "text": "Frequently Asked Questions"
+      },
+      {
+        "tag": "h2",
+        "text": "Shipping auction vehicles for your dealership?"
+      },
+      {
+        "tag": "h2",
+        "text": "Ready to get started?"
+      },
+      {
+        "tag": "h3",
+        "text": "Related Services"
+      },
+      {
+        "tag": "h2",
+        "text": "Related Guides"
+      },
+      {
+        "tag": "h1",
+        "text": "Y7 Logistics — Nationwide Auto Transport"
+      }
+    ],
+    "jsonLd": [
+      {
+        "type": "LocalBusiness",
+        "key": "Y7 Logistics"
+      },
+      {
+        "type": "BreadcrumbList",
+        "key": null
+      },
+      {
+        "type": "FAQPage",
+        "key": null
+      },
+      {
+        "type": "Service",
+        "key": "New Jersey to Florida Car Shipping"
+      }
+    ],
+    "internalLinks": {
+      "total": 63,
+      "unique": 46
+    }
+  }
+}
