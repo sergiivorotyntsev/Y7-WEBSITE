@@ -43,7 +43,7 @@ export default function NjExportWarehouseShippingCost() {
         },
         {
           q: 'Does an auction pickup cost less than a dealer or private address?',
-          a: 'Yes. A non-auction pickup — a dealer lot or a private address — adds roughly $70 per vehicle, and that surcharge is roughly flat regardless of distance. An auction yard lets a carrier load several vehicles at one organised stop with loading equipment and predictable hours; a private address is a separate detour for one car, often with no dock and uncertain timing. Because the $70 is flat in dollars, it works out to about +48% on a haul under 100 miles but only about +14% on a haul over 500 miles — the opposite of what most people expect.',
+          a: 'Yes. A non-auction pickup — a dealer lot or a private address — adds roughly $70 per vehicle, and that surcharge is roughly flat regardless of distance. An auction yard lets a carrier load several vehicles at one organised stop with loading equipment and predictable hours; a private address is a separate detour for one car, often with no dock and uncertain timing. Because the $70 is flat in dollars, it works out to about +48% on a haul under 100 miles but only about +14% on a haul over 500 miles — the opposite of what most people expect. The $70 is part of the carrier rate, not the Y7 fee, which does not change with the pickup point.',
         },
         {
           q: 'Does it matter whether I buy from Copart, IAAI, or Manheim?',
@@ -64,6 +64,7 @@ export default function NjExportWarehouseShippingCost() {
         { label: 'Car Shipping Cost', to: '/car-shipping-cost' },
         { label: 'Exporter Logistics', to: '/exporters' },
         { label: 'Port Newark', to: '/ports/newark' },
+        { label: 'Door-to-Port Transport', to: '/door-to-port-auto-transport' },
       ]}
     >
       <Section title="What Actually Sets the Price">
@@ -161,7 +162,8 @@ export default function NjExportWarehouseShippingCost() {
           Where the car is picked up changes the rate, and the reason is operational rather than
           arbitrary. A non-auction pickup &mdash; a dealer lot or a private residence &mdash; adds
           roughly <strong>$70 per vehicle</strong>, and that surcharge is roughly flat no matter how
-          far the car is going.
+          far the car is going. That $70 is added to the carrier rate, not to Y7&rsquo;s fee &mdash;
+          the Y7 fee is the same flat figure whether the car comes from an auction or a private address.
         </p>
         <p style={muted}>
           The economics are straightforward. An auction yard is built for carriers: several vehicles
