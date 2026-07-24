@@ -89,7 +89,7 @@ export default function CarShippingCost() {
         },
         {
           q: 'Are there hidden fees?',
-          a: 'No. Y7 Logistics provides all-inclusive quotes that cover carrier transport, insurance, and door-to-door service. The price you see is the price you pay.',
+          a: 'No. As a licensed FMCSA broker, Y7 Logistics provides an all-inclusive quote covering the carrier transport, the carrier\'s cargo insurance, and door-to-door coordination — Y7 is the broker and does not insure vehicles itself. The price you see is the price you pay.',
         },
         {
           q: 'When is the cheapest time to ship a car?',
@@ -254,7 +254,7 @@ export default function CarShippingCost() {
           If a broker quotes you significantly below market rate, there is a catch: either the carrier will demand more money at pickup (a bait-and-switch), or your vehicle will sit unassigned for weeks because no carrier will take the job at that price. We price based on what carriers are actually accepting on the load board right now — not what sounds good on a sales call. That is why our quotes convert to pickups quickly, usually within 1–5 days of your first available date.
         </p>
         <p style={p}>
-          The broker fee is built into your all-inclusive quote. You will never see a separate line item for it. The total you are quoted is the total you pay — that covers the carrier's rate, insurance, and our coordination of the entire process from booking through delivery confirmation.
+          The broker fee is built into your all-inclusive quote. You will never see a separate line item for it. The total you are quoted is the total you pay — that covers the carrier's rate, the carrier's cargo insurance, and our broker coordination of the entire process from booking through delivery confirmation.
         </p>
       </Section>
     </SeoLandingPage>
