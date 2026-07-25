@@ -40,3 +40,7 @@ tmp/
 # DaytonaCargo landmask source polygons (250KB, regenerable via generate-landmask.mjs)
 scripts/world.geo.json
 __pycache__/
+
+# Local agent tooling (Codex CLI) — machine-local, never committed
+.codex/
+.agents/
