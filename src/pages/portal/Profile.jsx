@@ -84,6 +84,116 @@ function SavedLocationsPreview() {
   );
 }
 
+// NEX-1: email order-intake senders — the cabinet-side view of the addresses
+// this account may email orders from. Adding is a REQUEST (admin approves and
+// then enables order intake per address); rows show whether intake is live.
+function IntakeSendersSection() {
+  const [data, setData] = useState(null);
+  const [newEmail, setNewEmail] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [note, setNote] = useState(null);
+
+  const reload = () => {
+    portalFetch('/api/portal/data/senders')
+      .then(r => (r.ok ? r.json() : null))
+      .then(setData)
+      .catch(() => setData(null));
+  };
+  useEffect(() => { reload(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (!data) return null;
+
+  const request = async () => {
+    const email = newEmail.trim().toLowerCase();
+    if (!email) return;
+    setBusy(true); setNote(null);
+    try {
+      const r = await portalFetch('/api/portal/data/senders/request', {
+        method: 'POST',
+        body: JSON.stringify({ email }),
+      });
+      const body = await r.json().catch(() => ({}));
+      if (r.ok) {
+        setNewEmail('');
+        setNote({ ok: true, text: 'Request sent — our team will review and enable it.' });
+        reload();
+      } else {
+        setNote({ ok: false, text: body?.detail || 'Request failed' });
+      }
+    } catch {
+      setNote({ ok: false, text: 'Network error' });
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const sans = { fontFamily: 'var(--font-sans, system-ui)' };
+  return (
+    <div style={{ paddingTop: '12px', borderTop: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))' }}>
+      <div className={pp.label} style={{ marginBottom: 4 }}>Email Order Senders</div>
+      <p style={{ ...sans, fontSize: 12, color: 'var(--v2-ink-muted, #5c5851)', margin: '0 0 8px', lineHeight: 1.5 }}>
+        Orders emailed to Y7 from these addresses land in your account.
+        New addresses are reviewed and enabled by our team.
+      </p>
+      {(data.senders || []).length === 0 && (data.pending_requests || []).length === 0 && (
+        <div style={{ ...sans, fontSize: 13, color: 'var(--v2-ink-muted, #5c5851)', marginBottom: 6 }}>
+          No registered sender addresses yet.
+        </div>
+      )}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        {(data.senders || []).map(s => (
+          <div key={s.id} style={{ ...sans, display: 'flex', alignItems: 'center', gap: 8, fontSize: 13 }}>
+            <span style={{ fontFamily: 'monospace', color: 'var(--v2-ink, #050607)' }}>{s.email}</span>
+            <span className={pp.chipInk} style={{
+              background: s.order_intake_enabled ? '#DCFCE7' : undefined,
+              color: s.order_intake_enabled ? '#166534' : undefined,
+            }}>
+              {s.order_intake_enabled ? 'ORDERS ON' : 'PENDING ACTIVATION'}
+            </span>
+          </div>
+        ))}
+        {(data.pending_requests || []).map(r => (
+          <div key={`req-${r.id}`} style={{ ...sans, display: 'flex', alignItems: 'center', gap: 8, fontSize: 13 }}>
+            <span style={{ fontFamily: 'monospace', color: 'var(--v2-ink-muted, #5c5851)' }}>{r.email}</span>
+            <span style={{ ...sans, fontSize: 11, color: 'var(--v2-ink-muted, #5c5851)' }}>requested — awaiting review</span>
+          </div>
+        ))}
+      </div>
+      {note && (
+        <div style={{ ...sans, fontSize: 12, marginTop: 8, color: note.ok ? '#166534' : 'var(--v2-red-deep, #a90918)' }}>
+          {note.text}
+        </div>
+      )}
+      <div style={{ display: 'flex', gap: 6, marginTop: 8 }}>
+        <input
+          value={newEmail}
+          onChange={e => setNewEmail(e.target.value)}
+          onKeyDown={e => { if (e.key === 'Enter') request(); }}
+          placeholder="orders@yourcompany.com"
+          style={{
+            ...sans, flex: 1, padding: '8px 10px', fontSize: 13,
+            border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.3))', borderRadius: 6,
+            background: 'var(--v2-card-cream, #fffaf1)', color: 'var(--v2-ink, #050607)',
+          }}
+        />
+        <button
+          onClick={request}
+          disabled={busy || !newEmail.trim()}
+          style={{
+            ...sans, padding: '8px 14px', fontSize: 12, fontWeight: 600, borderRadius: 6,
+            border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
+            background: 'none', color: 'var(--v2-ink, #050607)',
+            cursor: busy || !newEmail.trim() ? 'not-allowed' : 'pointer',
+            opacity: busy || !newEmail.trim() ? 0.5 : 1,
+          }}
+        >
+          Request address
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function Profile() {
   const { user, checkAuth } = useAuth();
   const navigate = useNavigate();
@@ -317,6 +427,12 @@ export default function Profile() {
         {/* Saved Locations (dealer/exporter/auction_buyer only) */}
         {['dealer', 'exporter', 'auction_buyer'].includes(user?.customer_type) && (
           <SavedLocationsPreview />
+        )}
+
+        {/* NEX-1: email order-intake senders (dealer/exporter only — matches
+            the admin-side SendersPanel gating in OverviewTab) */}
+        {['dealer', 'exporter'].includes(user?.customer_type) && (
+          <IntakeSendersSection />
         )}
 
         {/* Connected accounts */}
