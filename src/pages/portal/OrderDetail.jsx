@@ -979,12 +979,22 @@ export default function OrderDetail() {
       {/* Gate Pass Status — W7U-T03: auction-aware term (Manheim "Vehicle
           Release", ACV "Pickup Slip"; generic when the site is unknown). */}
       <InfoCard title={releaseDocShortTerm(order.auction_type_code)}>
+        {/* NEX-5-T03: the PIN and a document are separate facts and both may
+            exist. The PIN the customer was REQUIRED to enter used to be
+            invisible here — the card said "Not uploaded" (NEX-4 audit, W3). */}
+        {order.gate_pass_pin && (
+          <InfoRow label="PIN on file" value={order.gate_pass_pin} />
+        )}
         {order.gate_pass_file_name ? (
           <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', color: 'var(--success, #0f6e56)' }}>
             <CheckIcon size={16} /> {order.gate_pass_file_name}
           </div>
         ) : order.gate_pass ? (
           <InfoRow label={`${releaseDocShortTerm(order.auction_type_code)} #`} value={order.gate_pass} />
+        ) : order.gate_pass_pin ? (
+          <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink-muted, #5c5851)' }}>
+            No document needed — your PIN above covers pickup.
+          </div>
         ) : (
           <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink-muted, #5c5851)', fontStyle: 'italic' }}>
             Not uploaded

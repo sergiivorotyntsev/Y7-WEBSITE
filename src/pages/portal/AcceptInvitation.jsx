@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { API_URL } from '../../config';
+import { useAuth } from '../../hooks/useAuth';
 import { fonts } from '../../theme';
 
 /**
@@ -49,6 +50,7 @@ const FAILURE_COPY = {
 export default function AcceptInvitation() {
   const [params] = useSearchParams();
   const navigate = useNavigate();
+  const { login } = useAuth();
   const token = params.get('token') || '';
 
   const [state, setState] = useState('loading'); // loading | ready | failed | done
@@ -109,6 +111,13 @@ export default function AcceptInvitation() {
       });
       const body = await r.json().catch(() => ({}));
       if (r.ok) {
+        // NEX-5-T01 (1b): keep the session the backend just minted. The cookie
+        // alone is not enough — browsers that block third-party cookies drop
+        // it and the dashboard greeted the new member with "Session Expired".
+        // Login.jsx stores the Bearer fallback for exactly this case; mirror it.
+        if (body?.session_token) {
+          login(body.session_token, body);
+        }
         setState('done');
         setTimeout(() => navigate('/portal/dashboard'), 900);
         return;
