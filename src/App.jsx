@@ -81,6 +81,10 @@ const QuoteVerified = lazyWithRetry(() => import('./pages/QuoteVerified'));
 const QuoteVerificationFailed = lazyWithRetry(() => import('./pages/QuoteVerificationFailed'));
 const ReviewSubmit = lazyWithRetry(() => import('./pages/ReviewSubmit'));
 const Login = lazyWithRetry(() => import('./pages/portal/Login'));
+// NEX-2-T06: statically imported on purpose — a lazy chunk is the documented
+// prerender hazard, and this page is the very first thing an invited partner
+// opens (no spinner, no chunk fetch on a cold link).
+import AcceptInvitation from './pages/portal/AcceptInvitation';
 const MagicLogin = lazyWithRetry(() => import('./pages/MagicLogin'));
 const Dashboard = lazyWithRetry(() => import('./pages/portal/Dashboard'));
 const OrderDetail = lazyWithRetry(() => import('./pages/portal/OrderDetail'));
@@ -273,6 +277,9 @@ export default function App() {
             <Route path="/blog/:slug" element={<BlogArticle />} />
             {/* Portal auth — unified login/register */}
             <Route path="/portal/login" element={<Login />} />
+            {/* NEX-2-T06: the token in the URL is the credential — public route,
+                no ProtectedRoute wrapper (the person has no session yet). */}
+            <Route path="/portal/accept-invitation" element={<AcceptInvitation />} />
             <Route path="/portal/register" element={<RegisterRedirect />} />
             {/* Magic-link landing — single-use token from dealer welcome email.
                 Dynamic route, intentionally not prerendered. */}
