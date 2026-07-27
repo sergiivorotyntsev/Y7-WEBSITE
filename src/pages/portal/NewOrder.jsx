@@ -259,6 +259,93 @@ export default function NewOrder() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(null);
+
+  // NEX-8-T03: document-first intake. Upload an auction document as step one;
+  // extraction PROPOSES values into the same editable form below — the client
+  // decides. Manual entry always stays available.
+  const [docUploading, setDocUploading] = useState(false);
+  const [docStatus, setDocStatus] = useState(null); // {kind:'ok'|'partial'|'failed', message}
+  const [sourceDocumentId, setSourceDocumentId] = useState(null);
+  const [docHours, setDocHours] = useState('');
+  const [docInstructions, setDocInstructions] = useState('');
+  const [docIsAcvSlip, setDocIsAcvSlip] = useState(false);
+
+  async function handleDocFirstUpload(file) {
+    if (!file) return;
+    setDocUploading(true);
+    setDocStatus(null);
+    try {
+      const fd = new FormData();
+      fd.append('file', file);
+      const res = await portalFetch('/api/portal/data/documents/extract', {
+        method: 'POST',
+        body: fd,
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setDocStatus({ kind: 'failed', message: typeof data?.detail === 'string' ? data.detail : 'Upload failed. Enter the details below instead.' });
+        return;
+      }
+      const data = await res.json();
+      setSourceDocumentId(data.document_id || null);
+      const ex = data.extracted || {};
+      // Honesty: a failed or empty read says so plainly and falls through to
+      // manual entry. A PARTIAL read (ACV has no price) is a success.
+      const gotAnything = ex.vin || ex.vehicle_make || ex.pickup_address || ex.pickup_zip;
+      if (data.extract_error || !gotAnything) {
+        setDocStatus({
+          kind: 'failed',
+          message: "We saved your document but couldn't read it. Enter the details below — the file stays attached to your order.",
+        });
+        return;
+      }
+      // Propose into the form — every field stays editable.
+      if (ex.vin) { setVin(ex.vin); }
+      if (ex.vehicle_year) setVehicleYear(String(ex.vehicle_year));
+      if (ex.vehicle_make) setVehicleMake(String(ex.vehicle_make));
+      if (ex.vehicle_model) setVehicleModel(String(ex.vehicle_model));
+      setPickupManual(m => ({
+        ...m,
+        address: ex.pickup_address || m.address,
+        city: ex.pickup_city || m.city,
+        state: ex.pickup_state || m.state,
+        contact_name: ex.pickup_contact_name || m.contact_name,
+        contact_phone: ex.pickup_phone || m.contact_phone,
+        location_name: ex.pickup_name || m.location_name,
+        zip: ex.pickup_zip || m.zip,
+      }));
+      setDocHours(ex.pickup_hours || '');
+      setDocInstructions(ex.pickup_instructions || '');
+      setDocIsAcvSlip(!!ex.is_acv_transport_slip);
+      // Map the detected auction onto the auction branch when this customer
+      // has one (exporter is fixed-auction; others get the source toggle).
+      if (ex.auction_type) {
+        if (pickupSourceSelectable) setPickupSource('auction');
+        try {
+          const r = await portalFetch('/api/portal/data/auction-types');
+          if (r.ok) {
+            const types = await r.json();
+            setAuctionTypes(types);
+            const match = (types || []).find(t => t.code === ex.auction_type);
+            if (match) setAuctionTypeId(String(match.id));
+          }
+        } catch { /* best-effort */ }
+      }
+      const missing = [];
+      if (!ex.vin) missing.push('VIN');
+      if (!ex.pickup_zip) missing.push('pickup ZIP');
+      setDocStatus({
+        kind: missing.length ? 'partial' : 'ok',
+        message: missing.length
+          ? `Document read. We could not find: ${missing.join(', ')} — please fill those in below.`
+          : `Document read${ex.auction_type ? ` (${ex.auction_type})` : ''}. Check the fields below — everything stays editable.`,
+      });
+    } catch {
+      setDocStatus({ kind: 'failed', message: 'Upload failed. Enter the details below instead.' });
+    } finally {
+      setDocUploading(false);
+    }
+  }
   // CAP-S1-W04: enriched dealer-gate 403 payload -> friendly "under review" screen.
   const [gateBlock, setGateBlock] = useState(null);
   // T04b: duplicate-route advisory dialog ({ matches, category, primary, pZip, dZip } | null)
@@ -453,6 +540,11 @@ export default function NewOrder() {
         // it's their only surface. quote_request types (individual/auction_buyer)
         // are asked later in Dispatch Details, when they know the date.
         preferred_pickup_date: (isDirectSubmitter && preferredPickupDate) || undefined,
+        // NEX-8-T03: document-first — link the uploaded doc to the new order,
+        // and carry the document's hours/instructions into the pickup fields.
+        source_document_id: sourceDocumentId || undefined,
+        pickup_business_hours: docHours || undefined,
+        special_instructions: docInstructions || undefined,
       };
 
       // Pickup side
@@ -723,6 +815,48 @@ export default function NewOrder() {
       </p>
 
       <form onSubmit={handleSubmit}>
+        {/* NEX-8-T03: document-first intake — upload becomes step one.
+            Extraction proposes; the client decides. Manual entry always stays. */}
+        <div className={pp.card}>
+          <div className={pp.sectionTitle}>Start from your auction invoice</div>
+          <p style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: 13, color: 'var(--v2-ink-muted, #5c5851)', margin: '0 0 12px', lineHeight: 1.5 }}>
+            Upload your Copart, IAA, Manheim or ACV document (PDF or photo) and we
+            read the vehicle and pickup details off it. You can also just enter
+            everything manually below.
+          </p>
+          <label className={v2b.ghostOnPaper} style={{ display: 'inline-block', padding: '10px 18px', cursor: docUploading ? 'wait' : 'pointer', fontSize: 13 }}>
+            {docUploading ? 'Reading your document…' : sourceDocumentId ? 'Upload a different document' : 'Upload document'}
+            <input
+              type="file"
+              accept=".pdf,.jpg,.jpeg,.png,.heic,.webp"
+              style={{ display: 'none' }}
+              disabled={docUploading}
+              onChange={e => { handleDocFirstUpload(e.target.files?.[0]); e.target.value = ''; }}
+            />
+          </label>
+          {docStatus && (
+            <div
+              role="status"
+              data-testid="doc-first-status"
+              style={{
+                marginTop: 10, padding: '10px 12px', borderRadius: 8, fontSize: 13,
+                fontFamily: 'var(--font-sans, system-ui)', lineHeight: 1.5,
+                background: docStatus.kind === 'failed' ? 'rgba(180, 60, 40, 0.08)' : 'rgba(60, 130, 70, 0.08)',
+                color: 'var(--v2-ink, #050607)',
+                border: `1px solid ${docStatus.kind === 'failed' ? 'rgba(180, 60, 40, 0.3)' : 'rgba(60, 130, 70, 0.3)'}`,
+              }}
+            >
+              {docStatus.message}
+              {docIsAcvSlip && (
+                <div style={{ marginTop: 6, fontSize: 12, color: 'var(--v2-ink-muted, #5c5851)' }}>
+                  This ACV transport slip doubles as your pickup authorization —
+                  no separate gate pass is needed.
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
         {/* Direction toggle (dealer only) */}
         {isDealer && (
           <div className={pp.card}>
