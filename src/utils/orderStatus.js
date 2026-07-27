@@ -95,6 +95,8 @@ export const CANCELLATION_REASON_LABELS = {
   // never reaches the customer; these curated lines do.
   carrier_backed_out: 'Carrier became unavailable — we are sourcing a replacement',
   status_reverted: 'Order status was corrected by our team',
+  // CUST-1-T01: never-quoted orders expire 48h after creation (exporters exempt).
+  not_confirmed_in_time: 'Request expired — it was not confirmed within 2 days',
 };
 
 /** Ordered list of statuses for timeline progression.
