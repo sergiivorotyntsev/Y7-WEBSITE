@@ -639,6 +639,9 @@ export default function OrderDetail() {
   }
 
   function getStepDate(step) {
+    // NEX-9 (D5): captured ACTUALS win for the physical-event steps.
+    if (step.key === 'picked_up' && order.actual_pickup_date) return fmtDate(order.actual_pickup_date);
+    if (step.key === 'delivered' && order.actual_delivery_date) return fmtDate(order.actual_delivery_date);
     if (step.field && order[step.field]) return fmtDate(order[step.field]);
     if (isStepDone(step.key) && step.key === 'pending') return fmtDate(order.created_at);
     return null;
@@ -798,6 +801,35 @@ export default function OrderDetail() {
               </div>
               <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '2px' }}>
                 The carrier can&rsquo;t collect the vehicle without it — upload it in the section below.
+              </div>
+            </div>
+          </div>
+        )}
+        {/* NEX-9-T06 (D3.5): quiet check when delivery proof exists; nothing
+            otherwise. Never any payment/request data here. */}
+        {(order.pod_documents || []).length > 0 && (
+          <div data-testid="timeline-pod-entry" style={{ display: 'flex', gap: '16px', marginTop: 4 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '20px', flexShrink: 0 }}>
+              <div style={{ width: '14px', height: '14px', borderRadius: '50%', background: 'var(--success, #0f6e56)', flexShrink: 0, marginTop: '3px' }} />
+            </div>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', fontWeight: 600, color: 'var(--v2-ink, #050607)' }}>
+                &#10003; Proof of delivery on file
+              </div>
+              <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', marginTop: '2px' }}>
+                {(order.pod_documents || []).map(pd => (
+                  <button key={pd.document_id} type="button"
+                    onClick={async () => {
+                      try {
+                        const r = await portalFetch(`/api/portal/data/orders/${orderId}/documents/${pd.document_id}/share-link`, { method: 'POST' });
+                        const j = await r.json();
+                        if (r.ok && j.view_url) window.open(j.view_url.startsWith('http') ? j.view_url : `${API_URL}${j.view_url}`, '_blank');
+                      } catch { /* best-effort */ }
+                    }}
+                    style={{ background: 'none', border: 'none', padding: 0, marginRight: 12, cursor: 'pointer', color: 'var(--v2-ink, #050607)', textDecoration: 'underline', fontSize: '12px' }}>
+                    View {pd.filename || 'document'} &#8599;
+                  </button>
+                ))}
               </div>
             </div>
           </div>
