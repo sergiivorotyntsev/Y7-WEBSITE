@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import PageMeta from '../../components/PageMeta';
-import { useAuth, portalFetch } from '../../hooks/useAuth';
+import { useAuth, portalFetch, authHeader, clearSessionOn401 } from '../../hooks/useAuth';
+import { API_URL } from '../../config';
 import { releaseDocShortTerm } from '../../utils/releaseDocTerm';
 import pp from '../../styles/v2/portal.module.css';
 import v2b from '../../styles/v2/buttons.module.css';
@@ -269,18 +270,34 @@ export default function NewOrder() {
   const [docHours, setDocHours] = useState('');
   const [docInstructions, setDocInstructions] = useState('');
   const [docIsAcvSlip, setDocIsAcvSlip] = useState(false);
+  const [docFileMeta, setDocFileMeta] = useState(null); // {name, url} for view/replace
+  const [docProposedVehicle, setDocProposedVehicle] = useState(false);
+  // NEX-8: manual INOPERABLE flag — invoices rarely state it, so the client
+  // marks it by hand; a Gate Pass / Pickup Slip / Manheim doc may propose it.
+  const [isInoperable, setIsInoperable] = useState(false);
 
   async function handleDocFirstUpload(file) {
     if (!file) return;
     setDocUploading(true);
     setDocStatus(null);
+    // Viewable copy of what was just uploaded (blob URL — exists before the
+    // order does); replacing revokes the previous one.
+    setDocFileMeta(prev => {
+      if (prev?.url) URL.revokeObjectURL(prev.url);
+      return { name: file.name, url: URL.createObjectURL(file) };
+    });
     try {
       const fd = new FormData();
       fd.append('file', file);
-      const res = await portalFetch('/api/portal/data/documents/extract', {
+      // WA-T01 discipline: raw fetch + Bearer for FormData — portalFetch
+      // forces Content-Type: application/json, which strips the boundary.
+      const res = await fetch(`${API_URL}/api/portal/data/documents/extract`, {
         method: 'POST',
+        credentials: 'include',
+        headers: authHeader(),
         body: fd,
       });
+      clearSessionOn401(res.status);
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
         setDocStatus({ kind: 'failed', message: typeof data?.detail === 'string' ? data.detail : 'Upload failed. Enter the details below instead.' });
@@ -304,6 +321,23 @@ export default function NewOrder() {
       if (ex.vehicle_year) setVehicleYear(String(ex.vehicle_year));
       if (ex.vehicle_make) setVehicleMake(String(ex.vehicle_make));
       if (ex.vehicle_model) setVehicleModel(String(ex.vehicle_model));
+      // Confirm-screen honesty: SHOW what was read (year/make/model are
+      // normally hidden behind a full VIN) so the client can check and edit.
+      if (ex.vehicle_year || ex.vehicle_make || ex.vehicle_model) setDocProposedVehicle(true);
+      if (ex.is_inoperable) setIsInoperable(true);
+      // A document with a VIN also selects the body type — same decode the
+      // VIN-blur path uses (W7U-T02: visible select, never silently defaulted;
+      // the note asks the client to confirm).
+      if (ex.vin) {
+        try {
+          const r = await portalFetch(`/api/portal/data/decode-vin?vin=${encodeURIComponent(ex.vin)}`);
+          const d = await r.json();
+          if (r.ok && d.ok && d.vehicle_type) {
+            setVehicleType(d.vehicle_type);
+            setVinDecodeNote('Detected from your document — please confirm the body type below.');
+          }
+        } catch { /* decode is a convenience */ }
+      }
       setPickupManual(m => ({
         ...m,
         address: ex.pickup_address || m.address,
@@ -373,7 +407,9 @@ export default function NewOrder() {
 
   const vinClean = vin.trim().toUpperCase();
   const hasFullVin = VIN_RE.test(vinClean);
-  const showVehicleDetails = !hasFullVin;
+  // NEX-8: a document-first upload proposes year/make/model — keep them
+  // visible for confirmation even when the VIN is full.
+  const showVehicleDetails = !hasFullVin || docProposedVehicle;
 
   // Determine which side is warehouse-driven vs manual
   let pickupIsWarehouse, deliveryIsWarehouse;
@@ -524,6 +560,7 @@ export default function NewOrder() {
         delivery_zip: dZip,
         notes: notes.trim() || undefined,
         submission_type: submissionType,
+        is_inoperable: isInoperable,
         // W2P-T02: auction credentials ride ONLY when the pickup IS an auction
         // (a stale site selection from a switched-away source must not flip
         // the server's auction signal); the explicit pickup_location_type is
@@ -834,6 +871,19 @@ export default function NewOrder() {
               onChange={e => { handleDocFirstUpload(e.target.files?.[0]); e.target.value = ''; }}
             />
           </label>
+          {docFileMeta && (
+            <span style={{ marginLeft: 12, fontFamily: 'var(--font-sans, system-ui)', fontSize: 13 }}>
+              <a
+                href={docFileMeta.url}
+                target="_blank"
+                rel="noreferrer"
+                data-testid="doc-first-view"
+                style={{ color: 'var(--v2-ink, #050607)', textDecoration: 'underline' }}
+              >
+                View {docFileMeta.name} &#8599;
+              </a>
+            </span>
+          )}
           {docStatus && (
             <div
               role="status"
@@ -933,9 +983,20 @@ export default function NewOrder() {
               <option value="motorcycle">Motorcycle</option>
             </select>
           </div>
+          <label style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12, cursor: 'pointer', fontFamily: 'var(--font-sans, system-ui)', fontSize: 13 }}>
+            <input
+              type="checkbox"
+              checked={isInoperable}
+              onChange={e => setIsInoperable(e.target.checked)}
+              data-testid="inoperable-checkbox"
+            />
+            Vehicle is inoperable (does not run) &mdash; carriers need a winch
+          </label>
           {showVehicleDetails && (
             <div>
-              <div className={pp.hint} style={{ marginTop: 0, marginBottom: 8 }}>Don't have the VIN? Enter vehicle details:</div>
+              <div className={pp.hint} style={{ marginTop: 0, marginBottom: 8 }}>
+                {docProposedVehicle ? 'Read from your document — check and edit as needed:' : "Don't have the VIN? Enter vehicle details:"}
+              </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
                 <div>
                   <label className={pp.label}>Year</label>
