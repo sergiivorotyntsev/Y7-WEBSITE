@@ -91,13 +91,23 @@ export const CANCELLATION_REASON_LABELS = {
   carrier_broke_down: 'Carrier mechanical issue',
   no_show: 'Carrier did not arrive',
   other: 'Other reason',
+  // NEX-7 (1d): board-side fall-through codes — the operator's internal note
+  // never reaches the customer; these curated lines do.
+  carrier_backed_out: 'Carrier became unavailable — we are sourcing a replacement',
+  status_reverted: 'Order status was corrected by our team',
 };
 
-/** Ordered list of statuses for timeline progression */
+/** Ordered list of statuses for timeline progression.
+ * NEX-7 (NEX-4 W9 / NEX-6 Q14): 'listed' ranks between confirmed and
+ * dispatched. Before this, indexOf('listed') was -1 and the tracker rendered
+ * every step hollow ("Waiting...") at the exact moment a carrier backed out.
+ * Renderers treat it as a TRANSIENT step: shown only while current, never as a
+ * permanent milestone every order appears to pass through. */
 export const STATUS_PIPELINE = [
   ORDER_STATUS.PENDING,
   ORDER_STATUS.QUOTED,
   ORDER_STATUS.CONFIRMED,
+  ORDER_STATUS.LISTED,
   ORDER_STATUS.DISPATCHED,
   ORDER_STATUS.PICKED_UP,
   ORDER_STATUS.IN_TRANSIT,
@@ -110,6 +120,7 @@ export const STATUS_PIPELINE = [
 export const NO_QUOTE_PIPELINE = [
   ORDER_STATUS.PENDING,
   ORDER_STATUS.CONFIRMED,
+  ORDER_STATUS.LISTED,
   ORDER_STATUS.DISPATCHED,
   ORDER_STATUS.PICKED_UP,
   ORDER_STATUS.IN_TRANSIT,

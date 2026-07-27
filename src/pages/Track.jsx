@@ -5,7 +5,7 @@ import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { SearchIcon, QuestionIcon, PortalIcon, TelegramIcon, EmailIcon } from '../components/icons';
 import { apiGet } from '../hooks/useApi';
-import { STATUS_PIPELINE, STATUS_LABELS } from '../utils/orderStatus';
+import { ORDER_STATUS, STATUS_PIPELINE, STATUS_LABELS } from '../utils/orderStatus';
 import { trackEvent } from '../utils/trackEvent';
 import styles from './Track.module.css';
 import v2b from '../styles/v2/buttons.module.css';
@@ -104,10 +104,14 @@ export default function Track() {
 
           {/* Status timeline */}
           <div className={styles.timeline}>
-            {STATUS_PIPELINE.map((s, i) => {
-              const done = i <= statusIdx;
+            {/* NEX-7 (1c): 'listed' is a rank in the pipeline but renders only
+                while current — a transient sourcing state, not a milestone
+                every order passes through. Done-ness compares full-pipeline
+                ranks so the filtered render keeps honest progress. */}
+            {STATUS_PIPELINE.filter((s) => s !== ORDER_STATUS.LISTED || s === normalizedStatus).map((s, i, renderSteps) => {
+              const done = STATUS_PIPELINE.indexOf(s) <= statusIdx;
               const isCurrent = s === normalizedStatus;
-              const isLast = i === STATUS_PIPELINE.length - 1;
+              const isLast = i === renderSteps.length - 1;
               const label = STATUS_LABELS[s] || s;
 
               const dotClass = isCurrent

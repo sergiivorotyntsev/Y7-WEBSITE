@@ -616,11 +616,24 @@ export default function OrderDetail() {
   // EXP-T1: dealer/exporter direct_submit orders have no quote — use the no-quote
   // tracker (no "Quote Requested"/"Quote Sent" steps).
   const noQuote = order.submission_type === 'direct_submit';
-  const steps = noQuote ? NO_QUOTE_STEPS : TIMELINE_STEPS;
+  const baseSteps = noQuote ? NO_QUOTE_STEPS : TIMELINE_STEPS;
+  // NEX-7 (1c, NEX-4 W9): while a replacement carrier is being sourced, show
+  // "Sourcing New Carrier" as the current step — transient, injected only when
+  // the order is actually there, so it never appears as a permanent milestone.
+  const steps = order.status === 'listed'
+    ? (() => {
+        const i = baseSteps.findIndex((s) => s.key === 'confirmed');
+        const withListed = [...baseSteps];
+        withListed.splice(i + 1, 0, { key: 'listed', label: STATUS_LABELS.listed, field: null });
+        return withListed;
+      })()
+    : baseSteps;
   const currentStatusIdx = STATUS_ORDER.indexOf(order.status);
 
   function isStepDone(stepKey) {
-    const statusSteps = ['pending', 'quoted', 'confirmed', 'dispatched', 'picked_up', 'in_transit', 'delivered'];
+    // NEX-7 (1c): 'listed' holds the rank between confirmed and dispatched —
+    // keep this array aligned with STATUS_PIPELINE or the index math lies.
+    const statusSteps = ['pending', 'quoted', 'confirmed', 'listed', 'dispatched', 'picked_up', 'in_transit', 'delivered'];
     const sIdx = statusSteps.indexOf(stepKey);
     return sIdx >= 0 && sIdx <= currentStatusIdx;
   }
