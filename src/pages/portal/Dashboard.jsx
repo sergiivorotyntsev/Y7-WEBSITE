@@ -438,6 +438,21 @@ export default function Dashboard() {
                       textOverflow: 'ellipsis',
                     }}>
                       {vehicle}
+                      {/* NEX-8-T04: gate-pass chase is visible, not silent */}
+                      {order.needs_release_doc && (
+                        <span
+                          data-testid="needs-release-doc-chip"
+                          style={{
+                            marginLeft: 8, padding: '2px 8px', borderRadius: 999,
+                            fontSize: 11, fontWeight: 600, verticalAlign: 'middle',
+                            background: 'rgba(180, 120, 20, 0.12)',
+                            border: '1px solid rgba(180, 120, 20, 0.35)',
+                            color: 'var(--v2-ink, #050607)', whiteSpace: 'nowrap',
+                          }}
+                        >
+                          We need your gate pass
+                        </span>
+                      )}
                     </div>
                     <div style={{
                       fontFamily: 'var(--font-sans, system-ui)',

@@ -776,6 +776,32 @@ export default function OrderDetail() {
             </div>
           );
         })}
+        {/* NEX-8-T04: gate-pass chase as a timeline entry — an action row, NOT
+            a status (a status without a pipeline entry is the W9 hollow-
+            timeline bug). Shown while the document is required and missing. */}
+        {order.pickup_release_doc_required === true
+          && !order.gate_pass && !order.gate_pass_pin && !order.gate_pass_document_id
+          && !order.gate_pass_file_name && !order.gate_pass_filename
+          && ['pending', 'quoted', 'confirmed', 'listed'].includes(order.status) && (
+          <div data-testid="timeline-release-doc-entry" style={{ display: 'flex', gap: '16px', marginTop: 4 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '20px', flexShrink: 0 }}>
+              <div style={{
+                width: '14px', height: '14px', borderRadius: '50%',
+                background: 'rgba(180, 120, 20, 0.15)',
+                border: '2px solid rgba(180, 120, 20, 0.55)',
+                flexShrink: 0, marginTop: '3px',
+              }} />
+            </div>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', fontWeight: 600, color: 'var(--v2-ink, #050607)' }}>
+                We need your {releaseDocShortTerm(order.auction_type_code)}
+              </div>
+              <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '2px' }}>
+                The carrier can&rsquo;t collect the vehicle without it — upload it in the section below.
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Route Details */}
