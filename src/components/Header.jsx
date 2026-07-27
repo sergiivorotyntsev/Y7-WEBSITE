@@ -166,13 +166,17 @@ export default function Header() {
             </div>
           )}
 
-          {/* Persistent Get a Quote CTA — visible on desktop and tablet */}
-          <button
-            onClick={handleQuoteClick}
-            className={`${v2b.ghostOnDark} ${styles.headerCta}`}
-          >
-            {t('cta.getQuote')}
-          </button>
+          {/* Persistent Get a Quote CTA — visible on desktop and tablet.
+              NEX-9 (owner): hidden for a signed-in customer — their door is
+              New Transport Order in the portal, not the public quote form. */}
+          {!user && (
+            <button
+              onClick={handleQuoteClick}
+              className={`${v2b.ghostOnDark} ${styles.headerCta}`}
+            >
+              {t('cta.getQuote')}
+            </button>
+          )}
 
           {/* Mobile hamburger */}
           <button
