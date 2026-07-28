@@ -110,6 +110,14 @@ export async function portalFetch(path, options = {}) {
         _recover(detail.classification_url);
         return res;
       }
+      // ACC-1-T01: agreement_status 'being_prepared' means there is NOTHING
+      // to sign (exporter — the document is with counsel). Hard-redirecting
+      // into the wizard would bounce the member off every page that makes one
+      // gated read; surface the 403 untouched instead and let pages render
+      // the honest waiting state in place.
+      if (errorCode === 'agreement_required' && detail?.agreement_status === 'being_prepared') {
+        return res;
+      }
       if (errorCode === 'agreement_required' && detail?.agreement_url) {
         _recover(detail.agreement_url);
         return res;
