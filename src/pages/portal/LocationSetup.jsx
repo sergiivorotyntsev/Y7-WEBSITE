@@ -5,23 +5,12 @@ import PhoneInput from '../../components/PhoneInput';
 import pp from '../../styles/v2/portal.module.css';
 import v2b from '../../styles/v2/buttons.module.css';
 
-// QUOTE-P1 T05: CD V2 CamelCase values (match QuoteForm.jsx)
-const LOCATION_TYPES = [
-  { value: 'Residence',          label: 'Residential' },
-  { value: 'CommercialBusiness', label: 'Business / Commercial' },
-  { value: 'Auction',            label: 'Auction' },
-  { value: 'Dealership',         label: 'Dealership' },
-  { value: 'Port',               label: 'Port' },
-  { value: 'Warehouse',          label: 'Warehouse' },
-  { value: 'Terminal',           label: 'Terminal' },
-  { value: 'Other',              label: 'Other' },
-];
+// WH-1-T03: one vocabulary, one source — the pinned mirror of TRANSPORT's
+// warehouseFields.js (parity-tested cross-repo).
+import { LOCATION_TYPE_OPTIONS, USAGE_ROLE_OPTIONS } from '../../data/warehouseFields';
 
-const USAGE_ROLES = [
-  { value: 'delivery', label: 'Delivery' },
-  { value: 'pickup', label: 'Pickup' },
-  { value: 'both', label: 'Both' },
-];
+const LOCATION_TYPES = LOCATION_TYPE_OPTIONS;
+const USAGE_ROLES = USAGE_ROLE_OPTIONS;
 
 const DEFAULT_LOCATION_TYPE = {
   dealer: 'Dealership',
