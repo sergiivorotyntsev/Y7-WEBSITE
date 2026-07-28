@@ -763,7 +763,7 @@ function AgreementStep({ user, customerType, onBack, onSigned }) {
   const effectiveLang = ['en', 'ru', 'pl', 'ua'].includes(lang) ? lang : 'en';
 
   const [template, setTemplate] = useState(null);
-  const [loadState, setLoadState] = useState('loading'); // 'loading' | 'ok' | 'locale_blocked' | 'error'
+  const [loadState, setLoadState] = useState('loading'); // 'loading' | 'ok' | 'locale_blocked' | 'being_prepared' | 'error'
   const [errorMsg, setErrorMsg] = useState(null);
   const [checked, setChecked] = useState({}); // checkbox id -> bool
   const [submitting, setSubmitting] = useState(false);
@@ -785,7 +785,13 @@ function AgreementStep({ user, customerType, onBack, onSigned }) {
           `/api/public/agreement-template?type=${encodeURIComponent(customerType)}&lang=${encodeURIComponent(effectiveLang)}&v3=true`
         );
         if (r.status === 409) {
-          if (alive) setLoadState('locale_blocked');
+          // ACC-1-T01: two distinct 409s — a locale gap (switch to English)
+          // vs "no approved document for this type" (exporter, with counsel).
+          let payload = null;
+          try { payload = await r.json(); } catch { /* non-JSON 409 */ }
+          if (alive) {
+            setLoadState(payload?.error === 'agreement_being_prepared' ? 'being_prepared' : 'locale_blocked');
+          }
           return;
         }
         if (!r.ok) {
@@ -842,6 +848,22 @@ function AgreementStep({ user, customerType, onBack, onSigned }) {
       <div>
         <h2 style={stepTitleStyle}>Review and sign — {TYPE_LABELS[customerType]}</h2>
         <p style={{ ...stepSubtitleStyle, marginTop: spacing.md }}>Loading agreement...</p>
+      </div>
+    );
+  }
+
+  if (loadState === 'being_prepared') {
+    // ACC-1-T01: honest waiting state — there is no document to show or sign.
+    return (
+      <div>
+        <h2 style={stepTitleStyle}>Your agreement is being prepared</h2>
+        <p style={stepSubtitleStyle}>
+          The {TYPE_LABELS[customerType] || customerType} agreement is being finalized.
+          Our team will contact you to complete onboarding — there is nothing to sign yet.
+        </p>
+        <div style={{ display: 'flex', gap: spacing.sm, marginTop: spacing.md }}>
+          <button type="button" onClick={onBack} style={secondaryBtnStyle}>Back</button>
+        </div>
       </div>
     );
   }
@@ -911,7 +933,16 @@ function AgreementStep({ user, customerType, onBack, onSigned }) {
       const detail = data?.detail || data;
       const code = detail?.error;
       if (code === 'profile_incomplete') {
-        setSubmitError('Please go back and complete your profile before signing.');
+        // ACC-1-T03: the server names every blank field the agreement's
+        // counterparty identification needs — show them, don't paraphrase.
+        const fields = Array.isArray(detail.missing)
+          ? detail.missing.map(m => m.label || m.field).join(', ')
+          : '';
+        setSubmitError(
+          fields
+            ? `Please go back and complete your profile before signing. Missing: ${fields}.`
+            : 'Please go back and complete your profile before signing.'
+        );
       } else if (code === 'signer_name_mismatch') {
         setSubmitError(`Signature name must match your profile (${detail.expected || profileName}).`);
       } else {

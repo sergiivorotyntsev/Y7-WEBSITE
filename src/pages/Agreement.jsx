@@ -151,19 +151,46 @@ function PendingIcon() {
 function BankAuthAgreement({ user: _user }) {
   const navigate = useNavigate();
   const { checkAuth } = useAuth();
-  const [checks, setChecks] = useState([false, false, false, false]);
+  // ACC-1-T02: checks are keyed by checkbox ID (from the server template) and
+  // SUBMITTED with the signature — the backend refuses when any is missing.
+  const [checks, setChecks] = useState({});
+  const [eConsent, setEConsent] = useState(false);
   const [signerName, setSignerName] = useState('');
   const [submitting, setSubmitting] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
 
-  // Load bank auth template directly (no i18n — English only for now)
+  // ACC-1-T02: the template's source of truth is the backend
+  // (data/agreements_i18n/en/agreement_bank_auth.json served by
+  // GET /api/portal/billing/bank-auth-template) — the same render the sign
+  // endpoint hashes. The old client-side locale import is gone: rendering a
+  // local copy while the server hashes its own would make the evidence lie.
   const [tpl, setTpl] = useState(null);
+  const [tplError, setTplError] = useState(null);
   useEffect(() => {
-    import('../locales/en/agreement_bank_auth.json').then(m => setTpl(m.default || m));
+    let alive = true;
+    (async () => {
+      try {
+        const r = await portalFetch('/api/portal/billing/bank-auth-template');
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        const data = await r.json();
+        if (!data.sections) throw new Error('template content missing');
+        if (alive) setTpl(data);
+      } catch (e) {
+        if (alive) setTplError(e.message || 'Could not load the agreement.');
+      }
+    })();
+    return () => { alive = false; };
   }, []);
 
+  if (tplError) {
+    return (
+      <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: fonts.sans, color: V2_INK_MUTED }}>
+        Could not load the bank authorization agreement. Please try again later.
+      </div>
+    );
+  }
   if (!tpl) return <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: fonts.sans, color: V2_INK_MUTED }}>Loading...</div>;
 
   if (success) {
@@ -179,9 +206,9 @@ function BankAuthAgreement({ user: _user }) {
     );
   }
 
-  const allChecked = checks.every(Boolean);
-  const canSign = allChecked && signerName.trim().length >= 2;
   const checkboxEntries = Object.entries(tpl.checkboxes || {});
+  const allChecked = checkboxEntries.length > 0 && checkboxEntries.every(([id]) => !!checks[id]);
+  const canSign = allChecked && eConsent && signerName.trim().length >= 2;
 
   async function handleSign() {
     if (!canSign || submitting) return;
@@ -191,14 +218,22 @@ function BankAuthAgreement({ user: _user }) {
       const res = await portalFetch('/api/portal/billing/sign-bank-auth', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ signer_name: signerName.trim() }),
+        body: JSON.stringify({
+          signer_name: signerName.trim(),
+          // ACC-1-T02: the consents as actually given — the server records
+          // these values and refuses the signature if any is missing.
+          checkboxes: checks,
+          e_consent: eConsent,
+          user_agent: navigator.userAgent,
+        }),
       });
       if (res.ok) {
         await checkAuth();
         navigate('/portal/dashboard?toast=bank_auth_signed', { replace: true });
       } else {
         const data = await res.json().catch(() => ({}));
-        setError(data.detail || 'Failed to sign agreement.');
+        const d = data.detail;
+        setError((d && (d.message || d)) || 'Failed to sign agreement.');
       }
     } catch {
       setError('Network error. Please try again.');
@@ -234,22 +269,38 @@ function BankAuthAgreement({ user: _user }) {
         ))}
       </div>
 
-      {/* Checkboxes */}
-      <div style={{ marginBottom: '24px' }}>
-        {checkboxEntries.map(([, label], i) => (
-          <label key={i} style={{
+      {/* Checkboxes — keyed by template checkbox id; submitted as given */}
+      <div style={{ marginBottom: '12px' }}>
+        {checkboxEntries.map(([id, label]) => (
+          <label key={id} style={{
             display: 'flex', alignItems: 'flex-start', gap: '10px', padding: '10px 0',
             cursor: 'pointer', fontFamily: fonts.sans, fontSize: '13px', color: V2_INK, lineHeight: 1.5,
           }}>
             <input
               type="checkbox"
-              checked={checks[i] || false}
-              onChange={() => setChecks(prev => prev.map((v, j) => j === i ? !v : v))}
+              checked={!!checks[id]}
+              onChange={() => setChecks(prev => ({ ...prev, [id]: !prev[id] }))}
               style={{ marginTop: '2px', accentColor: 'var(--v2-red, #d70f24)' }}
             />
             {label}
           </label>
         ))}
+      </div>
+
+      {/* ACC-1-T02: discrete UETA e-consent — same wording as the main flow */}
+      <div style={{ marginBottom: '24px', paddingTop: '10px', borderTop: `1px solid ${V2_LINE}` }}>
+        <label style={{
+          display: 'flex', alignItems: 'flex-start', gap: '10px', padding: '10px 0',
+          cursor: 'pointer', fontFamily: fonts.sans, fontSize: '13px', color: V2_INK, lineHeight: 1.5,
+        }}>
+          <input
+            type="checkbox"
+            checked={eConsent}
+            onChange={() => setEConsent(v => !v)}
+            style={{ marginTop: '2px', accentColor: 'var(--v2-red, #d70f24)' }}
+          />
+          I agree to conduct business electronically and to sign this agreement electronically.
+        </label>
       </div>
 
       {/* Signer name + sign button */}
@@ -455,7 +506,10 @@ export default function Agreement() {
         navigate(`/track?code=${encodeURIComponent(ref)}`);
       }
     } catch (err) {
-      setError(err.message || t('errors.submitFailed'));
+      // ACC-1-T01: the sign endpoint refuses types with no approved document
+      // (409 {error: 'agreement_being_prepared', message}) — surface that
+      // message rather than the generic "Request failed".
+      setError(err.body?.message || err.message || t('errors.submitFailed'));
     } finally {
       setSubmitting(false);
     }
