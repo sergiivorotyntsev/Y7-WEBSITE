@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { portalFetch, useAuth } from '../hooks/useAuth';
 import { useFeePreview } from '../hooks/useFeePreview';
 import FeePreviewLine from './FeePreviewLine';
@@ -108,6 +108,31 @@ export default function AccountTypeModal({ onComplete, mode = 'initial', current
   const [selected, setSelected] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
+  // ACC-1-T06: server-computed consequence preview — the same idea the admin
+  // change-type dialog has. The switch clears the signed agreement and resets
+  // verification; the customer sees that BEFORE confirming, not in a
+  // post-hoc toast. Blockers (unpaid invoices, blocked billing) disable the
+  // submit outright with the reason on screen.
+  const [preview, setPreview] = useState(null);
+  const [previewState, setPreviewState] = useState('idle'); // idle | loading | ok | error
+  useEffect(() => {
+    if (!selected) { setPreview(null); setPreviewState('idle'); return; }
+    let alive = true;
+    setPreviewState('loading');
+    (async () => {
+      try {
+        const r = await portalFetch(`/api/portal/data/customer-type/preview?to=${encodeURIComponent(selected)}`);
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        const data = await r.json();
+        if (alive) { setPreview(data); setPreviewState('ok'); }
+      } catch {
+        // Preview is advisory — its failure must not strand classification.
+        if (alive) { setPreview(null); setPreviewState('error'); }
+      }
+    })();
+    return () => { alive = false; };
+  }, [selected]);
+  const blocked = previewState === 'ok' && (preview?.blockers?.length || 0) > 0;
 
   async function handleSubmit() {
     if (!selected || submitting) return;
@@ -304,6 +329,22 @@ export default function AccountTypeModal({ onComplete, mode = 'initial', current
           ))}
         </div>
 
+        {/* ACC-1-T06: what this change actually does — before the button. */}
+        {selected && previewState === 'ok' && preview && (
+          <div style={{ marginBottom: 16 }}>
+            {preview.blockers?.length > 0 && (
+              <div style={{ padding: 12, background: '#FEE2E2', borderRadius: 8, marginBottom: 8, fontFamily: fonts.sans, fontSize: 13, color: '#991B1B' }}>
+                <div style={{ fontWeight: 700, marginBottom: 4 }}>This change is blocked:</div>
+                {preview.blockers.map((b, i) => <div key={i}>• {b}</div>)}
+              </div>
+            )}
+            <div style={{ padding: 12, background: '#FFFBEB', border: '1px solid #FDE68A', borderRadius: 8, fontFamily: fonts.sans, fontSize: 13, color: '#78350F' }}>
+              <div style={{ fontWeight: 700, marginBottom: 4 }}>This will:</div>
+              {(preview.consequences || []).map((c, i) => <div key={i} style={{ marginBottom: 2 }}>• {c}</div>)}
+            </div>
+          </div>
+        )}
+
         {error && (
           <div style={{
             padding: 12,
@@ -321,25 +362,27 @@ export default function AccountTypeModal({ onComplete, mode = 'initial', current
         <button
           type="button"
           onClick={handleSubmit}
-          disabled={!selected || submitting}
+          disabled={!selected || submitting || previewState === 'loading' || blocked}
           style={{
             width: '100%',
             padding: 14,
-            background: selected && !submitting ? colors.accent : colors.bgMuted,
-            color: selected && !submitting ? '#fff' : colors.textMuted,
+            background: selected && !submitting && !blocked && previewState !== 'loading' ? colors.accent : colors.bgMuted,
+            color: selected && !submitting && !blocked && previewState !== 'loading' ? '#fff' : colors.textMuted,
             border: 'none',
             borderRadius: 12,
             fontSize: 14,
             fontWeight: 600,
-            cursor: selected && !submitting ? 'pointer' : 'not-allowed',
+            cursor: selected && !submitting && !blocked && previewState !== 'loading' ? 'pointer' : 'not-allowed',
             fontFamily: fonts.sans,
           }}
         >
           {submitting
             ? 'Saving...'
-            : ['dealer', 'exporter'].includes(selected)
-              ? 'Apply for activation'
-              : 'Continue'}
+            : previewState === 'loading'
+              ? 'Checking…'
+              : ['dealer', 'exporter'].includes(selected)
+                ? 'Apply for activation'
+                : 'Continue'}
         </button>
 
         {!isEdit && (
