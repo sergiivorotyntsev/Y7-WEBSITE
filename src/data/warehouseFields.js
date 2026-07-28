@@ -83,13 +83,13 @@ export const WAREHOUSE_FIELDS = [
 
   // ── Address ──────────────────────────────────────────────────────────
   { key: 'address', label: 'Street', section: 'address', type: 'text', required: true,
-    cd: { to: 'stops[].address' }, policy: 'both' },
+    placeholder: '123 Dock Rd', cd: { to: 'stops[].address' }, policy: 'both' },
   { key: 'city', label: 'City', section: 'address', type: 'text', required: true,
-    cd: { to: 'stops[].city' }, policy: 'both' },
+    placeholder: 'Newark', cd: { to: 'stops[].city' }, policy: 'both' },
   { key: 'state', label: 'State', section: 'address', type: 'text', required: true,
-    maxLength: 2, cd: { to: 'stops[].state' }, policy: 'both' },
+    maxLength: 2, placeholder: 'NJ', cd: { to: 'stops[].state' }, policy: 'both' },
   { key: 'zip_code', label: 'ZIP', section: 'address', type: 'text', required: true,
-    cd: { to: 'stops[].postalCode' }, policy: 'both' },
+    placeholder: '07105', cd: { to: 'stops[].postalCode' }, policy: 'both' },
 
   // ── Contact ──────────────────────────────────────────────────────────
   { key: 'phone', label: 'Facility phone', section: 'contact', type: 'text',
