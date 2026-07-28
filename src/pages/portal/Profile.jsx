@@ -85,6 +85,58 @@ function SavedLocationsPreview() {
 }
 
 // NEX-1: email order-intake senders — the cabinet-side view of the addresses
+// ACC-1-T06: who can sign in to this account. Three partners can share one
+// account and none of them could see the others — this is the read view.
+// Read-only BY DECISION: all members are equal (no roles), so self-service
+// revoke would let any member — including a just-invited one — lock out
+// everyone else. Adding/removing people stays with Y7 until roles exist.
+function AccountMembersSection() {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    let alive = true;
+    portalFetch('/api/portal/data/members')
+      .then(r => (r.ok ? r.json() : null))
+      .then(d => { if (alive) setData(d); })
+      .catch(() => { if (alive) setData(null); });
+    return () => { alive = false; };
+  }, []);
+  if (!data || !Array.isArray(data.members) || data.members.length === 0) return null;
+
+  const sans = { fontFamily: 'var(--font-sans, system-ui)' };
+  const fmt = (v) => (v ? new Date(v).toLocaleDateString() : null);
+  return (
+    <div style={{ paddingTop: '12px', borderTop: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))' }}>
+      <div className={pp.label} style={{ marginBottom: 4 }}>Account Members</div>
+      <p style={{ ...sans, fontSize: 12, color: 'var(--v2-ink-muted, #5c5851)', margin: '0 0 8px', lineHeight: 1.5 }}>
+        People who can sign in to this account. To add or remove someone,
+        contact dispatch@y7agency.com.
+      </p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        {data.members.map(m => (
+          <div key={m.email} style={{ ...sans, display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, flexWrap: 'wrap' }}>
+            <span style={{ fontFamily: 'monospace', color: 'var(--v2-ink, #050607)' }}>{m.email}</span>
+            <span style={{
+              padding: '1px 8px', borderRadius: 8, fontSize: 10, fontWeight: 600,
+              background: m.state === 'active' ? 'rgba(22,101,52,0.12)' : 'rgba(5,6,7,0.08)',
+              color: m.state === 'active' ? '#166534' : 'var(--v2-ink-muted, #5c5851)',
+            }}>{m.state === 'active' ? 'ACTIVE' : 'INVITED'}</span>
+            {m.last_login_at && (
+              <span style={{ fontSize: 11, color: 'var(--v2-ink-muted, #5c5851)' }}>
+                last sign-in {fmt(m.last_login_at)}
+              </span>
+            )}
+            {m.pending_invite_expires_at && (
+              <span style={{ fontSize: 11, color: '#92400E' }}>
+                invite valid to {fmt(m.pending_invite_expires_at)}
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // this account may email orders from. Adding is a REQUEST (admin approves and
 // then enables order intake per address); rows show whether intake is live.
 function IntakeSendersSection() {
@@ -223,24 +275,38 @@ export default function Profile() {
     setSaving(true);
     setMessage(null);
     try {
+      // ACC-1-T06: company_name is NOT sent — it is read-only for the account
+      // holder (it feeds verification, agreements, and invoicing; renaming is
+      // an admin act). The old form sent it, the server silently dropped it,
+      // and the toast still said "saved". notification_email is new here — the
+      // backend always accepted it; only the web cabinet never offered it.
       const res = await portalFetch('/api/portal/data/profile', {
         method: 'PATCH',
         body: JSON.stringify({
-          company_name: profile.company_name,
           contact_name: profile.contact_name,
           phone: profile.phone,
+          notification_email: profile.notification_email,
           delivery_address: profile.delivery_address,
           delivery_city: profile.delivery_city,
           delivery_state: profile.delivery_state,
           delivery_zip: profile.delivery_zip,
         }),
       });
+      const data = await res.json().catch(() => ({}));
       if (res.ok) {
-        setMessage({ type: 'success', text: 'Profile saved successfully.' });
+        // The server names what it applied/ignored — only claim what happened.
+        if (Array.isArray(data.ignored) && data.ignored.length > 0) {
+          setMessage({
+            type: 'error',
+            text: `Some fields could not be saved: ${data.ignored.join(', ')}. Everything else was saved.`,
+          });
+        } else {
+          setMessage({ type: 'success', text: 'Profile saved successfully.' });
+        }
         checkAuth();
       } else {
-        const data = await res.json();
-        setMessage({ type: 'error', text: data.detail || 'Failed to save.' });
+        const d = data.detail;
+        setMessage({ type: 'error', text: (d && (d.message || d)) || 'Failed to save.' });
       }
     } catch {
       setMessage({ type: 'error', text: 'Network error.' });
@@ -283,7 +349,13 @@ export default function Profile() {
       }}>
         <div>
           <label className={pp.label}>Company Name</label>
-          <input value={profile.company_name || ''} onChange={e => set('company_name', e.target.value)} className={pp.input} />
+          {/* ACC-1-T06: read-only — this field used to LOOK editable while the
+              server silently dropped every change to it. Company identity is
+              verified; changing it goes through Y7. */}
+          <input value={profile.company_name || ''} disabled className={pp.input} />
+          <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: 'var(--v2-ink-60, rgba(5,6,7,0.6))', marginTop: 4 }}>
+            Company name is verified by Y7 — contact dispatch@y7agency.com to change it.
+          </div>
         </div>
         <div>
           <label className={pp.label}>Full Name</label>
@@ -297,6 +369,21 @@ export default function Profile() {
           <div>
             <label className={pp.label}>Phone</label>
             <input value={profile.phone || ''} onChange={e => set('phone', e.target.value)} className={pp.input} />
+          </div>
+        </div>
+        <div>
+          <label className={pp.label}>Notification Email</label>
+          {/* ACC-1-T06: this drives real delivery routing (order notifications
+              prefer it over the account email) and was editable only from the
+              Telegram mini-app before. */}
+          <input
+            value={profile.notification_email || ''}
+            onChange={e => set('notification_email', e.target.value)}
+            placeholder={profile.email || 'alerts@company.com'}
+            className={pp.input}
+          />
+          <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: 'var(--v2-ink-60, rgba(5,6,7,0.6))', marginTop: 4 }}>
+            Order notifications are delivered here. Leave empty to use your account email.
           </div>
         </div>
 
@@ -383,7 +470,27 @@ export default function Profile() {
         <div style={{ paddingTop: '12px', borderTop: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))' }}>
           <div className={pp.label} style={{ marginBottom: 8 }}>Documents & Agreements</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            {/* Transport agreement */}
+            {/* Transport agreement.
+                ACC-1-T01: an unsigned EXPORTER has nothing to sign — the
+                exporter document is with counsel and the backend refuses the
+                individual contract (409 agreement_being_prepared). Show the
+                honest waiting state instead of a Sign button that would have
+                led to the wrong document. */}
+            {user?.customer_type === 'exporter' && !user?.agreement_signed ? (
+              <div
+                className={pp.warningBlock || pp.errorBlock}
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}
+              >
+                <div>
+                  <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', fontWeight: 600, color: 'var(--v2-ink, #050607)' }}>
+                    Exporter Transport Agreement
+                  </div>
+                  <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: 'var(--v2-ink-60, rgba(5,6,7,0.6))' }}>
+                    Being prepared — our team will contact you to complete onboarding. Nothing to sign yet.
+                  </div>
+                </div>
+              </div>
+            ) : (
             <div
               className={user?.agreement_signed ? pp.successBlock : pp.errorBlock}
               style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}
@@ -403,6 +510,7 @@ export default function Profile() {
                 }} className={v2b.ghostOnPaper} style={{ minHeight: 0, padding: '6px 14px', fontSize: '11px' }}>Sign</button>
               )}
             </div>
+            )}
 
             {/* Bank auth (prepay dealers only) */}
             {user?.customer_type === 'dealer' && user?.billing_mode === 'prepay_manual_invoice' && (
@@ -433,6 +541,11 @@ export default function Profile() {
             the admin-side SendersPanel gating in OverviewTab) */}
         {['dealer', 'exporter'].includes(user?.customer_type) && (
           <IntakeSendersSection />
+        )}
+
+        {/* ACC-1-T06: who has access to this account — every type */}
+        {user?.customer_type && (
+          <AccountMembersSection />
         )}
 
         {/* Connected accounts */}
