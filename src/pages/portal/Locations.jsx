@@ -7,21 +7,26 @@ import PhoneInput from '../../components/PhoneInput';
 import pp from '../../styles/v2/portal.module.css';
 import v2b from '../../styles/v2/buttons.module.css';
 
-const LOCATION_TYPES = [
-  { value: 'business', label: 'Business' },
-  { value: 'residence', label: 'Residence' },
-  { value: 'auction', label: 'Auction' },
-  { value: 'port', label: 'Port' },
-  { value: 'dealership', label: 'Dealership' },
-  { value: 'terminal', label: 'Terminal' },
-  { value: 'warehouse', label: 'Warehouse' },
-];
+// WH-1-T03: vocabulary and policy come from the shared field definition —
+// this form used to carry its own lowercase type set, which the export
+// normalizer didn't recognize in its stored CamelCase default (every
+// cabinet-created warehouse shipped to Central Dispatch as 'Other').
+import {
+  LOCATION_TYPE_OPTIONS,
+  USAGE_ROLE_OPTIONS,
+  WAREHOUSE_FIELDS,
+  canonicalLocationType,
+} from '../../data/warehouseFields';
 
-const USAGE_ROLES = [
-  { value: 'delivery', label: 'Delivery' },
-  { value: 'pickup', label: 'Pickup' },
-  { value: 'both', label: 'Both' },
-];
+const LOCATION_TYPES = LOCATION_TYPE_OPTIONS;
+const USAGE_ROLES = USAGE_ROLE_OPTIONS;
+
+// Operator-only facts (policy 'admin' in the shared definition): shown
+// read-only with a contact hint — port routing and the default facility are
+// Y7 decisions (owner ruling WH-1 §1).
+const ADMIN_ONLY_DISPLAY = WAREHOUSE_FIELDS.filter(
+  d => d.policy === 'admin' && !['short_code'].includes(d.key)
+);
 
 const US_STATES = [
   'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD',
@@ -37,14 +42,22 @@ function Badge({ label, variant }) {
 }
 
 const EMPTY_FORM = {
-  label: '', location_type: 'business', usage_role: 'delivery',
+  label: '', location_type: 'CommercialBusiness', usage_role: 'delivery',
   address: '', city: '', state: '', zip_code: '',
-  contact_name: '', contact_phone: '', business_hours: '', delivery_instructions: '',
-  port_code: '', // EXP2-T03: departure port (exporter; optional dropdown)
+  phone: '', contact_name: '', contact_phone: '', contact_email: '',
+  business_hours: '', delivery_instructions: '', requires_twic: false,
 };
 
-function LocationForm({ initial, onSubmit, onCancel, submitting, ports }) {
-  const [form, setForm] = useState(initial || EMPTY_FORM);
+function LocationForm({ initial, onSubmit, onCancel, submitting }) {
+  const [form, setForm] = useState(() => {
+    if (!initial) return EMPTY_FORM;
+    const f = { ...EMPTY_FORM };
+    for (const k of Object.keys(EMPTY_FORM)) {
+      f[k] = k === 'requires_twic' ? !!initial[k] : (initial[k] ?? '');
+    }
+    f.location_type = canonicalLocationType(initial.location_type);
+    return f;
+  });
   const [error, setError] = useState(null);
 
   function set(field, value) {
@@ -117,23 +130,22 @@ function LocationForm({ initial, onSubmit, onCancel, submitting, ports }) {
           <PhoneInput className={pp.input} value={form.contact_phone} onChange={v => set('contact_phone', v)} />
         </div>
       </div>
+      {/* WH-1-T03: facility phone + contact email were admin-only by accident —
+          they are the customer's own facility data and both reach the carrier. */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+        <div>
+          <label className={pp.label}>Facility Phone</label>
+          <PhoneInput className={pp.input} value={form.phone} onChange={v => set('phone', v)} />
+        </div>
+        <div>
+          <label className={pp.label}>Contact Email</label>
+          <input className={pp.input} type="email" value={form.contact_email} onChange={e => set('contact_email', e.target.value)} placeholder="gate@company.com" />
+        </div>
+      </div>
       <div>
         <label className={pp.label}>Business Hours</label>
         <input className={pp.input} value={form.business_hours} onChange={e => set('business_hours', e.target.value)} placeholder="Mon-Fri 9am-5pm" />
       </div>
-      {/* EXP2-T03: departure port — dropdown of Y7's known ports only (never
-          free text); optional. Rendered when the caller supplies the ports
-          list (exporter accounts). Drives the landed-cost ranking Y7 uses to
-          assign each shipment. */}
-      {Array.isArray(ports) && ports.length > 0 && (
-        <div>
-          <label className={pp.label}>Departure Port (optional)</label>
-          <select className={pp.select} value={form.port_code || ''} onChange={e => set('port_code', e.target.value)}>
-            <option value="">— Not set —</option>
-            {ports.map(p => <option key={p.code} value={p.code}>{p.label}</option>)}
-          </select>
-        </div>
-      )}
       <div>
         <label className={pp.label}>Delivery Instructions</label>
         <textarea
@@ -144,6 +156,26 @@ function LocationForm({ initial, onSubmit, onCancel, submitting, ports }) {
           maxLength={500}
         />
       </div>
+      <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-sans, system-ui)', fontSize: 13, cursor: 'pointer' }}>
+        <input type="checkbox" checked={!!form.requires_twic} onChange={e => set('requires_twic', e.target.checked)} />
+        TWIC card required at this facility
+      </label>
+      {/* WH-1-T03: operator-managed facts, read-only by policy (owner ruling:
+          port routing and the default facility are Y7 decisions). */}
+      {initial && ADMIN_ONLY_DISPLAY.some(d => initial[d.key]) && (
+        <div style={{ borderTop: '1px solid var(--v2-line-on-paper, rgba(5,6,7,0.14))', paddingTop: 10 }}>
+          <div className={pp.label} style={{ marginBottom: 6 }}>Managed by Y7</div>
+          {ADMIN_ONLY_DISPLAY.filter(d => initial[d.key]).map(d => (
+            <div key={d.key} style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: 13, marginBottom: 4 }}>
+              <span style={{ color: 'var(--v2-ink-muted, #5c5851)' }}>{d.label}: </span>
+              <span>{d.type === 'checkbox' ? 'Yes' : String(initial[d.key])}</span>
+            </div>
+          ))}
+          <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: 11, color: 'var(--v2-ink-muted, #5c5851)' }}>
+            To change these, contact dispatch@y7agency.com.
+          </div>
+        </div>
+      )}
       {error && (
         <div className={pp.errorBlock}>
           {error}
@@ -181,8 +213,6 @@ export function LocationsManager({ heading = null, description = null, onLocatio
   const [editingId, setEditingId] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [toast, setToast] = useState(null);
-  // EXP2-T03: known departure ports for the exporter form dropdown.
-  const [ports, setPorts] = useState(null);
 
   const fetchLocations = useCallback(() => {
     portalFetch('/api/portal/locations')
@@ -199,13 +229,6 @@ export function LocationsManager({ heading = null, description = null, onLocatio
 
   useEffect(() => { fetchLocations(); }, [fetchLocations]);
 
-  useEffect(() => {
-    if (effectiveType !== 'exporter') return;
-    portalFetch('/api/portal/locations/ports')
-      .then(r => (r.ok ? r.json() : { ports: [] }))
-      .then(d => setPorts(d.ports || []))
-      .catch(() => {});
-  }, [effectiveType]);
 
   useEffect(() => {
     if (!toast) return;
@@ -276,16 +299,6 @@ export function LocationsManager({ heading = null, description = null, onLocatio
     }
   }
 
-  async function handleSetDefault(id) {
-    try {
-      const res = await portalFetch(`/api/portal/locations/${id}/set-default`, { method: 'POST' });
-      if (!res.ok) throw new Error('Failed');
-      fetchLocations();
-      setToast('Default location updated');
-    } catch {
-      setToast('Failed to set default');
-    }
-  }
 
   return (
     <>
@@ -311,7 +324,6 @@ export function LocationsManager({ heading = null, description = null, onLocatio
           onSubmit={handleAdd}
           onCancel={() => setShowAdd(false)}
           submitting={submitting}
-          ports={ports}
         />
       )}
 
@@ -349,7 +361,6 @@ export function LocationsManager({ heading = null, description = null, onLocatio
                 onSubmit={form => handleUpdate(loc.id, form)}
                 onCancel={() => setEditingId(null)}
                 submitting={submitting}
-                ports={ports}
               />
             ) : (
               <div key={loc.id} className={pp.card}>
@@ -403,11 +414,6 @@ export function LocationsManager({ heading = null, description = null, onLocatio
                   <button onClick={() => { setEditingId(loc.id); setShowAdd(false); }} className={v2b.ghostOnPaper}>
                     Edit
                   </button>
-                  {!loc.is_default && (
-                    <button onClick={() => handleSetDefault(loc.id)} className={v2b.ghostOnPaper}>
-                      Set Default
-                    </button>
-                  )}
                   <button onClick={() => handleDelete(loc)} className={v2b.ghostOnPaper} style={{ border: '1px solid rgba(215, 15, 36, 0.35)', color: 'var(--v2-red-deep, #a90918)' }}>
                     Delete
                   </button>
