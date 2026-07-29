@@ -246,6 +246,49 @@ function IntakeSendersSection() {
   );
 }
 
+// ACC-3-T02: the standing status of the customer's type-change request —
+// pending ("Y7 is reviewing, nothing changes until then") or the last
+// decision with its reason (a decline must never vanish silently, the
+// sender-request flow's known gap). refreshKey re-fetches when the request
+// modal closes.
+function TypeRequestStatus({ refreshKey }) {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    let alive = true;
+    portalFetch('/api/portal/data/account-type-request')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => { if (alive) setData(d); })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, [refreshKey]);
+
+  if (!data) return null;
+  const box = (bg, border, color, children) => (
+    <div style={{ marginTop: 8, padding: '10px 12px', background: bg, border: `1px solid ${border}`, borderRadius: 8, fontFamily: 'var(--font-sans, system-ui)', fontSize: 12, color, lineHeight: 1.5 }}>
+      {children}
+    </div>
+  );
+  if (data.pending) {
+    return box('#FFFBEB', '#FDE68A', '#92400E', (
+      <>
+        <strong>Type-change request pending:</strong> {TYPE_LABELS[data.pending.current_type] || data.pending.current_type} →{' '}
+        {TYPE_LABELS[data.pending.requested_type] || data.pending.requested_type}.
+        {' '}Y7 is reviewing it — nothing changes on your account until it is approved.
+        Sending a new request replaces this one.
+      </>
+    ));
+  }
+  if (data.last_decided?.status === 'declined') {
+    return box('#FDF2F2', '#E5B4B4', '#9B1C1C', (
+      <>
+        <strong>Your last type-change request was declined.</strong>
+        {' '}Reason from our team: {data.last_decided.decision_reason || '—'}
+      </>
+    ));
+  }
+  return null;
+}
+
 export default function Profile() {
   const { user, checkAuth } = useAuth();
   const navigate = useNavigate();
@@ -461,9 +504,10 @@ export default function Profile() {
                 width: '100%',
               }}
             >
-              Change Account Type
+              Request Account Type Change
             </button>
           )}
+          <TypeRequestStatus refreshKey={showTypeModal} />
         </div>
 
         {/* Documents & Agreements */}
