@@ -216,6 +216,10 @@ export default function CertificateOfOrigin() {
       ctaTo="/exporters"
       faqs={[
         {
+          q: 'Is a Certificate of Origin mandatory?',
+          a: 'No. No single document is prescribed, and customs accepts free evidence of origin. What is mandatory is the proof itself: the burden of establishing US origin sits with the importer, and an importer who cannot satisfy customs clears at the old rate. A chamber-issued eCO with the supporting package is the practical way to discharge that burden.',
+        },
+        {
           q: 'How much does a Certificate of Origin cost?',
           a: 'Two published prices: $99 per certificate for established Y7 exporter clients (custom per-client pricing is possible for volume accounts), and $150 for a one-off request submitted through the website by an exporter who is not a Y7 transport client. Both include preparation and filing.',
         },
