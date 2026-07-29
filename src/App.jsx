@@ -77,6 +77,7 @@ const BillOfLading = lazyWithRetry(() => import('./pages/seo/guides/BillOfLading
 const CopartStorageFees = lazyWithRetry(() => import('./pages/seo/guides/CopartStorageFees'));
 const CopartGatePassGuide = lazyWithRetry(() => import('./pages/seo/guides/CopartGatePassGuide'));
 const CopartInternationalShipping = lazyWithRetry(() => import('./pages/seo/guides/CopartInternationalShipping'));
+const CertificateOfOrigin = lazyWithRetry(() => import('./pages/seo/CertificateOfOrigin'));
 const QuoteVerified = lazyWithRetry(() => import('./pages/QuoteVerified'));
 const QuoteVerificationFailed = lazyWithRetry(() => import('./pages/QuoteVerificationFailed'));
 const ReviewSubmit = lazyWithRetry(() => import('./pages/ReviewSubmit'));
@@ -262,6 +263,7 @@ export default function App() {
             <Route path="/copart-storage-fees" element={<CopartStorageFees />} />
             <Route path="/copart-gate-pass-guide" element={<CopartGatePassGuide />} />
             <Route path="/copart-international-shipping" element={<CopartInternationalShipping />} />
+            <Route path="/certificate-of-origin" element={<CertificateOfOrigin />} />
             <Route path="/quote" element={<Quote />} />
             <Route path="/quote-verified" element={<QuoteVerified />} />
             <Route path="/quote-verification-failed" element={<QuoteVerificationFailed />} />

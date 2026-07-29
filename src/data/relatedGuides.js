@@ -42,6 +42,12 @@ export const RELATED_GUIDES = {
     { to: '/manheim-transport',     title: 'Manheim Auction Transport', description: 'Dealer auction shipping with contract pricing.' },
     { to: '/auction-to-port-transport', title: 'Auction to Port',       description: 'Auction pickup straight to a US export port.' },
   ],
+  // EXPORTERS-CO-T01: Certificate of Origin service page.
+  '/certificate-of-origin': [
+    { to: '/auction-to-port-transport', title: 'Auction to Port',       description: 'Auction pickup straight to a US export port.' },
+    { to: '/door-to-port-auto-transport', title: 'Door-to-Port Auto Transport', description: 'Vehicle delivery to major US export ports.' },
+    { to: '/nj-export-warehouse-shipping-cost', title: 'NJ Export-Warehouse Costs', description: 'How carrier pricing to the NJ export warehouses is formed.' },
+  ],
   '/auction-to-port-transport': [
     { to: '/copart-shipping',       title: 'Copart Shipping',           description: 'Vehicle transport from Copart auctions.' },
     { to: '/iaai-transport',        title: 'IAA Auction Transport',     description: 'Pickup from IAA salvage auction yards.' },

@@ -540,6 +540,7 @@ const PUBLIC_ROUTES = [
   '/copart-storage-fees',
   '/copart-gate-pass-guide',
   '/copart-international-shipping',
+  '/certificate-of-origin',
   // Port pages
   '/ports/newark',
   '/ports/houston',

@@ -113,6 +113,7 @@ const PAGE_SOURCE = {
   '/copart-storage-fees': 'src/pages/seo/guides/CopartStorageFees.jsx',
   '/copart-gate-pass-guide': 'src/pages/seo/guides/CopartGatePassGuide.jsx',
   '/copart-international-shipping': 'src/pages/seo/guides/CopartInternationalShipping.jsx',
+  '/certificate-of-origin': 'src/pages/seo/CertificateOfOrigin.jsx',
   '/blog': 'src/pages/blog/BlogIndex.jsx',
   // Unique intl landing pages (distinct content, own components).
   '/pl/transport-z-usa': 'src/pages/intl/PolandHome.jsx',
@@ -222,6 +223,9 @@ const ENGLISH_ONLY = [
   '/how-to-ship-a-car-bought-at-auction', '/open-vs-enclosed-auto-transport',
   '/what-is-a-bill-of-lading',
   '/copart-storage-fees', '/copart-gate-pass-guide', '/copart-international-shipping',
+
+  // Certificate of Origin service page (EXPORTERS-CO-T01)
+  '/certificate-of-origin',
 
   // Blog
   '/blog',

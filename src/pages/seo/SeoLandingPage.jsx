@@ -57,6 +57,10 @@ export default function SeoLandingPage({
   // SEOAI-T04: optional front-loaded extractable answer block ({ kicker, text }),
   // rendered right after the intro. EN-only by construction on these pages.
   tldr = null,
+  // EXPORTERS-CO-T01: optional commercial enrichment of the Service schema,
+  // in the MoneyPageSchema shape ({ serviceType, audience, offers }). Offers
+  // carry per-offer priceRange. Absent -> schema output is unchanged.
+  serviceExtras = null,
 }) {
   const schemas = [];
 
@@ -90,6 +94,36 @@ export default function SeoLandingPage({
     provider: { '@id': 'https://www.y7agency.com/#organization' },
     areaServed: { '@type': 'Country', name: 'United States' },
     url: `https://www.y7agency.com${meta.path}`,
+    ...(serviceExtras && {
+      '@id': `https://www.y7agency.com${meta.path}#service`,
+      ...(serviceExtras.serviceType && { serviceType: serviceExtras.serviceType }),
+      ...(serviceExtras.audience && {
+        audience: {
+          '@type': 'Audience',
+          audienceType: serviceExtras.audience.audienceType,
+          name: serviceExtras.audience.name,
+        },
+      }),
+      ...(serviceExtras.offers && {
+        offers: serviceExtras.offers.map((o) => ({
+          '@type': 'Offer',
+          name: o.name,
+          description: o.desc,
+          priceCurrency: 'USD',
+          priceRange: o.priceRange,
+          availability: 'https://schema.org/InStock',
+          areaServed: { '@type': 'Country', name: 'United States' },
+        })),
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: serviceExtras.serviceType || heading,
+          itemListElement: serviceExtras.offers.map((o) => ({
+            '@type': 'Offer',
+            itemOffered: { '@type': 'Service', name: o.name, description: o.desc },
+          })),
+        },
+      }),
+    }),
   });
 
   const combinedSchema = JSON.stringify(schemas);
