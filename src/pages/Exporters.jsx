@@ -558,6 +558,8 @@ export default function Exporters() {
             <h2 className={`${v2t.sectionDisplay} ${styles.h2} ${styles.coTitleOnDark}`}>{t('co.title')}</h2>
             <p className={styles.coBodyOnDark}>{t('co.body')}</p>
             <p className={`${v2t.monoData} ${styles.coFactsOnDark}`}>{t('co.facts')}</p>
+            {/* CO-BLOCK-T03: the dated window, stated as a fact. */}
+            <p className={`${v2t.monoMicro} ${styles.coSunset}`}>{t('co.sunset')}</p>
             {/* CO-BLOCK-T01: real CTA (gradient primitive; the block's viewport
                 carries no other red fill, so the Signal Budget allows it). The
                 descriptive keyword anchor stays alongside: the button carries

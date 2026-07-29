@@ -752,6 +752,12 @@
   margin: 12px 0 8px;
 }
 
+/* CO-BLOCK-T03: the 2029 window, one mono line, muted. */
+.coSunset {
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+  margin: 0 0 4px;
+}
+
 /* CO-BLOCK-T01: CTA row: gradient button + the descriptive keyword anchor. */
 .coActions {
   display: flex;
