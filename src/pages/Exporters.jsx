@@ -541,8 +541,10 @@ export default function Exporters() {
           docs + destinations remain the page's consecutive pair (cap: 2). */}
       <section className={v2s.manifest}>
         <div className={v2s.inner}>
-          {/* Certificates of Origin — EXPORTERS-V2 T01 (approved live service).
-              Paper aside before Destinations; no new schema. */}
+          {/* Certificates of Origin — EXPORTERS-CO-T02: standalone service
+              (serves non-clients too), named regulation, open pricing, link to
+              the dedicated /certificate-of-origin page. Paper aside before
+              Destinations; no new schema. */}
           <section className={styles.coBlock}>
             {/* Plain mono kicker, NOT the eyebrow+rule pair: docs + destinations
                 already hold the page's consecutive-pair cap (2), and a third
@@ -550,6 +552,10 @@ export default function Exporters() {
             <p className={`${v2t.eyebrowPlain} ${styles.coKicker}`}>{t('co.kicker')}</p>
             <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('co.title')}</h2>
             <p className={styles.coBody}>{t('co.body')}</p>
+            <p className={`${v2t.monoData} ${styles.coFacts}`}>{t('co.facts')}</p>
+            <p className={styles.coBody}>
+              <Link to="/certificate-of-origin" className={v2t.bodyLinkOnPaper}>{t('co.linkLabel')}</Link>
+            </p>
           </section>
 
           {destinations && destItems.length > 0 && (

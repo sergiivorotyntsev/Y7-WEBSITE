@@ -301,9 +301,11 @@
     ]
   },
   "co": {
-    "kicker": "NOW AVAILABLE",
+    "kicker": "STANDALONE SERVICE",
     "title": "Certificates of Origin for EU-bound vehicles",
-    "body": "Now available as part of the program: Certificates of Origin for US-origin vehicles. With a CO, US-built vehicles enter the EU at 0% import duty under the applicable EU regulation. Y7 prepares the filing as standing agent and attaches the CO to your export document set. Eligibility is per shipment: US-origin vehicles, EU destinations, and the supporting documentation in order."
+    "body": "Under EU Regulation 2026/1455, US-origin vehicles enter the EU at 0% import duty with a Certificate of Origin. Y7 prepares and files the certificate as standing agent and delivers the issued eCO for your export document set. The service stands alone: transport clients use it inside their document flow, and exporters who only need the certificate can order it on its own.",
+    "facts": "$99 established exporter clients · $150 one-off request · issued eCO in 7 business days",
+    "linkLabel": "Certificate of Origin: pricing, eligibility, and how to request one"
   },
   "titleMain": "Dispatch & Logistics for ",
   "titleAccent": "Vehicle Exporters"

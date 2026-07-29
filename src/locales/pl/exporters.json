@@ -303,8 +303,10 @@
     ]
   },
   "co": {
-    "kicker": "JUŻ DOSTĘPNE",
+    "kicker": "USŁUGA SAMODZIELNA",
     "title": "Świadectwa pochodzenia dla aut do UE",
-    "body": "Już dostępne w ramach programu: świadectwa pochodzenia (Certificate of Origin) dla pojazdów wyprodukowanych w USA. Z CO auta amerykańskiej produkcji wjeżdżają do UE z cłem 0% zgodnie z obowiązującym rozporządzeniem UE. Y7 przygotowuje zgłoszenie jako stały agent i dołącza CO do Twojego kompletu dokumentów eksportowych. Uprawnienie sprawdzamy przy każdej wysyłce: produkcja USA, kierunek UE i komplet dokumentów."
+    "body": "Zgodnie z rozporządzeniem UE 2026/1455 pojazdy wyprodukowane w USA wjeżdżają do UE z cłem 0% na podstawie świadectwa pochodzenia (Certificate of Origin). Y7 przygotowuje i składa świadectwo jako stały agent, a wystawione eCO trafia do Twojego kompletu dokumentów eksportowych. To usługa samodzielna: klienci programu otrzymują ją w ramach obiegu dokumentów, a eksporterzy, którzy potrzebują tylko świadectwa, mogą zamówić je osobno.",
+    "facts": "$99 dla stałych klientów-eksporterów · $150 zlecenie jednorazowe · wystawienie eCO w 7 dni roboczych",
+    "linkLabel": "Certificate of Origin: ceny, warunki i jak zamówić"
   }
 }
