@@ -206,7 +206,7 @@ export default function CertificateOfOrigin() {
       }}
       primaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
       heading="Certificate of Origin for US Vehicle Exports to the EU"
-      intro="Under EU Regulation 2026/1455, in force since 1 July 2026, US-origin vehicles can enter the European Union at 0% import duty instead of the standard 10%, and the document that carries that claim is the Certificate of Origin. Y7 Logistics, a Licensed & Bonded FMCSA Broker (USDOT #4427359, MC #1741537), acts as a standing filing agent: we prepare the certificate, file it through the Charles River Regional Chamber portal, and deliver the issued eCO to your export document set. The service stands on its own. You do not need to be a Y7 transport client to order one."
+      intro="Under EU Regulation 2026/1455, in force since 1 July 2026, US-origin vehicles can enter the European Union at 0% import duty instead of the standard 10%. Proving US origin is the importer's job, and the Certificate of Origin is the practical way to do it. Y7 Logistics, a Licensed & Bonded FMCSA Broker (USDOT #4427359, MC #1741537), acts as a standing filing agent: we prepare the certificate, file it through the Charles River Regional Chamber portal, and deliver the issued eCO to your export document set. The service stands on its own. You do not need to be a Y7 transport client to order one."
       tldr={{
         kicker: 'Certificate of Origin, in brief',
         ariaLabel: 'Certificate of Origin service summary',
@@ -248,9 +248,11 @@ export default function CertificateOfOrigin() {
         <p style={prose}>
           EU Regulation 2026/1455, in force since 1 July 2026, sets a 0% import duty rate for
           US-origin vehicles entering the European Union, against the standard rate of 10%. The
-          rate is claimed with documentation: a Certificate of Origin that establishes the vehicle
-          as US-origin. Without the certificate, the importer cannot claim the preferential rate;
-          with it, a qualifying shipment is eligible for the 0% rate.
+          certificate itself is recommended, not mandatory: no single document is prescribed, and
+          the burden of proving US origin sits with the importer. A chamber-issued Certificate of
+          Origin, with the origin proof and transport documents behind it, is the practical way to
+          discharge that burden; with it, a qualifying shipment is eligible for the 0% rate, and
+          an importer who cannot satisfy customs clears at the old rate.
         </p>
         <p style={prose}>
           The rate is a defined window: it runs until 31 December 2029, and may be suspended
