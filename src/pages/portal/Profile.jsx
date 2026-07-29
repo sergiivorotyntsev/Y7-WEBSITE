@@ -479,16 +479,39 @@ export default function Profile() {
             {user?.customer_type === 'exporter' && !user?.agreement_signed ? (
               <div
                 className={pp.warningBlock || pp.errorBlock}
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}
+                style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}
               >
                 <div>
                   <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', fontWeight: 600, color: 'var(--v2-ink, #050607)' }}>
                     Exporter Transport Agreement
                   </div>
                   <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: 'var(--v2-ink-60, rgba(5,6,7,0.6))' }}>
-                    Being prepared — our team will contact you to complete onboarding. Nothing to sign yet.
+                    Being prepared with our legal team — nothing to sign yet. It becomes
+                    available here automatically once approved.
                   </div>
                 </div>
+                {/* AGR-2-T03: distinguish the two situations. Data incomplete →
+                    name the fields (contact details are theirs; company/billing
+                    is collected by Y7). Data complete → say so, no checklist
+                    implying they are at fault. */}
+                {(user?.agreement_missing_fields || []).length > 0 ? (
+                  <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: 'var(--v2-ink-60, rgba(5,6,7,0.6))' }}>
+                    So it&rsquo;s ready to sign the moment it arrives, the profile still
+                    needs: {user.agreement_missing_fields.map((m) => m.label.toLowerCase()).join(', ')}.
+                    {user.agreement_missing_fields.some((m) => ['contact_name', 'phone', 'email'].includes(m.field))
+                      ? ' Contact details you can update right here.'
+                      : ''}
+                    {user.agreement_missing_fields.some((m) => !['contact_name', 'phone', 'email'].includes(m.field))
+                      ? ' Company details will be collected by Y7 while completing onboarding.'
+                      : ''}
+                  </div>
+                ) : (
+                  <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: '#0F6E56' }}>
+                    Your details are complete — nothing is required from you right now.
+                    Meanwhile you can send orders by email, review your profile, and add
+                    warehouses under Locations.
+                  </div>
+                )}
               </div>
             ) : (
             <div

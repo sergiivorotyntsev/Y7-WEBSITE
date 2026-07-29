@@ -182,6 +182,19 @@ function _normalizeUser(data) {
       typeof data.trial_quotes_remaining === 'number' ? data.trial_quotes_remaining : null,
     trial_quote_limit:
       typeof data.trial_quote_limit === 'number' ? data.trial_quote_limit : 3,
+    // AGR-2-T01/T03: which of two different things blocks the agreement —
+    // the customer's own data (fields named, theirs to fill) or the document
+    // itself (with counsel, ADR-012 — nothing required of them). Tri-state
+    // like has_delivery_locations: null when the backend doesn't send it,
+    // so stale callers fail OPEN (treat the document as available).
+    agreement_document_available:
+      data.agreement_document_available !== undefined
+        ? !!data.agreement_document_available
+        : null,
+    agreement_missing_fields: Array.isArray(data.agreement_missing_fields)
+      ? data.agreement_missing_fields
+      : [],
+    agreement_ready: !!data.agreement_ready,
   };
 }
 

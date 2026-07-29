@@ -245,7 +245,9 @@ export function LocationsManager({ heading = null, description = null, onLocatio
       });
       if (!res.ok) {
         const d = await res.json().catch(() => ({}));
-        throw new Error(d.detail || 'Failed to create');
+        // AGR-2-T01: detail may be a structured dict — stringify honestly
+        // (the old `new Error(dict)` toasted "[object Object]").
+        throw new Error(d.detail?.message || (typeof d.detail === 'string' ? d.detail : 'Failed to create'));
       }
       setShowAdd(false);
       fetchLocations();
@@ -266,7 +268,7 @@ export function LocationsManager({ heading = null, description = null, onLocatio
       });
       if (!res.ok) {
         const d = await res.json().catch(() => ({}));
-        throw new Error(d.detail || 'Failed to update');
+        throw new Error(d.detail?.message || (typeof d.detail === 'string' ? d.detail : 'Failed to update'));
       }
       setEditingId(null);
       fetchLocations();

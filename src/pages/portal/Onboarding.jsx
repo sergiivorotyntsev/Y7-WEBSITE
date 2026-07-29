@@ -110,8 +110,16 @@ const profileLooksComplete = (u) =>
 // so the step's portal_locations calls would 403 before that). `currentStep`
 // keeps the step in the array while the user is ON it, so the indicator can't
 // desync when has_delivery_locations flips mid-step.
+// AGR-2-T01: the warehouse step only belongs to flows that can SIGN — its
+// Continue hard-requires >=1 delivery warehouse, which must never become a
+// second dead end for an exporter whose agreement is with counsel (they can
+// add warehouses any time from the cabinet's Locations page, now readable
+// and writable pre-signature). When the exporter document lands
+// (agreement_document_available flips true), the step re-engages untouched.
 const needsWarehouses = (customerType, user) =>
-  customerType === 'exporter' && !user?.has_delivery_locations;
+  customerType === 'exporter'
+  && !user?.has_delivery_locations
+  && user?.agreement_document_available !== false;
 const stepsFor = (customerType, user, currentStep = null) => [
   'profile',
   'type',
@@ -130,7 +138,11 @@ const nextStep = (steps, key) => steps[steps.indexOf(key) + 1];
 const firstIncompleteStep = (u) => {
   if (!profileLooksComplete(u)) return 'profile';
   if (!isClassifiedType(u.customer_type)) return 'type';
-  if (!u.agreement_signed) return 'agreement';
+  // AGR-2-T01: a step that CANNOT be completed is never "incomplete" — an
+  // account type with no signable document (exporter until counsel returns,
+  // ADR-012) must not be parked on the agreement step forever. Tri-state:
+  // only an explicit false skips (stale backends fail open into the step).
+  if (!u.agreement_signed && u.agreement_document_available !== false) return 'agreement';
   if (needsWarehouses(u.customer_type, u)) return 'locations';
   return 'done';
 };
@@ -263,6 +275,16 @@ export default function Onboarding() {
               const fresh = (await checkAuth()) || user;
               setStep(nextStep(stepsFor(selectedType, fresh), 'agreement'));
             }}
+            // AGR-2-T01: a type with no signable document COMPLETES the wizard
+            // instead of parking the customer. The fresh /me (post type
+            // persist) drives the same array-lookup transition as signing —
+            // for a waiting exporter that is 'welcome' (needsWarehouses is
+            // false while the document is with counsel).
+            onContinueWaiting={async () => {
+              const fresh = (await checkAuth()) || user;
+              setStep(nextStep(stepsFor(selectedType, fresh), 'agreement'));
+            }}
+            onEditProfile={() => setStep('profile')}
           />
         )}
         {step === 'locations' && (
@@ -757,7 +779,7 @@ function AccountTypeStep({ onSelected, orderId = null }) {
 // is pulled from user.contact_name (read-only).
 // ---------------------------------------------------------------------------
 
-function AgreementStep({ user, customerType, onBack, onSigned }) {
+function AgreementStep({ user, customerType, onBack, onSigned, onContinueWaiting, onEditProfile }) {
   const { i18n } = useTranslation();
   const lang = (i18n.language || 'en').slice(0, 2).toLowerCase();
   const effectiveLang = ['en', 'ru', 'pl', 'ua'].includes(lang) ? lang : 'en';
@@ -770,6 +792,35 @@ function AgreementStep({ user, customerType, onBack, onSigned }) {
   const [submitError, setSubmitError] = useState(null);
   // ESIGN-MECHANICS: discrete UETA electronic-consent, unticked by default.
   const [eConsent, setEConsent] = useState(false);
+  // AGR-2-T01: the being-prepared screen has an EXIT now.
+  const [advancing, setAdvancing] = useState(false);
+  const [advanceError, setAdvanceError] = useState(null);
+
+  // AGR-2-T01: leaving the wizard through the being-prepared state must
+  // survive a reload — persist the classification the customer chose (the
+  // sign endpoint, which normally persists it, refuses this type). Uses the
+  // existing cabinet change-type endpoint; no signature is involved.
+  async function continueWaiting() {
+    if (advancing) return;
+    setAdvancing(true);
+    setAdvanceError(null);
+    try {
+      if ((user?.customer_type || 'unknown') !== customerType) {
+        const r = await portalFetch('/api/portal/data/customer-type', {
+          method: 'PATCH',
+          body: JSON.stringify({ customer_type: customerType }),
+        });
+        if (!r.ok) {
+          const d = await r.json().catch(() => ({}));
+          throw new Error(d.detail?.message || 'Could not save your account type — please try again.');
+        }
+      }
+      await onContinueWaiting();
+    } catch (e) {
+      setAdvanceError(e?.message || 'Something went wrong — please try again.');
+      setAdvancing(false);
+    }
+  }
 
   useEffect(() => {
     let alive = true;
@@ -854,15 +905,76 @@ function AgreementStep({ user, customerType, onBack, onSigned }) {
 
   if (loadState === 'being_prepared') {
     // ACC-1-T01: honest waiting state — there is no document to show or sign.
+    // AGR-2-T03: the screen now tells the WHOLE truth, distinguishing the two
+    // situations whose next action differs: the customer's own data is
+    // incomplete (name the fields, theirs to fill) vs the document is with
+    // counsel (nothing required of them; here is what they can do meanwhile).
+    // AGR-2-T01: and it is never a dead end — Continue completes the wizard.
+    // The /me readiness list is computed for the ROW's persisted type — only
+    // trust it (in EITHER direction) when that matches the type on display; a
+    // fresh wizard selection isn't persisted until Continue, and claiming
+    // "your details are complete" against the wrong required set would be a
+    // lie. Until the type lands, show the counsel notice alone.
+    const readinessKnown = user?.customer_type === customerType;
+    const missing = (readinessKnown ? user?.agreement_missing_fields : null) || [];
+    const selfKeys = ['contact_name', 'phone', 'email'];
+    const selfMissing = missing.filter((m) => selfKeys.includes(m.field));
+    const companyMissing = missing.filter((m) => !selfKeys.includes(m.field));
+    const noteBox = (bg, border, color) => ({
+      fontFamily: fonts.sans, fontSize: 14, lineHeight: 1.6, color,
+      background: bg, border: `1px solid ${border}`, borderRadius: 8,
+      padding: '12px 14px', marginTop: spacing.md, textAlign: 'left',
+    });
     return (
       <div>
         <h2 style={stepTitleStyle}>Your agreement is being prepared</h2>
         <p style={stepSubtitleStyle}>
-          The {TYPE_LABELS[customerType] || customerType} agreement is being finalized.
-          Our team will contact you to complete onboarding — there is nothing to sign yet.
+          The {TYPE_LABELS[customerType] || customerType} agreement is being reviewed by our
+          legal team. Nothing needs to be signed right now — Y7 will contact you to complete
+          onboarding, and the document becomes available to sign here automatically the moment
+          it is approved.
         </p>
+        {missing.length > 0 ? (
+          <div style={noteBox('#FFFBEB', '#FDE68A', '#92400E')}>
+            <strong>So it is ready to sign the moment it arrives:</strong>
+            {selfMissing.length > 0 && (
+              <div style={{ marginTop: 6 }}>
+                Please add your {selfMissing.map((m) => m.label.toLowerCase()).join(', ')} —
+                you can do that right now from your profile.
+              </div>
+            )}
+            {companyMissing.length > 0 && (
+              <div style={{ marginTop: 6 }}>
+                Y7 still needs your {companyMissing.map((m) => m.label.toLowerCase()).join(', ')};
+                we&rsquo;ll collect {companyMissing.length === 1 ? 'it' : 'these'} with you while
+                completing onboarding — nothing to do on your side.
+              </div>
+            )}
+          </div>
+        ) : readinessKnown ? (
+          <div style={noteBox('#F0FAF6', '#0F6E56', '#0F6E56')}>
+            Your details are complete. There is nothing you need to fill in — once the
+            document is approved, it will be waiting here for your signature.
+          </div>
+        ) : null}
+        <div style={noteBox('#F8F7F4', '#E5E2DB', '#5c5851')}>
+          <strong>Meanwhile you can:</strong> send us your orders by email exactly as before,
+          review and update your profile, and add your warehouses under Locations — everything
+          except signing works today.
+        </div>
+        {advanceError && (
+          <div style={noteBox('#FDF2F2', '#E5B4B4', '#9B1C1C')}>{advanceError}</div>
+        )}
         <div style={{ display: 'flex', gap: spacing.sm, marginTop: spacing.md }}>
           <button type="button" onClick={onBack} style={secondaryBtnStyle}>Back</button>
+          {selfMissing.length > 0 && onEditProfile && (
+            <button type="button" onClick={onEditProfile} style={secondaryBtnStyle}>
+              Update my details
+            </button>
+          )}
+          <button type="button" onClick={continueWaiting} disabled={advancing} style={primaryBtnStyle}>
+            {advancing ? 'Continuing…' : 'Continue to my account'}
+          </button>
         </div>
       </div>
     );

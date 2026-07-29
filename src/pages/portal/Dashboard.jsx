@@ -179,10 +179,18 @@ export default function Dashboard() {
     const needsClassification = !user.customer_type
       || user.customer_type === 'unknown'
       || user.customer_type === 'shipper';
+    // AGR-2-T01: the ACC-1 exemption this effect never got. An unsigned
+    // account whose agreement DOES NOT EXIST yet (exporter, with counsel —
+    // ADR-012; /me says agreement_document_available === false) must land on
+    // the dashboard, not be bounced into a wizard step that cannot complete.
+    // useAuth.jsx already refuses to hard-redirect those 403s; this effect
+    // was the remaining one-way door. Tri-state: only an explicit false
+    // exempts, so stale backends keep the old behavior.
     const needsAgreement = user.customer_type
       && user.customer_type !== 'unknown'
       && user.customer_type !== 'shipper'
-      && !user.agreement_signed;
+      && !user.agreement_signed
+      && user.agreement_document_available !== false;
     if (needsClassification || needsAgreement || classifyParam) {
       navigate('/portal/onboarding', { replace: true });
     }

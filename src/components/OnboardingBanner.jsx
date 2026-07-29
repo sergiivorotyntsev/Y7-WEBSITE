@@ -34,6 +34,32 @@ export default function OnboardingBanner() {
 
   if (!needsClassification && !needsAgreement) return null;
 
+  // AGR-2-T03: when the agreement DOCUMENT does not exist yet (exporter,
+  // with counsel — ADR-012), "finish setup to unlock orders" is false and
+  // the CTA would lead into a step that cannot complete. Tell the truth
+  // instead, with no wizard CTA: nothing is required from the customer.
+  const beingPrepared = needsAgreement && user.agreement_document_available === false;
+  if (beingPrepared) {
+    return (
+      <div
+        role="status"
+        style={{
+          background: '#F0FAF6',
+          borderLeft: '4px solid #0F6E56',
+          padding: `${spacing.sm}px ${spacing.md}px`,
+          borderRadius: radii.md,
+          marginBottom: spacing.md,
+        }}
+      >
+        <span style={{ fontFamily: fonts.sans, fontSize: 13, color: '#0F6E56', lineHeight: 1.5 }}>
+          Your {user.customer_type} agreement is being prepared with our legal team — nothing
+          is required from you right now. We&rsquo;ll contact you to complete onboarding.
+          Meanwhile you can send orders by email, review your profile, and add warehouses.
+        </span>
+      </div>
+    );
+  }
+
   const message = needsClassification
     ? 'Finish your account setup to start submitting quotes.'
     : 'Your agreement is not yet signed. Finish setup to unlock order creation.';
