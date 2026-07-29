@@ -113,6 +113,10 @@
       {
         "title": "Auction to Port",
         "desc": "Direct pipeline from US auction yards to export ports. Gate pass to port delivery."
+      },
+      {
+        "title": "Certificate of Origin",
+        "desc": "0% EU import duty on US-origin vehicles under Regulation 2026/1455. $99 for exporter clients, $150 one-off, issued in 7 business days."
       }
     ],
     "ev": [

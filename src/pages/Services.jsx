@@ -31,6 +31,7 @@ const servicePages = [
   { to: '/salvage-car-shipping' },        // 12 -> Tier 2 transport
   { to: '/state-to-state-car-shipping' }, // 13 -> Tier 2 transport
   { to: '/auction-to-port-transport' },   // 14 -> Tier 2 auction
+  { to: '/certificate-of-origin' },       // 15 -> Tier 2 export (CO-COPY-T05)
 ];
 
 const evPages = [
@@ -74,7 +75,7 @@ const anchors = [
 const groups = [
   { key: 'auction', items: [5, 6, 7, 8, 14], intro: 0 },
   { key: 'transport', items: [11, 4, 12, 13], intro: 4 },
-  { key: 'export', items: [9, 10], intro: null },
+  { key: 'export', items: [9, 10, 15], intro: null },
   { key: 'pricing', items: [3], intro: null },
 ];
 
