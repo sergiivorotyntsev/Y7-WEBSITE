@@ -247,7 +247,7 @@ export default function CertificateOfOrigin() {
           US-origin vehicles entering the European Union, against the standard rate of 10%. The
           rate is claimed with documentation: a Certificate of Origin that establishes the vehicle
           as US-origin. Without the certificate, the importer cannot claim the preferential rate;
-          with it, a qualifying shipment clears at 0% duty.
+          with it, a qualifying shipment is eligible for the 0% rate.
         </p>
         <p style={muted}>
           The certificate is issued electronically (an eCO) and joins the rest of the export
