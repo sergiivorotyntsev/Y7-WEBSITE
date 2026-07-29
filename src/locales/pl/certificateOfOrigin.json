@@ -1,0 +1,147 @@
+{
+  "meta": {
+    "title": "Certificate of Origin for US Vehicle Exports to the EU: 0% Import Duty | Y7 Logistics",
+    "description": "US-origin vehicles enter the EU at 0% import duty under EU Regulation 2026/1455 with a Certificate of Origin. Y7 prepares and files as standing agent: $99 for established exporter clients, $150 one-off, issued eCO in 7 business days."
+  },
+  "heading": "Certificate of Origin for US Vehicle Exports to the EU",
+  "intro": "Under EU Regulation 2026/1455, in force since 1 July 2026, US-origin vehicles can enter the European Union at 0% import duty instead of the standard 10%. Proving US origin is the importer's job, and the Certificate of Origin is the practical way to do it. Y7 Logistics, a Licensed & Bonded FMCSA Broker (USDOT #4427359, MC #1741537), acts as a standing filing agent: we prepare the certificate, file it electronically with the issuing chamber, and deliver the issued eCO to your export document set. The service stands on its own. You do not need to be a Y7 transport client to order one.",
+  "tldr": {
+    "kicker": "Certificate of Origin, in brief",
+    "ariaLabel": "Certificate of Origin service summary",
+    "text": "A Certificate of Origin documents a vehicle as US-origin, which is what EU Regulation 2026/1455 (in force since 1 July 2026) requires for the 0% import duty rate, in place of the standard 10%, on vehicles entering the EU. Y7 Logistics (Licensed & Bonded FMCSA Broker, MC #1741537) prepares and files the certificate as standing agent with the issuing chamber: $99 per certificate for established Y7 exporter clients, $150 for a one-off request, issued eCO in 7 business days. Eligibility is confirmed per shipment; the importer must also prove US origin and direct transport under Article 59a UCC-IA (Commission Implementing Regulation (EU) 2026/1422)."
+  },
+  "sections": {
+    "what": {
+      "title": "What a Certificate of Origin Does at EU Import",
+      "p1": "EU Regulation 2026/1455, in force since 1 July 2026, sets a 0% import duty rate for US-origin vehicles entering the European Union, against the standard rate of 10%. The certificate itself is recommended, not mandatory: no single document is prescribed, and the burden of proving US origin sits with the importer. A chamber-issued Certificate of Origin, with the origin proof and transport documents behind it, is the practical way to discharge that burden; with it, a qualifying shipment is eligible for the 0% rate, and an importer who cannot satisfy customs clears at the old rate.",
+      "window": "The rate is a defined window: it runs until 31 December 2029, and may be suspended earlier if the conditions of the EU-US trade framework cease to be met.",
+      "eco": "The certificate is issued electronically (an eCO) and joins the rest of the export document set your freight forwarder presents at destination."
+    },
+    "twin": {
+      "title": "The Twin Proof: US Origin and Direct Transport (Article 59a UCC-IA)",
+      "p1": "The 0% rate is conditional, and the condition lives in a separate instrument from the rate itself. Commission Implementing Regulation (EU) 2026/1422 amended the UCC Implementing Act (Regulation 2015/2447) to insert a new Article 59a, which requires the importer to prove two things at once: that the vehicle is of non-preferential US origin, and that the shipment traveled directly, arriving unaltered. In plain words: the vehicle must move from the US to the EU destination as one continuous shipment, and what arrives must be the vehicle that left. Where the routing passes through a third country, the operator must be able to show the vehicle stayed under customs supervision there and was not altered. The certificate covers the origin half; the routing documents cover the other.",
+      "p2": "The evidence must be in the declarant's possession when the customs declaration is lodged: it is assembled before the vehicle ships, not reconstructed after. Direct transport is a property of the shipment, not of the paperwork, which is why we confirm eligibility per shipment rather than assuming it. The routing evidence is reviewed when the document package is assembled, and anything that undermines direct transport surfaces before we file."
+    },
+    "eligibility": {
+      "title": "Who Qualifies: The Eligibility Checklist",
+      "items": [
+        "The vehicle is US-origin.",
+        "The destination is in the European Union.",
+        "The shipment meets the direct-transport requirement (Article 59a UCC-IA).",
+        "The supporting documentation is in order.",
+        "Eligibility is confirmed per shipment before filing."
+      ],
+      "note": "We confirm every item against your shipment documents before the certificate is filed."
+    },
+    "pricing": {
+      "title": "Pricing and Turnaround",
+      "colService": "Service",
+      "colPrice": "Price",
+      "colTurnaround": "Turnaround",
+      "rowClient": "Established Y7 exporter clients",
+      "rowClientPrice": "$99 per certificate",
+      "rowOneoff": "One-off request (not a transport client)",
+      "rowOneoffPrice": "$150 per certificate",
+      "turnaroundCell": "7 business days to issued eCO",
+      "note": "Custom per-client pricing is available for established exporter accounts. There is no markup hidden elsewhere: the certificate fee is the whole price of the service."
+    },
+    "docs": {
+      "title": "The Document Checklist",
+      "eligTitle": "Eligibility, checked first",
+      "eligPre": "Before any documents move, we screen the vehicle itself. The VIN is decoded against the federal NHTSA vPIC database, and the plant country must be United States. The title type is checked at the same step: ",
+      "eligStrong": "bill-of-sale-only, certificate of destruction, non-repairable, and parts-only titles are not eligible",
+      "eligPost": ". If the vehicle fails either check, you find out here, before anything is filed or paid for.",
+      "provideTitle": "What you provide, per shipment",
+      "provide": [
+        { "text": "Auction invoice or buyer receipt (Copart, IAA, Manheim)." },
+        { "text": "The title, with its type confirmed." },
+        { "lead": "Chain invoice: only when the auction buyer is not the exporter", "rest": " (the vehicle was resold before export). If you bought the vehicle at the auction and you are the exporter, this item does not apply to you." },
+        { "text": "Ocean booking or through bill of lading. This is what supports the direct-transport condition." },
+        { "text": "AES ITN, where already filed." },
+        { "text": "Party details: legal name, address, EIN or VAT/EORI, and the signing person's name and title." },
+        { "lead": "Signed agent authorization: once per company, not per vehicle.", "rest": " After your first request it is already on file, and repeat shipments skip this item." }
+      ],
+      "prepTitle": "What Y7 prepares (included in the fee)",
+      "prep": [
+        "NHTSA origin proof: plant country, city, and manufacturer from the federal vPIC decode.",
+        "Commercial invoice.",
+        "Declaration of origin.",
+        "The assembled filing package, submitted to the chamber as standing agent."
+      ],
+      "freeEvidence": "There is no single mandatory certificate form: EU practice accepts free evidence of origin. A chamber-issued eCO together with the origin proof, the title chain, and the through bill of lading is the practical evidence package this checklist assembles."
+    },
+    "process": {
+      "title": "How the Filing Works",
+      "steps": [
+        { "lead": "You send the shipment documents.", "rest": " The items from the checklist above: the auction paperwork, the title, the routing documents, and the party details." },
+        { "lead": "Y7 prepares and files.", "rest": " As standing filing agent, we verify the eligibility checklist, prepare the certificate, and file it electronically with the issuing chamber." },
+        { "lead": "You receive the issued eCO", "rest": " within 7 business days of the request, ready for your export document set." }
+      ],
+      "honesty": "One thing we state plainly rather than promise around: Y7 prepares and files the certificate; admissibility and the duty treatment at import are determined by the customs authority of the destination country."
+    },
+    "request": {
+      "title": "Request a Certificate of Origin",
+      "introPre": "Send the request below and we reply within 24 hours from info@y7agency.com. If you are shipping the vehicle with us, mention the order and we fold the certificate into your existing document flow; see the ",
+      "introLink": "exporter program",
+      "introPost": " for the transport side."
+    }
+  },
+  "form": {
+    "company": "Company (optional)",
+    "contact": "Contact name *",
+    "email": "Email *",
+    "clientStatus": "Are you an existing Y7 exporter client?",
+    "optOneoff": "No, this is a one-off request ($150)",
+    "optClient": "Yes, established exporter client ($99)",
+    "details": "Shipment details (optional)",
+    "detailsPlaceholder": "VIN, vehicle, destination country, target vessel window",
+    "submit": "Request a Certificate of Origin",
+    "sending": "Sending...",
+    "success": "✓ Request received. We reply within 24 hours from info@y7agency.com.",
+    "errContact": "Contact name is required.",
+    "errEmail": "Email is required.",
+    "errSubmit": "Could not send the request. Please try again."
+  },
+  "faqs": [
+    {
+      "q": "Is a Certificate of Origin mandatory?",
+      "a": "No. No single document is prescribed, and customs accepts free evidence of origin. What is mandatory is the proof itself: the burden of establishing US origin sits with the importer, and an importer who cannot satisfy customs clears at the old rate. A chamber-issued eCO with the supporting package is the practical way to discharge that burden."
+    },
+    {
+      "q": "How much does a Certificate of Origin cost?",
+      "a": "Two published prices: $99 per certificate for established Y7 exporter clients (custom per-client pricing is possible for volume accounts), and $150 for a one-off request submitted through the website by an exporter who is not a Y7 transport client. Both include preparation and filing."
+    },
+    {
+      "q": "How long does it take to get the certificate?",
+      "a": "Seven business days from the request to the issued eCO. Start the request as soon as the vehicle and destination are fixed so the certificate is ready before your vessel window."
+    },
+    {
+      "q": "Do I need to be a Y7 transport client?",
+      "a": "No. The one-off service at $150 exists exactly for European exporters who buy vehicles in the US and handle transport elsewhere. If you also need the auction-to-port leg, the exporter program covers both and the certificate drops to the client price."
+    },
+    {
+      "q": "What is the direct-transport requirement?",
+      "a": "It is half of the twin proof required by Article 59a UCC-IA, inserted by Commission Implementing Regulation (EU) 2026/1422: the importer proves both that the vehicle is of US origin and that the shipment traveled directly and arrived unaltered, including customs supervision for any third-country transit. The 0% rate itself comes from EU Regulation 2026/1455. We confirm the condition, together with the rest of the eligibility checklist, per shipment before filing."
+    },
+    {
+      "q": "Who prepares and files the certificate?",
+      "a": "Y7 acts as a standing filing agent: we prepare the certificate from your shipment documents and file it electronically with the issuing chamber. You receive the issued eCO for your export document set."
+    }
+  ],
+  "related": {
+    "exporters": "Exporter Logistics",
+    "auctionToPort": "Auction to Port",
+    "doorToPort": "Door-to-Port Transport",
+    "portNewark": "Port Newark",
+    "njCosts": "NJ Export-Warehouse Costs"
+  },
+  "labels": {
+    "breadcrumbHome": "Home",
+    "breadcrumbServices": "Services",
+    "faqTitle": "Frequently Asked Questions",
+    "ctaTitle": "Ready to get started?",
+    "ctaSubtitle": "Transparent pricing, verified carriers, fast dispatch response.",
+    "ctaLabel": "Explore the Exporter Program",
+    "relatedHeading": "Related Services"
+  }
+}

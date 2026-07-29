@@ -1,40 +1,35 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import SeoLandingPage, { Section } from './SeoLandingPage';
 import { prose, muted, subhead, tableWrap, table, th, td } from './_enrichedStyles';
 import { apiPost } from '../../hooks/useApi';
+import { stripLocale } from '../../lib/localePaths';
 import vf from '../../styles/v2/forms.module.css';
 import vb from '../../styles/v2/buttons.module.css';
 
-// [EXPORTERS-CO-T01] Standalone Certificate of Origin service page.
-// EVERY operational figure here comes from the sprint's confirmed-facts list
-// (Sergii, 2026-07-28): $99 established exporter clients (custom per-client
-// pricing possible) / $150 one-off via the website; 7 business days request to
-// issued eCO; EU Regulation 2026/1455 (0% duty vs standard 10%, in force since
-// 1 Jul 2026, US-origin vehicles, until 31 Dec 2029, suspendable earlier);
-// twin proof of US origin + direct transport per Article 59a UCC-IA, inserted
-// by Commission Implementing Regulation (EU) 2026/1422 amending 2015/2447
-// (CO-COPY-T01/T08: 59a belongs to 1422, NOT 1455); third-country transit
+// [EXPORTERS-CO-T01 / CO-COPY-T15] Standalone Certificate of Origin service
+// page, localized EN/PL/UA/RU (copy lives in locales/*/certificateOfOrigin.json,
+// same-slug locale routes per TRANSLATABLE_PATHS).
+// EVERY operational figure comes from the CO-COPY confirmed-facts lists:
+// $99 established exporter clients (complete price, chamber fee inside;
+// custom per-client possible) / $150 one-off via the website; 7 business days
+// request to issued eCO; EU Regulation 2026/1455 (0% duty vs standard 10%, in
+// force since 1 Jul 2026, until 31 Dec 2029, suspendable earlier); twin proof
+// of US origin + direct transport per Article 59a UCC-IA, inserted by
+// Commission Implementing Regulation (EU) 2026/1422 amending 2015/2447 (59a
+// belongs to 1422, NOT 1455); certificate recommended, not mandatory — the
+// proof obligation IS mandatory, burden on the importer; third-country transit
 // needs customs supervision + non-alteration; evidence must be with the
-// declarant at declaration; filing via the Charles River Regional Chamber
-// (Newton/Needham MA) portal; Y7 acts as standing filing agent.
-// Do not add regulation citations, duty rates for other origins, or
-// per-country rules that are not in that list.
+// declarant at declaration; client funds flow: screen -> request -> payment ->
+// documents -> filing (docs arrive AFTER payment); the specific filing chamber
+// is deliberately NOT named anywhere on the page (Sergii, 2026-07-29: the
+// channel is commercially sensitive) — copy says "the issuing chamber" only;
+// 24h response promise is backed by the admin Inquiries SLA badge.
 // Copy constraints: never state who is named exporter of record; never promise
-// a duty outcome (the customs authority decides, said once); Licensed & Bonded
-// FMCSA Broker only; no phone numbers; the affiliated dealer-licensed company
-// stays unnamed.
-// CTA posts to /api/public/contact (T00 audit: no public CO endpoint exists;
-// portal CO routes all sit behind portal auth). Payload matches the exporter
-// form shape so it lands in lead_inquiries and the admin Inquiries surface.
-
-const checklist = [
-  'The vehicle is US-origin.',
-  'The destination is in the European Union.',
-  'The shipment meets the direct-transport requirement (Article 59a UCC-IA).',
-  'The supporting documentation is in order.',
-  'Eligibility is confirmed per shipment before filing.',
-];
+// a duty outcome (eligibility, not outcome); Licensed & Bonded FMCSA Broker
+// only; no phone numbers; the affiliated dealer-licensed company stays unnamed.
+// CTA posts to /api/public/contact (T00 audit: no public CO endpoint exists).
 
 const checkItem = {
   fontFamily: 'system-ui, -apple-system, sans-serif',
@@ -57,7 +52,7 @@ const checkMark = {
   fontWeight: 700,
 };
 
-function CoRequestForm() {
+function CoRequestForm({ t }) {
   const [form, setForm] = useState({
     company: '',
     contact_name: '',
@@ -76,10 +71,12 @@ function CoRequestForm() {
   async function handleSubmit(e) {
     e.preventDefault();
     setError(null);
-    if (!form.contact_name.trim()) { setError('Contact name is required.'); return; }
-    if (!form.email.trim()) { setError('Email is required.'); return; }
+    if (!form.contact_name.trim()) { setError(t('form.errContact')); return; }
+    if (!form.email.trim()) { setError(t('form.errEmail')); return; }
     setSubmitting(true);
     try {
+      // Payload stays EN regardless of locale — it lands on the admin
+      // Inquiries surface, not in front of the client.
       await apiPost('/api/public/contact', {
         name: [form.company, form.contact_name].filter(Boolean).join(' — '),
         email: form.email,
@@ -93,7 +90,7 @@ function CoRequestForm() {
       });
       setSuccess(true);
     } catch (err) {
-      setError(err.message || 'Could not send the request. Please try again.');
+      setError(err.message || t('form.errSubmit'));
     } finally {
       setSubmitting(false);
     }
@@ -102,7 +99,7 @@ function CoRequestForm() {
   if (success) {
     return (
       <p style={{ ...prose, color: '#0F6E56', fontWeight: 600 }} role="status">
-        ✓ Request received. We reply within 24 hours from info@y7agency.com.
+        {t('form.success')}
       </p>
     );
   }
@@ -111,7 +108,7 @@ function CoRequestForm() {
     <form onSubmit={handleSubmit} noValidate>
       <div style={{ display: 'grid', gap: 14, maxWidth: 460 }}>
         <div>
-          <label htmlFor="co-company" className={vf.labelOnPaper}>Company (optional)</label>
+          <label htmlFor="co-company" className={vf.labelOnPaper}>{t('form.company')}</label>
           <input
             id="co-company"
             type="text"
@@ -122,7 +119,7 @@ function CoRequestForm() {
           />
         </div>
         <div>
-          <label htmlFor="co-contact" className={vf.labelOnPaper}>Contact name *</label>
+          <label htmlFor="co-contact" className={vf.labelOnPaper}>{t('form.contact')}</label>
           <input
             id="co-contact"
             type="text"
@@ -134,7 +131,7 @@ function CoRequestForm() {
           />
         </div>
         <div>
-          <label htmlFor="co-email" className={vf.labelOnPaper}>Email *</label>
+          <label htmlFor="co-email" className={vf.labelOnPaper}>{t('form.email')}</label>
           <input
             id="co-email"
             type="email"
@@ -146,32 +143,32 @@ function CoRequestForm() {
           />
         </div>
         <div>
-          <label htmlFor="co-status" className={vf.labelOnPaper}>Are you an existing Y7 exporter client?</label>
+          <label htmlFor="co-status" className={vf.labelOnPaper}>{t('form.clientStatus')}</label>
           <select
             id="co-status"
             className={vf.inputOnPaper}
             value={form.client_status}
             onChange={(e) => set('client_status', e.target.value)}
           >
-            <option value="one_off">No, this is a one-off request ($150)</option>
-            <option value="client">Yes, established exporter client ($99)</option>
+            <option value="one_off">{t('form.optOneoff')}</option>
+            <option value="client">{t('form.optClient')}</option>
           </select>
         </div>
         <div>
-          <label htmlFor="co-details" className={vf.labelOnPaper}>Shipment details (optional)</label>
+          <label htmlFor="co-details" className={vf.labelOnPaper}>{t('form.details')}</label>
           <textarea
             id="co-details"
             className={vf.inputOnPaper}
             rows={4}
             value={form.details}
             onChange={(e) => set('details', e.target.value)}
-            placeholder="VIN, vehicle, destination country, target vessel window"
+            placeholder={t('form.detailsPlaceholder')}
           />
         </div>
         {error && <p className={vf.errorOnPaper} role="alert">{error}</p>}
         <div>
           <button type="submit" className={`${vb.base} ${vb.cta}`} disabled={submitting}>
-            {submitting ? 'Sending...' : 'Request a Certificate of Origin'}
+            {submitting ? t('form.sending') : t('form.submit')}
           </button>
         </div>
       </div>
@@ -180,13 +177,24 @@ function CoRequestForm() {
 }
 
 export default function CertificateOfOrigin() {
+  const { t } = useTranslation('certificateOfOrigin');
+  const { pathname } = useLocation();
+  const { locale } = stripLocale(pathname);
+  const prefix = locale === 'en' ? '' : `/${locale}`;
+  const path = locale === 'en' ? '/certificate-of-origin' : `/${locale}/certificate-of-origin`;
+
+  const checklist = t('sections.eligibility.items', { returnObjects: true });
+  const provide = t('sections.docs.provide', { returnObjects: true });
+  const prep = t('sections.docs.prep', { returnObjects: true });
+  const steps = t('sections.process.steps', { returnObjects: true });
+  const faqs = t('faqs', { returnObjects: true });
+
   return (
     <SeoLandingPage
       meta={{
-        title: 'Certificate of Origin for US Vehicle Exports to the EU: 0% Import Duty | Y7 Logistics',
-        description:
-          'US-origin vehicles enter the EU at 0% import duty under EU Regulation 2026/1455 with a Certificate of Origin. Y7 prepares and files as standing agent: $99 for established exporter clients, $150 one-off, issued eCO in 7 business days.',
-        path: '/certificate-of-origin',
+        title: t('meta.title'),
+        description: t('meta.description'),
+        path,
       }}
       serviceExtras={{
         serviceType: 'Certificate of Origin Filing',
@@ -204,211 +212,130 @@ export default function CertificateOfOrigin() {
           },
         ],
       }}
-      primaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
-      heading="Certificate of Origin for US Vehicle Exports to the EU"
-      intro="Under EU Regulation 2026/1455, in force since 1 July 2026, US-origin vehicles can enter the European Union at 0% import duty instead of the standard 10%. Proving US origin is the importer's job, and the Certificate of Origin is the practical way to do it. Y7 Logistics, a Licensed & Bonded FMCSA Broker (USDOT #4427359, MC #1741537), acts as a standing filing agent: we prepare the certificate, file it through the Charles River Regional Chamber portal, and deliver the issued eCO to your export document set. The service stands on its own. You do not need to be a Y7 transport client to order one."
-      tldr={{
-        kicker: 'Certificate of Origin, in brief',
-        ariaLabel: 'Certificate of Origin service summary',
-        text: 'A Certificate of Origin documents a vehicle as US-origin, which is what EU Regulation 2026/1455 (in force since 1 July 2026) requires for the 0% import duty rate, in place of the standard 10%, on vehicles entering the EU. Y7 Logistics (Licensed & Bonded FMCSA Broker, MC #1741537) prepares and files the certificate as standing agent through the Charles River Regional Chamber portal: $99 per certificate for established Y7 exporter clients, $150 for a one-off request, issued eCO in 7 business days. Eligibility is confirmed per shipment; the importer must also prove US origin and direct transport under Article 59a UCC-IA (Commission Implementing Regulation (EU) 2026/1422).',
+      labels={{
+        breadcrumbHome: t('labels.breadcrumbHome'),
+        breadcrumbServices: t('labels.breadcrumbServices'),
+        homeTo: prefix || '/',
+        servicesTo: `${prefix}/services`,
+        faqTitle: t('labels.faqTitle'),
+        ctaTitle: t('labels.ctaTitle'),
+        ctaSubtitle: t('labels.ctaSubtitle'),
+        relatedHeading: t('labels.relatedHeading'),
       }}
-      ctaLabel="Explore the Exporter Program"
-      ctaTo="/exporters"
-      faqs={[
-        {
-          q: 'Is a Certificate of Origin mandatory?',
-          a: 'No. No single document is prescribed, and customs accepts free evidence of origin. What is mandatory is the proof itself: the burden of establishing US origin sits with the importer, and an importer who cannot satisfy customs clears at the old rate. A chamber-issued eCO with the supporting package is the practical way to discharge that burden.',
-        },
-        {
-          q: 'How much does a Certificate of Origin cost?',
-          a: 'Two published prices: $99 per certificate for established Y7 exporter clients (custom per-client pricing is possible for volume accounts), and $150 for a one-off request submitted through the website by an exporter who is not a Y7 transport client. Both include preparation and filing.',
-        },
-        {
-          q: 'How long does it take to get the certificate?',
-          a: 'Seven business days from the request to the issued eCO. Start the request as soon as the vehicle and destination are fixed so the certificate is ready before your vessel window.',
-        },
-        {
-          q: 'Do I need to be a Y7 transport client?',
-          a: 'No. The one-off service at $150 exists exactly for European exporters who buy vehicles in the US and handle transport elsewhere. If you also need the auction-to-port leg, the exporter program covers both and the certificate drops to the client price.',
-        },
-        {
-          q: 'What is the direct-transport requirement?',
-          a: 'It is half of the twin proof required by Article 59a UCC-IA, inserted by Commission Implementing Regulation (EU) 2026/1422: the importer proves both that the vehicle is of US origin and that the shipment traveled directly and arrived unaltered, including customs supervision for any third-country transit. The 0% rate itself comes from EU Regulation 2026/1455. We confirm the condition, together with the rest of the eligibility checklist, per shipment before filing.',
-        },
-        {
-          q: 'Who prepares and files the certificate?',
-          a: 'Y7 acts as a standing filing agent: we prepare the certificate from your shipment documents and file it through the Charles River Regional Chamber (Newton/Needham, MA) portal. You receive the issued eCO for your export document set.',
-        },
-      ]}
+      primaryCTA={{ intlKey: 'exporters', to: `${prefix}/exporters`, tone: 'amber' }}
+      heading={t('heading')}
+      intro={t('intro')}
+      tldr={{
+        kicker: t('tldr.kicker'),
+        ariaLabel: t('tldr.ariaLabel'),
+        text: t('tldr.text'),
+      }}
+      ctaLabel={t('labels.ctaLabel')}
+      ctaTo={`${prefix}/exporters`}
+      faqs={Array.isArray(faqs) ? faqs : []}
       related={[
-        { label: 'Exporter Logistics', to: '/exporters' },
-        { label: 'Auction to Port', to: '/auction-to-port-transport' },
-        { label: 'Door-to-Port Transport', to: '/door-to-port-auto-transport' },
-        { label: 'Port Newark', to: '/ports/newark' },
-        { label: 'NJ Export-Warehouse Costs', to: '/nj-export-warehouse-shipping-cost' },
+        { label: t('related.exporters'), to: `${prefix}/exporters` },
+        { label: t('related.auctionToPort'), to: '/auction-to-port-transport' },
+        { label: t('related.doorToPort'), to: '/door-to-port-auto-transport' },
+        { label: t('related.portNewark'), to: '/ports/newark' },
+        { label: t('related.njCosts'), to: '/nj-export-warehouse-shipping-cost' },
       ]}
     >
-      <Section title="What a Certificate of Origin Does at EU Import">
-        <p style={prose}>
-          EU Regulation 2026/1455, in force since 1 July 2026, sets a 0% import duty rate for
-          US-origin vehicles entering the European Union, against the standard rate of 10%. The
-          certificate itself is recommended, not mandatory: no single document is prescribed, and
-          the burden of proving US origin sits with the importer. A chamber-issued Certificate of
-          Origin, with the origin proof and transport documents behind it, is the practical way to
-          discharge that burden; with it, a qualifying shipment is eligible for the 0% rate, and
-          an importer who cannot satisfy customs clears at the old rate.
-        </p>
-        <p style={prose}>
-          The rate is a defined window: it runs until 31 December 2029, and may be suspended
-          earlier if the conditions of the EU-US trade framework cease to be met.
-        </p>
-        <p style={muted}>
-          The certificate is issued electronically (an eCO) and joins the rest of the export
-          document set your freight forwarder presents at destination.
-        </p>
+      <Section title={t('sections.what.title')}>
+        <p style={prose}>{t('sections.what.p1')}</p>
+        <p style={prose}>{t('sections.what.window')}</p>
+        <p style={muted}>{t('sections.what.eco')}</p>
       </Section>
 
-      <Section title="The Twin Proof: US Origin and Direct Transport (Article 59a UCC-IA)">
-        <p style={prose}>
-          The 0% rate is conditional, and the condition lives in a separate instrument from the
-          rate itself. Commission Implementing Regulation (EU) 2026/1422 amended the UCC
-          Implementing Act (Regulation 2015/2447) to insert a new Article 59a, which requires the
-          importer to prove two things at once: that the vehicle is of non-preferential US origin,
-          and that the shipment traveled directly, arriving unaltered. In plain words: the vehicle
-          must move from the US to the EU destination as one continuous shipment, and what arrives
-          must be the vehicle that left. Where the routing passes through a third country, the
-          operator must be able to show the vehicle stayed under customs supervision there and was
-          not altered. The certificate covers the origin half; the routing documents cover the
-          other.
-        </p>
-        <p style={muted}>
-          The evidence must be in the declarant's possession when the customs declaration is
-          lodged: it is assembled before the vehicle ships, not reconstructed after. Direct
-          transport is a property of the shipment, not of the paperwork, which is why we confirm
-          eligibility per shipment rather than assuming it. The routing evidence is reviewed when
-          the document package is assembled, and anything that undermines direct transport
-          surfaces before we file.
-        </p>
+      <Section title={t('sections.twin.title')}>
+        <p style={prose}>{t('sections.twin.p1')}</p>
+        <p style={muted}>{t('sections.twin.p2')}</p>
       </Section>
 
-      <Section title="Who Qualifies: The Eligibility Checklist">
+      <Section title={t('sections.eligibility.title')}>
         <ul style={{ margin: '0 0 16px', padding: 0 }}>
-          {checklist.map((item, i) => (
+          {(Array.isArray(checklist) ? checklist : []).map((item, i) => (
             <li key={i} style={checkItem}>
               <span style={checkMark} aria-hidden="true">✓</span>
               {item}
             </li>
           ))}
         </ul>
-        <p style={muted}>
-          We confirm every item against your shipment documents before the certificate is filed.
-        </p>
+        <p style={muted}>{t('sections.eligibility.note')}</p>
       </Section>
 
-      <Section title="Pricing and Turnaround">
+      <Section title={t('sections.pricing.title')}>
         <div style={tableWrap}>
           <table style={table}>
             <thead>
               <tr>
-                <th style={th}>Service</th>
-                <th style={th}>Price</th>
-                <th style={th}>Turnaround</th>
+                <th style={th}>{t('sections.pricing.colService')}</th>
+                <th style={th}>{t('sections.pricing.colPrice')}</th>
+                <th style={th}>{t('sections.pricing.colTurnaround')}</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td style={td}>Established Y7 exporter clients</td>
-                <td style={td}>$99 per certificate</td>
-                <td style={td}>7 business days to issued eCO</td>
+                <td style={td}>{t('sections.pricing.rowClient')}</td>
+                <td style={td}>{t('sections.pricing.rowClientPrice')}</td>
+                <td style={td}>{t('sections.pricing.turnaroundCell')}</td>
               </tr>
               <tr>
-                <td style={td}>One-off request (not a transport client)</td>
-                <td style={td}>$150 per certificate</td>
-                <td style={td}>7 business days to issued eCO</td>
+                <td style={td}>{t('sections.pricing.rowOneoff')}</td>
+                <td style={td}>{t('sections.pricing.rowOneoffPrice')}</td>
+                <td style={td}>{t('sections.pricing.turnaroundCell')}</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p style={muted}>
-          Custom per-client pricing is available for established exporter accounts. There is no
-          markup hidden elsewhere: the certificate fee is the whole price of the service.
-        </p>
+        <p style={muted}>{t('sections.pricing.note')}</p>
       </Section>
 
-      <Section title="The Document Checklist">
-        <h3 style={subhead}>Eligibility, checked first</h3>
+      <Section title={t('sections.docs.title')}>
+        <h3 style={subhead}>{t('sections.docs.eligTitle')}</h3>
         <p style={prose}>
-          Before any documents move, we screen the vehicle itself. The VIN is decoded against the
-          federal NHTSA vPIC database, and the plant country must be United States. The title type
-          is checked at the same step: <strong>bill-of-sale-only, certificate of destruction,
-          non-repairable, and parts-only titles are not eligible</strong>. If the vehicle fails
-          either check, you find out here, before anything is filed or paid for.
+          {t('sections.docs.eligPre')}
+          <strong>{t('sections.docs.eligStrong')}</strong>
+          {t('sections.docs.eligPost')}
         </p>
 
-        <h3 style={subhead}>What you provide, per shipment</h3>
+        <h3 style={subhead}>{t('sections.docs.provideTitle')}</h3>
         <ul style={{ margin: '0 0 16px', paddingLeft: 22 }}>
-          <li style={{ ...prose, marginBottom: 8 }}>Auction invoice or buyer receipt (Copart, IAA, Manheim).</li>
-          <li style={{ ...prose, marginBottom: 8 }}>The title, with its type confirmed.</li>
-          <li style={{ ...prose, marginBottom: 8 }}>
-            <strong>Chain invoice: only when the auction buyer is not the exporter</strong> (the
-            vehicle was resold before export). If you bought the vehicle at the auction and you
-            are the exporter, this item does not apply to you.
-          </li>
-          <li style={{ ...prose, marginBottom: 8 }}>Ocean booking or through bill of lading. This is what supports the direct-transport condition.</li>
-          <li style={{ ...prose, marginBottom: 8 }}>AES ITN, where already filed.</li>
-          <li style={{ ...prose, marginBottom: 8 }}>Party details: legal name, address, EIN or VAT/EORI, and the signing person's name and title.</li>
-          <li style={{ ...prose, marginBottom: 8 }}>
-            <strong>Signed agent authorization: once per company, not per vehicle.</strong> After
-            your first request it is already on file, and repeat shipments skip this item.
-          </li>
+          {(Array.isArray(provide) ? provide : []).map((item, i) => (
+            <li key={i} style={{ ...prose, marginBottom: 8 }}>
+              {item.lead ? (<><strong>{item.lead}</strong>{item.rest}</>) : item.text}
+            </li>
+          ))}
         </ul>
 
-        <h3 style={subhead}>What Y7 prepares (included in the fee)</h3>
+        <h3 style={subhead}>{t('sections.docs.prepTitle')}</h3>
         <ul style={{ margin: '0 0 16px', paddingLeft: 22 }}>
-          <li style={{ ...prose, marginBottom: 8 }}>NHTSA origin proof: plant country, city, and manufacturer from the federal vPIC decode.</li>
-          <li style={{ ...prose, marginBottom: 8 }}>Commercial invoice.</li>
-          <li style={{ ...prose, marginBottom: 8 }}>Declaration of origin.</li>
-          <li style={{ ...prose, marginBottom: 8 }}>The assembled filing package, submitted to the chamber as standing agent.</li>
+          {(Array.isArray(prep) ? prep : []).map((item, i) => (
+            <li key={i} style={{ ...prose, marginBottom: 8 }}>{item}</li>
+          ))}
         </ul>
 
-        <p style={muted}>
-          There is no single mandatory certificate form: EU practice accepts free evidence of
-          origin. A chamber-issued eCO together with the origin proof, the title chain, and the
-          through bill of lading is the practical evidence package this checklist assembles.
-        </p>
+        <p style={muted}>{t('sections.docs.freeEvidence')}</p>
       </Section>
 
-      <Section title="How the Filing Works">
+      <Section title={t('sections.process.title')}>
         <ol style={{ margin: '0 0 16px', paddingLeft: 22 }}>
-          <li style={{ ...prose, marginBottom: 10 }}>
-            <strong>You send the shipment documents.</strong> The items from the checklist above:
-            the auction paperwork, the title, the routing documents, and the party details.
-          </li>
-          <li style={{ ...prose, marginBottom: 10 }}>
-            <strong>Y7 prepares and files.</strong> As standing filing agent, we verify the
-            eligibility checklist, prepare the certificate, and file it through the Charles River
-            Regional Chamber portal.
-          </li>
-          <li style={{ ...prose, marginBottom: 10 }}>
-            <strong>You receive the issued eCO</strong> within 7 business days of the request,
-            ready for your export document set.
-          </li>
+          {(Array.isArray(steps) ? steps : []).map((s, i) => (
+            <li key={i} style={{ ...prose, marginBottom: 10 }}>
+              <strong>{s.lead}</strong>{s.rest}
+            </li>
+          ))}
         </ol>
-        <p style={muted}>
-          One thing we state plainly rather than promise around: Y7 prepares and files the
-          certificate; admissibility and the duty treatment at import are determined by the customs
-          authority of the destination country.
-        </p>
+        <p style={muted}>{t('sections.process.honesty')}</p>
       </Section>
 
-      <Section title="Request a Certificate of Origin">
+      <Section title={t('sections.request.title')}>
         <p style={prose}>
-          Send the request below and we reply within 24 hours from info@y7agency.com. If you are shipping the
-          vehicle with us, mention the order and we fold the certificate into your existing
-          document flow; see the <Link to="/exporters">exporter program</Link> for the transport
-          side.
+          {t('sections.request.introPre')}
+          <Link to={`${prefix}/exporters`}>{t('sections.request.introLink')}</Link>
+          {t('sections.request.introPost')}
         </p>
-        <CoRequestForm />
+        <CoRequestForm t={t} />
       </Section>
     </SeoLandingPage>
   );

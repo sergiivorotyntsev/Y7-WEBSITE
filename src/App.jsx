@@ -264,6 +264,7 @@ export default function App() {
             <Route path="/copart-gate-pass-guide" element={<CopartGatePassGuide />} />
             <Route path="/copart-international-shipping" element={<CopartInternationalShipping />} />
             <Route path="/certificate-of-origin" element={<CertificateOfOrigin />} />
+            <Route path="/:lang/certificate-of-origin" element={<LangGuard><CertificateOfOrigin /></LangGuard>} />
             <Route path="/quote" element={<Quote />} />
             <Route path="/quote-verified" element={<QuoteVerified />} />
             <Route path="/quote-verification-failed" element={<QuoteVerificationFailed />} />

@@ -173,6 +173,8 @@ const TRANSLATABLE_PATHS = [
   { en: '/faq',       ua: '/ua/faq',      pl: '/pl/faq',      ru: '/ru/faq' },
   { en: '/track',     ua: '/ua/track',    pl: '/pl/track',    ru: '/ru/track' },
   { en: '/quote',     ua: '/ua/quote',    pl: '/pl/quote',    ru: '/ru/quote' },
+  // CO-COPY-T15: the Certificate of Origin page joins the translatable set.
+  { en: '/certificate-of-origin', ua: '/ua/certificate-of-origin', pl: '/pl/certificate-of-origin', ru: '/ru/certificate-of-origin' },
 ];
 
 // Localized port pages (SEO-P2B): 1:1 translations of each English port page
@@ -223,9 +225,6 @@ const ENGLISH_ONLY = [
   '/how-to-ship-a-car-bought-at-auction', '/open-vs-enclosed-auto-transport',
   '/what-is-a-bill-of-lading',
   '/copart-storage-fees', '/copart-gate-pass-guide', '/copart-international-shipping',
-
-  // Certificate of Origin service page (EXPORTERS-CO-T01)
-  '/certificate-of-origin',
 
   // Blog
   '/blog',

@@ -78,27 +78,36 @@ import notFoundUa from './locales/ua/notFound.json';
 import contextualCTAUa from './locales/ua/contextualCTA.json';
 import portalUa from './locales/ua/portal.json';
 import portsUa from './locales/ua/ports.json';
+// CO-COPY-T15/T16: Certificate of Origin page namespace, all four locales.
+import certificateOfOriginEn from './locales/en/certificateOfOrigin.json';
+import certificateOfOriginRu from './locales/ru/certificateOfOrigin.json';
+import certificateOfOriginPl from './locales/pl/certificateOfOrigin.json';
+import certificateOfOriginUa from './locales/ua/certificateOfOrigin.json';
 
 const resources = {
   en: {
     common: commonEn, home: homeEn, quote: quoteEn, services: servicesEn,
     dealers: dealersEn, exporters: exportersEn, shipMycar: shipMycarEn, agreement: agreementEn, agreement_dealer: agreementDealerEn, about: aboutEn, faq: faqEn, processTimeline: processTimelineEn, transportComparison: transportComparisonEn,
     terms: termsEn, privacy: privacyEn, notFound: notFoundEn, contextualCTA: contextualCTAEn, portal: portalEn, ports: portsEn,
+    certificateOfOrigin: certificateOfOriginEn,
   },
   ru: {
     common: commonRu, home: homeRu, quote: quoteRu, services: servicesRu,
     dealers: dealersRu, exporters: exportersRu, shipMycar: shipMycarRu, agreement: agreementRu, agreement_dealer: agreementDealerRu, about: aboutRu, faq: faqRu, processTimeline: processTimelineRu, transportComparison: transportComparisonRu,
     terms: termsEn, privacy: privacyEn, notFound: notFoundRu, contextualCTA: contextualCTARu, portal: portalRu, ports: portsRu,
+    certificateOfOrigin: certificateOfOriginRu,
   },
   pl: {
     common: commonPl, home: homePl, quote: quotePl, services: servicesPl,
     dealers: dealersPl, exporters: exportersPl, shipMycar: shipMycarPl, agreement: agreementPl, agreement_dealer: agreementDealerPl, about: aboutPl, faq: faqPl, processTimeline: processTimelinePl, transportComparison: transportComparisonPl,
     terms: termsEn, privacy: privacyEn, notFound: notFoundPl, contextualCTA: contextualCTAPl, portal: portalPl, ports: portsPl,
+    certificateOfOrigin: certificateOfOriginPl,
   },
   ua: {
     common: commonUa, home: homeUa, quote: quoteUa, services: servicesUa,
     dealers: dealersUa, exporters: exportersUa, shipMycar: shipMycarUa, agreement: agreementUa, agreement_dealer: agreementDealerUa, about: aboutUa, faq: faqUa, processTimeline: processTimelineUa, transportComparison: transportComparisonUa,
     terms: termsEn, privacy: privacyEn, notFound: notFoundUa, contextualCTA: contextualCTAUa, portal: portalUa, ports: portsUa,
+    certificateOfOrigin: certificateOfOriginUa,
   },
 };
 

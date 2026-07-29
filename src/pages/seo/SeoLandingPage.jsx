@@ -61,7 +61,21 @@ export default function SeoLandingPage({
   // in the MoneyPageSchema shape ({ serviceType, audience, offers }). Offers
   // carry per-offer priceRange. Absent -> schema output is unchanged.
   serviceExtras = null,
+  // CO-COPY-T15: optional chrome-string overrides for localized callers.
+  // Absent -> the historical EN literals, byte-identical for all other pages.
+  labels = null,
 }) {
+  const L = {
+    breadcrumbHome: 'Home',
+    breadcrumbServices: 'Services',
+    homeTo: '/',
+    servicesTo: '/services',
+    faqTitle: 'Frequently Asked Questions',
+    ctaTitle: 'Ready to get started?',
+    ctaSubtitle: 'Transparent pricing, verified carriers, fast dispatch response.',
+    relatedHeading: 'Related Services',
+    ...(labels || {}),
+  };
   const schemas = [];
 
   schemas.push({
@@ -135,9 +149,9 @@ export default function SeoLandingPage({
         <PageMeta title={meta.title} description={meta.description} path={meta.path} schema={combinedSchema} />
 
         <nav aria-label="Breadcrumb" className={styles.breadcrumb}>
-          <Link to="/" className={styles.crumbLink}>Home</Link>
+          <Link to={L.homeTo} className={styles.crumbLink}>{L.breadcrumbHome}</Link>
           <span className={styles.crumbSep}>/</span>
-          <Link to="/services" className={styles.crumbLink}>Services</Link>
+          <Link to={L.servicesTo} className={styles.crumbLink}>{L.breadcrumbServices}</Link>
           <span className={styles.crumbSep}>/</span>
           <span className={styles.crumbCurrent}>{heading}</span>
         </nav>
@@ -205,7 +219,7 @@ export default function SeoLandingPage({
         )}
 
         {faqs && faqs.length > 0 && (
-          <Section title="Frequently Asked Questions">
+          <Section title={L.faqTitle}>
             <div className={styles.faqList}>
               {faqs.map((faq, i) => (
                 <details key={i} className={styles.faq}>
@@ -230,8 +244,8 @@ export default function SeoLandingPage({
         )}
 
         <div className={styles.ctaBlock}>
-          <h2 className={styles.ctaTitle}>Ready to get started?</h2>
-          <p className={styles.ctaSubtitle}>Transparent pricing, verified carriers, fast dispatch response.</p>
+          <h2 className={styles.ctaTitle}>{L.ctaTitle}</h2>
+          <p className={styles.ctaSubtitle}>{L.ctaSubtitle}</p>
           <Link to={ctaTo} className={styles.ctaBtn}>
             {ctaLabel}
           </Link>
@@ -239,7 +253,7 @@ export default function SeoLandingPage({
 
         {related.length > 0 && (
           <div className={styles.relatedBlock}>
-            <h3 className={styles.relatedHeading}>Related Services</h3>
+            <h3 className={styles.relatedHeading}>{L.relatedHeading}</h3>
             <div className={styles.relatedPills}>
               {related.map((link, i) => (
                 <Link key={i} to={link.to} className={styles.relatedPill}>

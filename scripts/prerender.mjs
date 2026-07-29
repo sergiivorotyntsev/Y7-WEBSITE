@@ -582,6 +582,8 @@ const PUBLIC_ROUTES = [
     `/${lang}/faq`,
     `/${lang}/about`,
     `/${lang}/quote`,
+    // CO-COPY-T15: localized Certificate of Origin page (11th translatable).
+    `/${lang}/certificate-of-origin`,
   ]),
   // SEO-P2B: localized port pages — same PortPage component with i18n flipped
   // by the URL prefix. Slugs come from PORT_SLUGS (single source of truth).

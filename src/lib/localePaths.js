@@ -23,6 +23,7 @@ const PORT_SLUG_SET = new Set(PORT_SLUGS);
 export const TRANSLATABLE_PATHS = new Set([
   '/', '/services', '/dealers', '/exporters', '/ship-my-car',
   '/about', '/contact', '/faq', '/quote', '/track',
+  '/certificate-of-origin', // CO-COPY-T15
 ]);
 
 const LOCALE_PREFIX_RE = /^\/(ua|pl|ru)(\/.*)?$/;
