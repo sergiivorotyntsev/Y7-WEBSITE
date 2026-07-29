@@ -102,7 +102,7 @@ function CoRequestForm() {
   if (success) {
     return (
       <p style={{ ...prose, color: '#0F6E56', fontWeight: 600 }} role="status">
-        ✓ Request received. We reply from info@y7agency.com.
+        ✓ Request received. We reply within 24 hours from info@y7agency.com.
       </p>
     );
   }
@@ -399,7 +399,7 @@ export default function CertificateOfOrigin() {
 
       <Section title="Request a Certificate of Origin">
         <p style={prose}>
-          Send the request below and we reply from info@y7agency.com. If you are shipping the
+          Send the request below and we reply within 24 hours from info@y7agency.com. If you are shipping the
           vehicle with us, mention the order and we fold the certificate into your existing
           document flow; see the <Link to="/exporters">exporter program</Link> for the transport
           side.
