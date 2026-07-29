@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import OnboardingBanner from '../../components/OnboardingBanner';
 import PageMeta from '../../components/PageMeta';
 import VerificationBanner from '../../components/VerificationBanner';
 import { portalFetch } from '../../hooks/useAuth';
@@ -221,6 +222,12 @@ export default function DealerDashboard({ user }) {
           that previously held the banner), so the under-review / trial-quote
           status must surface here too. Self-suppresses when verified. */}
       <VerificationBanner />
+
+      {/* AGR-2-T03: the freed exporter lands HERE now (the redirect trap is
+          gone) — the honest being-prepared notice self-suppresses for
+          everyone else, and turns into the finish-setup CTA for ordinary
+          unsigned accounts (which the redirect normally intercepts). */}
+      <OnboardingBanner />
 
       {/* CO3W-T06: Certificate of Origin entry — exporters only. */}
       {isExporter && (
