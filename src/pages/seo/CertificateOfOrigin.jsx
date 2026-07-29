@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SeoLandingPage, { Section } from './SeoLandingPage';
-import { prose, muted, tableWrap, table, th, td } from './_enrichedStyles';
+import { prose, muted, subhead, tableWrap, table, th, td } from './_enrichedStyles';
 import { apiPost } from '../../hooks/useApi';
 import vf from '../../styles/v2/forms.module.css';
 import vb from '../../styles/v2/buttons.module.css';
@@ -314,11 +314,54 @@ export default function CertificateOfOrigin() {
         </p>
       </Section>
 
+      <Section title="The Document Checklist">
+        <h3 style={subhead}>Eligibility, checked first</h3>
+        <p style={prose}>
+          Before any documents move, we screen the vehicle itself. The VIN is decoded against the
+          federal NHTSA vPIC database, and the plant country must be United States. The title type
+          is checked at the same step: <strong>bill-of-sale-only, certificate of destruction,
+          non-repairable, and parts-only titles are not eligible</strong>. If the vehicle fails
+          either check, you find out here, before anything is filed or paid for.
+        </p>
+
+        <h3 style={subhead}>What you provide, per shipment</h3>
+        <ul style={{ margin: '0 0 16px', paddingLeft: 22 }}>
+          <li style={{ ...prose, marginBottom: 8 }}>Auction invoice or buyer receipt (Copart, IAA, Manheim).</li>
+          <li style={{ ...prose, marginBottom: 8 }}>The title, with its type confirmed.</li>
+          <li style={{ ...prose, marginBottom: 8 }}>
+            <strong>Chain invoice: only when the auction buyer is not the exporter</strong> (the
+            vehicle was resold before export). If you bought the vehicle at the auction and you
+            are the exporter, this item does not apply to you.
+          </li>
+          <li style={{ ...prose, marginBottom: 8 }}>Ocean booking or through bill of lading. This is what supports the direct-transport condition.</li>
+          <li style={{ ...prose, marginBottom: 8 }}>AES ITN, where already filed.</li>
+          <li style={{ ...prose, marginBottom: 8 }}>Party details: legal name, address, EIN or VAT/EORI, and the signing person's name and title.</li>
+          <li style={{ ...prose, marginBottom: 8 }}>
+            <strong>Signed agent authorization: once per company, not per vehicle.</strong> After
+            your first request it is already on file, and repeat shipments skip this item.
+          </li>
+        </ul>
+
+        <h3 style={subhead}>What Y7 prepares (included in the fee)</h3>
+        <ul style={{ margin: '0 0 16px', paddingLeft: 22 }}>
+          <li style={{ ...prose, marginBottom: 8 }}>NHTSA origin proof: plant country, city, and manufacturer from the federal vPIC decode.</li>
+          <li style={{ ...prose, marginBottom: 8 }}>Commercial invoice.</li>
+          <li style={{ ...prose, marginBottom: 8 }}>Declaration of origin.</li>
+          <li style={{ ...prose, marginBottom: 8 }}>The assembled filing package, submitted to the chamber as standing agent.</li>
+        </ul>
+
+        <p style={muted}>
+          There is no single mandatory certificate form: EU practice accepts free evidence of
+          origin. A chamber-issued eCO together with the origin proof, the title chain, and the
+          through bill of lading is the practical evidence package this checklist assembles.
+        </p>
+      </Section>
+
       <Section title="How the Filing Works">
         <ol style={{ margin: '0 0 16px', paddingLeft: 22 }}>
           <li style={{ ...prose, marginBottom: 10 }}>
-            <strong>You send the shipment documents.</strong> The vehicle, the destination, and the
-            supporting paperwork for the origin claim.
+            <strong>You send the shipment documents.</strong> The items from the checklist above:
+            the auction paperwork, the title, the routing documents, and the party details.
           </li>
           <li style={{ ...prose, marginBottom: 10 }}>
             <strong>Y7 prepares and files.</strong> As standing filing agent, we verify the
