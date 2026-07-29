@@ -50,7 +50,7 @@ const TEMPLATE_KEY_BY_TYPE = {
   individual: 'individual_v1.0.md',
   auction_buyer: 'individual_v1.0.md',
   dealer: 'dealer_agreement_v1.0.md',
-  exporter: 'exporter_v1.0.md',
+  exporter: 'exporter_v1.2.md', // AGR-3-T01: v1.2 in force (ADR-013) — must match AGREEMENT_TEMPLATE_MAP
 };
 
 // WAC-T01: the card set + terms come from the shared source of truth
@@ -795,6 +795,8 @@ function AgreementStep({ user, customerType, onBack, onSigned, onContinueWaiting
   // AGR-2-T01: the being-prepared screen has an EXIT now.
   const [advancing, setAdvancing] = useState(false);
   const [advanceError, setAdvanceError] = useState(null);
+  // AGR-3-T02: fields the party-interpolated document still needs.
+  const [missingParty, setMissingParty] = useState([]);
 
   // AGR-2-T01: leaving the wizard through the being-prepared state must
   // survive a reload — persist the classification the customer chose (the
@@ -836,12 +838,19 @@ function AgreementStep({ user, customerType, onBack, onSigned, onContinueWaiting
           `/api/public/agreement-template?type=${encodeURIComponent(customerType)}&lang=${encodeURIComponent(effectiveLang)}&v3=true`
         );
         if (r.status === 409) {
-          // ACC-1-T01: two distinct 409s — a locale gap (switch to English)
-          // vs "no approved document for this type" (exporter, with counsel).
+          // Three distinct 409s: a locale gap (switch to English), "no
+          // approved document for this type", and — AGR-3-T02 — the
+          // party-interpolated document refusing to render over blanks
+          // (missing company/billing facts), with the fields NAMED.
           let payload = null;
           try { payload = await r.json(); } catch { /* non-JSON 409 */ }
           if (alive) {
-            setLoadState(payload?.error === 'agreement_being_prepared' ? 'being_prepared' : 'locale_blocked');
+            if (payload?.error === 'party_data_required') {
+              setMissingParty(payload.missing || []);
+              setLoadState('party_data_required');
+            } else {
+              setLoadState(payload?.error === 'agreement_being_prepared' ? 'being_prepared' : 'locale_blocked');
+            }
           }
           return;
         }
@@ -899,6 +908,42 @@ function AgreementStep({ user, customerType, onBack, onSigned, onContinueWaiting
       <div>
         <h2 style={stepTitleStyle}>Review and sign — {TYPE_LABELS[customerType]}</h2>
         <p style={{ ...stepSubtitleStyle, marginTop: spacing.md }}>Loading agreement...</p>
+      </div>
+    );
+  }
+
+  if (loadState === 'party_data_required') {
+    // AGR-3-T02: the agreement names your company in its body — it refuses
+    // to render over blanks. Say which facts are missing and who fills them.
+    const FIELD_LABELS = {
+      company_name: 'legal company name',
+      billing_address: 'billing address',
+      contact_name: 'contact name',
+      phone: 'phone',
+      email: 'email',
+    };
+    const labels = missingParty.map((f) => FIELD_LABELS[f] || f);
+    return (
+      <div>
+        <h2 style={stepTitleStyle}>Almost there — the agreement names your company</h2>
+        <p style={stepSubtitleStyle}>
+          Your {TYPE_LABELS[customerType] || customerType} agreement states your company
+          details in its text, and {labels.length === 1 ? 'this detail is' : 'these details are'} not
+          on file yet: <strong>{labels.join(', ')}</strong>.
+        </p>
+        <p style={stepSubtitleStyle}>
+          Contact details you can update on your profile. Company and billing details are
+          confirmed with Y7 — contact us and we&rsquo;ll complete them together; the moment
+          they are on file, the document renders here ready to sign.
+        </p>
+        <div style={{ display: 'flex', gap: spacing.sm, marginTop: spacing.md }}>
+          <button type="button" onClick={onBack} style={secondaryBtnStyle}>Back</button>
+          {onContinueWaiting && (
+            <button type="button" onClick={() => onContinueWaiting()} style={primaryBtnStyle}>
+              Continue to my account
+            </button>
+          )}
+        </div>
       </div>
     );
   }
