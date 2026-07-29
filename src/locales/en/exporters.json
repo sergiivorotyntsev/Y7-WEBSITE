@@ -7,7 +7,7 @@
     "points": [
       "Carrier rate passed through at cost — zero markup on transport",
       "Our fee covers: CD listing, carrier vetting, dispatch, BOL/gate pass, monitoring",
-      "Optional carrier payment handling — we pay, you reimburse",
+      "Carrier payments handled by Y7 at no extra fee: you fund the account, we pay the carriers",
       "Dedicated account manager for 10+ vehicles/month"
     ]
   },
@@ -21,9 +21,9 @@
         "note": "Flat fee per vehicle"
       },
       {
-        "service": "Payment Processing",
-        "desc": "We pay the carrier on your behalf and handle all financial paperwork. You reimburse carrier cost + processing fee.",
-        "note": "Optional add-on"
+        "service": "Carrier Payments",
+        "desc": "We pay the carrier from the account you fund and handle all financial paperwork. No separate processing fee.",
+        "note": "Included"
       },
       {
         "service": "Volume Contracts",
@@ -241,7 +241,7 @@
       },
       {
         "q": "What's your pricing model?",
-        "a": "Cost-plus transparent. You see the carrier rate from Central Dispatch, and we add a $50 flat dispatch fee per vehicle. No hidden markup, no mystery percentage. Optional: we can pay the carrier on your behalf for a +$10 payment processing fee per load (you reimburse carrier cost + $10), so you don't manage carrier transfers yourself."
+        "a": "Cost-plus transparent. You see the carrier rate from Central Dispatch, and we add a $50 flat dispatch fee per vehicle. No hidden markup, no mystery percentage. Carrier payments are part of the service: you fund the account, Y7 pays the carrier from it and handles the financial paperwork, with no processing surcharge."
       },
       {
         "q": "What does the Exporter Program setup include?",

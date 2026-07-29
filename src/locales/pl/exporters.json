@@ -7,7 +7,7 @@
     "points": [
       "Stawka przewoźnika przekazywana po kosztach — zerowa marża na transport",
       "Nasza opłata pokrywa: ogłoszenie na Central Dispatch, weryfikację przewoźników, dyspozycję, BOL/gate pass, monitoring",
-      "Opcjonalna obsługa płatności dla przewoźnika — my płacimy, Ty zwracasz koszty",
+      "Płatności dla przewoźników obsługuje Y7 bez dopłaty: Ty zasilasz konto, my płacimy przewoźnikom",
       "Dedykowany opiekun konta dla 10+ pojazdów/miesiąc"
     ]
   },
@@ -21,9 +21,9 @@
         "note": "Stała opłata za pojazd"
       },
       {
-        "service": "Obsługa płatności",
-        "desc": "Płacimy przewoźnikowi w Twoim imieniu i zajmujemy się całą dokumentacją finansową. Zwracasz koszt przewoźnika + opłatę za obsługę.",
-        "note": "Opcjonalny dodatek"
+        "service": "Płatności dla przewoźników",
+        "desc": "Płacimy przewoźnikowi z konta, które zasilasz, i prowadzimy całą dokumentację finansową. Bez osobnej opłaty za obsługę.",
+        "note": "W cenie"
       },
       {
         "service": "Kontrakty ilościowe",
@@ -241,7 +241,7 @@
       },
       {
         "q": "Jaki model cenowy?",
-        "a": "Cost-plus, przejrzysty. Widzisz stawkę przewoźnika z Central Dispatch, plus dodajemy stałą opłatę dispatch $50 za pojazd. Bez ukrytych marży, bez tajemniczych procentów. Opcjonalnie: możemy zapłacić przewoźnikowi w Twoim imieniu za dodatkową opłatę za obsługę płatności $10 za zlecenie (zwracasz koszt przewoźnika + $10), żebyś nie zarządzał przelewami do przewoźników samodzielnie."
+        "a": "Cost-plus, przejrzysty. Widzisz stawkę przewoźnika z Central Dispatch, plus dodajemy stałą opłatę dispatch $50 za pojazd. Bez ukrytych marży, bez tajemniczych procentów. Płatności dla przewoźników są częścią usługi: Ty zasilasz konto, Y7 płaci z niego przewoźnikowi i prowadzi dokumentację finansową, bez opłaty za obsługę."
       },
       {
         "q": "Co obejmuje konfiguracja Programu dla eksporterów?",
