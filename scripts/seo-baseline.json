@@ -239,6 +239,10 @@
       },
       {
         "tag": "h3",
+        "text": "Certificate of Origin"
+      },
+      {
+        "tag": "h3",
         "text": "Car Shipping Cost"
       },
       {
@@ -341,8 +345,8 @@
       }
     ],
     "internalLinks": {
-      "total": 82,
-      "unique": 52
+      "total": 83,
+      "unique": 53
     }
   },
   "/exporters": {
