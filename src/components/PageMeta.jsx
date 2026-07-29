@@ -60,6 +60,11 @@ export default function PageMeta({ title, description, path = '', schema, ogType
         <meta property="article:section" content={articleSection} />
       )}
       <meta name="twitter:card" content="summary_large_image" />
+      {/* EXPORTERS-CO-T03: page-level Twitter card text. Without these two,
+          every PageMeta route fell back to the static index.html defaults
+          (the prerender keep-last dedup already handles the collapse). */}
+      <meta name="twitter:title" content={fullTitle} />
+      <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage || `${BASE}/og-image.svg`} />
       <link rel="canonical" href={canonical} />
       {noindex && <meta name="robots" content="noindex, follow" />}
