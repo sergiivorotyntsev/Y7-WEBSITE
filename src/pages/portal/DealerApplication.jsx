@@ -11,7 +11,15 @@ import VerificationBanner from '../../components/VerificationBanner';
 // submit or resubmit the required info, which feeds the SAME dealer_applications
 // row the admin review queue reads.
 
-const FIELDS = [
+// VER-1-T01: the field set is PER TYPE — nobody is asked for a document
+// their business model does not produce. MC/DOT identify a MOTOR CARRIER;
+// neither a dealer nor an exporter hauls, but the dealer set keeps its
+// existing contract (volume + one of MC/DOT/licence) while the exporter
+// set asks only what an exporter has: the company, the contact, and —
+// OPTIONALLY — US-entity identifiers if they exist. Routes/volume are
+// intake curiosity and are not asked of an account whose warehouses are
+// already registered.
+const DEALER_FIELDS = [
   { key: 'company_name', label: 'Company name', required: true },
   { key: 'contact_name', label: 'Contact name', required: true },
   { key: 'phone', label: 'Phone', required: true },
@@ -26,7 +34,20 @@ const FIELDS = [
   { key: 'zip_code', label: 'ZIP' },
 ];
 
-const EMPTY = FIELDS.reduce((a, f) => ({ ...a, [f.key]: '' }), {});
+const EXPORTER_FIELDS = [
+  { key: 'company_name', label: 'Legal company name', required: true },
+  { key: 'contact_name', label: 'Contact name', required: true },
+  { key: 'phone', label: 'Phone', required: true },
+  { key: 'dealer_license', label: 'US dealer license # (optional — only if you hold one)' },
+  { key: 'ein', label: 'EIN (optional — only if you have a US entity)' },
+  { key: 'address', label: 'Address' },
+  { key: 'city', label: 'City' },
+  { key: 'state', label: 'State' },
+  { key: 'zip_code', label: 'ZIP' },
+];
+
+const ALL_KEYS = [...new Set([...DEALER_FIELDS, ...EXPORTER_FIELDS].map(f => f.key))];
+const EMPTY = ALL_KEYS.reduce((a, k) => ({ ...a, [k]: '' }), {});
 
 export default function DealerApplication() {
   const { checkAuth } = useAuth();
@@ -45,7 +66,7 @@ export default function DealerApplication() {
       const json = await res.json();
       setData(json);
       const app = json.application || {};
-      setForm({ ...EMPTY, ...Object.fromEntries(FIELDS.map(f => [f.key, app[f.key] || ''])) });
+      setForm({ ...EMPTY, ...Object.fromEntries(ALL_KEYS.map(k => [k, app[k] || ''])) });
     } catch (err) {
       setError(err.message || 'Could not load your application.');
     } finally {
@@ -57,8 +78,14 @@ export default function DealerApplication() {
 
   function set(k, v) { setForm(prev => ({ ...prev, [k]: v })); }
 
+  // VER-1-T01: field set + submit rule per type. The one-of-three identifier
+  // rule applies to DEALERS only — an exporter without a US entity must
+  // still be able to pass verification.
+  const isExporter = data?.customer_type === 'exporter';
+  const FIELDS = isExporter ? EXPORTER_FIELDS : DEALER_FIELDS;
   const missingRequired = FIELDS.filter(f => f.required && !String(form[f.key] || '').trim());
-  const hasIdentifier = ['mc_number', 'dot_number', 'dealer_license'].some(k => String(form[k] || '').trim());
+  const hasIdentifier = isExporter
+    || ['mc_number', 'dot_number', 'dealer_license'].some(k => String(form[k] || '').trim());
   const canSubmit = missingRequired.length === 0 && hasIdentifier && !saving;
 
   async function onSubmit(e) {
@@ -147,7 +174,9 @@ export default function DealerApplication() {
           </div>
 
           <p style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: 12, color: 'var(--v2-ink-muted, #5c5851)', marginTop: 12 }}>
-            Provide at least one of MC number, DOT number, or dealer license so we can verify your business.
+            {isExporter
+              ? 'US-entity identifiers are optional — we verify your export business from your company details; nothing here requires a US license.'
+              : 'Provide at least one of MC number, DOT number, or dealer license so we can verify your business.'}
           </p>
 
           <button
@@ -158,7 +187,7 @@ export default function DealerApplication() {
           >
             {saving ? 'Submitting…' : status === 'needs_details' ? 'Resubmit application' : 'Submit application'}
           </button>
-          {!hasIdentifier && (
+          {!hasIdentifier && !isExporter && (
             <span style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: 12, color: 'var(--v2-ink-muted, #5c5851)', marginLeft: 12 }}>
               Add an MC#, DOT#, or dealer license to submit.
             </span>

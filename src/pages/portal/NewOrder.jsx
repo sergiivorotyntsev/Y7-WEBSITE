@@ -682,13 +682,41 @@ export default function NewOrder() {
     _vstatus &&
     _vstatus !== 'verified';
   if (_needsVerification && !success) {
+    // VER-1-T03: the customer is addressed as the kind of customer they
+    // are, and the screen names EVERY gate that stands between them and a
+    // direct order — verification, agreement, warehouses — with what to do
+    // about each. Three server gates no longer collapse into one
+    // dealer-worded screen.
+    const isExp = user?.customer_type === 'exporter';
+    const kind = isExp ? 'exporter' : 'dealer';
     const rejected = _vstatus === 'rejected';
     const heading = rejected
-      ? 'Your dealer account was not approved'
-      : 'Your dealer account is being verified';
+      ? `Your ${kind} account was not approved`
+      : `Your ${kind} account is being verified`;
     const bodyText = rejected
       ? 'Your application was not approved. Please contact us if you would like to discuss next steps.'
-      : "Before you can submit orders directly, our team verifies your dealership details. You can still request a quote in the meantime — direct orders open as soon as you're approved.";
+      : (isExp
+        ? 'Before you can submit orders directly, our team verifies your export business. Meanwhile you can send us orders by email as usual — direct orders open as soon as you are approved.'
+        : "Before you can submit orders directly, our team verifies your dealership details. You can still request a quote in the meantime — direct orders open as soon as you're approved.");
+    const gates = [
+      {
+        label: 'Company verification',
+        ok: false,
+        note: rejected ? 'not approved — contact us' : 'in review by Y7',
+      },
+      {
+        label: 'Transport agreement',
+        ok: !!user?.agreement_signed,
+        note: user?.agreement_signed ? 'signed' : 'not signed — open account setup to sign',
+      },
+      ...(isExp
+        ? [{
+            label: 'Delivery warehouse',
+            ok: !!user?.has_delivery_locations,
+            note: user?.has_delivery_locations ? 'on file' : 'add one under Locations',
+          }]
+        : []),
+    ];
     return (
       <div className={pp.shell}>
         <div className={pp.measureNarrow}>
@@ -699,7 +727,15 @@ export default function NewOrder() {
           }}>
             <div style={{ fontSize: '44px', marginBottom: '16px' }}>&#128737;</div>
             <h1 className={pp.pageTitle} style={{ marginBottom: 12 }}>{heading}</h1>
-            <p className={pp.pageSub} style={{ maxWidth: 440, marginBottom: 28 }}>{bodyText}</p>
+            <p className={pp.pageSub} style={{ maxWidth: 440, marginBottom: 16 }}>{bodyText}</p>
+            <div style={{ textAlign: 'left', margin: '0 auto 24px', fontFamily: 'var(--font-sans, system-ui)', fontSize: 13, lineHeight: 2 }}>
+              {gates.map(g => (
+                <div key={g.label}>
+                  <span style={{ color: g.ok ? '#0F6E56' : '#B45309', fontWeight: 700 }}>{g.ok ? '✓' : '•'}</span>{' '}
+                  <strong>{g.label}:</strong> {g.note}
+                </div>
+              ))}
+            </div>
             <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link to="/portal/application" className={v2b.cta}>View your application</Link>
               <button onClick={() => navigate('/portal/dashboard')} className={v2b.ghostOnPaper}>Go to Dashboard</button>
@@ -747,17 +783,22 @@ export default function NewOrder() {
     // EXP2: locations_required variant — CTA to register warehouses instead.
     const isTrial = gateBlock.error === 'trial_quotes_exhausted';
     const isLocations = gateBlock.error === 'locations_required';
+    // VER-1-T03: type-correct copy — and the server's own message wins where
+    // it carries nuance (rejected / needs_details) the local strings lack.
+    const _kind = user?.customer_type === 'exporter' ? 'exporter' : 'dealer';
+    const _biz = user?.customer_type === 'exporter' ? 'export business' : 'dealership details';
     const heading = isLocations
       ? 'Register your export warehouses first'
       : isTrial
         ? "You've reached your trial quote limit"
-        : 'Your dealer account is being verified';
+        : `Your ${_kind} account is being verified`;
     const bodyText = isLocations
       ? (gateBlock.message
         || 'Y7 assigns each shipment to the optimal warehouse from your saved locations — add every export warehouse you have a contract with, then come back to place your order.')
       : isTrial
-        ? 'Your account has used its trial quote requests pending verification. Once our team verifies your dealership, you can submit without limits — we’ll be in touch.'
-        : 'Thanks for registering as a dealer. Before you can submit orders directly, our team verifies your dealership details. We’ll email you as soon as your account is approved.';
+        ? `Your account has used its trial quote requests pending verification. Once our team verifies your ${_biz}, you can submit without limits — we’ll be in touch.`
+        : (gateBlock.message
+          || `Before you can submit orders directly, our team verifies your ${_biz}. We’ll email you as soon as your account is approved.`);
     return (
       <div className={pp.shell}>
         <div className={pp.measureNarrow}>
