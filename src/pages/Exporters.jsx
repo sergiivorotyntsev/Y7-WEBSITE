@@ -118,7 +118,7 @@ export default function Exporters() {
     setSubmitting(true);
     try {
       await apiPost('/api/public/contact', {
-        name: `${form.company_name} — ${form.contact_name}`.trim(),
+        name: [form.company_name, form.contact_name].filter(Boolean).join(' — '),
         email: form.email,
         phone: form.phone ? getCleanPhone(form.phone) : '',
         message: [
