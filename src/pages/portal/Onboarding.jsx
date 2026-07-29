@@ -50,7 +50,7 @@ const TEMPLATE_KEY_BY_TYPE = {
   individual: 'individual_v1.0.md',
   auction_buyer: 'individual_v1.0.md',
   dealer: 'dealer_agreement_v1.0.md',
-  exporter: 'exporter_v1.0.md',
+  exporter: 'exporter_v1.2.md', // AGR-3-T01: v1.2 in force (ADR-013) — must match AGREEMENT_TEMPLATE_MAP
 };
 
 // WAC-T01: the card set + terms come from the shared source of truth

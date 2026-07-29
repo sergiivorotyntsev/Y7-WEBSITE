@@ -520,7 +520,10 @@ export default function Profile() {
                 individual contract (409 agreement_being_prepared). Show the
                 honest waiting state instead of a Sign button that would have
                 led to the wrong document. */}
-            {user?.customer_type === 'exporter' && !user?.agreement_signed ? (
+            {/* AGR-3-T01: keyed on DOCUMENT AVAILABILITY now — with exporter
+                v1.2 wired this block self-suppresses and the normal signable
+                flow below takes over; it returns for any future doc-less type. */}
+            {user?.agreement_document_available === false && !user?.agreement_signed ? (
               <div
                 className={pp.warningBlock || pp.errorBlock}
                 style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}
@@ -572,6 +575,12 @@ export default function Profile() {
               </div>
               {!user?.agreement_signed && (
                 <button onClick={() => {
+                  // AGR-3-T01: the exporter document is party-interpolated and
+                  // signed only in the authenticated wizard — never the legacy page.
+                  if (user?.customer_type === 'exporter') {
+                    navigate('/portal/onboarding');
+                    return;
+                  }
                   const t = user?.customer_type === 'dealer' ? 'dealer' : 'shipper';
                   navigate(`/agreement?customer_id=${user?.id}&type=${t}`);
                 }} className={v2b.ghostOnPaper} style={{ minHeight: 0, padding: '6px 14px', fontSize: '11px' }}>Sign</button>
