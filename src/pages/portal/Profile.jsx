@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CheckIcon } from '../../components/icons';
 import AccountTypeModal from '../../components/AccountTypeModal';
@@ -289,6 +289,81 @@ function TypeRequestStatus({ refreshKey }) {
   return null;
 }
 
+
+// VER-1-T02: the exporter maintains the list of US dealers they buy
+// through — the relationship Y7 needs on file. Internal record: never sent
+// to any carrier. Suggestions from CO requests are propose-only.
+function AuctionDealersSection() {
+  const { user } = useAuth();
+  const [data, setData] = useState(null);
+  const [name, setName] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState(null);
+
+  const load = useCallback(() => {
+    portalFetch('/api/portal/data/auction-dealers')
+      .then(async (r) => (r.ok ? r.json() : Promise.reject(new Error((await r.json().catch(() => ({})))?.detail?.message || `HTTP ${r.status}`))))
+      .then(setData)
+      .catch((e) => setErr(e.message));
+  }, []);
+  useEffect(() => { if (user?.customer_type === 'exporter') load(); }, [user?.customer_type, load]);
+
+  if (user?.customer_type !== 'exporter') return null;
+
+  const add = async (n) => {
+    setBusy(true); setErr(null);
+    try {
+      const r = await portalFetch('/api/portal/data/auction-dealers', {
+        method: 'POST', body: JSON.stringify({ business_name: n }),
+      });
+      if (!r.ok) throw new Error('Could not add');
+      setName(''); load();
+    } catch (e) { setErr(e.message); } finally { setBusy(false); }
+  };
+
+  return (
+    <div style={{ paddingTop: '12px', borderTop: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))' }}>
+      <div className={pp.label} style={{ marginBottom: 4 }}>Auction Dealers</div>
+      <p style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: 11, color: 'var(--v2-ink-60, rgba(5,6,7,0.6))', margin: '0 0 8px' }}>
+        The US dealers you buy through at auctions — an internal record for Y7; never shared with carriers.
+      </p>
+      {err && <p style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: 12, color: '#9B1C1C' }}>{err}</p>}
+      {(data?.items || []).map((d) => (
+        <div key={d.id} style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: 13, padding: '3px 0' }}>
+          <strong>{d.business_name}</strong>
+          <span style={{ color: 'var(--v2-ink-60, rgba(5,6,7,0.6))', fontSize: 11 }}>
+            {' '}{[d.city, d.state].filter(Boolean).join(', ')}
+          </span>
+        </div>
+      ))}
+      {(data?.suggestions || []).length > 0 && (
+        <div style={{ margin: '6px 0', padding: 8, background: '#FFFBEB', border: '1px solid #FDE68A', borderRadius: 8 }}>
+          <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: 11, fontWeight: 700, color: '#92400E' }}>
+            Seen on your CO requests — add if this is a dealer you buy through:
+          </div>
+          {data.suggestions.map((n) => (
+            <div key={n} style={{ display: 'flex', alignItems: 'center', fontFamily: 'var(--font-sans, system-ui)', fontSize: 12, padding: '2px 0' }}>
+              <span>{n}</span>
+              <button type="button" onClick={() => add(n)} disabled={busy}
+                style={{ marginLeft: 'auto', fontSize: 11, padding: '2px 10px', borderRadius: 6, border: 'none', background: '#0F6E56', color: '#fff', cursor: 'pointer' }}>
+                Add
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+      <div style={{ display: 'flex', gap: 8, marginTop: 6 }}>
+        <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Dealer business name"
+          style={{ flex: 1, padding: '8px 10px', fontFamily: 'var(--font-sans, system-ui)', fontSize: 13, border: '1px solid var(--v2-line-on-paper, rgba(5,6,7,0.14))', borderRadius: 8 }} />
+        <button type="button" onClick={() => name.trim() && add(name.trim())} disabled={busy || !name.trim()}
+          className={v2b.ghostOnPaper} style={{ minHeight: 0, padding: '6px 14px', fontSize: 12 }}>
+          Add dealer
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function Profile() {
   const { user, checkAuth } = useAuth();
   const navigate = useNavigate();
@@ -467,7 +542,10 @@ export default function Profile() {
             />
           )}
 
-          {user?.customer_type && user.customer_type !== 'dealer' && (
+          {/* VER-1-T03: an EXPORTER is not invited to "upgrade" to dealer —
+              that is a different business, not an upgrade. Individuals keep
+              the invitation. */}
+          {user?.customer_type && !['dealer', 'exporter'].includes(user.customer_type) && (
             <div style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <button
                 onClick={() => navigate('/dealer-quote?prefill=1')}
@@ -616,7 +694,10 @@ export default function Profile() {
         {/* NEX-1: email order-intake senders (dealer/exporter only — matches
             the admin-side SendersPanel gating in OverviewTab) */}
         {['dealer', 'exporter'].includes(user?.customer_type) && (
-          <IntakeSendersSection />
+          <>
+            <IntakeSendersSection />
+            <AuctionDealersSection />
+          </>
         )}
 
         {/* ACC-1-T06: who has access to this account — every type */}

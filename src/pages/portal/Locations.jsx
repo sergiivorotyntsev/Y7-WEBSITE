@@ -215,7 +215,7 @@ export function LocationsManager({ heading = null, description = null, onLocatio
   const [toast, setToast] = useState(null);
 
   const fetchLocations = useCallback(() => {
-    portalFetch('/api/portal/locations')
+    portalFetch('/api/portal/locations?include_inactive=true')
       .then(r => r.ok ? r.json() : { items: [] })
       .then(data => {
         const list = data.items || [];
@@ -342,8 +342,21 @@ export function LocationsManager({ heading = null, description = null, onLocatio
         </div>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          {/* VER-1-T04: deactivated warehouses stay VISIBLE — an account
+              whose only warehouse was deactivated read as "empty" and the
+              owner read "empty" as "lost". Deactivated rows render dimmed
+              with an explicit state instead of vanishing. */}
           {items.map(loc => (
-            editingId === loc.id ? (
+            loc.deactivated_at ? (
+              <div key={loc.id} style={{ opacity: 0.55, padding: '10px 12px', border: '1px dashed rgba(5,6,7,0.25)', borderRadius: 8, fontFamily: 'var(--font-sans, system-ui)', fontSize: 13 }}>
+                <strong>{loc.label || loc.name}</strong>
+                <span style={{ color: 'var(--v2-ink-muted, #5c5851)' }}> — {loc.city}, {loc.state}</span>
+                <span style={{ marginLeft: 8, fontSize: 10, fontWeight: 700, color: '#92400E', background: '#FEF3C7', borderRadius: 8, padding: '1px 6px' }}>DEACTIVATED</span>
+                <div style={{ fontSize: 11, color: 'var(--v2-ink-muted, #5c5851)', marginTop: 2 }}>
+                  Not used for orders. Contact Y7 to reactivate it.
+                </div>
+              </div>
+            ) : editingId === loc.id ? (
               <LocationForm
                 key={loc.id}
                 initial={{
