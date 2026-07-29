@@ -369,14 +369,20 @@
   flex-direction: column;
   gap: 3px;
 }
+/* CO-BLOCK-T04: nowrap keeps "US Port ->" welded to the row start; a long
+   country name (Dominican Republic, United Arab Emirates) wraps INSIDE its own
+   box instead of pushing the whole label onto its own line, so every card's
+   first line stays aligned. */
 .destRoute {
   display: flex;
   align-items: baseline;
   gap: 8px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 .destFrom {
   color: var(--v2-ink-muted, #5c5851);
+  flex: none;
+  white-space: nowrap;
 }
 .destArrow {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
@@ -384,6 +390,7 @@
   color: var(--v2-ink-muted, #5c5851);
 }
 .destCountry {
+  min-width: 0;
   font-size: 15px;
   font-weight: 600;
   color: var(--v2-ink, #050607);
