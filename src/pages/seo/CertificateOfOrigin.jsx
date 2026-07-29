@@ -44,11 +44,13 @@ const checkItem = {
   listStyle: 'none',
 };
 
+// CO-COPY-T04: neutral ink markers. Pine is reserved for success/verified
+// state, and these are conditions the reader must still satisfy.
 const checkMark = {
   position: 'absolute',
   left: 0,
   top: 10,
-  color: '#0F6E56',
+  color: '#2C2C2A',
   fontWeight: 700,
 };
 
