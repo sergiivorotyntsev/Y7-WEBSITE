@@ -108,6 +108,10 @@ export default function AccountTypeModal({ onComplete, mode = 'initial', current
   const [selected, setSelected] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
+  // ACC-3-T02: in edit mode this modal SUBMITS A REQUEST — it no longer
+  // changes the type (the backend refuses re-classification, ACC-3-T01).
+  const [note, setNote] = useState('');
+  const [sent, setSent] = useState(false);
   // ACC-1-T06: server-computed consequence preview — the same idea the admin
   // change-type dialog has. The switch clears the signed agreement and resets
   // verification; the customer sees that BEFORE confirming, not in a
@@ -138,6 +142,28 @@ export default function AccountTypeModal({ onComplete, mode = 'initial', current
     if (!selected || submitting) return;
     setSubmitting(true);
     setError(null);
+    // ACC-3-T02: re-classification is a REQUEST — Y7 reviews it; nothing
+    // changes until approved. First classification (initial mode) below
+    // keeps the direct PATCH.
+    if (isEdit) {
+      try {
+        const r = await portalFetch('/api/portal/data/account-type-request', {
+          method: 'POST',
+          body: JSON.stringify({ requested_type: selected, note: note.trim() }),
+        });
+        const data = await r.json().catch(() => ({}));
+        if (!r.ok) {
+          const msg = data.detail?.message || data.detail || 'Failed to send the request';
+          throw new Error(typeof msg === 'string' ? msg : JSON.stringify(msg));
+        }
+        setSent(true);
+      } catch (e) {
+        setError(e.message || 'Failed to send the request');
+      } finally {
+        setSubmitting(false);
+      }
+      return;
+    }
     try {
       const body = { customer_type: selected };
       const response = await portalFetch('/api/portal/data/customer-type', {
@@ -238,13 +264,27 @@ export default function AccountTypeModal({ onComplete, mode = 'initial', current
           lineHeight: 1.6,
         }}>
           {isEdit
-            ? 'Select a new account type below.'
+            ? 'Pick the type you want and send a request — our team reviews it, and nothing changes on your account until it is approved.'
             : 'To get started, please tell us what kind of customer you are. This helps us show you the right forms and the right agreement.'}
         </p>
         {isEdit && (
           <p style={{ fontFamily: fonts.sans, fontSize: 12, color: colors.accent, marginBottom: 16, lineHeight: 1.5 }}>
-            Changing your account type will require re-signing your agreement under the new terms.
+            If approved, the change may require re-signing your agreement under the new terms —
+            the preview below shows exactly what would happen.
           </p>
+        )}
+
+        {isEdit && sent && (
+          <div style={{ padding: 14, background: '#F0FAF6', border: '1px solid #0F6E56', borderRadius: 8, marginBottom: 16, fontFamily: fonts.sans, fontSize: 13, color: '#0F6E56', lineHeight: 1.6 }}>
+            <strong>Request sent.</strong> Y7 will review it and email you the decision —
+            nothing changes on your account until then. You can see the request status on
+            your profile; sending another request replaces this one.
+            <div style={{ marginTop: 10 }}>
+              <button type="button" onClick={() => onClose?.()} style={{ padding: '8px 16px', background: '#0F6E56', color: '#fff', border: 'none', borderRadius: 8, cursor: 'pointer', fontFamily: fonts.sans, fontSize: 13 }}>
+                Close
+              </button>
+            </div>
+          </div>
         )}
 
         <div style={{ display: 'grid', gap: 12, marginBottom: 20 }}>
@@ -345,6 +385,23 @@ export default function AccountTypeModal({ onComplete, mode = 'initial', current
           </div>
         )}
 
+        {/* ACC-3-T02: the customer explains WHY — the operator reads it on the card. */}
+        {isEdit && !sent && (
+          <div style={{ marginBottom: 16 }}>
+            <label style={{ fontFamily: fonts.sans, fontSize: 12, fontWeight: 600, color: colors.text, display: 'block', marginBottom: 4 }}>
+              Why do you need this change? (optional, helps our review)
+            </label>
+            <textarea
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              rows={2}
+              maxLength={2000}
+              placeholder="e.g. We started exporting vehicles to Europe this quarter"
+              style={{ width: '100%', boxSizing: 'border-box', padding: '10px 12px', border: `1px solid ${colors.border}`, borderRadius: 8, fontFamily: fonts.sans, fontSize: 13, resize: 'vertical' }}
+            />
+          </div>
+        )}
+
         {error && (
           <div style={{
             padding: 12,
@@ -362,27 +419,36 @@ export default function AccountTypeModal({ onComplete, mode = 'initial', current
         <button
           type="button"
           onClick={handleSubmit}
-          disabled={!selected || submitting || previewState === 'loading' || blocked}
-          style={{
-            width: '100%',
-            padding: 14,
-            background: selected && !submitting && !blocked && previewState !== 'loading' ? colors.accent : colors.bgMuted,
-            color: selected && !submitting && !blocked && previewState !== 'loading' ? '#fff' : colors.textMuted,
-            border: 'none',
-            borderRadius: 12,
-            fontSize: 14,
-            fontWeight: 600,
-            cursor: selected && !submitting && !blocked && previewState !== 'loading' ? 'pointer' : 'not-allowed',
-            fontFamily: fonts.sans,
-          }}
+          disabled={!selected || submitting || sent || previewState === 'loading' || (!isEdit && blocked)}
+          style={(() => {
+            // Edit mode: blockers don't stop a REQUEST (the operator resolves
+            // or declines with reason) — only initial classification is
+            // hard-blocked client-side.
+            const canSubmit = !!selected && !submitting && !sent
+              && previewState !== 'loading' && (isEdit || !blocked);
+            return {
+              width: '100%',
+              padding: 14,
+              background: canSubmit ? colors.accent : colors.bgMuted,
+              color: canSubmit ? '#fff' : colors.textMuted,
+              border: 'none',
+              borderRadius: 12,
+              fontSize: 14,
+              fontWeight: 600,
+              cursor: canSubmit ? 'pointer' : 'not-allowed',
+              fontFamily: fonts.sans,
+            };
+          })()}
         >
           {submitting
             ? 'Saving...'
             : previewState === 'loading'
               ? 'Checking…'
-              : ['dealer', 'exporter'].includes(selected)
-                ? 'Apply for activation'
-                : 'Continue'}
+              : isEdit
+                ? 'Send request'
+                : ['dealer', 'exporter'].includes(selected)
+                  ? 'Apply for activation'
+                  : 'Continue'}
         </button>
 
         {!isEdit && (

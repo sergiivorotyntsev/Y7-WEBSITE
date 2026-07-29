@@ -39,6 +39,7 @@ export default function Billing() {
   const [data, setData] = useState(null);
   const [invoices, setInvoices] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(null);
   const now = new Date();
   const [from, setFrom] = useState(isoDate(new Date(now.getFullYear(), now.getMonth(), 1)));
   const [to, setTo] = useState(isoDate(now));
@@ -47,18 +48,39 @@ export default function Billing() {
     // EXP-F6: revised money model — show only Y7 service-fee invoices + the
     // outstanding-fee total. The off-app funding account (transport/storage/
     // dry-run) is NOT tracked, so no balance card and no ledger transactions.
+    // ACC-3-T03: a non-OK response must never masquerade as "billing is for
+    // dealer accounts only" (the AGR-2 Locations lesson — a permission error
+    // rendering as empty/absent data). Surface the server's message instead.
+    const readJson = async (r) => {
+      const body = await r.json().catch(() => ({}));
+      if (!r.ok) {
+        throw new Error(
+          body.detail?.message || (typeof body.detail === 'string' ? body.detail : `Could not load billing (HTTP ${r.status})`)
+        );
+      }
+      return body;
+    };
     Promise.all([
-      portalFetch('/api/portal/billing/summary').then(r => r.json()),
-      portalFetch('/api/portal/billing/invoices').then(r => r.json()),
+      portalFetch('/api/portal/billing/summary').then(readJson),
+      portalFetch('/api/portal/billing/invoices').then(readJson),
     ]).then(([summary, invs]) => {
       setData(summary);
       setInvoices(invs.invoices || []);
       setLoading(false);
-    }).catch(() => setLoading(false));
+    }).catch((e) => { setLoadError(e?.message || 'Could not load billing.'); setLoading(false); });
   }, []);
 
   if (loading) {
     return <div style={{ padding: '80px 24px', textAlign: 'center', fontFamily: fonts.sans, color: colors.textMuted }}>Loading...</div>;
+  }
+
+  if (loadError) {
+    return (
+      <div className={`${pp.shell} ${pp.measureNarrow}`}>
+        <PageMeta title="Billing" />
+        <p style={{ fontFamily: fonts.sans, color: colors.textMuted }}>{loadError}</p>
+      </div>
+    );
   }
 
   if (!data?.is_dealer) {
