@@ -735,6 +735,15 @@
   margin: 12px 0 8px;
 }
 
+/* CO-BLOCK-T01: CTA row: gradient button + the descriptive keyword anchor. */
+.coActions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 18px;
+}
+
 /* HEROIMG-T01: audience-specific hero (exporters = loaded car carrier against
    rim-lit containers, reads as auction-to-port). Recomputed against the 429px
    band: width min(52vw,760px) with bottom -4% keeps the 16:9 height inside the

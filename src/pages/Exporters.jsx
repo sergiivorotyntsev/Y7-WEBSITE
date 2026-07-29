@@ -553,9 +553,16 @@ export default function Exporters() {
             <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('co.title')}</h2>
             <p className={styles.coBody}>{t('co.body')}</p>
             <p className={`${v2t.monoData} ${styles.coFacts}`}>{t('co.facts')}</p>
-            <p className={styles.coBody}>
-              <Link to="/certificate-of-origin" className={v2t.bodyLinkOnPaper}>{t('co.linkLabel')}</Link>
-            </p>
+            {/* CO-BLOCK-T01: real CTA (gradient primitive; the block's viewport
+                carries no other red fill, so the Signal Budget allows it). The
+                descriptive keyword anchor stays alongside: the button carries
+                the action, the link keeps the ranking-bearing anchor text. */}
+            <div className={styles.coActions}>
+              <Link to="/certificate-of-origin" className={`${v2b.base} ${v2b.cta}`}>{t('co.cta')}</Link>
+              <p className={styles.coBody}>
+                <Link to="/certificate-of-origin" className={v2t.bodyLinkOnPaper}>{t('co.linkLabel')}</Link>
+              </p>
+            </div>
           </section>
 
           {destinations && destItems.length > 0 && (
