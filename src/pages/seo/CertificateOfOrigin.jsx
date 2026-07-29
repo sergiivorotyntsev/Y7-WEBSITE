@@ -249,6 +249,10 @@ export default function CertificateOfOrigin() {
           as US-origin. Without the certificate, the importer cannot claim the preferential rate;
           with it, a qualifying shipment is eligible for the 0% rate.
         </p>
+        <p style={prose}>
+          The rate is a defined window: it runs until 31 December 2029, and may be suspended
+          earlier if the conditions of the EU-US trade framework cease to be met.
+        </p>
         <p style={muted}>
           The certificate is issued electronically (an eCO) and joins the rest of the export
           document set your freight forwarder presents at destination.
