@@ -712,26 +712,43 @@
   flex-wrap: wrap;
 }
 
-/* CO aside — paper, before Destinations. */
+/* CO aside — before Destinations. CO-BLOCK-T02: rendered as the boardSolid
+   dark panel on the paper band; on-dark text tokens below. */
 .coBlock {
   margin-bottom: clamp(36px, 5vh, 52px);
   max-width: 760px;
 }
 
-.coKicker {
-  color: var(--v2-ink-muted, #5c5851);
+/* Static offer panel, not a link: suppress the primitive's hover lift (the
+   actions live inside the panel). Doubled class beats boardSolid:hover at
+   equal specificity. */
+.coPanel.coPanel {
+  padding: clamp(24px, 3.5vw, 36px);
+}
+.coPanel.coPanel:hover {
+  transform: none;
+  box-shadow: none;
 }
 
-.coBody {
+.coKickerOnDark {
+  color: var(--v2-text-on-dark-muted, #9c9b96);
+}
+
+.coTitleOnDark {
+  color: var(--v2-text-on-dark, #fff7ed);
+}
+
+.coBodyOnDark {
   font-size: 15px;
-  color: var(--v2-ink-muted, #5c5851);
+  color: var(--v2-text-on-dark-secondary, #e8e0d3);
   line-height: 1.8;
   margin: 0;
 }
 
-/* EXPORTERS-CO-T02: mono facts row (prices + turnaround) under the CO body. */
-.coFacts {
-  color: var(--v2-ink, #050607);
+/* EXPORTERS-CO-T02 / CO-BLOCK-T02: mono facts row, white per the "gradient CTA
+   in section -> stats go white, not red" law. */
+.coFactsOnDark {
+  color: var(--v2-text-on-dark, #fff7ed);
   margin: 12px 0 8px;
 }
 

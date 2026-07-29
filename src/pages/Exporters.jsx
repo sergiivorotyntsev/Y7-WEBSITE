@@ -545,22 +545,27 @@ export default function Exporters() {
               (serves non-clients too), named regulation, open pricing, link to
               the dedicated /certificate-of-origin page. Paper aside before
               Destinations; no new schema. */}
-          <section className={styles.coBlock}>
+          {/* CO-BLOCK-T02: the block reads as a distinct offer via the existing
+              boardSolid primitive (the sanctioned dark card on manifest paper,
+              same treatment family as the /services Tier 1 anchors). Static
+              panel, not a link: page-level rule suppresses the primitive's
+              hover lift; the actions live inside. */}
+          <section className={`${v2c.boardSolid} ${styles.coBlock} ${styles.coPanel}`}>
             {/* Plain mono kicker, NOT the eyebrow+rule pair: docs + destinations
                 already hold the page's consecutive-pair cap (2), and a third
                 pair-opener between them would break the density law. */}
-            <p className={`${v2t.eyebrowPlain} ${styles.coKicker}`}>{t('co.kicker')}</p>
-            <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('co.title')}</h2>
-            <p className={styles.coBody}>{t('co.body')}</p>
-            <p className={`${v2t.monoData} ${styles.coFacts}`}>{t('co.facts')}</p>
+            <p className={`${v2t.eyebrowPlain} ${styles.coKickerOnDark}`}>{t('co.kicker')}</p>
+            <h2 className={`${v2t.sectionDisplay} ${styles.h2} ${styles.coTitleOnDark}`}>{t('co.title')}</h2>
+            <p className={styles.coBodyOnDark}>{t('co.body')}</p>
+            <p className={`${v2t.monoData} ${styles.coFactsOnDark}`}>{t('co.facts')}</p>
             {/* CO-BLOCK-T01: real CTA (gradient primitive; the block's viewport
                 carries no other red fill, so the Signal Budget allows it). The
                 descriptive keyword anchor stays alongside: the button carries
                 the action, the link keeps the ranking-bearing anchor text. */}
             <div className={styles.coActions}>
               <Link to="/certificate-of-origin" className={`${v2b.base} ${v2b.cta}`}>{t('co.cta')}</Link>
-              <p className={styles.coBody}>
-                <Link to="/certificate-of-origin" className={v2t.bodyLinkOnPaper}>{t('co.linkLabel')}</Link>
+              <p className={styles.coBodyOnDark}>
+                <Link to="/certificate-of-origin" className={v2t.bodyLinkOnDark}>{t('co.linkLabel')}</Link>
               </p>
             </div>
           </section>
