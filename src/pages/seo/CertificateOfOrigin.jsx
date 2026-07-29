@@ -11,9 +11,12 @@ import vb from '../../styles/v2/buttons.module.css';
 // (Sergii, 2026-07-28): $99 established exporter clients (custom per-client
 // pricing possible) / $150 one-off via the website; 7 business days request to
 // issued eCO; EU Regulation 2026/1455 (0% duty vs standard 10%, in force since
-// 1 Jul 2026, US-origin vehicles); twin proof of US origin + direct transport
-// per Article 59a UCC-IA, introduced by Regulation 2026/1422 (CO-COPY-T01: 59a
-// belongs to 1422, NOT 1455); filing via the Charles River Regional Chamber
+// 1 Jul 2026, US-origin vehicles, until 31 Dec 2029, suspendable earlier);
+// twin proof of US origin + direct transport per Article 59a UCC-IA, inserted
+// by Commission Implementing Regulation (EU) 2026/1422 amending 2015/2447
+// (CO-COPY-T01/T08: 59a belongs to 1422, NOT 1455); third-country transit
+// needs customs supervision + non-alteration; evidence must be with the
+// declarant at declaration; filing via the Charles River Regional Chamber
 // (Newton/Needham MA) portal; Y7 acts as standing filing agent.
 // Do not add regulation citations, duty rates for other origins, or
 // per-country rules that are not in that list.
@@ -207,7 +210,7 @@ export default function CertificateOfOrigin() {
       tldr={{
         kicker: 'Certificate of Origin, in brief',
         ariaLabel: 'Certificate of Origin service summary',
-        text: 'A Certificate of Origin documents a vehicle as US-origin, which is what EU Regulation 2026/1455 (in force since 1 July 2026) requires for the 0% import duty rate, in place of the standard 10%, on vehicles entering the EU. Y7 Logistics (Licensed & Bonded FMCSA Broker, MC #1741537) prepares and files the certificate as standing agent through the Charles River Regional Chamber portal: $99 per certificate for established Y7 exporter clients, $150 for a one-off request, issued eCO in 7 business days. Eligibility is confirmed per shipment; the importer must also prove US origin and direct transport under Article 59a UCC-IA (Regulation 2026/1422).',
+        text: 'A Certificate of Origin documents a vehicle as US-origin, which is what EU Regulation 2026/1455 (in force since 1 July 2026) requires for the 0% import duty rate, in place of the standard 10%, on vehicles entering the EU. Y7 Logistics (Licensed & Bonded FMCSA Broker, MC #1741537) prepares and files the certificate as standing agent through the Charles River Regional Chamber portal: $99 per certificate for established Y7 exporter clients, $150 for a one-off request, issued eCO in 7 business days. Eligibility is confirmed per shipment; the importer must also prove US origin and direct transport under Article 59a UCC-IA (Commission Implementing Regulation (EU) 2026/1422).',
       }}
       ctaLabel="Explore the Exporter Program"
       ctaTo="/exporters"
@@ -226,7 +229,7 @@ export default function CertificateOfOrigin() {
         },
         {
           q: 'What is the direct-transport requirement?',
-          a: 'It is half of the twin proof required by Article 59a UCC-IA, introduced by EU Regulation 2026/1422: the importer proves both that the vehicle is of US origin and that the shipment traveled directly and arrived unaltered. The 0% rate itself comes from EU Regulation 2026/1455. We confirm the condition, together with the rest of the eligibility checklist, per shipment before filing.',
+          a: 'It is half of the twin proof required by Article 59a UCC-IA, inserted by Commission Implementing Regulation (EU) 2026/1422: the importer proves both that the vehicle is of US origin and that the shipment traveled directly and arrived unaltered, including customs supervision for any third-country transit. The 0% rate itself comes from EU Regulation 2026/1455. We confirm the condition, together with the rest of the eligibility checklist, per shipment before filing.',
         },
         {
           q: 'Who prepares and files the certificate?',
@@ -262,17 +265,22 @@ export default function CertificateOfOrigin() {
       <Section title="The Twin Proof: US Origin and Direct Transport (Article 59a UCC-IA)">
         <p style={prose}>
           The 0% rate is conditional, and the condition lives in a separate instrument from the
-          rate itself. Article 59a UCC-IA, introduced by EU Regulation 2026/1422, requires the
+          rate itself. Commission Implementing Regulation (EU) 2026/1422 amended the UCC
+          Implementing Act (Regulation 2015/2447) to insert a new Article 59a, which requires the
           importer to prove two things at once: that the vehicle is of non-preferential US origin,
           and that the shipment traveled directly, arriving unaltered. In plain words: the vehicle
           must move from the US to the EU destination as one continuous shipment, and what arrives
-          must be the vehicle that left. The certificate covers the origin half; the routing
-          covers the other.
+          must be the vehicle that left. Where the routing passes through a third country, the
+          operator must be able to show the vehicle stayed under customs supervision there and was
+          not altered. The certificate covers the origin half; the routing documents cover the
+          other.
         </p>
         <p style={muted}>
-          Direct transport is a property of the shipment, not of the paperwork, which is why we
-          confirm eligibility per shipment rather than assuming it. If your routing raises a
-          question, we flag it before you pay for a filing.
+          The evidence must be in the declarant's possession when the customs declaration is
+          lodged: it is assembled before the vehicle ships, not reconstructed after. Direct
+          transport is a property of the shipment, not of the paperwork, which is why we confirm
+          eligibility per shipment rather than assuming it. If your routing raises a question, we
+          flag it before you pay for a filing.
         </p>
       </Section>
 
