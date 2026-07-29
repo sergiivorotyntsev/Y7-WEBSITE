@@ -281,8 +281,9 @@ export default function CertificateOfOrigin() {
           The evidence must be in the declarant's possession when the customs declaration is
           lodged: it is assembled before the vehicle ships, not reconstructed after. Direct
           transport is a property of the shipment, not of the paperwork, which is why we confirm
-          eligibility per shipment rather than assuming it. If your routing raises a question, we
-          flag it before you pay for a filing.
+          eligibility per shipment rather than assuming it. The routing evidence is reviewed when
+          the document package is assembled, and anything that undermines direct transport
+          surfaces before we file.
         </p>
       </Section>
 
