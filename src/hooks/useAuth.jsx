@@ -171,13 +171,25 @@ function _normalizeUser(data) {
     delivery_city: data.delivery_city || null,
     delivery_state: data.delivery_state || null,
     delivery_zip: data.delivery_zip || null,
-    // AGR-GATE-T01: the BILLING address. /me has always served these
-    // (portal_auth.py:2152) and this normalizer silently dropped them, so no
-    // portal screen could show a customer the address printed in his own
-    // agreement. Caught by the runtime smoke: after saving billing and
-    // navigating BACK to Profile the fields rendered empty, and the visible
-    // pre-fill below could never see user.address — it always fell through to
-    // the delivery address, quietly recreating the inference d6b80157 removed.
+    // AGR-GATE-T01: the BILLING address.
+    //
+    // AGR-FIX-P04: this comment used to say "/me has always served these and
+    // this normalizer silently dropped them". That is wrong, and it contradicts
+    // the server-side comment in the SAME commit (portal_auth.py:2224-2231).
+    // BOTH halves dropped them: the SELECT carried the columns (they feed
+    // missing_agreement_fields), but the /me RESPONSE did not — TRANSPORT
+    // c1689f85 is what added result["address"]/["city"]/["state"]/["zip_code"]
+    // at portal_auth.py:2232-2235. So this normalizer was the SECOND drop, not
+    // the only one, and portal_auth.py:2152 is the query, not the response.
+    // Left uncorrected, a future sweep would read "the server always served
+    // them", conclude the server is fine, and look only here.
+    //
+    // The consequence was real either way: no portal screen could show a
+    // customer the address printed in his own agreement. Caught by the runtime
+    // smoke — after saving billing and navigating BACK to Profile the fields
+    // rendered empty, and the visible pre-fill could never see user.address, so
+    // it always fell through to the delivery address, quietly recreating in the
+    // UI the inference d6b80157 removed from the server.
     address: data.address || null,
     city: data.city || null,
     state: data.state || null,
@@ -202,9 +214,25 @@ function _normalizeUser(data) {
       data.agreement_document_available !== undefined
         ? !!data.agreement_document_available
         : null,
+    // AGR-FIX-P01: tri-state, like has_delivery_locations and
+    // agreement_document_available above — null when the backend did not send
+    // it, NEVER [].
+    //
+    // This defaulted to [] and that silently disarmed the guard written
+    // directly against it: Onboarding.profileLooksComplete falls back to the
+    // historic `contact_name && phone` predicate when the list is NOT an array,
+    // precisely so a backend that omits it cannot mark everyone complete. But
+    // [] IS an array, so the fallback was unreachable, and any /me response
+    // missing this key — an older backend during a rolling deploy, a partial
+    // enrichment failure — made profileGaps() empty for EVERY customer and
+    // skipped the Profile step for all of them.
+    //
+    // Empty list and absent list are different facts: "the server checked and
+    // nothing is missing" vs "the server did not tell us". Collapsing them is
+    // the same mistake as inferring a billing address from a delivery one.
     agreement_missing_fields: Array.isArray(data.agreement_missing_fields)
       ? data.agreement_missing_fields
-      : [],
+      : null,
     agreement_ready: !!data.agreement_ready,
   };
 }
