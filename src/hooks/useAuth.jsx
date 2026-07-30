@@ -171,6 +171,17 @@ function _normalizeUser(data) {
     delivery_city: data.delivery_city || null,
     delivery_state: data.delivery_state || null,
     delivery_zip: data.delivery_zip || null,
+    // AGR-GATE-T01: the BILLING address. /me has always served these
+    // (portal_auth.py:2152) and this normalizer silently dropped them, so no
+    // portal screen could show a customer the address printed in his own
+    // agreement. Caught by the runtime smoke: after saving billing and
+    // navigating BACK to Profile the fields rendered empty, and the visible
+    // pre-fill below could never see user.address — it always fell through to
+    // the delivery address, quietly recreating the inference d6b80157 removed.
+    address: data.address || null,
+    city: data.city || null,
+    state: data.state || null,
+    zip_code: data.zip_code || null,
     sms_consent: !!data.sms_consent,
     email_verified: !!data.email_verified,
     // DEALER-LIFECYCLE-G1: company-verification lifecycle + trial-quote budget.

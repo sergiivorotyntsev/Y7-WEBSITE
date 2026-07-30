@@ -89,14 +89,41 @@ const LOCALE_BLOCK_COPY = {
 // uniformly to EVERY classified customer_type (individual, auction_buyer,
 // dealer, exporter) — the skip-completed-steps logic is not individual-only.
 const isClassifiedType = (t) => !!t && t !== 'unknown' && t !== 'shipper';
-// Profile completeness derived from REAL fields (useAuth._normalizeUser never
-// sets profile_complete, so that flag is unusable). S4-SMALL-W01 (§3 Option 2):
-// the gate is now contact_name + phone only — the delivery address is no longer
-// required to enter onboarding (it's collected per-order at order time), so a
-// registrant who skipped the optional address lands on Agreement, not Profile.
-// Mirrors the relaxed ProfileStep.canSubmit + update-profile backend.
-const profileLooksComplete = (u) =>
-  !!(u && u.contact_name && u.phone);
+// AGR-GATE-T01: the fields a CUSTOMER can fix on the Profile step. company_name
+// and email are deliberately absent — both are admin-only (the portal profile
+// PATCH refuses them, and company identity feeds verification, agreements and
+// invoicing), so a missing one is Y7's to fill and must NOT route the customer
+// to a step where he cannot fix it.
+const PROFILE_EDITABLE_FIELDS = new Set([
+  'contact_name', 'phone', 'address', 'city', 'state', 'zip_code',
+]);
+
+// AGR-GATE-T01: which required fields are missing, ACCORDING TO THE SERVER.
+// /me carries agreement_missing_fields, computed by
+// services/agreement_completeness.missing_agreement_fields for the customer's
+// PERSISTED type (api/routes/portal_auth.py). Returns only the ones this step
+// can actually collect.
+const profileGaps = (u) =>
+  ((u && u.agreement_missing_fields) || []).filter(m => PROFILE_EDITABLE_FIELDS.has(m.field));
+
+// Profile completeness. AGR-GATE-T01: the wizard no longer DECIDES what a
+// complete profile is — it asks the server.
+//
+// The old predicate was `contact_name && phone`, while the server required
+// eight fields for B2B including the whole billing address
+// (agreement_completeness.py:39-48). Imperial Auto had a name and a phone, so
+// the wizard SKIPPED this step, he never saw the address fields, and the
+// agreement then refused to render over the blanks it had never asked him for.
+// Mirroring the server's current list here would just recreate the divergence
+// on the next schema change, so the list is consumed, not copied.
+//
+// Tri-state: a backend that does not send agreement_missing_fields falls back
+// to the historic predicate rather than trapping anyone behind an empty list.
+const profileLooksComplete = (u) => {
+  if (!u) return false;
+  if (!Array.isArray(u.agreement_missing_fields)) return !!(u.contact_name && u.phone);
+  return profileGaps(u).length === 0;
+};
 
 // EXP2-T01: the wizard is a DERIVED STEPS ARRAY, not numeric literals.
 // Every consumer (render branches, labels, dots, connector, transitions,
@@ -160,6 +187,9 @@ export default function Onboarding() {
 
   const [step, setStep] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
+  // AGR-GATE-T01 (§1e): whether classify-and-sign actually enqueued the
+  // confirmation email. null = not signed in this session, so make no claim.
+  const [emailQueued, setEmailQueued] = useState(null);
   // REGC-S13-W06: the starting-step derivation must run ONCE. Without this
   // guard the effect re-fires on every `user` reference change — and
   // useAuth._normalizeUser returns a NEW object on every checkAuth() (and never
@@ -219,7 +249,15 @@ export default function Onboarding() {
   return (
     <div style={wrapStyle}>
       <div style={cardStyle}>
-        <Header steps={steps} step={step} />
+        <Header
+          steps={steps}
+          step={step}
+          // AGR-GATE-T01 (§1d): back-navigation to any step already passed or
+          // skipped. Guarded so it can only ever go backwards.
+          onGoTo={(key) => {
+            if (steps.indexOf(key) <= steps.indexOf(step)) setStep(key);
+          }}
+        />
 
         {/* REGC-S13-W05: light, non-blocking dealer pending-verification note
             (pinned copy). The full order-submit "under review" screen is parked
@@ -271,7 +309,12 @@ export default function Onboarding() {
             user={user}
             customerType={selectedType}
             onBack={() => setStep('type')}
-            onSigned={async () => {
+            onSigned={async (result) => {
+              // AGR-GATE-T01 (§1e): the server reports whether the confirmation
+              // email actually QUEUED. "Signed" does not imply "emailed" —
+              // enqueue_email skips unroutable or bouncing addresses — so the
+              // Welcome screen is told the truth rather than assuming.
+              setEmailQueued(result?.confirmation_email_queued === true);
               const fresh = (await checkAuth()) || user;
               setStep(nextStep(stepsFor(selectedType, fresh), 'agreement'));
             }}
@@ -284,6 +327,11 @@ export default function Onboarding() {
               const fresh = (await checkAuth()) || user;
               setStep(nextStep(stepsFor(selectedType, fresh), 'agreement'));
             }}
+            // AGR-GATE-T01 (§1c): party_data_required's own exit. Leaves the
+            // wizard WITHOUT advancing to Welcome, so nothing claims the
+            // onboarding finished or that a signature exists. The customer can
+            // come back and the wizard will route him straight here again.
+            onExitWithoutCompleting={() => navigate(donePath, { replace: true })}
             onEditProfile={() => setStep('profile')}
           />
         )}
@@ -306,6 +354,22 @@ export default function Onboarding() {
           <WelcomeStep
             customerType={selectedType}
             name={user?.contact_name || user?.name}
+            // AGR-GATE-T01 (§1c/§1e): the PRECONDITION this step never had.
+            // WelcomeStep asserted "your account is active" and "a copy of the
+            // signed agreement is on its way to your email" with
+            // agreement_signed=false, zero customer_agreements rows and zero
+            // outbox_events. Its only conditional was pendingReview, so the
+            // claim about a SIGNATURE was made unconditionally.
+            //
+            // Now every such claim is gated on verified state. Passing the flag
+            // rather than branching here keeps one screen with honest variants
+            // instead of two screens that can drift.
+            signed={!!user?.agreement_signed}
+            // Only true when the server said the outbox row was created.
+            emailQueued={emailQueued === true}
+            // A type with genuinely nothing to sign is a different, honest
+            // "complete" — not a signature claim.
+            noDocumentForType={user?.agreement_document_available === false}
             pendingReview={
               ['dealer', 'exporter'].includes(selectedType) &&
               user?.company_verification_status !== 'verified'
@@ -315,6 +379,9 @@ export default function Onboarding() {
               else if (action === 'application') navigate('/portal/application');
               else navigate(donePath);  // WCF-T02: back to the interrupted step
             }}
+            // Unsigned and there IS a document to sign: the only honest forward
+            // action is back to the agreement, not out into the cabinet.
+            onResumeSigning={() => setStep('agreement')}
           />
         )}
       </div>
@@ -385,7 +452,16 @@ function LocationsStep({ onContinue, customerType = null }) {
   );
 }
 
-function Header({ steps, step }) {
+// AGR-GATE-T01 (§1d): the step indicator is the back-navigation mechanism.
+// `onGoTo` is passed only for steps at or before the current one, so a customer
+// can return to any step already passed OR SKIPPED, and can never jump ahead.
+//
+// This is not polish. Imperial's Profile step was skipped by the old
+// completeness predicate, so he never saw the address fields, and nextStep()
+// (:132) only ever moves forward — there was no way back to a step he had never
+// been shown. Fixing the predicate without this leaves the server able to name
+// the missing field while the customer still cannot reach it.
+function Header({ steps, step, onGoTo }) {
   const current = steps.indexOf(step);
   return (
     <div style={{ marginBottom: spacing.lg }}>
@@ -408,10 +484,11 @@ function Header({ steps, step }) {
         display: 'flex', alignItems: 'center', flexWrap: 'wrap',
         gap: spacing.xs, marginBottom: spacing.sm,
       }}>
-        {steps.map((key, i) => (
-          <div key={key} style={{
-            display: 'flex', alignItems: 'center', flex: '0 0 auto',
-          }}>
+        {steps.map((key, i) => {
+          // Reachable = at or before the current step: already passed, or
+          // SKIPPED because it looked complete. Never forward.
+          const reachable = onGoTo && i <= current && key !== step;
+          const dot = (
             <div style={{
               width: 28, height: 28, borderRadius: '50%',
               border: `2px solid ${current >= i ? 'var(--v2-ink, #050607)' : 'var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))'}`,
@@ -422,6 +499,25 @@ function Header({ steps, step }) {
             }}>
               {i + 1}
             </div>
+          );
+          return (
+          <div key={key} style={{
+            display: 'flex', alignItems: 'center', flex: '0 0 auto',
+          }}>
+            {reachable ? (
+              <button
+                type="button"
+                onClick={() => onGoTo(key)}
+                title={`Back to ${STEP_LABELS[key]}`}
+                aria-label={`Back to ${STEP_LABELS[key]}`}
+                style={{
+                  padding: 0, border: 'none', background: 'none',
+                  cursor: 'pointer', display: 'flex', borderRadius: '50%',
+                }}
+              >
+                {dot}
+              </button>
+            ) : dot}
             {i < steps.length - 1 && (
               <div style={{
                 width: 32, height: 2,
@@ -430,7 +526,8 @@ function Header({ steps, step }) {
               }} />
             )}
           </div>
-        ))}
+          );
+        })}
         <div style={{
           marginLeft: spacing.sm,
           fontFamily: fonts.sans, fontSize: 12, color: 'var(--v2-ink-muted, #5c5851)',
@@ -438,6 +535,14 @@ function Header({ steps, step }) {
           {STEP_LABELS[step]}
         </div>
       </div>
+      {onGoTo && current > 0 && (
+        <div style={{
+          fontFamily: fonts.sans, fontSize: 12,
+          color: 'var(--v2-ink-muted, #5c5851)', marginTop: -4,
+        }}>
+          Need to change something earlier? Pick any numbered step above.
+        </div>
+      )}
     </div>
   );
 }
@@ -448,6 +553,10 @@ function Header({ steps, step }) {
 // ---------------------------------------------------------------------------
 
 function ProfileStep({ user, onCompleted }) {
+  // AGR-GATE-T01 (§1a): billing is REQUIRED for dealer/exporter — it is
+  // interpolated into the agreement's own counterparty clause, and the server
+  // now refuses Step 1 without it (422 billing_address_required).
+  const isB2B = ['dealer', 'exporter'].includes(user?.customer_type);
   const [form, setForm] = useState({
     contact_name: user?.contact_name || user?.name || '',
     phone: user?.phone || '',
@@ -456,7 +565,27 @@ function ProfileStep({ user, onCompleted }) {
     delivery_city: user?.delivery_city || '',
     delivery_state: user?.delivery_state || '',
     delivery_zip: user?.delivery_zip || '',
+    // AGR-GATE-T01 (§1a): pre-filled VISIBLY from the delivery address when
+    // billing is empty — a default the customer can see and change, in an
+    // input he can edit.
+    //
+    // This replaces the silent server-side bootstrap removed in d6b80157, which
+    // copied delivery into billing behind his back. For an exporter the
+    // delivery address is a PORT or a WAREHOUSE, so that inference wrote a
+    // warehouse address into the contract as the company's legal address —
+    // prod shows every B2B customer holding a signature signed against one.
+    // Same friction, different honesty: he attests to it instead of the system
+    // guessing on his behalf.
+    address: user?.address || user?.delivery_address || '',
+    city: user?.city || user?.delivery_city || '',
+    state: user?.state || user?.delivery_state || '',
+    zip_code: user?.zip_code || user?.delivery_zip || '',
   });
+  // True only when we filled it from delivery, so the hint below is shown to
+  // the person it applies to and disappears once he edits or it was his own.
+  const [billingPrefilled] = useState(
+    () => !user?.address && !!user?.delivery_address
+  );
   const [smsConsent, setSmsConsent] = useState(false);
   const [consentText, setConsentText] = useState('');
   const [saving, setSaving] = useState(false);
@@ -474,11 +603,18 @@ function ProfileStep({ user, onCompleted }) {
 
   const [phoneValid, setPhoneValid] = useState(() => isValidPhone(form.phone));
 
-  // S4-SMALL-W01 (§3 Option 2): address is optional — only contact_name + phone
-  // gate the Profile step, matching the relaxed update-profile backend.
+  // S4-SMALL-W01 (§3 Option 2): the DELIVERY address is optional — collected
+  // per-order at order time.
+  // AGR-GATE-T01 (§1a): the BILLING address is not optional for B2B. Gating it
+  // here means the customer sees which field is empty before he submits,
+  // instead of a 422 after.
   const canSubmit =
     form.contact_name.trim().length >= 2 &&
-    form.phone.length > 0 && phoneValid;
+    form.phone.length > 0 && phoneValid &&
+    (!isB2B || (
+      form.address.trim() && form.city.trim()
+      && form.state.trim() && form.zip_code.trim()
+    ));
 
   function set(field, value) {
     setForm(prev => ({ ...prev, [field]: value }));
@@ -504,6 +640,11 @@ function ProfileStep({ user, onCompleted }) {
         setError('That phone number is already on another Y7 account. Please use a different number.');
       } else if (code === 'phone_invalid') {
         setError('Phone number is not valid. Use international format, e.g. +1 555 555 1212.');
+      } else if (code === 'billing_address_required') {
+        // AGR-GATE-T01: the server names the fields; render ITS list rather
+        // than a local guess, so the two can never disagree.
+        setError(detail?.message
+          || `Your agreement needs your billing address: ${(detail?.missing || []).join(', ')}.`);
       } else {
         setError(detail?.message || detail?.error || 'Could not save profile');
       }
@@ -560,6 +701,59 @@ function ProfileStep({ user, onCompleted }) {
         value={form.company_name}
         onChange={v => set('company_name', v)}
       />
+
+      {/* AGR-GATE-T01 (§1a): the BILLING address. Shown to dealers and
+          exporters because their agreement names the company and its address in
+          its own text and refuses to render over blanks — which is exactly how
+          a customer reached an agreement step he could not complete. */}
+      {isB2B && (
+        <>
+          <h3 style={subSectionTitleStyle}>Company billing address</h3>
+          <p style={{
+            fontFamily: fonts.sans, fontSize: 12, lineHeight: 1.5,
+            color: 'var(--v2-ink-muted, #5c5851)', marginTop: -6,
+            marginBottom: spacing.md,
+          }}>
+            This is the legal address printed in your transport agreement, so it
+            should be your company&rsquo;s registered address — not a warehouse or
+            a port.
+            {billingPrefilled && (
+              <> We&rsquo;ve started it from your delivery address; please correct it
+              if they differ.</>
+            )}
+          </p>
+          <Field
+            label="Street address"
+            value={form.address}
+            onChange={v => set('address', v)}
+            required
+          />
+          <Field
+            label="City"
+            value={form.city}
+            onChange={v => set('city', v)}
+            required
+          />
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: spacing.md }}>
+            <Field
+              label="State"
+              value={form.state}
+              onChange={v => set('state', v)}
+              placeholder="MA"
+              maxLength={2}
+              required
+            />
+            <Field
+              label="ZIP"
+              value={form.zip_code}
+              onChange={v => set('zip_code', v)}
+              placeholder="02110"
+              maxLength={10}
+              required
+            />
+          </div>
+        </>
+      )}
 
       {/* S4-SMALL-W01 (§3 Option 2): the whole delivery-address block is now
           optional here — collected per-order at order time. No required markers. */}
@@ -779,7 +973,21 @@ function AccountTypeStep({ onSelected, orderId = null }) {
 // is pulled from user.contact_name (read-only).
 // ---------------------------------------------------------------------------
 
-function AgreementStep({ user, customerType, onBack, onSigned, onContinueWaiting, onEditProfile }) {
+// AGR-GATE-T01 (§1c): of the party facts the agreement interpolates, these are
+// the ones the CUSTOMER can now supply himself (portal profile accepts them
+// after d6b80157). company_name and email stay admin-only, so "add these
+// details" must not be offered when only those are missing.
+const _CUSTOMER_FIXABLE_PARTY = new Set([
+  'billing_address', 'address', 'city', 'state', 'zip_code',
+  'contact_name', 'phone',
+]);
+
+function AgreementStep({
+  user, customerType, onBack, onSigned, onContinueWaiting, onEditProfile,
+  // AGR-GATE-T01: distinct from onContinueWaiting — leaves the portal WITHOUT
+  // marking onboarding complete.
+  onExitWithoutCompleting,
+}) {
   const { i18n } = useTranslation();
   const lang = (i18n.language || 'en').slice(0, 2).toLowerCase();
   const effectiveLang = ['en', 'ru', 'pl', 'ua'].includes(lang) ? lang : 'en';
@@ -936,11 +1144,26 @@ function AgreementStep({ user, customerType, onBack, onSigned, onContinueWaiting
           confirmed with Y7 — contact us and we&rsquo;ll complete them together; the moment
           they are on file, the document renders here ready to sign.
         </p>
-        <div style={{ display: 'flex', gap: spacing.sm, marginTop: spacing.md }}>
+        {/* AGR-GATE-T01 (§1c): this screen no longer exits through
+            onContinueWaiting. That callback is AGR-2-T01's exit for "there is no
+            signable document, EVER" — completing the wizard is honest there.
+            party_data_required means the opposite: the document exists and
+            becomes signable the moment these fields land. Reusing the "never"
+            exit for a "not yet" state is what marched the customer into a
+            Welcome screen claiming a signature he had not made.
+
+            Two honest routes instead: fix the fields now (the ones that are
+            his), or leave WITHOUT the wizard declaring itself complete. */}
+        <div style={{ display: 'flex', gap: spacing.sm, marginTop: spacing.md, flexWrap: 'wrap' }}>
           <button type="button" onClick={onBack} style={secondaryBtnStyle}>Back</button>
-          {onContinueWaiting && (
-            <button type="button" onClick={() => onContinueWaiting()} style={primaryBtnStyle}>
-              Continue to my account
+          {onEditProfile && missingParty.some(f => _CUSTOMER_FIXABLE_PARTY.has(f)) && (
+            <button type="button" onClick={onEditProfile} style={primaryBtnStyle}>
+              Add these details
+            </button>
+          )}
+          {onExitWithoutCompleting && (
+            <button type="button" onClick={() => onExitWithoutCompleting()} style={secondaryBtnStyle}>
+              Leave for now
             </button>
           )}
         </div>
@@ -1084,7 +1307,10 @@ function AgreementStep({ user, customerType, onBack, onSigned, onContinueWaiting
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.ok) {
-        onSigned();
+        // AGR-GATE-T01 (§1e): hand the whole response up — it carries
+        // confirmation_email_queued, which decides whether the Welcome screen
+        // may say a copy was emailed.
+        onSigned(data);
         return;
       }
       const detail = data?.detail || data;
@@ -1274,7 +1500,13 @@ function LockedCard({ number, title }) {
 // Step 4 - WelcomeStep
 // ---------------------------------------------------------------------------
 
-function WelcomeStep({ customerType, name, pendingReview, onComplete }) {
+function WelcomeStep({
+  customerType, name, pendingReview, onComplete,
+  // AGR-GATE-T01 (§1c/§1e): the precondition this step never had. Every claim
+  // below is now conditional on verified state — a signature is asserted only
+  // when customers.agreement_signed is true.
+  signed = false, noDocumentForType = false, onResumeSigning, emailQueued = false,
+}) {
   // AQ-3: honest copy. A dealer/exporter registration is an APPLICATION, not an
   // instant active account — do NOT claim "your account is active" while the
   // backend has them pending_review + trial-capped + gated. Show the truth and
@@ -1342,6 +1574,32 @@ function WelcomeStep({ customerType, name, pendingReview, onComplete }) {
             </button>
           </div>
         </>
+      ) : !signed && !noDocumentForType ? (
+        // AGR-GATE-T01 (§1e): unsigned, and a document DOES exist to sign. The
+        // old code asserted "your account is active" and "a copy of the signed
+        // agreement is on its way to your email" here — with agreement_signed
+        // false, zero customer_agreements rows and zero outbox_events. Both
+        // claims were false, and the primary action ("Submit your first quote")
+        // walked straight back into the 403 that started the loop.
+        <>
+          <p style={{
+            fontFamily: fonts.sans, fontSize: 15, color: 'var(--v2-ink-muted, #5c5851)',
+            margin: 0, marginBottom: spacing.md,
+          }}>
+            Your <strong>{label}</strong> details are saved. Your account is not
+            active yet — the transport agreement still needs your signature.
+          </p>
+          <div style={{
+            display: 'flex', gap: spacing.sm, justifyContent: 'center', flexWrap: 'wrap',
+          }}>
+            <button type="button" onClick={onResumeSigning} style={primaryBtnStyle}>
+              Review and sign
+            </button>
+            <button type="button" onClick={() => onComplete('dashboard')} style={secondaryBtnStyle}>
+              Go to dashboard
+            </button>
+          </div>
+        </>
       ) : (
         <>
           <p style={{
@@ -1350,16 +1608,24 @@ function WelcomeStep({ customerType, name, pendingReview, onComplete }) {
           }}>
             Your <strong>{label}</strong> account is active.
           </p>
-          <p style={{
-            fontFamily: fonts.sans, fontSize: 13, color: 'var(--v2-ink-muted, #5c5851)',
-            background: 'rgba(5, 6, 7, 0.04)',
-            border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
-            padding: spacing.sm + 'px ' + spacing.md + 'px',
-            borderRadius: radii.md, display: 'inline-block',
-            marginBottom: spacing.lg,
-          }}>
-            A copy of the signed agreement is on its way to your email.
-          </p>
+          {/* AGR-GATE-T01 (§1e): claim the email ONLY when the server confirmed
+              an outbox row was created. A signature does not imply an email —
+              enqueue_email returns None for an unroutable or bouncing address,
+              and the fixture run proved it: agreement_signed=true,
+              customer_agreements=1, outbox_events=0, and this sentence still
+              on screen. Gating on `signed` alone was my first, wrong fix. */}
+          {signed && emailQueued && (
+            <p style={{
+              fontFamily: fonts.sans, fontSize: 13, color: 'var(--v2-ink-muted, #5c5851)',
+              background: 'rgba(5, 6, 7, 0.04)',
+              border: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))',
+              padding: spacing.sm + 'px ' + spacing.md + 'px',
+              borderRadius: radii.md, display: 'inline-block',
+              marginBottom: spacing.lg,
+            }}>
+              A copy of the signed agreement is on its way to your email.
+            </p>
+          )}
           <div style={{
             display: 'flex', gap: spacing.sm, justifyContent: 'center', flexWrap: 'wrap',
           }}>
