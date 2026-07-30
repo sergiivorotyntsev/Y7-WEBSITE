@@ -497,10 +497,17 @@ export default function NewOrder() {
       setError('Please select the auction site.');
       return;
     }
-    if (pickupIsAuction && auctionRequiresPin && !gatePassPin.trim()) {
-      setError(`${releaseDocShortTerm(selectedAuction?.code)} is required for ${selectedAuction?.name || 'this auction'} pickups.`);
-      return;
-    }
+    // AGR-GATE-T03: the release document is NO LONGER a hard block at submit.
+    // It is issued by the auction after purchase and is often not in hand when
+    // the customer is arranging the shipment, so refusing here turned him away
+    // at the moment he could not comply — while the server-side dispatch
+    // readiness gate (services/dispatch_readiness.py, pickup_location_complete,
+    // BLOCKING for ANY auction pickup) already holds the order until one lands.
+    // Blocking twice bought nothing and cost the order.
+    //
+    // The paired server half drops the matching 400 in the same commit; keeping
+    // the client block alone would leave a refusal the backend no longer makes,
+    // which is the WCF divergence shape in reverse.
     // W2P-T03: HARD BLOCK — a one-off manually typed pickup cannot submit
     // without the dry-run liability consent.
     if (pickupIsOneOff && !dryRunConsent) {
@@ -1263,16 +1270,35 @@ export default function NewOrder() {
                 {/* W7U-T03: auction-aware term — Manheim says "Vehicle Release",
                     not Copart's "Gate Pass PIN". */}
                 <label className={pp.label}>
-                  {releaseDocShortTerm(selectedAuction?.code)} {auctionRequiresPin ? '*' : '(if available)'}
+                  {releaseDocShortTerm(selectedAuction?.code)} {auctionRequiresPin ? '(needed before pickup)' : '(if available)'}
                 </label>
                 <input
                   className={pp.input}
                   type="text"
                   value={gatePassPin}
                   onChange={e => setGatePassPin(e.target.value)}
-                  placeholder={auctionRequiresPin ? 'Required for pickup' : 'Optional'}
+                  placeholder={auctionRequiresPin ? 'Add it now, or later from the order' : 'Optional'}
                   maxLength={50}
                 />
+                {/* AGR-GATE-T03: the asterisk used to mean "you cannot submit
+                    without this", and submit refused. It is still REQUIRED —
+                    the vehicle cannot be collected without it and dispatch
+                    readiness blocks on it — but it is not required NOW, and
+                    saying so is what stops the customer being turned away at
+                    the one moment he cannot comply. Honest about both facts
+                    rather than dropping the requirement or pretending it is
+                    optional. */}
+                {auctionRequiresPin && !gatePassPin.trim() && (
+                  <div style={{
+                    fontSize: 13, lineHeight: 1.5, marginTop: 6,
+                    color: '#92400E', background: '#FFFBEB',
+                    border: '1px solid #FDE68A', borderRadius: 8, padding: '8px 10px',
+                  }}>
+                    We can take the order without it. The vehicle cannot be
+                    collected until the {releaseDocShortTerm(selectedAuction?.code).toLowerCase()} is
+                    on file — add it here, or from the order once the auction issues it.
+                  </div>
+                )}
               </div>
             )}
           </div>
