@@ -98,6 +98,19 @@ const PROFILE_EDITABLE_FIELDS = new Set([
   'contact_name', 'phone', 'address', 'city', 'state', 'zip_code',
 ]);
 
+// AGR-FIX-P05: the ONE place the client states what "B2B billing completeness"
+// means. It is a duplicate of the server's _B2B_REQUIRED billing subset
+// (services/agreement_completeness.py:41-44) and §1b deliberately avoided
+// copying that list — but the server CANNOT answer this question here.
+// agreement_missing_fields is computed for the PERSISTED type, and the whole
+// point of this predicate is the moment BEFORE the type is persisted: a
+// customer sitting on 'unknown' who has just picked Dealer. So the fact is
+// stated once and both consumers (canSubmit and the post-type-selection route)
+// read it, instead of two copies drifting apart.
+const B2B_BILLING_FIELDS = ['address', 'city', 'state', 'zip_code'];
+const billingComplete = (u) =>
+  B2B_BILLING_FIELDS.every((f) => String(u?.[f] || '').trim().length > 0);
+
 // AGR-GATE-T01: which required fields are missing, ACCORDING TO THE SERVER.
 // /me carries agreement_missing_fields, computed by
 // services/agreement_completeness.missing_agreement_fields for the customer's
@@ -277,6 +290,14 @@ export default function Onboarding() {
         {step === 'profile' && (
           <ProfileStep
             user={user}
+            // AGR-FIX-P05: the type the wizard HOLDS, not only the one on file
+            // — the same treatment LocationsStep (:343) and AgreementStep
+            // already get, and the one step that never received it. The type is
+            // not persisted server-side until classify-and-sign, so a customer
+            // who has picked Dealer is still 'unknown' on the row; without this
+            // he returns to Step 1 from the agreement's "Add these details" and
+            // the billing inputs he was sent here for are not rendered.
+            customerType={selectedType || user?.customer_type}
             onCompleted={async () => {
               // REGC-S13-W07a: route from the FRESH user (checkAuth now returns
               // it), not a stale closure — works for every classified type.
@@ -299,6 +320,25 @@ export default function Onboarding() {
             orderId={orderIdFromNext(rawNext)}
             onSelected={(id) => {
               setSelectedType(id);
+              // AGR-FIX-P05: choosing dealer/exporter CHANGES what a complete
+              // profile is — it adds the billing address the agreement
+              // interpolates into its own counterparty clause. The server could
+              // not have told us on the way in: agreement_missing_fields is
+              // computed for the PERSISTED type, and the type is not persisted
+              // until classify-and-sign, so a customer registered as 'unknown'
+              // arrives here with an empty missing-list and Step 1 already
+              // skipped. Send him BACK to Profile now, where the fields render,
+              // instead of forward into a refusal he cannot act on:
+              //   dealer   -> the template renders, then classify-and-sign 400s
+              //               profile_incomplete over the four billing columns;
+              //   exporter -> agreement-template itself 409s
+              //               party_data_required, missing ['billing_address'].
+              // Both measured against the real endpoints. 18 portal customers
+              // are in this state in production today.
+              if (['dealer', 'exporter'].includes(id) && !billingComplete(user)) {
+                setStep('profile');
+                return;
+              }
               // EXP2-T01: transition by array lookup, never a hardcoded target.
               setStep(nextStep(stepsFor(id, user), 'type'));
             }}
@@ -552,11 +592,16 @@ function Header({ steps, step, onGoTo }) {
 // Step 1 - ProfileStep (T05)
 // ---------------------------------------------------------------------------
 
-function ProfileStep({ user, onCompleted }) {
+function ProfileStep({ user, customerType, onCompleted }) {
   // AGR-GATE-T01 (§1a): billing is REQUIRED for dealer/exporter — it is
   // interpolated into the agreement's own counterparty clause, and the server
   // now refuses Step 1 without it (422 billing_address_required).
-  const isB2B = ['dealer', 'exporter'].includes(user?.customer_type);
+  //
+  // AGR-FIX-P05: keyed off the type the wizard HOLDS, falling back to the row.
+  // Reading user.customer_type alone meant the fields were shown only to a
+  // customer ALREADY classified B2B — never to the one on his way to becoming
+  // one, who is exactly the customer this step exists to unblock.
+  const isB2B = ['dealer', 'exporter'].includes(customerType || user?.customer_type);
   const [form, setForm] = useState({
     contact_name: user?.contact_name || user?.name || '',
     phone: user?.phone || '',
@@ -611,10 +656,9 @@ function ProfileStep({ user, onCompleted }) {
   const canSubmit =
     form.contact_name.trim().length >= 2 &&
     form.phone.length > 0 && phoneValid &&
-    (!isB2B || (
-      form.address.trim() && form.city.trim()
-      && form.state.trim() && form.zip_code.trim()
-    ));
+    // AGR-FIX-P05: the shared predicate, so this and the post-type-selection
+    // route can never disagree about what B2B billing completeness means.
+    (!isB2B || billingComplete(form));
 
   function set(field, value) {
     setForm(prev => ({ ...prev, [field]: value }));
