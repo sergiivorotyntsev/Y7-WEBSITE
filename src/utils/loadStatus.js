@@ -1,105 +1,65 @@
-// DEALER-DASH-S1-T03 — Unified load-status mapper (display-only).
+// CAB-LOADS T02 — progress rendering ONLY. The status map moved to the server.
 //
-// The dealer dashboard presents ONE clear progress sequence, but the data
-// comes from two separate state machines:
-//   - customer_orders.status   (8 values, customer-facing)
-//       pending | quoted | confirmed | dispatched | completed
-//       + terminal: declined | cancelled | expired
-//   - dispatch_loads.status    (18 values, internal dispatch board)
-//       DRAFT | POSTED | ASSIGNED | AWAITING_RELEASE | DISPATCHED |
-//       PICKED_UP | IN_TRANSIT | DELIVERED | DOCS_* | INVOICED | ... | ARCHIVED
+// WHAT THIS FILE USED TO BE, AND WHY IT CHANGED.
 //
-// This helper folds both into the dealer-facing sequence below. It is PURE and
-// DISPLAY-ONLY — it never writes status, and it never exposes margin / CD
-// internals. The orders list endpoint currently returns customer_orders.status
-// (+ carrier_name + dispatch_load_id) but NOT the dispatch status, so the
-// dispatch leg is derived from carrier presence; the optional `dispatch_status`
-// input is honoured when a future slice exposes it (forward-compatible).
+// It held a second copy of the status vocabulary: an 8-stage sequence plus a
+// DISPATCH_TO_STAGE table mapping all 18 internal `dispatch_loads` values and a
+// branch over the 12 `customer_orders` values. That copy is exactly how the
+// incident happened — the cabinet said "Listed" while the admin panel said
+// POSTED for the same load, because each surface owned its own map.
+//
+// The mapping now lives in ONE place, server-side:
+//     services/load_status_vocabulary.py   (TRANSPORT)
+// and reaches the client as `status` / `label` / `phase` / `active` on every
+// item. This module no longer decides what a load's status IS. It only decides
+// how to draw the progress a server-supplied status implies.
+//
+// TWO PHASES, NOT ONE SCALE (owner's ruling, 2026-07-31). Price negotiation
+// (Submitted -> Quoted -> Confirmed) and shipping (Posted -> Dispatched ->
+// Delivered) are different phases of the business, not points on one axis.
+// Email-pipeline loads have no negotiation phase at all — they arrive already
+// posted — so they render the shipping sequence only.
 
-export const UNIFIED_STAGES = [
-  { key: 'submitted', label: 'Submitted' },
-  { key: 'quoted', label: 'Quoted' },
-  { key: 'confirmed', label: 'Confirmed' },
-  { key: 'listed', label: 'Listed' },
-  { key: 'carrier_assigned', label: 'Carrier Assigned' },
-  { key: 'picked_up', label: 'Picked Up' },
-  { key: 'in_transit', label: 'In Transit' },
-  { key: 'delivered', label: 'Delivered' },
+export const NEGOTIATION_STAGES = [
+  { key: 'SUBMITTED', label: 'Submitted' },
+  { key: 'QUOTED', label: 'Quoted' },
+  { key: 'CONFIRMED', label: 'Confirmed' },
 ];
 
-const STAGE_INDEX = UNIFIED_STAGES.reduce((m, s, i) => { m[s.key] = i; return m; }, {});
+export const SHIPPING_STAGES = [
+  { key: 'POSTED', label: 'Posted' },
+  { key: 'DISPATCHED', label: 'Dispatched' },
+  { key: 'DELIVERED', label: 'Delivered' },
+];
 
-// dispatch_loads.status -> unified stage (used only when the API exposes it).
-const DISPATCH_TO_STAGE = {
-  DRAFT: 'listed',
-  POSTED: 'listed',
-  ASSIGNED: 'carrier_assigned',
-  AWAITING_RELEASE: 'carrier_assigned',
-  DISPATCHED: 'carrier_assigned',
-  PICKED_UP: 'picked_up',
-  IN_TRANSIT: 'in_transit',
-  DELIVERED: 'delivered',
-  DOCS_REQUESTED: 'delivered',
-  DOCS_RECEIVED: 'delivered',
-  INVOICED: 'delivered',
-  PAYMENT_REQUESTED: 'delivered',
-  READY_TO_PAY: 'delivered',
-  PAID: 'delivered',
-  PAYMENT_RECEIVED: 'delivered',
-  ARCHIVED: 'delivered',
-};
-
-// customer_orders.status terminal states — shown off the progress bar.
-const TERMINAL_LABELS = {
-  declined: 'Declined',
-  cancelled: 'Cancelled',
-  expired: 'Expired',
-};
-
-function stage(key) {
-  return {
-    stageKey: key,
-    stageIndex: STAGE_INDEX[key],
-    terminal: false,
-    label: UNIFIED_STAGES[STAGE_INDEX[key]].label,
-  };
-}
+// Terminal displayed values — no progress bar, just a statement.
+// Mirrors TERMINAL_DISPLAY in services/load_status_vocabulary.py.
+const TERMINAL = new Set(['CLOSED', 'DECLINED', 'EXPIRED', 'CANCELLED']);
 
 /**
- * Map an order row to its unified dealer-facing progress stage.
+ * How to draw one load's progress, from what the SERVER already decided.
  *
- * @param {object} order - portal order row (status, carrier_name,
- *   dispatch_load_id, and optionally dispatch_status).
- * @returns {{stageKey: string|null, stageIndex: number, terminal: boolean, label: string}}
- *   terminal=true (stageIndex -1) for declined/cancelled/expired.
+ * @param {object} item - a row from GET /api/portal/data/all-loads, carrying
+ *   `status` (displayed value), `label`, and `phase` ("negotiation"|"shipping").
+ * @returns {{stages: Array, index: number, terminal: boolean, label: string}}
+ *   `terminal` = true means render the label alone, no sequence.
  */
-export function mapUnifiedStage(order) {
-  const cs = String(order?.status || '').toLowerCase();
-  const ds = order?.dispatch_status
-    ? String(order.dispatch_status).toUpperCase()
-    : null;
+export function progressFor(item) {
+  const status = String(item?.status || '');
+  const label = item?.label || status || 'Status unavailable';
 
-  if (TERMINAL_LABELS[cs]) {
-    return { stageKey: null, stageIndex: -1, terminal: true, label: TERMINAL_LABELS[cs] };
+  if (TERMINAL.has(status)) {
+    return { stages: [], index: -1, terminal: true, label };
   }
-  if (cs === 'pending') return stage('submitted');
-  if (cs === 'quoted') return stage('quoted');
-  if (cs === 'confirmed') return stage('confirmed');
-  if (cs === 'listed') return stage('listed');
-  // EXP-D3: customer_orders.status now advances through the real delivery legs
-  // (mirrored synchronously from the dispatch finishers), so map them directly.
-  if (cs === 'picked_up') return stage('picked_up');
-  if (cs === 'in_transit') return stage('in_transit');
-  if (cs === 'delivered') return stage('delivered');
-  if (cs === 'completed') return stage('delivered');
-  if (cs === 'dispatched') {
-    // Prefer the precise dispatch status when the API provides it.
-    if (ds && DISPATCH_TO_STAGE[ds]) return stage(DISPATCH_TO_STAGE[ds]);
-    // Fallback from what the orders list currently exposes.
-    if (order?.carrier_name) return stage('carrier_assigned');
-    if (order?.dispatch_load_id) return stage('listed');
-    return stage('confirmed');
+
+  const stages = item?.phase === 'negotiation' ? NEGOTIATION_STAGES : SHIPPING_STAGES;
+  const index = stages.findIndex(s => s.key === status);
+
+  // An unplaceable status (including the server's UNKNOWN sentinel) draws no
+  // sequence rather than guessing a position on it. Silence beats a wrong claim
+  // about where somebody's car is.
+  if (index < 0) {
+    return { stages: [], index: -1, terminal: false, label };
   }
-  // Unknown / new status — fail safe to the earliest stage.
-  return stage('submitted');
+  return { stages, index, terminal: false, label };
 }

@@ -44,3 +44,6 @@ __pycache__/
 # Local agent tooling (Codex CLI) — machine-local, never committed
 .codex/
 .agents/
+
+# CAB-LOADS: runtime-smoke screenshots (local only)
+tmp_cabloads_smoke/
