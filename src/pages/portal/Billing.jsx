@@ -102,41 +102,91 @@ export default function Billing() {
 
       <h1 className={pp.pageTitle}>Billing & Invoices</h1>
 
-      {/* AR-5: balance owed (from the dealer ledger). balance_cents is signed —
-          negative = the dealer owes Y7; positive = credit on account. */}
-      {(() => {
-        const bal = data.balance_cents || 0;
-        const owed = bal < 0 ? -bal : 0;
-        const credit = bal > 0 ? bal : 0;
-        return (
-          <div className={pp.card} style={{ marginTop: '24px' }}>
-            <div className={pp.sectionTitle}>
-              {credit > 0 ? 'Credit on account' : 'Balance owed'}
-            </div>
-            <div className={pp.mono} style={{ fontSize: '32px', color: owed > 0 ? 'var(--v2-red-deep, #a90918)' : colors.success }}>
-              {fmt(credit > 0 ? credit : owed)}
-            </div>
-            <div className={pp.hint}>
-              {owed > 0
-                ? 'Y7 service fees accrued on completed orders, less payments received.'
-                : 'You have no outstanding Y7 service-fee balance.'}
-            </div>
-          </div>
-        );
-      })()}
-
-      {/* EXP-F6: outstanding Y7 service fees (unpaid invoices). No funding-account
-          balance; that account is off-app. */}
-      <div className={pp.card}>
-        <div className={pp.sectionTitle}>Outstanding Y7 service fees</div>
+      {/* BIL-1-T03: ONE "owed" card, and it reads what EXB actually writes.
+          There used to be TWO cards here and neither could ever move:
+            - "Balance owed" read customers.deposit_balance_cents — a DEPOSIT
+              column, 0 for every customer, which EXB never writes and which had
+              no business appearing under that heading at all. Removed, not
+              re-pointed: the owner's rule is that the money he receives to pay
+              carriers is not modelled in this system, and a deposit figure
+              rendered as "balance owed" is precisely that conflation.
+            - "Outstanding Y7 service fees" summed dealer_invoices, which
+              finalize() never writes either (it posts one dealer_ledger row).
+          Both now come from services/exporter_billing_balance.outstanding_summary,
+          the same call the admin card makes. */}
+      <div className={pp.card} style={{ marginTop: '24px' }}>
+        <div className={pp.sectionTitle}>
+          {(data.credit_cents || 0) > 0 ? 'Credit on account' : 'Outstanding Y7 service fees'}
+        </div>
         <div className={pp.mono} style={{ fontSize: '32px', color: (data.outstanding_fees_cents || 0) > 0 ? 'var(--v2-red-deep, #a90918)' : colors.success }}>
-          {fmt(data.outstanding_fees_cents)}
+          {fmt((data.credit_cents || 0) > 0 ? data.credit_cents : data.outstanding_fees_cents)}
         </div>
         <div className={pp.hint}>
-          Y7 invoices bill the Y7 service fee only. Transport, storage, and other
-          costs are paid from your funding account.
+          {(data.outstanding_fees_cents || 0) > 0
+            ? 'Invoiced Y7 service fees, less payments received. Transport, storage and other carrier costs are not billed here.'
+            : 'You have no invoiced Y7 service fees outstanding.'}
         </div>
       </div>
+
+      {/* BIL-1-T03: what is EARNED but NOT YET INVOICED. A separate card and a
+          separate number — never added to the one above.
+          The owner requires the customer see the cost of Y7's services accruing
+          from their loads; EXB requires that nothing bills automatically. One
+          combined figure would have to break one of those. Two labelled figures
+          break neither, and this one says plainly that it is not yet payable. */}
+      {data.accruing_unit_count != null && data.accruing_unit_count > 0 && (
+        <div className={pp.card}>
+          <div className={pp.sectionTitle}>Accruing — not yet invoiced</div>
+          <div className={pp.mono} style={{ fontSize: '32px', color: 'var(--v2-ink, #050607)' }}>
+            {fmt(data.accruing_fees_cents)}
+          </div>
+          <div className={pp.hint}>
+            {data.accruing_unit_count} {data.accruing_unit_count === 1 ? 'vehicle has' : 'vehicles have'} reached
+            the billing point since your last invoice. This is not payable yet — it appears on your next invoice.
+          </div>
+          {data.accruing_units && data.accruing_units.length > 0 && (
+            <div style={{ marginTop: '12px' }}>
+              {data.accruing_units.map(u => (
+                <div key={`${u.unit_type}:${u.unit_ref}`} className={pp.row}>
+                  <div>
+                    <div className={pp.mono} style={{ fontWeight: 600 }}>{u.unit_ref}</div>
+                    <div className={pp.hint} style={{ marginTop: '2px' }}>
+                      {[u.vehicle, u.route].filter(Boolean).join(' · ') || '—'}
+                    </div>
+                  </div>
+                  <span className={pp.mono} style={{ fontWeight: 600 }}>{fmt(u.fee_cents)}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* BIL-1-T03: the periods themselves — which loads, which period, invoiced
+          versus paid. The owner's requirement is that the number be reachable
+          AND decomposable, not just present. */}
+      {data.billing_periods && data.billing_periods.length > 0 && (
+        <div className={pp.card}>
+          <div className={pp.sectionTitle}>Invoiced periods</div>
+          {data.billing_periods.map(p => (
+            <div key={p.id} className={pp.row}>
+              <div>
+                <div style={{ fontWeight: 600, fontSize: '13px' }}>
+                  {p.period_start} to {p.period_end}
+                </div>
+                <div className={pp.hint} style={{ marginTop: '2px' }}>
+                  {p.unit_count} {p.unit_count === 1 ? 'vehicle' : 'vehicles'} ·
+                  {' '}paid {fmt(p.paid_cents)} of {fmt(p.fees_total_cents)}
+                </div>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <span className={statusChip(p.status)}>{p.status}</span>
+                <span className={pp.mono} style={{ fontWeight: 600 }}>{fmt(p.remaining_cents)}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
 
       <div className={pp.card}>
         <div className={pp.sectionTitle}>Invoices</div>
@@ -176,10 +226,24 @@ export default function Billing() {
           <div className={pp.sectionTitle}>Account activity</div>
           {data.recent_transactions.map(tx => {
             const credit = (tx.amount_cents || 0) >= 0;
+            // BIL-1-T03: `period_fees` and `payment_received` are the two types
+            // EXB posts, and NEITHER was in this map — so the one place a
+            // finalized period would have surfaced to the customer rendered the
+            // raw internal token `period_fees`. The fallback `|| type` is what
+            // made it invisible: it produced a plausible-looking string instead
+            // of failing, which is why nobody noticed a missing entry.
+            //
+            // Adding a transaction type is now the moment this map must be
+            // edited, and the test test_every_ledger_type_has_a_customer_label
+            // enumerates the dealer_ledger CHECK constraint so a future type
+            // cannot slip through the fallback the same way.
             const label = {
               service_fee: 'Y7 service fee',
+              period_fees: 'Y7 service fees — invoiced period',
+              payment_received: 'Payment received',
               deposit: 'Payment received',
               carrier_payment: 'Carrier payment',
+              co_service_fee: 'Y7 service fee',
               adjustment_credit: 'Credit adjustment',
               adjustment_debit: 'Debit adjustment',
               refund: 'Refund',
