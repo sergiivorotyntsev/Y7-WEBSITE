@@ -1,6 +1,7 @@
 // CAB-LOADS T03 — calendar-day formatting for load dates.
 //
-// Extracted from DealerDashboard so it can be regression-tested. It exists
+// Extracted from B2BDashboard (named DealerDashboard when this was written) so
+// it can be regression-tested. It exists
 // because of a defect the runtime smoke caught, not because of tidiness.
 //
 // THE DEFECT. A pickup date is a CALENDAR DAY, not an instant.

@@ -87,7 +87,13 @@ export default function Billing() {
     return (
       <div className={`${pp.shell} ${pp.measureNarrow}`}>
         <PageMeta title="Billing" />
-        <p style={{ fontFamily: fonts.sans, color: colors.textMuted }}>Billing is available for dealer accounts only.</p>
+        {/* VIS-2-T05: this said "dealer accounts only" and that was false.
+            `is_dealer` is a B2B flag under a historical name: portal_billing.py
+            returns it true for BOTH 'dealer' and 'exporter', and every billing
+            endpoint gates on the pair. So an exporter NEVER reaches this line —
+            the only reader is an individual, and telling them billing needs a
+            dealer account misdescribes what would actually open it. */}
+        <p style={{ fontFamily: fonts.sans, color: colors.textMuted }}>Billing is available for dealer and exporter accounts.</p>
       </div>
     );
   }

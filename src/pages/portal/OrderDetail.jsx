@@ -10,6 +10,16 @@ import v2b from '../../styles/v2/buttons.module.css';
 import { API_URL } from '../../config';
 import { releaseDocShortTerm } from '../../utils/releaseDocTerm';
 import { STATUS_LABELS, STATUS_PIPELINE, NO_QUOTE_LABELS, CANCELLATION_REASON_LABELS } from '../../utils/orderStatus';
+// A scheduled date is a CALENDAR DAY. formatLoadDate parses a bare YYYY-MM-DD as
+// a LOCAL date and rejects rollover; see utils/loadDates.js for the off-by-one
+// it exists to prevent. Reused rather than re-implemented here.
+import { formatLoadDate } from '../../utils/loadDates';
+// VIS-2-T02: one vocabulary for absent carriers, absent prices and the
+// scheduled-date caveat, shared with the dealer/exporter dashboard so the two
+// surfaces cannot describe the same fact two ways.
+import {
+  CARRIER_NOT_ASSIGNED, PRICE_NOT_SET, DATE_NOTES, carrierExpected, moneyFromDollars,
+} from '../../utils/loadVocabulary';
 
 const TIMELINE_STEPS = [
   { key: 'pending', label: STATUS_LABELS.pending, field: 'created_at' },
@@ -41,18 +51,27 @@ function fmtDate(d) {
   });
 }
 
-// 2B-5: the customer sees planned delivery as a ±2-day window, never an exact
-// guaranteed date — the planned date is an estimate. The value is a date-only
-// ISO string; parse the Y-M-D parts in LOCAL time to avoid a UTC off-by-one.
-function fmtDeliveryWindow(d) {
-  if (!d) return null;
-  const s = String(d).slice(0, 10);
-  const m = s.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-  const date = m ? new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3])) : new Date(d);
-  if (isNaN(date.getTime())) return null;
-  const label = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-  return `${label} (±2 days)`;
-}
+// VIS-2-T01: `fmtDeliveryWindow` (2B-5) is GONE, and its ±2-day window with it.
+//
+// It rendered "Jun 3, 2026 (±2 days)" under the heading "Est. delivery", inside
+// the driver card. Every part of that attributed a Y7 planning date to whoever
+// was carrying the vehicle: the word "Est.", the placement under the driver's
+// name and phone, and a tolerance band Y7 invented and the carrier never gave.
+//
+// The date itself is real — carrier_assignments.scheduled_delivery_date, what a
+// Y7 operator entered on assignment — so the DATA stays and only the claim goes,
+// the same trade VIS-1-T05 made on the admin panel. The uncertainty the ±2 days
+// was reaching for is now stated in words (SCHEDULE_DATE_NOTE), which is true
+// where an invented number was not: Y7 is a broker and does not control the
+// carrier's schedule.
+//
+// The carrier's OWN committed dates are captured nowhere in this system
+// (VIS-1 §V8: zero columns, cross-checked against pg_attribute). Capturing them
+// is FUL-1's work. Until then nothing here may promise them.
+
+// The note itself is the owner's wording and now lives in utils/loadVocabulary
+// (DATE_NOTES.y7), shared with the dealer/exporter dashboard. T01 duplicated it
+// here with a pointer; T02 lifts it, so there is one copy and no drift.
 
 function InfoCard({ title, children }) {
   return (
@@ -862,15 +881,34 @@ export default function OrderDetail() {
       </InfoCard>
 
       {/* Payment */}
-      {(price || order.dispatched_price != null || order.service_fee_cents != null || paymentData?.payment) && (
+      {/* VIS-2-T02 added `carrierExpected`: without it the card itself is
+          hidden when every figure is absent, and the "not priced yet" line
+          inside it could never render on the orders that most need it. */}
+      {(price || order.dispatched_price != null || order.service_fee_cents != null
+        || paymentData?.payment || carrierExpected(order.status)) && (
         <InfoCard title="Payment">
           {/* EXP-D4: once the operator records the real CD-dispatched carrier price,
               it IS the transport line (honest passthrough); otherwise show the
               quote/final transport price. The Y7 service fee is ALWAYS a separate
               line — never folded in, never the carrier-offer/listed price. */}
+          {/* VIS-2-T02. "Transport (carrier)" is KEPT, on the owner's ruling:
+              TRANSPORT standardised internally on "Dispatched price" so the
+              column and its label could not drift apart, but that is a rule
+              about the field matching its name, and here the meaning is already
+              right — this is what the carrier is paid for the transport. The
+              customer's word does not have to be the operator's.
+              Absent is now SAID. Rendering nothing left the customer unable to
+              tell "we do not know the price yet" from "this screen has no such
+              line", and the InfoRow fallback would otherwise print a bare em
+              dash, which says even less. Only where a carrier is expected at
+              all: on a quote request there is nothing pending to report. */}
           {order.dispatched_price != null
-            ? <InfoRow label="Transport (carrier)" value={`$${order.dispatched_price.toFixed(2)}`} mono />
-            : (price && <InfoRow label="Transport fee" value={price} mono />)}
+            ? <InfoRow label="Transport (carrier)" value={moneyFromDollars(order.dispatched_price)} mono />
+            : price
+              ? <InfoRow label="Transport fee" value={price} mono />
+              : carrierExpected(order.status)
+                ? <InfoRow label="Transport (carrier)" value={PRICE_NOT_SET} />
+                : null}
           {/* WAP-T02: new-model orders show the formula range until the fee is
               fixed from the real carrier price; the COD condition is contract
               text. Legacy orders render exactly as before. */}
@@ -1105,6 +1143,60 @@ export default function OrderDetail() {
         />
       )}
 
+      {/* VIS-2-T02: who is carrying the vehicle, and NOTHING else about them.
+          The company name only. Not the phone, not the MC, not what Y7 pays
+          them. `carrier_mc` used to be appended here in parentheses and was
+          served to a real customer on one production order (VIS-1 §V3); the
+          field is gone from the query upstream, and the read is gone here so
+          nobody "fixes" a blank by restoring it.
+          The name comes only from an assignment Y7 made. Central Dispatch may
+          name a carrier we never engaged — the operator sees that on the board,
+          marked as CD's; the customer never does, because telling them we hired
+          someone we did not is worse than telling them nothing.
+          It is out of the driver card, so it no longer requires a driver_name
+          to appear, and absence is said in words rather than left as a gap. */}
+      {(order.carrier_name || carrierExpected(order.status)) && (
+        <InfoCard title="CARRIER">
+          {order.carrier_name ? (
+            <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '15px', fontWeight: 600, color: 'var(--v2-ink, #050607)' }}>
+              {order.carrier_name}
+            </div>
+          ) : (
+            <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '14px', color: 'var(--v2-ink-muted, #5c5851)', fontStyle: 'italic' }}>
+              {CARRIER_NOT_ASSIGNED}
+            </div>
+          )}
+        </InfoCard>
+      )}
+
+      {/* VIS-2-T01: the scheduled dates, out of the driver card and under a
+          heading that names whose dates they are.
+          THE PRODUCTION BREAKAGE THIS FIXES: VIS-1-T05 renamed the wire keys
+          estimated_pickup_date/estimated_delivery_date -> scheduled_*, and this
+          page still read the old names, so the date rendered blank for every
+          customer. The rename is the fix; the relabel is why the rename was
+          right.
+          It no longer sits behind `driver_name`: a scheduled date is a fact
+          about the assignment, not about the driver, and gating it on a driver
+          hid it on every load where no driver had been recorded. */}
+      {(formatLoadDate(order.scheduled_pickup_date) || formatLoadDate(order.scheduled_delivery_date)) && (
+        <InfoCard title="SCHEDULE">
+          {formatLoadDate(order.scheduled_pickup_date) && (
+            <InfoRow label="Scheduled pickup" value={formatLoadDate(order.scheduled_pickup_date)} />
+          )}
+          {formatLoadDate(order.scheduled_delivery_date) && (
+            <InfoRow label="Scheduled delivery" value={formatLoadDate(order.scheduled_delivery_date)} />
+          )}
+          <p style={{
+            fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px',
+            color: 'var(--v2-ink-muted, #5c5851)', lineHeight: 1.5,
+            margin: '8px 0 0', maxWidth: '52ch',
+          }}>
+            {DATE_NOTES.y7}
+          </p>
+        </InfoCard>
+      )}
+
       {/* Driver info card (dispatched orders) */}
       {['dispatched', 'completed'].includes(order.status) && order.driver_name && (
         <InfoCard title="YOUR DRIVER">
@@ -1120,16 +1212,15 @@ export default function OrderDetail() {
               {order.driver_phone}
             </a>
           )}
-          {order.estimated_delivery_date && (
-            <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '10px' }}>
-              Est. delivery: {fmtDeliveryWindow(order.estimated_delivery_date) || order.estimated_delivery_date}
-            </div>
-          )}
-          {order.carrier_name && (
-            <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '4px' }}>
-              Carrier: {order.carrier_name}{order.carrier_mc ? ` (MC ${order.carrier_mc})` : ''}
-            </div>
-          )}
+          {/* THE DRIVER'S NAME AND PHONE STAY, on the owner's ruling: a driver
+              and a carrier are different things. Where the customer pays the
+              carrier on delivery, they meet THIS person and hand over the
+              money, so the number is theirs to have. §2's rule was about the
+              carrier's dispatch line — the company's phone and MC — and that
+              is gone from the wire entirely (VIS-1-T02).
+              The scheduled date moved out to SCHEDULE, and the carrier's name
+              moved out to CARRIER: neither is a fact about the driver, and
+              both were invisible whenever no driver had been recorded. */}
         </InfoCard>
       )}
 
