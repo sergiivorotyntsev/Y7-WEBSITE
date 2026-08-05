@@ -55,7 +55,22 @@ import.
 
 ---
 
-## 2. BACKLOG — `dealer_billing.py` gates are inconsistent
+## 2. ~~BACKLOG~~ — CLOSED BY B2B-1 (2026-08-05): `dealer_billing.py` gates
+
+**Resolved.** Kept rather than deleted, because the measurement below is what
+made the case for the sprint, and the resolution is not what this entry assumed.
+
+The owner's ruling was that the two-console split is **deliberate** — dealers in
+`dealer_billing.py`, exporters in `exporter_billing.py` via the customer
+profile's Billing tab — so the fix was **not** to widen the gates. Each operation
+now names its owner and refuses out loud (409 naming the right console), the two
+endpoints that returned `{"ok": true}` over an UPDATE matching zero rows now
+check rowcount, and `deposit`/`adjust` — which had no gate at any layer — are
+closed to dealers. `cost-report` stays wide on purpose and says so.
+
+See TRANSPORT `wip/b2b-1`: `[B2B-1-T01]`, and `docs/sprints/B2B1_WALKTHROUGH.md`.
+
+The original entry, for the record:
 
 **Severity: real defect, affects daily operator work.** An admin action over an
 exporter succeeds or silently finds nothing depending on which endpoint it hits.
@@ -109,3 +124,44 @@ The button throws when clicked.
 
 Not fixed here: it is unrelated to the cabinet contract, and a drive-by fix would
 ride an unrelated deploy. One-line change when someone picks it up.
+
+---
+
+## 5. BACKLOG — `PUT /api/customers/{id}` sets `billing_mode` with no type gate
+
+**Found after Phase 0, during B2B-1's measurement of who writes the column.**
+Not fixed; recorded because it is the third writer and the one nobody counted.
+
+`api/routes/customers.py:420` (TRANSPORT) accepts `billing_mode` in
+`CustomerUpdate` (`:65`, a `Literal` of four values) and folds it into a generic
+`UPDATE customers SET {set_clauses} WHERE id = ?`. There is **no
+`customer_type` predicate on it** — unlike `customer_type` itself two blocks
+above, which is intercepted and routed through the type-change service. It is
+reachable from the admin customer profile's edit form
+(`EditCustomerForm.jsx:63`, `OverviewTab.jsx:261`).
+
+So the writers of `customers.billing_mode` are:
+
+| # | writer | can it write to an exporter? |
+|---|---|---|
+| 1 | `dealer_billing.py` billing-mode | no — dealers only, and since B2B-1 it says so |
+| 2 | `customer_type_change.py:195` | only to reset it to `per_delivery` on leaving `dealer` |
+| 3 | **`customers.py:420` PUT** | **yes — any type, any of the four values** |
+
+This is how three production exporters (#9, #304, #305) carry
+`prepay_manual_invoice`, a dealer-model value: writer 3 has no gate.
+
+**Why it is only a backlog item.** Nothing reads it for them. Every behavioural
+reader of `billing_mode` is already `customer_type === 'dealer'` — Y7-WEBSITE
+`Dashboard.jsx:396`, `Profile.jsx:537` and `:670`, `AccountSetupBanner.jsx:62` —
+and so is every place that DISPLAYS it (`Profile.jsx:534`, `Dashboard.jsx:362`).
+The value is inert for a non-dealer today.
+
+**The owner's decision (2026-08-05): do not clean the production values.** They
+cause no harm, and a cosmetic data edit is risk without benefit.
+
+**What is worth doing when someone picks this up:** gate writer 3, so the column
+cannot acquire a dealer-model value on a non-dealer account in the first place.
+The inertness is a property of today's readers, not a guarantee — the next
+feature that reads `billing_mode` without checking the type inherits three
+wrong values that nobody put there on purpose.
