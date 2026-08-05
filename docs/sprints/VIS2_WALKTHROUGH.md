@@ -53,11 +53,22 @@ Two properties of this load shaped the walkthrough:
 "price": { "value": 44000, "source": "cd_dispatch_sheet" }
 ```
 
-### 2. Created unvetted — **PASS on "unvetted", FAIL on "with its provenance recorded"**
+### 2. Created unvetted, with its provenance recorded — **FAILED, THEN FIXED**
 
-`POST /api/carriers` → carrier created, `tier: "backlog"` (unvetted, not `confirmed`).
+As first run: `POST /api/carriers` → carrier created `tier: "backlog"` (unvetted, correct), **but
+with no MC, no `source` and no identity row** — the modal dropped the MC it had just shown the
+operator.
 
-**But the provenance is not recorded, and the MC is dropped by the modal.** See the finding below.
+**Fixed on the owner's instruction before merge**, TRANSPORT `[VIS-2-T08] 3b574ccf`. Re-run:
+
+```
+carriers      : mc_number '1072283' (normalised), source 'cd_dispatch_sheet', tier 'backlog'
+identity graph: mc_number = 1072283, source cd_dispatch_sheet, confidence 0.9, is_verified false
+                {"observed_mc_verbatim": "MC01072283", "load_id": "730CHEVO1", ...}
+```
+
+**Step 2 now passes on both halves.** Detail in the finding below, kept rather than deleted because
+the measurement is the argument for the fix.
 
 ### 3. The signal applies; carrier and price land; **the status does not change** — **PASS**
 
@@ -119,9 +130,11 @@ capturing them is FUL-1's work.
 
 ---
 
-## FINDING — the modal shows the operator an MC and then throws it away
+## FINDING — the modal showed the operator an MC and then threw it away
 
-**Not fixed here; TRANSPORT work, outside what this sprint was authorised to change.**
+**FIXED before merge**, on the owner's instruction, in TRANSPORT `[VIS-2-T08] 3b574ccf`. The
+finding is kept as written because the measurement below is what justified fixing it rather than
+backlogging it.
 
 `web/src/components/board/CarrierAssignModal.jsx:384` displays `prefill.cd_carrier_mc` — the
 operator is shown *"MC01072283"* and told the carrier is not in the registry. They click create, and
@@ -144,10 +157,33 @@ them. Every carrier this modal creates adds another MC-less row to that populati
 actively producing the condition that makes future dedup impossible, while holding the MC in its
 hand.
 
-**Verification caveat, stated plainly:** I created the carrier by calling `POST /api/carriers`
-myself, because the admin UI would not render (below). I passed `mc_number` explicitly, so *my*
-carrier has one. The defect is read from the modal's source, not observed in the running UI. It
-should be confirmed by whoever fixes it.
+**Verification caveat on the original finding, stated plainly:** I created the carrier by calling
+`POST /api/carriers` myself, because the admin UI would not render (below), and I passed
+`mc_number` explicitly — so *that* carrier had one. The defect was read from the modal's source,
+not observed in the running UI.
+
+**What the fix changed, measured against a running stack:**
+
+```
+before  POST {name}                          -> duplicate created, silently
+after   POST {name, mc_number, source, load} -> 409 "the same MC number",
+                                                candidate #7, strength strong
+```
+
+including VIS-1 §V6's exact collision shape — a second create under a *different* name spelling and
+a *different* MC spelling (`BALTIC MOTORS` / `1072283` against `BALTIC MOTORS LLC` / `MC01072283`)
+now returns 409 matched on `mc_number`. Before, neither was catchable, because the MC never reached
+`find_probable_duplicates`.
+
+The MC is attached **only when the typed name matches CD's company** (case- and
+whitespace-insensitive, nothing cleverer). A near-miss such as VIS-1's measured
+`B & B Transport Services` against CD's `J&B Transport Services LLC` sends no MC and creates a
+name-only carrier exactly as before — a test pins that path so it cannot be "improved" into
+fuzziness.
+
+**Still true, and still unobserved in the UI:** the modal's own rendering was never driven (below),
+so the fix is verified at the endpoint the modal calls and by three unit tests, not by clicking the
+button.
 
 ## What could not be driven, and what is missing
 
