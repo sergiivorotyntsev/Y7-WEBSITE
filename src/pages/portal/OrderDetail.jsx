@@ -10,6 +10,10 @@ import v2b from '../../styles/v2/buttons.module.css';
 import { API_URL } from '../../config';
 import { releaseDocShortTerm } from '../../utils/releaseDocTerm';
 import { STATUS_LABELS, STATUS_PIPELINE, NO_QUOTE_LABELS, CANCELLATION_REASON_LABELS } from '../../utils/orderStatus';
+// A scheduled date is a CALENDAR DAY. formatLoadDate parses a bare YYYY-MM-DD as
+// a LOCAL date and rejects rollover; see utils/loadDates.js for the off-by-one
+// it exists to prevent. Reused rather than re-implemented here.
+import { formatLoadDate } from '../../utils/loadDates';
 
 const TIMELINE_STEPS = [
   { key: 'pending', label: STATUS_LABELS.pending, field: 'created_at' },
@@ -41,18 +45,29 @@ function fmtDate(d) {
   });
 }
 
-// 2B-5: the customer sees planned delivery as a ±2-day window, never an exact
-// guaranteed date — the planned date is an estimate. The value is a date-only
-// ISO string; parse the Y-M-D parts in LOCAL time to avoid a UTC off-by-one.
-function fmtDeliveryWindow(d) {
-  if (!d) return null;
-  const s = String(d).slice(0, 10);
-  const m = s.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-  const date = m ? new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3])) : new Date(d);
-  if (isNaN(date.getTime())) return null;
-  const label = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-  return `${label} (±2 days)`;
-}
+// VIS-2-T01: `fmtDeliveryWindow` (2B-5) is GONE, and its ±2-day window with it.
+//
+// It rendered "Jun 3, 2026 (±2 days)" under the heading "Est. delivery", inside
+// the driver card. Every part of that attributed a Y7 planning date to whoever
+// was carrying the vehicle: the word "Est.", the placement under the driver's
+// name and phone, and a tolerance band Y7 invented and the carrier never gave.
+//
+// The date itself is real — carrier_assignments.scheduled_delivery_date, what a
+// Y7 operator entered on assignment — so the DATA stays and only the claim goes,
+// the same trade VIS-1-T05 made on the admin panel. The uncertainty the ±2 days
+// was reaching for is now stated in words (SCHEDULE_DATE_NOTE), which is true
+// where an invented number was not: Y7 is a broker and does not control the
+// carrier's schedule.
+//
+// The carrier's OWN committed dates are captured nowhere in this system
+// (VIS-1 §V8: zero columns, cross-checked against pg_attribute). Capturing them
+// is FUL-1's work. Until then nothing here may promise them.
+
+// The owner's wording, verbatim, shared with the dealer/exporter dashboard so
+// the two surfaces cannot drift. See DealerDashboard DATE_NOTES.y7.
+const SCHEDULE_DATE_NOTE =
+  'These are the dates Y7 arranged with the carrier; they can change — Y7 is a '
+  + 'broker and does not control the carrier’s schedule.';
 
 function InfoCard({ title, children }) {
   return (
@@ -1105,6 +1120,34 @@ export default function OrderDetail() {
         />
       )}
 
+      {/* VIS-2-T01: the scheduled dates, out of the driver card and under a
+          heading that names whose dates they are.
+          THE PRODUCTION BREAKAGE THIS FIXES: VIS-1-T05 renamed the wire keys
+          estimated_pickup_date/estimated_delivery_date -> scheduled_*, and this
+          page still read the old names, so the date rendered blank for every
+          customer. The rename is the fix; the relabel is why the rename was
+          right.
+          It no longer sits behind `driver_name`: a scheduled date is a fact
+          about the assignment, not about the driver, and gating it on a driver
+          hid it on every load where no driver had been recorded. */}
+      {(formatLoadDate(order.scheduled_pickup_date) || formatLoadDate(order.scheduled_delivery_date)) && (
+        <InfoCard title="SCHEDULE">
+          {formatLoadDate(order.scheduled_pickup_date) && (
+            <InfoRow label="Scheduled pickup" value={formatLoadDate(order.scheduled_pickup_date)} />
+          )}
+          {formatLoadDate(order.scheduled_delivery_date) && (
+            <InfoRow label="Scheduled delivery" value={formatLoadDate(order.scheduled_delivery_date)} />
+          )}
+          <p style={{
+            fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px',
+            color: 'var(--v2-ink-muted, #5c5851)', lineHeight: 1.5,
+            margin: '8px 0 0', maxWidth: '52ch',
+          }}>
+            {SCHEDULE_DATE_NOTE}
+          </p>
+        </InfoCard>
+      )}
+
       {/* Driver info card (dispatched orders) */}
       {['dispatched', 'completed'].includes(order.status) && order.driver_name && (
         <InfoCard title="YOUR DRIVER">
@@ -1120,11 +1163,12 @@ export default function OrderDetail() {
               {order.driver_phone}
             </a>
           )}
-          {order.estimated_delivery_date && (
-            <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '10px' }}>
-              Est. delivery: {fmtDeliveryWindow(order.estimated_delivery_date) || order.estimated_delivery_date}
-            </div>
-          )}
+          {/* The scheduled delivery date moved OUT of this card (see SCHEDULE
+              above). The driver's name and phone stay: the owner's ruling is
+              that a driver and a carrier are different things — where the
+              customer pays the carrier on delivery, they meet the driver and
+              hand over the money. §2's rule was about the carrier's dispatch
+              line, not this. */}
           {order.carrier_name && (
             <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '4px' }}>
               Carrier: {order.carrier_name}{order.carrier_mc ? ` (MC ${order.carrier_mc})` : ''}
