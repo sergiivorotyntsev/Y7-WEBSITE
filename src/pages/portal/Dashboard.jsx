@@ -13,6 +13,11 @@ import LegacyTypeReprompt from '../../components/LegacyTypeReprompt';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { keyframes } from '../../theme';
 import { STATUS_LABELS, STATUS_CHIP_VARIANT } from '../../utils/orderStatus';
+// VIS-2-T02: the same words for an absent carrier / price as every other
+// cabinet surface, and the same money formatter.
+import {
+  CARRIER_NOT_ASSIGNED, PRICE_NOT_SET, carrierExpected, moneyFromDollars,
+} from '../../utils/loadVocabulary';
 import pp from '../../styles/v2/portal.module.css';
 import v2b from '../../styles/v2/buttons.module.css';
 // DEALER-DASH-S1-T03: dealers/exporters get the three-block dashboard home.
@@ -416,9 +421,31 @@ export default function Dashboard() {
             const createdDate = order.created_at
               ? new Date(order.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
               : null;
-            const price = order.final_price ? `$${order.final_price}` :
-              (order.quote_price_min && order.quote_price_max)
-                ? `$${order.quote_price_min}-$${order.quote_price_max}` : '';
+            // VIS-2-T02: THE ORDER LIST SHOWS THE DISPATCHED PRICE.
+            //
+            // It never could before: the list endpoint did not select the field
+            // at all, so this row had nothing to render for any order. VIS-1
+            // added it (portal_data.py, `dispatched_price_cents_live`, read from
+            // the assignment rather than the stale customer_orders column), and
+            // this is the reader for it.
+            //
+            // The cascade matches the order detail deliberately — the real
+            // dispatched price wins, then the agreed/quoted figure — so the
+            // same order cannot show one number in the list and another on the
+            // page it links to.
+            const dispatched = moneyFromDollars(order.dispatched_price);
+            const quotedPrice = order.final_price
+              ? moneyFromDollars(order.final_price)
+              : (order.quote_price_min && order.quote_price_max)
+                ? `${moneyFromDollars(order.quote_price_min)}-${moneyFromDollars(order.quote_price_max)}`
+                : '';
+            const price = dispatched || quotedPrice;
+            // Absent is said in words, not left as the empty string this used to
+            // fall back to. A blank cell in a list whose other rows show money
+            // reads as a broken screen, not as "we do not know yet". Only where
+            // a carrier is expected: nothing is pending on a quote request.
+            const pricePending = !price && carrierExpected(order.status);
+            const carrierPending = !order.carrier_name && carrierExpected(order.status);
             return (
               <Link
                 key={order.id}
@@ -477,17 +504,51 @@ export default function Dashboard() {
                       {route && <span>{route}</span>}
                       {createdDate && <span> &middot; {createdDate}</span>}
                     </div>
+                    {/* VIS-2-T02: who is carrying it. The company name only —
+                        the list endpoint sends `carrier_name` and nothing else
+                        about the carrier, and this row asks for nothing else. */}
+                    {order.carrier_name ? (
+                      <div style={{
+                        fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px',
+                        color: 'var(--v2-ink, #050607)', marginTop: '4px',
+                        whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                      }}>
+                        Carrier: {order.carrier_name}
+                      </div>
+                    ) : carrierPending ? (
+                      <div style={{
+                        fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px',
+                        color: 'var(--v2-ink-muted, #5c5851)', marginTop: '4px',
+                        fontStyle: 'italic', whiteSpace: 'nowrap',
+                        overflow: 'hidden', textOverflow: 'ellipsis',
+                      }}>
+                        {CARRIER_NOT_ASSIGNED}
+                      </div>
+                    ) : null}
                   </div>
                 </div>
                 <div style={{ textAlign: 'right', flexShrink: 0 }}>
                   <span className={statusChipClass(order.status)}>
                     {STATUS_LABELS[order.status] || order.status || 'Unknown'}
                   </span>
-                  {price && (
+                  {price ? (
                     <div className={pp.mono} style={{ marginTop: '2px' }}>
                       {price}
+                      {/* Which price this is, when it is the real one. Without
+                          the qualifier a dispatched price and a quote range are
+                          indistinguishable at a glance. */}
+                      {dispatched && (
+                        <span style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: 'var(--v2-ink-muted, #5c5851)' }}> carrier</span>
+                      )}
                     </div>
-                  )}
+                  ) : pricePending ? (
+                    <div style={{
+                      fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px',
+                      color: 'var(--v2-ink-muted, #5c5851)', marginTop: '4px', fontStyle: 'italic',
+                    }}>
+                      {PRICE_NOT_SET}
+                    </div>
+                  ) : null}
                 </div>
               </Link>
             );

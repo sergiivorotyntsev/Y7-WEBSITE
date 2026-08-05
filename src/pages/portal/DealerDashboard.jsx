@@ -7,6 +7,9 @@ import { portalFetch } from '../../hooks/useAuth';
 import { keyframes } from '../../theme';
 import { formatLoadDate } from '../../utils/loadDates';
 import { progressFor } from '../../utils/loadStatus';
+import {
+  CARRIER_NOT_ASSIGNED, PRICE_NOT_SET, DATE_NOTES, moneyFromCents,
+} from '../../utils/loadVocabulary';
 import pp from '../../styles/v2/portal.module.css';
 import v2b from '../../styles/v2/buttons.module.css';
 
@@ -46,35 +49,44 @@ const SORT_OPTIONS = [
   { value: 'price_low', label: 'Price: low → high', col: 'price', dir: 'asc' },
 ];
 
-// CAB-LOADS T03: money crosses the wire in integer cents and is converted HERE,
-// at the UI boundary — never in the API, never in the database.
+// CAB-LOADS T03 CHOSE SILENCE FOR ABSENT VALUES. VIS-2-T02 REVERSES THAT, ON
+// THE OWNER'S RULING (2026-08-05). The reversal is written here rather than
+// applied quietly, because the original was a deliberate, reasoned decision and
+// the next reader is entitled to know it was overruled and why.
 //
-// `cents == null` returns null and the caller renders NOTHING. A missing price
-// must never appear as "$0.00": a zero that means "unknown" is this codebase's
-// recurring defect, and with prices populated on roughly 1% of loads today it
-// would be the overwhelmingly common case. Absent is honest; $0.00 is a claim.
-function moneyFromCents(cents) {
-  if (cents == null) return null;
-  return `$${(cents / 100).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 })}`;
-}
+// WHAT T03 DECIDED, and it was not careless:
+//   "`cents == null` returns null and the caller renders NOTHING. A missing
+//    price must never appear as '$0.00': a zero that means 'unknown' is this
+//    codebase's recurring defect, and with prices populated on roughly 1% of
+//    loads today it would be the overwhelmingly common case.
+//    Absent is honest; $0.00 is a claim."
+//
+// WHAT SURVIVES: the whole of the argument against "$0.00". A zero is still a
+// claim, moneyFromCents still returns null rather than a fabricated zero, and
+// nothing below ever prints $0 for an unknown price. T03 was right about that
+// and this commit does not touch it.
+//
+// WHAT WAS WRONG: "absent is honest" held only against $0.00, and was measured
+// against the wrong alternative. Rendering NOTHING is not the honest option, it
+// is the third one. To a customer, an empty space where other rows show a price
+// is indistinguishable from "this screen does not have that field" — so the
+// silence that was meant to avoid a false claim instead avoided making any
+// statement at all, and the customer could not tell "no carrier yet" from "not
+// shown here". Phase 0 measured the cost: three surfaces, three different
+// silences, none of them readable as a fact.
+//
+// WHAT REPLACES IT: words. "Carrier not assigned yet", "Not priced yet" — one
+// wording, decided once, in utils/loadVocabulary.js, used by every surface.
+// Absent is now SAID, not implied by a gap. $0.00 remains forbidden.
+//
+// Money still crosses the wire in integer cents and is converted at the UI
+// boundary, never in the API and never in the database. moneyFromCents moved to
+// the shared module unchanged so the dealer dashboard and the order pages
+// cannot format the same number two ways.
 
 // Calendar-day formatting lives in utils/loadDates.js so it can be regression-
 // tested across timezones — see the off-by-one it exists to prevent.
 const formatDate = formatLoadDate;
-
-// The wording is the owner's, verbatim, and the distinction is load-bearing.
-//
-// Y7 has no carrier-declared date today: all 7 populated `scheduled_*` values in
-// production were typed by a Y7 operator in an admin modal, and the columns that
-// WOULD hold a carrier's own declaration (eta_pickup / eta_delivery) are 0 of
-// 594. Saying "the dates the carrier declared" would therefore have been a false
-// statement to the customer. The `carrier` branch exists because Central
-// Dispatch does expose a genuinely carrier-declared date and those columns may
-// be populated later; it is display-only and no sync is built for it here.
-const DATE_NOTES = {
-  y7: 'These are the dates Y7 arranged with the carrier; they can change — Y7 is a broker and does not control the carrier’s schedule.',
-  carrier: 'These are the dates the carrier declared; they can change — Y7 is a broker and does not control the carrier’s schedule.',
-};
 
 function UnifiedProgress({ progress }) {
   const { stages, index, terminal, label } = progress;
@@ -141,30 +153,54 @@ function LoadRow({ load, expanded, onToggle }) {
             <span className={pp.mono} style={{ marginRight: '8px' }}>{loadId}</span>
             {route && <span>{route}</span>}
           </div>
-          {load.carrier_name && (
+          {/* VIS-2-T02: absent is SAID. The gap this replaces could not be told
+              apart from "this screen has no carrier field".
+              BUT ONLY WHILE THE LOAD IS LIVE: "not assigned YET" is a claim
+              about the future, and on a closed load it is simply false —
+              something carried that vehicle, and we are looking at a record
+              that does not name it. Silence is right there and words are not,
+              which is why this reads `load.active` rather than always
+              printing the phrase. */}
+          {load.carrier_name ? (
             <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink, #050607)', marginTop: '4px' }}>
               Carrier: {load.carrier_name}
             </div>
-          )}
+          ) : load.active ? (
+            <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '4px', fontStyle: 'italic' }}>
+              {CARRIER_NOT_ASSIGNED}
+            </div>
+          ) : null}
         </div>
         <div style={{ textAlign: 'right', flexShrink: 0 }}>
           <span className={u.terminal ? pp.chipRed : pp.chipInk}>
             {u.label}
           </span>
-          {/* CAB-LOADS T03: both prices the owner asked for, each shown only
-              when it exists. No placeholder, no zero standing in for unknown. */}
+          {/* CAB-LOADS T03: both prices the owner asked for. No zero standing
+              in for unknown — that part of T03 stands.
+              VIS-2-T02 splits the two prices, which T03 treated alike:
+              LISTED is what we first advertised. A load that was never listed
+              never had one, so its absence is not a pending value and there is
+              nothing to promise. It stays omitted.
+              CARRIER is the dispatched price — the number this sprint exists to
+              surface. On a live load its absence means "we do not know yet",
+              which is a fact and is now said. Same `load.active` reasoning as
+              the carrier name above. */}
           {listed && (
             <div className={pp.mono} style={{ marginTop: '4px' }}>
               {listed}
               <span style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: 'var(--v2-ink-muted, #5c5851)' }}> listed</span>
             </div>
           )}
-          {carrierPrice && (
+          {carrierPrice ? (
             <div className={pp.mono} style={{ marginTop: '1px' }}>
               {carrierPrice}
               <span style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: 'var(--v2-ink-muted, #5c5851)' }}> carrier</span>
             </div>
-          )}
+          ) : load.active ? (
+            <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '4px', fontStyle: 'italic' }}>
+              {PRICE_NOT_SET}
+            </div>
+          ) : null}
         </div>
       </button>
       {expanded && (
