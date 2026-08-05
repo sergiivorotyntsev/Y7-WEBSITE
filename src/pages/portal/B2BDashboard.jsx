@@ -246,7 +246,7 @@ function LoadRow({ load, expanded, onToggle }) {
   );
 }
 
-export default function DealerDashboard({ user }) {
+export default function B2BDashboard({ user }) {
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   const [counts, setCounts] = useState(null);
@@ -311,7 +311,17 @@ export default function DealerDashboard({ user }) {
 
   return (
     <div className={pp.shell}>
-      <PageMeta title="Dealer Dashboard" description="Monitor your loads, costs, and documents in one place." path="/portal/dashboard" />
+      {/* VIS-2-T05: "Dealer Dashboard" was the ONE dealer-worded string on this
+          page that a customer actually saw — in the browser tab and the meta
+          description — and half the accounts reading it are exporters, who are
+          not dealers and have their own agreement, billing and document flow.
+          Customer 305 (IMPERIAL AUTO) is one of them (TRANSPORT ADR-012).
+          Neutral rather than type-switched: the account badge in the header
+          already says "Exporter Account" / "Dealer Account", so the tab does
+          not need to, and a title that claims a type is the thing that was
+          wrong here. Matches the individual dashboard's title on the same
+          route. */}
+      <PageMeta title="My Dashboard" description="Monitor your loads, costs, and documents in one place." path="/portal/dashboard" />
       <style>{keyframes}</style>
 
       {/* Header */}

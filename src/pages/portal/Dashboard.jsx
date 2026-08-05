@@ -21,7 +21,10 @@ import {
 import pp from '../../styles/v2/portal.module.css';
 import v2b from '../../styles/v2/buttons.module.css';
 // DEALER-DASH-S1-T03: dealers/exporters get the three-block dashboard home.
-import DealerDashboard from './DealerDashboard';
+// VIS-2-T05: named B2BDashboard, because BOTH B2B types land here and calling
+// it the dealer dashboard is what let an exporter's browser tab say "Dealer
+// Dashboard" for months without anyone noticing the file was mis-scoped.
+import B2BDashboard from './B2BDashboard';
 
 // SPRINT-W7 C0: canonical status -> C0 chip-class (four-variant system;
 // mapping table lives in utils/orderStatus STATUS_CHIP_VARIANT).
@@ -30,9 +33,24 @@ function statusChipClass(status) {
   return CHIP_VARIANT_CLASS[STATUS_CHIP_VARIANT[status] || 'ink'] || pp.chipInk;
 }
 
+// VIS-2-T05: worded neutrally, because "Dealer Agreement" was false for half
+// the accounts that sign one — an exporter signs an exporter agreement.
+//
+// BOTH OF THESE ARE CURRENTLY UNREACHABLE, and that is recorded rather than
+// silently fixed. The B2B branch below returns <B2BDashboard/> BEFORE this
+// component renders `toastMsg`, so no dealer or exporter ever sees either
+// message — including `bank_auth_signed`, which only dealers and exporters can
+// trigger at all. Individuals, the only accounts that reach the renderer, sign
+// neither.
+//
+// Making them reachable is a behaviour change (B2B accounts would start seeing
+// post-signature toasts that they have never seen) and is NOT this sprint's
+// call. The wording is corrected so the strings are not false if that decision
+// is taken; the deadness is written down so the next reader does not spend the
+// afternoon working out why the toast never fires.
 const TOAST_MESSAGES = {
-  agreement_signed: 'Dealer Agreement Signed Successfully',
-  bank_auth_signed: 'Bank Authorization Signed Successfully',
+  agreement_signed: 'Agreement signed successfully',
+  bank_auth_signed: 'Bank authorization signed successfully',
 };
 
 // SPRINT-F: all customer types use the authenticated portal order form.
@@ -150,7 +168,7 @@ export default function Dashboard() {
   }, [searchParams, setSearchParams]);
 
   useEffect(() => {
-    // DEALER-DASH-S1-T03: dealers/exporters render <DealerDashboard/>, which
+    // DEALER-DASH-S1-T03: dealers/exporters render <B2BDashboard/>, which
     // fetches its own loads (limit=0 + filter/sort). Skip the individual
     // recent-orders fetch for them; wait for auth so customer_type is known.
     if (authLoading) return;
@@ -229,7 +247,7 @@ export default function Dashboard() {
   // All hooks above run unconditionally; the onboarding-redirect effect still
   // sends unverified/unsigned dealers to /portal/onboarding before this shows.
   if (['dealer', 'exporter'].includes(user?.customer_type)) {
-    return <DealerDashboard user={user} />;
+    return <B2BDashboard user={user} />;
   }
 
   return (
