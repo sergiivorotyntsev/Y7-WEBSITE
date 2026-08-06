@@ -19,13 +19,27 @@
 // render PRICE_NOT_SET for the first. Collapsing the two is the exact defect
 // VIS-1 found upstream, where an order carried $10 backed by no assignment.
 
+import { formatLoadDate } from './loadDates';
 import { ORDER_STATUS, STATUS_PIPELINE } from './orderStatus';
 
 /** No carrier is carrying this load yet. Never an empty cell. */
 export const CARRIER_NOT_ASSIGNED = 'Carrier not assigned yet';
 
-/** No price is known yet. Distinct from a price that is genuinely zero. */
-export const PRICE_NOT_SET = 'Not priced yet';
+/**
+ * No price is known yet. Distinct from a price that is genuinely zero.
+ *
+ * EXB-1-T01 REWORDED THIS. It read "Not priced yet", and the owner's objection
+ * is exact: that sentence describes Y7's diligence — as though someone had not
+ * got round to pricing the load — where the truth is a fact about the load's
+ * progress. The cabinet's price comes from a carrier assignment and from
+ * nothing else (VIS-2-T06), so an absent price means precisely one thing, and
+ * it is now the thing that is said.
+ *
+ * It also stops contradicting the line directly above it on the same row:
+ * `CARRIER_NOT_ASSIGNED` already says no carrier is on this load. Two silences
+ * about one cause now read as one statement instead of two symptoms.
+ */
+export const PRICE_NOT_SET = 'Awaiting a carrier';
 
 // The owner's wording, verbatim. The distinction is load-bearing: Y7 has no
 // carrier-declared date today (all populated scheduled_* values were typed by a
@@ -77,6 +91,44 @@ export function moneyFromDollars(dollars) {
   if (!Number.isFinite(n)) return null;
   return formatUsd(n);
 }
+
+/**
+ * EXB-1-T01 — WHAT CENTRAL DISPATCH REPORTS, WHEN Y7 HAS NOT RECORDED IT YET.
+ *
+ * THE DEFECT. Eight of the live exporter's nine loads have no carrier
+ * assignment. The admin BOARD shows a dispatched price for five of them, read
+ * from `cd_dispatch_prices`; the cabinet showed nothing, because since VIS-2-T06
+ * it reads the assignment with no fallback. The customer was looking at
+ * "Awaiting a carrier" on a load Central Dispatch says is being hauled by B&N
+ * TRANSPORTATION for $340. One load, two screens, two answers.
+ *
+ * THIS IS NOT A FALLBACK AND MUST NEVER BECOME ONE. `carrier_price_cents` is
+ * Y7's own record and stays exactly as VIS-2 left it. These are separate server
+ * keys carrying a different claim — *Central Dispatch reports this*, not *Y7
+ * agreed this* — so no `||` chain can ever collapse the two into one number.
+ * If you find yourself writing `carrierPrice || cdPrice`, that is the defect.
+ *
+ * REFUSES RATHER THAN DEGRADES, the same contract the board's `formatCdCarrier`
+ * has: no price, or no as-of date, returns null and nothing renders. Rule 9 —
+ * a fact somebody else maintains renders WITH the date we observed it or it does
+ * not render at all. A price attributed to Central Dispatch with no date is an
+ * assertion; with a date it is evidence, and the customer can see for himself
+ * whether it is a week old.
+ *
+ * @returns {{price: string, carrier: string|null, asOf: string}|null}
+ */
+export function formatCdDispatch(load) {
+  const cents = load?.cd_price_cents;
+  const price = moneyFromCents(cents);
+  if (price == null) return null;
+  const asOf = formatLoadDate(load?.cd_price_as_of);
+  if (!asOf) return null;
+  const carrier = (load?.cd_carrier_name || '').trim();
+  return { price, carrier: carrier || null, asOf };
+}
+
+/** The one wording for CD attribution. A second copy of this string is drift. */
+export const CD_ATTRIBUTION = 'reported by Central Dispatch';
 
 /**
  * Is a carrier expected on an order at this status yet?

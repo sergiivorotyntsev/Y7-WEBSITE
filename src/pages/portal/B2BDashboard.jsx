@@ -8,7 +8,7 @@ import { keyframes } from '../../theme';
 import { formatLoadDate } from '../../utils/loadDates';
 import { progressFor } from '../../utils/loadStatus';
 import {
-  CARRIER_NOT_ASSIGNED, PRICE_NOT_SET, DATE_NOTES, moneyFromCents,
+  CARRIER_NOT_ASSIGNED, PRICE_NOT_SET, DATE_NOTES, moneyFromCents, formatCdDispatch, CD_ATTRIBUTION,
 } from '../../utils/loadVocabulary';
 import pp from '../../styles/v2/portal.module.css';
 import v2b from '../../styles/v2/buttons.module.css';
@@ -128,6 +128,13 @@ function LoadRow({ load, expanded, onToggle }) {
 
   const listed = moneyFromCents(load.listed_price_cents);
   const carrierPrice = moneyFromCents(load.carrier_price_cents);
+  // EXB-1-T01. NOT a fallback for carrierPrice — a separate fact with a
+  // separate subject. The server suppresses it the moment an assignment exists,
+  // so the two are never both present; the render below still keeps them in
+  // different branches rather than relying on that, because a display that
+  // would show CD's number in Y7's place is the defect even if today's data
+  // never triggers it (rule 25b — a zero exposure count proves nothing).
+  const cd = formatCdDispatch(load);
   const pickupDate = formatDate(load.pickup_date);
   const deliveryDate = formatDate(load.delivery_date);
   const actualPickup = formatDate(load.actual_pickup_date);
@@ -165,6 +172,15 @@ function LoadRow({ load, expanded, onToggle }) {
             <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink, #050607)', marginTop: '4px' }}>
               Carrier: {load.carrier_name}
             </div>
+          ) : cd?.carrier ? (
+            /* EXB-1-T01: CD's carrier, and it is NOT in the Carrier field.
+               "Carrier: X" means Y7 engaged them and owes them money; this
+               means Central Dispatch observed them on the load. The label and
+               the date carry that difference — the board's formatCdCarrier
+               makes the identical distinction for the operator. */
+            <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '4px' }}>
+              {cd.carrier} · {CD_ATTRIBUTION}, {cd.asOf}
+            </div>
           ) : load.active ? (
             <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '4px', fontStyle: 'italic' }}>
               {CARRIER_NOT_ASSIGNED}
@@ -195,6 +211,18 @@ function LoadRow({ load, expanded, onToggle }) {
             <div className={pp.mono} style={{ marginTop: '1px' }}>
               {carrierPrice}
               <span style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: 'var(--v2-ink-muted, #5c5851)' }}> carrier</span>
+            </div>
+          ) : cd ? (
+            /* EXB-1-T01: the price the BOARD has had all along, now on the
+               customer's screen — attributed and dated, never merged with ours.
+               It is deliberately NOT styled like the figure above it: that one
+               is Y7's own agreed price and this one is somebody else's report,
+               and a customer must be able to tell which he is reading. */
+            <div style={{ marginTop: '1px' }}>
+              <span className={pp.mono}>{cd.price}</span>
+              <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: 'var(--v2-ink-muted, #5c5851)' }}>
+                {CD_ATTRIBUTION}, {cd.asOf}
+              </div>
             </div>
           ) : load.active ? (
             <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '4px', fontStyle: 'italic' }}>
