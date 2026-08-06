@@ -119,6 +119,61 @@ function UnifiedProgress({ progress }) {
   );
 }
 
+// EXB-1-T02 — WHAT THE CLIENT'S MONEY WENT ON, LINE BY LINE.
+//
+// The owner's commercial model, and the one thing this component must not do:
+//
+//     The client funds a joint account and Y7 pays the carriers from it. He must
+//     see the real cost of transport and any additional costs. The cost of OUR
+//     SERVICES is analysed separately and that is what he pays us.
+//
+// So there are TWO SUMS AND THEY ARE NEVER ADDED TOGETHER HERE. This block shows
+// the first — his own expenditure — and says so in words. The Y7 service fee is
+// a different section with a different total, and a single "Total" spanning both
+// would tell him he owes Y7 the carrier's money.
+//
+// Every figure comes from the server already summed
+// (`services/order_money.load_money`). A client-side `carrier + storage + …` is
+// a second implementation of the invoice's arithmetic and would disagree with it
+// the first time a cost type is added (rule 20).
+function TransportCosts({ load }) {
+  const costs = load.additional_costs || [];
+  const total = moneyFromCents(load.transport_total_cents);
+  // Nothing to say: no costs and no total. Not an empty table with a $0 in it —
+  // a zero is a claim, and this component has nothing to claim.
+  if (!costs.length && total == null) return null;
+
+  const row = (label, value, muted) => (
+    <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: muted ? 'var(--v2-ink-muted, #5c5851)' : 'var(--v2-ink, #050607)' }}>
+      <span>{label}</span>
+      <span className={pp.mono}>{value}</span>
+    </div>
+  );
+
+  return (
+    <div style={{ marginTop: '10px', paddingTop: '10px', borderTop: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))' }}>
+      <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: 'var(--v2-ink-muted, #5c5851)', marginBottom: '4px' }}>
+        Transport costs — paid from your funds
+      </div>
+      {moneyFromCents(load.carrier_price_cents) && row('Carrier', moneyFromCents(load.carrier_price_cents))}
+      {costs.map((c, i) => (
+        <div key={`${c.kind}-${i}`}>
+          {row(c.note ? `${c.label} — ${c.note}` : c.label, moneyFromCents(c.amount_cents))}
+        </div>
+      ))}
+      {total != null && (
+        <div style={{ marginTop: '4px', paddingTop: '4px', borderTop: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))', fontWeight: 600 }}>
+          {row('Transport total', total)}
+        </div>
+      )}
+      <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '4px', maxWidth: '52ch' }}>
+        These are carrier and handling costs funded from your account. Y7&rsquo;s service
+        fee is billed separately.
+      </div>
+    </div>
+  );
+}
+
 function LoadRow({ load, expanded, onToggle }) {
   const vehicle = [load.vehicle_year, load.vehicle_make, load.vehicle_model]
     .filter(Boolean).join(' ') || load.vin || 'Vehicle TBD';
@@ -255,6 +310,8 @@ function LoadRow({ load, expanded, onToggle }) {
               )}
             </div>
           )}
+
+          <TransportCosts load={load} />
 
           {/* Email-pipeline loads have no portal order behind them, so there is
               no detail page to link to. CAB-LOADS T01 is read-only: no upload,
