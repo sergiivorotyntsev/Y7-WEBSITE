@@ -884,7 +884,12 @@ export default function OrderDetail() {
       {/* VIS-2-T02 added `carrierExpected`: without it the card itself is
           hidden when every figure is absent, and the "not priced yet" line
           inside it could never render on the orders that most need it. */}
+      {/* ASG-2-T05 adds the two pass-through costs to the visibility condition,
+          for the reason VIS-2-T02 added `carrierExpected`: a card hidden when
+          every OTHER figure is absent cannot show a line it is the only place
+          for. An order with a storage fee and nothing else must still render. */}
       {(price || order.dispatched_price != null || order.service_fee_cents != null
+        || order.storage_fee_cents || order.dry_run_fee_cents
         || paymentData?.payment || carrierExpected(order.status)) && (
         <InfoCard title="Payment">
           {/* EXP-D4: once the operator records the real CD-dispatched carrier price,
@@ -937,6 +942,44 @@ export default function OrderDetail() {
             order.service_fee_cents != null && order.service_fee_cents > 0 && (
               <InfoRow label="Y7 service fee" value={`$${(order.service_fee_cents / 100).toFixed(2)}`} mono />
             )
+          )}
+          {/* ASG-2-T05 — THE STORAGE FEE, AS ITS OWN LINE, AND A TOTAL.
+
+              THE OWNER'S RULING, 2026-08-05: "when a storage fee arises that we
+              pay directly to the carrier or driver, there must be a field to
+              record that extra cost, SO THE CUSTOMER SEES IT... as its own
+              line, and a total for the load."
+
+              The field already existed. `customer_orders.storage_fee_cents` has
+              had a writer (the admin Money section) and a reader (the periodic
+              cost report Y7 emails) since EXP-F5 — and **0 of 69 orders carry
+              one**, and this screen never selected it. So the customer's only
+              sight of it was a PDF once a period. CLAUDE.md rule 10: a column
+              whose readers cannot reach the surface the customer looks at.
+
+              These are PASS-THROUGH costs. Y7's invoice bills the service fee
+              only; storage and dry-run are what Y7 paid the carrier or driver
+              direct and is passing on, which is why they sit above the fee and
+              inside the same total.
+
+              `load_total_cents` IS NOT ADDED UP HERE. It is computed by
+              `services/order_money.load_total_cents` in TRANSPORT and rendered
+              identically by the admin card, because the ruling requires the two
+              to show the SAME figure and two client-side sums of one formula
+              are born diverged (rule 20). */}
+          {order.storage_fee_cents != null && order.storage_fee_cents > 0 && (
+            <InfoRow label="Storage fee" value={`$${(order.storage_fee_cents / 100).toFixed(2)}`} mono />
+          )}
+          {order.dry_run_fee_cents != null && order.dry_run_fee_cents > 0 && (
+            <InfoRow label="Dry run" value={`$${(order.dry_run_fee_cents / 100).toFixed(2)}`} mono />
+          )}
+          {/* Rendered only when the carrier price is known. A total of $0.00
+              would read as "free" where the truth is "not priced yet", which is
+              the distinction the line above this one exists to make. */}
+          {order.load_total_cents != null && (
+            <div style={{ marginTop: '8px', paddingTop: '8px', borderTop: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))' }}>
+              <InfoRow label="Total for this load" value={`$${(order.load_total_cents / 100).toFixed(2)}`} mono />
+            </div>
           )}
           {order.payment_responsibility && <InfoRow label="Payment method" value={order.payment_responsibility === 'broker' ? 'Prepaid to Y7' : 'COD at delivery'} />}
 
