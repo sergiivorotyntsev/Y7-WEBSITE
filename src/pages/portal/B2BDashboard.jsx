@@ -8,7 +8,7 @@ import { keyframes } from '../../theme';
 import { formatLoadDate } from '../../utils/loadDates';
 import { progressFor } from '../../utils/loadStatus';
 import {
-  CARRIER_NOT_ASSIGNED, PRICE_NOT_SET, DATE_NOTES, moneyFromCents,
+  CARRIER_NOT_ASSIGNED, PRICE_NOT_SET, DATE_NOTES, moneyFromCents, formatCdDispatch, CD_ATTRIBUTION,
 } from '../../utils/loadVocabulary';
 import pp from '../../styles/v2/portal.module.css';
 import v2b from '../../styles/v2/buttons.module.css';
@@ -119,6 +119,61 @@ function UnifiedProgress({ progress }) {
   );
 }
 
+// EXB-1-T02 — WHAT THE CLIENT'S MONEY WENT ON, LINE BY LINE.
+//
+// The owner's commercial model, and the one thing this component must not do:
+//
+//     The client funds a joint account and Y7 pays the carriers from it. He must
+//     see the real cost of transport and any additional costs. The cost of OUR
+//     SERVICES is analysed separately and that is what he pays us.
+//
+// So there are TWO SUMS AND THEY ARE NEVER ADDED TOGETHER HERE. This block shows
+// the first — his own expenditure — and says so in words. The Y7 service fee is
+// a different section with a different total, and a single "Total" spanning both
+// would tell him he owes Y7 the carrier's money.
+//
+// Every figure comes from the server already summed
+// (`services/order_money.load_money`). A client-side `carrier + storage + …` is
+// a second implementation of the invoice's arithmetic and would disagree with it
+// the first time a cost type is added (rule 20).
+function TransportCosts({ load }) {
+  const costs = load.additional_costs || [];
+  const total = moneyFromCents(load.transport_total_cents);
+  // Nothing to say: no costs and no total. Not an empty table with a $0 in it —
+  // a zero is a claim, and this component has nothing to claim.
+  if (!costs.length && total == null) return null;
+
+  const row = (label, value, muted) => (
+    <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: muted ? 'var(--v2-ink-muted, #5c5851)' : 'var(--v2-ink, #050607)' }}>
+      <span>{label}</span>
+      <span className={pp.mono}>{value}</span>
+    </div>
+  );
+
+  return (
+    <div style={{ marginTop: '10px', paddingTop: '10px', borderTop: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))' }}>
+      <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: 'var(--v2-ink-muted, #5c5851)', marginBottom: '4px' }}>
+        Transport costs — paid from your funds
+      </div>
+      {moneyFromCents(load.carrier_price_cents) && row('Carrier', moneyFromCents(load.carrier_price_cents))}
+      {costs.map((c, i) => (
+        <div key={`${c.kind}-${i}`}>
+          {row(c.note ? `${c.label} — ${c.note}` : c.label, moneyFromCents(c.amount_cents))}
+        </div>
+      ))}
+      {total != null && (
+        <div style={{ marginTop: '4px', paddingTop: '4px', borderTop: '1px solid var(--v2-line-on-paper, rgba(5, 6, 7, 0.14))', fontWeight: 600 }}>
+          {row('Transport total', total)}
+        </div>
+      )}
+      <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '4px', maxWidth: '52ch' }}>
+        These are carrier and handling costs funded from your account. Y7&rsquo;s service
+        fee is billed separately.
+      </div>
+    </div>
+  );
+}
+
 function LoadRow({ load, expanded, onToggle }) {
   const vehicle = [load.vehicle_year, load.vehicle_make, load.vehicle_model]
     .filter(Boolean).join(' ') || load.vin || 'Vehicle TBD';
@@ -128,6 +183,13 @@ function LoadRow({ load, expanded, onToggle }) {
 
   const listed = moneyFromCents(load.listed_price_cents);
   const carrierPrice = moneyFromCents(load.carrier_price_cents);
+  // EXB-1-T01. NOT a fallback for carrierPrice — a separate fact with a
+  // separate subject. The server suppresses it the moment an assignment exists,
+  // so the two are never both present; the render below still keeps them in
+  // different branches rather than relying on that, because a display that
+  // would show CD's number in Y7's place is the defect even if today's data
+  // never triggers it (rule 25b — a zero exposure count proves nothing).
+  const cd = formatCdDispatch(load);
   const pickupDate = formatDate(load.pickup_date);
   const deliveryDate = formatDate(load.delivery_date);
   const actualPickup = formatDate(load.actual_pickup_date);
@@ -165,6 +227,15 @@ function LoadRow({ load, expanded, onToggle }) {
             <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink, #050607)', marginTop: '4px' }}>
               Carrier: {load.carrier_name}
             </div>
+          ) : cd?.carrier ? (
+            /* EXB-1-T01: CD's carrier, and it is NOT in the Carrier field.
+               "Carrier: X" means Y7 engaged them and owes them money; this
+               means Central Dispatch observed them on the load. The label and
+               the date carry that difference — the board's formatCdCarrier
+               makes the identical distinction for the operator. */
+            <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '4px' }}>
+              {cd.carrier} · {CD_ATTRIBUTION}, {cd.asOf}
+            </div>
           ) : load.active ? (
             <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '4px', fontStyle: 'italic' }}>
               {CARRIER_NOT_ASSIGNED}
@@ -195,6 +266,18 @@ function LoadRow({ load, expanded, onToggle }) {
             <div className={pp.mono} style={{ marginTop: '1px' }}>
               {carrierPrice}
               <span style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: 'var(--v2-ink-muted, #5c5851)' }}> carrier</span>
+            </div>
+          ) : cd ? (
+            /* EXB-1-T01: the price the BOARD has had all along, now on the
+               customer's screen — attributed and dated, never merged with ours.
+               It is deliberately NOT styled like the figure above it: that one
+               is Y7's own agreed price and this one is somebody else's report,
+               and a customer must be able to tell which he is reading. */
+            <div style={{ marginTop: '1px' }}>
+              <span className={pp.mono}>{cd.price}</span>
+              <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: 'var(--v2-ink-muted, #5c5851)' }}>
+                {CD_ATTRIBUTION}, {cd.asOf}
+              </div>
             </div>
           ) : load.active ? (
             <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: 'var(--v2-ink-muted, #5c5851)', marginTop: '4px', fontStyle: 'italic' }}>
@@ -227,6 +310,8 @@ function LoadRow({ load, expanded, onToggle }) {
               )}
             </div>
           )}
+
+          <TransportCosts load={load} />
 
           {/* Email-pipeline loads have no portal order behind them, so there is
               no detail page to link to. CAB-LOADS T01 is read-only: no upload,
