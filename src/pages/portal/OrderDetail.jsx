@@ -51,6 +51,34 @@ function fmtDate(d) {
   });
 }
 
+// CDPROG-P5cT4 — A CENTRAL DISPATCH DATE NEVER RENDERS WITHOUT ITS AS-OF.
+//
+// RULE 9 / RULE 0+: a status somebody else maintains is a lower bound, not a
+// fact, and it renders with the date it was observed or not at all. The value
+// and the as-of arrive from the SAME row in the SAME statement
+// (services/cd_status_view.cd_customer_dates_select_sql in the TRANSPORT repo),
+// so they cannot go stale separately — which is the property that makes this
+// honest rather than decorative.
+//
+// A MISSING AS-OF DOES NOT DELETE THE DATE, and that is a deliberate departure
+// from the refuse-without-provenance rule the money helpers follow. Y7's read
+// clock (`last_read_at`) is not backfilled, so a refusal would have blanked
+// every CD date on the day this shipped and restored them silently an hour
+// later. "when we last checked" with no date would be a lie; naming the gap is
+// not. So the value renders and says the age is unknown.
+//
+// formatLoadDate, NOT `new Date(...)`. These are bare YYYY-MM-DD calendar days
+// and this repo has already paid for parsing one as UTC midnight: the server
+// sent 2026-08-03 and the cabinet displayed "Aug 2, 2026" in New York, in front
+// of a customer, for their own car (utils/loadDates.js). It also rejects
+// rollover rather than silently showing a different plausible day.
+function cdDateWithAsOf(value, asOf) {
+  const d = formatLoadDate(value);
+  if (!d) return null;
+  const seen = formatLoadDate(asOf);
+  return seen ? `${d} · checked ${seen}` : `${d} · last checked: unknown`;
+}
+
 // VIS-2-T01: `fmtDeliveryWindow` (2B-5) is GONE, and its ±2-day window with it.
 //
 // It rendered "Jun 3, 2026 (±2 days)" under the heading "Est. delivery", inside
@@ -1222,13 +1250,57 @@ export default function OrderDetail() {
           It no longer sits behind `driver_name`: a scheduled date is a fact
           about the assignment, not about the driver, and gating it on a driver
           hid it on every load where no driver had been recorded. */}
-      {(formatLoadDate(order.scheduled_pickup_date) || formatLoadDate(order.scheduled_delivery_date)) && (
+      {(formatLoadDate(order.scheduled_pickup_date)
+        || formatLoadDate(order.scheduled_delivery_date)
+        || formatLoadDate(order.cd_planned_dropoff_date)
+        || formatLoadDate(order.cd_actual_dropoff_date)) && (
         <InfoCard title="SCHEDULE">
           {formatLoadDate(order.scheduled_pickup_date) && (
             <InfoRow label="Scheduled pickup" value={formatLoadDate(order.scheduled_pickup_date)} />
           )}
           {formatLoadDate(order.scheduled_delivery_date) && (
             <InfoRow label="Scheduled delivery" value={formatLoadDate(order.scheduled_delivery_date)} />
+          )}
+          {/* CDPROG-P5cT4 — THE DATE CENTRAL DISPATCH HOLDS, IN THE CUSTOMER'S
+              OWN CABINET. The owner's instruction, after the operator's board
+              got it: the customer must see it too.
+
+              WHY THIS IS NOT THE THING VIS-2-T01 DELETED. That sprint removed
+              "Jun 3, 2026 (±2 days)" from this page because every part of it
+              attributed a Y7 planning date to the carrier — the word "Est.",
+              the placement under the driver, and a ±2-day band Y7 invented. It
+              left the note (line 68) that the carrier's own committed dates
+              were captured nowhere, and that until they were, nothing here may
+              promise them.
+
+              What is drawn here is neither. It is CD's own record for this
+              load, labelled as CD's, carrying the date Y7 last read it, and it
+              promises nothing: separate rows from Y7's schedule, never merged
+              with it, never filling in for it when ours is missing.
+
+              AND IT IS DELIBERATELY NOT CALLED THE CARRIER'S COMMITMENT, which
+              is the tempting label and would be false. CD's vehicle record has
+              a `carrierEstimatedDropOffDate` field, and measured across 25 live
+              dispatches it is IDENTICAL to the shipper's requested date on 25
+              of 25 — the request echoed back, not an independent promise. Only
+              the ACTUAL date ever differs. Calling CD's planned date a carrier
+              commitment would re-commit the exact misattribution VIS-2-T01
+              removed, while appearing to satisfy the note it left.
+
+              The ACTUAL delivery date is the strongest fact and is shown as
+              such. Its PRESENCE is what marks it actual — never CD's
+              `dropOffDateType`, which stays 'ESTIMATED' on delivered loads. */}
+          {formatLoadDate(order.cd_planned_dropoff_date) && (
+            <InfoRow
+              label="Planned delivery (Central Dispatch)"
+              value={cdDateWithAsOf(order.cd_planned_dropoff_date, order.cd_dates_as_of)}
+            />
+          )}
+          {formatLoadDate(order.cd_actual_dropoff_date) && (
+            <InfoRow
+              label="Delivered (Central Dispatch)"
+              value={cdDateWithAsOf(order.cd_actual_dropoff_date, order.cd_dates_as_of)}
+            />
           )}
           <p style={{
             fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px',
@@ -1237,6 +1309,16 @@ export default function OrderDetail() {
           }}>
             {DATE_NOTES.y7}
           </p>
+          {(formatLoadDate(order.cd_planned_dropoff_date)
+            || formatLoadDate(order.cd_actual_dropoff_date)) && (
+            <p style={{
+              fontFamily: 'var(--font-sans, system-ui)', fontSize: '12px',
+              color: 'var(--v2-ink-muted, #5c5851)', lineHeight: 1.5,
+              margin: '4px 0 0', maxWidth: '52ch',
+            }}>
+              {DATE_NOTES.cd}
+            </p>
+          )}
         </InfoCard>
       )}
 

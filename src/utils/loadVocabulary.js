@@ -51,6 +51,20 @@ export const PRICE_NOT_SET = 'Awaiting a carrier';
 export const DATE_NOTES = {
   y7: 'These are the dates Y7 arranged with the carrier; they can change — Y7 is a broker and does not control the carrier’s schedule.',
   carrier: 'These are the dates the carrier declared; they can change — Y7 is a broker and does not control the carrier’s schedule.',
+  // CDPROG-P5cT4. A THIRD OWNER, kept separate from the two above because it is
+  // a separate fact with a separate failure mode.
+  //
+  // `y7` and `carrier` both describe dates somebody TOLD us. This one describes
+  // what a third-party system HOLDS, which can be stale in a way the other two
+  // cannot: Y7 re-reads Central Dispatch hourly, and between reads CD's record
+  // can move without anyone here knowing. Hence "when we last checked" — the
+  // date shown beside it is that check, not the delivery.
+  //
+  // It does NOT claim the carrier committed to the date. Measured across 25
+  // live dispatches, CD's `carrierEstimated*` equals the shipper's requested
+  // date on 25 of 25 — so no field in that record evidences a carrier promise,
+  // and this wording must not imply one.
+  cd: 'The planned date comes from Central Dispatch, the marketplace the carrier is booked through, as it stood when we last checked. It is not a guarantee and it can change.',
 };
 
 /**
