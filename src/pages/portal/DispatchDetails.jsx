@@ -64,6 +64,7 @@ export default function DispatchDetails() {
     pickup_business_hours: '',
     preferred_pickup_date: '',  // WAF-T01: optional availability date
     gate_pass: '',
+    gate_pass_pin: '',
     delivery_full_address: '',
     delivery_city: '',
     delivery_state: '',
@@ -116,6 +117,7 @@ export default function DispatchDetails() {
           pickup_business_hours: data.pickup_business_hours || '',
           preferred_pickup_date: (data.preferred_pickup_date && String(data.preferred_pickup_date).slice(0, 10)) || '',  // WAF-T01
           gate_pass: data.gate_pass || '',
+          gate_pass_pin: data.gate_pass_pin || '',
           // Pre-fill delivery from order (auto-filled from profile at creation)
           delivery_full_address: data.delivery_address || '',
           delivery_city: data.delivery_city || '',
@@ -238,6 +240,8 @@ export default function DispatchDetails() {
           pickup_released_by: releasedBy || null,  // WCF-T03
           preferred_pickup_date: form.preferred_pickup_date || null,  // WAF-T01
           gate_pass: form.gate_pass || null,
+          // AUCT-W2B-T03.3: the PIN goes to its OWN column.
+          gate_pass_pin: form.gate_pass_pin || null,
           delivery_full_address: form.delivery_full_address || null,
           delivery_city: form.delivery_city || null,
           delivery_state: form.delivery_state || null,
@@ -322,6 +326,10 @@ export default function DispatchDetails() {
             to a confirmation line. Terminology is auction-aware (server map). */}
         {(() => {
           const term = order?.release_doc_term || GENERIC_RELEASE_DOC_TERM;  // W7U-T03: shared constant
+          // AUCT-W2B-T03: Copart and IAA release against a PIN; Manheim and ACV
+          // against a document. TERM_BY_CODE (mirrored in utils/releaseDocTerm.js)
+          // is the source of both the wording and this split.
+          const isPinAuction = ['COPART', 'IAA'].includes(String(order?.auction_type_code || '').toUpperCase());
           const docOnFile = uploadDone || !!(order?.gate_pass_document_id || order?.gate_pass_file_name || order?.gate_pass_filename);
           const needed = order?.pickup_is_auction || releaseDocAnswer === true;
           const answerReleaseDoc = async (required) => {
@@ -354,14 +362,31 @@ export default function DispatchDetails() {
                 </div>
               ) : needed ? (
                 <>
+                  {/* AUCT-W2B-T03.2/T03.4: the document is required REGARDLESS
+                      of house, and the PIN is required IN ADDITION for Copart and
+                      IAA — it does not replace the document. The old copy said
+                      "Upload the document OR enter the PIN", which is the rule
+                      inverted. Both controls sit in this one block so there is
+                      nothing to hunt for. */}
                   <p style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink, #050607)', margin: '0 0 12px' }}>
-                    The carrier needs your <strong>{term}</strong> to pick up the vehicle.
-                    Upload the document or enter the PIN below.
+                    Please upload your <strong>purchase document</strong> (invoice or bill of sale) —
+                    it proves the vehicle is yours and carries the pickup address.
+                    {isPinAuction
+                      ? <> Your <strong>{term}</strong> is needed as well: the yard will not release the vehicle without it.</>
+                      : <> We also need your <strong>{term}</strong> from the auction.</>}
                   </p>
-                  <div style={rowStyle}>
-                    <label className={pp.label}>{term} #</label>
-                    <input className={pp.input} value={form.gate_pass} onChange={set('gate_pass')} placeholder="Enter the number / PIN if you have one" />
-                  </div>
+                  {isPinAuction && (
+                    <div style={rowStyle}>
+                      <label className={pp.label}>{term}</label>
+                      <input
+                        className={pp.input}
+                        data-testid="dispatch-gate-pass-pin"
+                        value={form.gate_pass_pin}
+                        onChange={set('gate_pass_pin')}
+                        placeholder="Enter the PIN from your Copart / IAA paperwork"
+                      />
+                    </div>
+                  )}
                   <div style={rowStyle}>
                     <label className={pp.label}>Document file (PDF or photo)</label>
                     <input

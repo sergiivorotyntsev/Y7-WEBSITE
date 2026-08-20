@@ -1144,8 +1144,17 @@ export default function OrderDetail() {
         ) : order.gate_pass ? (
           <InfoRow label={`${releaseDocShortTerm(order.auction_type_code)} #`} value={order.gate_pass} />
         ) : order.gate_pass_pin ? (
-          <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink-muted, #5c5851)' }}>
-            No document needed — your PIN above covers pickup.
+          /* AUCT-W2B-T03.4: this said "No document needed — your PIN above
+             covers pickup." That is the rule inverted. The owner's rule is that
+             the purchase document is ALWAYS required — it proves the vehicle is
+             yours and it carries the pickup address — and the PIN is required IN
+             ADDITION for Copart and IAA. A customer reading the old line had
+             been told, by us, not to send the thing we were about to block their
+             collection for. */
+          <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--warning, #9A3412)' }}>
+            PIN received. We still need your purchase document (invoice or bill of sale) —
+            the PIN releases the vehicle, the document proves it is yours and carries the
+            pickup address.
           </div>
         ) : (
           <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '13px', color: 'var(--v2-ink-muted, #5c5851)', fontStyle: 'italic' }}>

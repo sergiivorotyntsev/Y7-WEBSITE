@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useMemo } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { useVinDecode } from '../hooks/useVinDecode';
-import { apiPost } from '../hooks/useApi';
+import { apiPost, apiGet } from '../hooks/useApi';
 import { useZipLookup } from '../hooks/useZipLookup';
 import SmsConsent from './SmsConsent';
 import RouteEstimator from './RouteEstimator';
@@ -40,24 +40,6 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
     { value: 'Terminal',           label: t('location.terminal') },
     { value: 'Other',              label: t('location.other') },
   ];
-
-  // AUCT-W2B-T02: the auction houses a customer may choose. Fetched from
-  // /api/public/auction-types (unauthenticated by necessity — this form runs
-  // before the customer has verified an email), and lazily: a customer shipping
-  // from their driveway never triggers the request. NOT hardcoded here — the
-  // list and the server-side validator read one query, so the form can never
-  // offer a house the API refuses.
-  const [auctionHouses, setAuctionHouses] = useState([]);
-  const pickupIsAuction = form.pickup_location_type === 'Auction';
-  useEffect(() => {
-    if (!pickupIsAuction || auctionHouses.length) return;
-    let cancelled = false;
-    fetch('/api/public/auction-types')
-      .then(r => (r.ok ? r.json() : null))
-      .then(d => { if (!cancelled && d?.auction_types) setAuctionHouses(d.auction_types); })
-      .catch(() => {});
-    return () => { cancelled = true; };
-  }, [pickupIsAuction, auctionHouses.length]);
 
   const { decode, loading: vinLoading, error: vinError, result: vinResult } = useVinDecode();
   const step2Ref = useRef(null);
@@ -115,6 +97,28 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
     email: urlParams?.get('email') || '',
     sms_consent: false, termsAccepted: false, notes: '',
   });
+
+  // AUCT-W2B-T02: the auction houses a customer may choose. Fetched from
+  // /api/public/auction-types (unauthenticated by necessity — this form runs
+  // before the customer has verified an email), and lazily: a customer shipping
+  // from their driveway never triggers the request. NOT hardcoded here — the
+  // list and the server-side validator read one query, so the form can never
+  // offer a house the API refuses.
+  const [auctionHouses, setAuctionHouses] = useState([]);
+  const pickupIsAuction = form.pickup_location_type === 'Auction';
+  useEffect(() => {
+    if (!pickupIsAuction || auctionHouses.length) return;
+    let cancelled = false;
+    // AUCT-W2B-T02: through apiGet, so the request goes to API_URL like every
+    // other call in this form. A bare relative fetch() hits the dev/static
+    // origin instead of the API — the selector rendered with only its
+    // placeholder and no houses, which the build could not have told me.
+    apiGet('/api/public/auction-types')
+      .then(d => { if (!cancelled && d?.auction_types) setAuctionHouses(d.auction_types); })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, [pickupIsAuction, auctionHouses.length]);
+
   const emailCheck = useEmailCheck(form.email);
   const pickupZipLookup = useZipLookup(form.pickup_zip);
   const deliveryZipLookup = useZipLookup(form.delivery_zip);
