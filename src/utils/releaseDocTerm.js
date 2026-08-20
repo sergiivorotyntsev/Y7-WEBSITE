@@ -12,8 +12,15 @@ export const RELEASE_DOC_TERMS = {
   ACV: 'Pickup Slip',
 };
 
+// AUCT-W2B-T03.1 CORRECTION — kept byte-identical to
+// TRANSPORT services/release_doc_terms.GENERIC_TERM. This read
+// "release document (Gate Pass / Vehicle Release / Pickup Slip) or PIN", whose
+// trailing "or PIN" offers the PIN as an alternative to the purchase document —
+// the same inversion T03.2/T03.4 removed for the four named houses. The purchase
+// document is always required; only the FORM of the release varies, and for an
+// unknown house we do not yet know it.
 export const GENERIC_RELEASE_DOC_TERM =
-  'release document (Gate Pass / Vehicle Release / Pickup Slip) or PIN';
+  'auction release (a Gate Pass PIN, Vehicle Release or Pickup Slip — whichever your auction issues)';
 
 export function releaseDocTerm(code) {
   if (!code) return GENERIC_RELEASE_DOC_TERM;

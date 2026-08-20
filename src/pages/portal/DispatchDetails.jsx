@@ -373,7 +373,7 @@ export default function DispatchDetails() {
                     it proves the vehicle is yours and carries the pickup address.
                     {isPinAuction
                       ? <> Your <strong>{term}</strong> is needed as well: the yard will not release the vehicle without it.</>
-                      : <> We also need your <strong>{term}</strong> from the auction.</>}
+                      : <> We also need your <strong>{term}</strong>{order?.auction_type_code ? ' from the auction' : ''}.</>}
                   </p>
                   {isPinAuction && (
                     <div style={rowStyle}>
