@@ -329,7 +329,12 @@ export default function DispatchDetails() {
           // AUCT-W2B-T03: Copart and IAA release against a PIN; Manheim and ACV
           // against a document. TERM_BY_CODE (mirrored in utils/releaseDocTerm.js)
           // is the source of both the wording and this split.
-          const isPinAuction = ['COPART', 'IAA'].includes(String(order?.auction_type_code || '').toUpperCase());
+          const isPinAuction = ['COPART', 'IAA'].includes(
+            // .trim() to match releaseDocTerm.js's own lookup — the term map trims
+            // and this did not, so a code with stray whitespace would have shown
+            // the right WORDING and hidden the PIN field.
+            String(order?.auction_type_code || '').trim().toUpperCase(),
+          );
           const docOnFile = uploadDone || !!(order?.gate_pass_document_id || order?.gate_pass_file_name || order?.gate_pass_filename);
           const needed = order?.pickup_is_auction || releaseDocAnswer === true;
           const answerReleaseDoc = async (required) => {
