@@ -86,7 +86,10 @@
     "terminal": "Терминал",
     "other": "Другое",
     "twicRequired": "Водитель должен иметь карту TWIC",
-    "twicHelp": "Карта TWIC (Transportation Worker Identification Credential) требуется Maritime Transportation Security Act для доступа к некоторым портам. В случае сомнений свяжитесь с портом."
+    "twicHelp": "Карта TWIC (Transportation Worker Identification Credential) требуется Maritime Transportation Security Act для доступа к некоторым портам. В случае сомнений свяжитесь с портом.",
+    "auctionHouse": "Какой аукцион?",
+    "auctionHousePlaceholder": "Выберите аукцион",
+    "auctionHouseHelp": "Так мы узнаем, какой документ на выдачу или PIN потребуется на площадке при заборе."
   },
   "sms": {
     "consent": "Отмечая этот пункт, вы даёте согласие на получение SMS-уведомлений и обновлений о перевозке вашего автомобиля от Y7 Consulting Inc на указанный номер телефона. Частота сообщений может варьироваться. Могут применяться стандартные тарифы за сообщения и передачу данных. Ответьте STOP для отказа, HELP для помощи. Это согласие не является условием покупки.",

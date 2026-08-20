@@ -41,6 +41,24 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
     { value: 'Other',              label: t('location.other') },
   ];
 
+  // AUCT-W2B-T02: the auction houses a customer may choose. Fetched from
+  // /api/public/auction-types (unauthenticated by necessity — this form runs
+  // before the customer has verified an email), and lazily: a customer shipping
+  // from their driveway never triggers the request. NOT hardcoded here — the
+  // list and the server-side validator read one query, so the form can never
+  // offer a house the API refuses.
+  const [auctionHouses, setAuctionHouses] = useState([]);
+  const pickupIsAuction = form.pickup_location_type === 'Auction';
+  useEffect(() => {
+    if (!pickupIsAuction || auctionHouses.length) return;
+    let cancelled = false;
+    fetch('/api/public/auction-types')
+      .then(r => (r.ok ? r.json() : null))
+      .then(d => { if (!cancelled && d?.auction_types) setAuctionHouses(d.auction_types); })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, [pickupIsAuction, auctionHouses.length]);
+
   const { decode, loading: vinLoading, error: vinError, result: vinResult } = useVinDecode();
   const step2Ref = useRef(null);
   const errorRef = useRef(null);
@@ -82,6 +100,8 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
 
     pickup_zip: urlParams?.get('pickup_zip') || '',
     pickup_location_type: 'Residence',
+    // AUCT-W2B-T02: WHICH auction, asked only when the pickup IS one.
+    auction_type_id: '',
     pickup_requires_twic: false,
     delivery_zip: urlParams?.get('delivery_zip') || '',
     delivery_location_type: 'Residence',
@@ -292,6 +312,13 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
         sms_consent_page_url: window.location.href,
         sms_consent_page: window.location.href,
         source: 'website',
+        // AUCT-W2B-T02: a stale selection must not flip the server's auction
+        // signal after the customer switches pickup type away from Auction —
+        // the same failure W2P-T02 fixed on the portal form. Sent as an integer
+        // or not at all.
+        auction_type_id: pickupIsAuction && form.auction_type_id
+          ? parseInt(form.auction_type_id, 10)
+          : null,
         lang: i18n.language || 'en',
         ...utm,  // QUOTE-P2 T09: utm_source, utm_medium, utm_campaign, utm_term, utm_content, gclid, fbclid
       };
@@ -526,6 +553,33 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
                 <option key={o.value} value={o.value}>{o.label}</option>
               ))}
             </select>
+            {/* AUCT-W2B-T02: the auction house, asked in the same place the
+                customer said "Auction" — not on a later screen. Mirrors the
+                Port/TWIC conditional directly below. Without this the order
+                reaches dispatch with pickup_location_type='Auction' and a NULL
+                auction_type_id, which is the state orders 295, 296 and 297 are
+                in: release_doc_term() can only return the generic string, so we
+                cannot tell the customer whether we need a PIN or a document. */}
+            {pickupIsAuction && (
+              <div className={styles.field} style={{ marginTop: 8 }}>
+                <label htmlFor="quote-auction-house" className={styles.label}>
+                  {t('location.auctionHouse')}
+                </label>
+                <select
+                  id="quote-auction-house"
+                  data-testid="quote-auction-house"
+                  value={form.auction_type_id}
+                  onChange={e => set('auction_type_id', e.target.value)}
+                  className={styles.select}
+                >
+                  <option value="">{t('location.auctionHousePlaceholder')}</option>
+                  {auctionHouses.map(h => (
+                    <option key={h.id} value={h.id}>{h.name}</option>
+                  ))}
+                </select>
+                <small className={styles.twicHelp}>{t('location.auctionHouseHelp')}</small>
+              </div>
+            )}
             {form.pickup_location_type === 'Port' && (
               <label className={styles.twicRow}>
                 <input

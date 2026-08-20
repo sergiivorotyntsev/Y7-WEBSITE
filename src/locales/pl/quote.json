@@ -86,7 +86,10 @@
     "terminal": "Terminal",
     "other": "Inne",
     "twicRequired": "Kierowca musi posiadać kartę TWIC",
-    "twicHelp": "Karta TWIC (Transportation Worker Identification Credential) jest wymagana przez Maritime Transportation Security Act do dostępu do niektórych portów. W razie wątpliwości skontaktuj się z portem."
+    "twicHelp": "Karta TWIC (Transportation Worker Identification Credential) jest wymagana przez Maritime Transportation Security Act do dostępu do niektórych portów. W razie wątpliwości skontaktuj się z portem.",
+    "auctionHouse": "Która aukcja?",
+    "auctionHousePlaceholder": "Wybierz aukcję",
+    "auctionHouseHelp": "Dzięki temu wiemy, jaki dokument zwolnienia lub PIN będzie potrzebny przy odbiorze."
   },
   "sms": {
     "consent": "Zaznaczając to pole, wyrażasz zgodę na otrzymywanie powiadomień SMS i aktualizacji dotyczących transportu Twojego pojazdu od Y7 Consulting Inc na podany numer telefonu. Częstotliwość wiadomości może się różnić. Mogą obowiązywać standardowe stawki za wiadomości i transmisję danych. Odpowiedz STOP, aby zrezygnować, HELP, aby uzyskać pomoc. Ta zgoda nie jest warunkiem zakupu.",
