@@ -20,12 +20,18 @@ function check(name, item, { stages, index, terminal }) {
 }
 
 // -- shipping phase: the sequence email loads and posted orders render --
+// STAT-W1-T03: four stages now — ASSIGNED sits between POSTED and DISPATCHED,
+// so every index after it moves. That shift is the point of asserting indices
+// rather than just membership: a stage inserted in the wrong place would put a
+// customer's progress marker on the wrong step.
 check('POSTED', { status: 'POSTED', phase: 'shipping', label: 'Posted' },
-  { stages: 3, index: 0, terminal: false });
+  { stages: 4, index: 0, terminal: false });
+check('ASSIGNED', { status: 'ASSIGNED', phase: 'shipping', label: 'Carrier Assigned' },
+  { stages: 4, index: 1, terminal: false });
 check('DISPATCHED', { status: 'DISPATCHED', phase: 'shipping', label: 'Dispatched' },
-  { stages: 3, index: 1, terminal: false });
+  { stages: 4, index: 2, terminal: false });
 check('DELIVERED', { status: 'DELIVERED', phase: 'shipping', label: 'Delivered' },
-  { stages: 3, index: 2, terminal: false });
+  { stages: 4, index: 3, terminal: false });
 
 // -- negotiation phase: a portal order that has not been posted yet --
 check('SUBMITTED', { status: 'SUBMITTED', phase: 'negotiation', label: 'Submitted' },
@@ -37,7 +43,7 @@ check('CONFIRMED', { status: 'CONFIRMED', phase: 'negotiation', label: 'Confirme
 
 // -- the two phases are separate sequences, not one 6-step scale --
 assert.equal(NEGOTIATION_STAGES.length, 3, 'negotiation has 3 stages');
-assert.equal(SHIPPING_STAGES.length, 3, 'shipping has 3 stages');
+assert.equal(SHIPPING_STAGES.length, 4, 'shipping has 4 stages (STAT-W1-T03 added ASSIGNED)');
 assert.ok(
   !NEGOTIATION_STAGES.some(s => SHIPPING_STAGES.find(t => t.key === s.key)),
   'phases share no stage key',

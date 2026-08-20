@@ -12,7 +12,7 @@ import VerificationBanner from '../../components/VerificationBanner';
 import LegacyTypeReprompt from '../../components/LegacyTypeReprompt';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { keyframes } from '../../theme';
-import { STATUS_LABELS, STATUS_CHIP_VARIANT } from '../../utils/orderStatus';
+import { STATUS_CHIP_VARIANT, labelFor } from '../../utils/orderStatus';
 // VIS-2-T02: the same words for an absent carrier / price as every other
 // cabinet surface, and the same money formatter.
 import {
@@ -547,7 +547,10 @@ export default function Dashboard() {
                 </div>
                 <div style={{ textAlign: 'right', flexShrink: 0 }}>
                   <span className={statusChipClass(order.status)}>
-                    {STATUS_LABELS[order.status] || order.status || 'Unknown'}
+                    {/* STAT-W1-T03: the server decides the word (status_label);
+                        labelFor falls back to the local map only for a payload
+                        that predates the field. */}
+                    {labelFor(order)}
                   </span>
                   {price ? (
                     <div className={pp.mono} style={{ marginTop: '2px' }}>

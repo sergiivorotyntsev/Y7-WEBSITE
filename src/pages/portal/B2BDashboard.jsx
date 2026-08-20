@@ -35,6 +35,10 @@ const STATUS_FILTERS = [
   // one click away, never gone.
   { value: 'active', label: 'Active loads', group: 'active' },
   { value: 'POSTED', label: 'Posted', group: 'all' },
+  // STAT-W1-T03: without this entry a load at the new ASSIGNED display value is
+  // reachable only through "Active"/"All" — and the POSTED filter, which used to
+  // include it, silently stopped matching it.
+  { value: 'ASSIGNED', label: 'Carrier Assigned', group: 'all' },
   { value: 'DISPATCHED', label: 'Dispatched', group: 'all' },
   { value: 'DELIVERED', label: 'Delivered', group: 'all' },
   { value: 'closed', label: 'Closed', group: 'closed' },

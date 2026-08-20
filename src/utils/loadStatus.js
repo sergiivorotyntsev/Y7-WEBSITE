@@ -26,8 +26,20 @@ export const NEGOTIATION_STAGES = [
   { key: 'CONFIRMED', label: 'Confirmed' },
 ];
 
+// STAT-W1-T03 — ASSIGNED is a fourth stage, not a relabelling.
+//
+// The server's vocabulary gained a displayed ASSIGNED ("Carrier Assigned") on
+// the owner's B3 ruling: the customer should learn a carrier is committed
+// without being told the vehicle is moving. Without a stage for it here,
+// `progressFor` would find index < 0 and draw NO sequence at all — a customer
+// whose carrier had just been assigned would lose their progress bar entirely,
+// which is the silent-in-the-direction-of-success failure this file exists to
+// avoid. Mirrors DISPATCH_LOAD_STATUS/LABELS in
+// services/load_status_vocabulary.py (TRANSPORT); see that file's header for
+// the other half of this documented cross-repo duplication.
 export const SHIPPING_STAGES = [
   { key: 'POSTED', label: 'Posted' },
+  { key: 'ASSIGNED', label: 'Carrier Assigned' },
   { key: 'DISPATCHED', label: 'Dispatched' },
   { key: 'DELIVERED', label: 'Delivered' },
 ];

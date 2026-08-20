@@ -22,6 +22,33 @@ export const ORDER_STATUS = {
   CANCELLED: 'cancelled',
 };
 
+/* STAT-W1-T03 — THIS MAP IS NOW A FALLBACK, NOT THE DECISION.
+ *
+ * WHAT IT WAS. A second customer-facing status vocabulary, serving the
+ * individual dashboard, EVERY order-detail page (both customer types) and the
+ * public Track page — while `services/load_status_vocabulary.py` in TRANSPORT
+ * called itself "the ONE customer-facing status vocabulary" and served only the
+ * B2B list. Measured, 2026-08-20: `listed` was "Sourcing New Carrier" here and
+ * "Posted" there; `dispatched` was "Carrier Assigned" here and "Dispatched"
+ * there. A dealer read one word in their list and the other on the same order's
+ * detail page, one click later.
+ *
+ * WHY IT IS NOT SIMPLY DELETED. The two repos cannot share a module, and a
+ * BETTER COPY is still a copy — rule 20's "born identical, latent" mode, which
+ * passes every test until the day somebody edits one side. So the fix is not to
+ * synchronise two maps; it is to stop the client deciding at all.
+ *
+ * WHAT HAPPENS NOW. `/api/portal/data/orders` and `/api/portal/data/orders/{id}`
+ * send `status_label` / `status_display` / `status_phase` / `status_active`,
+ * resolved server-side by the one vocabulary. Render those — `labelFor()` below
+ * does it — and this map is reached only when a payload predates the field.
+ *
+ * THE DUPLICATION IS DOCUMENTED AT BOTH ENDS, per the sprint brief: see the
+ * header of `services/load_status_vocabulary.py` (TRANSPORT) for the other half.
+ * There is no automated cross-repo guard and there cannot be one from here; what
+ * replaces it is that the server is the only writer of the words a customer
+ * sees, so a drift in this file changes nothing a customer reads.
+ */
 export const STATUS_LABELS = {
   [ORDER_STATUS.PENDING]: 'Quote Requested',
   [ORDER_STATUS.ACCEPTED]: 'Accepted',
@@ -147,4 +174,24 @@ export function getStatusBadge(status) {
   // Derive a light background from the status color
   const backgroundColor = color + '18'; // ~10% opacity hex suffix
   return { label, color, backgroundColor };
+}
+
+/**
+ * STAT-W1-T03 — the ONE thing a surface should call to name a status.
+ *
+ * Prefers what the server resolved (`status_label`), which is produced by
+ * `services/load_status_vocabulary.py` from BOTH the order's status and its
+ * board load's status. Falls back to the local map only for a payload that
+ * predates the field, and to the raw value only if that misses too — never to
+ * a blank, because a blank teaches the reader to distrust the screen.
+ *
+ * @param {object} order - an order row from /api/portal/data/orders[/{id}]
+ * @param {object} [opts] - { noQuote: true } for the direct-submit pipeline
+ * @returns {string}
+ */
+export function labelFor(order, opts = {}) {
+  if (order && order.status_label) return order.status_label;
+  const raw = (order && order.status) || '';
+  const map = opts.noQuote ? NO_QUOTE_LABELS : STATUS_LABELS;
+  return map[raw] || raw || 'Unknown';
 }

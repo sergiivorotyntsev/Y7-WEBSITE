@@ -643,7 +643,16 @@ export default function OrderDetail() {
     ? (() => {
         const i = baseSteps.findIndex((s) => s.key === 'confirmed');
         const withListed = [...baseSteps];
-        withListed.splice(i + 1, 0, { key: 'listed', label: STATUS_LABELS.listed, field: null });
+        // STAT-W1-T03: the word comes from the server when it sent one, so this
+        // transient step cannot disagree with the same order's chip in the list.
+        // `order.status_label` IS the resolved label for `listed` at the moment
+        // this step is injected, and it moves automatically if the owner revises
+        // the wording server-side. The local constant is the fallback.
+        withListed.splice(i + 1, 0, {
+          key: 'listed',
+          label: order.status_label || STATUS_LABELS.listed,
+          field: null,
+        });
         return withListed;
       })()
     : baseSteps;
