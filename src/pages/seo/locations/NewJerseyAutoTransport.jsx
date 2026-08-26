@@ -14,7 +14,7 @@ export default function NewJerseyAutoTransport() {
       primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
       secondaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
       heading="New Jersey Auto Transport — Vehicle Shipping in NJ"
-      intro="New Jersey sits at the center of three of the most important auto-transport flows in the United States: the Port Newark export gateway, the dealer-dense Northeast retail corridor, and the I-95 mainline that moves vehicles between New England and Florida. Y7 Logistics is a licensed FMCSA broker (MC #1741537 / USDOT #4427359) based in Newton, MA, and we coordinate shipments to and from every corner of New Jersey — Bergen County to Cape May, Newark to Princeton — through our vetted carrier network on Central Dispatch."
+      intro="New Jersey sits at the center of three of the most important auto-transport flows in the United States: the Port Newark export gateway, the dealer-dense Northeast retail corridor, and the I-95 mainline that moves vehicles between New England and Florida. Y7 Logistics is a licensed FMCSA broker (MC #1741537 / USDOT #4427359) based in Natick, MA, and we coordinate shipments to and from every corner of New Jersey — Bergen County to Cape May, Newark to Princeton — through our vetted carrier network on Central Dispatch."
       whenNeeded={[
         'Shipping a vehicle to or from New Jersey',
         'Delivering to Port Newark / Elizabeth for export',

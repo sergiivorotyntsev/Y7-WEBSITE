@@ -1,7 +1,7 @@
 # Y7 Logistics — Licensed & Bonded FMCSA Auto Transport Broker
 
 > Y7 Logistics (Y7 Consulting Inc) is a Licensed & Bonded FMCSA freight broker
-> (MC #1741537, USDOT #4427359) based in Newton, MA. We connect shippers with
+> (MC #1741537, USDOT #4427359) based in Natick, MA. We connect shippers with
 > vetted, insured motor carriers for nationwide auto transport across all 50 US
 > states — auction pickups (Copart, IAA, Manheim), dealer trades, port and
 > export deliveries, and private vehicle relocations. Y7 is a broker, not a
@@ -38,7 +38,7 @@
 - [Electric Vehicle Port Delivery](https://www.y7agency.com/electric-vehicle-port-delivery): EV delivery to US ports for export.
 
 ## Locations
-- [Newton, MA Auto Transport](https://www.y7agency.com/newton-auto-transport): Y7's home-base service area in Newton, Massachusetts.
+- [Newton, MA Auto Transport](https://www.y7agency.com/newton-auto-transport): Y7's Greater Boston service area in Newton, Massachusetts.
 - [Boston Car Shipping](https://www.y7agency.com/boston-car-shipping): Auto transport to and from the Boston metro.
 - [Massachusetts Car Shipping](https://www.y7agency.com/massachusetts-car-shipping): Statewide Massachusetts auto transport.
 - [Florida Car Shipping](https://www.y7agency.com/florida-car-shipping): Auto transport to and from Florida.

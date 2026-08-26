@@ -13,7 +13,7 @@ export default function SalvageCarShipping() {
       primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
       secondaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
       heading="Salvage & Non-Running Car Shipping"
-      intro="Salvage and non-running vehicle transport is a specialty lane inside auto shipping — it requires carriers with the right loading equipment, accurate condition disclosure from the shipper, and a dispatcher who knows how to match the two. Y7 Logistics is a licensed FMCSA broker (MC #1741537, USDOT #4427359) based in Newton, MA. We coordinate salvage pickups from Copart and IAAI yards across the country, plus non-running vehicles from homes, body shops, and storage lots."
+      intro="Salvage and non-running vehicle transport is a specialty lane inside auto shipping — it requires carriers with the right loading equipment, accurate condition disclosure from the shipper, and a dispatcher who knows how to match the two. Y7 Logistics is a licensed FMCSA broker (MC #1741537, USDOT #4427359) based in Natick, MA. We coordinate salvage pickups from Copart and IAAI yards across the country, plus non-running vehicles from homes, body shops, and storage lots."
       whenNeeded={[
         'Purchased a salvage-title vehicle at Copart or IAAI',
         'Vehicle will not start, run, or drive',

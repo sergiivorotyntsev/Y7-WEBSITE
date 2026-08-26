@@ -32,7 +32,7 @@ export default function NewtonAutoTransport() {
       meta={{
         title: 'Newton MA Auto Transport',
         description:
-          'Licensed auto transport broker based in Newton, MA. Pickup from all Newton villages + Greater Boston. Y7 Logistics MC #1741537 / USDOT #4427359.',
+          'Licensed auto transport broker serving Newton, MA. Pickup from all Newton villages + Greater Boston. Y7 Logistics MC #1741537 / USDOT #4427359.',
         path: '/newton-auto-transport',
       }}
       primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
@@ -62,7 +62,7 @@ export default function NewtonAutoTransport() {
         'Any access notes (gated driveway, narrow street, low canopy)',
       ]}
       capabilities={[
-        'Based in Newton, MA — serving the entire United States',
+        'Greater Boston based, serving Newton, MA and the entire United States',
         'Same-day quote response for local customers',
         'Coverage across Newton + Wellesley + Needham + Waltham + Watertown + Brookline',
         'All transport types — open, enclosed, auction, port, dealer',

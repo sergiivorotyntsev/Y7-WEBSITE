@@ -13,7 +13,7 @@ export default function EnclosedCarShipping() {
       primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
       secondaryCTA={{ intlKey: 'dealers', to: '/dealers', tone: 'teal' }}
       heading="Enclosed Car Shipping — Premium Covered Auto Transport"
-      intro="Enclosed transport is the right choice when the vehicle's value, rarity, or condition makes open-trailer exposure an unacceptable risk. Y7 Logistics is a licensed FMCSA broker (MC #1741537 / USDOT #4427359) based in Newton, MA, coordinating enclosed shipments through specialty carriers on Central Dispatch. Enclosed runs 40–60% more than open transport — but for a $120,000 sports car or a 1967 Corvette, that premium is the cheapest insurance you can buy against road debris, weather, and curious eyes along the route."
+      intro="Enclosed transport is the right choice when the vehicle's value, rarity, or condition makes open-trailer exposure an unacceptable risk. Y7 Logistics is a licensed FMCSA broker (MC #1741537 / USDOT #4427359) based in Natick, MA, coordinating enclosed shipments through specialty carriers on Central Dispatch. Enclosed runs 40–60% more than open transport — but for a $120,000 sports car or a 1967 Corvette, that premium is the cheapest insurance you can buy against road debris, weather, and curious eyes along the route."
       whenNeeded={[
         'Luxury vehicles valued over $50,000',
         'Classic, vintage, and antique cars (pre-1990 collector vehicles)',

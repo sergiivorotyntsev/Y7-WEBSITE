@@ -13,7 +13,7 @@ export default function OpenCarShipping() {
       primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
       secondaryCTA={{ intlKey: 'dealers', to: '/dealers', tone: 'teal' }}
       heading="Open Car Shipping — The Standard for Auto Transport"
-      intro="Open-trailer auto transport is the industry default — roughly 85% of vehicles shipped in the United States move on open carriers, including virtually every new car delivered from factory to dealership. Y7 Logistics is a licensed FMCSA broker (MC #1741537 / USDOT #4427359) based in Newton, MA, coordinating open-trailer shipments through a vetted network of carriers on Central Dispatch. Open is the most affordable option, the most widely available, and for any daily driver or standard vehicle, it's the option you should start with."
+      intro="Open-trailer auto transport is the industry default — roughly 85% of vehicles shipped in the United States move on open carriers, including virtually every new car delivered from factory to dealership. Y7 Logistics is a licensed FMCSA broker (MC #1741537 / USDOT #4427359) based in Natick, MA, coordinating open-trailer shipments through a vetted network of carriers on Central Dispatch. Open is the most affordable option, the most widely available, and for any daily driver or standard vehicle, it's the option you should start with."
       whenNeeded={[
         'Shipping a daily driver, standard sedan, SUV, or pickup truck',
         'Relocating across states and moving one or two personal vehicles',

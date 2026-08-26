@@ -1,7 +1,7 @@
 # ============================================================
 # Y7 Logistics — www.y7agency.com
 # Licensed FMCSA Auto Transport Broker
-# MC #1741537 | USDOT #4427359 | Newton, MA
+# MC #1741537 | USDOT #4427359 | Natick, MA
 # ============================================================
 
 # ── Default: all search engines welcome ──────────────────────
