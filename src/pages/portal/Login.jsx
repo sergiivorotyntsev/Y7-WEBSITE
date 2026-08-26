@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import PageMeta from '../../components/PageMeta';
 import { useAuth, portalFetch } from '../../hooks/useAuth';
 import { getCleanPhone, isValidPhone } from '../../components/PhoneInput';
+import { internalNextPath } from '../../utils/portalNext';
 import { trackEvent } from '../../utils/trackEvent';
 import LoginCard from './components/LoginCard';
 import RegisterOtpStep from '../../components/RegisterOtpStep';
@@ -38,8 +39,9 @@ export default function Login() {
   // CO3W-T05: honor an internal return path (?next=/portal/...) after login —
   // mirrors MagicLogin's nextPath handling (WGF-T03d). External/absolute URLs
   // are ignored; only in-app /portal paths pass.
-  const rawNext = searchParams.get('next') || '';
-  const nextPath = rawNext.startsWith('/portal') && !rawNext.startsWith('//') ? rawNext : null;
+  // CO5W-T03: the predicate moved to utils/portalNext so the session-expired
+  // screen shares it instead of carrying a second copy.
+  const nextPath = internalNextPath(searchParams.get('next'));
   const [code, setCode] = useState(['', '', '', '', '', '']);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);

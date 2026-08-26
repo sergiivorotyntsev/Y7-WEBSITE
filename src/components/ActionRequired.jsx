@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { fonts } from '../theme';
+import { loginHrefFor } from '../utils/portalNext';
 import { DocumentIcon, ProfileIcon, LockIcon, ClockIcon, ShieldIcon } from './icons';
 
 const CONFIGS = {
@@ -53,6 +54,18 @@ const CONFIGS = {
 export default function ActionRequired({ type, message: customMessage }) {
   const config = CONFIGS[type] || CONFIGS.no_access;
   const displayMessage = customMessage || config.message;
+  const location = useLocation();
+  // CO5W-T03: a session that expires under the customer used to drop them at
+  // a bare /portal/login, and logging back in landed them on the dashboard —
+  // so an email deep link into a prefilled CO request was lost the moment the
+  // session had timed out, which is precisely when a deep link gets clicked.
+  // Carry the path they were on through re-login, using the SAME
+  // internal-paths-only guard the login screen honors on the way back
+  // (CO3W-T05, now shared via utils/portalNext). Only this screen gets it:
+  // the other configs are dead-end states, not interrupted journeys.
+  const actionTo = type === 'session_expired'
+    ? loginHrefFor(location.pathname, location.search)
+    : config.action.to;
 
   return (
     <div style={{
@@ -69,7 +82,7 @@ export default function ActionRequired({ type, message: customMessage }) {
       <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: 'var(--v2-ink-muted, #5c5851)', maxWidth: '400px', marginBottom: '24px', lineHeight: 1.6 }}>
         {displayMessage}
       </p>
-      <Link to={config.action.to} style={{ background: 'var(--v2-red-gradient, linear-gradient(135deg, #d70f24, #a90918))', color: '#fff7ed', borderRadius: 8, fontFamily: fonts.sans, fontWeight: 600, display: 'inline-block', padding: '12px 28px', fontSize: '14px', textDecoration: 'none' }}>
+      <Link to={actionTo} style={{ background: 'var(--v2-red-gradient, linear-gradient(135deg, #d70f24, #a90918))', color: '#fff7ed', borderRadius: 8, fontFamily: fonts.sans, fontWeight: 600, display: 'inline-block', padding: '12px 28px', fontSize: '14px', textDecoration: 'none' }}>
         {config.action.label}
       </Link>
     </div>
