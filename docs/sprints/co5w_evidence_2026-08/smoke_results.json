@@ -1,0 +1,122 @@
+[
+  {
+    "name": "T03a session-expired screen (no session)",
+    "browserUrl": "/portal/co/requests/3",
+    "heading": "Session Expired",
+    "message": "Your session has expired. Please log in again.",
+    "loginLinkText": "Log In",
+    "loginLinkHref": "/portal/login?next=%2Fportal%2Fco%2Frequests%2F3"
+  },
+  {
+    "name": "T03b return leg through /portal/login?next=",
+    "followedHref": "/portal/login?next=%2Fportal%2Fco%2Frequests%2F3",
+    "landedOn": "/portal/co/requests/3",
+    "pageTitle": "CO request #3"
+  },
+  {
+    "name": "T01/T02 request 3 (RUN-LINKED) document slots",
+    "slots": [
+      {
+        "text": "✓ | Auction Invoice | co3smoke2.pdf | uploaded Jul 14, 2026, 9:11 PM",
+        "titleAttr": "co3smoke2.pdf",
+        "hasUploadButton": false
+      },
+      {
+        "text": "• | Title | UPLOAD",
+        "titleAttr": null,
+        "hasUploadButton": true
+      },
+      {
+        "text": "• | Nhtsa Proof | prepared by Y7",
+        "titleAttr": null,
+        "hasUploadButton": false
+      },
+      {
+        "text": "• | Commercial Invoice | prepared by Y7",
+        "titleAttr": null,
+        "hasUploadButton": false
+      },
+      {
+        "text": "• | Declaration Of Origin | prepared by Y7",
+        "titleAttr": null,
+        "hasUploadButton": false
+      },
+      {
+        "text": "• | Chain Invoice | UPLOAD",
+        "titleAttr": null,
+        "hasUploadButton": true
+      },
+      {
+        "text": "○ | Booking Bl (optional) | UPLOAD",
+        "titleAttr": null,
+        "hasUploadButton": true
+      },
+      {
+        "text": "○ | Aes Itn (optional) | UPLOAD",
+        "titleAttr": null,
+        "hasUploadButton": true
+      }
+    ]
+  },
+  {
+    "name": "T02 request 1 (STANDALONE) document slots",
+    "slots": [
+      {
+        "text": "• | Auction Invoice | UPLOAD",
+        "titleAttr": null,
+        "hasUploadButton": true
+      },
+      {
+        "text": "• | Title | UPLOAD",
+        "titleAttr": null,
+        "hasUploadButton": true
+      },
+      {
+        "text": "• | Nhtsa Proof | prepared by Y7",
+        "titleAttr": null,
+        "hasUploadButton": false
+      },
+      {
+        "text": "• | Commercial Invoice | prepared by Y7",
+        "titleAttr": null,
+        "hasUploadButton": false
+      },
+      {
+        "text": "• | Declaration Of Origin | prepared by Y7",
+        "titleAttr": null,
+        "hasUploadButton": false
+      },
+      {
+        "text": "• | Chain Invoice | UPLOAD",
+        "titleAttr": null,
+        "hasUploadButton": true
+      },
+      {
+        "text": "○ | Booking Bl (optional) | UPLOAD",
+        "titleAttr": null,
+        "hasUploadButton": true
+      },
+      {
+        "text": "○ | Aes Itn (optional) | UPLOAD",
+        "titleAttr": null,
+        "hasUploadButton": true
+      }
+    ]
+  },
+  {
+    "name": "T04 contact",
+    "found": {
+      "6 Harding Rd": true,
+      "Natick, MA 01760": true
+    },
+    "stillHasOldAddress": false
+  },
+  {
+    "name": "T04 ru-contact",
+    "found": {
+      "Натик": false,
+      "6 Harding Rd": true
+    },
+    "stillHasOldAddress": false
+  }
+]

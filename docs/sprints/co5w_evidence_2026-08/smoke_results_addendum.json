@@ -1,0 +1,49 @@
+{
+  "note": "request 3 is run-linked; its auction_invoice slot was temporarily emptied in the LOCAL dev DB to exercise the unfilled read-only branch, then restored",
+  "state": {
+    "path": "/portal/co/requests/3",
+    "h1": "CO request #3"
+  },
+  "slots": [
+    {
+      "text": "• | Auction Invoice | attached automatically",
+      "titleAttr": null,
+      "hasUploadButton": false
+    },
+    {
+      "text": "• | Title | UPLOAD",
+      "titleAttr": null,
+      "hasUploadButton": true
+    },
+    {
+      "text": "• | Nhtsa Proof | prepared by Y7",
+      "titleAttr": null,
+      "hasUploadButton": false
+    },
+    {
+      "text": "• | Commercial Invoice | prepared by Y7",
+      "titleAttr": null,
+      "hasUploadButton": false
+    },
+    {
+      "text": "• | Declaration Of Origin | prepared by Y7",
+      "titleAttr": null,
+      "hasUploadButton": false
+    },
+    {
+      "text": "• | Chain Invoice | UPLOAD",
+      "titleAttr": null,
+      "hasUploadButton": true
+    },
+    {
+      "text": "○ | Booking Bl (optional) | UPLOAD",
+      "titleAttr": null,
+      "hasUploadButton": true
+    },
+    {
+      "text": "○ | Aes Itn (optional) | UPLOAD",
+      "titleAttr": null,
+      "hasUploadButton": true
+    }
+  ]
+}

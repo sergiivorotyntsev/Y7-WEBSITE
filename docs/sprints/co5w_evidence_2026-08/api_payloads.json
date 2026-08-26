@@ -1,0 +1,329 @@
+{
+  "co_request_1": {
+    "standalone": true,
+    "upload_roles": [
+      "title",
+      "chain_invoice",
+      "booking_bl",
+      "aes_itn",
+      "auction_invoice"
+    ],
+    "payload": {
+      "id": 1,
+      "vin": "1FTFW1ET5DFC10312",
+      "status": "docs_pending",
+      "ineligible_reason": null,
+      "plant_country": "UNITED STATES (USA)",
+      "vehicle": {
+        "year": "2013",
+        "make": "FORD",
+        "model": "F-150"
+      },
+      "order_id": null,
+      "title_type": "clean",
+      "title_type_confirmed": false,
+      "auction_buyer_name": "BROADWAY MOTORING INC",
+      "customer_submitted_at": "2026-07-14T21:08:54.628481-04:00",
+      "created_at": "2026-07-14T07:59:34.008301-04:00",
+      "checklist": [
+        {
+          "slot": "auction_invoice",
+          "required": true,
+          "filled": false,
+          "document_id": null,
+          "filename": null,
+          "filled_at": null,
+          "filled_by": null,
+          "note": null,
+          "owner": "you"
+        },
+        {
+          "slot": "title",
+          "required": true,
+          "filled": false,
+          "document_id": null,
+          "filename": null,
+          "filled_at": null,
+          "filled_by": null,
+          "note": null,
+          "owner": "you"
+        },
+        {
+          "slot": "nhtsa_proof",
+          "required": true,
+          "filled": false,
+          "document_id": null,
+          "filename": null,
+          "filled_at": null,
+          "filled_by": null,
+          "note": null,
+          "owner": "y7"
+        },
+        {
+          "slot": "commercial_invoice",
+          "required": true,
+          "filled": false,
+          "document_id": null,
+          "filename": null,
+          "filled_at": null,
+          "filled_by": null,
+          "note": null,
+          "owner": "y7"
+        },
+        {
+          "slot": "declaration_of_origin",
+          "required": true,
+          "filled": false,
+          "document_id": null,
+          "filename": null,
+          "filled_at": null,
+          "filled_by": null,
+          "note": null,
+          "owner": "y7"
+        },
+        {
+          "slot": "chain_invoice",
+          "required": true,
+          "filled": false,
+          "document_id": null,
+          "filename": null,
+          "filled_at": null,
+          "filled_by": null,
+          "note": null,
+          "owner": "you"
+        },
+        {
+          "slot": "booking_bl",
+          "required": false,
+          "filled": false,
+          "document_id": null,
+          "filename": null,
+          "filled_at": null,
+          "filled_by": null,
+          "note": null,
+          "owner": "you"
+        },
+        {
+          "slot": "aes_itn",
+          "required": false,
+          "filled": false,
+          "document_id": null,
+          "filename": null,
+          "filled_at": null,
+          "filled_by": null,
+          "note": null,
+          "owner": "you"
+        },
+        {
+          "slot": "eco",
+          "required": false,
+          "filled": false,
+          "document_id": null,
+          "filename": null,
+          "filled_at": null,
+          "filled_by": null,
+          "note": null,
+          "owner": "y7"
+        }
+      ],
+      "parties": {
+        "exporter": {
+          "id": 1,
+          "legal_name": "DAYTONACARGO CORP",
+          "authorization_status": "signed_uploaded"
+        },
+        "consignee": {
+          "id": 2,
+          "legal_name": "DAYTONA CARGO SP Z OO",
+          "authorization_status": "draft"
+        },
+        "signer": {
+          "id": 1,
+          "signer_name": "Serhii Danylchenko",
+          "signer_title": "President"
+        }
+      }
+    }
+  },
+  "co_request_3": {
+    "standalone": false,
+    "upload_roles": [
+      "title",
+      "chain_invoice",
+      "booking_bl",
+      "aes_itn"
+    ],
+    "payload": {
+      "id": 3,
+      "vin": "1FTEW1EP3JFE41698",
+      "status": "eligible",
+      "ineligible_reason": null,
+      "plant_country": "UNITED STATES (USA)",
+      "vehicle": {
+        "year": null,
+        "make": null,
+        "model": null
+      },
+      "order_id": null,
+      "title_type": "clean",
+      "title_type_confirmed": false,
+      "auction_buyer_name": "DAYTONACARGO CORP",
+      "customer_submitted_at": null,
+      "created_at": "2026-07-14T21:11:44.344160-04:00",
+      "checklist": [
+        {
+          "slot": "auction_invoice",
+          "required": true,
+          "filled": true,
+          "document_id": 10,
+          "filename": "co3smoke2.pdf",
+          "filled_at": "2026-07-15T01:11:46.504204+00:00",
+          "filled_by": "run-link",
+          "note": null,
+          "owner": "y7"
+        },
+        {
+          "slot": "title",
+          "required": true,
+          "filled": false,
+          "document_id": null,
+          "filename": null,
+          "filled_at": null,
+          "filled_by": null,
+          "note": null,
+          "owner": "you"
+        },
+        {
+          "slot": "nhtsa_proof",
+          "required": true,
+          "filled": false,
+          "document_id": null,
+          "filename": null,
+          "filled_at": null,
+          "filled_by": null,
+          "note": null,
+          "owner": "y7"
+        },
+        {
+          "slot": "commercial_invoice",
+          "required": true,
+          "filled": false,
+          "document_id": null,
+          "filename": null,
+          "filled_at": null,
+          "filled_by": null,
+          "note": null,
+          "owner": "y7"
+        },
+        {
+          "slot": "declaration_of_origin",
+          "required": true,
+          "filled": false,
+          "document_id": null,
+          "filename": null,
+          "filled_at": null,
+          "filled_by": null,
+          "note": null,
+          "owner": "y7"
+        },
+        {
+          "slot": "chain_invoice",
+          "required": true,
+          "filled": false,
+          "document_id": null,
+          "filename": null,
+          "filled_at": null,
+          "filled_by": null,
+          "note": null,
+          "owner": "you"
+        },
+        {
+          "slot": "booking_bl",
+          "required": false,
+          "filled": false,
+          "document_id": null,
+          "filename": null,
+          "filled_at": null,
+          "filled_by": null,
+          "note": null,
+          "owner": "you"
+        },
+        {
+          "slot": "aes_itn",
+          "required": false,
+          "filled": false,
+          "document_id": null,
+          "filename": null,
+          "filled_at": null,
+          "filled_by": null,
+          "note": null,
+          "owner": "you"
+        },
+        {
+          "slot": "eco",
+          "required": false,
+          "filled": false,
+          "document_id": null,
+          "filename": null,
+          "filled_at": null,
+          "filled_by": null,
+          "note": null,
+          "owner": "y7"
+        }
+      ],
+      "parties": {
+        "exporter": {
+          "id": 3,
+          "legal_name": "CO3W SMOKE EXPORTS INC",
+          "authorization_status": "letter_downloaded"
+        },
+        "consignee": {
+          "id": 2,
+          "legal_name": "DAYTONA CARGO SP Z OO",
+          "authorization_status": "draft"
+        },
+        "signer": {
+          "id": 2,
+          "signer_name": "Serhii Danylchenko",
+          "signer_title": "President"
+        }
+      }
+    }
+  },
+  "co_party_3": {
+    "id": 3,
+    "party_type": "exporter",
+    "legal_name": "CO3W SMOKE EXPORTS INC",
+    "address_line1": "450 Ocean Ave",
+    "address_line2": "",
+    "city": "Newark",
+    "state_region": "NJ",
+    "zip": "07102",
+    "country": "US",
+    "phone": "973-555-0100",
+    "email": "office@co3wsmoke.example",
+    "tax_id_type": "EIN",
+    "customer_id": 23,
+    "agent_authorization_document_id": null,
+    "is_active": true,
+    "created_at": "2026-07-14T22:43:04.531868-04:00",
+    "updated_at": "2026-07-14T22:44:40.152110-04:00",
+    "authorization_status": "letter_downloaded",
+    "authorization_reviewed_by": null,
+    "authorization_reviewed_at": null,
+    "authorization_reject_note": null,
+    "created_by_customer": true,
+    "authorization_template_version": null,
+    "tax_id_masked": "••••4321",
+    "signers": [
+      {
+        "id": 2,
+        "signer_name": "Serhii Danylchenko",
+        "signer_title": "President",
+        "email": null,
+        "is_default": true
+      }
+    ],
+    "missing_requisites": []
+  }
+}
