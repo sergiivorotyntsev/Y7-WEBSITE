@@ -62,6 +62,18 @@ export function fmtDate(iso) {
   });
 }
 
+// CO5W-T01: filled slots show WHICH file is in them. Long scan names
+// ("2019_FORD_F150_1FTEW1E5XKF...auction_invoice_final.pdf") are truncated in
+// the MIDDLE so the extension survives — that tail is what tells the customer
+// what they uploaded. Callers pass the full name in `title` for the tooltip.
+export function truncateFilename(name, max = 30) {
+  const s = String(name || '');
+  if (s.length <= max) return s;
+  const head = Math.ceil((max - 1) / 2);
+  const tail = max - 1 - head;
+  return `${s.slice(0, head)}…${s.slice(s.length - tail)}`;
+}
+
 export async function coJson(path, options) {
   const r = await portalFetch(path, options);
   let body = null;

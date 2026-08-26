@@ -8,7 +8,7 @@ import pp from '../../styles/v2/portal.module.css';
 import v2b from '../../styles/v2/buttons.module.css';
 import {
   CO_STATUS_BADGE, TITLE_TYPES, apiDetail, chipClass, coJson,
-  coUpload, fieldInput, fieldLabel, fmtDate, sectionTitle,
+  coUpload, fieldInput, fieldLabel, fmtDate, sectionTitle, truncateFilename,
 } from './coShared';
 
 const EMPTY_CONSIGNEE = {
@@ -324,8 +324,19 @@ function SlotRow({ co, slot, reload, setToast }) {
         {!slot.required && <span style={{ color: 'var(--v2-ink-muted, #5c5851)' }}> (optional)</span>}
       </span>
       {slot.filled ? (
-        <span style={{ fontSize: 12, color: 'var(--success, #0f6e56)' }}>
-          uploaded {slot.filled_at ? fmtDate(slot.filled_at) : ''}
+        <span style={{ fontSize: 12, textAlign: 'right', lineHeight: 1.4, maxWidth: 240 }}>
+          {slot.filename && (
+            <span
+              className={pp.mono}
+              title={slot.filename}
+              style={{ display: 'block', color: 'var(--v2-ink, #050607)' }}
+            >
+              {truncateFilename(slot.filename)}
+            </span>
+          )}
+          <span style={{ color: 'var(--success, #0f6e56)' }}>
+            uploaded {slot.filled_at ? fmtDate(slot.filled_at) : ''}
+          </span>
         </span>
       ) : yours ? (
         <>
