@@ -295,6 +295,13 @@ function SlotRow({ co, slot, reload, setToast }) {
   const fileRef = useRef(null);
   const [busy, setBusy] = useState(false);
   const label = slot.slot.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+  // CO5W-T02: `owner` IS the standalone discriminator — the API computes it
+  // from the same helper that whitelists the upload route
+  // (portal_data._portal_upload_roles: auction_invoice joins the customer's
+  // slots iff order_id and extraction_run_id are both NULL). So we mirror the
+  // whitelist and special-case nothing: a y7-owned auction_invoice can only be
+  // an order/run-linked request, where the run's source document is already
+  // attached — hence the different read-only wording below.
   const yours = slot.owner === 'you';
 
   const upload = async (file) => {
@@ -357,7 +364,9 @@ function SlotRow({ co, slot, reload, setToast }) {
           />
         </>
       ) : (
-        <span style={{ fontSize: 12, color: 'var(--v2-ink-muted, #5c5851)' }}>prepared by Y7</span>
+        <span style={{ fontSize: 12, color: 'var(--v2-ink-muted, #5c5851)' }}>
+          {slot.slot === 'auction_invoice' ? 'attached automatically' : 'prepared by Y7'}
+        </span>
       )}
     </div>
   );

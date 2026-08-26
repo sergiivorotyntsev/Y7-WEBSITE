@@ -192,6 +192,15 @@ function NewRequestFlow({ onClose, onOpen, setToast }) {
 function VerdictCard({ result, onOpen, onClose }) {
   const vehicle = [result.vehicle?.year, result.vehicle?.make, result.vehicle?.model]
     .filter(Boolean).join(' ');
+  // CO5W-T02: name the documents the customer will bring, read straight off
+  // the payload's checklist rather than a hardcoded list. A standalone
+  // screening (no order, no extraction run) owns its auction_invoice slot, so
+  // this line is where the auction invoice finally gets mentioned before the
+  // workspace asks for it; on a run-linked request the same filter leaves it
+  // out, because Y7 attaches it from the run.
+  const youUpload = (result.checklist || [])
+    .filter((s) => s.owner === 'you' && s.required && !s.filled)
+    .map((s) => s.slot.replace(/_/g, ' '));
 
   let toneClass; let headline; let text;
   if (result.status === 'eligible') {
@@ -216,7 +225,13 @@ function VerdictCard({ result, onOpen, onClose }) {
   return (
     <div className={toneClass} style={{ marginBottom: 16 }}>
       <strong style={{ fontSize: 16 }}>{headline}</strong>
-      <p style={{ fontSize: 14, margin: '8px 0 14px' }}>{text}</p>
+      <p style={{ fontSize: 14, margin: '8px 0 10px' }}>{text}</p>
+      {result.status !== 'ineligible' && youUpload.length > 0 && (
+        <p style={{ fontSize: 13, margin: '0 0 14px', color: 'var(--v2-ink-muted, #5c5851)' }}>
+          You will upload: {youUpload.join(', ')}. Y7 prepares the rest
+          (NHTSA record, commercial invoice, declaration of origin) from your data.
+        </p>
+      )}
       <div style={{ display: 'flex', gap: 10 }}>
         {result.status !== 'ineligible' && (
           <button className={v2b.cta} onClick={() => onOpen(result.id)}>
