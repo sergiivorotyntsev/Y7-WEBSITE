@@ -374,6 +374,15 @@ export default function Agreement() {
   // 3. /agreement/:orderId (legacy order-linked, resolves to customer)
   const searchParams = new URLSearchParams(window.location.search);
   const typeParam = searchParams.get('type');
+  // AGRGATE-T02: where to go once the signature lands. The quote-confirm page
+  // sends the customer here mid-flow rather than building a second signing
+  // mechanism, and needs them back on the step they left. Same-origin paths
+  // only — an absolute URL here would be an open redirect on a page reached
+  // from an email.
+  const nextParam = searchParams.get('next');
+  const safeNext = nextParam && nextParam.startsWith('/') && !nextParam.startsWith('//')
+    ? nextParam
+    : null;
   const customerIdParam = searchParams.get('customer_id');
   const isCustomerLevel = !orderId || (orderId === 'new' && customerIdParam);
   const resolvedCustomerId = user?.id || (customerIdParam ? parseInt(customerIdParam, 10) : null);
@@ -499,7 +508,9 @@ export default function Agreement() {
       agreementIdRef.current = result.agreement_id;
       await checkAuth();
       trackEvent('agreement_sign');
-      if (isCustomerLevel) {
+      if (safeNext) {
+        navigate(safeNext, { replace: true });
+      } else if (isCustomerLevel) {
         navigate('/portal/dashboard?toast=agreement_signed', { replace: true });
       } else {
         const ref = orderId.match(/^\d+$/) ? `WEB-${String(orderId).padStart(5, '0')}` : orderId;

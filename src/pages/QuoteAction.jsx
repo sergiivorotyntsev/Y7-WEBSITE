@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useParams, useSearchParams, Link } from 'react-router-dom';
 import { CheckIcon } from '../components/icons';
 import { apiGet } from '../hooks/useApi';
-import { colors, fonts, radii, shadows } from '../theme';
+import { colors, fonts } from '../theme';
+import ConfirmQuotePanel from './ConfirmQuotePanel';
 
 // DESIGN-V2 "Dispatch Board": local token aliases for this page's inline styles.
 const V2_INK = 'var(--v2-ink, #050607)';
@@ -42,8 +43,6 @@ const v2ErrorBox = {
   border: '1px solid rgba(215, 15, 36, 0.25)',
 };
 
-const money = (cents) => (cents == null ? '—' : `$${Math.round(cents / 100)}`);
-
 export default function QuoteAction() {
   const { orderId, action } = useParams();
   const [searchParams] = useSearchParams();
@@ -54,19 +53,20 @@ export default function QuoteAction() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [reason, setReason] = useState('');
-  // PHASE4B-REPRICE: details drives the branch between silent auto-confirm (first-time
-  // quote) and the explicit Accept/Decline screen (a revised quote, requires_reprice).
-  const [details, setDetails] = useState(null);
-  const [gateLoading, setGateLoading] = useState(isConfirm && !!token);
 
-  async function doAction(accept) {
+  // AGRGATE-T02: DECLINE only. The confirm half of this function is gone with
+  // the auto-confirm — ConfirmQuotePanel owns it, and it POSTs rather than GETs.
+  // `details`/`gateLoading` and the reprice screen went with it: the panel shows
+  // the updated price and the Decline button in the same place. Leaving those
+  // branches behind would have left four screens that read as live and can no
+  // longer be reached.
+  async function doDecline() {
     setLoading(true);
     setError(null);
     try {
-      const path = accept
-        ? `/api/public/quote/confirm/${orderId}?token=${encodeURIComponent(token)}`
-        : `/api/public/quote/decline/${orderId}?token=${encodeURIComponent(token)}&reason=${encodeURIComponent(reason)}`;
-      const data = await apiGet(path);
+      const data = await apiGet(
+        `/api/public/quote/decline/${orderId}?token=${encodeURIComponent(token)}&reason=${encodeURIComponent(reason)}`,
+      );
       setResult(data);
     } catch (err) {
       setError(err.message || 'Something went wrong');
@@ -75,29 +75,32 @@ export default function QuoteAction() {
     }
   }
 
-  // PHASE4B-REPRICE: on a confirm link, first read quote details. A revised quote
-  // (requires_reprice) must NOT silently auto-confirm — it gets the Accept/Decline
-  // screen. A first-time quote keeps the original auto-confirm behavior.
-  useEffect(() => {
-    if (!isConfirm || !token) { setGateLoading(false); return; }
-    (async () => {
-      try {
-        const d = await apiGet(`/api/public/quote/${orderId}/details?token=${encodeURIComponent(token)}`);
-        setDetails(d);
-        if (d && d.requires_reprice) {
-          setGateLoading(false);        // show the Accept/Decline screen
-        } else {
-          await doAction(true);         // first-time quote → auto-confirm as before
-          setGateLoading(false);
-        }
-      } catch {
-        // details unavailable (stale/invalid token) → fall back to the confirm attempt,
-        // which yields the existing "link no longer active" screen on 403.
-        await doAction(true);
-        setGateLoading(false);
-      }
-    })();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  /* AGRGATE-T02: THE AUTO-CONFIRM IS GONE.
+   *
+   * This effect used to call `GET /api/public/quote/confirm/{id}` on page load,
+   * before the customer had read a word. That is how order 307 (`0901-TATOYR`)
+   * became `confirmed` with no signature and no delivery details — the page
+   * accepted on their behalf and then told them it had.
+   *
+   * Confirming is now the LAST step of ConfirmQuotePanel, and the backend
+   * refuses it until the agreement and the details are there
+   * (services/confirm_gate.py). Both halves ship together: a page that posts to
+   * a route that does not exist, or a route that requires a signature no page
+   * can supply, breaks the customer path in production. Deploy TRANSPORT first.
+   *
+   * The reprice screen below is reached from inside the panel, which shows the
+   * updated price and the Decline button in the same place as before.
+   */
+
+  if (isConfirm && !result) {
+    return (
+      <ConfirmQuotePanel
+        orderId={orderId}
+        token={token}
+        onConfirmed={setResult}
+      />
+    );
+  }
 
   if (result) {
     return (
@@ -173,11 +176,14 @@ export default function QuoteAction() {
                 Check your email for the sign-in link to create your account and complete onboarding.
               </p>
             )}
-            <Link to={`/agreement/${orderId}`} style={{
-              fontFamily: fonts.sans, fontSize: '13px', color: V2_INK, textDecoration: 'underline', textUnderlineOffset: 2,
-            }}>
-              Sign Brokerage Agreement
-            </Link>
+            {/* AGRGATE-T02: the bare "Sign Brokerage Agreement" link that used
+                to sit here is GONE. It pointed at /agreement/{orderId} — a
+                different door from the one the primary CTA above opens — and it
+                rendered unconditionally, so it competed with the CTA for the
+                customer's attention at the exact moment it peaks, and it offered
+                a step that is now already DONE: the signature is taken before
+                this screen exists, in step 1 of ConfirmQuotePanel. A link to an
+                already-completed step is worse than no link. */}
           </div>
         )}
         {!isConfirm && (
@@ -193,130 +199,11 @@ export default function QuoteAction() {
     );
   }
 
-  // PHASE4B-REPRICE: premium re-accept screen for a REVISED quote.
-  if (isConfirm && details && details.requires_reprice && !result) {
-    const carrier = details.final_price_cents;
-    const lo = details.quote_price_min_cents;
-    const hi = details.quote_price_max_cents;
-    return (
-      <div style={{ maxWidth: '560px', margin: '0 auto', padding: '64px 24px' }}>
-        <div style={{
-          background: V2_CREAM, border: `1px solid ${V2_LINE}`, borderRadius: radii.xl,
-          boxShadow: shadows.lg, padding: 'clamp(24px, 4vw, 40px)', textAlign: 'center',
-        }}>
-          <div style={{
-            display: 'inline-block', padding: '4px 14px', borderRadius: radii.pill, marginBottom: 16,
-            background: 'rgba(215, 15, 36, 0.06)', border: '1px solid rgba(215, 15, 36, 0.25)', color: V2_INK,
-            fontFamily: fonts.sans, fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em',
-          }}>
-            Updated Quote
-          </div>
-          <h1 style={{ fontFamily: V2_DISPLAY, textTransform: 'uppercase', fontSize: 26, fontWeight: 600, color: V2_INK, margin: '0 0 10px', letterSpacing: '0.01em', lineHeight: 1.05 }}>
-            Your price needs re-confirmation
-          </h1>
-          <p style={{ fontFamily: fonts.sans, fontSize: 14, color: V2_INK_MUTED, lineHeight: 1.6, margin: '0 auto 28px', maxWidth: 420 }}>
-            {details.vehicle ? <>For your <strong>{details.vehicle}</strong>, the </> : 'The '}
-            assigned carrier came in at <strong>{money(carrier)}</strong>, above your original quote.
-            Here's the updated price — please accept it to proceed, or decline.
-          </p>
-
-          <div style={{ display: 'flex', gap: 12, justifyContent: 'center', marginBottom: 28, flexWrap: 'wrap' }}>
-            <div style={{
-              flex: '1 1 180px', minWidth: 160, padding: '18px 16px', borderRadius: radii.lg,
-              background: 'rgba(5, 6, 7, 0.04)', border: `1px solid ${V2_LINE}`,
-            }}>
-              <div style={{ fontFamily: fonts.sans, fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: V2_INK_MUTED, marginBottom: 8 }}>
-                Carrier price
-              </div>
-              <div style={{ fontFamily: fonts.mono, fontSize: 24, fontWeight: 700, color: V2_INK_MUTED }}>
-                {money(carrier)}
-              </div>
-            </div>
-            <div style={{
-              flex: '1 1 180px', minWidth: 160, padding: '18px 16px', borderRadius: radii.lg,
-              background: colors.successBg, border: `1px solid ${colors.success}`,
-            }}>
-              <div style={{ fontFamily: fonts.sans, fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: colors.success, marginBottom: 8 }}>
-                Your updated quote
-              </div>
-              <div style={{ fontFamily: fonts.mono, fontSize: 24, fontWeight: 700, color: colors.success }}>
-                {money(lo)}–{money(hi)}
-              </div>
-            </div>
-          </div>
-
-          {/* [SPRINT-P2b] Change 2: number-free. The two cards above show the CARRIER
-              (transport) price the customer is re-accepting — that stays. The Y7 SERVICE
-              fee is not shown here as a number: it is determined by the account type at
-              registration and shown honestly at the account-type step (fee-preview). This
-              previously hardcoded "$75 minimum or 10%", the exact drift string. */}
-          <p style={{
-            fontFamily: fonts.sans, fontSize: 13, color: V2_INK_MUTED, lineHeight: 1.6,
-            margin: '0 auto 24px', maxWidth: 420, textAlign: 'left',
-            background: 'rgba(5, 6, 7, 0.04)', border: `1px solid ${V2_LINE}`,
-            borderRadius: radii.md, padding: '12px 16px',
-          }}>
-            The price above is the carrier&rsquo;s transport cost, paid separately to the
-            carrier. Your Y7 service fee is determined by the account type you choose when
-            you register.
-          </p>
-
-          {error && (
-            <div style={{ ...v2ErrorBox, fontFamily: fonts.sans, fontSize: 13, padding: 12, borderRadius: radii.md, marginBottom: 16 }}>
-              {error}
-            </div>
-          )}
-
-          <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <button onClick={() => doAction(true)} disabled={loading}
-              style={{ ...v2PrimaryBtn, padding: '14px 28px', fontSize: 13, opacity: loading ? 0.6 : 1, transition: '150ms ease-out' }}>
-              {loading ? 'Processing…' : 'Accept Updated Price'}
-            </button>
-            <button onClick={() => doAction(false)} disabled={loading}
-              style={{ ...v2GhostBtn, padding: '14px 28px', fontSize: 13, opacity: loading ? 0.6 : 1 }}>
-              Decline
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // CONFIRM-ONBOARD: re-visit / stale-link fallback (403 after the token is cleared).
-  if (isConfirm && error) {
-    return (
-      <div style={{ maxWidth: '500px', margin: '0 auto', padding: '80px 24px', textAlign: 'center' }}>
-        <h2 style={{ fontFamily: V2_DISPLAY, textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.01em', lineHeight: 1.05, fontSize: '22px', color: V2_INK, marginBottom: '12px' }}>
-          This confirmation link is no longer active
-        </h2>
-        <p style={{ fontFamily: fonts.sans, fontSize: '13px', color: 'var(--v2-red-deep, #a90918)', marginBottom: '16px' }}>{error}</p>
-        <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: V2_INK_MUTED, lineHeight: 1.6, marginBottom: '20px', maxWidth: '380px', marginLeft: 'auto', marginRight: 'auto' }}>
-          {/* WGF-T02a/WDV: confirmed orders don't expire — no false 48h deadline. */}
-          If you've already confirmed your quote, use the sign-in link in your welcome email
-          to create your account and complete onboarding. Otherwise, request a new quote.
-        </p>
-        <Link to="/ship-my-car" style={{
-          ...v2GhostBtn, display: 'inline-block', textDecoration: 'none', padding: '12px 24px', fontSize: '13px',
-        }}>
-          Request a New Quote
-        </Link>
-      </div>
-    );
-  }
-
-  if (isConfirm && (loading || gateLoading)) {
-    return (
-      <div style={{ maxWidth: '500px', margin: '0 auto', padding: '80px 24px', textAlign: 'center' }}>
-        <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: V2_INK_MUTED }}>Confirming your quote...</p>
-      </div>
-    );
-  }
-
   // Decline page shows a form
   return (
     <div style={{ maxWidth: '500px', margin: '0 auto', padding: '60px 24px' }}>
       <h1 style={{ fontFamily: V2_DISPLAY, textTransform: 'uppercase', fontSize: '28px', fontWeight: 600, letterSpacing: '0.01em', lineHeight: 1.05, color: V2_INK, textAlign: 'center', marginBottom: '16px' }}>
-        {isConfirm ? 'Confirm Your Quote' : 'Decline Quote'}
+        Decline Quote
       </h1>
 
       {error && (
@@ -325,8 +212,7 @@ export default function QuoteAction() {
         </div>
       )}
 
-      {!isConfirm && (
-        <>
+      <>
           <p style={{ fontFamily: fonts.sans, fontSize: '14px', color: V2_INK_MUTED, textAlign: 'center', marginBottom: '24px' }}>
             We're sorry to see you go. Could you let us know why?
           </p>
@@ -341,21 +227,20 @@ export default function QuoteAction() {
               resize: 'vertical', marginBottom: '16px',
             }}
           />
-        </>
-      )}
+      </>
 
       <button
-        onClick={() => doAction(isConfirm)}
+        onClick={doDecline}
         disabled={loading}
         style={{
-          ...(isConfirm ? v2PrimaryBtn : v2GhostBtn),
+          ...v2GhostBtn,
           width: '100%',
           padding: '14px',
           fontSize: '14px',
           opacity: loading ? 0.6 : 1,
         }}
       >
-        {loading ? 'Processing...' : (isConfirm ? 'Yes, Confirm Quote' : 'Decline Quote')}
+        {loading ? 'Processing...' : 'Decline Quote'}
       </button>
     </div>
   );
