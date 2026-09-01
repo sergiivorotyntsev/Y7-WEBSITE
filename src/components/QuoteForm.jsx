@@ -96,6 +96,13 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
     phone: urlParams?.get('phone') || '',
     email: urlParams?.get('email') || '',
     sms_consent: false, termsAccepted: false, notes: '',
+    // AGRGATE-T05: the account type the CUSTOMER answers, rather than the
+    // `unknown` default the backend used to invent for them. 44 of 67 live
+    // customers sat in `unknown`, and three separate positive allow-lists were
+    // written as if that value could not occur. Rides the `...form` spread into
+    // the /quote/start payload; the server validates it and never overwrites an
+    // existing customer's type from a public form.
+    customer_type: 'individual',
   });
 
   // AUCT-W2B-T02: the auction houses a customer may choose. Fetched from
@@ -646,6 +653,35 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
               </label>
             )}
           </div>
+        </div>
+      </div>
+
+      {/* AGRGATE-T05: the account type, ASKED rather than defaulted.
+          Three values, matching db.customer_types: individual / dealer /
+          exporter. `auction_buyer` is deliberately not offered — Sergii
+          2026-07-08 merged it into `individual` under the 2026 model and the
+          account-type cards stopped showing it as a separate choice
+          (services/individual_pricing.py:45-49). */}
+      <div>
+        <label className={styles.label}>{t('form.accountType', 'I am shipping as')}</label>
+        <div className={styles.radioGroup}>
+          {[
+            ['individual', t('form.accountIndividual', 'An individual')],
+            ['dealer', t('form.accountDealer', 'A dealer')],
+            ['exporter', t('form.accountExporter', 'An exporter')],
+          ].map(([value, label]) => (
+            <label key={value} className={styles.radioLabel}>
+              <input
+                type="radio"
+                name="customer_type"
+                value={value}
+                checked={form.customer_type === value}
+                onChange={() => set('customer_type', value)}
+                className={styles.radioInput}
+              />
+              {label}
+            </label>
+          ))}
         </div>
       </div>
 
