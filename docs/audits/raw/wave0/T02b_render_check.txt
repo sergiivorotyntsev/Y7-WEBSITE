@@ -1,0 +1,23 @@
+=== CONTROL — the harness must report these, or its greens mean nothing
+  saw pageerror?     YES
+  saw console.error? YES
+
+=== ROUTES TOUCHED BY THE WAVE0 DIFF
+  OK   200  /faq
+  OK   200  /pl/faq
+  OK   200  /ru/faq
+  OK   200  /ua/faq
+  OK   200  /services
+  OK   200  /pl/services
+  OK   200  /ru/services
+  OK   200  /ua/services
+  OK   200  /pl/transport-z-usa
+  OK   200  /boston-car-shipping
+  OK   200  /massachusetts-car-shipping
+  OK   200  /newton-auto-transport
+  OK   200  /portal/login
+  OK   200  /
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Access to fetch at 'https://dispatch.y7agency.com/api/public/reviews?limit=10&min_rating=4' from origin 'http://127.0.0.1:8899' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Failed to load resource: net::ERR_FAILED
+
+VERDICT: control saw both failure kinds; every touched route 200 with zero pageerror and zero console.error.
