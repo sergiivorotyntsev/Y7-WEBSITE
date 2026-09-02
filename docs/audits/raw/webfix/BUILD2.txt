@@ -1,0 +1,345 @@
+START 2026-09-02T14:53:10Z HEAD=fb4f5be
+
+> y7-website@0.0.0 prebuild
+> node scripts/generateSitemap.js
+
+[generateSitemap] wrote C:\DEV\Y7-WEBSITE\public\sitemap.xml
+  Total <url> entries: 138
+  Total xhtml:link alternates: 340
+  lastmod source: git commit dates
+  Manifest entries: 121 -> C:\DEV\Y7-WEBSITE\scripts\sitemap-lastmod.json
+  Translated URL groups: 17 (× 4 locales × 5 alternates = 340)
+
+> y7-website@0.0.0 build
+> vite build && node scripts/prerender.mjs
+
+[36mvite v8.0.12 [32mbuilding client environment for production...[36m[39m
+
+[43m[30m WARN [39m[49m [36madvancedChunks[39m option is deprecated, please use [36mcodeSplitting[39m instead.
+
+[2Ktransforming...✓ 929 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                          6.49 kB │ gzip:   2.17 kB
+dist/assets/Quote-BBuIhs8I.css                           0.34 kB │ gzip:   0.24 kB
+dist/assets/QuoteVerified-CHjKVoem.css                   0.66 kB │ gzip:   0.38 kB
+dist/assets/QuoteVerificationFailed-BOARONGg.css         0.75 kB │ gzip:   0.41 kB
+dist/assets/EntityTldr-HGhPYgtL.css                      0.99 kB │ gzip:   0.48 kB
+dist/assets/HeroRouteVisual-xVqvL_u2.css                 1.13 kB │ gzip:   0.52 kB
+dist/assets/GlowDot-lzMXcx7I.css                         1.85 kB │ gzip:   0.50 kB
+dist/assets/ContextualCTA-CdidUaV4.css                   2.30 kB │ gzip:   0.81 kB
+dist/assets/hero-CjTtGRPr.css                            2.79 kB │ gzip:   0.98 kB
+dist/assets/Legal-oV8wG759.css                           4.07 kB │ gzip:   1.28 kB
+dist/assets/portal-BuBUcjlZ.css                          4.56 kB │ gzip:   1.36 kB
+dist/assets/FAQ-DU6zSkY-.css                             5.03 kB │ gzip:   1.44 kB
+dist/assets/DealerQuote-mqWSmcIx.css                     6.58 kB │ gzip:   2.05 kB
+dist/assets/BlogIndex-sNdYmKCQ.css                       7.59 kB │ gzip:   1.97 kB
+dist/assets/Services-BsXVvTES.css                        7.64 kB │ gzip:   1.77 kB
+dist/assets/BlogArticle-CpnY3hVD.css                     8.12 kB │ gzip:   1.99 kB
+dist/assets/Dealers-B1mF0-jx.css                         9.13 kB │ gzip:   2.33 kB
+dist/assets/ShipMyCar-TGLy-8wa.css                       9.66 kB │ gzip:   2.50 kB
+dist/assets/Contact-DNlDviie.css                        11.15 kB │ gzip:   2.62 kB
+dist/assets/About-BMJi7Q0W.css                          12.34 kB │ gzip:   2.70 kB
+dist/assets/Exporters-Bxc4f4_W.css                      13.00 kB │ gzip:   3.29 kB
+dist/assets/Track-uctbnUS5.css                          13.17 kB │ gzip:   2.93 kB
+dist/assets/GuidePage-DcqNoqpf.css                      13.19 kB │ gzip:   2.88 kB
+dist/assets/PolandShipMyCar-D2iGoWiB.css                13.30 kB │ gzip:   2.85 kB
+dist/assets/PortPage-HqLJfrJX.css                       13.32 kB │ gzip:   2.83 kB
+dist/assets/SeoLandingPage-DQg68lDG.css                 13.95 kB │ gzip:   3.04 kB
+dist/assets/ProcessTimeline-DoCijivK.css                13.97 kB │ gzip:   3.20 kB
+dist/assets/RussiaCopart-EIQzY1CO.css                   14.30 kB │ gzip:   3.02 kB
+dist/assets/DaytonaCargoPage-BKX_Eu-O.css               14.33 kB │ gzip:   3.75 kB
+dist/assets/RussiaHome-B1Nx2Oqf.css                     14.87 kB │ gzip:   3.17 kB
+dist/assets/PolandHome-CF-EgPoa.css                     15.28 kB │ gzip:   3.31 kB
+dist/assets/UkraineShipMyCar-CoCdD4_m.css               15.38 kB │ gzip:   3.25 kB
+dist/assets/PolandCopart-C_XdnAsK.css                   15.40 kB │ gzip:   3.19 kB
+dist/assets/RussiaShipMyCar-qbOLQerW.css                15.47 kB │ gzip:   3.11 kB
+dist/assets/UkraineCopart-DffXMyYD.css                  16.41 kB │ gzip:   3.42 kB
+dist/assets/UkraineHome-Ctpu_1z2.css                    17.95 kB │ gzip:   3.65 kB
+dist/assets/index-DU56gi4B.css                          75.87 kB │ gzip:  13.29 kB
+dist/assets/config-HxY2tcqo.js                           0.05 kB │ gzip:   0.07 kB
+dist/assets/hero.module-DyNlAThP.js                      0.23 kB │ gzip:   0.14 kB
+dist/assets/releaseDocTerm-KZeWfM8h.js                   0.28 kB │ gzip:   0.22 kB
+dist/assets/EntityTldr-BBg3uozz.js                       0.47 kB │ gzip:   0.31 kB
+dist/assets/Legal.module-D-mBjWPh.js                     0.52 kB │ gzip:   0.28 kB
+dist/assets/useApi-CUB07bzu.js                           0.53 kB │ gzip:   0.32 kB
+dist/assets/_enrichedStyles-O7Y1AmFg.js                  0.62 kB │ gzip:   0.33 kB
+dist/assets/localePaths-CFpuMcd4.js                      0.63 kB │ gzip:   0.39 kB
+dist/assets/GlowDot-Ch10NmmJ.js                          0.69 kB │ gzip:   0.35 kB
+dist/assets/rolldown-runtime-BYbx6iT9.js                 0.82 kB │ gzip:   0.47 kB
+dist/assets/portal.module-BptmiWzp.js                    0.85 kB │ gzip:   0.36 kB
+dist/assets/SmsConsent-CJhzgpWn.js                       1.09 kB │ gzip:   0.61 kB
+dist/assets/Toast-yasrJIdL.js                            1.14 kB │ gzip:   0.69 kB
+dist/assets/LegalSection-CauPqKxs.js                     1.23 kB │ gzip:   0.52 kB
+dist/assets/ContextualCTA-BLWMhYuu.js                    1.27 kB │ gzip:   0.61 kB
+dist/assets/HeroRouteVisual-ColZ2bKf.js                  1.27 kB │ gzip:   0.48 kB
+dist/assets/Quote-D-qA74Pw.js                            1.29 kB │ gzip:   0.63 kB
+dist/assets/QuoteVerified-DctvKAw3.js                    1.34 kB │ gzip:   0.59 kB
+dist/assets/PrivacyPolicy-C1rC-1yD.js                    1.40 kB │ gzip:   0.73 kB
+dist/assets/loadVocabulary-BHDzBckL.js                   1.41 kB │ gzip:   0.75 kB
+dist/assets/GuidePage.module-BFnLEGD0.js                 1.43 kB │ gzip:   0.57 kB
+dist/assets/QuoteVerificationFailed-CzhZCEy1.js          1.64 kB │ gzip:   0.73 kB
+dist/assets/Terms-Cs_QDI8G.js                            1.71 kB │ gzip:   0.82 kB
+dist/assets/accountTypes-CtjWfbLf.js                     1.96 kB │ gzip:   1.01 kB
+dist/assets/orderStatus-CAw-Nl7n.js                      2.00 kB │ gzip:   0.87 kB
+dist/assets/portData-DpYm_R5c.js                         2.28 kB │ gzip:   0.81 kB
+dist/assets/CoStart-yBxvsRyk.js                          2.97 kB │ gzip:   1.25 kB
+dist/assets/FeePreviewLine-D3Vpf26X.js                   2.99 kB │ gzip:   1.35 kB
+dist/assets/EmailInputWithCheck-Cwulxnqw.js              3.01 kB │ gzip:   1.34 kB
+dist/assets/MoneyPageSchema-1NqBT8ta.js                  3.03 kB │ gzip:   1.36 kB
+dist/assets/coShared-DcMyKb3m.js                         3.06 kB │ gzip:   1.39 kB
+dist/assets/trackEvent-D3vuu0U7.js                       3.16 kB │ gzip:   1.36 kB
+dist/assets/VerificationBanner-Cggv86vW.js               3.21 kB │ gzip:   1.26 kB
+dist/assets/MagicLogin-B_s1zCj7.js                       3.25 kB │ gzip:   1.45 kB
+dist/assets/Accessibility-D1Ph6zTS.js                    3.72 kB │ gzip:   1.35 kB
+dist/assets/theme-ELRMLnOk.js                            3.78 kB │ gzip:   1.42 kB
+dist/assets/PricingRange-DoPJhDmT.js                     3.89 kB │ gzip:   1.10 kB
+dist/assets/FAQ-Bb5TkWtv.js                              4.14 kB │ gzip:   1.65 kB
+dist/assets/warehouseFields-DN_toqab.js                  4.22 kB │ gzip:   1.22 kB
+dist/assets/ReviewSubmit-DxFgFfuo.js                     4.43 kB │ gzip:   1.75 kB
+dist/assets/DealerApplication-D0xDZopi.js                5.50 kB │ gzip:   2.12 kB
+dist/assets/ChicagoToNewark-fX5E4kE0.js                  5.91 kB │ gzip:   2.44 kB
+dist/assets/BlogIndex-bKbo7XkH.js                        6.00 kB │ gzip:   1.91 kB
+dist/assets/TexasToNewark-_vtSmJco.js                    6.38 kB │ gzip:   2.60 kB
+dist/assets/LocationSetup-BE0_toGn.js                    6.65 kB │ gzip:   2.37 kB
+dist/assets/CoRequests-Ca_pPevO.js                       7.57 kB │ gzip:   2.95 kB
+dist/assets/Services-C9RKiPdX.js                         7.61 kB │ gzip:   2.25 kB
+dist/assets/OnboardingBanner-9lEBC3aB.js                 7.68 kB │ gzip:   3.04 kB
+dist/assets/Track-CvT6aeSV.js                            7.78 kB │ gzip:   2.44 kB
+dist/assets/Contact-B1kjvd77.js                          7.85 kB │ gzip:   2.36 kB
+dist/assets/DallasToHouston-DWz8qvST.js                  7.92 kB │ gzip:   3.16 kB
+dist/assets/FloridaToJacksonville-B07rdj0k.js            7.94 kB │ gzip:   3.00 kB
+dist/assets/AtlantaToSavannah-CAWSPaN-.js                8.39 kB │ gzip:   3.26 kB
+dist/assets/Billing-Bitm0d4K.js                          8.53 kB │ gzip:   2.63 kB
+dist/assets/About-DM8LEJge.js                            8.68 kB │ gzip:   1.96 kB
+dist/assets/AuctionTransportSavings-Df7e0VvV.js          8.77 kB │ gzip:   2.93 kB
+dist/assets/CertificateOfOrigin-CZppzGXE.js              8.83 kB │ gzip:   2.71 kB
+dist/assets/CopartGatePassGuide-COMg1KYW.js              9.81 kB │ gzip:   3.26 kB
+dist/assets/CoCompanies-nlZvfuhK.js                     10.17 kB │ gzip:   3.49 kB
+dist/assets/BostonCarShipping-DiY9pbUk.js               10.45 kB │ gzip:   3.89 kB
+dist/assets/EVAutoTransport-Dbnw0Bzc.js                 10.63 kB │ gzip:   3.75 kB
+dist/assets/CybertruckShipping-DBS1eXgv.js              10.66 kB │ gzip:   3.80 kB
+dist/assets/ElectricVehiclePortDelivery-DFBm7Bgg.js     11.10 kB │ gzip:   4.06 kB
+dist/assets/NewJerseyToFlorida-C2ot73vB.js              11.16 kB │ gzip:   4.33 kB
+dist/assets/TeslaCarShipping-CzY86Dms.js                11.16 kB │ gzip:   3.95 kB
+dist/assets/NewtonAutoTransport-D9aI1r4r.js             11.60 kB │ gzip:   4.40 kB
+dist/assets/DealerAutoTransport-DLsg2YEG.js             11.77 kB │ gzip:   4.56 kB
+dist/assets/BillOfLading-Cp3eX15G.js                    12.06 kB │ gzip:   3.70 kB
+dist/assets/TexasAutoTransport-DPMzUDRF.js              12.15 kB │ gzip:   4.57 kB
+dist/assets/CopartStorageFees-DZwi5l4d.js               12.26 kB │ gzip:   3.97 kB
+dist/assets/PortPage-RvmqBZQz.js                        12.70 kB │ gzip:   3.32 kB
+dist/assets/AuctionCarShipping-BoH2Bhn5.js              12.71 kB │ gzip:   4.72 kB
+dist/assets/ManheimTransport-Cnnea1bK.js                12.77 kB │ gzip:   4.94 kB
+dist/assets/OpenVsEnclosed-ClKZ-cHp.js                  12.87 kB │ gzip:   4.18 kB
+dist/assets/ShipMyCar-DricElVk.js                       12.92 kB │ gzip:   3.26 kB
+dist/assets/BlogArticle-Bzw7lpIk.js                     13.03 kB │ gzip:   4.21 kB
+dist/assets/MassachusettsToFlorida-C4RHnbT7.js          13.25 kB │ gzip:   5.14 kB
+dist/assets/Locations-D1r9Rkrt.js                       13.27 kB │ gzip:   3.95 kB
+dist/assets/CoRequestDetail-DjzjyD9Y.js                 13.44 kB │ gzip:   4.35 kB
+dist/assets/DealerQuote-C0qC8t1N.js                     14.03 kB │ gzip:   4.03 kB
+dist/assets/CopartInternationalShipping-B05EGITU.js     14.20 kB │ gzip:   3.73 kB
+dist/assets/IaaiTransport-DoXrgwOJ.js                   14.31 kB │ gzip:   5.20 kB
+dist/assets/FloridaCarShipping-Cyf9msNJ.js              14.64 kB │ gzip:   5.36 kB
+dist/assets/HowToShipAuctionCar-7cvs67pt.js             14.65 kB │ gzip:   5.04 kB
+dist/assets/CarShippingCost-DU93GEVb.js                 14.83 kB │ gzip:   5.37 kB
+dist/assets/NewJerseyAutoTransport-D0ohKxuN.js          15.09 kB │ gzip:   5.58 kB
+dist/assets/OpenCarShipping-DkS5sXdI.js                 15.21 kB │ gzip:   5.65 kB
+dist/assets/Agreement-Bt5l6fJV.js                       15.27 kB │ gzip:   4.84 kB
+dist/assets/MassachusettsCarShipping-ByhjiPFq.js        15.94 kB │ gzip:   5.78 kB
+dist/assets/helmet-DiwlT8-Y.js                          16.46 kB │ gzip:   5.89 kB
+dist/assets/AuctionToPort-X4vtIQVp.js                   16.60 kB │ gzip:   5.71 kB
+dist/assets/EnclosedCarShipping-DwoUOAJG.js             16.90 kB │ gzip:   5.78 kB
+dist/assets/Dealers-BW1EwAsR.js                         17.16 kB │ gzip:   3.91 kB
+dist/assets/SalvageCarShipping-WdCC9rjt.js              17.22 kB │ gzip:   6.02 kB
+dist/assets/StateToState-D0FFgfrh.js                    17.47 kB │ gzip:   6.23 kB
+dist/assets/QuoteAction-DUBPjU_Q.js                     17.75 kB │ gzip:   5.18 kB
+dist/assets/NjExportWarehouseShippingCost-DhlWoC9L.js   19.35 kB │ gzip:   5.92 kB
+dist/assets/SeoLandingPage-BH2KF1If.js                  20.17 kB │ gzip:   4.04 kB
+dist/assets/DispatchDetails-Dkq5ndAO.js                 20.28 kB │ gzip:   5.56 kB
+dist/assets/RussiaCopart-Bu2ubYEB.js                    24.58 kB │ gzip:   6.84 kB
+dist/assets/PolandShipMyCar-DlpH_5EO.js                 24.94 kB │ gzip:   7.73 kB
+dist/assets/Exporters-DlUl6qIx.js                       25.09 kB │ gzip:   6.35 kB
+dist/assets/RussiaHome-MoNidBq0.js                      25.29 kB │ gzip:   6.97 kB
+dist/assets/RussiaShipMyCar-xMZ3V-EP.js                 25.33 kB │ gzip:   6.79 kB
+dist/assets/PolandHome-Bt1R0bF6.js                      26.30 kB │ gzip:   8.56 kB
+dist/assets/UkraineShipMyCar-DA579lT2.js                27.53 kB │ gzip:   7.33 kB
+dist/assets/DoorToPort-i13vZVMI.js                      28.16 kB │ gzip:   8.58 kB
+dist/assets/PolandCopart--TsyacFz.js                    29.25 kB │ gzip:  10.19 kB
+dist/assets/CopartShipping-HyyDnMgc.js                  31.03 kB │ gzip:  10.31 kB
+dist/assets/Login-CA2Kt6Se.js                           32.47 kB │ gzip:   9.04 kB
+dist/assets/Onboarding-OVPB_tnp.js                      32.73 kB │ gzip:   9.54 kB
+dist/assets/Dashboard-0RD5WH2Y.js                       33.34 kB │ gzip:   8.56 kB
+dist/assets/Profile-PuwZXl0Y.js                         33.45 kB │ gzip:   8.81 kB
+dist/assets/BlogBanners-DwaBhGeJ.js                     34.66 kB │ gzip:   8.88 kB
+dist/assets/UkraineCopart-CThD-3Z1.js                   36.47 kB │ gzip:  10.82 kB
+dist/assets/NewOrder-VHHXlLfa.js                        36.57 kB │ gzip:  10.26 kB
+dist/assets/UkraineHome-CpKPtR3N.js                     37.87 kB │ gzip:  10.15 kB
+dist/assets/OrderDetail-CcQu29tz.js                     39.16 kB │ gzip:   9.81 kB
+dist/assets/ProcessTimeline-CewnL-fZ.js                 49.55 kB │ gzip:  13.55 kB
+dist/assets/react-router-C7XXat1k.js                    49.59 kB │ gzip:  17.50 kB
+dist/assets/i18n-DMIuyVax.js                            57.01 kB │ gzip:  19.05 kB
+dist/assets/DaytonaCargoPage-lSWwopfV.js                73.71 kB │ gzip:  15.61 kB
+dist/assets/react-vendor-BtODcht6.js                   182.16 kB │ gzip:  57.33 kB
+dist/assets/blog-articles-BpplKI7U.js                  182.56 kB │ gzip:  46.84 kB
+dist/assets/vendor-CN3R2y1y.js                         271.38 kB │ gzip:  74.97 kB
+dist/assets/three-D5ybMlk9.js                          594.63 kB │ gzip: 149.72 kB
+dist/assets/index-DxsIjmn2.js                          955.63 kB │ gzip: 275.14 kB
+
+[33m[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 600 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+[32m✓ built in 1.40s[39m
+Prerender server running on http://localhost:61644
+Prerender base URL: http://localhost:61644
+[prerender] skipping 0 blog article routes:
+[prerender] 143 routes will be prerendered
+  [critical] /: 34639 -> 17111 chars after viewport trim
+  [OK] /
+  [OK] /services
+  [OK] /dealers
+  [OK] /exporters
+  [OK] /ship-my-car
+  [OK] /quote
+  [OK] /quote-verified
+  [OK] /quote-verification-failed
+  [OK] /track
+  [OK] /contact
+  [OK] /faq
+  [OK] /about
+  [OK] /careers
+  [OK] /careers/apply
+  [OK] /dealer-quote
+  [OK] /daytonacargo
+  [OK] /privacy
+  [OK] /terms
+  [OK] /accessibility
+  [OK] /car-shipping-cost
+  [OK] /enclosed-car-shipping
+  [OK] /auction-car-shipping
+  [OK] /auction-transport-savings
+  [OK] /copart-shipping
+  [OK] /iaai-transport
+  [OK] /manheim-transport
+  [OK] /door-to-port-auto-transport
+  [OK] /dealer-auto-transport
+  [OK] /salvage-car-shipping
+  [OK] /open-car-shipping
+  [OK] /state-to-state-car-shipping
+  [OK] /massachusetts-car-shipping
+  [OK] /boston-car-shipping
+  [OK] /newton-auto-transport
+  [OK] /florida-car-shipping
+  [OK] /new-jersey-auto-transport
+  [OK] /nj-export-warehouse-shipping-cost
+  [OK] /texas-auto-transport
+  [OK] /massachusetts-to-florida-car-shipping
+  [OK] /new-jersey-to-florida-car-shipping
+  [OK] /texas-to-newark-port-auto-transport
+  [OK] /chicago-to-port-newark-car-shipping
+  [OK] /auction-to-port-transport
+  [OK] /atlanta-to-savannah-port-auto-transport
+  [OK] /dallas-to-port-houston-auto-transport
+  [OK] /florida-to-jacksonville-port-car-shipping
+  [OK] /tesla-car-shipping
+  [OK] /ev-auto-transport
+  [OK] /cybertruck-shipping
+  [OK] /electric-vehicle-port-delivery
+  [OK] /how-to-ship-a-car-bought-at-auction
+  [OK] /open-vs-enclosed-auto-transport
+  [OK] /what-is-a-bill-of-lading
+  [OK] /copart-storage-fees
+  [OK] /copart-gate-pass-guide
+  [OK] /copart-international-shipping
+  [OK] /certificate-of-origin
+  [OK] /ports/newark
+  [OK] /ports/houston
+  [OK] /ports/savannah
+  [OK] /ports/los-angeles
+  [OK] /ports/baltimore
+  [OK] /ports/jacksonville
+  [OK] /blog
+  [OK] /blog/carrier-who-vanished
+  [OK] /blog/carrier-coi-verification-guide
+  [OK] /blog/fmcsa-2026-new-rules
+  [OK] /blog/outbox-pattern-dispatch
+  [OK] /blog/dealer-auction-pickup-guide
+  [OK] /blog/exporter-documentation-checklist
+  [OK] /blog/fmcsa-broker-recordkeeping-2026
+  [OK] /blog/75000-bond-claims-guide
+  [OK] /blog/copart-iaa-manheim-comparison
+  [OK] /blog/auction-to-port-cost-breakdown-2026
+  [OK] /blog/central-dispatch-listing-decoded
+  [OK] /blog/enclosed-transport-when-to-skip
+  [OK] /blog/non-running-vehicle-shipping-playbook
+  [OK] /blog/winter-auto-transport-pricing
+  [OK] /blog/bill-of-lading-pickup-delivery-guide
+  [OK] /blog/port-specific-export-newark-houston-savannah
+  [OK] /blog/copart-storage-fees-real-cost-2026
+  [OK] /blog/copart-for-international-buyers-complete-guide
+  [OK] /ua
+  [OK] /ua/services
+  [OK] /ua/dealers
+  [OK] /ua/exporters
+  [OK] /ua/ship-my-car
+  [OK] /ua/track
+  [OK] /ua/contact
+  [OK] /ua/faq
+  [OK] /ua/about
+  [OK] /ua/quote
+  [OK] /ua/certificate-of-origin
+  [OK] /pl
+  [OK] /pl/services
+  [OK] /pl/dealers
+  [OK] /pl/exporters
+  [OK] /pl/ship-my-car
+  [OK] /pl/track
+  [OK] /pl/contact
+  [OK] /pl/faq
+  [OK] /pl/about
+  [OK] /pl/quote
+  [OK] /pl/certificate-of-origin
+  [OK] /ru
+  [OK] /ru/services
+  [OK] /ru/dealers
+  [OK] /ru/exporters
+  [OK] /ru/ship-my-car
+  [OK] /ru/track
+  [OK] /ru/contact
+  [OK] /ru/faq
+  [OK] /ru/about
+  [OK] /ru/quote
+  [OK] /ru/certificate-of-origin
+  [OK] /ua/ports/newark
+  [OK] /ua/ports/houston
+  [OK] /ua/ports/savannah
+  [OK] /ua/ports/los-angeles
+  [OK] /ua/ports/baltimore
+  [OK] /ua/ports/jacksonville
+  [OK] /pl/ports/newark
+  [OK] /pl/ports/houston
+  [OK] /pl/ports/savannah
+  [OK] /pl/ports/los-angeles
+  [OK] /pl/ports/baltimore
+  [OK] /pl/ports/jacksonville
+  [OK] /ru/ports/newark
+  [OK] /ru/ports/houston
+  [OK] /ru/ports/savannah
+  [OK] /ru/ports/los-angeles
+  [OK] /ru/ports/baltimore
+  [OK] /ru/ports/jacksonville
+  [OK] /pl/transport-z-usa
+  [OK] /pl/transport-z-aukcji
+  [OK] /pl/wysylka-auta-z-usa
+  [OK] /ua/import-z-usa
+  [OK] /ua/copart-ta-iaai
+  [OK] /ua/dostavka-avto-z-usa
+  [OK] /ru/dostavka-avto-iz-usa
+  [OK] /ru/copart-i-iaai
+  [OK] /ru/perevozka-avto
+  [OK] /404
+
+Prerender complete: 143 OK, 0 failed (890.2s)
+Prerender server closed cleanly
+EXIT=0 END 2026-09-02T15:08:12Z

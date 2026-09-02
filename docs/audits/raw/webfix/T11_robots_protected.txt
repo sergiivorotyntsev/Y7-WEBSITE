@@ -1,0 +1,43 @@
+=== BEFORE T11 (HEAD 2170fbf + T09)
+user-agent                   /      assets    /portal/  /agreement       /api/    /review/     /promo/
+Googlebot                   ok          ok          ok          ok          ok          ok          ok
+Googlebot-Image             ok          ok          ok          ok          ok          ok          ok
+Bingbot                     ok          ok          ok          ok          ok          ok          ok
+Slurp                       ok          ok          ok          ok          ok          ok          ok
+DuckDuckBot                 ok          ok          ok          ok          ok          ok          ok
+OAI-SearchBot               ok          ok          ok          ok          ok          ok          ok
+ChatGPT-User                ok          ok          ok          ok          ok          ok          ok
+PerplexityBot               ok          ok          ok          ok          ok          ok          ok
+Applebot                    ok          ok          ok          ok          ok          ok          ok
+Claude-SearchBot            ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK
+YandexBot                   ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK
+GPTBot                      ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK
+ClaudeBot                   ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK
+SemrushBot                  ok          ok          ok          ok          ok          ok          ok
+*                           ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK
+
+edited 8 groups; protected block =
+Disallow: /portal/
+Disallow: /agreement
+Disallow: /api/
+Disallow: /review/
+Disallow: /promo/
+
+=== AFTER T11
+user-agent                   /      assets    /portal/  /agreement       /api/    /review/     /promo/
+Googlebot                   ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK
+Googlebot-Image             ok          ok          ok          ok          ok          ok          ok
+Bingbot                     ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK
+Slurp                       ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK
+DuckDuckBot                 ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK
+OAI-SearchBot               ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK
+ChatGPT-User                ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK
+PerplexityBot               ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK
+Applebot                    ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK
+Claude-SearchBot            ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK
+YandexBot                   ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK
+GPTBot                      ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK
+ClaudeBot                   ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK
+SemrushBot                  ok          ok          ok          ok          ok          ok          ok
+*                           ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK
+

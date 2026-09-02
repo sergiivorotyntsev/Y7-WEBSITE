@@ -1,0 +1,175 @@
+﻿=== CONTROL — the harness must report these, or its greens mean nothing
+  saw pageerror?     YES
+  saw console.error? YES
+
+=== ROUTES (143, from RENDER_ROUTES)
+  OK   200  /
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Access to fetch at 'https://dispatch.y7agency.com/api/public/reviews?limit=10&min_rating=4' from origin 'http://127.0.0.1:8899' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Failed to load resource: net::ERR_FAILED
+  OK   200  /services
+  OK   200  /dealers
+  OK   200  /exporters
+  OK   200  /ship-my-car
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Access to fetch at 'https://dispatch.y7agency.com/api/public/fee-schedule' from origin 'http://127.0.0.1:8899' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on th
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Failed to load resource: net::ERR_FAILED
+  OK   200  /quote
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Access to fetch at 'https://dispatch.y7agency.com/api/public/fee-schedule' from origin 'http://127.0.0.1:8899' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on th
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Failed to load resource: net::ERR_FAILED
+  OK   200  /quote-verified
+  OK   200  /quote-verification-failed
+  OK   200  /track
+  OK   200  /contact
+  OK   200  /faq
+  OK   200  /about
+  OK   200  /careers
+  OK   200  /careers/apply
+  OK   200  /dealer-quote
+  OK   200  /daytonacargo
+  OK   200  /privacy
+  OK   200  /terms
+  OK   200  /accessibility
+  OK   200  /car-shipping-cost
+  OK   200  /enclosed-car-shipping
+  OK   200  /auction-car-shipping
+  OK   200  /auction-transport-savings
+  OK   200  /copart-shipping
+  OK   200  /iaai-transport
+  OK   200  /manheim-transport
+  OK   200  /door-to-port-auto-transport
+  OK   200  /dealer-auto-transport
+  OK   200  /salvage-car-shipping
+  OK   200  /open-car-shipping
+  OK   200  /state-to-state-car-shipping
+  OK   200  /massachusetts-car-shipping
+  OK   200  /boston-car-shipping
+  OK   200  /newton-auto-transport
+  OK   200  /florida-car-shipping
+  OK   200  /new-jersey-auto-transport
+  OK   200  /nj-export-warehouse-shipping-cost
+  OK   200  /texas-auto-transport
+  OK   200  /massachusetts-to-florida-car-shipping
+  OK   200  /new-jersey-to-florida-car-shipping
+  OK   200  /texas-to-newark-port-auto-transport
+  OK   200  /chicago-to-port-newark-car-shipping
+  OK   200  /auction-to-port-transport
+  OK   200  /atlanta-to-savannah-port-auto-transport
+  OK   200  /dallas-to-port-houston-auto-transport
+  OK   200  /florida-to-jacksonville-port-car-shipping
+  OK   200  /tesla-car-shipping
+  OK   200  /ev-auto-transport
+  OK   200  /cybertruck-shipping
+  OK   200  /electric-vehicle-port-delivery
+  OK   200  /how-to-ship-a-car-bought-at-auction
+  OK   200  /open-vs-enclosed-auto-transport
+  OK   200  /what-is-a-bill-of-lading
+  OK   200  /copart-storage-fees
+  OK   200  /copart-gate-pass-guide
+  OK   200  /copart-international-shipping
+  OK   200  /certificate-of-origin
+  OK   200  /ports/newark
+  OK   200  /ports/houston
+  OK   200  /ports/savannah
+  OK   200  /ports/los-angeles
+  OK   200  /ports/baltimore
+  OK   200  /ports/jacksonville
+  OK   200  /blog
+  OK   200  /blog/carrier-who-vanished
+  OK   200  /blog/carrier-coi-verification-guide
+  OK   200  /blog/fmcsa-2026-new-rules
+  OK   200  /blog/outbox-pattern-dispatch
+  OK   200  /blog/dealer-auction-pickup-guide
+  OK   200  /blog/exporter-documentation-checklist
+  OK   200  /blog/fmcsa-broker-recordkeeping-2026
+  OK   200  /blog/75000-bond-claims-guide
+  OK   200  /blog/copart-iaa-manheim-comparison
+  OK   200  /blog/auction-to-port-cost-breakdown-2026
+  OK   200  /blog/central-dispatch-listing-decoded
+  OK   200  /blog/enclosed-transport-when-to-skip
+  OK   200  /blog/non-running-vehicle-shipping-playbook
+  OK   200  /blog/winter-auto-transport-pricing
+  OK   200  /blog/bill-of-lading-pickup-delivery-guide
+  OK   200  /blog/port-specific-export-newark-houston-savannah
+  OK   200  /blog/copart-storage-fees-real-cost-2026
+  OK   200  /blog/copart-for-international-buyers-complete-guide
+  OK   200  /ua
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Access to fetch at 'https://dispatch.y7agency.com/api/public/reviews?limit=10&min_rating=4' from origin 'http://127.0.0.1:8899' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Failed to load resource: net::ERR_FAILED
+  OK   200  /ua/services
+  OK   200  /ua/dealers
+  OK   200  /ua/exporters
+  OK   200  /ua/ship-my-car
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Access to fetch at 'https://dispatch.y7agency.com/api/public/fee-schedule' from origin 'http://127.0.0.1:8899' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on th
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Failed to load resource: net::ERR_FAILED
+  OK   200  /ua/track
+  OK   200  /ua/contact
+  OK   200  /ua/faq
+  OK   200  /ua/about
+  OK   200  /ua/quote
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Access to fetch at 'https://dispatch.y7agency.com/api/public/fee-schedule' from origin 'http://127.0.0.1:8899' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on th
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Failed to load resource: net::ERR_FAILED
+  OK   200  /ua/certificate-of-origin
+  OK   200  /pl
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Access to fetch at 'https://dispatch.y7agency.com/api/public/reviews?limit=10&min_rating=4' from origin 'http://127.0.0.1:8899' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Failed to load resource: net::ERR_FAILED
+  OK   200  /pl/services
+  OK   200  /pl/dealers
+  OK   200  /pl/exporters
+  OK   200  /pl/ship-my-car
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Access to fetch at 'https://dispatch.y7agency.com/api/public/fee-schedule' from origin 'http://127.0.0.1:8899' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on th
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Failed to load resource: net::ERR_FAILED
+  OK   200  /pl/track
+  OK   200  /pl/contact
+  OK   200  /pl/faq
+  OK   200  /pl/about
+  OK   200  /pl/quote
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Access to fetch at 'https://dispatch.y7agency.com/api/public/fee-schedule' from origin 'http://127.0.0.1:8899' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on th
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Failed to load resource: net::ERR_FAILED
+  OK   200  /pl/certificate-of-origin
+  OK   200  /ru
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Access to fetch at 'https://dispatch.y7agency.com/api/public/reviews?limit=10&min_rating=4' from origin 'http://127.0.0.1:8899' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Failed to load resource: net::ERR_FAILED
+  OK   200  /ru/services
+  OK   200  /ru/dealers
+  OK   200  /ru/exporters
+  OK   200  /ru/ship-my-car
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Access to fetch at 'https://dispatch.y7agency.com/api/public/fee-schedule' from origin 'http://127.0.0.1:8899' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on th
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Failed to load resource: net::ERR_FAILED
+  OK   200  /ru/track
+  OK   200  /ru/contact
+  OK   200  /ru/faq
+  OK   200  /ru/about
+  OK   200  /ru/quote
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Access to fetch at 'https://dispatch.y7agency.com/api/public/fee-schedule' from origin 'http://127.0.0.1:8899' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on th
+         [env, not a defect: this harness is a local static server and the app calls a production origin] console.error: Failed to load resource: net::ERR_FAILED
+  OK   200  /ru/certificate-of-origin
+  OK   200  /ua/ports/newark
+  OK   200  /ua/ports/houston
+  OK   200  /ua/ports/savannah
+  OK   200  /ua/ports/los-angeles
+  OK   200  /ua/ports/baltimore
+  OK   200  /ua/ports/jacksonville
+  OK   200  /pl/ports/newark
+  OK   200  /pl/ports/houston
+  OK   200  /pl/ports/savannah
+  OK   200  /pl/ports/los-angeles
+  OK   200  /pl/ports/baltimore
+  OK   200  /pl/ports/jacksonville
+  OK   200  /ru/ports/newark
+  OK   200  /ru/ports/houston
+  OK   200  /ru/ports/savannah
+  OK   200  /ru/ports/los-angeles
+  OK   200  /ru/ports/baltimore
+  OK   200  /ru/ports/jacksonville
+  OK   200  /pl/transport-z-usa
+  OK   200  /pl/transport-z-aukcji
+  OK   200  /pl/wysylka-auta-z-usa
+  OK   200  /ua/import-z-usa
+  OK   200  /ua/copart-ta-iaai
+  OK   200  /ua/dostavka-avto-z-usa
+  OK   200  /ru/dostavka-avto-iz-usa
+  OK   200  /ru/copart-i-iaai
+  OK   200  /ru/perevozka-avto
+  OK   200  /404
+
+VERDICT: control saw both failure kinds; every touched route 200 with zero pageerror and zero console.error.
+EXIT=0
