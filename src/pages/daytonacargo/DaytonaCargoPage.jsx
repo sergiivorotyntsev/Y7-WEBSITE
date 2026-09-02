@@ -635,6 +635,11 @@ export default function DaytonaCargoPage() {
           content="Vehicle shipping from US auctions to Rotterdam as one itemized chain: bidding, land haul, ocean freight, paperwork. Send us your shipment and get an itemized quote in 24h."
         />
         <link rel="canonical" href={`${BASE}/daytonacargo`} />
+        {/* [WEBFIX-T10] client-specific page, orphan by design (no sitemap entry, no
+            internal links): reachable by direct link, prerendered, not indexed.
+            Same tag PageMeta emits for noindex; robots.txt must NOT block it or
+            Google never sees this. */}
+        <meta name="robots" content="noindex, follow" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="DaytonaCargo — US Auctions to Rotterdam, One Chain" />
         <meta
