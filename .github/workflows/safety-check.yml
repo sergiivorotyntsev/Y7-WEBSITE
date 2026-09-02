@@ -204,14 +204,15 @@ jobs:
           fi
           echo "OK: no /en/ in sitemap"
 
-      - name: Check sitemap URL count (must be 133)
+      - name: Check sitemap URL count (must be 138)
+        # [WEBFIX-T00] 133 -> 138, measured on public/sitemap.xml at 87614c8.
         run: |
           COUNT=$(grep -c "<loc>" public/sitemap.xml || echo 0)
-          if [ "$COUNT" -ne 133 ]; then
-            echo "::error::Sitemap has $COUNT URLs, expected 133. If you intentionally added/removed pages, update this check."
+          if [ "$COUNT" -ne 138 ]; then
+            echo "::error::Sitemap has $COUNT URLs, expected 138. If you intentionally added/removed pages, update this check."
             exit 1
           fi
-          echo "OK: sitemap has 133 URLs"
+          echo "OK: sitemap has 138 URLs"
 
       - name: Check for DaytonaCargo in Ukrainian pages
         run: |
@@ -230,9 +231,18 @@ jobs:
           echo "OK: no external daytonacargo.com links"
 
       - name: Check sitemap fake intl URLs
+        # [WEBFIX-T00] Twelve patterns REMOVED from this list, deliberately:
+        #   /pl/quote /ua/quote /ru/quote, /pl/faq /ua/faq /ru/faq,
+        #   /pl/about /ua/about /ru/about, /pl/ports/ /ua/ports/ /ru/ports/
+        # Every one of them is a real, prerendered page (src/App.jsx routes,
+        # dist/valid-routes.json; 5/5/5/30 sitemap entries each at 87614c8):
+        # /quote, /faq, /about and the six /ports/* pages exist in all four
+        # locales. The rule was banning pages that ship. Do not put them back.
+        # /{pl,ua,ru}/dealer-quote stays: that page has NO localized route and
+        # must not appear in the sitemap.
         run: |
           FOUND=0
-          for pat in "/pl/quote" "/ua/quote" "/ru/quote" "/pl/faq" "/ua/faq" "/ru/faq" "/pl/about" "/ua/about" "/ru/about" "/pl/dealer-quote" "/ua/dealer-quote" "/ru/dealer-quote" "/pl/ports/" "/ua/ports/" "/ru/ports/"; do
+          for pat in "/pl/dealer-quote" "/ua/dealer-quote" "/ru/dealer-quote"; do
             if grep -q "$pat" public/sitemap.xml; then
               echo "::error::Sitemap contains fake intl URL: $pat (no such page exists)"
               FOUND=1
@@ -257,24 +267,32 @@ jobs:
       - name: Build and verify prerender count
         run: |
           npm run build 2>&1 | tee build.log
-          if ! grep -q "138 OK, 0 failed" build.log; then
-            echo "::error::Build did not report '138 OK, 0 failed'. Check build.log output above."
+          # [WEBFIX-T00] 138 -> 143, measured: the prerender reports "143 OK, 0 failed"
+          # and dist/valid-routes.json carries 143 routes at 87614c8.
+          if ! grep -q "143 OK, 0 failed" build.log; then
+            echo "::error::Build did not report '143 OK, 0 failed'. Check build.log output above."
             exit 1
           fi
-          echo "OK: build complete with 138 OK, 0 failed"
+          echo "OK: build complete with 143 OK, 0 failed"
 
       - name: Verify dist sitemap matches public sitemap
         run: |
           DIST_COUNT=$(grep -c "<loc>" dist/sitemap.xml || echo 0)
-          if [ "$DIST_COUNT" -ne 133 ]; then
-            echo "::error::dist/sitemap.xml has $DIST_COUNT URLs, expected 133"
+          # [WEBFIX-T00] 133 -> 138, same number as the public sitemap step.
+          if [ "$DIST_COUNT" -ne 138 ]; then
+            echo "::error::dist/sitemap.xml has $DIST_COUNT URLs, expected 138"
             exit 1
           fi
-          echo "OK: dist/sitemap.xml has 133 URLs"
+          echo "OK: dist/sitemap.xml has 138 URLs"
 
       - name: Verify dist contains intl pages
+        # [WEBFIX-T00] {pl,ua,ru}/copart-shipping are <Navigate replace> redirects
+        # (src/App.jsx: /pl/copart-shipping -> /pl/transport-z-aukcji,
+        # /ua/copart-shipping -> /ua/copart-ta-iaai, /ru/copart-shipping -> /ru/copart-i-iaai).
+        # A redirect is never prerendered, so the old list could not pass; the
+        # three real slugs are asserted instead.
         run: |
-          for page in pl pl/copart-shipping pl/ship-my-car ua ua/copart-shipping ua/ship-my-car ru ru/copart-shipping ru/ship-my-car; do
+          for page in pl pl/transport-z-aukcji pl/ship-my-car ua ua/copart-ta-iaai ua/ship-my-car ru ru/copart-i-iaai ru/ship-my-car; do
             if [ ! -f "dist/$page/index.html" ]; then
               echo "::error::Missing prerendered file: dist/$page/index.html"
               exit 1
