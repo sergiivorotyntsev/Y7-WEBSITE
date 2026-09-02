@@ -129,6 +129,23 @@ app.get(/^\/en\/(quote\/[^/]+\/[^/]+)$/, (req, res) => {
 });
 
 // ---------------------------------------------------------------------------
+// [WEBFIX2-T01] Retire the phantom /en/ prefix, generally.
+// English lives at root; /en was never a route. The sitemap emitted
+// hreflang="en" alternates at /en, /en/quote, /en/faq until 8ce9c87 [S5R-16]
+// (2026-04-06) and Google still requests /en/, /en/ports/houston,
+// /en/ports/baltimore (GSC, last crawled May 2026) - 404 today. One rule,
+// not a list: /en -> / and /en/<anything> -> /<anything>, 301, query kept.
+// ORDER MATTERS: the 302 for /en/quote/<action>/<id> above must stay above
+// this block; Express matches in registration order and this pattern would
+// otherwise swallow it with a 301 (and a chain).
+// ---------------------------------------------------------------------------
+app.get(/^\/en(\/.*)?$/, (req, res) => {
+  const suffix = req.params[0] || '';
+  const qs = req.url.includes('?') ? req.url.substring(req.url.indexOf('?')) : '';
+  res.redirect(301, (suffix || '/') + qs);
+});
+
+// ---------------------------------------------------------------------------
 // Cache headers (WEB-CACHE-RESILIENCE-T01)
 // ---------------------------------------------------------------------------
 // - HTML: no-cache => store but ALWAYS revalidate (ETag -> cheap 304). A browser
