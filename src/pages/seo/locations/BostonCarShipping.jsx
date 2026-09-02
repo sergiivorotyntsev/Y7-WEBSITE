@@ -13,7 +13,7 @@ export default function BostonCarShipping() {
       primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
       secondaryCTA={{ intlKey: 'dealers', to: '/dealers', tone: 'teal' }}
       heading="Boston Car Shipping — Vehicle Transport in Greater Boston"
-      intro="Shipping a car to or from the Greater Boston area requires a broker who knows the city — narrow streets, permit-parking zones, seasonal rate swings, and college move cycles all affect pricing and scheduling. Y7 Logistics is based in Newton, just minutes from downtown, and handles the logistics of pickup and delivery across the metro area."
+      intro="Shipping a car to or from the Greater Boston area requires a broker who knows the city — narrow streets, permit-parking zones, seasonal rate swings, and college move cycles all affect pricing and scheduling. Y7 Logistics is based in Natick, in the MetroWest corridor west of the city, and handles the logistics of pickup and delivery across the metro area."
       whenNeeded={[
         'Moving to or from Boston for work or school',
         'Buying a vehicle online and shipping it to Boston',
@@ -41,7 +41,7 @@ export default function BostonCarShipping() {
         'Carriers experienced with Boston parking and street constraints',
         'Winter scheduling with weather-contingency planning',
         'Open and enclosed transport',
-        'Same-day quote response from our local Newton office',
+        'Same-day quote response from our local Natick office',
         'Direct relationships with Copart Lowell, IAAI East Taunton, Manheim New England',
       ]}
       faqs={[
@@ -81,8 +81,8 @@ export default function BostonCarShipping() {
         <p style={prose}>
           Boston is a top-10 US metro for auto transport volume, driven by a combination of
           snowbird traffic, college moves, dealer density, and the Port Newark export corridor.
-          Our Newton office sits 8 miles west of downtown on the I-90 / I-95 crossroads, which
-          puts us in the middle of the carrier traffic that moves in and out of New England.
+          Our Natick office sits on the I-90 corridor west of the city, which puts us in the
+          middle of the carrier traffic that moves in and out of New England.
         </p>
         <p style={muted}>
           Y7 Logistics is a licensed FMCSA auto transport broker (MC #1741537 / USDOT #4427359).

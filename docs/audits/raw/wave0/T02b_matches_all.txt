@@ -1,0 +1,301 @@
+WAVE0 T02b — THE FULL ADDRESS MATCH SET, BOTH ALPHABETS
+repo: C:\dev\Y7-WEBSITE   HEAD: 2bae505d7f819cd7d2dbe7d5a4c9ac97003880ca
+date: 2026-09-02T04:06:57Z
+
+$ git grep -inE 'Newton|Chestnut|02458|02464|Ньютон|Нютон' -- .
+--- LATIN + CYRILLIC, whole tree, tracked files only ---
+.github/workflows/safety-check.yml:102:        # Policy flip: office address 1007 Chestnut St, Newton MA 02464 is now
+.github/workflows/safety-check.yml:111:            echo "::error::FMCSA filing address (6 Harding Rd / Natick / 01760) must not appear on the public site. Use the office address 1007 Chestnut St, Newton MA 02464."
+CAREERS_TRANSPORT_FOLLOWUP.md:369:    1007 Chestnut St, Newton, MA 02464<br>
+DESIGN_SPRINT_1_REPORT.md:152:Clean across: phone numbers (zero), WhatsApp references (zero), GPS/tracking claims (zero), PLACEHOLDER meta strings (zero), missing h1 (zero), street address beyond "Newton, MA" (zero for Y7's own address).
+DESIGN_SPRINT_1_REPORT.md:189:   - `/newton-auto-transport` (HQ city, currently thinnest)
+DESIGN_SPRINT_2_REPORT.md:198:1. **Thicken 13 thin SEO pages** — every `SeoLandingPage`-only page has the new gradient CTA now; time to add 800–1,200 words of `<Section>` children per page (prioritize `/newton-auto-transport`, `/boston-car-shipping`, `/auction-to-port-transport`).
+FULL_SITE_AUDIT.md:54:- Locations: MassachusettsCarShipping, BostonCarShipping, NewtonAutoTransport, FloridaCarShipping, NewJerseyAutoTransport, TexasAutoTransport
+FULL_SITE_AUDIT.md:123:- ✅ Only allowed addresses: Newton, MA and Dover, DE
+FULL_SITE_AUDIT.md:212:| 4 | HQ address | Newton, MA (in Home.jsx schema) | Newton, Massachusetts | Not stated | Not stated | ⚠️ PARTIAL | UA/RU pages omit HQ location. |
+FULL_SITE_AUDIT.md:235:4. **MEDIUM:** HQ location (Newton, MA) stated in EN schema only. UA/RU pages do not identify the legal entity's physical address.
+FULL_SITE_AUDIT.md:386:    - EN schema states Newton, MA. UA/RU schemas do not. Either add to all or leave consistently omitted outside of EN schema.
+LEGAL_ACCURACY_REPORT.md:18:| T02 | Office address 1007 Chestnut St, Newton MA 02464 in schema + UI | done (CI safety-check updated) |
+LEGAL_ACCURACY_REPORT.md:43:**Canonical public address**: `1007 Chestnut St, Newton, MA 02464, USA`.
+LEGAL_ACCURACY_REPORT.md:48:`.github/workflows/safety-check.yml` previously had two steps that **blocked** `1007 Chestnut` and `02464`. Those rules were obsolete (policy flipped — the office address is now intended public). Replaced with the inverse guard: the FMCSA filing address strings (`6 Harding` / `Natick` / `01760`) must never appear in `src/`, `index.html`, or public assets.
+LEGAL_ACCURACY_REPORT.md:54:| `index.html` LocalBusiness JSON-LD | `postalCode: "02458"` → `02464`, added `streetAddress: "1007 Chestnut St"` |
+LEGAL_ACCURACY_REPORT.md:57:| `src/locales/{en,ru,pl,ua}/common.json` | `contact.address.streetLine` added, `cityLine` ZIP → 02464 |
+LEGAL_ACCURACY_REPORT.md:58:| `src/locales/en/terms.json` | `intro` updated to "principal offices at 1007 Chestnut St...". `section12.body` updated to prepend full address line. |
+LEGAL_ACCURACY_REPORT.md:59:| `src/locales/en/privacy.json` | `section1.body` updated to "Principal place of business: 1007 Chestnut St..." |
+LEGAL_ACCURACY_REPORT.md:62:Grep coverage of `1007 Chestnut` / `02464`: **13 hits across 7 files** (schema, Contact, common × 4, Home, terms, privacy). Non-EN terms/privacy translations don't carry the long-form body fields yet — they inherit from EN at runtime.
+LEGAL_ACCURACY_REPORT.md:117:4. **View page source for Home or About** — the `<script type="application/ld+json">` LocalBusiness/MovingCompany block should contain `"streetAddress": "1007 Chestnut St"` and `"postalCode": "02464"`.
+LEGAL_ACCURACY_REPORT.md:118:5. **Contact page registered-office block** — five lines: "Y7 Consulting Inc / d/b/a Y7 Logistics / 1007 Chestnut St / Newton, MA 02464 / United States".
+LEGAL_ACCURACY_REPORT.md:119:6. **Terms page** — intro paragraph names "1007 Chestnut St, Newton, Massachusetts 02464". Section 12 contact block lists the same.
+LEGAL_ACCURACY_REPORT.md:130:d6f7bbe [LEGAL-T02] fix: use office address 1007 Chestnut St Newton MA 02464 in schema + visible UI
+P2_TRUST_REPORT.md:104:   Newton, MA 02458
+SEO_DEEP_REPORT.md:36:| 1 | Newton Auto Transport            | /newton-auto-transport                    | 1,000+ |  6   | `3c50a07` |
+SEO_DEEP_REPORT.md:58:- **Newton Auto Transport** — "newton auto transport", "car shipping from
+SEO_DEEP_REPORT.md:59:  newton ma", "newton car shipping company", "auto transport broker newton"
+SEO_DEEP_REPORT.md:104:   considerations (Boston/Newton), auction markets (MA/NJ/TX), winch and
+SEO_DEEP_REPORT.md:156:- `src/pages/seo/locations/NewtonAutoTransport.jsx`
+SEO_DEEP_REPORT.md:212:1. `3c50a07` — T01: Newton Auto Transport enriched (+1,000 words)
+SEO_LINKS_REPORT.md:15:pages (Newton, Boston, FL, NJ, TX), route pages (MA→FL, NJ→FL,
+SEO_LINKS_REPORT.md:36:Newton, Boston, Massachusetts, Florida, New Jersey, Texas landing
+SEO_LINKS_REPORT.md:64:Home page between Benefits and WhyY7. 6 location pills (Newton,
+SEO_LINKS_REPORT.md:171:| /newton-auto-transport                 | 3+ clicks       | 2 (Footer/Home) |
+audit/cross_links.md:24:- `/newton-auto-transport`
+audit/footer.md:19:- Location: "Newton, MA, USA" — via `t('footer.location')`
+audit/trust_signals.md:19:- **SEO pages**: DealerAutoTransport, StateToState, NewtonAutoTransport
+docs/audits/NJPORTS_PHASE0_AUDIT.md:86:  pattern.** Location pages (6): MA, Boston, Newton, FL, **NJ**, TX. Route/lane pages (8): MA→FL,
+docs/audits/WEBGEO_PHASE0.md:72:1. **`src/locales/ua/faq.json:10` still claims a Newton head office — in Cyrillic.**
+docs/audits/WEBGEO_PHASE0.md:73:   *"із головним офісом у Ньютоні"*. Every Latin-alphabet grep for `Newton` misses it: mine,
+docs/audits/WEBGEO_PHASE0.md:556:| `/` | location pills ×6 | `CoverageMap.jsx:82` | `/newton-auto-transport` etc. | `<Link>` | no | no |
+docs/audits/WEBGEO_PHASE0.md:678:## 4 · Residual old address — `Newton` / `Chestnut` / `02464`
+docs/audits/WEBGEO_PHASE0.md:680:**`02464` and `02458`: ZERO hits in `src/`.** The ZIP is gone.
+docs/audits/WEBGEO_PHASE0.md:681:**`Chestnut` in `src/`: 2 hits, both false positives** — `NewtonAutoTransport.jsx:83,173` refer to **Chestnut Hill**, a Newton village, in service-area copy.
+docs/audits/WEBGEO_PHASE0.md:683:`Newton` splits into three populations and only the first is a defect:
+docs/audits/WEBGEO_PHASE0.md:685:### (a) IDENTITY claims — Y7 says it *is based in* Newton. **Stale.**
+docs/audits/WEBGEO_PHASE0.md:689:| `src/locales/en/faq.json:6` | *"…broker (MC #1741537, USDOT #4427359) **based in Newton, Massachusetts**."* | en |
+docs/audits/WEBGEO_PHASE0.md:690:| `src/locales/pl/faq.json:10` | *"…**z siedzibą w Newton** w stanie Massachusetts."* | pl |
+docs/audits/WEBGEO_PHASE0.md:691:| `src/locales/ru/faq.json:10` | *"…**из Newton**, штат Массачусетс."* | ru |
+docs/audits/WEBGEO_PHASE0.md:692:| **`src/locales/ua/faq.json:10`** | ***"…із головним офісом у Ньютоні, штат Массачусетс."*** | **ua — CYRILLIC** |
+docs/audits/WEBGEO_PHASE0.md:693:| `src/locales/{en,pl,ru,ua}/services.json:142-143` | *"Newton, MA Auto Transport"* / *"**Our home base**"* / *"Nasza baza"* / *"Наша домашняя база"* / *"Наша домашня база"* | all 4 |
+docs/audits/WEBGEO_PHASE0.md:694:| `src/pages/intl/PolandHome.jsx:205` | *"Licencjonowany broker FMCSA **z siedzibą w Newton** (Massachusetts)."* | pl |
+docs/audits/WEBGEO_PHASE0.md:695:| `src/pages/seo/locations/MassachusettsCarShipping.jsx:16` | *"Y7 Logistics is a **Newton, Massachusetts-based** FMCSA auto transport broker…"* | en |
+docs/audits/WEBGEO_PHASE0.md:696:| `src/pages/seo/locations/MassachusettsCarShipping.jsx:111` | *"Y7 Logistics **is based in Newton**, at the I-90 / I-95 crossroads…"* | en |
+docs/audits/WEBGEO_PHASE0.md:697:| `src/pages/seo/locations/BostonCarShipping.jsx:44` | *"Same-day quote response from **our local Newton office**"* | en |
+docs/audits/WEBGEO_PHASE0.md:698:| `src/pages/seo/locations/BostonCarShipping.jsx:84` | *"**Our Newton office** sits 8 miles west of downtown…"* | en |
+docs/audits/WEBGEO_PHASE0.md:699:| `src/pages/seo/locations/NewtonAutoTransport.jsx:41` | *"Y7 Logistics **is based in Newton**, Massachusetts."* | en |
+docs/audits/WEBGEO_PHASE0.md:700:| `src/pages/seo/locations/NewtonAutoTransport.jsx:115` | *"…locally in Newton."* | en |
+docs/audits/WEBGEO_PHASE0.md:701:| `src/components/Footer.jsx:59` + `common.json:{221,225}` `footer.locationLinks.newton` | footer link labelled **"Newton, MA"** | all 4 |
+docs/audits/WEBGEO_PHASE0.md:705:> *"…із **головним офісом** у **Ньютоні**, штат Массачусетс."* — **"with its head office in Newton"**. That is a *stronger* claim than the EN/PL/RU wording, written in Cyrillic transliteration.
+docs/audits/WEBGEO_PHASE0.md:707:> **Every Latin-alphabet search for `Newton` misses it.** Mine did on the first pass; the prior audits' did; and the CI address rule (`safety-check.yml:106`, which greps `6 Harding|Natick|01760`) cannot see either address in Cyrillic — in either direction. Inverting that rule, as a sibling sprint proposes, would still not catch this line.
+docs/audits/WEBGEO_PHASE0.md:713:`NewtonAutoTransport.jsx` (a whole SEO landing page for the Newton market), `BostonCarShipping.jsx` and `MassachusettsCarShipping.jsx` are geo-targeting content and the service area is real. **Only the office/HQ sentences inside them — listed in (a) — are the issue.** A broker can serve Newton without being headquartered there.
+docs/audits/WEBGEO_PHASE0.md:717:`/newton-auto-transport` as a route: `App.jsx:238`, `prerender.mjs:517`, `generateSitemap.js:93,209`, `sitemap-lastmod.json:41`, `public/sitemap.xml:879`, `public/llms.txt:41`, `relatedGuides.js:98,103,106`, `CoverageMap.jsx:17`, `Services.jsx:45`, `seo-baseline.json:254`. Renaming the route would cost the ranking; nothing here needs to change.
+docs/audits/WEBGEO_PHASE0.md:837:`.github/workflows/safety-check.yml:101-114` bans `6 Harding` / `Natick` / `01760` — the **current** address — with the comment *"Policy flip: office address 1007 Chestnut St, Newton MA 02464 is now the canonical public-facing address"*. Executing the step's own grep verbatim at HEAD: **44 matches**, so it would fail.
+docs/audits/raw/webgeo/out/T01_build.txt:125:dist/assets/NewtonAutoTransport-CW46InlC.js             11.57 kB │ gzip:   4.38 kB
+docs/audits/raw/webgeo/out/T01_build.txt:232:  [OK] /newton-auto-transport
+docs/audits/raw/webgeo/out/T01_build_churn.diff:488:     <loc>https://www.y7agency.com/newton-auto-transport</loc>
+docs/audits/raw/webgeo/out/T01_build_churn.diff:747:-  "/newton-auto-transport": "2026-04-19",
+docs/audits/raw/webgeo/out/T01_build_churn.diff:751:+  "/newton-auto-transport": "2026-08-25",
+docs/audits/raw/webgeo/out/T01_route_sources.txt:86:  /newton-auto-transport                         X   .   .   . 
+docs/audits/raw/webgeo/out/T01_routes.txt:60:en	/newton-auto-transport
+docs/audits/raw/webgeo/out/T02_key_drift.txt:341:     common.footer.locationLinks.newton
+docs/audits/raw/webgeo/out/T02_key_drift.txt:773:     common.footer.locationLinks.newton
+docs/audits/raw/webgeo/out/T02_key_drift.txt:1183:     common.footer.locationLinks.newton
+docs/audits/raw/webgeo/out/T04_structured_data.txt:94:  /newton-auto-transport                               Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:84:src/locales/en/faq.json:6:  "tldr": "Y7 Logistics is a licensed and bonded FMCSA auto transport broker (MC #1741537, USDOT #4427359) based in Newton, Massachusetts. Y7 arranges car shipping across all 50 states and to major US export ports by matching your vehicle with vetted, insured carriers through Central Dispatch, for a single flat dispatch fee with no transport markup. As a broker, Y7 does not haul or insure vehicles itself; the carriers it books carry the cargo insurance, verified before every dispatch.",
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:195:=== 4. residual old address — Newton / Chestnut / 02464
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:197:$ git grep -in -e 'Newton' -e 'Chestnut' -e '02464' -e '02458' -- .
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:198:.github/workflows/safety-check.yml:102:        # Policy flip: office address 1007 Chestnut St, Newton MA 02464 is now
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:199:.github/workflows/safety-check.yml:111:            echo "::error::FMCSA filing address (6 Harding Rd / Natick / 01760) must not appear on the public site. Use the office address 1007 Chestnut St, Newton MA 02464."
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:200:CAREERS_TRANSPORT_FOLLOWUP.md:369:    1007 Chestnut St, Newton, MA 02464<br>
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:201:DESIGN_SPRINT_1_REPORT.md:152:Clean across: phone numbers (zero), WhatsApp references (zero), GPS/tracking claims (zero), PLACEHOLDER meta strings (zero), missing h1 (zero), street address beyond "Newton, MA" (zero for Y7's own address).
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:202:DESIGN_SPRINT_1_REPORT.md:189:   - `/newton-auto-transport` (HQ city, currently thinnest)
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:203:DESIGN_SPRINT_2_REPORT.md:198:1. **Thicken 13 thin SEO pages** — every `SeoLandingPage`-only page has the new gradient CTA now; time to add 800–1,200 words of `<Section>` children per page (prioritize `/newton-auto-transport`, `/boston-car-shipping`, `/auction-to-port-transport`).
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:204:FULL_SITE_AUDIT.md:54:- Locations: MassachusettsCarShipping, BostonCarShipping, NewtonAutoTransport, FloridaCarShipping, NewJerseyAutoTransport, TexasAutoTransport
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:205:FULL_SITE_AUDIT.md:123:- ✅ Only allowed addresses: Newton, MA and Dover, DE
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:206:FULL_SITE_AUDIT.md:212:| 4 | HQ address | Newton, MA (in Home.jsx schema) | Newton, Massachusetts | Not stated | Not stated | ⚠️ PARTIAL | UA/RU pages omit HQ location. |
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:207:FULL_SITE_AUDIT.md:235:4. **MEDIUM:** HQ location (Newton, MA) stated in EN schema only. UA/RU pages do not identify the legal entity's physical address.
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:208:FULL_SITE_AUDIT.md:386:    - EN schema states Newton, MA. UA/RU schemas do not. Either add to all or leave consistently omitted outside of EN schema.
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:209:LEGAL_ACCURACY_REPORT.md:18:| T02 | Office address 1007 Chestnut St, Newton MA 02464 in schema + UI | done (CI safety-check updated) |
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:210:LEGAL_ACCURACY_REPORT.md:43:**Canonical public address**: `1007 Chestnut St, Newton, MA 02464, USA`.
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:211:LEGAL_ACCURACY_REPORT.md:48:`.github/workflows/safety-check.yml` previously had two steps that **blocked** `1007 Chestnut` and `02464`. Those rules were obsolete (policy flipped — the office address is now intended public). Replaced with the inverse guard: the FMCSA filing address strings (`6 Harding` / `Natick` / `01760`) must never appear in `src/`, `index.html`, or public assets.
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:212:LEGAL_ACCURACY_REPORT.md:54:| `index.html` LocalBusiness JSON-LD | `postalCode: "02458"` → `02464`, added `streetAddress: "1007 Chestnut St"` |
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:213:LEGAL_ACCURACY_REPORT.md:57:| `src/locales/{en,ru,pl,ua}/common.json` | `contact.address.streetLine` added, `cityLine` ZIP → 02464 |
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:214:LEGAL_ACCURACY_REPORT.md:58:| `src/locales/en/terms.json` | `intro` updated to "principal offices at 1007 Chestnut St...". `section12.body` updated to prepend full address line. |
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:215:LEGAL_ACCURACY_REPORT.md:59:| `src/locales/en/privacy.json` | `section1.body` updated to "Principal place of business: 1007 Chestnut St..." |
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:216:LEGAL_ACCURACY_REPORT.md:62:Grep coverage of `1007 Chestnut` / `02464`: **13 hits across 7 files** (schema, Contact, common × 4, Home, terms, privacy). Non-EN terms/privacy translations don't carry the long-form body fields yet — they inherit from EN at runtime.
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:217:LEGAL_ACCURACY_REPORT.md:117:4. **View page source for Home or About** — the `<script type="application/ld+json">` LocalBusiness/MovingCompany block should contain `"streetAddress": "1007 Chestnut St"` and `"postalCode": "02464"`.
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:218:LEGAL_ACCURACY_REPORT.md:118:5. **Contact page registered-office block** — five lines: "Y7 Consulting Inc / d/b/a Y7 Logistics / 1007 Chestnut St / Newton, MA 02464 / United States".
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:219:LEGAL_ACCURACY_REPORT.md:119:6. **Terms page** — intro paragraph names "1007 Chestnut St, Newton, Massachusetts 02464". Section 12 contact block lists the same.
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:220:LEGAL_ACCURACY_REPORT.md:130:d6f7bbe [LEGAL-T02] fix: use office address 1007 Chestnut St Newton MA 02464 in schema + visible UI
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:221:P2_TRUST_REPORT.md:104:   Newton, MA 02458
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:222:SEO_DEEP_REPORT.md:36:| 1 | Newton Auto Transport            | /newton-auto-transport                    | 1,000+ |  6   | `3c50a07` |
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:223:SEO_DEEP_REPORT.md:58:- **Newton Auto Transport** — "newton auto transport", "car shipping from
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:224:SEO_DEEP_REPORT.md:59:  newton ma", "newton car shipping company", "auto transport broker newton"
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:225:SEO_DEEP_REPORT.md:104:   considerations (Boston/Newton), auction markets (MA/NJ/TX), winch and
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:226:SEO_DEEP_REPORT.md:156:- `src/pages/seo/locations/NewtonAutoTransport.jsx`
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:227:SEO_DEEP_REPORT.md:212:1. `3c50a07` — T01: Newton Auto Transport enriched (+1,000 words)
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:228:SEO_LINKS_REPORT.md:15:pages (Newton, Boston, FL, NJ, TX), route pages (MA→FL, NJ→FL,
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:229:SEO_LINKS_REPORT.md:36:Newton, Boston, Massachusetts, Florida, New Jersey, Texas landing
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:230:SEO_LINKS_REPORT.md:64:Home page between Benefits and WhyY7. 6 location pills (Newton,
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:231:SEO_LINKS_REPORT.md:171:| /newton-auto-transport                 | 3+ clicks       | 2 (Footer/Home) |
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:232:audit/cross_links.md:24:- `/newton-auto-transport`
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:233:audit/footer.md:19:- Location: "Newton, MA, USA" — via `t('footer.location')`
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:234:audit/trust_signals.md:19:- **SEO pages**: DealerAutoTransport, StateToState, NewtonAutoTransport
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:235:docs/audits/NJPORTS_PHASE0_AUDIT.md:86:  pattern.** Location pages (6): MA, Boston, Newton, FL, **NJ**, TX. Route/lane pages (8): MA→FL,
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:236:public/llms.txt:41:- [Newton, MA Auto Transport](https://www.y7agency.com/newton-auto-transport): Y7's Greater Boston service area in Newton, Massachusetts.
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:237:public/sitemap.xml:879:    <loc>https://www.y7agency.com/newton-auto-transport</loc>
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:238:scripts/generateSitemap.js:93:  '/newton-auto-transport': 'src/pages/seo/locations/NewtonAutoTransport.jsx',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:239:scripts/generateSitemap.js:209:  '/newton-auto-transport', '/florida-car-shipping',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:240:scripts/prerender.mjs:517:  '/newton-auto-transport',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:241:scripts/seo-baseline.json:254:        "text": "Newton, MA Auto Transport"
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:242:scripts/sitemap-lastmod.json:41:  "/newton-auto-transport": "2026-08-25",
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:243:src/App.jsx:58:const NewtonAutoTransport = lazyWithRetry(() => import('./pages/seo/locations/NewtonAutoTransport'));
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:244:src/App.jsx:238:            <Route path="/newton-auto-transport" element={<NewtonAutoTransport />} />
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:245:src/components/CoverageMap.jsx:17:  { to: '/newton-auto-transport',         label: 'Newton, MA' },
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:246:src/components/Footer.jsx:59:            <Link to="/newton-auto-transport" className={styles.link}>{t('footer.locationLinks.newton')}</Link>
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:247:src/data/relatedGuides.js:11://   - MA loc:  Massachusetts, Boston, Newton, MA-to-FL
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:248:src/data/relatedGuides.js:98:    { to: '/newton-auto-transport', title: 'Newton Auto Transport',     description: 'Local Newton, MA pickup and delivery.' },
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:249:src/data/relatedGuides.js:103:    { to: '/newton-auto-transport', title: 'Newton Auto Transport',     description: 'Local Newton, MA pickup and delivery.' },
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:250:src/data/relatedGuides.js:106:  '/newton-auto-transport': [
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:251:src/locales/en/common.json:225:      "newton": "Newton, MA",
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:252:src/locales/en/faq.json:6:  "tldr": "Y7 Logistics is a licensed and bonded FMCSA auto transport broker (MC #1741537, USDOT #4427359) based in Newton, Massachusetts. Y7 arranges car shipping across all 50 states and to major US export ports by matching your vehicle with vetted, insured carriers through Central Dispatch, for a single flat dispatch fee with no transport markup. As a broker, Y7 does not haul or insure vehicles itself; the carriers it books carry the cargo insurance, verified before every dispatch.",
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:253:src/locales/en/services.json:142:        "title": "Newton, MA Auto Transport",
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:254:src/locales/en/services.json:143:        "desc": "Our home base. Local broker service for all 13 Newton villages plus Wellesley, Brookline, Waltham, Watertown, Needham."
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:255:src/locales/pl/common.json:221:      "newton": "Newton, MA",
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:256:src/locales/pl/faq.json:10:  "tldr": "Y7 Logistics to licencjonowany broker transportu aut z gwarancją (bondem) FMCSA (MC #1741537, USDOT #4427359) z siedzibą w Newton w stanie Massachusetts. Y7 organizuje transport aut we wszystkich 50 stanach oraz do głównych portów eksportowych USA, dobierając Twój pojazd do zweryfikowanych, ubezpieczonych przewoźników przez Central Dispatch, za jedną stałą opłatę dyspozytury i bez narzutu na transport. Jako broker Y7 sam nie przewozi ani nie ubezpiecza pojazdów; ubezpieczenie cargo mają przewoźnicy, których rezerwuje, weryfikowane przed każdym zleceniem.",
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:257:src/locales/pl/services.json:142:        "title": "Transport aut Newton, MA",
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:258:src/locales/pl/services.json:143:        "desc": "Nasza baza. Lokalna obsługa brokerska dla wszystkich 13 dzielnic Newton oraz Wellesley, Brookline, Waltham, Watertown, Needham."
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:259:src/locales/ru/common.json:221:      "newton": "Newton, MA",
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:260:src/locales/ru/faq.json:10:  "tldr": "Y7 Logistics — лицензированный автотранспортный брокер с бондом FMCSA (MC #1741537, USDOT #4427359) из Newton, штат Массачусетс. Y7 организует перевозку авто по всем 50 штатам и в крупные экспортные порты США, подбирая под ваш автомобиль проверенных застрахованных перевозчиков через Central Dispatch — за одну фиксированную плату за диспатч, без наценки на транспорт. Как брокер, Y7 сам машины не возит и не страхует; страховку cargo несут перевозчики, которых он нанимает, и она проверяется перед каждым назначением.",
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:261:src/locales/ru/services.json:142:        "title": "Автоперевозки в Newton, MA",
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:262:src/locales/ru/services.json:143:        "desc": "Наша домашняя база. Локальный брокерский сервис для всех 13 районов Newton, а также Wellesley, Brookline, Waltham, Watertown, Needham."
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:263:src/locales/ua/common.json:221:      "newton": "Newton, MA",
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:264:src/locales/ua/services.json:142:        "title": "Автоперевезення в Newton, MA",
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:265:src/locales/ua/services.json:143:        "desc": "Наша домашня база. Локальний брокерський сервіс для всіх 13 районів Newton, а також Wellesley, Brookline, Waltham, Watertown, Needham."
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:266:src/pages/Services.jsx:45:  { to: '/newton-auto-transport' },
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:267:src/pages/intl/PolandHome.jsx:205:                  Licencjonowany broker FMCSA z siedzibą w Newton (Massachusetts).
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:268:src/pages/seo/locations/BostonCarShipping.jsx:16:      intro="Shipping a car to or from the Greater Boston area requires a broker who knows the city — narrow streets, permit-parking zones, seasonal rate swings, and college move cycles all affect pricing and scheduling. Y7 Logistics is based in Newton, just minutes from downtown, and handles the logistics of pickup and delivery across the metro area."
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:269:src/pages/seo/locations/BostonCarShipping.jsx:40:        'Full Greater Boston coverage — Cambridge, Somerville, Brookline, Newton, Quincy, Dorchester, Back Bay, South End, Allston, Medford, Malden',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:270:src/pages/seo/locations/BostonCarShipping.jsx:44:        'Same-day quote response from our local Newton office',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:271:src/pages/seo/locations/BostonCarShipping.jsx:74:        { label: 'Newton Auto Transport', to: '/newton-auto-transport' },
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:272:src/pages/seo/locations/BostonCarShipping.jsx:84:          Our Newton office sits 8 miles west of downtown on the I-90 / I-95 crossroads, which
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:273:src/pages/seo/locations/BostonCarShipping.jsx:115:        <h3 style={subhead}>Commuter suburbs (Brookline, Newton, Quincy, Medford)</h3>
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:274:src/pages/seo/locations/BostonCarShipping.jsx:118:          in Brookline and west Newton have 12&apos; canopy that rules out multi-car carriers;
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:275:src/pages/seo/locations/MassachusettsCarShipping.jsx:16:      intro="Y7 Logistics is a Newton, Massachusetts-based FMCSA auto transport broker (MC #1741537 / USDOT #4427359) coordinating vehicle shipping across the entire Bay State — Boston metro, the MetroWest corridor, Central Massachusetts, the South Coast, Cape Cod and the Islands, and the Berkshires. We do not own trucks; we dispatch a vetted network of carriers on Central Dispatch, the industry's primary load board, which gives you access to the full New England carrier market through a single local point of contact."
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:276:src/pages/seo/locations/MassachusettsCarShipping.jsx:81:        { label: 'Newton Auto Transport', to: '/newton-auto-transport' },
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:277:src/pages/seo/locations/MassachusettsCarShipping.jsx:111:          Y7 Logistics is based in Newton, at the I-90 / I-95 crossroads 8 miles west
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:278:src/pages/seo/locations/NewtonAutoTransport.jsx:29:export default function NewtonAutoTransport() {
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:279:src/pages/seo/locations/NewtonAutoTransport.jsx:33:        title: 'Newton MA Auto Transport',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:280:src/pages/seo/locations/NewtonAutoTransport.jsx:35:          'Licensed auto transport broker serving Newton, MA. Pickup from all Newton villages + Greater Boston. Y7 Logistics MC #1741537 / USDOT #4427359.',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:281:src/pages/seo/locations/NewtonAutoTransport.jsx:36:        path: '/newton-auto-transport',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:282:src/pages/seo/locations/NewtonAutoTransport.jsx:40:      heading="Newton Auto Transport — Your Local Car Shipping Company"
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:283:src/pages/seo/locations/NewtonAutoTransport.jsx:41:      intro="Y7 Logistics is based in Newton, Massachusetts. Our team coordinates a nationwide auto transport brokerage from the Newton area, serving Greater Boston and the entire United States. When you work with us, you're working with a local business that understands your community and the logistics of moving vehicles in and out of this market."
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:284:src/pages/seo/locations/NewtonAutoTransport.jsx:43:        'Shipping a vehicle from your Newton home',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:285:src/pages/seo/locations/NewtonAutoTransport.jsx:46:        'Dealer transport in the Newton / Wellesley / Needham area',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:286:src/pages/seo/locations/NewtonAutoTransport.jsx:54:        { title: 'Carrier Arrives', desc: 'Driver calls 12–24h before, picks up at your Newton address.' },
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:287:src/pages/seo/locations/NewtonAutoTransport.jsx:58:        'Your Newton-area pickup address',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:288:src/pages/seo/locations/NewtonAutoTransport.jsx:65:        'Greater Boston based, serving Newton, MA and the entire United States',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:289:src/pages/seo/locations/NewtonAutoTransport.jsx:67:        'Coverage across Newton + Wellesley + Needham + Waltham + Watertown + Brookline',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:290:src/pages/seo/locations/NewtonAutoTransport.jsx:74:          q: 'How much does it cost to ship a car from Newton, MA?',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:291:src/pages/seo/locations/NewtonAutoTransport.jsx:75:          a: 'Typical open-trailer pricing from Newton: Miami $800–$1,100 (5–7 days), Los Angeles $1,100–$1,500 (8–12 days), Houston $900–$1,200, Chicago $650–$900, Washington DC $450–$650. Rates fluctuate with season, vehicle size, and trailer type.',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:292:src/pages/seo/locations/NewtonAutoTransport.jsx:78:          q: 'How long does auto transport from Newton take?',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:293:src/pages/seo/locations/NewtonAutoTransport.jsx:82:          q: 'Can a carrier pick up from my driveway in Newton?',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:294:src/pages/seo/locations/NewtonAutoTransport.jsx:83:          a: 'Yes for most Newton streets. Narrow streets in Waban, Chestnut Hill, or Newton Highlands may require a nearby meet-up at a commercial lot. Our dispatcher flags this when we see the pickup address and offers the best option at no extra cost when possible.',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:295:src/pages/seo/locations/NewtonAutoTransport.jsx:86:          q: 'What is the cheapest time to ship from Newton?',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:296:src/pages/seo/locations/NewtonAutoTransport.jsx:90:          q: 'Do you serve all of Newton\u2019s villages?',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:297:src/pages/seo/locations/NewtonAutoTransport.jsx:91:          a: 'Yes — all thirteen villages including Newton Centre, Newton Corner, Newtonville, West Newton, Waban, Auburndale, Chestnut Hill, Newton Highlands, Newton Upper Falls, Newton Lower Falls, Nonantum, Thompsonville, and Oak Hill. Plus adjacent Wellesley, Brookline, Waltham, Watertown, and Needham.',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:298:src/pages/seo/locations/NewtonAutoTransport.jsx:94:          q: 'Is my car insured during transport from Newton?',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:299:src/pages/seo/locations/NewtonAutoTransport.jsx:105:      <Section title="Auto Transport from Newton, Massachusetts">
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:300:src/pages/seo/locations/NewtonAutoTransport.jsx:107:          Newton sits 8 miles west of downtown Boston at the intersection of three of New England&apos;s
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:301:src/pages/seo/locations/NewtonAutoTransport.jsx:110:          England run through Newton every week, and why shipping a vehicle from here is cheaper
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:302:src/pages/seo/locations/NewtonAutoTransport.jsx:115:          locally in Newton. We do not own trucks — we coordinate with a vetted network of 700+
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:303:src/pages/seo/locations/NewtonAutoTransport.jsx:122:      <Section title="Why Newton Is a Strategic Transport Hub">
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:304:src/pages/seo/locations/NewtonAutoTransport.jsx:124:          Dense carrier frequency on the Northeast Corridor keeps Newton rates among the most
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:305:src/pages/seo/locations/NewtonAutoTransport.jsx:125:          competitive in Massachusetts. Typical open-trailer pricing from Newton to common
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:306:src/pages/seo/locations/NewtonAutoTransport.jsx:155:      <Section title="Serving the Greater Newton Area">
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:307:src/pages/seo/locations/NewtonAutoTransport.jsx:157:          We coordinate pickups and deliveries across all of Newton&apos;s villages:
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:308:src/pages/seo/locations/NewtonAutoTransport.jsx:158:          Newton Centre, Newton Corner, Newtonville, West Newton, Waban, Auburndale,
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:309:src/pages/seo/locations/NewtonAutoTransport.jsx:159:          Chestnut Hill, Newton Highlands, Newton Upper Falls, Newton Lower Falls,
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:310:src/pages/seo/locations/NewtonAutoTransport.jsx:170:      <Section title="How Pickup Works in Newton">
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:311:src/pages/seo/locations/NewtonAutoTransport.jsx:172:          Most Newton streets are wide enough for a full multi-car carrier, but some residential
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:312:src/pages/seo/locations/NewtonAutoTransport.jsx:173:          blocks in Waban, Chestnut Hill, and the Newton Highlands are narrow or have low tree
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:313:src/pages/seo/locations/NewtonAutoTransport.jsx:185:          Whole Foods on Washington Street, Chestnut Hill Mall, or the commercial strip around
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:314:src/pages/seo/locations/NewtonAutoTransport.jsx:186:          Newton Corner. You drive the few blocks; the inspection and BOL signing happens there.
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:315:src/pages/seo/locations/NewtonAutoTransport.jsx:196:      <Section title="Seasonal Patterns for Newton Shippers">
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:378:src/locales/en/faq.json:6:  "tldr": "Y7 Logistics is a licensed and bonded FMCSA auto transport broker (MC #1741537, USDOT #4427359) based in Newton, Massachusetts. Y7 arranges car shipping across all 50 states and to major US export ports by matching your vehicle with vetted, insured carriers through Central Dispatch, for a single flat dispatch fee with no transport markup. As a broker, Y7 does not haul or insure vehicles itself; the carriers it books carry the cargo insurance, verified before every dispatch.",
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:402:src/locales/pl/faq.json:10:  "tldr": "Y7 Logistics to licencjonowany broker transportu aut z gwarancją (bondem) FMCSA (MC #1741537, USDOT #4427359) z siedzibą w Newton w stanie Massachusetts. Y7 organizuje transport aut we wszystkich 50 stanach oraz do głównych portów eksportowych USA, dobierając Twój pojazd do zweryfikowanych, ubezpieczonych przewoźników przez Central Dispatch, za jedną stałą opłatę dyspozytury i bez narzutu na transport. Jako broker Y7 sam nie przewozi ani nie ubezpiecza pojazdów; ubezpieczenie cargo mają przewoźnicy, których rezerwuje, weryfikowane przed każdym zleceniem.",
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:420:src/locales/ru/faq.json:10:  "tldr": "Y7 Logistics — лицензированный автотранспортный брокер с бондом FMCSA (MC #1741537, USDOT #4427359) из Newton, штат Массачусетс. Y7 организует перевозку авто по всем 50 штатам и в крупные экспортные порты США, подбирая под ваш автомобиль проверенных застрахованных перевозчиков через Central Dispatch — за одну фиксированную плату за диспатч, без наценки на транспорт. Как брокер, Y7 сам машины не возит и не страхует; страховку cargo несут перевозчики, которых он нанимает, и она проверяется перед каждым назначением.",
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:438:src/locales/ua/faq.json:10:  "tldr": "Y7 Logistics — ліцензований брокер автоперевезень з бондом FMCSA (MC #1741537, USDOT #4427359) із головним офісом у Ньютоні, штат Массачусетс. Y7 організовує перевезення авто по всіх 50 штатах і до великих експортних портів США, підбираючи для вашого авто перевірених, застрахованих перевізників через Central Dispatch за єдину фіксовану плату за диспетчинг без націнки на транспорт. Як брокер, Y7 сам не перевозить і не страхує авто; вантажну страховку мають перевізники, яких він замовляє, і вона перевіряється перед кожним відправленням.",
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:551:src/pages/seo/locations/MassachusettsCarShipping.jsx:16:      intro="Y7 Logistics is a Newton, Massachusetts-based FMCSA auto transport broker (MC #1741537 / USDOT #4427359) coordinating vehicle shipping across the entire Bay State — Boston metro, the MetroWest corridor, Central Massachusetts, the South Coast, Cape Cod and the Islands, and the Berkshires. We do not own trucks; we dispatch a vetted network of carriers on Central Dispatch, the industry's primary load board, which gives you access to the full New England carrier market through a single local point of contact."
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:556:src/pages/seo/locations/NewtonAutoTransport.jsx:35:          'Licensed auto transport broker serving Newton, MA. Pickup from all Newton villages + Greater Boston. Y7 Logistics MC #1741537 / USDOT #4427359.',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:557:src/pages/seo/locations/NewtonAutoTransport.jsx:70:        'USDOT #4427359 • MC #1741537 • FMCSA-registered broker',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:558:src/pages/seo/locations/NewtonAutoTransport.jsx:114:          Y7 Logistics is a licensed FMCSA auto transport broker (MC #1741537, USDOT #4427359) based
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:594:src/locales/en/faq.json:6:  "tldr": "Y7 Logistics is a licensed and bonded FMCSA auto transport broker (MC #1741537, USDOT #4427359) based in Newton, Massachusetts. Y7 arranges car shipping across all 50 states and to major US export ports by matching your vehicle with vetted, insured carriers through Central Dispatch, for a single flat dispatch fee with no transport markup. As a broker, Y7 does not haul or insure vehicles itself; the carriers it books carry the cargo insurance, verified before every dispatch.",
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:612:src/locales/pl/faq.json:10:  "tldr": "Y7 Logistics to licencjonowany broker transportu aut z gwarancją (bondem) FMCSA (MC #1741537, USDOT #4427359) z siedzibą w Newton w stanie Massachusetts. Y7 organizuje transport aut we wszystkich 50 stanach oraz do głównych portów eksportowych USA, dobierając Twój pojazd do zweryfikowanych, ubezpieczonych przewoźników przez Central Dispatch, za jedną stałą opłatę dyspozytury i bez narzutu na transport. Jako broker Y7 sam nie przewozi ani nie ubezpiecza pojazdów; ubezpieczenie cargo mają przewoźnicy, których rezerwuje, weryfikowane przed każdym zleceniem.",
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:624:src/locales/ru/faq.json:10:  "tldr": "Y7 Logistics — лицензированный автотранспортный брокер с бондом FMCSA (MC #1741537, USDOT #4427359) из Newton, штат Массачусетс. Y7 организует перевозку авто по всем 50 штатам и в крупные экспортные порты США, подбирая под ваш автомобиль проверенных застрахованных перевозчиков через Central Dispatch — за одну фиксированную плату за диспатч, без наценки на транспорт. Как брокер, Y7 сам машины не возит и не страхует; страховку cargo несут перевозчики, которых он нанимает, и она проверяется перед каждым назначением.",
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:636:src/locales/ua/faq.json:10:  "tldr": "Y7 Logistics — ліцензований брокер автоперевезень з бондом FMCSA (MC #1741537, USDOT #4427359) із головним офісом у Ньютоні, штат Массачусетс. Y7 організовує перевезення авто по всіх 50 штатах і до великих експортних портів США, підбираючи для вашого авто перевірених, застрахованих перевізників через Central Dispatch за єдину фіксовану плату за диспетчинг без націнки на транспорт. Як брокер, Y7 сам не перевозить і не страхує авто; вантажну страховку мають перевізники, яких він замовляє, і вона перевіряється перед кожним відправленням.",
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:712:src/pages/seo/locations/MassachusettsCarShipping.jsx:16:      intro="Y7 Logistics is a Newton, Massachusetts-based FMCSA auto transport broker (MC #1741537 / USDOT #4427359) coordinating vehicle shipping across the entire Bay State — Boston metro, the MetroWest corridor, Central Massachusetts, the South Coast, Cape Cod and the Islands, and the Berkshires. We do not own trucks; we dispatch a vetted network of carriers on Central Dispatch, the industry's primary load board, which gives you access to the full New England carrier market through a single local point of contact."
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:716:src/pages/seo/locations/NewtonAutoTransport.jsx:35:          'Licensed auto transport broker serving Newton, MA. Pickup from all Newton villages + Greater Boston. Y7 Logistics MC #1741537 / USDOT #4427359.',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:717:src/pages/seo/locations/NewtonAutoTransport.jsx:70:        'USDOT #4427359 • MC #1741537 • FMCSA-registered broker',
+docs/audits/raw/webgeo/out/T06_copy_sweep.txt:718:src/pages/seo/locations/NewtonAutoTransport.jsx:114:          Y7 Logistics is a licensed FMCSA auto transport broker (MC #1741537, USDOT #4427359) based
+docs/audits/raw/webgeo/t06_copy_sweep.sh:52:hdr "4. residual old address — Newton / Chestnut / 02464"
+docs/audits/raw/webgeo/t06_copy_sweep.sh:53:run "git grep -in -e 'Newton' -e 'Chestnut' -e '02464' -e '02458' -- ."
+public/llms.txt:41:- [Newton, MA Auto Transport](https://www.y7agency.com/newton-auto-transport): Y7's Greater Boston service area in Newton, Massachusetts.
+public/sitemap.xml:879:    <loc>https://www.y7agency.com/newton-auto-transport</loc>
+scripts/generateSitemap.js:93:  '/newton-auto-transport': 'src/pages/seo/locations/NewtonAutoTransport.jsx',
+scripts/generateSitemap.js:209:  '/newton-auto-transport', '/florida-car-shipping',
+scripts/prerender.mjs:517:  '/newton-auto-transport',
+scripts/seo-baseline.json:254:        "text": "Newton, MA Auto Transport"
+scripts/sitemap-lastmod.json:41:  "/newton-auto-transport": "2026-04-19",
+src/App.jsx:58:const NewtonAutoTransport = lazyWithRetry(() => import('./pages/seo/locations/NewtonAutoTransport'));
+src/App.jsx:238:            <Route path="/newton-auto-transport" element={<NewtonAutoTransport />} />
+src/components/CoverageMap.jsx:17:  { to: '/newton-auto-transport',         label: 'Newton, MA' },
+src/components/Footer.jsx:59:            <Link to="/newton-auto-transport" className={styles.link}>{t('footer.locationLinks.newton')}</Link>
+src/data/relatedGuides.js:11://   - MA loc:  Massachusetts, Boston, Newton, MA-to-FL
+src/data/relatedGuides.js:98:    { to: '/newton-auto-transport', title: 'Newton Auto Transport',     description: 'Local Newton, MA pickup and delivery.' },
+src/data/relatedGuides.js:103:    { to: '/newton-auto-transport', title: 'Newton Auto Transport',     description: 'Local Newton, MA pickup and delivery.' },
+src/data/relatedGuides.js:106:  '/newton-auto-transport': [
+src/locales/en/common.json:225:      "newton": "Newton, MA",
+src/locales/en/faq.json:6:  "tldr": "Y7 Logistics is a licensed and bonded FMCSA auto transport broker (MC #1741537, USDOT #4427359) based in Newton, Massachusetts. Y7 arranges car shipping across all 50 states and to major US export ports by matching your vehicle with vetted, insured carriers through Central Dispatch, for a single flat dispatch fee with no transport markup. As a broker, Y7 does not haul or insure vehicles itself; the carriers it books carry the cargo insurance, verified before every dispatch.",
+src/locales/en/services.json:142:        "title": "Newton, MA Auto Transport",
+src/locales/en/services.json:143:        "desc": "Our home base. Local broker service for all 13 Newton villages plus Wellesley, Brookline, Waltham, Watertown, Needham."
+src/locales/pl/common.json:221:      "newton": "Newton, MA",
+src/locales/pl/faq.json:10:  "tldr": "Y7 Logistics to licencjonowany broker transportu aut z gwarancją (bondem) FMCSA (MC #1741537, USDOT #4427359) z siedzibą w Newton w stanie Massachusetts. Y7 organizuje transport aut we wszystkich 50 stanach oraz do głównych portów eksportowych USA, dobierając Twój pojazd do zweryfikowanych, ubezpieczonych przewoźników przez Central Dispatch, za jedną stałą opłatę dyspozytury i bez narzutu na transport. Jako broker Y7 sam nie przewozi ani nie ubezpiecza pojazdów; ubezpieczenie cargo mają przewoźnicy, których rezerwuje, weryfikowane przed każdym zleceniem.",
+src/locales/pl/services.json:142:        "title": "Transport aut Newton, MA",
+src/locales/pl/services.json:143:        "desc": "Nasza baza. Lokalna obsługa brokerska dla wszystkich 13 dzielnic Newton oraz Wellesley, Brookline, Waltham, Watertown, Needham."
+src/locales/ru/common.json:221:      "newton": "Newton, MA",
+src/locales/ru/faq.json:10:  "tldr": "Y7 Logistics — лицензированный автотранспортный брокер с бондом FMCSA (MC #1741537, USDOT #4427359) из Newton, штат Массачусетс. Y7 организует перевозку авто по всем 50 штатам и в крупные экспортные порты США, подбирая под ваш автомобиль проверенных застрахованных перевозчиков через Central Dispatch — за одну фиксированную плату за диспатч, без наценки на транспорт. Как брокер, Y7 сам машины не возит и не страхует; страховку cargo несут перевозчики, которых он нанимает, и она проверяется перед каждым назначением.",
+src/locales/ru/services.json:142:        "title": "Автоперевозки в Newton, MA",
+src/locales/ru/services.json:143:        "desc": "Наша домашняя база. Локальный брокерский сервис для всех 13 районов Newton, а также Wellesley, Brookline, Waltham, Watertown, Needham."
+src/locales/ua/common.json:221:      "newton": "Newton, MA",
+src/locales/ua/faq.json:10:  "tldr": "Y7 Logistics — ліцензований брокер автоперевезень з бондом FMCSA (MC #1741537, USDOT #4427359) із головним офісом у Ньютоні, штат Массачусетс. Y7 організовує перевезення авто по всіх 50 штатах і до великих експортних портів США, підбираючи для вашого авто перевірених, застрахованих перевізників через Central Dispatch за єдину фіксовану плату за диспетчинг без націнки на транспорт. Як брокер, Y7 сам не перевозить і не страхує авто; вантажну страховку мають перевізники, яких він замовляє, і вона перевіряється перед кожним відправленням.",
+src/locales/ua/services.json:142:        "title": "Автоперевезення в Newton, MA",
+src/locales/ua/services.json:143:        "desc": "Наша домашня база. Локальний брокерський сервіс для всіх 13 районів Newton, а також Wellesley, Brookline, Waltham, Watertown, Needham."
+src/pages/Services.jsx:45:  { to: '/newton-auto-transport' },
+src/pages/intl/PolandHome.jsx:205:                  Licencjonowany broker FMCSA z siedzibą w Newton (Massachusetts).
+src/pages/seo/locations/BostonCarShipping.jsx:16:      intro="Shipping a car to or from the Greater Boston area requires a broker who knows the city — narrow streets, permit-parking zones, seasonal rate swings, and college move cycles all affect pricing and scheduling. Y7 Logistics is based in Newton, just minutes from downtown, and handles the logistics of pickup and delivery across the metro area."
+src/pages/seo/locations/BostonCarShipping.jsx:40:        'Full Greater Boston coverage — Cambridge, Somerville, Brookline, Newton, Quincy, Dorchester, Back Bay, South End, Allston, Medford, Malden',
+src/pages/seo/locations/BostonCarShipping.jsx:44:        'Same-day quote response from our local Newton office',
+src/pages/seo/locations/BostonCarShipping.jsx:74:        { label: 'Newton Auto Transport', to: '/newton-auto-transport' },
+src/pages/seo/locations/BostonCarShipping.jsx:84:          Our Newton office sits 8 miles west of downtown on the I-90 / I-95 crossroads, which
+src/pages/seo/locations/BostonCarShipping.jsx:115:        <h3 style={subhead}>Commuter suburbs (Brookline, Newton, Quincy, Medford)</h3>
+src/pages/seo/locations/BostonCarShipping.jsx:118:          in Brookline and west Newton have 12&apos; canopy that rules out multi-car carriers;
+src/pages/seo/locations/MassachusettsCarShipping.jsx:16:      intro="Y7 Logistics is a Newton, Massachusetts-based FMCSA auto transport broker (MC #1741537 / USDOT #4427359) coordinating vehicle shipping across the entire Bay State — Boston metro, the MetroWest corridor, Central Massachusetts, the South Coast, Cape Cod and the Islands, and the Berkshires. We do not own trucks; we dispatch a vetted network of carriers on Central Dispatch, the industry's primary load board, which gives you access to the full New England carrier market through a single local point of contact."
+src/pages/seo/locations/MassachusettsCarShipping.jsx:81:        { label: 'Newton Auto Transport', to: '/newton-auto-transport' },
+src/pages/seo/locations/MassachusettsCarShipping.jsx:111:          Y7 Logistics is based in Newton, at the I-90 / I-95 crossroads 8 miles west
+src/pages/seo/locations/NewtonAutoTransport.jsx:29:export default function NewtonAutoTransport() {
+src/pages/seo/locations/NewtonAutoTransport.jsx:33:        title: 'Newton MA Auto Transport',
+src/pages/seo/locations/NewtonAutoTransport.jsx:35:          'Licensed auto transport broker serving Newton, MA. Pickup from all Newton villages + Greater Boston. Y7 Logistics MC #1741537 / USDOT #4427359.',
+src/pages/seo/locations/NewtonAutoTransport.jsx:36:        path: '/newton-auto-transport',
+src/pages/seo/locations/NewtonAutoTransport.jsx:40:      heading="Newton Auto Transport — Your Local Car Shipping Company"
+src/pages/seo/locations/NewtonAutoTransport.jsx:41:      intro="Y7 Logistics is based in Newton, Massachusetts. Our team coordinates a nationwide auto transport brokerage from the Newton area, serving Greater Boston and the entire United States. When you work with us, you're working with a local business that understands your community and the logistics of moving vehicles in and out of this market."
+src/pages/seo/locations/NewtonAutoTransport.jsx:43:        'Shipping a vehicle from your Newton home',
+src/pages/seo/locations/NewtonAutoTransport.jsx:46:        'Dealer transport in the Newton / Wellesley / Needham area',
+src/pages/seo/locations/NewtonAutoTransport.jsx:54:        { title: 'Carrier Arrives', desc: 'Driver calls 12–24h before, picks up at your Newton address.' },
+src/pages/seo/locations/NewtonAutoTransport.jsx:58:        'Your Newton-area pickup address',
+src/pages/seo/locations/NewtonAutoTransport.jsx:65:        'Greater Boston based, serving Newton, MA and the entire United States',
+src/pages/seo/locations/NewtonAutoTransport.jsx:67:        'Coverage across Newton + Wellesley + Needham + Waltham + Watertown + Brookline',
+src/pages/seo/locations/NewtonAutoTransport.jsx:74:          q: 'How much does it cost to ship a car from Newton, MA?',
+src/pages/seo/locations/NewtonAutoTransport.jsx:75:          a: 'Typical open-trailer pricing from Newton: Miami $800–$1,100 (5–7 days), Los Angeles $1,100–$1,500 (8–12 days), Houston $900–$1,200, Chicago $650–$900, Washington DC $450–$650. Rates fluctuate with season, vehicle size, and trailer type.',
+src/pages/seo/locations/NewtonAutoTransport.jsx:78:          q: 'How long does auto transport from Newton take?',
+src/pages/seo/locations/NewtonAutoTransport.jsx:82:          q: 'Can a carrier pick up from my driveway in Newton?',
+src/pages/seo/locations/NewtonAutoTransport.jsx:83:          a: 'Yes for most Newton streets. Narrow streets in Waban, Chestnut Hill, or Newton Highlands may require a nearby meet-up at a commercial lot. Our dispatcher flags this when we see the pickup address and offers the best option at no extra cost when possible.',
+src/pages/seo/locations/NewtonAutoTransport.jsx:86:          q: 'What is the cheapest time to ship from Newton?',
+src/pages/seo/locations/NewtonAutoTransport.jsx:90:          q: 'Do you serve all of Newton\u2019s villages?',
+src/pages/seo/locations/NewtonAutoTransport.jsx:91:          a: 'Yes — all thirteen villages including Newton Centre, Newton Corner, Newtonville, West Newton, Waban, Auburndale, Chestnut Hill, Newton Highlands, Newton Upper Falls, Newton Lower Falls, Nonantum, Thompsonville, and Oak Hill. Plus adjacent Wellesley, Brookline, Waltham, Watertown, and Needham.',
+src/pages/seo/locations/NewtonAutoTransport.jsx:94:          q: 'Is my car insured during transport from Newton?',
+src/pages/seo/locations/NewtonAutoTransport.jsx:105:      <Section title="Auto Transport from Newton, Massachusetts">
+src/pages/seo/locations/NewtonAutoTransport.jsx:107:          Newton sits 8 miles west of downtown Boston at the intersection of three of New England&apos;s
+src/pages/seo/locations/NewtonAutoTransport.jsx:110:          England run through Newton every week, and why shipping a vehicle from here is cheaper
+src/pages/seo/locations/NewtonAutoTransport.jsx:115:          locally in Newton. We do not own trucks — we coordinate with a vetted network of 700+
+src/pages/seo/locations/NewtonAutoTransport.jsx:122:      <Section title="Why Newton Is a Strategic Transport Hub">
+src/pages/seo/locations/NewtonAutoTransport.jsx:124:          Dense carrier frequency on the Northeast Corridor keeps Newton rates among the most
+src/pages/seo/locations/NewtonAutoTransport.jsx:125:          competitive in Massachusetts. Typical open-trailer pricing from Newton to common
+src/pages/seo/locations/NewtonAutoTransport.jsx:155:      <Section title="Serving the Greater Newton Area">
+src/pages/seo/locations/NewtonAutoTransport.jsx:157:          We coordinate pickups and deliveries across all of Newton&apos;s villages:
+src/pages/seo/locations/NewtonAutoTransport.jsx:158:          Newton Centre, Newton Corner, Newtonville, West Newton, Waban, Auburndale,
+src/pages/seo/locations/NewtonAutoTransport.jsx:159:          Chestnut Hill, Newton Highlands, Newton Upper Falls, Newton Lower Falls,
+src/pages/seo/locations/NewtonAutoTransport.jsx:170:      <Section title="How Pickup Works in Newton">
+src/pages/seo/locations/NewtonAutoTransport.jsx:172:          Most Newton streets are wide enough for a full multi-car carrier, but some residential
+src/pages/seo/locations/NewtonAutoTransport.jsx:173:          blocks in Waban, Chestnut Hill, and the Newton Highlands are narrow or have low tree
+src/pages/seo/locations/NewtonAutoTransport.jsx:185:          Whole Foods on Washington Street, Chestnut Hill Mall, or the commercial strip around
+src/pages/seo/locations/NewtonAutoTransport.jsx:186:          Newton Corner. You drive the few blocks; the inspection and BOL signing happens there.
+src/pages/seo/locations/NewtonAutoTransport.jsx:196:      <Section title="Seasonal Patterns for Newton Shippers">

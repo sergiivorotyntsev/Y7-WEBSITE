@@ -38,7 +38,7 @@ export default function NewtonAutoTransport() {
       primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
       secondaryCTA={{ intlKey: 'dealers', to: '/dealers', tone: 'teal' }}
       heading="Newton Auto Transport — Your Local Car Shipping Company"
-      intro="Y7 Logistics is based in Newton, Massachusetts. Our team coordinates a nationwide auto transport brokerage from the Newton area, serving Greater Boston and the entire United States. When you work with us, you're working with a local business that understands your community and the logistics of moving vehicles in and out of this market."
+      intro="Y7 Logistics is based in Natick, Massachusetts, a short run west of Newton. Our team coordinates a nationwide auto transport brokerage from MetroWest, serving Newton, Greater Boston and the entire United States. When you work with us, you're working with a local business that understands your community and the logistics of moving vehicles in and out of this market."
       whenNeeded={[
         'Shipping a vehicle from your Newton home',
         'Receiving a car purchased out of state',
@@ -112,7 +112,7 @@ export default function NewtonAutoTransport() {
         </p>
         <p style={muted}>
           Y7 Logistics is a licensed FMCSA auto transport broker (MC #1741537, USDOT #4427359) based
-          locally in Newton. We do not own trucks — we coordinate with a vetted network of 700+
+          nearby in Natick. We do not own trucks — we coordinate with a vetted network of 700+
           carriers on Central Dispatch, the industry&apos;s primary load board. That means you get
           access to the full New England carrier market through a single dispatcher who knows your
           neighborhood and can fix problems when they come up.

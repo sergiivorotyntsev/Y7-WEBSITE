@@ -1,0 +1,34 @@
+WAVE0-T03 — ADDRESS GUARD MUTATION PROOF
+repo:  /c/dev/Y7-WEBSITE
+HEAD:  5e1999ec2645c5d77f853781f905d8e0652022fd
+date:  2026-09-02T04:20:06Z
+
+=== 0. CLEAN TREE — the guard must PASS (a guard never seen passing is not green)
+----------------------------------------------------------------
+[PASS] Check the SUPERSEDED office address is not published (both alphabets)
+executed: 1   passed: 1   FAILED: 0
+
+=== 1. LATIN MUTATION — 'based in Newton' in src/_wave0_mutation_scratch.jsx — the guard must REFUSE
+----------------------------------------------------------------
+[FAIL] Check the SUPERSEDED office address is not published (both alphabets)
+        src/_wave0_mutation_scratch.jsx:2:  return <p>Y7 Logistics is based in Newton, Massachusetts.</p>;
+executed: 1   passed: 0   FAILED: 1
+
+=== 2. CYRILLIC MUTATION — 'у Ньютоні' in src/_wave0_mutation_scratch.jsx — the SAME rule must REFUSE
+----------------------------------------------------------------
+[FAIL] Check the SUPERSEDED office address is not published (both alphabets)
+        src/_wave0_mutation_scratch.jsx:2:  return <p>Y7 Logistics із головним офісом у Ньютоні, штат Массачусетс.</p>;
+executed: 1   passed: 0   FAILED: 1
+
+=== 3. MUTATIONS REMOVED — the guard must PASS again
+----------------------------------------------------------------
+[PASS] Check the SUPERSEDED office address is not published (both alphabets)
+executed: 1   passed: 1   FAILED: 0
+
+=== VERDICT
+----------------------------------------------------------------
+  0. clean tree      exit=0  expect 0 (pass)   OK
+  1. latin Newton    exit=1  expect 1 (refuse) OK
+  2. Cyrillic Ньютоні exit=1  expect 1 (refuse) OK
+  3. restored        exit=0  expect 0 (pass)   OK
+  ALL FOUR AS EXPECTED — the guard refuses both alphabets and passes clean.

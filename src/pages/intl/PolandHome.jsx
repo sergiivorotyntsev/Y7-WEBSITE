@@ -202,7 +202,7 @@ const PolandHome = () => {
                   Y7 Logistics
                 </h3>
                 <p className={styles.pBoard} style={{ fontSize: '0.9375rem', lineHeight: '1.6', marginBottom: '1rem' }}>
-                  Licencjonowany broker FMCSA z siedzibą w Newton (Massachusetts).
+                  Licencjonowany broker FMCSA z siedzibą w Natick (Massachusetts).
                   USDOT #4427359, MC #1741537. Obsługujemy:
                 </p>
                 <ul className={styles.cardList}>

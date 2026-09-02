@@ -13,7 +13,7 @@ export default function MassachusettsCarShipping() {
       primaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
       secondaryCTA={{ intlKey: 'dealers', to: '/dealers', tone: 'teal' }}
       heading="Massachusetts Car Shipping — Statewide Auto Transport"
-      intro="Y7 Logistics is a Newton, Massachusetts-based FMCSA auto transport broker (MC #1741537 / USDOT #4427359) coordinating vehicle shipping across the entire Bay State — Boston metro, the MetroWest corridor, Central Massachusetts, the South Coast, Cape Cod and the Islands, and the Berkshires. We do not own trucks; we dispatch a vetted network of carriers on Central Dispatch, the industry's primary load board, which gives you access to the full New England carrier market through a single local point of contact."
+      intro="Y7 Logistics is a Natick, Massachusetts-based FMCSA auto transport broker (MC #1741537 / USDOT #4427359) coordinating vehicle shipping across the entire Bay State — Boston metro, the MetroWest corridor, Central Massachusetts, the South Coast, Cape Cod and the Islands, and the Berkshires. We do not own trucks; we dispatch a vetted network of carriers on Central Dispatch, the industry's primary load board, which gives you access to the full New England carrier market through a single local point of contact."
       whenNeeded={[
         'Relocating to or from Massachusetts',
         'Buying a vehicle out of state and shipping it to an MA address',
@@ -108,8 +108,8 @@ export default function MassachusettsCarShipping() {
           and pushes lead time from 1–3 days out to 3–7 days.
         </p>
         <p style={prose}>
-          Y7 Logistics is based in Newton, at the I-90 / I-95 crossroads 8 miles west
-          of downtown Boston. That puts our dispatchers in the middle of the carrier
+          Y7 Logistics is based in Natick, on the I-90 corridor west of Boston. That
+          puts our dispatchers in the middle of the carrier
           traffic moving in and out of New England, which is why customers across the
           state — from Boston to the Berkshires, from Newburyport to New Bedford,
           from Cambridge to Cape Cod — come to us for statewide coverage through a
