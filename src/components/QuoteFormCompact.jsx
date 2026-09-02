@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { trackEvent } from '../utils/trackEvent';
 import styles from './QuoteFormCompact.module.css';
 import v2b from '../styles/v2/buttons.module.css';
+import { carryAttribution, withAttribution } from '../utils/attribution';
+import useAttributionSearch from '../hooks/useAttributionSearch';
 
 function isFiveDigit(s) {
   return /^\d{5}$/.test(s);
@@ -24,6 +26,9 @@ export default function QuoteFormCompact() {
   const [pickupZip, setPickupZip] = useState('');
   const [deliveryZip, setDeliveryZip] = useState('');
   const [contact, setContact] = useState('');
+  // [WEBFIX-T05] the "use the full form" anchor below is a plain href; it
+  // takes the live query after hydration (see the hook for why not in render).
+  const attributionSearch = useAttributionSearch();
   const [error, setError] = useState(null);
 
   function handleSubmit(e) {
@@ -55,11 +60,13 @@ export default function QuoteFormCompact() {
       contact_type: isEmail ? 'email' : 'phone',
     });
 
-    const params = new URLSearchParams({
+    // [WEBFIX-T05] utm_* / gclid / fbclid ride along: QuoteForm reads them
+    // from the URL it lands on, so a fresh query string here erased them.
+    const params = carryAttribution(new URLSearchParams({
       pickup_zip: pickupZip,
       delivery_zip: deliveryZip,
       [isEmail ? 'email' : 'phone']: trimmed,
-    });
+    }));
     const lang = i18n.language;
     const base = lang && lang !== 'en' ? `/${lang}/quote` : '/quote';
     navigate(`${base}?${params.toString()}#top`);
@@ -122,7 +129,7 @@ export default function QuoteFormCompact() {
 
       <p className={styles.fullFormNote}>
         {t('quickQuote.needDetailed')}{' '}
-        <a href={i18n.language && i18n.language !== 'en' ? `/${i18n.language}/quote` : '/quote'} className={styles.fullFormLink}>
+        <a href={withAttribution(i18n.language && i18n.language !== 'en' ? `/${i18n.language}/quote` : '/quote', new URLSearchParams(), attributionSearch)} className={styles.fullFormLink}>
           {t('quickQuote.useFull')}
         </a>
       </p>

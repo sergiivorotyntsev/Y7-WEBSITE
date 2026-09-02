@@ -7,6 +7,7 @@ import styles from './QuoteStrip.module.css';
 import v2t from '../styles/v2/type.module.css';
 import v2b from '../styles/v2/buttons.module.css';
 import v2f from '../styles/v2/forms.module.css';
+import { carryAttribution } from '../utils/attribution';
 
 // DESIGN-V2-T13: the strip is now the working calculator (approved T12
 // follow-up). Price source = the real-dispatch band model (dispatchRates.js);
@@ -44,7 +45,7 @@ const round5 = (n) => Math.round(n / 5) * 5;
 const IS_PRERENDER = typeof window !== 'undefined' && window.__Y7_PRERENDER;
 
 export default function QuoteStrip({ onCta }) {
-  const { t } = useTranslation('home');
+  const { t, i18n } = useTranslation('home');
   const navigate = useNavigate();
 
   const [from, setFrom] = useState(DEFAULT_FROM);
@@ -106,7 +107,13 @@ export default function QuoteStrip({ onCta }) {
     if (b) params.set('delivery_zip', b.zip);
     params.set('vehicle_type', vehicle === 'pickup' ? 'truck' : vehicle);
     params.set('transport_type', transport);
-    navigate(`/quote?${params.toString()}#top`);
+    // [WEBFIX-T05] utm_* / gclid / fbclid ride along (QuoteForm reads them from
+    // the URL it lands on), and the target is the visitor's own locale: the
+    // hardcoded /quote dropped a Polish visitor onto the English form.
+    carryAttribution(params);
+    const lang = i18n.language;
+    const base = lang && lang !== 'en' ? `/${lang}/quote` : '/quote';
+    navigate(`${base}?${params.toString()}#top`);
   };
 
   const selectProps = {
