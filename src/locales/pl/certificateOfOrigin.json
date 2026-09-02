@@ -81,6 +81,9 @@
     },
     "request": {
       "title": "Zamów świadectwo pochodzenia",
+      "portalPre": "Stali klienci-eksporterzy otrzymują stawkę $99: ",
+      "portalLink": "zaloguj się do portalu klienta",
+      "portalPost": " i dołącz zgłoszenie do swojego zlecenia albo skorzystaj z formularza poniżej.",
       "introPre": "Wyślij zgłoszenie poniżej, a odpowiemy w ciągu 24 godzin z adresu info@y7agency.com. Jeśli wysyłasz pojazd z nami, wspomnij o zleceniu, a włączymy świadectwo do Twojego obiegu dokumentów; stronę transportową znajdziesz w ",
       "introLink": "programie eksporterskim",
       "introPost": "."

@@ -132,6 +132,8 @@
     "note": "Oba warianty obejmują pełne możliwości zewnętrznego działu dyspozytury. Przepływ płatności nie zmienia poziomu usługi."
   },
   "portal": {
+    "loginCta": "Zaloguj się do portalu dealerskiego",
+    "applyCta": "Nie masz jeszcze konta? Złóż wniosek o konto dealerskie",
     "kicker": "PORTAL DEALERSKI",
     "title": "Twój pulpit operacyjny",
     "subtitle": "Dostęp oparty na rolach dla zespołów dyspozytury, finansów i sprzedaży",

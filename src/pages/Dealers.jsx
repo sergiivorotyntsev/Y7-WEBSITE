@@ -238,6 +238,14 @@ export default function Dealers() {
                 </div>
               ))}
             </div>
+            {/* [WEBFIX-T06] the section described the portal and linked nowhere.
+                Real anchors (Link renders <a href>), not handlers: crawlers and
+                answer engines only see hrefs. */}
+            <p className={`${styles.descOnPaper} ${styles.sectionSub}`}>
+              <Link to="/portal/login" className={v2t.bodyLinkOnPaper}>{t('portal.loginCta')} &rarr;</Link>
+              {' '}&middot;{' '}
+              <Link to="/dealer-quote" className={v2t.bodyLinkOnPaper}>{t('portal.applyCta')} &rarr;</Link>
+            </p>
           </Reveal>
         </div>
       </section>

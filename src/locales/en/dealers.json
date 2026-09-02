@@ -79,6 +79,8 @@
     "note": "Both options include the full outsourced dispatch department capabilities. Payment flow does not change the service level."
   },
   "portal": {
+    "loginCta": "Log in to the dealer portal",
+    "applyCta": "No account yet? Request a dealer account review",
     "kicker": "DEALER PORTAL",
     "title": "Your Operations Dashboard",
     "subtitle": "Role-based access for dispatch, finance, and sales teams",

@@ -338,6 +338,13 @@ export default function CertificateOfOrigin() {
           <Link to={`${prefix}/exporters`}>{t('sections.request.introLink')}</Link>
           {t('sections.request.introPost')}
         </p>
+        {/* [WEBFIX-T06] established clients ($99 rate) have a portal; the page
+            never pointed at it. */}
+        <p style={prose}>
+          {t('sections.request.portalPre')}
+          <Link to="/portal/login">{t('sections.request.portalLink')}</Link>
+          {t('sections.request.portalPost')}
+        </p>
         <CoRequestForm t={t} />
       </Section>
     </SeoLandingPage>

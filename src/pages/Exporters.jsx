@@ -635,6 +635,8 @@ export default function Exporters() {
           <a href="#exporter-form" className={v2b.cta}>
             {t('midCta')}
           </a>
+          {/* [WEBFIX-T06] the page had no anchor to the portal at all. */}
+          <Link to="/portal/login" className={v2t.bodyLinkOnDark}>{t('portalCta')} &rarr;</Link>
         </div>
       </section>
 

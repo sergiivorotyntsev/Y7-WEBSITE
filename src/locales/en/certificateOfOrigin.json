@@ -81,6 +81,9 @@
     },
     "request": {
       "title": "Request a Certificate of Origin",
+      "portalPre": "Established exporter clients get the $99 rate: ",
+      "portalLink": "log in to the customer portal",
+      "portalPost": " and attach the request to your order, or use the form below.",
       "introPre": "Send the request below and we reply within 24 hours from info@y7agency.com. If you are shipping the vehicle with us, mention the order and we fold the certificate into your existing document flow; see the ",
       "introLink": "exporter program",
       "introPost": " for the transport side."
