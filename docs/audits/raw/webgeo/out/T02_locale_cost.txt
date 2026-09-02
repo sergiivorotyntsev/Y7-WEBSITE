@@ -1,0 +1,45 @@
+WEBGEO T02 — COST OF A FIFTH LOCALE
+
+FILES CARRYING A UTF-8 BOM (JSON.parse rejects these; the bundler tolerates them)
+  src/locales/pl/home.json
+  src/locales/pl/shipMycar.json
+
+LOCALE DIRECTORIES PRESENT
+  en, pl, ru, ua
+
+TRANSLATION VOLUME PER LOCALE (leaf keys, arrays flattened element-by-element)
+  locale    namespaces   leaf keys      chars
+  en                20        2024     155730
+  pl                18        1759     118121
+  ru                18        1759     115604
+  ua                18        1759     115332
+
+NAMESPACE PRESENCE (X = the file exists in that locale)
+  namespace                  en  pl  ru  ua  
+  about                      X   X   X   X   
+  agreement                  X   X   X   X   
+  agreement_dealer           X   X   X   X   
+  certificateOfOrigin        X   X   X   X   
+  common                     X   X   X   X   
+  contextualCTA              X   X   X   X   
+  dealers                    X   X   X   X   
+  exporters                  X   X   X   X   
+  faq                        X   X   X   X   
+  home                       X   X   X   X   
+  notFound                   X   X   X   X   
+  portal                     X   X   X   X   
+  ports                      X   X   X   X   
+  privacy                    X   .   .   .   
+  processTimeline            X   X   X   X   
+  quote                      X   X   X   X   
+  services                   X   X   X   X   
+  shipMycar                  X   X   X   X   
+  terms                      X   .   .   .   
+  transportComparison        X   X   X   X   
+
+KEY DRIFT vs EN — SUMMARY (full paths in T02_key_drift.txt)
+  locale     missing   extra  untranslated  (untranslated = byte-identical to EN)
+  pl             285      20           126
+  ru             285      20            98
+  ua             285      20           104
+

@@ -1,0 +1,233 @@
+WEBGEO T01 — ROUTE INVENTORY
+source of truth: scripts/prerender.mjs PUBLIC_ROUTES (not exported; sliced and evaluated)
+
+PUBLIC_ROUTES total .................. 143
+SKIP_PATTERNS ........................ 0 (empty => every route is prerendered)
+unique after dedup ................... 143
+duplicates ........................... 0
+
+ROUTES PER LOCALE
+  en     83
+  ua     20
+  pl     20
+  ru     20
+
+ASYMMETRY — EN routes with NO twin in a locale
+  ua: 66 of 83 EN routes have no ua twin
+  pl: 66 of 83 EN routes have no pl twin
+  ru: 66 of 83 EN routes have no ru twin
+
+THE MIRROR — localized routes with NO English twin (unique intl landing pages)
+  ua: 3 -> /ua/import-z-usa, /ua/copart-ta-iaai, /ua/dostavka-avto-z-usa
+  pl: 3 -> /pl/transport-z-usa, /pl/transport-z-aukcji, /pl/wysylka-auta-z-usa
+  ru: 3 -> /ru/dostavka-avto-iz-usa, /ru/copart-i-iaai, /ru/perevozka-avto
+
+THE FULL EN->LOCALE MATRIX (X = present)
+  route                                          en  ua  pl  ru
+  /                                              X   X   X   X 
+  /404                                           X   .   .   . 
+  /about                                         X   X   X   X 
+  /accessibility                                 X   .   .   . 
+  /atlanta-to-savannah-port-auto-transport       X   .   .   . 
+  /auction-car-shipping                          X   .   .   . 
+  /auction-to-port-transport                     X   .   .   . 
+  /auction-transport-savings                     X   .   .   . 
+  /blog                                          X   .   .   . 
+  /blog/75000-bond-claims-guide                  X   .   .   . 
+  /blog/auction-to-port-cost-breakdown-2026      X   .   .   . 
+  /blog/bill-of-lading-pickup-delivery-guide     X   .   .   . 
+  /blog/carrier-coi-verification-guide           X   .   .   . 
+  /blog/carrier-who-vanished                     X   .   .   . 
+  /blog/central-dispatch-listing-decoded         X   .   .   . 
+  /blog/copart-for-international-buyers-complete-guide X   .   .   . 
+  /blog/copart-iaa-manheim-comparison            X   .   .   . 
+  /blog/copart-storage-fees-real-cost-2026       X   .   .   . 
+  /blog/dealer-auction-pickup-guide              X   .   .   . 
+  /blog/enclosed-transport-when-to-skip          X   .   .   . 
+  /blog/exporter-documentation-checklist         X   .   .   . 
+  /blog/fmcsa-2026-new-rules                     X   .   .   . 
+  /blog/fmcsa-broker-recordkeeping-2026          X   .   .   . 
+  /blog/non-running-vehicle-shipping-playbook    X   .   .   . 
+  /blog/outbox-pattern-dispatch                  X   .   .   . 
+  /blog/port-specific-export-newark-houston-savannah X   .   .   . 
+  /blog/winter-auto-transport-pricing            X   .   .   . 
+  /boston-car-shipping                           X   .   .   . 
+  /car-shipping-cost                             X   .   .   . 
+  /careers                                       X   .   .   . 
+  /careers/apply                                 X   .   .   . 
+  /certificate-of-origin                         X   X   X   X 
+  /chicago-to-port-newark-car-shipping           X   .   .   . 
+  /contact                                       X   X   X   X 
+  /copart-gate-pass-guide                        X   .   .   . 
+  /copart-international-shipping                 X   .   .   . 
+  /copart-shipping                               X   .   .   . 
+  /copart-storage-fees                           X   .   .   . 
+  /cybertruck-shipping                           X   .   .   . 
+  /dallas-to-port-houston-auto-transport         X   .   .   . 
+  /daytonacargo                                  X   .   .   . 
+  /dealer-auto-transport                         X   .   .   . 
+  /dealer-quote                                  X   .   .   . 
+  /dealers                                       X   X   X   X 
+  /door-to-port-auto-transport                   X   .   .   . 
+  /electric-vehicle-port-delivery                X   .   .   . 
+  /enclosed-car-shipping                         X   .   .   . 
+  /ev-auto-transport                             X   .   .   . 
+  /exporters                                     X   X   X   X 
+  /faq                                           X   X   X   X 
+  /florida-car-shipping                          X   .   .   . 
+  /florida-to-jacksonville-port-car-shipping     X   .   .   . 
+  /how-to-ship-a-car-bought-at-auction           X   .   .   . 
+  /iaai-transport                                X   .   .   . 
+  /manheim-transport                             X   .   .   . 
+  /massachusetts-car-shipping                    X   .   .   . 
+  /massachusetts-to-florida-car-shipping         X   .   .   . 
+  /new-jersey-auto-transport                     X   .   .   . 
+  /new-jersey-to-florida-car-shipping            X   .   .   . 
+  /newton-auto-transport                         X   .   .   . 
+  /nj-export-warehouse-shipping-cost             X   .   .   . 
+  /open-car-shipping                             X   .   .   . 
+  /open-vs-enclosed-auto-transport               X   .   .   . 
+  /ports/baltimore                               X   X   X   X 
+  /ports/houston                                 X   X   X   X 
+  /ports/jacksonville                            X   X   X   X 
+  /ports/los-angeles                             X   X   X   X 
+  /ports/newark                                  X   X   X   X 
+  /ports/savannah                                X   X   X   X 
+  /privacy                                       X   .   .   . 
+  /quote                                         X   X   X   X 
+  /quote-verification-failed                     X   .   .   . 
+  /quote-verified                                X   .   .   . 
+  /salvage-car-shipping                          X   .   .   . 
+  /services                                      X   X   X   X 
+  /ship-my-car                                   X   X   X   X 
+  /state-to-state-car-shipping                   X   .   .   . 
+  /terms                                         X   .   .   . 
+  /tesla-car-shipping                            X   .   .   . 
+  /texas-auto-transport                          X   .   .   . 
+  /texas-to-newark-port-auto-transport           X   .   .   . 
+  /track                                         X   X   X   X 
+  /what-is-a-bill-of-lading                      X   .   .   . 
+
+CROSS-SOURCE DRIFT (rule: three lists of one fact — can they disagree?)
+  src/App.jsx <Route path=...>  ....... 122 (incl. params/wildcards)
+  ...static (no :param, no *) ......... 105
+  prerendered but NOT a static App.jsx route: 75
+      /ports/newark
+      /ports/houston
+      /ports/savannah
+      /ports/los-angeles
+      /ports/baltimore
+      /ports/jacksonville
+      /blog/carrier-who-vanished
+      /blog/carrier-coi-verification-guide
+      /blog/fmcsa-2026-new-rules
+      /blog/outbox-pattern-dispatch
+      /blog/dealer-auction-pickup-guide
+      /blog/exporter-documentation-checklist
+      /blog/fmcsa-broker-recordkeeping-2026
+      /blog/75000-bond-claims-guide
+      /blog/copart-iaa-manheim-comparison
+      /blog/auction-to-port-cost-breakdown-2026
+      /blog/central-dispatch-listing-decoded
+      /blog/enclosed-transport-when-to-skip
+      /blog/non-running-vehicle-shipping-playbook
+      /blog/winter-auto-transport-pricing
+      /blog/bill-of-lading-pickup-delivery-guide
+      /blog/port-specific-export-newark-houston-savannah
+      /blog/copart-storage-fees-real-cost-2026
+      /blog/copart-for-international-buyers-complete-guide
+      /ua
+      /ua/services
+      /ua/dealers
+      /ua/exporters
+      /ua/ship-my-car
+      /ua/track
+      /ua/contact
+      /ua/faq
+      /ua/about
+      /ua/quote
+      /ua/certificate-of-origin
+      /pl
+      /pl/services
+      /pl/dealers
+      /pl/exporters
+      /pl/ship-my-car
+      /pl/track
+      /pl/contact
+      /pl/faq
+      /pl/about
+      /pl/quote
+      /pl/certificate-of-origin
+      /ru
+      /ru/services
+      /ru/dealers
+      /ru/exporters
+      /ru/ship-my-car
+      /ru/track
+      /ru/contact
+      /ru/faq
+      /ru/about
+      /ru/quote
+      /ru/certificate-of-origin
+      /ua/ports/newark
+      /ua/ports/houston
+      /ua/ports/savannah
+      /ua/ports/los-angeles
+      /ua/ports/baltimore
+      /ua/ports/jacksonville
+      /pl/ports/newark
+      /pl/ports/houston
+      /pl/ports/savannah
+      /pl/ports/los-angeles
+      /pl/ports/baltimore
+      /pl/ports/jacksonville
+      /ru/ports/newark
+      /ru/ports/houston
+      /ru/ports/savannah
+      /ru/ports/los-angeles
+      /ru/ports/baltimore
+      /ru/ports/jacksonville
+  static App.jsx route but NOT prerendered: 37
+      /${lang}
+      /${lang}/services
+      /${lang}/dealers
+      /${lang}/exporters
+      /${lang}/ship-my-car
+      /${lang}/track
+      /${lang}/contact
+      /${lang}/faq
+      /${lang}/about
+      /${lang}/quote
+      /agreement
+      /portal/login
+      /portal/accept-invitation
+      /portal/register
+      /portal/dashboard
+      /portal/new-order
+      /portal/billing
+      /portal/locations/setup
+      /portal/locations
+      /portal/application
+      /portal/profile
+      /portal/onboarding
+      /portal/co
+      /portal/co/companies
+      /portal/co/start
+      /pl/copart-shipping
+      /ua/copart-shipping
+      /ru/copart-shipping
+      /pl-us
+      /pl-us/copart-shipping
+      /pl-us/ship-my-car
+      /ua-us
+      /ua-us/copart-shipping
+      /ua-us/ship-my-car
+      /ru-us
+      /ru-us/copart-shipping
+      /ru-us/ship-my-car
+
+  scripts/generateSitemap.js literal paths seen: 116
+  prerendered but not a literal in generateSitemap.js: 29
+  (generateSitemap.js also composes paths from PORT_SLUGS and blogArticles,
+   so a literal-only comparison UNDERSTATES its coverage — see T04 for the
+   authoritative sitemap.xml comparison, which reads the built artefact.)

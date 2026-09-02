@@ -1,0 +1,1267 @@
+WEBGEO T02 — KEY DRIFT AGAINST EN, PATH BY PATH
+(the SET, not the count: a count that stays equal can hide two changes)
+
+==========================================================================
+LOCALE pl
+==========================================================================
+-- MISSING vs EN (285):
+     agreement.version
+     agreement.effectiveDate
+     agreement.intro
+     agreement.section1.title
+     agreement.section1.body
+     agreement.section2.title
+     agreement.section2.body
+     agreement.section2.tiers[0]
+     agreement.section2.tiers[1]
+     agreement.section2.feeIncludes
+     agreement.section2_ind2026.title
+     agreement.section2_ind2026.body
+     agreement.section2_ind2026.tiers[0]
+     agreement.section2_ind2026.tiers[1]
+     agreement.section2_ind2026.feeIncludes
+     agreement.checkboxes_ind2026.payment
+     agreement.version_ind2026
+     agreement.section3.title
+     agreement.section3.body
+     agreement.section3.bullets[0]
+     agreement.section3.bullets[1]
+     agreement.section3.bullets[2]
+     agreement.section3.bullets[3]
+     agreement.section3.bullets[4]
+     agreement.section3.bullets[5]
+     agreement.section3.bullets[6]
+     agreement.section4.title
+     agreement.section4.body
+     agreement.section4.bullets[0]
+     agreement.section4.bullets[1]
+     agreement.section4.bullets[2]
+     agreement.section4.bullets[3]
+     agreement.section4.bullets[4]
+     agreement.section4.bullets[5]
+     agreement.section4.bullets[6]
+     agreement.section4.bullets[7]
+     agreement.section5.title
+     agreement.section5.body
+     agreement.section5.bullets[0]
+     agreement.section5.bullets[1]
+     agreement.section5.bullets[2]
+     agreement.section5.bullets[3]
+     agreement.section5.bullets[4]
+     agreement.section6.title
+     agreement.section6.body
+     agreement.section6.bullets[0]
+     agreement.section6.bullets[1]
+     agreement.section6.bullets[2]
+     agreement.section6.bullets[3]
+     agreement.section7.title
+     agreement.section7.body
+     agreement.section7.bullets[0]
+     agreement.section7.bullets[1]
+     agreement.section7.bullets[2]
+     agreement.section7.bullets[3]
+     agreement.section8.title
+     agreement.section8.body
+     agreement.section8.bullets[0]
+     agreement.section8.bullets[1]
+     agreement.section8.bullets[2]
+     agreement.section8.bullets[3]
+     agreement.section8.bullets[4]
+     agreement.section9.title
+     agreement.section9.body
+     agreement.section10.title
+     agreement.section10.body
+     agreement.section11.title
+     agreement.section11.body
+     agreement.section12.title
+     agreement.section12.body
+     agreement.acceptance.title
+     agreement.acceptance.body
+     common.meta.careersTitle
+     common.meta.careersDescription
+     common.meta.careerApplicationTitle
+     common.meta.careerApplicationDescription
+     common.footer.serviceLinks.auctionTransportSavings
+     dealers.crosslinks.items[8].label
+     dealers.crosslinks.items[8].to
+     dealers.crosslinks.items[9].label
+     dealers.crosslinks.items[9].to
+     dealers.crosslinks.items[10].label
+     dealers.crosslinks.items[10].to
+     privacy.version  (WHOLE FILE ABSENT)
+     privacy.effectiveDate  (WHOLE FILE ABSENT)
+     privacy.title  (WHOLE FILE ABSENT)
+     privacy.intro  (WHOLE FILE ABSENT)
+     privacy.section1.title  (WHOLE FILE ABSENT)
+     privacy.section1.body  (WHOLE FILE ABSENT)
+     privacy.section2.title  (WHOLE FILE ABSENT)
+     privacy.section2.body  (WHOLE FILE ABSENT)
+     privacy.section3.title  (WHOLE FILE ABSENT)
+     privacy.section3.body  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[6]  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[7]  (WHOLE FILE ABSENT)
+     privacy.section4.title  (WHOLE FILE ABSENT)
+     privacy.section4.body  (WHOLE FILE ABSENT)
+     privacy.section4.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section4.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section4.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section4.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section4.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section4.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section5.title  (WHOLE FILE ABSENT)
+     privacy.section5.body  (WHOLE FILE ABSENT)
+     privacy.section5.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section5.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section5.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section5.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section5.footer  (WHOLE FILE ABSENT)
+     privacy.section6.title  (WHOLE FILE ABSENT)
+     privacy.section6.body  (WHOLE FILE ABSENT)
+     privacy.section6.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section6.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section6.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section6.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section6.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section6.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section6.bullets[6]  (WHOLE FILE ABSENT)
+     privacy.section7.title  (WHOLE FILE ABSENT)
+     privacy.section7.body  (WHOLE FILE ABSENT)
+     privacy.section7.rights  (WHOLE FILE ABSENT)
+     privacy.section8.title  (WHOLE FILE ABSENT)
+     privacy.section8.body  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[6]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[7]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[8]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[9]  (WHOLE FILE ABSENT)
+     privacy.section8.footer  (WHOLE FILE ABSENT)
+     privacy.section9.title  (WHOLE FILE ABSENT)
+     privacy.section9.body  (WHOLE FILE ABSENT)
+     privacy.section9.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section9.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section9.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section9.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section9.footer  (WHOLE FILE ABSENT)
+     privacy.section10.title  (WHOLE FILE ABSENT)
+     privacy.section10.body  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[6]  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[7]  (WHOLE FILE ABSENT)
+     privacy.section11.title  (WHOLE FILE ABSENT)
+     privacy.section11.body  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[6]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[7]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[8]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[9]  (WHOLE FILE ABSENT)
+     privacy.section12.title  (WHOLE FILE ABSENT)
+     privacy.section12.body  (WHOLE FILE ABSENT)
+     privacy.section13.title  (WHOLE FILE ABSENT)
+     privacy.section13.body  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[6]  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[7]  (WHOLE FILE ABSENT)
+     privacy.section13.breach  (WHOLE FILE ABSENT)
+     privacy.section14.title  (WHOLE FILE ABSENT)
+     privacy.section14.body  (WHOLE FILE ABSENT)
+     privacy.section14.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section14.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section14.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section14.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section14.dnt  (WHOLE FILE ABSENT)
+     privacy.section15.title  (WHOLE FILE ABSENT)
+     privacy.section15.body  (WHOLE FILE ABSENT)
+     privacy.section16.title  (WHOLE FILE ABSENT)
+     privacy.section16.body  (WHOLE FILE ABSENT)
+     privacy.section16.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section16.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section16.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section16.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section16.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section16.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section16.bullets[6]  (WHOLE FILE ABSENT)
+     privacy.section16.footer  (WHOLE FILE ABSENT)
+     privacy.section17.title  (WHOLE FILE ABSENT)
+     privacy.section17.body  (WHOLE FILE ABSENT)
+     privacy.section18.title  (WHOLE FILE ABSENT)
+     privacy.section18.body  (WHOLE FILE ABSENT)
+     terms.version  (WHOLE FILE ABSENT)
+     terms.effectiveDate  (WHOLE FILE ABSENT)
+     terms.title  (WHOLE FILE ABSENT)
+     terms.intro  (WHOLE FILE ABSENT)
+     terms.section1.title  (WHOLE FILE ABSENT)
+     terms.section1.body  (WHOLE FILE ABSENT)
+     terms.section2.title  (WHOLE FILE ABSENT)
+     terms.section2.body  (WHOLE FILE ABSENT)
+     terms.section2.featuresList[0]  (WHOLE FILE ABSENT)
+     terms.section2.featuresList[1]  (WHOLE FILE ABSENT)
+     terms.section2.featuresList[2]  (WHOLE FILE ABSENT)
+     terms.section2.featuresList[3]  (WHOLE FILE ABSENT)
+     terms.section2.featuresList[4]  (WHOLE FILE ABSENT)
+     terms.section2.featuresList[5]  (WHOLE FILE ABSENT)
+     terms.section3.title  (WHOLE FILE ABSENT)
+     terms.section3.body  (WHOLE FILE ABSENT)
+     terms.section3.bullets[0]  (WHOLE FILE ABSENT)
+     terms.section3.bullets[1]  (WHOLE FILE ABSENT)
+     terms.section3.bullets[2]  (WHOLE FILE ABSENT)
+     terms.section3.bullets[3]  (WHOLE FILE ABSENT)
+     terms.section3.bullets[4]  (WHOLE FILE ABSENT)
+     terms.section4.title  (WHOLE FILE ABSENT)
+     terms.section4.body  (WHOLE FILE ABSENT)
+     terms.section5.title  (WHOLE FILE ABSENT)
+     terms.section5.body  (WHOLE FILE ABSENT)
+     terms.section5.bullets[0]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[1]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[2]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[3]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[4]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[5]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[6]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[7]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[8]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[9]  (WHOLE FILE ABSENT)
+     terms.section6.title  (WHOLE FILE ABSENT)
+     terms.section6.body  (WHOLE FILE ABSENT)
+     terms.section6.subsections.a  (WHOLE FILE ABSENT)
+     terms.section6.subsections.b  (WHOLE FILE ABSENT)
+     terms.section6.subsections.c  (WHOLE FILE ABSENT)
+     terms.section6.subsections.d  (WHOLE FILE ABSENT)
+     terms.section7.title  (WHOLE FILE ABSENT)
+     terms.section7.body  (WHOLE FILE ABSENT)
+     terms.section8.title  (WHOLE FILE ABSENT)
+     terms.section8.body  (WHOLE FILE ABSENT)
+     terms.section9.title  (WHOLE FILE ABSENT)
+     terms.section9.body  (WHOLE FILE ABSENT)
+     terms.section10.title  (WHOLE FILE ABSENT)
+     terms.section10.body  (WHOLE FILE ABSENT)
+     terms.section10.bullets[0]  (WHOLE FILE ABSENT)
+     terms.section10.bullets[1]  (WHOLE FILE ABSENT)
+     terms.section10.bullets[2]  (WHOLE FILE ABSENT)
+     terms.section10.bullets[3]  (WHOLE FILE ABSENT)
+     terms.section10.bullets[4]  (WHOLE FILE ABSENT)
+     terms.section10.bullets[5]  (WHOLE FILE ABSENT)
+     terms.section11.title  (WHOLE FILE ABSENT)
+     terms.section11.body  (WHOLE FILE ABSENT)
+     terms.section12.title  (WHOLE FILE ABSENT)
+     terms.section12.body  (WHOLE FILE ABSENT)
+     terms.section13.title  (WHOLE FILE ABSENT)
+     terms.section13.body  (WHOLE FILE ABSENT)
+     terms.section13.bullets[0]  (WHOLE FILE ABSENT)
+     terms.section13.bullets[1]  (WHOLE FILE ABSENT)
+     terms.section13.bullets[2]  (WHOLE FILE ABSENT)
+     terms.section13.bullets[3]  (WHOLE FILE ABSENT)
+     terms.section13.bullets[4]  (WHOLE FILE ABSENT)
+     terms.section13.bullets[5]  (WHOLE FILE ABSENT)
+     terms.section14.title  (WHOLE FILE ABSENT)
+     terms.section14.body  (WHOLE FILE ABSENT)
+     terms.section15.title  (WHOLE FILE ABSENT)
+     terms.section15.subsections.a  (WHOLE FILE ABSENT)
+     terms.section15.subsections.b  (WHOLE FILE ABSENT)
+     terms.section15.subsections.c  (WHOLE FILE ABSENT)
+     terms.section15.subsections.d  (WHOLE FILE ABSENT)
+     terms.section15.subsections.e  (WHOLE FILE ABSENT)
+     terms.section15.subsections.f  (WHOLE FILE ABSENT)
+     terms.section15.subsections.g  (WHOLE FILE ABSENT)
+     terms.section16.title  (WHOLE FILE ABSENT)
+     terms.section16.body  (WHOLE FILE ABSENT)
+-- EXTRA, not in EN (20):
+     agreement.sections.service.title
+     agreement.sections.service.body
+     agreement.sections.bol.title
+     agreement.sections.bol.body
+     agreement.sections.payment.title
+     agreement.sections.payment.body
+     agreement.sections.insurance.title
+     agreement.sections.insurance.body
+     agreement.sections.cancellation.title
+     agreement.sections.cancellation.body
+     agreement.sections.customer.title
+     agreement.sections.customer.body
+     agreement.sections.delays.title
+     agreement.sections.delays.body
+     agreement.sections.liability.title
+     agreement.sections.liability.body
+     faq.lastUpdatedLabel
+     faq.heroKicker
+     faq.tldrKicker
+     faq.tldrAriaLabel
+-- BYTE-IDENTICAL to EN, i.e. untranslated or intentionally shared (126):
+     about.fmcsaHeading
+     about.contactEmailLabel
+     about.contactTelegramLabel
+     certificateOfOrigin.form.email
+     certificateOfOrigin.related.portNewark
+     common.nav.faq
+     common.nav.blog
+     common.nav.portDeliveryDesc
+     common.contact.channelEmail
+     common.contact.channelTelegram
+     common.contact.legalDba
+     common.contact.legalLocation
+     common.contact.labelEmail
+     common.contact.address.companyLine
+     common.contact.address.dbaLine
+     common.contact.address.cityLine
+     common.contact.address.streetLine
+     common.trustBadges.googleLabel
+     common.footer.usdot
+     common.footer.mc
+     common.footer.address
+     common.footer.location
+     common.footer.socialFacebook
+     common.footer.socialInstagram
+     common.footer.portLinks.newark
+     common.footer.portLinks.jacksonville
+     common.footer.locationLinks.newton
+     common.footer.locationLinks.massachusetts
+     common.footer.locationLinks.newJersey
+     dealers.auctions.list[0].name
+     dealers.auctions.list[0].link
+     dealers.auctions.list[1].name
+     dealers.auctions.list[1].link
+     dealers.auctions.list[2].name
+     dealers.auctions.list[2].link
+     dealers.auctions.list[3].name
+     dealers.auctions.list[3].link
+     dealers.crosslinks.items[0].to
+     dealers.crosslinks.items[1].to
+     exporters.ports.list[0].name
+     exporters.ports.list[1].name
+     exporters.ports.list[2].name
+     exporters.ports.list[3].name
+     exporters.ports.list[4].name
+     exporters.ports.list[5].name
+     exporters.form.email
+     exporters.form.vinsPlaceholder
+     exporters.form.portsPlaceholder
+     exporters.exportDocs.items[3].title
+     exporters.exportDocs.items[4].title
+     exporters.destinations.items[3].country
+     exporters.destinations.items[7].country
+     exporters.routing.legFrom
+     exporters.routing.legARate
+     exporters.routing.legBRate
+     faq.categories[0].id
+     faq.categories[0].items[2].links[0].href
+     faq.categories[0].items[6].links[0].href
+     faq.categories[0].items[7].links[0].href
+     faq.categories[0].items[7].links[1].href
+     faq.categories[0].items[7].links[2].href
+     faq.categories[0].items[8].links[0].href
+     faq.categories[0].items[9].links[0].href
+     faq.categories[0].items[10].links[0].href
+     faq.categories[0].items[11].links[0].href
+     faq.categories[0].items[12].links[0].href
+     faq.categories[0].items[12].links[1].href
+     faq.categories[0].items[13].links[1].href
+     faq.categories[0].items[13].links[2].href
+     faq.categories[1].id
+     faq.categories[1].items[0].links[0].href
+     faq.categories[1].items[1].links[0].href
+     faq.categories[1].items[2].links[0].href
+     faq.categories[1].items[2].links[1].href
+     faq.categories[1].items[3].links[0].href
+     faq.categories[1].items[3].links[1].href
+     faq.categories[1].items[4].links[0].href
+     faq.categories[1].items[5].links[0].href
+     faq.categories[1].items[6].links[0].href
+     faq.categories[2].id
+     faq.categories[2].items[0].links[0].href
+     faq.categories[2].items[0].links[1].href
+     faq.categories[2].items[1].links[0].href
+     faq.categories[2].items[2].links[0].href
+     faq.categories[2].items[3].links[0].href
+     faq.categories[2].items[4].links[0].href
+     faq.categories[2].items[5].links[0].href
+     faq.categories[2].items[6].links[0].href
+     faq.categories[2].items[7].links[0].href
+     home.trust.experience
+     home.trust.carriers
+     home.trust.cd
+     home.trust.cdLabel
+     home.trust.bond
+     home.audience.exportersChip1
+     home.ports.list[0]
+     home.ports.list[1]
+     home.ports.list[2]
+     home.ports.list[3]
+     home.ports.list[4]
+     home.ports.list[5]
+     home.howItWorks.steps.signStat
+     home.quoteStrip.transportLabel
+     home.quoteStrip.vehicle_sedan
+     home.quoteStrip.vehicle_suv
+     notFound.badge
+     ports.labels.terminalMicro
+     quote.placeholders.make
+     quote.placeholders.model
+     quote.form.vehicleModel
+     quote.form.email
+     quote.form.zip
+     quote.form.model
+     quote.form.locations.dealer
+     quote.form.locations.port
+     quote.location.port
+     quote.location.terminal
+     services.cards.services[15].title
+     services.cards.routes[3].title
+     shipMycar.pricingTiers.rows[0].open
+     shipMycar.pricingTiers.rows[0].enclosed
+     shipMycar.pricingTiers.rows[1].open
+     shipMycar.pricingTiers.rows[1].enclosed
+     shipMycar.pricingTiers.rows[2].open
+     shipMycar.pricingTiers.rows[2].enclosed
+     transportComparison.premiumBadge
+
+==========================================================================
+LOCALE ru
+==========================================================================
+-- MISSING vs EN (285):
+     agreement.version
+     agreement.effectiveDate
+     agreement.intro
+     agreement.section1.title
+     agreement.section1.body
+     agreement.section2.title
+     agreement.section2.body
+     agreement.section2.tiers[0]
+     agreement.section2.tiers[1]
+     agreement.section2.feeIncludes
+     agreement.section2_ind2026.title
+     agreement.section2_ind2026.body
+     agreement.section2_ind2026.tiers[0]
+     agreement.section2_ind2026.tiers[1]
+     agreement.section2_ind2026.feeIncludes
+     agreement.checkboxes_ind2026.payment
+     agreement.version_ind2026
+     agreement.section3.title
+     agreement.section3.body
+     agreement.section3.bullets[0]
+     agreement.section3.bullets[1]
+     agreement.section3.bullets[2]
+     agreement.section3.bullets[3]
+     agreement.section3.bullets[4]
+     agreement.section3.bullets[5]
+     agreement.section3.bullets[6]
+     agreement.section4.title
+     agreement.section4.body
+     agreement.section4.bullets[0]
+     agreement.section4.bullets[1]
+     agreement.section4.bullets[2]
+     agreement.section4.bullets[3]
+     agreement.section4.bullets[4]
+     agreement.section4.bullets[5]
+     agreement.section4.bullets[6]
+     agreement.section4.bullets[7]
+     agreement.section5.title
+     agreement.section5.body
+     agreement.section5.bullets[0]
+     agreement.section5.bullets[1]
+     agreement.section5.bullets[2]
+     agreement.section5.bullets[3]
+     agreement.section5.bullets[4]
+     agreement.section6.title
+     agreement.section6.body
+     agreement.section6.bullets[0]
+     agreement.section6.bullets[1]
+     agreement.section6.bullets[2]
+     agreement.section6.bullets[3]
+     agreement.section7.title
+     agreement.section7.body
+     agreement.section7.bullets[0]
+     agreement.section7.bullets[1]
+     agreement.section7.bullets[2]
+     agreement.section7.bullets[3]
+     agreement.section8.title
+     agreement.section8.body
+     agreement.section8.bullets[0]
+     agreement.section8.bullets[1]
+     agreement.section8.bullets[2]
+     agreement.section8.bullets[3]
+     agreement.section8.bullets[4]
+     agreement.section9.title
+     agreement.section9.body
+     agreement.section10.title
+     agreement.section10.body
+     agreement.section11.title
+     agreement.section11.body
+     agreement.section12.title
+     agreement.section12.body
+     agreement.acceptance.title
+     agreement.acceptance.body
+     common.meta.careersTitle
+     common.meta.careersDescription
+     common.meta.careerApplicationTitle
+     common.meta.careerApplicationDescription
+     common.footer.serviceLinks.auctionTransportSavings
+     dealers.crosslinks.items[8].label
+     dealers.crosslinks.items[8].to
+     dealers.crosslinks.items[9].label
+     dealers.crosslinks.items[9].to
+     dealers.crosslinks.items[10].label
+     dealers.crosslinks.items[10].to
+     privacy.version  (WHOLE FILE ABSENT)
+     privacy.effectiveDate  (WHOLE FILE ABSENT)
+     privacy.title  (WHOLE FILE ABSENT)
+     privacy.intro  (WHOLE FILE ABSENT)
+     privacy.section1.title  (WHOLE FILE ABSENT)
+     privacy.section1.body  (WHOLE FILE ABSENT)
+     privacy.section2.title  (WHOLE FILE ABSENT)
+     privacy.section2.body  (WHOLE FILE ABSENT)
+     privacy.section3.title  (WHOLE FILE ABSENT)
+     privacy.section3.body  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[6]  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[7]  (WHOLE FILE ABSENT)
+     privacy.section4.title  (WHOLE FILE ABSENT)
+     privacy.section4.body  (WHOLE FILE ABSENT)
+     privacy.section4.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section4.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section4.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section4.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section4.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section4.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section5.title  (WHOLE FILE ABSENT)
+     privacy.section5.body  (WHOLE FILE ABSENT)
+     privacy.section5.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section5.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section5.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section5.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section5.footer  (WHOLE FILE ABSENT)
+     privacy.section6.title  (WHOLE FILE ABSENT)
+     privacy.section6.body  (WHOLE FILE ABSENT)
+     privacy.section6.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section6.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section6.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section6.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section6.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section6.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section6.bullets[6]  (WHOLE FILE ABSENT)
+     privacy.section7.title  (WHOLE FILE ABSENT)
+     privacy.section7.body  (WHOLE FILE ABSENT)
+     privacy.section7.rights  (WHOLE FILE ABSENT)
+     privacy.section8.title  (WHOLE FILE ABSENT)
+     privacy.section8.body  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[6]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[7]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[8]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[9]  (WHOLE FILE ABSENT)
+     privacy.section8.footer  (WHOLE FILE ABSENT)
+     privacy.section9.title  (WHOLE FILE ABSENT)
+     privacy.section9.body  (WHOLE FILE ABSENT)
+     privacy.section9.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section9.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section9.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section9.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section9.footer  (WHOLE FILE ABSENT)
+     privacy.section10.title  (WHOLE FILE ABSENT)
+     privacy.section10.body  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[6]  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[7]  (WHOLE FILE ABSENT)
+     privacy.section11.title  (WHOLE FILE ABSENT)
+     privacy.section11.body  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[6]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[7]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[8]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[9]  (WHOLE FILE ABSENT)
+     privacy.section12.title  (WHOLE FILE ABSENT)
+     privacy.section12.body  (WHOLE FILE ABSENT)
+     privacy.section13.title  (WHOLE FILE ABSENT)
+     privacy.section13.body  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[6]  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[7]  (WHOLE FILE ABSENT)
+     privacy.section13.breach  (WHOLE FILE ABSENT)
+     privacy.section14.title  (WHOLE FILE ABSENT)
+     privacy.section14.body  (WHOLE FILE ABSENT)
+     privacy.section14.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section14.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section14.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section14.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section14.dnt  (WHOLE FILE ABSENT)
+     privacy.section15.title  (WHOLE FILE ABSENT)
+     privacy.section15.body  (WHOLE FILE ABSENT)
+     privacy.section16.title  (WHOLE FILE ABSENT)
+     privacy.section16.body  (WHOLE FILE ABSENT)
+     privacy.section16.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section16.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section16.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section16.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section16.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section16.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section16.bullets[6]  (WHOLE FILE ABSENT)
+     privacy.section16.footer  (WHOLE FILE ABSENT)
+     privacy.section17.title  (WHOLE FILE ABSENT)
+     privacy.section17.body  (WHOLE FILE ABSENT)
+     privacy.section18.title  (WHOLE FILE ABSENT)
+     privacy.section18.body  (WHOLE FILE ABSENT)
+     terms.version  (WHOLE FILE ABSENT)
+     terms.effectiveDate  (WHOLE FILE ABSENT)
+     terms.title  (WHOLE FILE ABSENT)
+     terms.intro  (WHOLE FILE ABSENT)
+     terms.section1.title  (WHOLE FILE ABSENT)
+     terms.section1.body  (WHOLE FILE ABSENT)
+     terms.section2.title  (WHOLE FILE ABSENT)
+     terms.section2.body  (WHOLE FILE ABSENT)
+     terms.section2.featuresList[0]  (WHOLE FILE ABSENT)
+     terms.section2.featuresList[1]  (WHOLE FILE ABSENT)
+     terms.section2.featuresList[2]  (WHOLE FILE ABSENT)
+     terms.section2.featuresList[3]  (WHOLE FILE ABSENT)
+     terms.section2.featuresList[4]  (WHOLE FILE ABSENT)
+     terms.section2.featuresList[5]  (WHOLE FILE ABSENT)
+     terms.section3.title  (WHOLE FILE ABSENT)
+     terms.section3.body  (WHOLE FILE ABSENT)
+     terms.section3.bullets[0]  (WHOLE FILE ABSENT)
+     terms.section3.bullets[1]  (WHOLE FILE ABSENT)
+     terms.section3.bullets[2]  (WHOLE FILE ABSENT)
+     terms.section3.bullets[3]  (WHOLE FILE ABSENT)
+     terms.section3.bullets[4]  (WHOLE FILE ABSENT)
+     terms.section4.title  (WHOLE FILE ABSENT)
+     terms.section4.body  (WHOLE FILE ABSENT)
+     terms.section5.title  (WHOLE FILE ABSENT)
+     terms.section5.body  (WHOLE FILE ABSENT)
+     terms.section5.bullets[0]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[1]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[2]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[3]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[4]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[5]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[6]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[7]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[8]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[9]  (WHOLE FILE ABSENT)
+     terms.section6.title  (WHOLE FILE ABSENT)
+     terms.section6.body  (WHOLE FILE ABSENT)
+     terms.section6.subsections.a  (WHOLE FILE ABSENT)
+     terms.section6.subsections.b  (WHOLE FILE ABSENT)
+     terms.section6.subsections.c  (WHOLE FILE ABSENT)
+     terms.section6.subsections.d  (WHOLE FILE ABSENT)
+     terms.section7.title  (WHOLE FILE ABSENT)
+     terms.section7.body  (WHOLE FILE ABSENT)
+     terms.section8.title  (WHOLE FILE ABSENT)
+     terms.section8.body  (WHOLE FILE ABSENT)
+     terms.section9.title  (WHOLE FILE ABSENT)
+     terms.section9.body  (WHOLE FILE ABSENT)
+     terms.section10.title  (WHOLE FILE ABSENT)
+     terms.section10.body  (WHOLE FILE ABSENT)
+     terms.section10.bullets[0]  (WHOLE FILE ABSENT)
+     terms.section10.bullets[1]  (WHOLE FILE ABSENT)
+     terms.section10.bullets[2]  (WHOLE FILE ABSENT)
+     terms.section10.bullets[3]  (WHOLE FILE ABSENT)
+     terms.section10.bullets[4]  (WHOLE FILE ABSENT)
+     terms.section10.bullets[5]  (WHOLE FILE ABSENT)
+     terms.section11.title  (WHOLE FILE ABSENT)
+     terms.section11.body  (WHOLE FILE ABSENT)
+     terms.section12.title  (WHOLE FILE ABSENT)
+     terms.section12.body  (WHOLE FILE ABSENT)
+     terms.section13.title  (WHOLE FILE ABSENT)
+     terms.section13.body  (WHOLE FILE ABSENT)
+     terms.section13.bullets[0]  (WHOLE FILE ABSENT)
+     terms.section13.bullets[1]  (WHOLE FILE ABSENT)
+     terms.section13.bullets[2]  (WHOLE FILE ABSENT)
+     terms.section13.bullets[3]  (WHOLE FILE ABSENT)
+     terms.section13.bullets[4]  (WHOLE FILE ABSENT)
+     terms.section13.bullets[5]  (WHOLE FILE ABSENT)
+     terms.section14.title  (WHOLE FILE ABSENT)
+     terms.section14.body  (WHOLE FILE ABSENT)
+     terms.section15.title  (WHOLE FILE ABSENT)
+     terms.section15.subsections.a  (WHOLE FILE ABSENT)
+     terms.section15.subsections.b  (WHOLE FILE ABSENT)
+     terms.section15.subsections.c  (WHOLE FILE ABSENT)
+     terms.section15.subsections.d  (WHOLE FILE ABSENT)
+     terms.section15.subsections.e  (WHOLE FILE ABSENT)
+     terms.section15.subsections.f  (WHOLE FILE ABSENT)
+     terms.section15.subsections.g  (WHOLE FILE ABSENT)
+     terms.section16.title  (WHOLE FILE ABSENT)
+     terms.section16.body  (WHOLE FILE ABSENT)
+-- EXTRA, not in EN (20):
+     agreement.sections.service.title
+     agreement.sections.service.body
+     agreement.sections.bol.title
+     agreement.sections.bol.body
+     agreement.sections.payment.title
+     agreement.sections.payment.body
+     agreement.sections.insurance.title
+     agreement.sections.insurance.body
+     agreement.sections.cancellation.title
+     agreement.sections.cancellation.body
+     agreement.sections.customer.title
+     agreement.sections.customer.body
+     agreement.sections.delays.title
+     agreement.sections.delays.body
+     agreement.sections.liability.title
+     agreement.sections.liability.body
+     faq.lastUpdatedLabel
+     faq.heroKicker
+     faq.tldrKicker
+     faq.tldrAriaLabel
+-- BYTE-IDENTICAL to EN, i.e. untranslated or intentionally shared (98):
+     about.fmcsaHeading
+     about.contactEmailLabel
+     about.contactTelegramLabel
+     certificateOfOrigin.form.email
+     common.nav.faq
+     common.contact.channelEmail
+     common.contact.channelTelegram
+     common.contact.legalDba
+     common.contact.labelEmail
+     common.contact.address.companyLine
+     common.contact.address.cityLine
+     common.contact.address.streetLine
+     common.trustBadges.googleLabel
+     common.footer.usdot
+     common.footer.mc
+     common.footer.address
+     common.footer.location
+     common.footer.socialFacebook
+     common.footer.socialInstagram
+     common.footer.portLinks.jacksonville
+     common.footer.locationLinks.newton
+     dealers.auctions.list[0].name
+     dealers.auctions.list[0].link
+     dealers.auctions.list[1].name
+     dealers.auctions.list[1].link
+     dealers.auctions.list[2].name
+     dealers.auctions.list[2].link
+     dealers.auctions.list[3].name
+     dealers.auctions.list[3].link
+     dealers.whoWeServe.segments[3].name
+     dealers.crosslinks.items[0].to
+     dealers.crosslinks.items[1].to
+     exporters.ports.list[0].name
+     exporters.ports.list[1].name
+     exporters.ports.list[2].name
+     exporters.ports.list[3].name
+     exporters.ports.list[4].name
+     exporters.ports.list[5].name
+     exporters.form.email
+     exporters.form.vinsPlaceholder
+     exporters.form.portsPlaceholder
+     exporters.exportDocs.items[3].title
+     exporters.exportDocs.items[4].title
+     exporters.routing.legFrom
+     exporters.routing.legARate
+     exporters.routing.legBRate
+     faq.categories[0].id
+     faq.categories[0].items[2].links[0].href
+     faq.categories[0].items[6].links[0].href
+     faq.categories[0].items[7].links[0].href
+     faq.categories[0].items[7].links[1].href
+     faq.categories[0].items[7].links[2].href
+     faq.categories[0].items[8].links[0].href
+     faq.categories[0].items[9].links[0].href
+     faq.categories[0].items[10].links[0].href
+     faq.categories[0].items[11].links[0].href
+     faq.categories[0].items[12].links[0].href
+     faq.categories[0].items[12].links[1].href
+     faq.categories[0].items[13].links[0].href
+     faq.categories[0].items[13].links[1].href
+     faq.categories[0].items[13].links[2].href
+     faq.categories[1].id
+     faq.categories[1].items[2].links[0].href
+     faq.categories[1].items[2].links[1].href
+     faq.categories[1].items[3].links[1].href
+     faq.categories[1].items[5].links[0].href
+     faq.categories[1].items[6].links[0].href
+     faq.categories[2].id
+     faq.categories[2].items[0].links[1].href
+     faq.categories[2].items[2].links[0].href
+     faq.categories[2].items[3].links[0].href
+     faq.categories[2].items[4].links[0].href
+     faq.categories[2].items[6].links[0].href
+     faq.categories[2].items[7].links[0].href
+     home.trust.experience
+     home.trust.carriers
+     home.trust.cd
+     home.trust.cdLabel
+     home.trust.bond
+     home.audience.exportersChip1
+     home.ports.list[0]
+     home.ports.list[1]
+     home.ports.list[2]
+     home.ports.list[3]
+     home.ports.list[4]
+     home.ports.list[5]
+     notFound.badge
+     quote.placeholders.make
+     quote.placeholders.model
+     quote.form.email
+     quote.form.zip
+     services.cards.services[15].title
+     shipMycar.pricingTiers.rows[0].open
+     shipMycar.pricingTiers.rows[0].enclosed
+     shipMycar.pricingTiers.rows[1].open
+     shipMycar.pricingTiers.rows[1].enclosed
+     shipMycar.pricingTiers.rows[2].open
+     shipMycar.pricingTiers.rows[2].enclosed
+
+==========================================================================
+LOCALE ua
+==========================================================================
+-- MISSING vs EN (285):
+     agreement.version
+     agreement.effectiveDate
+     agreement.intro
+     agreement.section1.title
+     agreement.section1.body
+     agreement.section2.title
+     agreement.section2.body
+     agreement.section2.tiers[0]
+     agreement.section2.tiers[1]
+     agreement.section2.feeIncludes
+     agreement.section2_ind2026.title
+     agreement.section2_ind2026.body
+     agreement.section2_ind2026.tiers[0]
+     agreement.section2_ind2026.tiers[1]
+     agreement.section2_ind2026.feeIncludes
+     agreement.checkboxes_ind2026.payment
+     agreement.version_ind2026
+     agreement.section3.title
+     agreement.section3.body
+     agreement.section3.bullets[0]
+     agreement.section3.bullets[1]
+     agreement.section3.bullets[2]
+     agreement.section3.bullets[3]
+     agreement.section3.bullets[4]
+     agreement.section3.bullets[5]
+     agreement.section3.bullets[6]
+     agreement.section4.title
+     agreement.section4.body
+     agreement.section4.bullets[0]
+     agreement.section4.bullets[1]
+     agreement.section4.bullets[2]
+     agreement.section4.bullets[3]
+     agreement.section4.bullets[4]
+     agreement.section4.bullets[5]
+     agreement.section4.bullets[6]
+     agreement.section4.bullets[7]
+     agreement.section5.title
+     agreement.section5.body
+     agreement.section5.bullets[0]
+     agreement.section5.bullets[1]
+     agreement.section5.bullets[2]
+     agreement.section5.bullets[3]
+     agreement.section5.bullets[4]
+     agreement.section6.title
+     agreement.section6.body
+     agreement.section6.bullets[0]
+     agreement.section6.bullets[1]
+     agreement.section6.bullets[2]
+     agreement.section6.bullets[3]
+     agreement.section7.title
+     agreement.section7.body
+     agreement.section7.bullets[0]
+     agreement.section7.bullets[1]
+     agreement.section7.bullets[2]
+     agreement.section7.bullets[3]
+     agreement.section8.title
+     agreement.section8.body
+     agreement.section8.bullets[0]
+     agreement.section8.bullets[1]
+     agreement.section8.bullets[2]
+     agreement.section8.bullets[3]
+     agreement.section8.bullets[4]
+     agreement.section9.title
+     agreement.section9.body
+     agreement.section10.title
+     agreement.section10.body
+     agreement.section11.title
+     agreement.section11.body
+     agreement.section12.title
+     agreement.section12.body
+     agreement.acceptance.title
+     agreement.acceptance.body
+     common.meta.careersTitle
+     common.meta.careersDescription
+     common.meta.careerApplicationTitle
+     common.meta.careerApplicationDescription
+     common.footer.serviceLinks.auctionTransportSavings
+     dealers.crosslinks.items[8].label
+     dealers.crosslinks.items[8].to
+     dealers.crosslinks.items[9].label
+     dealers.crosslinks.items[9].to
+     dealers.crosslinks.items[10].label
+     dealers.crosslinks.items[10].to
+     privacy.version  (WHOLE FILE ABSENT)
+     privacy.effectiveDate  (WHOLE FILE ABSENT)
+     privacy.title  (WHOLE FILE ABSENT)
+     privacy.intro  (WHOLE FILE ABSENT)
+     privacy.section1.title  (WHOLE FILE ABSENT)
+     privacy.section1.body  (WHOLE FILE ABSENT)
+     privacy.section2.title  (WHOLE FILE ABSENT)
+     privacy.section2.body  (WHOLE FILE ABSENT)
+     privacy.section3.title  (WHOLE FILE ABSENT)
+     privacy.section3.body  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[6]  (WHOLE FILE ABSENT)
+     privacy.section3.bullets[7]  (WHOLE FILE ABSENT)
+     privacy.section4.title  (WHOLE FILE ABSENT)
+     privacy.section4.body  (WHOLE FILE ABSENT)
+     privacy.section4.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section4.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section4.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section4.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section4.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section4.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section5.title  (WHOLE FILE ABSENT)
+     privacy.section5.body  (WHOLE FILE ABSENT)
+     privacy.section5.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section5.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section5.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section5.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section5.footer  (WHOLE FILE ABSENT)
+     privacy.section6.title  (WHOLE FILE ABSENT)
+     privacy.section6.body  (WHOLE FILE ABSENT)
+     privacy.section6.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section6.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section6.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section6.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section6.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section6.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section6.bullets[6]  (WHOLE FILE ABSENT)
+     privacy.section7.title  (WHOLE FILE ABSENT)
+     privacy.section7.body  (WHOLE FILE ABSENT)
+     privacy.section7.rights  (WHOLE FILE ABSENT)
+     privacy.section8.title  (WHOLE FILE ABSENT)
+     privacy.section8.body  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[6]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[7]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[8]  (WHOLE FILE ABSENT)
+     privacy.section8.bullets[9]  (WHOLE FILE ABSENT)
+     privacy.section8.footer  (WHOLE FILE ABSENT)
+     privacy.section9.title  (WHOLE FILE ABSENT)
+     privacy.section9.body  (WHOLE FILE ABSENT)
+     privacy.section9.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section9.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section9.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section9.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section9.footer  (WHOLE FILE ABSENT)
+     privacy.section10.title  (WHOLE FILE ABSENT)
+     privacy.section10.body  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[6]  (WHOLE FILE ABSENT)
+     privacy.section10.bullets[7]  (WHOLE FILE ABSENT)
+     privacy.section11.title  (WHOLE FILE ABSENT)
+     privacy.section11.body  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[6]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[7]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[8]  (WHOLE FILE ABSENT)
+     privacy.section11.bullets[9]  (WHOLE FILE ABSENT)
+     privacy.section12.title  (WHOLE FILE ABSENT)
+     privacy.section12.body  (WHOLE FILE ABSENT)
+     privacy.section13.title  (WHOLE FILE ABSENT)
+     privacy.section13.body  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[6]  (WHOLE FILE ABSENT)
+     privacy.section13.bullets[7]  (WHOLE FILE ABSENT)
+     privacy.section13.breach  (WHOLE FILE ABSENT)
+     privacy.section14.title  (WHOLE FILE ABSENT)
+     privacy.section14.body  (WHOLE FILE ABSENT)
+     privacy.section14.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section14.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section14.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section14.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section14.dnt  (WHOLE FILE ABSENT)
+     privacy.section15.title  (WHOLE FILE ABSENT)
+     privacy.section15.body  (WHOLE FILE ABSENT)
+     privacy.section16.title  (WHOLE FILE ABSENT)
+     privacy.section16.body  (WHOLE FILE ABSENT)
+     privacy.section16.bullets[0]  (WHOLE FILE ABSENT)
+     privacy.section16.bullets[1]  (WHOLE FILE ABSENT)
+     privacy.section16.bullets[2]  (WHOLE FILE ABSENT)
+     privacy.section16.bullets[3]  (WHOLE FILE ABSENT)
+     privacy.section16.bullets[4]  (WHOLE FILE ABSENT)
+     privacy.section16.bullets[5]  (WHOLE FILE ABSENT)
+     privacy.section16.bullets[6]  (WHOLE FILE ABSENT)
+     privacy.section16.footer  (WHOLE FILE ABSENT)
+     privacy.section17.title  (WHOLE FILE ABSENT)
+     privacy.section17.body  (WHOLE FILE ABSENT)
+     privacy.section18.title  (WHOLE FILE ABSENT)
+     privacy.section18.body  (WHOLE FILE ABSENT)
+     terms.version  (WHOLE FILE ABSENT)
+     terms.effectiveDate  (WHOLE FILE ABSENT)
+     terms.title  (WHOLE FILE ABSENT)
+     terms.intro  (WHOLE FILE ABSENT)
+     terms.section1.title  (WHOLE FILE ABSENT)
+     terms.section1.body  (WHOLE FILE ABSENT)
+     terms.section2.title  (WHOLE FILE ABSENT)
+     terms.section2.body  (WHOLE FILE ABSENT)
+     terms.section2.featuresList[0]  (WHOLE FILE ABSENT)
+     terms.section2.featuresList[1]  (WHOLE FILE ABSENT)
+     terms.section2.featuresList[2]  (WHOLE FILE ABSENT)
+     terms.section2.featuresList[3]  (WHOLE FILE ABSENT)
+     terms.section2.featuresList[4]  (WHOLE FILE ABSENT)
+     terms.section2.featuresList[5]  (WHOLE FILE ABSENT)
+     terms.section3.title  (WHOLE FILE ABSENT)
+     terms.section3.body  (WHOLE FILE ABSENT)
+     terms.section3.bullets[0]  (WHOLE FILE ABSENT)
+     terms.section3.bullets[1]  (WHOLE FILE ABSENT)
+     terms.section3.bullets[2]  (WHOLE FILE ABSENT)
+     terms.section3.bullets[3]  (WHOLE FILE ABSENT)
+     terms.section3.bullets[4]  (WHOLE FILE ABSENT)
+     terms.section4.title  (WHOLE FILE ABSENT)
+     terms.section4.body  (WHOLE FILE ABSENT)
+     terms.section5.title  (WHOLE FILE ABSENT)
+     terms.section5.body  (WHOLE FILE ABSENT)
+     terms.section5.bullets[0]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[1]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[2]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[3]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[4]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[5]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[6]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[7]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[8]  (WHOLE FILE ABSENT)
+     terms.section5.bullets[9]  (WHOLE FILE ABSENT)
+     terms.section6.title  (WHOLE FILE ABSENT)
+     terms.section6.body  (WHOLE FILE ABSENT)
+     terms.section6.subsections.a  (WHOLE FILE ABSENT)
+     terms.section6.subsections.b  (WHOLE FILE ABSENT)
+     terms.section6.subsections.c  (WHOLE FILE ABSENT)
+     terms.section6.subsections.d  (WHOLE FILE ABSENT)
+     terms.section7.title  (WHOLE FILE ABSENT)
+     terms.section7.body  (WHOLE FILE ABSENT)
+     terms.section8.title  (WHOLE FILE ABSENT)
+     terms.section8.body  (WHOLE FILE ABSENT)
+     terms.section9.title  (WHOLE FILE ABSENT)
+     terms.section9.body  (WHOLE FILE ABSENT)
+     terms.section10.title  (WHOLE FILE ABSENT)
+     terms.section10.body  (WHOLE FILE ABSENT)
+     terms.section10.bullets[0]  (WHOLE FILE ABSENT)
+     terms.section10.bullets[1]  (WHOLE FILE ABSENT)
+     terms.section10.bullets[2]  (WHOLE FILE ABSENT)
+     terms.section10.bullets[3]  (WHOLE FILE ABSENT)
+     terms.section10.bullets[4]  (WHOLE FILE ABSENT)
+     terms.section10.bullets[5]  (WHOLE FILE ABSENT)
+     terms.section11.title  (WHOLE FILE ABSENT)
+     terms.section11.body  (WHOLE FILE ABSENT)
+     terms.section12.title  (WHOLE FILE ABSENT)
+     terms.section12.body  (WHOLE FILE ABSENT)
+     terms.section13.title  (WHOLE FILE ABSENT)
+     terms.section13.body  (WHOLE FILE ABSENT)
+     terms.section13.bullets[0]  (WHOLE FILE ABSENT)
+     terms.section13.bullets[1]  (WHOLE FILE ABSENT)
+     terms.section13.bullets[2]  (WHOLE FILE ABSENT)
+     terms.section13.bullets[3]  (WHOLE FILE ABSENT)
+     terms.section13.bullets[4]  (WHOLE FILE ABSENT)
+     terms.section13.bullets[5]  (WHOLE FILE ABSENT)
+     terms.section14.title  (WHOLE FILE ABSENT)
+     terms.section14.body  (WHOLE FILE ABSENT)
+     terms.section15.title  (WHOLE FILE ABSENT)
+     terms.section15.subsections.a  (WHOLE FILE ABSENT)
+     terms.section15.subsections.b  (WHOLE FILE ABSENT)
+     terms.section15.subsections.c  (WHOLE FILE ABSENT)
+     terms.section15.subsections.d  (WHOLE FILE ABSENT)
+     terms.section15.subsections.e  (WHOLE FILE ABSENT)
+     terms.section15.subsections.f  (WHOLE FILE ABSENT)
+     terms.section15.subsections.g  (WHOLE FILE ABSENT)
+     terms.section16.title  (WHOLE FILE ABSENT)
+     terms.section16.body  (WHOLE FILE ABSENT)
+-- EXTRA, not in EN (20):
+     agreement.sections.service.title
+     agreement.sections.service.body
+     agreement.sections.bol.title
+     agreement.sections.bol.body
+     agreement.sections.payment.title
+     agreement.sections.payment.body
+     agreement.sections.insurance.title
+     agreement.sections.insurance.body
+     agreement.sections.cancellation.title
+     agreement.sections.cancellation.body
+     agreement.sections.customer.title
+     agreement.sections.customer.body
+     agreement.sections.delays.title
+     agreement.sections.delays.body
+     agreement.sections.liability.title
+     agreement.sections.liability.body
+     faq.lastUpdatedLabel
+     faq.heroKicker
+     faq.tldrKicker
+     faq.tldrAriaLabel
+-- BYTE-IDENTICAL to EN, i.e. untranslated or intentionally shared (104):
+     about.fmcsaHeading
+     about.contactEmailLabel
+     about.contactTelegramLabel
+     certificateOfOrigin.form.email
+     common.nav.faq
+     common.contact.channelEmail
+     common.contact.channelTelegram
+     common.contact.legalDba
+     common.contact.labelEmail
+     common.contact.address.companyLine
+     common.contact.address.cityLine
+     common.contact.address.streetLine
+     common.trustBadges.googleLabel
+     common.footer.usdot
+     common.footer.mc
+     common.footer.address
+     common.footer.location
+     common.footer.socialFacebook
+     common.footer.socialInstagram
+     common.footer.portLinks.jacksonville
+     common.footer.locationLinks.newton
+     dealers.auctions.list[0].name
+     dealers.auctions.list[0].link
+     dealers.auctions.list[1].name
+     dealers.auctions.list[1].link
+     dealers.auctions.list[2].name
+     dealers.auctions.list[2].link
+     dealers.auctions.list[3].name
+     dealers.auctions.list[3].link
+     dealers.crosslinks.items[0].to
+     dealers.crosslinks.items[1].to
+     exporters.ports.list[0].name
+     exporters.ports.list[1].name
+     exporters.ports.list[2].name
+     exporters.ports.list[3].name
+     exporters.ports.list[4].name
+     exporters.ports.list[5].name
+     exporters.form.email
+     exporters.form.vinsPlaceholder
+     exporters.form.portsPlaceholder
+     exporters.exportDocs.items[3].title
+     exporters.exportDocs.items[4].title
+     exporters.routing.legFrom
+     exporters.routing.legARate
+     exporters.routing.legBRate
+     faq.categories[0].id
+     faq.categories[0].items[1].links[0].href
+     faq.categories[0].items[2].links[0].href
+     faq.categories[0].items[6].links[0].href
+     faq.categories[0].items[7].links[0].href
+     faq.categories[0].items[7].links[1].href
+     faq.categories[0].items[7].links[2].href
+     faq.categories[0].items[8].links[0].href
+     faq.categories[0].items[9].links[0].href
+     faq.categories[0].items[10].links[0].href
+     faq.categories[0].items[11].links[0].href
+     faq.categories[0].items[12].links[0].href
+     faq.categories[0].items[12].links[1].href
+     faq.categories[0].items[13].links[1].href
+     faq.categories[0].items[13].links[2].href
+     faq.categories[1].id
+     faq.categories[1].items[0].links[0].href
+     faq.categories[1].items[1].links[0].href
+     faq.categories[1].items[2].links[0].href
+     faq.categories[1].items[2].links[1].href
+     faq.categories[1].items[3].links[0].href
+     faq.categories[1].items[3].links[1].href
+     faq.categories[1].items[4].links[0].href
+     faq.categories[1].items[5].links[0].href
+     faq.categories[1].items[6].links[0].href
+     faq.categories[2].id
+     faq.categories[2].items[0].links[0].href
+     faq.categories[2].items[0].links[1].href
+     faq.categories[2].items[1].links[0].href
+     faq.categories[2].items[2].links[0].href
+     faq.categories[2].items[3].links[0].href
+     faq.categories[2].items[4].links[0].href
+     faq.categories[2].items[5].links[0].href
+     faq.categories[2].items[6].links[0].href
+     faq.categories[2].items[7].links[0].href
+     home.trust.experience
+     home.trust.carriers
+     home.trust.cd
+     home.trust.cdLabel
+     home.trust.bond
+     home.audience.exportersChip1
+     home.ports.list[0]
+     home.ports.list[1]
+     home.ports.list[2]
+     home.ports.list[3]
+     home.ports.list[4]
+     home.ports.list[5]
+     notFound.badge
+     quote.placeholders.make
+     quote.placeholders.model
+     quote.form.email
+     quote.form.zip
+     services.cards.services[15].title
+     shipMycar.pricingTiers.rows[0].open
+     shipMycar.pricingTiers.rows[0].enclosed
+     shipMycar.pricingTiers.rows[1].open
+     shipMycar.pricingTiers.rows[1].enclosed
+     shipMycar.pricingTiers.rows[2].open
+     shipMycar.pricingTiers.rows[2].enclosed
+

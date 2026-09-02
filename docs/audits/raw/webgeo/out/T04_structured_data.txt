@@ -1,0 +1,178 @@
+WEBGEO T04 — STRUCTURED DATA, MEASURED ON dist/ (what a non-JS crawler receives)
+prerendered pages found: 143
+
+SCHEMA TYPES ACROSS THE SITE (route count carrying each type)
+   143  LocalBusiness
+   143  PostalAddress
+   143  Country
+   143  PropertyValue
+   143  ContactPoint
+   143  OfferCatalog
+   143  Offer
+   143  Service
+   123  BreadcrumbList
+   123  ListItem
+    58  FAQPage
+    58  Question
+    58  Answer
+    20  Organization
+    18  BlogPosting
+    18  ImageObject
+    12  Audience
+     9  Person
+     5  BusinessAudience
+     1  CollectionPage
+     1  JobPosting
+     1  Place
+     1  PriceSpecification
+     1  PeopleAudience
+
+JSON-LD BLOCKS THAT FAILED TO PARSE: 0 (every block on every page is valid JSON)
+
+ROUTES WITH NO STRUCTURED DATA AT ALL: 0 of 143
+
+PER-ROUTE TYPES (every prerendered route)
+  /                                                    ContactPoint, Country, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /404                                                 ContactPoint, Country, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /about                                               BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /accessibility                                       ContactPoint, Country, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /atlanta-to-savannah-port-auto-transport             Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /auction-car-shipping                                Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /auction-to-port-transport                           Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /auction-transport-savings                           Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /blog                                                BreadcrumbList, CollectionPage, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, Organization, PostalAddress, PropertyValue, Service
+  /blog/75000-bond-claims-guide                        BlogPosting, BreadcrumbList, ContactPoint, Country, ImageObject, ListItem, LocalBusiness, Offer, OfferCatalog, Organization, Person, PostalAddress, PropertyValue, Service
+  /blog/auction-to-port-cost-breakdown-2026            BlogPosting, BreadcrumbList, ContactPoint, Country, ImageObject, ListItem, LocalBusiness, Offer, OfferCatalog, Organization, PostalAddress, PropertyValue, Service
+  /blog/bill-of-lading-pickup-delivery-guide           BlogPosting, BreadcrumbList, ContactPoint, Country, ImageObject, ListItem, LocalBusiness, Offer, OfferCatalog, Organization, Person, PostalAddress, PropertyValue, Service
+  /blog/carrier-coi-verification-guide                 BlogPosting, BreadcrumbList, ContactPoint, Country, ImageObject, ListItem, LocalBusiness, Offer, OfferCatalog, Organization, Person, PostalAddress, PropertyValue, Service
+  /blog/carrier-who-vanished                           BlogPosting, BreadcrumbList, ContactPoint, Country, ImageObject, ListItem, LocalBusiness, Offer, OfferCatalog, Organization, PostalAddress, PropertyValue, Service
+  /blog/central-dispatch-listing-decoded               BlogPosting, BreadcrumbList, ContactPoint, Country, ImageObject, ListItem, LocalBusiness, Offer, OfferCatalog, Organization, Person, PostalAddress, PropertyValue, Service
+  /blog/copart-for-international-buyers-complete-guide BlogPosting, BreadcrumbList, ContactPoint, Country, ImageObject, ListItem, LocalBusiness, Offer, OfferCatalog, Organization, PostalAddress, PropertyValue, Service
+  /blog/copart-iaa-manheim-comparison                  BlogPosting, BreadcrumbList, ContactPoint, Country, ImageObject, ListItem, LocalBusiness, Offer, OfferCatalog, Organization, PostalAddress, PropertyValue, Service
+  /blog/copart-storage-fees-real-cost-2026             BlogPosting, BreadcrumbList, ContactPoint, Country, ImageObject, ListItem, LocalBusiness, Offer, OfferCatalog, Organization, Person, PostalAddress, PropertyValue, Service
+  /blog/dealer-auction-pickup-guide                    BlogPosting, BreadcrumbList, ContactPoint, Country, ImageObject, ListItem, LocalBusiness, Offer, OfferCatalog, Organization, PostalAddress, PropertyValue, Service
+  /blog/enclosed-transport-when-to-skip                BlogPosting, BreadcrumbList, ContactPoint, Country, ImageObject, ListItem, LocalBusiness, Offer, OfferCatalog, Organization, PostalAddress, PropertyValue, Service
+  /blog/exporter-documentation-checklist               BlogPosting, BreadcrumbList, ContactPoint, Country, ImageObject, ListItem, LocalBusiness, Offer, OfferCatalog, Organization, PostalAddress, PropertyValue, Service
+  /blog/fmcsa-2026-new-rules                           BlogPosting, BreadcrumbList, ContactPoint, Country, ImageObject, ListItem, LocalBusiness, Offer, OfferCatalog, Organization, Person, PostalAddress, PropertyValue, Service
+  /blog/fmcsa-broker-recordkeeping-2026                BlogPosting, BreadcrumbList, ContactPoint, Country, ImageObject, ListItem, LocalBusiness, Offer, OfferCatalog, Organization, Person, PostalAddress, PropertyValue, Service
+  /blog/non-running-vehicle-shipping-playbook          BlogPosting, BreadcrumbList, ContactPoint, Country, ImageObject, ListItem, LocalBusiness, Offer, OfferCatalog, Organization, PostalAddress, PropertyValue, Service
+  /blog/outbox-pattern-dispatch                        BlogPosting, BreadcrumbList, ContactPoint, Country, ImageObject, ListItem, LocalBusiness, Offer, OfferCatalog, Organization, Person, PostalAddress, PropertyValue, Service
+  /blog/port-specific-export-newark-houston-savannah   BlogPosting, BreadcrumbList, ContactPoint, Country, ImageObject, ListItem, LocalBusiness, Offer, OfferCatalog, Organization, PostalAddress, PropertyValue, Service
+  /blog/winter-auto-transport-pricing                  BlogPosting, BreadcrumbList, ContactPoint, Country, ImageObject, ListItem, LocalBusiness, Offer, OfferCatalog, Organization, Person, PostalAddress, PropertyValue, Service
+  /boston-car-shipping                                 Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /car-shipping-cost                                   Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /careers                                             Answer, BreadcrumbList, ContactPoint, Country, FAQPage, JobPosting, ListItem, LocalBusiness, Offer, OfferCatalog, Organization, Place, PostalAddress, PropertyValue, Question, Service
+  /careers/apply                                       BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /certificate-of-origin                               Answer, Audience, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /chicago-to-port-newark-car-shipping                 Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /contact                                             BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /copart-gate-pass-guide                              BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /copart-international-shipping                       BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /copart-shipping                                     Answer, BreadcrumbList, BusinessAudience, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PeopleAudience, PostalAddress, PriceSpecification, PropertyValue, Question, Service
+  /copart-storage-fees                                 Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /cybertruck-shipping                                 Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /dallas-to-port-houston-auto-transport               Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /daytonacargo                                        ContactPoint, Country, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /dealer-auto-transport                               Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /dealer-quote                                        ContactPoint, Country, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /dealers                                             Answer, BreadcrumbList, BusinessAudience, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /door-to-port-auto-transport                         Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /electric-vehicle-port-delivery                      Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /enclosed-car-shipping                               Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /ev-auto-transport                                   Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /exporters                                           Answer, Audience, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /faq                                                 Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /florida-car-shipping                                Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /florida-to-jacksonville-port-car-shipping           Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /how-to-ship-a-car-bought-at-auction                 ContactPoint, Country, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /iaai-transport                                      Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /manheim-transport                                   Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /massachusetts-car-shipping                          Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /massachusetts-to-florida-car-shipping               Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /new-jersey-auto-transport                           Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /new-jersey-to-florida-car-shipping                  Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /newton-auto-transport                               Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /nj-export-warehouse-shipping-cost                   Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /open-car-shipping                                   Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /open-vs-enclosed-auto-transport                     ContactPoint, Country, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /pl                                                  ContactPoint, Country, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /pl/about                                            BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /pl/certificate-of-origin                            Answer, Audience, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /pl/contact                                          BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /pl/dealers                                          Answer, BreadcrumbList, BusinessAudience, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /pl/exporters                                        Answer, Audience, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /pl/faq                                              Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /pl/ports/baltimore                                  BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /pl/ports/houston                                    BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /pl/ports/jacksonville                               BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /pl/ports/los-angeles                                BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /pl/ports/newark                                     BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /pl/ports/savannah                                   BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /pl/quote                                            ContactPoint, Country, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /pl/services                                         BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /pl/ship-my-car                                      Audience, BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /pl/track                                            BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /pl/transport-z-aukcji                               Answer, ContactPoint, Country, FAQPage, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /pl/transport-z-usa                                  Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /pl/wysylka-auta-z-usa                               Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /ports/baltimore                                     BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ports/houston                                       BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ports/jacksonville                                  BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ports/los-angeles                                   BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ports/newark                                        BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ports/savannah                                      BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /privacy                                             ContactPoint, Country, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /quote                                               ContactPoint, Country, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /quote-verification-failed                           ContactPoint, Country, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /quote-verified                                      ContactPoint, Country, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ru                                                  ContactPoint, Country, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ru/about                                            BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ru/certificate-of-origin                            Answer, Audience, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /ru/contact                                          BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ru/copart-i-iaai                                    Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /ru/dealers                                          Answer, BreadcrumbList, BusinessAudience, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /ru/dostavka-avto-iz-usa                             Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /ru/exporters                                        Answer, Audience, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /ru/faq                                              Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /ru/perevozka-avto                                   Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /ru/ports/baltimore                                  BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ru/ports/houston                                    BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ru/ports/jacksonville                               BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ru/ports/los-angeles                                BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ru/ports/newark                                     BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ru/ports/savannah                                   BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ru/quote                                            ContactPoint, Country, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ru/services                                         BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ru/ship-my-car                                      Audience, BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ru/track                                            BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /salvage-car-shipping                                Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /services                                            BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ship-my-car                                         Audience, BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /state-to-state-car-shipping                         Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /terms                                               ContactPoint, Country, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /tesla-car-shipping                                  Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /texas-auto-transport                                Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /texas-to-newark-port-auto-transport                 Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /track                                               BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ua                                                  ContactPoint, Country, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ua/about                                            BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ua/certificate-of-origin                            Answer, Audience, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /ua/contact                                          BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ua/copart-ta-iaai                                   Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /ua/dealers                                          Answer, BreadcrumbList, BusinessAudience, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /ua/dostavka-avto-z-usa                              Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /ua/exporters                                        Answer, Audience, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /ua/faq                                              Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /ua/import-z-usa                                     Answer, BreadcrumbList, ContactPoint, Country, FAQPage, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Question, Service
+  /ua/ports/baltimore                                  BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ua/ports/houston                                    BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ua/ports/jacksonville                               BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ua/ports/los-angeles                                BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ua/ports/newark                                     BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ua/ports/savannah                                   BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ua/quote                                            ContactPoint, Country, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ua/services                                         BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ua/ship-my-car                                      Audience, BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /ua/track                                            BreadcrumbList, ContactPoint, Country, ListItem, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+  /what-is-a-bill-of-lading                            ContactPoint, Country, LocalBusiness, Offer, OfferCatalog, PostalAddress, PropertyValue, Service
+

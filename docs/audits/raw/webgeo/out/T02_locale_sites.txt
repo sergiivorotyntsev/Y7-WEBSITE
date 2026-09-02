@@ -1,0 +1,172 @@
+WEBGEO T02b — EVERY PLACE THAT ENUMERATES THE LOCALE SET
+HEAD: 08c7565fd3c2fd3f73eeecf98735611a1c2857da
+
+$ git grep -n "'pl'" -- . | grep -E "ua|ru"  (co-occurrence, not a guessed filename)
+public/sitemap.xml:13:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl"/>
+public/sitemap.xml:14:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru"/>
+public/sitemap.xml:24:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl"/>
+public/sitemap.xml:25:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru"/>
+public/sitemap.xml:35:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl"/>
+public/sitemap.xml:36:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru"/>
+public/sitemap.xml:46:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl"/>
+public/sitemap.xml:47:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru"/>
+public/sitemap.xml:57:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/services"/>
+public/sitemap.xml:58:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/services"/>
+public/sitemap.xml:68:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/services"/>
+public/sitemap.xml:69:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/services"/>
+public/sitemap.xml:79:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/services"/>
+public/sitemap.xml:80:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/services"/>
+public/sitemap.xml:90:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/services"/>
+public/sitemap.xml:91:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/services"/>
+public/sitemap.xml:101:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/dealers"/>
+public/sitemap.xml:102:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/dealers"/>
+public/sitemap.xml:112:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/dealers"/>
+public/sitemap.xml:113:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/dealers"/>
+public/sitemap.xml:123:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/dealers"/>
+public/sitemap.xml:124:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/dealers"/>
+public/sitemap.xml:134:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/dealers"/>
+public/sitemap.xml:135:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/dealers"/>
+public/sitemap.xml:145:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/exporters"/>
+public/sitemap.xml:146:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/exporters"/>
+public/sitemap.xml:156:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/exporters"/>
+public/sitemap.xml:157:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/exporters"/>
+public/sitemap.xml:167:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/exporters"/>
+public/sitemap.xml:168:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/exporters"/>
+public/sitemap.xml:178:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/exporters"/>
+public/sitemap.xml:179:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/exporters"/>
+public/sitemap.xml:189:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ship-my-car"/>
+public/sitemap.xml:190:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ship-my-car"/>
+public/sitemap.xml:200:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ship-my-car"/>
+public/sitemap.xml:201:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ship-my-car"/>
+public/sitemap.xml:211:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ship-my-car"/>
+public/sitemap.xml:212:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ship-my-car"/>
+public/sitemap.xml:222:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ship-my-car"/>
+public/sitemap.xml:223:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ship-my-car"/>
+public/sitemap.xml:233:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/about"/>
+public/sitemap.xml:234:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/about"/>
+public/sitemap.xml:244:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/about"/>
+public/sitemap.xml:245:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/about"/>
+public/sitemap.xml:255:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/about"/>
+public/sitemap.xml:256:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/about"/>
+public/sitemap.xml:266:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/about"/>
+public/sitemap.xml:267:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/about"/>
+public/sitemap.xml:277:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/contact"/>
+public/sitemap.xml:278:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/contact"/>
+public/sitemap.xml:288:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/contact"/>
+public/sitemap.xml:289:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/contact"/>
+public/sitemap.xml:299:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/contact"/>
+public/sitemap.xml:300:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/contact"/>
+public/sitemap.xml:310:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/contact"/>
+public/sitemap.xml:311:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/contact"/>
+public/sitemap.xml:321:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/faq"/>
+public/sitemap.xml:322:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/faq"/>
+public/sitemap.xml:332:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/faq"/>
+public/sitemap.xml:333:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/faq"/>
+public/sitemap.xml:343:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/faq"/>
+public/sitemap.xml:344:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/faq"/>
+public/sitemap.xml:354:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/faq"/>
+public/sitemap.xml:355:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/faq"/>
+public/sitemap.xml:365:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/track"/>
+public/sitemap.xml:366:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/track"/>
+public/sitemap.xml:376:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/track"/>
+public/sitemap.xml:377:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/track"/>
+public/sitemap.xml:387:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/track"/>
+public/sitemap.xml:388:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/track"/>
+public/sitemap.xml:398:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/track"/>
+public/sitemap.xml:399:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/track"/>
+public/sitemap.xml:409:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/quote"/>
+public/sitemap.xml:410:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/quote"/>
+public/sitemap.xml:420:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/quote"/>
+public/sitemap.xml:421:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/quote"/>
+public/sitemap.xml:431:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/quote"/>
+public/sitemap.xml:432:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/quote"/>
+public/sitemap.xml:442:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/quote"/>
+public/sitemap.xml:443:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/quote"/>
+public/sitemap.xml:453:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/certificate-of-origin"/>
+public/sitemap.xml:454:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/certificate-of-origin"/>
+public/sitemap.xml:464:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/certificate-of-origin"/>
+public/sitemap.xml:465:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/certificate-of-origin"/>
+public/sitemap.xml:475:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/certificate-of-origin"/>
+public/sitemap.xml:476:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/certificate-of-origin"/>
+public/sitemap.xml:486:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/certificate-of-origin"/>
+public/sitemap.xml:487:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/certificate-of-origin"/>
+public/sitemap.xml:499:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/newark"/>
+public/sitemap.xml:500:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/newark"/>
+public/sitemap.xml:510:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/newark"/>
+public/sitemap.xml:511:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/newark"/>
+public/sitemap.xml:521:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/newark"/>
+public/sitemap.xml:522:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/newark"/>
+public/sitemap.xml:532:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/newark"/>
+public/sitemap.xml:533:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/newark"/>
+public/sitemap.xml:543:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/houston"/>
+public/sitemap.xml:544:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/houston"/>
+public/sitemap.xml:554:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/houston"/>
+public/sitemap.xml:555:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/houston"/>
+public/sitemap.xml:565:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/houston"/>
+public/sitemap.xml:566:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/houston"/>
+public/sitemap.xml:576:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/houston"/>
+public/sitemap.xml:577:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/houston"/>
+public/sitemap.xml:587:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/savannah"/>
+public/sitemap.xml:588:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/savannah"/>
+public/sitemap.xml:598:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/savannah"/>
+public/sitemap.xml:599:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/savannah"/>
+public/sitemap.xml:609:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/savannah"/>
+public/sitemap.xml:610:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/savannah"/>
+public/sitemap.xml:620:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/savannah"/>
+public/sitemap.xml:621:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/savannah"/>
+public/sitemap.xml:631:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/los-angeles"/>
+public/sitemap.xml:632:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/los-angeles"/>
+public/sitemap.xml:642:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/los-angeles"/>
+public/sitemap.xml:643:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/los-angeles"/>
+public/sitemap.xml:653:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/los-angeles"/>
+public/sitemap.xml:654:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/los-angeles"/>
+public/sitemap.xml:664:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/los-angeles"/>
+public/sitemap.xml:665:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/los-angeles"/>
+public/sitemap.xml:675:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/baltimore"/>
+public/sitemap.xml:676:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/baltimore"/>
+public/sitemap.xml:686:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/baltimore"/>
+public/sitemap.xml:687:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/baltimore"/>
+public/sitemap.xml:697:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/baltimore"/>
+public/sitemap.xml:698:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/baltimore"/>
+public/sitemap.xml:708:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/baltimore"/>
+public/sitemap.xml:709:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/baltimore"/>
+public/sitemap.xml:719:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/jacksonville"/>
+public/sitemap.xml:720:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/jacksonville"/>
+public/sitemap.xml:730:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/jacksonville"/>
+public/sitemap.xml:731:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/jacksonville"/>
+public/sitemap.xml:741:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/jacksonville"/>
+public/sitemap.xml:742:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/jacksonville"/>
+public/sitemap.xml:752:    <xhtml:link rel="alternate" hreflang="pl" href="https://www.y7agency.com/pl/ports/jacksonville"/>
+public/sitemap.xml:753:    <xhtml:link rel="alternate" hreflang="ru" href="https://www.y7agency.com/ru/ports/jacksonville"/>
+scripts/generateSitemap.js:296:    `    <xhtml:link rel="alternate" hreflang="pl" href="${BASE}${group.pl}"/>`,
+scripts/generateSitemap.js:297:    `    <xhtml:link rel="alternate" hreflang="ru" href="${BASE}${group.ru}"/>`,
+scripts/prerender.mjs:574:  ...['ua', 'pl', 'ru'].flatMap((lang) => [
+scripts/prerender.mjs:590:  ...['ua', 'pl', 'ru'].flatMap((lang) => PORT_SLUGS.map((s) => `/${lang}/ports/${s}`)),
+src/App.jsx:200:            {['ua', 'pl', 'ru'].flatMap((lang) => [
+src/components/HreflangTags.jsx:34:      <link rel="alternate" hrefLang="pl" href={plUrl} />
+src/components/HreflangTags.jsx:36:      <link rel="alternate" hrefLang="ru" href={ruUrl} />
+src/components/PageMeta.jsx:7:const HTML_LANG = { en: 'en', ua: 'uk', pl: 'pl', ru: 'ru' };
+src/i18n.js:114:const SUPPORTED = ['en', 'pl', 'ua', 'ru'];
+src/lib/localePaths.js:12:export const SUPPORTED_LOCALES = ['en', 'pl', 'ua', 'ru'];
+src/lib/localePaths.js:13:export const LOCALIZED_PREFIXES = ['pl', 'ua', 'ru'];
+src/pages/portal/Onboarding.jsx:1037:  const effectiveLang = ['en', 'ru', 'pl', 'ua'].includes(lang) ? lang : 'en';
+
+$ lang/locale regexes:
+scripts/generateSitemap.js:142:  if (/^(\/(ua|pl|ru))?\/ports\//.test(path)) {
+scripts/generateSitemap.js:145:    const base = path.replace(/^\/(ua|pl|ru)(?=\/|$)/, '') || '/';
+scripts/generateSitemap.js:267:  if (path === '/' || /^\/(ua|pl|ru)$/.test(path)) {
+server.js:220:  const normalized = p.replace(/^\/(pl|ua|ru)/, '') || '/';
+server.js:231:  if (/^\/((pl|ua|ru)\/)?quote\/[^/]+\/[^/]+$/.test(p)) return true;
+src/App.jsx:140: * 404 view when the segment is not a real localized prefix (pl|ua|ru); the
+src/components/ContextualCTA.jsx:21:  const m = location.pathname.match(/^\/(ua|pl|ru)(\/|$)/);
+src/components/Header.jsx:48:  const localeMatch = location.pathname.match(/^\/(ua|pl|ru)(\/|$)/);
+src/components/Header.jsx:54:    const base = location.pathname.replace(/^\/(ua|pl|ru)(\/|$)/, '/').replace(/\/+$/, '') || '/';
+src/components/Header.jsx:89:  const servicesMatch = /^\/(ua|pl|ru)?\/?(services|dealers|exporters|ship-my-car|door-to-port)/;
+src/components/Header.jsx:90:  const resourcesMatch = /^\/(ua|pl|ru)?\/?(blog|faq|about)/;
+src/components/Header.jsx:91:  const intlMatch = /^\/(ua|pl|ru)\/(import-z-usa|transport-z-usa|dostavka-avto-iz-usa|copart-ta-iaai|transport-z-aukcji|copart-i-iaai|dostavka-avto-z-usa|wysylka-auta-z-usa|perevozka-avto)/;
+src/components/LocaleDetector.jsx:5:const LOCALE_PREFIX = /^\/(ua|pl|ru)(\/|$)/;
+src/components/PageMeta.jsx:10:  const m = pathname.match(/^\/(ua|pl|ru)(\/|$)/);
+src/i18n.js:128:  const m = window.location.pathname.match(/^\/(ua|pl|ru)(\/|$)/);
+src/lib/localePaths.js:29:const LOCALE_PREFIX_RE = /^\/(ua|pl|ru)(\/.*)?$/;
+src/pages/Home.jsx:32:  const localeMatch = location.pathname.match(/^\/(ua|pl|ru)(\/|$)/);
+src/pages/NotFound.jsx:10:  const m = location.pathname.match(/^\/(ua|pl|ru)(\/|$)/);

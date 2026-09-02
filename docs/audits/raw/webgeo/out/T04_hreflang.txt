@@ -1,0 +1,248 @@
+WEBGEO T04.4 — HREFLANG CORRECTNESS
+
+Sample: the five routes the brief asks for, each in all four locales.
+Checked: (a) does the page emit hreflang at all; (b) are all four locales named;
+(c) is x-default present; (d) is the UA prefix mapped to hreflang "uk" (the ISO
+    language code) rather than "ua" (which is the COUNTRY code for Ukraine and is
+    invalid as a language subtag); (e) is the page self-referential.
+
+============================================================================
+SAMPLE ROUTE: /
+============================================================================
+  /                                  html lang=en     alternates=8  [en, en-US, uk, uk-UA, pl, pl-PL, ru, x-default]
+      canonical: https://www.y7agency.com/
+      OK
+        en         https://www.y7agency.com/
+        en-US      https://www.y7agency.com/
+        uk         https://www.y7agency.com/ua
+        uk-UA      https://www.y7agency.com/ua
+        pl         https://www.y7agency.com/pl
+        pl-PL      https://www.y7agency.com/pl
+        ru         https://www.y7agency.com/ru
+        x-default  https://www.y7agency.com/
+  /ua                                html lang=uk     alternates=8  [en, en-US, uk, uk-UA, pl, pl-PL, ru, x-default]
+      canonical: https://www.y7agency.com/ua
+      OK
+        en         https://www.y7agency.com/
+        en-US      https://www.y7agency.com/
+        uk         https://www.y7agency.com/ua
+        uk-UA      https://www.y7agency.com/ua
+        pl         https://www.y7agency.com/pl
+        pl-PL      https://www.y7agency.com/pl
+        ru         https://www.y7agency.com/ru
+        x-default  https://www.y7agency.com/
+  /pl                                html lang=pl     alternates=8  [en, en-US, uk, uk-UA, pl, pl-PL, ru, x-default]
+      canonical: https://www.y7agency.com/pl
+      OK
+        en         https://www.y7agency.com/
+        en-US      https://www.y7agency.com/
+        uk         https://www.y7agency.com/ua
+        uk-UA      https://www.y7agency.com/ua
+        pl         https://www.y7agency.com/pl
+        pl-PL      https://www.y7agency.com/pl
+        ru         https://www.y7agency.com/ru
+        x-default  https://www.y7agency.com/
+  /ru                                html lang=ru     alternates=8  [en, en-US, uk, uk-UA, pl, pl-PL, ru, x-default]
+      canonical: https://www.y7agency.com/ru
+      OK
+        en         https://www.y7agency.com/
+        en-US      https://www.y7agency.com/
+        uk         https://www.y7agency.com/ua
+        uk-UA      https://www.y7agency.com/ua
+        pl         https://www.y7agency.com/pl
+        pl-PL      https://www.y7agency.com/pl
+        ru         https://www.y7agency.com/ru
+        x-default  https://www.y7agency.com/
+
+============================================================================
+SAMPLE ROUTE: /exporters
+============================================================================
+  /exporters                         html lang=en     alternates=8  [en, en-US, uk, uk-UA, pl, pl-PL, ru, x-default]
+      canonical: https://www.y7agency.com/exporters
+      OK
+        en         https://www.y7agency.com/exporters
+        en-US      https://www.y7agency.com/exporters
+        uk         https://www.y7agency.com/ua/exporters
+        uk-UA      https://www.y7agency.com/ua/exporters
+        pl         https://www.y7agency.com/pl/exporters
+        pl-PL      https://www.y7agency.com/pl/exporters
+        ru         https://www.y7agency.com/ru/exporters
+        x-default  https://www.y7agency.com/exporters
+  /ua/exporters                      html lang=uk     alternates=8  [en, en-US, uk, uk-UA, pl, pl-PL, ru, x-default]
+      canonical: https://www.y7agency.com/ua/exporters
+      OK
+        en         https://www.y7agency.com/exporters
+        en-US      https://www.y7agency.com/exporters
+        uk         https://www.y7agency.com/ua/exporters
+        uk-UA      https://www.y7agency.com/ua/exporters
+        pl         https://www.y7agency.com/pl/exporters
+        pl-PL      https://www.y7agency.com/pl/exporters
+        ru         https://www.y7agency.com/ru/exporters
+        x-default  https://www.y7agency.com/exporters
+  /pl/exporters                      html lang=pl     alternates=8  [en, en-US, uk, uk-UA, pl, pl-PL, ru, x-default]
+      canonical: https://www.y7agency.com/pl/exporters
+      OK
+        en         https://www.y7agency.com/exporters
+        en-US      https://www.y7agency.com/exporters
+        uk         https://www.y7agency.com/ua/exporters
+        uk-UA      https://www.y7agency.com/ua/exporters
+        pl         https://www.y7agency.com/pl/exporters
+        pl-PL      https://www.y7agency.com/pl/exporters
+        ru         https://www.y7agency.com/ru/exporters
+        x-default  https://www.y7agency.com/exporters
+  /ru/exporters                      html lang=ru     alternates=8  [en, en-US, uk, uk-UA, pl, pl-PL, ru, x-default]
+      canonical: https://www.y7agency.com/ru/exporters
+      OK
+        en         https://www.y7agency.com/exporters
+        en-US      https://www.y7agency.com/exporters
+        uk         https://www.y7agency.com/ua/exporters
+        uk-UA      https://www.y7agency.com/ua/exporters
+        pl         https://www.y7agency.com/pl/exporters
+        pl-PL      https://www.y7agency.com/pl/exporters
+        ru         https://www.y7agency.com/ru/exporters
+        x-default  https://www.y7agency.com/exporters
+
+============================================================================
+SAMPLE ROUTE: /dealers
+============================================================================
+  /dealers                           html lang=en     alternates=8  [en, en-US, uk, uk-UA, pl, pl-PL, ru, x-default]
+      canonical: https://www.y7agency.com/dealers
+      OK
+        en         https://www.y7agency.com/dealers
+        en-US      https://www.y7agency.com/dealers
+        uk         https://www.y7agency.com/ua/dealers
+        uk-UA      https://www.y7agency.com/ua/dealers
+        pl         https://www.y7agency.com/pl/dealers
+        pl-PL      https://www.y7agency.com/pl/dealers
+        ru         https://www.y7agency.com/ru/dealers
+        x-default  https://www.y7agency.com/dealers
+  /ua/dealers                        html lang=uk     alternates=8  [en, en-US, uk, uk-UA, pl, pl-PL, ru, x-default]
+      canonical: https://www.y7agency.com/ua/dealers
+      OK
+        en         https://www.y7agency.com/dealers
+        en-US      https://www.y7agency.com/dealers
+        uk         https://www.y7agency.com/ua/dealers
+        uk-UA      https://www.y7agency.com/ua/dealers
+        pl         https://www.y7agency.com/pl/dealers
+        pl-PL      https://www.y7agency.com/pl/dealers
+        ru         https://www.y7agency.com/ru/dealers
+        x-default  https://www.y7agency.com/dealers
+  /pl/dealers                        html lang=pl     alternates=8  [en, en-US, uk, uk-UA, pl, pl-PL, ru, x-default]
+      canonical: https://www.y7agency.com/pl/dealers
+      OK
+        en         https://www.y7agency.com/dealers
+        en-US      https://www.y7agency.com/dealers
+        uk         https://www.y7agency.com/ua/dealers
+        uk-UA      https://www.y7agency.com/ua/dealers
+        pl         https://www.y7agency.com/pl/dealers
+        pl-PL      https://www.y7agency.com/pl/dealers
+        ru         https://www.y7agency.com/ru/dealers
+        x-default  https://www.y7agency.com/dealers
+  /ru/dealers                        html lang=ru     alternates=8  [en, en-US, uk, uk-UA, pl, pl-PL, ru, x-default]
+      canonical: https://www.y7agency.com/ru/dealers
+      OK
+        en         https://www.y7agency.com/dealers
+        en-US      https://www.y7agency.com/dealers
+        uk         https://www.y7agency.com/ua/dealers
+        uk-UA      https://www.y7agency.com/ua/dealers
+        pl         https://www.y7agency.com/pl/dealers
+        pl-PL      https://www.y7agency.com/pl/dealers
+        ru         https://www.y7agency.com/ru/dealers
+        x-default  https://www.y7agency.com/dealers
+
+============================================================================
+SAMPLE ROUTE: /certificate-of-origin
+============================================================================
+  /certificate-of-origin             html lang=en     alternates=8  [en, en-US, uk, uk-UA, pl, pl-PL, ru, x-default]
+      canonical: https://www.y7agency.com/certificate-of-origin
+      OK
+        en         https://www.y7agency.com/certificate-of-origin
+        en-US      https://www.y7agency.com/certificate-of-origin
+        uk         https://www.y7agency.com/ua/certificate-of-origin
+        uk-UA      https://www.y7agency.com/ua/certificate-of-origin
+        pl         https://www.y7agency.com/pl/certificate-of-origin
+        pl-PL      https://www.y7agency.com/pl/certificate-of-origin
+        ru         https://www.y7agency.com/ru/certificate-of-origin
+        x-default  https://www.y7agency.com/certificate-of-origin
+  /ua/certificate-of-origin          html lang=uk     alternates=8  [en, en-US, uk, uk-UA, pl, pl-PL, ru, x-default]
+      canonical: https://www.y7agency.com/ua/certificate-of-origin
+      OK
+        en         https://www.y7agency.com/certificate-of-origin
+        en-US      https://www.y7agency.com/certificate-of-origin
+        uk         https://www.y7agency.com/ua/certificate-of-origin
+        uk-UA      https://www.y7agency.com/ua/certificate-of-origin
+        pl         https://www.y7agency.com/pl/certificate-of-origin
+        pl-PL      https://www.y7agency.com/pl/certificate-of-origin
+        ru         https://www.y7agency.com/ru/certificate-of-origin
+        x-default  https://www.y7agency.com/certificate-of-origin
+  /pl/certificate-of-origin          html lang=pl     alternates=8  [en, en-US, uk, uk-UA, pl, pl-PL, ru, x-default]
+      canonical: https://www.y7agency.com/pl/certificate-of-origin
+      OK
+        en         https://www.y7agency.com/certificate-of-origin
+        en-US      https://www.y7agency.com/certificate-of-origin
+        uk         https://www.y7agency.com/ua/certificate-of-origin
+        uk-UA      https://www.y7agency.com/ua/certificate-of-origin
+        pl         https://www.y7agency.com/pl/certificate-of-origin
+        pl-PL      https://www.y7agency.com/pl/certificate-of-origin
+        ru         https://www.y7agency.com/ru/certificate-of-origin
+        x-default  https://www.y7agency.com/certificate-of-origin
+  /ru/certificate-of-origin          html lang=ru     alternates=8  [en, en-US, uk, uk-UA, pl, pl-PL, ru, x-default]
+      canonical: https://www.y7agency.com/ru/certificate-of-origin
+      OK
+        en         https://www.y7agency.com/certificate-of-origin
+        en-US      https://www.y7agency.com/certificate-of-origin
+        uk         https://www.y7agency.com/ua/certificate-of-origin
+        uk-UA      https://www.y7agency.com/ua/certificate-of-origin
+        pl         https://www.y7agency.com/pl/certificate-of-origin
+        pl-PL      https://www.y7agency.com/pl/certificate-of-origin
+        ru         https://www.y7agency.com/ru/certificate-of-origin
+        x-default  https://www.y7agency.com/certificate-of-origin
+
+============================================================================
+SAMPLE ROUTE: /services
+============================================================================
+  /services                          html lang=en     alternates=8  [en, en-US, uk, uk-UA, pl, pl-PL, ru, x-default]
+      canonical: https://www.y7agency.com/services
+      OK
+        en         https://www.y7agency.com/services
+        en-US      https://www.y7agency.com/services
+        uk         https://www.y7agency.com/ua/services
+        uk-UA      https://www.y7agency.com/ua/services
+        pl         https://www.y7agency.com/pl/services
+        pl-PL      https://www.y7agency.com/pl/services
+        ru         https://www.y7agency.com/ru/services
+        x-default  https://www.y7agency.com/services
+  /ua/services                       html lang=uk     alternates=8  [en, en-US, uk, uk-UA, pl, pl-PL, ru, x-default]
+      canonical: https://www.y7agency.com/ua/services
+      OK
+        en         https://www.y7agency.com/services
+        en-US      https://www.y7agency.com/services
+        uk         https://www.y7agency.com/ua/services
+        uk-UA      https://www.y7agency.com/ua/services
+        pl         https://www.y7agency.com/pl/services
+        pl-PL      https://www.y7agency.com/pl/services
+        ru         https://www.y7agency.com/ru/services
+        x-default  https://www.y7agency.com/services
+  /pl/services                       html lang=pl     alternates=8  [en, en-US, uk, uk-UA, pl, pl-PL, ru, x-default]
+      canonical: https://www.y7agency.com/pl/services
+      OK
+        en         https://www.y7agency.com/services
+        en-US      https://www.y7agency.com/services
+        uk         https://www.y7agency.com/ua/services
+        uk-UA      https://www.y7agency.com/ua/services
+        pl         https://www.y7agency.com/pl/services
+        pl-PL      https://www.y7agency.com/pl/services
+        ru         https://www.y7agency.com/ru/services
+        x-default  https://www.y7agency.com/services
+  /ru/services                       html lang=ru     alternates=8  [en, en-US, uk, uk-UA, pl, pl-PL, ru, x-default]
+      canonical: https://www.y7agency.com/ru/services
+      OK
+        en         https://www.y7agency.com/services
+        en-US      https://www.y7agency.com/services
+        uk         https://www.y7agency.com/ua/services
+        uk-UA      https://www.y7agency.com/ua/services
+        pl         https://www.y7agency.com/pl/services
+        pl-PL      https://www.y7agency.com/pl/services
+        ru         https://www.y7agency.com/ru/services
+        x-default  https://www.y7agency.com/services
+

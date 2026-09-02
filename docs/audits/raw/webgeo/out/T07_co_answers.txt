@@ -1,0 +1,55 @@
+WEBGEO T07 — ANSWERS, each by searching the dumped text
+
+=== Q2. Does the page state any condition on TITLE STATUS (clean / salvage / rebuilt)?
+  en: 2 hit(s)
+     sections.docs.eligPre
+        Before any documents move, we screen the vehicle itself. The VIN is decoded against the federal NHTSA vPIC database, and the plant country must be United States. The title type is checked at the same step: 
+     sections.docs.eligStrong
+        bill-of-sale-only, certificate of destruction, non-repairable, and parts-only titles are not eligible
+  pl: 3 hit(s)
+     sections.docs.eligPre
+        Zanim ruszą jakiekolwiek dokumenty, sprawdzamy sam pojazd. VIN jest dekodowany w federalnej bazie NHTSA vPIC, a krajem produkcji musi być USA. Na tym samym etapie sprawdzany jest typ tytułu własności: 
+     sections.docs.eligStrong
+        tytuły bill-of-sale-only, certificate of destruction, non-repairable i parts-only nie kwalifikują się
+     sections.docs.freeEvidence
+        Nie istnieje jeden obowiązkowy wzór świadectwa: praktyka UE dopuszcza dowolne dowody pochodzenia. eCO wystawione przez izbę wraz z dowodem pochodzenia, łańcuchem tytułu własności i konosamentem bezpośrednim to praktyczny pakiet dowodowy, który kompletuje ta lista.
+  ru: 2 hit(s)
+     sections.docs.eligPre
+        Прежде чем двигать какие-либо документы, мы проверяем сам автомобиль. VIN декодируется в федеральной базе NHTSA vPIC, и страной производства должны быть США. На этом же шаге проверяется тип тайтла: 
+     sections.docs.eligStrong
+        тайтлы bill-of-sale-only, certificate of destruction, non-repairable и parts-only не проходят
+  ua: 2 hit(s)
+     sections.docs.eligPre
+        Перш ніж рухати будь-які документи, ми перевіряємо сам автомобіль. VIN декодується у федеральній базі NHTSA vPIC, і країною виробництва мають бути США. На цьому ж кроці перевіряється тип тайтла: 
+     sections.docs.eligStrong
+        тайтли bill-of-sale-only, certificate of destruction, non-repairable і parts-only не проходять
+  VERDICT: a title-status condition IS stated — quoted above.
+  SHAPE OF THE CONDITION: it is a NEGATIVE list of four ineligible title types
+  (bill-of-sale-only, certificate of destruction, non-repairable, parts-only).
+  The page never uses the words clean / salvage / rebuilt, and never says that a
+  salvage or rebuilt title IS eligible — it is silent on the three types a buyer
+  is most likely to be holding.
+  Cross-reference: TRANSPORT services/co_screening.py fails exactly those four and
+  PASSES clean|salvage|rebuilt, so page and code AGREE on the exclusions. What the
+  page omits is the reassurance, not a condition.
+
+=== Q3. Price / turnaround / issuing chamber / regulation-with-date
+  price $99                            en:5  pl:5  ru:5  ua:5
+  price $150                           en:6  pl:6  ru:6  ua:6
+  turnaround (7 business days)         en:4  pl:4  ru:4  ua:4
+  issuing chamber (named?)             en:8  pl:8  ru:8  ua:8
+  regulation number                    en:5  pl:5  ru:5  ua:5
+  regulation date                      en:3  pl:3  ru:3  ua:3
+  second regulation (UCC-IA / 2026\/1422) en:5  pl:5  ru:5  ua:5
+  duty rates 0% / 10%                  en:7  pl:7  ru:7  ua:7
+
+  The chamber, quoted (EN):
+     intro: Under EU Regulation 2026/1455, in force since 1 July 2026, US-origin vehicles can enter the European Union at 0% import duty instead of the standard 10%. Proving US origin is the importer's job, and the Certificate of Origin is the practical way to do it. Y7 Logistics, a Licensed & Bonded FMCSA Brok
+     tldr.text: A Certificate of Origin documents a vehicle as US-origin, which is what EU Regulation 2026/1455 (in force since 1 July 2026) requires for the 0% import duty rate, in place of the standard 10%, on vehicles entering the EU. Y7 Logistics (Licensed & Bonded FMCSA Broker, MC #1741537) prepares and files 
+     sections.what.p1: EU Regulation 2026/1455, in force since 1 July 2026, sets a 0% import duty rate for US-origin vehicles entering the European Union, against the standard rate of 10%. The certificate itself is recommended, not mandatory: no single document is prescribed, and the burden of proving US origin sits with 
+     sections.docs.prep[3]: The assembled filing package, submitted to the chamber as standing agent.
+     sections.docs.freeEvidence: There is no single mandatory certificate form: EU practice accepts free evidence of origin. A chamber-issued eCO together with the origin proof, the title chain, and the through bill of lading is the practical evidence package this checklist assembles.
+     sections.process.steps[1].rest:  As standing filing agent, we verify the eligibility checklist, prepare the certificate, and file it electronically with the issuing chamber.
+     faqs[0].a: No. No single document is prescribed, and customs accepts free evidence of origin. What is mandatory is the proof itself: the burden of establishing US origin sits with the importer, and an importer who cannot satisfy customs clears at the old rate. A chamber-issued eCO with the supporting package i
+     faqs[5].a: Y7 acts as a standing filing agent: we prepare the certificate from your shipment documents and file it electronically with the issuing chamber. You receive the issued eCO for your export document set.
+
