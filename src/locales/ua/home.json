@@ -136,6 +136,11 @@
     "proof3": "BOL, фото, контакти перевізника, статуси"
   },
   "coverage": {
+    "intlLinks": [
+      { "label": "Імпорт авто з США", "to": "/ua/import-z-usa" },
+      { "label": "Пригін з Copart та IAAI", "to": "/ua/copart-ta-iaai" },
+      { "label": "Доставка авто з США", "to": "/ua/dostavka-avto-z-usa" }
+    ],
     "kicker": "Покриття",
     "title": "Куди ми доставляємо"
   },

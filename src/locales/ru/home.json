@@ -136,6 +136,11 @@
     "proof3": "BOL, фото, контакты перевозчика, статусы"
   },
   "coverage": {
+    "intlLinks": [
+      { "label": "Доставка авто из США", "to": "/ru/dostavka-avto-iz-usa" },
+      { "label": "Copart и IAAI", "to": "/ru/copart-i-iaai" },
+      { "label": "Перевозка авто по США", "to": "/ru/perevozka-avto" }
+    ],
     "kicker": "Покрытие",
     "title": "Куда мы доставляем"
   },

@@ -136,6 +136,11 @@
     "proof3": "BOL, zdjęcia, kontakt do przewoźnika, aktualizacje statusu"
   },
   "coverage": {
+    "intlLinks": [
+      { "label": "Transport z USA", "to": "/pl/transport-z-usa" },
+      { "label": "Transport z aukcji Copart", "to": "/pl/transport-z-aukcji" },
+      { "label": "Wysyłka auta z USA", "to": "/pl/wysylka-auta-z-usa" }
+    ],
     "kicker": "Zasięg",
     "title": "Dokąd dostarczamy"
   },
