@@ -1,0 +1,19 @@
+route | canonical self? | hreflang n | robots | sitemap | inbound | words | EN twin | overlap w/ twin | title
+/pl/exporters | yes | 8 | index, follow | yes | 5 | 1375 | /exporters | 19% | Transport aut z USA do portu | Wysyłka z aukcji | Y7 Logisti
+/ua/dostavka-avto-z-usa | yes | 0 | index, follow | yes | 0 | 1092 | (unique) |  | Замовити пригін авто з США в Україну | Y7 Logistics
+/ru/ports/los-angeles | yes | 8 | index, follow | yes | 0 | 436 | /ports/los-angeles | 36% | Доставка авто в порт Los Angeles (Лос-Анджелес), CA | Y7 Log
+/ua/ports/savannah | yes | 8 | index, follow | yes | 0 | 406 | /ports/savannah | 36% | Доставка авто в порт Savannah (Саванна), GA | Y7 Logistics
+/ua/contact | yes | 8 | index, follow | yes | 19 | 178 | /contact | 33% | Контакти | Y7 Logistics
+/open-car-shipping | yes | 0 | index, follow | yes | 9 | 1716 | - |  | Open Car Shipping — Open Trailer Auto Transport | Y7 Logisti
+/ru/faq | yes | 8 | index, follow | yes | 0 | 1393 | /faq | 11% | FAQ по автоперевозкам — брокер или перевозчик, цены, аукцион
+/ua/dealers | yes | 8 | index, follow | yes | 2 | 1964 | /dealers | 10% | Відділ диспетчингу на аутсорсі для автодилерів | Y7 Logistic
+/ua | yes | 8 | index, follow | yes | 19 | 649 | / | 25% | Y7 Logistics | Nationwide Auto Transport
+/ru/ports/newark | yes | 8 | index, follow | yes | 0 | 412 | /ports/newark | 35% | Доставка авто в порт Newark (Ньюарк), NJ | Y7 Logistics
+/copart-international-shipping | yes | 0 | index, follow | yes | 12 | 755 | - |  | Copart International Shipping — US Auction to Forwarder Ware
+/ru/perevozka-avto | yes | 0 | index, follow | yes | 0 | 802 | (unique) |  | Заказать перевозку авто по США — Y7 Logistics
+/ua/copart-ta-iaai | yes | 0 | index, follow | yes | 1 | 1754 | (unique) |  | Copart — пригін авто з аукціону в Україну | Y7 Logistics
+/pl/wysylka-auta-z-usa | yes | 0 | index, follow | yes | 1 | 1374 | (unique) |  | Zamów transport auta z USA — dla Polski i Polonii w USA | Y7
+/ua/services | yes | 8 | index, follow | yes | 1 | 649 | /services | 24% | Послуги перевезення авто | Y7 Logistics
+/pl/dealers | yes | 8 | index, follow | yes | 2 | 2020 | /dealers | 11% | Zewnętrzny dział dyspozytury dla dealerów aut | Y7 Logistics
+/ua/ports/baltimore | yes | 8 | index, follow | yes | 0 | 412 | /ports/baltimore | 35% | Доставка авто в порт Baltimore (Балтимор), MD | Y7 Logistics
+/ua/ports/los-angeles | yes | 8 | index, follow | yes | 0 | 439 | /ports/los-angeles | 36% | Доставка авто в порт Los Angeles (Лос-Анджелес), CA | Y7 Log

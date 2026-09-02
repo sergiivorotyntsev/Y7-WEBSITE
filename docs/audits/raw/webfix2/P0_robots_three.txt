@@ -1,0 +1,7 @@
+user-agent                   /      assets    /portal/  /agreement       /api/    /review/     /promo/
+Googlebot-Image             ok          ok          ok          ok          ok          ok          ok
+AhrefsBot                   ok          ok          ok          ok          ok          ok          ok
+SemrushBot                  ok          ok          ok          ok          ok          ok          ok
+Googlebot                   ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK
+*                           ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK
+crawl-delay AhrefsBot: 10.0 SemrushBot: 10.0

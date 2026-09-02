@@ -1,0 +1,131 @@
+routes 143 missing files 0 []
+snapshots <20KB: []
+
+## JSON-LD: blocks 328 invalid(parse) 0 LocalBusiness-with-serviceType nodes 0
+routes with 0 ld blocks: []
+
+## Titles >70 chars: 27
+  96  /copart-international-shipping  "Copart International Shipping — US Auction to Forwarder Warehouse, Then Worldwide | Y7 Logistics"
+  90  /blog/copart-for-international-buyers-complete-guide  "How International Buyers Ship Cars from Copart — Step-by-Step 2026 Playbook | Y7 Logistics"
+  89  /blog/copart-storage-fees-real-cost-2026  "The Real Cost of Copart Storage Fees in 2026 — A Broker’s Honest Breakdown | Y7 Logistics"
+  88  /blog/auction-to-port-cost-breakdown-2026  "Auction to Port Cost Breakdown 2026 — Full Export Transport Pricing Guide | Y7 Logistics"
+  88  /blog/port-specific-export-newark-houston-savannah  "US Port Export Comparison — Newark vs Houston vs Savannah for Auto Export | Y7 Logistics"
+  87  /blog/bill-of-lading-pickup-delivery-guide  "Bill of Lading Guide — Verify Your Car Shipment at Pickup &amp; Delivery | Y7 Logistics"
+  86  /ru/faq  "FAQ по автоперевозкам — брокер или перевозчик, цены, аукционы и экспорт | Y7 Logistics"
+  85  /faq  "Auto Transport FAQ — Broker vs Carrier, Pricing, Auctions &amp; Export | Y7 Logistics"
+  85  /blog/enclosed-transport-when-to-skip  "Enclosed vs Open Car Transport — When to Skip the Premium (2026 Guide) | Y7 Logistics"
+  85  /blog/winter-auto-transport-pricing  "Winter Auto Transport Pricing 2026 — Why Rates Spike &amp; How to Save | Y7 Logistics"
+  85  /ua/faq  "FAQ з автоперевезень — брокер чи перевізник, ціни, аукціони та експорт | Y7 Logistics"
+  83  /copart-gate-pass-guide  "Copart Gate Pass Guide — How It Works, Common Failures, Yard Cutoffs | Y7 Logistics"
+  83  /blog/copart-iaa-manheim-comparison  "Copart vs IAA vs Manheim — Which Auto Auction Should You Use in 2026 | Y7 Logistics"
+  80  /nj-export-warehouse-shipping-cost  "NJ Export-Warehouse Shipping Cost — How Carrier Pricing Is Formed | Y7 Logistics"
+  80  /blog/central-dispatch-listing-decoded  "How to Read a Central Dispatch Load Listing — Broker's Guide 2026 | Y7 Logistics"
+  79  /florida-to-jacksonville-port-car-shipping  "Florida Auctions to Jacksonville Port Car Shipping — RoRo Export | Y7 Logistics"
+  79  /pl/faq  "FAQ transportu aut — broker a przewoźnik, ceny, aukcje i eksport | Y7 Logistics"
+  78  /door-to-port-auto-transport  "Door-to-Port Auto Transport Cost &amp; Transit Time to US Ports | Y7 Logistics"
+  77  /auction-transport-savings  "Save on Auction Car Transport — Broker Direct, Skip the Markup | Y7 Logistics"
+  77  /blog/dealer-auction-pickup-guide  "How Dealers Cut Auction Pickup Costs &amp; Storage Fees (2026) | Y7 Logistics"
+  77  /pl/transport-z-aukcji  "Sprowadzanie aut z Copart do Polski — przewodnik 2026 | Y7 &amp; DaytonaCargo"
+  76  /salvage-car-shipping  "Salvage Car Shipping — Copart &amp; IAAI Total-Loss Transport | Y7 Logistics"
+  76  /copart-storage-fees  "Copart Storage Fees Explained — Planning Guide Before You Bid | Y7 Logistics"
+  73  /exporters  "Auto Export Services — Auction to Port Delivery Nationwide | Y7 Logistics"
+  73  /blog/non-running-vehicle-shipping-playbook  "How to Ship a Non-Running Vehicle — Complete 2026 Playbook | Y7 Logistics"
+  72  /atlanta-to-savannah-port-auto-transport  "Atlanta to Savannah Port Auto Transport — Auction to Ship | Y7 Logistics"
+  71  /auction-car-shipping  "Auction Car Shipping — Copart, IAAI &amp; Manheim Pickup | Y7 Logistics"
+
+## Multiple H1: routes 0 ; distribution {"1":143}
+sample: []
+single/zero-H1 routes: / /services /dealers /exporters /ship-my-car /quote /quote-verified /quote-verification-failed /track /contact /faq /about /careers /careers/apply /dealer-quote /daytonacargo /privacy /terms /accessibility /car-shipping-cost /enclosed-car-shipping /auction-car-shipping /auction-transport-savings /copart-shipping /iaai-transport /manheim-transport /door-to-port-auto-transport /dealer-auto-transport /salvage-car-shipping /open-car-shipping /state-to-state-car-shipping /massachusetts-car-shipping /boston-car-shipping /newton-auto-transport /florida-car-shipping /new-jersey-auto-transport /nj-export-warehouse-shipping-cost /texas-auto-transport /massachusetts-to-florida-car-shipping /new-jersey-to-florida-car-shipping /texas-to-newark-port-auto-transport /chicago-to-port-newark-car-shipping /auction-to-port-transport /atlanta-to-savannah-port-auto-transport /dallas-to-port-houston-auto-transport /florida-to-jacksonville-port-car-shipping /tesla-car-shipping /ev-auto-transport /cybertruck-shipping /electric-vehicle-port-delivery /how-to-ship-a-car-bought-at-auction /open-vs-enclosed-auto-transport /what-is-a-bill-of-lading /copart-storage-fees /copart-gate-pass-guide /copart-international-shipping /certificate-of-origin /ports/newark /ports/houston /ports/savannah /ports/los-angeles /ports/baltimore /ports/jacksonville /blog /blog/carrier-who-vanished /blog/carrier-coi-verification-guide /blog/fmcsa-2026-new-rules /blog/outbox-pattern-dispatch /blog/dealer-auction-pickup-guide /blog/exporter-documentation-checklist /blog/fmcsa-broker-recordkeeping-2026 /blog/75000-bond-claims-guide /blog/copart-iaa-manheim-comparison /blog/auction-to-port-cost-breakdown-2026 /blog/central-dispatch-listing-decoded /blog/enclosed-transport-when-to-skip /blog/non-running-vehicle-shipping-playbook /blog/winter-auto-transport-pricing /blog/bill-of-lading-pickup-delivery-guide /blog/port-specific-export-newark-houston-savannah /blog/copart-storage-fees-real-cost-2026 /blog/copart-for-international-buyers-complete-guide /ua /ua/services /ua/dealers /ua/exporters /ua/ship-my-car /ua/track /ua/contact /ua/faq /ua/about /ua/quote /ua/certificate-of-origin /pl /pl/services /pl/dealers /pl/exporters /pl/ship-my-car /pl/track /pl/contact /pl/faq /pl/about /pl/quote /pl/certificate-of-origin /ru /ru/services /ru/dealers /ru/exporters /ru/ship-my-car /ru/track /ru/contact /ru/faq /ru/about /ru/quote /ru/certificate-of-origin /ua/ports/newark /ua/ports/houston /ua/ports/savannah /ua/ports/los-angeles /ua/ports/baltimore /ua/ports/jacksonville /pl/ports/newark /pl/ports/houston /pl/ports/savannah /pl/ports/los-angeles /pl/ports/baltimore /pl/ports/jacksonville /ru/ports/newark /ru/ports/houston /ru/ports/savannah /ru/ports/los-angeles /ru/ports/baltimore /ru/ports/jacksonville /pl/transport-z-usa /pl/transport-z-aukcji /pl/wysylka-auta-z-usa /ua/import-z-usa /ua/copart-ta-iaai /ua/dostavka-avto-z-usa /ru/dostavka-avto-iz-usa /ru/copart-i-iaai /ru/perevozka-avto /404
+
+## Text ratio <=0.10: 26
+  0.048  /careers/apply  (43388 bytes)
+  0.049  /quote-verified  (39484 bytes)
+  0.049  /quote-verification-failed  (39326 bytes)
+  0.053  /404  (40573 bytes)
+  0.063  /track  (41386 bytes)
+  0.064  /ua/track  (43401 bytes)
+  0.064  /pl/track  (41587 bytes)
+  0.064  /ru/track  (43307 bytes)
+  0.07  /contact  (44442 bytes)
+  0.071  /ru/contact  (46406 bytes)
+  0.072  /ua/contact  (46475 bytes)
+  0.073  /pl/contact  (44625 bytes)
+  0.075  /dealer-quote  (47824 bytes)
+  0.075  /blog  (149518 bytes)
+  0.079  /ru/quote  (51128 bytes)
+  0.08  /ua/quote  (51253 bytes)
+  0.081  /pl/quote  (48507 bytes)
+  0.083  /quote  (48443 bytes)
+  0.091  /accessibility  (38088 bytes)
+  0.097  /  (71639 bytes)
+  0.097  /ports/newark  (52011 bytes)
+  0.098  /ports/savannah  (52165 bytes)
+  0.099  /ports/houston  (52214 bytes)
+  0.1  /ports/baltimore  (52195 bytes)
+  0.1  /ru  (77122 bytes)
+  0.1  /ua/ports/savannah  (55382 bytes)
+
+## Inbound links to *certificate-of-origin (source -> count):
+  /auction-to-port-transport -> 2
+  /blog/auction-to-port-cost-breakdown-2026 -> 1
+  /blog/copart-for-international-buyers-complete-guide -> 1
+  /blog/exporter-documentation-checklist -> 1
+  /blog/port-specific-export-newark-houston-savannah -> 1
+  /certificate-of-origin -> 8
+  /copart-international-shipping -> 2
+  /door-to-port-auto-transport -> 2
+  /exporters -> 2
+  /nj-export-warehouse-shipping-cost -> 1
+  /pl/certificate-of-origin -> 8
+  /pl/exporters -> 2
+  /pl/ports/baltimore -> 1
+  /pl/ports/houston -> 1
+  /pl/ports/jacksonville -> 1
+  /pl/ports/los-angeles -> 1
+  /pl/ports/newark -> 1
+  /pl/ports/savannah -> 1
+  /pl/services -> 1
+  /pl/transport-z-aukcji -> 1
+  /pl/transport-z-usa -> 1
+  /ports/baltimore -> 1
+  /ports/houston -> 1
+  /ports/jacksonville -> 1
+  /ports/los-angeles -> 1
+  /ports/newark -> 1
+  /ports/savannah -> 1
+  /ru/certificate-of-origin -> 8
+  /ru/dostavka-avto-iz-usa -> 1
+  /ru/exporters -> 2
+  /ru/ports/baltimore -> 1
+  /ru/ports/houston -> 1
+  /ru/ports/jacksonville -> 1
+  /ru/ports/los-angeles -> 1
+  /ru/ports/newark -> 1
+  /ru/ports/savannah -> 1
+  /ru/services -> 1
+  /services -> 1
+  /ua/certificate-of-origin -> 8
+  /ua/exporters -> 2
+  /ua/import-z-usa -> 1
+  /ua/ports/baltimore -> 1
+  /ua/ports/houston -> 1
+  /ua/ports/jacksonville -> 1
+  /ua/ports/los-angeles -> 1
+  /ua/ports/newark -> 1
+  /ua/ports/savannah -> 1
+  /ua/services -> 1
+
+## hrefs containing delivery_zip: 24
+   /ports/newark /quote?delivery_zip=07114#top
+   /ports/houston /quote?delivery_zip=77029#top
+   /ports/savannah /quote?delivery_zip=31402#top
+   /ports/los-angeles /quote?delivery_zip=90731#top
+   /ports/baltimore /quote?delivery_zip=21224#top
+   /ports/jacksonville /quote?delivery_zip=32206#top
+   /ua/ports/newark /ua/quote?delivery_zip=07114#top
+   /ua/ports/houston /ua/quote?delivery_zip=77029#top
+   /ua/ports/savannah /ua/quote?delivery_zip=31402#top
+   /ua/ports/los-angeles /ua/quote?delivery_zip=90731#top
+
+## Internal hrefs to non-routes (target <- sources):
+  /images/hero-car.avif  <- 4 pages: / /ua /pl /ru

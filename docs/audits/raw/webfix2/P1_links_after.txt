@@ -1,0 +1,28 @@
+## inbound anchors (pages) to the 18 not-indexed URLs, after
+/pl/exporters                    22
+/ua/dostavka-avto-z-usa          1
+/ru/ports/los-angeles            22
+/ua/ports/savannah               22
+/ua/contact                      22
+/open-car-shipping               9
+/ru/faq                          22
+/ua/dealers                      22
+/ua                              93
+/ru/ports/newark                 22
+/copart-international-shipping   12
+/ru/perevozka-avto               1
+/ua/copart-ta-iaai               2
+/pl/wysylka-auta-z-usa           2
+/ua/services                     22
+/pl/dealers                      22
+/ua/ports/baltimore              22
+/ua/ports/los-angeles            22
+
+## inter-locale anchor matrix (from-locale rows -> to-locale cols), unique hrefs per page, summed
+from\to   en     pl     ua     ru
+en        3806     82     82     82
+pl         658    305     20     20
+ua         659     20    303     20
+ru         657     20     20    302
+
+pages carrying the switcher as anchors (hreflang="uk" ... >UA</a>): 142 / 143

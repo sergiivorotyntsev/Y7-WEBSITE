@@ -1,0 +1,9 @@
+=== [WEBFIX2-T01] local node server.js (PORT=3999), curl -sI, 2026-09-02T17:18:36Z, HEAD edcbcfa + server.js working copy
+/en/                                       301 /
+/en                                        301 /
+/en/ports/houston                          301 /ports/houston
+/en/ports/baltimore                        301 /ports/baltimore
+/en/quote/confirm/ORD123?token=abc         302 /quote/confirm/ORD123?token=abc
+/en/ports/houston?utm_source=x             301 /ports/houston?utm_source=x
+/uk/about                                  301 /ua/about
+/ua/faq                                    200 

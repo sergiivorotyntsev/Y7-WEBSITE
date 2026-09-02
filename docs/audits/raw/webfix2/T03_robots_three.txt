@@ -1,0 +1,22 @@
+=== BEFORE T03
+user-agent                   /      assets    /portal/  /agreement       /api/    /review/     /promo/  crawl-delay
+Googlebot-Image             ok          ok          ok          ok          ok          ok          ok         None
+AhrefsBot                   ok          ok          ok          ok          ok          ok          ok         10.0
+SemrushBot                  ok          ok          ok          ok          ok          ok          ok         10.0
+Googlebot                   ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK         None
+Bingbot                     ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK         None
+Claude-SearchBot            ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK         None
+*                           ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK         None
+
+edited 3 groups
+
+=== AFTER T03
+user-agent                   /      assets    /portal/  /agreement       /api/    /review/     /promo/  crawl-delay
+Googlebot-Image             ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK         None
+AhrefsBot                   ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK         10.0
+SemrushBot                  ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK         10.0
+Googlebot                   ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK         None
+Bingbot                     ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK         None
+Claude-SearchBot            ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK         None
+*                           ok          ok       BLOCK       BLOCK       BLOCK       BLOCK       BLOCK         None
+

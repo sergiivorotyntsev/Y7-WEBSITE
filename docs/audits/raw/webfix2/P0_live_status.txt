@@ -1,0 +1,17 @@
+=== live HEAD requests 2026-09-02T16:31:05Z (curl -sI, no follow)
+/ru/ru/exporters                 404 
+/pl/pl/exporters                 404 
+/ua/ua/exporters                 404 
+/en/                             404 
+/cdn-cgi/l/email-protection      404 
+/auction-to-port-shipping        301 https://www.y7agency.com/auction-to-port-transport
+/uk/about                        301 /ua/about
+/uk/ports/jacksonville           301 /ua/ports/jacksonville
+/en/ports/houston                404 
+/uk/quote                        301 /ua/quote
+/uk/faq                          301 /ua/faq
+/uk/ports/newark                 301 /ua/ports/newark
+/ua/dealer-quote                 404 
+/uk                              301 /ua
+/en/ports/baltimore              404 
+/ua/dealer-quote/                404 
