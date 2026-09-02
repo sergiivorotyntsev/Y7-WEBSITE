@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import EntityTldr from '../components/EntityTldr';
@@ -74,6 +74,11 @@ export default function Exporters() {
   // SEOAI-T04: EN-only extractable answer block, gated like /faq's TL;DR so
   // ru/pl/ua render nothing until parity translations land.
   const tldr = i18n.getResource(i18n.language, 'exporters', 'tldr') || '';
+  // [WEBFIX2-T04a] locale prefix for the six port cards (same rule as Header.jsx):
+  // /pl/exporters used to link the English /ports/*.
+  const { pathname } = useLocation();
+  const localeMatch = pathname.match(/^\/(ua|pl|ru)(\/|$)/);
+  const prefix = localeMatch ? `/${localeMatch[1]}` : '';
   const steps = t('steps', { returnObjects: true });
   const fees = t('fees.items', { returnObjects: true });
   const valuePoints = t('value.points', { returnObjects: true });
@@ -373,7 +378,7 @@ export default function Exporters() {
                 </div>
               );
               return slug ? (
-                <Link key={i} to={`/ports/${slug}`} className={styles.portLink}>
+                <Link key={i} to={`${prefix}/ports/${slug}`} className={styles.portLink}>
                   {card}
                 </Link>
               ) : (

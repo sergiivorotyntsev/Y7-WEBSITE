@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ScrollReveal from './ScrollReveal';
 import VerificationStrip from './VerificationStrip';
@@ -42,6 +42,18 @@ const PORTS = [
 export default function CoverageMap() {
   const { t } = useTranslation('home');
   const portNames = t('ports.list', { returnObjects: true });
+  // [WEBFIX2-T04a] locale-aware port links (same rule as Header.jsx / Home.jsx):
+  // the six port pages exist in all four locales, and the localized home used
+  // to send every port tile to the ENGLISH page - the localized port pages had
+  // zero inbound links. Location/route pills stay EN: those pages have no twins.
+  const { pathname } = useLocation();
+  const localeMatch = pathname.match(/^\/(ua|pl|ru)(\/|$)/);
+  const prefix = localeMatch ? `/${localeMatch[1]}` : '';
+  // [WEBFIX2-T04b] the locale's own landing pages (unique content, not
+  // translations) get a link row on the locale's home. home.json carries
+  // coverage.intlLinks only for pl/ua/ru; EN renders nothing here.
+  const intlLinks = t('coverage.intlLinks', { returnObjects: true });
+  const intlRow = Array.isArray(intlLinks) ? intlLinks : [];
 
   return (
     <section className={v2s.manifest}>
@@ -57,7 +69,7 @@ export default function CoverageMap() {
               <h3 className={`${v2t.cardTitle} ${styles.portsTitle}`}>{t('ports.title')}</h3>
               <div className={styles.portGrid}>
                 {PORTS.map((p, i) => (
-                  <Link key={p.to} to={p.to} className={styles.portCell}>
+                  <Link key={p.to} to={`${prefix}${p.to}`} className={styles.portCell}>
                     <span className={v2c.portCode}>{p.code}</span>
                     <span className={`${v2c.portName} ${styles.portCity}`}>
                       {Array.isArray(portNames) ? portNames[i] : ''}
@@ -84,6 +96,15 @@ export default function CoverageMap() {
                 </Link>
               ))}
             </div>
+            {intlRow.length > 0 && (
+              <div className={styles.row}>
+                {intlRow.map(item => (
+                  <Link key={item.to} to={item.to} className={`${v2c.chipOnPaper} ${styles.pill}`}>
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )}
             <div className={styles.row}>
               {ROUTES.map(rt => (
                 <Link
