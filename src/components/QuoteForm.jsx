@@ -26,6 +26,62 @@ export function isValidUsZip(v) {
   return !['00000', '99999'].includes(z.slice(0, 5));
 }
 
+// REPRICE-T05: Y7's service-fee schedule for the account type the customer picked.
+//
+// A SCHEDULE, NOT A QUOTE. It is deliberately impossible for this block to show a
+// number about the customer's vehicle: the endpoint is called with no order and no
+// carrier price, so the only things it can return are the flat/tier amounts and the
+// formula's own terms. The disclaimer comes from the server rather than being written
+// here, so the caveat cannot drift from the numbers it qualifies.
+function money(cents) {
+  if (cents === null || cents === undefined) return null;
+  return `$${(cents / 100).toFixed(2).replace(/\.00$/, '')}`;
+}
+
+function FeeSchedule({ schedule, accountType }) {
+  if (!schedule || !Array.isArray(schedule.types)) return null;
+  const row = schedule.types.find(t => t.account_type === accountType);
+  if (!row) return null;
+
+  let terms;
+  if (row.basis === 'formula' && row.minimum_cents != null) {
+    terms = `the greater of ${money(row.minimum_cents)} or ${row.percent_of_carrier_price}% of the carrier price`;
+  } else if (row.cod_fee_cents != null && row.full_service_fee_cents != null) {
+    terms = row.cod_fee_cents === row.full_service_fee_cents
+      ? `${money(row.cod_fee_cents)} per shipment`
+      : `${money(row.cod_fee_cents)} when you pay the carrier directly, ${money(row.full_service_fee_cents)} when Y7 pays the carrier`;
+  } else {
+    // Resolved to nothing — say so rather than rendering an empty box, which
+    // would read as "there is no fee".
+    return (
+      <div style={{ marginTop: 8, fontSize: 13, color: '#6B7280', lineHeight: 1.5 }}>
+        Your Y7 service fee is confirmed with your quote.
+      </div>
+    );
+  }
+
+  return (
+    <div
+      data-testid="fee-schedule"
+      style={{
+        marginTop: 10,
+        padding: '10px 12px',
+        background: 'rgba(5, 6, 7, 0.04)',
+        border: '1px solid rgba(5, 6, 7, 0.14)',
+        borderRadius: 8,
+        fontSize: 13,
+        lineHeight: 1.55,
+        color: '#050607',
+      }}
+    >
+      <strong>Y7 service fee: {terms}.</strong>
+      <div style={{ marginTop: 4, fontSize: 12, color: '#5c5851' }}>
+        {schedule.disclaimer}
+      </div>
+    </div>
+  );
+}
+
 export default function QuoteForm({ compact = false, hideHeader = false, onStepChange }) {
   const { t, i18n } = useTranslation('quote');
 
@@ -104,6 +160,25 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
     // existing customer's type from a public form.
     customer_type: 'individual',
   });
+
+  // REPRICE-T05: Y7's fee schedule per account type. ONE fetch, no order and no
+  // session — `GET /api/public/fee-schedule` is public by necessity: this form
+  // runs before the customer exists. The numbers come from `fee_engine`, never
+  // from constants in this file: `issues/hardcoded-copy-duplicates-drift.md` is
+  // what happens otherwise — the prod signup screen priced the wrong model for
+  // 12 days because the copy was pasted per surface.
+  //
+  // Best-effort. If it fails the form still works and the schedule block simply
+  // does not render — a quote request must never depend on a price disclosure
+  // that is informational.
+  const [feeSchedule, setFeeSchedule] = useState(null);
+  useEffect(() => {
+    let alive = true;
+    apiGet('/api/public/fee-schedule')
+      .then(d => { if (alive) setFeeSchedule(d); })
+      .catch(() => { if (alive) setFeeSchedule(null); });
+    return () => { alive = false; };
+  }, []);
 
   // AUCT-W2B-T02: the auction houses a customer may choose. Fetched from
   // /api/public/auction-types (unauthenticated by necessity — this form runs
@@ -683,6 +758,12 @@ export default function QuoteForm({ compact = false, hideHeader = false, onStepC
             </label>
           ))}
         </div>
+        {/* REPRICE-T05: what the chosen type is CHARGED, before submitting.
+            The owner's ruling makes this pick a DECLARATION the operator may
+            correct at quoting — which is only fair if the customer could see
+            what the declaration meant. This is the half that makes the other
+            half fair. */}
+        <FeeSchedule schedule={feeSchedule} accountType={form.customer_type} />
       </div>
 
       {/* Transport type */}
