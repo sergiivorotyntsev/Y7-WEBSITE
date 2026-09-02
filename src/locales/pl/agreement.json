@@ -38,8 +38,7 @@
   "checkboxes": {
     "bol": "Rozumiem, że muszę dokonać oględzin pojazdu i podpisać Bill of Lading (BOL) przy dostawie oraz że podpisanie bez odnotowania uszkodzeń zwalnia przewoźnika z odpowiedzialności.",
     "payment": "Rozumiem warunki płatności, w tym wymogi dotyczące zaliczki i mój obowiązek zapłaty przewoźnikowi przy dostawie w przypadku wyboru płatności COD.",
-    "broker": "Rozumiem, że Y7 Consulting Inc jest licencjonowanym brokerem, a nie przewoźnikiem, i że jego odpowiedzialność jest ograniczona do zapłaconej opłaty brokerskiej.",
-    "cancellation": "Zapoznałem/am się i zgadzam się z polityką anulowania, obowiązkami klienta i wszystkimi warunkami zawartymi w niniejszej umowie."
+    "broker": "Rozumiem, że Y7 Consulting Inc jest licencjonowanym brokerem, a nie przewoźnikiem, i że jego odpowiedzialność jest ograniczona do zapłaconej opłaty brokerskiej. Zapoznałem/am się i zgadzam się z polityką anulowania, obowiązkami klienta i wszystkimi warunkami zawartymi w niniejszej umowie. Zgadzam się na prowadzenie spraw drogą elektroniczną i na elektroniczne podpisanie tej umowy."
   },
   "signature": {
     "label": "Wpisz swoje pełne imię i nazwisko jako podpis elektroniczny",

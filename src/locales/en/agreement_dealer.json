@@ -38,8 +38,7 @@
   "checkboxes": {
     "bol": "I understand that the dealer or dealer's representative must inspect the vehicle and sign the Bill of Lading (BOL) upon delivery, and that signing without noting damage releases the carrier from liability.",
     "payment": "I understand the payment terms: the dealer pays the carrier directly at delivery, and pays Y7 the broker service fee via Zelle or ACH according to the assigned billing mode (per-delivery or monthly).",
-    "broker": "I understand that Y7 Consulting Inc is a licensed broker, not a carrier. Y7's liability is limited to the brokerage fee. The carrier's cargo insurance covers the vehicle during transport. Y7 is not liable for vehicle damage, theft, fire, total loss, or disputes between dealer and carrier.",
-    "cancellation": "I have read and agree to the cancellation policy, dealer account requirements, and all terms stated in this agreement."
+    "broker": "I understand that Y7 Consulting Inc is a licensed broker, not a carrier. Y7's liability is limited to the brokerage fee. The carrier's cargo insurance covers the vehicle during transport. Y7 is not liable for vehicle damage, theft, fire, total loss, or disputes between dealer and carrier. I have read and agree to the cancellation policy, dealer account requirements, and all terms stated in this agreement. I agree to conduct business electronically and to sign this agreement electronically."
   },
   "signature": {
     "label": "Type your full legal name as digital signature",

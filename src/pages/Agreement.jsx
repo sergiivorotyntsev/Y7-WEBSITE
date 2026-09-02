@@ -355,12 +355,14 @@ export default function Agreement() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [readSections, setReadSections] = useState(new Set());
-  const [checks, setChecks] = useState([false, false, false, false]);
+  // AGRGATE-T07: a MAP keyed by tick, not a fixed-length array. The old
+  // `[false, false, false, false]` was a count in a second place — the bundle
+  // moved to three and this would still have demanded four, so the Sign button
+  // could never enable. Keyed state cannot drift from the bundle's length.
+  const [checks, setChecks] = useState({});
   const [signerName, setSignerName] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
-  // ESIGN-MECHANICS: discrete UETA electronic-consent, unticked by default.
-  const [eConsent, setEConsent] = useState(false);
   // Template metadata: supplies the signer's pricing_model and the
   // agreement_version we send back when signing. Shipper flow leaves this
   // null so the backend uses its default version. No banner is rendered from
@@ -467,11 +469,29 @@ export default function Agreement() {
     }
   }, [readSections, sections]);
 
-  const allChecked = checks.every(Boolean);
-  const canSign = allChecked && eConsent && signerName.trim().length >= 2;
+  // AGRGATE-T07: THREE acknowledgements, and the list comes from the BUNDLE
+  // rather than from four hardcoded `t()` calls. The bundle no longer has a
+  // `cancellation` key — a hardcoded `t('checkboxes.cancellation')` would render
+  // the KEY as the label, which is a legal document showing a customer the
+  // string "checkboxes.cancellation" next to a box they must tick.
+  //
+  // The third tick's text now carries, verbatim and in this order: the
+  // broker/liability limitation, the cancellation-and-refund policy plus the
+  // terms, and the consent to transact and sign electronically. Nothing was
+  // shortened; only the number of separate ticks changed.
+  const checkboxLabels = Object.entries(agreementBundle.checkboxes || {}).map(([id, label]) => (
+    // WPF-T01: the payment acknowledgment mirrors the §2 variant.
+    (id === 'payment' && pricingModel === 'ind_2026' && agreementBundle.checkboxes_ind2026?.payment)
+      ? agreementBundle.checkboxes_ind2026.payment
+      : label
+  ));
+
+  const allChecked =
+    checkboxLabels.length > 0 && checkboxLabels.every((_, i) => !!checks[i]);
+  const canSign = allChecked && signerName.trim().length >= 2;
 
   function toggleCheck(i) {
-    setChecks(prev => prev.map((v, j) => j === i ? !v : v));
+    setChecks(prev => ({ ...prev, [i]: !prev[i] }));
   }
 
   async function handleSign() {
@@ -481,12 +501,20 @@ export default function Agreement() {
     try {
       const payload = {
         signer_name: signerName.trim(),
-        checkboxes: checks,
+        // AGRGATE-T07: `checks` is keyed state; the WIRE FORMAT is still an
+        // ARRAY in bundle order, which is what the server validates against the
+        // served bundle's own length. Sending the object straight through gave
+        // a 400 — found by the browser pass, not by the build.
+        checkboxes: checkboxLabels.map((_, i) => !!checks[i]),
         signed_at: new Date().toISOString(),
         user_agent: navigator.userAgent,
         lang: i18n.language || 'en',
         agreement_type: getAgreementType(user?.customer_type),
-        e_consent: eConsent,
+        // AGRGATE-T07: the electronic consent no longer has its own tick. Its
+        // sentence is inside the third acknowledgement the customer just
+        // ticked, so it is granted whenever this payload is sent at all. The
+        // server records it on its own columns exactly as before.
+        e_consent: true,
       };
       // Send the version that the user actually saw — recorded on the
       // customer_agreements row. If the template fetch failed earlier we
@@ -564,15 +592,6 @@ export default function Agreement() {
     );
   }
 
-  const checkboxLabels = [
-    t('checkboxes.bol'),
-    // WPF-T01: the payment acknowledgment mirrors the §2 variant.
-    (pricingModel === 'ind_2026' && agreementBundle.checkboxes_ind2026?.payment)
-      ? agreementBundle.checkboxes_ind2026.payment
-      : t('checkboxes.payment'),
-    t('checkboxes.broker'),
-    t('checkboxes.cancellation'),
-  ];
 
   const agreementVersion = (pricingModel === 'ind_2026' && agreementBundle.version_ind2026)
     ? agreementBundle.version_ind2026
@@ -697,7 +716,7 @@ export default function Agreement() {
           }}>
             <input
               type="checkbox"
-              checked={checks[i]}
+              checked={!!checks[i]}
               onChange={() => toggleCheck(i)}
               style={{
                 marginTop: '3px',
@@ -719,36 +738,15 @@ export default function Agreement() {
         ))}
       </div>
 
-      {/* ESIGN-MECHANICS: discrete UETA electronic-consent — unticked by default,
-          required (folded into canSign) to enable the Sign button. */}
-      <label style={{
-        display: 'flex',
-        gap: '10px',
-        alignItems: 'flex-start',
-        cursor: 'pointer',
-        marginBottom: '28px',
-      }}>
-        <input
-          type="checkbox"
-          checked={eConsent}
-          onChange={e => setEConsent(e.target.checked)}
-          style={{
-            marginTop: '3px',
-            width: '18px',
-            height: '18px',
-            accentColor: 'var(--v2-red, #d70f24)',
-            flexShrink: 0,
-          }}
-        />
-        <span style={{
-          fontFamily: fonts.sans,
-          fontSize: '13px',
-          color: V2_INK,
-          lineHeight: 1.5,
-        }}>
-          I agree to conduct business electronically and to sign this agreement electronically.
-        </span>
-      </label>
+      {/* AGRGATE-T07: the discrete electronic-consent TICK is gone.
+          Its sentence is carried verbatim inside the third acknowledgement
+          above, and the act of typing a legal name under the E-SIGN notice in
+          the signature block below is what expresses the consent. The notice is
+          rendered in the same block as the name field, above the button, so it
+          is on screen at the moment of signing — removing the tick without
+          showing the replacement would be the worse trade, and
+          `agreementConsentVisible.test.mjs` asserts the notice is present and
+          not visually hidden. */}
 
       {/* Signature block */}
       <div style={{
@@ -788,10 +786,16 @@ export default function Agreement() {
             marginBottom: '12px',
           }}
         />
+        {/* AGRGATE-T07: 11px -> 13px, and full-strength ink rather than muted.
+            This notice used to sit beside a dedicated electronic-consent tick;
+            with that tick gone it is, together with the sentence inside the
+            third acknowledgement, where the consent is expressed. Fine print
+            for a legal element that now stands on its own is the wrong trade.
+            13px matches the acknowledgement text above it. */}
         <p style={{
           fontFamily: fonts.sans,
-          fontSize: '11px',
-          color: V2_INK_MUTED,
+          fontSize: '13px',
+          color: V2_INK,
           lineHeight: 1.5,
           marginBottom: '20px',
         }}>

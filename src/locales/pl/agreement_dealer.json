@@ -38,8 +38,7 @@
   "checkboxes": {
     "bol": "Rozumiem, że dealer lub przedstawiciel dealera musi dokonać inspekcji pojazdu i podpisać list przewozowy (BOL) przy dostawie, oraz że podpisanie bez odnotowania uszkodzeń zwalnia przewoźnika z odpowiedzialności.",
     "payment": "Rozumiem warunki płatności: dealer płaci przewoźnikowi bezpośrednio przy dostawie, a Y7 prowizję brokerską za pośrednictwem Zelle lub ACH zgodnie z przypisanym trybem rozliczeń (za dostawę lub miesięcznie).",
-    "broker": "Rozumiem, że Y7 Consulting Inc jest licencjonowanym brokerem, nie przewoźnikiem. Odpowiedzialność Y7 jest ograniczona do prowizji brokerskiej. Ubezpieczenie cargo przewoźnika obejmuje pojazd podczas transportu. Y7 nie ponosi odpowiedzialności za uszkodzenie pojazdu, kradzież, pożar, utratę całkowitą ani spory między dealerem a przewoźnikiem.",
-    "cancellation": "Zapoznałem/am się i zgadzam się z polityką anulowania, wymaganiami dotyczącymi konta dealera oraz wszystkimi warunkami określonymi w niniejszej umowie."
+    "broker": "Rozumiem, że Y7 Consulting Inc jest licencjonowanym brokerem, nie przewoźnikiem. Odpowiedzialność Y7 jest ograniczona do prowizji brokerskiej. Ubezpieczenie cargo przewoźnika obejmuje pojazd podczas transportu. Y7 nie ponosi odpowiedzialności za uszkodzenie pojazdu, kradzież, pożar, utratę całkowitą ani spory między dealerem a przewoźnikiem. Zapoznałem/am się i zgadzam się z polityką anulowania, wymaganiami dotyczącymi konta dealera oraz wszystkimi warunkami określonymi w niniejszej umowie. Zgadzam się na prowadzenie spraw drogą elektroniczną i na elektroniczne podpisanie tej umowy."
   },
   "signature": {
     "label": "Wpisz swoje pełne imię i nazwisko jako podpis cyfrowy",
