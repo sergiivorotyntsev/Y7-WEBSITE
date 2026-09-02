@@ -8,18 +8,29 @@
 > carrier: carriers haul and hold cargo insurance; Y7 arranges and oversees the
 > move under a $75,000 BMC-84 surety bond. Pricing is a flat dispatch fee per
 > load with the carrier's rate shown on a signed dispatch sheet — no spread, no
-> hidden markup.
+> hidden markup. Dealers and exporters pay a flat $50 dispatch fee per vehicle;
+> individuals pay $75 or 10% of the carrier price, whichever is greater. Y7 also
+> prepares and files Certificates of Origin for US-built vehicles exported to
+> the EU. The site is published in English, Polish (/pl), Ukrainian (/ua) and
+> Russian (/ru).
 
 ## Core services
+- [Y7 Logistics home](https://www.y7agency.com/): Home page: who Y7 serves (dealers, exporters, private shippers), the dispatch-fee model, and the quote widgets.
 - [Auto Transport Services](https://www.y7agency.com/services): Full overview of Y7's brokered auto transport for shippers, dealers, and exporters.
 - [Ship My Car](https://www.y7agency.com/ship-my-car): Door-to-door car shipping for individuals relocating or buying a vehicle out of state.
 - [For Dealers](https://www.y7agency.com/dealers): Volume auto transport for dealers — auction pickups, dealer trades, and consolidated invoicing.
 - [For Exporters](https://www.y7agency.com/exporters): Inland delivery to US ports with gate-pass and documentation coordination for overseas buyers.
+- [Certificate of Origin](https://www.y7agency.com/certificate-of-origin): Y7 prepares and files a Certificate of Origin (issued as an eCO) for US-built vehicles exported to the EU, where US-origin vehicles qualify for 0% import duty under EU Regulation 2026/1455. Price: $99 per certificate for established exporter clients, $150 one-off; issued within 7 business days. A standalone service — no transport booking required. Available in Polish, Ukrainian and Russian (see International).
 - [Car Shipping Cost](https://www.y7agency.com/car-shipping-cost): How auto transport pricing works and what drives the quote on a given lane.
 - [Open Car Shipping](https://www.y7agency.com/open-car-shipping): Standard open-trailer transport — the most common and economical option.
 - [Enclosed Car Shipping](https://www.y7agency.com/enclosed-car-shipping): Covered-trailer transport for luxury, classic, and high-value vehicles.
 - [Salvage Car Shipping](https://www.y7agency.com/salvage-car-shipping): Transport for non-running, damaged, and salvage-title vehicles.
 - [State to State Car Shipping](https://www.y7agency.com/state-to-state-car-shipping): Interstate auto transport across all 50 states.
+
+## Get a quote, track a shipment
+- [Get a Quote](https://www.y7agency.com/quote): The quote form. Enter pickup and delivery ZIP codes, vehicle and contact details; Y7 replies within one hour during business hours with a carrier rate plus its flat dispatch fee, no obligation. Available in Polish (/pl/quote), Ukrainian (/ua/quote) and Russian (/ru/quote).
+- [Dealer Account Review](https://www.y7agency.com/dealer-quote): Application form for licensed dealers and exporters who want a Y7 account: volume, lanes, preferred ports and payment option; Y7 responds within one business day.
+- [Track a Shipment](https://www.y7agency.com/track): Shipment status lookup by Y7 reference number or VIN — pickup, delivery and carrier details for an active order. Available in Polish, Ukrainian and Russian (/pl/track, /ua/track, /ru/track).
 
 ## Auction shipping
 - [Auction Car Shipping](https://www.y7agency.com/auction-car-shipping): Vehicle pickup from Copart, IAA, and Manheim auction lots nationwide.
@@ -50,6 +61,9 @@
 - [New Jersey to Florida](https://www.y7agency.com/new-jersey-to-florida-car-shipping): NJ-to-Florida auto transport lane.
 - [Texas to Port Newark](https://www.y7agency.com/texas-to-newark-port-auto-transport): Inland Texas to Port Newark export corridor.
 - [Chicago to Port Newark](https://www.y7agency.com/chicago-to-port-newark-car-shipping): Midwest-to-Port-Newark export corridor.
+- [Atlanta to Port Savannah](https://www.y7agency.com/atlanta-to-savannah-port-auto-transport): Atlanta-area Copart, IAA and Manheim pickups delivered to the Garden City Terminal in Savannah, with gate-pass coordination.
+- [Dallas to Port Houston](https://www.y7agency.com/dallas-to-port-houston-auto-transport): Dallas-area Copart and IAA pickups delivered to Port Houston warehouses; typically $300 to $500 carrier rate.
+- [Florida Auctions to JAXPORT](https://www.y7agency.com/florida-to-jacksonville-port-car-shipping): Florida Copart and IAA yards to Jacksonville for RoRo and container export; $250 to $500 intra-Florida floors.
 
 ## Ports
 - [Port Newark, NJ](https://www.y7agency.com/ports/newark): Delivery and gate coordination for Port Newark / Elizabeth.
@@ -58,6 +72,7 @@
 - [Port of Los Angeles, CA](https://www.y7agency.com/ports/los-angeles): Delivery to the Los Angeles / Long Beach port complex.
 - [Port of Baltimore, MD](https://www.y7agency.com/ports/baltimore): Delivery to the Port of Baltimore.
 - [JAXPORT, Jacksonville, FL](https://www.y7agency.com/ports/jacksonville): Delivery to JAXPORT in Jacksonville.
+- [NJ Export-Warehouse Shipping Cost](https://www.y7agency.com/nj-export-warehouse-shipping-cost): How carrier pricing to the New Jersey export warehouses is formed, measured on 586 real dispatches: distance, pickup type, auction brand and vehicle size.
 
 ## Guides
 - [How to Ship a Car Bought at Auction](https://www.y7agency.com/how-to-ship-a-car-bought-at-auction): Step-by-step on moving an auction purchase.
@@ -72,13 +87,24 @@
 - [The Carrier Who Vanished](https://www.y7agency.com/blog/carrier-who-vanished): A case study in vetting carriers before dispatch.
 - [Carrier COI Verification Guide](https://www.y7agency.com/blog/carrier-coi-verification-guide): How Y7 verifies a carrier's certificate of insurance.
 - [FMCSA 2026 New Rules](https://www.y7agency.com/blog/fmcsa-2026-new-rules): What the 2026 FMCSA changes mean for shippers.
+- [FMCSA Broker Recordkeeping 2026](https://www.y7agency.com/blog/fmcsa-broker-recordkeeping-2026): Which records a broker must keep, for how long, and how to prepare for an audit.
 - [Dealer Auction Pickup Guide](https://www.y7agency.com/blog/dealer-auction-pickup-guide): Running dealer auction pickups smoothly.
 - [Exporter Documentation Checklist](https://www.y7agency.com/blog/exporter-documentation-checklist): Paperwork exporters need before a port delivery.
 - [The $75,000 Bond Claims Guide](https://www.y7agency.com/blog/75000-bond-claims-guide): How the BMC-84 surety bond protects shippers.
 - [Copart vs IAA vs Manheim](https://www.y7agency.com/blog/copart-iaa-manheim-comparison): Comparing the major US vehicle auctions.
 - [Auction-to-Port Cost Breakdown 2026](https://www.y7agency.com/blog/auction-to-port-cost-breakdown-2026): Real cost components on the auction-to-port lane.
+- [How International Buyers Ship Cars from Copart](https://www.y7agency.com/blog/copart-for-international-buyers-complete-guide): Document flow, container vs RoRo, 6 to 11 week timelines by region, and a Copart NJ to Odesa cost example.
+- [US Port Export Comparison: Newark vs Houston vs Savannah](https://www.y7agency.com/blog/port-specific-export-newark-houston-savannah): Vessel schedules, destinations and costs, and how to choose the port for a vehicle export.
+- [The Real Cost of Copart Storage Fees in 2026](https://www.y7agency.com/blog/copart-storage-fees-real-cost-2026): $20 to $40 per day by yard type, business-day counting rules, and why no broker can guarantee a free-window pickup.
+- [How to Read a Central Dispatch Load Listing](https://www.y7agency.com/blog/central-dispatch-listing-decoded): Every field of a Central Dispatch listing, the red flags, and how listings get picked up fast.
+- [Enclosed vs Open: When to Skip the Premium](https://www.y7agency.com/blog/enclosed-transport-when-to-skip): A decision framework with real cost numbers for when an open trailer is the right choice.
+- [How to Ship a Non-Running Vehicle](https://www.y7agency.com/blog/non-running-vehicle-shipping-playbook): Winch and forklift requirements, pricing, and avoiding surprise fees at pickup.
+- [Winter Auto Transport Pricing 2026](https://www.y7agency.com/blog/winter-auto-transport-pricing): Why October to February rates run 15 to 40% higher, and timing strategies to save.
+- [Bill of Lading: Verify Your Car at Pickup and Delivery](https://www.y7agency.com/blog/bill-of-lading-pickup-delivery-guide): A 12-point pickup inspection, damage documentation and claim timing.
+- [Outbox Pattern for Dispatch](https://www.y7agency.com/blog/outbox-pattern-dispatch): Engineering note on how the transactional outbox pattern removed failed Central Dispatch listings from Y7's dispatch system.
 
 ## International
+Polish, Ukrainian and Russian pages are full translations, not summaries. The nine unique landing pages come first; the localized twins of the English core pages follow.
 - [Import z USA (UA)](https://www.y7agency.com/ua/import-z-usa): Ukrainian-language guide to importing a vehicle from the USA.
 - [Copart ta IAAI (UA)](https://www.y7agency.com/ua/copart-ta-iaai): Ukrainian-language Copart and IAA auction shipping.
 - [Dostavka avto z USA (UA)](https://www.y7agency.com/ua/dostavka-avto-z-usa): Ukrainian-language vehicle delivery from the USA.
@@ -88,6 +114,48 @@
 - [Dostavka avto iz USA (RU)](https://www.y7agency.com/ru/dostavka-avto-iz-usa): Russian-language vehicle delivery from the USA.
 - [Copart i IAAI (RU)](https://www.y7agency.com/ru/copart-i-iaai): Russian-language Copart and IAA auction shipping.
 - [Perevozka avto (RU)](https://www.y7agency.com/ru/perevozka-avto): Russian-language auto transport overview.
+
+### Polish (/pl)
+- [Y7 Logistics (PL)](https://www.y7agency.com/pl): Polish home page.
+- [Usługi transportu aut](https://www.y7agency.com/pl/services): Services overview in Polish.
+- [Dla dealerów](https://www.y7agency.com/pl/dealers): Outsourced dispatch for dealers, in Polish.
+- [Dla eksporterów](https://www.y7agency.com/pl/exporters): Auction-to-port export logistics, in Polish.
+- [Świadectwo pochodzenia](https://www.y7agency.com/pl/certificate-of-origin): Certificate of Origin for US-built vehicles entering the EU at 0% duty, in Polish: $99 for established exporter clients, $150 one-off, eCO in 7 business days.
+- [Transport auta po USA](https://www.y7agency.com/pl/ship-my-car): Door-to-door shipping for individuals, in Polish.
+- [Wycena](https://www.y7agency.com/pl/quote): Quote form in Polish.
+- [Śledzenie przesyłki](https://www.y7agency.com/pl/track): Shipment status lookup in Polish.
+- [FAQ](https://www.y7agency.com/pl/faq): Broker vs carrier, pricing, auctions and export questions, in Polish.
+- [O Y7](https://www.y7agency.com/pl/about): Company and FMCSA credentials, in Polish.
+- [Kontakt](https://www.y7agency.com/pl/contact): Contact page in Polish.
+- [Porty: Newark](https://www.y7agency.com/pl/ports/newark), [Houston](https://www.y7agency.com/pl/ports/houston), [Savannah](https://www.y7agency.com/pl/ports/savannah), [Los Angeles](https://www.y7agency.com/pl/ports/los-angeles), [Baltimore](https://www.y7agency.com/pl/ports/baltimore), [Jacksonville](https://www.y7agency.com/pl/ports/jacksonville): Port delivery pages in Polish.
+
+### Ukrainian (/ua)
+- [Y7 Logistics (UA)](https://www.y7agency.com/ua): Ukrainian home page.
+- [Послуги перевезення авто](https://www.y7agency.com/ua/services): Services overview in Ukrainian.
+- [Для дилерів](https://www.y7agency.com/ua/dealers): Outsourced dispatch for dealers, in Ukrainian.
+- [Для експортерів](https://www.y7agency.com/ua/exporters): Auction-to-port export logistics, in Ukrainian.
+- [Сертифікат походження](https://www.y7agency.com/ua/certificate-of-origin): Certificate of Origin for US-built vehicles entering the EU at 0% duty, in Ukrainian: $99 for established exporter clients, $150 one-off, eCO in 7 business days.
+- [Перевезення авто по США](https://www.y7agency.com/ua/ship-my-car): Door-to-door shipping for individuals, in Ukrainian.
+- [Розрахунок](https://www.y7agency.com/ua/quote): Quote form in Ukrainian.
+- [Відстежити доставку](https://www.y7agency.com/ua/track): Shipment status lookup in Ukrainian.
+- [FAQ](https://www.y7agency.com/ua/faq): Broker vs carrier, pricing, auctions and export questions, in Ukrainian.
+- [Про Y7](https://www.y7agency.com/ua/about): Company and FMCSA credentials, in Ukrainian.
+- [Контакти](https://www.y7agency.com/ua/contact): Contact page in Ukrainian.
+- [Порти: Newark](https://www.y7agency.com/ua/ports/newark), [Houston](https://www.y7agency.com/ua/ports/houston), [Savannah](https://www.y7agency.com/ua/ports/savannah), [Los Angeles](https://www.y7agency.com/ua/ports/los-angeles), [Baltimore](https://www.y7agency.com/ua/ports/baltimore), [Jacksonville](https://www.y7agency.com/ua/ports/jacksonville): Port delivery pages in Ukrainian.
+
+### Russian (/ru)
+- [Y7 Logistics (RU)](https://www.y7agency.com/ru): Russian home page.
+- [Услуги перевозки авто](https://www.y7agency.com/ru/services): Services overview in Russian.
+- [Для дилеров](https://www.y7agency.com/ru/dealers): Outsourced dispatch for dealers, in Russian.
+- [Для экспортёров](https://www.y7agency.com/ru/exporters): Auction-to-port export logistics, in Russian.
+- [Сертификат происхождения](https://www.y7agency.com/ru/certificate-of-origin): Certificate of Origin for US-built vehicles entering the EU at 0% duty, in Russian: $99 for established exporter clients, $150 one-off, eCO in 7 business days.
+- [Перевозка авто по США](https://www.y7agency.com/ru/ship-my-car): Door-to-door shipping for individuals, in Russian.
+- [Расчёт](https://www.y7agency.com/ru/quote): Quote form in Russian.
+- [Отследить доставку](https://www.y7agency.com/ru/track): Shipment status lookup in Russian.
+- [FAQ](https://www.y7agency.com/ru/faq): Broker vs carrier, pricing, auctions and export questions, in Russian.
+- [О Y7](https://www.y7agency.com/ru/about): Company and FMCSA credentials, in Russian.
+- [Контакты](https://www.y7agency.com/ru/contact): Contact page in Russian.
+- [Порты: Newark](https://www.y7agency.com/ru/ports/newark), [Houston](https://www.y7agency.com/ru/ports/houston), [Savannah](https://www.y7agency.com/ru/ports/savannah), [Los Angeles](https://www.y7agency.com/ru/ports/los-angeles), [Baltimore](https://www.y7agency.com/ru/ports/baltimore), [Jacksonville](https://www.y7agency.com/ru/ports/jacksonville): Port delivery pages in Russian.
 
 ## Company & legal
 - [About Y7](https://www.y7agency.com/about): Company story and FMCSA broker credentials.
