@@ -8,16 +8,22 @@
 User-agent: *
 Allow: /
 
-# Protected / non-content paths
+# Protected / non-content paths. /promo/ [WEBFIX-T02]: promo-code landings are
+# an SPA namespace (server.js), API-driven and outside the sitemap - same
+# class as /portal/ and /review/, and the only one of the four that was open.
 Disallow: /portal/
 Disallow: /agreement
 Disallow: /api/
 Disallow: /review/
+Disallow: /promo/
 
-# Vite build artifacts (hashed filenames, not content)
-Disallow: /assets/*.js$
-Disallow: /assets/*.css$
-Disallow: /assets/*.map$
+# [WEBFIX-T02] /assets/ is OPEN for every crawler. It used to be closed here
+# for "*" only (hashed Vite bundles, cosmetic) - but a crawler with no group
+# of its own reads THIS group, and that set includes Claude-SearchBot,
+# Claude-User, Perplexity-User, DuckAssistBot and YandexBot: exactly the
+# answer engines the file is written to welcome. Disallow never kept a URL
+# out of an index; it only stopped rendering. Measured with a real parser
+# before the change (docs/audits/raw/webfix/NEW1_robots_groups.txt).
 
 # ── Google ────────────────────────────────────────────────────
 # Googlebot: full access to all content including JS/CSS for rendering
@@ -34,6 +40,7 @@ Disallow: /portal/
 Disallow: /agreement
 Disallow: /api/
 Disallow: /review/
+Disallow: /promo/
 
 # ── Bing / Yahoo / DuckDuckGo ────────────────────────────────
 User-agent: Bingbot
@@ -80,6 +87,7 @@ Disallow: /portal/
 Disallow: /agreement
 Disallow: /api/
 Disallow: /review/
+Disallow: /promo/
 
 # Anthropic training crawler
 User-agent: anthropic-ai
@@ -88,12 +96,14 @@ Disallow: /portal/
 Disallow: /agreement
 Disallow: /api/
 Disallow: /review/
+Disallow: /promo/
 User-agent: ClaudeBot
 Allow: /
 Disallow: /portal/
 Disallow: /agreement
 Disallow: /api/
 Disallow: /review/
+Disallow: /promo/
 
 # Common Crawl (used for training many AI models)
 User-agent: CCBot
@@ -102,6 +112,7 @@ Disallow: /portal/
 Disallow: /agreement
 Disallow: /api/
 Disallow: /review/
+Disallow: /promo/
 
 # ByteDance / TikTok crawler — KEPT BLOCKED (junk/parasite scraper)
 User-agent: Bytespider
@@ -114,6 +125,7 @@ Disallow: /portal/
 Disallow: /agreement
 Disallow: /api/
 Disallow: /review/
+Disallow: /promo/
 
 # Amazon AI
 User-agent: Amazonbot
@@ -122,6 +134,7 @@ Disallow: /portal/
 Disallow: /agreement
 Disallow: /api/
 Disallow: /review/
+Disallow: /promo/
 
 # Cohere AI
 User-agent: cohere-ai
@@ -130,6 +143,7 @@ Disallow: /portal/
 Disallow: /agreement
 Disallow: /api/
 Disallow: /review/
+Disallow: /promo/
 
 # ── Known low-value / aggressive scrapers ─────────────────────
 User-agent: AhrefsBot
