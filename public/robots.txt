@@ -39,6 +39,12 @@ Disallow: /promo/
 
 User-agent: Googlebot-Image
 Allow: /
+# [WEBFIX2-T03] same protected paths as "*"; a group of its own never reads "*".
+Disallow: /portal/
+Disallow: /agreement
+Disallow: /api/
+Disallow: /review/
+Disallow: /promo/
 
 # Google-Extended (Gemini / Vertex AI training) — INTENTIONALLY OPENED (compromise-(b))
 User-agent: Google-Extended
@@ -204,9 +210,21 @@ Disallow: /promo/
 # ── Known low-value / aggressive scrapers ─────────────────────
 User-agent: AhrefsBot
 Crawl-delay: 10
+# [WEBFIX2-T03] same protected paths as "*"; a group of its own never reads "*".
+Disallow: /portal/
+Disallow: /agreement
+Disallow: /api/
+Disallow: /review/
+Disallow: /promo/
 
 User-agent: SemrushBot
 Crawl-delay: 10
+# [WEBFIX2-T03] same protected paths as "*"; a group of its own never reads "*".
+Disallow: /portal/
+Disallow: /agreement
+Disallow: /api/
+Disallow: /review/
+Disallow: /promo/
 
 User-agent: MJ12bot
 Disallow: /
