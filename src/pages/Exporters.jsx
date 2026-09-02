@@ -635,8 +635,14 @@ export default function Exporters() {
           <a href="#exporter-form" className={v2b.cta}>
             {t('midCta')}
           </a>
-          {/* [WEBFIX-T06] the page had no anchor to the portal at all. */}
-          <Link to="/portal/login" className={v2t.bodyLinkOnDark}>{t('portalCta')} &rarr;</Link>
+          {/* [WEBFIX-T06/T12] two doors, both real anchors: the returning client
+              and the new one. /dealer-quote is the account application (POST
+              /api/public/dealer-inquiry); the only such form on the site. */}
+          <p className={styles.coBodyOnDark}>
+            <Link to="/portal/login" className={v2t.bodyLinkOnDark}>{t('portalCta')} &rarr;</Link>
+            {' '}&middot;{' '}
+            <Link to="/dealer-quote" className={v2t.bodyLinkOnDark}>{t('accountCta')} &rarr;</Link>
+          </p>
         </div>
       </section>
 
