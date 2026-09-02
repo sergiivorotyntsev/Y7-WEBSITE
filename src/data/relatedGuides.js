@@ -42,7 +42,10 @@ export const RELATED_GUIDES = {
     { to: '/manheim-transport',     title: 'Manheim Auction Transport', description: 'Dealer auction shipping with contract pricing.' },
     { to: '/auction-to-port-transport', title: 'Auction to Port',       description: 'Auction pickup straight to a US export port.' },
   ],
-  // EXPORTERS-CO-T01: Certificate of Origin service page.
+  // EXPORTERS-CO-T01: Certificate of Origin service page. [WEBFIX-T04] the
+  // auction-to-port and door-to-port clusters now link BACK to it; before,
+  // every arrow out of this key was one-way and the page had two inbound
+  // links site-wide.
   '/certificate-of-origin': [
     { to: '/auction-to-port-transport', title: 'Auction to Port',       description: 'Auction pickup straight to a US export port.' },
     { to: '/door-to-port-auto-transport', title: 'Door-to-Port Auto Transport', description: 'Vehicle delivery to major US export ports.' },
@@ -55,6 +58,7 @@ export const RELATED_GUIDES = {
     { to: '/auction-transport-savings', title: 'Auction Transport Savings', description: 'Where auction shipping fees actually go, and how to cut them.' },
     { to: '/texas-to-newark-port-auto-transport', title: 'Texas → Port Newark', description: 'Texas auction pickups delivered to the Newark export terminal.' },
     { to: '/chicago-to-port-newark-car-shipping', title: 'Chicago → Port Newark', description: 'Midwest auction pickups delivered to the Newark export terminal.' },
+    { to: '/certificate-of-origin', title: 'Certificate of Origin', description: '0% EU import duty on US-built vehicles; Y7 files the eCO as standing agent.' },
   ],
 
   // SEOAI-T04: orphan rescue — savings page gets its own cluster so it both
@@ -166,6 +170,7 @@ export const RELATED_GUIDES = {
     { to: '/auction-to-port-transport', title: 'Auction to Port',       description: 'Auction pickup straight to a US export port.' },
     { to: '/electric-vehicle-port-delivery', title: 'EV Port Delivery', description: 'Electric vehicle delivery to US export ports.' },
     { to: '/texas-to-newark-port-auto-transport', title: 'Texas → Newark Port', description: 'Inland US to Newark export terminal.' },
+    { to: '/certificate-of-origin', title: 'Certificate of Origin', description: '0% EU import duty on US-built vehicles; Y7 files the eCO as standing agent.' },
   ],
   '/dealer-auto-transport': [
     { to: '/manheim-transport',     title: 'Manheim Auction Transport', description: 'Dealer auction shipping with contract pricing.' },

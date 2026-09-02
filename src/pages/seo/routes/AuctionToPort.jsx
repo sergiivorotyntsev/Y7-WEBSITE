@@ -83,6 +83,7 @@ export default function AuctionToPort() {
         { label: 'Door to Port', to: '/door-to-port-auto-transport' },
         { label: 'Auction Car Shipping', to: '/auction-car-shipping' },
         { label: 'Cost Breakdown Guide (2026)', to: '/blog/auction-to-port-cost-breakdown-2026' },
+        { label: 'Certificate of Origin (0% EU duty)', to: '/certificate-of-origin' },
       ]}
     >
       <PricingRange

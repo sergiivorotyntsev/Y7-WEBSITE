@@ -117,6 +117,7 @@ export default function DoorToPort() {
         { label: 'Port Jacksonville', to: '/ports/jacksonville' },
         { label: 'Auction to Port', to: '/auction-to-port-transport' },
         { label: 'NJ Export-Warehouse Pricing', to: '/nj-export-warehouse-shipping-cost' },
+        { label: 'Certificate of Origin (0% EU duty)', to: '/certificate-of-origin' },
         { label: 'Newark vs Houston vs Savannah', to: '/blog/port-specific-export-newark-houston-savannah' },
         { label: 'For Exporters', to: '/exporters' },
         { label: 'Get a Quote', to: '/quote' },

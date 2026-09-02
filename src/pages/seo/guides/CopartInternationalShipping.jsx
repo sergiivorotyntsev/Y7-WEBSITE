@@ -204,7 +204,7 @@ export default function CopartInternationalShipping() {
           <li className={styles.listItem}><strong>Warehouse intake confirmation</strong> — photos, condition, consolidation record.</li>
           <li className={styles.listItem}><strong>Ocean BOL</strong> — issued by the carrier line once vessel is booked.</li>
           <li className={styles.listItem}><strong>Commercial invoice + VIN + title copy</strong> — for destination customs.</li>
-          <li className={styles.listItem}><strong>Export Certificate (if required)</strong> — depends on destination country.</li>
+          <li className={styles.listItem}><strong>Export Certificate (if required)</strong> — depends on destination country. For the EU this is the chamber-issued <Link to="/certificate-of-origin" className={styles.link}>Certificate of Origin</Link>: it qualifies a US-built vehicle for 0% import duty, and Y7 files it on request.</li>
         </ol>
 
         <h2 className={styles.h2}>Cost breakdown example — Copart NJ to Odesa (container, shared)</h2>
@@ -256,6 +256,7 @@ export default function CopartInternationalShipping() {
           <li className={styles.listItem}><Link to="/exporters" className={styles.link}>Exporters</Link></li>
           <li className={styles.listItem}><Link to="/auction-to-port-transport" className={styles.link}>Auction to port transport</Link></li>
           <li className={styles.listItem}><Link to="/door-to-port-auto-transport" className={styles.link}>Door to port</Link></li>
+          <li className={styles.listItem}><Link to="/certificate-of-origin" className={styles.link}>Certificate of Origin for EU-bound vehicles (0% duty)</Link></li>
         </ul>
 
         <p className={styles.p} style={{ marginTop: '32px' }}>

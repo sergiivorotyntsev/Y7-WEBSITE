@@ -67,7 +67,9 @@ export default function CopartInternationalBuyersGuide({ theme }) {
           any new damage noted</li>
         <li><strong>Ocean BOL</strong> — issued by the carrier line once vessel is booked</li>
         <li><strong>Commercial invoice + VIN + title copy</strong> — destination customs</li>
-        <li><strong>Export certificate</strong> — required by some destinations (EU, GCC)</li>
+        <li><strong>Export certificate</strong> — required by some destinations (EU, GCC). For the EU,
+          a chamber-issued <Link to="/certificate-of-origin" style={link}>Certificate of Origin</Link> is
+          what gets a US-built car the 0% import duty</li>
       </ul>
 
       <h2 style={h2}>Container vs RoRo — the decision that saves or costs thousands</h2>

@@ -65,6 +65,7 @@ export default function NjExportWarehouseShippingCost() {
         { label: 'Exporter Logistics', to: '/exporters' },
         { label: 'Port Newark', to: '/ports/newark' },
         { label: 'Door-to-Port Transport', to: '/door-to-port-auto-transport' },
+        { label: 'Certificate of Origin (0% EU duty)', to: '/certificate-of-origin' },
       ]}
     >
       <Section title="What Actually Sets the Price">

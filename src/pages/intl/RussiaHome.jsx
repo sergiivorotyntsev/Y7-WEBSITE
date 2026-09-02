@@ -481,6 +481,8 @@ function RussiaHome() {
       </section>
 
       <ContextualCTA variant="card" to="/exporters" intlKey="exporters" tone="amber" />
+      {/* [WEBFIX-T04] the CO service, in this locale (ContextualCTA prefixes the path). */}
+      <ContextualCTA variant="inline" to="/certificate-of-origin" intlKey="certificateOfOrigin" />
 
       {/* ================================================================= */}
       {/* SECTION 9 — Dark CTA (board, page closes dark)                     */}

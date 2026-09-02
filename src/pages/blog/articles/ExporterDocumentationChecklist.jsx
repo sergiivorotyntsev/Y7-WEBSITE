@@ -30,7 +30,9 @@ export default function ExporterDocumentationChecklist({ theme }) {
         <li style={{ marginBottom: 8, fontSize: '0.95rem', lineHeight: 1.7, color: theme.text }}>
           <strong>Title (Certificate of Origin)</strong> — Proof of ownership. Without a clean title in the
           exporter's name, no customs broker will file your export declaration. This is the single most common
-          bottleneck in the entire pipeline.
+          bottleneck in the entire pipeline. Not to be confused with the chamber-issued{' '}
+          <Link to="/certificate-of-origin" style={{ color: theme.accent, textDecoration: 'underline' }}>Certificate of Origin</Link>{' '}
+          that proves US manufacture for the EU's 0% import duty; that is a separate document Y7 files on request.
         </li>
         <li style={{ marginBottom: 8, fontSize: '0.95rem', lineHeight: 1.7, color: theme.text }}>
           <strong>Bill of Lading (BOL)</strong> — Generated at vehicle pickup, documenting condition with

@@ -86,7 +86,7 @@
           "q": "Чи забираєте ви з Copart, IAAI та Manheim?",
           "a": "Так. Y7 оформлює gate pass, випуск лотів і документи покупця для заборів з Copart, IAAI, Manheim та інших великих аукціонів по всій країні. Деталі по маршрутах дивіться для доставки з Copart, перевезення з IAAI та перевезення з Manheim.",
           "links": [
-            { "text": "доставки з Copart", "href": "/ua/copart-shipping" },
+            { "text": "доставки з Copart", "href": "/ua/copart-ta-iaai" },
             { "text": "перевезення з IAAI", "href": "/iaai-transport" },
             { "text": "перевезення з Manheim", "href": "/manheim-transport" }
           ]

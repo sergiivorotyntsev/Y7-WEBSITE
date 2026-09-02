@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import PageMeta from '../../components/PageMeta';
 import BreadcrumbSchema from '../../components/BreadcrumbSchema';
@@ -53,6 +53,11 @@ export default function PortPage() {
   const { slug } = useParams();
   const { t } = useTranslation('ports');
   const port = PORTS[slug];
+  // [WEBFIX-T04] locale prefix from the URL (same rule as ContextualCTA), so
+  // the localized port pages link to their own locale's pages.
+  const { pathname } = useLocation();
+  const lm = pathname.match(/^\/(ua|pl|ru)(\/|$)/);
+  const prefix = lm ? `/${lm[1]}` : '';
 
   if (!port) {
     return (
@@ -157,6 +162,14 @@ export default function PortPage() {
                 <li key={i}>{doc}</li>
               ))}
             </ul>
+            {/* [WEBFIX-T04] the one export document Y7 itself issues, linked from
+                the paperwork context where an exporter is already reading. */}
+            <p className={styles.bodyText}>
+              {t('labels.coNote')}{' '}
+              <Link to={`${prefix}/certificate-of-origin`} className={styles.relatedLink}>
+                {t('labels.coLink')} &rarr;
+              </Link>
+            </p>
           </div>
         </section>
 

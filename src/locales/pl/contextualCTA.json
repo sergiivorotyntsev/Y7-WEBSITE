@@ -1,5 +1,11 @@
 {
   "keys": {
+    "certificateOfOrigin": {
+      "title": "Wysyłasz auto z USA do UE?",
+      "body": "Pojazdy wyprodukowane w USA wjeżdżają do UE z cłem 0% na mocy rozporządzenia (UE) 2026/1455. Y7 przygotowuje i składa świadectwo pochodzenia jako stały agent: $99 dla stałych klientów-eksporterów, $150 jednorazowo, eCO w 7 dni roboczych.",
+      "cta": "Świadectwo pochodzenia",
+      "linkLabel": "świadectwo pochodzenia"
+    },
     "dealers": {
       "title": "Transportujesz auta z aukcji dla swojego salonu?",
       "body": "Y7 codziennie obsługuje Copart, IAA i Manheim dla licencjonowanych dealerów w USA — fakturowanie tygodniowe, dedykowany dyspozytor, ceny hurtowe od szóstego auta w miesiącu.",

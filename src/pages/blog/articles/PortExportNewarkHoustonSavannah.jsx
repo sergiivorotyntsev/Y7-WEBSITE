@@ -161,7 +161,9 @@ export default function PortExportNewarkHoustonSavannah({ theme }) {
         port detail pages (<Link to="/ports/newark" style={{ color: theme.accent, fontWeight: 600 }}>Newark</Link>,
         <Link to="/ports/houston" style={{ color: theme.accent, fontWeight: 600 }}> Houston</Link>,
         <Link to="/ports/savannah" style={{ color: theme.accent, fontWeight: 600 }}> Savannah</Link>)
-        for port-specific operational details.
+        for port-specific operational details. Shipping to the EU from any of the three: the{' '}
+        <Link to="/certificate-of-origin" style={{ color: theme.accent, fontWeight: 600 }}>Certificate of Origin</Link>{' '}
+        Y7 files is what qualifies a US-built vehicle for 0% import duty on arrival.
       </p>
     </article>
   );

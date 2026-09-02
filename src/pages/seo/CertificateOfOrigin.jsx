@@ -222,7 +222,10 @@ export default function CertificateOfOrigin() {
         ctaSubtitle: t('labels.ctaSubtitle'),
         relatedHeading: t('labels.relatedHeading'),
       }}
-      primaryCTA={{ intlKey: 'exporters', to: `${prefix}/exporters`, tone: 'amber' }}
+      {/* [WEBFIX-T04b] bare path: ContextualCTA prepends the locale itself (its
+          documented contract, and what its eight other callers pass). The
+          prefixed value rendered /pl/pl/exporters on the localized CO pages. */}
+      primaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
       heading={t('heading')}
       intro={t('intro')}
       tldr={{

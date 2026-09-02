@@ -170,7 +170,10 @@ export default function AuctionToPortCostBreakdown2026({ theme }) {
         the Y7 exporter services page</Link> for the full gate-pass + warehouse-drop workflow we run on
         behalf of export clients, or the <Link to="/auction-to-port-transport" style={{ color: theme.accent, fontWeight: 600 }}>
         auction-to-port page</Link> for route-specific pricing detail. The <Link to="/auction-transport-savings" style={{ color: theme.accent, fontWeight: 600 }}>
-        auction transport savings breakdown</Link> shows where each of those buckets can be trimmed.
+        auction transport savings breakdown</Link> shows where each of those buckets can be trimmed. For
+        EU-bound vehicles, one more line belongs on the worksheet: a <Link to="/certificate-of-origin" style={{ color: theme.accent, fontWeight: 600 }}>
+        Certificate of Origin</Link> ($99 to $150) is what qualifies a US-built car for 0% import duty,
+        which outweighs every transport item above.
       </p>
 
       <p style={{ marginBottom: 18, fontSize: '1.02rem', lineHeight: 1.8, color: theme.text }}>

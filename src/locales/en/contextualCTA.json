@@ -1,5 +1,11 @@
 {
   "keys": {
+    "certificateOfOrigin": {
+      "title": "Shipping a US-built car to the EU?",
+      "body": "US-origin vehicles enter the EU at 0% import duty under EU Regulation 2026/1455. Y7 prepares and files the Certificate of Origin as standing agent: $99 for established exporter clients, $150 one-off, eCO in 7 business days.",
+      "cta": "Certificate of Origin service",
+      "linkLabel": "Certificate of Origin"
+    },
     "dealers": {
       "title": "Shipping auction vehicles for your dealership?",
       "body": "Y7 dispatches Copart, IAA, and Manheim loads for licensed dealers every day — weekly invoicing, dedicated dispatcher, and volume tiers from the sixth load of the month.",
