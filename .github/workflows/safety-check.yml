@@ -13,6 +13,25 @@ on:
 jobs:
   safety:
     runs-on: ubuntu-latest
+    env:
+      # [WAVE0-T03] SHIPPING SURFACES - the paths a visitor can actually reach.
+      #
+      # WHY THIS EXISTS. Three of the hard checks below scanned `.` with
+      # `--include="*.md" --include="*.txt"`, which means a sprint report that
+      # QUOTES a banned string fails the build. Not hypothetical: the
+      # `Y7 AGENCY` step had exactly ONE match in the whole repository, inside
+      # INTL_FIX_REPORT.md - a document whose subject is that the string is
+      # ABSENT from src/. The job died on it at step 2 and never reached the
+      # address check below, so every run since at least 2026-07-16 failed for
+      # a reason unrelated to any shipping surface.
+      #
+      # Documentation must be able to name the thing it documents.
+      #
+      # scripts/ is in scope (generateSitemap.js and prerender.mjs carry route
+      # and copy strings) but scripts/world.geo.json is excluded per-rule where
+      # it matters: it is 250KB of polygon coordinates and the substring
+      # "12.02464" is a latitude, not a ZIP code.
+      SHIP: "src public index.html server.js scripts"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -22,55 +41,87 @@ jobs:
       # ============================================================
 
       - name: Check for old MC number (1677498)
+        # [WAVE0-T03] Scoped to $SHIP. Was failing on docs/audits/WEBGEO_PHASE0.md,
+        # which records that the number does NOT appear on the site.
         run: |
           if grep -rn "1677498" \
               --include="*.jsx" --include="*.js" --include="*.ts" --include="*.tsx" \
-              --include="*.html" --include="*.json" --include="*.md" --include="*.txt" \
-              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist .; then
+              --include="*.html" --include="*.json" --include="*.txt" \
+              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist $SHIP; then
             echo "::error::Found old MC number 1677498. Current MC is 1741537. See [FIX-02] commit from April 5."
             exit 1
           fi
           echo "OK: no 1677498 references"
 
       - name: Check for old brand 'Y7 AGENCY'
+        # [WAVE0-T03] Scoped to $SHIP, and *.md dropped from the include list.
+        # The only match repo-wide was INTL_FIX_REPORT.md recording that the
+        # string does not appear in src/. That single match failed this
+        # workflow on every run for at least 47 days.
         run: |
           if grep -rn "Y7 AGENCY" \
               --include="*.jsx" --include="*.js" --include="*.ts" --include="*.tsx" \
-              --include="*.html" --include="*.json" --include="*.md" --include="*.txt" \
-              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist .; then
-            echo "::error::Found old brand 'Y7 AGENCY'. Current brand is 'Y7 Logistics' (legal: Y7 Consulting Inc)."
+              --include="*.html" --include="*.json" --include="*.txt" \
+              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist $SHIP; then
+            echo "::error::Found old brand 'Y7 AGENCY' on a shipping surface. Current brand is 'Y7 Logistics' (legal: Y7 Consulting Inc)."
             exit 1
           fi
-          echo "OK: no 'Y7 AGENCY' references"
+          echo "OK: no 'Y7 AGENCY' references on shipping surfaces"
 
       - name: Check for dispatch@ email
+        # [WAVE0-T03] Scoped to $SHIP, and CareerApplication.jsx is EXEMPT.
+        #
+        # dispatch@ is the carrier/driver mailbox (P3_FIX_REPORT.md:21 -
+        # "customer-facing: No, internal only"). The careers form is the one
+        # public surface whose audience IS carriers, so the address is correct
+        # there, and the rule now says so instead of being quietly violated.
+        # Every other shipping surface is a customer screen and must use info@;
+        # WAVE0-T03 moved the four that did not (portal/Locations.jsx,
+        # portal/OrderDetail.jsx, portal/Profile.jsx x2).
+        #
+        # ONE line inside a covered file is also exempt, by an inline marker
+        # rather than by dropping the file: OrderDetail.jsx renders the Zelle
+        # RECIPIENT, which must equal ZELLE_RECIPIENT in TRANSPORT
+        # services/email_templates.py:384. That is a money instruction the
+        # customer already received by email; rewriting it to info@ to satisfy
+        # this rule would misdirect payments. Mark such a line with
+        # `wave0-allow-dispatch` and say why, at the line.
         run: |
-          if grep -rn "dispatch@y7agency" \
+          HITS=$(grep -rn "dispatch@y7agency" \
               --include="*.jsx" --include="*.js" --include="*.ts" --include="*.tsx" \
-              --include="*.html" --include="*.json" --include="*.md" --include="*.txt" \
-              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist .; then
-            echo "::error::Found dispatch@y7agency email. Only info@y7agency.com is published on the public site."
+              --include="*.html" --include="*.json" --include="*.txt" \
+              --exclude=CareerApplication.jsx \
+              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist $SHIP \
+              | grep -v "wave0-allow-dispatch" || true)
+          if [ -n "$HITS" ]; then
+            echo "$HITS"
+            echo "::error::Found dispatch@y7agency on a customer-facing surface. dispatch@ is the carrier mailbox; customer screens use info@y7agency.com. CareerApplication.jsx is exempt (carrier audience); a single line may be exempted with a wave0-allow-dispatch marker and a stated reason."
             exit 1
           fi
-          echo "OK: no dispatch@ references"
+          echo "OK: dispatch@ appears only where its audience is carriers"
 
       - name: Check for old Wix phone (857-895-8555)
+        # [WAVE0-T03] Scoped to $SHIP. Was failing on WEBGEO_PHASE0.md and
+        # T06_copy_sweep.txt, both of which record its absence from src/.
         run: |
           if grep -rnE "857.{0,5}895" \
               --include="*.jsx" --include="*.js" --include="*.ts" --include="*.tsx" \
-              --include="*.html" --include="*.json" --include="*.md" --include="*.txt" \
-              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist .; then
+              --include="*.html" --include="*.json" --include="*.txt" \
+              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist $SHIP; then
             echo "::error::Found old Wix phone number (857-895-xxxx). Public site has no phone numbers."
             exit 1
           fi
           echo "OK: no 857-895 references"
 
       - name: Check for fake VOIP phone (617-010-xxxx)
+        # [WAVE0-T03] Scoped to $SHIP for consistency with its two siblings.
+        # This one passes today; the scoping is what keeps it passing when an
+        # audit quotes the number.
         run: |
           if grep -rnE "617.{0,5}010" \
               --include="*.jsx" --include="*.js" --include="*.ts" --include="*.tsx" \
-              --include="*.html" --include="*.json" --include="*.md" --include="*.txt" \
-              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist .; then
+              --include="*.html" --include="*.json" --include="*.txt" \
+              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist $SHIP; then
             echo "::error::Found fake VOIP phone (617-010-xxxx). Public site has no phone numbers."
             exit 1
           fi
@@ -98,20 +149,48 @@ jobs:
           fi
           echo "OK: no telephone JSON-LD field"
 
-      - name: Check FMCSA filing address not exposed (6 Harding / Natick / 01760)
-        # Policy flip: office address 1007 Chestnut St, Newton MA 02464 is now
-        # the canonical public-facing address (LEGAL-ACCURACY sprint). The
-        # FMCSA filing address (6 Harding Rd, Natick MA 01760) stays off the
-        # public site — it is the registered agent address, not our office.
+      - name: Check the SUPERSEDED office address is not published (both alphabets)
+        # [WAVE0-T03] THE POLARITY OF THIS RULE IS REVERSED.
+        #
+        # It used to ban `6 Harding` / `Natick` / `01760` on the theory that
+        # Natick was the FMCSA registered-agent address and Newton was the
+        # office (LEGAL-ACCURACY, d6f7bbe, 2026-04-20). That policy was later
+        # flipped: 6 Harding Rd, Natick, MA 01760 IS the canonical public
+        # address, and CO5-T02 swept it onto every generated document. The rule
+        # was never updated, so it banned the correct address and matched 44
+        # times - while never executing, because an earlier step killed the job.
+        #
+        # BOTH ALPHABETS, AND THAT IS THE POINT. Every sweep before this one
+        # was latin-only, and src/locales/ua/faq.json:10 survived all of them:
+        #   "iz holovnym ofisom u Ньютоні" - Newton, declined, in Cyrillic.
+        # A rule written in one alphabet rebuilds the same blindness facing the
+        # other way. The Cyrillic stem is banned outright: measured at
+        # 08c7565f, it had exactly ONE occurrence on any shipping surface and
+        # that occurrence was the defect. The RU/UA service-area copy spells
+        # the city in latin ("Newton, MA"), so there is no legitimate Cyrillic
+        # use to protect. If one is ever wanted, amend this rule deliberately.
+        #
+        # WHAT THIS DOES NOT CATCH, stated so nobody assumes otherwise: a
+        # paraphrase that names no address at all. src/locales/*/services.json
+        # said "Our home base" of a Newton section; WAVE0-T02b rewrote those
+        # four strings, but a grep cannot police a claim with no place-name in
+        # it. This rule covers the address, not every way of implying one.
+        #
+        # world.geo.json is excluded: it is polygon coordinates, and the
+        # substring "12.02464" in Somalia's outline is a latitude, not a ZIP.
         run: |
-          if grep -rn -e "6 Harding" -e "Natick" -e "01760" \
+          if grep -rnE -e "1007 Chestnut" -e "Chestnut St" -e "02464" -e "02458" \
+              -e "Ньютон" -e "Нютон" \
+              -e "based in Newton" -e "siedzibą w Newton" -e "из Newton" \
+              -e "Newton,? (MA|Massachusetts)-based" -e "[Oo]ur (local )?Newton office" \
               --include="*.jsx" --include="*.js" --include="*.ts" --include="*.tsx" \
-              --include="*.html" --include="*.json" --include="*.md" --include="*.txt" \
-              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist .; then
-            echo "::error::FMCSA filing address (6 Harding Rd / Natick / 01760) must not appear on the public site. Use the office address 1007 Chestnut St, Newton MA 02464."
+              --include="*.html" --include="*.json" --include="*.txt" --include="*.xml" \
+              --exclude=world.geo.json \
+              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist $SHIP; then
+            echo "::error::The SUPERSEDED office address (1007 Chestnut St / Newton MA / 02464 / 02458, or Newton claimed as Y7 location in any alphabet) appears on a shipping surface. The canonical address is 6 Harding Rd, Natick, MA 01760. Newton as a SERVICE AREA is fine - do not remove /newton-auto-transport or its copy."
             exit 1
           fi
-          echo "OK: FMCSA filing address not exposed"
+          echo "OK: no superseded office address on any shipping surface, latin or Cyrillic"
 
       - name: Check sitemap for broken /en/ hreflang
         run: |

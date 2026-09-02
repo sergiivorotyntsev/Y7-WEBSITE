@@ -109,7 +109,7 @@ function AccountMembersSection() {
       <div className={pp.label} style={{ marginBottom: 4 }}>Account Members</div>
       <p style={{ ...sans, fontSize: 12, color: 'var(--v2-ink-muted, #5c5851)', margin: '0 0 8px', lineHeight: 1.5 }}>
         People who can sign in to this account. To add or remove someone,
-        contact dispatch@y7agency.com.
+        contact info@y7agency.com.
       </p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
         {data.members.map(m => (
@@ -472,7 +472,7 @@ export default function Profile() {
               verified; changing it goes through Y7. */}
           <input value={profile.company_name || ''} disabled className={pp.input} />
           <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: '11px', color: 'var(--v2-ink-60, rgba(5,6,7,0.6))', marginTop: 4 }}>
-            Company name is verified by Y7 — contact dispatch@y7agency.com to change it.
+            Company name is verified by Y7 — contact info@y7agency.com to change it.
           </div>
         </div>
         <div>

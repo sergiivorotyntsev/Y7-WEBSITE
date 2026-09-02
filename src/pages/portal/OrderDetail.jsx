@@ -1017,7 +1017,14 @@ export default function OrderDetail() {
                       <div style={{ fontFamily: 'var(--font-mono, "JetBrains Mono", monospace)', fontSize: '11px', fontWeight: 500, letterSpacing: 'var(--v2-track-label, 0.14em)', textTransform: 'uppercase', color: 'var(--v2-ink, #050607)', marginBottom: '8px' }}>
                         Pay by Zelle
                       </div>
-                      <InfoRow label="Send to" value="dispatch@y7agency.com" mono />
+                      {/* [WAVE0-T03] This is the Zelle RECIPIENT, not a support contact, and it
+                          stays dispatch@. It must equal ZELLE_RECIPIENT in TRANSPORT
+                          services/email_templates.py:384 — the address the customer's own
+                          payment-details email already told them to pay. Pointing this at info@
+                          to satisfy a CI rule would put the portal at odds with that email and
+                          misdirect real money. The marker on the line below is what exempts it
+                          from the dispatch@ check; the check still covers the rest of this file. */}
+                      <InfoRow label="Send to" value="dispatch@y7agency.com" mono /> {/* wave0-allow-dispatch */}
                       <InfoRow label="Amount" value={`$${(paymentData.payment.total_charge_cents / 100).toFixed(2)}`} mono />
                       <div style={{ fontSize: '12px', color: 'var(--v2-ink-muted, #5c5851)', margin: '8px 0 12px', lineHeight: 1.5 }}>
                         This is the Y7 service fee (prepaid). The carrier transport price is paid separately to the driver at delivery.

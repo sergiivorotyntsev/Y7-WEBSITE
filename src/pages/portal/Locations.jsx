@@ -172,7 +172,7 @@ function LocationForm({ initial, onSubmit, onCancel, submitting }) {
             </div>
           ))}
           <div style={{ fontFamily: 'var(--font-sans, system-ui)', fontSize: 11, color: 'var(--v2-ink-muted, #5c5851)' }}>
-            To change these, contact dispatch@y7agency.com.
+            To change these, contact info@y7agency.com.
           </div>
         </div>
       )}
