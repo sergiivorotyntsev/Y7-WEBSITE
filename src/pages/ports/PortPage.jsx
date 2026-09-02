@@ -6,6 +6,8 @@ import AuctionToPortWorkflow from '../../components/AuctionToPortWorkflow';
 import { PORTS } from './portData';
 import styles from './PortPage.module.css';
 import btn from '../../styles/buttons.module.css';
+import { withAttribution } from '../../utils/attribution';
+import useAttributionSearch from '../../hooks/useAttributionSearch';
 
 const RELATED_BY_PORT = {
   newark: [
@@ -58,6 +60,8 @@ export default function PortPage() {
   const { pathname } = useLocation();
   const lm = pathname.match(/^\/(ua|pl|ru)(\/|$)/);
   const prefix = lm ? `/${lm[1]}` : '';
+  // [WEBFIX-T07] live query after hydration, for the static CTA href below.
+  const attributionSearch = useAttributionSearch();
 
   if (!port) {
     return (
@@ -232,8 +236,13 @@ export default function PortPage() {
           <p className={styles.ctaSubtitle}>
             {t('labels.ctaSubtitle', { name: port.name })}
           </p>
+          {/* [WEBFIX-T07] was `/?delivery_zip=...#quote-section`: the home page never
+              read the parameter (24 parametric copies of "/" for nothing) and the
+              locale was dropped. /quote DOES read delivery_zip (QuoteForm prefill),
+              carries a self-canonical, and the campaign parameters ride along
+              (door 4 of 4, see utils/attribution.js). */}
           <Link
-            to={`/?delivery_zip=${port.zip}#quote-section`}
+            to={`${withAttribution(`${prefix}/quote`, new URLSearchParams({ delivery_zip: port.zip }), attributionSearch)}#top`}
             className={`${btn.btn} ${styles.ctaBtn}`}
           >
             {t('labels.ctaButton')}
