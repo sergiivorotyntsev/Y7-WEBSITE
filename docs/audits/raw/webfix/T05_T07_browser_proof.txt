@@ -1,0 +1,42 @@
+=== WEBFIX T05 + T07 — browser proof (Playwright MCP, headless Chromium)
+Served: dist/ built at 15d4be7 via docs/audits/raw/webfix/serve_dist.mjs on http://127.0.0.1:8898
+Date: 2026-09-02 14:32-14:34Z
+Landing URL for every door: /?utm_source=test&utm_medium=x&utm_campaign=y&gclid=G1&fbclid=F1
+
+--- Door 3: QuoteFormCompact "use the full form" <a href> (static anchor) ---
+document.querySelectorAll('a[href*="/quote"]') on the home page, after load:
+  "/quote?utm_source=test&utm_medium=x&utm_campaign=y&gclid=G1&fbclid=F1"
+
+--- Door 1: QuoteFormCompact submit (pickup 60601, delivery 07114, email) ---
+Landed on:
+  /quote?pickup_zip=60601&delivery_zip=07114&email=webfix-proof%40example.com&utm_source=test&utm_medium=x&utm_campaign=y&gclid=G1&fbclid=F1#top
+QuoteForm consumed that URL at mount (same window.location.search its utm memo reads):
+  #quote-pickup-zip   = "60601"
+  #quote-delivery-zip = "07114"
+  #quote-email        = "webfix-proof@example.com"
+
+--- Door 2: QuoteStrip (deliver-to changed Newark -> "Houston, TX (port)", CTA "Get the exact quote") ---
+Landed on:
+  /quote?pickup_zip=60601&delivery_zip=77571&vehicle_type=sedan&transport_type=open&utm_source=test&utm_medium=x&utm_campaign=y&gclid=G1&fbclid=F1#top
+
+--- Door 4: PortPage CTA (/ports/newark) ---
+CTA href on the port page, after load:
+  "/quote?delivery_zip=07114&utm_source=test&utm_medium=x&utm_campaign=y&gclid=G1&fbclid=F1#top"
+Also on the page: a[href="/certificate-of-origin"] "Certificate of Origin service →" (T04); h1 count = 1 (T01b)
+Click -> landed on:
+  /quote?delivery_zip=07114&utm_source=test&utm_medium=x&utm_campaign=y&gclid=G1&fbclid=F1#top
+  #quote-delivery-zip = "07114"   <- the prefill that the old /?delivery_zip= link never delivered
+  #quote-pickup-zip   = ""
+
+--- Console errors seen during the run ---
+All of them: CORS / net::ERR_FAILED against https://dispatch.y7agency.com/api/public/* (reviews,
+fee-schedule, zip-lookup, distance, check-email-availability) from origin 127.0.0.1 - the local
+static server artefact documented in render_check.mjs as [env, not a defect]. No pageerror, no
+error from the site's own bundle.
+
+--- Localized port page (locale kept) ---
+see the PL block appended below
+
+--- /pl/ports/newark?utm_source=test&utm_medium=x&utm_campaign=y ---
+CTA href: "/pl/quote?delivery_zip=07114&utm_source=test&utm_medium=x&utm_campaign=y#top"   <- locale kept (was "/?delivery_zip=07114#quote-section", EN home)
+CO link:  "/pl/certificate-of-origin"  "Usługa świadectwa pochodzenia →"

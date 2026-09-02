@@ -33,7 +33,11 @@ const PORT = 8899;
 //   PolandHome.jsx  -> /pl/transport-z-usa
 //   Boston/Massachusetts/NewtonAutoTransport.jsx -> their three EN pages
 //   portal/*.jsx (T03) -> /portal/login is the only one that renders unauthenticated
-const ROUTES = [
+// [WEBFIX] RENDER_ROUTES="/a,/b,..." overrides the list (WEBFIX touched
+// index.html, which every route inherits, so that run passes all 143).
+const ROUTES = process.env.RENDER_ROUTES
+  ? process.env.RENDER_ROUTES.split(',').map((r) => r.trim()).filter(Boolean)
+  : [
   '/faq', '/pl/faq', '/ru/faq', '/ua/faq',
   '/services', '/pl/services', '/ru/services', '/ua/services',
   '/pl/transport-z-usa',
@@ -42,7 +46,7 @@ const ROUTES = [
   '/newton-auto-transport',
   '/portal/login',
   '/',
-];
+  ];
 
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.mjs': 'text/javascript',
@@ -116,7 +120,7 @@ try {
   console.log('');
 
   // ---- the real pass -------------------------------------------------------
-  console.log('=== ROUTES TOUCHED BY THE WAVE0 DIFF');
+  console.log(process.env.RENDER_ROUTES ? `=== ROUTES (${ROUTES.length}, from RENDER_ROUTES)` : '=== ROUTES TOUCHED BY THE WAVE0 DIFF');
   const fresh = await browser.newPage();
   for (const r of ROUTES) {
     const { status, errs, env } = await load(fresh, `http://127.0.0.1:${PORT}${r}`);

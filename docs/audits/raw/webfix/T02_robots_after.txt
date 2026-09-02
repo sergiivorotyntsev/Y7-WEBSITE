@@ -1,0 +1,25 @@
+user-agent               / assets .js /promo/x /portal/ /review/
+Googlebot               ok         ok       ok       ok       ok
+Google-Extended         ok         ok    BLOCK    BLOCK    BLOCK
+Bingbot                 ok         ok       ok       ok       ok
+YandexBot               ok         ok    BLOCK    BLOCK    BLOCK
+DuckAssistBot           ok         ok    BLOCK    BLOCK    BLOCK
+OAI-SearchBot           ok         ok       ok       ok       ok
+ChatGPT-User            ok         ok       ok       ok       ok
+GPTBot                  ok         ok    BLOCK    BLOCK    BLOCK
+PerplexityBot           ok         ok       ok       ok       ok
+Perplexity-User         ok         ok    BLOCK    BLOCK    BLOCK
+Applebot                ok         ok       ok       ok       ok
+ClaudeBot               ok         ok    BLOCK    BLOCK    BLOCK
+Claude-SearchBot        ok         ok    BLOCK    BLOCK    BLOCK
+Claude-User             ok         ok    BLOCK    BLOCK    BLOCK
+anthropic-ai            ok         ok    BLOCK    BLOCK    BLOCK
+CCBot                   ok         ok    BLOCK    BLOCK    BLOCK
+Bytespider           BLOCK      BLOCK    BLOCK    BLOCK    BLOCK
+FacebookBot             ok         ok    BLOCK    BLOCK    BLOCK
+meta-externalagent      ok         ok    BLOCK    BLOCK    BLOCK
+Amazonbot               ok         ok    BLOCK    BLOCK    BLOCK
+cohere-ai               ok         ok    BLOCK    BLOCK    BLOCK
+SemrushBot              ok         ok       ok       ok       ok
+SiteAuditBot            ok         ok    BLOCK    BLOCK    BLOCK
+MJ12bot              BLOCK      BLOCK    BLOCK    BLOCK    BLOCK

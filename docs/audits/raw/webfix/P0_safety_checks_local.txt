@@ -1,0 +1,58 @@
+[PASS] Check for old MC number (1677498)
+        OK: no 1677498 references
+[PASS] Check for old brand 'Y7 AGENCY'
+        OK: no 'Y7 AGENCY' references on shipping surfaces
+[PASS] Check for dispatch@ email
+        OK: dispatch@ appears only where its audience is carriers
+[PASS] Check for old Wix phone (857-895-8555)
+        OK: no 857-895 references
+[PASS] Check for fake VOIP phone (617-010-xxxx)
+        OK: no 617-010 references
+[PASS] Check for tel links (no colon)
+        OK: no tel: links
+[FAIL] Check for telephone field in JSON-LD
+        ./audit-results.json:680:          "telephone": "+1-617-010-7171",
+        ::error::Found 'telephone' field in JSON-LD schema. Remove it - public site has no phone.
+[PASS] Check the SUPERSEDED office address is not published (both alphabets)
+        OK: no superseded office address on any shipping surface, latin or Cyrillic
+[PASS] Check sitemap for broken /en/ hreflang
+        OK: no /en/ in sitemap
+[FAIL] Check sitemap URL count (must be 133)
+        ::error::Sitemap has 138 URLs, expected 133. If you intentionally added/removed pages, update this check.
+[PASS] Check for DaytonaCargo in Ukrainian pages
+        OK: Ukrainian pages are Y7-centric
+[PASS] Check for external daytonacargo.com links site-wide
+        OK: no external daytonacargo.com links
+[FAIL] Check sitemap fake intl URLs
+        ::error::Sitemap contains fake intl URL: /pl/quote (no such page exists)
+        ::error::Sitemap contains fake intl URL: /ua/quote (no such page exists)
+        ::error::Sitemap contains fake intl URL: /ru/quote (no such page exists)
+        ::error::Sitemap contains fake intl URL: /pl/faq (no such page exists)
+        ::error::Sitemap contains fake intl URL: /ua/faq (no such page exists)
+        ::error::Sitemap contains fake intl URL: /ru/faq (no such page exists)
+        ::error::Sitemap contains fake intl URL: /pl/about (no such page exists)
+        ::error::Sitemap contains fake intl URL: /ua/about (no such page exists)
+        ::error::Sitemap contains fake intl URL: /ru/about (no such page exists)
+        ::error::Sitemap contains fake intl URL: /pl/ports/ (no such page exists)
+        ::error::Sitemap contains fake intl URL: /ua/ports/ (no such page exists)
+        ::error::Sitemap contains fake intl URL: /ru/ports/ (no such page exists)
+[PASS] Verify info@y7agency.com still present
+        OK: info@y7agency.com still present
+[PASS] Verify Telegram bot link still present
+        OK: Telegram bot link still present
+[PASS] Soft check — PLACEHOLDER_ in intl pages
+        OK: no placeholder markers in intl pages
+[PASS] Final summary
+        ::notice::Safety check complete. See individual step results above.
+
+executed: 17   passed: 14   FAILED: 3
+   FAILED -> Check for telephone field in JSON-LD
+   FAILED -> Check sitemap URL count (must be 133)
+   FAILED -> Check sitemap fake intl URLs
+not executed here (6):
+   - Checkout  [uses: action]
+   - Setup Node.js  [uses: action]
+   - Install dependencies  [needs npm ci / dist]
+   - Build and verify prerender count  [needs npm ci / dist]
+   - Verify dist sitemap matches public sitemap  [needs npm ci / dist]
+   - Verify dist contains intl pages  [needs npm ci / dist]

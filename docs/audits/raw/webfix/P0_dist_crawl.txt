@@ -1,0 +1,107 @@
+routes 143 missing files 0 []
+snapshots <20KB: []
+
+## JSON-LD: blocks 328 invalid(parse) 0 LocalBusiness-with-serviceType nodes 143
+routes with 0 ld blocks: []
+
+## Titles >70 chars: 29
+  96  /copart-international-shipping  "Copart International Shipping — US Auction to Forwarder Warehouse, Then Worldwide | Y7 Logistics"
+  90  /blog/copart-for-international-buyers-complete-guide  "How International Buyers Ship Cars from Copart — Step-by-Step 2026 Playbook | Y7 Logistics"
+  89  /blog/copart-storage-fees-real-cost-2026  "The Real Cost of Copart Storage Fees in 2026 — A Broker’s Honest Breakdown | Y7 Logistics"
+  88  /blog/auction-to-port-cost-breakdown-2026  "Auction to Port Cost Breakdown 2026 — Full Export Transport Pricing Guide | Y7 Logistics"
+  88  /blog/port-specific-export-newark-houston-savannah  "US Port Export Comparison — Newark vs Houston vs Savannah for Auto Export | Y7 Logistics"
+  87  /blog/bill-of-lading-pickup-delivery-guide  "Bill of Lading Guide — Verify Your Car Shipment at Pickup &amp; Delivery | Y7 Logistics"
+  86  /ru/faq  "FAQ по автоперевозкам — брокер или перевозчик, цены, аукционы и экспорт | Y7 Logistics"
+  85  /faq  "Auto Transport FAQ — Broker vs Carrier, Pricing, Auctions &amp; Export | Y7 Logistics"
+  85  /certificate-of-origin  "Certificate of Origin for US Vehicle Exports to the EU: 0% Import Duty | Y7 Logistics"
+  85  /blog/enclosed-transport-when-to-skip  "Enclosed vs Open Car Transport — When to Skip the Premium (2026 Guide) | Y7 Logistics"
+  85  /blog/winter-auto-transport-pricing  "Winter Auto Transport Pricing 2026 — Why Rates Spike &amp; How to Save | Y7 Logistics"
+  85  /ua/faq  "FAQ з автоперевезень — брокер чи перевізник, ціни, аукціони та експорт | Y7 Logistics"
+  83  /copart-gate-pass-guide  "Copart Gate Pass Guide — How It Works, Common Failures, Yard Cutoffs | Y7 Logistics"
+  83  /blog/copart-iaa-manheim-comparison  "Copart vs IAA vs Manheim — Which Auto Auction Should You Use in 2026 | Y7 Logistics"
+  80  /nj-export-warehouse-shipping-cost  "NJ Export-Warehouse Shipping Cost — How Carrier Pricing Is Formed | Y7 Logistics"
+  80  /blog/central-dispatch-listing-decoded  "How to Read a Central Dispatch Load Listing — Broker's Guide 2026 | Y7 Logistics"
+  79  /florida-to-jacksonville-port-car-shipping  "Florida Auctions to Jacksonville Port Car Shipping — RoRo Export | Y7 Logistics"
+  79  /pl/faq  "FAQ transportu aut — broker a przewoźnik, ceny, aukcje i eksport | Y7 Logistics"
+  78  /door-to-port-auto-transport  "Door-to-Port Auto Transport Cost &amp; Transit Time to US Ports | Y7 Logistics"
+  77  /auction-transport-savings  "Save on Auction Car Transport — Broker Direct, Skip the Markup | Y7 Logistics"
+  77  /blog/dealer-auction-pickup-guide  "How Dealers Cut Auction Pickup Costs &amp; Storage Fees (2026) | Y7 Logistics"
+  77  /pl/transport-z-aukcji  "Sprowadzanie aut z Copart do Polski — przewodnik 2026 | Y7 &amp; DaytonaCargo"
+  76  /salvage-car-shipping  "Salvage Car Shipping — Copart &amp; IAAI Total-Loss Transport | Y7 Logistics"
+  76  /copart-storage-fees  "Copart Storage Fees Explained — Planning Guide Before You Bid | Y7 Logistics"
+  73  /exporters  "Auto Export Services — Auction to Port Delivery Nationwide | Y7 Logistics"
+  73  /blog/non-running-vehicle-shipping-playbook  "How to Ship a Non-Running Vehicle — Complete 2026 Playbook | Y7 Logistics"
+  72  /atlanta-to-savannah-port-auto-transport  "Atlanta to Savannah Port Auto Transport — Auction to Ship | Y7 Logistics"
+  72  /ru/certificate-of-origin  "Сертификат происхождения для авто из США в ЕС: пошлина 0% | Y7 Logistics"
+  71  /auction-car-shipping  "Auction Car Shipping — Copart, IAAI &amp; Manheim Pickup | Y7 Logistics"
+
+## Multiple H1: routes 143 ; distribution {"2":143}
+sample: [{"r":"/","h1s":["Auto Transport Dispatchfor Dealers &amp; Exporters","Y7 Logistics — Nationwide Auto Transport"]},{"r":"/services","h1s":["Our Services","Y7 Logistics — Nationwide Auto Transport"]},{"r":"/dealers","h1s":["Your Outsourced Dispatch Department","Y7 Logistics — Nationwide Auto Transport"]},{"r":"/exporters","h1s":["Dispatch &amp; Logistics for Vehicle Exporters","Y7 Logistics — Nationwide Auto Transport"]}]
+single/zero-H1 routes: 
+
+## Text ratio <=0.10: 36
+  0.048  /careers/apply  (43498 bytes)
+  0.049  /quote-verified  (39592 bytes)
+  0.049  /quote-verification-failed  (39412 bytes)
+  0.053  /404  (40703 bytes)
+  0.063  /track  (41476 bytes)
+  0.064  /ua/track  (43449 bytes)
+  0.064  /pl/track  (41635 bytes)
+  0.064  /ru/track  (43355 bytes)
+  0.069  /contact  (44516 bytes)
+  0.071  /ru/contact  (46438 bytes)
+  0.072  /ua/contact  (46507 bytes)
+  0.073  /pl/contact  (44657 bytes)
+  0.075  /dealer-quote  (47936 bytes)
+  0.075  /blog  (149646 bytes)
+  0.079  /ru/quote  (50595 bytes)
+  0.08  /ua/quote  (50716 bytes)
+  0.08  /pl/quote  (48011 bytes)
+  0.082  /quote  (47983 bytes)
+  0.09  /accessibility  (38198 bytes)
+  0.095  /ports/newark  (51768 bytes)
+  0.096  /ports/houston  (51963 bytes)
+  0.096  /ports/savannah  (51906 bytes)
+  0.097  /  (71775 bytes)
+  0.098  /ports/los-angeles  (52004 bytes)
+  0.098  /ports/baltimore  (51928 bytes)
+  0.098  /ua/ports/savannah  (54951 bytes)
+  0.098  /ru/ports/newark  (55098 bytes)
+  0.098  /ru/ports/savannah  (54948 bytes)
+  0.099  /ua/ports/newark  (55173 bytes)
+  0.099  /pl/ports/newark  (52227 bytes)
+  0.099  /pl/ports/savannah  (52260 bytes)
+  0.099  /ru/ports/houston  (55129 bytes)
+  0.1  /ports/jacksonville  (52223 bytes)
+  0.1  /ua  (76737 bytes)
+  0.1  /ru  (76700 bytes)
+  0.1  /ua/ports/houston  (55170 bytes)
+
+## Inbound links to *certificate-of-origin (source -> count):
+  /exporters -> 2
+  /pl/exporters -> 2
+  /pl/services -> 1
+  /ru/exporters -> 2
+  /ru/services -> 1
+  /services -> 1
+  /ua/exporters -> 2
+  /ua/services -> 1
+
+## hrefs containing delivery_zip: 24
+   /ports/newark /?delivery_zip=07114#quote-section
+   /ports/houston /?delivery_zip=77029#quote-section
+   /ports/savannah /?delivery_zip=31402#quote-section
+   /ports/los-angeles /?delivery_zip=90731#quote-section
+   /ports/baltimore /?delivery_zip=21224#quote-section
+   /ports/jacksonville /?delivery_zip=32206#quote-section
+   /ua/ports/newark /?delivery_zip=07114#quote-section
+   /ua/ports/houston /?delivery_zip=77029#quote-section
+   /ua/ports/savannah /?delivery_zip=31402#quote-section
+   /ua/ports/los-angeles /?delivery_zip=90731#quote-section
+
+## Internal hrefs to non-routes (target <- sources):
+  /images/hero-car.avif  <- 4 pages: / /ua /pl /ru
+  /pl/pl/exporters  <- 1 pages: /pl/certificate-of-origin
+  /ru/ru/exporters  <- 1 pages: /ru/certificate-of-origin
+  /ua/copart-shipping  <- 1 pages: /ua/faq
+  /ua/ua/exporters  <- 1 pages: /ua/certificate-of-origin
