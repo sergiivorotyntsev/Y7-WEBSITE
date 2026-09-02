@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { trackEvent } from '../utils/trackEvent';
 import TrustBadges from './TrustBadges';
@@ -8,6 +8,15 @@ import styles from './Footer.module.css';
 
 export default function Footer() {
   const { t } = useTranslation();
+  // [WEBFIX2-T04c] locale-aware links for the pages that exist in all four
+  // locales (same rule as Header.jsx). The footer linked the ENGLISH /faq,
+  // /services, /ports/* ... from every localized page, so /ru/faq and the
+  // localized port pages had zero inbound links. SEO landings, blog and
+  // careers have no twins and stay EN.
+  const { pathname } = useLocation();
+  const localeMatch = pathname.match(/^\/(ua|pl|ru)(\/|$)/);
+  const prefix = localeMatch ? `/${localeMatch[1]}` : '';
+  const L = (path) => `${prefix}${path}`;
 
   return (
     <footer role="contentinfo" className={styles.footer}>
@@ -77,12 +86,12 @@ export default function Footer() {
         <div>
           <div className={styles.colHeading}>{t('footer.portDelivery')}</div>
           <div className={styles.colLinks}>
-            <Link to="/ports/newark" className={styles.link}>{t('footer.portLinks.newark')}</Link>
-            <Link to="/ports/houston" className={styles.link}>{t('footer.portLinks.houston')}</Link>
-            <Link to="/ports/savannah" className={styles.link}>{t('footer.portLinks.savannah')}</Link>
-            <Link to="/ports/los-angeles" className={styles.link}>{t('footer.portLinks.losAngeles')}</Link>
-            <Link to="/ports/baltimore" className={styles.link}>{t('footer.portLinks.baltimore')}</Link>
-            <Link to="/ports/jacksonville" className={styles.link}>{t('footer.portLinks.jacksonville')}</Link>
+            <Link to={L('/ports/newark')} className={styles.link}>{t('footer.portLinks.newark')}</Link>
+            <Link to={L('/ports/houston')} className={styles.link}>{t('footer.portLinks.houston')}</Link>
+            <Link to={L('/ports/savannah')} className={styles.link}>{t('footer.portLinks.savannah')}</Link>
+            <Link to={L('/ports/los-angeles')} className={styles.link}>{t('footer.portLinks.losAngeles')}</Link>
+            <Link to={L('/ports/baltimore')} className={styles.link}>{t('footer.portLinks.baltimore')}</Link>
+            <Link to={L('/ports/jacksonville')} className={styles.link}>{t('footer.portLinks.jacksonville')}</Link>
           </div>
         </div>
 
@@ -90,15 +99,15 @@ export default function Footer() {
         <div>
           <div className={styles.colHeading}>{t('footer.company')}</div>
           <div className={styles.colLinks}>
-            <Link to="/services" className={styles.link}>{t('nav.services')}</Link>
-            <Link to="/dealers" className={styles.link}>{t('nav.dealers')}</Link>
-            <Link to="/exporters" className={styles.link}>{t('nav.exporters')}</Link>
-            <Link to="/ship-my-car" className={styles.link}>{t('nav.shipMyCar')}</Link>
-            <Link to="/track" className={styles.link}>{t('nav.track')}</Link>
-            <Link to="/faq" className={styles.link}>{t('nav.faq')}</Link>
-            <Link to="/about" className={styles.link}>{t('nav.about')}</Link>
+            <Link to={L('/services')} className={styles.link}>{t('nav.services')}</Link>
+            <Link to={L('/dealers')} className={styles.link}>{t('nav.dealers')}</Link>
+            <Link to={L('/exporters')} className={styles.link}>{t('nav.exporters')}</Link>
+            <Link to={L('/ship-my-car')} className={styles.link}>{t('nav.shipMyCar')}</Link>
+            <Link to={L('/track')} className={styles.link}>{t('nav.track')}</Link>
+            <Link to={L('/faq')} className={styles.link}>{t('nav.faq')}</Link>
+            <Link to={L('/about')} className={styles.link}>{t('nav.about')}</Link>
             <Link to="/blog" className={styles.link}>{t('nav.blog')}</Link>
-            <Link to="/contact" className={styles.link}>{t('nav.contact')}</Link>
+            <Link to={L('/contact')} className={styles.link}>{t('nav.contact')}</Link>
             <Link to="/careers" className={styles.link}>{t('footer.careers')}</Link>
           </div>
 
