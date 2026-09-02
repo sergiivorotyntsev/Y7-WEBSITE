@@ -29,6 +29,13 @@ Disallow: /promo/
 # Googlebot: full access to all content including JS/CSS for rendering
 User-agent: Googlebot
 Allow: /
+# [WEBFIX-T11] same protected paths as "*": a group of its own means the "*"
+# rules never apply, so these were open to this crawler until now.
+Disallow: /portal/
+Disallow: /agreement
+Disallow: /api/
+Disallow: /review/
+Disallow: /promo/
 
 User-agent: Googlebot-Image
 Allow: /
@@ -46,35 +53,84 @@ Disallow: /promo/
 User-agent: Bingbot
 Allow: /
 Allow: /assets/
+# [WEBFIX-T11] same protected paths as "*": a group of its own means the "*"
+# rules never apply, so these were open to this crawler until now.
+Disallow: /portal/
+Disallow: /agreement
+Disallow: /api/
+Disallow: /review/
+Disallow: /promo/
 
 User-agent: Slurp
 Allow: /
 Allow: /assets/
+# [WEBFIX-T11] same protected paths as "*": a group of its own means the "*"
+# rules never apply, so these were open to this crawler until now.
+Disallow: /portal/
+Disallow: /agreement
+Disallow: /api/
+Disallow: /review/
+Disallow: /promo/
 
 User-agent: DuckDuckBot
 Allow: /
 Allow: /assets/
+# [WEBFIX-T11] same protected paths as "*": a group of its own means the "*"
+# rules never apply, so these were open to this crawler until now.
+Disallow: /portal/
+Disallow: /agreement
+Disallow: /api/
+Disallow: /review/
+Disallow: /promo/
 
 # ── AI Search Bots (ALLOW — we want to appear in AI answers) ─
 # OpenAI ChatGPT Search
 User-agent: OAI-SearchBot
 Allow: /
 Allow: /assets/
+# [WEBFIX-T11] same protected paths as "*": a group of its own means the "*"
+# rules never apply, so these were open to this crawler until now.
+Disallow: /portal/
+Disallow: /agreement
+Disallow: /api/
+Disallow: /review/
+Disallow: /promo/
 
 # OpenAI browsing (when users ask ChatGPT to visit a page)
 User-agent: ChatGPT-User
 Allow: /
 Allow: /assets/
+# [WEBFIX-T11] same protected paths as "*": a group of its own means the "*"
+# rules never apply, so these were open to this crawler until now.
+Disallow: /portal/
+Disallow: /agreement
+Disallow: /api/
+Disallow: /review/
+Disallow: /promo/
 
 # Perplexity search
 User-agent: PerplexityBot
 Allow: /
 Allow: /assets/
+# [WEBFIX-T11] same protected paths as "*": a group of its own means the "*"
+# rules never apply, so these were open to this crawler until now.
+Disallow: /portal/
+Disallow: /agreement
+Disallow: /api/
+Disallow: /review/
+Disallow: /promo/
 
 # Apple AI / Siri
 User-agent: Applebot
 Allow: /
 Allow: /assets/
+# [WEBFIX-T11] same protected paths as "*": a group of its own means the "*"
+# rules never apply, so these were open to this crawler until now.
+Disallow: /portal/
+Disallow: /agreement
+Disallow: /api/
+Disallow: /review/
+Disallow: /promo/
 
 # ── AI Training Bots — INTENTIONALLY OPENED (compromise-(b)) ──
 # y7agency.com WANTS presence in future model weights; these training crawlers
