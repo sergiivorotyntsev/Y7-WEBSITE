@@ -1,5 +1,6 @@
 // scripts/generateSitemap.js
-// Regenerates public/sitemap.xml with reciprocal hreflang alternates on every
+// Verifies public/sitemap.xml by default, or regenerates it with --write.
+// The sitemap carries reciprocal hreflang alternates on every
 // translated URL — every language version of a page lists every other language
 // version (including itself). Per Google's hreflang rules:
 // https://developers.google.com/search/docs/specialty/international/localized-versions
@@ -15,6 +16,14 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT_FILE = join(__dirname, '..', 'public', 'sitemap.xml');
 const REPO_ROOT = join(__dirname, '..');
 const BASE = 'https://www.y7agency.com';
+const WRITE = process.argv.includes('--write');
+const normalizeLineEndings = (text) => text?.replace(/\r\n/g, '\n');
+
+const unknownArgs = process.argv.slice(2).filter((arg) => arg !== '--write');
+if (unknownArgs.length > 0) {
+  console.error(`[generateSitemap] Unknown argument(s): ${unknownArgs.join(', ')}`);
+  process.exit(2);
+}
 
 // ---------------------------------------------------------------------------
 // SEO-FND-T05: real per-URL <lastmod> (replaces the perpetually-"today" stamp,
@@ -373,19 +382,44 @@ const xml = [
   '',
 ].join('\n');
 
-writeFileSync(OUT_FILE, xml, 'utf-8');
-
 // SEO-FND-T05: persist resolved per-URL dates so the git-less Docker build can
 // read them back (sorted keys for stable, review-friendly diffs).
 const sortedManifest = Object.fromEntries(Object.keys(manifest).sort().map((k) => [k, manifest[k]]));
-writeFileSync(MANIFEST_FILE, JSON.stringify(sortedManifest, null, 2) + '\n', 'utf-8');
+const manifestJson = JSON.stringify(sortedManifest, null, 2) + '\n';
+
+if (WRITE) {
+  if (!GIT_OK) {
+    console.error('[generateSitemap] Refusing --write without Git history.');
+    console.error('  lastmod refresh must come from source-file commit dates, not build date fallbacks.');
+    process.exit(1);
+  }
+  writeFileSync(OUT_FILE, xml, 'utf-8');
+  writeFileSync(MANIFEST_FILE, manifestJson, 'utf-8');
+} else {
+  const stale = [];
+  const currentSitemap = existsSync(OUT_FILE) ? readFileSync(OUT_FILE, 'utf-8') : null;
+  const currentManifest = existsSync(MANIFEST_FILE) ? readFileSync(MANIFEST_FILE, 'utf-8') : null;
+
+  // Git may materialize CRLF on Windows even though committed blobs and the
+  // production Linux image use LF. Treat that checkout transformation as the
+  // same content; --write still emits canonical LF bytes.
+  if (normalizeLineEndings(currentSitemap) !== xml) stale.push(OUT_FILE);
+  if (normalizeLineEndings(currentManifest) !== manifestJson) stale.push(MANIFEST_FILE);
+
+  if (stale.length > 0) {
+    console.error('[generateSitemap] Committed sitemap artifacts are stale:');
+    for (const file of stale) console.error(`  - ${file}`);
+    console.error('Run npm run sitemap:update in a full Git checkout, review the lastmod-only diff, and commit both files.');
+    process.exit(1);
+  }
+}
 
 const total = (xml.match(/<url>/g) || []).length;
 const alt = (xml.match(/xhtml:link/g) || []).length;
-console.log(`[generateSitemap] wrote ${OUT_FILE}`);
+console.log(`[generateSitemap] ${WRITE ? 'wrote' : 'verified'} ${OUT_FILE}`);
 console.log(`  Total <url> entries: ${total}`);
 console.log(`  Total xhtml:link alternates: ${alt}`);
 console.log(`  lastmod source: ${GIT_OK ? 'git commit dates' : 'manifest/build-date fallback (no git)'}`);
-console.log(`  Manifest entries: ${Object.keys(sortedManifest).length} -> ${MANIFEST_FILE}`);
+console.log(`  Manifest entries: ${Object.keys(sortedManifest).length} ${WRITE ? '->' : 'at'} ${MANIFEST_FILE}`);
 const groupCount = TRANSLATABLE_PATHS.length + PORT_GROUPS.length;
 console.log(`  Translated URL groups: ${groupCount} (× 4 locales × 5 alternates = ${groupCount * 4 * 5})`);

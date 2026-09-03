@@ -275,6 +275,18 @@ jobs:
           fi
           echo "OK: build complete with 143 OK, 0 failed"
 
+      - name: Verify build leaves tracked tree clean
+        run: |
+          DIRTY=$(git status --porcelain --untracked-files=no)
+          if [ -n "$DIRTY" ]; then
+            echo "$DIRTY"
+            git diff --stat
+            git diff
+            echo "::error::Build modified tracked files. Run npm run sitemap:update when lastmod data intentionally changes, then commit and rebuild."
+            exit 1
+          fi
+          echo "OK: build left the tracked working tree clean"
+
       - name: Verify dist sitemap matches public sitemap
         run: |
           DIST_COUNT=$(grep -c "<loc>" dist/sitemap.xml || echo 0)

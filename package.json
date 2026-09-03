@@ -12,6 +12,8 @@
     "lint:fix": "eslint . --fix",
     "preview": "vite preview",
     "start": "node server.js",
+    "sitemap:check": "node scripts/generateSitemap.js",
+    "sitemap:update": "node scripts/generateSitemap.js --write",
     "seo:snapshot": "node scripts/seo-snapshot.mjs --write",
     "seo:check": "node scripts/seo-snapshot.mjs --check"
   },
