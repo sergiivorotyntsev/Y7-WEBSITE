@@ -21,6 +21,70 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 const DIST_DIR = path.join(__dirname, 'dist');
+const INDEX_FILE = path.join(DIST_DIR, 'index.html');
+
+// ---------------------------------------------------------------------------
+// SEOGEO-03: private/tokenized namespace classification.
+// ---------------------------------------------------------------------------
+// Keep this path-based rather than fallback-based: public pages that happen to
+// miss a prerender file must never inherit private indexing directives.
+const PRIVATE_SPA_NAMESPACES = ['/portal', '/agreement', '/promo', '/review'];
+
+function normalizedRequestPath(reqPath) {
+  return reqPath.replace(/\/+$/, '') || '/';
+}
+
+function isPrivateOrTokenizedPath(reqPath) {
+  const p = normalizedRequestPath(reqPath);
+  const localeStripped = p.replace(/^\/(pl|ua|ru)(?=\/|$)/, '') || '/';
+
+  if (PRIVATE_SPA_NAMESPACES.some(prefix =>
+      localeStripped === prefix || localeStripped.startsWith(prefix + '/'))) {
+    return true;
+  }
+
+  // Canonical quote-action routes plus the legacy /en/ redirect alias.
+  return /^\/((pl|ua|ru)\/)?quote\/[^/]+\/[^/]+$/.test(p)
+    || /^\/en\/quote\/[^/]+\/[^/]+$/.test(p);
+}
+
+// The private SPA shell is derived once at process startup. X-Robots-Tag is
+// authoritative; this transform is defense-in-depth so raw HTML also stops
+// claiming the homepage canonical identity. A failed/no-op transform must be
+// visible in Railway logs, but must not prevent the header control from serving.
+let PRIVATE_SHELL_HTML = null;
+try {
+  const sourceShell = readFileSync(INDEX_FILE, 'utf8');
+  PRIVATE_SHELL_HTML = sourceShell
+    .replace(/<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/gi, '')
+    .replace(
+      /<meta\b(?=[^>]*\bname=["']robots["'])[^>]*>/gi,
+      '<meta name="robots" content="noindex, noarchive">',
+    );
+
+  const canonicalRemains = /<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/i
+    .test(PRIVATE_SHELL_HTML);
+  const robotsMatch = PRIVATE_SHELL_HTML.match(
+    /<meta\b(?=[^>]*\bname=["']robots["'])(?=[^>]*\bcontent=["']([^"']*)["'])[^>]*>/i,
+  );
+  const robotsRules = new Set(
+    (robotsMatch?.[1] || '').toLowerCase().split(',').map(rule => rule.trim()),
+  );
+
+  if (PRIVATE_SHELL_HTML === sourceShell || canonicalRemains || !robotsRules.has('noindex')) {
+    console.error(
+      '[server] CRITICAL SEOGEO-03: private-shell transform assertion failed; '
+      + 'continuing with authoritative X-Robots-Tag protection.',
+    );
+  } else {
+    console.log('[server] SEOGEO-03 private shell verified: canonical omitted, robots=noindex');
+  }
+} catch (e) {
+  console.error(
+    '[server] CRITICAL SEOGEO-03: could not prepare private shell; '
+    + `continuing with authoritative X-Robots-Tag protection: ${e.message}`,
+  );
+}
 
 // ---------------------------------------------------------------------------
 // Security headers (SEC-H01) — first middleware, so every response (pages,
@@ -39,6 +103,9 @@ app.use((req, res, next) => {
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
   res.setHeader('Permissions-Policy', 'geolocation=(), camera=(), microphone=()');
+  if (isPrivateOrTokenizedPath(req.path)) {
+    res.setHeader('X-Robots-Tag', 'noindex, noarchive');
+  }
   next();
 });
 
@@ -222,7 +289,7 @@ try {
 }
 
 function isKnownPath(reqPath) {
-  const p = reqPath.replace(/\/$/, '') || '/';
+  const p = normalizedRequestPath(reqPath);
 
   // PORTAL-LAZY-FIX: SPA-only routes (auth-gated or parameterized).
   // These are valid React Router paths that are intentionally excluded
@@ -232,20 +299,9 @@ function isKnownPath(reqPath) {
   // URL access (bookmarks, email links, copy-paste, social shares),
   // breaking deep-linking for authenticated users.
   //
-  // Strip optional lang prefix (pl/ua/ru) before namespace check so
-  // localized variants like /pl/agreement/:id are also recognized.
-  const normalized = p.replace(/^\/(pl|ua|ru)/, '') || '/';
-  const SPA_NAMESPACES = ['/portal', '/agreement', '/promo', '/review'];
-  if (SPA_NAMESPACES.some(prefix =>
-      normalized === prefix || normalized.startsWith(prefix + '/'))) {
-    return true;
-  }
-
-  // [/:lang]/quote/:action/:orderId — parameterized quote action, localized OR
-  // unprefixed English (HOTFIX-CONFIRM404-T02: quote emails link the unprefixed
-  // form; /en/ arrives here only if the 302 above is bypassed). Only matches the
-  // action+orderId form, NOT bare /quote or /:lang/quote (prerendered).
-  if (/^\/((pl|ua|ru)\/)?quote\/[^/]+\/[^/]+$/.test(p)) return true;
+  // Covers the SPA namespaces and quote-action routes above, including the
+  // locale-prefixed server fallbacks. Bare /quote remains a public prerender.
+  if (isPrivateOrTokenizedPath(p)) return true;
 
   if (VALID_ROUTES.has(p) || VALID_ROUTES.has(p + '/')) return true;
   // Filesystem check for any prerendered directory (covers edge cases).
@@ -265,14 +321,18 @@ app.get(/.*/, (req, res) => {
       res.setHeader('Cache-Control', 'no-cache');
       return res.sendFile(ownIndex);
     }
-    res.sendFile(path.join(DIST_DIR, 'index.html'));
+    if (isPrivateOrTokenizedPath(req.path) && PRIVATE_SHELL_HTML !== null) {
+      res.type('html').send(PRIVATE_SHELL_HTML);
+      return;
+    }
+    res.sendFile(INDEX_FILE);
     return;
   }
   const notFoundFile = path.join(DIST_DIR, '404.html');
   if (existsSync(notFoundFile)) {
     res.status(404).sendFile(notFoundFile);
   } else {
-    res.status(404).sendFile(path.join(DIST_DIR, 'index.html'));
+    res.status(404).sendFile(INDEX_FILE);
   }
 });
 
