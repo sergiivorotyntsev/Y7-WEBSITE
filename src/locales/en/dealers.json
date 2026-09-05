@@ -48,7 +48,7 @@
   "paymentOptions": {
     "kicker": "PAYMENT OPTIONS",
     "title": "Two Ways to Pay — Both Flat Fee",
-    "subtitle": "Same dispatch fee either way. Choice is about who writes the check to the carrier.",
+    "subtitle": "The payment flow differs by arrangement. Choose who should pay the carrier.",
     "options": [
       {
         "name": "Direct Carrier Payment (COD)",
@@ -124,7 +124,7 @@
       { "label": "Weekly statement + reconciliation", "desc": "Every Friday: complete transaction log — carrier, amount, method, date, running balance against your prepaid working capital." },
       { "label": "Carrier payment execution", "desc": "We collect and verify each carrier's ACH routing, Zelle handle, and W9, then execute payments on your behalf. Encrypted at rest, linked to each carrier record." },
       { "label": "ACH + check supported", "desc": "No wire transfer fees. Auto-pay available via stored ACH." },
-      { "label": "Year-end 1099-NEC issuance", "desc": "We issue 1099-NEC forms to carriers you paid through Y7 (subject to IRS threshold rules). Annual service fee applies — invoiced separately in January." },
+      { "label": "Year-end payment records", "desc": "We process carrier payments, reconcile each transaction, and provide year-end payment records." },
       { "label": "Monthly summary report", "desc": "First business day of each month. Vehicles moved, total spend, lane breakdown, carrier performance." },
       { "label": "DMS-ready CSV export", "desc": "Flat CSV format that reconciles cleanly with most dealer management systems." },
       { "label": "Audit trail", "desc": "Every dispatch, every BOL, every invoice, timestamped and archived. Pull historical records any time." }
@@ -175,7 +175,7 @@
     "items": [
       { "q": "How is this different from hiring an internal dispatcher?", "a": "An internal dispatcher is a fixed ~$90k/year cost regardless of volume. You also carry software licensing, training, and vacation coverage risk. Y7 charges a flat dispatch fee per vehicle — scales with your actual volume, zero fixed cost, zero staffing risk. The capabilities are the same: carrier sourcing, rate negotiation, gate pass coordination, BOL documentation, claims handling." },
       { "q": "What's the dispatch fee?", "a": "Flat per-vehicle fee based on your typical lane mix. Request a dealer account review and we'll give you the number up front — no tiered games, no surprise surcharges. Same fee whether you do 5 vehicles a month or 50." },
-      { "q": "Do I pay carriers directly or does Y7?", "a": "Your choice. Option 1: pay carriers directly at delivery (COD) — you control BOL inspection at door, Y7 bills dispatch fee only. Option 2: prepay Y7, we pay carriers, weekly reconciliation against balance. Both cost the same in total." },
+      { "q": "Do I pay carriers directly or does Y7?", "a": "Your choice. Option 1: pay carriers directly at delivery (COD) — you control BOL inspection at door, Y7 bills dispatch fee only. Option 2: prepay Y7, we pay carriers, weekly reconciliation against balance. Choose the arrangement that fits how your team handles carrier payments." },
       { "q": "What's the minimum volume?", "a": "None. We onboard single-vehicle pickups and scale with you. The flat fee model makes small-volume dealers economically viable from day one." },
       { "q": "How fast can you dispatch a carrier?", "a": "Depends on lane. Popular corridors (major metros) typically dispatch within 24-48 hours. Rural yards or unusual pairings may take 3-5 days. We tell you the realistic timeline when we quote, not after you commit. Post to Central Dispatch within 30 minutes of your request." },
       { "q": "Can I have multiple users on one dealer account?", "a": "Yes. Invite finance, dispatch, and sales managers with role-based permissions. Finance sees billing. Dispatch sees active loads. Sales sees delivery ETAs for customer updates." },

@@ -101,7 +101,7 @@
   "paymentOptions": {
     "kicker": "OPCJE PŁATNOŚCI",
     "title": "Dwa sposoby płatności — oba ze stałą opłatą",
-    "subtitle": "Taka sama opłata dyspozytury w obu przypadkach. Wybór dotyczy tego, kto wystawia czek przewoźnikowi.",
+    "subtitle": "Przebieg płatności zależy od wybranego wariantu. Wybierz, kto ma płacić przewoźnikowi.",
     "options": [
       {
         "name": "Bezpośrednia płatność dla przewoźnika (COD)",
@@ -243,8 +243,8 @@
         "desc": "Bez opłat za przelewy wire. Automatyczna płatność dostępna przez zapisane ACH."
       },
       {
-        "label": "Wystawianie 1099-NEC na koniec roku",
-        "desc": "Wystawiamy formularze 1099-NEC przewoźnikom, którym zapłaciłeś przez Y7 (zależnie od progów IRS). Obowiązuje roczna opłata serwisowa — fakturowana osobno w styczniu."
+        "label": "Dokumentacja płatności na koniec roku",
+        "desc": "Przetwarzamy płatności dla przewoźników, uzgadniamy każdą transakcję i udostępniamy dokumentację płatności na koniec roku."
       },
       {
         "label": "Miesięczny raport podsumowujący",
@@ -386,7 +386,7 @@
       },
       {
         "q": "Czy płacę przewoźnikom bezpośrednio, czy robi to Y7?",
-        "a": "Twój wybór. Opcja 1: płacisz przewoźnikom bezpośrednio przy dostawie (COD) — kontrolujesz inspekcję BOL przy odbiorze, Y7 fakturuje tylko opłatę dyspozytury. Opcja 2: przedpłacasz Y7, my płacimy przewoźnikom, tygodniowe uzgodnienie z saldem. Łącznie oba warianty kosztują tyle samo."
+        "a": "Twój wybór. Opcja 1: płacisz przewoźnikom bezpośrednio przy dostawie (COD) — kontrolujesz inspekcję BOL przy odbiorze, Y7 fakturuje tylko opłatę dyspozytury. Opcja 2: przedpłacasz Y7, my płacimy przewoźnikom, tygodniowe uzgodnienie z saldem. Wybierz wariant zgodny ze sposobem, w jaki Twój zespół rozlicza się z przewoźnikami."
       },
       {
         "q": "Jaki jest minimalny wolumen?",
