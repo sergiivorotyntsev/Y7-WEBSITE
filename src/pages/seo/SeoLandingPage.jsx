@@ -58,7 +58,8 @@ export default function SeoLandingPage({
   // rendered right after the intro. EN-only by construction on these pages.
   tldr = null,
   // EXPORTERS-CO-T01: optional commercial enrichment of the Service schema,
-  // in the MoneyPageSchema shape ({ serviceType, audience, offers }). Offers
+  // in the MoneyPageSchema shape ({ serviceType, audience, offers }). Audience
+  // may opt into a schemaType; the historical default remains Audience. Offers
   // carry per-offer priceRange. Absent -> schema output is unchanged.
   serviceExtras = null,
   // CO-COPY-T15: optional chrome-string overrides for localized callers.
@@ -113,7 +114,7 @@ export default function SeoLandingPage({
       ...(serviceExtras.serviceType && { serviceType: serviceExtras.serviceType }),
       ...(serviceExtras.audience && {
         audience: {
-          '@type': 'Audience',
+          '@type': serviceExtras.audience.schemaType || 'Audience',
           audienceType: serviceExtras.audience.audienceType,
           name: serviceExtras.audience.name,
         },

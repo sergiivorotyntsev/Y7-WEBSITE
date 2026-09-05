@@ -22,7 +22,7 @@
       },
       {
         "service": "Płatności dla przewoźników",
-        "desc": "Płacimy przewoźnikom ze środków, które wpłacasz z góry: przez dedykowane konto, które Y7 otwiera dla Ciebie, albo przedpłatą, wedle ustaleń. Co dwa tygodnie lub co miesiąc otrzymujesz zestawienie wszystkich wpłat i wszystkich płatności dla przewoźników wraz z saldem do zapłaty. Bez osobnej opłaty za obsługę.",
+        "desc": "Zakładamy dedykowane konto dla Twoich zleceń transportowych, a warunki płatności ustalamy indywidualnie.",
         "note": "W cenie"
       },
       {
@@ -174,7 +174,7 @@
         "notes": "Gdynia bezpośrednio; Newark i Baltimore"
       },
       {
-        "country": "Gruzja",
+        "country": "Gruzja (Kaukaz)",
         "notes": "Poti lub przez Mersin; Baltimore + Jacksonville"
       },
       {
@@ -245,7 +245,7 @@
       },
       {
         "q": "Co obejmuje konfiguracja Programu dla eksporterów?",
-        "a": "Cztery warstwy konfigurowane pod klienta: uzgodniony kanał zleceń (ustrukturyzowany email, Telegram albo portal), Twoja sieć magazynów wprowadzona do naszego systemu, automatyczne powiadomienia o zleceniach w Twoim kanale oraz analiza trasowania, która wybiera optymalny magazyn przed każdym ogłoszeniem eksportowym."
+        "a": "Cztery warstwy konfigurowane pod klienta: uzgodniony kanał zleceń (ustrukturyzowany email, Telegram albo portal), wskazana przez Ciebie sieć magazynów wprowadzona do naszego systemu, automatyczne powiadomienia o zleceniach w Twoim kanale oraz analiza trasowania, która porównuje odcinki lądowe i pomaga Tobie i Twojemu agentowi frachtowemu wybrać magazyn."
       },
       {
         "q": "Czy możecie pracować z systemami naszych magazynów?",
@@ -280,14 +280,14 @@
       },
       {
         "kicker": "04 · INTELIGENTNE TRASOWANIE",
-        "title": "Optymalny magazyn za każdym razem",
-        "body": "Przed każdym ogłoszeniem eksportowym automatycznie analizujemy, który z Twoich magazynów jest optymalny dla danego zlecenia. Równoodległe opcje porównujemy po bieżących stawkach transportu; jeśli podzielisz się swoimi stawkami frachtu morskiego do krajów docelowych, wchodzą one do tej samej kalkulacji. Przy złożonych trasach wystawiamy równoległe ogłoszenia na dwa magazyny i decyduje wycena przewoźników."
+        "title": "Porównanie odcinków lądowych",
+        "body": "Przed każdym ogłoszeniem eksportowym Ty i Twój agent frachtowy wskazujecie magazyny, które mogą przyjąć pojazd. Y7 automatycznie porównuje odcinki lądowe według bieżących stawek transportu; jeśli udostępnisz stawki frachtu morskiego do krajów docelowych, pokazujemy je w tym samym porównaniu łącznych kosztów. Przy złożonych trasach możemy wystawić równoległe ogłoszenia na dwa wskazane magazyny, aby stawki przewoźników pomogły Ci podjąć decyzję. Następnie Y7 wycenia i koordynuje odcinek lądowy do wybranego przez Ciebie magazynu."
       }
     ]
   },
   "routing": {
     "title": "Jak zapadają decyzje o trasie",
-    "body": "Auto z Copart w York Haven, PA może wyjechać przez Newark (około 160 mil drogą) albo Baltimore (około 65). W ostatnich wysyłkach odcinek do Baltimore kosztuje $175-215 wobec $230-300 do Newark. Lądem wygrywa Baltimore. Ale jeśli Twoja stawka frachtu do kraju docelowego jest o $120 lepsza z Newark, w łącznym rozrachunku wygrywa Newark. Dokładnie tę analizę wykonujemy automatycznie przed każdym ogłoszeniem eksportowym.",
+    "body": "Auto z Copart w York Haven, PA może wyjechać przez Newark (około 160 mil drogą) albo Baltimore (około 65). W ostatnich wysyłkach odcinek do Baltimore kosztuje $175-215 wobec $230-300 do Newark. Lądem wygrywa Baltimore. Ale jeśli Twoja stawka frachtu do kraju docelowego jest o $120 lepsza z Newark, w łącznym rozrachunku wygrywa Newark. Y7 przygotowuje to porównanie automatycznie, aby wesprzeć decyzję, którą podejmujesz wspólnie ze swoim agentem frachtowym; po wskazaniu magazynu wyceniamy i koordynujemy odcinek lądowy.",
     "legFrom": "Copart York Haven, PA",
     "legA": "Baltimore, MD · ~65 mil",
     "legARate": "$175-215",

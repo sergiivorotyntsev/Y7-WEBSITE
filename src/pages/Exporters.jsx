@@ -54,7 +54,8 @@ function portMeta(name = '') {
 // first two letters. Restyles an existing destination, never invents one.
 const COUNTRY_CODES = [
   ['ukrain', 'UA'], ['poland', 'PL'], ['polsk', 'PL'], ['lithuan', 'LT'], ['latvi', 'LV'],
-  ['eston', 'EE'], ['georgia', 'GE'], ['armenia', 'AM'], ['kazakh', 'KZ'], ['azerbaij', 'AZ'],
+  ['eston', 'EE'], ['georgia', 'GE'], ['gruzj', 'GE'], ['груз', 'GE'], ['armenia', 'AM'],
+  ['kazakh', 'KZ'], ['azerbaij', 'AZ'],
   ['german', 'DE'], ['netherl', 'NL'], ['belgi', 'BE'], ['finland', 'FI'], ['emirat', 'AE'],
   ['uae', 'AE'], ['dubai', 'AE'], ['russia', 'RU'], ['romania', 'RO'], ['bulgar', 'BG'],
   ['czech', 'CZ'], ['slovak', 'SK'], ['turkey', 'TR'], ['nigeria', 'NG'], ['ghana', 'GH'],

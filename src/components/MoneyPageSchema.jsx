@@ -30,6 +30,7 @@ const PAGE_SPEC = {
     description:
       'End-to-end auction-to-port logistics for international buyers. Gate-pass coordination, warehouse drop-off, and carrier management across Newark, Houston, Savannah, Baltimore, Los Angeles, and Jacksonville ports.',
     url: '/exporters',
+    audienceSchemaType: 'BusinessAudience',
     audienceType: 'Business',
     audienceName: 'Vehicle Exporters and International Buyers',
     priceRange: '$50',
@@ -70,7 +71,7 @@ export default function MoneyPageSchema({ pageType }) {
     provider: { '@id': `${BASE}/#organization` },
     areaServed: { '@type': 'Country', name: 'United States' },
     audience: {
-      '@type': 'Audience',
+      '@type': spec.audienceSchemaType || 'Audience',
       audienceType: spec.audienceType,
       name: spec.audienceName,
     },

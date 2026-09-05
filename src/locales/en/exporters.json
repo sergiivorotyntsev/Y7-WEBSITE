@@ -22,7 +22,7 @@
       },
       {
         "service": "Carrier Payments",
-        "desc": "We pay carriers from funds you place first: through a dedicated account we open for you, or by prepayment, set per client. Every two weeks or monthly you receive a statement of all deposits and all carrier payments, with the balance due. No separate processing fee.",
+        "desc": "We set up a dedicated account for your shipments, with payment arrangements agreed individually.",
         "note": "Included"
       },
       {
@@ -174,7 +174,7 @@
         "notes": "Gdynia direct; Newark and Baltimore origins"
       },
       {
-        "country": "Georgia",
+        "country": "Georgia (Caucasus)",
         "notes": "Poti direct or via Mersin; Baltimore + Jacksonville origins"
       },
       {
@@ -245,7 +245,7 @@
       },
       {
         "q": "What does the Exporter Program setup include?",
-        "a": "Four layers configured per client: an agreed intake channel (structured email, Telegram, or the portal), your warehouse network preloaded in our system, automatic order notifications in your channel, and routing analysis that picks the optimal warehouse before every export listing."
+        "a": "Four layers configured per client: an agreed intake channel (structured email, Telegram, or the portal), your nominated warehouse network preloaded in our system, automatic order notifications in your channel, and routing analysis that compares the domestic legs and informs the warehouse choice you make with your freight forwarder."
       },
       {
         "q": "Can you work with our warehouses' own systems?",
@@ -278,14 +278,14 @@
       },
       {
         "kicker": "04 · SMART ROUTING",
-        "title": "The optimal warehouse, every time",
-        "body": "Before every export listing we automatically analyze which of your warehouses is optimal for that order. Equidistant options are compared on current transport rates; when you share your ocean rates per destination, they enter the same calculation. For complex routes we run parallel listings on two warehouses and let carrier pricing decide."
+        "title": "Domestic legs compared",
+        "body": "Before every export listing, you and your freight forwarder nominate the warehouses that can receive the vehicle. Y7 automatically compares the domestic legs using current transport rates; when you share your ocean rates per destination, we present them in the same total-cost comparison. For complex routes, we can run parallel listings to two nominated warehouses so carrier pricing informs your decision. Y7 then quotes and coordinates the domestic move to the warehouse you select."
       }
     ]
   },
   "routing": {
     "title": "How routing decisions get made",
-    "body": "A Copart unit in York Haven, PA can gate out through Newark (about 160 road miles) or Baltimore (about 65). On recent dispatches the Baltimore leg runs $175-215 against $230-300 to Newark. Inland, Baltimore wins. But if your ocean rate to the destination is $120 better ex-Newark, Newark wins the total. That is the analysis we run automatically before every export listing.",
+    "body": "A Copart unit in York Haven, PA can gate out through Newark (about 160 road miles) or Baltimore (about 65). On recent dispatches the Baltimore leg runs $175-215 against $230-300 to Newark. Inland, Baltimore wins. But if your ocean rate to the destination is $120 better ex-Newark, Newark wins the total. Y7 produces this comparison automatically to inform the route choice you make with your freight forwarder; once you nominate the warehouse, we quote and coordinate the domestic leg.",
     "legFrom": "Copart York Haven, PA",
     "legA": "Baltimore, MD · ~65 mi",
     "legARate": "$175-215",

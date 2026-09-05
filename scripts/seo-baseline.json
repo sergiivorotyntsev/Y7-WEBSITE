@@ -376,15 +376,15 @@
     ]
   },
   "/exporters": {
-    "title": "Auto Export Services — Auction to Port Delivery Nationwide | Y7 Logistics",
-    "description": "Vehicle export logistics for international buyers. Auction to port delivery, gate pass coordination, warehouse drop-off. Newark, Houston, Savannah, LA, Baltimore, Jacksonville.",
+    "title": "US Auto Transport for Exporters | Y7 Logistics",
+    "description": "US auto transport for exporters: nationwide auction pickup, delivery to your nominated export warehouse or port, and gate pass coordination.",
     "canonical": "https://www.y7agency.com/exporters",
     "robots": "index, follow",
-    "ogTitle": "Auto Export Services — Auction to Port Delivery Nationwide | Y7 Logistics",
-    "ogDescription": "Vehicle export logistics for international buyers. Auction to port delivery, gate pass coordination, warehouse drop-off. Newark, Houston, Savannah, LA, Baltimore, Jacksonville.",
+    "ogTitle": "US Auto Transport for Exporters | Y7 Logistics",
+    "ogDescription": "US auto transport for exporters: nationwide auction pickup, delivery to your nominated export warehouse or port, and gate pass coordination.",
     "ogImage": "https://www.y7agency.com/og-image.svg",
-    "twitterTitle": "Auto Export Services — Auction to Port Delivery Nationwide | Y7 Logistics",
-    "twitterDescription": "Vehicle export logistics for international buyers. Auction to port delivery, gate pass coordination, warehouse drop-off. Newark, Houston, Savannah, LA, Baltimore, Jacksonville.",
+    "twitterTitle": "US Auto Transport for Exporters | Y7 Logistics",
+    "twitterDescription": "US auto transport for exporters: nationwide auction pickup, delivery to your nominated export warehouse or port, and gate pass coordination.",
     "h1": [
       "Dispatch & Logistics for Vehicle Exporters"
     ],
@@ -404,8 +404,8 @@
     ],
     "jsonLdTypes": [
       "Answer",
-      "Audience",
       "BreadcrumbList",
+      "BusinessAudience",
       "ContactPoint",
       "Country",
       "FAQPage",
@@ -3991,22 +3991,26 @@
     ]
   },
   "/auction-to-port-transport": {
-    "title": "Auction to Port Car Transport — Copart to Port Shipping | Y7 Logistics",
-    "description": "Auction to port vehicle transport with gate pass coordination. Copart, IAAI, Manheim to Port Newark, Houston, Savannah. Licensed FMCSA broker.",
+    "title": "Auction-to-Port Auto Transport Nationwide | Y7 Logistics",
+    "description": "Nationwide car transportation from US auctions to the export warehouse or port you nominate, with gate pass, release-document, and carrier coordination.",
     "canonical": "https://www.y7agency.com/auction-to-port-transport",
     "robots": "index, follow",
-    "ogTitle": "Auction to Port Car Transport — Copart to Port Shipping | Y7 Logistics",
-    "ogDescription": "Auction to port vehicle transport with gate pass coordination. Copart, IAAI, Manheim to Port Newark, Houston, Savannah. Licensed FMCSA broker.",
+    "ogTitle": "Auction-to-Port Auto Transport Nationwide | Y7 Logistics",
+    "ogDescription": "Nationwide car transportation from US auctions to the export warehouse or port you nominate, with gate pass, release-document, and carrier coordination.",
     "ogImage": "https://www.y7agency.com/og-image.svg",
-    "twitterTitle": "Auction to Port Car Transport — Copart to Port Shipping | Y7 Logistics",
-    "twitterDescription": "Auction to port vehicle transport with gate pass coordination. Copart, IAAI, Manheim to Port Newark, Houston, Savannah. Licensed FMCSA broker.",
+    "twitterTitle": "Auction-to-Port Auto Transport Nationwide | Y7 Logistics",
+    "twitterDescription": "Nationwide car transportation from US auctions to the export warehouse or port you nominate, with gate pass, release-document, and carrier coordination.",
     "h1": [
-      "Auction to Port Transport — Direct from Auction to Export Port"
+      "Auction-to-Port Transport from US Auctions"
     ],
     "h2": [
       "Getting this car to a port?",
+      "Nationwide Auction Pickup",
+      "Delivery to Your Nominated Export Warehouse",
+      "Multiple Auction Purchases, One Destination",
+      "Non-Running and Damaged Auction Vehicles",
       "The Complete Workflow",
-      "Y7\\u2019s Role as Broker",
+      "Y7’s Role as Broker",
       "Gate Pass Coordination",
       "Popular Auction-to-Port Corridors",
       "New Jersey Export-Warehouse Pricing, Explained",
@@ -4024,6 +4028,7 @@
     "jsonLdTypes": [
       "Answer",
       "BreadcrumbList",
+      "BusinessAudience",
       "ContactPoint",
       "Country",
       "FAQPage",
@@ -8290,15 +8295,15 @@
     ]
   },
   "/ua/exporters": {
-    "title": "Експорт авто з США до порту | Доставка з аукціону | Y7 Logistics",
-    "description": "Логістика експорту авто з США. Доставка з аукціону до порту, координація gate pass, склад. Порти: Newark, Houston, Savannah, LA, Baltimore, Jacksonville.",
+    "title": "Перевезення авто по США для експортерів | Y7 Logistics",
+    "description": "Перевезення авто по США для експортерів: забір з аукціонів у всіх штатах, доставка на вказаний вами експортний склад або до порту та координація gate pass.",
     "canonical": "https://www.y7agency.com/ua/exporters",
     "robots": "index, follow",
-    "ogTitle": "Експорт авто з США до порту | Доставка з аукціону | Y7 Logistics",
-    "ogDescription": "Логістика експорту авто з США. Доставка з аукціону до порту, координація gate pass, склад. Порти: Newark, Houston, Savannah, LA, Baltimore, Jacksonville.",
+    "ogTitle": "Перевезення авто по США для експортерів | Y7 Logistics",
+    "ogDescription": "Перевезення авто по США для експортерів: забір з аукціонів у всіх штатах, доставка на вказаний вами експортний склад або до порту та координація gate pass.",
     "ogImage": "https://www.y7agency.com/og-image.svg",
-    "twitterTitle": "Експорт авто з США до порту | Доставка з аукціону | Y7 Logistics",
-    "twitterDescription": "Логістика експорту авто з США. Доставка з аукціону до порту, координація gate pass, склад. Порти: Newark, Houston, Savannah, LA, Baltimore, Jacksonville.",
+    "twitterTitle": "Перевезення авто по США для експортерів | Y7 Logistics",
+    "twitterDescription": "Перевезення авто по США для експортерів: забір з аукціонів у всіх штатах, доставка на вказаний вами експортний склад або до порту та координація gate pass.",
     "h1": [
       "Диспетчеризація та логістика для експортерів автомобілів"
     ],
@@ -8318,8 +8323,8 @@
     ],
     "jsonLdTypes": [
       "Answer",
-      "Audience",
       "BreadcrumbList",
+      "BusinessAudience",
       "ContactPoint",
       "Country",
       "FAQPage",
@@ -9671,15 +9676,15 @@
     ]
   },
   "/pl/exporters": {
-    "title": "Transport aut z USA do portu | Wysyłka z aukcji | Y7 Logistics",
-    "description": "Logistyka eksportu aut z USA. Dostawa z aukcji do portu, koordynacja gate pass, magazyn. Porty: Newark, Houston, Savannah, LA, Baltimore, Jacksonville.",
+    "title": "Transport aut po USA dla eksporterów | Y7 Logistics",
+    "description": "Transport aut po USA dla eksporterów: odbiór z aukcji we wszystkich stanach, dostawa do wskazanego magazynu eksportowego lub portu i koordynacja gate pass.",
     "canonical": "https://www.y7agency.com/pl/exporters",
     "robots": "index, follow",
-    "ogTitle": "Transport aut z USA do portu | Wysyłka z aukcji | Y7 Logistics",
-    "ogDescription": "Logistyka eksportu aut z USA. Dostawa z aukcji do portu, koordynacja gate pass, magazyn. Porty: Newark, Houston, Savannah, LA, Baltimore, Jacksonville.",
+    "ogTitle": "Transport aut po USA dla eksporterów | Y7 Logistics",
+    "ogDescription": "Transport aut po USA dla eksporterów: odbiór z aukcji we wszystkich stanach, dostawa do wskazanego magazynu eksportowego lub portu i koordynacja gate pass.",
     "ogImage": "https://www.y7agency.com/og-image.svg",
-    "twitterTitle": "Transport aut z USA do portu | Wysyłka z aukcji | Y7 Logistics",
-    "twitterDescription": "Logistyka eksportu aut z USA. Dostawa z aukcji do portu, koordynacja gate pass, magazyn. Porty: Newark, Houston, Savannah, LA, Baltimore, Jacksonville.",
+    "twitterTitle": "Transport aut po USA dla eksporterów | Y7 Logistics",
+    "twitterDescription": "Transport aut po USA dla eksporterów: odbiór z aukcji we wszystkich stanach, dostawa do wskazanego magazynu eksportowego lub portu i koordynacja gate pass.",
     "h1": [
       "Dyspozycja i logistyka dla eksporterów pojazdów"
     ],
@@ -9699,8 +9704,8 @@
     ],
     "jsonLdTypes": [
       "Answer",
-      "Audience",
       "BreadcrumbList",
+      "BusinessAudience",
       "ContactPoint",
       "Country",
       "FAQPage",
@@ -11052,15 +11057,15 @@
     ]
   },
   "/ru/exporters": {
-    "title": "Экспорт авто из США в порт | Доставка с аукциона | Y7 Logistics",
-    "description": "Логистика экспорта авто из США. Доставка с аукциона в порт, координация gate pass, склад. Порты: Newark, Houston, Savannah, LA, Baltimore, Jacksonville.",
+    "title": "Перевозка авто по США для экспортёров | Y7 Logistics",
+    "description": "Перевозка авто по США для экспортёров: забор с аукционов во всех штатах, доставка на указанный вами экспортный склад или в порт и координация gate pass.",
     "canonical": "https://www.y7agency.com/ru/exporters",
     "robots": "index, follow",
-    "ogTitle": "Экспорт авто из США в порт | Доставка с аукциона | Y7 Logistics",
-    "ogDescription": "Логистика экспорта авто из США. Доставка с аукциона в порт, координация gate pass, склад. Порты: Newark, Houston, Savannah, LA, Baltimore, Jacksonville.",
+    "ogTitle": "Перевозка авто по США для экспортёров | Y7 Logistics",
+    "ogDescription": "Перевозка авто по США для экспортёров: забор с аукционов во всех штатах, доставка на указанный вами экспортный склад или в порт и координация gate pass.",
     "ogImage": "https://www.y7agency.com/og-image.svg",
-    "twitterTitle": "Экспорт авто из США в порт | Доставка с аукциона | Y7 Logistics",
-    "twitterDescription": "Логистика экспорта авто из США. Доставка с аукциона в порт, координация gate pass, склад. Порты: Newark, Houston, Savannah, LA, Baltimore, Jacksonville.",
+    "twitterTitle": "Перевозка авто по США для экспортёров | Y7 Logistics",
+    "twitterDescription": "Перевозка авто по США для экспортёров: забор с аукционов во всех штатах, доставка на указанный вами экспортный склад или в порт и координация gate pass.",
     "h1": [
       "Диспетчеризация и логистика для экспортёров автомобилей"
     ],
@@ -11080,8 +11085,8 @@
     ],
     "jsonLdTypes": [
       "Answer",
-      "Audience",
       "BreadcrumbList",
+      "BusinessAudience",
       "ContactPoint",
       "Country",
       "FAQPage",
