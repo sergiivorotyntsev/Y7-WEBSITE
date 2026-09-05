@@ -39,7 +39,7 @@ export default function AuctionToPort() {
       steps={[
         { title: 'Win your vehicle at auction', desc: 'Complete payment and secure the title.' },
         { title: 'Share auction details with Y7', desc: 'Lot number, buyer number, and port / warehouse booking.' },
-        { title: 'Carrier pickup scheduled', desc: 'We schedule within the free storage window to avoid fees.' },
+        { title: 'Carrier pickup scheduled', desc: "We schedule inside the auction's free-storage window to reduce fee risk." },
         { title: 'Vehicle transported to port', desc: 'Direct delivery to your designated port warehouse with gate pass.' },
         { title: 'Receive BOL and delivery confirmation', desc: 'Freight forwarder takes over for vessel loading and customs.' },
       ]}
@@ -54,7 +54,7 @@ export default function AuctionToPort() {
       capabilities={[
         'All Copart, IAAI, and Manheim locations nationwide',
         'Major export ports \u2014 Newark, Houston, Savannah, Los Angeles, Baltimore, JAXPORT',
-        'Gate pass coordination and storage-fee prevention',
+        'Gate pass coordination and auction storage-window timing',
         'Single or multi-vehicle consolidation',
         'Open transport (standard) or enclosed for high-value units',
         'Complete documentation \u2014 BOL, delivery receipts, carrier insurance',
@@ -94,7 +94,7 @@ export default function AuctionToPort() {
         },
         {
           q: 'Can I get hit with storage fees at the port?',
-          a: 'Yes, if a vehicle sits at the port warehouse too long before vessel loading. Ports have a free window (typically a few days) before daily storage charges begin. We time pickup and delivery so the vehicle lands at the port close to the vessel sailing date, not weeks ahead. If the vessel slips we can sometimes hold at origin instead.',
+          a: 'Yes, if a vehicle sits at the port warehouse too long before vessel loading. The port warehouse sets and collects any daily storage charges after its free window, which typically lasts a few days; Y7 does neither. We time pickup and delivery so the vehicle lands at the port close to the vessel sailing date, not weeks ahead. If the vessel slips we can sometimes hold at origin instead.',
         },
         {
           q: 'What is the difference between Y7 and a freight forwarder?',
@@ -316,7 +316,8 @@ export default function AuctionToPort() {
         <p style={prose}>
           The auction-to-port clock runs on two sides: auction storage fees on the origin end,
           and port storage fees on the destination end. Both can eat profit fast on a shipment
-          that is not actively managed.
+          that is not actively managed. The auction and port warehouse set and collect those
+          charges; Y7 does neither.
         </p>
         <p style={muted}>
           Auction free-storage windows are typically 3–5 days after payment, then daily
@@ -328,8 +329,9 @@ export default function AuctionToPort() {
           booking, not the other way around.
         </p>
         <p style={muted}>
-          For the full line-item math behind these windows, including gate pass, storage, and
-          warehouse fees on a real shipment, see the{' '}
+          For the full line-item math behind these windows, including auction-imposed gate fees
+          and auction or warehouse storage charges, all set and collected by those third parties
+          rather than Y7, see the{' '}
           <Link to="/blog/auction-to-port-cost-breakdown-2026">2026 auction-to-port cost
           breakdown guide</Link>.
         </p>

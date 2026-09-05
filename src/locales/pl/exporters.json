@@ -64,7 +64,7 @@
       },
       {
         "name": "Savannah, GA",
-        "desc": "Port południowo-wschodni. Konkurencyjne stawki na trasy europejskie i afrykańskie."
+        "desc": "Port południowo-wschodni. Agenci frachtowi i przewoźnicy morscy oferują konkurencyjne stawki na trasy europejskie i afrykańskie; Y7 ich nie ustala ani nie pobiera opłat."
       },
       {
         "name": "Baltimore, MD",
@@ -213,11 +213,11 @@
       },
       {
         "q": "Czy można przytrzymać auto, jeśli statek nie jest gotowy?",
-        "a": "Składowaniem zajmuje się magazyn portu. Większość oferuje 5-7 dni darmowego składowania wliczając dzień dostarczenia, potem stawka dzienna ($8-$25/dzień)."
+        "a": "Składowaniem zajmuje się magazyn portu. Większość oferuje 5-7 dni darmowego składowania wliczając dzień dostarczenia, potem stawka dzienna ($8-$25/dzień). Opłaty ustala i pobiera magazyn portowy; Y7 ich nie ustala ani nie pobiera."
       },
       {
         "q": "Co jeśli gate pass się opóźnia?",
-        "a": "Przewoźnik czeka lub zostaje przekierowany. Jeśli Copart opóźnia wydanie gate passa z powodu księgowania płatności u siebie, nie wysyłamy auta do czasu gotowości — dry run kosztuje $100-$200. Statusy w email i Telegram."
+        "a": "Przewoźnik czeka lub zostaje przekierowany. Jeśli Copart opóźnia wydanie gate passa z powodu księgowania płatności u siebie, nie wysyłamy auta do czasu gotowości — opłatę za dry run w wysokości $100-$200 ustala i pobiera przewoźnik, nie Y7. Statusy w email i Telegram."
       },
       {
         "q": "Pracujecie z załadunkiem RoRo i kontenerowym?",
@@ -287,7 +287,7 @@
   },
   "routing": {
     "title": "Jak zapadają decyzje o trasie",
-    "body": "Auto z Copart w York Haven, PA może wyjechać przez Newark (około 160 mil drogą) albo Baltimore (około 65). W ostatnich wysyłkach odcinek do Baltimore kosztuje $175-215 wobec $230-300 do Newark. Lądem wygrywa Baltimore. Ale jeśli Twoja stawka frachtu do kraju docelowego jest o $120 lepsza z Newark, w łącznym rozrachunku wygrywa Newark. Y7 przygotowuje to porównanie automatycznie, aby wesprzeć decyzję, którą podejmujesz wspólnie ze swoim agentem frachtowym; po wskazaniu magazynu wyceniamy i koordynujemy odcinek lądowy.",
+    "body": "Auto z Copart w York Haven, PA może wyjechać przez Newark (około 160 mil drogą) albo Baltimore (około 65). W ostatnich wysyłkach odcinek do Baltimore kosztuje $175-215 wobec $230-300 do Newark. Lądem wygrywa Baltimore. Ale jeśli Twoja stawka frachtu do kraju docelowego jest o $120 lepsza z Newark, w łącznym rozrachunku wygrywa Newark. Stawkę ustala, a opłatę pobiera Twój agent frachtowy lub przewoźnik morski; Y7 nie ustala stawki ani nie pobiera opłaty. Y7 przygotowuje to porównanie automatycznie, aby wesprzeć decyzję, którą podejmujesz wspólnie ze swoim agentem frachtowym; po wskazaniu magazynu wyceniamy i koordynujemy odcinek lądowy.",
     "legFrom": "Copart York Haven, PA",
     "legA": "Baltimore, MD · ~65 mil",
     "legARate": "$175-215",

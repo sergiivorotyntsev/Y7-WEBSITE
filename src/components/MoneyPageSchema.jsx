@@ -35,9 +35,9 @@ const PAGE_SPEC = {
     audienceName: 'Vehicle Exporters and International Buyers',
     priceRange: '$50',
     offers: [
-      { name: 'Auction to Port Delivery', desc: 'Copart / IAA / Manheim lot to any major US export port' },
-      { name: 'Gate Pass Coordination', desc: 'Title release, gate pass purchase, and storage management' },
-      { name: 'Warehouse Drop-off', desc: 'Consolidation warehouse drop at all major ports' },
+      { name: 'Auction to Port Delivery', desc: 'Nationwide Copart / IAA / Manheim pickup with delivery to a customer-nominated US export warehouse or port' },
+      { name: 'Gate Pass Coordination', desc: 'Auction release verification and gate pass coordination before dispatch' },
+      { name: 'Warehouse Drop-off', desc: 'Delivery nationwide to the export warehouse or US port the customer nominates' },
     ],
   },
   shipMyCar: {

@@ -64,7 +64,7 @@
       },
       {
         "name": "Savannah, GA",
-        "desc": "Southeast port. Competitive rates for European and African routes."
+        "desc": "Southeast port. Freight forwarders and ocean carriers quote competitive rates for European and African routes; Y7 does not set those rates or collect the related charges."
       },
       {
         "name": "Baltimore, MD",
@@ -213,11 +213,11 @@
       },
       {
         "q": "Can you hold a vehicle if the vessel isn't ready?",
-        "a": "The port warehouse handles storage after drop-off. Most offer 5-7 days free storage inclusive of the drop-off day, then charge daily rates ($8-$25/day depending on the port). We time drop-off to your vessel window so storage fees are minimized."
+        "a": "The port warehouse handles storage after drop-off. Most offer 5-7 days free storage inclusive of the drop-off day, then charge daily rates ($8-$25/day depending on the port). The port warehouse sets and collects those charges; Y7 does neither. We time drop-off to your vessel window so storage fees are minimized."
       },
       {
         "q": "What happens if the gate pass is delayed?",
-        "a": "Carrier holds or re-dispatches. If a Copart gate pass is delayed by payment clearing on their side, we don't dispatch until the pass is ready — dry runs cost $100-$200 and nobody needs that. We push status updates via email and Telegram so you know exactly where your vehicle sits in the pipeline."
+        "a": "Carrier holds or re-dispatches. If a Copart gate pass is delayed by payment clearing on their side, we don't dispatch until the pass is ready — the carrier sets and collects the $100-$200 dry-run charge, not Y7. We push status updates via email and Telegram so you know exactly where your vehicle sits in the pipeline."
       },
       {
         "q": "Do you handle containerized vs RoRo?",
@@ -285,7 +285,7 @@
   },
   "routing": {
     "title": "How routing decisions get made",
-    "body": "A Copart unit in York Haven, PA can gate out through Newark (about 160 road miles) or Baltimore (about 65). On recent dispatches the Baltimore leg runs $175-215 against $230-300 to Newark. Inland, Baltimore wins. But if your ocean rate to the destination is $120 better ex-Newark, Newark wins the total. Y7 produces this comparison automatically to inform the route choice you make with your freight forwarder; once you nominate the warehouse, we quote and coordinate the domestic leg.",
+    "body": "A Copart unit in York Haven, PA can gate out through Newark (about 160 road miles) or Baltimore (about 65). On recent dispatches the Baltimore leg runs $175-215 against $230-300 to Newark. Inland, Baltimore wins. But if your ocean rate to the destination is $120 better ex-Newark, Newark wins the total. Your freight forwarder or ocean carrier sets that ocean rate and collects the payment; Y7 does neither. Y7 produces this comparison automatically to inform the route choice you make with your freight forwarder; once you nominate the warehouse, we quote and coordinate the domestic leg.",
     "legFrom": "Copart York Haven, PA",
     "legA": "Baltimore, MD · ~65 mi",
     "legARate": "$175-215",
