@@ -26,7 +26,7 @@ The broader product purpose is to differentiate Y7 from three generalist competi
 
 Three words: **operationally-honest, expert-confident, editorial-restrained.**
 
-**Operationally-honest** — we name the things other operators bury. "Licensed & Bonded FMCSA Broker" never "Licensed & Insured" (brokers don't carry cargo insurance, carriers do). Pricing model stated explicitly on the site: customer pays Y7 only a flat dispatch fee per load ($40–60 depending on customer type), carrier rate is paid separately, either COD at delivery or through Y7 with a signed dispatch sheet showing the carrier's actual rate. No spread, no hidden markup. Fee structure transparency is part of the brand voice, not a footnote.
+**Operationally-honest** — we name the things other operators bury. "Licensed & Bonded FMCSA Broker" never "Licensed & Insured" (brokers don't carry cargo insurance, carriers do). Pricing model stated explicitly on the site: customer pays Y7 only a dispatch fee per load. Dealers pay $50 per vehicle, or $60 when Y7 handles payment to the carrier; dealers may instead pay the carrier directly on delivery (COD). Exporters pay $50 per vehicle, with carrier-payment handling included; exporters have no direct-pay option and no $60 tier. Individuals pay the greater of $75 or 10% of the carrier price. The carrier rate is always separate from the Y7 fee and is never summed with it. No spread, no hidden markup. Fee structure transparency is part of the brand voice, not a footnote.
 
 **Expert-confident** — we know yards, gate passes, BOL, OFF dynamics, FMCSA registration, port logistics, claims coordination. Tone is informed and matter-of-fact, not pleading and not aggressive. We don't sell fear. We don't oversell expertise. We show our work.
 
