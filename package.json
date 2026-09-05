@@ -10,6 +10,7 @@
     "build:no-prerender": "vite build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "lint:baseline": "node scripts/check-lint-baseline.mjs",
     "preview": "vite preview",
     "start": "node server.js",
     "sitemap:check": "node scripts/generateSitemap.js",

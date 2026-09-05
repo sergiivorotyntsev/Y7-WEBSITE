@@ -1,0 +1,291 @@
+{
+  "schemaVersion": 1,
+  "description": "Known ESLint debt. The gate permits decreases but rejects error or warning count increases.",
+  "command": "eslint . --format json",
+  "limits": {
+    "errors": 7,
+    "warnings": 28
+  },
+  "findings": [
+    {
+      "file": "docs/audits/raw/webgeo/t01_routes.mjs",
+      "line": 54,
+      "column": 3,
+      "severity": "warning",
+      "ruleId": null,
+      "message": "Unused eslint-disable directive (no problems were reported from 'no-new-func')."
+    },
+    {
+      "file": "scripts/derive-rates.mjs",
+      "line": 40,
+      "column": 43,
+      "severity": "error",
+      "ruleId": "no-irregular-whitespace",
+      "message": "Irregular whitespace not allowed."
+    },
+    {
+      "file": "scripts/prerender.mjs",
+      "line": 405,
+      "column": 22,
+      "severity": "error",
+      "ruleId": "no-undef",
+      "message": "'getComputedStyle' is not defined."
+    },
+    {
+      "file": "scripts/transform-cd-dispatches.mjs",
+      "line": 18,
+      "column": 53,
+      "severity": "error",
+      "ruleId": "no-irregular-whitespace",
+      "message": "Irregular whitespace not allowed."
+    },
+    {
+      "file": "src/components/AccountTypeModal.jsx",
+      "line": 123,
+      "column": 22,
+      "severity": "warning",
+      "ruleId": "react-hooks/set-state-in-effect",
+      "message": "Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\n  121 |   const [previewState, setPreviewState] = useState('idle'); // idle | loading | ok | error\n  122 |   useEffect(() => {\n> 123 |     if (!selected) { setPreview(null); setPreviewState('idle'); return; }\n      |                      ^^^^^^^^^^ Avoid calling setState() directly within an effect\n  124 |     let alive = true;\n  125 |     setPreviewState('loading');\n  126 |     (async () => {"
+    },
+    {
+      "file": "src/components/QuoteForm.jsx",
+      "line": 23,
+      "column": 17,
+      "severity": "error",
+      "ruleId": "react-refresh/only-export-components",
+      "message": "Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components."
+    },
+    {
+      "file": "src/components/QuoteStrip.jsx",
+      "line": 39,
+      "column": 7,
+      "severity": "error",
+      "ruleId": "no-unused-vars",
+      "message": "'round5' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u."
+    },
+    {
+      "file": "src/components/RouteEstimator.jsx",
+      "line": 18,
+      "column": 7,
+      "severity": "warning",
+      "ruleId": "react-hooks/set-state-in-effect",
+      "message": "Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\n  16 |\n  17 |     if (from.length < 5 || to.length < 5) {\n> 18 |       setData(null);\n     |       ^^^^^^^ Avoid calling setState() directly within an effect\n  19 |       return;\n  20 |     }\n  21 |"
+    },
+    {
+      "file": "src/hooks/useAuth.jsx",
+      "line": 271,
+      "column": 7,
+      "severity": "warning",
+      "ruleId": "react-hooks/set-state-in-effect",
+      "message": "Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\n  269 |     // With no token the response is always \"not authenticated\" anyway.\n  270 |     if (!_sessionToken) {\n> 271 |       setLoading(false);\n      |       ^^^^^^^^^^ Avoid calling setState() directly within an effect\n  272 |       return;\n  273 |     }\n  274 |     checkAuth().finally(() => setLoading(false));"
+    },
+    {
+      "file": "src/hooks/useZipLookup.js",
+      "line": 22,
+      "column": 7,
+      "severity": "warning",
+      "ruleId": "react-hooks/set-state-in-effect",
+      "message": "Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\n  20 |     const trimmed = (zip || '').trim();\n  21 |     if (trimmed.length < 5) {\n> 22 |       setState({ status: 'idle', city: null, stateAbbr: null });\n     |       ^^^^^^^^ Avoid calling setState() directly within an effect\n  23 |       return;\n  24 |     }\n  25 |"
+    },
+    {
+      "file": "src/pages/Agreement.jsx",
+      "line": 431,
+      "column": 9,
+      "severity": "warning",
+      "ruleId": "react-hooks/set-state-in-effect",
+      "message": "Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\n  429 |           .catch(() => setLoading(false));\n  430 |       } else {\n> 431 |         setLoading(false);\n      |         ^^^^^^^^^^ Avoid calling setState() directly within an effect\n  432 |       }\n  433 |       return;\n  434 |     }"
+    },
+    {
+      "file": "src/pages/Agreement.jsx",
+      "line": 451,
+      "column": 36,
+      "severity": "warning",
+      "ruleId": "react-hooks/preserve-manual-memoization",
+      "message": "Compilation Skipped: Existing memoization could not be preserved\n\nReact Compiler has skipped optimizing this component because the existing manual memoization could not be preserved. This value was memoized in source but not in compilation output.\n\n  449 |\n  450 |   // Scroll tracking\n> 451 |   const handleScroll = useCallback(() => {\n      |                                    ^^^^^^^\n> 452 |     const container = scrollRef.current;\n      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n> 453 |     if (!container) return;\n      …\n      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n> 469 |     }\n      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n> 470 |   }, [readSections, sections]);\n      | ^^^^ Could not preserve existing memoization\n  471 |\n  472 |   // AGRGATE-T07: THREE acknowledgements, and the list comes from the BUNDLE\n  473 |   // rather than from four hardcoded `t()` calls. The bundle no longer has a"
+    },
+    {
+      "file": "src/pages/Agreement.jsx",
+      "line": 470,
+      "column": 21,
+      "severity": "warning",
+      "ruleId": "react-hooks/preserve-manual-memoization",
+      "message": "Compilation Skipped: Existing memoization could not be preserved\n\nReact Compiler has skipped optimizing this component because the existing manual memoization could not be preserved. This dependency may be mutated later, which could cause the value to change unexpectedly.\n\n  468 |       setReadSections(newRead);\n  469 |     }\n> 470 |   }, [readSections, sections]);\n      |                     ^^^^^^^^ This dependency may be modified later\n  471 |\n  472 |   // AGRGATE-T07: THREE acknowledgements, and the list comes from the BUNDLE\n  473 |   // rather than from four hardcoded `t()` calls. The bundle no longer has a"
+    },
+    {
+      "file": "src/pages/Agreement.jsx",
+      "line": 577,
+      "column": 10,
+      "severity": "warning",
+      "ruleId": "react-hooks/refs",
+      "message": "Error: Cannot access refs during render\n\nReact refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).\n\n  575 |           {t('success.message')}\n  576 |         </p>\n> 577 |         {agreementIdRef.current && (\n      |          ^^^^^^^^^^^^^^^^^^^^^^ Cannot access ref value during render\n  578 |           <a\n  579 |             href={`${import.meta.env.VITE_API_URL || 'https://dispatch.y7agency.com'}/api/public/agreement/${agreementIdRef.current}/pdf`}\n  580 |             target=\"_blank\" rel=\"noopener noreferrer\""
+    },
+    {
+      "file": "src/pages/Agreement.jsx",
+      "line": 577,
+      "column": 10,
+      "severity": "warning",
+      "ruleId": "react-hooks/refs",
+      "message": "Error: Cannot access refs during render\n\nReact refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).\n\n  575 |           {t('success.message')}\n  576 |         </p>\n> 577 |         {agreementIdRef.current && (\n      |          ^^^^^^^^^^^^^^^^^^^^^^ Cannot access ref value during render\n  578 |           <a\n  579 |             href={`${import.meta.env.VITE_API_URL || 'https://dispatch.y7agency.com'}/api/public/agreement/${agreementIdRef.current}/pdf`}\n  580 |             target=\"_blank\" rel=\"noopener noreferrer\""
+    },
+    {
+      "file": "src/pages/Agreement.jsx",
+      "line": 579,
+      "column": 110,
+      "severity": "warning",
+      "ruleId": "react-hooks/refs",
+      "message": "Error: Cannot access refs during render\n\nReact refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).\n\n  577 |         {agreementIdRef.current && (\n  578 |           <a\n> 579 |             href={`${import.meta.env.VITE_API_URL || 'https://dispatch.y7agency.com'}/api/public/agreement/${agreementIdRef.current}/pdf`}\n      |                                                                                                              ^^^^^^^^^^^^^^^^^^^^^^ Cannot access ref value during render\n  580 |             target=\"_blank\" rel=\"noopener noreferrer\"\n  581 |             style={{\n  582 |               fontFamily: fonts.sans, fontSize: '13px', fontWeight: 600,"
+    },
+    {
+      "file": "src/pages/ConfirmQuotePanel.jsx",
+      "line": 174,
+      "column": 21,
+      "severity": "warning",
+      "ruleId": "react-hooks/set-state-in-effect",
+      "message": "Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\n  172 |   }, [orderId, token]);\n  173 |\n> 174 |   useEffect(() => { load(); }, [load]);\n      |                     ^^^^ Avoid calling setState() directly within an effect\n  175 |\n  176 |   // Coming back from /agreement/:orderId the signature has landed server-side,\n  177 |   // so re-read rather than trusting a flag we set before navigating away."
+    },
+    {
+      "file": "src/pages/MagicLogin.jsx",
+      "line": 99,
+      "column": 6,
+      "severity": "warning",
+      "ruleId": "react-hooks/exhaustive-deps",
+      "message": "React Hook useEffect has a missing dependency: 'nextPath'. Either include it or remove the dependency array."
+    },
+    {
+      "file": "src/pages/portal/AcceptInvitation.jsx",
+      "line": 66,
+      "column": 7,
+      "severity": "warning",
+      "ruleId": "react-hooks/set-state-in-effect",
+      "message": "Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\n  64 |   useEffect(() => {\n  65 |     if (!token) {\n> 66 |       setFailure(FAILURE_COPY.invitation_invalid);\n     |       ^^^^^^^^^^ Avoid calling setState() directly within an effect\n  67 |       setState('failed');\n  68 |       return;\n  69 |     }"
+    },
+    {
+      "file": "src/pages/portal/B2BDashboard.jsx",
+      "line": 363,
+      "column": 5,
+      "severity": "warning",
+      "ruleId": "react-hooks/set-state-in-effect",
+      "message": "Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\n  361 |   useEffect(() => {\n  362 |     let cancelled = false;\n> 363 |     setLoading(true);\n      |     ^^^^^^^^^^ Avoid calling setState() directly within an effect\n  364 |     // CAB-LOADS T01: the merged list — portal orders AND email-pipeline loads,\n  365 |     // deduplicated server-side on customer_orders.dispatch_load_id.\n  366 |     portalFetch(`/api/portal/data/all-loads?${buildQuery()}`)"
+    },
+    {
+      "file": "src/pages/portal/CoCompanies.jsx",
+      "line": 38,
+      "column": 21,
+      "severity": "warning",
+      "ruleId": "react-hooks/set-state-in-effect",
+      "message": "Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\n  36 |   }, []);\n  37 |\n> 38 |   useEffect(() => { load(); }, [load]);\n     |                     ^^^^ Avoid calling setState() directly within an effect\n  39 |\n  40 |   return (\n  41 |     <div className={`${pp.shell} ${pp.measureMid}`}>"
+    },
+    {
+      "file": "src/pages/portal/CoRequestDetail.jsx",
+      "line": 38,
+      "column": 21,
+      "severity": "warning",
+      "ruleId": "react-hooks/set-state-in-effect",
+      "message": "Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\n  36 |   }, [id]);\n  37 |\n> 38 |   useEffect(() => { load(); }, [load]);\n     |                     ^^^^ Avoid calling setState() directly within an effect\n  39 |\n  40 |   if (!co) {\n  41 |     return <div className={`${pp.shell} ${pp.measureMid}`} style={{ color: 'var(--v2-ink-muted, #5c5851)' }}>Loading…</div>;"
+    },
+    {
+      "file": "src/pages/portal/CoRequests.jsx",
+      "line": 32,
+      "column": 21,
+      "severity": "warning",
+      "ruleId": "react-hooks/set-state-in-effect",
+      "message": "Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\n  30 |   }, []);\n  31 |\n> 32 |   useEffect(() => { load(); }, [load]);\n     |                     ^^^^ Avoid calling setState() directly within an effect\n  33 |\n  34 |   return (\n  35 |     <div className={`${pp.shell} ${pp.measureMid}`}>"
+    },
+    {
+      "file": "src/pages/portal/Dashboard.jsx",
+      "line": 176,
+      "column": 7,
+      "severity": "warning",
+      "ruleId": "react-hooks/set-state-in-effect",
+      "message": "Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\n  174 |     if (authLoading) return;\n  175 |     if (['dealer', 'exporter'].includes(user?.customer_type)) {\n> 176 |       setLoading(false);\n      |       ^^^^^^^^^^ Avoid calling setState() directly within an effect\n  177 |       return;\n  178 |     }\n  179 |     portalFetch('/api/portal/data/orders?limit=10')"
+    },
+    {
+      "file": "src/pages/portal/DealerApplication.jsx",
+      "line": 77,
+      "column": 21,
+      "severity": "warning",
+      "ruleId": "react-hooks/set-state-in-effect",
+      "message": "Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\n  75 |   }, []);\n  76 |\n> 77 |   useEffect(() => { load(); }, [load]);\n     |                     ^^^^ Avoid calling setState() directly within an effect\n  78 |\n  79 |   function set(k, v) { setForm(prev => ({ ...prev, [k]: v })); }\n  80 |"
+    },
+    {
+      "file": "src/pages/portal/Locations.jsx",
+      "line": 209,
+      "column": 9,
+      "severity": "error",
+      "ruleId": "no-unused-vars",
+      "message": "'effectiveType' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u."
+    },
+    {
+      "file": "src/pages/portal/Login.jsx",
+      "line": 74,
+      "column": 3,
+      "severity": "warning",
+      "ruleId": "react-hooks/refs",
+      "message": "Error: Cannot access refs during render\n\nReact refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).\n\n  72 |   const loginRef = useRef(login);\n  73 |   const navigateRef = useRef(navigate);\n> 74 |   loginRef.current = login;\n     |   ^^^^^^^^^^^^^^^^ Cannot update ref during render\n  75 |   navigateRef.current = navigate;\n  76 |\n  77 |   useEffect(() => {"
+    },
+    {
+      "file": "src/pages/portal/Login.jsx",
+      "line": 75,
+      "column": 3,
+      "severity": "warning",
+      "ruleId": "react-hooks/refs",
+      "message": "Error: Cannot access refs during render\n\nReact refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).\n\n  73 |   const navigateRef = useRef(navigate);\n  74 |   loginRef.current = login;\n> 75 |   navigateRef.current = navigate;\n     |   ^^^^^^^^^^^^^^^^^^^ Cannot update ref during render\n  76 |\n  77 |   useEffect(() => {\n  78 |     if (user) navigate(nextPath || '/portal/dashboard', { replace: true });"
+    },
+    {
+      "file": "src/pages/portal/NewOrder.jsx",
+      "line": 217,
+      "column": 47,
+      "severity": "warning",
+      "ruleId": "react-hooks/set-state-in-effect",
+      "message": "Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\n  215 |   // document-first redirect would skip the post-submit success screen.\n  216 |   useEffect(() => {\n> 217 |     if (user?.customer_type === 'individual') setPickupSource('oneoff');\n      |                                               ^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect\n  218 |   }, [user?.customer_type]);\n  219 |   const pickupIsAuction = isExporter || (pickupSourceSelectable && pickupSource === 'auction');\n  220 |   const showAuctionFields = pickupIsAuction;"
+    },
+    {
+      "file": "src/pages/portal/NewOrder.jsx",
+      "line": 396,
+      "column": 5,
+      "severity": "warning",
+      "ruleId": "react-hooks/set-state-in-effect",
+      "message": "Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\n  394 |     const defDelivery = def && ['delivery', 'both'].includes(def.usage_role) ? def.id : (deliveryWarehouses[0]?.id || null);\n  395 |     const defPickup = def && ['pickup', 'both'].includes(def.usage_role) ? def.id : (pickupWarehouses[0]?.id || null);\n> 396 |     setDeliveryWarehouseId(defDelivery);\n      |     ^^^^^^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect\n  397 |     setPickupWarehouseId(defPickup);\n  398 |   }, [warehouses]);\n  399 |"
+    },
+    {
+      "file": "src/pages/portal/NewOrder.jsx",
+      "line": 402,
+      "column": 5,
+      "severity": "warning",
+      "ruleId": "react-hooks/set-state-in-effect",
+      "message": "Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\n  400 |   // Reset manual fields when direction changes\n  401 |   useEffect(() => {\n> 402 |     setPickupOverride(false);\n      |     ^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect\n  403 |     setDeliveryOverride(false);\n  404 |     setPickupManual({ ...EMPTY_MANUAL });\n  405 |     setDeliveryManual({ ...EMPTY_MANUAL });"
+    },
+    {
+      "file": "src/pages/portal/OrderDetail.jsx",
+      "line": 508,
+      "column": 5,
+      "severity": "warning",
+      "ruleId": "react-hooks/set-state-in-effect",
+      "message": "Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\n  506 |   // defined at the top of the component.\n  507 |   useEffect(() => {\n> 508 |     fetchOrder();\n      |     ^^^^^^^^^^ Avoid calling setState() directly within an effect\n  509 |     fetchPayment();\n  510 |     // eslint-disable-next-line react-hooks/exhaustive-deps\n  511 |   }, [id]);"
+    },
+    {
+      "file": "src/pages/portal/OrderDetail.jsx",
+      "line": 525,
+      "column": 7,
+      "severity": "warning",
+      "ruleId": "react-hooks/set-state-in-effect",
+      "message": "Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\n  523 |     if (justPaid) {\n  524 |       fetchPayment();\n> 525 |       fetchOrder();\n      |       ^^^^^^^^^^ Avoid calling setState() directly within an effect\n  526 |       window.history.replaceState({}, '', window.location.pathname);\n  527 |     }\n  528 |     try {"
+    },
+    {
+      "file": "src/pages/portal/OrderDetail.jsx",
+      "line": 852,
+      "column": 80,
+      "severity": "error",
+      "ruleId": "no-undef",
+      "message": "'orderId' is not defined."
+    },
+    {
+      "file": "src/pages/portal/Profile.jsx",
+      "line": 154,
+      "column": 39,
+      "severity": "warning",
+      "ruleId": null,
+      "message": "Unused eslint-disable directive (no problems were reported from 'react-hooks/exhaustive-deps')."
+    }
+  ]
+}

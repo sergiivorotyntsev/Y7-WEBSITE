@@ -363,6 +363,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Verify lint baseline has not increased
+        run: npm run lint:baseline
+
       - name: Build and verify prerender count
         run: |
           npm run build 2>&1 | tee build.log
@@ -385,6 +388,11 @@ jobs:
             exit 1
           fi
           echo "OK: build left the tracked working tree clean"
+
+      - name: Verify full indexable-route SEO snapshot
+        # Deliberately separate from prebuild: snapshot drift is a review gate,
+        # not a deployment/build prerequisite.
+        run: npm run seo:check
 
       - name: Verify dist sitemap matches public sitemap
         run: |

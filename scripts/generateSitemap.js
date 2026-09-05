@@ -11,6 +11,10 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { PORT_SLUGS } from '../src/pages/ports/portData.js';
 import articles from '../src/data/blogArticles.js';
+import {
+  collectRouteContentDependencies,
+  validatePageSourceMappings,
+} from './route-content-dependencies.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT_FILE = join(__dirname, '..', 'public', 'sitemap.xml');
@@ -26,10 +30,13 @@ if (unknownArgs.length > 0) {
 }
 
 // ---------------------------------------------------------------------------
-// SEO-FND-T05: real per-URL <lastmod> (replaces the perpetually-"today" stamp,
-// which Google learns to ignore). Strategy:
-//   - Blog articles: the SSOT dateISO from blogArticles.js (real publish/update).
-//   - Every other URL: the git commit date of its backing source file.
+// SEO-FND-T05 / SEOGEO-07: real per-URL <lastmod> (replaces the
+// perpetually-"today" stamp, which Google learns to ignore). Strategy:
+//   - Resolve the newest Git commit date across the conservative route-owned
+//     set: page component, colocated page CSS, and own locale namespace.
+//   - Port pages also include the file-level shared portData.js registry.
+//     Shared components/namespaces are excluded to avoid site-wide false dates.
+//   - Blog article dateISO remains an authoritative publish/update candidate.
 // Git is NOT available in the Docker build (alpine, no git) and `prebuild` runs
 // there, so resolved dates are persisted to a committed manifest
 // (scripts/sitemap-lastmod.json): local runs populate it from git, the Docker
@@ -37,6 +44,20 @@ if (unknownArgs.length > 0) {
 // ---------------------------------------------------------------------------
 const BUILD_DATE = new Date().toISOString().slice(0, 10);
 const MANIFEST_FILE = join(__dirname, 'sitemap-lastmod.json');
+const committedSitemap = existsSync(OUT_FILE) ? readFileSync(OUT_FILE, 'utf8') : '';
+
+function readSitemapLastmods(source) {
+  const dates = new Map();
+  const blocks = source.match(/<url>[\s\S]*?<\/url>/g) || [];
+  for (const block of blocks) {
+    const loc = block.match(/<loc>https:\/\/www\.y7agency\.com([^<]*)<\/loc>/)?.[1];
+    const date = block.match(/<lastmod>(\d{4}-\d{2}-\d{2})<\/lastmod>/)?.[1];
+    if (loc !== undefined && date) dates.set(loc || '/', date);
+  }
+  return dates;
+}
+
+const committedLastmods = readSitemapLastmods(committedSitemap);
 
 let manifest = {};
 try {
@@ -53,15 +74,21 @@ try {
   GIT_OK = false;
 }
 
+const gitDateCache = new Map();
+
 function gitDate(relFile) {
+  if (gitDateCache.has(relFile)) return gitDateCache.get(relFile);
   try {
     const out = execSync(`git log -1 --format=%cs -- "${relFile}"`, {
       cwd: REPO_ROOT,
       encoding: 'utf-8',
       stdio: ['ignore', 'pipe', 'ignore'],
     }).trim();
-    return /^\d{4}-\d{2}-\d{2}$/.test(out) ? out : null;
+    const date = /^\d{4}-\d{2}-\d{2}$/.test(out) ? out : null;
+    gitDateCache.set(relFile, date);
+    return date;
   } catch {
+    gitDateCache.set(relFile, null);
     return null;
   }
 }
@@ -137,34 +164,95 @@ const PAGE_SOURCE = {
 };
 
 const blogBySlug = new Map(articles.map((a) => [a.slug, a]));
+const lastmodResolutions = new Map();
+
+function pageSourceFor(path) {
+  if (/^(\/(?:ua|pl|ru))?\/ports\//.test(path)) {
+    return 'src/pages/ports/PortPage.jsx';
+  }
+  if (/^\/blog\/[^/]+$/.test(path)) {
+    return 'src/pages/blog/BlogArticle.jsx';
+  }
+  const base = path.replace(/^\/(ua|pl|ru)(?=\/|$)/, '') || '/';
+  return PAGE_SOURCE[path] || PAGE_SOURCE[base];
+}
 
 function lastmodFor(path) {
-  // Blog articles — real per-article date from the data SSOT.
+  const sourceFile = pageSourceFor(path);
+  const dependencies = collectRouteContentDependencies(path, sourceFile);
+  const candidates = [];
+  const undated = [];
+
+  if (GIT_OK) {
+    for (const file of dependencies.files) {
+      const date = gitDate(file);
+      if (date) candidates.push({ date, source: file });
+      else undated.push(file);
+    }
+    if (undated.length > 0) {
+      throw new Error(
+        `Cannot resolve truthful lastmod for ${path}; no Git history for: ${undated.join(', ')}`,
+      );
+    }
+  }
+
+  // Blog articles retain dateISO as the content owner's explicit publish/update
+  // date, while shared template/body changes can still move the route later.
   const blog = path.match(/^\/blog\/(.+)$/);
   if (blog) {
     const a = blogBySlug.get(blog[1]);
-    if (a?.dateISO) return a.dateISO;
-  }
-  // Resolve the backing source file (ports share portData.js; locale variants
-  // share their English component).
-  let file;
-  if (/^(\/(ua|pl|ru))?\/ports\//.test(path)) {
-    file = 'src/pages/ports/portData.js';
-  } else {
-    const base = path.replace(/^\/(ua|pl|ru)(?=\/|$)/, '') || '/';
-    file = PAGE_SOURCE[path] || PAGE_SOURCE[base];
-  }
-
-  if (GIT_OK && file) {
-    const d = gitDate(file);
-    if (d) {
-      manifest[path] = d;
-      return d;
+    if (a?.dateISO) {
+      candidates.push({
+        date: a.dateISO,
+        source: `src/data/blogArticles.js#${blog[1]}.dateISO`,
+      });
     }
   }
-  if (manifest[path]) return manifest[path];
-  manifest[path] = BUILD_DATE;
-  return BUILD_DATE;
+
+  if (GIT_OK && candidates.length > 0) {
+    const date = candidates.reduce((latest, candidate) => (
+      candidate.date > latest ? candidate.date : latest
+    ), candidates[0].date);
+    const sources = candidates
+      .filter((candidate) => candidate.date === date)
+      .map((candidate) => candidate.source)
+      .sort();
+    manifest[path] = date;
+    lastmodResolutions.set(path, {
+      date,
+      sources,
+      dependencies: dependencies.files,
+      locale: dependencies.locale,
+      namespaces: dependencies.namespaces,
+    });
+    return date;
+  }
+
+  if (manifest[path]) {
+    lastmodResolutions.set(path, {
+      date: manifest[path],
+      sources: ['scripts/sitemap-lastmod.json (Git unavailable)'],
+      dependencies: dependencies.files,
+      locale: dependencies.locale,
+      namespaces: dependencies.namespaces,
+    });
+    return manifest[path];
+  }
+
+  const articleDate = candidates.find((candidate) => candidate.source.includes('.dateISO'));
+  const date = articleDate?.date || BUILD_DATE;
+  const sources = articleDate
+    ? [articleDate.source]
+    : ['build date fallback (no Git or manifest)'];
+  manifest[path] = date;
+  lastmodResolutions.set(path, {
+    date,
+    sources,
+    dependencies: dependencies.files,
+    locale: dependencies.locale,
+    namespaces: dependencies.namespaces,
+  });
+  return date;
 }
 
 // ---------------------------------------------------------------------------
@@ -195,6 +283,18 @@ const PORT_GROUPS = PORT_SLUGS.map((s) => ({
   pl: `/pl/ports/${s}`,
   ru: `/ru/ports/${s}`,
 }));
+
+const expectedPageMappings = {
+  ...PAGE_SOURCE,
+  '/ports/:slug': 'src/pages/ports/PortPage.jsx',
+  '/:lang/ports/:slug': 'src/pages/ports/PortPage.jsx',
+  '/blog/:slug': 'src/pages/blog/BlogArticle.jsx',
+};
+for (const group of TRANSLATABLE_PATHS) {
+  const localizedPattern = group.en === '/' ? '/:lang' : `/:lang${group.en}`;
+  expectedPageMappings[localizedPattern] = PAGE_SOURCE[group.en];
+}
+validatePageSourceMappings(expectedPageMappings);
 
 // ---------------------------------------------------------------------------
 // English-only pages (no locale variants) — flat URL entries, no alternates.
@@ -386,6 +486,25 @@ const xml = [
 // read them back (sorted keys for stable, review-friendly diffs).
 const sortedManifest = Object.fromEntries(Object.keys(manifest).sort().map((k) => [k, manifest[k]]));
 const manifestJson = JSON.stringify(sortedManifest, null, 2) + '\n';
+const changedLastmods = [...lastmodResolutions.entries()]
+  .map(([path, resolution]) => ({
+    path,
+    before: committedLastmods.get(path) || null,
+    after: resolution.date,
+    sources: resolution.sources,
+  }))
+  .filter(({ before, after }) => before !== after)
+  .sort((a, b) => a.path.localeCompare(b.path));
+
+function reportLastmodChanges() {
+  console.log(`  lastmod changes vs committed sitemap: ${changedLastmods.length}`);
+  for (const change of changedLastmods) {
+    console.log(
+      `    ${change.path}: ${change.before || '<missing>'} -> ${change.after}`
+      + ` (${change.sources.join(', ')})`,
+    );
+  }
+}
 
 if (WRITE) {
   if (!GIT_OK) {
@@ -409,6 +528,7 @@ if (WRITE) {
   if (stale.length > 0) {
     console.error('[generateSitemap] Committed sitemap artifacts are stale:');
     for (const file of stale) console.error(`  - ${file}`);
+    reportLastmodChanges();
     console.error('Run npm run sitemap:update in a full Git checkout, review the lastmod-only diff, and commit both files.');
     process.exit(1);
   }
@@ -420,6 +540,7 @@ console.log(`[generateSitemap] ${WRITE ? 'wrote' : 'verified'} ${OUT_FILE}`);
 console.log(`  Total <url> entries: ${total}`);
 console.log(`  Total xhtml:link alternates: ${alt}`);
 console.log(`  lastmod source: ${GIT_OK ? 'git commit dates' : 'manifest/build-date fallback (no git)'}`);
+reportLastmodChanges();
 console.log(`  Manifest entries: ${Object.keys(sortedManifest).length} ${WRITE ? '->' : 'at'} ${MANIFEST_FILE}`);
 const groupCount = TRANSLATABLE_PATHS.length + PORT_GROUPS.length;
 console.log(`  Translated URL groups: ${groupCount} (× 4 locales × 5 alternates = ${groupCount * 4 * 5})`);
