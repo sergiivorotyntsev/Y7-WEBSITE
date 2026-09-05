@@ -100,7 +100,7 @@
   },
   "paymentOptions": {
     "kicker": "OPCJE PŁATNOŚCI",
-    "title": "Dwa sposoby płatności — oba ze stałą opłatą",
+    "title": "Dwa sposoby płatności",
     "subtitle": "Przebieg płatności zależy od wybranego wariantu. Wybierz, kto ma płacić przewoźnikowi.",
     "options": [
       {

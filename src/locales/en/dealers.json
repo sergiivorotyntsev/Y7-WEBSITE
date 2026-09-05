@@ -47,7 +47,7 @@
   },
   "paymentOptions": {
     "kicker": "PAYMENT OPTIONS",
-    "title": "Two Ways to Pay — Both Flat Fee",
+    "title": "Two Ways to Pay",
     "subtitle": "The payment flow differs by arrangement. Choose who should pay the carrier.",
     "options": [
       {
