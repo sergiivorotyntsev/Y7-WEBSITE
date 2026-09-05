@@ -25,7 +25,7 @@
         },
         {
           "q": "Jak działa stała opłata Y7 i dlaczego jest tańsza niż dział transportu aukcji?",
-          "a": "Płacisz Y7 jedną stałą opłatę dyspozytury, i nic więcej — dealerzy i eksporterzy płacą stałe $50 za pojazd ($60, gdy Y7 obsługuje też płatność dla przewoźnika), a klienci indywidualni płacą $75 za pojazd lub 10% ceny przewoźnika, gdy jest ona wyższa; stawkę przewoźnika płacisz osobno i widzisz ją po kosztach. Y7 nie dolicza żadnej marży ani ukrytego narzutu do samego transportu, co jest kluczową różnicą względem wewnętrznego działu transportu aukcji, gdzie stawka przewoźnika jest zwykle zawinięta w nieujawnioną marżę. Z Y7 widzisz rzeczywistą stawkę przewoźnika na podpisanym dispatch sheet, więc cena jest w pełni rozpisana, a nie jedną zawyżoną kwotą. Ta przejrzystość sprawia, że zlecenie przez brokera często kosztuje mniej niż pakietowa wycena aukcji za tę samą trasę; porównaj wyliczenia w naszym rozbiciu oszczędności na transporcie z aukcji.",
+          "a": "Płacisz Y7 jedną jasno określoną opłatę za usługę dyspozytury i nic więcej: dealer płaci $50 za pojazd, gdy rozlicza się z przewoźnikiem bezpośrednio, albo stawkę $60 przeznaczoną wyłącznie dla dealerów, gdy płatność dla przewoźnika obsługuje Y7; eksporter płaci $50 za pojazd, z obsługą płatności dla przewoźnika wliczoną w cenę; klient indywidualny płaci $75 za pojazd lub 10% ceny przewoźnika, jeśli ta kwota jest wyższa; stawka przewoźnika jest zawsze oddzielna od opłaty Y7 i widoczna po kosztach. Y7 nie dolicza żadnej marży ani ukrytego narzutu do samego transportu, co jest kluczową różnicą względem wewnętrznego działu transportu aukcji, gdzie stawka przewoźnika jest zwykle zawinięta w nieujawnioną marżę. Z Y7 widzisz rzeczywistą stawkę przewoźnika na podpisanym dispatch sheet, więc cena jest w pełni rozpisana, a nie jedną zawyżoną kwotą. Ta przejrzystość sprawia, że zlecenie przez brokera często kosztuje mniej niż pakietowa wycena aukcji za tę samą trasę; porównaj wyliczenia w naszym rozbiciu oszczędności na transporcie z aukcji.",
           "links": [{ "text": "rozbiciu oszczędności na transporcie z aukcji", "href": "/auction-transport-savings" }]
         },
         {
@@ -100,12 +100,12 @@
       "items": [
         {
           "q": "Ile wynosi opłata dyspozytury dla dealera i czy płacę przewoźnikom bezpośrednio?",
-          "a": "Dealerzy płacą Y7 stałą opłatę dyspozytury za pojazd bez narzutu na transport i mogą płacić przewoźnikom bezpośrednio przy dostawie (COD) albo kierować płatność przez Y7 na podstawie podpisanego dispatch sheet pokazującego rzeczywistą stawkę przewoźnika. Ceny wolumenowe i warunki płatności znajdziesz na naszej stronie transportu dla dealerów.",
+          "a": "Dealer płaci Y7 $50 za pojazd, gdy rozlicza się z przewoźnikiem bezpośrednio przy dostawie (COD), albo $60 za pojazd, gdy płatność dla przewoźnika obsługuje Y7. Stawka przewoźnika pozostaje oddzielna i bez narzutu Y7. Warunki płatności znajdziesz na naszej stronie transportu dla dealerów.",
           "links": [{ "text": "stronie transportu dla dealerów", "href": "/dealers" }]
         },
         {
           "q": "Czy jest minimalny wolumen lub umowa długoterminowa?",
-          "a": "Nie ma umowy długoterminowej ani sztywnego minimum, choć dealerzy i eksporterzy przewożący 10 lub więcej pojazdów miesięcznie odblokowują indywidualne ceny i dedykowanego dyspozytora. Szczegóły są na naszej stronie dla dealerów.",
+          "a": "Nie ma umowy długoterminowej ani minimalnego wolumenu. Konta o większym wolumenie mogą otrzymać dedykowaną obsługę dyspozytury i planowanie stawek przewoźników dla konkretnych tras, ale opłata Y7 nie zmienia się wraz z wolumenem. Szczegóły są na naszej stronie dla dealerów.",
           "links": [{ "text": "stronie dla dealerów", "href": "/dealers" }]
         },
         {

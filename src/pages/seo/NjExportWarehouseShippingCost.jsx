@@ -8,8 +8,9 @@ import { prose, muted, tableWrap, table, th, td } from './_enrichedStyles';
 // carriers). Do not add a number that is not measured there. All dollar
 // figures are CARRIER rates, framed to match the homepage calculator
 // ("Typical carrier rate for this route"); the Y7 fee is stated separately per
-// [NJPORTS-T1] (dealers/exporters $50, $60 when Y7 pays; individuals $75 or 10%
-// of carrier price, whichever is greater). Compliance: Y7 is a Licensed &
+// [NJPORTS-T1] (dealers $50 with direct carrier payment or $60 when Y7 pays;
+// exporters $50 with payment handling included and no $60 tier; individuals
+// $75 or 10% of carrier price, whichever is greater). Compliance: Y7 is a Licensed &
 // Bonded FMCSA broker (surety bond, NOT insurance); it does not own or operate
 // a warehouse. Third-party facilities are referred to only as "export
 // warehouses in the Newark / Irvington area" — never by company name.
@@ -30,7 +31,7 @@ export default function NjExportWarehouseShippingCost() {
       tldr={{
         kicker: 'NJ export-warehouse pricing, in brief',
         ariaLabel: 'How NJ export-warehouse carrier pricing is formed, in brief',
-        text: 'Across 586 dispatches (27 Aug 2025 - 23 Jul 2026, 213 carriers) into the export warehouses in the Newark / Irvington area, distance alone explains 88% of the carrier rate. A typical 500-800-mile haul runs about $500-$560; cost per mile falls as the haul lengthens (about $2.56/mi at 71 miles down to $0.52/mi at 1,294 miles). A non-auction pickup adds roughly $70 flat per vehicle; the auction brand (Copart, IAAI, Manheim) changes the rate by no more than 3%; an SUV is about 5% over a sedan, a minivan 8%, a pickup 17%. Which NJ warehouse receives the car makes no measurable difference. These are carrier rates; Y7 charges a separate flat fee (dealers and exporters $50, individuals $75).',
+        text: 'Across 586 dispatches (27 Aug 2025 - 23 Jul 2026, 213 carriers) into the export warehouses in the Newark / Irvington area, distance alone explains 88% of the carrier rate. A typical 500-800-mile haul runs about $500-$560; cost per mile falls as the haul lengthens (about $2.56/mi at 71 miles down to $0.52/mi at 1,294 miles). A non-auction pickup adds roughly $70 flat per vehicle; the auction brand (Copart, IAAI, Manheim) changes the rate by no more than 3%; an SUV is about 5% over a sedan, a minivan 8%, a pickup 17%. Which NJ warehouse receives the car makes no measurable difference. These are carrier rates. Separate Y7 fees per vehicle: dealer $50 with direct carrier payment or dealer-only $60 when Y7 handles it; exporter $50 including payment handling; individual greater of $75 or 10% of carrier price.',
       }}
       faqs={[
         {
@@ -55,7 +56,7 @@ export default function NjExportWarehouseShippingCost() {
         },
         {
           q: 'What is not included in the carrier rate, and what does Y7 charge?',
-          a: 'The carrier rate covers the truck move only. It does not include auction and buyer fees, storage or demurrage, port charges, container loading, export documentation, ocean freight, or the carrier’s cargo insurance. Y7’s broker fee is separate and flat: dealers and exporters pay $50 per vehicle ($60 when Y7 also handles the carrier payment), and individual customers pay $75 per vehicle, or 10% of the carrier price when that is greater. Y7 never marks up the carrier rate.',
+          a: 'The carrier rate covers the truck move only. It does not include auction and buyer fees, storage or demurrage, port charges, container loading, export documentation, ocean freight, or the carrier’s cargo insurance. Separate Y7 fees per vehicle: dealer $50 with direct carrier payment or dealer-only $60 when Y7 handles it; exporter $50 including payment handling; individual greater of $75 or 10% of carrier price. Y7 never marks up the carrier rate.',
         },
       ]}
       related={[
@@ -288,10 +289,10 @@ export default function NjExportWarehouseShippingCost() {
           <li>The carrier’s cargo insurance (carried by the trucker, not by Y7)</li>
         </ul>
         <p style={muted}>
-          Y7’s fee is separate from the carrier rate and never a markup on it. <strong>Dealers
-          and exporters pay a flat $50 per vehicle</strong> ($60 when Y7 also processes the carrier
-          payment); <strong>individual customers pay $75 per vehicle, or 10% of the carrier price
-          when that is greater</strong>. The carrier is paid separately, at cost &mdash; Y7 is a
+          Y7’s fee is separate from the carrier rate and never a markup on it. Per vehicle: <strong>dealer $50
+          with direct carrier payment or dealer-only $60 when Y7 handles it</strong>; <strong>exporter:
+          $50 including payment handling</strong>; <strong>individual greater of $75 or 10% of the
+          carrier price</strong>. The carrier is paid separately, at cost &mdash; Y7 is a
           licensed and bonded FMCSA broker (MC #1741537), and does not mark up, resell, or take a
           spread on the carrier rate. To see the current carrier rate for a specific origin and
           destination, use the calculator on our <Link to="/">homepage</Link> or{' '}

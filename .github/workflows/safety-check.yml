@@ -68,6 +68,105 @@ jobs:
           fi
           echo "OK: no 'Y7 AGENCY' references on shipping surfaces"
 
+      - name: Check for invalid legal entity suffix
+        run: |
+          set +e
+          HITS=$(grep -rnF "Y7 Logistics LLC" \
+              --include="*.jsx" --include="*.js" --include="*.mjs" --include="*.ts" --include="*.tsx" \
+              --include="*.html" --include="*.json" --include="*.txt" --include="*.xml" \
+              --include="*.css" --include="*.svg" \
+              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist $SHIP)
+          SCAN_STATUS=$?
+          set -e
+          if [ "$SCAN_STATUS" -gt 1 ]; then
+            echo "::error::The legal-entity source scan failed; refusing to pass open."
+            exit 1
+          fi
+          if [ -n "$HITS" ]; then
+            echo "$HITS"
+            echo "::error::Found invalid entity name 'Y7 Logistics LLC'. Use the public brand 'Y7 Logistics' or the legal name 'Y7 Consulting Inc', as appropriate."
+            exit 1
+          fi
+          echo "OK: no invalid 'Y7 Logistics LLC' references on shipping surfaces"
+
+      - name: Check for retired $40 Y7 service fee
+        # Inspect the semantic clause around each $40, not the whole source
+        # line. This keeps valid storage/gate/carrier figures out of scope and
+        # still catches multiline JSX plus forms such as "Pay $40 to Y7".
+        run: |
+          node --input-type=module - $SHIP <<'NODE'
+          import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
+          import { extname, join } from 'node:path';
+
+          const extensions = new Set([
+            '.jsx', '.js', '.mjs', '.ts', '.tsx', '.html', '.json', '.txt',
+            '.xml', '.css', '.svg',
+          ]);
+          const files = [];
+
+          function collect(path) {
+            if (!existsSync(path)) throw new Error(`missing scan path: ${path}`);
+            const stat = statSync(path);
+            if (stat.isDirectory()) {
+              for (const entry of readdirSync(path)) {
+                if (['node_modules', '.git', 'dist'].includes(entry)) continue;
+                collect(join(path, entry));
+              }
+            } else if (extensions.has(extname(path).toLowerCase())) {
+              files.push(path);
+            }
+          }
+
+          for (const root of process.argv.slice(2)) collect(root);
+
+          const amount = /\$40(?:\.00)?(?![\d,])/g;
+          const ownerWord = /(?:fee|commission|charges?|pobier\p{L}*|opłat\p{L}*|плат\p{L}*|бер[её]т|взима\p{L}*|комисс\p{L}*|коміс\p{L}*|стягу\p{L}*)/iu;
+          const dispatchFee = /(?:dispatch(?:ing)?[\s-]*(?:fee|commission)|opłat\p{L}*.{0,30}dyspozyt\p{L}*|плат\p{L}*.{0,30}(?:диспатч|диспетч)|комисси\p{L}*.{0,30}диспатч|комісі\p{L}*.{0,30}диспетч)/iu;
+          const payWord = /(?:pay\p{L}*|płac\p{L}*|оплат\p{L}*|плат\p{L}*|сплач\p{L}*)/iu;
+          const thirdParty = /(?:storage|gate|auction|copart|iaa|carrier|warehouse|port|title|buyer|fuel|toll|winch)/iu;
+          const hits = [];
+          const sources = files.map((file) => ({ file, source: readFileSync(file, 'utf8') }));
+          if (process.env.Y7_STRING_GUARD_FIXTURE) {
+            sources.push({ file: '<validation-fixture>', source: process.env.Y7_STRING_GUARD_FIXTURE });
+          }
+
+          for (const { file, source } of sources) {
+            const masked = source.replace(/&(?:#[0-9]+|#x[0-9a-f]+|[a-z][a-z0-9]+);/giu, (entity) => ' '.repeat(entity.length));
+            for (const match of source.matchAll(amount)) {
+              const at = match.index;
+              const left = Math.max(masked.lastIndexOf('.', at), masked.lastIndexOf(';', at)) + 1;
+              const dot = masked.indexOf('.', at + match[0].length);
+              const semi = masked.indexOf(';', at + match[0].length);
+              const ends = [dot, semi].filter((value) => value !== -1);
+              const right = ends.length ? Math.min(...ends) : source.length;
+              const clause = source.slice(left, right).replace(/\s+/g, ' ').trim();
+              const relative = at - left;
+              const before = source.slice(Math.max(left, at - 100), at).replace(/\s+/g, ' ');
+              const after = source.slice(at + match[0].length, Math.min(right, at + match[0].length + 100)).replace(/\s+/g, ' ');
+              const y7Before = /y7[^.;]{0,80}$/iu.test(before);
+              const y7After = /^\s*(?:to\s+)?y7\b/iu.test(after);
+              const directY7Fee = /(?:y7(?:[’']s)?\s+(?:(?:broker|service|dispatch)\s+)?(?:fee|commission)|(?:opłat\p{L}*|плат\p{L}*|комисс\p{L}*|коміс\p{L}*)\s+y7|y7\s+(?:pobier\p{L}*|бер[её]т|взима\p{L}*|стягу\p{L}*|charges?))/iu.test(before.slice(-90));
+              const ownedBefore = directY7Fee || (ownerWord.test(before.slice(-70)) && !thirdParty.test(before.slice(-70)));
+              const feeAfter = dispatchFee.test(after.slice(0, 60)) || /^\s*(?:y7[’']?s?\s+)?(?:fee|commission)\b/iu.test(after);
+              const feeToY7After = /^.{0,50}(?:fee|commission).{0,30}\bto\s+y7\b/iu.test(after);
+              const paidToY7 = payWord.test(before.slice(-45)) && (y7Before || y7After || feeToY7After);
+              const explicitlyY7 = (y7Before && (ownedBefore || feeAfter)) || paidToY7;
+
+              if (explicitlyY7) {
+                const line = source.slice(0, at).split('\n').length;
+                hits.push(`${file}:${line}: ${clause.slice(Math.max(0, relative - 90), relative + 150)}`);
+              }
+            }
+          }
+
+          if (hits.length) {
+            console.error(hits.join('\n'));
+            console.error('::error::Found a retired $40 figure in a Y7 fee context. No current Y7 pricing tier is $40.');
+            process.exit(1);
+          }
+          console.log('OK: no retired $40 Y7 fee; unrelated $40 figures remain allowed');
+          NODE
+
       - name: Check for dispatch@ email
         # [WAVE0-T03] Scoped to $SHIP, and CareerApplication.jsx is EXEMPT.
         #

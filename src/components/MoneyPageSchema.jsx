@@ -16,13 +16,13 @@ const PAGE_SPEC = {
     url: '/dealers',
     audienceType: 'Business',
     audienceName: 'Auto Dealers',
-    // Y7 dealer fee: $50/load, $60 when Y7 pays the carrier — TRANSPORT
-    // services/b2b_pricing.py (B2B_FLAT_FEE_CENTS 5000 / DEALER_Y7_PAYS_FEE_CENTS 6000).
-    priceRange: '$50-$60',
+    // Y7 dealer fee: $50/vehicle when the dealer pays the carrier directly;
+    // $60 only when Y7 handles carrier payment (TRANSPORT services/b2b_pricing.py).
+    priceRange: '$50 per vehicle; $60 only when Y7 handles carrier payment',
     offers: [
       { name: 'Auction Pickup', desc: 'Copart, IAA, Manheim gate-pass coordination and same-day dispatch' },
       { name: 'Dealer Trade Transport', desc: 'Dealer-to-dealer inventory moves with consolidated billing' },
-      { name: 'Volume Pricing', desc: 'Tiered rates for dealerships shipping 5+ vehicles / month' },
+      { name: 'Volume Dispatch', desc: 'Same flat per-vehicle Y7 fee at any monthly volume' },
     ],
   },
   exporters: {

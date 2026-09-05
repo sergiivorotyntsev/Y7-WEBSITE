@@ -79,7 +79,7 @@ export default function DoorToPort() {
         },
         {
           q: 'How much does door-to-port transport cost?',
-          a: 'The carrier rate is set almost entirely by distance. For the New Jersey corridor, measured on 586 real dispatches, typical carrier rates run about $180 for a haul under 100 miles ($2.56/mile), $270 at 101–250 miles, $360 at 251–500 miles, $525 at 501–800 miles, $550 at 801–1,200 miles, and about $600 beyond 1,200 miles — the per-mile rate falls from $2.56 to $0.52 as the haul lengthens. These are band-level carrier rates for the NJ-inbound corridor, not a named-lane quote; the full methodology is on our NJ export-warehouse shipping cost page, and the Y7 fee is separate (dealers and exporters $50 per vehicle, individuals $75).',
+          a: 'The carrier rate is set almost entirely by distance. For the New Jersey corridor, measured on 586 real dispatches, typical carrier rates run about $180 for a haul under 100 miles ($2.56/mile), $270 at 101–250 miles, $360 at 251–500 miles, $525 at 501–800 miles, $550 at 801–1,200 miles, and about $600 beyond 1,200 miles — the per-mile rate falls from $2.56 to $0.52 as the haul lengthens. These are band-level carrier rates for the NJ-inbound corridor, not a named-lane quote; the full methodology is on our NJ export-warehouse shipping cost page. Separate Y7 fees per vehicle: dealer $50 when it pays the carrier directly, or dealer-only $60 when Y7 does; exporter $50 including payment handling; individual greater of $75 or 10% of carrier price.',
         },
         {
           q: 'How long does door-to-port delivery take?',
@@ -91,7 +91,7 @@ export default function DoorToPort() {
         },
         {
           q: 'Is it cheaper to ship from an auction than from my home or dealership?',
-          a: 'Yes, and it is measurable. A pickup from a private or dealer address costs roughly $70 more per vehicle than the same haul from an auction yard, and that surcharge is roughly flat in dollars regardless of distance — so it is about +48% on a haul under 100 miles but only about +14% on a haul over 500 miles. This $70 is part of the carrier rate, not the Y7 fee — Y7’s flat fee (dealers and exporters $50, individuals $75) is unchanged by where the car is picked up. An auction yard lets a carrier collect several vehicles at one organised stop with loading equipment and predictable hours; a residential or dealer address is a dedicated detour for one car, often with no dock and uncertain timing. That extra time and risk is the roughly $70.',
+          a: 'Yes, and it is measurable. A pickup from a private or dealer address costs roughly $70 more per vehicle than the same haul from an auction yard, and that surcharge is roughly flat in dollars regardless of distance — so it is about +48% on a haul under 100 miles but only about +14% on a haul over 500 miles. This $70 is part of the carrier rate, not the Y7 fee. Separate Y7 fees per vehicle, unchanged by pickup point: dealer $50 when it pays the carrier directly, or dealer-only $60 when Y7 does; exporter $50 including payment handling; individual greater of $75 or 10% of carrier price. An auction yard lets a carrier collect several vehicles at one organised stop with loading equipment and predictable hours; a residential or dealer address is a dedicated detour for one car, often with no dock and uncertain timing. That extra time and risk is the roughly $70.',
         },
         {
           q: 'Do you handle export paperwork?',
@@ -203,7 +203,7 @@ export default function DoorToPort() {
         </div>
         <p style={p}>
           The per-mile rate falls as the haul lengthens because a fixed per-vehicle cost (dispatch, paperwork, loading, unloading) is spread over more miles. For the full explanation and the live rate on your exact route, see our{' '}
-          <strong style={{ color: colors.text }}><Link to="/nj-export-warehouse-shipping-cost" style={{ color: colors.accent, textDecoration: 'none' }}>NJ export-warehouse shipping cost</Link></strong> methodology page. The Y7 fee is separate from the carrier rate: dealers and exporters pay $50 per vehicle ($60 when Y7 also processes the carrier payment), individuals pay $75 (or 10% of the carrier price when that is greater).
+          <strong style={{ color: colors.text }}><Link to="/nj-export-warehouse-shipping-cost" style={{ color: colors.accent, textDecoration: 'none' }}>NJ export-warehouse shipping cost</Link></strong> methodology page. Separate Y7 fees per vehicle: dealer $50 with direct carrier payment or dealer-only $60 when Y7 handles it; exporter $50 including payment handling; individual greater of $75 or 10% of carrier price.
         </p>
       </Section>
 

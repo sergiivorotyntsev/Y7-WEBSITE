@@ -76,10 +76,11 @@ function AuctionVsBrokerCard() {
             Through Y7 (direct broker)
           </div>
           <p style={{ ...p, marginBottom: 0 }}>
-            The <strong style={strong}>same carrier&rsquo;s market rate</strong>, paid{' '}
-            <strong style={strong}>directly to the carrier on delivery</strong>,{' '}
-            <strong style={strong}>+ a flat Y7 dispatch fee</strong> &mdash; $50 for dealers and
-            exporters, $75 for individuals (paid to Y7, not the carrier).
+            The <strong style={strong}>same carrier&rsquo;s market rate</strong>, itemized separately.
+            Y7 fee per vehicle: dealers pay <strong style={strong}>$50</strong> with direct carrier payment or the
+            dealer-only <strong style={strong}>$60</strong> price when Y7 handles it; exporters pay{' '}
+            <strong style={strong}>$50</strong> with handling included; individuals pay the greater of{' '}
+            <strong style={strong}>$75</strong> or 10% of the carrier price.
           </p>
         </div>
       </div>
@@ -89,7 +90,8 @@ function AuctionVsBrokerCard() {
 
 export default function AuctionTransportSavings() {
   // Fee-copy binding (keep every $ figure audience-explicit):
-  // dealer/exporter = flat $50 per load, $60 when Y7 pays the carrier
+  // dealer = $50/load when the dealer pays the carrier, $60 when Y7 pays;
+  // exporter = $50/load with carrier-payment handling included and no $60 tier
   //   (TRANSPORT services/b2b_pricing.py: B2B_FLAT_FEE_CENTS / DEALER_Y7_PAYS_FEE_CENTS);
   // individual = max($75, 10% of carrier price)
   //   (TRANSPORT services/individual_pricing.py: IND_2026_FLOOR_CENTS / IND_2026_RATE).
@@ -102,7 +104,7 @@ export default function AuctionTransportSavings() {
         path: '/auction-transport-savings',
       }}
       heading="What You Save Shipping Auction Cars Broker-Direct"
-      intro="When you win at Copart, IAA, Manheim, ADESA or ACV, the in-house transport quote you're offered includes the carrier's rate plus the auction's own margin. Y7 Logistics is an FMCSA-licensed auto transport broker (MC#1741537, Natick MA) that dispatches those same carriers directly — so dealers pay the real market rate, with a flat $50 dispatch fee and no markup hidden inside the rate."
+      intro="When you win at Copart, IAA, Manheim, ADESA or ACV, the in-house transport quote you're offered includes the carrier's rate plus the auction's own margin. Y7 Logistics is an FMCSA-licensed auto transport broker (MC#1741537, Natick MA) that dispatches those same carriers directly, so dealers pay the real market rate plus a $50-per-vehicle dispatch fee when they pay the carrier directly, or $60 per vehicle when Y7 handles carrier payment, with no markup hidden inside the rate."
       secondaryCTA={{ intlKey: 'dealers', to: '/dealers', tone: 'teal' }}
       faqs={[
         {
@@ -111,7 +113,7 @@ export default function AuctionTransportSavings() {
         },
         {
           q: 'How much do dealers save shipping auction cars through a broker?',
-          a: 'It depends on the lane, so we don’t quote a blanket percentage. As an example, on a lane like New York to Boston an auction might quote around $500, while the market carrier rate is often closer to $340-360, plus our flat $50 dispatch fee - so a dealer typically saves at least about $100 on that move. You already know your auction’s quote; send us the lane and we’ll tell you the current market rate, and you decide.',
+          a: 'It depends on the lane, so we don’t quote a blanket percentage. As an example, on a lane like New York to Boston an auction might quote around $500, while the market carrier rate is often closer to $340-360, plus our $50 dealer dispatch fee when the dealer pays the carrier directly - so a dealer typically saves at least about $100 on that move. You already know your auction’s quote; send us the lane and we’ll tell you the current market rate, and you decide.',
         },
         {
           q: 'Why does the auction’s transport quote include a markup?',
@@ -119,7 +121,7 @@ export default function AuctionTransportSavings() {
         },
         {
           q: 'How do I know Y7 isn’t just marking up the carrier rate too?',
-          a: 'With our cash-on-delivery option you pay the assigned carrier directly when the car is delivered, so you see the real carrier rate yourself - a hidden markup is impossible. For dealer and exporter accounts, Y7’s revenue is a flat $50 per-vehicle dispatch fee on top of that rate ($60 when Y7 also handles the carrier payment), not a spread inside it; individual customers pay a $75 per-vehicle fee, or 10% of the carrier price when that is greater.',
+          a: 'With our cash-on-delivery option you pay the assigned carrier directly when the car is delivered, so you see the real carrier rate yourself - a hidden markup is impossible. Y7’s fee is separate: dealers pay $50 per vehicle when they pay the carrier directly, or the dealer-only $60 price when Y7 handles carrier payment; exporters pay $50 per vehicle with carrier-payment handling included; individual customers pay the greater of $75 or 10% of the carrier price.',
         },
         {
           q: 'How fast can you pick up an auction car?',
@@ -158,8 +160,8 @@ export default function AuctionTransportSavings() {
           <strong style={strong}>For example,</strong> on a lane like{' '}
           <strong style={strong}>New York &rarr; Boston</strong>, an auction might quote around{' '}
           <strong style={strong}>$500</strong>; the market carrier rate is often closer to{' '}
-          <strong style={strong}>$340&ndash;360</strong>, plus our flat <strong style={strong}>$50</strong>{' '}
-          &mdash; so a dealer typically saves <strong style={strong}>at least ~$100</strong> on that
+          <strong style={strong}>$340&ndash;360</strong>, plus our <strong style={strong}>$50 dealer fee</strong>{' '}
+          when the dealer pays the carrier directly, so a dealer typically saves <strong style={strong}>at least ~$100</strong> on that
           move. <strong style={strong}>Every lane is different.</strong> Send us your route and we&rsquo;ll
           tell you the current market rate &mdash; you decide.
         </p>
@@ -185,15 +187,14 @@ export default function AuctionTransportSavings() {
 
       <Section title="How Y7 keeps it honest">
         <p style={p}>
-          With our standard cash-on-delivery option, you pay the assigned carrier{' '}
-          <strong style={strong}>directly when the car is delivered</strong> &mdash; so you see the real
-          carrier rate yourself, and a hidden markup is impossible. For dealer and exporter accounts,
-          Y7&rsquo;s revenue is a flat <strong style={strong}>$50</strong> per-vehicle dispatch fee on
-          top of that rate ($60 when Y7 also handles the carrier payment), never a spread buried inside
-          it. Prefer us to handle the carrier payment? That&rsquo;s an optional, separately-arranged
-          service. (Individual, non-dealer shipments carry a <strong style={strong}>$75</strong>
-          {' '}per-vehicle fee &mdash; or 10% of the carrier price when that is greater &mdash; with the
-          carrier rate quoted per lane.)
+          With the dealer cash-on-delivery option, the dealer pays the assigned carrier{' '}
+          <strong style={strong}>directly when the car is delivered</strong>, so the real carrier rate
+          stays visible and a hidden markup is impossible. Y7&rsquo;s separate fee is{' '}
+          <strong style={strong}>$50 per dealer vehicle</strong> with direct carrier payment, or{' '}
+          the dealer-only <strong style={strong}>$60</strong> price when Y7 handles carrier payment;
+          exporters pay <strong style={strong}>$50 per vehicle</strong> with carrier-payment handling
+          included; individual customers pay the greater of <strong style={strong}>$75</strong>{' '}
+          or 10% of the carrier price. The carrier rate is always itemized separately from the Y7 fee.
         </p>
       </Section>
 

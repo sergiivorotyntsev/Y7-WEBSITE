@@ -6,10 +6,12 @@
 > states — auction pickups (Copart, IAA, Manheim), dealer trades, port and
 > export deliveries, and private vehicle relocations. Y7 is a broker, not a
 > carrier: carriers haul and hold cargo insurance; Y7 arranges and oversees the
-> move under a $75,000 BMC-84 surety bond. Pricing is a flat dispatch fee per
-> load with the carrier's rate shown on a signed dispatch sheet — no spread, no
-> hidden markup. Dealers and exporters pay a flat $50 dispatch fee per vehicle;
-> individuals pay $75 or 10% of the carrier price, whichever is greater. Y7 also
+> move under a $75,000 BMC-84 surety bond. Pricing uses a separate dispatch fee
+> for each vehicle, with the carrier's rate shown on a signed dispatch sheet — no spread, no
+> hidden markup. Dealers pay $50 per vehicle, or $60 when Y7 handles carrier
+> payment. Exporters pay $50 per vehicle with carrier-payment handling included
+> and have no $60 tier. Individuals pay $75 or 10% of the carrier price,
+> whichever is greater. The carrier rate is always separate from the Y7 fee. Y7 also
 > prepares and files Certificates of Origin for US-built vehicles exported to
 > the EU. The site is published in English, Polish (/pl), Ukrainian (/ua) and
 > Russian (/ru).

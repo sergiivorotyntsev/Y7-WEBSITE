@@ -17,12 +17,12 @@
 //   max($75, 10% of the carrier price), fixed when the carrier is assigned;
 //   the carrier is paid COD by the customer at pickup/delivery. Legacy
 //   customers keep the $50/$65 wording they signed up under.
-// - Dealer terms per dealer_agreement_v1.0.md §3-5: fixed per-order service
-//   fee quoted for the account, carrier charges pass through at cost (no
-//   markup), per-delivery billing + weekly invoicing, optional AP service.
-// - Exporter: NO fee numbers (agreement pending legal) — the EXP1-T05 model
-//   copy: register warehouses once, upload docs per order, Y7 assigns the
-//   destination warehouse and dispatches.
+// - Dealer: $50 per vehicle when the dealer pays the carrier directly (COD),
+//   or $60 when Y7 handles carrier payment. Carrier charges pass through at
+//   cost (no markup).
+// - Exporter: $50 per vehicle with carrier-payment handling included. Y7 pays
+//   the carrier from the funded account; there is no direct-pay option and no
+//   $60 tier.
 // - Compliance: "Licensed & Bonded FMCSA Broker" — never "insured".
 
 export const CANONICAL_TYPE_IDS = ['individual', 'dealer', 'exporter'];

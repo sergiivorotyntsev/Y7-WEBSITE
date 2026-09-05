@@ -27,7 +27,7 @@ export default function IaaiTransport() {
       tldr={{
         kicker: 'IAA transport, in brief',
         ariaLabel: 'IAA transport, in brief',
-        text: 'Y7 Logistics is a licensed and bonded FMCSA broker (MC #1741537, USDOT #4427359) shipping vehicles from IAA yards nationwide. IAA release works differently from Copart: you request it through your IAA buyer portal (typically processed within one business day) and the release document is a buyer letter naming the carrier. The free storage window is about two to three business days, then $15-$50 per day. Most IAA vehicles are non-running, so winch loading is the norm; you pay Y7 a flat $40-$60 dispatch fee and the carrier rate separately.',
+        text: 'Y7 Logistics is a licensed and bonded FMCSA broker (MC #1741537, USDOT #4427359) shipping vehicles from IAA yards nationwide. IAA release works differently from Copart: you request it through your IAA buyer portal (typically processed within one business day) and the release document is a buyer letter naming the carrier. The free storage window is about two to three business days, then $15-$50 per day. Most IAA vehicles are non-running, so winch loading is the norm. The carrier rate is separate. Y7 fees per vehicle: dealer $50 with direct carrier payment or dealer-only $60 when Y7 handles it; exporter $50 including payment handling; individual greater of $75 or 10% of carrier price.',
       }}
       whenNeeded={[
         'Won a vehicle at IAA online auction',

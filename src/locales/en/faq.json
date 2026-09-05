@@ -21,7 +21,7 @@
         },
         {
           "q": "How does Y7's flat fee work, and why is it cheaper than the auction's transport desk?",
-          "a": "You pay Y7 a single flat dispatch fee, and nothing more — dealers and exporters pay a flat $50 per vehicle ($60 when Y7 also handles the carrier payment), while individual customers pay $75 per vehicle, or 10% of the carrier price when that is greater; the carrier's rate is paid separately and shown to you at cost. Y7 adds no spread and no hidden markup on the transport itself, which is the core difference from an auction's in-house transport desk, where the carrier rate is usually bundled with an undisclosed margin. With Y7 you see the carrier's actual rate on a signed dispatch sheet, so the price is fully itemized rather than a single padded number. That transparency is why brokered dispatch often costs less than the auction's bundled quote for the same lane; compare the math on our auction transport savings breakdown.",
+          "a": "You pay Y7 one clearly stated dispatch fee and nothing more: dealers pay $50 per vehicle when they pay the carrier directly, or the dealer-only $60 price when Y7 handles the carrier payment; exporters pay $50 per vehicle with carrier-payment handling included; individual customers pay $75 per vehicle or 10% of the carrier price, whichever is greater; the carrier's rate is always separate from the Y7 fee and shown to you at cost. Y7 adds no spread and no hidden markup on the transport itself, which is the core difference from an auction's in-house transport desk, where the carrier rate is usually bundled with an undisclosed margin. With Y7 you see the carrier's actual rate on a signed dispatch sheet, so the price is fully itemized rather than a single padded number. That transparency is why brokered dispatch often costs less than the auction's bundled quote for the same lane; compare the math on our auction transport savings breakdown.",
           "links": [{ "text": "auction transport savings breakdown", "href": "/auction-transport-savings" }]
         },
         {
@@ -96,12 +96,12 @@
       "items": [
         {
           "q": "What's the dealer dispatch fee, and do I pay carriers directly?",
-          "a": "Dealers pay Y7 a flat dispatch fee per vehicle with no transport markup, and can pay carriers directly on delivery (COD) or route payment through Y7 with a signed dispatch sheet showing the carrier's actual rate. See volume pricing and payment terms on our dealer transport page.",
+          "a": "Dealers pay Y7 $50 per vehicle when they pay the carrier directly on delivery (COD), or $60 per vehicle when Y7 handles carrier payment. The carrier rate stays separate and has no Y7 markup. See payment terms on our dealer transport page.",
           "links": [{ "text": "dealer transport page", "href": "/dealers" }]
         },
         {
           "q": "Is there a minimum volume or a long-term contract?",
-          "a": "No long-term contract and no rigid minimum, though dealers and exporters moving 10 or more vehicles a month unlock custom pricing and a dedicated dispatcher. Details are on our dealers page.",
+          "a": "There is no long-term contract or minimum volume. Higher-volume accounts can receive dedicated dispatch support and lane-specific carrier-rate planning, but the Y7 fee does not change with volume. Details are on our dealers page.",
           "links": [{ "text": "dealers page", "href": "/dealers" }]
         },
         {

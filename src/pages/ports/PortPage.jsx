@@ -251,7 +251,7 @@ export default function PortPage() {
 
         {/* Company footer */}
         <div className={styles.companyFooter}>
-          <p className={styles.companyName}>Y7 Logistics LLC</p>
+          <p className={styles.companyName}>Y7 Logistics</p>
           <p className={styles.companyDesc}>{t('labels.companyDesc')}</p>
           <div className={styles.companyIds}>USDOT #4427359 &middot; MC #1741537</div>
         </div>
