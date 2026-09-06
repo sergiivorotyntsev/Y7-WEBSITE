@@ -7,9 +7,9 @@ export default function AuctionToPort() {
   return (
     <SeoLandingPage
       meta={{
-        title: 'Auction-to-Port Auto Transport Nationwide | Y7 Logistics',
+        title: 'Auction-to-Port Auto Transport — Copart to Port Shipping | Y7 Logistics',
         description:
-          'Nationwide car transportation from US auctions to the export warehouse or port you nominate, with gate pass, release-document, and carrier coordination.',
+          'Auction to port vehicle transport with gate pass coordination. Copart, IAAI, Manheim to your nominated US port. Licensed FMCSA broker.',
         path: '/auction-to-port-transport',
       }}
       primaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
