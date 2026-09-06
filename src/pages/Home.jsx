@@ -14,6 +14,7 @@ import CoverageMap from '../components/CoverageMap';
 import ReviewsCarousel from '../components/ReviewsCarousel';
 import TrustBadges from '../components/TrustBadges';
 import ExternalReviewsStrip from '../components/ExternalReviewsStrip';
+import EntityTldr from '../components/EntityTldr';
 import styles from './Home.module.css';
 import v2s from '../styles/v2/surfaces.module.css';
 import v2t from '../styles/v2/type.module.css';
@@ -23,6 +24,15 @@ import v2h from '../styles/v2/hero.module.css';
 import HeroArc from '../components/HeroArc';
 import MobileHeroEmergence, { HERO_BLANK_PX } from '../components/MobileHeroEmergence';
 import v2a from '../styles/v2/accents.module.css';
+
+const PILLAR_LINKS = [
+  { key: 'dealerService', to: '/dealer-auto-transport' },
+  { key: 'auctionService', to: '/auction-car-shipping' },
+  { key: 'auctionToPort', to: '/auction-to-port-transport' },
+  { key: 'copart', to: '/copart-shipping' },
+  { key: 'iaa', to: '/iaai-transport' },
+  { key: 'manheim', to: '/manheim-transport' },
+];
 
 export default function Home() {
   const { t } = useTranslation('home');
@@ -39,7 +49,7 @@ export default function Home() {
 
   return (
     <div>
-      <PageMeta description={tCommon('meta.homeDescription')} path="/" />
+      <PageMeta title={tCommon('meta.homeTitle')} description={tCommon('meta.homeDescription')} path="/" />
       <HreflangTags currentPath="" hasPolishVersion hasUkrainianVersion hasRussianVersion />
       {/* SEOAI-T02: the canonical LocalBusiness #organization node ships in the
           index.html template on every page — no per-page Organization duplicates,
@@ -82,6 +92,7 @@ export default function Home() {
             <h1 className={v2t.display}>
               {t('hero.tagline')}
               <br />
+              {' '}
               <span className={v2t.accent}>{t('hero.taglineAccent')}</span>
             </h1>
             <p className={`${v2t.lede} ${v2t.ledeOnDark}`}>{t('hero.description')}</p>
@@ -133,6 +144,12 @@ export default function Home() {
           with the eyebrow + condensed H2 pair. B2B-first card order. */}
       <section className={v2s.manifest}>
         <div className={v2s.inner}>
+          <EntityTldr
+            kicker={t('entity.kicker')}
+            ariaLabel={t('entity.ariaLabel')}
+            text={t('entity.text')}
+            variant="manifest"
+          />
           <QuoteStrip onCta={scrollToQuote} />
           <ScrollReveal>
             <div className={styles.serveHead}>
@@ -140,6 +157,20 @@ export default function Home() {
               <h2 className={v2t.sectionDisplay}>{t('sections.whoWeServeHeading')}</h2>
             </div>
             <AudienceCards />
+            <nav
+              className={`${v2t.lede} ${v2t.ledeOnPaper}`}
+              aria-label={t('pillarLinks.ariaLabel')}
+            >
+              <span>{t('pillarLinks.intro')} </span>
+              {PILLAR_LINKS.map(({ key, to }, index) => (
+                <span key={to}>
+                  {index > 0 && ' · '}
+                  <Link to={to} className={v2t.bodyLinkOnPaper}>
+                    {t(`pillarLinks.${key}`)}
+                  </Link>
+                </span>
+              ))}
+            </nav>
           </ScrollReveal>
         </div>
       </section>

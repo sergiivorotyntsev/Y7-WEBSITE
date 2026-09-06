@@ -1,13 +1,18 @@
 ﻿{
   "hero": {
     "title": "Transport samochodów na terenie całych USA",
-    "tagline": "Transport aut po USA",
-    "taglineAccent": "dla dealerów i eksporterów",
-    "description": "Sprawdzeni przewoźnicy, odbiór z aukcji, dostawy do dealerów, dostawy do magazynów portowych, przeprowadzki prywatne, dokumentacja BOL i aktualizacje statusu. Jeden zespół dyspozytorski.",
+    "tagline": "Transport aut",
+    "taglineAccent": "dla dealerów i eksporterów pojazdów",
+    "description": "Y7 Logistics koordynuje odbiór z aukcji, dobór przewoźnika, obsługę dyspozytorską, aktualizacje statusu na etapach przewozu i dostawę dla dealerów oraz eksporterów pojazdów: z Copart, IAA i Manheim do salonów dealerskich, magazynów eksportowych i portów w USA.",
     "eyebrow": "Licencjonowany broker FMCSA z gwarancją BMC-84 · MC #1741537",
     "ctaPrimary": "Zapytaj o wycenę transportu",
     "ctaDealers": "Program dealerski",
     "ctaExporters": "Program dla eksporterów"
+  },
+  "entity": {
+    "kicker": "Y7 Logistics w skrócie",
+    "ariaLabel": "Podsumowanie usług transportowych Y7 Logistics",
+    "text": "Y7 Logistics to licencjonowany broker FMCSA z gwarancją BMC-84 (MC #1741537), który organizuje transport aut po USA dla dealerów i eksporterów pojazdów. Zakres obsługi obejmuje odbiór z aukcji, dobór przewoźnika, obsługę dyspozytorską, aktualizacje statusu na etapach przewozu oraz dostawę do salonów dealerskich, magazynów eksportowych i portów w USA."
   },
   "trust": {
     "experience": "10+",
@@ -127,6 +132,16 @@
     "testimonials": "Opinie",
     "requestQuote": "Zapytaj o wycenę",
     "whoWeServeHeading": "Transport dla każdego kupującego"
+  },
+  "pillarLinks": {
+    "ariaLabel": "Specjalistyczne usługi transportu aut",
+    "intro": "Zobacz specjalistyczne usługi:",
+    "dealerService": "obsługa transportu dealerskiego",
+    "auctionService": "odbiór pojazdów z aukcji",
+    "auctionToPort": "proces od aukcji do portu",
+    "copart": "odbiór i dostawa z Copart",
+    "iaa": "odbiór pojazdów z IAA",
+    "manheim": "odbiór pojazdów z Manheim"
   },
   "quoteSection": {
     "title": "Otrzymaj darmową wycenę",

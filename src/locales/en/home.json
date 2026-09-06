@@ -1,13 +1,18 @@
 {
   "hero": {
     "title": "Nationwide Auto Transport",
-    "tagline": "Auto Transport Dispatch",
-    "taglineAccent": "for Dealers & Exporters",
-    "description": "Vetted carriers, auction pickup, dealer delivery, port warehouse delivery, private relocations, BOL documentation, and status updates. One dispatch team.",
+    "tagline": "Auto Transport",
+    "taglineAccent": "for Dealers & Vehicle Exporters",
+    "description": "Y7 Logistics manages auction pickups, carrier sourcing, dispatch, shipment milestone updates, and delivery for dealerships and vehicle exporters: from Copart, IAA, and Manheim to dealerships, export warehouses, and U.S. ports.",
     "eyebrow": "Licensed & Bonded FMCSA Broker · MC #1741537",
     "ctaPrimary": "Request Dispatch Quote",
     "ctaDealers": "Dealer Program",
     "ctaExporters": "Exporter Program"
+  },
+  "entity": {
+    "kicker": "Y7 Logistics, in brief",
+    "ariaLabel": "Y7 Logistics auto transport overview",
+    "text": "Y7 Logistics is a Licensed & Bonded FMCSA Broker (MC #1741537) that manages U.S. auto transport for dealerships and vehicle exporters. Its work covers auction pickups, carrier sourcing, dispatch, shipment milestone updates, and delivery to dealerships, export warehouses, and U.S. ports."
   },
   "trust": {
     "experience": "10+",
@@ -127,6 +132,16 @@
     "testimonials": "Testimonials",
     "requestQuote": "Request a Quote",
     "whoWeServeHeading": "Transport for Every Buyer"
+  },
+  "pillarLinks": {
+    "ariaLabel": "Specialized auto transport services",
+    "intro": "Explore specialized services:",
+    "dealerService": "dealer transport operations",
+    "auctionService": "auction pickup services",
+    "auctionToPort": "auction-to-port workflow",
+    "copart": "Copart pickup and delivery",
+    "iaa": "IAA auction pickup",
+    "manheim": "Manheim auction pickup"
   },
   "quoteSection": {
     "title": "Get Your Free Quote",
