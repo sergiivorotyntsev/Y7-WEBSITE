@@ -14,54 +14,40 @@ import v2h from '../styles/v2/hero.module.css';
 import HeroArc from '../components/HeroArc';
 import MobileHeroEmergence, { HERO_BLANK_PX } from '../components/MobileHeroEmergence';
 
-// DESIGN-V2-W4-T01: Dispatch Board restyle. SEO contract frozen: every heading
-// text/level, i18n keys, section order, schema emission, EntityTldr position,
-// and all link targets are unchanged. Only classNames, wrapper structure, and
-// animation wiring (Reveal, per the Reveal Gate Rule) changed.
-// Band map (Gate-A approved, strict alternation): hero=B · tldr+problem=P ·
-// capabilities=B · workflow=P · payment=B · portal=P · auctions=B · useCases=P ·
-// billing=B · whenThingsFail=P · whoWeServe=B · howDifferent+midCta+faqs=P ·
-// ctaStrip=B · crosslinks=P.
+// CODEX-13: /dealers owns the dealer-account and onboarding intent. Transport
+// scope, operating detail, and the full fee model live on
+// /dealer-auto-transport. The existing V2 board/paper language is preserved.
 export default function Dealers() {
   const { t, i18n } = useTranslation('dealers');
   const { t: tCommon } = useTranslation('common');
   const navigate = useNavigate();
 
-  // SEOAI-T04: EN-only extractable answer block. Read from the active locale
-  // bundle directly (not t(), which falls back to English) so ru/pl/ua render
-  // nothing until parity translations land — same gating as /faq's TL;DR.
   const tldr = i18n.getResource(i18n.language, 'dealers', 'tldr') || '';
-
-  const problemPoints = t('problem.points', { returnObjects: true }) || [];
-  const capabilities = t('capabilities.items', { returnObjects: true }) || [];
-  const workflow = t('workflow.steps', { returnObjects: true }) || [];
-  const paymentOptions = t('paymentOptions.options', { returnObjects: true }) || [];
+  const onboardingSteps = t('workflow.steps', { returnObjects: true }) || [];
+  const accountBenefits = t('benefits.items', { returnObjects: true }) || [];
   const portalFeatures = t('portal.features', { returnObjects: true }) || [];
-  const auctions = t('auctions.list', { returnObjects: true }) || [];
-  const useCases = t('useCases.cases', { returnObjects: true }) || [];
-  const billing = t('billing.features', { returnObjects: true }) || [];
-  const failures = t('whenThingsFail.scenarios', { returnObjects: true }) || [];
-  const segments = t('whoWeServe.segments', { returnObjects: true }) || [];
-  const compareRows = t('howDifferent.rows', { returnObjects: true }) || [];
   const faqs = t('faqs.items', { returnObjects: true }) || [];
   const crosslinks = t('crosslinks.items', { returnObjects: true }) || [];
-  const compareHeaders = t('howDifferent.headers', { returnObjects: true }) || {};
+  const schema = t('schema', { returnObjects: true }) || {};
 
   const serviceSchema = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Service',
-    serviceType: 'Outsourced Dispatch Department',
-    name: 'Dealer Auto Transport Dispatch Service',
-    description: 'Outsourced dispatch department for auto dealerships. Flat per-vehicle fee covers carrier sourcing, rate negotiation, gate pass coordination, BOL documentation, claims handling, and weekly billing. Alternative to internal dispatcher hire.',
+    serviceType: schema.serviceType,
+    name: schema.name,
+    description: schema.description,
     provider: { '@id': 'https://www.y7agency.com/#organization' },
     areaServed: { '@type': 'Country', name: 'United States' },
-    audience: { '@type': 'BusinessAudience', audienceType: 'Auto Dealerships' },
+    audience: { '@type': 'BusinessAudience', audienceType: schema.audienceType },
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
-      name: 'Dealer Payment Options',
+      name: schema.catalogName,
       itemListElement: [
-        { '@type': 'Offer', name: 'Direct Carrier Payment (COD)', description: 'Dealer pays carrier at delivery. Y7 bills flat dispatch fee only.' },
-        { '@type': 'Offer', name: 'Prepay Through Y7', description: 'Dealer funds Y7 prepay balance. Y7 pays carriers. Weekly reconciliation.' },
+        {
+          '@type': 'Offer',
+          name: schema.offerName,
+          description: schema.offerDescription,
+        },
       ],
     },
   });
@@ -70,7 +56,7 @@ export default function Dealers() {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: Array.isArray(faqs)
-      ? faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } }))
+      ? faqs.map((faq) => ({ '@type': 'Question', name: faq.q, acceptedAnswer: { '@type': 'Answer', text: faq.a } }))
       : [],
   });
 
@@ -85,17 +71,11 @@ export default function Dealers() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serviceSchema }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqSchema }} />
 
-      {/* Hero — board. Signal Budget in this viewport: red fill = gradient CTA;
-          boardHero's red radial is low-alpha exempt. Plain mono eyebrow (no
-          rule-line: hero budget). JP vertical strip = brand mark, aria-hidden. */}
+      {/* Hero: account proposition, using the established V2 audience hero. */}
       <section className={v2s.boardHero}>
-        {/* SPRINT-V21 W-CONV: photo emergence (same de-badged asset, tighter
-            low-right crop than home). Decorative, aria-hidden, CLS 0. */}
         <div className={`${v2h.photoEmergence} ${styles.heroPhoto}`} aria-hidden="true">
           <HeroArc className={styles.heroArc} />
           <picture>
-            {/* SPRINT-W7 M0: blank-pixel gate — eager desktop image resolves
-                to zero bytes on phones, where it is hidden. */}
             <source media="(max-width: 900px)" srcSet={HERO_BLANK_PX} />
             <source srcSet="/images/hero-dealers.avif" type="image/avif" />
             <source srcSet="/images/hero-dealers.webp" type="image/webp" />
@@ -116,18 +96,12 @@ export default function Dealers() {
               <span className={styles.heroTrustItem}>&#x2713; {t('hero.trust3')}</span>
             </div>
             <div className={styles.heroCtaRow}>
-              {/* SPRINT-V21: plate-as-CTA (Angle Law) — the plate is this
-                  viewport's one red fill. */}
               <button onClick={() => navigate('/dealer-quote')} className={v2h.angledPlate}>
                 {t('ctaButton')}
               </button>
             </div>
           </Reveal>
         </div>
-        {/* SPRINT-W7 M0: mobile emergence coda — in-flow at the band's
-            bottom, <=900px only (owner reversal of the W-HOME degradation).
-            eager: this hero is short enough that the car sits inside the
-            390x844 first viewport (measured). */}
         <MobileHeroEmergence
           eager
           avif="/images/hero-dealers.avif"
@@ -137,93 +111,54 @@ export default function Dealers() {
         />
       </section>
 
-      {/* TL;DR + Problem — one manifest band; the extractable answer card sits
-          first inside it (position immediately after hero preserved). */}
+      {/* Onboarding comes first because an account is required before booking. */}
       <section className={v2s.manifest}>
         <div className={v2s.inner}>
-          <EntityTldr kicker="Dealers, in brief" ariaLabel="Y7 for dealers, in brief" text={tldr} />
+          <EntityTldr
+            kicker={t('entity.kicker')}
+            ariaLabel={t('entity.ariaLabel')}
+            text={tldr}
+          />
           <Reveal>
-            <p className={`${v2t.eyebrow} ${v2t.eyebrowOnPaper}`}>{t('problem.kicker')}</p>
-            <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('problem.title')}</h2>
-            <p className={`${v2t.lede} ${v2t.ledeOnPaper} ${styles.sectionSub}`}>{t('problem.intro')}</p>
-            <div className={styles.problemGrid}>
-              {Array.isArray(problemPoints) && problemPoints.map((pt, i) => (
-                <div key={i} className={pt.positive ? styles.problemCardPositive : styles.problemCardNegative}>
-                  <h3 className={`${v2t.cardTitle} ${styles.problemCardTitle}`}>{pt.title}</h3>
-                  <p className={styles.problemCardDesc}>{pt.positive || pt.negative}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Capabilities — board */}
-      <section className={v2s.board}>
-        <div className={v2s.inner}>
-          <Reveal>
-            <p className={`${v2t.eyebrow} ${v2t.eyebrowOnDark}`}>{t('capabilities.kicker')}</p>
-            <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('capabilities.title')}</h2>
-            <p className={`${v2t.lede} ${v2t.ledeOnDark} ${styles.sectionSub}`}>{t('capabilities.subtitle')}</p>
-            <div className={styles.capGrid}>
-              {Array.isArray(capabilities) && capabilities.map((c, i) => (
-                <div key={i} className={`${v2c.board} ${styles.capCard}`}>
-                  <div className={`${v2t.monoLabel} ${styles.numOnDark}`}>{String(i + 1).padStart(2, '0')}</div>
-                  <h3 className={`${v2t.cardTitle} ${styles.cardTitleSm}`}>{c.title}</h3>
-                  <p className={styles.descOnDark}>{c.desc}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Workflow — manifest. Opener varies (density cap): plain H2, no eyebrow. */}
-      <section className={v2s.manifest}>
-        <div className={v2s.inner}>
-          <Reveal>
+            <p className={`${v2t.eyebrow} ${v2t.eyebrowOnPaper}`}>{t('workflow.kicker')}</p>
             <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('workflow.title')}</h2>
-            <p className={`${v2t.lede} ${v2t.ledeOnPaper} ${styles.sectionSub}`}>{t('workflow.subtitle')}</p>
-            <ol className={styles.timeline}>
-              {Array.isArray(workflow) && workflow.map((step, i) => (
-                <li key={i} className={`${v2c.paper} ${styles.timelineItem}`}>
-                  <span className={`${v2c.chipOnPaper} ${styles.timelineDay}`}>{step.day}</span>
+            <p className={`${v2t.lede} ${v2t.ledeOnPaper} ${styles.sectionSub}`}>{t('workflow.requirement')}</p>
+            <p className={`${styles.descOnPaper} ${styles.sectionSub}`}>{t('workflow.compliance')}</p>
+            <div className={styles.capGrid}>
+              {Array.isArray(onboardingSteps) && onboardingSteps.map((step, i) => (
+                <div key={i} className={`${v2c.paper} ${styles.capCard}`}>
+                  <div className={`${v2t.monoLabel} ${styles.numOnPaper}`}>{String(i + 1).padStart(2, '0')}</div>
                   <h3 className={`${v2t.cardTitle} ${styles.cardTitleSm}`}>{step.title}</h3>
                   <p className={styles.descOnPaper}>{step.desc}</p>
-                </li>
-              ))}
-            </ol>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Payment Options — board */}
-      <section className={v2s.board}>
-        <div className={v2s.inner}>
-          <Reveal>
-            <p className={`${v2t.eyebrow} ${v2t.eyebrowOnDark}`}>{t('paymentOptions.kicker')}</p>
-            <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('paymentOptions.title')}</h2>
-            <p className={`${v2t.lede} ${v2t.ledeOnDark} ${styles.sectionSub}`}>{t('paymentOptions.subtitle')}</p>
-            <div className={styles.payGrid}>
-              {Array.isArray(paymentOptions) && paymentOptions.map((o, i) => (
-                <div key={i} className={`${v2c.board} ${styles.payCard}`}>
-                  <span className={`${v2c.chipOnDark} ${styles.payTag}`}>{o.tag}</span>
-                  <h3 className={`${v2t.cardTitle} ${styles.payName}`}>{o.name}</h3>
-                  <p className={styles.payDesc}>{o.desc}</p>
-                  <ul className={styles.payList}>
-                    {Array.isArray(o.features) && o.features.map((f, j) => (
-                      <li key={j}>{f}</li>
-                    ))}
-                  </ul>
                 </div>
               ))}
             </div>
-            <p className={styles.payNote}>{t('paymentOptions.note')}</p>
+            <p className={`${styles.descOnPaper} ${styles.sectionSub}`}>{t('workflow.after')}</p>
           </Reveal>
         </div>
       </section>
 
-      {/* Portal — manifest */}
+      {/* The four owner-confirmed account consequences. */}
+      <section className={v2s.board}>
+        <div className={v2s.inner}>
+          <Reveal>
+            <p className={`${v2t.eyebrow} ${v2t.eyebrowOnDark}`}>{t('benefits.kicker')}</p>
+            <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('benefits.title')}</h2>
+            <p className={`${v2t.lede} ${v2t.ledeOnDark} ${styles.sectionSub}`}>{t('benefits.subtitle')}</p>
+            <div className={styles.capGrid}>
+              {Array.isArray(accountBenefits) && accountBenefits.map((benefit, i) => (
+                <div key={i} className={`${v2c.board} ${styles.capCard}`}>
+                  <div className={`${v2t.monoLabel} ${styles.numOnDark}`}>{String(i + 1).padStart(2, '0')}</div>
+                  <h3 className={`${v2t.cardTitle} ${styles.cardTitleSm}`}>{benefit.title}</h3>
+                  <p className={styles.descOnDark}>{benefit.desc}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Additional portal functions are limited to behavior verified in code. */}
       <section className={v2s.manifest}>
         <div className={v2s.inner}>
           <Reveal>
@@ -231,16 +166,13 @@ export default function Dealers() {
             <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('portal.title')}</h2>
             <p className={`${v2t.lede} ${v2t.ledeOnPaper} ${styles.sectionSub}`}>{t('portal.subtitle')}</p>
             <div className={styles.portalGrid}>
-              {Array.isArray(portalFeatures) && portalFeatures.map((f, i) => (
+              {Array.isArray(portalFeatures) && portalFeatures.map((feature, i) => (
                 <div key={i} className={`${v2c.paper} ${styles.portalCard}`}>
-                  <h3 className={`${v2t.cardTitle} ${styles.cardTitleSm}`}>{f.label}</h3>
-                  <p className={styles.descOnPaper}>{f.desc}</p>
+                  <h3 className={`${v2t.cardTitle} ${styles.cardTitleSm}`}>{feature.label}</h3>
+                  <p className={styles.descOnPaper}>{feature.desc}</p>
                 </div>
               ))}
             </div>
-            {/* [WEBFIX-T06] the section described the portal and linked nowhere.
-                Real anchors (Link renders <a href>), not handlers: crawlers and
-                answer engines only see hrefs. */}
             <p className={`${styles.descOnPaper} ${styles.sectionSub}`}>
               <Link to="/portal/login" className={v2t.bodyLinkOnPaper}>{t('portal.loginCta')} &rarr;</Link>
               {' '}&middot;{' '}
@@ -250,149 +182,35 @@ export default function Dealers() {
         </div>
       </section>
 
-      {/* Auction Coverage — board. Opener varies (density cap): plain H2. */}
+      {/* Service detail and fee mechanics stay with the service pillar. */}
       <section className={v2s.board}>
         <div className={v2s.inner}>
           <Reveal>
-            <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('auctions.title')}</h2>
-            <p className={`${v2t.lede} ${v2t.ledeOnDark} ${styles.sectionSub}`}>{t('auctions.subtitle')}</p>
-            <div className={styles.auctionGrid}>
-              {Array.isArray(auctions) && auctions.map((a, i) => (
-                <Link key={i} to={a.link || '/auction-car-shipping'} className={`${v2c.board} ${styles.auctionCard}`}>
-                  <h3 className={`${v2t.cardTitle} ${styles.cardTitleSm}`}>{a.name}</h3>
-                  <div className={`${v2t.monoMicro} ${styles.auctionCoverage}`}>{a.coverage}</div>
-                  <p className={styles.auctionFeature}>{a.feature}</p>
-                  <span className={`${v2t.monoLabel} ${styles.auctionCta}`}>Details &rarr;</span>
-                </Link>
-              ))}
-            </div>
+            <p className={`${v2t.eyebrow} ${v2t.eyebrowOnDark}`}>{t('serviceOverview.kicker')}</p>
+            <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('serviceOverview.title')}</h2>
+            <p className={`${v2t.lede} ${v2t.ledeOnDark} ${styles.sectionSub}`}>{t('serviceOverview.body')}</p>
+            <p className={styles.descOnDark}>
+              <Link to="/dealer-auto-transport" className={v2t.bodyLinkOnDark}>
+                {t('serviceOverview.linkLabel')} &rarr;
+              </Link>
+            </p>
           </Reveal>
         </div>
       </section>
 
-      {/* Use Cases — manifest */}
+      {/* FAQ strings are also the FAQPage schema source, preserving parity. */}
       <section className={v2s.manifest}>
         <div className={v2s.inner}>
-          <Reveal>
-            <p className={`${v2t.eyebrow} ${v2t.eyebrowOnPaper}`}>{t('useCases.kicker')}</p>
-            <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('useCases.title')}</h2>
-            <div className={styles.caseGrid}>
-              {Array.isArray(useCases) && useCases.map((c, i) => (
-                <div key={i} className={`${v2c.paper} ${styles.caseCard}`}>
-                  <div className={`${v2t.monoLabel} ${styles.numOnPaper}`}>{String(i + 1).padStart(2, '0')}</div>
-                  <h3 className={`${v2t.cardTitle} ${styles.cardTitleSm}`}>{c.title}</h3>
-                  <p className={styles.descOnPaper}>{c.desc}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Billing — board */}
-      <section className={v2s.board}>
-        <div className={v2s.inner}>
-          <Reveal>
-            <p className={`${v2t.eyebrow} ${v2t.eyebrowOnDark}`}>{t('billing.kicker')}</p>
-            <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('billing.title')}</h2>
-            <p className={`${v2t.lede} ${v2t.ledeOnDark} ${styles.sectionSub}`}>{t('billing.intro')}</p>
-            <div className={styles.billGrid}>
-              {Array.isArray(billing) && billing.map((f, i) => (
-                <div key={i} className={`${v2c.board} ${styles.billCard}`}>
-                  <h3 className={`${v2t.cardTitle} ${styles.cardTitleSm}`}>{f.label}</h3>
-                  <p className={styles.descOnDark}>{f.desc}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* When Things Fail — manifest. Opener varies (density cap): plain H2. */}
-      <section className={v2s.manifest}>
-        <div className={v2s.inner}>
-          <Reveal>
-            <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('whenThingsFail.title')}</h2>
-            <p className={`${v2t.lede} ${v2t.ledeOnPaper} ${styles.sectionSub}`}>{t('whenThingsFail.intro')}</p>
-            <div className={styles.failGrid}>
-              {Array.isArray(failures) && failures.map((s, i) => (
-                <div key={i} className={`${v2c.paper} ${styles.failCard}`}>
-                  <h3 className={`${v2t.cardTitle} ${styles.cardTitleSm}`}>{s.situation}</h3>
-                  <p className={styles.descOnPaper}>{s.response}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Who We Serve — board */}
-      <section className={v2s.board}>
-        <div className={v2s.inner}>
-          <Reveal>
-            <p className={`${v2t.eyebrow} ${v2t.eyebrowOnDark}`}>{t('whoWeServe.kicker')}</p>
-            <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('whoWeServe.title')}</h2>
-            <div className={styles.segGrid}>
-              {Array.isArray(segments) && segments.map((s, i) => (
-                <div key={i} className={`${v2c.board} ${styles.segCard}`}>
-                  <h3 className={`${v2t.cardTitle} ${styles.segName}`}>{s.name}</h3>
-                  <p className={styles.segDesc}>{s.desc}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* How Different + mid CTA + FAQ — one manifest band. Section order is
-          unchanged; the FAQ opener varies (density cap): plain H2. */}
-      <section className={v2s.manifest}>
-        <div className={v2s.inner}>
-          <Reveal>
-            <p className={`${v2t.eyebrow} ${v2t.eyebrowOnPaper}`}>{t('howDifferent.kicker')}</p>
-            <h2 className={`${v2t.sectionDisplay} ${styles.h2}`}>{t('howDifferent.title')}</h2>
-            <p className={`${v2t.lede} ${v2t.ledeOnPaper} ${styles.sectionSub}`}>{t('howDifferent.subtitle')}</p>
-            <div className={styles.compareTableWrap}>
-              <table className={`${v2c.tableOnPaper} ${styles.compareTable}`}>
-                <thead>
-                  <tr>
-                    <th>{compareHeaders.feature || 'Feature'}</th>
-                    <th>{compareHeaders.internal || 'Internal Dispatcher'}</th>
-                    <th>{compareHeaders.broker || 'Generic Broker'}</th>
-                    <th className={v2c.tableColHighlight}>{compareHeaders.y7 || 'Y7 Dispatch Department'}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Array.isArray(compareRows) && compareRows.map((row, i) => (
-                    <tr key={i}>
-                      <td className={styles.compareFeature}>{row.feature}</td>
-                      <td>{row.internal}</td>
-                      <td>{row.broker}</td>
-                      <td className={v2c.tableColHighlight}>{row.y7}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </Reveal>
-
-          {/* Mid-page CTA: post-comparison conviction moment (the band's single red fill) */}
-          <Reveal className={styles.midCta}>
-            <Link to="/dealer-quote" className={v2b.cta}>
-              {t('ctaButton')}
-            </Link>
-          </Reveal>
-
           <Reveal>
             <h2 className={`${v2t.sectionDisplay} ${styles.h2} ${styles.faqHeadCenter}`}>{t('faqs.title')}</h2>
             <div className={styles.faqList}>
-              {Array.isArray(faqs) && faqs.map((f, i) => (
+              {Array.isArray(faqs) && faqs.map((faq, i) => (
                 <details key={i} className={styles.faqItem}>
                   <summary className={styles.faqSummary}>
-                    <span>{f.q}</span>
+                    <span>{faq.q}</span>
                     <span className={styles.faqChevron} aria-hidden="true">&#9662;</span>
                   </summary>
-                  <p className={styles.faqAnswer}>{f.a}</p>
+                  <p className={styles.faqAnswer}>{faq.a}</p>
                 </details>
               ))}
             </div>
@@ -400,8 +218,6 @@ export default function Dealers() {
         </div>
       </section>
 
-      {/* CTA strip — board close. Signal Budget: gradient CTA = fill, kaizen
-          stamp = accent. 2nd JP mark of the page (strip + stamp = 2, within cap). */}
       <section className={v2s.board}>
         <div className={`${v2s.inner} ${styles.ctaInner}`}>
           <Reveal>
@@ -415,14 +231,15 @@ export default function Dealers() {
         </div>
       </section>
 
-      {/* Crosslinks — manifest footer band. Body-Link Law styling. */}
       <section className={v2s.manifest}>
         <div className={`${v2s.inner} ${styles.crosslinksInner}`}>
           <Reveal>
             <h3 className={`${v2t.monoLabel} ${styles.crosslinksTitle}`}>{t('crosslinks.title')}</h3>
             <div className={styles.crosslinksGrid}>
-              {Array.isArray(crosslinks) && crosslinks.map((c, i) => (
-                <Link key={i} to={c.to} className={`${v2t.bodyLinkOnPaper} ${styles.crosslink}`}>{c.label} &rarr;</Link>
+              {Array.isArray(crosslinks) && crosslinks.map((crosslink, i) => (
+                <Link key={i} to={crosslink.to} className={`${v2t.bodyLinkOnPaper} ${styles.crosslink}`}>
+                  {crosslink.label} &rarr;
+                </Link>
               ))}
             </div>
           </Reveal>

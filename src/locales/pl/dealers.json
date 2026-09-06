@@ -1,443 +1,133 @@
 {
-  "title": "Twój zewnętrzny dział dyspozytury",
-  "subtitle": "Y7 prowadzi logistykę przewozów pojazdów dla dealerów aut w USA. Potraktuj nas jak swój dział dyspozytury — bez pensji $90k, benefitów i urlopów. Stała opłata za pojazd, pełny dział operacyjny w zestawie.",
-  "tldr": "Y7 Logistics to licencjonowany broker z gwarancją (bondem) FMCSA (MC #1741537, USDOT #4427359), który prowadzi zewnętrzną dyspozyturę dla dealerów aut w USA: odbiory z Copart, IAA i Manheim, wymiany dealer-dealer oraz przewozy aut off-lease za stałą opłatę dyspozytury za pojazd, z tygodniową fakturą zbiorczą. Około 90% zleceń pozyskujemy przez Central Dispatch ze zweryfikowanej sieci przewoźników, zastępując wewnętrznego dyspozytora za $90k rocznie przewidywalną pozycją kosztową na pojazd.",
+  "title": "Program konta dealerskiego Y7 Logistics",
+  "subtitle": "Y7 Logistics obsługuje dealerów samochodowych przez aktywne konta. Przejdź cztery kroki rejestracji, a następnie składaj każde zlecenie transportowe w portalu.",
+  "tldr": "Y7 Logistics to licencjonowany broker FMCSA z gwarancją, który współpracuje z dealerami samochodowymi przez zarejestrowane konta. Rejestracja obejmuje dane firmy, adresy odbioru i dostawy, podpisanie umowy oraz weryfikację adresu e-mail. Po weryfikacji zlecenia składa się w portalu. Konto gromadzi historię zleceń, dokumenty, status na kolejnych etapach, faktury zbiorcze i zapisane lokalizacje. Przewozy danego dealera prowadzi jeden dyspozytor.",
+  "entity": {
+    "kicker": "Konta dealerskie w skrócie",
+    "ariaLabel": "Program konta dealerskiego Y7 Logistics w skrócie"
+  },
   "hero": {
-    "kicker": "DLA DEALERÓW AUT",
-    "trust1": "Licencjonowany broker FMCSA z gwarancją (bondem) · MC #1741537",
-    "trust2": "90% zleceń przez Central Dispatch",
-    "trust3": "Stała opłata dyspozytury · Faktury tygodniowe · ACH"
-  },
-  "problem": {
-    "kicker": "PROBLEM LOGISTYKI DEALERSKIEJ",
-    "title": "Wewnętrzny dyspozytor jest drogi. Ogólny broker nie skaluje się z Twoją operacją.",
-    "intro": "Średni dealer staje przed fałszywym wyborem: zatrudnić wewnętrznego dyspozytora ($55-75k pensji + benefity + oprogramowanie + szkolenie + urlopy ≈ $90k faktyczny roczny koszt) lub gonić za wycenami pięciu różnych brokerów przy każdej przewozie. Żadne rozwiązanie nie działa długoterminowo.",
-    "points": [
-      {
-        "title": "Wewnętrzny dyspozytor",
-        "negative": "Stały koszt $90k/rok nawet w słabe miesiące. Jedna osoba, jeden zestaw relacji, ryzyko urlopu."
-      },
-      {
-        "title": "Ogólny broker transportu",
-        "negative": "Głos call-center, brak dealerskiego workflow, brak skonsolidowanych faktur, brak archiwizacji BOL, brak pomocy przy reklamacjach."
-      },
-      {
-        "title": "Dział dyspozytury Y7",
-        "positive": "Płać stałą opłatę za pojazd. Dedykowany zespół, dealerski portal, tygodniowy billing, archiwum BOL, obsługa roszczeń. Skaluj w górę lub w dół bez zatrudniania czy zwalniania."
-      }
-    ]
-  },
-  "capabilities": {
-    "kicker": "CO DOSTAJESZ",
-    "title": "Co robi dział dyspozytury",
-    "subtitle": "Y7 dostarcza każdą funkcję wewnętrznego dyspozytora — za ułamek stałego kosztu",
-    "items": [
-      {
-        "title": "Pozyskiwanie i weryfikacja przewoźników",
-        "desc": "Dostęp do ponad 700 zweryfikowanych przewoźników przez Central Dispatch. Numer MC, ubezpieczenie i safety score sprawdzamy przed każdym zleceniem."
-      },
-      {
-        "title": "Negocjacja stawek",
-        "desc": "Negocjujemy stawki przewoźników w Twoim imieniu. Widzisz finalną cenę trasy, a nie grę negocjacyjną."
-      },
-      {
-        "title": "Obsługa gate pass i buyer letter",
-        "desc": "Copart Transporter App, buyer letter dla IAA, zwolnienie hurtowe Manheim — zajmujemy się dokumentacją zależnie od typu aukcji."
-      },
-      {
-        "title": "Widoczność statusu przesyłki",
-        "desc": "Każdy transport widoczny w Twoim portalu z ETA, kontaktem do przewoźnika i statusem BOL. Powiadomienia przez Telegram na kluczowych etapach."
-      },
-      {
-        "title": "Dokumentacja i archiwizacja BOL",
-        "desc": "Każdy Bill of Lading, zdjęcie stanu i potwierdzenie dostawy trafia do archiwum. Eksport gotowy pod DMS na potrzeby księgowości."
-      },
-      {
-        "title": "Obsługa roszczeń za uszkodzenia",
-        "desc": "Jeśli uszkodzenie jest udokumentowane, wyciągamy archiwum i zgłaszamy je do ubezpieczenia przewoźnika. Nie gonisz za papierami."
-      },
-      {
-        "title": "Skonsolidowany billing tygodniowy",
-        "desc": "Jedna faktura w każdy piątek obejmująca wszystkie przewozy. Płatności ACH lub Zelle dla przewoźników realizujemy z Twojego salda prepaid."
-      },
-      {
-        "title": "Zespół wielojęzyczny",
-        "desc": "Angielski, rosyjski, polski, ukraiński. Przydatne dla dealerów ze wschodnioeuropejskimi partnerami-importerami lub dwujęzycznymi zespołami."
-      }
-    ]
+    "kicker": "PROGRAM KONTA DEALERSKIEGO",
+    "trust1": "Broker FMCSA z gwarancją · MC #1741537",
+    "trust2": "Konto wymagane przed zleceniem transportu",
+    "trust3": "Otwarcie konta bez licencji dealerskiej"
   },
   "workflow": {
-    "kicker": "JAK TO DZIAŁA",
-    "title": "Jak to działa — dzień po dniu",
-    "subtitle": "Faktyczny rytm operacyjny po aktywacji Twojego konta dealerskiego",
+    "kicker": "ZAŁOŻENIE KONTA",
+    "title": "Otwórz konto dealerskie w czterech krokach",
+    "requirement": "Konto dealerskie jest wymagane, zanim Y7 Logistics przyjmie zlecenie transportowe. Do otwarcia konta nie jest wymagana licencja dealerska.",
+    "compliance": "Y7 Logistics działa jako licencjonowany broker FMCSA z gwarancją. Dane firmy identyfikują zleceniodawcę i stronę rozliczenia, a podpisana umowa określa warunki między brokerem a zleceniodawcą potrzebne do zgodnej z prawem obsługi brokerskiej i rozliczeń na podstawie faktur.",
     "steps": [
       {
-        "day": "Dzień 1",
-        "title": "Założenie konta",
-        "desc": "Broker-Shipper Agreement podpisany cyfrowo. Dostęp do portalu aktywowany. Zapisane miejsca odbioru zaimportowane. Wybrana opcja płatności (COD lub przedpłata)."
+        "title": "Podaj dane firmy",
+        "desc": "Wprowadź nazwę firmy i dane kontaktowe używane na koncie dealerskim."
       },
       {
-        "day": "Dzień 2-3",
-        "title": "Pierwsze zlecenie w systemie",
-        "desc": "Zgłaszasz przewozy przez portal, Telegram lub e-mail. Publikujemy w Central Dispatch w ciągu 30 minut. Wycenę z realnym terminem trasy zwracamy w 4-6 godzin."
+        "title": "Dodaj swoje adresy",
+        "desc": "Wprowadź adresy odbioru i dostawy używane przez Twój salon."
       },
       {
-        "day": "Dzień 4-5",
-        "title": "Pierwsze odbiory",
-        "desc": "Przydzieleni zweryfikowani przewoźnicy. Gate passy aukcyjne lub buyer letter dla IAA załatwione. Kontakt do kierowcy przekazany zespołowi operacyjnemu dealera przez Telegram."
+        "title": "Podpisz umowę",
+        "desc": "Przeczytaj i podpisz umowę między brokerem a zleceniodawcą."
       },
       {
-        "day": "Dzień 6-10",
-        "title": "Pierwsza dostawa + faktura",
-        "desc": "Pojazdy dostarczone na Twój plac. Zdjęcia BOL wysłane do portalu. Wychodzi pierwsza piątkowa faktura. Uzgodnienie z Twoim saldem kapitału obrotowego prepaid."
-      },
-      {
-        "day": "Tydzień 2+",
-        "title": "Rytm operacyjny",
-        "desc": "Regularny cykl dyspozytorski. Powtarzalne trasy rozpoznane. Portal staje się główną powierzchnią pracy. Dostęp wielu użytkowników aktywowany dla zespołów finansów, dyspozytury i sprzedaży."
-      }
-    ]
-  },
-  "paymentOptions": {
-    "kicker": "OPCJE PŁATNOŚCI",
-    "title": "Dwa sposoby płatności",
-    "subtitle": "Przebieg płatności zależy od wybranego wariantu. Wybierz, kto ma płacić przewoźnikowi.",
-    "options": [
-      {
-        "name": "Bezpośrednia płatność dla przewoźnika (COD)",
-        "tag": "Dealerzy hands-on",
-        "desc": "Dealer płaci przewoźnikowi bezpośrednio przy dostawie. Y7 fakturuje tylko opłatę dyspozytury.",
-        "features": [
-          "Niższy koszt całkowity (bez obsługi płatności dla przewoźnika)",
-          "Dealer kontroluje inspekcję BOL przy odbiorze",
-          "Wymaga personelu na doku lub koordynatora odbioru",
-          "Najlepsze dla dealerów z ustaloną obsługą przyjęć",
-          "Tygodniowa faktura Y7 obejmuje tylko opłaty dyspozytury"
-        ]
-      },
-      {
-        "name": "Przedpłata przez Y7",
-        "tag": "Dealerzy hands-off",
-        "desc": "Dealer zasila saldo prepaid Y7. Y7 płaci przewoźnikom. Tygodniowe uzgodnienie salda.",
-        "features": [
-          "Zero zachodu z płatnościami dla przewoźników",
-          "Y7 zajmuje się sporami o BOL i sytuacjami nietypowymi",
-          "Jedna faktura tygodniowa z uzgodnieniem salda",
-          "Najlepsze dla dealerów stawiających na prostotę operacyjną",
-          "Doładowanie salda przez ACH lub czek",
-          "Opłata dyspozytury wliczona w fakturę tygodniową"
-        ]
+        "title": "Zweryfikuj adres e-mail",
+        "desc": "Potwierdź adres e-mail używany do logowania w portalu dealerskim."
       }
     ],
-    "note": "Oba warianty obejmują pełne możliwości zewnętrznego działu dyspozytury. Przepływ płatności nie zmienia poziomu usługi."
+    "after": "Po zweryfikowaniu adresu e-mail składaj zlecenia transportowe w portalu. To jedyna ścieżka składania zleceń; nie przyjmujemy ich telefonicznie."
   },
-  "portal": {
-    "loginCta": "Zaloguj się do portalu dealerskiego",
-    "applyCta": "Nie masz jeszcze konta? Załóż konto dealerskie",
-    "kicker": "PORTAL DEALERSKI",
-    "title": "Twój pulpit operacyjny",
-    "subtitle": "Dostęp oparty na rolach dla zespołów dyspozytury, finansów i sprzedaży",
-    "features": [
-      {
-        "label": "Zbiorczy load board",
-        "desc": "Wszystkie aktywne przewozy w jednym widoku — status, ETA, nazwa przewoźnika, link do zdjęcia BOL. Sortowanie po dacie odbioru, trasie, statusie."
-      },
-      {
-        "label": "Zapisane miejsca odbioru",
-        "desc": "Twoje place aukcyjne, partnerzy handlowi, źródła hurtowe. Zlecenie jednym kliknięciem do powtarzalnych lokalizacji."
-      },
-      {
-        "label": "Sejf na dokumenty",
-        "desc": "Każdy BOL, inspekcja fotograficzna, raport stanu i faktura w archiwum. Eksport CSV/PDF gotowy pod DMS na żądanie."
-      },
-      {
-        "label": "Dostęp wielu użytkowników",
-        "desc": "Zespół finansów widzi tylko rozliczenia. Zespół dyspozytury widzi aktywne zlecenia. Zespół sprzedaży widzi ETA dostaw do informowania klientów."
-      },
-      {
-        "label": "Powiadomienia Telegram",
-        "desc": "Powiadomienia o zleceniu, odbiorze i dostawie dla zespołu operacyjnego. Konfigurowalne dla każdego użytkownika."
-      },
-      {
-        "label": "Raportowanie tygodniowe",
-        "desc": "Piątkowe podsumowanie: przewiezione pojazdy, łączny koszt, rozbicie na trasy, wyniki przewoźników. Eksport do uzgodnień księgowych."
-      }
-    ]
-  },
-  "auctions": {
-    "kicker": "OBSŁUGA AUKCJI",
-    "title": "Odbieramy z każdej dużej sieci aukcyjnej w USA",
-    "subtitle": "Pełna obsługa gate pass i buyer letter zależnie od typu aukcji",
-    "list": [
-      {
-        "name": "Copart",
-        "coverage": "ponad 200 placów w całym USA",
-        "feature": "PIN gate pass + koordynacja Transporter App",
-        "link": "/copart-shipping"
-      },
-      {
-        "name": "IAAI",
-        "coverage": "ponad 200 lokalizacji",
-        "feature": "Buyer letter + rejestracja autoryzowanego przewoźnika",
-        "link": "/iaai-transport"
-      },
-      {
-        "name": "Manheim",
-        "coverage": "ponad 80 aukcji regionalnych",
-        "feature": "Koordynacja placu dealera hurtowego",
-        "link": "/manheim-transport"
-      },
-      {
-        "name": "ADESA",
-        "coverage": "ponad 60 lokalizacji hurtowych",
-        "feature": "Przewozy w handlu dealer-dealer",
-        "link": "/auction-car-shipping"
-      }
-    ]
-  },
-  "useCases": {
-    "kicker": "CO ROBIMY CODZIENNIE",
-    "title": "Pięć scenariuszy dealerskich, co tydzień",
-    "cases": [
-      {
-        "title": "Odbiór z aukcji na plac dealera",
-        "desc": "Twój kupujący wygrywa w poniedziałek na Copart Dallas. Potrzebujesz pojazdu na swoim placu w Houston do piątku. Gate pass skoordynowany, przewoźnik zlecony, BOL udokumentowany, dostawa na czas."
-      },
-      {
-        "title": "Handel dealer-dealer",
-        "desc": "Wymieniłeś Tahoe na F-150 z innym dealerem trzy stany dalej. Oba odcinki obsługujemy jako jeden skoordynowany przewóz."
-      },
-      {
-        "title": "Dostawa do klienta z placu dealera",
-        "desc": "Klient kupił pojazd zdalnie. Potrzebujesz dostawy pod jego dom w innym stanie. Pełna dokumentacja BOL, przewoźnik z ubezpieczeniem, aktualizacje statusu przez cały czas."
-      },
-      {
-        "title": "Skonsolidowany odbiór wielu pojazdów",
-        "desc": "Pięć pojazdów wygranych na tym samym placu Copart. Jeden przewoźnik, jeden odbiór, wspólny koszt. Układamy trasę tak, by zmaksymalizować efektywność przewoźnika i zminimalizować koszt na pojazd."
-      },
-      {
-        "title": "Przeniesienie aut off-lease / z odkupu",
-        "desc": "Przewóz aut z odkupu z Twojego salonu na aukcję hurtową do upłynnienia. Regularna, powtarzalna trasa, uproszczony workflow przez portal."
-      }
-    ]
-  },
-  "billing": {
-    "kicker": "ROZLICZENIA I KSIĘGOWOŚĆ",
-    "title": "Zbudowane pod księgowość dealera",
-    "intro": "Obsługa zobowiązań (Accounts Payable) dla Twojej operacji dealerskiej. Tygodniowy rytm. Czyste uzgodnienia. Bez udzielania kredytu — każdą płatność przewoźnika finansuje Twój przedpłacony kapitał obrotowy.",
-    "features": [
-      {
-        "label": "Piątkowa faktura zbiorcza",
-        "desc": "Jedna faktura tygodniowo obejmująca wszystkie przewozy. Format numeru faktury: INV-{year}-{dealer-id}-{seq}."
-      },
-      {
-        "label": "Tygodniowe zestawienie + uzgodnienie",
-        "desc": "Co piątek: pełny rejestr transakcji — przewoźnik, kwota, metoda, data, bieżące saldo względem Twojego przedpłaconego kapitału obrotowego."
-      },
-      {
-        "label": "Realizacja płatności dla przewoźników",
-        "desc": "Zbieramy i weryfikujemy dane ACH, handle Zelle oraz W9 każdego przewoźnika, a następnie realizujemy płatności w Twoim imieniu. Szyfrowane w spoczynku, powiązane z kartą każdego przewoźnika."
-      },
-      {
-        "label": "Obsługa ACH i czeków",
-        "desc": "Bez opłat za przelewy wire. Automatyczna płatność dostępna przez zapisane ACH."
-      },
-      {
-        "label": "Dokumentacja płatności na koniec roku",
-        "desc": "Przetwarzamy płatności dla przewoźników, uzgadniamy każdą transakcję i udostępniamy dokumentację płatności na koniec roku."
-      },
-      {
-        "label": "Miesięczny raport podsumowujący",
-        "desc": "Pierwszy dzień roboczy każdego miesiąca. Przewiezione pojazdy, łączny koszt, rozbicie na trasy, wyniki przewoźników."
-      },
-      {
-        "label": "Eksport CSV gotowy pod DMS",
-        "desc": "Płaski format CSV, który czysto uzgadnia się z większością systemów zarządzania dealerem (DMS)."
-      },
-      {
-        "label": "Ścieżka audytu",
-        "desc": "Każde zlecenie, każdy BOL, każda faktura ze znacznikiem czasu i w archiwum. Pobierasz dane historyczne w dowolnej chwili."
-      }
-    ]
-  },
-  "whenThingsFail": {
-    "kicker": "UCZCIWOŚĆ OPERACYJNA",
-    "title": "Gdy przewoźnik zawiedzie — oto co dostajesz",
-    "intro": "Transport aut ma swoje scenariusze awarii. Oto nasz plan działania na wypadek problemów. Nie ukrywamy tego — właśnie to czyni nas prawdziwym działem dyspozytury, a nie agregatorem wycen.",
-    "scenarios": [
-      {
-        "situation": "Przewoźnik nie zjawia się na odbiorze",
-        "response": "Ponowne zlecenie w ciągu 24 h. Nie płacisz za pierwotną rezerwację. Incydent odnotowany w ocenie przewoźnika. Dostajesz powiadomienie na Telegram, zanim obsługa doku zauważy, że coś jest nie tak."
-      },
-      {
-        "situation": "Opóźnienie dostawy poza ETA",
-        "response": "Aktualny status w portalu + proaktywne powiadomienie na Telegram. To my kontaktujemy się z kierowcą, nie Ty. Zaktualizowany ETA natychmiast przekazujemy Twojemu zespołowi sprzedaży, jeśli wpływa to na dostawę do klienta."
-      },
-      {
-        "situation": "Uszkodzenie udokumentowane przy dostawie",
-        "response": "Wyciągamy zdjęcia BOL i raporty stanu z naszego archiwum. Zgłaszamy roszczenie do ubezpieczenia przewoźnika w ciągu 24 godzin. Śledzimy rozstrzygnięcie. Nie gonisz za papierami."
-      },
-      {
-        "situation": "Odebrano niewłaściwy pojazd",
-        "response": "Weryfikacja VIN przez kierowcę na placu zapobiega większości przypadków. Jeśli się zdarzy, ponowne zlecenie bez dodatkowych kosztów. Gwarantujemy jeden potwierdzony odbiór na rezerwację."
-      },
-      {
-        "situation": "Spór o płatność dla przewoźnika (model COD)",
-        "response": "Pośredniczymy. Znamy przewoźników. Większość sporów rozwiązujemy tego samego dnia dzięki istniejącej relacji z przewoźnikiem."
-      },
-      {
-        "situation": "Zgubiony BOL / brakująca dokumentacja",
-        "response": "Naszym zabezpieczeniem jest archiwum. Każdy dokument fotografujemy i przechowujemy w ciągu 24 godzin od dostawy. Odtwarzamy to, czego potrzebujesz."
-      }
-    ]
-  },
-  "whoWeServe": {
-    "kicker": "SEGMENTY DEALERÓW",
-    "title": "Dealerzy, dla których prowadzimy dyspozyturę",
-    "segments": [
-      {
-        "name": "Niezależni dealerzy aut używanych",
-        "desc": "5-30 pojazdów miesięcznie z aukcji, lokalnych wymian, zakupów hurtowych. Nasz podstawowy segment."
-      },
-      {
-        "name": "Dealerzy franczyzowi",
-        "desc": "Przewóz nowych pojazdów między salonami, auta z odkupu do hurtu, zwroty off-lease na aukcję. Koordynacja wielu lokalizacji."
-      },
-      {
-        "name": "Dealerzy-eksporterzy",
-        "desc": "Zakup w USA → wysyłka za granicę. Y7 prowadzi odcinek lądowy i organizuje fracht morski przez firmę powiązaną z licencją dealerską. Cały cykl przez jeden zespół."
-      },
-      {
-        "name": "Rebuilderzy",
-        "desc": "Firmy skupione na salvage title. Odbiory z Copart/IAA z doświadczeniem w załadunku wyciągarką. Znamy place, które sprawnie wysyłają auta salvage."
-      },
-      {
-        "name": "Dealerzy wyłącznie aukcyjni",
-        "desc": "Firmy hurtowe przewożące zapasy między aukcjami regionalnymi. Trasy z wieloma przystankami dla maksymalnej efektywności przewoźnika."
-      }
-    ]
-  },
-  "howDifferent": {
-    "kicker": "CZYM SIĘ RÓŻNIMY",
-    "title": "Y7 kontra wewnętrzny dyspozytor kontra ogólny broker",
-    "subtitle": "Realne porównanie dla dealera wybierającego między opcjami",
-    "headers": {
-      "feature": "Cecha",
-      "internal": "Wewnętrzny dyspozytor",
-      "broker": "Ogólny broker",
-      "y7": "Dział dyspozytury Y7"
-    },
-    "rows": [
-      {
-        "feature": "Koszt początkowy",
-        "internal": "$55-75k pensji + $15-20k benefitów + oprogramowanie + szkolenie",
-        "broker": "$0 — wycena za przewóz",
-        "y7": "$0 — stała opłata dyspozytury za pojazd"
-      },
-      {
-        "feature": "Sieć przewoźników",
-        "internal": "Tylko te relacje, które zbuduje ta osoba",
-        "broker": "Ich własna sieć",
-        "y7": "Central Dispatch (ponad 700 zweryfikowanych przewoźników) + relacje bezpośrednie"
-      },
-      {
-        "feature": "Skalowalność",
-        "internal": "Stały koszt nawet w słabe miesiące. Jeden urlop zagraża operacji.",
-        "broker": "Dzwonisz za każdym razem, brak ciągłości relacji",
-        "y7": "Płać za pojazd. Skaluj w górę lub w dół bez zatrudniania i zwalniania."
-      },
-      {
-        "feature": "Dokumentacja BOL",
-        "internal": "Ręcznie — jakikolwiek system ta osoba ustawi",
-        "broker": "Ich system, nie Twój",
-        "y7": "Archiwum w portalu + eksport gotowy pod DMS"
-      },
-      {
-        "feature": "Obsługa roszczeń",
-        "internal": "Twój dyspozytor goni za ubezpieczeniem przewoźnika",
-        "broker": "Często przerzuca to na Ciebie",
-        "y7": "Koordynujemy z archiwum + relacji z przewoźnikiem"
-      },
-      {
-        "feature": "Obsługa wielojęzyczna",
-        "internal": "Zależy od zatrudnionej osoby",
-        "broker": "Rzadko",
-        "y7": "EN / RU / PL / UA w zespole"
-      },
-      {
-        "feature": "Raportowanie tygodniowe",
-        "internal": "Ustawiasz samodzielnie",
-        "broker": "Zwykle nieoferowane",
-        "y7": "Automatyczne — piątkowe podsumowanie, raport miesięczny, eksport DMS"
-      }
-    ]
-  },
-  "faqs": {
-    "kicker": "PYTANIA DEALERÓW",
-    "title": "FAQ dla dealerów",
+  "benefits": {
+    "kicker": "OBSŁUGA KONTA",
+    "title": "Co obejmuje konto dealerskie",
+    "subtitle": "Konto jest podstawą regularnego zarządzania transportem dealerskim. Y7 Logistics przydziela jednego dyspozytora do obsługi przewozów danego dealera.",
     "items": [
       {
-        "q": "Czym to się różni od zatrudnienia wewnętrznego dyspozytora?",
-        "a": "Wewnętrzny dyspozytor to stały koszt ok. $90k rocznie niezależnie od wolumenu. Do tego dochodzi ryzyko licencji na oprogramowanie, szkoleń i zastępstw urlopowych. Y7 pobiera stałą opłatę dyspozytury za pojazd — skaluje się z Twoim realnym wolumenem, zero kosztu stałego, zero ryzyka kadrowego. Zakres jest taki sam: pozyskiwanie przewoźników, negocjacja stawek, obsługa gate pass, dokumentacja BOL, obsługa roszczeń."
+        "title": "Zlecenia, dokumenty i status",
+        "desc": "Historia zleceń, dostępne dokumenty i aktualny status etapów są w jednym miejscu, więc nie musisz dzwonić po każdą aktualizację ani szukać BOL."
       },
       {
-        "q": "Ile wynosi opłata dyspozytury?",
-        "a": "Stała opłata za pojazd oparta na Twoim typowym miksie tras. Zamów przegląd konta dealerskiego, a podamy kwotę z góry — bez gier progami, bez niespodziewanych dopłat. Ta sama opłata, czy przewozisz 5 pojazdów miesięcznie, czy 50."
+        "title": "Jeden dyspozytor zamiast call center",
+        "desc": "Jeden dyspozytor obsługuje przewozy Twojego salonu, więc przy każdym zleceniu nie trzeba od nowa wyjaśniać zasad placu ani stałej trasy."
       },
       {
-        "q": "Czy płacę przewoźnikom bezpośrednio, czy robi to Y7?",
-        "a": "Twój wybór. Opcja 1: płacisz przewoźnikom bezpośrednio przy dostawie (COD) — kontrolujesz inspekcję BOL przy odbiorze, Y7 fakturuje tylko opłatę dyspozytury. Opcja 2: przedpłacasz Y7, my płacimy przewoźnikom, tygodniowe uzgodnienie z saldem. Wybierz wariant zgodny ze sposobem, w jaki Twój zespół rozlicza się z przewoźnikami."
+        "title": "Fakturowanie zbiorcze",
+        "desc": "Wiele przewozów trafia na jedną fakturę dla księgowości zamiast tworzyć osobny dokument rozliczeniowy dla każdego pojazdu."
       },
       {
-        "q": "Jaki jest minimalny wolumen?",
-        "a": "Żaden. Wdrażamy odbiory pojedynczych pojazdów i skalujemy się razem z Tobą. Model stałej opłaty sprawia, że dealerzy o małym wolumenie są opłacalni od pierwszego dnia."
-      },
-      {
-        "q": "Jak szybko możecie zlecić przewoźnika?",
-        "a": "Zależy od trasy. Popularne korytarze (duże aglomeracje) zwykle dostają przewoźnika w 24-48 godzin. Wiejskie place lub nietypowe pary mogą zająć 3-5 dni. Realny termin podajemy przy wycenie, a nie po tym, jak się zdecydujesz. Publikujemy w Central Dispatch w ciągu 30 minut od Twojego zgłoszenia."
-      },
-      {
-        "q": "Czy na jednym koncie dealerskim może być wielu użytkowników?",
-        "a": "Tak. Zaproś kierowników finansów, dyspozytury i sprzedaży z uprawnieniami opartymi na rolach. Finanse widzą rozliczenia. Dyspozytura widzi aktywne zlecenia. Sprzedaż widzi ETA dostaw do informowania klientów."
-      },
-      {
-        "q": "A co z gate passami Copart i buyer letters IAA?",
-        "a": "W cenie każdego odbioru z aukcji. Obsługujemy koordynację PIN-u gate pass Copart przez ich Transporter App oraz rejestrację buyer letter IAA dla autoryzowanego przewoźnika. To część usługi działu dyspozytury."
-      },
-      {
-        "q": "Czy integrujecie się z moim DMS?",
-        "a": "Na razie nie przez bezpośrednie API. Udostępniamy miesięczne podsumowania do eksportu w CSV i PDF, które czysto uzgadniają się z większością platform DMS. Pełna integracja przez API jest w naszych planach."
-      },
-      {
-        "q": "Co się dzieje, jeśli przewoźnik uszkodzi mój pojazd?",
-        "a": "Obowiązuje ubezpieczenie cargo przewoźnika (Y7 jest brokerem, nie posiadamy ubezpieczenia cargo — to rola przewoźnika zgodnie ze strukturą FMCSA). Koordynujemy roszczenie: wyciągamy zdjęcia BOL i raporty stanu z archiwum, zgłaszamy do ubezpieczenia przewoźnika w ciągu 24 godzin, śledzimy rozstrzygnięcie. Nie gonisz za papierami — to dział dyspozytury wykonuje swoją pracę."
-      },
-      {
-        "q": "Czy obsługujecie wymiany dealer-dealer?",
-        "a": "Tak. Wymiany między dealerami to jeden z podstawowych scenariuszy. Często prostsze niż odbiory z aukcji, bo obie strony mają obsługę doku i przewidywalne godziny. Jeden skoordynowany przewóz, jeden BOL, jedna pozycja na fakturze."
-      },
-      {
-        "q": "Czy obsługujecie dostawy do klientów z placów dealerskich?",
-        "a": "Tak. Zdalny zakup klienta → dostawa pod dom. Pełna dokumentacja BOL, ubezpieczony przewoźnik, aktualizacje statusu przez cały czas. Częste u dealerów franczyzowych i firm działających głównie online."
-      },
-      {
-        "q": "Czy obowiązuje umowa długoterminowa?",
-        "a": "Prosty Broker-Shipper Agreement. Płacisz na bieżąco, z billingiem tygodniowym. Bez długoterminowego związania, bez minimalnych obrotów, bez opłat za rezygnację. Zacznij od jednej wymiany, skaluj do pełnego wolumenu albo ogranicz — wszystko na tym samym koncie."
-      },
-      {
-        "q": "Z kim rozmawiam, gdy pojawi się coś pilnego?",
-        "a": "Obecni klienci docierają do dyspozytury przez portal lub bota Telegram (@y7dispatch_bot) 24/7 w sprawach aktywnych przewozów. W przypadku nowych zapytań i zakładania konta info@y7agency.com odpowiada w ciągu jednego dnia roboczego."
+        "title": "Zapisane miejsca odbioru i dostawy",
+        "desc": "Zapisane lokalizacje pozostają na koncie, dlatego stała trasa nie wymaga ponownego wpisywania żadnego z adresów."
       }
     ]
   },
-  "ctaTitle": "Gotów przekazać dyspozyturę na outsourcing?",
-  "ctaSubtitle": "Porozmawiaj z nami o wolumenie, trasach i opcjach płatności. Zakresujemy współpracę i podamy stałą opłatę z góry.",
-  "ctaButton": "Zamów przegląd konta dealerskiego",
+  "portal": {
+    "kicker": "ZWERYFIKOWANE NARZĘDZIA PORTALU",
+    "title": "Narzędzia dostępne w portalu dealerskim",
+    "subtitle": "Poza podstawowym widokiem zleceń portal obsługuje dodatkowych użytkowników konta i pobieranie dokumentów rozliczeniowych.",
+    "features": [
+      {
+        "label": "Dodatkowi użytkownicy konta",
+        "desc": "Sprawdź, kto ma już aktywny dostęp do konta, a czyje zaproszenie czeka na akceptację. Y7 Logistics dodaje lub usuwa użytkowników po zgłoszeniu e-mailem. Każdy użytkownik ma taki sam zakres dostępu."
+      },
+      {
+        "label": "Faktury i raporty kosztów",
+        "desc": "Pobieraj faktury w PDF oraz raporty kosztów dla wybranego zakresu dat w XLSX lub PDF."
+      },
+      {
+        "label": "Historia rozliczeń",
+        "desc": "Przeglądaj faktury i transakcje na koncie. Konta korzystające z opcji płatności przewoźnikowi mogą też sprawdzić saldo środków przedpłaconych i status autoryzacji bankowej."
+      }
+    ],
+    "loginCta": "Zaloguj się do portalu dealerskiego",
+    "applyCta": "Rozpocznij zakładanie konta dealerskiego"
+  },
+  "serviceOverview": {
+    "kicker": "PRZEGLĄD USŁUGI",
+    "title": "Szczegóły transportu są na stronie usługi",
+    "body": "Y7 Logistics pobiera stałą opłatę za obsługę każdego pojazdu; stawka przewoźnika jest rozliczana oddzielnie. Strona usługi opisuje odbiór z aukcji, wymiany dealerskie, powtarzalne trasy, aktualne opłaty oraz rozliczenia z przewoźnikiem.",
+    "linkLabel": "Sprawdź usługi transportowe dla dealerów i aktualne opłaty"
+  },
+  "faqs": {
+    "title": "FAQ o koncie dealerskim",
+    "items": [
+      {
+        "q": "Czy konto dealerskie jest wymagane przed zleceniem transportu?",
+        "a": "Tak. Y7 Logistics przyjmuje zlecenia transportowe dealerów przez aktywne konta, a zlecenia składa się w portalu po weryfikacji adresu e-mail. Licencja dealerska nie jest wymagana do otwarcia konta."
+      },
+      {
+        "q": "Jakie są kroki rejestracji dealera?",
+        "a": "Podaj dane firmy, dodaj adresy odbioru i dostawy, podpisz umowę między brokerem a zleceniodawcą i zweryfikuj adres e-mail. Następnie składaj zlecenia transportowe w portalu."
+      },
+      {
+        "q": "Dlaczego Y7 Logistics wymaga konta i umowy?",
+        "a": "Y7 Logistics to licencjonowany broker FMCSA z gwarancją. Dane firmy identyfikują zleceniodawcę i stronę rozliczenia, a podpisana umowa określa warunki między brokerem a zleceniodawcą przed złożeniem zleceń transportowych."
+      },
+      {
+        "q": "Co obejmuje konto dealerskie?",
+        "a": "Obejmuje dostęp w portalu do historii zleceń, dostępnych dokumentów i statusu etapów, jednego dyspozytora dla przewozów salonu, fakturowanie zbiorcze oraz zapisane miejsca odbioru i dostawy."
+      },
+      {
+        "q": "Czy będę obsługiwany przez call center?",
+        "a": "Nie. Jeden dyspozytor obsługuje przewozy danego salonu, dlatego stałych lokalizacji i instrukcji placu nie trzeba wyjaśniać ponownie przy każdym zleceniu."
+      },
+      {
+        "q": "Dla kogo jest konto dealerskie?",
+        "a": "Konto jest przeznaczone dla niezależnych dealerów aut używanych, dealerów franczyzowych, dealerów-eksporterów, firm zajmujących się odbudową pojazdów i firm skupionych na aukcjach. Niezależni dealerzy przewożący od 5 do 30 pojazdów miesięcznie często korzystają z programu; proces zakładania konta jest taki sam."
+      },
+      {
+        "q": "Gdzie znajdę zakres transportu i opłaty?",
+        "a": "Przegląd usługi transportowej dla dealerów opisuje obsługiwane przewozy, stałe warianty opłaty Y7 Logistics za pojazd, oddzielną stawkę przewoźnika oraz obsługę jego płatności."
+      }
+    ]
+  },
+  "ctaTitle": "Otwórz konto przed pierwszym zleceniem",
+  "ctaSubtitle": "Zacznij od danych firmy i adresów. Umowa oraz weryfikacja adresu e-mail kończą zakładanie konta; później zlecenia transportowe składasz w portalu.",
+  "ctaButton": "Rozpocznij zakładanie konta",
   "crosslinks": {
     "title": "Powiązane dla dealerów",
     "items": [
       {
-        "label": "Szczegółowy przewodnik transportu dla dealerów",
+        "label": "Usługi transportowe dla dealerów i aktualne opłaty",
         "to": "/dealer-auto-transport"
       },
       {
@@ -461,7 +151,7 @@
         "to": "/exporters"
       },
       {
-        "label": "Zamów wycenę dla dealera",
+        "label": "Rozpocznij zakładanie konta dealerskiego",
         "to": "/dealer-quote"
       },
       {
@@ -469,5 +159,14 @@
         "to": "/state-to-state-car-shipping"
       }
     ]
+  },
+  "schema": {
+    "serviceType": "Program konta transportowego dla dealerów",
+    "name": "Program konta dealerskiego Y7 Logistics",
+    "description": "Rejestracja konta dla dealerów samochodowych w USA, którzy zarządzają regularnymi zleceniami transportowymi przez portal Y7 Logistics.",
+    "audienceType": "Dealerzy samochodowi w USA otwierający konto transportowe",
+    "catalogName": "Program konta dealerskiego",
+    "offerName": "Rejestracja konta dealerskiego",
+    "offerDescription": "Podaj dane firmy i adresy, podpisz umowę, zweryfikuj adres e-mail, a następnie składaj zlecenia transportowe przez portal."
   }
 }

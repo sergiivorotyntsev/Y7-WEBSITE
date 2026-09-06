@@ -241,32 +241,25 @@
     ]
   },
   "/dealers": {
-    "title": "Outsourced Dispatch Department for Auto Dealers | Y7 Logistics",
-    "description": "Skip the $90k internal dispatcher. Y7 runs your dealer auto transport dispatch — flat per-vehicle fee, Copart/IAA/Manheim coverage, weekly billing, BOL archival. Licensed & bonded FMCSA broker MC #1741537.",
+    "title": "Dealer Account Program for Dealerships | Y7 Logistics",
+    "description": "Open a Y7 Logistics dealer account in four steps. No dealer license is needed to open it. Submit requests through the portal. Licensed & Bonded FMCSA Broker.",
     "canonical": "https://www.y7agency.com/dealers",
     "robots": "index, follow",
-    "ogTitle": "Outsourced Dispatch Department for Auto Dealers | Y7 Logistics",
-    "ogDescription": "Skip the $90k internal dispatcher. Y7 runs your dealer auto transport dispatch — flat per-vehicle fee, Copart/IAA/Manheim coverage, weekly billing, BOL archival. Licensed & bonded FMCSA broker MC #1741537.",
+    "ogTitle": "Dealer Account Program for Dealerships | Y7 Logistics",
+    "ogDescription": "Open a Y7 Logistics dealer account in four steps. No dealer license is needed to open it. Submit requests through the portal. Licensed & Bonded FMCSA Broker.",
     "ogImage": "https://www.y7agency.com/og-image.svg",
-    "twitterTitle": "Outsourced Dispatch Department for Auto Dealers | Y7 Logistics",
-    "twitterDescription": "Skip the $90k internal dispatcher. Y7 runs your dealer auto transport dispatch — flat per-vehicle fee, Copart/IAA/Manheim coverage, weekly billing, BOL archival. Licensed & bonded FMCSA broker MC #1741537.",
+    "twitterTitle": "Dealer Account Program for Dealerships | Y7 Logistics",
+    "twitterDescription": "Open a Y7 Logistics dealer account in four steps. No dealer license is needed to open it. Submit requests through the portal. Licensed & Bonded FMCSA Broker.",
     "h1": [
-      "Your Outsourced Dispatch Department"
+      "Y7 Logistics Dealer Account Program"
     ],
     "h2": [
-      "Internal dispatch is expensive. Generic brokers don't scale with your operation.",
-      "What a Dispatch Department Does",
-      "How It Works — Day by Day",
-      "Two Ways to Pay",
-      "Your Operations Dashboard",
-      "We Pick Up from Every Major US Auction Network",
-      "Five Dealer Scenarios, Every Week",
-      "Built for Dealer Accounting",
-      "When a Carrier Flakes — Here's What You Get",
-      "Dealerships We Run Dispatch For",
-      "Y7 vs Internal Dispatcher vs Generic Broker",
-      "Dealer FAQ",
-      "Ready to outsource dealer dispatch?"
+      "Open Your Dealer Account in Four Steps",
+      "What the Dealer Account Keeps Together",
+      "Tools Available in the Dealer Portal",
+      "Dealer Transport Details Live on the Service Page",
+      "Dealer Account FAQ",
+      "Open the Account Before Your First Request"
     ],
     "jsonLdTypes": [
       "Answer",
@@ -326,15 +319,12 @@
       "/auction-to-port-transport",
       "/auction-transport-savings",
       "/blog",
-      "/blog/dealer-auction-pickup-guide",
       "/boston-car-shipping",
       "/car-shipping-cost",
       "/careers",
       "/chicago-to-port-newark-car-shipping",
       "/contact",
-      "/copart-gate-pass-guide",
       "/copart-shipping",
-      "/copart-storage-fees",
       "/dealer-auto-transport",
       "/dealer-quote",
       "/dealers",
@@ -8164,32 +8154,25 @@
     ]
   },
   "/ua/dealers": {
-    "title": "Відділ диспетчингу на аутсорсі для автодилерів | Y7 Logistics",
-    "description": "Економте $90k на внутрішньому диспетчері. Y7 веде диспетчинг дилерських перевезень — фікс. плата за авто, покриття Copart/IAA/Manheim, тижневий білінг, архів BOL. Ліцензований FMCSA-брокер MC #1741537.",
+    "title": "Дилерська програма та відкриття акаунта | Y7 Logistics",
+    "description": "Відкрийте дилерський акаунт Y7 Logistics у чотири кроки й подавайте заявки через портал. Для відкриття акаунта дилерська ліцензія не потрібна.",
     "canonical": "https://www.y7agency.com/ua/dealers",
     "robots": "index, follow",
-    "ogTitle": "Відділ диспетчингу на аутсорсі для автодилерів | Y7 Logistics",
-    "ogDescription": "Економте $90k на внутрішньому диспетчері. Y7 веде диспетчинг дилерських перевезень — фікс. плата за авто, покриття Copart/IAA/Manheim, тижневий білінг, архів BOL. Ліцензований FMCSA-брокер MC #1741537.",
+    "ogTitle": "Дилерська програма та відкриття акаунта | Y7 Logistics",
+    "ogDescription": "Відкрийте дилерський акаунт Y7 Logistics у чотири кроки й подавайте заявки через портал. Для відкриття акаунта дилерська ліцензія не потрібна.",
     "ogImage": "https://www.y7agency.com/og-image.svg",
-    "twitterTitle": "Відділ диспетчингу на аутсорсі для автодилерів | Y7 Logistics",
-    "twitterDescription": "Економте $90k на внутрішньому диспетчері. Y7 веде диспетчинг дилерських перевезень — фікс. плата за авто, покриття Copart/IAA/Manheim, тижневий білінг, архів BOL. Ліцензований FMCSA-брокер MC #1741537.",
+    "twitterTitle": "Дилерська програма та відкриття акаунта | Y7 Logistics",
+    "twitterDescription": "Відкрийте дилерський акаунт Y7 Logistics у чотири кроки й подавайте заявки через портал. Для відкриття акаунта дилерська ліцензія не потрібна.",
     "h1": [
-      "Ваш відділ диспетчингу на аутсорсі"
+      "Дилерська програма Y7 Logistics"
     ],
     "h2": [
-      "Внутрішній диспетчер дорогий. Універсальний брокер не масштабується з вашими операціями.",
-      "Що робить відділ диспетчингу",
-      "Як це працює: день за днем",
-      "Два способи оплати",
-      "Ваша операційна панель",
-      "Забираємо з кожної великої аукціонної мережі США",
-      "П'ять дилерських сценаріїв щотижня",
-      "Створено для дилерської бухгалтерії",
-      "Коли перевізник підводить: ось що ви отримуєте",
-      "Дилери, для яких ми ведемо диспетчинг",
-      "Y7 проти внутрішнього диспетчера і універсального брокера",
-      "FAQ для дилерів",
-      "Готові вивести диспетчинг на аутсорс?"
+      "Відкрийте дилерський акаунт у чотири кроки",
+      "Що входить у дилерський акаунт",
+      "Інструменти в дилерському порталі",
+      "Подробиці перевезень на сторінці послуги",
+      "FAQ про дилерський акаунт",
+      "Відкрийте акаунт до першої заявки"
     ],
     "jsonLdTypes": [
       "Answer",
@@ -9545,32 +9528,25 @@
     ]
   },
   "/pl/dealers": {
-    "title": "Zewnętrzny dział dyspozytury dla dealerów aut | Y7 Logistics",
-    "description": "Oszczędź $90k na wewnętrznym dyspozytorze. Y7 prowadzi dyspozyturę transportu dla dealerów — stała opłata za pojazd, pokrycie Copart/IAA/Manheim, tygodniowy billing, archiwum BOL. Licencjonowany broker FMCSA MC #1741537.",
+    "title": "Program dealerski i otwarcie konta | Y7 Logistics",
+    "description": "Otwórz konto dealerskie Y7 Logistics w czterech krokach i składaj zlecenia w portalu. Do otwarcia konta nie potrzebujesz licencji dealerskiej.",
     "canonical": "https://www.y7agency.com/pl/dealers",
     "robots": "index, follow",
-    "ogTitle": "Zewnętrzny dział dyspozytury dla dealerów aut | Y7 Logistics",
-    "ogDescription": "Oszczędź $90k na wewnętrznym dyspozytorze. Y7 prowadzi dyspozyturę transportu dla dealerów — stała opłata za pojazd, pokrycie Copart/IAA/Manheim, tygodniowy billing, archiwum BOL. Licencjonowany broker FMCSA MC #1741537.",
+    "ogTitle": "Program dealerski i otwarcie konta | Y7 Logistics",
+    "ogDescription": "Otwórz konto dealerskie Y7 Logistics w czterech krokach i składaj zlecenia w portalu. Do otwarcia konta nie potrzebujesz licencji dealerskiej.",
     "ogImage": "https://www.y7agency.com/og-image.svg",
-    "twitterTitle": "Zewnętrzny dział dyspozytury dla dealerów aut | Y7 Logistics",
-    "twitterDescription": "Oszczędź $90k na wewnętrznym dyspozytorze. Y7 prowadzi dyspozyturę transportu dla dealerów — stała opłata za pojazd, pokrycie Copart/IAA/Manheim, tygodniowy billing, archiwum BOL. Licencjonowany broker FMCSA MC #1741537.",
+    "twitterTitle": "Program dealerski i otwarcie konta | Y7 Logistics",
+    "twitterDescription": "Otwórz konto dealerskie Y7 Logistics w czterech krokach i składaj zlecenia w portalu. Do otwarcia konta nie potrzebujesz licencji dealerskiej.",
     "h1": [
-      "Twój zewnętrzny dział dyspozytury"
+      "Program konta dealerskiego Y7 Logistics"
     ],
     "h2": [
-      "Wewnętrzny dyspozytor jest drogi. Ogólny broker nie skaluje się z Twoją operacją.",
-      "Co robi dział dyspozytury",
-      "Jak to działa — dzień po dniu",
-      "Dwa sposoby płatności",
-      "Twój pulpit operacyjny",
-      "Odbieramy z każdej dużej sieci aukcyjnej w USA",
-      "Pięć scenariuszy dealerskich, co tydzień",
-      "Zbudowane pod księgowość dealera",
-      "Gdy przewoźnik zawiedzie — oto co dostajesz",
-      "Dealerzy, dla których prowadzimy dyspozyturę",
-      "Y7 kontra wewnętrzny dyspozytor kontra ogólny broker",
-      "FAQ dla dealerów",
-      "Gotów przekazać dyspozyturę na outsourcing?"
+      "Otwórz konto dealerskie w czterech krokach",
+      "Co obejmuje konto dealerskie",
+      "Narzędzia dostępne w portalu dealerskim",
+      "Szczegóły transportu są na stronie usługi",
+      "FAQ o koncie dealerskim",
+      "Otwórz konto przed pierwszym zleceniem"
     ],
     "jsonLdTypes": [
       "Answer",
@@ -10926,32 +10902,25 @@
     ]
   },
   "/ru/dealers": {
-    "title": "Отдел диспатчинга на аутсорсе для автодилеров | Y7 Logistics",
-    "description": "Экономьте $90k на внутреннем диспатчере. Y7 ведёт диспатчинг дилерских перевозок — фикс. плата за авто, покрытие Copart/IAA/Manheim, недельный биллинг, архив BOL. Лицензированный FMCSA-брокер MC #1741537.",
+    "title": "Дилерская программа и открытие аккаунта | Y7 Logistics",
+    "description": "Откройте дилерский аккаунт Y7 Logistics в четыре шага и подавайте заявки через портал. Для открытия аккаунта дилерская лицензия не требуется.",
     "canonical": "https://www.y7agency.com/ru/dealers",
     "robots": "index, follow",
-    "ogTitle": "Отдел диспатчинга на аутсорсе для автодилеров | Y7 Logistics",
-    "ogDescription": "Экономьте $90k на внутреннем диспатчере. Y7 ведёт диспатчинг дилерских перевозок — фикс. плата за авто, покрытие Copart/IAA/Manheim, недельный биллинг, архив BOL. Лицензированный FMCSA-брокер MC #1741537.",
+    "ogTitle": "Дилерская программа и открытие аккаунта | Y7 Logistics",
+    "ogDescription": "Откройте дилерский аккаунт Y7 Logistics в четыре шага и подавайте заявки через портал. Для открытия аккаунта дилерская лицензия не требуется.",
     "ogImage": "https://www.y7agency.com/og-image.svg",
-    "twitterTitle": "Отдел диспатчинга на аутсорсе для автодилеров | Y7 Logistics",
-    "twitterDescription": "Экономьте $90k на внутреннем диспатчере. Y7 ведёт диспатчинг дилерских перевозок — фикс. плата за авто, покрытие Copart/IAA/Manheim, недельный биллинг, архив BOL. Лицензированный FMCSA-брокер MC #1741537.",
+    "twitterTitle": "Дилерская программа и открытие аккаунта | Y7 Logistics",
+    "twitterDescription": "Откройте дилерский аккаунт Y7 Logistics в четыре шага и подавайте заявки через портал. Для открытия аккаунта дилерская лицензия не требуется.",
     "h1": [
-      "Ваш отдел диспатчинга на аутсорсе"
+      "Дилерская программа Y7 Logistics"
     ],
     "h2": [
-      "Внутренний диспатчер дорог. Универсальный брокер не масштабируется с вашими операциями.",
-      "Что делает отдел диспатчинга",
-      "Как это работает — день за днём",
-      "Два способа оплаты",
-      "Ваша панель операций",
-      "Забираем с каждой крупной аукционной сети США",
-      "Пять дилерских сценариев, каждую неделю",
-      "Сделано под дилерскую бухгалтерию",
-      "Когда перевозчик срывается — вот что вы получаете",
-      "Для каких дилеров мы ведём диспатч",
-      "Y7 против внутреннего диспатчера и универсального брокера",
-      "FAQ для дилеров",
-      "Готовы вывести диспатчинг на аутсорс?"
+      "Откройте дилерский аккаунт в четыре шага",
+      "Что входит в дилерский аккаунт",
+      "Инструменты в дилерском портале",
+      "Подробности перевозок на странице услуги",
+      "FAQ о дилерском аккаунте",
+      "Откройте аккаунт до первой заявки"
     ],
     "jsonLdTypes": [
       "Answer",
