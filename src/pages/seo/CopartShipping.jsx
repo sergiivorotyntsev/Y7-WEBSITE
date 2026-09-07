@@ -1,4 +1,5 @@
 import SeoLandingPage, { Section } from './SeoLandingPage';
+import { tableWrap } from './_enrichedStyles';
 import HreflangTags from '../../components/HreflangTags';
 import { Link } from 'react-router-dom';
 import { colors, fonts } from '../../theme';
@@ -342,42 +343,44 @@ export default function CopartShipping() {
           quote that beats these ranges by 20%+ typically sits unassigned on the load board
           instead of moving your vehicle.
         </p>
-        <table style={table}>
-          <thead>
-            <tr>
-              <th style={th}>Distance</th>
-              <th style={th}>Running</th>
-              <th style={th}>Non-running</th>
-              <th style={th}>Enclosed</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style={td}>0-300 miles</td>
-              <td style={td}>$400-$650</td>
-              <td style={td}>$550-$900</td>
-              <td style={td}>$1,100+</td>
-            </tr>
-            <tr>
-              <td style={td}>300-800 miles</td>
-              <td style={td}>$700-$1,200</td>
-              <td style={td}>$900-$1,500</td>
-              <td style={td}>$1,600+</td>
-            </tr>
-            <tr>
-              <td style={td}>800-1,500 miles</td>
-              <td style={td}>$900-$1,400</td>
-              <td style={td}>$1,200-$1,800</td>
-              <td style={td}>$2,200+</td>
-            </tr>
-            <tr>
-              <td style={td}>1,500-2,500 miles</td>
-              <td style={td}>$1,100-$1,700</td>
-              <td style={td}>$1,350-$2,000</td>
-              <td style={td}>$2,800+</td>
-            </tr>
-          </tbody>
-        </table>
+        <div style={tableWrap}>
+          <table style={{ ...table, margin: 0 }}>
+            <thead>
+              <tr>
+                <th style={th}>Distance</th>
+                <th style={th}>Running</th>
+                <th style={th}>Non-running</th>
+                <th style={th}>Enclosed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style={td}>0-300 miles</td>
+                <td style={td}>$400-$650</td>
+                <td style={td}>$550-$900</td>
+                <td style={td}>$1,100+</td>
+              </tr>
+              <tr>
+                <td style={td}>300-800 miles</td>
+                <td style={td}>$700-$1,200</td>
+                <td style={td}>$900-$1,500</td>
+                <td style={td}>$1,600+</td>
+              </tr>
+              <tr>
+                <td style={td}>800-1,500 miles</td>
+                <td style={td}>$900-$1,400</td>
+                <td style={td}>$1,200-$1,800</td>
+                <td style={td}>$2,200+</td>
+              </tr>
+              <tr>
+                <td style={td}>1,500-2,500 miles</td>
+                <td style={td}>$1,100-$1,700</td>
+                <td style={td}>$1,350-$2,000</td>
+                <td style={td}>$2,800+</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <p style={p}>
           Variance drivers: fuel, season, yard remoteness, lane popularity, vehicle size. The
           winch fee for non-running vehicles is $75-$150. A quote a broker shaves below these
