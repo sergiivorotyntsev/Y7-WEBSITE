@@ -4,8 +4,7 @@ import BreadcrumbSchema from '../../../components/BreadcrumbSchema';
 import styles from './GuidePage.module.css';
 
 // DESIGN-V2-W5-T06: V2 "Dispatch Board" restyle. All heading texts/levels/
-// order, copy, and table values (verified Copart fee figures: gate $95/$65,
-// env $15, late $50, 3-biz-day) are byte-identical to V1; shells + tokens only.
+// order are preserved. CODEX-18 later corrected the fee and timing facts.
 
 export default function CopartGatePassGuide() {
   return (
@@ -58,13 +57,14 @@ export default function CopartGatePassGuide() {
 
         <h2 className={styles.h2}>How much is the Copart gate fee in 2026?</h2>
         <p className={styles.p}>
-          The Copart gate fee is <strong>$95 per vehicle</strong> for standard cars, trucks, SUVs,
-          and vans, and <strong>$65</strong> for motorcycles, ATVs, and boats, per Copart&apos;s
-          published fee schedule. It applies to every purchase and cannot be waived. It is separate
-          from the $15 environmental fee, and separate from storage: payment is due within 3
-          business days including sale day, a $50 late fee applies after that, and storage starts
-          accruing once the free window closes. Fees change; verify the current amount on
-          Copart&apos;s official member-fees page before you bid.
+          The Copart gate fee is <strong>$79 for a clean-title vehicle</strong> and <strong>$95 for
+          a salvage or other non-clean-title vehicle</strong>. The amount can vary by yard, so check
+          the current fee before you bid. It is separate from the $15 environmental fee and from
+          storage. Payment is due within three business days including sale day, and a $50 late fee
+          applies after that. The three-day complimentary storage window starts on sale day while
+          you pay and arrange collection. When it closes, paid storage starts and continues every
+          calendar day until the vehicle leaves. Weekends and holidays count toward the storage
+          clock, but not as business days for the payment deadline.
         </p>
 
         <h2 className={styles.h2}>When the gate pass issues</h2>
@@ -88,8 +88,8 @@ export default function CopartGatePassGuide() {
             </tr>
             <tr>
               <td>CashierPay</td>
-              <td>1-2 business days</td>
-              <td>Day 2-3</td>
+              <td>1-3 business days; timing varies</td>
+              <td>After clearance</td>
             </tr>
             <tr>
               <td>Cashier&apos;s check</td>

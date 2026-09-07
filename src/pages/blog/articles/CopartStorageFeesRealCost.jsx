@@ -10,9 +10,10 @@ export default function CopartStorageFeesRealCost({ theme }) {
     <article>
       <p style={p}>
         I&apos;ve watched this play out about a hundred times. A buyer wins a Copart lot on
-        Friday afternoon, thinks they got a great deal. By Monday the car&apos;s still sitting
-        at the yard and the storage meter&apos;s been running since Wednesday morning. All of a
-        sudden they&apos;re facing $80-100 in fees they never budgeted for. The math on the
+        Friday afternoon and thinks they got a great deal. The complimentary window runs Friday
+        through Sunday. If the car is still sitting after two paid-storage days, Monday and Tuesday,
+        the $40-$60 daily range Y7 typically sees adds $80-$120 they never budgeted for. Copart
+        sets the exact rate per yard and shows it on that location&apos;s page. The math on the
         &quot;great deal&quot; starts looking different fast.
       </p>
 
@@ -25,12 +26,14 @@ export default function CopartStorageFeesRealCost({ theme }) {
       <h2 style={h2}>Wait, HOW MUCH per day?</h2>
 
       <p style={p}>
-        Depends on the yard. Rough brackets:
+        Copart publishes no national storage rate. Each yard sets its own rate and shows it on
+        that location&apos;s page. Across the yards Y7 ships from, storage typically runs $40-$60 per
+        day once the free window closes:
       </p>
       <ul style={p}>
-        <li>Rural or low-volume yards: $20-25/day</li>
-        <li>Suburban and mid-volume: $25-35/day</li>
-        <li>Urban and high-volume (LA, Miami, Newark, NYC metro): $35-40+/day</li>
+        <li>Y7 observation across the yards we ship from: typically $40-$60 per day</li>
+        <li>Exact Copart rate: set per yard and posted on that location&apos;s page</li>
+        <li>Charge period: every calendar day after the free window until the vehicle leaves</li>
       </ul>
       <p style={p}>
         These are Copart&apos;s fees, not the broker&apos;s. That distinction matters because
@@ -41,19 +44,19 @@ export default function CopartStorageFeesRealCost({ theme }) {
       <h2 style={h2}>What counts as a &quot;business day&quot;?</h2>
 
       <p style={p}>
-        This trips up newer buyers more than anything else. The free-window clock runs in
-        business days, but storage fees — once they start — charge every day. Weekends and
-        holidays do not count toward the free window, but they <em>do</em> count toward fees
-        once you&apos;re past it.
+        Payment and storage use different clocks. Payment is due within three business days
+        including sale day; weekends and holidays do not count as business days for that deadline.
+        The three-day complimentary storage window starts on sale day and runs on calendar days.
+        You win, use the window to pay and arrange collection, then paid storage starts when it
+        closes and continues every calendar day until the vehicle leaves.
       </p>
 
       <p style={p}>
         Real example: you win Friday afternoon. You wire payment Friday afternoon. Payment
-        clears Monday morning. Gate pass generates Monday noon. The clock on your free window
-        just started — Monday is day one, Tuesday day two, Wednesday day three. If a carrier
-        shows up Thursday morning, you&apos;re paying Thursday&apos;s storage. The weekend cost
-        you nothing from a window perspective but ate two calendar days you may have been
-        mentally planning around.
+        clears Monday morning and the gate pass generates Monday noon. Friday is day one of the
+        complimentary window, Saturday is day two, and Sunday is day three. Paid storage starts
+        Monday and continues until the vehicle leaves. The weekend counts toward storage even
+        though it does not count as business days for the payment deadline.
       </p>
 
       <h2 style={h2}>Why can&apos;t a broker just pick it up faster?</h2>
@@ -115,14 +118,15 @@ export default function CopartStorageFeesRealCost({ theme }) {
         paper. He paid by CashierPay Friday (took until Tuesday to clear). Gate pass Wednesday.
         He&apos;d bid without quoting transport first. LA-to-Austin isn&apos;t a weekly lane
         for the carriers he was used to. Dispatch took until the following Monday. Pickup
-        Wednesday afternoon — nine calendar days from win.
+        Wednesday afternoon, twelve calendar days after the Friday win.
       </p>
 
       <p style={p}>
-        Free window ended day 3 (Saturday if you count weekends, Friday if you don&apos;t).
-        He paid six days of storage at $38/day. That&apos;s $228 he never saw coming. The
-        &quot;great price&quot; still held up fine on the Lexus — he was never at real risk
-        of losing money — but it pointedly reframed what he thought he&apos;d saved.
+        The complimentary window ran Friday through Sunday. Paid storage then ran ten calendar
+        days, Monday through the Wednesday pickup. At the $40-$60 daily range Y7 typically sees,
+        that is $400-$600; the exact amount comes from the Copart LA location page. It was a cost
+        he never saw coming. The &quot;great price&quot; still held up fine on the Lexus, but the storage
+        bill pointedly reframed what he thought he&apos;d saved.
       </p>
 
       <h2 style={h2}>The pre-bid quote that saves you</h2>
@@ -141,12 +145,12 @@ export default function CopartStorageFeesRealCost({ theme }) {
       <ol style={p}>
         <li><strong>Quote transport before bidding.</strong> Not optional. This is the step
           that separates experienced auction buyers from panicked ones.</li>
-        <li><strong>Pay by wire, same day.</strong> CashierPay and cashier&apos;s check buy
-          you 2-3 unnecessary days on the clock.</li>
+        <li><strong>Pay by wire, same day.</strong> CashierPay timing varies; allow 1-3
+          business days. Cashier&apos;s checks typically take two to three.</li>
         <li><strong>Check which lanes have weekly trucks running them.</strong> Your broker
           knows. Rural yards are not all bad, but they are not all equal either.</li>
-        <li><strong>Avoid Friday wins if schedule matters.</strong> Weekends count toward
-          fees, not toward the free window.</li>
+        <li><strong>Avoid Friday wins if schedule matters.</strong> Weekends count toward the
+          storage clock, but not as business days for the payment deadline.</li>
         <li><strong>Budget 3-5 days of storage even when you think the lane&apos;s clean.</strong>
           That way surprise is a pleasant one, not a painful one.</li>
       </ol>

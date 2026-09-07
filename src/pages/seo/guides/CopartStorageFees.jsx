@@ -3,9 +3,8 @@ import PageMeta from '../../../components/PageMeta';
 import BreadcrumbSchema from '../../../components/BreadcrumbSchema';
 import styles from './GuidePage.module.css';
 
-// DESIGN-V2-W5-T06: V2 "Dispatch Board" restyle. All heading texts/levels/
-// order, copy, table values, and the FAQPage schema source are byte-identical
-// to V1; shells + tokens only.
+// DESIGN-V2-W5-T06: V2 "Dispatch Board" restyle. CODEX-18 later corrected
+// fee facts while preserving all heading texts, levels, and order.
 
 // Hand-rolled FAQPage schema source (guide pages have no SeoLandingPage faqs generator).
 // The visible Q&A blocks below render from these exact constants, so the schema always
@@ -13,11 +12,11 @@ import styles from './GuidePage.module.css';
 const SNIPPET_FAQS = [
   {
     q: 'How much are Copart storage fees per day?',
-    a: 'Copart storage fees typically run $20 to $40 per day, set by each yard: roughly $20-$25 at rural yards, $25-$35 at most suburban locations, and $35-$40 and up at high-volume urban yards like LA, Miami, and Newark. Most yards give a three-business-day free window after payment clears; once it expires, storage accrues every calendar day. Y7 Logistics, a licensed and bonded FMCSA broker (MC #1741537), quotes transport before you bid so storage risk is priced into your bid ceiling.',
+    a: 'Copart publishes no national storage rate. Across the yards Y7 Logistics ships from, storage typically runs $40-$60 per day once the three-day complimentary window closes. Copart sets the exact rate per yard, so check that location\'s page. The window begins on sale day; paid storage then accrues every calendar day until the vehicle leaves. Y7 Logistics, a licensed and bonded FMCSA broker (MC #1741537), quotes transport before you bid so storage risk is priced into your bid ceiling.',
   },
   {
     q: 'Does Copart charge storage fees on weekends?',
-    a: 'Yes. Once the free window has expired, Copart charges storage for every calendar day, weekends and holidays included. Weekends only pause the count while the free window is still running, because the free window counts business days. A Friday free-window expiry followed by a Monday pickup adds two weekend days of storage at the yard’s daily rate. Saturday pickup is possible at some yards, but loading usually stops earlier than the posted closing time and Sundays are closed, so tell us on the quote if a Saturday pickup matters.',
+    a: 'Yes. Weekends and holidays count toward the storage clock, including the three-day complimentary window. They do not count as business days for the payment deadline, which is three business days including sale day. A Friday win uses Saturday and Sunday on the storage timeline before Monday. Once the free window closes, paid storage accrues every calendar day until the vehicle leaves. Saturday pickup is possible at some yards, but loading usually stops earlier than the posted closing time and Sundays are closed, so tell us on the quote if a Saturday pickup matters.',
   },
 ];
 
@@ -87,18 +86,21 @@ export default function CopartStorageFees() {
 
         <h2 className={styles.h2}>How the free window actually works</h2>
         <p className={styles.p}>
-          Most Copart yards give a three-business-day free window after payment clears. Two
-          details trip up first-time buyers:
+          You win the vehicle, and Copart&apos;s three-day complimentary storage window starts on
+          sale day while you pay and arrange collection. When that window closes, paid storage
+          starts and continues every calendar day until the vehicle leaves. Two details trip up
+          first-time buyers:
         </p>
         <ul className={styles.list}>
-          <li className={styles.listItem}><strong>&quot;After payment clears&quot;</strong> is not the same as
-            &quot;after you pay.&quot; A wire transfer typically clears same-day or next-day.
-            CashierPay and cashier&apos;s checks take two to three business days. If you paid
-            Friday by cashier&apos;s check, the clock might not even start until Tuesday.</li>
-          <li className={styles.listItem}><strong>Weekends and holidays do not count as business days for
-            the free window</strong> — but the yard still charges storage fees on those days once
-            the free window has expired. Friday win → Tuesday gate pass → Friday free-window end
-            → Monday pickup = two days of storage fees accrued over the weekend.</li>
+          <li className={styles.listItem}><strong>Payment and storage use different clocks.</strong> Payment
+            is due within three business days including sale day, but the vehicle is not released
+            until payment clears. A wire transfer typically clears the same or next business day.
+            CashierPay timing varies; allow 1-3 business days. Cashier&apos;s checks typically
+            take two to three business days.</li>
+          <li className={styles.listItem}><strong>Weekends and holidays count toward the storage clock.</strong>
+            They do not count as business days for the payment deadline. A Friday win uses Saturday
+            and Sunday on the storage timeline before Monday; after the free window closes, those
+            days are charged like any other calendar day.</li>
         </ul>
 
         <h2 className={styles.h2}>{SNIPPET_FAQS[1].q}</h2>
@@ -106,37 +108,39 @@ export default function CopartStorageFees() {
 
         <h2 className={styles.h2}>Fee schedule by yard type</h2>
         <p className={styles.p}>
-          Rates are yard-specific. Typical daily charges:
+          Copart does not publish national tiers by yard type. It sets each yard&apos;s rate and shows
+          it on that location&apos;s page. Use this planning view:
         </p>
         <table className={styles.table}>
           <thead>
             <tr>
-              <th>Yard type</th>
-              <th>Daily storage fee</th>
-              <th>Example markets</th>
+              <th>Reference</th>
+              <th>Storage rule</th>
+              <th>Where or when it applies</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Rural / low-volume</td>
-              <td>$20-$25</td>
-              <td>Smaller state yards, rural Plains/Mountain West</td>
+              <td>Copart rate</td>
+              <td>Yard-specific</td>
+              <td>Check the location page before bidding</td>
             </tr>
             <tr>
-              <td>Suburban / mid-volume</td>
-              <td>$25-$35</td>
-              <td>Most US locations</td>
+              <td>Y7 observation</td>
+              <td>Typically $40-$60 per day</td>
+              <td>Across the yards Y7 ships from</td>
             </tr>
             <tr>
-              <td>Urban / high-volume</td>
-              <td>$35-$40+</td>
-              <td>LA, Miami, Newark, NYC metro, Chicago</td>
+              <td>Paid storage clock</td>
+              <td>Every calendar day</td>
+              <td>After the free window until the vehicle leaves</td>
             </tr>
           </tbody>
         </table>
         <p className={styles.p}>
-          On a 5-day delay at a California urban yard, expect $175-$200 in fees on a single
-          vehicle. That is often enough to swallow an auction discount.
+          On a five-day paid-storage delay, Y7&apos;s observed range works out to $200-$300 for one
+          vehicle. The exact total depends on the rate shown on that yard&apos;s location page. That
+          is often enough to swallow an auction discount.
         </p>
 
         <h2 className={styles.h2}>When fees become unavoidable</h2>
@@ -152,7 +156,7 @@ export default function CopartStorageFees() {
           <li className={styles.listItem}><strong>Non-running vehicles at specific yards</strong> — some yards
             have limited winch/forklift availability. Loading waits for equipment.</li>
           <li className={styles.listItem}><strong>Weekend wins</strong> — Friday payment rarely clears before
-            Monday, and the free window has already lost two days by pickup.</li>
+            Monday, while Saturday and Sunday have already used two days on the storage timeline.</li>
           <li className={styles.listItem}><strong>Peak export seasons</strong> — late Q4 and early Q1 see
             capacity squeezes in Northeast and Florida.</li>
         </ul>
@@ -163,8 +167,8 @@ export default function CopartStorageFees() {
             important step. If the lane looks tight, factor expected storage days into your bid
             ceiling. Winning $200 under budget and then paying $250 in storage is not a win.</li>
           <li className={styles.listItem}><strong>Pay by wire the same day.</strong> Every hour of payment
-            delay shortens your free-window runway. CashierPay and cashier&apos;s checks add days
-            you might not have.</li>
+            delay reduces the time available to arrange collection. CashierPay timing varies;
+            allow 1-3 business days. Cashier&apos;s checks typically take two to three.</li>
           <li className={styles.listItem}><strong>Confirm carrier availability in that specific lane first.</strong>
             Your broker knows which lanes have trucks running weekly vs which are a 3-5 day wait.
             That intel should drive whether you bid or skip this lot.</li>
@@ -197,15 +201,16 @@ export default function CopartStorageFees() {
         <h2 className={styles.h2}>A real cost example</h2>
         <p className={styles.p}>
           Monday: you win a 2018 Tesla Model 3 at Copart LA for $18,400. You pay immediately by
-          CashierPay. Tuesday-Wednesday payment clears. Thursday gate pass issues. Lane to your
-          Phoenix delivery is not a weekly carrier run, so dispatch takes until the following
-          Tuesday. Pickup Wednesday afternoon. Free window ended Monday; storage clock has been
-          running for 2 days. At $35/day that is $70. Manageable — but only because you knew
-          before bidding that the lane would cost you a couple days.
+          CashierPay; timing varies, so assume payment clears Wednesday. Thursday the gate pass
+          issues. The Phoenix lane is not a weekly carrier run, so dispatch takes until the following
+          Tuesday and pickup is Wednesday afternoon. The complimentary window ran Monday through
+          Wednesday. Paid storage ran Thursday through pickup Wednesday, seven calendar days. At
+          the $40-$60 per-day range Y7 typically sees, that is $280-$420; check the Copart LA
+          location page for the exact rate.
         </p>
         <p className={styles.p}>
           Had you budgeted zero storage and assumed free-window pickup (because that is what the
-          broker&apos;s ad copy suggested), the $70 surprise might reframe the whole deal.
+          broker&apos;s ad copy suggested), the $280-$420 surprise might reframe the whole deal.
         </p>
 
         <h2 className={styles.h2}>The quote-before-bidding workflow</h2>

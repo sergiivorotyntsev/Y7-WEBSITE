@@ -17,7 +17,10 @@ export default function CopartIaaManheimComparison({ theme }) {
         <div style={{ fontWeight: 700, color: theme.accent, marginBottom: 8, fontSize: '0.85rem', letterSpacing: 0.5, textTransform: 'uppercase' }}>Copart vs Manheim vs IAA, in short</div>
         <p style={{ margin: 0, fontSize: '0.95rem', lineHeight: 1.7, color: theme.text }}>
           Copart is an open online salvage auction: insurance total-loss inventory, automated
-          gate-pass release, a three-business-day free storage window, then $15&ndash;$40 per day.
+          gate-pass release, and a three-day complimentary storage window beginning on sale day.
+          When it closes, paid storage runs every calendar day until the vehicle leaves. Copart
+          sets the rate per yard and shows it on that location&apos;s page; across the yards Y7 ships
+          from, storage typically runs $40&ndash;$60 per day.
           Manheim is a dealer-license-only wholesale network: clean-title trade-ins and off-lease
           stock, with less standardized vehicle release. IAA runs Copart&apos;s playbook with
           different insurer relationships. Across all three, buyer add-ons beyond the hammer price
@@ -39,13 +42,15 @@ export default function CopartIaaManheimComparison({ theme }) {
       </p>
 
       <p style={{ marginBottom: 18, fontSize: '1.02rem', lineHeight: 1.8, color: theme.text }}>
-        Operationally, Copart is straightforward: bid online, win, pay within one business day, receive a
-        gate pass by email, and dispatch a carrier. The gate-pass process is among the most reliable in
-        the industry — automated after payment clears, with a clear buyer dashboard that shows the release
-        status at each yard. What trips up new buyers is the <strong style={{ color: theme.accent }}>three-business-day
-        free storage window</strong>. After day three, Copart charges $15–$40 per day depending on the yard
-        and vehicle size. A dealer who wins ten cars on a Tuesday sale and does not dispatch carriers by
-        Friday is already burning margin.
+        Operationally, Copart is straightforward: bid online, win, pay within three business days including
+        sale day, receive a gate pass after payment clears, and dispatch a carrier. The gate-pass process is
+        among the most reliable in the industry, with a clear buyer dashboard that shows the release status
+        at each yard. The storage clock is separate: the <strong style={{ color: theme.accent }}>three-day
+        complimentary window begins on sale day</strong> while you pay and arrange collection. When it closes,
+        paid storage starts and continues every calendar day until the vehicle leaves. Weekends and holidays
+        count toward the storage clock, but not as business days for the payment deadline, so a Friday win
+        uses Saturday and Sunday before Monday. Across the yards Y7 ships from, storage typically runs
+        $40–$60 per day; check the exact rate on that yard&apos;s location page.
       </p>
 
       <h2 style={{ fontFamily: theme.fonts.serif, fontSize: 'clamp(1.2rem, 2.5vw, 1.4rem)', fontWeight: 700, color: theme.text, margin: '36px 0 16px' }}>
