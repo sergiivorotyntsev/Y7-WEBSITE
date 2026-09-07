@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import SeoLandingPage, { Section } from './SeoLandingPage';
+import SeoLandingPage, { Section, listItemStyle } from './SeoLandingPage';
 import { colors, fonts } from '../../theme';
 import v2t from '../../styles/v2/type.module.css';
 import ctaStyles from '../../components/ContextualCTA.module.css';
@@ -11,6 +11,14 @@ const p = {
   lineHeight: 1.7,
   marginBottom: '16px',
 };
+
+const carrierChecks = [
+  { title: 'FMCSA operating authority', detail: "We confirm the carrier's authority is active at the time of that dispatch." },
+  { title: 'Current certificate of insurance (COI)', detail: "We check the carrier's current COI before assigning the load." },
+  { title: 'Central Dispatch reviews and history', detail: "We review the carrier's record on the industry's load board." },
+  { title: "Assigned driver's license", detail: "We check the license of the specific driver who will collect the vehicle, not only the carrier company's details." },
+  { title: "Assigned driver's direct phone number", detail: 'We confirm a direct phone number for the driver who will transport the vehicle.' },
+];
 
 function AudienceCTA({ title, body, to, label, tone }) {
   return (
@@ -211,6 +219,20 @@ export default function AuctionCarShipping() {
           </Link>{' '}
           for the full instructional workflow.
         </p>
+      </Section>
+
+      <Section title="What Y7 Checks Before Each Dispatch">
+        <p style={p}>
+          Before each dispatch, Y7 checks both the carrier company and the specific driver
+          assigned to the load:
+        </p>
+        <ul>
+          {carrierChecks.map((item) => (
+            <li key={item.title} style={listItemStyle}>
+              <strong>{item.title}:</strong> {item.detail}
+            </li>
+          ))}
+        </ul>
       </Section>
 
       <Section title="Auction Release and Storage Responsibility">

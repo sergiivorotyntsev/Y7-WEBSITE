@@ -26,6 +26,7 @@ export default function Dealers() {
   const onboardingSteps = t('workflow.steps', { returnObjects: true }) || [];
   const accountBenefits = t('benefits.items', { returnObjects: true }) || [];
   const portalFeatures = t('portal.features', { returnObjects: true }) || [];
+  const carrierChecks = t('carrierVerification.items', { returnObjects: true }) || [];
   const faqs = t('faqs.items', { returnObjects: true }) || [];
   const crosslinks = t('crosslinks.items', { returnObjects: true }) || [];
   const schema = t('schema', { returnObjects: true }) || {};
@@ -194,6 +195,17 @@ export default function Dealers() {
                 {t('serviceOverview.linkLabel')} &rarr;
               </Link>
             </p>
+            <div className={styles.payGrid}>
+              <div className={styles.payCard}>
+                <h3 className={`${v2t.cardTitle} ${styles.payName}`}>{t('carrierVerification.title')}</h3>
+                <p className={styles.payDesc}>{t('carrierVerification.lead')}</p>
+              </div>
+              <ul className={styles.payList}>
+                {Array.isArray(carrierChecks) && carrierChecks.map((item, i) => (
+                  <li key={i}><strong>{item.title}:</strong> {item.detail}</li>
+                ))}
+              </ul>
+            </div>
           </Reveal>
         </div>
       </section>

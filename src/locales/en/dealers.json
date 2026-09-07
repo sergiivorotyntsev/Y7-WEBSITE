@@ -87,6 +87,32 @@
     "body": "Y7 Logistics charges a fixed per-vehicle service fee; the carrier's transport rate is separate. The service overview covers auction pickup, dealer trades, recurring lanes, current fee choices, and carrier-payment handling.",
     "linkLabel": "Review dealer transport services and current fees"
   },
+  "carrierVerification": {
+    "title": "What Y7 Checks Before Each Dispatch",
+    "lead": "Before each dispatch, Y7 checks both the carrier company and the specific driver assigned to the load:",
+    "items": [
+      {
+        "title": "FMCSA operating authority",
+        "detail": "We confirm the carrier's authority is active at the time of that dispatch."
+      },
+      {
+        "title": "Current certificate of insurance (COI)",
+        "detail": "We check the carrier's current COI before assigning the load."
+      },
+      {
+        "title": "Central Dispatch reviews and history",
+        "detail": "We review the carrier's record on the industry's load board."
+      },
+      {
+        "title": "Assigned driver's license",
+        "detail": "We check the license of the specific driver who will collect the vehicle, not only the carrier company's details."
+      },
+      {
+        "title": "Assigned driver's direct phone number",
+        "detail": "We confirm a direct phone number for the driver who will transport the vehicle."
+      }
+    ]
+  },
   "faqs": {
     "title": "Dealer Account FAQ",
     "items": [

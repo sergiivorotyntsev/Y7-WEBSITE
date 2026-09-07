@@ -83,6 +83,7 @@ export default function Exporters() {
   const steps = t('steps', { returnObjects: true });
   const fees = t('fees.items', { returnObjects: true });
   const valuePoints = t('value.points', { returnObjects: true });
+  const carrierChecks = t('carrierVerification.items', { returnObjects: true });
   const portList = t('ports.list', { returnObjects: true });
   const volumes = t('form.volumes', { returnObjects: true });
   const exportDocs = t('exportDocs', { returnObjects: true });
@@ -227,6 +228,16 @@ export default function Exporters() {
             <ul className={styles.valueList}>
               {Array.isArray(valuePoints) && valuePoints.map((point, i) => (
                 <li key={i}>{point}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className={styles.valueBlock}>
+            <h3 className={`${v2t.cardTitle} ${styles.cardTitleSm}`}>{t('carrierVerification.title')}</h3>
+            <p className={`${v2t.lede} ${v2t.ledeOnPaper}`}>{t('carrierVerification.lead')}</p>
+            <ul className={styles.valueList}>
+              {Array.isArray(carrierChecks) && carrierChecks.map((item, i) => (
+                <li key={i}><strong>{item.title}:</strong> {item.detail}</li>
               ))}
             </ul>
           </div>

@@ -87,6 +87,32 @@
     "body": "Y7 Logistics pobiera stałą opłatę za obsługę każdego pojazdu; stawka przewoźnika jest rozliczana oddzielnie. Strona usługi opisuje odbiór z aukcji, wymiany dealerskie, powtarzalne trasy, aktualne opłaty oraz rozliczenia z przewoźnikiem.",
     "linkLabel": "Sprawdź usługi transportowe dla dealerów i aktualne opłaty"
   },
+  "carrierVerification": {
+    "title": "Co Y7 sprawdza przed każdym przydzieleniem przewoźnika",
+    "lead": "Przed przydzieleniem przewoźnika do każdego zlecenia Y7 sprawdza firmę oraz konkretnego kierowcę:",
+    "items": [
+      {
+        "title": "Uprawnienia FMCSA do wykonywania przewozów",
+        "detail": "Potwierdzamy, że uprawnienia przewoźnika są aktywne w chwili przydzielenia."
+      },
+      {
+        "title": "Aktualny certyfikat ubezpieczenia (COI)",
+        "detail": "Sprawdzamy aktualny COI przewoźnika w chwili przydzielenia."
+      },
+      {
+        "title": "Opinie i historia w Central Dispatch",
+        "detail": "Przeglądamy opinie oraz historię pracy przewoźnika na platformie."
+      },
+      {
+        "title": "Prawo jazdy przydzielonego kierowcy",
+        "detail": "Sprawdzamy prawo jazdy konkretnej osoby, która odbierze pojazd, a nie tylko dane firmy przewozowej."
+      },
+      {
+        "title": "Bezpośredni numer telefonu przydzielonego kierowcy",
+        "detail": "Potwierdzamy bezpośredni numer telefonu, pod którym można skontaktować się z kierowcą wykonującym transport."
+      }
+    ]
+  },
   "faqs": {
     "title": "FAQ o koncie dealerskim",
     "items": [
