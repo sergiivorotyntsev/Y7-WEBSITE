@@ -10,8 +10,8 @@ export default function CopartGatePassGuide() {
   return (
     <div className={styles.page}>
       <PageMeta
-        title="Copart Gate Pass Guide — How It Works, Common Failures, Yard Cutoffs"
-        description="Technical guide to Copart gate passes. Generation timing, payment clearance, Transporter App requirements, common failure modes, and yard cutoff times that control pickup."
+        title="Copart Gate Pass, Fees & Vehicle Release"
+        description="Copart gate fees are $79 for clean-title vehicles and $95 for salvage or non-clean titles, with yard variation. See payment, release, and pickup steps."
         path="/copart-gate-pass-guide"
       />
       <BreadcrumbSchema items={[

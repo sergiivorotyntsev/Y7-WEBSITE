@@ -166,8 +166,8 @@ export default function CopartShipping() {
   return (
     <SeoLandingPage
       meta={{
-        title: 'Copart Shipping Cost & Transport — All 200+ Yards | Y7 Logistics',
-        description: 'Copart auction shipping from $400. Gate pass coordination, non-running vehicle winch loading, export-to-port routing. Licensed FMCSA broker MC #1741537. Quote before you bid.',
+        title: 'Copart Shipping & Car Transport | Y7 Logistics',
+        description: 'Copart car transport covers auction pickup and delivery to a home, shop, warehouse, or port. See route costs, gate pass steps, and non-running handling.',
         path: '/copart-shipping',
       }}
       primaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}

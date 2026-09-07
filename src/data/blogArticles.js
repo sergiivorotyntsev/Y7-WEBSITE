@@ -42,8 +42,8 @@ const articles = [
     title: 'Copart Storage Fees: The Real Cost in 2026 (and How to Stop Being Surprised by Them)',
     excerpt: 'Watched this happen a hundred times — Friday win, Monday shock, $80-100 in storage fees nobody budgeted. The honest mechanics of Copart storage fees, why no broker can make them disappear, and the one pre-bid habit that saves you every time.',
     tags: ['Copart', 'Storage Fees', 'Auction', 'Pricing'],
-    metaTitle: 'The Real Cost of Copart Storage Fees in 2026 — A Broker’s Honest Breakdown',
-    metaDescription: 'Honest guide to Copart storage fees: $20-40/day by yard type, business-day counting rules, why brokers cannot guarantee free-window pickup, and the pre-bid quote that defends against surprise fees.',
+    metaTitle: 'Real Copart Storage Costs in 2026',
+    metaDescription: 'Y7 sees Copart storage typically run $40-$60 per day after the free window. A 2026 worked case shows the cost; verify your yard\'s location page.',
   },
   {
     slug: 'copart-for-international-buyers-complete-guide',
@@ -66,8 +66,8 @@ const articles = [
     title: 'Copart vs IAA vs Manheim: Which Auction Platform Is Best for Your Use Case',
     excerpt: 'Copart, IAA, and Manheim are not interchangeable. Inventory profile, fees, gate passes, and buyer access all differ — picking the right one for a given use case saves days of wait time and hundreds of dollars per vehicle.',
     tags: ['Auctions', 'Copart', 'IAA', 'Manheim', 'Dealers'],
-    metaTitle: 'Copart vs IAA vs Manheim — Which Auto Auction Should You Use in 2026',
-    metaDescription: 'Complete comparison of Copart, IAA, and Manheim for auto dealers and exporters. Fees, inventory, gate pass, and when to choose each auction platform.',
+    metaTitle: 'Copart vs IAA vs Manheim: Which to Use in 2026',
+    metaDescription: 'Copart and IAA center on salvage inventory; Manheim requires dealer access for clean-title stock. Compare buyer fees, release steps, and use cases.',
   },
   {
     slug: 'auction-to-port-cost-breakdown-2026',

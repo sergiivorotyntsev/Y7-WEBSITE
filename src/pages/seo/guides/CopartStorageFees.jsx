@@ -34,8 +34,8 @@ export default function CopartStorageFees() {
   return (
     <div className={styles.page}>
       <PageMeta
-        title="Copart Storage Fees Explained — Planning Guide Before You Bid"
-        description="How Copart storage fees work: free window rules, fee schedule by yard, weekend counting, and what brokers can (and cannot) do. Honest pre-bid planning guide."
+        title="Copart Storage Fees & Weekend Rules"
+        description="Y7 sees Copart storage typically run $40-$60 per day after the free window. Weekends count, rates vary by yard, and each location page shows its fee."
         path="/copart-storage-fees"
       />
       <BreadcrumbSchema items={[
