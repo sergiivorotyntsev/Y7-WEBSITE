@@ -68,7 +68,7 @@ const FAQS = [
   },
   {
     q: 'Does Y7 work with Copart dealer accounts?',
-    a: 'Yes. Y7 coordinates single-lot and multi-vehicle pickups, including compatible lots at one yard or along one route. Dealers pay a $50 dispatch fee per vehicle when they pay the carrier directly, or $60 when Y7 handles carrier payment; the carrier rate remains separate. The portal stores buyer numbers, preferred yards, and delivery locations for repeat requests.',
+    a: 'Yes. Y7 coordinates single-lot and multi-vehicle pickups, including compatible lots at one yard or along one route. Dealers pay a $50 dispatch fee per vehicle when they pay the carrier directly, or $60 when Y7 handles carrier payment; the carrier rate remains separate. The portal stores buyer numbers and preferred delivery locations in account settings.',
   },
   {
     q: 'Can I track my Copart shipment?',
@@ -128,6 +128,7 @@ export default function CopartShipping() {
       }}
       primaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
       secondaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
+      labels={{ ctaSubtitle: 'Separate carrier rate and dispatch fee. Carrier checks before dispatch.' }}
       heading="Copart Vehicle Transport From Auction Yard to Delivery"
       intro="Y7 Logistics arranges Copart car transport from the auction yard to a home, shop, warehouse, or port. We coordinate carrier assignment and gate-pass details for clean-title, salvage, and non-running vehicles from 200+ US locations. The carrier rate and Y7 dispatch fee are quoted separately, so buyers know what each part of the move costs before pickup."
       tldr={{
@@ -147,7 +148,7 @@ export default function CopartShipping() {
         { title: 'Quote the Route', desc: 'Share the yard, destination, vehicle condition, and timing so Y7 can price the carrier market before or after the bid.' },
         { title: 'Complete the Purchase', desc: 'Pay Copart and wait for the auction to clear the account and issue the vehicle release.' },
         { title: 'Send Release Details', desc: 'Provide the buyer number, lot number, gate-pass PIN, delivery address, and an accurate condition report.' },
-        { title: 'Carrier Pickup', desc: 'Y7 assigns a verified carrier with the equipment required for the vehicle and coordinates the yard pickup.' },
+        { title: 'Carrier Pickup', desc: 'Y7 checks the carrier before dispatch, matches equipment, and coordinates the yard pickup.' },
         { title: 'Delivery and Documentation', desc: 'The carrier delivers to the nominated home, shop, warehouse, or port, with milestone updates and a Bill of Lading.' },
       ]}
       requirements={[
@@ -350,7 +351,7 @@ export default function CopartShipping() {
           carrier&apos;s per-vehicle cost, but the quote still depends on condition, equipment, yard,
           and destinations. Dealers pay a $50 Y7 dispatch fee per vehicle when they pay the carrier
           directly, or $60 when Y7 handles carrier payment; the carrier rate remains separate. The
-          portal stores repeat buyer numbers, yard preferences, and delivery locations, with one
+          portal stores buyer numbers and preferred delivery locations in account settings, with one
           dispatcher coordinating the moves. Review the <Link to="/dealers" style={linkStyle}>Y7 dealer program</Link>{' '}
           and <Link to="/blog/dealer-auction-pickup-guide" style={linkStyle}>dealer auction pickup guide</Link>.
         </p>

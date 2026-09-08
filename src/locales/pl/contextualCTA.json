@@ -20,7 +20,7 @@
     },
     "shipMyCar": {
       "title": "Transport jednego auta od drzwi do drzwi?",
-      "body": "Y7 rezerwuje przewoźnika po wszystkich 50 stanach USA, zwykle ze stałą ceną zwrotną w ciągu godziny. Otwarta lub zamknięta laweta, na chodzie lub nie — jedno zgłoszenie, jeden dyspozytor.",
+      "body": "Y7 rezerwuje transport w 50 stanach USA, z wyceną w około dwie godziny w godzinach pracy. Otwarta lub zamknięta laweta, na chodzie lub nie: jedno zgłoszenie, jeden dyspozytor.",
       "cta": "Zamów wycenę",
       "linkLabel": "transport mojego auta"
     }

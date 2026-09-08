@@ -19,19 +19,19 @@ export const RELATED_GUIDES = {
   // ─── Auction cluster ───────────────────────────────────────────────────
   '/copart-shipping': [
     { to: '/iaai-transport',        title: 'IAA Auction Transport',     description: 'Pickup from IAA salvage auction yards nationwide.' },
-    { to: '/manheim-transport',     title: 'Manheim Auction Transport', description: 'Dealer auction shipping with contract pricing.' },
+    { to: '/manheim-transport',     title: 'Manheim Auction Transport', description: 'Dealer auction pickup and delivery coordination.' },
     { to: '/auction-transport-savings', title: 'Auction Transport Savings', description: 'Where auction shipping fees actually go, and how to cut them.' },
     { to: '/how-to-ship-a-car-bought-at-auction', title: 'Auction Buyer Guide', description: 'Step-by-step from winning bid to delivery.' },
     { to: '/texas-to-newark-port-auto-transport', title: 'Texas → Port Newark', description: 'Texas auction pickups delivered to the Newark export terminal.' },
   ],
   '/iaai-transport': [
     { to: '/copart-shipping',       title: 'Copart Shipping',           description: 'Vehicle transport from Copart auctions.' },
-    { to: '/manheim-transport',     title: 'Manheim Auction Transport', description: 'Dealer auction shipping with contract pricing.' },
+    { to: '/manheim-transport',     title: 'Manheim Auction Transport', description: 'Dealer auction pickup and delivery coordination.' },
     { to: '/salvage-car-shipping',  title: 'Salvage Car Shipping',      description: 'Inoperable and salvage vehicle transport.' },
     { to: '/auction-car-shipping',  title: 'Auction Car Shipping',      description: 'General auction pickup nationwide.' },
   ],
   '/manheim-transport': [
-    { to: '/dealer-auto-transport', title: 'Dealer Auto Transport',     description: 'Volume pricing for dealerships.' },
+    { to: '/dealer-auto-transport', title: 'Dealer Auto Transport',     description: 'Auction pickup and dealer trades.' },
     { to: '/copart-shipping',       title: 'Copart Shipping',           description: 'Vehicle transport from Copart auctions.' },
     { to: '/iaai-transport',        title: 'IAA Auction Transport',     description: 'Pickup from IAA salvage auction yards.' },
     { to: '/auction-car-shipping',  title: 'Auction Car Shipping',      description: 'General auction pickup nationwide.' },
@@ -39,7 +39,7 @@ export const RELATED_GUIDES = {
   '/auction-car-shipping': [
     { to: '/copart-shipping',       title: 'Copart Shipping',           description: 'Vehicle transport from Copart auctions.' },
     { to: '/auction-transport-savings', title: 'Auction Transport Savings', description: 'Where auction shipping fees actually go, and how to cut them.' },
-    { to: '/manheim-transport',     title: 'Manheim Auction Transport', description: 'Dealer auction shipping with contract pricing.' },
+    { to: '/manheim-transport',     title: 'Manheim Auction Transport', description: 'Dealer auction pickup and delivery coordination.' },
     { to: '/auction-to-port-transport', title: 'Auction to Port',       description: 'Auction pickup straight to a US export port.' },
   ],
   // EXPORTERS-CO-T01: Certificate of Origin service page. [WEBFIX-T04] the
@@ -58,13 +58,13 @@ export const RELATED_GUIDES = {
     { to: '/auction-transport-savings', title: 'Auction Transport Savings', description: 'Where auction shipping fees actually go, and how to cut them.' },
     { to: '/texas-to-newark-port-auto-transport', title: 'Texas → Port Newark', description: 'Texas auction pickups delivered to the Newark export terminal.' },
     { to: '/chicago-to-port-newark-car-shipping', title: 'Chicago → Port Newark', description: 'Midwest auction pickups delivered to the Newark export terminal.' },
-    { to: '/certificate-of-origin', title: 'Certificate of Origin', description: '0% EU import duty on US-built vehicles; Y7 files the eCO as standing agent.' },
+    { to: '/certificate-of-origin', title: 'Certificate of Origin', description: '0% EU duty for eligible US-origin vehicles; Y7 files the eCO as standing agent.' },
   ],
 
   // SEOAI-T04: orphan rescue — savings page gets its own cluster so it both
   // receives and passes internal equity (it renders via SeoLandingPage).
   '/auction-transport-savings': [
-    { to: '/auction-car-shipping',  title: 'Auction Car Shipping',      description: 'General auction pickup from any US auction.' },
+    { to: '/auction-car-shipping',  title: 'Auction Car Shipping',      description: 'Auction pickup and independent-auction review.' },
     { to: '/copart-shipping',       title: 'Copart Shipping',           description: 'Vehicle transport from Copart auctions.' },
     { to: '/car-shipping-cost',     title: 'Car Shipping Cost',         description: 'How auto transport pricing works.' },
     { to: '/how-to-ship-a-car-bought-at-auction', title: 'Auction Buyer Guide', description: 'Step-by-step from winning bid to delivery.' },
@@ -148,7 +148,7 @@ export const RELATED_GUIDES = {
   // CONT-T06: auction-to-port corridor pages (route cluster re-angle, Phase 4b)
   '/atlanta-to-savannah-port-auto-transport': [
     { to: '/auction-to-port-transport', title: 'Auction to Port',       description: 'Auction pickup straight to a US export port.' },
-    { to: '/manheim-transport',     title: 'Manheim Auction Transport', description: 'Dealer auction shipping with contract pricing.' },
+    { to: '/manheim-transport',     title: 'Manheim Auction Transport', description: 'Dealer auction pickup and delivery coordination.' },
     { to: '/florida-to-jacksonville-port-car-shipping', title: 'Florida → JAXPORT', description: 'Florida auction pickups delivered to the Jacksonville port.' },
     { to: '/copart-shipping',       title: 'Copart Shipping',           description: 'Vehicle transport from Copart auctions.' },
   ],
@@ -170,10 +170,10 @@ export const RELATED_GUIDES = {
     { to: '/auction-to-port-transport', title: 'Auction to Port',       description: 'Auction pickup straight to a US export port.' },
     { to: '/electric-vehicle-port-delivery', title: 'EV Port Delivery', description: 'Electric vehicle delivery to US export ports.' },
     { to: '/texas-to-newark-port-auto-transport', title: 'Texas → Newark Port', description: 'Inland US to Newark export terminal.' },
-    { to: '/certificate-of-origin', title: 'Certificate of Origin', description: '0% EU import duty on US-built vehicles; Y7 files the eCO as standing agent.' },
+    { to: '/certificate-of-origin', title: 'Certificate of Origin', description: '0% EU duty for eligible US-origin vehicles; Y7 files the eCO as standing agent.' },
   ],
   '/dealer-auto-transport': [
-    { to: '/manheim-transport',     title: 'Manheim Auction Transport', description: 'Dealer auction shipping with contract pricing.' },
+    { to: '/manheim-transport',     title: 'Manheim Auction Transport', description: 'Dealer auction pickup and delivery coordination.' },
     { to: '/copart-shipping',       title: 'Copart Shipping',           description: 'Vehicle transport from Copart auctions.' },
     { to: '/auction-car-shipping',  title: 'Auction Car Shipping',      description: 'General auction pickup nationwide.' },
   ],
