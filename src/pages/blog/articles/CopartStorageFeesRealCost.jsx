@@ -48,7 +48,8 @@ export default function CopartStorageFeesRealCost({ theme }) {
         including sale day; weekends and holidays do not count as business days for that deadline.
         The three-day complimentary storage window starts on sale day and runs on calendar days.
         You win, use the window to pay and arrange collection, then paid storage starts when it
-        closes and continues every calendar day until the vehicle leaves.
+        closes and continues every calendar day until the vehicle leaves, so budget for{' '}
+        <Link to="/copart-shipping" style={link}>Copart shipping</Link> before bidding.
       </p>
 
       <p style={p}>

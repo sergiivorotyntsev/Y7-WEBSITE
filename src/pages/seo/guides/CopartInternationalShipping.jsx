@@ -69,8 +69,9 @@ export default function CopartInternationalShipping() {
             day. Payment clears in 1-2 business days for wire.</li>
           <li className={styles.listItem}><strong>2. Gate pass issuance</strong> — Copart generates once payment
             clears. Free-window clock starts.</li>
-          <li className={styles.listItem}><strong>3. Domestic transport</strong> — Y7 dispatches a carrier from
-            the Copart yard to a consolidation warehouse or directly to port. 3-10 days typical.</li>
+          <li className={styles.listItem}><strong>3. Domestic transport</strong> — Y7 dispatches a carrier for{' '}
+            <Link to="/copart-shipping" className={styles.link}>Copart delivery</Link> from the auction yard
+            to a consolidation warehouse or directly to port. 3-10 days typical.</li>
           <li className={styles.listItem}><strong>4. Warehouse consolidation</strong> — if container shipping,
             the vehicle is prepped, drained of most fluids, and loaded with other vehicles for the
             same destination.</li>

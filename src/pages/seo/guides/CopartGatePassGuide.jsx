@@ -109,7 +109,8 @@ export default function CopartGatePassGuide() {
 
         <h2 className={styles.h2}>What the carrier needs at the gate</h2>
         <p className={styles.p}>
-          Five items, all must match:
+          Five items, all must match before the carrier handling your{' '}
+          <Link to="/copart-shipping" className={styles.link}>Copart vehicle transport</Link> arrives:
         </p>
         <ol className={styles.list}>
           <li className={styles.listItem}><strong>Buyer or member number</strong> — your Copart account ID.</li>

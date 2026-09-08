@@ -156,7 +156,9 @@ export default function CopartIaaManheimComparison({ theme }) {
 
       <p style={{ marginBottom: 18, fontSize: '1.02rem', lineHeight: 1.8, color: theme.text }}>
         <strong>Rebuilder sourcing salvage for resale.</strong> Copart first, IAA second. Monitor both.
-        Bid on the same model across both platforms and take the lower all-in cost.
+        Bid on the same model across both platforms and take the lower all-in cost, then arrange{' '}
+        <Link to="/copart-shipping" style={{ color: theme.accent, fontWeight: 600 }}>transport from Copart</Link>{' '}
+        once the winning lot is released.
       </p>
       <p style={{ marginBottom: 18, fontSize: '1.02rem', lineHeight: 1.8, color: theme.text }}>
         <strong>Exporter sending clean-title vehicles to Europe.</strong> Manheim if you have dealer

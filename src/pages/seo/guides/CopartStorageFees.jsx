@@ -88,8 +88,9 @@ export default function CopartStorageFees() {
         <p className={styles.p}>
           You win the vehicle, and Copart&apos;s three-day complimentary storage window starts on
           sale day while you pay and arrange collection. When that window closes, paid storage
-          starts and continues every calendar day until the vehicle leaves. Two details trip up
-          first-time buyers:
+          starts and continues every calendar day until the vehicle leaves, so arrange{' '}
+          <Link to="/copart-shipping" className={styles.link}>Copart car transport</Link> before the
+          complimentary period ends. Two details trip up first-time buyers:
         </p>
         <ul className={styles.list}>
           <li className={styles.listItem}><strong>Payment and storage use different clocks.</strong> Payment

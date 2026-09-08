@@ -333,7 +333,8 @@ export default function CopartShipping() {
         </ol>
 
         <p style={p}>
-          For a deeper treatment see our <Link to="/copart-storage-fees" style={linkStyle}>Copart storage fees guide</Link>.
+          For a deeper treatment, see our <Link to="/copart-storage-fees" style={linkStyle}>Copart storage fees guide</Link>{' '}
+          and the <Link to="/blog/copart-storage-fees-real-cost-2026" style={linkStyle}>Copart storage cost examples</Link>.
         </p>
       </Section>
 
