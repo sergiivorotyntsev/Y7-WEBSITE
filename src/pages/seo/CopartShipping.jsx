@@ -12,15 +12,6 @@ const p = {
   marginBottom: '16px',
 };
 
-const h3 = {
-  fontFamily: fonts.serif,
-  fontSize: '18px',
-  fontWeight: 700,
-  color: colors.text,
-  margin: '20px 0 10px',
-  letterSpacing: '-0.01em',
-};
-
 const table = {
   width: '100%',
   borderCollapse: 'collapse',
@@ -44,84 +35,48 @@ const td = {
   color: colors.textMuted,
 };
 
-const note = {
-  background: colors.bgMuted,
-  borderLeft: `3px solid ${colors.accent}`,
-  padding: '14px 18px',
-  borderRadius: '6px',
-  fontFamily: fonts.sans,
-  fontSize: '13.5px',
-  color: colors.text,
-  lineHeight: 1.7,
-  margin: '12px 0 18px',
-};
-
 const linkStyle = { color: colors.accent, textDecoration: 'none', fontWeight: 600, borderBottom: `1px solid ${colors.accent}` };
 
 const FAQS = [
   {
     q: 'How much does it cost to ship a car from Copart?',
-    a: 'Typical ranges: $400-$650 for short hauls under 300 miles, $700-$1,200 for 300-800 miles, $900-$1,400 for 800-1,500 miles, and $1,100-$1,700 for 1,500-2,500 miles. Non-running vehicles add roughly $75-$150 for winch loading. Enclosed transport is 40-60% more than open. Variance comes from fuel, seasonal demand, yard remoteness, and lane popularity. A quote that looks unusually cheap tends to sit unassigned on the load board rather than actually moving your car.',
-  },
-  {
-    q: 'What happens if nobody picks up my car within the 3-day free storage window?',
-    a: 'You pay Copart daily storage fees directly. Those fees are between you and Copart. Across the yards Y7 ships from, storage typically runs $40-$60 per day once the free window closes. Copart sets the exact rate per yard, so check that location\'s page. You win, the three-day complimentary window starts on sale day while you pay and arrange collection, then paid storage continues every calendar day until the vehicle leaves. Weekends and holidays count toward this storage clock, but not toward the three-business-day payment deadline, which includes sale day. The best defense is quoting transport before you bid so you can factor storage risk into the bid price.',
+    a: 'The carrier rate depends on distance, vehicle size and condition, required loading equipment, lane frequency, season, and destination type. Across the lanes shown on this page, observed running-vehicle rates range from $400-$650 for trips under 300 miles to $1,100-$1,700 for 1,500-2,500 miles; winch loading for a non-running vehicle typically adds $75-$150. Y7\'s dispatch fee is separate: dealers pay $50 per vehicle when they pay the carrier directly or $60 when Y7 handles carrier payment, exporters pay $50 with carrier-payment handling included, and individuals pay the greater of $75 or 10% of the carrier price. The carrier rate always stays separate from Y7\'s fee.',
   },
   {
     q: 'Can you guarantee pickup within the free storage window?',
-    a: 'Honestly, no. Any broker claiming this is misleading you. Dispatch speed depends on carrier availability in your specific lane, the yard, vehicle condition, and seasonal demand — all variables we do not control. What we can promise is a realistic timeline before you commit. If the lane is tight and free-window pickup looks unlikely, we tell you up front.',
-  },
-  {
-    q: 'Why is Copart shipping often more expensive than regular car transport?',
-    a: 'Operational complexity. Copart yards have specific loading cutoffs (most stop at 4:30 PM even if the yard is "open" until 5), require gate pass verification and driver-name matching, and vehicles are often non-running or missing keys — forcing winch or forklift loading. Many carriers refuse certain yards. Fewer willing carriers for a harder job means higher rates.',
+    a: 'No. Pickup timing depends on carrier availability for the lane, yard access, release timing, vehicle condition, and required equipment. Y7 gives the buyer a realistic dispatch assessment before commitment and explains when pickup inside the complimentary window looks unlikely.',
   },
   {
     q: 'Can you ship a non-running vehicle from Copart?',
-    a: 'Yes. A large share of Copart vehicles are non-running. Carriers equipped with winch or forklift loading can handle inoperable vehicles; the surcharge is typically $75-$150. If the vehicle is missing wheels, has severe frame damage, or cannot roll, the dispatch becomes more specialised and the surcharge can go higher. Accurate condition disclosure on your quote avoids surprise fees at pickup.',
+    a: 'Yes. Y7 assigns a carrier with the equipment required for the condition disclosed on the quote. Winch loading for a non-running vehicle typically adds $75-$150 to the carrier rate; missing wheels, locked steering, severe frame damage, or a vehicle that cannot roll can require a different carrier and a higher charge.',
   },
   {
     q: 'Do I need to be at the Copart yard for pickup?',
-    a: 'No. Buyers are prohibited from the loading area for safety reasons — only authorised carriers are allowed in. The carrier handles gate entry using the gate pass PIN and buyer information. You do not need to be physically present.',
+    a: 'No. Send Y7 the buyer or member number, lot number, gate-pass PIN, accurate vehicle condition, and delivery address. Y7 coordinates those release details with the assigned carrier, who completes the yard pickup.',
   },
   {
-    q: 'What is a Copart gate pass?',
-    a: 'A digital release authorisation generated by Copart after your payment clears. The carrier presents the buyer number, lot number, and gate pass PIN at the yard entrance; the driver\'s name must match what is on file. No gate pass = no release, no exceptions. Wire transfers typically clear the same or next business day. CashierPay timing varies; allow 1-3 business days. Cashier\'s checks typically take 2-3 business days.',
+    q: 'Can Y7 deliver a Copart vehicle to a warehouse or port?',
+    a: 'Yes. Y7 arranges the US inland leg from the Copart yard to the warehouse or port named by the buyer or freight forwarder. Exporters pay a $50 dispatch fee per vehicle with carrier-payment handling included, while the carrier rate remains separate.',
   },
   {
-    q: 'Can Y7 ship from Copart internationally?',
-    a: 'Yes. We handle the domestic leg (Copart yard → warehouse or port) and arrange the ocean-freight leg through an affiliated company with a dealer license to destinations worldwide. Common routes: Copart → Port Newark → Odesa, Gdańsk, Hamburg, Poti, Klaipeda, Jebel Ali, Lagos, Iquique. Typical end-to-end timeline is 6-11 weeks from Copart win to destination port.',
-  },
-  {
-    q: 'How quickly can you dispatch a carrier to Copart?',
-    a: 'We work to dispatch within 24-48 hours when market conditions cooperate. "Cooperate" means a carrier is running that lane, the yard is not remote, and the vehicle condition is straightforward. When lanes are tight — rural yards, weekend wins, non-running vehicles needing special equipment — dispatch can take longer. We tell you a realistic timeline before you commit, not a marketing timeline.',
-  },
-  {
-    q: 'What if my car will not start when the carrier arrives?',
-    a: 'Drivers carry jump boxes and can usually get a dead battery going. If the vehicle is fully dead (no electrical, damaged starter, drained fluids) and has to be winched on, the non-running surcharge applies — typically $75-$150 depending on severity. Disclose "runs and drives" status accurately on your quote; surprises at the yard lead to re-dispatch and storage days lost.',
+    q: 'How quickly can a carrier be assigned?',
+    a: 'Assignment timing depends on the yard, lane frequency, vehicle condition, equipment, and destination. A common lane with a running vehicle generally has a larger carrier pool than a remote pickup or severely damaged lot. Y7 reports the current lane conditions instead of promising a fixed dispatch time.',
   },
   {
     q: 'Open or enclosed carrier for a Copart vehicle?',
-    a: 'Most salvage-title vehicles ship on open carriers because the damage that put them on Copart already makes enclosed unnecessary. Clean-title Copart vehicles bought as collector or high-value items can justify enclosed — expect 40-60% more than open. See our open vs enclosed guide for the decision framework.',
+    a: 'Most salvage vehicles move on open carriers. A clean-title collector or high-value vehicle may justify enclosed transport, which typically costs 40-60% more than open. Vehicle value, condition, weather exposure, and the buyer\'s risk tolerance determine the choice.',
   },
   {
     q: 'Does Y7 work with Copart dealer accounts?',
-    a: 'Yes. Dealers buying multiple lots at the same yard often qualify for better per-vehicle rates on consolidated pickups. The portal saves buyer numbers, preferred yards, and delivery locations. Billing can be per-delivery (default) or consolidated monthly for established accounts.',
+    a: 'Yes. Y7 coordinates single-lot and multi-vehicle pickups, including compatible lots at one yard or along one route. Dealers pay a $50 dispatch fee per vehicle when they pay the carrier directly, or $60 when Y7 handles carrier payment; the carrier rate remains separate. The portal stores buyer numbers, preferred yards, and delivery locations for repeat requests.',
   },
   {
     q: 'Can I track my Copart shipment?',
-    a: 'Yes. Once dispatched, status flows through the client portal and the Telegram bot. Every milestone — carrier assigned, at yard, loaded, in transit, delivered — is logged in writing. You can also reach dispatch via info@y7agency.com for non-tracking questions.',
-  },
-  {
-    q: 'What if the carrier is turned away at the gate?',
-    a: 'It happens. Common reasons: unpaid auction fees, expired gate pass PIN, driver name mismatch, or yard appointment issue. We rebook with the same or a different carrier once the root cause is fixed. Note: the storage-fee clock keeps running while this is sorted out — another reason to pay the invoice immediately and have the gate pass generated before the carrier leaves dock.',
+    a: 'Yes. The client portal and Telegram bot record shipment milestones such as carrier assigned, at yard, loaded, in transit, and delivered. These are written milestone updates, not live GPS tracking.',
   },
   {
     q: 'Should I use Copart\'s in-house Transporter App or a broker?',
-    a: 'Both work. In-house is fine for simple, high-volume lanes with clean-title drivable vehicles. A broker is worth it when: you want a pre-bid quote (so you do not discover shipping cost after winning), you need non-running handling, you are shipping internationally, you are dealing with a remote yard, or you want a single point of contact for multiple yards. Broker pools also reach carriers who are not on Copart\'s app.',
-  },
-  {
-    q: 'How does the Copart buyer fee schedule work in 2026?',
-    a: 'Copart buyer fees are tiered by sale price on Copart\'s published fee schedule, and they stack: the tiered buyer fee, an internet bid fee ($25-$149 depending on sale price), a gate fee of $79 for a clean-title vehicle or $95 for a salvage or other non-clean-title vehicle, and a $15 environmental fee. Gate fees can vary by yard. Payment is due within 3 business days including sale day; a $50 late fee applies after that, and storage starts once the free window closes. On a $12,000 purchase, total add-ons commonly run $600-$1,100, roughly 5-9% of the hammer price. Fees change, so verify current amounts on Copart\'s official member-fees page. Transport is the one cost you control: quote it before you bid.',
+    a: 'Copart\'s app can fit a straightforward lane and a running vehicle. A broker is useful when the buyer wants a pre-bid estimate, condition-specific equipment, a remote-yard pickup, delivery to a warehouse or port, or one dispatcher coordinating several lots. Y7 quotes the carrier market separately from its dispatch fee so the buyer can compare the transport decision directly.',
   },
 ];
 
@@ -130,8 +85,8 @@ export default function CopartShipping() {
     '@context': 'https://schema.org',
     '@type': 'Service',
     serviceType: 'Auto Auction Transport',
-    name: 'Copart Vehicle Shipping',
-    description: 'FMCSA-licensed transport from all 200+ Copart auction locations nationwide. Gate pass coordination, salvage and non-running vehicle handling, export-to-port delivery.',
+    name: 'Copart Vehicle Transport and Delivery',
+    description: 'Copart vehicle transport from 200+ US auction yards to a home, shop, warehouse, or port, including gate-pass coordination and non-running vehicle handling.',
     provider: { '@id': 'https://www.y7agency.com/#organization' },
     areaServed: { '@type': 'Country', name: 'United States' },
     hasOfferCatalog: {
@@ -167,50 +122,50 @@ export default function CopartShipping() {
   return (
     <SeoLandingPage
       meta={{
-        title: 'Copart Shipping & Car Transport | Y7 Logistics',
-        description: 'Copart car transport covers auction pickup and delivery to a home, shop, warehouse, or port. See route costs, gate pass steps, and non-running handling.',
+        title: 'Copart Car Transport & Delivery | Y7 Logistics',
+        description: 'Copart car transport moves auction purchases from US yards to a home, shop, warehouse, or port with gate pass coordination and condition-aware dispatch.',
         path: '/copart-shipping',
       }}
       primaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
       secondaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
-      heading="Copart Shipping — Vehicle Transport from Copart Auctions"
-      intro="Copart is the largest online vehicle auction in the US. Y7 Logistics is a licensed FMCSA broker (MC #1741537) specializing in Copart pickups nationwide — clean title, salvage, or non-running. We cannot prevent storage fees (those are between you and Copart), but we can help you plan around them with realistic pre-bid quoting and fast dispatch when market conditions cooperate."
+      heading="Copart Vehicle Transport From Auction Yard to Delivery"
+      intro="Y7 Logistics arranges Copart car transport from the auction yard to a home, shop, warehouse, or port. We coordinate carrier assignment and gate-pass details for clean-title, salvage, and non-running vehicles from 200+ US locations. The carrier rate and Y7 dispatch fee are quoted separately, so buyers know what each part of the move costs before pickup."
       tldr={{
         kicker: 'Copart shipping, in brief',
         ariaLabel: 'Copart shipping, in brief',
-        text: 'Y7 Logistics is a licensed and bonded FMCSA broker (MC #1741537, USDOT #4427359) shipping vehicles from all 200+ US Copart yards: clean-title, salvage, or non-running. Short-haul transport starts around $400, winch loading for non-runners adds $75-150, and dispatch typically lands within 24-48 hours of gate-pass issuance; export buyers get yard-to-port delivery with warehouse consolidation.',
+        text: 'Y7 Logistics is a Licensed & Bonded FMCSA Broker arranging Copart vehicle transport for individual buyers, dealers, rebuilders, and exporters. We coordinate carrier dispatch and gate-pass details from 200+ US yards, including clean-title, salvage, and non-running vehicles, for delivery to a home, shop, warehouse, or port. The carrier rate stays separate from Y7\'s disclosed dispatch fee.',
       }}
       whenNeeded={[
-        'Won a vehicle on Copart.com',
-        'Need transport from any Copart yard',
-        'Buying salvage vehicles for rebuild or resale',
-        'Purchasing clean-title vehicles from Copart',
-        'Dealer buying inventory from Copart',
-        'Exporter shipping Copart purchase to port',
+        'You bought a vehicle on Copart and need it moved from the yard.',
+        'You want a transport estimate before placing the bid.',
+        'Your salvage or non-running vehicle needs condition-specific equipment.',
+        'Your dealership needs one or several Copart lots collected.',
+        'Your exporter shipment needs delivery to a nominated warehouse or port.',
+        'Your vehicle needs delivery to a home, shop, or business address.',
       ]}
       steps={[
-        { title: 'Win & Complete Payment', desc: 'Win your lot and pay Copart. Wire typically clears the same or next business day. CashierPay timing varies; allow 1-3 business days.' },
-        { title: 'Share Your Details', desc: 'Send us your buyer number, lot number, and delivery address — ideally before you bid.' },
-        { title: 'Gate Pass & Dispatch', desc: 'Copart issues the gate pass once payment clears. We work to dispatch a carrier as fast as market conditions allow.' },
-        { title: 'Carrier Picks Up', desc: 'Driver verifies gate pass, loads the vehicle (winch if non-running), and heads out.' },
-        { title: 'Vehicle Delivered', desc: 'Door-to-door, to a port warehouse, or to a consolidation point for export.' },
+        { title: 'Quote the Route', desc: 'Share the yard, destination, vehicle condition, and timing so Y7 can price the carrier market before or after the bid.' },
+        { title: 'Complete the Purchase', desc: 'Pay Copart and wait for the auction to clear the account and issue the vehicle release.' },
+        { title: 'Send Release Details', desc: 'Provide the buyer number, lot number, gate-pass PIN, delivery address, and an accurate condition report.' },
+        { title: 'Carrier Pickup', desc: 'Y7 assigns a verified carrier with the equipment required for the vehicle and coordinates the yard pickup.' },
+        { title: 'Delivery and Documentation', desc: 'The carrier delivers to the nominated home, shop, warehouse, or port, with milestone updates and a Bill of Lading.' },
       ]}
       requirements={[
-        'Copart lot number',
-        'Buyer or member number',
-        'Payment completed with Copart',
-        'Gate pass (Copart issues after payment clears)',
-        'Delivery destination',
+        'Provide the Copart lot number and buyer or member number.',
+        'Complete payment directly with Copart.',
+        'Send the gate-pass PIN after Copart issues the release.',
+        'Disclose whether the vehicle runs, rolls, steers, and brakes.',
+        'Provide the complete delivery address and receiving contact.',
       ]}
       capabilities={[
-        'All 200+ Copart locations nationwide',
-        'Salvage and clean title vehicles',
-        'Non-running vehicles with winch/forklift loading',
-        'Pre-bid quoting — know transport cost before you commit',
-        'Delivery to home, shop, or port',
-        'Open and enclosed transport options',
-        'Central Dispatch integration (broader carrier pool)',
-        'Digital-first workflow: portal, Telegram, email',
+        'We arrange pickup from 200+ Copart locations nationwide.',
+        'We transport clean-title, salvage, and non-running vehicles.',
+        'We match non-running loads with winch-capable equipment.',
+        'We provide pre-bid transport estimates using current lane conditions.',
+        'We coordinate delivery to a home, shop, warehouse, or port.',
+        'We source open and enclosed carrier options.',
+        'We coordinate single-vehicle and compatible multi-vehicle pickups.',
+        'We record shipment milestones through the portal, Telegram, and email.',
       ]}
       faqs={FAQS}
       ctaLabel="Get a Copart Shipping Quote"
@@ -231,118 +186,39 @@ export default function CopartShipping() {
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serviceSchema }} />
 
-      <Section title="The Copart Purchase-to-Pickup Process">
+      <Section title="How Y7 Arranges a Copart Pickup">
         <p style={p}>
-          Winning a Copart auction is only half the job. The real logistics start the moment the
-          virtual gavel drops. You win the lot, Copart sends an invoice, you pay (wire, cashier&apos;s
-          check, or CashierPay), the title desk processes your payment and generates a gate pass,
-          and only then can a carrier physically enter the yard to load your vehicle.
-        </p>
-        <p style={p}>
-          Timing detail most first-time buyers miss: Copart does not release vehicles until the
-          gate pass is issued, and the gate pass does not appear until payment fully clears. Wire
-          transfers typically clear the same or next business day. CashierPay timing varies; allow
-          1-3 business days. Cashier&apos;s checks typically take two to three business days.
-          Payment clearing controls release, but it does not start the complimentary storage window.
-          That window starts on sale day. When it closes, paid storage begins and continues every
-          calendar day until the vehicle leaves.
-        </p>
-
-        <h3 style={h3}>What breaks this process — five common failure modes</h3>
-        <p style={p}>
-          Even with clean paperwork, dispatches derail. The usual culprits:
-        </p>
-        <ol style={{ ...p, paddingLeft: '20px' }}>
-          <li><strong>Unpaid gate fees</strong> — auction relist fees, late fees, or unresolved charges on your account block gate-pass generation. Carrier arrives, gets turned away.</li>
-          <li><strong>No appointment at high-volume yards</strong> — Copart 202, 203, 204 and similar urban yards require appointments during peak. Carriers without one wait in line or get turned back.</li>
-          <li><strong>Carrier without Copart Transporter App account</strong> — some yards require the app for check-in. Out-of-network carriers show up, can&apos;t check in, leave empty.</li>
-          <li><strong>Vehicle condition different from listing</strong> — &quot;runs and drives&quot; turns out to be a dead battery and no keys. Requires winch, pushes out of time window.</li>
-          <li><strong>Driver arrives after 4:30 PM</strong> — most Copart yards stop loading at 4:30 even if the office is &quot;open&quot; until 5. The next day&apos;s storage clock starts.</li>
-        </ol>
-      </Section>
-
-      <Section title="Copart Storage Fees — What You Need to Know Before Bidding">
-        <div style={note}>
-          Storage fees are charged by Copart and are outside any transport broker&apos;s control.
-          Copart publishes no national storage rate; each yard&apos;s rate appears on its location
-          page. Across the yards Y7 ships from, storage typically runs $40-$60 per day once the
-          free window closes. This section explains the timing so you can plan before you bid.
-        </div>
-
-        <h3 style={h3}>The free window</h3>
-        <p style={p}>
-          You win the vehicle, and Copart&apos;s three-day complimentary storage window starts on sale
-          day while you pay and arrange collection. When that window closes, paid storage starts
-          and continues every calendar day until the vehicle leaves. Weekends and holidays count
-          toward this storage clock, so a Friday win uses Saturday and Sunday before Monday. They
-          do not count as business days for the payment deadline, which is three business days
-          including sale day.
-        </p>
-
-        <h3 style={h3}>Fee schedule</h3>
-        <p style={p}>
-          There is no national Copart storage schedule. Copart sets the rate per yard and shows it
-          on that location&apos;s page. Use this planning view:
-        </p>
-        <table style={table}>
-          <thead>
-            <tr>
-              <th style={th}>Reference</th>
-              <th style={th}>Storage rule</th>
-              <th style={th}>Where or when it applies</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style={td}>Copart rate</td>
-              <td style={td}>Yard-specific</td>
-              <td style={td}>Check the location page before bidding</td>
-            </tr>
-            <tr>
-              <td style={td}>Y7 observation</td>
-              <td style={td}>Typically $40-$60 per day</td>
-              <td style={td}>Across the yards Y7 ships from</td>
-            </tr>
-            <tr>
-              <td style={td}>Paid storage clock</td>
-              <td style={td}>Every calendar day</td>
-              <td style={td}>After the free window until the vehicle leaves</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3 style={h3}>What Y7 can and cannot do</h3>
-        <p style={p}>
-          <strong>Can:</strong> work to dispatch a carrier as fast as market conditions allow,
-          give you a realistic pre-bid quote so you factor storage risk into the bid price,
-          flag tight-lane situations before you commit, rebook quickly if a dispatch falls through.
-        </p>
-        <p style={p}>
-          <strong>Cannot:</strong> guarantee pickup within the free window, control carrier schedules,
-          influence Copart&apos;s fee structure, speed up payment clearing, force a driver into a yard
-          that is hours off his route. Any broker claiming otherwise is selling a story.
-        </p>
-
-        <h3 style={h3}>Five strategies to minimize (not eliminate) storage-fee risk</h3>
-        <ol style={{ ...p, paddingLeft: '20px' }}>
-          <li><strong>Quote transport before bidding</strong> — the single most important step. If the lane looks tight, factor expected storage days into your bid ceiling.</li>
-          <li><strong>Pay the Copart invoice immediately</strong> — wire same day. Every hour of delay shortens your free-window runway.</li>
-          <li><strong>Ask about carrier availability in that specific lane first</strong> — rural yards with no regular truck traffic take longer, and a pre-bid quote surfaces that.</li>
-          <li><strong>Avoid Friday or pre-holiday wins when schedule matters</strong> — weekends count toward the clock whether anyone is working or not.</li>
-          <li><strong>Be flexible on delivery address if speed matters</strong> — a nearby hub or warehouse drop-off can accept a carrier that a residential-only delivery cannot.</li>
-        </ol>
-
-        <p style={p}>
-          For a deeper treatment, see our <Link to="/copart-storage-fees" style={linkStyle}>Copart storage fees guide</Link>{' '}
-          and the <Link to="/blog/copart-storage-fees-real-cost-2026" style={linkStyle}>Copart storage cost examples</Link>.
+          Y7 arranges the carrier, pickup coordination, and delivery after the buyer supplies the
+          lot number, buyer number, vehicle condition, destination, and release details. Copart,
+          not Y7, accepts the auction payment and issues the gate pass after payment clears; Y7
+          coordinates those details with the assigned carrier but does not purchase the pass. We
+          match the pickup to a carrier equipped for the vehicle and lane and confirm the yard
+          requirements; the carrier documents pickup on the Bill of Lading. Read the{' '}
+          <Link to="/copart-gate-pass-guide" style={linkStyle}>Copart gate pass and vehicle release guide</Link>{' '}
+          for Copart&apos;s clearance, PIN, driver-matching, appointment, and yard-cutoff rules.
         </p>
       </Section>
 
-      <Section title="How Much Does Copart Shipping Actually Cost?">
+      <Section title="Storage Timing Before Carrier Pickup">
         <p style={p}>
-          Ranges below are market realities for 2026, not artificially shaved teaser rates. A
-          quote that beats these ranges by 20%+ typically sits unassigned on the load board
-          instead of moving your vehicle.
+          Copart, not Y7, sets and charges storage fees at each auction yard. Copart&apos;s three-day
+          complimentary period starts on sale day; after it closes, paid storage can continue by
+          calendar day until the vehicle leaves. Across the yards Y7 ships from, observed storage
+          rates typically run $40-$60 per day, but buyers should verify the exact rate on the
+          location page because Copart has no single national schedule. Y7 can quote the carrier
+          market before a bid and coordinate dispatch, while Copart alone controls the storage
+          window, fees, and account. Review the <Link to="/copart-storage-fees" style={linkStyle}>Copart storage fees guide</Link>{' '}
+          and <Link to="/blog/copart-storage-fees-real-cost-2026" style={linkStyle}>Copart storage cost examples</Link>{' '}
+          for the full timing and planning detail.
+        </p>
+      </Section>
+
+      <Section title="How Much Does Copart Shipping Cost?">
+        <p style={p}>
+          A Copart transport price depends on distance, vehicle size and condition, required
+          loading equipment, lane frequency, season, and whether delivery is to a home, shop,
+          warehouse, or port. The table shows observed carrier-rate ranges already used on this
+          page, not a guaranteed quote or the Y7 dispatch fee.
         </p>
         <div style={tableWrap}>
           <table style={{ ...table, margin: 0 }}>
@@ -383,62 +259,54 @@ export default function CopartShipping() {
           </table>
         </div>
         <p style={p}>
-          Variance drivers: fuel, season, yard remoteness, lane popularity, vehicle size. The
-          winch fee for non-running vehicles is $75-$150. A quote a broker shaves below these
-          ranges is usually one that will not actually dispatch. Buying at auction regularly?
-          See where the fees actually go in our <Link to="/auction-transport-savings" style={{ color: colors.accent }}>auction transport savings breakdown</Link>.
+          Winch loading for a non-running vehicle typically adds $75-$150 to the carrier rate.
+          Y7&apos;s separate dispatch fee is $50 per vehicle for dealers paying the carrier directly,
+          $60 for dealers asking Y7 to handle carrier payment, and $50 for exporters with carrier
+          payment handling included; individuals pay the greater of $75 or 10% of the carrier
+          price. Request a route-specific <Link to="/quote" style={linkStyle}>Copart shipping estimate</Link>{' '}
+          or review the <Link to="/auction-transport-savings" style={linkStyle}>auction transport savings breakdown</Link>{' '}
+          to see how the carrier rate and dispatch fee stay separate.
         </p>
       </Section>
 
-      <Section title="Vehicle Condition Reality Check">
+      <Section title="Transporting Running, Non-Running, and Damaged Vehicles">
         <p style={p}>
-          Copart lists vehicles as &quot;run and drive,&quot; &quot;starts,&quot; or
-          &quot;non-running / stationary.&quot; Experienced drivers treat the first two as
-          50/50 reality at pickup. Battery dead because the lot sat two weeks in a rainstorm,
-          keys missing, fuel drained for shipping — all common.
-        </p>
-        <p style={p}>
-          What that means in practice: drivers carry jump boxes and can revive many &quot;dead&quot;
-          batteries. If keys are missing, loading becomes winch-only — $75-$150 surcharge.
-          Undisclosed damage gets documented on the Bill of Lading at pickup so claims are
-          possible after delivery. The more accurate you are about condition on the quote,
-          the fewer surprises at the yard — and the fewer storage days burned re-dispatching.
+          Y7 arranges Copart transport for clean-title, salvage, running, non-running, and damaged
+          vehicles by matching the disclosed condition to the carrier&apos;s equipment. Buyers should
+          report whether the vehicle runs, rolls, steers, and brakes, plus missing keys, wheels,
+          loose parts, or severe body and frame damage. A winch-capable carrier is normally needed
+          when the vehicle cannot load under its own power, with a typical $75-$150 addition to the
+          carrier rate. Accurate condition details help avoid a rejected pickup, equipment change,
+          or re-dispatch after the driver reaches the yard.
         </p>
       </Section>
 
-      <Section title="Copart Gate Pass & Dispatch Requirements">
+      <Section title="Release Details the Carrier Needs">
         <p style={p}>
-          Carriers need five things to take your vehicle out of a Copart yard: buyer number,
-          lot number, cleared payment, gate pass PIN, and a driver name matching what is on
-          file. Any mismatch and the yard sends the truck back.
-        </p>
-        <p style={p}>
-          Yard hours matter more than the posted close time. Most Copart yards stop loading at
-          4:30 PM even if the counter stays staffed until 5. Arriving at 4:35 means coming back
-          tomorrow — another day on the storage clock. High-volume yards (202, 203, 204 and
-          similar urban locations) may also require an appointment during peak season; walk-in
-          loads wait in a queue.
-        </p>
-        <p style={p}>
-          A reality not every broker admits: some carriers refuse certain Copart yards
-          altogether — too congested, too remote, too many turn-arounds. That is one reason
-          the cheapest quote sometimes sits unassigned: the carrier exists, just not for that
-          yard. See the full <Link to="/copart-gate-pass-guide" style={linkStyle}>gate pass guide</Link>.
+          A carrier needs the buyer or member number, lot number, cleared payment, gate-pass PIN,
+          and matching driver details before Copart releases a vehicle. Copart issues the pass and
+          administers its storage account; Y7 only coordinates release data with the assigned
+          carrier. Copart&apos;s fee schedule includes a $79 gate fee for a clean-title vehicle or $95
+          for a salvage or other non-clean-title vehicle, a $15 environmental fee, and a $50
+          late-payment fee; exact gate fees can vary by yard. Loading cutoffs and appointment rules
+          also vary by location. Review the <Link to="/copart-gate-pass-guide" style={linkStyle}>Copart gate pass and vehicle release guide</Link>{' '}
+          before dispatch.
         </p>
       </Section>
 
-      <Section title="Copart Yard Locations — Where We Operate">
+      <Section title="Copart Pickup Coverage Across 200+ US Yards">
         <p style={p}>
-          All 200+ Copart locations nationwide. High-volume states where carrier availability
-          is strongest (regular trucks already running the lanes):
+          Y7 arranges vehicle pickup from 200+ Copart locations across the United States, with
+          the carrier pool and rate determined by the specific yard and destination. Regular
+          truck traffic is typically strongest around these high-volume markets:
         </p>
         <ul style={{ ...p, paddingLeft: '20px' }}>
-          <li><strong>California</strong> — 10+ yards (LA, Sacramento, Van Nuys, Fresno, Rancho Cucamonga). Urban fee brackets. Highest volume.</li>
-          <li><strong>Texas</strong> — 8+ yards across Dallas/Fort Worth, Houston, San Antonio, Austin.</li>
-          <li><strong>Florida</strong> — Miami, Orlando, Tampa, Jacksonville — heavy export activity through the Jacksonville port.</li>
-          <li><strong>New Jersey / New York</strong> — primary Northeast export corridor via Port Newark.</li>
-          <li><strong>Georgia</strong> — Atlanta plus Savannah-port corridor.</li>
-          <li><strong>Illinois, Pennsylvania, Ohio, Michigan, North Carolina</strong> — strong interior-US carrier networks.</li>
+          <li><strong>California:</strong> 10+ yards around Los Angeles, Sacramento, Van Nuys, Fresno, and Rancho Cucamonga.</li>
+          <li><strong>Texas:</strong> 8+ yards across Dallas and Fort Worth, Houston, San Antonio, and Austin.</li>
+          <li><strong>Florida:</strong> Miami, Orlando, Tampa, and Jacksonville, including export traffic through the Jacksonville port.</li>
+          <li><strong>New Jersey and New York:</strong> Northeast pickups with access to the Port Newark corridor.</li>
+          <li><strong>Georgia:</strong> Atlanta pickups and the Savannah port corridor.</li>
+          <li><strong>Illinois, Pennsylvania, Ohio, Michigan, and North Carolina:</strong> established interior carrier networks.</li>
         </ul>
         <p style={p}>
           See our <Link to="/massachusetts-car-shipping" style={linkStyle}>Massachusetts</Link>,
@@ -449,124 +317,71 @@ export default function CopartShipping() {
         </p>
       </Section>
 
-      <Section title="Copart to Port — Export Specialty">
+      <Section title="Copart Delivery to a Warehouse or Port">
         <p style={p}>
-          A large share of Copart inventory is bought by international rebuilders and exporters.
-          Y7 handles the full domestic leg — Copart yard to consolidation warehouse or direct to
-          port — and arranges the ocean-freight leg via an affiliated company with a dealer
-          license. Common destinations:
-          Ukraine (Odesa), Poland (Gdańsk), Germany (Hamburg), Georgia (Poti), Lithuania
-          (Klaipeda), Kazakhstan, UAE (Jebel Ali), Chile (Iquique), Nigeria (Lagos).
-        </p>
-        <p style={p}>
-          Timeline from Copart win to destination port is typically 6-11 weeks: payment clears
-          (1-3 days) → gate pass → domestic transport (3-10 days) → warehouse consolidation
-          (variable) → container or RoRo sailing (15-45 days depending on destination) →
-          destination port clearance.
-        </p>
-        <p style={p}>
-          Container vs RoRo: RoRo is cheaper for single drivable vehicles to major ports; container
-          is required for non-running, fits 3-4 vehicles shared, and opens up more destinations.
-          We help pick the right option based on destination and vehicle mix. See
-          {' '}<Link to="/copart-international-shipping" style={linkStyle}>Copart international shipping</Link>,
-          {' '}<Link to="/auction-to-port-transport" style={linkStyle}>auction to port</Link>, and
-          {' '}<Link to="/exporters" style={linkStyle}>exporters</Link>.
+          Y7 arranges the US inland move from a Copart yard to the warehouse or port nominated by
+          the buyer or freight forwarder. The buyer provides the delivery facility, receiving
+          contact, hours, and any booking or reference number the facility requires. Exporters pay
+          Y7 a $50 dispatch fee per vehicle with carrier-payment handling included, while the
+          carrier rate remains separate. For the document chain and ocean-leg planning outside this
+          domestic transport scope, use the <Link to="/copart-international-shipping" style={linkStyle}>Copart international shipping guide</Link>,
+          {' '}<Link to="/auction-to-port-transport" style={linkStyle}>auction-to-port transport service</Link>, and
+          {' '}<Link to="/exporters" style={linkStyle}>exporter program</Link>.
         </p>
       </Section>
 
-      <Section title="Copart vs IAAI — Real Differences for Transport">
+      <Section title="Choosing an Auction Before You Arrange Transport">
         <p style={p}>
-          Both are salvage-heavy auto auctions, but the operational details differ:
-        </p>
-        <table style={table}>
-          <thead>
-            <tr>
-              <th style={th}>Factor</th>
-              <th style={th}>Copart</th>
-              <th style={th}>IAAI</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style={td}>Release authorization</td>
-              <td style={td}>Gate pass PIN</td>
-              <td style={td}>Buyer letter naming the carrier</td>
-            </tr>
-            <tr>
-              <td style={td}>Carrier check-in</td>
-              <td style={td}>Transporter App or manual</td>
-              <td style={td}>Driver ID match required</td>
-            </tr>
-            <tr>
-              <td style={td}>Loading cutoff</td>
-              <td style={td}>4:30 PM typical</td>
-              <td style={td}>4:00-4:30 PM typical</td>
-            </tr>
-            <tr>
-              <td style={td}>Free storage window</td>
-              <td style={td}>3-day complimentary period from sale</td>
-              <td style={td}>~3 business days from payment</td>
-            </tr>
-            <tr>
-              <td style={td}>Preferred carrier lists</td>
-              <td style={td}>No (open)</td>
-              <td style={td}>Yes at some branches</td>
-            </tr>
-          </tbody>
-        </table>
-        <p style={p}>
-          Buyers shipping from both auctions benefit from a broker who handles both so you
-          don&apos;t re-learn the process each time. Choosing between platforms? Our{' '}
-          <Link to="/blog/copart-iaa-manheim-comparison" style={linkStyle}>Copart vs IAA vs Manheim comparison</Link>{' '}
-          breaks down which auction fits which use case.
+          Copart and IAA use different release, check-in, loading, and storage procedures, so buyers
+          need auction-specific pickup instructions. Copart&apos;s buyer-cost stack can include a
+          $25-$149 internet bid fee, $79 or $95 gate fee, $15 environmental fee, and $50
+          late-payment fee; on the existing $12,000 example, auction add-ons commonly total
+          $600-$1,100, or roughly 5-9% of the hammer price. Those are Copart charges, not Y7
+          transport fees, and buyers should confirm current figures with the auction. Read the{' '}
+          <Link to="/blog/copart-iaa-manheim-comparison" style={linkStyle}>Copart, IAA, and Manheim buyer comparison</Link>{' '}
+          for the release and carrier-check-in differences.
         </p>
       </Section>
 
-      <Section title="Dealer Volume — Multi-Vehicle Copart Pickups">
+      <Section title="Multi-Vehicle Copart Pickup for Dealers">
         <p style={p}>
-          Multi-lot dealers at the same Copart yard unlock consolidated pickup economics:
-          three or more lots on one carrier = meaningfully better per-vehicle rate than three
-          separate dispatches. Same applies to mixed yards on the same route.
-        </p>
-        <p style={p}>
-          The Y7 dealer workflow: portal with saved buyer numbers, yard preferences, and
-          delivery locations; weekly or monthly billing consolidated into one invoice; one
-          dispatcher handling the full pipeline. See <Link to="/dealers" style={linkStyle}>dealers</Link>{' '}
-          and the step-by-step <Link to="/blog/dealer-auction-pickup-guide" style={linkStyle}>dealer auction pickup guide</Link>.
+          Y7 coordinates one or several Copart lots for dealers, including compatible vehicles at
+          the same yard or along the same route. A compatible multi-vehicle load may reduce the
+          carrier&apos;s per-vehicle cost, but the quote still depends on condition, equipment, yard,
+          and destinations. Dealers pay a $50 Y7 dispatch fee per vehicle when they pay the carrier
+          directly, or $60 when Y7 handles carrier payment; the carrier rate remains separate. The
+          portal stores repeat buyer numbers, yard preferences, and delivery locations, with one
+          dispatcher coordinating the moves. Review the <Link to="/dealers" style={linkStyle}>Y7 dealer program</Link>{' '}
+          and <Link to="/blog/dealer-auction-pickup-guide" style={linkStyle}>dealer auction pickup guide</Link>.
         </p>
       </Section>
 
       <Section title="Why Y7 for Copart Transport">
         <p style={p}>
-          The honest pitch — no guarantees we cannot keep:
+          Y7 gives Copart buyers one accountable dispatch path from route estimate through carrier
+          pickup and delivery, without combining the carrier rate with its service fee.
         </p>
         <ul style={{ ...p, paddingLeft: '20px' }}>
-          <li><strong>Licensed FMCSA broker</strong> — MC #1741537, USDOT #4427359.
+          <li><strong>Licensed &amp; Bonded FMCSA Broker:</strong> MC #1741537, USDOT #4427359.
             {' '}<a href="https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=USDOT&query_string=4427359" target="_blank" rel="noopener noreferrer" style={linkStyle}>Verify on FMCSA</a>.</li>
-          <li><strong>Central Dispatch integration</strong> — broader carrier pool than internal-only networks.</li>
-          <li><strong>Founder-operated</strong> — direct accountability, not a call-center handoff.</li>
-          <li><strong>Dispatch effort within 24-48 hours when lanes cooperate</strong> — realistic, not marketing.</li>
-          <li><strong>Digital-first workflow</strong> — client portal, Telegram bot, email. No phone tag.</li>
-          <li><strong>10+ years of combined auto-transport experience</strong> on the team.</li>
-          <li><strong>Multi-language support</strong> — English, Russian, Polish, Ukrainian.</li>
+          <li><strong>Condition-aware carrier matching:</strong> running, non-running, damaged, open, and enclosed requirements are disclosed before assignment.</li>
+          <li><strong>Transparent pricing:</strong> the carrier rate and Y7 dispatch fee are quoted separately.</li>
+          <li><strong>One dispatcher:</strong> one person coordinates the pickup details and delivery instead of a call-center handoff.</li>
+          <li><strong>Written milestones:</strong> the portal, Telegram bot, and email record carrier assignment, pickup, transit, and delivery updates.</li>
+          <li><strong>Language support:</strong> English, Russian, Polish, and Ukrainian.</li>
         </ul>
       </Section>
 
-      <Section title="Real Scenario: Copart Dallas to Houston (Lane Cooperating)">
+      <Section title="Example: Copart Dallas to Houston">
         <p style={p}>
-          Monday: you win a 2019 Honda Civic with a salvage title at Copart Dallas for $6,800.
-          Monday afternoon you wire payment. Tuesday morning payment clears. Wednesday noon the
-          gate pass appears. Thursday we dispatch a Dallas-Houston carrier already booked on
-          the lane. Friday morning the driver arrives, winches the Civic on (front-end
-          collision, non-running), and hits I-45. Monday the car lands at your home in Houston.
-          Open-carrier transport: $350. The complimentary window ran Monday through Wednesday,
-          so paid storage ran Thursday and Friday. At the $40-$60 per-day range Y7 typically sees,
-          that is $80-$120; check the Copart Dallas location page for its exact rate.
-        </p>
-        <p style={p}>
-          That is what it looks like when the lane cooperates. On a rural yard or a weekend
-          win, the same story might have cost additional storage days. The scenario is one
-          realistic outcome, not a guarantee.
+          A Dallas-to-Houston move shows how the auction release, equipment, carrier market, and
+          storage clock combine in one transport decision. In this existing example, the buyer wins
+          a non-running 2019 Honda Civic at Copart Dallas for $6,800, payment clears, Copart issues
+          the gate pass, and a carrier already working the lane winches the vehicle for delivery to
+          Houston. The observed open-carrier rate is $350; two paid storage days at the $40-$60
+          range Y7 typically sees would add $80-$120 in Copart charges, subject to the Dallas
+          location&apos;s exact rate. This is one realistic outcome when the lane cooperates, not a
+          guaranteed price or timeline.
         </p>
       </Section>
     </SeoLandingPage>
