@@ -76,7 +76,7 @@ export default function MassachusettsToFlorida() {
         { label: 'Boston Car Shipping', to: '/boston-car-shipping' },
         { label: 'Florida Car Shipping', to: '/florida-car-shipping' },
         { label: 'MA Car Shipping', to: '/massachusetts-car-shipping' },
-        { label: 'Ship My Car', to: '/ship-my-car' },
+        { label: 'Seasonal moves', to: '/ship-my-car' },
       ]}
     >
       <PricingRange

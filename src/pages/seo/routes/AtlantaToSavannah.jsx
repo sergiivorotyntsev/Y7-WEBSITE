@@ -76,11 +76,11 @@ export default function AtlantaToSavannah() {
       ctaTo="/quote"
       related={[
         { label: 'Port of Savannah', to: '/ports/savannah' },
-        { label: 'Auction to Port', to: '/auction-to-port-transport' },
+        { label: 'Auctions to port', to: '/auction-to-port-transport' },
         { label: 'Manheim Transport', to: '/manheim-transport' },
-        { label: 'Copart Shipping', to: '/copart-shipping' },
+        { label: 'Copart pickup options', to: '/copart-shipping' },
         { label: 'Florida → JAXPORT', to: '/florida-to-jacksonville-port-car-shipping' },
-        { label: 'Door-to-Port Transport', to: '/door-to-port-auto-transport' },
+        { label: 'Vehicle delivery to port', to: '/door-to-port-auto-transport' },
       ]}
     >
       <PricingRange

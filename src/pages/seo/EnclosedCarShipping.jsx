@@ -80,8 +80,8 @@ export default function EnclosedCarShipping() {
       related={[
         { label: 'Open Car Shipping', to: '/open-car-shipping' },
         { label: 'Tesla Car Shipping', to: '/tesla-car-shipping' },
-        { label: 'Car Shipping Cost', to: '/car-shipping-cost' },
-        { label: 'Ship My Car', to: '/ship-my-car' },
+        { label: 'Enclosed pricing factors', to: '/car-shipping-cost' },
+        { label: 'Ship your own car', to: '/ship-my-car' },
         { label: 'When to Skip Enclosed (Guide)', to: '/blog/enclosed-transport-when-to-skip' },
       ]}
     >

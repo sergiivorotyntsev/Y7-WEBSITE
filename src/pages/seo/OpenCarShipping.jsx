@@ -76,9 +76,9 @@ export default function OpenCarShipping() {
       ]}
       related={[
         { label: 'Enclosed Car Shipping', to: '/enclosed-car-shipping' },
-        { label: 'Car Shipping Cost', to: '/car-shipping-cost' },
-        { label: 'Auction Car Shipping', to: '/auction-car-shipping' },
-        { label: 'Ship My Car', to: '/ship-my-car' },
+        { label: 'Open transport pricing', to: '/car-shipping-cost' },
+        { label: 'Shipping auction purchases', to: '/auction-car-shipping' },
+        { label: 'Personal shipping', to: '/ship-my-car' },
       ]}
     >
       <Section title="What Open Car Transport Is">

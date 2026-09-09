@@ -171,10 +171,10 @@ export default function HowToShipAuctionCar() {
           </h3>
           <div className={styles.relatedPills}>
             {[
-              { label: 'Copart Shipping', to: '/copart-shipping' },
+              { label: 'Arrange Copart pickup', to: '/copart-shipping' },
               { label: 'IAAI Transport', to: '/iaai-transport' },
               { label: 'Manheim Transport', to: '/manheim-transport' },
-              { label: 'Auction Car Shipping', to: '/auction-car-shipping' },
+              { label: 'Arrange auction transport', to: '/auction-car-shipping' },
               { label: 'Open vs Enclosed Transport', to: '/open-vs-enclosed-auto-transport' },
               { label: 'What Is a Bill of Lading?', to: '/what-is-a-bill-of-lading' },
             ].map((link, i) => (

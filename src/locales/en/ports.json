@@ -34,6 +34,47 @@
     "notFoundMsg": "The port page you are looking for does not exist.",
     "notFoundCta": "View All Ports"
   },
+  "relatedLabels": {
+    "newark": {
+      "/new-jersey-auto-transport": "New Jersey pickup options",
+      "/auction-to-port-transport": "Plan an auction-to-Newark move",
+      "/new-jersey-to-florida-car-shipping": "New Jersey to Florida transport",
+      "/door-to-port-auto-transport": "Arrange delivery to Port Newark"
+    },
+    "houston": {
+      "/dallas-to-port-houston-auto-transport": "From Dallas auctions to Houston",
+      "/texas-auto-transport": "Texas pickup and delivery options",
+      "/texas-to-newark-port-auto-transport": "Shipping from Texas to Newark",
+      "/auction-to-port-transport": "Plan your auction-to-Houston move",
+      "/door-to-port-auto-transport": "Getting a vehicle to Houston"
+    },
+    "savannah": {
+      "/atlanta-to-savannah-port-auto-transport": "From Atlanta auctions to Savannah",
+      "/florida-car-shipping": "Explore Florida vehicle pickup",
+      "/auction-to-port-transport": "Arrange auction pickup for Savannah",
+      "/door-to-port-auto-transport": "Plan delivery to Savannah port",
+      "/state-to-state-car-shipping": "Interstate routes to Savannah"
+    },
+    "los-angeles": {
+      "/state-to-state-car-shipping": "Long-distance routes into California",
+      "/enclosed-car-shipping": "Enclosed moves to Los Angeles",
+      "/auction-to-port-transport": "From auction yard to Los Angeles",
+      "/door-to-port-auto-transport": "Plan your Los Angeles port delivery"
+    },
+    "baltimore": {
+      "/state-to-state-car-shipping": "Interstate routes into Baltimore",
+      "/auction-to-port-transport": "Arrange an auction-to-Baltimore move",
+      "/door-to-port-auto-transport": "Getting your vehicle to Baltimore",
+      "/new-jersey-auto-transport": "New Jersey pickup before port delivery"
+    },
+    "jacksonville": {
+      "/florida-to-jacksonville-port-car-shipping": "Florida auctions to Jacksonville port",
+      "/florida-car-shipping": "Plan your pickup in Florida",
+      "/massachusetts-to-florida-car-shipping": "Bring a Massachusetts car to Florida",
+      "/new-jersey-to-florida-car-shipping": "Shipping from New Jersey to Florida",
+      "/auction-to-port-transport": "From auction to JAXPORT"
+    }
+  },
   "newark": {
     "metaTitle": "Auto Transport to Port Newark, NJ",
     "metaDesc": "Vehicle shipping to Port Newark-Elizabeth Marine Terminal. Door-to-port auto transport for export. Licensed broker, verified carriers.",

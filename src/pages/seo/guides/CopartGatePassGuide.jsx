@@ -195,7 +195,7 @@ export default function CopartGatePassGuide() {
 
         <h2 className={styles.h2}>Related</h2>
         <ul className={styles.list}>
-          <li className={styles.listItem}><Link to="/copart-shipping" className={styles.link}>Copart shipping main page</Link></li>
+          <li className={styles.listItem}><Link to="/copart-shipping" className={styles.link}>Arrange Copart collection</Link></li>
           <li className={styles.listItem}><Link to="/copart-storage-fees" className={styles.link}>Copart storage fees guide</Link></li>
           <li className={styles.listItem}><Link to="/copart-international-shipping" className={styles.link}>Copart international shipping</Link></li>
           <li className={styles.listItem}><Link to="/how-to-ship-a-car-bought-at-auction" className={styles.link}>How to ship a car bought at auction</Link></li>

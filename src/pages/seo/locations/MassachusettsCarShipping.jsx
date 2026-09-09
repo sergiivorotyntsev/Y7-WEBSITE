@@ -81,7 +81,7 @@ export default function MassachusettsCarShipping() {
         { label: 'Newton Auto Transport', to: '/newton-auto-transport' },
         { label: 'MA to FL Shipping', to: '/massachusetts-to-florida-car-shipping' },
         { label: 'Copart MA (North Billerica, Attleboro)', to: '/copart-shipping' },
-        { label: 'Car Shipping Cost', to: '/car-shipping-cost' },
+        { label: 'What car shipping costs', to: '/car-shipping-cost' },
       ]}
     >
       <Section title="Auto Transport Across Massachusetts">

@@ -135,10 +135,10 @@ export default function AuctionTransportSavings() {
       ctaLabel="Get your lane's real rate"
       ctaTo="/quote"
       related={[
-        { label: 'Copart Shipping', to: '/copart-shipping' },
+        { label: 'Copart pricing', to: '/copart-shipping' },
         { label: 'IAA Transport', to: '/iaai-transport' },
         { label: 'Manheim Transport', to: '/manheim-transport' },
-        { label: 'Auction Car Shipping', to: '/auction-car-shipping' },
+        { label: 'Auction transport options', to: '/auction-car-shipping' },
         { label: 'Dealer Auto Transport', to: '/dealer-auto-transport' },
       ]}
     >

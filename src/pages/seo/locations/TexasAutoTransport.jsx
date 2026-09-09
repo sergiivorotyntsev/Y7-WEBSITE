@@ -71,9 +71,9 @@ export default function TexasAutoTransport() {
         },
       ]}
       related={[
-        { label: 'Auction to Port', to: '/auction-to-port-transport' },
-        { label: 'Copart Shipping', to: '/copart-shipping' },
-        { label: 'Ship My Car', to: '/ship-my-car' },
+        { label: 'Auction cars to port', to: '/auction-to-port-transport' },
+        { label: 'Copart vehicle pickup', to: '/copart-shipping' },
+        { label: 'Ship a car home', to: '/ship-my-car' },
         { label: 'State to State', to: '/state-to-state-car-shipping' },
       ]}
     >

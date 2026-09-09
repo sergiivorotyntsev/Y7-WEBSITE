@@ -34,6 +34,47 @@
     "notFoundMsg": "Strona portu, której szukasz, nie istnieje.",
     "notFoundCta": "Zobacz wszystkie porty"
   },
+  "relatedLabels": {
+    "newark": {
+      "/new-jersey-auto-transport": "Transport aut w New Jersey",
+      "/auction-to-port-transport": "Z aukcji do portu Newark",
+      "/new-jersey-to-florida-car-shipping": "Z New Jersey na Florydę",
+      "/door-to-port-auto-transport": "Dostawa auta do portu Newark"
+    },
+    "houston": {
+      "/dallas-to-port-houston-auto-transport": "Z aukcji w Dallas do Houston",
+      "/texas-auto-transport": "Odbiór aut w Teksasie",
+      "/texas-to-newark-port-auto-transport": "Z Teksasu do portu Newark",
+      "/auction-to-port-transport": "Auto z aukcji do Houston",
+      "/door-to-port-auto-transport": "Zaplanuj dostawę do portu Houston"
+    },
+    "savannah": {
+      "/atlanta-to-savannah-port-auto-transport": "Z Atlanty do portu Savannah",
+      "/florida-car-shipping": "Odbiór auta na Florydzie",
+      "/auction-to-port-transport": "Auto z aukcji do Savannah",
+      "/door-to-port-auto-transport": "Jak dostarczyć auto do Savannah",
+      "/state-to-state-car-shipping": "Przez inne stany do Savannah"
+    },
+    "los-angeles": {
+      "/state-to-state-car-shipping": "Transport międzystanowy do Kalifornii",
+      "/enclosed-car-shipping": "Transport zamknięty do Los Angeles",
+      "/auction-to-port-transport": "Z aukcji do Los Angeles",
+      "/door-to-port-auto-transport": "Dostawa do portu Los Angeles"
+    },
+    "baltimore": {
+      "/state-to-state-car-shipping": "Transport między stanami do Baltimore",
+      "/auction-to-port-transport": "Z aukcji do portu Baltimore",
+      "/door-to-port-auto-transport": "Zaplanuj dostawę auta do Baltimore",
+      "/new-jersey-auto-transport": "New Jersey: odbiór przed eksportem"
+    },
+    "jacksonville": {
+      "/florida-to-jacksonville-port-car-shipping": "Z Florydy do portu Jacksonville",
+      "/florida-car-shipping": "Zaplanuj odbiór auta na Florydzie",
+      "/massachusetts-to-florida-car-shipping": "Z Massachusetts na Florydę",
+      "/new-jersey-to-florida-car-shipping": "Trasa z New Jersey na Florydę",
+      "/auction-to-port-transport": "Auto z aukcji do Jacksonville"
+    }
+  },
   "newark": {
     "metaTitle": "Transport auta do portu Newark, NJ",
     "metaDesc": "Transport aut do terminalu Port Newark-Elizabeth. Dostawa z aukcji i dowolnej lokalizacji w USA do portu. Licencjonowany broker, zweryfikowani przewoźnicy.",

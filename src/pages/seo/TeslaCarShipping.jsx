@@ -53,8 +53,8 @@ export default function TeslaCarShipping() {
         { label: 'EV Auto Transport', to: '/ev-auto-transport' },
         { label: 'Cybertruck Shipping', to: '/cybertruck-shipping' },
         { label: 'Enclosed Car Shipping', to: '/enclosed-car-shipping' },
-        { label: 'Car Shipping Cost', to: '/car-shipping-cost' },
-        { label: 'Get a Quote', to: '/quote' },
+        { label: 'Size and weight pricing', to: '/car-shipping-cost' },
+        { label: 'Tesla quote', to: '/quote' },
       ]}
       ctaLabel="Get Your Tesla Shipping Quote"
     >

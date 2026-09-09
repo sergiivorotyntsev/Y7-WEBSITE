@@ -76,8 +76,8 @@ export default function FloridaToJacksonville() {
       ctaTo="/quote"
       related={[
         { label: 'Port of Jacksonville', to: '/ports/jacksonville' },
-        { label: 'Auction to Port', to: '/auction-to-port-transport' },
-        { label: 'Copart Shipping', to: '/copart-shipping' },
+        { label: 'Auction-to-port moves', to: '/auction-to-port-transport' },
+        { label: 'Copart export pickup', to: '/copart-shipping' },
         { label: 'Florida Car Shipping', to: '/florida-car-shipping' },
         { label: 'Atlanta → Savannah Port', to: '/atlanta-to-savannah-port-auto-transport' },
         { label: 'Salvage Car Shipping', to: '/salvage-car-shipping' },

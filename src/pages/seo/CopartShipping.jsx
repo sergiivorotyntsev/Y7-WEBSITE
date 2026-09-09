@@ -175,12 +175,12 @@ export default function CopartShipping() {
         { label: 'Copart Storage Fees Explained', to: '/copart-storage-fees' },
         { label: 'Copart Gate Pass Guide', to: '/copart-gate-pass-guide' },
         { label: 'Copart International Shipping', to: '/copart-international-shipping' },
-        { label: 'Auction Shipping', to: '/auction-car-shipping' },
+        { label: 'Other auction transport', to: '/auction-car-shipping' },
         { label: 'IAA Transport', to: '/iaai-transport' },
         { label: 'Salvage Shipping', to: '/salvage-car-shipping' },
-        { label: 'Auction to Port', to: '/auction-to-port-transport' },
+        { label: 'Auction export moves', to: '/auction-to-port-transport' },
         { label: 'Port Delivery', to: '/door-to-port-auto-transport' },
-        { label: 'Get a Quote', to: '/quote' },
+        { label: 'Copart quote', to: '/quote' },
       ]}
     >
       <HreflangTags currentPath="/copart-shipping" hasPolishVersion hasUkrainianVersion hasRussianVersion />

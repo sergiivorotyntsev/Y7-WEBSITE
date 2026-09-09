@@ -168,7 +168,7 @@ export default function OpenVsEnclosed() {
           </h3>
           <div className={styles.relatedPills}>
             {[
-              { label: 'Car Shipping Cost', to: '/car-shipping-cost' },
+              { label: 'Compare shipping costs', to: '/car-shipping-cost' },
               { label: 'Open Car Shipping', to: '/open-car-shipping' },
               { label: 'Enclosed Car Shipping', to: '/enclosed-car-shipping' },
               { label: 'How to Ship an Auction Car', to: '/how-to-ship-a-car-bought-at-auction' },

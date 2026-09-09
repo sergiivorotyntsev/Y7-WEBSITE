@@ -34,6 +34,47 @@
     "notFoundMsg": "Страницы порта, которую вы ищете, не существует.",
     "notFoundCta": "Все порты"
   },
+  "relatedLabels": {
+    "newark": {
+      "/new-jersey-auto-transport": "Перевозка авто по Нью-Джерси",
+      "/auction-to-port-transport": "С аукциона в порт Ньюарк",
+      "/new-jersey-to-florida-car-shipping": "Из Нью-Джерси во Флориду",
+      "/door-to-port-auto-transport": "Как доставить авто в Ньюарк"
+    },
+    "houston": {
+      "/dallas-to-port-houston-auto-transport": "Из Далласа в порт Хьюстона",
+      "/texas-auto-transport": "Где забрать авто в Техасе",
+      "/texas-to-newark-port-auto-transport": "Из Техаса в порт Ньюарк",
+      "/auction-to-port-transport": "С аукциона в Хьюстон",
+      "/door-to-port-auto-transport": "Доставка авто в Хьюстон"
+    },
+    "savannah": {
+      "/atlanta-to-savannah-port-auto-transport": "Из Атланты в порт Саванны",
+      "/florida-car-shipping": "Забрать автомобиль во Флориде",
+      "/auction-to-port-transport": "С аукциона до Саванны",
+      "/door-to-port-auto-transport": "Как привезти авто в Саванну",
+      "/state-to-state-car-shipping": "В Саванну из других штатов"
+    },
+    "los-angeles": {
+      "/state-to-state-car-shipping": "Дальний маршрут до Калифорнии",
+      "/enclosed-car-shipping": "Закрытый автовоз в Лос-Анджелес",
+      "/auction-to-port-transport": "С аукциона в Лос-Анджелес",
+      "/door-to-port-auto-transport": "Доставка до порта Лос-Анджелеса"
+    },
+    "baltimore": {
+      "/state-to-state-car-shipping": "Через другие штаты в Балтимор",
+      "/auction-to-port-transport": "С аукциона в Балтимор",
+      "/door-to-port-auto-transport": "Доставка авто в Балтимор",
+      "/new-jersey-auto-transport": "Забрать авто в Нью-Джерси"
+    },
+    "jacksonville": {
+      "/florida-to-jacksonville-port-car-shipping": "Из Флориды в Джексонвилл",
+      "/florida-car-shipping": "Перевозка авто по Флориде",
+      "/massachusetts-to-florida-car-shipping": "Из Массачусетса во Флориду",
+      "/new-jersey-to-florida-car-shipping": "Из Нью-Джерси во Флориду",
+      "/auction-to-port-transport": "С аукциона до порта Джексонвилла"
+    }
+  },
   "newark": {
     "metaTitle": "Доставка авто в порт Newark (Ньюарк), NJ",
     "metaDesc": "Транспортировка авто в терминал Port Newark-Elizabeth. Доставка с аукциона и из любой локации в США до порта. Лицензированный брокер, проверенные перевозчики.",

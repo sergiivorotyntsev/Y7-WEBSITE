@@ -73,31 +73,31 @@ const RELATED_SERVICES = {
   'carrier-who-vanished': [
     { to: '/state-to-state-car-shipping', label: 'State-to-state car shipping' },
     { to: '/ship-my-car',                 label: 'Ship my car — door-to-door' },
-    { to: '/car-shipping-cost',           label: 'Car shipping cost guide' },
+    { to: '/car-shipping-cost',           label: 'Understand the quote' },
   ],
   'carrier-coi-verification-guide': [
     { to: '/enclosed-car-shipping', label: 'Enclosed car shipping' },
-    { to: '/ship-my-car',           label: 'Ship my car service' },
-    { to: '/car-shipping-cost',     label: 'Car shipping cost guide' },
+    { to: '/ship-my-car',           label: 'Arrange car transport' },
+    { to: '/car-shipping-cost',     label: 'What affects transport rates' },
   ],
   'fmcsa-2026-new-rules': [
     { to: '/state-to-state-car-shipping', label: 'State-to-state car shipping' },
-    { to: '/ship-my-car',                 label: 'Ship my car service' },
-    { to: '/car-shipping-cost',           label: 'Car shipping cost guide' },
+    { to: '/ship-my-car',                 label: 'Shipping your own car' },
+    { to: '/car-shipping-cost',           label: 'How transport rates are set' },
   ],
   'fmcsa-broker-recordkeeping-2026': [
     { to: '/state-to-state-car-shipping', label: 'State-to-state car shipping' },
     { to: '/dealer-auto-transport',       label: 'Dealer auto transport' },
-    { to: '/ship-my-car',                 label: 'Ship my car service' },
+    { to: '/ship-my-car',                 label: 'Your car shipment' },
   ],
   'outbox-pattern-dispatch': [
     { to: '/state-to-state-car-shipping', label: 'State-to-state car shipping' },
     { to: '/dealer-auto-transport',       label: 'Dealer auto transport' },
-    { to: '/ship-my-car',                 label: 'Ship my car service' },
+    { to: '/ship-my-car',                 label: 'Personal car delivery' },
   ],
   '75000-bond-claims-guide': [
-    { to: '/car-shipping-cost',     label: 'Car shipping cost guide' },
-    { to: '/ship-my-car',           label: 'Ship my car service' },
+    { to: '/car-shipping-cost',     label: 'Car shipping fees explained' },
+    { to: '/ship-my-car',           label: 'Personal car moves' },
     { to: '/enclosed-car-shipping', label: 'Enclosed car shipping' },
   ],
   'copart-iaa-manheim-comparison': [
@@ -113,33 +113,33 @@ const RELATED_SERVICES = {
   ],
   'central-dispatch-listing-decoded': [
     { to: '/dealers', label: 'Dealer program' },
-    { to: '/ship-my-car', label: 'Ship my car service' },
+    { to: '/ship-my-car', label: 'Book a personal move' },
     { to: '/state-to-state-car-shipping', label: 'State-to-state' },
   ],
   'enclosed-transport-when-to-skip': [
     { to: '/enclosed-car-shipping', label: 'Enclosed car shipping' },
     { to: '/open-car-shipping', label: 'Open car shipping' },
-    { to: '/ship-my-car', label: 'Ship my car' },
+    { to: '/ship-my-car', label: 'Transport for your car' },
   ],
   'non-running-vehicle-shipping-playbook': [
     { to: '/salvage-car-shipping', label: 'Salvage car shipping' },
     { to: '/dealers', label: 'Dealer program' },
-    { to: '/ship-my-car', label: 'Ship my car' },
+    { to: '/ship-my-car', label: 'Plan your car shipment' },
   ],
   'winter-auto-transport-pricing': [
     { to: '/massachusetts-to-florida-car-shipping', label: 'MA to FL' },
     { to: '/new-jersey-to-florida-car-shipping', label: 'NJ to FL' },
-    { to: '/ship-my-car', label: 'Ship my car' },
+    { to: '/ship-my-car', label: 'Seasonal car shipping' },
   ],
   'bill-of-lading-pickup-delivery-guide': [
-    { to: '/ship-my-car', label: 'Ship my car' },
+    { to: '/ship-my-car', label: 'Car delivery service' },
     { to: '/what-is-a-bill-of-lading', label: 'BOL deep dive' },
     { to: '/enclosed-car-shipping', label: 'Enclosed transport' },
   ],
   'port-specific-export-newark-houston-savannah': [
     { to: '/exporters', label: 'Export services' },
     { to: '/door-to-port-auto-transport', label: 'Door-to-port transport' },
-    { to: '/ports/newark', label: 'Port Newark' },
+    { to: '/ports/newark', label: 'Newark export terminal' },
     { to: '/ports/houston', label: 'Port Houston' },
   ],
 };

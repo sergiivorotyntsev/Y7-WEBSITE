@@ -58,7 +58,7 @@ export default function EVAutoTransport() {
         { label: 'Cybertruck Shipping', to: '/cybertruck-shipping' },
         { label: 'EV Port Delivery', to: '/electric-vehicle-port-delivery' },
         { label: 'Enclosed Car Shipping', to: '/enclosed-car-shipping' },
-        { label: 'Get a Quote', to: '/quote' },
+        { label: 'EV quote', to: '/quote' },
       ]}
       ctaLabel="Ship Your EV With Confidence"
     >

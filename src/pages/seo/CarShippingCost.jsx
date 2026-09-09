@@ -99,13 +99,13 @@ export default function CarShippingCost() {
       ctaLabel="Get a Free Quote"
       ctaTo="/quote"
       related={[
-        { label: 'Ship My Car', to: '/ship-my-car' },
+        { label: 'Personal shipping costs', to: '/ship-my-car' },
         { label: 'Enclosed Shipping', to: '/enclosed-car-shipping' },
         { label: 'Open Car Shipping', to: '/open-car-shipping' },
         { label: 'State-to-State', to: '/state-to-state-car-shipping' },
         { label: 'Open vs Enclosed Guide', to: '/open-vs-enclosed-auto-transport' },
         { label: 'Auction Transport Savings', to: '/auction-transport-savings' },
-        { label: 'Get a Quote', to: '/quote' },
+        { label: 'Price my move', to: '/quote' },
       ]}
     >
       {/* --- Rich content sections --- */}

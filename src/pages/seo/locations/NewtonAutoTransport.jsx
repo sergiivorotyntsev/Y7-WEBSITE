@@ -99,7 +99,7 @@ export default function NewtonAutoTransport() {
         { label: 'Boston Car Shipping', to: '/boston-car-shipping' },
         { label: 'Massachusetts Car Shipping', to: '/massachusetts-car-shipping' },
         { label: 'MA to FL Shipping', to: '/massachusetts-to-florida-car-shipping' },
-        { label: 'Ship My Car', to: '/ship-my-car' },
+        { label: 'Door-to-door', to: '/ship-my-car' },
       ]}
     >
       <Section title="Auto Transport from Newton, Massachusetts">

@@ -73,7 +73,7 @@ export default function BostonCarShipping() {
       related={[
         { label: 'Newton Auto Transport', to: '/newton-auto-transport' },
         { label: 'Massachusetts Car Shipping', to: '/massachusetts-car-shipping' },
-        { label: 'Car Shipping Cost', to: '/car-shipping-cost' },
+        { label: 'Car transport pricing', to: '/car-shipping-cost' },
         { label: 'MA to FL Shipping', to: '/massachusetts-to-florida-car-shipping' },
       ]}
     >

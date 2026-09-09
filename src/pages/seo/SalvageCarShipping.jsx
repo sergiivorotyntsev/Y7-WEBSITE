@@ -77,8 +77,8 @@ export default function SalvageCarShipping() {
         },
       ]}
       related={[
-        { label: 'Copart Shipping', to: '/copart-shipping' },
-        { label: 'Auction Car Shipping', to: '/auction-car-shipping' },
+        { label: 'Copart salvage move', to: '/copart-shipping' },
+        { label: 'Auction delivery', to: '/auction-car-shipping' },
         { label: 'IAAI Transport', to: '/iaai-transport' },
         { label: 'Auction to Port Transport', to: '/auction-to-port-transport' },
         { label: 'How to Ship a Non-Running Vehicle', to: '/blog/non-running-vehicle-shipping-playbook' },

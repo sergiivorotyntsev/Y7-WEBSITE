@@ -109,18 +109,18 @@ export default function DoorToPort() {
       ctaLabel="Get a Port Delivery Quote"
       ctaTo="/quote"
       related={[
-        { label: 'Port Newark', to: '/ports/newark' },
+        { label: 'Delivery to Newark', to: '/ports/newark' },
         { label: 'Port Houston', to: '/ports/houston' },
         { label: 'Port Savannah', to: '/ports/savannah' },
         { label: 'Port Los Angeles', to: '/ports/los-angeles' },
         { label: 'Port Baltimore', to: '/ports/baltimore' },
         { label: 'Port Jacksonville', to: '/ports/jacksonville' },
-        { label: 'Auction to Port', to: '/auction-to-port-transport' },
+        { label: 'Auctions to port', to: '/auction-to-port-transport' },
         { label: 'NJ Export-Warehouse Pricing', to: '/nj-export-warehouse-shipping-cost' },
         { label: 'Certificate of Origin (0% EU duty)', to: '/certificate-of-origin' },
         { label: 'Newark vs Houston vs Savannah', to: '/blog/port-specific-export-newark-houston-savannah' },
         { label: 'For Exporters', to: '/exporters' },
-        { label: 'Get a Quote', to: '/quote' },
+        { label: 'Port delivery quote', to: '/quote' },
       ]}
     >
       <Section title="Major US Export Ports: What to Know">

@@ -76,11 +76,11 @@ export default function DallasToHouston() {
       ctaTo="/quote"
       related={[
         { label: 'Port of Houston', to: '/ports/houston' },
-        { label: 'Auction to Port', to: '/auction-to-port-transport' },
-        { label: 'Copart Shipping', to: '/copart-shipping' },
+        { label: 'Auction port move', to: '/auction-to-port-transport' },
+        { label: 'Texas Copart move', to: '/copart-shipping' },
         { label: 'Texas Auto Transport', to: '/texas-auto-transport' },
         { label: 'Texas → Port Newark', to: '/texas-to-newark-port-auto-transport' },
-        { label: 'Door-to-Port Transport', to: '/door-to-port-auto-transport' },
+        { label: 'Port delivery service', to: '/door-to-port-auto-transport' },
       ]}
     >
       <PricingRange

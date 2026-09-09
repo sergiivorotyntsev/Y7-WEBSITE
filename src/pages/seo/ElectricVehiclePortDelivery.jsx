@@ -53,9 +53,9 @@ export default function ElectricVehiclePortDelivery() {
       related={[
         { label: 'Tesla Car Shipping', to: '/tesla-car-shipping' },
         { label: 'EV Auto Transport', to: '/ev-auto-transport' },
-        { label: 'Door-to-Port Transport', to: '/door-to-port-auto-transport' },
-        { label: 'Auction to Port', to: '/auction-to-port-transport' },
-        { label: 'Port Newark', to: '/ports/newark' },
+        { label: 'Car delivery to port', to: '/door-to-port-auto-transport' },
+        { label: 'Auction EV port move', to: '/auction-to-port-transport' },
+        { label: 'Newark port requirements', to: '/ports/newark' },
         { label: 'Port Houston', to: '/ports/houston' },
       ]}
       ctaLabel="Get Your EV Port Delivery Quote"

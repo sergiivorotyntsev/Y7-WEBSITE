@@ -115,12 +115,12 @@ export default function ManheimTransport() {
       ctaTo="/dealer-quote"
       labels={{ ctaSubtitle: 'Share the purchased units and your dealership delivery details.' }}
       related={[
-        { label: 'Auction Shipping', to: '/auction-car-shipping' },
+        { label: 'Auction moves', to: '/auction-car-shipping' },
         { label: 'Dealer Transport', to: '/dealer-auto-transport' },
         { label: 'For Dealers', to: '/dealers' },
-        { label: 'Copart Shipping', to: '/copart-shipping' },
+        { label: 'Copart car moves', to: '/copart-shipping' },
         { label: 'IAA Transport', to: '/iaai-transport' },
-        { label: 'Get a Quote', to: '/quote' },
+        { label: 'Pickup quote', to: '/quote' },
       ]}
     >
       <AudienceCTA

@@ -222,7 +222,7 @@ export default function PortPage() {
               {RELATED_BY_PORT[slug].map((link, i) => (
                 <li key={i}>
                   <Link to={link.to} className={styles.relatedLink}>
-                    {link.label} &rarr;
+                    {t(`relatedLabels.${slug}.${link.to}`, { defaultValue: link.label })} &rarr;
                   </Link>
                 </li>
               ))}

@@ -141,8 +141,8 @@ export default function BillOfLading() {
               { label: 'BOL Checks at Pickup & Delivery', to: '/blog/bill-of-lading-pickup-delivery-guide' },
               { label: 'How to Ship an Auction Car', to: '/how-to-ship-a-car-bought-at-auction' },
               { label: 'Open vs Enclosed Transport', to: '/open-vs-enclosed-auto-transport' },
-              { label: 'Car Shipping Cost', to: '/car-shipping-cost' },
-              { label: 'Copart Shipping', to: '/copart-shipping' },
+              { label: 'Transport quote breakdown', to: '/car-shipping-cost' },
+              { label: 'Copart pickup details', to: '/copart-shipping' },
               { label: 'IAAI Transport', to: '/iaai-transport' },
             ].map((link, i) => (
               <Link key={i} to={link.to} className={styles.relatedPill}>

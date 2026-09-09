@@ -78,10 +78,10 @@ export default function StateToState() {
         },
       ]}
       related={[
-        { label: 'Car Shipping Cost', to: '/car-shipping-cost' },
-        { label: 'Ship My Car', to: '/ship-my-car' },
+        { label: 'Interstate shipping costs', to: '/car-shipping-cost' },
+        { label: 'Move your car', to: '/ship-my-car' },
         { label: 'Open Car Shipping', to: '/open-car-shipping' },
-        { label: 'Auction Car Shipping', to: '/auction-car-shipping' },
+        { label: 'Auction pickup nationwide', to: '/auction-car-shipping' },
       ]}
     >
       <Section title="How Interstate Transport Works">

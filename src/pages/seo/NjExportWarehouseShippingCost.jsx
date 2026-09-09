@@ -60,12 +60,12 @@ export default function NjExportWarehouseShippingCost() {
         },
       ]}
       related={[
-        { label: 'Auction to Port', to: '/auction-to-port-transport' },
+        { label: 'Auction delivery workflow', to: '/auction-to-port-transport' },
         { label: 'New Jersey Auto Transport', to: '/new-jersey-auto-transport' },
-        { label: 'Car Shipping Cost', to: '/car-shipping-cost' },
+        { label: 'Carrier rate factors', to: '/car-shipping-cost' },
         { label: 'Exporter Logistics', to: '/exporters' },
-        { label: 'Port Newark', to: '/ports/newark' },
-        { label: 'Door-to-Port Transport', to: '/door-to-port-auto-transport' },
+        { label: 'Newark delivery info', to: '/ports/newark' },
+        { label: 'Delivery for export', to: '/door-to-port-auto-transport' },
         { label: 'Certificate of Origin (0% EU duty)', to: '/certificate-of-origin' },
       ]}
     >

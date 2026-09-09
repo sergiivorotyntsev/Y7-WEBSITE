@@ -251,7 +251,7 @@ export default function CopartInternationalShipping() {
         <h2 className={styles.h2}>Related</h2>
         <ul className={styles.list}>
           <li className={styles.listItem}><Link to="/blog/copart-for-international-buyers-complete-guide" className={styles.link}>The international buyer&apos;s step-by-step Copart playbook</Link></li>
-          <li className={styles.listItem}><Link to="/copart-shipping" className={styles.link}>Copart shipping main page</Link></li>
+          <li className={styles.listItem}><Link to="/copart-shipping" className={styles.link}>Copart pickup for export</Link></li>
           <li className={styles.listItem}><Link to="/copart-storage-fees" className={styles.link}>Copart storage fees</Link></li>
           <li className={styles.listItem}><Link to="/copart-gate-pass-guide" className={styles.link}>Copart gate pass guide</Link></li>
           <li className={styles.listItem}><Link to="/exporters" className={styles.link}>Exporters</Link></li>

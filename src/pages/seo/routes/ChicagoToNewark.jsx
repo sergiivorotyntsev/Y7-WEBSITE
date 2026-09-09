@@ -65,11 +65,11 @@ export default function ChicagoToNewark() {
         },
       ]}
       related={[
-        { label: 'Port Newark', to: '/ports/newark' },
-        { label: 'Door-to-Port Transport', to: '/door-to-port-auto-transport' },
-        { label: 'Auction Shipping', to: '/auction-car-shipping' },
-        { label: 'Auction to Port', to: '/auction-to-port-transport' },
-        { label: 'Car Shipping Cost', to: '/car-shipping-cost' },
+        { label: 'Newark arrival', to: '/ports/newark' },
+        { label: 'Pickup to export port', to: '/door-to-port-auto-transport' },
+        { label: 'Auction routes', to: '/auction-car-shipping' },
+        { label: 'Auction-to-port routes', to: '/auction-to-port-transport' },
+        { label: 'Long-haul shipping costs', to: '/car-shipping-cost' },
       ]}
     >
       <PricingRange

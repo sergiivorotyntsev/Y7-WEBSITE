@@ -116,12 +116,12 @@ export default function IaaiTransport() {
       ctaTo="/quote"
       labels={{ ctaSubtitle: 'Send the IAA purchase details and the confirmed delivery address.' }}
       related={[
-        { label: 'Auction Shipping', to: '/auction-car-shipping' },
-        { label: 'Copart Shipping', to: '/copart-shipping' },
+        { label: 'Other auction pickups', to: '/auction-car-shipping' },
+        { label: 'Copart delivery', to: '/copart-shipping' },
         { label: 'Manheim Transport', to: '/manheim-transport' },
         { label: 'Salvage Shipping', to: '/salvage-car-shipping' },
         { label: 'Port Delivery', to: '/door-to-port-auto-transport' },
-        { label: 'Get a Quote', to: '/quote' },
+        { label: 'IAA quote', to: '/quote' },
       ]}
     >
       <AudienceCTA

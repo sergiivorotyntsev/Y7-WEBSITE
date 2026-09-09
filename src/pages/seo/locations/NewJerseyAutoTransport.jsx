@@ -73,10 +73,10 @@ export default function NewJerseyAutoTransport() {
       ]}
       related={[
         { label: 'NJ to FL Shipping', to: '/new-jersey-to-florida-car-shipping' },
-        { label: 'Auction to Port', to: '/auction-to-port-transport' },
+        { label: 'Auction export shipping', to: '/auction-to-port-transport' },
         { label: 'Copart Shipping from NJ Yards', to: '/copart-shipping' },
-        { label: 'Ship My Car', to: '/ship-my-car' },
-        { label: 'Port Newark', to: '/ports/newark' },
+        { label: 'Car relocation', to: '/ship-my-car' },
+        { label: 'Newark port guide', to: '/ports/newark' },
       ]}
     >
       <Section title="New Jersey as the East Coast Export Gateway">

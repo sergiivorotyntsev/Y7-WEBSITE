@@ -141,16 +141,16 @@ export default function AuctionCarShipping() {
         ctaSubtitle: 'Share the auction release details, vehicle condition, origin, and destination.',
       }}
       related={[
-        { label: 'Copart Shipping', to: '/copart-shipping' },
+        { label: 'Copart transport', to: '/copart-shipping' },
         { label: 'IAA Transport', to: '/iaai-transport' },
         { label: 'Manheim Transport', to: '/manheim-transport' },
         { label: 'Auction Transport Savings', to: '/auction-transport-savings' },
-        { label: 'Auction to Port', to: '/auction-to-port-transport' },
+        { label: 'Auction port move', to: '/auction-to-port-transport' },
         { label: 'Salvage Car Shipping', to: '/salvage-car-shipping' },
         { label: 'Port Delivery', to: '/door-to-port-auto-transport' },
         { label: 'Dealer Auto Transport', to: '/dealer-auto-transport' },
         { label: 'Auction Shipping Guide', to: '/how-to-ship-a-car-bought-at-auction' },
-        { label: 'Get a Quote', to: '/quote' },
+        { label: 'Auction quote', to: '/quote' },
       ]}
     >
       <AudienceCTA

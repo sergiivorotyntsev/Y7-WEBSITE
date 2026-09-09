@@ -79,8 +79,8 @@ export default function FloridaCarShipping() {
         { label: 'MA to FL', to: '/massachusetts-to-florida-car-shipping' },
         { label: 'NJ to FL', to: '/new-jersey-to-florida-car-shipping' },
         { label: 'Copart FL & Export Hub', to: '/copart-shipping' },
-        { label: 'Ship My Car', to: '/ship-my-car' },
-        { label: 'Car Shipping Cost', to: '/car-shipping-cost' },
+        { label: 'Snowbird moves', to: '/ship-my-car' },
+        { label: 'Seasonal transport costs', to: '/car-shipping-cost' },
       ]}
     >
       <Section title="Florida as the #1 Auto Transport Destination">

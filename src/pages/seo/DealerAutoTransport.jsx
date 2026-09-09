@@ -142,13 +142,13 @@ export default function DealerAutoTransport() {
       ctaTo="/dealer-quote"
       related={[
         { label: 'For Dealers', to: '/dealers' },
-        { label: 'Auction Shipping', to: '/auction-car-shipping' },
-        { label: 'Copart Shipping', to: '/copart-shipping' },
+        { label: 'Auction pickup options', to: '/auction-car-shipping' },
+        { label: 'Copart dealer moves', to: '/copart-shipping' },
         { label: 'Manheim Transport', to: '/manheim-transport' },
         { label: 'IAA Transport', to: '/iaai-transport' },
         { label: 'Port Delivery', to: '/door-to-port-auto-transport' },
         { label: 'Auction Pickup Playbook', to: '/blog/dealer-auction-pickup-guide' },
-        { label: 'Get a Quote', to: '/quote' },
+        { label: 'Shipment quote', to: '/quote' },
       ]}
     >
       <DealerProgramCTA />

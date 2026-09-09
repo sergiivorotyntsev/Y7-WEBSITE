@@ -70,10 +70,10 @@ export default function TexasToNewark() {
       ]}
       related={[
         { label: 'Texas Auto Transport', to: '/texas-auto-transport' },
-        { label: 'Port Newark', to: '/ports/newark' },
-        { label: 'Door-to-Port Transport', to: '/door-to-port-auto-transport' },
-        { label: 'Copart Shipping', to: '/copart-shipping' },
-        { label: 'Auction to Port', to: '/auction-to-port-transport' },
+        { label: 'Newark handoff', to: '/ports/newark' },
+        { label: 'Door-to-port service', to: '/door-to-port-auto-transport' },
+        { label: 'Copart road move', to: '/copart-shipping' },
+        { label: 'From auction to port', to: '/auction-to-port-transport' },
       ]}
     >
       <PricingRange
