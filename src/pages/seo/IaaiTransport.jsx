@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import SeoLandingPage, { Section } from './SeoLandingPage';
-import { tableWrap, table, th, td } from './_enrichedStyles';
 import { colors, fonts } from '../../theme';
+import v2t from '../../styles/v2/type.module.css';
+import pageStyles from './SeoLandingPage.module.css';
+import ctaStyles from '../../components/ContextualCTA.module.css';
 
 const p = {
   fontFamily: fonts.sans,
@@ -11,85 +13,108 @@ const p = {
   marginBottom: '16px',
 };
 
+const carrierChecks = [
+  { title: 'FMCSA operating authority', detail: "We confirm the carrier's authority is active at the time of that dispatch." },
+  { title: 'Current certificate of insurance (COI)', detail: "We check the carrier's current COI before assigning the load." },
+  { title: 'Central Dispatch reviews and history', detail: "We review the carrier's record on the industry's load board." },
+  { title: "Assigned driver's license", detail: "We check the license of the specific driver who will collect the vehicle, not only the carrier company's details." },
+  { title: "Assigned driver's direct phone number", detail: 'We confirm a direct phone number for the driver who will transport the vehicle.' },
+];
+
+const faqs = [
+  {
+    q: 'Is Y7 Logistics part of IAA?',
+    a: 'No. Y7 Logistics is an independent Licensed & Bonded FMCSA Broker, not IAA or its transport service. Y7 arranges the motor carrier and coordinates the shipment; IAA controls the auction purchase and release.',
+  },
+  {
+    q: 'What does IAA transport cost through Y7?',
+    a: 'The carrier rate is quoted separately from the Y7 fee. Dealers pay $50 per vehicle when paying the carrier directly, or $60 when Y7 handles carrier payment. Exporters pay $50 per vehicle with carrier-payment handling included. Individuals pay the greater of $75 or 10% of the carrier price. Vehicle condition, the route and equipment affect the carrier quote.',
+  },
+  {
+    q: 'What should I send for an IAAI car shipping quote?',
+    a: 'Send the purchase reference or vehicle listing, the exact IAA pickup branch, available buyer and vehicle identifiers, the delivery address and the vehicle condition. Add any release information and receiving instructions already provided for the purchase.',
+  },
+  {
+    q: 'Does payment mean my IAA vehicle is ready for pickup?',
+    a: 'Confirm the current pickup status and required authorization with the IAA branch handling your vehicle. Share that confirmation with Y7 before a carrier is dispatched. A planned collection date should not rely on an assumed release-processing time.',
+  },
+  {
+    q: 'Can Y7 arrange transport for a non-running or damaged vehicle?',
+    a: 'Yes, subject to a review of the actual condition and loading access. Explain whether the vehicle rolls, steers and brakes, and disclose missing wheels, leaks or structural damage. Y7 matches the request to suitable carrier equipment rather than treating every salvage vehicle as the same load.',
+  },
+  {
+    q: 'Can an individual buyer ship an IAA purchase with Y7?',
+    a: 'Yes, for a vehicle the buyer is eligible to purchase. IAA says public-buyer eligibility depends on the branch and the vehicle; check its Who Can Bid information before bidding. Y7 arranges transport and does not provide auction purchasing access.',
+  },
+  {
+    q: 'Can an IAA purchase go to an export warehouse?',
+    a: 'Y7 can coordinate the domestic carrier move to the confirmed receiving facility. Provide its address, contact, vehicle-acceptance requirements and any reference requested for delivery. Ocean booking and overseas transport are separate from this inland shipment.',
+  },
+  {
+    q: 'Where do I confirm IAA storage charges and pickup deadlines?',
+    a: "Use the current instructions for the IAA branch handling the purchase. Auction charges and deadlines remain the buyer's responsibility. Give Y7 the relevant pickup information so the carrier request reflects the actual branch requirements, not a nationwide assumed storage window.",
+  },
+  {
+    q: 'Can dealers submit IAA pickups alongside other auction purchases?',
+    a: 'Yes. Submit the vehicle and release details for each location through the dealer workflow. Y7 can assess compatible pickups together, but a shared carrier depends on readiness, equipment, capacity and routing. The Y7 dealer fee does not change with shipment volume.',
+  },
+];
+
+function AudienceCTA({ title, body, to, label, tone }) {
+  return (
+    <aside className={`${ctaStyles.card} ${ctaStyles[`tone_${tone}`]}`}>
+      <div className={ctaStyles.cardBody}>
+        <h2 className={ctaStyles.cardTitle}>{title}</h2>
+        <p className={ctaStyles.cardText}>{body}</p>
+      </div>
+      <Link className={ctaStyles.cardCta} to={to}>
+        {label} <span aria-hidden="true">→</span>
+      </Link>
+    </aside>
+  );
+}
+
 export default function IaaiTransport() {
   return (
     <SeoLandingPage
       meta={{
-        title: 'IAA Auction Transport',
+        title: 'IAAI Car Shipping & Auction Transport | Y7 Logistics',
         description:
-          'Vehicle transport from IAA (Insurance Auto Auctions) locations nationwide. Gate pass coordination, salvage vehicles, fast pickup. Y7 Logistics.',
+          'IAAI car shipping from IAA auctions to dealers, homes and export warehouses. Independent Licensed & Bonded FMCSA Broker; carrier rate quoted separately.',
         path: '/iaai-transport',
       }}
-      primaryCTA={{ intlKey: 'exporters', to: '/exporters', tone: 'amber' }}
-      secondaryCTA={{ intlKey: 'shipMyCar', to: '/ship-my-car', tone: 'coral' }}
-      heading="IAA Transport — Ship Your Vehicle from IAA Auctions"
-      intro="IAA (formerly Insurance Auto Auctions) is one of the largest salvage vehicle auction platforms. Y7 Logistics picks up from IAA yards across the US with efficient gate pass coordination."
+      heading="IAAI Car Shipping From Auction Yard to Delivery"
+      intro="Buying at IAA, often searched as IAAI, leaves a separate job: getting the purchased vehicle to its next location. Y7 Logistics arranges IAA car shipping for dealers, exporters and eligible individual buyers, with the carrier rate and broker fee stated separately."
       tldr={{
-        kicker: 'IAA transport, in brief',
-        ariaLabel: 'IAA transport, in brief',
-        text: 'Y7 Logistics is a licensed and bonded FMCSA broker (MC #1741537, USDOT #4427359) shipping vehicles from IAA yards nationwide. IAA release works differently from Copart: you request it through your IAA buyer portal (typically processed within one business day) and the release document is a buyer letter naming the carrier. The free storage window is about two to three business days, then $15-$50 per day. Most IAA vehicles are non-running, so winch loading is the norm. The carrier rate is separate. Y7 fees per vehicle: dealer $50 with direct carrier payment or dealer-only $60 when Y7 handles it; exporter $50 including payment handling; individual greater of $75 or 10% of carrier price.',
+        kicker: 'IAAI car shipping, in brief',
+        ariaLabel: 'IAAI car shipping, in brief',
+        text: "Y7 Logistics arranges IAAI car shipping from IAA auction locations to dealerships, homes and export warehouses. We are an independent Licensed & Bonded FMCSA Broker, not IAA. Buyers provide the purchase and release details; Y7 matches equipment and checks the carrier before dispatch. The carrier performs pickup and delivery, with its rate separate from Y7's fee.",
       }}
-      whenNeeded={[
-        'Won a vehicle at IAA online auction',
-        'Purchased insurance salvage vehicle',
-        'Buying from IAA for rebuild or export',
-        'Dealer purchasing from IAA',
-        'Need fast pickup to avoid IAA storage fees',
-      ]}
+      serviceExtras={{
+        serviceType: 'IAA auction vehicle transport brokerage',
+        audience: {
+          schemaType: 'BusinessAudience',
+          audienceType: 'Auto dealers and vehicle exporters',
+          name: 'Dealers and exporters arranging IAA vehicle pickup',
+        },
+      }}
       steps={[
-        { title: 'Complete IAA purchase and payment', desc: 'Finalize your IAA auction transaction and ensure all fees are paid.' },
-        { title: 'Provide lot number and buyer info to Y7', desc: 'Share your IAA lot number, buyer number, and delivery details with us.' },
-        { title: 'We coordinate IAA gate pass and pickup', desc: 'We guide you through the gate pass process so your vehicle is release-ready.' },
-        { title: 'Carrier dispatched to IAA location', desc: 'A verified carrier is assigned and dispatched to the IAA yard.' },
-        { title: 'Vehicle delivered to your destination', desc: 'Your vehicle is delivered to your home, shop, dealership, or port.' },
+        { title: 'Identify the Purchase', desc: 'Send the IAA branch, purchase identifiers, vehicle condition and destination for a carrier quote.' },
+        { title: 'Confirm Release Readiness', desc: 'Obtain the current pickup instructions from IAA and share the available authorization.' },
+        { title: 'Match Carrier and Equipment', desc: 'Y7 reviews the load, completes the per-dispatch checks and coordinates collection.' },
+        { title: 'Receive the Vehicle', desc: 'The carrier delivers to the confirmed address; record the handoff on the Bill of Lading.' },
       ]}
       requirements={[
-        'IAA lot number',
-        'Buyer number',
-        'Payment completed',
-        'Gate pass authorization',
-        'Delivery address or port',
+        'Purchase reference and available buyer or vehicle identifiers',
+        'Exact IAA branch and current release information',
+        'Vehicle condition, photos and known loading limitations',
+        'Confirmed delivery address and receiving contact',
+        'Pickup and delivery instructions supplied for this vehicle',
       ]}
-      capabilities={[
-        'All IAA locations nationwide',
-        'Insurance salvage vehicles',
-        'Non-running/non-drivable transport',
-        'Fast pickup scheduling',
-        'Home or port delivery',
-        'Competitive pricing for high-volume buyers',
-      ]}
-      faqs={[
-        {
-          q: 'How long after IAA purchase can you pick up?',
-          a: 'Typically 2-5 business days. We prioritize pickup within the free storage period to help you avoid extra fees.',
-        },
-        {
-          q: 'Do you handle IAA gate passes?',
-          a: 'We guide you through the process — IAA issues gate passes after payment clears. We coordinate with the yard to ensure smooth pickup.',
-        },
-        {
-          q: 'Can you ship non-running IAA vehicles?',
-          a: 'Yes, many IAA vehicles are non-running. Our carriers have winches, dollies, and other equipment to load and transport inoperable vehicles safely.',
-        },
-        {
-          q: 'What areas do you cover for IAA pickup?',
-          a: 'All IAA locations in the continental United States. No matter which IAA yard your vehicle is at, we can arrange transport.',
-        },
-        {
-          q: 'How is the IAA gate pass different from Copart\'s?',
-          a: 'Two differences. At Copart the gate pass generates automatically once payment clears; at IAA you must actively request release through your buyer portal, which IAA typically processes within one business day. And IAA\'s release document is a buyer letter naming the authorized carrier, so the driver\'s ID must match it at the gate. When you book with Y7 we flag the request step immediately so you do not lose storage days waiting for a pass that was never requested.',
-        },
-        {
-          q: 'Are more IAA vehicles non-running than at Copart?',
-          a: 'Yes. IAA inventory is overwhelmingly insurance total-loss claims, so the share of non-running vehicles is significantly higher than at Copart. Winch loading is the norm rather than the exception, and loading a non-runner takes 20-30 minutes at the yard instead of five. Tell us about missing wheels, flat tires, or heavy undercarriage damage when booking so the right equipment is dispatched the first time.',
-        },
-        {
-          q: 'How much is IAA storage and how long is the free window?',
-          a: 'IAA typically gives two to three business days of free storage after payment clears, then charges $15-$50 per day depending on the yard. Storage fees are between you and IAA; no broker can waive them. What we do is treat the free window as a hard dispatch priority and quote your lane before you bid, so storage risk is priced into your bid instead of discovered after you win.',
-        },
-      ]}
+      faqs={faqs}
       ctaLabel="Get a Quote"
       ctaTo="/quote"
+      labels={{ ctaSubtitle: 'Send the IAA purchase details and the confirmed delivery address.' }}
       related={[
         { label: 'Auction Shipping', to: '/auction-car-shipping' },
         { label: 'Copart Shipping', to: '/copart-shipping' },
@@ -99,182 +124,130 @@ export default function IaaiTransport() {
         { label: 'Get a Quote', to: '/quote' },
       ]}
     >
-      <Section title="IAA: What Changed and What Stayed the Same">
+      <AudienceCTA
+        title="Getting this car to a port?"
+        body="Plan the inland move around the vehicle's condition and the receiving facility's instructions. The exporter workflow connects the auction pickup with the confirmed warehouse or port handoff."
+        to="/exporters"
+        label="See export services"
+        tone="amber"
+      />
+
+      <Section title="Confirm the Purchase Before Arranging Pickup">
         <p style={p}>
-          Insurance Auto Auctions rebranded to simply "IAA" in 2019 and was later acquired by
-          RB Global (formerly Ritchie Bros.) in 2023. The name changed, the parent company changed,
-          but the yard operations stayed largely the same: insurance companies consign total-loss
-          vehicles, IAA lists them online, buyers bid, and the winner arranges their own transport.
-          That last part is where most buyers — especially first-timers — run into friction.
+          Start with the exact IAA branch and purchased vehicle, not just the auction name.
+          Send Y7 the purchase reference, available buyer details, condition and destination.
+          These let the carrier quote reflect the vehicle actually waiting for collection.
+        </p>
+        <p style={p}>
+          For individual buyers, IAA's{' '}
+          <a className={v2t.bodyLinkOnPaper} href="https://www.iaai.com/us/Marketing/how-to-register">buyer registration guide</a>{' '}
+          says the branch must allow public buying and the vehicle must be eligible under its
+          Who Can Bid information. Y7 is independent of IAA: arranging transport does not
+          grant auction bidding eligibility.
         </p>
       </Section>
 
-      <Section title="The IAA Gate Pass Process: Different from Copart">
+      <Section title="Release Information and Carrier Check-In">
         <p style={p}>
-          This is the single biggest operational difference between IAA and Copart that affects
-          your transport timeline. At Copart, the gate pass generates automatically once payment
-          clears. At IAA, the buyer must actively request the gate pass through their online portal.
-          It does not happen on its own. If you pay for your vehicle and then wait for a gate pass
-          to magically appear in your account, you will be waiting while storage fees accumulate.
+          Ask the branch to confirm that the vehicle can be collected and what authorization
+          the carrier must present. Send that information to Y7 so collection can be coordinated
+          with the assigned driver. The buying account remains responsible for resolving the
+          purchase and release with IAA.
         </p>
         <p style={p}>
-          Here is the step-by-step: log into your IAA buyer account, navigate to your purchased
-          lot, click the transportation or pickup options, and request gate pass authorization.
-          IAA then processes the request — typically within one business day. Once the gate pass
-          is active, we can send a carrier to the yard. The extra manual step means IAA pickups
-          often run one day behind Copart pickups on average.
-        </p>
-        <p style={p}>
-          When you book transport through Y7 Logistics, we walk you through this process. If you
-          have not requested your gate pass yet, we flag it immediately so you do not lose days
-          without realizing it.
+          IAA describes outbound pickup scheduling in its{' '}
+          <a className={v2t.bodyLinkOnPaper} href="https://www.iaai.com/us/marketing/iaa-apps">Tow App guidance</a>.
+          Consult the{' '}
+          <a className={v2t.bodyLinkOnPaper} href="https://www.iaai.com/us/locations">IAA location directory</a>{' '}
+          for the branch's current instructions and auction charges. Do not plan around an
+          assumed release delay or a nationwide free-storage window.
         </p>
       </Section>
 
-      <Section title="IAA vs Copart: What Actually Differs for Transport">
+      <Section title="Non-Running and Damaged IAA Vehicles">
         <p style={p}>
-          Buyers searching &quot;IAAI vs Copart&quot; usually want the fee-and-inventory comparison,
-          which lives in our{' '}
-          <Link to="/blog/copart-iaa-manheim-comparison" style={{ color: colors.accent }}>
-          Copart vs IAA vs Manheim guide</Link>. For transport specifically, the differences are
-          operational, and they change how fast your vehicle leaves the yard:
+          A salvage label is not a loading plan. Tell Y7 whether the vehicle rolls, steers
+          and brakes, and provide photos of missing wheels, leaks or damaged attachment points.
+          The carrier needs the actual condition to assess suitable loading equipment.
         </p>
-        <div style={tableWrap}>
-          <table style={table}>
-            <thead>
-              <tr>
-                <th style={th}>Factor</th>
-                <th style={th}>IAA</th>
-                <th style={th}>Copart</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style={td}>Release authorization</td>
-                <td style={td}>Buyer letter naming the carrier, requested via the buyer portal</td>
-                <td style={td}>Gate pass PIN, generated automatically</td>
-              </tr>
-              <tr>
-                <td style={td}>When release issues</td>
-                <td style={td}>~1 business day after you request it</td>
-                <td style={td}>Once payment clears, no request needed</td>
-              </tr>
-              <tr>
-                <td style={td}>Free storage window</td>
-                <td style={td}>~2-3 business days after payment clears</td>
-                <td style={td}>~3 business days after payment clears</td>
-              </tr>
-              <tr>
-                <td style={td}>Storage after the window</td>
-                <td style={td}>$15-$50 per day by yard</td>
-                <td style={td}>$20-$40 per day by yard</td>
-              </tr>
-              <tr>
-                <td style={td}>Non-running share</td>
-                <td style={td}>Higher; winch loading is the norm</td>
-                <td style={td}>Lower; more run-and-drive lots</td>
-              </tr>
-              <tr>
-                <td style={td}>Carrier check-in</td>
-                <td style={td}>Driver ID must match the buyer letter</td>
-                <td style={td}>Transporter App or manual check-in</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
         <p style={p}>
-          The practical takeaway: IAA pickups run about one day behind Copart pickups on average,
-          entirely because of the manual release request. A broker who handles both platforms
-          builds that day into the dispatch plan instead of discovering it at the gate.
+          Open, enclosed or specialized equipment depends on that condition and access at both
+          ends of the route. Do not assume a purchased vehicle can be driven onto a trailer.
+          Our <Link className={v2t.bodyLinkOnPaper} to="/salvage-car-shipping">salvage car shipping guidance</Link>{' '}
+          explains the condition details to include with the request.
         </p>
       </Section>
 
-      <Section title="Buyer ID Requirements at IAA">
+      <Section title="IAA Transport Cost: Carrier Rate and Y7 Fee">
         <p style={p}>
-          IAA requires a registered buyer account. Individual buyers need a government-issued ID
-          and must register on IAA's platform before bidding. Dealers need their dealer license
-          on file. The buyer number tied to your account is what the yard checks when a carrier
-          shows up — if the buyer number on the transport authorization does not match the
-          account that purchased the vehicle, the yard will not release it.
+          The carrier quote reflects the pickup and delivery locations, vehicle condition,
+          equipment and available capacity. It is separate from Y7's fee and any auction charges.
+          Y7 Logistics is a Licensed &amp; Bonded FMCSA Broker,{' '}
+          <span className={v2t.monoData}>MC #1741537</span>,{' '}
+          <span className={v2t.monoData}>USDOT #4427359</span>.
         </p>
         <p style={p}>
-          We verify your buyer number against the lot details before dispatching any carrier. This
-          avoids the scenario where a driver makes a 200-mile trip to an IAA yard only to be turned
-          away at the gate because of a buyer ID mismatch.
-        </p>
-      </Section>
-
-      <Section title="IAA Storage Fees: Know Your Window">
-        <p style={p}>
-          IAA gives buyers a short free storage period — typically two to three business days after
-          payment clears. After that, daily storage kicks in at $15 to $50 per day depending on
-          the yard. IAA's storage rates tend to be slightly lower than Copart's on average, but
-          the shorter free window offsets that. Two free days instead of three means you have less
-          margin for error.
+          Dealers pay <span className={v2t.monoData}>$50</span> per vehicle with direct carrier
+          payment, or <span className={v2t.monoData}>$60</span> when Y7 handles carrier payment.
+          Exporters pay <span className={v2t.monoData}>$50</span> per vehicle with that handling
+          included. Individuals pay the greater of <span className={v2t.monoData}>$75</span> or{' '}
+          <span className={v2t.monoData}>10%</span> of the carrier price.
         </p>
         <p style={p}>
-          The math is simple: if your vehicle sits at an IAA yard for ten days past the free period
-          at $35 per day, you have added $350 to the cost of a car you bought at auction specifically
-          to get a deal. We treat storage deadlines as hard dispatch priorities — your pickup gets
-          scheduled around the free window, not around carrier convenience.
+          For recurring purchases, the{' '}
+          <Link className={v2t.bodyLinkOnPaper} to="/dealer-auto-transport">dealer auto transport service</Link>{' '}
+          explains dealer shipment coordination. Grouping vehicles may affect the carrier quote;
+          it does not create a volume tier for the Y7 fee.
         </p>
       </Section>
 
-      <Section title="IAA Transport (In-House) vs. Independent Broker">
+      <Section title="IAA-to-Port Moves for Exporters">
         <p style={p}>
-          IAA offers its own transport service called "IAA Transport" directly through the buyer
-          portal. It is convenient — you click a button and they arrange a carrier. But convenience
-          comes with trade-offs. IAA Transport pricing is set by IAA, not negotiated by you. There
-          is no flexibility on timing, routing, or carrier selection. And if you are buying from
-          multiple auctions (IAA plus Copart, for example), you are now managing two separate
-          transport arrangements instead of one.
+          Confirm the receiving warehouse or port facility, its delivery contact, acceptance
+          instructions and any required reference. Share these with the auction vehicle details
+          so the inland carrier is sent to the correct receiving point.
         </p>
         <p style={p}>
-          Working with an independent broker like Y7 Logistics means your transport is priced
-          competitively against the open carrier market. We can combine loads — if you have one
-          vehicle at IAA and another at Copart in the same state, a single carrier can grab both
-          (deciding between platforms? See our <Link to="/blog/copart-iaa-manheim-comparison" style={{ color: colors.accent }}>Copart vs IAA vs Manheim comparison</Link>).
-          We also provide a single point of contact for all your auction transport, regardless of
-          which platform you buy from.
+          The <Link className={v2t.bodyLinkOnPaper} to="/auction-to-port-transport">auction-to-port transport workflow</Link>{' '}
+          covers the US carrier leg. Ocean booking, vessel arrangements and overseas delivery
+          remain with the ocean-freight provider; an inland pickup is not a vessel booking.
         </p>
       </Section>
 
-      <Section title="Most IAA Vehicles Are Non-Running: Plan Accordingly">
+      <Section title="Carrier Checks Before Each IAA Dispatch">
         <p style={p}>
-          The majority of vehicles at IAA are insurance total-loss claims. That means flood damage,
-          collisions, theft recoveries, and mechanical failures. The percentage of non-running
-          vehicles at IAA is significantly higher than at Copart, where a larger share of clean
-          title, run-and-drive vehicles are listed.
+          A previous shipment with a carrier does not replace checking the company and the
+          assigned driver for this load. Before each dispatch, Y7 checks:
+        </p>
+        <ul className={pageStyles.list}>
+          {carrierChecks.map(({ title, detail }) => (
+            <li key={title} className={pageStyles.listItem}>
+              <strong>{title}:</strong> {detail}
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section title="Planning Purchases Across Auction Locations">
+        <p style={p}>
+          Use the <Link className={v2t.bodyLinkOnPaper} to="/auction-car-shipping">auction car shipping hub</Link>{' '}
+          to organize transport requests from different auction locations. A{' '}
+          <Link className={v2t.bodyLinkOnPaper} to="/copart-shipping">Copart pickup</Link>{' '}
+          still needs its own purchase and release information, even when it shares a delivery address.
         </p>
         <p style={p}>
-          For transport, this means winch loading is the norm, not the exception. Non-running
-          vehicles also take longer to load at the yard — a driver may need 20 to 30 minutes per
-          vehicle instead of the five minutes it takes to drive a running car onto the trailer.
-          Yards with high non-running volume (and there are many) can create bottlenecks, especially
-          on busy days. We account for this in our scheduling to make sure your carrier has enough
-          time at the yard.
-        </p>
-        <p style={p}>
-          If your IAA vehicle has missing wheels, flat tires, or heavy undercarriage damage, let
-          us know when you book. These details determine whether we need a standard car hauler
-          with a winch or a flatbed with a forklift-accessible yard.
+          For differences between auction platforms, read the{' '}
+          <Link className={v2t.bodyLinkOnPaper} to="/blog/copart-iaa-manheim-comparison">Copart, IAA and Manheim comparison guide</Link>.
         </p>
       </Section>
 
-      <Section title="Top IAA Yard Locations by State">
-        <p style={p}>
-          IAA operates yards across the US, with the highest concentrations in Texas, California,
-          Florida, Pennsylvania, Illinois, Ohio, Georgia, Michigan, North Carolina, and New Jersey.
-          These ten states account for the vast majority of IAA auction volume. Carrier availability
-          from yards in these states is generally strong because they sit on well-traveled freight
-          corridors.
-        </p>
-        <p style={p}>
-          For buyers purchasing from less common IAA locations — rural yards in states like
-          Wyoming, Montana, or the Dakotas — expect an extra one to two days for carrier assignment.
-          We price these routes transparently so you know exactly what to expect before confirming.
-        </p>
-      </Section>
+      <AudienceCTA
+        title="Shipping one vehicle door-to-door?"
+        body="Bought this IAA vehicle for personal use? Send the branch, condition and delivery details for an individual shipment with the carrier price separate from the Y7 fee."
+        to="/ship-my-car"
+        label="Get my car quote"
+        tone="coral"
+      />
     </SeoLandingPage>
   );
 }
